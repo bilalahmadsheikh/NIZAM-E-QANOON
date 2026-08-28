@@ -1,0 +1,112 @@
+# ══ Line endings ═══════════════════════════════════════════════
+# Normalise everything to LF inside the repository. Each developer's
+# core.autocrlf setting then stops mattering: this file decides, so
+# the same checkout behaves identically on every machine.
+* text=auto
+
+# Must be LF even on Windows. A shell script or entrypoint carrying
+# CRLF into a Linux container fails with the deeply unhelpful
+#   /bin/bash^M: bad interpreter: No such file or directory
+*.sh            text eol=lf
+*.bash          text eol=lf
+Dockerfile      text eol=lf
+Dockerfile.*    text eol=lf
+*.dockerfile    text eol=lf
+docker-compose*.yml text eol=lf
+*.yml           text eol=lf
+*.yaml          text eol=lf
+*.sql           text eol=lf
+*.env.example   text eol=lf
+Makefile        text eol=lf
+*.mk            text eol=lf
+.gitattributes  text eol=lf
+.gitignore      text eol=lf
+
+# Windows-native tooling prefers CRLF
+*.bat           text eol=crlf
+*.cmd           text eol=crlf
+*.ps1           text eol=crlf
+
+# ══ Binary — never diff, never merge, never line-ending-mangle ══
+*.pdf           binary
+*.docx          binary
+*.doc           binary
+*.xlsx          binary
+*.zip           binary
+*.gz            binary
+*.zst           binary
+*.png           binary
+*.jpg           binary
+*.jpeg          binary
+*.webp          binary
+*.ico           binary
+*.ttf           binary
+*.otf           binary
+*.woff          binary
+*.woff2         binary
+*.sqlite        binary
+*.sqlite3       binary
+*.db            binary
+*.dump          binary
+*.onnx          binary
+*.gguf          binary
+*.safetensors   binary
+*.pt            binary
+*.task          binary
+*.jks           binary
+*.keystore      binary
+
+# ══ Readable diffs ═════════════════════════════════════════════
+# Git's built-in hunk-header patterns, so a diff says which function
+# or section it lands in rather than just @@ -120,7 +120,9 @@
+*.py            diff=python
+*.html          diff=html
+*.htm           diff=html
+*.css           diff=css
+*.md            diff=markdown
+*.tex           diff=tex
+*.rs            diff=rust
+*.kt            diff=kotlin
+*.java          diff=java
+
+# ══ Generated files ════════════════════════════════════════════
+# Collapsed in pull requests and excluded from language statistics.
+# Still tracked and still merged — just not worth reading.
+uv.lock             linguist-generated=true -diff
+poetry.lock         linguist-generated=true -diff
+package-lock.json   linguist-generated=true -diff
+pnpm-lock.yaml      linguist-generated=true -diff
+yarn.lock           linguist-generated=true -diff
+pubspec.lock        linguist-generated=true -diff
+*.g.dart            linguist-generated=true -diff
+*.freezed.dart      linguist-generated=true -diff
+*_pb2.py            linguist-generated=true -diff
+
+# ══ GitHub language statistics ═════════════════════════════════
+# Without this the repository reads as ~99% HTML because of the
+# specification set, which misrepresents what this project is.
+docs/**             linguist-documentation
+*.md                linguist-documentation
+
+# ══ Corpus manifests ═══════════════════════════════════════════
+# Scraper manifests are provenance records: one row per document with
+# its SHA-256 and HTTP status. Large, append-mostly, and pointless to
+# diff line by line — but worth keeping mergeable if they are tracked.
+**/manifest.csv     -diff merge=union
+**/missing.csv      -diff merge=union
+
+# ══ Archive exports ════════════════════════════════════════════
+# Excluded from `git archive` tarballs; irrelevant to a consumer.
+.gitattributes  export-ignore
+.gitignore      export-ignore
+.github/        export-ignore
+
+# ══ Git LFS — deliberately NOT enabled ═════════════════════════
+# If large fixtures or fonts are ever committed, run `git lfs install`
+# on every machine first, then uncomment. Enabling LFS without that
+# breaks checkout for anyone who has not installed it, and the pointer
+# files look like corrupted content rather than an obvious error.
+#
+# *.ttf   filter=lfs diff=lfs merge=lfs -text
+# *.otf   filter=lfs diff=lfs merge=lfs -text
+# tests/fixtures/**/*.pdf filter=lfs diff=lfs merge=lfs -text
