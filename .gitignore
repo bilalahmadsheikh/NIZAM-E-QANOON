@@ -1,0 +1,120 @@
+# ── Corpus data ────────────────────────────────────────────────
+# Source archives are 1.6 GB total; individual files exceed GitHub's
+# 100 MB per-file limit. They are re-obtainable by running the
+# scrapers in data/, and belong in object storage, not in git.
+*.zip
+data/*.zip
+
+# Scraper output and extraction staging
+data/output/
+data/**/output/
+data/**/Laws/
+data/**/Acts/
+data/**/Rules/
+data/*_code/
+data/Federal Laws/
+*.log
+scraper.log
+
+# Manifests are small and useful, but re-generated on every run.
+# Uncomment to track them if you want reproducibility receipts in git.
+# !data/**/manifest.csv
+
+# ── Built corpus artefacts ─────────────────────────────────────
+*.sqlite
+*.sqlite3
+*.db
+pack*.sqlite
+*.dump
+*.backup
+pgdata/
+backup-repo/
+
+# ── Model artefacts ────────────────────────────────────────────
+models/
+*.onnx
+*.gguf
+*.safetensors
+*.bin
+*.pt
+*.task
+
+# ── Python ─────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+.python-version
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# ── Node / web ─────────────────────────────────────────────────
+node_modules/
+.next/
+out/
+.turbo/
+*.tsbuildinfo
+.pnpm-store/
+
+# ── Flutter / Dart / Android ───────────────────────────────────
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+build/
+android/.gradle/
+android/local.properties
+android/key.properties
+*.jks
+*.keystore
+ios/Pods/
+ios/.symlinks/
+
+# ── Secrets and local config ───────────────────────────────────
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+!**/public.key
+secrets/
+credentials.json
+service-account*.json
+
+# ── Docker / infra local state ─────────────────────────────────
+docker-compose.override.yml
+.docker/
+volumes/
+
+# ── LaTeX build output ─────────────────────────────────────────
+*.aux
+*.fdb_latexmk
+*.fls
+*.synctex.gz
+*.toc
+*.lof
+*.lot
+
+# ── Editors and OS ─────────────────────────────────────────────
+.vscode/
+!.vscode/extensions.json
+.idea/
+*.iml
+*.swp
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── Scratch ────────────────────────────────────────────────────
+tmp/
+scratch/
+*.tmp

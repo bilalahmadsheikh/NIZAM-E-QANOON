@@ -1,0 +1,2599 @@
+<title>Nizam-e-Qanoon System Architecture</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Nastaliq+Urdu:wght@400&display=swap">
+
+<style>
+:root{
+  --paper:#F3F4F7; --surface:#FFFFFF; --surface-2:#EDEFF3; --surface-3:#E3E7EE;
+  --ink:#14171E; --ink-2:#4C5566; --ink-3:#7E879A;
+  --rule:#DCDFE7; --rule-2:#C6CBD6;
+  --indigo:#26397A; --indigo-soft:#E4E8F5;
+  --rubric:#9E3B2F; --rubric-soft:#F6E7E4;
+  --ok:#2C6349; --ok-soft:#E0EDE7;
+  --warn:#7E6114; --warn-soft:#F3EBD8;
+  --shadow:0 1px 2px rgba(20,23,30,.05), 0 8px 24px -12px rgba(20,23,30,.14);
+  --f-display:"Newsreader", Georgia, serif;
+  --f-body:"Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --f-urdu:"Noto Nastaliq Urdu", serif;
+  --measure:70ch; --rail:9.5rem;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0D0F14; --surface:#14171E; --surface-2:#1B1F28; --surface-3:#232935;
+    --ink:#E6E9EF; --ink-2:#A0A9BA; --ink-3:#6D7688;
+    --rule:#252A34; --rule-2:#333A47;
+    --indigo:#93A8E8; --indigo-soft:#1B2136;
+    --rubric:#D8867A; --rubric-soft:#2B1D1B;
+    --ok:#6FBF95; --ok-soft:#152520;
+    --warn:#D3AB5C; --warn-soft:#241E10;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 30px -14px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0D0F14; --surface:#14171E; --surface-2:#1B1F28; --surface-3:#232935;
+  --ink:#E6E9EF; --ink-2:#A0A9BA; --ink-3:#6D7688;
+  --rule:#252A34; --rule-2:#333A47;
+  --indigo:#93A8E8; --indigo-soft:#1B2136;
+  --rubric:#D8867A; --rubric-soft:#2B1D1B;
+  --ok:#6FBF95; --ok-soft:#152520;
+  --warn:#D3AB5C; --warn-soft:#241E10;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 30px -14px rgba(0,0,0,.7);
+}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);
+  font-size:16.5px;line-height:1.62;-webkit-font-smoothing:antialiased}
+.wrap{max-width:76rem;margin:0 auto;padding:0 1.5rem 8rem}
+
+.masthead{border-bottom:2px solid var(--ink);padding:3.5rem 0 1.25rem;margin-bottom:2rem}
+.kicker{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--rubric);margin:0 0 1rem}
+h1{font-family:var(--f-display);font-weight:500;font-size:clamp(2.4rem,5.8vw,3.9rem);
+  line-height:1.03;letter-spacing:-.021em;margin:0 0 .5rem;text-wrap:balance}
+.dek{font-family:var(--f-display);font-size:clamp(1.05rem,2.1vw,1.3rem);color:var(--ink-2);
+  max-width:56ch;margin:0 0 1.9rem;font-style:italic}
+.meta{display:flex;flex-wrap:wrap;gap:.5rem 2.25rem;font-family:var(--f-mono);font-size:.7rem;
+  letter-spacing:.05em;color:var(--ink-3);border-top:1px solid var(--rule);padding-top:.9rem}
+.meta b{color:var(--ink-2);font-weight:500}
+
+section{display:grid;grid-template-columns:var(--rail) minmax(0,1fr);gap:0 2.5rem;
+  padding-top:3.4rem;border-top:1px solid var(--rule);margin-top:3.4rem}
+section.first{border-top:none;margin-top:0}
+.rail{position:sticky;top:1.5rem;align-self:start;padding-top:.4rem}
+.rail .num{font-family:var(--f-mono);font-size:1.05rem;font-weight:600;color:var(--rubric);letter-spacing:-.02em;display:block}
+.rail .tag{font-family:var(--f-mono);font-size:.63rem;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--ink-3);display:block;margin-top:.5rem;line-height:1.55}
+.body{min-width:0}
+@media (max-width:880px){
+  section{grid-template-columns:1fr;gap:0}
+  .rail{position:static;display:flex;align-items:baseline;gap:.85rem;margin-bottom:.9rem;padding-top:0}
+  .rail .tag{margin-top:0}
+}
+
+h2{font-family:var(--f-display);font-weight:500;font-size:clamp(1.6rem,3.3vw,2.2rem);
+  line-height:1.14;letter-spacing:-.017em;margin:0 0 .8rem;text-wrap:balance}
+h3{font-family:var(--f-body);font-weight:700;font-size:1.01rem;margin:2.6rem 0 .55rem}
+h3 .mk{font-family:var(--f-mono);color:var(--rubric);font-weight:600;margin-inline-end:.55rem;font-size:.88em}
+h4{font-family:var(--f-mono);font-weight:600;font-size:.71rem;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--ink-3);margin:1.9rem 0 .6rem}
+p{margin:0 0 1.05rem;max-width:var(--measure)}
+.lede{font-size:1.07rem;color:var(--ink-2);max-width:62ch}
+ul,ol{margin:0 0 1.15rem;padding-inline-start:1.3rem;max-width:var(--measure)}
+li{margin-bottom:.4rem}
+li::marker{color:var(--ink-3)}
+a{color:var(--indigo);text-underline-offset:.18em}
+a:focus-visible{outline:2px solid var(--indigo);outline-offset:3px;border-radius:2px}
+code{font-family:var(--f-mono);font-size:.855em;font-variant-ligatures:none}
+p code,li code,td code,figcaption code{background:var(--surface-2);border:1px solid var(--rule);
+  padding:.06em .34em;border-radius:3px;color:var(--ink)}
+.ur{font-family:var(--f-urdu)}
+
+.scroll{overflow-x:auto;margin:1.4rem 0 1.9rem;border:1px solid var(--rule);border-radius:5px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:.83rem;line-height:1.5}
+th{text-align:left;font-family:var(--f-mono);font-weight:600;font-size:.645rem;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--ink-3);padding:.7rem .8rem;border-bottom:1px solid var(--rule-2);
+  white-space:nowrap;background:var(--surface-2)}
+td{padding:.65rem .8rem;border-bottom:1px solid var(--rule);vertical-align:top}
+tr:last-child td{border-bottom:none}
+tbody tr:hover td{background:var(--surface-2)}
+td.n{font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap;font-size:.9em}
+td.id{font-family:var(--f-mono);font-size:.76rem;color:var(--rubric);white-space:nowrap;font-weight:500}
+td.k{font-weight:600;min-width:9.5rem}
+caption{caption-side:bottom;text-align:left;font-size:.76rem;color:var(--ink-3);padding:.7rem .8rem;border-top:1px solid var(--rule)}
+
+.chip{display:inline-block;font-family:var(--f-mono);font-size:.6rem;letter-spacing:.09em;
+  text-transform:uppercase;font-weight:600;padding:.2em .5em;border-radius:3px;white-space:nowrap;border:1px solid transparent}
+.c-have{background:var(--ok-soft);color:var(--ok);border-color:var(--ok)}
+.c-part{background:var(--warn-soft);color:var(--warn);border-color:var(--warn)}
+.c-miss{background:var(--rubric-soft);color:var(--rubric);border-color:var(--rubric)}
+.c-new{background:var(--indigo-soft);color:var(--indigo);border-color:var(--indigo)}
+.c-plain{background:var(--surface-2);color:var(--ink-3);border-color:var(--rule-2)}
+
+.note{border-inline-start:3px solid var(--rubric);background:var(--surface);padding:1rem 1.15rem;
+  margin:1.5rem 0;border-radius:0 4px 4px 0;max-width:var(--measure);box-shadow:var(--shadow)}
+.note.blue{border-inline-start-color:var(--indigo)}
+.note p:last-child,.note ul:last-child{margin-bottom:0}
+.note h4{margin-top:0}
+
+figure{margin:2rem 0;background:var(--surface);border:1px solid var(--rule);border-radius:5px;
+  padding:1.4rem 1.2rem .9rem;box-shadow:var(--shadow);overflow-x:auto}
+figure svg{display:block;width:100%;min-width:40rem;max-width:100%;height:auto;color:var(--ink)}
+figcaption{margin-top:1rem;padding-top:.8rem;border-top:1px solid var(--rule);
+  font-size:.78rem;color:var(--ink-3);line-height:1.55}
+figcaption b{color:var(--ink-2);font-weight:600}
+.fignum{font-family:var(--f-mono);font-size:.63rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--rubric);font-weight:600;display:block;margin-bottom:.7rem}
+
+pre{background:var(--surface);border:1px solid var(--rule);border-radius:5px;padding:1rem 1.05rem;
+  overflow-x:auto;margin:1.25rem 0;font-family:var(--f-mono);font-size:.775rem;line-height:1.65;color:var(--ink-2)}
+pre b{color:var(--ink);font-weight:600}
+pre i{color:var(--ink-3);font-style:normal}
+pre u{color:var(--rubric);text-decoration:none}
+
+/* ── shared diagram grammar ─────────────────────────── */
+.dgdefs{position:absolute;width:0;height:0;overflow:hidden}
+.dgdefs .mk{fill:var(--ink)}
+.dgdefs .mkA{fill:var(--rubric)}
+.dg{font-family:var(--f-mono);font-size:10.5px}
+.dg .bx{fill:none;stroke:currentColor;stroke-width:1.2}
+.dg .bxf{fill:var(--surface-2);stroke:currentColor;stroke-width:1.2}
+.dg .bxg{fill:none;stroke:currentColor;stroke-width:1;opacity:.4}
+.dg .bxh{fill:var(--surface-2);stroke:none}
+.dg .ext{fill:none;stroke:currentColor;stroke-width:1.2;stroke-dasharray:5 3;opacity:.7}
+.dg .acc{fill:none;stroke:var(--rubric);stroke-width:1.6}
+.dg .accf{fill:var(--rubric-soft);stroke:var(--rubric);stroke-width:1.4}
+.dg text{fill:currentColor}
+.dg .ta{fill:var(--rubric);font-weight:600}
+.dg .tm{fill:currentColor;opacity:.62;font-size:9.5px}
+.dg .th{font-weight:600}
+.dg .ln{stroke:currentColor;stroke-width:1.1;fill:none}
+.dg .lnA{stroke:var(--rubric);stroke-width:1.4;fill:none}
+.dg .lnD{stroke:currentColor;stroke-width:1.1;fill:none;stroke-dasharray:5 3}
+.dg .life{stroke:currentColor;stroke-width:1;stroke-dasharray:3 4;opacity:.45}
+.dg .sep{stroke:currentColor;stroke-width:1;opacity:.35}
+.dg .swim{stroke:currentColor;stroke-width:1;opacity:.25;stroke-dasharray:2 4}
+
+.legend{display:flex;flex-wrap:wrap;gap:.4rem 1.4rem;font-family:var(--f-mono);font-size:.66rem;
+  color:var(--ink-3);margin:.9rem 0 0;padding-top:.8rem;border-top:1px dashed var(--rule)}
+.legend span{display:inline-flex;align-items:center;gap:.4rem}
+.legend i{width:1.6rem;height:0;border-top:1.5px solid currentColor;display:inline-block;font-style:normal}
+.legend i.d{border-top-style:dashed}
+.legend i.a{border-top-color:var(--rubric)}
+
+.toc{border:1px solid var(--rule);border-radius:5px;background:var(--surface);padding:1.1rem 1.3rem;margin:1.6rem 0}
+.toc ol{margin:0;padding-inline-start:0;list-style:none;max-width:none;
+  columns:2;column-gap:2.5rem}
+.toc li{margin-bottom:.3rem;font-size:.87rem;break-inside:avoid}
+.toc b{font-family:var(--f-mono);color:var(--rubric);font-size:.78rem;font-weight:600;margin-inline-end:.5rem}
+@media (max-width:640px){.toc ol{columns:1}}
+</style>
+
+<svg class="dgdefs" aria-hidden="true" focusable="false">
+  <defs>
+    <marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path class="mk" d="M0,1 L9,5 L0,9 z"/></marker>
+    <marker id="arwA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path class="mkA" d="M0,1 L9,5 L0,9 z"/></marker>
+    <marker id="arwO" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,1 L9,5 L0,9" fill="none" stroke="currentColor" stroke-width="1.4"/></marker>
+    <marker id="gen" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="10" markerHeight="10" orient="auto-start-reverse">
+      <path d="M0,1 L11,6 L0,11 z" fill="var(--surface)" stroke="currentColor" stroke-width="1.2"/></marker>
+    <marker id="agg" viewBox="0 0 14 10" refX="13" refY="5" markerWidth="11" markerHeight="9" orient="auto-start-reverse">
+      <path d="M0,5 L6.5,1 L13,5 L6.5,9 z" fill="var(--surface)" stroke="currentColor" stroke-width="1.1"/></marker>
+    <marker id="cmp" viewBox="0 0 14 10" refX="13" refY="5" markerWidth="11" markerHeight="9" orient="auto-start-reverse">
+      <path class="mk" d="M0,5 L6.5,1 L13,5 L6.5,9 z"/></marker>
+  </defs>
+</svg>
+
+<div class="wrap">
+
+<header class="masthead">
+  <p class="kicker">Document 01 &middot; master architecture &middot; root of the specification set</p>
+  <h1>Nizam-e-Qanoon System Architecture</h1>
+  <p class="dek">The layer decomposition, the domain model, and every structural view of the system &mdash; the document each layer specification hangs from.</p>
+  <div class="meta">
+    <span><b>Version</b> 1.0</span>
+    <span><b>Date</b> 24 Aug 2026</span>
+    <span><b>Spine</b> architectural layer</span>
+    <span><b>Notation</b> UML 2.5 + C4</span>
+    <span><b>Figures</b> 20</span>
+    <span><b>Supersedes</b> SDP v1.0 &sect;6</span>
+  </div>
+</header>
+
+<!-- ============ 0 ============ -->
+<section class="first">
+  <div class="rail"><span class="num">&sect;0</span><span class="tag">Purpose<br>&amp; map</span></div>
+  <div class="body">
+    <h2>What this document is</h2>
+    <p class="lede">This is the root of the specification set. It fixes the layer boundaries, the domain model, and the interface contracts between layers &mdash; and nothing else. Each layer then gets its own document that may change freely <em>inside</em> its boundary without amending this one.</p>
+
+    <div class="scroll">
+      <table>
+        <thead><tr><th>This document decides</th><th>This document deliberately does not</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Layer boundaries and what each layer owns &middot; the domain model and its vocabulary &middot; the contract crossing every boundary &middot; the deployment topology &middot; the quality attributes every layer is held to &middot; module ownership</td>
+            <td>Internal design of any layer &middot; class-level design inside a module &middot; API endpoint catalogue &middot; database DDL &middot; UI screens &middot; prompt text &middot; test plans &mdash; all of these belong to the layer documents below</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3><span class="mk">0.1</span>The specification set</h3>
+
+<figure>
+  <span class="fignum">Figure 1 &mdash; Document map</span>
+<svg class="dg" viewBox="0 0 940 404" role="img" aria-label="Document map: document 01, the master architecture, sits above eight layer documents stacked from corpus and ingestion at the base to frontend and clients at the top, with four cross-cutting documents covering platform operations, evaluation, security and design system spanning all layers.">
+  <rect class="bxf" x="16" y="10" width="760" height="42" rx="4"/>
+  <text class="th" x="30" y="28">01 &nbsp;MASTER ARCHITECTURE</text>
+  <text class="tm" x="30" y="42">this document &mdash; layer boundaries, domain model, contracts, topology</text>
+  <text class="ta" x="762" y="35" text-anchor="end">ROOT</text>
+
+  <g class="bx">
+    <rect x="16" y="72"  width="760" height="38" rx="4"/>
+    <rect x="16" y="116" width="760" height="38" rx="4"/>
+    <rect x="16" y="160" width="760" height="38" rx="4"/>
+    <rect x="16" y="204" width="760" height="38" rx="4"/>
+    <rect x="16" y="248" width="760" height="38" rx="4"/>
+    <rect x="16" y="292" width="760" height="38" rx="4"/>
+    <rect x="16" y="336" width="760" height="38" rx="4"/>
+  </g>
+  <g class="th">
+    <text x="30" y="88">08 &nbsp;Frontend &amp; Clients</text>
+    <text x="30" y="132">07 &nbsp;Backend API</text>
+    <text x="30" y="176">06 &nbsp;Domain Services</text>
+    <text x="30" y="220">05 &nbsp;Generation &amp; Grounding</text>
+    <text x="30" y="264">04 &nbsp;Retrieval</text>
+    <text x="30" y="308">03 &nbsp;Data &amp; Storage</text>
+    <text x="30" y="352">02 &nbsp;Corpus &amp; Ingestion</text>
+  </g>
+  <g class="tm">
+    <text x="30" y="102">Flutter app &middot; offline pack &middot; web research UI &middot; public pages &middot; curation console</text>
+    <text x="30" y="146">HTTP surface &middot; auth &middot; sessions &middot; streaming &middot; rate limits &middot; billing</text>
+    <text x="30" y="190">precedent citator &middot; document factory &middot; procedure engine &middot; calculators</text>
+    <text x="30" y="234">provider port &middot; structured answers &middot; entailment verifier &middot; caching</text>
+    <text x="30" y="278">query understanding &middot; hybrid candidates &middot; fusion &middot; rerank &middot; gate</text>
+    <text x="30" y="322">schema &middot; provision tree &middot; bitemporal versions &middot; vectors &middot; BM25 &middot; graph</text>
+    <text x="30" y="366">scrapers &middot; extraction &middot; segmentation &middot; enrichment &middot; QA gates</text>
+  </g>
+  <g class="tm" text-anchor="end">
+    <text x="762" y="95">L7</text><text x="762" y="139">L6</text><text x="762" y="183">L5</text>
+    <text x="762" y="227">L4</text><text x="762" y="271">L3</text><text x="762" y="315">L2</text><text x="762" y="359">L1</text>
+  </g>
+
+  <g class="ext">
+    <rect x="798" y="72"  width="126" height="68" rx="4"/>
+    <rect x="798" y="148" width="126" height="68" rx="4"/>
+    <rect x="798" y="224" width="126" height="68" rx="4"/>
+    <rect x="798" y="300" width="126" height="74" rx="4"/>
+  </g>
+  <g class="th">
+    <text x="810" y="92">09 Platform</text>
+    <text x="810" y="168">10 Evaluation</text>
+    <text x="810" y="244">11 Security</text>
+    <text x="810" y="320">12 Design</text>
+  </g>
+  <g class="tm">
+    <text x="810" y="106">&amp; Operations</text><text x="810" y="120">deploy &middot; observe</text><text x="810" y="132">backup &middot; cost</text>
+    <text x="810" y="182">&amp; Quality</text><text x="810" y="196">golden set</text><text x="810" y="208">metrics &middot; CI gates</text>
+    <text x="810" y="258">&amp; Privacy</text><text x="810" y="272">PII &middot; RLS &middot; audit</text><text x="810" y="284">UPL guardrails</text>
+    <text x="810" y="334">System &amp; UX</text><text x="810" y="348">bilingual &middot; RTL</text><text x="810" y="360">low-literacy</text>
+  </g>
+
+  <line class="ln" x1="396" y1="52" x2="396" y2="66" marker-end="url(#arw)"/>
+  <path class="lnD" d="M792,44 L792,388 M798,44 L792,44"/>
+  <text class="tm" x="789" y="400" text-anchor="end">cross-cutting &mdash; constrains every layer</text>
+
+  <path class="lnA" d="M8,368 L8,80" marker-end="url(#arwA)"/>
+  <text class="ta" x="4" y="230" transform="rotate(-90 4 230)" text-anchor="middle">depends on &#8595;</text>
+</svg>
+<figcaption><b>Document structure mirrors architecture structure.</b> Each layer document owns everything inside its band and may be revised without touching this one; changing a <em>boundary</em> requires amending this document first. The dependency arrow is strict &mdash; L1 knows nothing about L3, and no layer may reach past its immediate neighbour. Cross-cutting documents 09&ndash;12 impose requirements on all eight bands rather than owning any of them.</figcaption>
+</figure>
+
+    <h3><span class="mk">0.2</span>Contents</h3>
+    <div class="toc">
+      <ol>
+        <li><b>&sect;1</b> Context, drivers &amp; quality attributes</li>
+        <li><b>&sect;2</b> Actors and the use-case model</li>
+        <li><b>&sect;3</b> Domain model &mdash; the law as data</li>
+        <li><b>&sect;4</b> Container architecture</li>
+        <li><b>&sect;5</b> Data flow</li>
+        <li><b>&sect;6</b> Layer specifications L1&ndash;L8</li>
+        <li><b>&sect;7</b> Runtime interactions</li>
+        <li><b>&sect;8</b> Module decomposition &amp; ownership</li>
+        <li><b>&sect;9</b> Deployment &amp; operations</li>
+        <li><b>A</b> Aim 1&ndash;9 traceability</li>
+        <li><b>B</b> Architecture decision index</li>
+        <li><b>C</b> Notation legend</li>
+      </ol>
+    </div>
+
+    <h3><span class="mk">0.3</span>Standing rules</h3>
+    <p>Five invariants hold everywhere. A design that violates one of these is wrong regardless of how well it performs, and reviewers should reject it on that basis alone.</p>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>#</th><th>Invariant</th><th>Enforced by</th></tr></thead>
+        <tbody>
+          <tr><td class="id">INV-1</td><td class="k">No generated citation</td><td>Section numbers, article numbers, case citations, dates and URLs are always rendered from database records. The generator emits identifiers only. L4 schema validation drops any block whose identifier does not resolve.</td></tr>
+          <tr><td class="id">INV-2</td><td class="k">No answer without a passing gate</td><td>There is no code path from an abstained retrieval to a generated answer. L3 returns either a grounding context or an abstention; L4 accepts only the former.</td></tr>
+          <tr><td class="id">INV-3</td><td class="k">Every answer is replayable</td><td>L6 persists query, resolved filters, retrieved provision IDs with scores, gate decision, prompt hash, model version and verifier result for every response.</td></tr>
+          <tr><td class="id">INV-4</td><td class="k">Provisions are the citable unit</td><td>Nothing outside L2 may reference a chunk identifier. Re-chunking must never invalidate a stored citation, bookmark or generated document.</td></tr>
+          <tr><td class="id">INV-5</td><td class="k">Law is answered as at a date</td><td>Every retrieval carries <code>as_of</code>, defaulting to today. No query path may read <code>provision_version</code> without a validity filter.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ 1 ============ -->
+<section>
+  <div class="rail"><span class="num">&sect;1</span><span class="tag">Context<br>&amp; drivers</span></div>
+  <div class="body">
+    <h2>Context and quality attributes</h2>
+    <p class="lede">Architecture is the set of decisions that are expensive to reverse. Those decisions are driven by quality attributes, not features &mdash; so the measurable targets come first, and every structural choice later in this document traces back to one of them.</p>
+
+<figure>
+  <span class="fignum">Figure 2 &mdash; C4 Level 1 &middot; System context</span>
+<svg class="dg" viewBox="0 0 940 386" role="img" aria-label="C4 level one system context: five human actor groups on the left interact with the Nizam-e-Qanoon system in the centre, which in turn reads from statute portals, court judgment portals and government gazettes, calls a large language model provider and an SMS gateway, and links out to official service portals.">
+  <g class="bx">
+    <rect x="14" y="18"  width="150" height="52" rx="4"/>
+    <rect x="14" y="82"  width="150" height="52" rx="4"/>
+    <rect x="14" y="146" width="150" height="52" rx="4"/>
+    <rect x="14" y="210" width="150" height="52" rx="4"/>
+    <rect x="14" y="274" width="150" height="52" rx="4"/>
+  </g>
+  <g class="th"><text x="26" y="38">Advocate</text><text x="26" y="102">Law student</text>
+    <text x="26" y="166">Citizen</text><text x="26" y="230">Curator</text><text x="26" y="294">Administrator</text></g>
+  <g class="tm">
+    <text x="26" y="52">practising, fee-paying</text><text x="26" y="64">primary revenue actor</text>
+    <text x="26" y="116">research &amp; study</text><text x="26" y="128">free tier</text>
+    <text x="26" y="180">non-specialist</text><text x="26" y="192">low legal literacy</text>
+    <text x="26" y="244">law student, internal</text><text x="26" y="256">corpus correction</text>
+    <text x="26" y="308">internal</text><text x="26" y="320">ops &amp; incident</text>
+  </g>
+
+  <rect class="accf" x="292" y="18" width="316" height="308" rx="5"/>
+  <text class="ta" x="450" y="48" text-anchor="middle" font-size="13">NIZAM-E-QANOON</text>
+  <text class="tm" x="450" y="66" text-anchor="middle">Pakistan legal infrastructure platform</text>
+  <line class="sep" x1="316" y1="82" x2="584" y2="82"/>
+  <g class="tm">
+    <text x="316" y="102">Bilingual statute and precedent corpus with</text>
+    <text x="316" y="116">point-in-time versioning across federal and</text>
+    <text x="316" y="130">four provincial jurisdictions.</text>
+    <text x="316" y="154">Hybrid retrieval with a calibrated abstention</text>
+    <text x="316" y="168">gate; attributed answer generation whose</text>
+    <text x="316" y="182">citations are never model-authored.</text>
+    <text x="316" y="206">Precedent citator, deterministic document</text>
+    <text x="316" y="220">factory, procedure and limitation engines.</text>
+    <text x="316" y="244">Android, web, and a signed offline pack that</text>
+    <text x="316" y="258">works with no connectivity.</text>
+  </g>
+  <line class="sep" x1="316" y1="278" x2="584" y2="278"/>
+  <text class="tm" x="316" y="298">Quality bar: &ge;0.97 span entailment &middot; &le;0.05</text>
+  <text class="tm" x="316" y="312">bilingual NDCG gap &middot; 100% replayable answers</text>
+
+  <g class="ext">
+    <rect x="736" y="18"  width="190" height="52" rx="4"/>
+    <rect x="736" y="82"  width="190" height="52" rx="4"/>
+    <rect x="736" y="146" width="190" height="52" rx="4"/>
+    <rect x="736" y="210" width="190" height="52" rx="4"/>
+    <rect x="736" y="274" width="190" height="52" rx="4"/>
+  </g>
+  <g class="th">
+    <text x="748" y="38">Statute portals</text><text x="748" y="102">Court portals</text>
+    <text x="748" y="166">Gazettes</text><text x="748" y="230">LLM provider</text><text x="748" y="294">Telco / SMS</text>
+  </g>
+  <g class="tm">
+    <text x="748" y="52">pakistancode.gov.pk +</text><text x="748" y="64">4 provincial codes</text>
+    <text x="748" y="116">SC &middot; 5 High Courts &middot; FSC</text><text x="748" y="128">judgment databases</text>
+    <text x="748" y="180">federal &amp; provincial</text><text x="748" y="192">SROs, notifications</text>
+    <text x="748" y="244">hosted inference,</text><text x="748" y="256">behind a port (ADR-2)</text>
+    <text x="748" y="308">OTP delivery,</text><text x="748" y="320">phone-first identity</text>
+  </g>
+
+  <g class="ln" marker-end="url(#arw)">
+    <line x1="164" y1="44"  x2="286" y2="80"/>
+    <line x1="164" y1="108" x2="286" y2="118"/>
+    <line x1="164" y1="172" x2="286" y2="172"/>
+    <line x1="164" y1="236" x2="286" y2="226"/>
+    <line x1="164" y1="300" x2="286" y2="264"/>
+  </g>
+  <g class="ln" marker-end="url(#arw)">
+    <line x1="608" y1="80"  x2="730" y2="48"/>
+    <line x1="608" y1="118" x2="730" y2="110"/>
+    <line x1="608" y1="172" x2="730" y2="172"/>
+    <line x1="608" y1="226" x2="730" y2="234"/>
+    <line x1="608" y1="264" x2="730" y2="296"/>
+  </g>
+  <g class="tm">
+    <text x="176" y="60">research, draft, cite</text>
+    <text x="176" y="106">search, learn</text>
+    <text x="176" y="168">ask, follow procedure</text>
+    <text x="176" y="222">correct the corpus</text>
+    <text x="176" y="284">operate, investigate</text>
+  </g>
+  <g class="tm" text-anchor="end">
+    <text x="726" y="60">scheduled scrape</text>
+    <text x="726" y="106">scheduled scrape</text>
+    <text x="726" y="164">change monitor</text>
+    <text x="726" y="222">HTTPS, cached prefix</text>
+    <text x="726" y="284">OTP send</text>
+  </g>
+  <text class="tm" x="450" y="352" text-anchor="middle">Official service portals (NADRA &middot; FBR &middot; SECP &middot; provincial revenue) are referenced as verified stored links, never called at runtime and never model-generated.</text>
+  <rect class="bxg" x="292" y="336" width="316" height="0"/>
+  <path class="lnD" d="M450,326 L450,340" marker-end="url(#arw)"/>
+</svg>
+<figcaption><b>Everything crossing the boundary is either a scheduled batch read or one of two narrow runtime dependencies.</b> No user-facing request path depends on a government portal being up &mdash; source ingestion is asynchronous, and the only synchronous external calls are the model provider (behind a swappable port) and SMS at signup. Official portal links are stored data with a weekly health check, not live calls, which is what removes the hallucinated-link failure mode entirely.</figcaption>
+</figure>
+
+    <h3><span class="mk">1.1</span>Quality attributes and the tactics that deliver them</h3>
+    <p>Each row is testable. The right-hand column names the structural mechanism responsible &mdash; if a mechanism is removed, its attribute is unmet, which is what makes these architectural rather than aspirational.</p>
+    <div class="scroll">
+      <table>
+        <caption>Priority: <span class="chip c-miss">1</span> architecture is shaped around it &middot; <span class="chip c-part">2</span> designed for &middot; <span class="chip c-plain">3</span> monitored</caption>
+        <thead><tr><th>ID</th><th>Attribute</th><th>Measurable target</th><th>Structural mechanism</th><th>Pri</th></tr></thead>
+        <tbody>
+          <tr><td class="id">QA-1</td><td class="k">Groundedness</td><td class="n">span entailment &ge;0.97<br>citation resolution 1.00</td><td>INV-1 identifier-only generation &middot; DB-rendered citations &middot; three-tier verifier (L4)</td><td><span class="chip c-miss">1</span></td></tr>
+          <tr><td class="id">QA-2</td><td class="k">Honest abstention</td><td class="n">precision &ge;0.90, recall &ge;0.85 on the unanswerable stratum</td><td>Calibrated gate at the L3/L4 boundary &middot; INV-2 no bypass path exists</td><td><span class="chip c-miss">1</span></td></tr>
+          <tr><td class="id">QA-3</td><td class="k">Retrieval quality</td><td class="n">NDCG@10 &ge;0.75<br>Recall@50 &ge;0.90</td><td>Four parallel candidate generators &middot; RRF &middot; fine-tuned cross-encoder (L3)</td><td><span class="chip c-miss">1</span></td></tr>
+          <tr><td class="id">QA-4</td><td class="k">Corpus integrity</td><td class="n">segmentation F1 &ge;0.97<br>text coverage &ge;98%</td><td>Seven QA gates &middot; TOC reconciliation &middot; curation console in the loop (L1)</td><td><span class="chip c-miss">1</span></td></tr>
+          <tr><td class="id">QA-5</td><td class="k">Temporal correctness</td><td class="n">&ge;0.95 point-in-time accuracy on 50 known amendments</td><td>Bitemporal <code>provision_version</code> &middot; GiST exclusion constraint &middot; INV-5</td><td><span class="chip c-miss">1</span></td></tr>
+          <tr><td class="id">QA-6</td><td class="k">Bilingual equity</td><td class="n">NDCG gap &le;0.05 Urdu vs English on paired queries</td><td>Multilingual encoder, one vector space &middot; romanised alias index &middot; native Urdu generation (L3, L4)</td><td><span class="chip c-miss">1</span></td></tr>
+          <tr><td class="id">QA-7</td><td class="k">Auditability</td><td class="n">100% of answers replayable byte-for-byte</td><td>INV-3 answer audit record &middot; content-addressed prompts &middot; pinned model versions (L6)</td><td><span class="chip c-miss">1</span></td></tr>
+          <tr><td class="id">QA-8</td><td class="k">Latency</td><td class="n">fast path &lt;50 ms<br>p50 &lt;1.5 s &middot; p95 &lt;4 s</td><td>Citation fast path skips the model &middot; semantic response cache &middot; precomputed explainers &middot; streaming</td><td><span class="chip c-part">2</span></td></tr>
+          <tr><td class="id">QA-9</td><td class="k">Availability &amp; degradation</td><td class="n">99.5% monthly; full statutory lookup at 0% connectivity</td><td>Offline pack is a first-class client mode, not a cache &middot; degradation ladder (&sect;6.8)</td><td><span class="chip c-part">2</span></td></tr>
+          <tr><td class="id">QA-10</td><td class="k">Cost efficiency</td><td class="n">&le;$0.005 per answer<br>&le;$100/month at pilot</td><td>One datastore &middot; self-hosted small models &middot; prompt-prefix caching &middot; batch-precomputed explainers</td><td><span class="chip c-part">2</span></td></tr>
+          <tr><td class="id">QA-11</td><td class="k">Evolvability</td><td class="n">provider swap = config change<br>re-chunk breaks 0 citations</td><td>Provider port (ADR-2) &middot; INV-4 provision identity &middot; layer dependency rule</td><td><span class="chip c-part">2</span></td></tr>
+          <tr><td class="id">QA-12</td><td class="k">Privacy</td><td class="n">zero persistence in anonymous mode; PII redacted before any training use</td><td>Session-scoped in-memory path with logging disabled &middot; NER redaction in L1 &middot; RLS in L2</td><td><span class="chip c-part">2</span></td></tr>
+          <tr><td class="id">QA-13</td><td class="k">Legal safety</td><td class="n">0 advice-register outputs in the red-team suite</td><td>Register enforced in prompt and by an output classifier &middot; disclaimers &middot; referral off-ramp (L5)</td><td><span class="chip c-miss">1</span></td></tr>
+          <tr><td class="id">QA-14</td><td class="k">Accessibility</td><td class="n">core citizen tasks completable at plain-speech reading level; voice in and out</td><td>Reading-level control on a shared grounded payload &middot; Urdu STT/TTS at the client edge (L7)</td><td><span class="chip c-plain">3</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3><span class="mk">1.2</span>Constraints taken as given</h3>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Kind</th><th>Constraint</th><th>Architectural consequence</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Business</td><td>Advocates and law students are the paid tier; citizens use a free tier with a simple UI</td><td>Two client presentations over one grounded payload. Depth is a rendering concern, not a separate pipeline.</td></tr>
+          <tr><td class="k">Business</td><td>B2B and institutional access deferred until the platform is established</td><td>The API layer is designed with metering and key scoping from the start, but not exposed publicly in v1.</td></tr>
+          <tr><td class="k">Technical</td><td>Team of four, ~24 weeks, no dedicated ops</td><td>Modular monolith, one datastore, no orchestrator. Complexity budget spent on the corpus, not the platform.</td></tr>
+          <tr><td class="k">Technical</td><td>Sub-$100/month running cost</td><td>Self-host every small model; rent GPU by the hour for batch only; zero-egress object storage.</td></tr>
+          <tr><td class="k">Environmental</td><td>Mobile-dominant, intermittent connectivity, Android-majority</td><td>Offline is a mode, not a cache. Signed delta updates. Android-first testing.</td></tr>
+          <tr><td class="k">Legal</td><td>Legal Practitioners and Bar Councils Act &mdash; information, not advice</td><td>Output register is enforced structurally (QA-13), not left to prompt wording.</td></tr>
+          <tr><td class="k">Legal</td><td>Reporter series (PLD, SCMR, YLR) headnotes are third-party copyright</td><td>Only official court text is ingested. Reporter references stored as identifiers only.</td></tr>
+          <tr><td class="k">Regulatory</td><td>Personal Data Protection Bill anticipated</td><td>Deletion propagates to backups; data minimisation and anonymous mode designed in, not retrofitted.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2 ============ -->
+<section>
+  <div class="rail"><span class="num">&sect;2</span><span class="tag">Actors<br>&amp; use cases</span></div>
+  <div class="body">
+    <h2>The use-case model</h2>
+    <p class="lede">Built around the advocate, because that is the actor who pays, who exercises the deepest paths, and who finds our errors fastest. Citizen use cases run over the same services with a simpler presentation &mdash; not a reduced pipeline.</p>
+
+<figure>
+  <span class="fignum">Figure 3 &mdash; UML use case diagram</span>
+<svg class="dg" viewBox="0 0 940 546" role="img" aria-label="UML use case diagram. Advocate and law student actors on the left associate with research use cases: view law as at a date, search statutes and judgments, ask a grounded question, resolve a citation, trace precedent, and draft a document. Citizen, curator and scheduler actors on the right associate with query in Urdu, follow a procedure guide, compute a limitation period, work offline, curate the corpus, and ingest and re-index sources. Ask a grounded question includes search; view law as at a date extends search; query in Urdu extends ask a grounded question.">
+  <rect class="bx" x="240" y="24" width="460" height="480" rx="4"/>
+  <text class="tm" x="470" y="518" text-anchor="middle">system boundary &mdash; Nizam-e-Qanoon</text>
+
+  <g class="bx">
+    <ellipse cx="340" cy="70"  rx="95" ry="24"/>
+    <ellipse cx="340" cy="148" rx="95" ry="24"/>
+    <ellipse cx="340" cy="226" rx="95" ry="24"/>
+    <ellipse cx="340" cy="304" rx="95" ry="24"/>
+    <ellipse cx="340" cy="382" rx="95" ry="24"/>
+    <ellipse cx="340" cy="460" rx="95" ry="24"/>
+    <ellipse cx="600" cy="70"  rx="95" ry="24"/>
+    <ellipse cx="600" cy="148" rx="95" ry="24"/>
+    <ellipse cx="600" cy="226" rx="95" ry="24"/>
+    <ellipse cx="600" cy="304" rx="95" ry="24"/>
+    <ellipse cx="600" cy="382" rx="95" ry="24"/>
+    <ellipse cx="600" cy="460" rx="95" ry="24"/>
+  </g>
+  <g text-anchor="middle">
+    <text x="340" y="67">View law as</text><text x="340" y="80">at a date</text>
+    <text x="340" y="145">Search statutes</text><text x="340" y="158">&amp; judgments</text>
+    <text x="340" y="223">Ask a grounded</text><text x="340" y="236">question</text>
+    <text x="340" y="301">Resolve a</text><text x="340" y="314">citation</text>
+    <text x="340" y="379">Trace</text><text x="340" y="392">precedent</text>
+    <text x="340" y="457">Draft a</text><text x="340" y="470">document</text>
+    <text x="600" y="67">Query in Urdu</text><text x="600" y="80">or Roman Urdu</text>
+    <text x="600" y="145">Follow a</text><text x="600" y="158">procedure guide</text>
+    <text x="600" y="223">Compute a</text><text x="600" y="236">limitation period</text>
+    <text x="600" y="301">Work</text><text x="600" y="314">offline</text>
+    <text x="600" y="379">Curate the</text><text x="600" y="392">corpus</text>
+    <text x="600" y="457">Ingest &amp;</text><text x="600" y="470">re-index sources</text>
+  </g>
+  <g class="tm" text-anchor="middle">
+    <text x="340" y="92">UC-04</text><text x="340" y="170">UC-01</text><text x="340" y="248">UC-03</text>
+    <text x="340" y="326">UC-02</text><text x="340" y="404">UC-05</text><text x="340" y="482">UC-06</text>
+    <text x="600" y="92">UC-10</text><text x="600" y="170">UC-08</text><text x="600" y="248">UC-09</text>
+    <text x="600" y="326">UC-11</text><text x="600" y="404">UC-14</text><text x="600" y="482">UC-15</text>
+  </g>
+
+  <g stroke="currentColor" stroke-width="1.2" fill="none">
+    <circle cx="110" cy="118" r="9"/><path d="M110,127 L110,150 M96,136 L124,136 M110,150 L100,168 M110,150 L120,168"/>
+    <circle cx="110" cy="352" r="9"/><path d="M110,361 L110,384 M96,370 L124,370 M110,384 L100,402 M110,384 L120,402"/>
+    <circle cx="838" cy="118" r="9"/><path d="M838,127 L838,150 M824,136 L852,136 M838,150 L828,168 M838,150 L848,168"/>
+    <circle cx="838" cy="318" r="9"/><path d="M838,327 L838,350 M824,336 L852,336 M838,350 L828,368 M838,350 L848,368"/>
+    <circle cx="838" cy="440" r="9"/><path d="M838,449 L838,472 M824,458 L852,458 M838,472 L828,490 M838,472 L848,490"/>
+  </g>
+  <g class="th" text-anchor="middle">
+    <text x="110" y="186">Advocate</text>
+    <text x="110" y="420">Law student</text>
+    <text x="838" y="186">Citizen</text>
+    <text x="838" y="386">Curator</text>
+    <text x="838" y="508">&#171;system&#187;</text>
+  </g>
+  <g class="tm" text-anchor="middle">
+    <text x="110" y="199">primary</text>
+    <text x="838" y="399">internal</text>
+    <text x="838" y="521">Scheduler</text>
+  </g>
+
+  <g class="ln">
+    <line x1="130" y1="140" x2="248" y2="140"/>
+    <line x1="130" y1="146" x2="250" y2="212"/>
+    <line x1="130" y1="152" x2="252" y2="292"/>
+    <line x1="128" y1="158" x2="250" y2="372"/>
+    <line x1="126" y1="164" x2="252" y2="450"/>
+    <line x1="130" y1="374" x2="252" y2="240"/>
+    <line x1="130" y1="380" x2="250" y2="166"/>
+    <line x1="132" y1="386" x2="252" y2="386"/>
+    <line x1="818" y1="140" x2="694" y2="86"/>
+    <line x1="818" y1="146" x2="692" y2="156"/>
+    <line x1="818" y1="152" x2="694" y2="232"/>
+    <line x1="816" y1="158" x2="694" y2="308"/>
+    <line x1="818" y1="340" x2="694" y2="384"/>
+    <line x1="818" y1="462" x2="694" y2="462"/>
+  </g>
+
+  <g class="lnD" marker-end="url(#arwO)">
+    <line x1="340" y1="202" x2="340" y2="176"/>
+    <line x1="340" y1="120" x2="340" y2="98"/>
+    <line x1="512" y1="86" x2="428" y2="208"/>
+  </g>
+  <g class="ta" font-size="9.5">
+    <text x="348" y="192">&#171;include&#187;</text>
+    <text x="348" y="112">&#171;extend&#187;</text>
+    <text x="452" y="132">&#171;extend&#187;</text>
+  </g>
+</svg>
+<figcaption><b>Two association clusters, one shared engine.</b> Advocate and law-student paths run through column A &mdash; the deep research surface. Citizen paths run through column B, and reach the answer engine through <code>&#171;extend&#187;</code> rather than a parallel implementation: querying in Urdu is the same use case as asking a grounded question, with a different input and output language. Curator and Scheduler are the two internal actors that keep the corpus honest, and both are first-class in the model rather than an afterthought.</figcaption>
+</figure>
+
+    <h3><span class="mk">2.1</span>Use case register</h3>
+    <div class="scroll">
+      <table>
+        <caption>Primary actor abbreviations: ADV advocate &middot; LST law student &middot; CIT citizen &middot; CUR curator &middot; SYS scheduler. Tier: <span class="chip c-plain">F</span> free &middot; <span class="chip c-new">P</span> paid &middot; <span class="chip c-part">I</span> internal.</caption>
+        <thead><tr><th>ID</th><th>Use case</th><th>Actor</th><th>Trigger &rarr; outcome</th><th>Layers</th><th>Tier</th></tr></thead>
+        <tbody>
+          <tr><td class="id">UC-01</td><td class="k">Search statutes &amp; judgments</td><td class="n">ADV LST CIT</td><td>Natural-language or keyword query &rarr; ranked provisions and judgments with jurisdiction and validity shown</td><td class="n">L3 L2</td><td><span class="chip c-plain">F</span></td></tr>
+          <tr><td class="id">UC-02</td><td class="k">Resolve a citation</td><td class="n">ADV LST</td><td>Explicit reference &rarr; the exact provision or judgment, no model involved</td><td class="n">L3 L2</td><td><span class="chip c-plain">F</span></td></tr>
+          <tr><td class="id">UC-03</td><td class="k">Ask a grounded question</td><td class="n">ADV LST CIT</td><td>Question &rarr; attributed answer with per-claim citations, or an explicit abstention</td><td class="n">L3 L4</td><td><span class="chip c-new">P</span></td></tr>
+          <tr><td class="id">UC-04</td><td class="k">View law as at a date</td><td class="n">ADV LST</td><td>Provision + date &rarr; the text in force on that date with its amendment chain</td><td class="n">L2 L3</td><td><span class="chip c-new">P</span></td></tr>
+          <tr><td class="id">UC-05</td><td class="k">Trace precedent</td><td class="n">ADV LST</td><td>Provision &rarr; judgments treating it, by treatment type and court seniority, with paragraph anchors</td><td class="n">L5 L2</td><td><span class="chip c-new">P</span></td></tr>
+          <tr><td class="id">UC-06</td><td class="k">Draft a document</td><td class="n">ADV CIT</td><td>Document type + interview &rarr; typeset stamp-paper PDF with a clause provenance block</td><td class="n">L5 L4</td><td><span class="chip c-new">P</span></td></tr>
+          <tr><td class="id">UC-07</td><td class="k">Summarise a judgment</td><td class="n">ADV LST</td><td>Judgment &rarr; six structured fields, each span-verified against the source text</td><td class="n">L5 L4</td><td><span class="chip c-new">P</span></td></tr>
+          <tr><td class="id">UC-08</td><td class="k">Follow a procedure guide</td><td class="n">CIT ADV</td><td>Procedure &rarr; ordered steps, each citing its statutory basis, with verified official links</td><td class="n">L5</td><td><span class="chip c-plain">F</span></td></tr>
+          <tr><td class="id">UC-09</td><td class="k">Compute a limitation period</td><td class="n">ADV CIT</td><td>Cause of action + date &rarr; deadline and the governing Limitation Act article. Deterministic</td><td class="n">L5</td><td><span class="chip c-plain">F</span></td></tr>
+          <tr><td class="id">UC-10</td><td class="k">Query in Urdu or Roman Urdu</td><td class="n">CIT</td><td>Extends UC-03. Urdu or Latin-script input &rarr; Urdu explanation beside verbatim English statutory text</td><td class="n">L3 L4</td><td><span class="chip c-plain">F</span></td></tr>
+          <tr><td class="id">UC-11</td><td class="k">Work offline</td><td class="n">CIT ADV</td><td>No connectivity &rarr; full statutory search, browse and stored explainers from the signed local pack</td><td class="n">L7</td><td><span class="chip c-new">P</span></td></tr>
+          <tr><td class="id">UC-12</td><td class="k">Use an anonymous session</td><td class="n">CIT</td><td>Sensitive matter &rarr; nothing persisted, no analytics, ephemeral session key</td><td class="n">L6</td><td><span class="chip c-plain">F</span></td></tr>
+          <tr><td class="id">UC-13</td><td class="k">Export and cite</td><td class="n">ADV</td><td>Result set &rarr; formatted citations and provision text for filing use</td><td class="n">L6 L7</td><td><span class="chip c-new">P</span></td></tr>
+          <tr><td class="id">UC-14</td><td class="k">Curate the corpus</td><td class="n">CUR</td><td>QA-gate failure or user report &rarr; corrected provision tree, versioned and attributed</td><td class="n">L1 L7</td><td><span class="chip c-part">I</span></td></tr>
+          <tr><td class="id">UC-15</td><td class="k">Ingest &amp; re-index sources</td><td class="n">SYS</td><td>Schedule or change detection &rarr; new and amended instruments published to the live index</td><td class="n">L1 L2</td><td><span class="chip c-part">I</span></td></tr>
+          <tr><td class="id">UC-16</td><td class="k">Investigate an answer</td><td class="n">CUR ADV</td><td>Reported answer &rarr; exact replay with scores, gate decision and verifier output</td><td class="n">L6</td><td><span class="chip c-part">I</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3><span class="mk">2.2</span>Primary scenario &mdash; UC-03, expanded</h3>
+    <p>The one use case worth writing out in full, because every invariant shows up in it.</p>
+    <div class="scroll">
+      <table>
+        <tbody>
+          <tr><td class="k">Precondition</td><td>Corpus published for the resolved jurisdiction; actor authenticated or in an anonymous session.</td></tr>
+          <tr><td class="k">Main flow</td><td>1. Actor submits a question. &nbsp;2. L3 resolves language, jurisdiction, <code>as_of</code> and intent. &nbsp;3. If an explicit citation is detected, UC-02 runs instead and the flow ends. &nbsp;4. Four candidate generators run in parallel; results fuse by RRF. &nbsp;5. Cross-encoder reranks. &nbsp;6. Gate evaluates against &tau;. &nbsp;7. Context assembles whole provisions with validity and repeal state. &nbsp;8. L4 generates a structured answer carrying citation identifiers. &nbsp;9. Citation text is rendered from L2. &nbsp;10. Verifier checks each claim against its cited span. &nbsp;11. Answer streams to the client with per-claim provenance. &nbsp;12. Audit record persisted.</td></tr>
+          <tr><td class="k">A1 &mdash; gate fails</td><td>At step 6, no candidate clears &tau;. System returns an abstention naming what it searched, plus non-passing results explicitly labelled as unconfirmed. No generation occurs.</td></tr>
+          <tr><td class="k">A2 &mdash; identifier unresolved</td><td>At step 9, a citation identifier does not resolve. The block is dropped, the event logged as a defect, and the remaining answer is returned with a completeness note.</td></tr>
+          <tr><td class="k">A3 &mdash; verification fails</td><td>At step 10, a claim is not entailed by its span. Below the drop threshold the block is removed; between drop and pass it is shown with a visible qualifier.</td></tr>
+          <tr><td class="k">A4 &mdash; repealed law matched</td><td>Retrieved provision is repealed or was not in force at <code>as_of</code>. It is returned with a prominent status banner and never as the operative answer.</td></tr>
+          <tr><td class="k">A5 &mdash; provider unavailable</td><td>L4 provider port fails over; if all providers fail, the system degrades to UC-01 results plus stored explainers and says so.</td></tr>
+          <tr><td class="k">Postcondition</td><td>An audit record exists sufficient to replay the answer exactly (INV-3). In anonymous mode, no record of query or answer content is written.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ 3 ============ -->
+<section>
+  <div class="rail"><span class="num">&sect;3</span><span class="tag">Domain<br>model</span></div>
+  <div class="body">
+    <h2>The law as data</h2>
+    <p class="lede">Get this wrong and no amount of retrieval quality rescues the product. The model has to represent three things most legal databases do not: that a provision is a node in a tree, that its text changes over time, and that a citation points at a provision rather than at a page.</p>
+
+<figure>
+  <span class="fignum">Figure 4 &mdash; UML class diagram &middot; domain model</span>
+<svg class="dg" viewBox="0 0 940 672" role="img" aria-label="UML class diagram of the legal domain. Instrument composes Provision, which is a self-referencing tree and composes ProvisionVersion. AmendmentEvent references the amending Instrument and produces a ProvisionVersion. Judgment composes JudgmentParagraph. CitationEdge links a source judgment paragraph to either a Provision or a Judgment. Chunk is derived from ProvisionVersion and DefinedTerm is defined in one.">
+  <g class="bx">
+    <rect x="20"  y="16"  width="240" height="150" rx="3"/>
+    <rect x="20"  y="212" width="240" height="98"  rx="3"/>
+    <rect x="20"  y="356" width="240" height="150" rx="3"/>
+    <rect x="20"  y="552" width="240" height="98"  rx="3"/>
+    <rect x="348" y="200" width="236" height="112" rx="3"/>
+    <rect x="348" y="380" width="236" height="126" rx="3"/>
+    <rect x="348" y="552" width="236" height="84"  rx="3"/>
+    <rect x="672" y="16"  width="248" height="150" rx="3"/>
+    <rect x="672" y="212" width="248" height="84"  rx="3"/>
+  </g>
+  <g class="sep">
+    <line x1="20"  y1="42"  x2="260" y2="42"/>
+    <line x1="20"  y1="238" x2="260" y2="238"/>
+    <line x1="20"  y1="382" x2="260" y2="382"/>
+    <line x1="20"  y1="578" x2="260" y2="578"/>
+    <line x1="348" y1="226" x2="584" y2="226"/>
+    <line x1="348" y1="406" x2="584" y2="406"/>
+    <line x1="348" y1="578" x2="584" y2="578"/>
+    <line x1="672" y1="42"  x2="920" y2="42"/>
+    <line x1="672" y1="238" x2="920" y2="238"/>
+  </g>
+  <g class="th" font-size="11.5">
+    <text x="32" y="34">Instrument</text>
+    <text x="32" y="230">Provision</text>
+    <text x="32" y="374">ProvisionVersion</text>
+    <text x="32" y="570">Chunk</text>
+    <text x="360" y="218">AmendmentEvent</text>
+    <text x="360" y="398">CitationEdge</text>
+    <text x="360" y="570">DefinedTerm</text>
+    <text x="684" y="34">Judgment</text>
+    <text x="684" y="230">JudgmentParagraph</text>
+  </g>
+  <g font-size="9.6">
+    <text x="32" y="58">&#8226; jurisdiction : Jurisdiction</text>
+    <text x="32" y="72">&#8226; kind : InstrumentKind</text>
+    <text x="32" y="86">&#8226; number, year</text>
+    <text x="32" y="100">&#8226; short_title, long_title</text>
+    <text x="32" y="114">&#8226; enacted_on, commenced_on</text>
+    <text x="32" y="128">&#8226; status : LifecycleState</text>
+    <text x="32" y="142">&#8226; repealed_on, repealed_by</text>
+    <text x="32" y="156">&#8226; source_sha256, source_url</text>
+
+    <text x="32" y="254">&#8226; path : ltree</text>
+    <text x="32" y="268">&#8226; kind : ProvisionKind</text>
+    <text x="32" y="282">&#8226; label, heading, ordinal</text>
+    <text x="32" y="296">&#8226; marginal_note</text>
+
+    <text x="32" y="398">&#8226; validity : daterange</text>
+    <text x="32" y="412">&#8226; text_en, text_ur</text>
+    <text x="32" y="426">&#8226; text_normalised</text>
+    <text x="32" y="440">&#8226; operation : VersionOp</text>
+    <text x="32" y="454">&#8226; amendment_note</text>
+    <text x="32" y="468">&#8226; extraction_confidence</text>
+    <text x="32" y="482">&#8226; verified_by, verified_at</text>
+    <text x="32" y="496">&#8226; </text>
+
+    <text x="32" y="594">&#8226; seq, text</text>
+    <text x="32" y="608">&#8226; embedding : vector(1024)</text>
+    <text x="32" y="622">&#8226; tsv : tsvector</text>
+    <text x="32" y="636">&#8226; context_prefix</text>
+
+    <text x="360" y="242">&#8226; operation : VersionOp</text>
+    <text x="360" y="256">&#8226; footnote_marker</text>
+    <text x="360" y="270">&#8226; raw_note</text>
+    <text x="360" y="284">&#8226; effective_on</text>
+    <text x="360" y="298">&#8226; resolved : bool</text>
+
+    <text x="360" y="422">&#8226; treatment : Treatment</text>
+    <text x="360" y="436">&#8226; confidence : float</text>
+    <text x="360" y="450">&#8226; method : cite|model|human</text>
+    <text x="360" y="464">&#8226; quoted_span</text>
+    <text x="360" y="478">&#8226; verified_by</text>
+    <text x="360" y="492">&#8226; as_of_context : date</text>
+
+    <text x="360" y="594">&#8226; term, normalised</text>
+    <text x="360" y="608">&#8226; scope : instrument|part</text>
+    <text x="360" y="622">&#8226; definition_text</text>
+
+    <text x="684" y="58">&#8226; court : Court</text>
+    <text x="684" y="72">&#8226; bench, judges[]</text>
+    <text x="684" y="86">&#8226; decided_on, case_no</text>
+    <text x="684" y="100">&#8226; neutral_citation</text>
+    <text x="684" y="114">&#8226; reporter_refs[]  (identifier only)</text>
+    <text x="684" y="128">&#8226; parties_redacted</text>
+    <text x="684" y="142">&#8226; disposition : Disposition</text>
+    <text x="684" y="156">&#8226; subject_tags[]</text>
+
+    <text x="684" y="254">&#8226; para_no</text>
+    <text x="684" y="268">&#8226; text</text>
+    <text x="684" y="282">&#8226; role : facts|args|reasoning|holding</text>
+  </g>
+
+  <line class="ln" x1="140" y1="212" x2="140" y2="172" marker-end="url(#cmp)"/>
+  <text class="tm" x="146" y="188">1</text><text class="tm" x="146" y="208">*</text>
+  <line class="ln" x1="140" y1="356" x2="140" y2="316" marker-end="url(#cmp)"/>
+  <text class="tm" x="146" y="332">1</text><text class="tm" x="146" y="352">*</text>
+  <path class="ln" d="M260,236 L300,236 L300,292 L264,292" marker-end="url(#arw)"/>
+  <text class="tm" x="304" y="258">parent</text><text class="tm" x="304" y="270">0..1 / *</text>
+
+  <path class="ln" d="M348,222 L266,150" marker-end="url(#arw)"/>
+  <text class="tm" x="278" y="182">amends 1</text>
+  <path class="ln" d="M348,290 L306,290 L306,432 L266,432" marker-end="url(#arw)"/>
+  <text class="tm" x="196" y="426">produces 1</text>
+
+  <line class="ln" x1="796" y1="212" x2="796" y2="172" marker-end="url(#cmp)"/>
+  <text class="tm" x="802" y="188">1</text><text class="tm" x="802" y="208">*</text>
+
+  <path class="ln" d="M584,420 L668,290" marker-end="url(#arw)"/>
+  <text class="tm" x="590" y="392">src 1</text>
+  <path class="ln" d="M348,420 L266,300" marker-end="url(#arw)"/>
+  <text class="tm" x="272" y="352">dst 0..1</text>
+  <path class="lnD" d="M584,398 L668,178" marker-end="url(#arw)"/>
+  <text class="tm" x="600" y="352">dst 0..1</text>
+
+  <path class="lnD" d="M140,552 L140,512" marker-end="url(#arw)"/>
+  <text class="ta" x="148" y="536" font-size="9.5">&#171;derive&#187; 1..*</text>
+  <path class="ln" d="M348,580 L266,486" marker-end="url(#arw)"/>
+  <text class="tm" x="272" y="540">defines 1</text>
+
+  <path class="bx" d="M672,380 L892,380 L920,408 L920,520 L672,520 z"/>
+  <path class="sep" d="M892,380 L892,408 L920,408"/>
+  <text class="ta" x="684" y="400" font-size="9.5">CONSTRAINTS</text>
+  <g font-size="9.6">
+    <text x="684" y="424">&#123; CitationEdge has exactly one dst:</text>
+    <text x="684" y="438">&nbsp;&nbsp;Provision XOR Judgment &#125;</text>
+    <text x="684" y="460">&#123; ProvisionVersion.validity must not</text>
+    <text x="684" y="474">&nbsp;&nbsp;overlap for the same Provision &mdash;</text>
+    <text x="684" y="488">&nbsp;&nbsp;EXCLUDE USING gist, enforced by</text>
+    <text x="684" y="502">&nbsp;&nbsp;the database, not the ingest code &#125;</text>
+  </g>
+  <path class="bx" d="M672,552 L892,552 L920,580 L920,652 L672,652 z"/>
+  <path class="sep" d="M892,552 L892,580 L920,580"/>
+  <text class="ta" x="684" y="572" font-size="9.5">IDENTITY</text>
+  <g font-size="9.6">
+    <text x="684" y="596">&#123; Provision.id is stable and public.</text>
+    <text x="684" y="610">&nbsp;&nbsp;Chunk.id is internal and disposable &mdash;</text>
+    <text x="684" y="624">&nbsp;&nbsp;no layer above L2 may reference it</text>
+    <text x="684" y="638">&nbsp;&nbsp;(INV-4) &#125;</text>
+  </g>
+</svg>
+<figcaption><b>Three structural claims are visible here.</b> The filled diamonds are composition &mdash; provisions cannot outlive their instrument, versions cannot outlive their provision, so cascade semantics are a modelling fact rather than a foreign-key option. <code>Chunk</code> hangs off the model by a dashed <code>&#171;derive&#187;</code> because it is an index artefact that can be regenerated at will. And <code>CitationEdge</code> is a first-class entity, not a join table, because the interesting data lives on the edge: the treatment, who verified it, and the paragraph that evidences it.</figcaption>
+</figure>
+
+    <h3><span class="mk">3.1</span>Provision identity</h3>
+    <p>Public, stable, human-readable, and resolvable without a database round trip for the common case.</p>
+    <pre><b>pk:fed/act/1860-45/ch-XVI/s-302/cl-c</b>
+<i>|   |    |         |        |     |</i>
+<i>|   |    |         |        |     +--</i> clause      <i>ProvisionKind, ordinal within parent</i>
+<i>|   |    |         |        +--------</i> section     <i>label preserved verbatim: 302, 337A, 365 A</i>
+<i>|   |    |         +-----------------</i> chapter     <i>roman numeral as printed</i>
+<i>|   |    +---------------------------</i> instrument  <i>year-number, the gazette identity</i>
+<i>|   +--------------------------------</i> kind        <i>act|ord|order|rules|sro|notif|const</i>
+<i>+------------------------------------</i> scope       <i>fed|punjab|sindh|kp|balochistan|ict|ajk|gb</i>
+
+<u>Stored as ltree.</u>  Subtree query: <b>path &lt;@ 'fed.act.1860_45.ch_XVI'</b>
+                  Ancestor query: <b>path @&gt; 'fed.act.1860_45.ch_XVI.s_302.cl_c'</b>
+                  Both GiST-indexed. Neither needs a recursive join.</pre>
+
+<figure>
+  <span class="fignum">Figure 5 &mdash; UML state machine &middot; instrument lifecycle</span>
+<svg class="dg" viewBox="0 0 940 438" role="img" aria-label="UML state machine for an instrument. From an initial state it passes through discovered, fetched, extracted, segmented, enriched and versioned, then a choice pseudostate routes it either to quarantined, from which a curator returns it to segmentation, or into the composite published state containing in force, which self-transitions on amendment and exits to repealed, spent or lapsed before reaching a final state.">
+  <circle cx="26" cy="60" r="7" fill="currentColor"/>
+  <g class="bx">
+    <rect x="50"  y="40" width="96" height="40" rx="14"/>
+    <rect x="160" y="40" width="96" height="40" rx="14"/>
+    <rect x="270" y="40" width="96" height="40" rx="14"/>
+    <rect x="380" y="40" width="96" height="40" rx="14"/>
+    <rect x="490" y="40" width="96" height="40" rx="14"/>
+    <rect x="600" y="40" width="96" height="40" rx="14"/>
+  </g>
+  <g text-anchor="middle" font-size="10">
+    <text x="98"  y="64">Discovered</text>
+    <text x="208" y="64">Fetched</text>
+    <text x="318" y="64">Extracted</text>
+    <text x="428" y="64">Segmented</text>
+    <text x="538" y="64">Enriched</text>
+    <text x="648" y="64">Versioned</text>
+  </g>
+  <g class="ln" marker-end="url(#arw)">
+    <line x1="33"  y1="60" x2="46"  y2="60"/>
+    <line x1="146" y1="60" x2="156" y2="60"/>
+    <line x1="256" y1="60" x2="266" y2="60"/>
+    <line x1="366" y1="60" x2="376" y2="60"/>
+    <line x1="476" y1="60" x2="486" y2="60"/>
+    <line x1="586" y1="60" x2="596" y2="60"/>
+    <line x1="696" y1="60" x2="740" y2="60"/>
+  </g>
+  <path class="acc" d="M772,60 L792,42 L812,60 L792,78 z"/>
+  <text class="ta" x="792" y="102" text-anchor="middle" font-size="9.5">QA gates</text>
+
+  <rect class="bx" x="360" y="146" width="150" height="40" rx="14"/>
+  <text x="435" y="170" text-anchor="middle" font-size="10">Quarantined</text>
+  <path class="lnA" d="M792,78 L792,166 L516,166" marker-end="url(#arwA)"/>
+  <text class="ta" x="620" y="160" font-size="9.5">[any gate fails]</text>
+  <path class="ln" d="M400,146 L418,86" marker-end="url(#arw)"/>
+  <text class="tm" x="248" y="126">curator corrects / re-run from segment</text>
+  <path class="ln" d="M360,166 L242,166 L242,86" marker-end="url(#arw)"/>
+
+  <rect class="bxg" x="20" y="212" width="600" height="200" rx="5"/>
+  <text class="ta" x="34" y="232" font-size="10">PUBLISHED</text>
+  <line class="sep" x1="20" y1="240" x2="620" y2="240"/>
+  <path class="lnA" d="M792,78 L792,196 L320,196 L320,212" marker-end="url(#arwA)"/>
+  <text class="ta" x="330" y="190" font-size="9.5">[all gates pass] / publish to live index</text>
+
+  <circle cx="86" cy="322" r="7" fill="currentColor"/>
+  <rect class="bx" x="120" y="298" width="140" height="48" rx="16"/>
+  <text x="190" y="318" text-anchor="middle" font-size="10.5">In force</text>
+  <text class="tm" x="190" y="334" text-anchor="middle">queryable as current</text>
+  <line class="ln" x1="93" y1="322" x2="116" y2="322" marker-end="url(#arw)"/>
+  <path class="ln" d="M150,298 L150,266 L230,266 L230,298" marker-end="url(#arw)"/>
+  <text class="tm" x="190" y="260" text-anchor="middle">amend / close v&#8345;, open v&#8345;&#8330;&#8321;</text>
+
+  <g class="bx">
+    <rect x="330" y="256" width="130" height="36" rx="14"/>
+    <rect x="330" y="304" width="130" height="36" rx="14"/>
+    <rect x="330" y="352" width="130" height="36" rx="14"/>
+  </g>
+  <g text-anchor="middle" font-size="10">
+    <text x="395" y="279">Repealed</text>
+    <text x="395" y="327">Spent</text>
+    <text x="395" y="375">Lapsed</text>
+  </g>
+  <g class="ln" marker-end="url(#arw)">
+    <line x1="260" y1="312" x2="326" y2="278"/>
+    <line x1="260" y1="322" x2="326" y2="322"/>
+    <line x1="260" y1="332" x2="326" y2="366"/>
+  </g>
+  <g class="tm">
+    <text x="264" y="298">repeal(by)</text>
+    <text x="264" y="316">purpose exhausted</text>
+    <text x="264" y="356">sunset reached</text>
+  </g>
+  <circle cx="560" cy="322" r="10" fill="none" stroke="currentColor" stroke-width="1.2"/>
+  <circle cx="560" cy="322" r="5.5" fill="currentColor"/>
+  <g class="ln" marker-end="url(#arw)">
+    <line x1="460" y1="278" x2="548" y2="312"/>
+    <line x1="460" y1="322" x2="548" y2="322"/>
+    <line x1="460" y1="366" x2="548" y2="332"/>
+  </g>
+
+  <path class="bx" d="M660,212 L892,212 L920,240 L920,412 L660,412 z"/>
+  <path class="sep" d="M892,212 L892,240 L920,240"/>
+  <text class="ta" x="672" y="232" font-size="9.5">SEMANTICS</text>
+  <g font-size="9.6">
+    <text x="672" y="256">Terminal states remain <b>fully queryable</b>.</text>
+    <text x="672" y="272">Repeal is not deletion &mdash; historical law is</text>
+    <text x="672" y="286">required to answer &ldquo;as at&rdquo; questions and</text>
+    <text x="672" y="300">to interpret conduct predating the repeal.</text>
+    <text x="672" y="324">What changes is <b>presentation</b>: a repealed</text>
+    <text x="672" y="338">provision carries a mandatory status banner</text>
+    <text x="672" y="352">and can never be returned as the operative</text>
+    <text x="672" y="366">answer for an <code>as_of</code> after its repeal date.</text>
+    <text x="672" y="390">Amendment never mutates text in place;</text>
+    <text x="672" y="404">it closes one version and opens the next.</text>
+  </g>
+</svg>
+<figcaption><b>Two lifecycles in one machine.</b> The horizontal chain is the ingestion lifecycle, which every document traverses exactly once per source revision; the composite <code>Published</code> region is the legal lifecycle, which the instrument may sit in for a century. The choice pseudostate after <code>Versioned</code> is the only entry into publication &mdash; there is no path that skips the QA gates, which is what makes corpus integrity (QA-4) structural rather than procedural.</figcaption>
+</figure>
+
+<figure>
+  <span class="fignum">Figure 6 &mdash; Entity relationship diagram &middot; core legal schema</span>
+<svg class="dg" viewBox="0 0 940 616" role="img" aria-label="Entity relationship diagram of the core legal schema showing ten tables: instrument, provision, provision_version and chunk in the first column; amendment_event, defined_term, glossary_concept and citation_edge in the second; judgment and judgment_paragraph in the third, with their foreign key relationships and multiplicities.">
+  <g class="bx">
+    <rect x="20"  y="20"  width="252" height="138" rx="3"/>
+    <rect x="20"  y="186" width="252" height="114" rx="3"/>
+    <rect x="20"  y="328" width="252" height="126" rx="3"/>
+    <rect x="20"  y="482" width="252" height="102" rx="3"/>
+    <rect x="344" y="20"  width="252" height="102" rx="3"/>
+    <rect x="344" y="150" width="252" height="102" rx="3"/>
+    <rect x="344" y="280" width="252" height="102" rx="3"/>
+    <rect x="344" y="410" width="252" height="114" rx="3"/>
+    <rect x="668" y="20"  width="252" height="126" rx="3"/>
+    <rect x="668" y="174" width="252" height="102" rx="3"/>
+  </g>
+  <g class="bxh">
+    <rect x="21" y="21"  width="250" height="22"/>
+    <rect x="21" y="187" width="250" height="22"/>
+    <rect x="21" y="329" width="250" height="22"/>
+    <rect x="21" y="483" width="250" height="22"/>
+    <rect x="345" y="21"  width="250" height="22"/>
+    <rect x="345" y="151" width="250" height="22"/>
+    <rect x="345" y="281" width="250" height="22"/>
+    <rect x="345" y="411" width="250" height="22"/>
+    <rect x="669" y="21"  width="250" height="22"/>
+    <rect x="669" y="175" width="250" height="22"/>
+  </g>
+  <g class="th" font-size="10.5">
+    <text x="30" y="36">instrument</text>
+    <text x="30" y="202">provision</text>
+    <text x="30" y="344">provision_version</text>
+    <text x="30" y="498">chunk</text>
+    <text x="354" y="36">amendment_event</text>
+    <text x="354" y="166">defined_term</text>
+    <text x="354" y="296">glossary_concept</text>
+    <text x="354" y="426">citation_edge</text>
+    <text x="678" y="36">judgment</text>
+    <text x="678" y="190">judgment_paragraph</text>
+  </g>
+  <g font-size="9.3">
+    <text x="30" y="58"><tspan class="ta">PK</tspan>  id</text>
+    <text x="30" y="70">     jurisdiction, kind</text>
+    <text x="30" y="82">     number, year</text>
+    <text x="30" y="94">     short_title, long_title</text>
+    <text x="30" y="106">     enacted_on, commenced_on</text>
+    <text x="30" y="118">     status, repealed_on</text>
+    <text x="30" y="130"><tspan class="ta">FK</tspan>  repealed_by_id</text>
+    <text x="30" y="142">     source_sha256, source_url</text>
+    <text x="30" y="154"><tspan class="ta">UQ</tspan>  (jurisdiction, kind, number, year)</text>
+
+    <text x="30" y="224"><tspan class="ta">PK</tspan>  id</text>
+    <text x="30" y="236"><tspan class="ta">FK</tspan>  instrument_id</text>
+    <text x="30" y="248"><tspan class="ta">FK</tspan>  parent_id</text>
+    <text x="30" y="260"><tspan class="ta">IX</tspan>  path ltree &mdash; GiST</text>
+    <text x="30" y="272">     kind, label, ordinal</text>
+    <text x="30" y="284">     heading, marginal_note</text>
+    <text x="30" y="296"><tspan class="ta">UQ</tspan>  path</text>
+
+    <text x="30" y="366"><tspan class="ta">PK</tspan>  id</text>
+    <text x="30" y="378"><tspan class="ta">FK</tspan>  provision_id</text>
+    <text x="30" y="390">     validity daterange</text>
+    <text x="30" y="402">     text_en, text_ur, text_norm</text>
+    <text x="30" y="414">     operation, amendment_note</text>
+    <text x="30" y="426"><tspan class="ta">FK</tspan>  amended_by_instrument_id</text>
+    <text x="30" y="438">     extraction_confidence</text>
+    <text x="30" y="450"><tspan class="ta">EX</tspan>  gist(provision_id =, validity &amp;&amp;)</text>
+
+    <text x="30" y="520"><tspan class="ta">PK</tspan>  id</text>
+    <text x="30" y="532"><tspan class="ta">FK</tspan>  provision_version_id</text>
+    <text x="30" y="544">     seq, context_prefix, text</text>
+    <text x="30" y="556"><tspan class="ta">IX</tspan>  embedding vector(1024) &mdash; HNSW</text>
+    <text x="30" y="568"><tspan class="ta">IX</tspan>  bm25(text) &mdash; pg_search</text>
+
+    <text x="354" y="58"><tspan class="ta">PK</tspan>  id</text>
+    <text x="354" y="70"><tspan class="ta">FK</tspan>  amending_instrument_id</text>
+    <text x="354" y="82"><tspan class="ta">FK</tspan>  target_provision_id</text>
+    <text x="354" y="94">     operation, footnote_marker</text>
+    <text x="354" y="106">     raw_note, effective_on</text>
+    <text x="354" y="118">     resolved boolean</text>
+
+    <text x="354" y="188"><tspan class="ta">PK</tspan>  id</text>
+    <text x="354" y="200"><tspan class="ta">FK</tspan>  instrument_id</text>
+    <text x="354" y="212"><tspan class="ta">FK</tspan>  provision_id</text>
+    <text x="354" y="224">     term, normalised</text>
+    <text x="354" y="236">     scope, definition_text</text>
+    <text x="354" y="248"><tspan class="ta">IX</tspan>  (instrument_id, normalised)</text>
+
+    <text x="354" y="318"><tspan class="ta">PK</tspan>  id</text>
+    <text x="354" y="330">     concept</text>
+    <text x="354" y="342">     terms_en text[]</text>
+    <text x="354" y="354">     terms_ur text[], terms_roman text[]</text>
+    <text x="354" y="366">     provision_ids uuid[]</text>
+    <text x="354" y="378"><tspan class="ta">IX</tspan>  GIN on all three term arrays</text>
+
+    <text x="354" y="448"><tspan class="ta">PK</tspan>  id</text>
+    <text x="354" y="460"><tspan class="ta">FK</tspan>  src_paragraph_id</text>
+    <text x="354" y="472"><tspan class="ta">FK</tspan>  dst_provision_id   (nullable)</text>
+    <text x="354" y="484"><tspan class="ta">FK</tspan>  dst_judgment_id    (nullable)</text>
+    <text x="354" y="496">     treatment, confidence, method</text>
+    <text x="354" y="508"><tspan class="ta">CK</tspan>  exactly one dst is non-null</text>
+
+    <text x="678" y="58"><tspan class="ta">PK</tspan>  id</text>
+    <text x="678" y="70">     court, bench, judges text[]</text>
+    <text x="678" y="82">     decided_on, case_no</text>
+    <text x="678" y="94">     neutral_citation</text>
+    <text x="678" y="106">     reporter_refs text[]</text>
+    <text x="678" y="118">     parties_raw, parties_redacted</text>
+    <text x="678" y="130">     disposition, subject_tags text[]</text>
+    <text x="678" y="142"><tspan class="ta">IX</tspan>  (court, decided_on)</text>
+
+    <text x="678" y="212"><tspan class="ta">PK</tspan>  id</text>
+    <text x="678" y="224"><tspan class="ta">FK</tspan>  judgment_id</text>
+    <text x="678" y="236">     para_no, role</text>
+    <text x="678" y="248">     text</text>
+    <text x="678" y="260"><tspan class="ta">IX</tspan>  bm25(text) &mdash; pg_search</text>
+  </g>
+
+  <g class="ln" marker-end="url(#arw)">
+    <line x1="146" y1="186" x2="146" y2="162"/>
+    <line x1="146" y1="328" x2="146" y2="304"/>
+    <line x1="146" y1="482" x2="146" y2="458"/>
+    <line x1="794" y1="174" x2="794" y2="150"/>
+    <line x1="344" y1="60"  x2="278" y2="86"/>
+    <line x1="344" y1="196" x2="278" y2="242"/>
+    <line x1="344" y1="322" x2="278" y2="290"/>
+    <line x1="596" y1="450" x2="664" y2="282"/>
+    <line x1="596" y1="426" x2="664" y2="154"/>
+  </g>
+  <path class="ln" d="M272,276 L306,276 L306,294 L276,294" marker-end="url(#arw)"/>
+  <path class="ln" d="M344,104 L318,104 L318,232 L278,232" marker-end="url(#arw)"/>
+  <path class="ln" d="M344,462 L330,462 L330,312 L200,312 L200,304" marker-end="url(#arw)"/>
+
+  <g class="tm">
+    <text x="152" y="176">1 : *</text>
+    <text x="152" y="318">1 : *</text>
+    <text x="152" y="472">1 : *</text>
+    <text x="800" y="164">1 : *</text>
+    <text x="286" y="70">* : 1</text>
+    <text x="310" y="266">parent</text>
+    <text x="282" y="212">* : 1</text>
+    <text x="322" y="150">* : 1  target</text>
+    <text x="284" y="316">* : *</text>
+    <text x="336" y="330">* : 1  dst</text>
+    <text x="602" y="380">* : 1  src</text>
+    <text x="614" y="252">* : 1  dst</text>
+  </g>
+</svg>
+<figcaption><b>Physical schema for the legal core.</b> <code>EX</code> marks the GiST exclusion constraint that makes overlapping version validity impossible to insert; <code>CK</code> marks the check constraint enforcing that a citation edge points at exactly one target type. Both encode INV-4 and INV-5 in the database rather than in application code, so a buggy ingest run fails loudly instead of corrupting the corpus quietly. Operational tables &mdash; users, sessions, answer audit, ingest jobs, billing &mdash; are specified in document 03 and deliberately kept out of this view.</figcaption>
+</figure>
+
+    <h3><span class="mk">3.2</span>Enumerations</h3>
+    <pre><b>Jurisdiction</b>    fed &middot; punjab &middot; sindh &middot; kp &middot; balochistan &middot; ict &middot; ajk &middot; gb
+<b>InstrumentKind</b>  constitution &middot; act &middot; ordinance &middot; order &middot; regulation &middot; rules &middot; sro &middot; notification
+<b>ProvisionKind</b>   part &middot; chapter &middot; section &middot; article &middot; subsection &middot; clause &middot; proviso
+                explanation &middot; illustration &middot; schedule &middot; preamble
+<b>LifecycleState</b>  in_force &middot; repealed &middot; spent &middot; lapsed &middot; not_yet_commenced
+<b>VersionOp</b>       original &middot; inserted &middot; substituted &middot; omitted &middot; amended
+<b>Court</b>           SC &middot; FSC &middot; LHC &middot; SHC &middot; PHC &middot; BHC &middot; IHC
+<b>Treatment</b>       cites &middot; applies &middot; interprets &middot; follows &middot; distinguishes &middot; doubts &middot; overrules
+<b>Disposition</b>     allowed &middot; dismissed &middot; partly_allowed &middot; remanded &middot; disposed</pre>
+  </div>
+</section>
+
+<!-- ============ 4 ============ -->
+<section>
+  <div class="rail"><span class="num">&sect;4</span><span class="tag">Container<br>view</span></div>
+  <div class="body">
+    <h2>Container architecture</h2>
+    <p class="lede">Nine deployable units. The count is deliberately low: a team of four cannot operate a service mesh and also build a corpus, and nothing here needs to scale independently except inference.</p>
+
+<figure>
+  <span class="fignum">Figure 7 &mdash; C4 Level 2 &middot; Containers</span>
+<svg class="dg" viewBox="0 0 940 572" role="img" aria-label="C4 level two container diagram. Four client containers sit behind a Cloudflare edge which routes to a FastAPI application. The application calls an inference worker and a single Postgres database, and reaches out to a language model provider and an SMS gateway. A separate ingest worker reads source portals, writes source documents to object storage and publishes to the same database.">
+  <rect class="bxg" x="16" y="14" width="880" height="444" rx="5" stroke-dasharray="6 4"/>
+  <text class="tm" x="26" y="452">system boundary</text>
+
+  <g class="bx">
+    <rect x="36"  y="32" width="200" height="58" rx="4"/>
+    <rect x="252" y="32" width="180" height="58" rx="4"/>
+    <rect x="448" y="32" width="180" height="58" rx="4"/>
+    <rect x="644" y="32" width="200" height="58" rx="4"/>
+    <rect x="36"  y="112" width="808" height="34" rx="4"/>
+    <rect x="36"  y="272" width="230" height="58" rx="4"/>
+    <rect x="630" y="272" width="230" height="58" rx="4"/>
+    <rect x="660" y="368" width="200" height="70" rx="4"/>
+  </g>
+  <rect class="accf" x="300" y="176" width="320" height="58" rx="4"/>
+  <rect class="accf" x="250" y="368" width="380" height="70" rx="4"/>
+
+  <g class="th"><text x="48" y="52">Mobile App</text><text x="264" y="52">Web App</text>
+    <text x="460" y="52">Public Pages</text><text x="656" y="52">Curation Console</text>
+    <text x="48" y="132">Edge</text><text x="48" y="292">Inference Worker</text>
+    <text x="642" y="292">Ingest Worker</text><text x="672" y="390">Object Store</text></g>
+  <text class="ta" x="460" y="200" text-anchor="middle" font-size="12">Application API</text>
+  <text class="ta" x="440" y="392" text-anchor="middle" font-size="12">Database</text>
+
+  <g class="tm">
+    <text x="48" y="68">Flutter / Dart &middot; Android</text><text x="48" y="80">SQLite + FTS5 + sqlite-vec pack</text>
+    <text x="264" y="68">Next.js &middot; research UI</text><text x="264" y="80">multi-pane, keyboard-first</text>
+    <text x="460" y="68">Next.js SSG &middot; one page</text><text x="460" y="80">per provision &amp; judgment</text>
+    <text x="656" y="68">Next.js &middot; internal only</text><text x="656" y="80">parse tree beside source scan</text>
+    <text x="150" y="132">Cloudflare &mdash; TLS, CDN, WAF, rate limit, bot control &middot; free tier</text>
+    <text x="48" y="308">Python + ONNX Runtime int8</text><text x="48" y="320">embed &middot; rerank &middot; entail &middot; own queue</text>
+    <text x="642" y="308">Python &middot; scrape, extract, segment,</text><text x="642" y="320">enrich, version, index, QA gate</text>
+    <text x="672" y="406">Cloudflare R2 &middot; source PDFs,</text><text x="672" y="418">generated documents, offline packs</text>
+    <text x="460" y="216" text-anchor="middle">FastAPI &middot; async &middot; SSE &middot; modular monolith &middot; auth, routing, orchestration</text>
+    <text x="440" y="410" text-anchor="middle">PostgreSQL 17 &middot; pgvector HNSW &middot; pg_search BM25 &middot; ltree &middot; GiST</text>
+    <text x="440" y="426" text-anchor="middle">relational + vector + lexical + graph in one transactional store</text>
+  </g>
+
+  <g class="ext">
+    <rect x="250" y="490" width="200" height="52" rx="4"/>
+    <rect x="470" y="490" width="150" height="52" rx="4"/>
+    <rect x="640" y="490" width="220" height="52" rx="4"/>
+  </g>
+  <g class="th"><text x="262" y="510">LLM Provider</text><text x="482" y="510">SMS Gateway</text><text x="652" y="510">Source Portals</text></g>
+  <g class="tm"><text x="262" y="526">behind a port &middot; hot-swappable</text>
+    <text x="482" y="526">OTP delivery</text><text x="652" y="526">statutes &middot; judgments &middot; gazettes</text></g>
+
+  <g class="ln" marker-end="url(#arw)">
+    <line x1="136" y1="90"  x2="136" y2="108"/>
+    <line x1="342" y1="90"  x2="342" y2="108"/>
+    <line x1="538" y1="90"  x2="538" y2="108"/>
+    <line x1="744" y1="90"  x2="744" y2="108"/>
+    <line x1="460" y1="146" x2="460" y2="172"/>
+    <line x1="380" y1="234" x2="380" y2="364"/>
+    <line x1="300" y1="205" x2="270" y2="205"/>
+    <line x1="151" y1="272" x2="151" y2="215"/>
+    <line x1="745" y1="330" x2="745" y2="486"/>
+    <line x1="700" y1="330" x2="700" y2="364"/>
+    <line x1="630" y1="300" x2="560" y2="368"/>
+    <line x1="520" y1="234" x2="520" y2="486"/>
+    <line x1="560" y1="234" x2="560" y2="486"/>
+  </g>
+  <g class="tm">
+    <text x="142" y="104">HTTPS</text><text x="348" y="104">HTTPS</text><text x="544" y="104">HTTPS</text><text x="750" y="104">HTTPS + mTLS</text>
+    <text x="466" y="164">HTTPS / SSE</text>
+    <text x="386" y="300">SQL</text>
+    <text x="176" y="252">gRPC / local</text>
+    <text x="756" y="410">HTTPS</text>
+    <text x="706" y="352">S3 API</text>
+    <text x="556" y="344">SQL &mdash; publish txn</text>
+    <text x="526" y="470">HTTPS</text><text x="566" y="452">HTTPS</text>
+  </g>
+  <text class="tm" x="150" y="228">embed / rerank / verify</text>
+</svg>
+<figcaption><b>The two accented containers are the ones that matter.</b> The API is the only synchronous entry point and the only place authorisation is decided; the database is the only stateful component, which is what makes backup, restore and point-in-time recovery a single procedure rather than a distributed one. Note the ingest worker touches the database through the same publish transaction as everything else &mdash; there is no side channel that can write an un-gated provision into the live index.</figcaption>
+</figure>
+
+    <h3><span class="mk">4.1</span>Layer interface contracts</h3>
+    <p>These are the only calls that may cross a layer boundary. Anything else is a violation and should be caught in review.</p>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Interface</th><th>Provider</th><th>Consumers</th><th>Shape</th></tr></thead>
+        <tbody>
+          <tr><td class="id">ICorpusWrite</td><td class="n">L2</td><td class="n">L1</td><td><code>publish(instrument, provisions[], versions[], edges[], gate_report) &rarr; PublishResult</code> &mdash; one transaction per instrument, all-or-nothing</td></tr>
+          <tr><td class="id">ICorpusRead</td><td class="n">L2</td><td class="n">L3 L5 L6</td><td><code>getProvision(id, as_of)</code> &middot; <code>getSubtree(path, as_of)</code> &middot; <code>getVersionChain(id)</code> &middot; <code>getJudgment(id)</code></td></tr>
+          <tr><td class="id">IIndexSearch</td><td class="n">L2</td><td class="n">L3</td><td><code>lexical(q, filters, k)</code> &middot; <code>dense(vec, filters, k)</code> &middot; <code>graphExpand(ids, depth)</code> &mdash; all filter on <code>as_of</code> and jurisdiction</td></tr>
+          <tr><td class="id">IRetrieve</td><td class="n">L3</td><td class="n">L4 L5 L6</td><td><code>retrieve(QuerySpec) &rarr; GroundingContext | Abstention</code> &mdash; the gate lives here; there is no third return value</td></tr>
+          <tr><td class="id">IInference</td><td class="n">Worker</td><td class="n">L3 L4</td><td><code>embed(texts[])</code> &middot; <code>rerank(query, docs[])</code> &middot; <code>entail(premise, hypothesis)</code></td></tr>
+          <tr><td class="id">IGenerate</td><td class="n">L4</td><td class="n">L5 L6</td><td><code>answer(GroundingContext, style) &rarr; VerifiedAnswer</code> &mdash; citations already resolved and verified on return</td></tr>
+          <tr><td class="id">ILLMProvider</td><td class="n">adapter</td><td class="n">L4 only</td><td><code>complete(prompt, schema, cache_key)</code> &middot; <code>stream(...)</code> &mdash; the only place a vendor SDK may appear</td></tr>
+          <tr><td class="id">IPrecedent</td><td class="n">L5</td><td class="n">L6</td><td><code>treatmentsOf(provision_id, filters)</code> &middot; <code>summarise(judgment_id)</code> &middot; <code>goodLawSignal(judgment_id)</code></td></tr>
+          <tr><td class="id">IDraft</td><td class="n">L5</td><td class="n">L6</td><td><code>startInterview(type, jurisdiction)</code> &middot; <code>submitAnswers(session, answers)</code> &middot; <code>render(session) &rarr; PDF + provenance</code></td></tr>
+          <tr><td class="id">IProcedure</td><td class="n">L5</td><td class="n">L6</td><td><code>guide(procedure_id, jurisdiction)</code> &middot; <code>limitation(cause, date)</code> &middot; <code>courtFee(value, relief)</code> &middot; <code>forum(matter)</code></td></tr>
+          <tr><td class="id">IPublicAPI</td><td class="n">L6</td><td class="n">L7</td><td>REST + SSE, versioned, OpenAPI-described. The only surface any client may call.</td></tr>
+          <tr><td class="id">ISync</td><td class="n">L6</td><td class="n">L7</td><td><code>packManifest(current_version) &rarr; signed patch chain</code> &mdash; corpus distribution, one way, signed, never merged. Patches also carry <code>INVALIDATE</code> operations for stored answers whose cited provisions changed.</td></tr>
+          <tr><td class="id">IUserSync</td><td class="n">L6</td><td class="n">L7</td><td><code>push(outbox[]) &middot; pull(since_cursor) &rarr; {records[], tombstones[], cursor}</code> &mdash; bookmarks, matters, drafts and history. Bidirectional, last-writer-wins on a server-assigned version. Separate engine from <code>ISync</code>, separate trust model (ADR-1b).</td></tr>
+          <tr><td class="id">ILexicalSearch</td><td class="n">L2</td><td class="n">L3</td><td><code>lexical(q, filters, k) &rarr; ranked[]</code> &mdash; the seam that keeps the database host swappable (ADR-1a). Two implementations: <code>pg_search</code> BM25 and a <code>tsvector</code> fallback, benchmarked against each other on the golden set.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+<figure>
+  <span class="fignum">Figure 8 &mdash; UML component diagram</span>
+<svg class="dg" viewBox="0 0 940 546" role="img" aria-label="UML component diagram showing client applications depending on the API gateway through IPublicAPI, the gateway depending on retrieval, generation and domain services, all three depending on the corpus store, generation additionally depending on a swappable LLM provider adapter, and the ingestion pipeline writing into the corpus store.">
+  <g class="bx">
+    <rect x="330" y="20"  width="280" height="56" rx="3"/>
+    <rect x="330" y="146" width="280" height="56" rx="3"/>
+    <rect x="30"  y="278" width="240" height="66" rx="3"/>
+    <rect x="350" y="278" width="240" height="66" rx="3"/>
+    <rect x="670" y="278" width="240" height="66" rx="3"/>
+    <rect x="250" y="440" width="440" height="62" rx="3"/>
+  </g>
+  <g class="ext"><rect x="670" y="150" width="240" height="52" rx="3"/></g>
+  <g class="bx" opacity=".85"><rect x="30" y="150" width="240" height="52" rx="3"/></g>
+
+  <g class="tm">
+    <text x="342" y="36">&#171;component&#187;</text><text x="342" y="162">&#171;component&#187;</text>
+    <text x="42"  y="294">&#171;component&#187;</text><text x="362" y="294">&#171;component&#187;</text>
+    <text x="682" y="294">&#171;component&#187;</text><text x="262" y="456">&#171;component&#187;</text>
+    <text x="42"  y="166">&#171;component&#187;</text><text x="682" y="166">&#171;external&#187;</text>
+  </g>
+  <g class="th" font-size="11.5">
+    <text x="342" y="54">Client Applications</text>
+    <text x="342" y="180">API Gateway</text>
+    <text x="42"  y="312">Retrieval Engine</text>
+    <text x="362" y="312">Generation Engine</text>
+    <text x="682" y="312">Domain Services</text>
+    <text x="262" y="474">Corpus Store</text>
+    <text x="42"  y="184">Inference Worker</text>
+    <text x="682" y="184">LLM Provider</text>
+  </g>
+  <g class="tm">
+    <text x="342" y="68">mobile &middot; web &middot; public &middot; console</text>
+    <text x="342" y="194">auth &middot; sessions &middot; routing &middot; audit &middot; rate limit</text>
+    <text x="42"  y="328">parse &middot; candidates &middot; fuse &middot; rerank</text>
+    <text x="42"  y="340">gate &middot; context assembly</text>
+    <text x="362" y="328">structured answer &middot; citation render</text>
+    <text x="362" y="340">entailment verify &middot; cache</text>
+    <text x="682" y="328">precedent &middot; documents</text>
+    <text x="682" y="340">procedure &middot; calculators</text>
+    <text x="262" y="490">provisions &middot; versions &middot; judgments &middot; edges &middot; vectors &middot; lexical index</text>
+  </g>
+
+  <circle cx="470" cy="112" r="7" fill="none" stroke="currentColor" stroke-width="1.4"/>
+  <line class="ln" x1="470" y1="146" x2="470" y2="119"/>
+  <path class="ln" d="M456,96 A16,16 0 0 0 484,96"/>
+  <line class="ln" x1="470" y1="76" x2="470" y2="96"/>
+  <text class="ta" x="486" y="110" font-size="9.5">IPublicAPI</text>
+
+  <g class="ln" marker-end="url(#arwO)" stroke-dasharray="5 3">
+    <line x1="400" y1="202" x2="180" y2="274"/>
+    <line x1="470" y1="202" x2="470" y2="274"/>
+    <line x1="540" y1="202" x2="760" y2="274"/>
+    <line x1="150" y1="344" x2="330" y2="436"/>
+    <line x1="470" y1="344" x2="470" y2="436"/>
+    <line x1="790" y1="344" x2="610" y2="436"/>
+    <line x1="590" y1="300" x2="666" y2="196"/>
+    <line x1="270" y1="300" x2="330" y2="310"/>
+    <line x1="150" y1="278" x2="150" y2="206"/>
+    <line x1="350" y1="300" x2="274" y2="310"/>
+  </g>
+  <g class="tm">
+    <text x="250" y="230">&#171;use&#187; IRetrieve</text>
+    <text x="478" y="240">&#171;use&#187; IGenerate</text>
+    <text x="600" y="230">&#171;use&#187; IPrecedent, IDraft, IProcedure</text>
+    <text x="188" y="404">ICorpusRead</text>
+    <text x="478" y="404">ICorpusRead</text>
+    <text x="650" y="404">ICorpusRead</text>
+    <text x="600" y="248">ILLMProvider</text>
+    <text x="156" y="252">IInference</text>
+    <text x="286" y="332">IRetrieve</text>
+  </g>
+
+  <path class="lnA" d="M690,470 L790,470 L790,398 L826,398 L826,352" marker-end="url(#arwA)"/>
+  <rect class="acc" x="700" y="384" width="0" height="0"/>
+  <g class="bx"><rect x="30" y="440" width="190" height="62" rx="3"/></g>
+  <text class="tm" x="42" y="456">&#171;component&#187;</text>
+  <text class="th" x="42" y="474" font-size="11.5">Ingestion Pipeline</text>
+  <text class="tm" x="42" y="490">scrape &rarr; gate &rarr; publish</text>
+  <line class="ln" x1="220" y1="470" x2="244" y2="470" marker-end="url(#arw)" stroke-dasharray="5 3"/>
+  <text class="ta" x="150" y="522" font-size="9.5">ICorpusWrite &mdash; the only write path into the live index</text>
+</svg>
+<figcaption><b>The dependency graph is acyclic and one-directional.</b> Retrieval knows nothing about generation; generation knows nothing about domain services; nothing below the gateway knows a client exists. The vendor SDK is confined to a single adapter behind <code>ILLMProvider</code>, which is what makes QA-11 &mdash; swap the provider with a config change &mdash; a property of the structure rather than a promise. The accented edge is the escalation path: domain services may request a re-verification pass through the generation engine, and that is the one place the strict layering is relaxed, deliberately and in one direction only.</figcaption>
+</figure>
+
+<figure>
+  <span class="fignum">Figure 9 &mdash; UML deployment diagram</span>
+<svg class="dg" viewBox="0 0 940 528" role="img" aria-label="UML deployment diagram. An Android device holding the app and offline pack and a browser both reach a Cloudflare edge node, which forwards to an application server running Caddy, the API, an inference worker, an ingest worker and observability containers. That server connects to a database server running PostgreSQL and pgBackRest, to an external language model provider, to Cloudflare R2 object storage, and to an ephemeral rented GPU used for batch indexing and training.">
+  <g class="bx">
+    <rect x="24" y="60" width="180" height="130" rx="2"/>
+    <path d="M24,60 L36,48 L216,48 L204,60 Z"/><path d="M204,60 L216,48 L216,178 L204,190 Z"/>
+    <rect x="24" y="248" width="180" height="86" rx="2"/>
+    <path d="M24,248 L36,236 L216,236 L204,248 Z"/><path d="M204,248 L216,236 L216,322 L204,334 Z"/>
+    <rect x="256" y="126" width="130" height="126" rx="2"/>
+    <path d="M256,126 L268,114 L398,114 L386,126 Z"/><path d="M386,126 L398,114 L398,240 L386,252 Z"/>
+    <rect x="440" y="40" width="250" height="248" rx="2"/>
+    <path d="M440,40 L452,28 L702,28 L690,40 Z"/><path d="M690,40 L702,28 L702,276 L690,288 Z"/>
+    <rect x="440" y="344" width="250" height="136" rx="2"/>
+    <path d="M440,344 L452,332 L702,332 L690,344 Z"/><path d="M690,344 L702,332 L702,468 L690,480 Z"/>
+    <rect x="756" y="164" width="150" height="80" rx="2"/>
+    <path d="M756,164 L768,152 L918,152 L906,164 Z"/><path d="M906,164 L918,152 L918,232 L906,244 Z"/>
+  </g>
+  <g class="ext">
+    <rect x="756" y="40" width="150" height="80" rx="2"/>
+    <path d="M756,40 L768,28 L918,28 L906,40 Z"/><path d="M906,40 L918,28 L918,108 L906,120 Z"/>
+    <rect x="756" y="290" width="150" height="94" rx="2"/>
+    <path d="M756,290 L768,278 L918,278 L906,290 Z"/><path d="M906,290 L918,278 L918,372 L906,384 Z"/>
+  </g>
+
+  <g class="tm">
+    <text x="36" y="76">&#171;device&#187;</text><text x="36" y="264">&#171;device&#187;</text>
+    <text x="268" y="142">&#171;execution env&#187;</text><text x="452" y="56">&#171;device&#187;</text>
+    <text x="452" y="360">&#171;device&#187;</text><text x="768" y="180">&#171;execution env&#187;</text>
+    <text x="768" y="56">&#171;external&#187;</text><text x="768" y="306">&#171;device, ephemeral&#187;</text>
+  </g>
+  <g class="th" font-size="11">
+    <text x="36" y="92">Android phone</text><text x="36" y="280">Browser</text>
+    <text x="268" y="158">Cloudflare edge</text><text x="452" y="72">App server</text>
+    <text x="452" y="376">Database server</text><text x="768" y="196">Cloudflare R2</text>
+    <text x="768" y="72">LLM provider</text><text x="768" y="322">Rented GPU</text>
+  </g>
+
+  <g class="bxg">
+    <rect x="38" y="102" width="152" height="26" rx="2"/>
+    <rect x="38" y="134" width="152" height="26" rx="2"/>
+    <rect x="38" y="290" width="152" height="26" rx="2"/>
+    <rect x="454" y="86"  width="222" height="26" rx="2"/>
+    <rect x="454" y="118" width="222" height="30" rx="2"/>
+    <rect x="454" y="154" width="222" height="30" rx="2"/>
+    <rect x="454" y="190" width="222" height="30" rx="2"/>
+    <rect x="454" y="226" width="222" height="26" rx="2"/>
+    <rect x="454" y="390" width="222" height="34" rx="2"/>
+    <rect x="454" y="430" width="222" height="26" rx="2"/>
+  </g>
+  <g font-size="9.5">
+    <text x="46" y="119">&#171;artifact&#187; nizam.apk</text>
+    <text x="46" y="151">&#171;artifact&#187; pack.sqlite (signed)</text>
+    <text x="46" y="307">&#171;artifact&#187; web bundle</text>
+    <text x="462" y="103">&#171;container&#187; caddy &mdash; TLS termination</text>
+    <text x="462" y="132">&#171;container&#187; api &mdash; FastAPI / uvicorn</text>
+    <text x="462" y="144">4 workers, async</text>
+    <text x="462" y="168">&#171;container&#187; inference &mdash; ONNX int8</text>
+    <text x="462" y="180">embed &middot; rerank &middot; entail</text>
+    <text x="462" y="204">&#171;container&#187; ingest &mdash; queue consumer</text>
+    <text x="462" y="216">scrape &middot; parse &middot; gate &middot; publish</text>
+    <text x="462" y="243">&#171;container&#187; grafana / loki / tempo</text>
+    <text x="462" y="407">&#171;container&#187; postgres:17</text>
+    <text x="462" y="419">pgvector &middot; pg_search &middot; ltree</text>
+    <text x="462" y="447">&#171;container&#187; pgbackrest &rarr; R2</text>
+    <text x="768" y="212">source PDFs &middot; documents</text>
+    <text x="768" y="226">offline packs &middot; backups</text>
+    <text x="768" y="88">hosted inference</text>
+    <text x="768" y="102">swappable via ILLMProvider</text>
+    <text x="768" y="338">rented by the hour for</text>
+    <text x="768" y="352">batch embed &amp; reranker</text>
+    <text x="768" y="366">training only &mdash; never serving</text>
+  </g>
+
+  <g class="ln" marker-end="url(#arw)">
+    <line x1="216" y1="120" x2="250" y2="158"/>
+    <line x1="216" y1="284" x2="250" y2="230"/>
+    <line x1="398" y1="176" x2="434" y2="150"/>
+    <line x1="565" y1="288" x2="565" y2="338"/>
+    <line x1="702" y1="80"  x2="750" y2="80"/>
+    <line x1="702" y1="196" x2="750" y2="200"/>
+    <line x1="750" y1="336" x2="696" y2="368"/>
+    <line x1="690" y1="440" x2="750" y2="230"/>
+  </g>
+  <path class="lnD" d="M702,240 L730,240 L730,320 L750,320" marker-end="url(#arw)"/>
+  <g class="tm">
+    <text x="212" y="146">&#171;HTTPS&#187;</text>
+    <text x="212" y="256">&#171;HTTPS&#187;</text>
+    <text x="396" y="146">&#171;HTTPS&#187;</text>
+    <text x="572" y="318">&#171;TCP 5432, private&#187;</text>
+    <text x="704" y="72">&#171;HTTPS&#187;</text>
+    <text x="704" y="192">&#171;S3&#187;</text>
+    <text x="688" y="352">&#171;SQL bulk&#187;</text>
+    <text x="716" y="330">&#171;provision&#187;</text>
+    <text x="700" y="300">&#171;WAL + full&#187;</text>
+  </g>
+  <text class="tm" x="24" y="504">Both server nodes are Hetzner CCX23 (4 vCPU / 16 GB dedicated). During development they collapse to a single node; the split is a configuration change, not a redesign.</text>
+  <text class="tm" x="24" y="518">The GPU node exists only while a batch job runs, is never on a request path, and holds no state &mdash; it reads from and writes to the database and exits.</text>
+</svg>
+<figcaption><b>Two persistent nodes, one ephemeral.</b> Nothing in a user request path touches the GPU node, which is what keeps cost at rented-by-the-hour rather than always-warm and removes cold-start latency from the design entirely. The inference container sits on the app server rather than the database server because it is CPU-bound and we want it competing with the API for cores we can add, not with Postgres for cores we cannot.</figcaption>
+</figure>
+
+  </div>
+</section>
+
+<!-- ============ 5 ============ -->
+<section>
+  <div class="rail"><span class="num">&sect;5</span><span class="tag">Data<br>flow</span></div>
+  <div class="body">
+    <h2>Data flow decomposition</h2>
+    <p class="lede">Three levels, Gane-Sarson notation. The value of the DFD view here is that it makes the <em>stores</em> explicit &mdash; and the store boundaries are where most integrity bugs in a system like this will live.</p>
+
+<figure>
+  <span class="fignum">Figure 10 &mdash; DFD Level 0 &middot; context</span>
+<svg class="dg" viewBox="0 0 940 286" role="img" aria-label="Data flow diagram level zero. Users and curators exchange flows with a single process representing the Nizam-e-Qanoon system, which also reads from source portals and exchanges prompts and completions with a language model provider.">
+  <g class="bx">
+    <rect x="34" y="40" width="160" height="62" rx="2"/>
+    <rect x="34" y="184" width="160" height="62" rx="2"/>
+    <rect x="746" y="40" width="160" height="62" rx="2"/>
+    <rect x="746" y="184" width="160" height="62" rx="2"/>
+  </g>
+  <g class="th"><text x="46" y="66">User</text><text x="46" y="210">Curator</text>
+    <text x="758" y="66">Source portals</text><text x="758" y="210">LLM provider</text></g>
+  <g class="tm"><text x="46" y="82">advocate &middot; law student</text><text x="46" y="94">citizen</text>
+    <text x="46" y="226">internal corpus</text><text x="46" y="238">correction</text>
+    <text x="758" y="82">Pakistan Code &middot; provincial</text><text x="758" y="94">codes &middot; courts &middot; gazettes</text>
+    <text x="758" y="226">hosted inference,</text><text x="758" y="238">behind a port</text></g>
+
+  <rect class="accf" x="360" y="88" width="220" height="110" rx="6"/>
+  <line class="acc" x1="360" y1="114" x2="580" y2="114"/>
+  <text class="ta" x="372" y="106" font-size="10">0</text>
+  <text class="ta" x="470" y="142" text-anchor="middle" font-size="13">NIZAM-E-QANOON</text>
+  <text class="tm" x="470" y="162" text-anchor="middle">legal corpus, retrieval, grounded</text>
+  <text class="tm" x="470" y="176" text-anchor="middle">answers, documents, procedure</text>
+
+  <g class="ln" marker-end="url(#arw)">
+    <line x1="194" y1="60"  x2="354" y2="112"/>
+    <line x1="354" y1="132" x2="194" y2="84"/>
+    <line x1="194" y1="204" x2="354" y2="176"/>
+    <line x1="354" y1="192" x2="194" y2="228"/>
+    <line x1="746" y1="76"  x2="586" y2="112"/>
+    <line x1="586" y1="176" x2="740" y2="200"/>
+    <line x1="740" y1="216" x2="586" y2="192"/>
+  </g>
+  <g class="tm">
+    <text x="204" y="98">query &middot; interview answers &middot; feedback</text>
+    <text x="204" y="120">answer + citations &middot; PDF &middot; abstention</text>
+    <text x="204" y="180">corrected provision tree</text>
+    <text x="204" y="252">gate failures &middot; flagged answers</text>
+    <text x="596" y="88">statute &amp; judgment documents</text>
+    <text x="600" y="176">grounded prompt (no facts of its own)</text>
+    <text x="600" y="234">structured completion, citation IDs only</text>
+  </g>
+</svg>
+<figcaption><b>Note the asymmetry with the LLM provider.</b> What leaves the boundary is a prompt whose factual content came entirely from our corpus; what returns is a structure referencing identifiers. No legal fact enters the system from outside it, which is the single-sentence statement of the grounding contract.</figcaption>
+</figure>
+
+<figure>
+  <span class="fignum">Figure 11 &mdash; DFD Level 1 &middot; major processes and stores</span>
+<svg class="dg" viewBox="0 0 940 566" role="img" aria-label="Data flow diagram level one showing six processes: understand query, retrieve and gate, generate and verify, domain services, ingest and publish, and distribute offline pack. Six data stores hold the corpus, search index, answer audit, rules and templates, object store and offline packs. External users, curators, source portals and the language model provider connect to the relevant processes.">
+  <g class="bx">
+    <rect x="24" y="96"  width="146" height="66" rx="2"/>
+    <rect x="24" y="396" width="146" height="66" rx="2"/>
+    <rect x="770" y="378" width="146" height="66" rx="2"/>
+    <rect x="770" y="212" width="146" height="66" rx="2"/>
+  </g>
+  <g class="th"><text x="34" y="118">User</text><text x="34" y="418">Curator</text>
+    <text x="780" y="400">Source portals</text><text x="780" y="234">LLM provider</text></g>
+  <g class="tm"><text x="34" y="134">advocate &middot; student</text><text x="34" y="146">citizen</text>
+    <text x="34" y="434">law student,</text><text x="34" y="446">internal</text>
+    <text x="780" y="416">gov &amp; court sites</text><text x="780" y="428">gazettes</text>
+    <text x="780" y="250">hosted inference</text></g>
+
+  <g class="bx">
+    <rect x="200" y="36"  width="182" height="56" rx="6"/>
+    <rect x="200" y="118" width="182" height="56" rx="6"/>
+    <rect x="200" y="200" width="182" height="56" rx="6"/>
+    <rect x="200" y="282" width="182" height="56" rx="6"/>
+    <rect x="200" y="376" width="182" height="56" rx="6"/>
+    <rect x="200" y="458" width="182" height="56" rx="6"/>
+  </g>
+  <g class="sep">
+    <line x1="200" y1="56"  x2="382" y2="56"/><line x1="200" y1="138" x2="382" y2="138"/>
+    <line x1="200" y1="220" x2="382" y2="220"/><line x1="200" y1="302" x2="382" y2="302"/>
+    <line x1="200" y1="396" x2="382" y2="396"/><line x1="200" y1="478" x2="382" y2="478"/>
+  </g>
+  <g class="ta" font-size="9.5">
+    <text x="208" y="50">2.0</text><text x="208" y="132">3.0</text><text x="208" y="214">4.0</text>
+    <text x="208" y="296">5.0</text><text x="208" y="390">1.0</text><text x="208" y="472">6.0</text>
+  </g>
+  <g class="th" font-size="10.5">
+    <text x="212" y="74">Understand query</text>
+    <text x="212" y="156">Retrieve &amp; gate</text>
+    <text x="212" y="238">Generate &amp; verify</text>
+    <text x="212" y="320">Domain services</text>
+    <text x="212" y="414">Ingest &amp; publish</text>
+    <text x="212" y="496">Distribute pack</text>
+  </g>
+  <g class="tm">
+    <text x="212" y="86">lang &middot; forum &middot; as_of &middot; intent &middot; citation</text>
+    <text x="212" y="168">candidates &middot; RRF &middot; rerank &middot; &tau;</text>
+    <text x="212" y="250">structured answer &middot; render &middot; entail</text>
+    <text x="212" y="332">precedent &middot; draft &middot; procedure</text>
+    <text x="212" y="426">scrape &middot; segment &middot; enrich &middot; QA gate</text>
+    <text x="212" y="508">build &middot; sign &middot; diff &middot; serve deltas</text>
+  </g>
+
+  <g class="ln">
+    <line x1="450" y1="52"  x2="700" y2="52"/><line x1="450" y1="88" x2="700" y2="88"/>
+    <line x1="450" y1="134" x2="700" y2="134"/><line x1="450" y1="170" x2="700" y2="170"/>
+    <line x1="450" y1="216" x2="700" y2="216"/><line x1="450" y1="252" x2="700" y2="252"/>
+    <line x1="450" y1="298" x2="700" y2="298"/><line x1="450" y1="334" x2="700" y2="334"/>
+    <line x1="450" y1="392" x2="700" y2="392"/><line x1="450" y1="428" x2="700" y2="428"/>
+    <line x1="450" y1="474" x2="700" y2="474"/><line x1="450" y1="510" x2="700" y2="510"/>
+    <line x1="450" y1="52"  x2="450" y2="88"/><line x1="450" y1="134" x2="450" y2="170"/>
+    <line x1="450" y1="216" x2="450" y2="252"/><line x1="450" y1="298" x2="450" y2="334"/>
+    <line x1="450" y1="392" x2="450" y2="428"/><line x1="450" y1="474" x2="450" y2="510"/>
+  </g>
+  <g class="sep">
+    <line x1="486" y1="52" x2="486" y2="88"/><line x1="486" y1="134" x2="486" y2="170"/>
+    <line x1="486" y1="216" x2="486" y2="252"/><line x1="486" y1="298" x2="486" y2="334"/>
+    <line x1="486" y1="392" x2="486" y2="428"/><line x1="486" y1="474" x2="486" y2="510"/>
+  </g>
+  <g class="ta" font-size="9.5">
+    <text x="458" y="74">D1</text><text x="458" y="156">D2</text><text x="458" y="238">D3</text>
+    <text x="458" y="320">D4</text><text x="458" y="414">D5</text><text x="458" y="496">D6</text>
+  </g>
+  <g class="th" font-size="10">
+    <text x="496" y="68">Corpus</text><text x="496" y="150">Search index</text><text x="496" y="232">Answer audit</text>
+    <text x="496" y="314">Rules &amp; templates</text><text x="496" y="408">Object store</text><text x="496" y="490">Offline packs</text>
+  </g>
+  <g class="tm">
+    <text x="496" y="82">instruments &middot; provisions &middot; versions &middot; judgments &middot; edges</text>
+    <text x="496" y="164">HNSW vectors &middot; BM25 &middot; glossary &middot; definitions</text>
+    <text x="496" y="246">query &middot; scores &middot; gate &middot; prompt hash &middot; verifier result</text>
+    <text x="496" y="328">clause rules &middot; LaTeX templates &middot; stamp duty &middot; limitation</text>
+    <text x="496" y="422">source PDFs &middot; generated documents &middot; backups</text>
+    <text x="496" y="504">signed pack versions &middot; delta chain</text>
+  </g>
+
+  <g class="ln" marker-end="url(#arw)">
+    <line x1="170" y1="112" x2="196" y2="64"/>
+    <line x1="196" y1="80"  x2="170" y2="128"/>
+    <line x1="382" y1="64"  x2="446" y2="64"/>
+    <line x1="382" y1="146" x2="446" y2="146"/>
+    <line x1="446" y1="158" x2="386" y2="158"/>
+    <line x1="382" y1="228" x2="446" y2="228"/>
+    <line x1="382" y1="310" x2="446" y2="310"/>
+    <line x1="446" y1="322" x2="386" y2="322"/>
+    <line x1="382" y1="404" x2="446" y2="404"/>
+    <line x1="404" y1="376" x2="404" y2="90"/>
+    <line x1="382" y1="486" x2="446" y2="486"/>
+    <line x1="170" y1="424" x2="196" y2="410"/>
+    <line x1="196" y1="424" x2="172" y2="440"/>
+    <line x1="770" y1="404" x2="392" y2="404"/>
+    <line x1="770" y1="246" x2="392" y2="234"/>
+    <line x1="392" y1="222" x2="766" y2="228"/>
+    <line x1="291" y1="118" x2="291" y2="98"/>
+    <line x1="291" y1="200" x2="291" y2="180"/>
+    <line x1="291" y1="282" x2="291" y2="262"/>
+    <line x1="170" y1="140" x2="196" y2="480"/>
+  </g>
+  <g class="tm">
+    <text x="112" y="80">query</text>
+    <text x="96" y="164">answer / abstention</text>
+    <text x="388" y="58">read as_of</text>
+    <text x="388" y="140">search</text>
+    <text x="390" y="172">candidates</text>
+    <text x="388" y="222">write audit</text>
+    <text x="388" y="304">read rules</text>
+    <text x="388" y="398">publish txn</text>
+    <text x="408" y="240">re-index</text>
+    <text x="388" y="480">build from</text>
+    <text x="176" y="404">corrections</text>
+    <text x="176" y="458">gate failures</text>
+    <text x="470" y="398">documents</text>
+    <text x="560" y="398">fetch</text>
+    <text x="560" y="216">prompt</text>
+    <text x="560" y="260">completion</text>
+    <text x="296" y="112">context</text>
+    <text x="296" y="194">grounding</text>
+    <text x="296" y="276">verified answer</text>
+  </g>
+</svg>
+<figcaption><b>Six stores, and only one write path into each.</b> D1 and D2 are written exclusively by process 1.0, inside a single publish transaction &mdash; no query-side process may write them. D3 is append-only. That constraint is what allows the whole corpus to be rebuilt from D5 and the manifests without touching the serving path, and it is the reason a re-index is routine rather than an outage.</figcaption>
+</figure>
+
+<figure>
+  <span class="fignum">Figure 12 &mdash; DFD Level 2 &middot; process 3.0 retrieve and gate</span>
+<svg class="dg" viewBox="0 0 940 408" role="img" aria-label="Data flow diagram level two expanding the retrieve and gate process into eight sub-processes: parse and classify, then four parallel candidate generators for lexical, dense, definition and graph retrieval, feeding reciprocal rank fusion, cross-encoder reranking, the threshold gate, and context assembly, with an abstention output when the gate fails.">
+  <g class="bx">
+    <rect x="20"  y="150" width="148" height="60" rx="6"/>
+    <rect x="206" y="26"  width="148" height="48" rx="6"/>
+    <rect x="206" y="90"  width="148" height="48" rx="6"/>
+    <rect x="206" y="154" width="148" height="48" rx="6"/>
+    <rect x="206" y="218" width="148" height="48" rx="6"/>
+    <rect x="392" y="150" width="118" height="60" rx="6"/>
+    <rect x="548" y="150" width="148" height="60" rx="6"/>
+    <rect x="734" y="256" width="148" height="60" rx="6"/>
+  </g>
+  <rect class="acc" x="734" y="150" width="148" height="60" rx="6"/>
+  <g class="sep">
+    <line x1="20" y1="170" x2="168" y2="170"/><line x1="206" y1="44" x2="354" y2="44"/>
+    <line x1="206" y1="108" x2="354" y2="108"/><line x1="206" y1="172" x2="354" y2="172"/>
+    <line x1="206" y1="236" x2="354" y2="236"/><line x1="392" y1="170" x2="510" y2="170"/>
+    <line x1="548" y1="170" x2="696" y2="170"/><line x1="734" y1="276" x2="882" y2="276"/>
+  </g>
+  <line class="acc" x1="734" y1="170" x2="882" y2="170"/>
+  <g class="ta" font-size="9.5">
+    <text x="28" y="164">3.1</text><text x="214" y="38">3.2</text><text x="214" y="102">3.3</text>
+    <text x="214" y="166">3.4</text><text x="214" y="230">3.5</text><text x="400" y="164">3.6</text>
+    <text x="556" y="164">3.7</text><text x="742" y="164">3.8</text><text x="742" y="270">3.9</text>
+  </g>
+  <g class="th" font-size="10.5">
+    <text x="32" y="188">Parse &amp; classify</text>
+    <text x="218" y="62">Lexical BM25</text><text x="218" y="126">Dense vector</text>
+    <text x="218" y="190">Definition expand</text><text x="218" y="254">Graph expand</text>
+    <text x="402" y="188">Fuse RRF</text><text x="560" y="188">Rerank</text>
+  </g>
+  <text class="ta" x="746" y="188" font-size="10.5">Gate &tau;</text>
+  <text class="th" x="746" y="294" font-size="10.5">Assemble context</text>
+  <g class="tm">
+    <text x="32" y="202">lang &middot; forum &middot; as_of &middot; intent</text>
+    <text x="402" y="202">rank-only merge</text>
+    <text x="560" y="202">cross-encoder, tuned</text>
+    <text x="746" y="202">precision-calibrated</text>
+    <text x="746" y="308">whole provisions + status</text>
+  </g>
+
+  <g class="ln">
+    <line x1="206" y1="336" x2="450" y2="336"/><line x1="206" y1="368" x2="450" y2="368"/>
+    <line x1="206" y1="336" x2="206" y2="368"/><line x1="242" y1="336" x2="242" y2="368"/>
+    <line x1="520" y1="336" x2="764" y2="336"/><line x1="520" y1="368" x2="764" y2="368"/>
+    <line x1="520" y1="336" x2="520" y2="368"/><line x1="556" y1="336" x2="556" y2="368"/>
+  </g>
+  <g class="ta" font-size="9.5"><text x="214" y="356">D2</text><text x="528" y="356">D1</text></g>
+  <g class="th" font-size="10"><text x="252" y="350">Search index</text><text x="566" y="350">Corpus</text></g>
+  <g class="tm"><text x="252" y="364">BM25 &middot; HNSW &middot; glossary</text><text x="566" y="364">provisions &middot; versions &middot; edges</text></g>
+
+  <g class="ln" marker-end="url(#arw)">
+    <line x1="168" y1="168" x2="202" y2="56"/>
+    <line x1="168" y1="174" x2="202" y2="118"/>
+    <line x1="168" y1="180" x2="202" y2="180"/>
+    <line x1="168" y1="186" x2="202" y2="242"/>
+    <line x1="354" y1="56"  x2="388" y2="168"/>
+    <line x1="354" y1="118" x2="388" y2="174"/>
+    <line x1="354" y1="180" x2="388" y2="180"/>
+    <line x1="354" y1="242" x2="388" y2="186"/>
+    <line x1="510" y1="180" x2="544" y2="180"/>
+    <line x1="696" y1="180" x2="730" y2="180"/>
+    <line x1="280" y1="266" x2="280" y2="332"/>
+    <line x1="660" y1="332" x2="660" y2="214"/>
+    <line x1="808" y1="256" x2="808" y2="214"/>
+    <line x1="764" y1="352" x2="700" y2="352" />
+  </g>
+  <path class="ln" d="M690,286 L730,286" marker-end="url(#arw)"/>
+  <path class="lnA" d="M882,180 L906,180 L906,60 L470,60" marker-end="url(#arwA)"/>
+  <g class="tm">
+    <text x="176" y="46">query spec</text>
+    <text x="360" y="94">ranked lists</text>
+    <text x="516" y="172">top ~150</text>
+    <text x="700" y="172">top ~20 scored</text>
+    <text x="286" y="300">read</text>
+    <text x="666" y="250">read text</text>
+    <text x="814" y="238">pass</text>
+    <text x="700" y="302">grounding context &rarr; 4.0</text>
+  </g>
+  <text class="ta" x="476" y="52" font-size="9.5">abstention &rarr; user, no generation (INV-2)</text>
+</svg>
+<figcaption><b>The gate is a process, not a filter inside another process.</b> Drawing it at this level makes the important property visible: 3.8 has two outputs and they go to different destinations. The pass path continues to context assembly and then generation; the fail path leaves the subsystem entirely and reaches the user without ever passing through 4.0. There is no arrow from 3.8 to 3.9 that bypasses the threshold, and no arrow from anywhere else into 4.0.</figcaption>
+</figure>
+  </div>
+</section>
+
+
+<!-- ============ 6 ============ -->
+<section>
+  <div class="rail"><span class="num">&sect;6</span><span class="tag">Layer<br>specs</span></div>
+  <div class="body">
+    <h2>The eight layers</h2>
+    <p class="lede">One row per layer: what it owns, what it hands upward, what it may call downward, and the decisions already fixed. Everything else about a layer is delegated to its own document.</p>
+
+    <div class="scroll">
+      <table>
+        <caption>Dependency rule: a layer may call only the layer immediately below it, plus the shared inference worker. Cross-cutting documents 09&ndash;12 constrain all layers.</caption>
+        <thead><tr><th>Layer</th><th>Owns</th><th>Provides</th><th>Requires</th><th>Fixed decisions</th><th>Doc</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="id">L1<br>Corpus &amp;<br>Ingestion</td>
+            <td class="k">Source adapters, fetch, extraction, OCR lane, normalisation, segmentation, enrichment, versioning, QA gates, curation queue</td>
+            <td class="n">&mdash;<br><span class="tm">terminal, writes only</span></td>
+            <td class="n">ICorpusWrite<br>IInference</td>
+            <td>Text-layer first, OCR is a fallback lane (ADR-3) &middot; provision tree is the parse target, not chunks (ADR-10) &middot; publish is one transaction per instrument &middot; no path to the live index skips the gates</td>
+            <td class="n">02</td>
+          </tr>
+          <tr>
+            <td class="id">L2<br>Data &amp;<br>Storage</td>
+            <td class="k">Schema, migrations, ltree provision trees, bitemporal versions, HNSW vectors, BM25 index, citation graph, RLS policies, backup</td>
+            <td class="n">ICorpusWrite<br>ICorpusRead<br>IIndexSearch</td>
+            <td class="n">&mdash;</td>
+            <td>One Postgres for relational, vector, lexical and graph (ADR-1) &middot; GiST exclusion on version validity &middot; chunk IDs are private to this layer (INV-4) &middot; chunk rows store <em>offsets</em> into provision text, never a second copy &middot; the tsvector column is indexed as an expression, not materialised &middot; R2 for blobs at every hosting stage &mdash; 1.86 GB of source PDFs exceeds every free blob allowance except R2</td>
+            <td class="n">03</td>
+          </tr>
+          <tr>
+            <td class="id">L3<br>Retrieval</td>
+            <td class="k">Query understanding, citation grammar, romanised alias resolution, four candidate generators, RRF, cross-encoder, the gate, context assembly</td>
+            <td class="n">IRetrieve</td>
+            <td class="n">IIndexSearch<br>ICorpusRead<br>IInference</td>
+            <td>Fine-tuning budget goes here, not to the generator (ADR-2) &middot; RRF over score normalisation &middot; direct cross-lingual retrieval, no translation hop (ADR-4) &middot; &tau; calibrated on held-out data, never hand-set</td>
+            <td class="n">04</td>
+          </tr>
+          <tr>
+            <td class="id">L4<br>Generation &amp;<br>Grounding</td>
+            <td class="k">Prompt assembly, provider port and adapters, structured-output validation, citation rendering, entailment verifier, register classifier, semantic cache, batch pre-generation of explainers and of the offline answer tier</td>
+            <td class="n">IGenerate</td>
+            <td class="n">IRetrieve<br>ICorpusRead<br>ILLMProvider<br>IInference</td>
+            <td>Model emits identifiers, never citation text (INV-1) &middot; vendor SDK confined to one adapter &middot; verification is a pipeline stage, not a prompt instruction &middot; abstention has no bypass (INV-2)</td>
+            <td class="n">05</td>
+          </tr>
+          <tr>
+            <td class="id">L5<br>Domain<br>Services</td>
+            <td class="k">Precedent citator, judgment summarisation, document interview and clause engine, LaTeX rendering, procedure guides, limitation / court-fee / forum calculators</td>
+            <td class="n">IPrecedent<br>IDraft<br>IProcedure</td>
+            <td class="n">IGenerate<br>ICorpusRead</td>
+            <td>Clause selection is deterministic rule code, never generated &middot; calculators are data tables, not models &middot; official links are stored and health-checked, never emitted by a model &middot; every document carries a provenance block</td>
+            <td class="n">06</td>
+          </tr>
+          <tr>
+            <td class="id">L6<br>Backend<br>API</td>
+            <td class="k">HTTP surface, authentication, sessions, anonymous mode, SSE streaming, rate limits, answer audit, billing, offline pack manifests</td>
+            <td class="n">IPublicAPI<br>ISync</td>
+            <td class="n">IRetrieve<br>IGenerate<br>IPrecedent<br>IDraft<br>IProcedure</td>
+            <td>Modular monolith, not microservices &middot; phone-first identity &middot; audit written for every answer (INV-3) &middot; anonymous mode disables persistence at the session scope, not per call site</td>
+            <td class="n">07</td>
+          </tr>
+          <tr>
+            <td class="id">L7<br>Frontend &amp;<br>Clients</td>
+            <td class="k">Flutter app, signed offline pack and delta sync, web research UI, public SSG pages, curation console, bilingual and RTL presentation</td>
+            <td class="n">&mdash;<br><span class="tm">terminal, reads only</span></td>
+            <td class="n">IPublicAPI<br>ISync</td>
+            <td>Android-first &middot; offline is a mode, not a cache &middot; sqlite-vec ships on-device semantic search rather than deferring it to R&amp;D &middot; one grounded payload rendered at two reading levels</td>
+            <td class="n">08</td>
+          </tr>
+          <tr>
+            <td class="id">L8<br>Cross-<br>cutting</td>
+            <td class="k">Configuration, error taxonomy, identifier generation, OpenTelemetry tracing, feature flags, evaluation harness, red-team suite</td>
+            <td class="n">used by all</td>
+            <td class="n">&mdash;</td>
+            <td>Every retrieval stage emits a span with its scores &middot; the golden set runs in CI and blocks merges on regression &middot; no layer may log query content when the session is anonymous</td>
+            <td class="n">09&ndash;12</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+<figure>
+  <span class="fignum">Figure 13 &mdash; C4 Level 3 &middot; ingestion pipeline components</span>
+<svg class="dg" viewBox="0 0 940 404" role="img" aria-label="C4 level three components of the ingestion pipeline: source adapters, fetcher, extractor with an OCR fallback lane, normaliser, segmenter with a table of contents reconciler, enricher, versioner and indexer, feeding a gate runner that either publishes or routes the document to a curation queue which returns it to segmentation.">
+  <g class="bx">
+    <rect x="24"  y="36"  width="160" height="52" rx="3"/>
+    <rect x="204" y="36"  width="140" height="52" rx="3"/>
+    <rect x="364" y="36"  width="150" height="52" rx="3"/>
+    <rect x="684" y="36"  width="170" height="52" rx="3"/>
+    <rect x="684" y="140" width="170" height="52" rx="3"/>
+    <rect x="444" y="140" width="200" height="52" rx="3"/>
+    <rect x="244" y="140" width="160" height="52" rx="3"/>
+    <rect x="24"  y="140" width="180" height="52" rx="3"/>
+  </g>
+  <g class="ext"><rect x="534" y="36" width="130" height="52" rx="3"/></g>
+  <rect class="acc" x="24"  y="244" width="220" height="56" rx="3"/>
+  <rect class="acc" x="304" y="244" width="180" height="56" rx="3"/>
+  <g class="bx"><rect x="304" y="330" width="220" height="52" rx="3"/></g>
+
+  <g class="th" font-size="10.5">
+    <text x="34" y="56">Source adapters</text>
+    <text x="214" y="56">Fetcher</text>
+    <text x="374" y="56">Extractor</text>
+    <text x="544" y="56">OCR lane</text>
+    <text x="694" y="56">Normaliser</text>
+    <text x="694" y="160">Segmenter</text>
+    <text x="454" y="160">Enricher</text>
+    <text x="254" y="160">Versioner</text>
+    <text x="34" y="160">Indexer</text>
+    <text x="314" y="350">Curation queue</text>
+  </g>
+  <text class="ta" x="34" y="264" font-size="10.5">Gate runner</text>
+  <text class="ta" x="314" y="264" font-size="10.5">Publisher</text>
+  <g class="tm">
+    <text x="34" y="70">one per portal, rate-limited</text><text x="34" y="82">resumable manifest, sha256</text>
+    <text x="214" y="70">retry + backoff</text><text x="214" y="82">store original to R2</text>
+    <text x="374" y="70">PyMuPDF, layout aware</text><text x="374" y="82">coords, fonts, indent depth</text>
+    <text x="544" y="70">~150 scanned docs</text><text x="544" y="82">Nastaliq where needed</text>
+    <text x="694" y="70">page furniture, dashes</text><text x="694" y="82">glyph recovery, NFC</text>
+    <text x="694" y="174">numbering grammar +</text><text x="694" y="186">indent + font weight</text>
+    <text x="454" y="174">footnote binding, amendment</text><text x="454" y="186">grammar, xrefs, definitions</text>
+    <text x="254" y="174">resolve amendments</text><text x="254" y="186">to validity intervals</text>
+    <text x="34" y="174">chunk, embed, tsvector,</text><text x="34" y="186">citation edges</text>
+    <text x="34" y="280">coverage &middot; sequence &middot; TOC &middot; xref</text><text x="34" y="292">amendment &middot; duplicate &middot; spot check</text>
+    <text x="314" y="280">one transaction per</text><text x="314" y="292">instrument, all or nothing</text>
+    <text x="314" y="364">named failing gate + source page;</text><text x="314" y="376">curator fixes, re-runs from segment</text>
+  </g>
+
+  <g class="ln" marker-end="url(#arw)">
+    <line x1="184" y1="62" x2="200" y2="62"/>
+    <line x1="344" y1="62" x2="360" y2="62"/>
+    <line x1="514" y1="62" x2="530" y2="62"/>
+    <line x1="664" y1="62" x2="680" y2="62"/>
+    <line x1="769" y1="88" x2="769" y2="136"/>
+    <line x1="684" y1="166" x2="648" y2="166"/>
+    <line x1="444" y1="166" x2="408" y2="166"/>
+    <line x1="244" y1="166" x2="208" y2="166"/>
+    <line x1="114" y1="192" x2="114" y2="240"/>
+    <line x1="244" y1="272" x2="300" y2="272"/>
+  </g>
+  <path class="ln" d="M439,36 L439,16 L760,16 L760,32" marker-end="url(#arw)"/>
+  <path class="lnA" d="M134,300 L134,356 L300,356" marker-end="url(#arwA)"/>
+  <path class="lnA" d="M524,356 L660,356 L660,116 L800,116 L800,136" marker-end="url(#arwA)"/>
+  <g class="tm">
+    <text x="470" y="12">text layer present &mdash; 96% bypass the OCR lane</text>
+    <text x="775" y="116">re-run</text>
+  </g>
+  <g class="ta" font-size="9.5">
+    <text x="252" y="266">[all gates pass]</text>
+    <text x="140" y="326">[any gate fails]</text>
+  </g>
+</svg>
+<figcaption><b>The curation queue closes the loop.</b> A document that fails any gate never reaches the publisher; it goes to a human with the failing gate named and the source page attached, and re-enters at segmentation. Automated parsing of 4,700 heterogeneous PDFs will land near 90% &mdash; this return edge is how the remaining ~470 documents reach the corpus, and building it in phase 1 rather than phase 5 is the difference between a corpus that reaches 99% and one that stalls at demo quality.</figcaption>
+</figure>
+
+<figure>
+  <span class="fignum">Figure 14 &mdash; C4 Level 3 &middot; generation and grounding components</span>
+<svg class="dg" viewBox="0 0 940 400" role="img" aria-label="C4 level three components of the generation layer: a semantic cache lookup, prompt assembler, provider port with hosted and self-hosted adapters, schema validator, citation renderer that resolves identifiers against the database, a three-tier entailment verifier, and a register classifier before the verified answer is returned.">
+  <g class="bx">
+    <rect x="24"  y="30"  width="170" height="56" rx="3"/>
+    <rect x="214" y="30"  width="200" height="56" rx="3"/>
+    <rect x="634" y="30"  width="200" height="56" rx="3"/>
+    <rect x="634" y="214" width="200" height="60" rx="3"/>
+    <rect x="134" y="214" width="200" height="60" rx="3"/>
+  </g>
+  <rect class="acc" x="434" y="30" width="180" height="56" rx="3"/>
+  <rect class="acc" x="374" y="214" width="220" height="60" rx="3"/>
+  <g class="bx" opacity=".8">
+    <rect x="414" y="120" width="110" height="44" rx="3"/>
+    <rect x="534" y="120" width="110" height="44" rx="3"/>
+  </g>
+  <g class="bxg">
+    <rect x="374" y="300" width="70" height="40" rx="3"/>
+    <rect x="450" y="300" width="70" height="40" rx="3"/>
+    <rect x="526" y="300" width="68" height="40" rx="3"/>
+  </g>
+  <g class="ext"><rect x="24" y="300" width="200" height="56" rx="3"/></g>
+
+  <g class="th" font-size="10.5">
+    <text x="34" y="50">Semantic cache</text>
+    <text x="224" y="50">Prompt assembler</text>
+    <text x="644" y="50">Schema validator</text>
+    <text x="644" y="234">Citation renderer</text>
+    <text x="144" y="234">Register classifier</text>
+    <text x="34" y="320">Explainer batch job</text>
+  </g>
+  <text class="ta" x="444" y="50" font-size="10.5">Provider port</text>
+  <text class="ta" x="384" y="234" font-size="10.5">Entailment verifier</text>
+  <g class="tm">
+    <text x="34" y="64">same intent, forum, as_of</text><text x="34" y="76">&rarr; stored verified answer</text>
+    <text x="224" y="64">static prefix cached &middot; schema &middot;</text><text x="224" y="76">few-shots &middot; grounding context</text>
+    <text x="644" y="64">every block must carry &ge;1</text><text x="644" y="76">citation ID or it is dropped</text>
+    <text x="644" y="248">resolve ID &rarr; authoritative text</text><text x="644" y="260">from L2. Unresolved &rarr; drop + log</text>
+    <text x="144" y="248">blocks &ldquo;you should&rdquo; register;</text><text x="144" y="260">enforces information, not advice</text>
+    <text x="34" y="334">precomputes plain-language</text><text x="34" y="346">explainers &rarr; cache + offline pack</text>
+    <text x="424" y="138">hosted</text><text x="424" y="152">small / reasoning tier</text>
+    <text x="544" y="138">self-hosted vLLM</text><text x="544" y="152">open weights + LoRA</text>
+    <text x="444" y="248">three tiers, escalating</text>
+    <text x="384" y="318">numeric</text><text x="384" y="330">overlap</text>
+    <text x="460" y="318">NLI</text><text x="460" y="330">entailment</text>
+    <text x="534" y="318">adversarial</text><text x="534" y="330">judge</text>
+  </g>
+
+  <g class="ln" marker-end="url(#arw)">
+    <line x1="194" y1="58" x2="210" y2="58"/>
+    <line x1="414" y1="58" x2="430" y2="58"/>
+    <line x1="614" y1="58" x2="630" y2="58"/>
+    <line x1="734" y1="86" x2="734" y2="210"/>
+    <line x1="634" y1="244" x2="598" y2="244"/>
+    <line x1="374" y1="244" x2="338" y2="244"/>
+    <line x1="134" y1="244" x2="98"  y2="244"/>
+    <line x1="224" y1="328" x2="330" y2="300"/>
+  </g>
+  <g class="lnD" marker-end="url(#arw)">
+    <line x1="469" y1="86" x2="469" y2="116"/>
+    <line x1="579" y1="86" x2="579" y2="116"/>
+    <line x1="409" y1="300" x2="409" y2="278"/>
+    <line x1="485" y1="300" x2="485" y2="278"/>
+    <line x1="560" y1="300" x2="560" y2="278"/>
+  </g>
+  <path class="ln" d="M109,86 L109,180 L900,180 L900,244 L840,244" marker-end="url(#arw)"/>
+  <path class="lnA" d="M109,58 L60,58 L60,196 L84,196" marker-end="url(#arwA)"/>
+  <g class="tm">
+    <text x="115" y="176">miss &rarr; generate</text>
+    <text x="700" y="196">ICorpusRead</text>
+    <text x="248" y="292">warms</text>
+    <text x="90" y="266">verified answer &rarr; L6</text>
+  </g>
+  <text class="ta" x="20" y="212" font-size="9.5">hit &mdash; no model call</text>
+</svg>
+<figcaption><b>Two components exist purely to make the model untrustworthy by design.</b> The schema validator refuses any answer block that does not carry a citation identifier, and the citation renderer replaces every identifier with text fetched from the database &mdash; so what the reader sees as a quotation was never produced by the model. The verifier then checks the model&rsquo;s own prose against that text. Each tier is cheap enough to run on every block, and only the adversarial tier costs a second model call, reserved for claims touching liability or limitation.</figcaption>
+</figure>
+
+<figure>
+  <span class="fignum">Figure 15 &mdash; UML activity diagram &middot; corpus ingestion, partitioned</span>
+<svg class="dg" viewBox="0 0 940 448" role="img" aria-label="UML activity diagram with three swimlanes. The scheduler lane detects a change and enqueues a job. The ingest worker lane fetches, extracts, normalises, segments, enriches, versions and indexes, then runs the quality gates at a decision node. On pass it publishes and the activity ends. On failure it enqueues a review item in the curator lane, where a human inspects, corrects and resubmits, returning the flow to segmentation.">
+  <g class="swim">
+    <line x1="20" y1="76" x2="920" y2="76"/>
+    <line x1="20" y1="308" x2="920" y2="308"/>
+  </g>
+  <line class="sep" x1="130" y1="20" x2="130" y2="428"/>
+  <line class="sep" x1="20" y1="20" x2="920" y2="20"/>
+  <line class="sep" x1="20" y1="428" x2="920" y2="428"/>
+  <g class="ta" font-size="9.5">
+    <text x="30" y="52">SCHEDULER</text>
+    <text x="30" y="192">INGEST</text><text x="30" y="205">WORKER</text>
+    <text x="30" y="372">CURATOR</text>
+    <text x="30" y="385">(human)</text>
+  </g>
+
+  <circle cx="176" cy="48" r="7" fill="currentColor"/>
+  <g class="bx">
+    <rect x="216" y="28" width="150" height="40" rx="12"/>
+    <rect x="400" y="28" width="150" height="40" rx="12"/>
+    <rect x="160" y="104" width="130" height="40" rx="12"/>
+    <rect x="316" y="104" width="130" height="40" rx="12"/>
+    <rect x="472" y="104" width="130" height="40" rx="12"/>
+    <rect x="628" y="104" width="130" height="40" rx="12"/>
+    <rect x="628" y="176" width="130" height="40" rx="12"/>
+    <rect x="472" y="176" width="130" height="40" rx="12"/>
+    <rect x="316" y="176" width="130" height="40" rx="12"/>
+    <rect x="160" y="248" width="150" height="40" rx="12"/>
+    <rect x="216" y="336" width="150" height="40" rx="12"/>
+    <rect x="400" y="336" width="150" height="40" rx="12"/>
+    <rect x="584" y="336" width="150" height="40" rx="12"/>
+  </g>
+  <g text-anchor="middle" font-size="10">
+    <text x="291" y="52">detect change (hash)</text>
+    <text x="475" y="52">enqueue ingest job</text>
+    <text x="225" y="128">fetch + store</text>
+    <text x="381" y="128">extract text</text>
+    <text x="537" y="128">normalise</text>
+    <text x="693" y="128">segment tree</text>
+    <text x="693" y="200">enrich</text>
+    <text x="537" y="200">version</text>
+    <text x="381" y="200">index</text>
+    <text x="235" y="272">publish (txn)</text>
+    <text x="291" y="360">inspect vs source</text>
+    <text x="475" y="360">correct tree</text>
+    <text x="659" y="360">resubmit</text>
+  </g>
+  <path class="acc" d="M380,224 L440,248 L380,272 L320,248 z"/>
+  <text class="ta" x="380" y="245" text-anchor="middle" font-size="9.5">QA</text>
+  <text class="ta" x="380" y="257" text-anchor="middle" font-size="9.5">gates</text>
+  <circle cx="600" cy="268" r="10" fill="none" stroke="currentColor" stroke-width="1.2"/>
+  <circle cx="600" cy="268" r="5.5" fill="currentColor"/>
+
+  <g class="ln" marker-end="url(#arw)">
+    <line x1="183" y1="48" x2="212" y2="48"/>
+    <line x1="366" y1="48" x2="396" y2="48"/>
+    <line x1="475" y1="68" x2="475" y2="86"/>
+    <line x1="225" y1="100" x2="225" y2="86"/>
+    <line x1="290" y1="124" x2="312" y2="124"/>
+    <line x1="446" y1="124" x2="468" y2="124"/>
+    <line x1="602" y1="124" x2="624" y2="124"/>
+    <line x1="693" y1="144" x2="693" y2="172"/>
+    <line x1="628" y1="196" x2="606" y2="196"/>
+    <line x1="472" y1="196" x2="450" y2="196"/>
+    <line x1="381" y1="216" x2="381" y2="220"/>
+    <line x1="320" y1="248" x2="314" y2="256"/>
+    <line x1="310" y1="268" x2="590" y2="268"/>
+    <line x1="366" y1="356" x2="396" y2="356"/>
+    <line x1="550" y1="356" x2="580" y2="356"/>
+  </g>
+  <path class="ln" d="M475,86 L225,86" />
+  <path class="lnA" d="M440,248 L470,248 L470,300 L291,300 L291,332" marker-end="url(#arwA)"/>
+  <path class="lnA" d="M734,356 L800,356 L800,196 L764,196" marker-end="url(#arwA)"/>
+  <g class="ta" font-size="9.5">
+    <text x="478" y="290">[any gate fails]</text>
+    <text x="806" y="280">re-run from</text><text x="806" y="292">segmentation</text>
+  </g>
+  <text class="tm" x="316" y="288">[all pass]</text>
+</svg>
+<figcaption><b>The partition is the point.</b> Everything above the second swimline is automated and must be safe to re-run at any time; everything below it costs a human twenty minutes. The decision node is the only crossing, and it is why gate design matters more than parser cleverness &mdash; a gate that is too loose silently corrupts the corpus, and one that is too tight buries the curator.</figcaption>
+</figure>
+
+<figure>
+  <span class="fignum">Figure 16 &mdash; UML activity diagram &middot; answering a question</span>
+<svg class="dg" viewBox="0 0 940 576" role="img" aria-label="UML activity diagram for answering a question. After parsing, a decision routes explicit citations to a direct fetch. Otherwise a fork runs four retrievers in parallel, a join merges them, results are fused and reranked, and a threshold decision either emits an abstention and ends, or assembles context. Control passes to a second column where a cache decision may return a stored answer, otherwise generation, schema validation, citation rendering and entailment verification run, a verification decision drops or flags failing blocks, and the register classifier, stream and audit complete the activity.">
+  <circle cx="240" cy="28" r="7" fill="currentColor"/>
+  <g class="bx">
+    <rect x="170" y="44"  width="140" height="34" rx="12"/>
+    <rect x="170" y="92"  width="140" height="34" rx="12"/>
+    <rect x="350" y="140" width="130" height="36" rx="12"/>
+    <rect x="60"  y="222" width="84"  height="36" rx="10"/>
+    <rect x="152" y="222" width="84"  height="36" rx="10"/>
+    <rect x="244" y="222" width="84"  height="36" rx="10"/>
+    <rect x="336" y="222" width="84"  height="36" rx="10"/>
+    <rect x="185" y="292" width="110" height="34" rx="12"/>
+    <rect x="175" y="342" width="130" height="34" rx="12"/>
+    <rect x="30"  y="394" width="130" height="36" rx="12"/>
+    <rect x="175" y="458" width="130" height="34" rx="12"/>
+  </g>
+  <rect x="60" y="204" width="360" height="5" fill="currentColor"/>
+  <rect x="60" y="274" width="360" height="5" fill="currentColor"/>
+  <path class="acc" d="M240,134 L292,158 L240,182 L188,158 z"/>
+  <path class="acc" d="M240,388 L294,412 L240,436 L186,412 z"/>
+  <circle cx="95" cy="470" r="10" fill="none" stroke="currentColor" stroke-width="1.2"/>
+  <circle cx="95" cy="470" r="5.5" fill="currentColor"/>
+  <circle cx="240" cy="520" r="12" fill="none" stroke="currentColor" stroke-width="1.3"/>
+  <text x="240" y="524" text-anchor="middle" class="ta" font-size="11">A</text>
+
+  <g text-anchor="middle" font-size="10">
+    <text x="240" y="65">receive query</text>
+    <text x="240" y="113">parse: lang, forum, as_of, intent</text>
+    <text x="415" y="162">direct fetch</text>
+    <text x="102" y="244">BM25</text><text x="194" y="244">dense</text>
+    <text x="286" y="244">definitions</text><text x="378" y="244">graph</text>
+    <text x="240" y="313">fuse (RRF)</text>
+    <text x="240" y="363">rerank</text>
+    <text x="95"  y="416">emit abstention</text>
+    <text x="240" y="479">assemble context</text>
+  </g>
+  <text class="ta" x="240" y="155" text-anchor="middle" font-size="9.5">citation?</text>
+  <text class="ta" x="240" y="410" text-anchor="middle" font-size="9.5">score</text>
+  <text class="ta" x="240" y="422" text-anchor="middle" font-size="9.5">&ge; &tau; ?</text>
+
+  <g class="ln" marker-end="url(#arw)">
+    <line x1="240" y1="35" x2="240" y2="40"/>
+    <line x1="240" y1="78" x2="240" y2="88"/>
+    <line x1="240" y1="126" x2="240" y2="130"/>
+    <line x1="292" y1="158" x2="346" y2="158"/>
+    <line x1="240" y1="182" x2="240" y2="200"/>
+    <line x1="102" y1="209" x2="102" y2="218"/>
+    <line x1="194" y1="209" x2="194" y2="218"/>
+    <line x1="286" y1="209" x2="286" y2="218"/>
+    <line x1="378" y1="209" x2="378" y2="218"/>
+    <line x1="102" y1="258" x2="102" y2="272"/>
+    <line x1="194" y1="258" x2="194" y2="272"/>
+    <line x1="286" y1="258" x2="286" y2="272"/>
+    <line x1="378" y1="258" x2="378" y2="272"/>
+    <line x1="240" y1="279" x2="240" y2="288"/>
+    <line x1="240" y1="326" x2="240" y2="338"/>
+    <line x1="240" y1="376" x2="240" y2="384"/>
+    <line x1="186" y1="412" x2="164" y2="412"/>
+    <line x1="95"  y1="430" x2="95"  y2="458"/>
+    <line x1="240" y1="436" x2="240" y2="454"/>
+    <line x1="240" y1="492" x2="240" y2="506"/>
+  </g>
+  <path class="ln" d="M415,176 L415,540 L254,540" marker-end="url(#arw)"/>
+  <g class="ta" font-size="9.5">
+    <text x="298" y="152">[yes]</text>
+    <text x="246" y="196">[no]</text>
+    <text x="120" y="406">[no]</text>
+    <text x="246" y="452">[yes]</text>
+  </g>
+  <text class="tm" x="422" y="536">bypasses generation entirely</text>
+
+  <line class="sep" x1="500" y1="14" x2="500" y2="562"/>
+
+  <circle cx="660" cy="32" r="12" fill="none" stroke="currentColor" stroke-width="1.3"/>
+  <text x="660" y="36" text-anchor="middle" class="ta" font-size="11">A</text>
+  <path class="acc" d="M660,64 L712,88 L660,112 L608,88 z"/>
+  <text class="ta" x="660" y="85" text-anchor="middle" font-size="9.5">cache</text>
+  <text class="ta" x="660" y="97" text-anchor="middle" font-size="9.5">hit?</text>
+  <g class="bx">
+    <rect x="754" y="70"  width="150" height="36" rx="12"/>
+    <rect x="590" y="134" width="140" height="34" rx="12"/>
+    <rect x="590" y="184" width="140" height="34" rx="12"/>
+    <rect x="590" y="234" width="140" height="34" rx="12"/>
+    <rect x="590" y="284" width="140" height="34" rx="12"/>
+    <rect x="754" y="336" width="150" height="36" rx="12"/>
+    <rect x="590" y="398" width="140" height="34" rx="12"/>
+    <rect x="590" y="448" width="140" height="34" rx="12"/>
+  </g>
+  <path class="acc" d="M660,330 L712,354 L660,378 L608,354 z"/>
+  <text class="ta" x="660" y="351" text-anchor="middle" font-size="9.5">entailed?</text>
+  <circle cx="660" cy="522" r="10" fill="none" stroke="currentColor" stroke-width="1.2"/>
+  <circle cx="660" cy="522" r="5.5" fill="currentColor"/>
+
+  <g text-anchor="middle" font-size="10">
+    <text x="829" y="92">return stored answer</text>
+    <text x="660" y="155">generate structured answer</text>
+    <text x="660" y="205">validate schema</text>
+    <text x="660" y="255">render citations from DB</text>
+    <text x="660" y="305">verify claim vs span</text>
+    <text x="829" y="358">drop or flag block</text>
+    <text x="660" y="419">classify register</text>
+    <text x="660" y="469">stream + write audit</text>
+  </g>
+  <g class="ln" marker-end="url(#arw)">
+    <line x1="660" y1="44"  x2="660" y2="60"/>
+    <line x1="712" y1="88"  x2="750" y2="88"/>
+    <line x1="660" y1="112" x2="660" y2="130"/>
+    <line x1="660" y1="168" x2="660" y2="180"/>
+    <line x1="660" y1="218" x2="660" y2="230"/>
+    <line x1="660" y1="268" x2="660" y2="280"/>
+    <line x1="660" y1="318" x2="660" y2="326"/>
+    <line x1="712" y1="354" x2="750" y2="354"/>
+    <line x1="660" y1="378" x2="660" y2="394"/>
+    <line x1="660" y1="432" x2="660" y2="444"/>
+    <line x1="660" y1="482" x2="660" y2="510"/>
+  </g>
+  <path class="ln" d="M904,88 L920,88 L920,462 L734,462" marker-end="url(#arw)"/>
+  <path class="lnA" d="M829,372 L829,414 L734,414" marker-end="url(#arwA)"/>
+  <g class="ta" font-size="9.5">
+    <text x="718" y="82">[hit]</text>
+    <text x="666" y="126">[miss]</text>
+    <text x="718" y="348">[no]</text>
+    <text x="666" y="392">[yes]</text>
+  </g>
+</svg>
+<figcaption><b>Read the two accented decision nodes together.</b> The threshold decision on the left is the abstention guarantee &mdash; there is no edge from it into the right-hand column except through context assembly. The entailment decision on the right is the honesty guarantee, and its failure edge rejoins <em>after</em> generation, so a failing claim is removed from a real answer rather than triggering a retry that would just produce a differently-wrong one. The fork and join are a genuine fork: four retrievers run concurrently and the join is a barrier, which is why recall costs us latency once rather than four times.</figcaption>
+</figure>
+
+  </div>
+</section>
+
+<!-- ============ 7 ============ -->
+<section>
+  <div class="rail"><span class="num">&sect;7</span><span class="tag">Runtime<br>interactions</span></div>
+  <div class="body">
+    <h2>Sequence views</h2>
+    <p class="lede">Three interactions worth pinning to the message level: the one that carries the grounding contract, the one that produces a legally operative artefact, and the one that has to work with no network.</p>
+
+<figure>
+  <span class="fignum">Figure 17 &mdash; UML sequence &middot; UC-03 grounded question</span>
+<svg class="dg" viewBox="0 0 940 664" role="img" aria-label="UML sequence diagram for answering a grounded question, with participants client, API, retrieval, inference worker, corpus database, generation and LLM provider. Messages flow through parse, embed, hybrid search, rerank, an alt fragment splitting on the gate threshold, then provision fetch, prompt assembly, model completion returning citation identifiers, citation resolution from the database, entailment verification, and finally the audit write and streamed response.">
+  <g class="bxf">
+    <rect x="15"  y="18" width="110" height="34" rx="3"/>
+    <rect x="145" y="18" width="110" height="34" rx="3"/>
+    <rect x="285" y="18" width="110" height="34" rx="3"/>
+    <rect x="415" y="18" width="110" height="34" rx="3"/>
+    <rect x="545" y="18" width="110" height="34" rx="3"/>
+    <rect x="675" y="18" width="110" height="34" rx="3"/>
+    <rect x="815" y="18" width="110" height="34" rx="3"/>
+  </g>
+  <g class="th" text-anchor="middle" font-size="10">
+    <text x="70"  y="39">:Client</text><text x="200" y="39">:API</text><text x="340" y="39">:Retrieval</text>
+    <text x="470" y="39">:Inference</text><text x="600" y="39">:Corpus DB</text><text x="730" y="39">:Generation</text>
+    <text x="870" y="39">:LLM</text>
+  </g>
+  <g class="life">
+    <line x1="70"  y1="52" x2="70"  y2="650"/><line x1="200" y1="52" x2="200" y2="650"/>
+    <line x1="340" y1="52" x2="340" y2="650"/><line x1="470" y1="52" x2="470" y2="650"/>
+    <line x1="600" y1="52" x2="600" y2="650"/><line x1="730" y1="52" x2="730" y2="650"/>
+    <line x1="870" y1="52" x2="870" y2="650"/>
+  </g>
+  <g class="bxf">
+    <rect x="195" y="70"  width="10" height="562"/>
+    <rect x="335" y="96"  width="10" height="322"/>
+    <rect x="725" y="440" width="10" height="176"/>
+  </g>
+
+  <g class="ln" marker-end="url(#arw)">
+    <line x1="70"  y1="70"  x2="193" y2="70"/>
+    <line x1="205" y1="96"  x2="333" y2="96"/>
+    <line x1="345" y1="152" x2="468" y2="152"/>
+    <line x1="345" y1="204" x2="598" y2="204"/>
+    <line x1="345" y1="256" x2="468" y2="256"/>
+    <line x1="345" y1="392" x2="598" y2="392"/>
+    <line x1="205" y1="440" x2="723" y2="440"/>
+    <line x1="735" y1="492" x2="868" y2="492"/>
+    <line x1="735" y1="540" x2="598" y2="540"/>
+    <line x1="735" y1="580" x2="472" y2="580"/>
+    <line x1="205" y1="632" x2="598" y2="632"/>
+  </g>
+  <g class="lnD" marker-end="url(#arwO)">
+    <line x1="468" y1="176" x2="347" y2="176"/>
+    <line x1="598" y1="228" x2="347" y2="228"/>
+    <line x1="468" y1="280" x2="347" y2="280"/>
+    <line x1="598" y1="416" x2="347" y2="416"/>
+    <line x1="333" y1="424" x2="207" y2="424"/>
+    <line x1="868" y1="516" x2="737" y2="516"/>
+    <line x1="598" y1="562" x2="737" y2="562"/>
+    <line x1="472" y1="604" x2="723" y2="604"/>
+    <line x1="723" y1="616" x2="207" y2="616"/>
+    <line x1="193" y1="650" x2="72"  y2="650"/>
+  </g>
+  <path class="ln" d="M345,116 L392,116 L392,134 L347,134" marker-end="url(#arw)"/>
+
+  <g font-size="9.6">
+    <text x="76"  y="64">POST /answer &#123;q, as_of, forum&#125;</text>
+    <text x="211" y="90">retrieve(QuerySpec)</text>
+    <text x="396" y="122">parse: lang, forum,</text><text x="396" y="134">intent, citation grammar</text>
+    <text x="351" y="146">embed(query)</text>
+    <text x="475" y="170">vector[1024]</text>
+    <text x="351" y="198">lexical + dense + defs + graph  (par, as_of filtered)</text>
+    <text x="475" y="222">~150 candidates</text>
+    <text x="351" y="250">rerank(query, candidates)</text>
+    <text x="475" y="274">scored top-20</text>
+    <text x="351" y="386">fetch whole provisions (as_of)</text>
+    <text x="475" y="410">provisions + in-force status</text>
+    <text x="212" y="418">GroundingContext</text>
+    <text x="211" y="434">answer(ctx, style)</text>
+    <text x="741" y="486">complete(prompt, schema)  &mdash; static prefix cached</text>
+    <text x="741" y="510">blocks[] with <tspan class="ta">citation IDs only</tspan></text>
+    <text x="606" y="534">resolveCitations(ids)</text>
+    <text x="606" y="556">authoritative text</text>
+    <text x="478" y="574">entail(span, claim) &times; N</text>
+    <text x="478" y="598">verdicts</text>
+    <text x="212" y="610">VerifiedAnswer</text>
+    <text x="212" y="626">writeAudit(query, scores, gate, prompt hash, verdicts)</text>
+    <text x="78"  y="644">200 SSE stream + per-claim provenance</text>
+  </g>
+
+  <rect class="acc" x="316" y="300" width="600" height="112" rx="3" fill="none"/>
+  <path class="acc" d="M316,300 L380,300 L390,314 L390,318 L316,318"/>
+  <text class="ta" x="324" y="313" font-size="9.5">alt</text>
+  <text class="ta" x="398" y="313" font-size="9.5">[top score &lt; &tau;]</text>
+  <line class="acc" x1="316" y1="358" x2="916" y2="358" stroke-dasharray="6 4"/>
+  <text class="ta" x="324" y="372" font-size="9.5">[top score &ge; &tau;]</text>
+  <g class="lnD" marker-end="url(#arwO)">
+    <line x1="333" y1="336" x2="207" y2="336"/>
+    <line x1="193" y1="348" x2="72" y2="348"/>
+  </g>
+  <g font-size="9.6">
+    <text x="212" y="330">Abstention &#123;searched, nearest&#125;</text>
+    <text x="78"  y="342">200 &#123;abstain: true&#125; &mdash; no generation occurs</text>
+  </g>
+</svg>
+<figcaption><b>Two messages carry the entire anti-fabrication design.</b> At y-mid the model returns <em>blocks with citation identifiers</em>; immediately after, generation calls the database to resolve those identifiers into text. Between those two messages there is no path by which model-authored prose becomes a quoted statute. The <code>alt</code> fragment shows the other half: when the gate fails, the interaction terminates at the API without <code>:Generation</code> or <code>:LLM</code> ever being activated &mdash; visible here as two lifelines that are never entered.</figcaption>
+</figure>
+
+<figure>
+  <span class="fignum">Figure 18 &mdash; UML sequence &middot; UC-06 document generation</span>
+<svg class="dg" viewBox="0 0 940 552" role="img" aria-label="UML sequence diagram for document generation with participants client, API, draft service, clause engine, generation, LaTeX renderer and object store. An interview loop uses the model only for phrasing questions while the draft service validates typed answers. On render, the clause engine deterministically selects clauses and computes stamp duty, the renderer compiles a PDF, and the object store returns a URL delivered with a provenance block.">
+  <g class="bxf">
+    <rect x="15"  y="18" width="110" height="34" rx="3"/>
+    <rect x="145" y="18" width="110" height="34" rx="3"/>
+    <rect x="285" y="18" width="110" height="34" rx="3"/>
+    <rect x="415" y="18" width="110" height="34" rx="3"/>
+    <rect x="545" y="18" width="110" height="34" rx="3"/>
+    <rect x="675" y="18" width="110" height="34" rx="3"/>
+    <rect x="815" y="18" width="110" height="34" rx="3"/>
+  </g>
+  <g class="th" text-anchor="middle" font-size="10">
+    <text x="70"  y="39">:Client</text><text x="200" y="39">:API</text><text x="340" y="39">:DraftSvc</text>
+    <text x="470" y="39">:ClauseEngine</text><text x="600" y="39">:Generation</text><text x="730" y="39">:Renderer</text>
+    <text x="870" y="39">:ObjectStore</text>
+  </g>
+  <g class="life">
+    <line x1="70"  y1="52" x2="70"  y2="538"/><line x1="200" y1="52" x2="200" y2="538"/>
+    <line x1="340" y1="52" x2="340" y2="538"/><line x1="470" y1="52" x2="470" y2="538"/>
+    <line x1="600" y1="52" x2="600" y2="538"/><line x1="730" y1="52" x2="730" y2="538"/>
+    <line x1="870" y1="52" x2="870" y2="538"/>
+  </g>
+  <g class="bxf"><rect x="335" y="94" width="10" height="410"/></g>
+
+  <g class="ln" marker-end="url(#arw)">
+    <line x1="70"  y1="72"  x2="193" y2="72"/>
+    <line x1="205" y1="94"  x2="333" y2="94"/>
+    <line x1="345" y1="118" x2="468" y2="118"/>
+    <line x1="345" y1="212" x2="598" y2="212"/>
+    <line x1="70"  y1="188" x2="333" y2="188"/>
+    <line x1="70"  y1="316" x2="193" y2="316"/>
+    <line x1="205" y1="338" x2="333" y2="338"/>
+    <line x1="345" y1="362" x2="468" y2="362"/>
+    <line x1="345" y1="428" x2="728" y2="428"/>
+    <line x1="345" y1="474" x2="868" y2="474"/>
+  </g>
+  <g class="lnD" marker-end="url(#arwO)">
+    <line x1="468" y1="142" x2="347" y2="142"/>
+    <line x1="333" y1="164" x2="72"  y2="164"/>
+    <line x1="598" y1="234" x2="347" y2="234"/>
+    <line x1="333" y1="286" x2="72"  y2="286"/>
+    <line x1="468" y1="404" x2="347" y2="404"/>
+    <line x1="728" y1="452" x2="347" y2="452"/>
+    <line x1="868" y1="496" x2="347" y2="496"/>
+    <line x1="333" y1="518" x2="72"  y2="518"/>
+  </g>
+  <path class="ln" d="M345,252 L400,252 L400,270 L347,270" marker-end="url(#arw)"/>
+  <path class="ln" d="M345,378 L400,378 L400,394 L347,394" marker-end="url(#arw)"/>
+
+  <g font-size="9.6">
+    <text x="76"  y="66">POST /draft/start &#123;type, jurisdiction&#125;</text>
+    <text x="211" y="88">startInterview()</text>
+    <text x="351" y="112">requiredFields(type, jurisdiction)</text>
+    <text x="475" y="136">typed field schema + conditionals</text>
+    <text x="80"  y="158">session + first question</text>
+    <text x="76"  y="182">submitAnswers(session, answers)</text>
+    <text x="351" y="206">phraseNextQuestion(state)</text>
+    <text x="475" y="228">question text only &mdash; <tspan class="ta">no clause authority</tspan></text>
+    <text x="404" y="248">validate typed answer:</text><text x="404" y="264">CNIC, dates, amounts, forum</text>
+    <text x="80"  y="280">next question / completeness</text>
+    <text x="76"  y="310">POST /draft/render(session)</text>
+    <text x="211" y="332">render(session)</text>
+    <text x="351" y="356">selectClauses(answers) &mdash; <tspan class="ta">deterministic rules</tspan></text>
+    <text x="404" y="374">compute stamp duty</text><text x="404" y="390">from provincial table</text>
+    <text x="475" y="398">clauses[] + statute refs + duty</text>
+    <text x="351" y="422">compile(template, vars, clauses)</text>
+    <text x="475" y="446">PDF, stamp-paper geometry</text>
+    <text x="351" y="468">put(pdf)</text>
+    <text x="475" y="490">signed URL</text>
+    <text x="80"  y="512">201 &#123;url, clause provenance, statutes relied on, non-review notice&#125;</text>
+  </g>
+
+  <rect class="acc" x="52" y="172" width="864" height="126" rx="3" fill="none"/>
+  <path class="acc" d="M52,172 L118,172 L128,186 L128,190 L52,190"/>
+  <text class="ta" x="60" y="185" font-size="9.5">loop</text>
+  <text class="ta" x="136" y="185" font-size="9.5">[until all required fields valid]</text>
+</svg>
+<figcaption><b>The model is inside the loop but outside the authority.</b> <code>:Generation</code> is called once per turn, and only to phrase or clarify a question; it never sees the clause table and never decides what enters the document. <code>:ClauseEngine</code> runs after the interview closes, on validated typed data, using rules that each cite the statute requiring them &mdash; which is what makes the provenance block in the final message truthful rather than decorative.</figcaption>
+</figure>
+
+<figure>
+  <span class="fignum">Figure 19 &mdash; UML sequence &middot; UC-11 offline pack and delta sync</span>
+<svg class="dg" viewBox="0 0 940 440" role="img" aria-label="UML sequence diagram for offline pack synchronisation with participants app, local pack, API and object store. An alt fragment shows that with no network the app queries the local pack directly. When connected, the app requests a manifest, the API computes a patch chain, the app verifies the signature against a pinned key, fetches patches from the object store, applies them in a transaction, checks the integrity hash and rebuilds the local indexes.">
+  <g class="bxf">
+    <rect x="60"  y="18" width="120" height="34" rx="3"/>
+    <rect x="270" y="18" width="130" height="34" rx="3"/>
+    <rect x="510" y="18" width="120" height="34" rx="3"/>
+    <rect x="740" y="18" width="140" height="34" rx="3"/>
+  </g>
+  <g class="th" text-anchor="middle" font-size="10">
+    <text x="120" y="39">:App</text><text x="335" y="39">:LocalPack</text>
+    <text x="570" y="39">:API</text><text x="810" y="39">:ObjectStore</text>
+  </g>
+  <g class="life">
+    <line x1="120" y1="52" x2="120" y2="426"/><line x1="335" y1="52" x2="335" y2="426"/>
+    <line x1="570" y1="52" x2="570" y2="426"/><line x1="810" y1="52" x2="810" y2="426"/>
+  </g>
+  <g class="bxf"><rect x="115" y="70" width="10" height="336"/></g>
+
+  <rect class="acc" x="66" y="66" width="850" height="72" rx="3" fill="none"/>
+  <path class="acc" d="M66,66 L128,66 L138,80 L138,84 L66,84"/>
+  <text class="ta" x="74" y="79" font-size="9.5">alt</text>
+  <text class="ta" x="146" y="79" font-size="9.5">[no network]</text>
+  <line class="acc" x1="66" y1="112" x2="916" y2="112" stroke-dasharray="6 4"/>
+  <text class="ta" x="74" y="126" font-size="9.5">[connected]</text>
+
+  <g class="ln" marker-end="url(#arw)">
+    <line x1="125" y1="96"  x2="333" y2="96"/>
+    <line x1="125" y1="152" x2="568" y2="152"/>
+    <line x1="125" y1="252" x2="808" y2="252"/>
+    <line x1="125" y1="308" x2="333" y2="308"/>
+    <line x1="125" y1="382" x2="333" y2="382"/>
+  </g>
+  <g class="lnD" marker-end="url(#arwO)">
+    <line x1="333" y1="106" x2="127" y2="106"/>
+    <line x1="568" y1="200" x2="127" y2="200"/>
+    <line x1="808" y1="276" x2="127" y2="276"/>
+    <line x1="333" y1="332" x2="127" y2="332"/>
+    <line x1="333" y1="404" x2="127" y2="404"/>
+  </g>
+  <path class="ln" d="M575,166 L640,166 L640,184 L577,184" marker-end="url(#arw)"/>
+  <path class="ln" d="M125,216 L190,216 L190,234 L127,234" marker-end="url(#arw)"/>
+  <path class="ln" d="M125,348 L190,348 L190,366 L127,366" marker-end="url(#arw)"/>
+
+  <g font-size="9.6">
+    <text x="131" y="90">searchLocal(q) &mdash; FTS5 + sqlite-vec, full statutory corpus</text>
+    <text x="140" y="102">results + stored explainers &mdash; <tspan class="ta">no degradation of statutory lookup</tspan></text>
+    <text x="131" y="146">GET /sync/manifest?from=v14</text>
+    <text x="644" y="162">compute patch chain</text><text x="644" y="180">v14 &rarr; v15 &rarr; v16 &rarr; v17</text>
+    <text x="140" y="196">signed manifest &#123;patches[], sha256[], signature&#125;</text>
+    <text x="194" y="212">verify signature against</text><text x="194" y="230">pinned public key &mdash; abort on mismatch</text>
+    <text x="131" y="246">GET patch blobs</text>
+    <text x="140" y="272">patch bytes</text>
+    <text x="131" y="302">applyPatches() in one transaction</text>
+    <text x="140" y="328">v17 + integrity hash</text>
+    <text x="194" y="344">compare hash to manifest;</text><text x="194" y="362">roll back the transaction on mismatch</text>
+    <text x="131" y="376">rebuild FTS5 + sqlite-vec indexes</text>
+    <text x="140" y="400">ready</text>
+  </g>
+</svg>
+<figcaption><b>Signature verification precedes application, and application is transactional.</b> Both matter: an unsigned patch could alter statutory text on a device we no longer control, and a partially-applied patch would leave a corpus that looks complete and is not. On mismatch at either checkpoint the device keeps the previous pack version intact &mdash; a stale but correct corpus always beats a current but unverifiable one.</figcaption>
+</figure>
+
+  </div>
+</section>
+
+<!-- ============ 8 ============ -->
+<section>
+  <div class="rail"><span class="num">&sect;8</span><span class="tag">Modules<br>&amp; ownership</span></div>
+  <div class="body">
+    <h2>Module decomposition</h2>
+    <p class="lede">Ownership is by layer, not by feature, so each person owns an interface they must keep stable rather than a screen they can change freely. That is what makes four people working in one repository tractable.</p>
+
+<figure>
+  <span class="fignum">Figure 20 &mdash; UML package diagram &middot; source tree and ownership</span>
+<svg class="dg" viewBox="0 0 940 486" role="img" aria-label="UML package diagram of the source tree. The nizam package contains corpus, storage, retrieval, generation, domain, api, shared and workers subpackages. Separate top-level packages hold clients, containing the Flutter app, web and console; ops; and evals. Ownership is marked per package.">
+  <path class="bx" d="M20,32 L110,32 L110,50 L600,50 L600,462 L20,462 Z"/>
+  <text class="th" x="30" y="46" font-size="10.5">nizam/</text>
+
+  <g class="bx">
+    <path d="M40,68 L96,68 L96,82 L296,82 L296,164 L40,164 Z"/>
+    <path d="M40,180 L96,180 L96,194 L296,194 L296,272 L40,272 Z"/>
+    <path d="M40,288 L96,288 L96,302 L296,302 L296,380 L40,380 Z"/>
+    <path d="M40,396 L110,396 L110,410 L296,410 L296,444 L40,444 Z"/>
+    <path d="M324,68 L380,68 L380,82 L580,82 L580,164 L324,164 Z"/>
+    <path d="M324,180 L380,180 L380,194 L580,194 L580,272 L324,272 Z"/>
+    <path d="M324,288 L380,288 L380,302 L580,302 L580,380 L324,380 Z"/>
+    <path d="M324,396 L380,396 L380,410 L580,410 L580,444 L324,444 Z"/>
+  </g>
+  <g class="th" font-size="10">
+    <text x="48" y="79">corpus/</text><text x="48" y="191">retrieval/</text>
+    <text x="48" y="299">domain/</text><text x="48" y="407">shared/</text>
+    <text x="332" y="79">storage/</text><text x="332" y="191">generation/</text>
+    <text x="332" y="299">api/</text><text x="332" y="407">workers/</text>
+  </g>
+  <g class="tm">
+    <text x="48" y="98">adapters/ &middot; fetch &middot; extract &middot; ocr/</text>
+    <text x="48" y="112">normalise &middot; segment/ &middot; enrich/</text>
+    <text x="48" y="126">version &middot; gates/ &middot; publish</text>
+    <text x="48" y="210">understand &middot; citation_grammar</text>
+    <text x="48" y="224">candidates/ &middot; fuse &middot; rerank</text>
+    <text x="48" y="238">gate &middot; assemble &middot; glossary</text>
+    <text x="48" y="318">precedent/ &middot; documents/</text>
+    <text x="48" y="332">procedure/ &middot; calculators/</text>
+    <text x="48" y="346">templates/ &middot; clause_rules/</text>
+    <text x="48" y="426">config &middot; errors &middot; ids &middot; tracing &middot; flags</text>
+    <text x="332" y="98">models &middot; migrations/ &middot; repositories/</text>
+    <text x="332" y="112">search &middot; graph &middot; rls/</text>
+    <text x="332" y="126">temporal &middot; ltree_paths</text>
+    <text x="332" y="210">prompts/ &middot; providers/ &middot; schema</text>
+    <text x="332" y="224">render_citations &middot; verify/</text>
+    <text x="332" y="238">cache &middot; register_guard</text>
+    <text x="332" y="318">routes/ &middot; auth/ &middot; sessions</text>
+    <text x="332" y="332">audit &middot; sync &middot; billing/</text>
+    <text x="332" y="346">streaming &middot; ratelimit</text>
+    <text x="332" y="426">ingest_worker &middot; inference_worker &middot; scheduler</text>
+  </g>
+  <g class="ta" font-size="8.6" text-anchor="end">
+    <text x="288" y="79">DATA</text><text x="288" y="191">RETRIEVAL</text>
+    <text x="288" y="299">APP</text><text x="288" y="407">ALL</text>
+    <text x="572" y="79">DATA</text><text x="572" y="191">RETRIEVAL</text>
+    <text x="572" y="299">APP</text><text x="572" y="407">DATA</text>
+  </g>
+
+  <path class="bx" d="M624,32 L700,32 L700,50 L920,50 L920,246 L624,246 Z"/>
+  <text class="th" x="634" y="46" font-size="10.5">clients/</text>
+  <text class="ta" x="912" y="46" font-size="8.6" text-anchor="end">CLIENT</text>
+  <g class="bx">
+    <path d="M642,68 L710,68 L710,82 L902,82 L902,120 L642,120 Z"/>
+    <path d="M642,134 L698,134 L698,148 L902,148 L902,180 L642,180 Z"/>
+    <path d="M642,194 L706,194 L706,208 L902,208 L902,236 L642,236 Z"/>
+  </g>
+  <g class="th" font-size="10">
+    <text x="650" y="79">flutter_app/</text><text x="650" y="145">web/</text><text x="650" y="205">console/</text>
+  </g>
+  <g class="tm">
+    <text x="650" y="98">lib/ &middot; offline/ &middot; sync/ &middot; l10n/</text>
+    <text x="650" y="112">assets/pack.sqlite</text>
+    <text x="650" y="164">research UI &middot; public SSG pages &middot; SEO</text>
+    <text x="650" y="224">curation: parse tree beside source scan</text>
+  </g>
+
+  <path class="bx" d="M624,264 L680,264 L680,278 L920,278 L920,352 L624,352 Z"/>
+  <text class="th" x="634" y="275" font-size="10.5">ops/</text>
+  <text class="ta" x="912" y="275" font-size="8.6" text-anchor="end">ALL</text>
+  <g class="tm">
+    <text x="634" y="298">compose/ &middot; caddy/ &middot; backup/</text>
+    <text x="634" y="312">dashboards/ &middot; alerts/ &middot; runbooks/</text>
+    <text x="634" y="326">migrations gate &middot; restore drill</text>
+    <text x="634" y="340">terraform-free: one host, declarative compose</text>
+  </g>
+
+  <path class="acc" d="M624,370 L680,370 L680,384 L920,384 L920,462 L624,462 Z"/>
+  <text class="ta" x="634" y="381" font-size="10.5">evals/</text>
+  <text class="ta" x="912" y="381" font-size="8.6" text-anchor="end">RETRIEVAL</text>
+  <g class="tm">
+    <text x="634" y="404">golden/ &mdash; 500 queries, graded, frozen split</text>
+    <text x="634" y="418">harness/ &middot; metrics/ &middot; ablations/</text>
+    <text x="634" y="432">redteam/ &mdash; adversarial suite, runs in CI</text>
+    <text x="634" y="450">blocks merge on NDCG or faithfulness regression</text>
+  </g>
+
+  <g class="lnD" marker-end="url(#arwO)">
+    <line x1="324" y1="120" x2="300" y2="120"/>
+    <line x1="168" y1="180" x2="168" y2="168"/>
+    <line x1="324" y1="232" x2="300" y2="232"/>
+    <line x1="452" y1="288" x2="452" y2="276"/>
+    <line x1="620" y1="150" x2="584" y2="200"/>
+  </g>
+  <text class="tm" x="188" y="176">ICorpusWrite</text>
+  <text class="tm" x="306" y="116">ICorpusRead</text>
+  <text class="tm" x="306" y="228">IRetrieve</text>
+  <text class="tm" x="458" y="284">IGenerate, IPrecedent&#8230;</text>
+  <text class="tm" x="588" y="172">IPublicAPI</text>
+</svg>
+<figcaption><b>Eight Python packages, three client apps, one evaluation suite that can block a merge.</b> <code>evals/</code> is accented because it is the only package whose failure stops everyone: a change to retrieval or prompts that regresses NDCG@10 or the faithfulness rate does not merge, regardless of who wrote it. <code>shared/</code> is the only package every layer may import, and it deliberately contains no domain logic &mdash; configuration, error taxonomy, identifier generation, tracing and feature flags, nothing else.</figcaption>
+</figure>
+
+    <h3><span class="mk">8.1</span>Ownership and the review rule</h3>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Owner</th><th>Packages</th><th>Accountable for</th><th>Must review</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Data engineer</td><td class="n">corpus &middot; storage &middot; workers</td><td>QA-4 corpus integrity, QA-5 temporal correctness. The hardest seat and the one the whole product rests on.</td><td>Any migration; any change to a QA gate.</td></tr>
+          <tr><td class="k">Retrieval engineer</td><td class="n">retrieval &middot; generation &middot; evals</td><td>QA-1 groundedness, QA-2 abstention, QA-3 retrieval quality, QA-6 bilingual parity.</td><td>Any prompt, threshold, or scoring change; any golden-set edit.</td></tr>
+          <tr><td class="k">Application engineer</td><td class="n">domain &middot; api</td><td>QA-7 auditability, QA-13 legal safety, correctness of every deterministic calculator.</td><td>Any change to a clause rule or a statutory table.</td></tr>
+          <tr><td class="k">Client engineer</td><td class="n">clients</td><td>QA-9 offline capability, QA-14 accessibility, bilingual and RTL presentation.</td><td>Any change to <code>IPublicAPI</code> or <code>ISync</code>.</td></tr>
+          <tr><td class="k">All four</td><td class="n">shared &middot; ops &middot; golden set</td><td>Interface contracts in &sect;4.1 and the invariants in &sect;0.3.</td><td>Any change to this document. Two approvals required.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p><strong>The one automated rule worth enforcing:</strong> an import-linter configuration in CI that fails the build if a package imports across a forbidden layer boundary. It is about twenty lines of configuration and it is the only thing that will keep the dependency graph in Figure 8 true six months from now.</p>
+  </div>
+</section>
+
+
+<!-- ============ 9 ============ -->
+<section>
+  <div class="rail"><span class="num">&sect;9</span><span class="tag">Runtime<br>operations</span></div>
+  <div class="body">
+    <h2>Deployment and degradation</h2>
+    <p class="lede">A single-node system with an honest availability target is more useful than a distributed one nobody can operate. What matters architecturally is not uptime but what the system does as pieces fail.</p>
+
+    <h3><span class="mk">9.1</span>The degradation ladder</h3>
+    <p>Each rung names a component failure and the capability that survives it. Every rung is a code path that must be tested, not a hope.</p>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Failure</th><th>Lost</th><th>Retained</th><th>User sees</th></tr></thead>
+        <tbody>
+          <tr><td class="k">LLM provider unreachable</td><td>Answers to questions outside the stored set, judgment summarisation, interview phrasing</td><td>All search, citation lookup, precedent lists, stored explainers, calculators, procedure guides &mdash; <strong>and every answer in the pre-generated answer tier</strong></td><td>A banner naming the degraded capability. Because answers were batch-generated and verified ahead of time, the head of the query distribution is unaffected by a provider outage.</td></tr>
+          <tr><td class="k">Inference worker down</td><td>Dense retrieval, reranking, entailment verification &rarr; therefore all generation (INV-2 blocks ungated answers)</td><td>BM25 search, citation fast path, whole-provision browsing, everything deterministic</td><td>Lexical search only, labelled as such. The system does not silently lower &tau;.</td></tr>
+          <tr><td class="k">Database unreachable</td><td>Everything server-side</td><td>The entire offline pack on any device that has one</td><td>App falls through to local pack automatically; web shows a status page.</td></tr>
+          <tr><td class="k">Ingest worker down</td><td>New and amended law does not arrive</td><td>All serving</td><td>Nothing, until staleness exceeds the threshold &mdash; then a corpus-currency notice appears.</td></tr>
+          <tr><td class="k">Object store unreachable</td><td>Source PDF viewing, new document downloads, pack updates</td><td>All text, all search, all answers</td><td>Source-PDF links disabled; nothing else changes.</td></tr>
+          <tr><td class="k">No client connectivity</td><td>Generation, precedent, drafting, anything requiring the server</td><td>Full statutory search and browse, stored explainers, offline calculators</td><td>Offline mode, entered automatically and stated plainly.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note">
+      <h4>The rule that makes this coherent</h4>
+      <p>Degradation is always <em>announced and narrower</em>, never silent and approximate. The system may say &ldquo;I can only search the text right now&rdquo;; it may never quietly answer with a lower confidence bar. This follows directly from QA-2 and is why no failure path anywhere is permitted to lower &tau;, skip verification, or substitute an ungrounded answer.</p>
+    </div>
+
+    <h3><span class="mk">9.2</span>Environments and promotion</h3>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Environment</th><th>Shape</th><th>Corpus</th><th>Promotion gate</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Local</td><td>Docker Compose, one Postgres, seeded subset</td><td>PPC + Constitution only, ~40 instruments</td><td>Unit tests, import-linter, migration reversibility</td></tr>
+          <tr><td class="k">CI</td><td>Ephemeral Postgres per run</td><td>Fixture corpus with hand-labelled ground truth</td><td>Golden-set NDCG@10 and faithfulness must not regress; red-team suite green</td></tr>
+          <tr><td class="k">Staging</td><td>Same host as production, separate database and schema</td><td>Full corpus, restored from last night&rsquo;s backup</td><td>Smoke suite over the 16 use cases; a manual pass over 20 golden answers</td></tr>
+          <tr><td class="k">Production</td><td>Two nodes (app, database) + edge + R2</td><td>Live, published only through the gate runner</td><td>Migrations applied ahead of code; every deploy tagged and rollback-tested</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3><span class="mk">9.3</span>Observability requirements on every layer</h3>
+    <ul>
+      <li><strong>Trace</strong> &mdash; one span per pipeline stage, carrying its scores. A retrieval trace without candidate scores is not debuggable, and most of the hard bugs in this system will be retrieval bugs.</li>
+      <li><strong>Replay</strong> &mdash; INV-3 makes every answer reconstructible. This is the mechanism behind UC-16 and the only credible response to &ldquo;the system told me the wrong thing.&rdquo;</li>
+      <li><strong>Corpus currency</strong> &mdash; per-source last-successful-fetch, exposed as a metric and surfaced in the UI when stale.</li>
+      <li><strong>Gate telemetry</strong> &mdash; abstention rate by intent and language, tracked continuously. A sudden drop means &tau; is drifting or the corpus changed shape; a sudden rise means retrieval broke.</li>
+      <li><strong>Cost per answer</strong> &mdash; a first-class metric, since QA-10 is an architectural target and not a footnote.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ A ============ -->
+<section>
+  <div class="rail"><span class="num">A</span><span class="tag">Aim<br>traceability</span></div>
+  <div class="body">
+    <h2>Appendix A &mdash; SDP Aims 1&ndash;9 mapped to this architecture</h2>
+    <p class="lede">The document is spined by layer, so this table is how the evaluation panel traces the submitted nine-aim scope into it. Two aims are deliberately restructured; both are noted.</p>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>SDP Aim</th><th>Where it now lives</th><th>Figures</th><th>Doc</th><th>Change</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Aim 1 &mdash; Core infrastructure</td><td>&sect;4 container architecture &middot; L2 storage &middot; L6 API &middot; L7 clients</td><td class="n">7, 8, 9</td><td class="n">03 07 08</td><td>Dual database collapsed to one Postgres. <span class="chip c-new">ADR-1</span></td></tr>
+          <tr><td class="k">Aim 2 &mdash; Ingestion, privacy, security</td><td>&sect;6 L1 ingestion &middot; &sect;3 domain model &middot; cross-cutting doc 11</td><td class="n">13, 15</td><td class="n">02 11</td><td>OCR demoted from pillar to a ~150-document fallback lane; the freed effort goes to segmentation and versioning. <span class="chip c-new">ADR-3</span></td></tr>
+          <tr><td class="k">Aim 3 &mdash; Smart search (RAG-1)</td><td>&sect;6 L3 retrieval &middot; &sect;5 DFD level 2</td><td class="n">12, 16</td><td class="n">04</td><td>Unchanged in intent. Fusion is RRF rather than weighted scores; four candidate generators rather than two.</td></tr>
+          <tr><td class="k">Aim 4 &mdash; Generative AI (RAG-2)</td><td>&sect;6 L4 generation and grounding</td><td class="n">14, 17</td><td class="n">05</td><td>Fine-tuning retargeted from the answer model to the retriever and reranker; a self-hosted tuned open-weights path is retained and benchmarked against the hosted default. <span class="chip c-new">ADR-2</span></td></tr>
+          <tr><td class="k">Aim 5 &mdash; Bilingual CLIR</td><td>&sect;6 L3 (cross-lingual retrieval, glossary) &middot; L4 (native Urdu generation)</td><td class="n">12, 16</td><td class="n">04 05</td><td>Translation sandwich replaced by direct cross-lingual retrieval; Roman Urdu added as a first-class input. <span class="chip c-new">ADR-4 &middot; ADR-5</span></td></tr>
+          <tr><td class="k">Aim 6 &mdash; Document factory</td><td>&sect;6 L5 domain services</td><td class="n">18</td><td class="n">06</td><td>Unchanged in intent. Provenance block added to every output.</td></tr>
+          <tr><td class="k">Aim 7 &mdash; Citation network</td><td>&sect;3 domain model (judgment, paragraph, citation edge) &middot; &sect;6 L5 citator</td><td class="n">4, 6</td><td class="n">02 06</td><td>Modelled as a first-class edge entity with treatment, confidence and evidence, rather than a join table.</td></tr>
+          <tr><td class="k">Aim 8 &mdash; Procedural guidance</td><td>&sect;6 L5 procedure engine and calculators</td><td class="n">3</td><td class="n">06</td><td>Extended with limitation, court-fee and forum calculators &mdash; deterministic, high-value, and absent from the SDP.</td></tr>
+          <tr><td class="k">Aim 9 &mdash; R&amp;D stretch goals</td><td>On-device semantic search promoted into L7 as a shipping feature; legal MT and multimodal ingestion remain stretch</td><td class="n">19</td><td class="n">08</td><td><code>sqlite-vec</code> makes on-device vector search routine rather than research, so it ships rather than being deferred.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ B ============ -->
+<section>
+  <div class="rail"><span class="num">B</span><span class="tag">Decision<br>index</span></div>
+  <div class="body">
+    <h2>Appendix B &mdash; Architecture decision records</h2>
+    <p class="lede">All twelve are accepted. Each has a one-line consequence that is checkable in code, which is what distinguishes a decision from a preference.</p>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>ADR</th><th>Decision</th><th>Drives</th><th>Checkable consequence</th></tr></thead>
+        <tbody>
+          <tr><td class="id">ADR-1</td><td class="k">One Postgres for relational, vector, lexical and graph</td><td class="n">QA-10 QA-11</td><td>No second datastore client library appears anywhere in <code>nizam/</code>. Chunk row and its vector are written in the same transaction.</td></tr>
+          <tr><td class="id">ADR-1a</td><td class="k">Hosting is a four-stage ladder, not a single choice</td><td class="n">QA-3 QA-10 QA-11</td><td>Stage 0 local Docker with the full corpus and every extension; stage 1 a managed free tier publishing <em>federal statutes only</em> (measured 248 MB against a 500 MB ceiling); stage 2 a self-hosted node once case law lands; stage 3 vertical then replicas. Real BM25 needs ParadeDB <code>pg_search</code>, which no managed host permits, so lexical retrieval sits behind <code>ILexicalSearch</code> and the <code>tsvector</code> fallback&rsquo;s ranking delta is <em>measured</em> against the local baseline. Moving rungs changes a connection string, a bound implementation, and the published scope &mdash; nothing else. Sized in the capacity plan.</td></tr>
+          <tr><td class="id">ADR-1f</td><td class="k">Full-scale target is a single self-hosted node</td><td class="n">QA-3 QA-8 QA-10</td><td>Managed Postgres hosts the database, not the system: inference workers, ingest workers, the LaTeX sandbox and the staging filesystem still need a second host, and every query then crosses the public internet. One node runs all of it with <code>pg_search</code> available and the database on a loopback socket, at roughly a fifth of the cost. The self-hosted Supabase stack may run on top of it for the same developer surface without the extension lock-out. Sized in the capacity plan &sect;5.2.</td></tr>
+          <tr><td class="id">ADR-1g</td><td class="k">Schema is migrations in git; engine is a pinned image</td><td class="n">QA-11</td><td>The production database is built locally at full scale &mdash; every statute, judgment, embedding and index &mdash; on the same pinned Postgres image the server will run. Moving to the own-node target is then a pgBackRest restore rehearsed by the monthly drill, not a migration. A schema created by hand in a GUI is reproducible nowhere and is treated as a defect.</td></tr>
+          <tr><td class="id">ADR-1d</td><td class="k">Vectors stored binary-quantised as <code>bit(1024)</code></td><td class="n">QA-3 QA-10</td><td>32&times; smaller than float32 &mdash; 51 MB instead of 1,577 MB at full statutory scale. Safe only because a cross-encoder already reranks by reading provision text, so stage-1 dense retrieval need only preserve recall; candidates are over-fetched 10&times;. Ships only after an ablation reporting Recall@50 and NDCG@10 at float32, <code>halfvec(384)</code> and <code>bit(1024)</code>; if binary costs more than two NDCG points after reranking, fall back to halfvec and narrow the corpus scope.</td></tr>
+          <tr><td class="id">ADR-1e</td><td class="k">Published corpus scope is a deployment parameter</td><td class="n">QA-10 QA-11</td><td>The gate runner promotes instruments to the live index by scope tag. The same schema and migrations serve a 248 MB demo and a 10 GB pilot, so narrowing scope to fit a host is a configuration change and never a schema compromise.</td></tr>
+          <tr><td class="id">ADR-1b</td><td class="k">Two sync engines: signed one-way corpus, merged bidirectional user data</td><td class="n">QA-9 QA-11</td><td>Corpus patches are server-authored and signed, so no merge logic exists and the device is never a writer. User data syncs last-writer-wins on a server-assigned version with tombstones. Specified in document 08 &sect;3.5.</td></tr>
+          <tr><td class="id">ADR-1c</td><td class="k">Offline answers ship as verified artefacts, not as an on-device generator</td><td class="n">QA-1 QA-9 QA-10</td><td>L4 batch-generates and verifies answers to the head of the query distribution; they ship in a 12 MB pack tier with their citations and the provisions they depend on. A patch that amends a cited provision invalidates every dependent answer. Specified in document 08 &sect;3.4.</td></tr>
+          <tr><td class="id">ADR-2</td><td class="k">Fine-tune retriever and reranker; generation behind a provider port</td><td class="n">QA-3 QA-11</td><td>A vendor SDK import appears only in <code>generation/providers/</code>. The reranker checkpoint is versioned in the eval harness.</td></tr>
+          <tr><td class="id">ADR-3</td><td class="k">Text-layer extraction first; OCR is a fallback lane</td><td class="n">QA-4</td><td>OCR runs only when the extractor reports low text confidence. Its invocation count is a metric.</td></tr>
+          <tr><td class="id">ADR-4</td><td class="k">Direct cross-lingual retrieval, not a translation pipeline</td><td class="n">QA-6</td><td>No translation call on the retrieval path. Bilingual NDCG gap measured on paired golden queries.</td></tr>
+          <tr><td class="id">ADR-5</td><td class="k">Roman Urdu is a first-class input mode</td><td class="n">QA-6 QA-14</td><td>The golden set contains a romanised stratum; the glossary alias index is a versioned artefact.</td></tr>
+          <tr><td class="id">ADR-6</td><td class="k">Attributed generation with measured faithfulness, not a zero-hallucination claim</td><td class="n">QA-1 QA-2</td><td>Verifier pass rate is published continuously. No marketing or academic text asserts impossibility.</td></tr>
+          <tr><td class="id">ADR-7</td><td class="k">Bitemporal provisions; law is answered as at a date</td><td class="n">QA-5</td><td>Exclusion constraint present in the schema. No query reads <code>provision_version</code> without a validity filter (INV-5).</td></tr>
+          <tr><td class="id">ADR-8</td><td class="k">Single VPS with Docker Compose; no orchestrator</td><td class="n">QA-10</td><td>Deployment is one compose file. Rented GPU never appears in a request path.</td></tr>
+          <tr><td class="id">ADR-9</td><td class="k">Server-rendered web tier with a public page per provision</td><td class="n">distribution</td><td>Every published provision has a crawlable URL and a sitemap entry.</td></tr>
+          <tr><td class="id">ADR-10</td><td class="k">Provision is the canonical citable unit; chunks are derived</td><td class="n">QA-11</td><td>Import-linter forbids chunk identifiers above L2 (INV-4). A re-chunk migration breaks zero stored citations.</td></tr>
+          <tr><td class="id">ADR-11</td><td class="k">Curation console built in phase 1</td><td class="n">QA-4</td><td>The gate runner has a queue consumer and a UI from the first corpus release, not a later one.</td></tr>
+          <tr><td class="id">ADR-12</td><td class="k">Golden evaluation set built before tuning</td><td class="n">QA-1 QA-3</td><td>CI fails on regression. Inter-annotator agreement is reported alongside every headline metric.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ C ============ -->
+<section>
+  <div class="rail"><span class="num">C</span><span class="tag">Notation</span></div>
+  <div class="body">
+    <h2>Appendix C &mdash; Reading the diagrams</h2>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Figure</th><th>Notation</th><th>Read it for</th></tr></thead>
+        <tbody>
+          <tr><td class="n">1</td><td class="k">Document map</td><td>Which specification owns a question, and the strict dependency order between layers</td></tr>
+          <tr><td class="n">2, 7, 13, 14</td><td class="k">C4 levels 1&ndash;3</td><td>Context, containers, and the components inside ingestion and generation</td></tr>
+          <tr><td class="n">3</td><td class="k">UML use case</td><td>Actor priority and the <code>&#171;include&#187;</code> / <code>&#171;extend&#187;</code> relationships between capabilities</td></tr>
+          <tr><td class="n">4</td><td class="k">UML class</td><td>Domain entities. Filled diamond = composition; dashed arrow = derivation; braces = constraints</td></tr>
+          <tr><td class="n">5</td><td class="k">UML state machine</td><td>Ingestion lifecycle and legal lifecycle, and the single gated transition between them</td></tr>
+          <tr><td class="n">6</td><td class="k">ERD, UML multiplicity</td><td>Physical tables. <code>PK</code> primary key &middot; <code>FK</code> foreign key &middot; <code>UQ</code> unique &middot; <code>IX</code> index &middot; <code>CK</code> check &middot; <code>EX</code> exclusion</td></tr>
+          <tr><td class="n">8</td><td class="k">UML component</td><td>Provided and required interfaces. Lollipop = provided; socket = required; dashed = <code>&#171;use&#187;</code></td></tr>
+          <tr><td class="n">9</td><td class="k">UML deployment</td><td>Physical nodes, containers, artifacts and the protocol on each link</td></tr>
+          <tr><td class="n">10, 11, 12</td><td class="k">DFD levels 0&ndash;2, Gane-Sarson</td><td>Processes, external entities and data stores. Open-ended rectangles are stores</td></tr>
+          <tr><td class="n">15, 16</td><td class="k">UML activity</td><td>Swimlanes partition automated from human work. Solid bars are fork and join; diamonds are decisions</td></tr>
+          <tr><td class="n">17, 18, 19</td><td class="k">UML sequence</td><td>Message order and activation. Dashed arrows are returns; boxed regions are <code>alt</code> and <code>loop</code> fragments</td></tr>
+          <tr><td class="n">20</td><td class="k">UML package</td><td>Source tree, ownership, and the interfaces crossing package boundaries</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="legend" aria-hidden="true">
+      <span><i></i> control or data flow</span>
+      <span><i class="d"></i> dependency, return, or derivation</span>
+      <span><i class="a"></i> the path under discussion &mdash; gates, failures, human loops</span>
+      <span>dashed outline = external to the system or optional</span>
+    </div>
+
+    <h3><span class="mk">C.1</span>What comes next</h3>
+    <p>This document is stable once the boundaries in &sect;4.1 and the invariants in &sect;0.3 are agreed. The next artefacts are the layer specifications, in dependency order &mdash; <strong>02 Corpus &amp; Ingestion</strong> first, since every other layer is blocked on the shape of the data it produces, then <strong>03 Data &amp; Storage</strong>, then <strong>04 Retrieval</strong>. Each will carry its own detailed class diagrams, algorithms, schemas and test plans within the boundary fixed here.</p>
+  </div>
+</section>
+
+</div>

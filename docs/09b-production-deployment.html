@@ -1,0 +1,599 @@
+<title>Nizam-e-Qanoon Production Deployment</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+:root{
+  --paper:#F3F4F7; --surface:#FFFFFF; --surface-2:#EDEFF3; --surface-3:#E3E7EE;
+  --ink:#14171E; --ink-2:#4C5566; --ink-3:#7E879A;
+  --rule:#DCDFE7; --rule-2:#C6CBD6;
+  --indigo:#26397A; --indigo-soft:#E4E8F5;
+  --rubric:#9E3B2F; --rubric-soft:#F6E7E4;
+  --ok:#2C6349; --ok-soft:#E0EDE7;
+  --warn:#7E6114; --warn-soft:#F3EBD8;
+  --shadow:0 1px 2px rgba(20,23,30,.05), 0 8px 24px -12px rgba(20,23,30,.14);
+  --f-display:"Newsreader", Georgia, serif;
+  --f-body:"Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --measure:70ch; --rail:9.5rem;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0D0F14; --surface:#14171E; --surface-2:#1B1F28; --surface-3:#232935;
+    --ink:#E6E9EF; --ink-2:#A0A9BA; --ink-3:#6D7688;
+    --rule:#252A34; --rule-2:#333A47;
+    --indigo:#93A8E8; --indigo-soft:#1B2136;
+    --rubric:#D8867A; --rubric-soft:#2B1D1B;
+    --ok:#6FBF95; --ok-soft:#152520;
+    --warn:#D3AB5C; --warn-soft:#241E10;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 30px -14px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0D0F14; --surface:#14171E; --surface-2:#1B1F28; --surface-3:#232935;
+  --ink:#E6E9EF; --ink-2:#A0A9BA; --ink-3:#6D7688;
+  --rule:#252A34; --rule-2:#333A47;
+  --indigo:#93A8E8; --indigo-soft:#1B2136;
+  --rubric:#D8867A; --rubric-soft:#2B1D1B;
+  --ok:#6FBF95; --ok-soft:#152520;
+  --warn:#D3AB5C; --warn-soft:#241E10;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 30px -14px rgba(0,0,0,.7);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);
+  font-size:16.5px;line-height:1.62;-webkit-font-smoothing:antialiased}
+.wrap{max-width:76rem;margin:0 auto;padding:0 1.5rem 8rem}
+.masthead{border-bottom:2px solid var(--ink);padding:3.5rem 0 1.25rem;margin-bottom:2rem}
+.kicker{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--rubric);margin:0 0 1rem}
+h1{font-family:var(--f-display);font-weight:500;font-size:clamp(2.4rem,5.8vw,3.9rem);
+  line-height:1.03;letter-spacing:-.021em;margin:0 0 .5rem;text-wrap:balance}
+.dek{font-family:var(--f-display);font-size:clamp(1.05rem,2.1vw,1.3rem);color:var(--ink-2);
+  max-width:56ch;margin:0 0 1.9rem;font-style:italic}
+.meta{display:flex;flex-wrap:wrap;gap:.5rem 2.25rem;font-family:var(--f-mono);font-size:.7rem;
+  letter-spacing:.05em;color:var(--ink-3);border-top:1px solid var(--rule);padding-top:.9rem}
+.meta b{color:var(--ink-2);font-weight:500}
+section{display:grid;grid-template-columns:var(--rail) minmax(0,1fr);gap:0 2.5rem;
+  padding-top:3.4rem;border-top:1px solid var(--rule);margin-top:3.4rem}
+section.first{border-top:none;margin-top:0}
+.rail{position:sticky;top:1.5rem;align-self:start;padding-top:.4rem}
+.rail .num{font-family:var(--f-mono);font-size:1.05rem;font-weight:600;color:var(--rubric);letter-spacing:-.02em;display:block}
+.rail .tag{font-family:var(--f-mono);font-size:.63rem;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--ink-3);display:block;margin-top:.5rem;line-height:1.55}
+.body{min-width:0}
+@media (max-width:880px){
+  section{grid-template-columns:1fr;gap:0}
+  .rail{position:static;display:flex;align-items:baseline;gap:.85rem;margin-bottom:.9rem;padding-top:0}
+  .rail .tag{margin-top:0}
+}
+h2{font-family:var(--f-display);font-weight:500;font-size:clamp(1.6rem,3.3vw,2.2rem);
+  line-height:1.14;letter-spacing:-.017em;margin:0 0 .8rem;text-wrap:balance}
+h3{font-family:var(--f-body);font-weight:700;font-size:1.01rem;margin:2.6rem 0 .55rem}
+h3 .mk{font-family:var(--f-mono);color:var(--rubric);font-weight:600;margin-inline-end:.55rem;font-size:.88em}
+h4{font-family:var(--f-mono);font-weight:600;font-size:.71rem;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--ink-3);margin:1.9rem 0 .6rem}
+p{margin:0 0 1.05rem;max-width:var(--measure)}
+.lede{font-size:1.075rem;color:var(--ink-2);max-width:62ch}
+ul,ol{margin:0 0 1.15rem;padding-inline-start:1.3rem;max-width:var(--measure)}
+li{margin-bottom:.4rem}
+li::marker{color:var(--ink-3)}
+a{color:var(--indigo);text-underline-offset:.18em;word-break:break-word}
+a:focus-visible{outline:2px solid var(--indigo);outline-offset:3px;border-radius:2px}
+code{font-family:var(--f-mono);font-size:.855em;font-variant-ligatures:none}
+p code,li code,td code,figcaption code{background:var(--surface-2);border:1px solid var(--rule);
+  padding:.06em .34em;border-radius:3px;color:var(--ink)}
+.scroll{overflow-x:auto;margin:1.4rem 0 1.9rem;border:1px solid var(--rule);border-radius:5px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:.83rem;line-height:1.5}
+th{text-align:left;font-family:var(--f-mono);font-weight:600;font-size:.645rem;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--ink-3);padding:.7rem .8rem;border-bottom:1px solid var(--rule-2);
+  white-space:nowrap;background:var(--surface-2)}
+td{padding:.65rem .8rem;border-bottom:1px solid var(--rule);vertical-align:top}
+tr:last-child td{border-bottom:none}
+tbody tr:hover td{background:var(--surface-2)}
+td.n,th.n{font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap;text-align:right}
+td.n{font-size:.9em}
+td.id{font-family:var(--f-mono);font-size:.76rem;color:var(--rubric);white-space:nowrap;font-weight:500}
+td.k{font-weight:600;min-width:9.5rem}
+tfoot td{font-weight:700;border-top:1px solid var(--rule-2);background:var(--surface-2)}
+caption{caption-side:bottom;text-align:left;font-size:.76rem;color:var(--ink-3);padding:.7rem .8rem;border-top:1px solid var(--rule)}
+.chip{display:inline-block;font-family:var(--f-mono);font-size:.6rem;letter-spacing:.09em;
+  text-transform:uppercase;font-weight:600;padding:.2em .5em;border-radius:3px;white-space:nowrap;border:1px solid transparent}
+.c-have{background:var(--ok-soft);color:var(--ok);border-color:var(--ok)}
+.c-part{background:var(--warn-soft);color:var(--warn);border-color:var(--warn)}
+.c-miss{background:var(--rubric-soft);color:var(--rubric);border-color:var(--rubric)}
+.c-new{background:var(--indigo-soft);color:var(--indigo);border-color:var(--indigo)}
+.c-plain{background:var(--surface-2);color:var(--ink-3);border-color:var(--rule-2)}
+.note{border-inline-start:3px solid var(--rubric);background:var(--surface);padding:1rem 1.15rem;
+  margin:1.5rem 0;border-radius:0 4px 4px 0;max-width:var(--measure);box-shadow:var(--shadow)}
+.note.blue{border-inline-start-color:var(--indigo)}
+.note p:last-child,.note ul:last-child{margin-bottom:0}
+.note h4{margin-top:0}
+figure{margin:2rem 0;background:var(--surface);border:1px solid var(--rule);border-radius:5px;
+  padding:1.4rem 1.2rem .9rem;box-shadow:var(--shadow);overflow-x:auto}
+figure svg{display:block;width:100%;min-width:40rem;max-width:100%;height:auto;color:var(--ink)}
+figcaption{margin-top:1rem;padding-top:.8rem;border-top:1px solid var(--rule);
+  font-size:.78rem;color:var(--ink-3);line-height:1.55}
+figcaption b{color:var(--ink-2);font-weight:600}
+.fignum{font-family:var(--f-mono);font-size:.63rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--rubric);font-weight:600;display:block;margin-bottom:.7rem}
+pre{background:var(--surface);border:1px solid var(--rule);border-radius:5px;padding:1rem 1.05rem;
+  overflow-x:auto;margin:1.25rem 0;font-family:var(--f-mono);font-size:.775rem;line-height:1.65;color:var(--ink-2)}
+pre b{color:var(--ink);font-weight:600}
+pre i{color:var(--ink-3);font-style:normal}
+pre u{color:var(--rubric);text-decoration:none}
+.dgdefs{position:absolute;width:0;height:0;overflow:hidden}
+.dgdefs .mk{fill:var(--ink)}
+.dgdefs .mkA{fill:var(--rubric)}
+.dg{font-family:var(--f-mono);font-size:10.5px}
+.dg .bx{fill:none;stroke:currentColor;stroke-width:1.2}
+.dg .bxf{fill:var(--surface-2);stroke:currentColor;stroke-width:1.2}
+.dg .bxg{fill:none;stroke:currentColor;stroke-width:1;opacity:.4}
+.dg .ext{fill:none;stroke:currentColor;stroke-width:1.2;stroke-dasharray:5 3;opacity:.7}
+.dg .acc{fill:none;stroke:var(--rubric);stroke-width:1.6}
+.dg .accf{fill:var(--rubric-soft);stroke:var(--rubric);stroke-width:1.4}
+.dg text{fill:currentColor}
+.dg .ta{fill:var(--rubric);font-weight:600}
+.dg .tm{fill:currentColor;opacity:.62;font-size:9.5px}
+.dg .th{font-weight:600}
+.dg .ln{stroke:currentColor;stroke-width:1.1;fill:none}
+.dg .lnA{stroke:var(--rubric);stroke-width:1.4;fill:none}
+.dg .lnD{stroke:currentColor;stroke-width:1.1;fill:none;stroke-dasharray:5 3}
+.dg .sep{stroke:currentColor;stroke-width:1;opacity:.35}
+.dg .grid{stroke:currentColor;opacity:.14;stroke-width:1}
+.dg .axis{stroke:currentColor;opacity:.45;stroke-width:1}
+.dg .bar{fill:var(--indigo)}
+.dg .barA{fill:var(--rubric)}
+.dg .val{font-family:var(--f-mono);font-size:10.5px;font-weight:600;font-variant-numeric:tabular-nums}
+.refs{font-size:.8rem;line-height:1.6}
+.refs li{margin-bottom:.55rem}
+</style>
+
+<svg class="dgdefs" aria-hidden="true" focusable="false">
+  <defs>
+    <marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path class="mk" d="M0,1 L9,5 L0,9 z"/></marker>
+    <marker id="arwA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path class="mkA" d="M0,1 L9,5 L0,9 z"/></marker>
+    <marker id="arwO" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,1 L9,5 L0,9" fill="none" stroke="currentColor" stroke-width="1.4"/></marker>
+  </defs>
+</svg>
+
+<div class="wrap">
+
+<header class="masthead">
+  <p class="kicker">Document 09b &middot; child of 09 Platform &amp; Operations &middot; pricing verified 28 Aug 2026</p>
+  <h1>Nizam-e-Qanoon Production Deployment</h1>
+  <p class="dek">What every component actually consumes, which machine to buy at each stage, what it costs this month, and when to split the database off the backend.</p>
+  <div class="meta">
+    <span><b>Revision</b> 1.1 &mdash; sizing corrected</span>
+    <span><b>Providers priced</b> 7</span>
+    <span><b>Figures</b> 2</span>
+    <span><b>Pairs with</b> 09a Local Environment</span>
+  </div>
+</header>
+
+<!-- ============ 1 ============ -->
+<section class="first">
+  <div class="rail"><span class="num">&sect;1</span><span class="tag">Consumption<br>model</span></div>
+  <div class="body">
+    <h2>What the system actually consumes</h2>
+    <p class="lede">Sizing starts from work per request, not from a vendor tier. The conclusion is unintuitive and it drives every choice below: <strong>this system is bound by memory and disk, not by CPU.</strong></p>
+
+    <h3><span class="mk">1.1</span>Cost of one grounded answer</h3>
+    <div class="scroll">
+      <table>
+        <caption>Core-seconds on a modern x86 core with ONNX int8. The reranker figure assumes the fine-tuned MiniLM-class cross-encoder specified in &sect;1.2, not a 560M-parameter model.</caption>
+        <thead><tr><th>Stage</th><th class="n">Core-sec</th><th class="n">Wall ms</th><th>Note</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Query parse, citation grammar, locale</td><td class="n">0.002</td><td class="n">2</td><td>Pure CPU, no model</td></tr>
+          <tr><td class="k">Query embedding, 1024-dim int8</td><td class="n">0.020</td><td class="n">20</td><td>One short text</td></tr>
+          <tr><td class="k">BM25 + HNSW + graph expansion</td><td class="n">0.080</td><td class="n">45</td><td>Postgres, parallelised; index in shared buffers</td></tr>
+          <tr><td class="k">Cross-encoder rerank, 50 pairs</td><td class="n">0.150</td><td class="n">60</td><td>Batched across 4 cores. <strong>The single largest CPU item</strong></td></tr>
+          <tr><td class="k">Context assembly</td><td class="n">0.010</td><td class="n">12</td><td>Whole-provision fetch</td></tr>
+          <tr><td class="k">Entailment verification, ~5 claims</td><td class="n">0.100</td><td class="n">40</td><td>NLI base, int8</td></tr>
+          <tr><td class="k">Citation render + audit write</td><td class="n">0.008</td><td class="n">10</td><td>&mdash;</td></tr>
+        </tbody>
+        <tfoot><tr><td>Server-side total per answer</td><td class="n">0.37</td><td class="n">~190</td><td>Excluding the LLM call, which is network wait, not our CPU</td></tr></tfoot>
+      </table>
+    </div>
+
+    <div class="note">
+      <h4>The reranker must be small, and that is a design decision, not a compromise</h4>
+      <p>A 560M-parameter cross-encoder reranking 50 pairs costs roughly <strong>3.3 core-seconds</strong> per query on CPU &mdash; nine times the entire rest of the pipeline, and enough to make CPU the binding constraint at even modest load. A fine-tuned MiniLM-class cross-encoder does the same job at about 0.15 core-seconds. Since ADR-2 already commits us to fine-tuning the reranker on our own golden set, training the small one is strictly better: we get the domain adaptation <em>and</em> a twentieth of the latency. Benchmark both during the ablation; ship the small one unless the large one wins by more than it costs.</p>
+    </div>
+
+    <h3><span class="mk">1.2</span>Three load points</h3>
+    <div class="scroll">
+      <table>
+        <caption>Peak assumed at 10&times; average. Answers are the expensive path; searches and provision reads are roughly a fifth of the cost each. Mobile provision reads are served from the offline pack and never reach the server at all.</caption>
+        <thead><tr><th>Load point</th><th class="n">MAU</th><th class="n">Answers/mo</th><th class="n">Peak QPS</th><th class="n">Sustained cores</th><th class="n">Working-set RAM</th><th class="n">Disk</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Demo &mdash; FYP panel</td><td class="n">~50</td><td class="n">500</td><td class="n">0.1</td><td class="n">&lt;0.1</td><td class="n">2 GB</td><td class="n">18 GB</td></tr>
+          <tr><td class="k">Pilot</td><td class="n">1,000</td><td class="n">10,000</td><td class="n">0.6</td><td class="n">0.1</td><td class="n">5 GB</td><td class="n">32 GB</td></tr>
+          <tr><td class="k">Scale</td><td class="n">50,000</td><td class="n">300,000</td><td class="n">5.8</td><td class="n">0.6</td><td class="n">10 GB</td><td class="n">47 GB</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Read the last three columns together. At <strong>fifty thousand monthly active users the whole system needs well under one core at peak</strong> &mdash; but it wants ten gigabytes of hot index. Buying a machine for its core count would be buying the wrong axis entirely; source documents live in R2, so even the disk requirement is modest. The working set is what must stay in memory: the binary HNSW index over 4.96M vectors (~1.5 GB), the BM25 index (~1.6 GB), hot provision text (~2 GB), plus Postgres overhead and the three resident ONNX models.</p>
+
+    <h3><span class="mk">1.3</span>Per-component allocation, and how little is actually needed</h3>
+    <div class="scroll">
+      <table>
+        <caption>Corrected from v1.0. Two errors were compounding: the reranker was sized as a 560M-parameter model despite &sect;1.1 arguing for a MiniLM-class one, and <code>shared_buffers</code> was set by the 25%-of-host rule rather than by the measured working set.</caption>
+        <thead><tr><th>Component</th><th class="n">RAM</th><th class="n">Cores</th><th class="n">Disk</th><th>Sizing basis</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Postgres shared_buffers</td><td class="n">6 GB</td><td class="n">4</td><td class="n">14 GB</td><td>Working set is binary HNSW 1.7 GB + BM25 1.7 GB + hot text ~1.5 GB. Six gigabytes holds it with room; sixteen would hold nothing extra</td></tr>
+          <tr><td class="k">Postgres overhead</td><td class="n">1.5 GB</td><td class="n">&mdash;</td><td class="n">6 GB<br><span class="tm">WAL</span></td><td>Connections, <code>work_mem</code>, autovacuum. Cap connections with PgBouncer rather than raising this</td></tr>
+          <tr><td class="k">Inference workers</td><td class="n">1.8 GB</td><td class="n">4</td><td class="n">1 GB</td><td>Embedder 560 MB + reranker <strong>35 MB</strong> + entailment 280 MB, int8, with arena overhead</td></tr>
+          <tr><td class="k">API (uvicorn &times;4)</td><td class="n">1.5 GB</td><td class="n">2</td><td class="n">1 GB</td><td>Stateless; no model loaded</td></tr>
+          <tr><td class="k">Delta ingest</td><td class="n">0.5 GB</td><td class="n">1</td><td class="n">4 GB</td><td>20&ndash;50 documents a week, not a corpus. The eight-worker pool belongs to the build job in 09a &sect;1</td></tr>
+          <tr><td class="k">LaTeX sandbox</td><td class="n">0.7 GB</td><td class="n">1</td><td class="n">3 GB</td><td>Burst per document, hard memory and time limits</td></tr>
+          <tr><td class="k">Caddy + observability</td><td class="n">1.2 GB</td><td class="n">1</td><td class="n">8 GB</td><td>Cap log retention at 14 days or this grows without bound</td></tr>
+          <tr><td class="k">OS</td><td class="n">1.0 GB</td><td class="n">&mdash;</td><td class="n">10 GB</td><td>&mdash;</td></tr>
+        </tbody>
+        <tfoot>
+          <tr><td>Requirement</td><td class="n"><strong>14.2 GB</strong></td><td class="n">~2 peak</td><td class="n">47 GB</td><td>v1.0 said 32&ndash;64 GB and 130 GB</td></tr>
+          <tr><td>Buy</td><td class="n">16 GB works<br>24 GB comfortable</td><td class="n">8</td><td class="n">160 GB</td><td>Page cache wants the slack &mdash; do not allocate it away</td></tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <div class="note blue">
+      <h4>Source documents do not live on the server</h4>
+      <p>The 40 GB of judgment PDFs sits in R2, not on the production disk &mdash; the server holds the extracted, structured corpus and nothing else. That single correction takes the disk requirement from 130 GB to under 50 GB and puts several cheaper machines back on the table.</p>
+    </div>
+
+    <h3><span class="mk">1.4</span>Trading latency for memory, deliberately</h3>
+    <p>The instinct that a little more latency should buy a lot less memory is correct, and it is worth stating as an explicit dial rather than discovering it under pressure. HNSW traversal is random-access: an uncached page costs roughly 100&nbsp;&micro;s on NVMe, and a query touches on the order of a thousand of them in the worst case.</p>
+    <div class="scroll">
+      <table>
+        <caption>Estimated p95 for a full grounded answer at pilot load. The corpus is 10 GB; what changes is how much of it stays hot.</caption>
+        <thead><tr><th class="n">Host RAM</th><th class="n">shared_buffers</th><th class="n">Corpus cached</th><th class="n">Answer p95</th><th>Verdict</th></tr></thead>
+        <tbody>
+          <tr><td class="n">32 GB</td><td class="n">10 GB</td><td class="n">~100%</td><td class="n">~190 ms</td><td>Nothing further to buy</td></tr>
+          <tr><td class="n">24 GB</td><td class="n">8 GB</td><td class="n">~85%</td><td class="n">~210 ms</td><td><span class="chip c-have">Comfortable</span></td></tr>
+          <tr><td class="n">16 GB</td><td class="n">6 GB</td><td class="n">~60%</td><td class="n">~260 ms</td><td><span class="chip c-have">Recommended</span> well inside the 4 s budget</td></tr>
+          <tr><td class="n">12 GB</td><td class="n">4 GB</td><td class="n">~40%</td><td class="n">~340 ms</td><td><span class="chip c-part">Workable</span> noticeable, still fine</td></tr>
+          <tr><td class="n">8 GB</td><td class="n">2 GB</td><td class="n">~20%</td><td class="n">~450 ms</td><td><span class="chip c-part">Tight</span> models and Postgres start competing</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p><strong>Every row answers identically.</strong> Ranking, grounding, citation accuracy and abstention are properties of the index and the pipeline, not of how much of the index is resident. Memory buys latency; it does not buy quality. The QA-8 budget is 4 seconds at p95, and even the bottom row spends a tenth of it.</p>
+  </div>
+</section>
+
+<!-- ============ 1b ============ -->
+<section>
+  <div class="rail"><span class="num">&sect;1b</span><span class="tag">How many<br>users</span></div>
+  <div class="body">
+    <h2>How far one box goes</h2>
+    <p class="lede">Derived from the per-answer cost in &sect;1.1 and a usage model of six answers, eight searches and fifteen provision reads per active user per month &mdash; with mobile provision reads served entirely from the offline pack and never reaching the server at all.</p>
+
+    <div class="scroll">
+      <table>
+        <caption>Peak assumed at ten times average. Cores available for serving on an 8-core box after Postgres, OS and batch work: about 4.</caption>
+        <thead><tr><th class="n">MAU</th><th class="n">Answers/mo</th><th class="n">Peak QPS</th><th class="n">Peak cores</th><th>What binds first</th></tr></thead>
+        <tbody>
+          <tr><td class="n">1,000</td><td class="n">6,000</td><td class="n">0.12</td><td class="n">0.05</td><td>Nothing. The box is idle</td></tr>
+          <tr><td class="n">10,000</td><td class="n">60,000</td><td class="n">1.2</td><td class="n">0.12</td><td>Nothing</td></tr>
+          <tr><td class="n">50,000</td><td class="n">300,000</td><td class="n">5.8</td><td class="n">0.60</td><td>Index cache pressure. Add RAM before cores</td></tr>
+          <tr><td class="n">100,000</td><td class="n">600,000</td><td class="n">11.6</td><td class="n">1.2</td><td>Postgres connections &mdash; add PgBouncer in transaction mode</td></tr>
+          <tr><td class="n">250,000</td><td class="n">1.5 M</td><td class="n">29</td><td class="n">3.0</td><td>Audit-log write volume; partition it monthly. Consider splitting the database off</td></tr>
+          <tr><td class="n">500,000</td><td class="n">3 M</td><td class="n">58</td><td class="n">6.0</td><td>Peak CPU. This is where a second box becomes genuinely necessary</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note">
+      <h4>You run out of money before you run out of server</h4>
+      <p>At 250,000 monthly active users the machine costs about &euro;40 and the LLM calls cost roughly <strong>$2,400 a month</strong> &mdash; sixty times more. At 500,000 the server is still one box and the model bill is near $5,000.</p>
+      <p style="margin-top:.7rem">So the honest capacity answer is: <strong>a single &euro;21&ndash;40 VPS comfortably carries 50,000 to 100,000 monthly active users, and does not become the binding constraint until somewhere past 250,000.</strong> Long before that, the questions that matter are how much of the answer traffic the offline answer tier and the semantic cache can deflect, and whether the paid advocate tier covers the model bill. Both are product decisions, not infrastructure ones.</p>
+    </div>
+
+    <h4>What to do at each ceiling, in order</h4>
+    <ol>
+      <li><strong>Cache harder.</strong> Widen the semantic response cache and mine production logs to expand the answer tier. Deflection is worth more than hardware at every load point above pilot.</li>
+      <li><strong>Add RAM, not cores.</strong> Cache pressure shows up long before CPU does.</li>
+      <li><strong>Add PgBouncer.</strong> Connection exhaustion is the first hard wall, and it arrives around 100,000 MAU.</li>
+      <li><strong>Partition the audit log</strong> monthly and archive old partitions to R2.</li>
+      <li><strong>Split the database</strong> onto its own host (&sect;3), private network, no public IP.</li>
+      <li><strong>Add a read replica</strong> for search and public pages. Only here does the architecture need a second serving node.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ 2 ============ -->
+<section>
+  <div class="rail"><span class="num">&sect;2</span><span class="tag">Which<br>service</span></div>
+  <div class="body">
+    <h2>Priced against the real requirement</h2>
+    <p class="lede">The requirement from &sect;1 is 16&ndash;24 GB of RAM, 8 cores and about 50 GB of NVMe &mdash; not the 32&ndash;64 GB v1.0 of this document claimed. Here is what that costs on each provider as of today &mdash; and the answer changed sharply this year, because Hetzner raised cloud prices by roughly 2.1&ndash;2.75&times; on 15 June 2026.</p>
+
+<figure>
+  <span class="fignum">Figure 1 &mdash; Monthly cost for a full-scale-capable configuration</span>
+<svg class="dg" viewBox="0 0 940 344" role="img" aria-label="Horizontal bar chart of monthly cost in euros for configurations able to run the full system. Oracle Always Free is zero but capped at 12 gigabytes of RAM. Contabo Performance VPS 8 with 24 gigabytes costs 35 euros, Hetzner CAX41 ARM with 32 gigabytes costs 41, Hetzner EX44 dedicated with 64 gigabytes costs 57, Contabo Performance VPS 16 with 64 gigabytes costs 79, Hetzner CCX33 cloud with 32 gigabytes costs 138, and Supabase Pro with extra-large compute plus point-in-time recovery plus a second application host costs about 334.">
+  <g class="grid">
+    <line x1="260" y1="34" x2="260" y2="286"/>
+    <line x1="351" y1="34" x2="351" y2="286"/>
+    <line x1="443" y1="34" x2="443" y2="286"/>
+    <line x1="534" y1="34" x2="534" y2="286"/>
+    <line x1="626" y1="34" x2="626" y2="286"/>
+    <line x1="717" y1="34" x2="717" y2="286"/>
+    <line x1="809" y1="34" x2="809" y2="286"/>
+    <line x1="900" y1="34" x2="900" y2="286"/>
+  </g>
+
+  <g class="bar">
+    <path d="M260,48 L320,48 Q324,48 324,52 L324,66 Q324,70 320,70 L260,70 Z"><title>Contabo Performance VPS 8 — 8 vCPU / 24 GB / 450 GB NVMe — €35.00</title></path>
+    <path d="M260,116 L361,116 Q365,116 365,120 L365,134 Q365,138 361,138 L260,138 Z"><title>Hetzner EX44-1-LTD dedicated — 64 GB / 2×512 GB NVMe — €57.30</title></path>
+    <path d="M260,150 L400,150 Q404,150 404,154 L404,168 Q404,172 400,172 L260,172 Z"><title>Contabo Performance VPS 16 — 16 vCPU / 64 GB / 750 GB NVMe — €79.00</title></path>
+    <path d="M260,184 L509,184 Q513,184 513,188 L513,202 Q513,206 509,206 L260,206 Z"><title>Hetzner CCX33 cloud dedicated — 8 vCPU / 32 GB / 240 GB — €138.49</title></path>
+  </g>
+  <g class="barA">
+    <path d="M260,82 L331,82 Q335,82 335,86 L335,100 Q335,104 331,104 L260,104 Z"><title>Hetzner CAX41 ARM — 16 vCPU / 32 GB / 320 GB — €40.99</title></path>
+    <path d="M260,218 L867,218 Q871,218 871,222 L871,236 Q871,240 867,240 L260,240 Z"><title>Supabase Pro + XL compute + PITR + separate application host — about €334</title></path>
+  </g>
+  <rect class="bxg" x="258" y="252" width="4" height="22"/>
+
+  <g class="tm" text-anchor="end">
+    <text x="252" y="57">Contabo Performance 8</text><text x="252" y="68">8 vCPU / 24 GB / 450 NVMe</text>
+    <text x="252" y="91">Hetzner CAX41 (ARM)</text><text x="252" y="102">16 vCPU / 32 GB / 320</text>
+    <text x="252" y="125">Hetzner EX44-1-LTD</text><text x="252" y="136">dedicated / 64 GB / 2&times;512</text>
+    <text x="252" y="159">Contabo Performance 16</text><text x="252" y="170">16 vCPU / 64 GB / 750 NVMe</text>
+    <text x="252" y="193">Hetzner CCX33 (cloud)</text><text x="252" y="204">8 vCPU / 32 GB / 240</text>
+    <text x="252" y="227">Supabase Pro + XL + PITR</text><text x="252" y="238">+ second host for the app</text>
+    <text x="252" y="261">Oracle Always Free</text><text x="252" y="272">2 OCPU / 12 GB / 200 GB</text>
+  </g>
+  <g class="val">
+    <text x="334" y="63">&euro;35</text>
+    <text x="345" y="97" class="ta">&euro;41</text>
+    <text x="375" y="131">&euro;57</text>
+    <text x="414" y="165">&euro;79</text>
+    <text x="523" y="199">&euro;138</text>
+    <text x="881" y="233" class="ta">~&euro;334</text>
+    <text x="272" y="267">&euro;0</text>
+  </g>
+
+  <line class="axis" x1="260" y1="286" x2="900" y2="286"/>
+  <g class="tm" text-anchor="middle">
+    <text x="260" y="302">0</text><text x="351" y="302">50</text><text x="443" y="302">100</text>
+    <text x="534" y="302">150</text><text x="626" y="302">200</text><text x="717" y="302">250</text>
+    <text x="809" y="302">300</text><text x="900" y="302">350</text>
+  </g>
+  <text class="tm" x="900" y="318" text-anchor="end">euros per month, VAT excluded &middot; Germany / Finland regions &middot; verified 28 Aug 2026</text>
+  <text class="ta" x="260" y="336">Accented bars are the two that surprise: the cheapest capable box is ARM, and the managed option costs six times the recommended one.</text>
+</svg>
+<figcaption><b>Hetzner&rsquo;s June 2026 increase inverted the usual advice.</b> CCX cloud instances rose 2.1&ndash;2.7&times; and CPX by up to 2.75&times;, which makes the once-default CCX23 and CCX33 poor value &mdash; while the <em>dedicated root servers</em> and the ARM CAX line did not move nearly as far. EX44-1-LTD now offers 64 GB of RAM and a dedicated 14-core CPU for less than half of what a 32 GB CCX33 cloud instance costs. Prices exclude VAT and change without notice; re-verify before ordering.</figcaption>
+</figure>
+
+    <h3><span class="mk">2.1</span>The full comparison</h3>
+    <div class="scroll">
+      <table>
+        <caption>Germany/Finland pricing, VAT excluded, 28 Aug 2026. &ldquo;Fits full scale&rdquo; means the corpus with case law plus a 10 GB working set.</caption>
+        <thead><tr><th>Provider &amp; plan</th><th class="n">CPU</th><th class="n">RAM</th><th class="n">Disk</th><th class="n">€/mo</th><th>Verdict</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Hetzner EX44-1-LTD <span class="chip c-new">Pick</span></td><td class="n">i5-13500<br><span class="tm">14C / 20T dedicated</span></td><td class="n">64 GB</td><td class="n">2&times;512 GB NVMe<br><span class="tm">RAID 1</span></td><td class="n">57.30<br><span class="tm">no setup fee</span></td><td>Best value by a wide margin. Real cores, memory to spare, and the whole working set stays resident. Limited offering &mdash; availability varies</td></tr>
+          <tr><td class="k">Hetzner AX41-1-LTD</td><td class="n">Ryzen 5 3600<br><span class="tm">6C / 12T</span></td><td class="n">64 GB</td><td class="n">2&times;512 GB NVMe</td><td class="n">57.30</td><td>Same price, fewer and older cores. Take it if EX44 is unavailable</td></tr>
+          <tr><td class="k">Hetzner CAX41</td><td class="n">16 vCPU<br><span class="tm">Ampere ARM</span></td><td class="n">32 GB</td><td class="n">320 GB NVMe</td><td class="n">40.99</td><td>Cheapest capable option. <code>pg_search</code> publishes arm64 packages, so this genuinely works &mdash; but verify every extension on arm64 before committing</td></tr>
+          <tr><td class="k">Contabo Performance VPS 8</td><td class="n">8 vCPU shared</td><td class="n">24 GB</td><td class="n">450 GB NVMe</td><td class="n">35.00</td><td>Cheapest for the pilot. Shared CPU with variable neighbours; acceptable for a read-mostly workload, less so under batch ingest</td></tr>
+          <tr><td class="k">Contabo Performance VPS 16</td><td class="n">16 vCPU shared</td><td class="n">64 GB</td><td class="n">750 GB NVMe</td><td class="n">79.00</td><td>Most disk per euro. Same shared-CPU caveat</td></tr>
+          <tr><td class="k">Contabo Core VPS 16</td><td class="n">16 vCPU shared</td><td class="n">64 GB</td><td class="n">500 GB <strong>SSD</strong></td><td class="n">37.00</td><td><span class="chip c-miss">Avoid</span> SATA SSD, not NVMe. Random-read bound index builds and vacuums will suffer</td></tr>
+          <tr><td class="k">Hetzner CCX33</td><td class="n">8 vCPU dedicated</td><td class="n">32 GB</td><td class="n">240 GB</td><td class="n">138.49</td><td>Was the obvious choice before June 2026. Now poor value against EX44</td></tr>
+          <tr><td class="k">Oracle Always Free</td><td class="n">2 OCPU ARM</td><td class="n">12 GB</td><td class="n">200 GB</td><td class="n">0.00</td><td>Halved in 2026 from 4 OCPU / 24 GB, with instances above the new cap terminated from 18 Aug 2026. Still enough for the federal-statutes demo stage; not for case law, and carries reclamation risk</td></tr>
+          <tr><td class="k">Supabase Pro + XL + PITR</td><td class="n">managed</td><td class="n">16 GB</td><td class="n">8 GB incl.</td><td class="n">~334<br><span class="tm">incl. app host</span></td><td>$25 base + $210 XL compute &minus; $10 credit + $100 PITR, plus a second host for API, inference, ingest and LaTeX. No <code>pg_search</code> at any price</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note blue">
+      <h4>Recommendation</h4>
+      <p><strong>Demo and FYP:</strong> Oracle Always Free if you can provision an Ampere instance, otherwise Contabo Performance VPS 8 at €35. Federal statutes only, everything on one box.</p>
+      <p style="margin-top:.7rem"><strong>Pilot and full scale: Hetzner CAX31 — 8 ARM vCPU, 16 GB, 160 GB NVMe, about €21.</strong> That carries the full corpus including case law at roughly 260 ms p95, and it is the cheapest configuration that does. Verify <code>pg_search</code>, pgvector and ONNX Runtime on arm64 on the laptop first — ParadeDB publishes arm64 packages, so this is a check rather than a gamble.</p>
+      <p style="margin-top:.7rem"><strong>If you want x86 or headroom:</strong> CAX41 at €40.99 gives 32 GB; EX44-1-LTD at €57.30 gives 64 GB and dedicated cores. Neither is <em>required</em> by the sizing in §1 — both simply remove memory from the list of things you ever think about again, which at these prices is a defensible purchase.</p>
+      <p style="margin-top:.7rem"><strong>The floor:</strong> Contabo Performance VPS 4 (4 vCPU, 8 GB, 150 GB NVMe, €13.50) still runs the whole system at roughly 450 ms p95. Tight, but not a mistake.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3 ============ -->
+<section>
+  <div class="rail"><span class="num">&sect;3</span><span class="tag">Split or<br>single</span></div>
+  <div class="body">
+    <h2>Separating the backend from the database</h2>
+    <p class="lede">Yes, it is possible and it is sometimes right &mdash; but not at the start, and the trigger for doing it is a metric rather than a preference.</p>
+
+<figure>
+  <span class="fignum">Figure 2 &mdash; Three topologies</span>
+<svg class="dg" viewBox="0 0 940 424" role="img" aria-label="Three deployment topologies. The demo topology puts Postgres, API, inference and ingest on one small box with Cloudflare in front and R2 for blobs. The pilot and full-scale topology uses one dedicated 64-gigabyte server carrying everything with the database on a loopback socket. The split topology separates a database host from an application host over a private network, adding failure isolation and independent resizing at the cost of a second machine and a network hop.">
+  <text class="ta" x="20" y="24" font-size="10">DEMO &mdash; federal statutes</text>
+  <text class="ta" x="330" y="24" font-size="10">PILOT &amp; SCALE &mdash; recommended</text>
+  <text class="ta" x="660" y="24" font-size="10">SPLIT &mdash; only when a metric says so</text>
+  <line class="sep" x1="310" y1="14" x2="310" y2="410"/>
+  <line class="sep" x1="640" y1="14" x2="640" y2="410"/>
+
+  <g class="bx"><rect x="20" y="40" width="268" height="176" rx="4"/></g>
+  <text class="th" x="32" y="60" font-size="10.5">One small box</text>
+  <text class="tm" x="32" y="74">Contabo Perf 8 &middot; 24 GB &middot; &euro;35</text>
+  <g class="bxg">
+    <rect x="32" y="86"  width="244" height="28" rx="3"/>
+    <rect x="32" y="120" width="244" height="28" rx="3"/>
+    <rect x="32" y="154" width="244" height="28" rx="3"/>
+    <rect x="32" y="188" width="244" height="22" rx="3"/>
+  </g>
+  <g class="tm">
+    <text x="42" y="104">postgres &mdash; 8 GB shared_buffers</text>
+    <text x="42" y="138">api + inference (1 worker)</text>
+    <text x="42" y="172">ingest &mdash; nightly, throttled</text>
+    <text x="42" y="203">caddy &middot; no observability stack yet</text>
+  </g>
+
+  <rect class="accf" x="330" y="40" width="290" height="238" rx="4"/>
+  <text class="ta" x="342" y="60" font-size="10.5">Hetzner EX44-1-LTD</text>
+  <text class="tm" x="342" y="74">14C dedicated &middot; 64 GB &middot; 2&times;512 NVMe &middot; &euro;57.30</text>
+  <g class="bx">
+    <rect x="342" y="86"  width="266" height="34" rx="3"/>
+    <rect x="342" y="126" width="266" height="30" rx="3"/>
+    <rect x="342" y="162" width="266" height="30" rx="3"/>
+    <rect x="342" y="198" width="266" height="30" rx="3"/>
+    <rect x="342" y="234" width="266" height="34" rx="3"/>
+  </g>
+  <g class="tm">
+    <text x="352" y="100">postgres 17 &middot; pgvector &middot; pg_search &middot; ltree</text>
+    <text x="352" y="114" class="ta">16 GB shared_buffers &middot; unix socket</text>
+    <text x="352" y="145">api &times;4 &middot; inference &times;2</text>
+    <text x="352" y="181">ingest &times;4 &middot; LaTeX sandbox</text>
+    <text x="352" y="217">caddy &middot; grafana / loki / tempo</text>
+    <text x="352" y="248">pgBackRest &rarr; R2, WAL streaming</text>
+    <text x="352" y="262">PITR included, no add-on</text>
+  </g>
+
+  <g class="bx">
+    <rect x="660" y="40"  width="264" height="104" rx="4"/>
+    <rect x="660" y="176" width="264" height="104" rx="4"/>
+  </g>
+  <text class="th" x="672" y="60" font-size="10.5">app host</text>
+  <text class="tm" x="672" y="74">CAX31 &middot; 8 vCPU / 16 GB &middot; ~&euro;21</text>
+  <g class="tm">
+    <text x="672" y="92">api &times;4 &middot; inference &times;2</text>
+    <text x="672" y="106">ingest &middot; LaTeX &middot; caddy</text>
+    <text x="672" y="120">public IP, TLS terminates here</text>
+    <text x="672" y="134">stateless &mdash; redeploy freely</text>
+  </g>
+  <text class="th" x="672" y="196" font-size="10.5">database host</text>
+  <text class="tm" x="672" y="210">EX44 &middot; 64 GB &middot; &euro;57.30</text>
+  <g class="tm">
+    <text x="672" y="228">postgres only</text>
+    <text x="672" y="242" class="ta">no public IP &mdash; private vSwitch only</text>
+    <text x="672" y="256">pgBackRest &rarr; R2</text>
+    <text x="672" y="270">upgrades scheduled independently</text>
+  </g>
+  <path class="lnA" d="M792,144 L792,172" marker-end="url(#arwA)"/>
+  <path class="lnA" d="M812,172 L812,148" marker-end="url(#arwA)"/>
+  <text class="ta" x="822" y="162" font-size="9.5">private LAN</text>
+  <text class="tm" x="822" y="174">+0.3 ms / query</text>
+
+  <line class="sep" x1="20" y1="300" x2="924" y2="300"/>
+  <text class="th" x="20" y="320" font-size="10.5">Split when &mdash; and only when &mdash; one of these is true</text>
+  <g class="tm">
+    <text x="20" y="340">&#8226; <tspan class="th">shared_buffers + resident app RSS &gt; 70% of host RAM</tspan> &mdash; the page cache is being starved</text>
+    <text x="20" y="356">&#8226; an application deploy or an OOM measurably moves database p95 latency</text>
+    <text x="20" y="372">&#8226; batch ingest and serving contend for cores badly enough to breach the p95 budget</text>
+    <text x="20" y="388">&#8226; a compliance requirement demands the database have no public route</text>
+    <text x="20" y="404">Until then a second machine buys a network hop, a second thing to patch, and a second bill &mdash; and buys back nothing measurable.</text>
+  </g>
+</svg>
+<figcaption><b>The split is a real option with a real trigger, not a maturity signal.</b> On the same provider&rsquo;s private network the added latency is a few tenths of a millisecond and genuinely negligible; across providers or regions it is tens of milliseconds and will show up in p95. If you split, put the database on the private vSwitch with no public IP at all &mdash; that security gain is the most durable reason to do it, and it is worth more than the isolation.</figcaption>
+</figure>
+  </div>
+</section>
+
+
+<!-- ============ 4 ============ -->
+<section>
+  <div class="rail"><span class="num">&sect;4</span><span class="tag">Total<br>cost</span></div>
+  <div class="body">
+    <h2>What the whole bill looks like</h2>
+    <p class="lede">Infrastructure is the part everyone argues about and, at scale, the part that barely matters. The finding worth internalising is at the bottom of this table.</p>
+
+    <div class="scroll">
+      <table>
+        <caption>Monthly, VAT excluded. Euro and dollar items are listed in their native currency and totalled approximately. LLM cost assumes ~$0.004 per answer after prompt-prefix caching, with the answer tier and semantic cache deflecting roughly 60% of requests at scale.</caption>
+        <thead><tr><th>Line</th><th class="n">Demo<br>50 MAU</th><th class="n">Pilot<br>1,000 MAU</th><th class="n">Scale<br>50,000 MAU</th><th>Note</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Compute</td><td class="n">&euro;0<br><span class="tm">Oracle free tier</span></td><td class="n">&euro;21<br><span class="tm">CAX31</span></td><td class="n">&euro;21<br><span class="tm">&euro;41 for headroom</span></td><td>One CAX31 carries pilot and scale &mdash; 0.6 peak cores against 8 available</td></tr>
+          <tr><td class="k">Object storage &mdash; R2</td><td class="n">$0<br><span class="tm">free tier</span></td><td class="n">$0.93</td><td class="n">$1.20</td><td>$0.015/GB-month, zero egress. Free tier covers 10 GB, 1M Class A, 10M Class B</td></tr>
+          <tr><td class="k">CDN, TLS, WAF</td><td class="n">$0</td><td class="n">$0</td><td class="n">$0</td><td>Cloudflare free tier throughout</td></tr>
+          <tr><td class="k">LLM API</td><td class="n">$2</td><td class="n">$40</td><td class="n">$480</td><td><strong>The dominant line at scale.</strong> 300k answers, 60% deflected by cache and answer tier</td></tr>
+          <tr><td class="k">SMS OTP</td><td class="n">$0.50</td><td class="n">$12</td><td class="n">$240</td><td>Local Pakistani aggregator at ~PKR 1.5/message. An international gateway would triple this</td></tr>
+          <tr><td class="k">Batch GPU</td><td class="n">$0</td><td class="n">$1</td><td class="n">$2</td><td>Rented by the hour, only on corpus or model change</td></tr>
+          <tr><td class="k">Domain + TLS</td><td class="n">$1</td><td class="n">$1</td><td class="n">$1</td><td>&mdash;</td></tr>
+          <tr><td class="k">Monitoring</td><td class="n">$0</td><td class="n">$0</td><td class="n">$0</td><td>Self-hosted Grafana stack on the same box</td></tr>
+        </tbody>
+        <tfoot>
+          <tr><td>Approximate total</td><td class="n">~&euro;4</td><td class="n">~&euro;72</td><td class="n">~&euro;709</td><td></td></tr>
+          <tr><td>Infrastructure as a share of it</td><td class="n">&mdash;</td><td class="n">29%</td><td class="n"><strong>3%</strong></td><td></td></tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <div class="note">
+      <h4>At scale, the server is a rounding error</h4>
+      <p>Fifty thousand monthly active users cost about &euro;21 of compute and roughly &euro;690 of per-request services. Which means <strong>the two most valuable cost controls in this architecture are not infrastructure decisions at all</strong> &mdash; they are the offline answer tier and the semantic response cache, both of which remove LLM calls entirely. Every point of deflection is worth roughly $8 a month at this volume. That reframes the answer tier from an offline convenience into the primary lever on unit economics, and it is the strongest argument yet for mining and pre-generating aggressively.</p>
+      <p style="margin-top:.7rem">The second lever is SMS. Send an OTP on signup and on new-device sign-in only, never on every session, and the line drops by more than half.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5 ============ -->
+<section>
+  <div class="rail"><span class="num">&sect;5</span><span class="tag">Triggers</span></div>
+  <div class="body">
+    <h2>When to change something</h2>
+    <p class="lede">Each row is a metric with a threshold and one action. Scaling decisions taken on any other basis &mdash; a feeling, a milestone, a conference talk &mdash; are how a four-person team ends up operating infrastructure it does not need.</p>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Signal</th><th>Threshold</th><th>Action</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Postgres p95 query time</td><td class="n">&gt; 150 ms</td><td>Check the index working set is resident (<code>pg_statio</code> hit ratio &lt; 0.99 means it is not). Raise <code>shared_buffers</code> before buying anything</td></tr>
+          <tr><td class="k">shared_buffers + app RSS</td><td class="n">&gt; 70% of host RAM</td><td>Split the database onto its own host (&sect;3). This is the primary split trigger</td></tr>
+          <tr><td class="k">Answer p95 end to end</td><td class="n">&gt; 4 s</td><td>Add an inference worker. If reranking is the span that grew, cut candidates from 50 to 30 before adding hardware</td></tr>
+          <tr><td class="k">Disk used</td><td class="n">&gt; 70%</td><td>Move judgment source documents to R2 Infrequent Access and keep only extracted text locally</td></tr>
+          <tr><td class="k">Ingest lag</td><td class="n">&gt; 48 h behind source</td><td>More ingest workers, or move the batch window. Surface a corpus-currency notice in the UI before users find it</td></tr>
+          <tr><td class="k">LLM spend per answer</td><td class="n">&gt; $0.006</td><td>Widen the semantic cache window and expand the answer tier from production query logs</td></tr>
+          <tr><td class="k">Active connections</td><td class="n">&gt; 60% of <code>max_connections</code></td><td>Put PgBouncer in transaction mode in front. Do not raise <code>max_connections</code> instead</td></tr>
+          <tr><td class="k">Abstention rate</td><td class="n">shifts &gt; 5 points</td><td>Investigate before touching capacity &mdash; this is a retrieval or corpus signal, not a load signal</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6 ============ -->
+<section>
+  <div class="rail"><span class="num">&sect;6</span><span class="tag">Operations</span></div>
+  <div class="body">
+    <h2>The minimum that must exist</h2>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Area</th><th>Standard</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Backup</td><td>pgBackRest to R2 &mdash; weekly full, daily incremental, continuous WAL archive. Fourteen-day recovery window. This replaces the $100/month managed PITR add-on and is strictly more configurable</td></tr>
+          <tr><td class="k">Restore drill</td><td><strong>Monthly, on a scratch container, with the golden-set evaluation run against the restored copy.</strong> A backup that has never been restored is not a backup, and the drill doubles as the rehearsal for the migration in the capacity plan &sect;5.3</td></tr>
+          <tr><td class="k">Deploys</td><td>Migrations run before code. Compose file references image digests, never <code>:latest</code>. Every deploy tagged; rollback tested at least once per phase</td></tr>
+          <tr><td class="k">Upgrades</td><td>Minor Postgres monthly during a stated window. Major annually, rehearsed on the laptop first with a dump-and-restore since a physical restore cannot cross major versions</td></tr>
+          <tr><td class="k">Monitoring</td><td>Latency, traffic, errors, saturation &mdash; plus four domain signals: corpus currency per source, gate abstention rate, verifier pass rate, and cost per answer</td></tr>
+          <tr><td class="k">Alerting</td><td>Disk &gt; 80%, backup failure, WAL archive stalled, p95 breach sustained 10 minutes, abstention-rate shift. Route to one person on a rota, not to a channel nobody watches</td></tr>
+          <tr><td class="k">Security</td><td>Firewall default-deny; SSH keys only, no password auth; unattended security upgrades; fail2ban; database bound to localhost or the private vSwitch only; secrets in a file with <code>0600</code>, never in the compose file</td></tr>
+          <tr><td class="k">Runbooks</td><td>Four written before launch: restore from backup, rotate a leaked credential, roll back a bad deploy, and recover a failed corpus publish</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3><span class="mk">6.1</span>What a dedicated server obliges that a cloud instance does not</h3>
+    <p>Hetzner&rsquo;s dedicated line has no hypervisor beneath it, which is most of why it is fast and cheap. Three consequences worth planning for: there is <strong>no instant snapshot</strong>, so pgBackRest is the only recovery path and must genuinely work; there is <strong>no live resize</strong>, so a capacity change means provisioning a new machine and restoring; and <strong>hardware can fail</strong> in a way a cloud instance abstracts away, so the RAID 1 pair and the off-box backup are both load-bearing rather than belt-and-braces. Budget half a day for the initial hardening and accept that the restore drill is not optional.</p>
+  </div>
+</section>
+
+<!-- ============ R ============ -->
+<section>
+  <div class="rail"><span class="num">R</span><span class="tag">Sources</span></div>
+  <div class="body">
+    <h2>References</h2>
+    <p class="lede">Retrieved 28 August 2026. Every price below changes without notice and several changed materially during 2026 &mdash; re-verify before ordering anything.</p>
+    <ol class="refs">
+      <li><b>Hetzner price adjustment, 15 June 2026</b> &mdash; official table of dedicated and cloud server prices, including EX44-1-LTD and AX41-1-LTD at &euro;57.30 with no setup fee. <a href="https://docs.hetzner.com/general/infrastructure-and-availability/price-adjustment">docs.hetzner.com/general/infrastructure-and-availability/price-adjustment</a></li>
+      <li><b>Hetzner cloud pricing, August 2026</b> &mdash; CAX41 &euro;40.99, CCX23 &euro;85.99, CCX33 &euro;138.49, CPX42 &euro;69.49; block storage &euro;0.0572/GB-month. <a href="https://costgoat.com/pricing/hetzner">costgoat.com/pricing/hetzner</a></li>
+      <li><b>Hetzner 2026 increases, analysis</b> &mdash; CCX up 2.1&ndash;2.73&times; and CPX up 2.4&ndash;2.75&times; in Germany/Finland from 15 June 2026; orders placed earlier retain previous pricing. <a href="https://northflank.com/blog/hetzner-cloud-server-price-increases">northflank.com/blog/hetzner-cloud-server-price-increases</a></li>
+      <li><b>Contabo VPS pricing</b> &mdash; Core VPS (SATA SSD) and Performance VPS (NVMe) tiers: 8 vCPU / 24 GB / 450 GB NVMe at &euro;35.00, 16 vCPU / 64 GB / 750 GB NVMe at &euro;79.00. <a href="https://rafftechnologies.com/learn/compare/raff-vs-contabo">rafftechnologies.com &mdash; Contabo comparison</a></li>
+      <li><b>Supabase pricing 2026</b> &mdash; Pro $25/month including a $10 compute credit; compute add-ons Micro $10, Small $15, Medium $60, Large $110, XL $210, 2XL $410; 8 GB database included then $0.125/GB; egress 250 GB then $0.09/GB; PITR $100/month per 7-day window; free tier 500 MB with auto-pause after one week idle. <a href="https://makerkit.dev/blog/saas/supabase-pricing">makerkit.dev/blog/saas/supabase-pricing</a> &middot; <a href="https://www.jetadmin.io/blog/supabase-pricing-2026-guide-to-plans-limits-and-real-world-costs">jetadmin.io &mdash; Supabase pricing 2026</a></li>
+      <li><b>Cloudflare R2 pricing</b> &mdash; $0.015/GB-month standard storage, $0.00 egress at any volume, Class A $4.50/million, Class B $0.36/million; free tier 10 GB storage, 1M Class A, 10M Class B per month; Infrequent Access $0.01/GB-month. <a href="https://egresscost.com/cloudflare">egresscost.com/cloudflare</a></li>
+      <li><b>Oracle Cloud Always Free reduction, 2026</b> &mdash; Ampere A1 allocation halved from 4 OCPU / 24 GB to 2 OCPU / 12 GB (1,500 OCPU-hours and 9,000 GB-hours per month); 200 GB block storage unchanged; instances above the new cap terminated from 18 August 2026. <a href="https://terminalbytes.com/oracle-cloud-free-tier-changes-2026">terminalbytes.com/oracle-cloud-free-tier-changes-2026</a> &middot; <a href="https://fullmetalbrackets.com/blog/oci-free-tier-breakdown">fullmetalbrackets.com/blog/oci-free-tier-breakdown</a></li>
+      <li><b>ParadeDB pg_search</b> &mdash; BM25 over Tantivy; Docker image or self-hosted install with published amd64 and arm64 packages; PostgreSQL 14+; Community edition AGPL-3.0. <a href="https://docs.paradedb.com/deploy/self-hosted/extension">docs.paradedb.com/deploy/self-hosted/extension</a></li>
+      <li><b>pgvector binary quantisation</b> &mdash; storage arithmetic and HNSW dimension ceilings used in the capacity plan. <a href="https://deepwiki.com/pgvector/pgvector/7.3-binary-quantization">deepwiki.com/pgvector/pgvector</a></li>
+    </ol>
+  </div>
+</section>
+
+</div>

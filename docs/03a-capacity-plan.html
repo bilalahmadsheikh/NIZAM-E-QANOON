@@ -1,0 +1,853 @@
+<title>Nizam-e-Qanoon Capacity Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+:root{
+  --paper:#F3F4F7; --surface:#FFFFFF; --surface-2:#EDEFF3; --surface-3:#E3E7EE;
+  --ink:#14171E; --ink-2:#4C5566; --ink-3:#7E879A;
+  --rule:#DCDFE7; --rule-2:#C6CBD6;
+  --indigo:#26397A; --indigo-soft:#E4E8F5;
+  --rubric:#9E3B2F; --rubric-soft:#F6E7E4;
+  --ok:#2C6349; --ok-soft:#E0EDE7;
+  --warn:#7E6114; --warn-soft:#F3EBD8;
+  --shadow:0 1px 2px rgba(20,23,30,.05), 0 8px 24px -12px rgba(20,23,30,.14);
+  --f-display:"Newsreader", Georgia, serif;
+  --f-body:"Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --measure:70ch; --rail:9.5rem;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0D0F14; --surface:#14171E; --surface-2:#1B1F28; --surface-3:#232935;
+    --ink:#E6E9EF; --ink-2:#A0A9BA; --ink-3:#6D7688;
+    --rule:#252A34; --rule-2:#333A47;
+    --indigo:#93A8E8; --indigo-soft:#1B2136;
+    --rubric:#D8867A; --rubric-soft:#2B1D1B;
+    --ok:#6FBF95; --ok-soft:#152520;
+    --warn:#D3AB5C; --warn-soft:#241E10;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 30px -14px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0D0F14; --surface:#14171E; --surface-2:#1B1F28; --surface-3:#232935;
+  --ink:#E6E9EF; --ink-2:#A0A9BA; --ink-3:#6D7688;
+  --rule:#252A34; --rule-2:#333A47;
+  --indigo:#93A8E8; --indigo-soft:#1B2136;
+  --rubric:#D8867A; --rubric-soft:#2B1D1B;
+  --ok:#6FBF95; --ok-soft:#152520;
+  --warn:#D3AB5C; --warn-soft:#241E10;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 30px -14px rgba(0,0,0,.7);
+}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);
+  font-size:16.5px;line-height:1.62;-webkit-font-smoothing:antialiased}
+.wrap{max-width:76rem;margin:0 auto;padding:0 1.5rem 8rem}
+
+.masthead{border-bottom:2px solid var(--ink);padding:3.5rem 0 1.25rem;margin-bottom:2rem}
+.kicker{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--rubric);margin:0 0 1rem}
+h1{font-family:var(--f-display);font-weight:500;font-size:clamp(2.4rem,5.8vw,3.9rem);
+  line-height:1.03;letter-spacing:-.021em;margin:0 0 .5rem;text-wrap:balance}
+.dek{font-family:var(--f-display);font-size:clamp(1.05rem,2.1vw,1.3rem);color:var(--ink-2);
+  max-width:56ch;margin:0 0 1.9rem;font-style:italic}
+.meta{display:flex;flex-wrap:wrap;gap:.5rem 2.25rem;font-family:var(--f-mono);font-size:.7rem;
+  letter-spacing:.05em;color:var(--ink-3);border-top:1px solid var(--rule);padding-top:.9rem}
+.meta b{color:var(--ink-2);font-weight:500}
+
+section{display:grid;grid-template-columns:var(--rail) minmax(0,1fr);gap:0 2.5rem;
+  padding-top:3.4rem;border-top:1px solid var(--rule);margin-top:3.4rem}
+section.first{border-top:none;margin-top:0}
+.rail{position:sticky;top:1.5rem;align-self:start;padding-top:.4rem}
+.rail .num{font-family:var(--f-mono);font-size:1.05rem;font-weight:600;color:var(--rubric);letter-spacing:-.02em;display:block}
+.rail .tag{font-family:var(--f-mono);font-size:.63rem;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--ink-3);display:block;margin-top:.5rem;line-height:1.55}
+.body{min-width:0}
+@media (max-width:880px){
+  section{grid-template-columns:1fr;gap:0}
+  .rail{position:static;display:flex;align-items:baseline;gap:.85rem;margin-bottom:.9rem;padding-top:0}
+  .rail .tag{margin-top:0}
+}
+
+h2{font-family:var(--f-display);font-weight:500;font-size:clamp(1.6rem,3.3vw,2.2rem);
+  line-height:1.14;letter-spacing:-.017em;margin:0 0 .8rem;text-wrap:balance}
+h3{font-family:var(--f-body);font-weight:700;font-size:1.01rem;margin:2.6rem 0 .55rem}
+h3 .mk{font-family:var(--f-mono);color:var(--rubric);font-weight:600;margin-inline-end:.55rem;font-size:.88em}
+h4{font-family:var(--f-mono);font-weight:600;font-size:.71rem;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--ink-3);margin:1.9rem 0 .6rem}
+p{margin:0 0 1.05rem;max-width:var(--measure)}
+.lede{font-size:1.075rem;color:var(--ink-2);max-width:62ch}
+ul,ol{margin:0 0 1.15rem;padding-inline-start:1.3rem;max-width:var(--measure)}
+li{margin-bottom:.4rem}
+li::marker{color:var(--ink-3)}
+a{color:var(--indigo);text-underline-offset:.18em}
+a:focus-visible{outline:2px solid var(--indigo);outline-offset:3px;border-radius:2px}
+code{font-family:var(--f-mono);font-size:.855em;font-variant-ligatures:none}
+p code,li code,td code,figcaption code{background:var(--surface-2);border:1px solid var(--rule);
+  padding:.06em .34em;border-radius:3px;color:var(--ink)}
+
+.scroll{overflow-x:auto;margin:1.4rem 0 1.9rem;border:1px solid var(--rule);border-radius:5px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:.83rem;line-height:1.5}
+th{text-align:left;font-family:var(--f-mono);font-weight:600;font-size:.645rem;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--ink-3);padding:.7rem .8rem;border-bottom:1px solid var(--rule-2);
+  white-space:nowrap;background:var(--surface-2)}
+td{padding:.65rem .8rem;border-bottom:1px solid var(--rule);vertical-align:top}
+tr:last-child td{border-bottom:none}
+tbody tr:hover td{background:var(--surface-2)}
+td.n,th.n{font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap;text-align:right}
+td.n{font-size:.9em}
+td.id{font-family:var(--f-mono);font-size:.76rem;color:var(--rubric);white-space:nowrap;font-weight:500}
+td.k{font-weight:600;min-width:9.5rem}
+tfoot td{font-weight:700;border-top:1px solid var(--rule-2);background:var(--surface-2)}
+caption{caption-side:bottom;text-align:left;font-size:.76rem;color:var(--ink-3);padding:.7rem .8rem;border-top:1px solid var(--rule)}
+
+.chip{display:inline-block;font-family:var(--f-mono);font-size:.6rem;letter-spacing:.09em;
+  text-transform:uppercase;font-weight:600;padding:.2em .5em;border-radius:3px;white-space:nowrap;border:1px solid transparent}
+.c-have{background:var(--ok-soft);color:var(--ok);border-color:var(--ok)}
+.c-part{background:var(--warn-soft);color:var(--warn);border-color:var(--warn)}
+.c-miss{background:var(--rubric-soft);color:var(--rubric);border-color:var(--rubric)}
+.c-new{background:var(--indigo-soft);color:var(--indigo);border-color:var(--indigo)}
+.c-plain{background:var(--surface-2);color:var(--ink-3);border-color:var(--rule-2)}
+
+.note{border-inline-start:3px solid var(--rubric);background:var(--surface);padding:1rem 1.15rem;
+  margin:1.5rem 0;border-radius:0 4px 4px 0;max-width:var(--measure);box-shadow:var(--shadow)}
+.note.blue{border-inline-start-color:var(--indigo)}
+.note p:last-child,.note ul:last-child{margin-bottom:0}
+.note h4{margin-top:0}
+
+figure{margin:2rem 0;background:var(--surface);border:1px solid var(--rule);border-radius:5px;
+  padding:1.4rem 1.2rem .9rem;box-shadow:var(--shadow);overflow-x:auto}
+figure svg{display:block;width:100%;min-width:40rem;max-width:100%;height:auto;color:var(--ink)}
+figcaption{margin-top:1rem;padding-top:.8rem;border-top:1px solid var(--rule);
+  font-size:.78rem;color:var(--ink-3);line-height:1.55}
+figcaption b{color:var(--ink-2);font-weight:600}
+.fignum{font-family:var(--f-mono);font-size:.63rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--rubric);font-weight:600;display:block;margin-bottom:.7rem}
+
+pre{background:var(--surface);border:1px solid var(--rule);border-radius:5px;padding:1rem 1.05rem;
+  overflow-x:auto;margin:1.25rem 0;font-family:var(--f-mono);font-size:.775rem;line-height:1.65;color:var(--ink-2)}
+pre b{color:var(--ink);font-weight:600}
+pre i{color:var(--ink-3);font-style:normal}
+pre u{color:var(--rubric);text-decoration:none}
+
+.dgdefs{position:absolute;width:0;height:0;overflow:hidden}
+.dgdefs .mk{fill:var(--ink)}
+.dgdefs .mkA{fill:var(--rubric)}
+.dg{font-family:var(--f-mono);font-size:10.5px}
+.dg .bx{fill:none;stroke:currentColor;stroke-width:1.2}
+.dg .bxf{fill:var(--surface-2);stroke:currentColor;stroke-width:1.2}
+.dg .bxg{fill:none;stroke:currentColor;stroke-width:1;opacity:.4}
+.dg .ext{fill:none;stroke:currentColor;stroke-width:1.2;stroke-dasharray:5 3;opacity:.7}
+.dg .acc{fill:none;stroke:var(--rubric);stroke-width:1.6}
+.dg .accf{fill:var(--rubric-soft);stroke:var(--rubric);stroke-width:1.4}
+.dg text{fill:currentColor}
+.dg .ta{fill:var(--rubric);font-weight:600}
+.dg .tm{fill:currentColor;opacity:.62;font-size:9.5px}
+.dg .th{font-weight:600}
+.dg .ln{stroke:currentColor;stroke-width:1.1;fill:none}
+.dg .lnA{stroke:var(--rubric);stroke-width:1.4;fill:none}
+.dg .lnD{stroke:currentColor;stroke-width:1.1;fill:none;stroke-dasharray:5 3}
+.dg .sep{stroke:currentColor;stroke-width:1;opacity:.35}
+/* chart */
+.ch .grid{stroke:currentColor;opacity:.14;stroke-width:1}
+.ch .axis{stroke:currentColor;opacity:.45;stroke-width:1}
+.ch .bar{fill:var(--indigo)}
+.ch .thr{stroke:var(--rubric);stroke-width:1.4;stroke-dasharray:5 4}
+.ch .tick{fill:currentColor;opacity:.6;font-family:var(--f-mono);font-size:9.5px;font-variant-numeric:tabular-nums}
+.ch .lbl{fill:currentColor;font-family:var(--f-mono);font-size:10.5px}
+.ch .val{fill:currentColor;font-family:var(--f-mono);font-size:10.5px;font-weight:600;font-variant-numeric:tabular-nums}
+.ch .thrlbl{fill:var(--rubric);font-family:var(--f-mono);font-size:9.5px;font-weight:600}
+
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr));gap:1px;background:var(--rule);
+  border:1px solid var(--rule);border-radius:5px;overflow:hidden;margin:1.6rem 0}
+.stat{background:var(--surface);padding:1rem 1.05rem}
+.stat .v{font-family:var(--f-display);font-size:1.8rem;font-weight:500;line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.stat .l{font-family:var(--f-mono);font-size:.63rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-top:.5rem;line-height:1.45}
+.stat.hi .v{color:var(--rubric)}
+</style>
+
+<svg class="dgdefs" aria-hidden="true" focusable="false">
+  <defs>
+    <marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path class="mk" d="M0,1 L9,5 L0,9 z"/></marker>
+    <marker id="arwA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path class="mkA" d="M0,1 L9,5 L0,9 z"/></marker>
+    <marker id="arwO" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,1 L9,5 L0,9" fill="none" stroke="currentColor" stroke-width="1.4"/></marker>
+  </defs>
+</svg>
+
+<div class="wrap">
+
+<header class="masthead">
+  <p class="kicker">Annex to document 03 &middot; measured 28 Aug 2026 &middot; answers the free-tier question</p>
+  <h1>Nizam-e-Qanoon Capacity Plan</h1>
+  <p class="dek">How much space Pakistani law actually takes, what fits inside a free database tier, and the hosting ladder that gets from a laptop to a national corpus without a rewrite.</p>
+  <div class="meta">
+    <span><b>Method</b> measured, not estimated</span>
+    <span><b>Sample</b> 144 of 4,710 PDFs</span>
+    <span><b>Corpus text</b> 243 MB</span>
+    <span><b>Figures</b> 5</span>
+  </div>
+</header>
+
+<!-- ============ 1 ============ -->
+<section class="first">
+  <div class="rail"><span class="num">&sect;1</span><span class="tag">Measured</span></div>
+  <div class="body">
+    <h2>How big is Pakistani law?</h2>
+    <p class="lede">Nobody publishes this number, so I extracted it. Thirty PDFs sampled at random from each of the five archives on disk, full-document text extraction, then scaled by the measured text-to-PDF byte ratio of each corpus.</p>
+
+    <div class="stats">
+      <div class="stat"><div class="v">243<span style="font-size:.55em"> MB</span></div><div class="l">Raw extracted text<br>all 4,710 documents</div></div>
+      <div class="stat"><div class="v">58<span style="font-size:.55em"> MB</span></div><div class="l">Compressed<br>measured 4.17&times;</div></div>
+      <div class="stat"><div class="v">113<span style="font-size:.55em">k</span></div><div class="l">Top-level sections<br>&asymp;362k tree nodes</div></div>
+      <div class="stat hi"><div class="v">1,857<span style="font-size:.55em"> MB</span></div><div class="l">The PDFs themselves<br>object storage, not the DB</div></div>
+    </div>
+
+    <div class="scroll">
+      <table>
+        <caption>Sample: 30 PDFs per corpus, random seed fixed, full <code>pdftotext -layout</code> extraction. Sections counted by numbering grammar on the extracted text, so the figure is top-level sections only &mdash; subsections, clauses and provisos multiply it by roughly 3.2.</caption>
+        <thead><tr><th>Corpus</th><th class="n">PDFs</th><th class="n">PDF MB</th><th class="n">text / PDF</th><th class="n">Text MB</th><th class="n">Sections</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Federal &mdash; Pakistan Code</td><td class="n">1,038</td><td class="n">497</td><td class="n">0.117</td><td class="n">58.1</td><td class="n">39,481</td></tr>
+          <tr><td class="k">Punjab</td><td class="n">1,064</td><td class="n">382</td><td class="n">0.166</td><td class="n">63.2</td><td class="n">28,018</td></tr>
+          <tr><td class="k">Sindh</td><td class="n">1,728</td><td class="n">588</td><td class="n">0.099</td><td class="n">58.4</td><td class="n">25,459</td></tr>
+          <tr><td class="k">Khyber Pakhtunkhwa</td><td class="n">516</td><td class="n">170</td><td class="n">0.081</td><td class="n">13.8</td><td class="n">10,750</td></tr>
+          <tr><td class="k">Balochistan</td><td class="n">364</td><td class="n">220</td><td class="n">0.225</td><td class="n">49.5</td><td class="n">9,450</td></tr>
+        </tbody>
+        <tfoot><tr><td>Total on disk today</td><td class="n">4,710</td><td class="n">1,857</td><td class="n">&mdash;</td><td class="n">243.0</td><td class="n">113,158</td></tr></tfoot>
+      </table>
+    </div>
+
+    <h3><span class="mk">1.1</span>You are right that these are not all the laws</h3>
+    <p>What is on disk is the statutory backbone of five jurisdictions. What is missing is larger than what is present, and the largest missing piece is the one that matters most commercially.</p>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Missing</th><th class="n">Est. text</th><th class="n">Multiple of current</th><th>Consequence for sizing</th></tr></thead>
+        <tbody>
+          <tr><td class="k">AJK and Gilgit-Baltistan statutes</td><td class="n">~25 MB</td><td class="n">0.1&times;</td><td>Negligible. Two more scrapers on the existing skeleton.</td></tr>
+          <tr><td class="k">Rules, SROs, notifications</td><td class="n">~150&ndash;400 MB</td><td class="n">1&ndash;1.6&times;</td><td>Roughly doubles the statutory corpus. High churn, so it drives update volume more than storage.</td></tr>
+          <tr><td class="k">Case law &mdash; SC, 5 High Courts, FSC</td><td class="n">~3,000 MB</td><td class="n">12&times;</td><td><strong>Dominates everything.</strong> 120,000 judgments at ~25 KB each, ~4.8M citable paragraphs.</td></tr>
+          <tr><td class="k">Historical versions (bitemporal)</td><td class="n">~60 MB</td><td class="n">0.25&times;</td><td>Only amended provisions carry extra versions; most law is amended rarely.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Note the ratio: <strong>judgments are roughly twelve times the raw text of every statute in the country</strong>, and because they are chunked at paragraph level they generate about thirty times as many vectors. Any hosting decision that ignores them is a decision about the demo, not about the product.</p>
+
+    <h3><span class="mk">1.2</span>Two measured facts that shape the design</h3>
+    <ul>
+      <li><strong>Legal text compresses 4.17&times;</strong> under gzip &mdash; measured on 21.5 MB of core statutes. It is highly repetitive prose, which is good news for the offline pack and for object storage, and only partly good news for Postgres, where compression applies to values above the TOAST threshold and most provisions sit just under it.</li>
+      <li><strong>The average top-level section is ~1.9 KB of text</strong>, about 480 tokens. That is almost exactly one embedding chunk, which is why chunking at section level rather than at fixed token windows is both cheaper and more faithful to the citation model.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 2 ============ -->
+<section>
+  <div class="rail"><span class="num">&sect;2</span><span class="tag">Storage<br>model</span></div>
+  <div class="body">
+    <h2>Where the bytes go</h2>
+    <p class="lede">Raw text is the smallest part of a searchable corpus. Indexes, the provision tree, and vectors together outweigh it roughly three to one &mdash; which is why &ldquo;243 MB of law&rdquo; and &ldquo;a 500 MB database&rdquo; do not mean what they appear to mean.</p>
+
+    <h4>Assumptions, stated so they can be argued with</h4>
+    <pre>tree expansion      <b>3.2&times;</b>   sections &rarr; provision nodes (chapters, subsections, clauses, provisos)
+chunks per section  <b>1.4&times;</b>   section-level chunking, long sections split at ~400 tokens
+provision row       <b>210 B</b>   ids, ltree path, kind, label, heading, ordinal, tuple overhead
+index overhead      <b>200 B</b>   per node: 3 btree + 1 GiST on ltree
+text stored         <b>0.72&times;</b>  blended TOAST/lz4 &mdash; only values over ~2 KB compress
+FTS GIN             <b>0.55&times;</b>  index on the expression; the tsvector column is <u>not</u> stored
+chunk row           <b>90 B</b>    offsets into provision text, <u>not</u> a second copy of the text
+vector, binary      <b>128 B</b>   pgvector <u>bit(1024)</u>, HNSW index multiplier 2.5&times;
+vector, halfvec     <b>768 B</b>   pgvector <u>halfvec(384)</u> fp16, HNSW multiplier 2.4&times;
+system headroom     <b>1.25&times;</b>  catalogs, bloat, WAL, autovacuum slack</pre>
+
+    <div class="scroll">
+      <table>
+        <caption>All figures in MB. Scenario 4 differs from 3 only in vector precision. &ldquo;Users&rdquo; covers accounts, sessions, saved matters and the answer audit log at pilot scale.</caption>
+        <thead><tr><th>Component</th><th class="n">1 Core<br>~150 acts</th><th class="n">2 Federal<br>1,030 acts</th><th class="n">3 All statutes<br>binary vec</th><th class="n">4 All statutes<br>halfvec 384</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Provision rows</td><td class="n">6.7</td><td class="n">26.5</td><td class="n">76.0</td><td class="n">76.0</td></tr>
+          <tr><td class="k">Provision indexes</td><td class="n">6.4</td><td class="n">25.3</td><td class="n">72.4</td><td class="n">72.4</td></tr>
+          <tr><td class="k">Version rows</td><td class="n">1.6</td><td class="n">6.4</td><td class="n">18.2</td><td class="n">18.2</td></tr>
+          <tr><td class="k">Statutory text stored</td><td class="n">11.5</td><td class="n">41.8</td><td class="n">158.4</td><td class="n">158.4</td></tr>
+          <tr><td class="k">Full-text GIN index</td><td class="n">8.8</td><td class="n">31.9</td><td class="n">121.0</td><td class="n">121.0</td></tr>
+          <tr><td class="k">Chunk rows</td><td class="n">1.3</td><td class="n">5.0</td><td class="n">14.3</td><td class="n">14.3</td></tr>
+          <tr><td class="k">Vectors + HNSW</td><td class="n">4.5</td><td class="n">17.7</td><td class="n">50.7</td><td class="n">292.0</td></tr>
+          <tr><td class="k">Cross-reference edges</td><td class="n">4.8</td><td class="n">19.0</td><td class="n">54.3</td><td class="n">54.3</td></tr>
+          <tr><td class="k">Glossary, procedures, tables</td><td class="n">2.0</td><td class="n">5.0</td><td class="n">5.0</td><td class="n">5.0</td></tr>
+          <tr><td class="k">Users, sessions, audit</td><td class="n">15.0</td><td class="n">20.0</td><td class="n">25.0</td><td class="n">25.0</td></tr>
+        </tbody>
+        <tfoot>
+          <tr><td>Total with 1.25&times; system headroom</td><td class="n">78</td><td class="n">248</td><td class="n">744</td><td class="n">1,046</td></tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <div class="note blue">
+      <h4>Two modelling choices that save about 350 MB</h4>
+      <p><strong>Chunks store offsets, not text.</strong> A chunk row carries <code>(provision_version_id, char_start, char_end)</code> and derives its text on read. Storing chunk text separately would duplicate the entire corpus &mdash; about 158 MB at full scale &mdash; for no benefit, since the provision text is already indexed and served.</p>
+      <p style="margin-top:.7rem"><strong>The tsvector column is not materialised.</strong> Indexing the expression rather than storing a generated column halves the full-text cost. It is slightly slower to build and identical to query.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ 3 ============ -->
+<section>
+  <div class="rail"><span class="num">&sect;3</span><span class="tag">Does it<br>fit?</span></div>
+  <div class="body">
+    <h2>The free-tier verdict</h2>
+    <p class="lede">Short answer: <strong>federal statutes fit comfortably, all five jurisdictions do not, and case law is not close.</strong> The long answer is the chart, and the shape of it is what should drive the plan.</p>
+
+<figure>
+  <span class="fignum">Figure 1 &mdash; Database size by corpus scope, against free-tier ceilings</span>
+<svg class="ch dg" viewBox="0 0 940 306" role="img" aria-label="Horizontal bar chart of estimated database size by corpus scope. A core corpus of about 150 instruments needs 78 megabytes; federal statutes need 248; all statutes with binary vectors need 744; all statutes with half-precision 384-dimension vectors need 1046. Dashed threshold lines mark the 500 megabyte Supabase and Neon free ceiling and the 1 gigabyte Aiven free ceiling. Adding case law reaches 9.9 gigabytes, far off this scale.">
+  <g class="grid">
+    <line x1="210" y1="40" x2="210" y2="232"/>
+    <line x1="323" y1="40" x2="323" y2="232"/>
+    <line x1="437" y1="40" x2="437" y2="232"/>
+    <line x1="550" y1="40" x2="550" y2="232"/>
+    <line x1="663" y1="40" x2="663" y2="232"/>
+    <line x1="777" y1="40" x2="777" y2="232"/>
+    <line x1="890" y1="40" x2="890" y2="232"/>
+  </g>
+
+  <g class="bar">
+    <path d="M210,56 L250,56 Q254,56 254,60 L254,78 Q254,82 250,82 L210,82 Z"><title>Core corpus, ~150 instruments — 78 MB</title></path>
+    <path d="M210,104 L346,104 Q350,104 350,108 L350,126 Q350,130 346,130 L210,130 Z"><title>Federal statutes, 1,030 acts — 248 MB</title></path>
+    <path d="M210,152 L628,152 Q632,152 632,156 L632,174 Q632,178 628,178 L210,178 Z"><title>All statutes, 4,710 documents, binary vectors — 744 MB</title></path>
+    <path d="M210,200 L799,200 Q803,200 803,204 L803,222 Q803,226 799,226 L210,226 Z"><title>All statutes, halfvec(384) vectors — 1,046 MB</title></path>
+  </g>
+
+  <g class="lbl" text-anchor="end">
+    <text x="200" y="66">1 &nbsp;Core &mdash; ~150 acts</text>
+    <text x="200" y="114">2 &nbsp;Federal &mdash; 1,030 acts</text>
+    <text x="200" y="162">3 &nbsp;All statutes &middot; binary</text>
+    <text x="200" y="210">4 &nbsp;All statutes &middot; halfvec</text>
+  </g>
+  <g class="lbl tm" text-anchor="end">
+    <text x="200" y="78">10k sections</text>
+    <text x="200" y="126">39k sections</text>
+    <text x="200" y="174">113k sections</text>
+    <text x="200" y="222">113k sections</text>
+  </g>
+  <g class="val">
+    <text x="264" y="74">78 MB</text>
+    <text x="360" y="122">248 MB</text>
+    <text x="642" y="170">744 MB</text>
+    <text x="813" y="218">1,046 MB</text>
+  </g>
+
+  <line class="thr" x1="493" y1="34" x2="493" y2="238"/>
+  <line class="thr" x1="777" y1="34" x2="777" y2="238"/>
+  <text class="thrlbl" x="489" y="26" text-anchor="end">Supabase &middot; Neon free &nbsp;500 MB</text>
+  <text class="thrlbl" x="781" y="26">Aiven free &nbsp;1 GB</text>
+
+  <line class="axis" x1="210" y1="232" x2="890" y2="232"/>
+  <g class="tick" text-anchor="middle">
+    <text x="210" y="248">0</text><text x="323" y="248">200</text><text x="437" y="248">400</text>
+    <text x="550" y="248">600</text><text x="663" y="248">800</text><text x="777" y="248">1000</text>
+    <text x="890" y="248">1200</text>
+  </g>
+  <text class="tick" x="890" y="262" text-anchor="end">megabytes of database, including indexes and system headroom</text>
+
+  <line class="sep" x1="20" y1="274" x2="920" y2="274"/>
+  <text class="ta" x="20" y="292" font-size="10.5">5 &nbsp;All statutes + case law (120,000 judgments, 4.8M paragraphs) &nbsp;&mdash;&nbsp; 9.9 GB &nbsp;&middot;&nbsp; eight times beyond the right edge of this chart</text>
+</svg>
+<figcaption><b>The two dashed lines are the whole decision.</b> Scope 2 clears the 500 MB ceiling with headroom to spare; scope 3 needs binary quantisation just to reach 744 MB and still misses it; scope 4 shows what half-precision vectors alone cost. Scope 5 is not drawn because it cannot be &mdash; case law is an order of magnitude past every free tier, which is the fact that should shape the plan rather than the fact that scope 2 happens to fit.</figcaption>
+</figure>
+
+    <h3><span class="mk">3.1</span>Host by host</h3>
+    <div class="scroll">
+      <table>
+        <caption>Free-tier limits change without notice &mdash; verify before committing. The sizing model in &sect;2 is what carries over regardless of which row you pick.</caption>
+        <thead><tr><th>Host</th><th class="n">Free DB</th><th>Largest scope that fits</th><th>What you give up</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Supabase free</td><td class="n">500 MB</td><td><span class="chip c-have">Scope 2</span> federal statutes, 248 MB, with 250 MB spare</td><td>No <code>pg_search</code>, so lexical falls back to <code>tsvector</code>. Project pauses after about a week idle. Blob storage is 1 GB &mdash; too small for the 1.86 GB of PDFs.</td></tr>
+          <tr><td class="k">Neon free</td><td class="n">~500 MB</td><td><span class="chip c-have">Scope 2</span> federal statutes</td><td>Same extension limits. Scale-to-zero adds cold starts; database branching is genuinely useful for corpus experiments.</td></tr>
+          <tr><td class="k">Aiven free Postgres</td><td class="n">1 GB</td><td><span class="chip c-have">Scope 3</span> all statutes with binary vectors, 744 MB</td><td>Single node, no backups on the free plan, restricted extensions. Tight headroom once the audit log grows.</td></tr>
+          <tr><td class="k">Turso &middot; libSQL</td><td class="n">multi-GB</td><td><span class="chip c-part">Scope 3+</span></td><td>SQLite, so <strong>no <code>EXCLUDE</code> constraint</strong> &mdash; the bitemporal integrity behind INV-5 drops from database-enforced to application-enforced. No <code>ltree</code>. Tempting because it matches the mobile pack; rejected for that one reason.</td></tr>
+          <tr><td class="k">Oracle Cloud Always Free</td><td class="n">~200 GB</td><td><span class="chip c-have">Scope 5</span> everything, including case law</td><td>You operate it. Ampere capacity is often unavailable in popular regions and idle accounts get reclaimed. By far the largest genuinely free option, and the only free path that runs <code>pg_search</code>.</td></tr>
+          <tr><td class="k">Self-hosted VPS</td><td class="n">80&ndash;160 GB</td><td><span class="chip c-have">Scope 5</span> everything</td><td>&euro;25/month and an operations burden that is real but bounded. Full extension control.</td></tr>
+          <tr><td class="k">Supabase Pro</td><td class="n">8 GB incl.</td><td><span class="chip c-part">Scope 5</span> at the edge</td><td>$25/month plus $0.125 per GB beyond 8. Still no <code>pg_search</code>.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note">
+      <h4>Three free-tier facts that bite before storage does</h4>
+      <ul>
+        <li><strong>The PDFs do not fit anywhere free except R2.</strong> 1,857 MB of source documents against a 1 GB Supabase Storage allowance. Cloudflare R2 gives 10 GB with zero egress fees, so blobs go to R2 regardless of which database you choose. That decision is independent and already made.</li>
+        <li><strong>Idle pausing breaks demos.</strong> A Supabase free project sleeps after roughly a week of inactivity, which is exactly the cadence of an academic supervisor checking in. Budget for a keep-alive ping or accept a cold first request.</li>
+        <li><strong>No managed host permits ParadeDB.</strong> Every managed row above loses real BM25. That is why <code>ILexicalSearch</code> exists in document 01 &mdash; the fallback is a <code>tsvector</code> implementation whose ranking delta gets measured on the golden set rather than assumed away.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4 ============ -->
+<section>
+  <div class="rail"><span class="num">&sect;4</span><span class="tag">The<br>unlock</span></div>
+  <div class="body">
+    <h2>Binary vectors cost us almost nothing</h2>
+    <p class="lede">Vectors are the component that decides whether a corpus fits. At full precision they are the largest single line in the model; quantised to bits they are the smallest. The reason we can take that trade without paying for it is already in the architecture.</p>
+
+<figure>
+  <span class="fignum">Figure 2 &mdash; Why quantisation is free in this pipeline</span>
+<svg class="dg" viewBox="0 0 940 342" role="img" aria-label="Diagram showing the retrieval pipeline: a chunk is embedded at full precision, the vector is quantised to bits and stored in an HNSW index, approximate nearest neighbour search over-fetches ten times the needed candidates, and the cross-encoder reranker then scores those candidates by reading the provision text rather than any vector. A comparison strip shows storage for 158,000 chunks at full precision, half precision and binary.">
+  <g class="bx">
+    <rect x="20"  y="56" width="150" height="54" rx="3"/>
+    <rect x="390" y="56" width="150" height="54" rx="3"/>
+    <rect x="570" y="56" width="150" height="54" rx="3"/>
+  </g>
+  <rect class="accf" x="200" y="56" width="160" height="54" rx="3"/>
+  <rect class="accf" x="750" y="56" width="170" height="54" rx="3"/>
+  <g class="th" font-size="10">
+    <text x="30" y="76">embed chunk</text>
+    <text x="400" y="76">HNSW on bits</text>
+    <text x="580" y="76">over-fetch 10&times;</text>
+  </g>
+  <text class="ta" x="210" y="76" font-size="10">quantise &rarr; bit(1024)</text>
+  <text class="ta" x="760" y="76" font-size="10">cross-encoder rerank</text>
+  <g class="tm">
+    <text x="30" y="92">1024-dim float,</text><text x="30" y="104">server-side, once</text>
+    <text x="210" y="92">1 bit per dimension</text><text x="210" y="104">128 B, 32&times; smaller</text>
+    <text x="400" y="92">hamming distance,</text><text x="400" y="104">index 2.5&times; the data</text>
+    <text x="580" y="92">ask for 500 to keep</text><text x="580" y="104">the true top 50</text>
+    <text x="760" y="92">scores (query, provision)</text><text x="760" y="104">by reading <tspan class="ta">the text</tspan></text>
+  </g>
+  <g class="ln" marker-end="url(#arw)">
+    <line x1="170" y1="83" x2="196" y2="83"/>
+    <line x1="360" y1="83" x2="386" y2="83"/>
+    <line x1="540" y1="83" x2="566" y2="83"/>
+    <line x1="720" y1="83" x2="746" y2="83"/>
+  </g>
+
+  <path class="lnA" d="M835,110 L835,140 L470,140" marker-end="url(#arwA)"/>
+  <text class="ta" x="200" y="136" font-size="10">precision is recovered here, from text &mdash; never from the vector</text>
+  <text class="tm" x="200" y="156">Stage 1 only has to preserve <tspan class="th">recall</tspan>. Binary quantisation typically holds recall@100 within a</text>
+  <text class="tm" x="200" y="170">few points at 32&times; compression when you over-fetch, and every surviving candidate is then</text>
+  <text class="tm" x="200" y="184">rescored by a model that reads the provision, not its embedding. A pipeline without a reranker</text>
+  <text class="tm" x="200" y="198">could not make this trade; ours was already built with one as the gate.</text>
+
+  <line class="sep" x1="20" y1="222" x2="920" y2="222"/>
+  <text class="th" x="20" y="242" font-size="10.5">Storage for 158,000 chunks, vectors plus HNSW index</text>
+  <g class="bar" fill="var(--indigo)">
+    <path d="M210,256 L806,256 Q810,256 810,260 L810,272 Q810,276 806,276 L210,276 Z"><title>vector(1024) float32 — 1,577 MB</title></path>
+    <path d="M210,286 L317,286 Q321,286 321,290 L321,302 Q321,306 317,306 L210,306 Z"><title>halfvec(384) fp16 — 292 MB</title></path>
+    <path d="M210,316 L225,316 Q229,316 229,320 L229,332 Q229,336 225,336 L210,336 Z"><title>bit(1024) binary — 51 MB</title></path>
+  </g>
+  <g class="lbl" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="10.5">
+    <text x="200" y="270">vector(1024) f32</text>
+    <text x="200" y="300">halfvec(384) fp16</text>
+    <text x="200" y="330">bit(1024) binary</text>
+  </g>
+  <g class="val" font-family="IBM Plex Mono, monospace" font-size="10.5" font-weight="600">
+    <text x="820" y="270">1,577 MB</text>
+    <text x="331" y="300">292 MB</text>
+    <text x="239" y="330">51 MB</text>
+  </g>
+</svg>
+<figcaption><b>Thirty-one times smaller than full precision, and the quality loss lands in the one stage that can absorb it.</b> This is the difference between all five jurisdictions costing 1,046 MB and costing 744 MB &mdash; and at judgment scale, between 7.7 GB of vectors and 1.5 GB. The decision is only safe because the cross-encoder was already a required stage: it re-reads the provision text, so a slightly noisier candidate list changes what it is handed, not what it concludes.</figcaption>
+</figure>
+
+    <p><strong>The measurement that must accompany this.</strong> Binary quantisation is a recall trade, and recall is measurable. Before it ships, run the golden set at full precision, at <code>halfvec(384)</code> and at <code>bit(1024)</code>, and report Recall@50 and end-to-end NDCG@10 for each. If binary costs more than two points of NDCG after reranking, fall back to <code>halfvec(384)</code> and accept the smaller corpus scope. That ablation belongs in the thesis regardless of the outcome.</p>
+  </div>
+</section>
+
+
+<!-- ============ 5 ============ -->
+<section>
+  <div class="rail"><span class="num">&sect;5</span><span class="tag">Hosting<br>ladder</span></div>
+  <div class="body">
+    <h2>Four stages, one schema</h2>
+    <p class="lede">You asked whether to build locally or on a free tier. The answer is both, in that order &mdash; and the reason it is safe to plan it that way is that corpus scope is a deployment parameter, not a schema decision. The same migrations run at every rung.</p>
+
+<figure>
+  <span class="fignum">Figure 3 &mdash; Hosting ladder</span>
+<svg class="dg" viewBox="0 0 940 402" role="img" aria-label="A four-stage hosting ladder ascending left to right. Stage zero is local Docker during build with the full corpus and full extensions. Stage one is a managed free tier hosting federal statutes for the first public demo. Stage two is a self-hosted node carrying all statutes and case law for the pilot. Stage three scales the same node vertically then adds read replicas. Each stage lists what fits, the cost, and what is given up.">
+  <g class="bx">
+    <rect x="20"  y="282" width="204" height="100" rx="4"/>
+    <rect x="250" y="214" width="204" height="100" rx="4"/>
+    <rect x="710" y="78"  width="204" height="100" rx="4"/>
+  </g>
+  <rect class="accf" x="480" y="146" width="204" height="100" rx="4"/>
+
+  <g class="ta" font-size="9.5">
+    <text x="32" y="300">STAGE 0 &middot; now &rarr; week 12</text>
+    <text x="262" y="232">STAGE 1 &middot; first demo</text>
+    <text x="492" y="164">STAGE 2 &middot; pilot</text>
+    <text x="722" y="96">STAGE 3 &middot; scale</text>
+  </g>
+  <g class="th" font-size="11">
+    <text x="32" y="318">Local Docker</text>
+    <text x="262" y="250">Managed free tier</text>
+    <text x="492" y="182">Self-hosted node</text>
+    <text x="722" y="114">Same node, bigger</text>
+  </g>
+  <g class="tm">
+    <text x="32" y="336">Postgres 17 + pgvector +</text>
+    <text x="32" y="348">pg_search + ltree</text>
+    <text x="32" y="364">full corpus &middot; full extensions</text>
+    <text x="32" y="376">cost 0 &middot; fastest iteration</text>
+
+    <text x="262" y="268">Supabase or Neon free</text>
+    <text x="262" y="280">federal statutes, 248 MB</text>
+    <text x="262" y="296">gives you hosted auth</text>
+    <text x="262" y="308">costs you real BM25</text>
+
+    <text x="492" y="200">Oracle Always Free, else</text>
+    <text x="492" y="212">Hetzner CCX23 at &euro;25</text>
+    <text x="492" y="228">all statutes + case law</text>
+    <text x="492" y="240">pg_search back &middot; no caps</text>
+
+    <text x="722" y="132">vertical to 64 GB RAM,</text>
+    <text x="722" y="144">then read replicas</text>
+    <text x="722" y="160">partition judgments by court</text>
+    <text x="722" y="172">and year when it hurts</text>
+  </g>
+
+  <g class="ln" marker-end="url(#arw)">
+    <line x1="224" y1="300" x2="246" y2="278"/>
+    <line x1="454" y1="232" x2="476" y2="210"/>
+    <line x1="684" y1="164" x2="706" y2="142"/>
+  </g>
+  <g class="tm">
+    <text x="200" y="266">publish subset</text>
+    <text x="430" y="198">restore + widen scope</text>
+    <text x="660" y="130">resize</text>
+  </g>
+
+  <path class="lnA" d="M8,376 L8,90" marker-end="url(#arwA)"/>
+  <text class="ta" x="4" y="234" transform="rotate(-90 4 234)" text-anchor="middle">capacity &amp; cost &#8593;</text>
+
+  <line class="sep" x1="20" y1="42" x2="920" y2="42"/>
+  <text class="th" x="20" y="26" font-size="10.5">What actually changes between rungs</text>
+  <g class="tm">
+    <text x="20" y="60">&#8226; a connection string</text>
+    <text x="20" y="76">&#8226; which <tspan class="th">ILexicalSearch</tspan> implementation is bound &mdash; <tspan class="th">pg_search</tspan> BM25 or the <tspan class="th">tsvector</tspan> fallback</text>
+    <text x="20" y="92">&#8226; the <tspan class="th">published scope</tspan>: which instruments the gate runner promotes to the live index</text>
+    <text x="20" y="108">Not the schema, not the migrations, not a line of application code. Blobs stay on R2 at every rung.</text>
+  </g>
+</svg>
+<figcaption><b>Stage 1 is a legitimate stage and a bad destination.</b> A managed free tier is worth using for the first hosted demo because it gives you auth and a URL for nothing, and 248 MB of federal statutes is a genuinely impressive demo. It stops being viable the moment judgments arrive, which is also the moment the product becomes defensible &mdash; so plan the move rather than discovering it. The accented rung is where the product actually lives.</figcaption>
+</figure>
+
+    <h3><span class="mk">5.1</span>Stage-by-stage decisions</h3>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Stage</th><th>Do</th><th>Do not</th></tr></thead>
+        <tbody>
+          <tr><td class="k">0 &mdash; Local</td><td>Build the entire ingestion pipeline, all seven QA gates, the curation console, and retrieval against the <em>full</em> 4,710-document corpus. Run <code>pg_search</code> so the BM25 baseline is real. Back up to R2 from day one.</td><td>Do not develop against a 500 MB ceiling. Ingestion is the phase that most needs headroom, and a paused free project mid-run wastes a day.</td></tr>
+          <tr><td class="k">1 &mdash; Free tier</td><td>Publish federal statutes only. Bind the <code>tsvector</code> implementation and <strong>measure the ranking delta against your local <code>pg_search</code> baseline</strong> &mdash; that number is a thesis result. Use the hosted auth.</td><td>Do not try to squeeze all five jurisdictions in. Scope 3 at 744 MB does not fit, and the contortions needed to force it would damage the schema.</td></tr>
+          <tr><td class="k">2 &mdash; Self-hosted</td><td>Move when judgments land, or when a second jurisdiction does. Restore from the R2 backup, widen the published scope, rebind <code>pg_search</code>. Run the restore drill before you need it.</td><td>Do not conflate this with needing Kubernetes. One node, Docker Compose, pgBackRest to R2.</td></tr>
+          <tr><td class="k">3 &mdash; Scale</td><td>Vertical first. Partition <code>judgment_paragraph</code> by court and year when the index no longer fits in memory.</td><td>Do not shard early. At 10 GB a single node is comfortable; the corpus is read-mostly and the write path is a nightly batch.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3><span class="mk">5.2</span>Supabase Pro or your own node, at full scale</h3>
+    <p>Once every feature is on and every corpus is loaded &mdash; statutes, judgments, the citation graph, bitemporal versions, RAG end to end &mdash; the comparison stops being about the database and becomes about the whole system. The decisive fact is one most comparisons miss.</p>
+
+<figure>
+  <span class="fignum">Figure 4 &mdash; Managed Postgres does not remove a server; it adds one</span>
+<svg class="dg" viewBox="0 0 940 434" role="img" aria-label="Two deployment topologies compared. On the left, Supabase Pro hosts only Postgres, so a second host is still required for the API, inference workers, ingest workers, LaTeX rendering and monitoring, with every database query crossing the public internet. On the right, a single self-hosted node runs all of those alongside Postgres with pg_search, pgvector and ltree, with database access over a loopback socket.">
+  <text class="ta" x="20" y="26" font-size="10.5">SUPABASE PRO PATH &mdash; two bills, two hosts, one network hop per query</text>
+  <line class="sep" x1="466" y1="14" x2="466" y2="424"/>
+
+  <g class="bx"><rect x="20" y="42" width="200" height="150" rx="4"/></g>
+  <text class="th" x="32" y="62" font-size="10.5">Supabase Pro</text>
+  <g class="tm">
+    <text x="32" y="80">Postgres 17 + pgvector</text>
+    <text x="32" y="94">GoTrue auth &middot; PostgREST</text>
+    <text x="32" y="108">Storage (1 GB &mdash; unused,</text>
+    <text x="32" y="120">blobs are on R2 anyway)</text>
+  </g>
+  <text class="ta" x="32" y="146" font-size="9.5">no pg_search &rarr; no BM25</text>
+  <text class="ta" x="32" y="160" font-size="9.5">no custom extensions, ever</text>
+  <text class="ta" x="32" y="174" font-size="9.5">no colocated worker processes</text>
+
+  <g class="bx"><rect x="244" y="42" width="200" height="222" rx="4"/></g>
+  <text class="th" x="256" y="62" font-size="10.5">Second host &mdash; still needed</text>
+  <g class="tm">
+    <text x="256" y="82">FastAPI</text>
+    <text x="256" y="98">inference workers</text>
+    <text x="256" y="110">embed &middot; rerank &middot; entail</text>
+    <text x="256" y="126">ingest workers</text>
+    <text x="256" y="142">LaTeX render sandbox</text>
+    <text x="256" y="158">Caddy &middot; Grafana &middot; cron</text>
+  </g>
+  <text class="tm" x="256" y="184">None of this can run inside</text>
+  <text class="tm" x="256" y="196">Supabase. Edge Functions are</text>
+  <text class="tm" x="256" y="208">Deno, not an ONNX cross-encoder</text>
+  <text class="tm" x="256" y="220">host, and there is no filesystem</text>
+  <text class="tm" x="256" y="232">for an ingestion staging area.</text>
+  <text class="ta" x="256" y="252" font-size="9.5">&euro;25/mo on its own</text>
+
+  <path class="lnA" d="M244,120 L226,120" marker-end="url(#arwA)"/>
+  <path class="lnA" d="M226,134 L244,134" marker-end="url(#arwA)"/>
+  <text class="ta" x="20" y="212" font-size="9.5">every query</text>
+  <text class="ta" x="20" y="226" font-size="9.5">crosses the</text>
+  <text class="ta" x="20" y="240" font-size="9.5">public internet</text>
+
+  <g class="ext"><rect x="20" y="284" width="424" height="44" rx="4"/></g>
+  <text class="th" x="32" y="304" font-size="10">Cloudflare R2 &mdash; source PDFs, generated documents, offline packs</text>
+  <text class="tm" x="32" y="320">required in both topologies; 1.86 GB of PDFs exceeds every managed blob allowance</text>
+
+  <line class="sep" x1="20" y1="346" x2="446" y2="346"/>
+  <g class="tm">
+    <text x="20" y="366">Pro base $25 &middot; 16 GB compute add-on ~$210 &middot; storage beyond 8 GB</text>
+    <text x="20" y="380">&middot; point-in-time recovery add-on ~$100 &middot; second host &euro;25</text>
+  </g>
+  <text class="ta" x="20" y="404" font-size="12">&asymp; $360&ndash;400 / month</text>
+  <text class="tm" x="20" y="420">and still no BM25</text>
+
+  <text class="ta" x="490" y="26" font-size="10.5">OWN NODE &mdash; one bill, one host, loopback to the database</text>
+  <rect class="accf" x="490" y="42" width="424" height="286" rx="4"/>
+  <text class="ta" x="502" y="62" font-size="10.5">Hetzner CCX33 &mdash; 8 dedicated vCPU / 32 GB / 240 GB NVMe</text>
+  <g class="bx">
+    <rect x="502" y="76"  width="200" height="72" rx="3"/>
+    <rect x="714" y="76"  width="188" height="72" rx="3"/>
+    <rect x="502" y="160" width="200" height="72" rx="3"/>
+    <rect x="714" y="160" width="188" height="72" rx="3"/>
+    <rect x="502" y="244" width="400" height="72" rx="3"/>
+  </g>
+  <g class="th" font-size="10">
+    <text x="512" y="94">Postgres 17</text>
+    <text x="724" y="94">FastAPI</text>
+    <text x="512" y="178">Inference workers</text>
+    <text x="724" y="178">Ingest workers</text>
+    <text x="512" y="262">Supporting</text>
+  </g>
+  <g class="tm">
+    <text x="512" y="110">pgvector &middot; <tspan class="ta">pg_search</tspan> &middot; ltree</text>
+    <text x="512" y="124">pgBackRest &rarr; R2, PITR free</text>
+    <text x="512" y="138">shared_buffers, work_mem tuned</text>
+    <text x="724" y="110">async &middot; SSE</text>
+    <text x="724" y="124">talks to Postgres over</text>
+    <text x="724" y="138">a <tspan class="ta">unix socket</tspan> &mdash; no RTT</text>
+    <text x="512" y="194">ONNX int8 &mdash; embed,</text>
+    <text x="512" y="208">rerank, entailment</text>
+    <text x="512" y="222">colocated with the API</text>
+    <text x="724" y="194">scrape &middot; parse &middot; gate</text>
+    <text x="724" y="208">publish &middot; batch answer</text>
+    <text x="724" y="222">generation</text>
+    <text x="512" y="278">LaTeX sandbox &middot; Caddy &middot; Grafana / Loki / Tempo &middot; cron &middot; staging filesystem</text>
+    <text x="512" y="294">optionally the self-hosted Supabase stack &mdash; Studio, GoTrue, PostgREST &mdash; on a</text>
+    <text x="512" y="308">custom Postgres image that keeps pg_search. Same developer surface, no lock-out.</text>
+  </g>
+  <line class="sep" x1="490" y1="346" x2="916" y2="346"/>
+  <g class="tm">
+    <text x="490" y="366">CCX33 &euro;65 &middot; R2 ~$1 &middot; backups included &middot; no egress billing</text>
+    <text x="490" y="380">one machine to patch, monitor and restore-drill</text>
+  </g>
+  <text class="ta" x="490" y="404" font-size="12">&asymp; $72 / month</text>
+  <text class="tm" x="490" y="420">with BM25, tuning control and no network hop</text>
+</svg>
+<figcaption><b>Supabase Pro hosts the database, not the system.</b> Inference workers, ingest workers, the LaTeX sandbox and the staging filesystem all still need somewhere to live, so the managed path is two hosts and two bills rather than one of each &mdash; and it puts the public internet between the API and every query it makes. At full scale the own-node path is roughly five times cheaper and strictly more capable. Prices are as I understand them and change often; verify before committing.</figcaption>
+</figure>
+
+    <div class="scroll">
+      <table>
+        <caption>&ldquo;Every feature&rdquo; means the full architecture: BM25 plus dense retrieval, cross-encoder reranking, entailment verification, bitemporal law, the citation graph, the document factory and batch answer generation.</caption>
+        <thead><tr><th>Capability</th><th>Supabase Pro</th><th>Own node</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Real BM25 (<code>pg_search</code>)</td><td><span class="chip c-miss">No</span> permanently &mdash; <code>tsvector</code> only</td><td><span class="chip c-have">Yes</span></td></tr>
+          <tr><td class="k">pgvector HNSW, binary quantisation</td><td><span class="chip c-have">Yes</span></td><td><span class="chip c-have">Yes</span></td></tr>
+          <tr><td class="k"><code>ltree</code>, GiST exclusion, recursive CTEs</td><td><span class="chip c-have">Yes</span></td><td><span class="chip c-have">Yes</span></td></tr>
+          <tr><td class="k">Any future extension</td><td><span class="chip c-miss">No</span> &mdash; fixed allow-list</td><td><span class="chip c-have">Yes</span></td></tr>
+          <tr><td class="k">Colocated inference workers</td><td><span class="chip c-miss">No</span> &mdash; separate host required</td><td><span class="chip c-have">Yes</span> &mdash; and no network hop</td></tr>
+          <tr><td class="k">LaTeX render sandbox, staging filesystem</td><td><span class="chip c-miss">No</span></td><td><span class="chip c-have">Yes</span></td></tr>
+          <tr><td class="k">Postgres tuning (shared_buffers, work_mem, ef_search)</td><td><span class="chip c-part">Partial</span></td><td><span class="chip c-have">Full</span></td></tr>
+          <tr><td class="k">Point-in-time recovery</td><td><span class="chip c-part">Add-on</span> ~$100/mo</td><td><span class="chip c-have">Included</span> via pgBackRest to R2</td></tr>
+          <tr><td class="k">Managed upgrades, patching, on-call</td><td><span class="chip c-have">Theirs</span></td><td><span class="chip c-miss">Yours</span></td></tr>
+          <tr><td class="k">Hosted auth out of the box</td><td><span class="chip c-have">Yes</span></td><td><span class="chip c-part">Self-host GoTrue</span> or ~300 lines of phone OTP</td></tr>
+          <tr><td class="k">Shared dashboard for a distributed team</td><td><span class="chip c-have">Yes</span></td><td><span class="chip c-part">Self-host Studio</span> or pgAdmin</td></tr>
+          <tr><td class="k">Monthly cost at full scale</td><td class="n">~$360&ndash;400</td><td class="n">~$72</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note blue">
+      <h4>The recommendation, and the honest counterweight</h4>
+      <p><strong>Own node, running the self-hosted Supabase stack on top of it if you want that developer surface.</strong> A custom Postgres image gives you Studio, GoTrue and PostgREST <em>and</em> <code>pg_search</code> &mdash; the ergonomics without the lock-out, on the same &euro;65 box.</p>
+      <p style="margin-top:.7rem">Supabase Pro is still the right answer if nobody on the team is willing to be paged, if the FYP timeline cannot absorb learning pgBackRest and monitoring, or if you need a compliance posture you can point at rather than one you operate. Those are real reasons, and $300 a month is a defensible price for not being on call. They are just not architectural reasons &mdash; and the architecture should not be shaped around them, which is why <code>ILexicalSearch</code> exists.</p>
+    </div>
+
+    <h3><span class="mk">5.3</span>Building the whole thing locally first</h3>
+    <p>Yes, and it is the right sequence. A full-scale production database &mdash; every statute, every judgment, every embedding, every index &mdash; fits on a laptop, and the build is measured in hours rather than days.</p>
+
+    <div class="scroll">
+      <table>
+        <caption>Throughput figures for an 8-core laptop with an int8 ONNX encoder and eight parallel parse workers. GPU figures assume a rented consumer card at roughly $0.30/hour.</caption>
+        <thead><tr><th>Resource</th><th class="n">Statutes only</th><th class="n">Statutes + judgments</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Database on disk</td><td class="n">~750 MB</td><td class="n">~10 GB</td><td>From the model in &sect;2</td></tr>
+          <tr><td class="k">Source documents on disk</td><td class="n">1.9 GB</td><td class="n">~40 GB</td><td>Judgment sources dominate; keep them on an external drive if space is tight</td></tr>
+          <tr><td class="k">Free disk needed</td><td class="n">~15 GB</td><td class="n">~100 GB</td><td>Includes WAL, backups and staging</td></tr>
+          <tr><td class="k">RAM</td><td class="n">8 GB workable</td><td class="n">16 GB workable, 32 comfortable</td><td>The index working set is what wants memory, not the build</td></tr>
+          <tr><td class="k">PDF parse and segment</td><td class="n">~15 min</td><td class="n">~2 hours</td><td>8 workers; embarrassingly parallel and fully resumable</td></tr>
+          <tr><td class="k">Embedding</td><td class="n">~7 min</td><td class="n">~3.5 hours CPU</td><td>158k vs 4.8M chunks at ~400/sec. On a rented GPU, well under an hour for under a dollar</td></tr>
+          <tr><td class="k">HNSW index build</td><td class="n">~2 min</td><td class="n">~45 min</td><td>Binary vectors build fast; raise <code>maintenance_work_mem</code> first</td></tr>
+        </tbody>
+        <tfoot><tr><td>Full corpus, cold start to queryable</td><td class="n">under 30 min</td><td class="n">one overnight run</td><td></td></tr></tfoot>
+      </table>
+    </div>
+
+    <div class="note">
+      <h4>pgAdmin4 is a fine viewer and a terrible source of truth</h4>
+      <p>Use pgAdmin4, DBeaver or DataGrip to browse, query and inspect &mdash; all good. But if the schema exists only because someone clicked it into being in a local session, <strong>it cannot be reproduced on the server</strong>, and the move to production becomes a manual re-do with silent drift. Two rules make the local build genuinely portable:</p>
+      <ul style="margin-top:.7rem">
+        <li><strong>The schema is migrations in git.</strong> Alembic, sqitch, or numbered SQL files &mdash; the tool matters far less than the rule. Every index, extension, constraint and role is created by a migration that runs identically anywhere.</li>
+        <li><strong>The engine is a pinned Docker image.</strong> The same image runs on the laptop and on the server, so extension versions cannot diverge. Build it once from <code>postgres:17</code> plus pgvector, pg_search and ltree, and pin the digest.</li>
+      </ul>
+    </div>
+
+<figure>
+  <span class="fignum">Figure 5 &mdash; Local to production, and what each path costs</span>
+<svg class="dg" viewBox="0 0 940 372" role="img" aria-label="Diagram of the migration path. A laptop runs a pinned Docker Postgres image with migrations from git and the full corpus, backing up through pgBackRest to an object storage repository. Restoring to a self-hosted node with the identical image is an exact copy requiring no code change. Migrating to Supabase Pro requires dropping pg_search indexes, rebuilding them as tsvector, rewriting row-level security roles, and rebinding the lexical search implementation.">
+  <g class="bx"><rect x="20" y="112" width="230" height="150" rx="4"/></g>
+  <text class="th" x="32" y="132" font-size="10.5">Laptop</text>
+  <g class="tm">
+    <text x="32" y="150">docker compose up</text>
+    <text x="32" y="164">image: nzq/postgres:17@sha256&hellip;</text>
+    <text x="32" y="180">pgvector &middot; pg_search &middot; ltree</text>
+    <text x="32" y="200">migrations/ from git</text>
+    <text x="32" y="214">full corpus, all embeddings,</text>
+    <text x="32" y="228">all indexes, all gates passed</text>
+    <text x="32" y="248">pgAdmin4 attached for inspection</text>
+  </g>
+
+  <g class="ext"><rect x="300" y="146" width="180" height="82" rx="4"/></g>
+  <text class="th" x="312" y="166" font-size="10.5">R2 repository</text>
+  <g class="tm">
+    <text x="312" y="184">pgBackRest full + WAL</text>
+    <text x="312" y="198">the same tooling used</text>
+    <text x="312" y="212">for production backups</text>
+  </g>
+  <line class="ln" x1="250" y1="187" x2="296" y2="187" marker-end="url(#arw)"/>
+  <text class="tm" x="252" y="178">backup</text>
+
+  <rect class="accf" x="536" y="36" width="384" height="130" rx="4"/>
+  <text class="ta" x="548" y="56" font-size="10.5">&rarr; Own node &mdash; a restore, not a migration</text>
+  <g class="tm">
+    <text x="548" y="76">Identical image, identical migrations, identical extensions.</text>
+    <text x="548" y="92">pgBackRest restore, start, point DNS. Indexes come back with</text>
+    <text x="548" y="108">the data; nothing is rebuilt by hand and no code changes.</text>
+    <text x="548" y="128">Because it is the same procedure as a restore drill, you have</text>
+    <text x="548" y="144">already rehearsed it before you need it.</text>
+  </g>
+  <text class="ta" x="548" y="160" font-size="9.5">effort: about two hours &middot; risk: low</text>
+  <path class="lnA" d="M480,170 L516,110 L530,102" marker-end="url(#arwA)"/>
+
+  <g class="bx"><rect x="536" y="196" width="384" height="152" rx="4"/></g>
+  <text class="th" x="548" y="216" font-size="10.5">&rarr; Supabase Pro &mdash; a migration with a branch</text>
+  <g class="tm">
+    <text x="548" y="236">Schema and data transfer by pg_dump / pg_restore.</text>
+  </g>
+  <g class="ta" font-size="9.5">
+    <text x="548" y="256">&#8226; every pg_search index must be dropped and recreated as tsvector</text>
+    <text x="548" y="272">&#8226; RLS policies rewritten onto Supabase roles (anon / authenticated / service_role)</text>
+    <text x="548" y="288">&#8226; your users table reconciled with the managed auth schema</text>
+    <text x="548" y="304">&#8226; ILexicalSearch rebound, and the ranking delta re-measured</text>
+    <text x="548" y="320">&#8226; connection pooling behaviour differs (Supavisor)</text>
+  </g>
+  <text class="ta" x="548" y="340" font-size="9.5">effort: a day or two &middot; risk: moderate &middot; permanent capability loss</text>
+  <path class="ln" d="M480,204 L516,250 L530,258" marker-end="url(#arw)"/>
+
+  <text class="tm" x="20" y="300">The asymmetry is itself an argument. If you build the production database locally at full scale &mdash; which you should &mdash; then the</text>
+  <text class="tm" x="20" y="316">self-hosted target is a restore of something you already have, while the managed target is a rebuild of part of it. Neither is hard,</text>
+  <text class="tm" x="20" y="332">but only one of them is <tspan class="th">rehearsed every month by your own backup policy</tspan>.</text>
+</svg>
+<figcaption><b>Local to own-node is a restore; local to Supabase is a port.</b> Both are achievable, and the client, the API and every layer above <code>ILexicalSearch</code> are unaffected either way &mdash; that seam was put in exactly so this decision stays reversible. What is not reversible is building the schema by hand in a GUI, because then neither path works without a manual re-do.</figcaption>
+</figure>
+
+    <h4>Parity checklist before you move anywhere</h4>
+    <ul>
+      <li>Postgres major version pinned and identical &mdash; a restore across major versions needs a dump, not a physical copy.</li>
+      <li>Extension versions pinned in the image and asserted by a migration that fails loudly on mismatch.</li>
+      <li>Locale and collation identical. A different <code>lc_collate</code> silently changes index ordering and text comparison, and it is a genuinely nasty class of bug.</li>
+      <li>The golden-set evaluation runs green on the target before traffic moves. If NDCG@10 shifts, the lexical implementation changed and you now know by how much.</li>
+      <li>A restore drill completed on the target from the R2 repository, with the evaluation suite run against the restored copy.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 6 ============ -->
+<section>
+  <div class="rail"><span class="num">&sect;6</span><span class="tag">Offline<br>sizing</span></div>
+  <div class="body">
+    <h2>What fits in the phone</h2>
+    <p class="lede">Same measurement, applied to the device. The question there is not a free-tier ceiling but a data-cost and storage ceiling &mdash; and it lands on a base experience of roughly 135 MB installed, which is reasonable on the phones our users own.</p>
+
+    <div class="scroll">
+      <table>
+        <caption>Derived from the measured corpus. Download figures assume zstd on the SQLite file; the encoder in the semantic tier is already compressed and dominates that row.</caption>
+        <thead><tr><th>Tier</th><th>Contents</th><th class="n">Download</th><th class="n">On disk</th><th>Default?</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Application</td><td>Flutter binary, no pack bundled</td><td class="n">25 MB</td><td class="n">25 MB</td><td><span class="chip c-have">Yes</span></td></tr>
+          <tr><td class="k">Core pack</td><td>~150 key instruments &mdash; 16 MB statutory text, 10 MB Urdu explainers, FTS5 index, provision tree, glossary, procedures, statutory tables</td><td class="n">17 MB</td><td class="n">51 MB</td><td><span class="chip c-have">Yes</span></td></tr>
+          <tr><td class="k">Semantic tier</td><td>Quantised 384-dim encoder (~25 MB) plus 14k chunk vectors and their index</td><td class="n">27 MB</td><td class="n">32 MB</td><td><span class="chip c-part">Prompted</span></td></tr>
+          <tr><td class="k">Answer tier</td><td>~12k canonical questions with verified grounded answers, their embeddings and citations</td><td class="n">12 MB</td><td class="n">27 MB</td><td><span class="chip c-part">Prompted</span></td></tr>
+          <tr><td class="k">Federal complete</td><td>All 1,030 federal acts &mdash; 58 MB text</td><td class="n">55 MB</td><td class="n">165 MB</td><td><span class="chip c-miss">Opt-in</span></td></tr>
+          <tr><td class="k">Provincial</td><td>One province, per province</td><td class="n">~20 MB</td><td class="n">~60 MB</td><td><span class="chip c-miss">Opt-in</span></td></tr>
+          <tr><td class="k">All statutes</td><td>Everything measured in &sect;1 &mdash; 220 MB text</td><td class="n">~130 MB</td><td class="n">~400 MB</td><td><span class="chip c-miss">Wi-Fi only</span></td></tr>
+        </tbody>
+        <tfoot><tr><td>Base experience &mdash; app + core + semantic + answers</td><td></td><td class="n">56 MB</td><td class="n">135 MB</td><td></td></tr></tfoot>
+      </table>
+    </div>
+
+    <p>Two things worth noticing. First, <strong>the semantic tier is mostly the encoder, not the vectors</strong> &mdash; 25 MB of model against 7 MB of index &mdash; which is exactly why it is an optional tier rather than a default, and why the answer tier that depends on it is offered alongside it. Second, <strong>the answer tier is the cheapest capability in the whole product</strong>: 12 MB of download buys grounded, cited, pre-verified answers to the head of the query distribution, working with no network and no model on the device.</p>
+
+    <div class="note blue">
+      <h4>The offline quality ladder, stated honestly</h4>
+      <ul>
+        <li><strong>Statutory lookup and browse</strong> &mdash; identical to online. The pack is signed and authoritative.</li>
+        <li><strong>Lexical search</strong> &mdash; identical to online where the online host is also on <code>tsvector</code>; slightly weaker than a <code>pg_search</code> baseline.</li>
+        <li><strong>Semantic search</strong> &mdash; measurably weaker: 384-dim on device against 1024-dim on the server, with no cross-encoder. Labelled &ldquo;offline search&rdquo; in the UI.</li>
+        <li><strong>Grounded answers</strong> &mdash; identical to online for questions the answer tier covers, unavailable otherwise. Never approximated.</li>
+        <li><strong>Precedent, drafting, novel questions</strong> &mdash; unavailable, and the UI says so rather than degrading quietly.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7 ============ -->
+<section>
+  <div class="rail"><span class="num">&sect;7</span><span class="tag">Changes</span></div>
+  <div class="body">
+    <h2>What this changes in the architecture</h2>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Where</th><th>Change</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td class="id">01 &middot; ADR-1a</td><td class="k">Hosting becomes a four-stage ladder rather than a single choice, with the free tier explicitly scoped to federal statutes and explicitly temporary.</td><td><span class="chip c-new">Applied</span></td></tr>
+          <tr><td class="id">01 &middot; ADR-1d</td><td class="k">New: vectors are stored binary-quantised, <code>bit(1024)</code>, with recall recovered by over-fetch and precision by the existing cross-encoder. Carries a mandatory ablation before it ships.</td><td><span class="chip c-new">Applied</span></td></tr>
+          <tr><td class="id">01 &middot; ADR-1e</td><td class="k">New: published corpus scope is a deployment parameter. The gate runner promotes instruments to the live index by scope tag, so the same database serves a 248 MB demo and a 10 GB pilot.</td><td><span class="chip c-new">Applied</span></td></tr>
+          <tr><td class="id">01 &middot; L2</td><td class="k">Chunk rows store offsets into provision text, never a second copy. Blobs live on R2 at every hosting stage.</td><td><span class="chip c-new">Applied</span></td></tr>
+          <tr><td class="id">08 &middot; &sect;3.2</td><td class="k">Pack tier sizes replaced with the measured figures above; base experience is 56 MB download and 135 MB on disk.</td><td><span class="chip c-new">Applied</span></td></tr>
+          <tr><td class="id">01 &middot; ADR-1f</td><td class="k">New: at full scale the target is a single self-hosted node, optionally running the self-hosted Supabase stack on a custom Postgres image. Managed Postgres hosts the database but not the system, so it adds a second host rather than removing one.</td><td><span class="chip c-new">Applied</span></td></tr>
+          <tr><td class="id">01 &middot; ADR-1g</td><td class="k">New: the schema is migrations in git and the engine is a pinned Docker image, identical on the laptop and the server. Building the production database locally at full scale is the intended sequence.</td><td><span class="chip c-new">Applied</span></td></tr>
+          <tr><td class="id">03 &middot; pending</td><td class="k">Data &amp; Storage will carry the DDL, the two <code>ILexicalSearch</code> implementations with their benchmark, partitioning strategy for judgments, and the scope-tag publication mechanism.</td><td><span class="chip c-plain">Next</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3><span class="mk">7.1</span>Answering the question directly</h3>
+    <div class="scroll">
+      <table>
+        <tbody>
+          <tr><td class="k">How much space do the laws take?</td><td><strong>243 MB of raw text</strong> for the 4,710 documents on disk; 58 MB compressed; 1,857 MB as source PDFs. In a searchable Postgres with vectors and full-text indexes, <strong>744 MB</strong> with binary quantisation.</td></tr>
+          <tr><td class="k">Can Supabase free hold it?</td><td>Not all of it. It holds <strong>federal statutes comfortably</strong> &mdash; 248 MB against a 500 MB ceiling &mdash; with RAG fully built: vectors, full-text, provision tree, cross-references, users and audit. It cannot hold all five jurisdictions, and it is nowhere near case law.</td></tr>
+          <tr><td class="k">Is there a better free option?</td><td>For scope, <strong>Oracle Cloud Always Free</strong> &mdash; ~200 GB and your own Postgres with <code>pg_search</code>, at the cost of operating it and accepting capacity risk. For convenience, Supabase. Aiven&rsquo;s 1 GB fits all statutes if you want managed and complete.</td></tr>
+          <tr><td class="k">Should we build locally first?</td><td><strong>Yes.</strong> Ingest and gate the full corpus on a local Postgres with every extension available, then publish a scoped subset upward. Developing against a 500 MB ceiling would distort exactly the decisions that are hardest to reverse.</td></tr>
+          <tr><td class="k">Does the phone stay reasonable?</td><td><strong>135 MB installed</strong> for app, core statutes, semantic search and pre-verified offline answers. The full statutory corpus is a 400 MB opt-in that most users will never need.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+</div>

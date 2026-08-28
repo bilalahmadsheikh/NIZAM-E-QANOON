@@ -1,0 +1,2342 @@
+<title>Nizam-e-Qanoon Client Architecture</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Nastaliq+Urdu:wght@400&display=swap">
+
+<style>
+:root{
+  --paper:#F3F4F7; --surface:#FFFFFF; --surface-2:#EDEFF3; --surface-3:#E3E7EE;
+  --ink:#14171E; --ink-2:#4C5566; --ink-3:#7E879A;
+  --rule:#DCDFE7; --rule-2:#C6CBD6;
+  --indigo:#26397A; --indigo-soft:#E4E8F5;
+  --rubric:#9E3B2F; --rubric-soft:#F6E7E4;
+  --ok:#2C6349; --ok-soft:#E0EDE7;
+  --warn:#7E6114; --warn-soft:#F3EBD8;
+  --shadow:0 1px 2px rgba(20,23,30,.05), 0 8px 24px -12px rgba(20,23,30,.14);
+  --f-display:"Newsreader", Georgia, serif;
+  --f-body:"Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --f-urdu:"Noto Nastaliq Urdu", serif;
+  --measure:70ch; --rail:9.5rem;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0D0F14; --surface:#14171E; --surface-2:#1B1F28; --surface-3:#232935;
+    --ink:#E6E9EF; --ink-2:#A0A9BA; --ink-3:#6D7688;
+    --rule:#252A34; --rule-2:#333A47;
+    --indigo:#93A8E8; --indigo-soft:#1B2136;
+    --rubric:#D8867A; --rubric-soft:#2B1D1B;
+    --ok:#6FBF95; --ok-soft:#152520;
+    --warn:#D3AB5C; --warn-soft:#241E10;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 30px -14px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0D0F14; --surface:#14171E; --surface-2:#1B1F28; --surface-3:#232935;
+  --ink:#E6E9EF; --ink-2:#A0A9BA; --ink-3:#6D7688;
+  --rule:#252A34; --rule-2:#333A47;
+  --indigo:#93A8E8; --indigo-soft:#1B2136;
+  --rubric:#D8867A; --rubric-soft:#2B1D1B;
+  --ok:#6FBF95; --ok-soft:#152520;
+  --warn:#D3AB5C; --warn-soft:#241E10;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 30px -14px rgba(0,0,0,.7);
+}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);
+  font-size:16.5px;line-height:1.62;-webkit-font-smoothing:antialiased}
+.wrap{max-width:76rem;margin:0 auto;padding:0 1.5rem 8rem}
+
+.masthead{border-bottom:2px solid var(--ink);padding:3.5rem 0 1.25rem;margin-bottom:2rem}
+.kicker{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--rubric);margin:0 0 1rem}
+h1{font-family:var(--f-display);font-weight:500;font-size:clamp(2.4rem,5.8vw,3.9rem);
+  line-height:1.03;letter-spacing:-.021em;margin:0 0 .5rem;text-wrap:balance}
+.dek{font-family:var(--f-display);font-size:clamp(1.05rem,2.1vw,1.3rem);color:var(--ink-2);
+  max-width:56ch;margin:0 0 1.9rem;font-style:italic}
+.meta{display:flex;flex-wrap:wrap;gap:.5rem 2.25rem;font-family:var(--f-mono);font-size:.7rem;
+  letter-spacing:.05em;color:var(--ink-3);border-top:1px solid var(--rule);padding-top:.9rem}
+.meta b{color:var(--ink-2);font-weight:500}
+
+section{display:grid;grid-template-columns:var(--rail) minmax(0,1fr);gap:0 2.5rem;
+  padding-top:3.4rem;border-top:1px solid var(--rule);margin-top:3.4rem}
+section.first{border-top:none;margin-top:0}
+.rail{position:sticky;top:1.5rem;align-self:start;padding-top:.4rem}
+.rail .num{font-family:var(--f-mono);font-size:1.05rem;font-weight:600;color:var(--rubric);letter-spacing:-.02em;display:block}
+.rail .tag{font-family:var(--f-mono);font-size:.63rem;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--ink-3);display:block;margin-top:.5rem;line-height:1.55}
+.body{min-width:0}
+@media (max-width:880px){
+  section{grid-template-columns:1fr;gap:0}
+  .rail{position:static;display:flex;align-items:baseline;gap:.85rem;margin-bottom:.9rem;padding-top:0}
+  .rail .tag{margin-top:0}
+}
+
+h2{font-family:var(--f-display);font-weight:500;font-size:clamp(1.6rem,3.3vw,2.2rem);
+  line-height:1.14;letter-spacing:-.017em;margin:0 0 .8rem;text-wrap:balance}
+h3{font-family:var(--f-body);font-weight:700;font-size:1.01rem;margin:2.6rem 0 .55rem}
+h3 .mk{font-family:var(--f-mono);color:var(--rubric);font-weight:600;margin-inline-end:.55rem;font-size:.88em}
+h4{font-family:var(--f-mono);font-weight:600;font-size:.71rem;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--ink-3);margin:1.9rem 0 .6rem}
+p{margin:0 0 1.05rem;max-width:var(--measure)}
+.lede{font-size:1.075rem;color:var(--ink-2);max-width:62ch}
+ul,ol{margin:0 0 1.15rem;padding-inline-start:1.3rem;max-width:var(--measure)}
+li{margin-bottom:.4rem}
+li::marker{color:var(--ink-3)}
+a{color:var(--indigo);text-underline-offset:.18em}
+a:focus-visible{outline:2px solid var(--indigo);outline-offset:3px;border-radius:2px}
+code{font-family:var(--f-mono);font-size:.855em;font-variant-ligatures:none}
+p code,li code,td code,figcaption code{background:var(--surface-2);border:1px solid var(--rule);
+  padding:.06em .34em;border-radius:3px;color:var(--ink)}
+.ur{font-family:var(--f-urdu);line-height:2}
+
+.scroll{overflow-x:auto;margin:1.4rem 0 1.9rem;border:1px solid var(--rule);border-radius:5px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:.83rem;line-height:1.5}
+th{text-align:left;font-family:var(--f-mono);font-weight:600;font-size:.645rem;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--ink-3);padding:.7rem .8rem;border-bottom:1px solid var(--rule-2);
+  white-space:nowrap;background:var(--surface-2)}
+td{padding:.65rem .8rem;border-bottom:1px solid var(--rule);vertical-align:top}
+tr:last-child td{border-bottom:none}
+tbody tr:hover td{background:var(--surface-2)}
+td.n{font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap;font-size:.9em}
+td.id{font-family:var(--f-mono);font-size:.76rem;color:var(--rubric);white-space:nowrap;font-weight:500}
+td.k{font-weight:600;min-width:9.5rem}
+caption{caption-side:bottom;text-align:left;font-size:.76rem;color:var(--ink-3);padding:.7rem .8rem;border-top:1px solid var(--rule)}
+
+.chip{display:inline-block;font-family:var(--f-mono);font-size:.6rem;letter-spacing:.09em;
+  text-transform:uppercase;font-weight:600;padding:.2em .5em;border-radius:3px;white-space:nowrap;border:1px solid transparent}
+.c-have{background:var(--ok-soft);color:var(--ok);border-color:var(--ok)}
+.c-part{background:var(--warn-soft);color:var(--warn);border-color:var(--warn)}
+.c-miss{background:var(--rubric-soft);color:var(--rubric);border-color:var(--rubric)}
+.c-new{background:var(--indigo-soft);color:var(--indigo);border-color:var(--indigo)}
+.c-plain{background:var(--surface-2);color:var(--ink-3);border-color:var(--rule-2)}
+
+.note{border-inline-start:3px solid var(--rubric);background:var(--surface);padding:1rem 1.15rem;
+  margin:1.5rem 0;border-radius:0 4px 4px 0;max-width:var(--measure);box-shadow:var(--shadow)}
+.note.blue{border-inline-start-color:var(--indigo)}
+.note p:last-child,.note ul:last-child{margin-bottom:0}
+.note h4{margin-top:0}
+
+figure{margin:2rem 0;background:var(--surface);border:1px solid var(--rule);border-radius:5px;
+  padding:1.4rem 1.2rem .9rem;box-shadow:var(--shadow);overflow-x:auto}
+figure svg{display:block;width:100%;min-width:40rem;max-width:100%;height:auto;color:var(--ink)}
+figcaption{margin-top:1rem;padding-top:.8rem;border-top:1px solid var(--rule);
+  font-size:.78rem;color:var(--ink-3);line-height:1.55}
+figcaption b{color:var(--ink-2);font-weight:600}
+.fignum{font-family:var(--f-mono);font-size:.63rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--rubric);font-weight:600;display:block;margin-bottom:.7rem}
+
+pre{background:var(--surface);border:1px solid var(--rule);border-radius:5px;padding:1rem 1.05rem;
+  overflow-x:auto;margin:1.25rem 0;font-family:var(--f-mono);font-size:.775rem;line-height:1.65;color:var(--ink-2)}
+pre b{color:var(--ink);font-weight:600}
+pre i{color:var(--ink-3);font-style:normal}
+pre u{color:var(--rubric);text-decoration:none}
+
+.dgdefs{position:absolute;width:0;height:0;overflow:hidden}
+.dgdefs .mk{fill:var(--ink)}
+.dgdefs .mkA{fill:var(--rubric)}
+.dg{font-family:var(--f-mono);font-size:10.5px}
+.dg .bx{fill:none;stroke:currentColor;stroke-width:1.2}
+.dg .bxf{fill:var(--surface-2);stroke:currentColor;stroke-width:1.2}
+.dg .bxh{fill:var(--surface-2);stroke:none}
+.dg .bxg{fill:none;stroke:currentColor;stroke-width:1;opacity:.4}
+.dg .ext{fill:none;stroke:currentColor;stroke-width:1.2;stroke-dasharray:5 3;opacity:.7}
+.dg .acc{fill:none;stroke:var(--rubric);stroke-width:1.6}
+.dg .accf{fill:var(--rubric-soft);stroke:var(--rubric);stroke-width:1.4}
+.dg .ph{fill:currentColor;opacity:.13}
+.dg .phl{fill:currentColor;opacity:.3}
+.dg text{fill:currentColor}
+.dg .ta{fill:var(--rubric);font-weight:600}
+.dg .tm{fill:currentColor;opacity:.62;font-size:9.5px}
+.dg .th{font-weight:600}
+.dg .ln{stroke:currentColor;stroke-width:1.1;fill:none}
+.dg .lnA{stroke:var(--rubric);stroke-width:1.4;fill:none}
+.dg .lnD{stroke:currentColor;stroke-width:1.1;fill:none;stroke-dasharray:5 3}
+.dg .life{stroke:currentColor;stroke-width:1;stroke-dasharray:3 4;opacity:.45}
+.dg .sep{stroke:currentColor;stroke-width:1;opacity:.35}
+.dg .swim{stroke:currentColor;stroke-width:1;opacity:.25;stroke-dasharray:2 4}
+.dg .urdu{font-family:"Noto Nastaliq Urdu",serif}
+
+.legend{display:flex;flex-wrap:wrap;gap:.4rem 1.4rem;font-family:var(--f-mono);font-size:.66rem;
+  color:var(--ink-3);margin:.9rem 0 0;padding-top:.8rem;border-top:1px dashed var(--rule)}
+.legend span{display:inline-flex;align-items:center;gap:.4rem}
+.legend i{width:1.6rem;height:0;border-top:1.5px solid currentColor;display:inline-block;font-style:normal}
+.legend i.d{border-top-style:dashed}
+.legend i.a{border-top-color:var(--rubric)}
+
+.toc{border:1px solid var(--rule);border-radius:5px;background:var(--surface);padding:1.1rem 1.3rem;margin:1.6rem 0}
+.toc ol{margin:0;padding-inline-start:0;list-style:none;max-width:none;columns:2;column-gap:2.5rem}
+.toc li{margin-bottom:.3rem;font-size:.87rem;break-inside:avoid}
+.toc b{font-family:var(--f-mono);color:var(--rubric);font-size:.78rem;font-weight:600;margin-inline-end:.5rem}
+@media (max-width:640px){.toc ol{columns:1}}
+</style>
+
+<svg class="dgdefs" aria-hidden="true" focusable="false">
+  <defs>
+    <marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path class="mk" d="M0,1 L9,5 L0,9 z"/></marker>
+    <marker id="arwA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path class="mkA" d="M0,1 L9,5 L0,9 z"/></marker>
+    <marker id="arwO" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,1 L9,5 L0,9" fill="none" stroke="currentColor" stroke-width="1.4"/></marker>
+    <marker id="cmp" viewBox="0 0 14 10" refX="13" refY="5" markerWidth="11" markerHeight="9" orient="auto-start-reverse">
+      <path class="mk" d="M0,5 L6.5,1 L13,5 L6.5,9 z"/></marker>
+  </defs>
+</svg>
+
+<div class="wrap">
+
+<header class="masthead">
+  <p class="kicker">Document 08 &middot; layer L7 &middot; child of 01 Master Architecture</p>
+  <h1>Nizam-e-Qanoon Client Architecture</h1>
+  <p class="dek">Four surfaces, seven sublayers, one signed corpus in the user&rsquo;s pocket &mdash; and the bidirectional typography that most bilingual legal software gets wrong.</p>
+  <div class="meta">
+    <span><b>Version</b> 1.0</span>
+    <span><b>Date</b> 24 Aug 2026</span>
+    <span><b>Layer</b> L7</span>
+    <span><b>Consumes</b> IPublicAPI &middot; ISync</span>
+    <span><b>Figures</b> 18</span>
+    <span><b>Owner</b> Client engineer</span>
+  </div>
+</header>
+
+<!-- ============ 0 ============ -->
+<section class="first">
+  <div class="rail"><span class="num">&sect;0</span><span class="tag">Scope<br>&amp; bounds</span></div>
+  <div class="body">
+    <h2>What L7 owns</h2>
+    <p class="lede">L7 is a terminal layer: it reads, it never writes to the corpus, and it holds no authority over legal content. Its job is to present grounded material truthfully, to keep working when the network does not, and to be usable by someone who cannot comfortably read.</p>
+
+    <div class="scroll">
+      <table>
+        <thead><tr><th>L7 decides</th><th>L7 must never</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Rendering of provisions, answers, provenance and abstention &middot; navigation and information architecture &middot; offline pack format, verification and application &middot; the design system and its bilingual type scales &middot; reading-level and locale policy &middot; client-side state, caching and retry &middot; accessibility and voice &middot; local secret storage</td>
+            <td>Compose or alter legal text &middot; construct a citation string from parts &middot; decide which clauses enter a document &middot; lower a confidence threshold to produce an answer &middot; render an abstention as an error or an empty state &middot; present a translation as the statute &middot; persist anything while an anonymous session is active</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3><span class="mk">0.1</span>Requirements inherited from document 01</h3>
+    <p>Every one of these lands somewhere concrete in this document; Appendix A closes the loop with a full traceability matrix.</p>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>From 01</th><th>Obligation on L7</th><th>Where satisfied</th></tr></thead>
+        <tbody>
+          <tr><td class="id">INV-1</td><td class="k">No generated citation</td><td>Citations arrive as resolved objects and render through <code>CitationChip</code>; the client has no code that builds a citation string. &sect;5.3</td></tr>
+          <tr><td class="id">INV-2</td><td class="k">No answer without a passing gate</td><td><code>AbstentionCard</code> is a first-class screen state with its own layout and actions, not an error. &sect;5.4, Figure 10</td></tr>
+          <tr><td class="id">INV-3</td><td class="k">Every answer replayable</td><td>Client attaches a stable <code>request_id</code> and surfaces it in the report-an-answer flow. &sect;8.4</td></tr>
+          <tr><td class="id">INV-4</td><td class="k">Provisions are the citable unit</td><td>All routes, bookmarks and deep links key on provision identity; no chunk identifier exists client-side. &sect;4</td></tr>
+          <tr><td class="id">INV-5</td><td class="k">Law is answered as at a date</td><td><code>AsOfControl</code> is present on every provision surface and its value is carried into every request. &sect;5.2</td></tr>
+          <tr><td class="id">QA-1</td><td class="k">Groundedness</td><td>Provenance is mandatory chrome: every claim carries an expandable source with the matched span highlighted. Figure 15</td></tr>
+          <tr><td class="id">QA-5</td><td class="k">Temporal correctness</td><td><code>StatusBanner</code> for repealed, not-yet-commenced and superseded-at-<code>as_of</code>. &sect;5.2</td></tr>
+          <tr><td class="id">QA-6</td><td class="k">Bilingual equity</td><td>Two parallel type scales selected by script, bidi isolation on every mixed run, Western digits for statutory identifiers. &sect;6</td></tr>
+          <tr><td class="id">QA-8</td><td class="k">Latency</td><td>Explicit budgets per surface, enforced in CI. &sect;9</td></tr>
+          <tr><td class="id">QA-9</td><td class="k">Availability &amp; degradation</td><td>Offline is the default read path, not a fallback. &sect;3, Figures 5&ndash;7</td></tr>
+          <tr><td class="id">QA-12</td><td class="k">Privacy</td><td>Anonymous mode swaps the object graph rather than setting a flag. &sect;8.2, Figure 16</td></tr>
+          <tr><td class="id">QA-13</td><td class="k">Legal safety</td><td>Disclaimer is structural chrome on every generated surface; referral off-ramp on deadline-bearing results. &sect;5.5</td></tr>
+          <tr><td class="id">QA-14</td><td class="k">Accessibility</td><td>Reading-level control, Urdu voice in and out, 48&nbsp;dp targets, semantic traversal order. &sect;7</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3><span class="mk">0.2</span>Contents</h3>
+    <div class="toc">
+      <ol>
+        <li><b>&sect;1</b> Surface landscape</li>
+        <li><b>&sect;2</b> Sublayer hierarchy L7.1&ndash;L7.7</li>
+        <li><b>&sect;3</b> Offline architecture</li>
+        <li><b>&sect;4</b> Navigation &amp; information architecture</li>
+        <li><b>&sect;5</b> Component architecture</li>
+        <li><b>&sect;6</b> Bilingual, bidirectional &amp; typographic</li>
+        <li><b>&sect;7</b> Accessibility</li>
+        <li><b>&sect;8</b> State, data &amp; security</li>
+        <li><b>&sect;9</b> Performance budgets</li>
+        <li><b>&sect;10</b> Web surfaces &amp; SEO</li>
+        <li><b>&sect;11</b> Curation console</li>
+        <li><b>&sect;12</b> Testing &amp; release</li>
+        <li><b>A</b> Traceability matrix</li>
+        <li><b>B</b> Client decision records</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 1 ============ -->
+<section>
+  <div class="rail"><span class="num">&sect;1</span><span class="tag">Surface<br>landscape</span></div>
+  <div class="body">
+    <h2>Four surfaces, one contract</h2>
+    <p class="lede">They differ in audience, rendering strategy and failure tolerance &mdash; but all four speak only <code>IPublicAPI</code> and <code>ISync</code>, so a change in the backend breaks a generated client at build time rather than a user at runtime.</p>
+
+<figure>
+  <span class="fignum">Figure 1 &mdash; Surface landscape</span>
+<svg class="dg" viewBox="0 0 940 348" role="img" aria-label="Four client surfaces mapped to their audiences: a web research application for advocates and law students, a mobile application with a local pack for citizens and advocates, public statute pages for search engines and anonymous readers, and an internal curation console for curators. All four consume the same public API contract, and only the mobile application additionally consumes the sync contract.">
+  <g class="bx">
+    <rect x="24"  y="16" width="200" height="44" rx="4"/>
+    <rect x="248" y="16" width="200" height="44" rx="4"/>
+    <rect x="472" y="16" width="200" height="44" rx="4"/>
+    <rect x="696" y="16" width="220" height="44" rx="4"/>
+  </g>
+  <g class="th"><text x="36" y="36">Advocate &middot; Law student</text><text x="260" y="36">Citizen &middot; Advocate</text>
+    <text x="484" y="36">Search engines &middot; anon</text><text x="708" y="36">Curator (internal)</text></g>
+  <g class="tm"><text x="36" y="51">paid tier &middot; desktop-first</text><text x="260" y="51">free + paid &middot; Android-first</text>
+    <text x="484" y="51">no account, no JS required</text><text x="708" y="51">desktop only, keyboard-driven</text></g>
+
+  <g class="bx">
+    <rect x="24"  y="92" width="200" height="118" rx="4"/>
+    <rect x="472" y="92" width="200" height="118" rx="4"/>
+    <rect x="696" y="92" width="220" height="118" rx="4"/>
+  </g>
+  <rect class="accf" x="248" y="92" width="200" height="118" rx="4"/>
+
+  <g class="th" font-size="11.5">
+    <text x="36" y="114">Web research</text>
+    <text x="484" y="114">Public pages</text>
+    <text x="708" y="114">Curation console</text>
+  </g>
+  <text class="ta" x="260" y="114" font-size="11.5">Mobile app</text>
+  <g class="tm">
+    <text x="36" y="132">Next.js &middot; RSC shell + client</text>
+    <text x="36" y="146">multi-pane, boolean search,</text>
+    <text x="36" y="160">citator, export, as-of scrub</text>
+    <text x="36" y="182">tolerates no offline &mdash;</text>
+    <text x="36" y="196">desktop users have network</text>
+    <text x="260" y="132">Flutter &middot; Android first, iOS same</text>
+    <text x="260" y="146">codebase. Ships a <tspan class="ta">signed local</tspan></text>
+    <text x="260" y="160"><tspan class="ta">pack</tspan>: SQLite + FTS5 + sqlite-vec</text>
+    <text x="260" y="182">full statutory search at zero</text>
+    <text x="260" y="196">connectivity &mdash; QA-9</text>
+    <text x="484" y="132">Next.js SSG + ISR</text>
+    <text x="484" y="146">one crawlable page per</text>
+    <text x="484" y="160">provision, instrument, judgment</text>
+    <text x="484" y="182">readable with JavaScript</text>
+    <text x="484" y="196">disabled &mdash; it is a legal reference</text>
+    <text x="708" y="132">Next.js &middot; pure client render</text>
+    <text x="708" y="146">source page image beside the</text>
+    <text x="708" y="160">parsed provision tree</text>
+    <text x="708" y="182">dense, undo-heavy, optimistic;</text>
+    <text x="708" y="196">no mobile layout at all</text>
+  </g>
+
+  <rect class="bxf" x="24" y="252" width="892" height="52" rx="4"/>
+  <text class="th" x="36" y="272" font-size="11">L6 Backend API</text>
+  <g class="tm">
+    <text x="36" y="288">IPublicAPI &mdash; REST + SSE, versioned, OpenAPI-described &nbsp;&middot;&nbsp; ISync &mdash; signed offline pack manifests and delta chains</text>
+  </g>
+  <text class="ta" x="908" y="272" text-anchor="end" font-size="9.5">the only surface any client may call</text>
+
+  <g class="ln" marker-end="url(#arw)">
+    <line x1="124" y1="60" x2="124" y2="88"/>
+    <line x1="348" y1="60" x2="348" y2="88"/>
+    <line x1="572" y1="60" x2="572" y2="88"/>
+    <line x1="806" y1="60" x2="806" y2="88"/>
+    <line x1="124" y1="210" x2="124" y2="248"/>
+    <line x1="572" y1="210" x2="572" y2="248"/>
+    <line x1="806" y1="210" x2="806" y2="248"/>
+  </g>
+  <g class="lnA" marker-end="url(#arwA)">
+    <line x1="330" y1="210" x2="330" y2="248"/>
+    <line x1="378" y1="210" x2="378" y2="248"/>
+  </g>
+  <g class="tm">
+    <text x="130" y="232">IPublicAPI</text>
+    <text x="578" y="232">IPublicAPI (build-time)</text>
+    <text x="812" y="232">IPublicAPI (+curator scope)</text>
+  </g>
+  <g class="ta" font-size="9.5">
+    <text x="228" y="226">IPublicAPI</text>
+    <text x="384" y="240">ISync</text>
+  </g>
+  <text class="tm" x="24" y="330">Public pages call the API at build and revalidation time only; a reader fetches static HTML from the CDN and reaches no origin server at all.</text>
+</svg>
+<figcaption><b>The mobile app is the only surface with a second contract, and the only one that can function with the backend entirely absent.</b> That asymmetry drives most of this document: everything in &sect;3 exists to make one surface survivable offline, and the other three are permitted to assume a network because their audiences have one. Public pages are deliberately the least capable and the most durable &mdash; static HTML on a CDN, readable without scripts, which is the correct posture for something people will cite.</figcaption>
+</figure>
+  </div>
+</section>
+
+
+<!-- ============ 2 ============ -->
+<section>
+  <div class="rail"><span class="num">&sect;2</span><span class="tag">Sublayer<br>hierarchy</span></div>
+  <div class="body">
+    <h2>L7 decomposed</h2>
+    <p class="lede">Seven sublayers, strictly ordered. The same dependency discipline that governs L1&ndash;L8 applies inside L7: a sublayer may call only the one beneath it, and the two data sources are siblings that never know about each other.</p>
+
+<figure>
+  <span class="fignum">Figure 2 &mdash; L7 sublayer stack</span>
+<svg class="dg" viewBox="0 0 940 476" role="img" aria-label="Seven client sublayers stacked from presentation at the top through interaction state, client domain, data access, local store and remote access side by side, down to platform services at the base, with a downward dependency arrow and four cross-cutting concerns spanning all sublayers: accessibility, internationalisation, telemetry and security.">
+  <g class="bx">
+    <rect x="20" y="16"  width="740" height="56" rx="4"/>
+    <rect x="20" y="80"  width="740" height="56" rx="4"/>
+    <rect x="20" y="144" width="740" height="56" rx="4"/>
+    <rect x="20" y="208" width="740" height="56" rx="4"/>
+    <rect x="20" y="400" width="740" height="56" rx="4"/>
+  </g>
+  <rect class="accf" x="20" y="272" width="360" height="56" rx="4"/>
+  <rect class="bxf" x="400" y="272" width="360" height="56" rx="4"/>
+  <rect class="bxf" x="20" y="336" width="740" height="52" rx="4"/>
+
+  <g class="th" font-size="11">
+    <text x="34" y="38">L7.1 &nbsp;Presentation</text>
+    <text x="34" y="102">L7.2 &nbsp;Interaction state</text>
+    <text x="34" y="166">L7.3 &nbsp;Client domain</text>
+    <text x="34" y="230">L7.4 &nbsp;Data access</text>
+    <text x="414" y="294">L7.6 &nbsp;Remote access</text>
+    <text x="34" y="358">L7.4b &nbsp;Offline write queue</text>
+    <text x="34" y="422">L7.7 &nbsp;Platform services</text>
+  </g>
+  <text class="ta" x="34" y="294" font-size="11">L7.5 &nbsp;Local store</text>
+  <g class="tm">
+    <text x="34" y="54">widgets &middot; design system &middot; motion &middot; screen states &middot; wireframe-level layout &middot; theming</text>
+    <text x="34" y="66">holds no logic &mdash; a widget that computes a legal fact is a defect</text>
+    <text x="34" y="118">notifiers &middot; router &middot; schema-driven forms &middot; error boundaries &middot; optimistic edits</text>
+    <text x="34" y="130">owns transient UI state only; never persists anything itself</text>
+    <text x="34" y="182">client use cases &middot; locale policy &middot; reading-level policy &middot; as-of policy &middot; client entities</text>
+    <text x="34" y="194">the only place a rule about <tspan class="th">how to present law</tspan> may live</text>
+    <text x="34" y="246">repositories &middot; cache policy &middot; DTO&#8596;entity mapping &middot; source selection</text>
+    <text x="34" y="258">decides local versus remote; everything above is source-agnostic</text>
+    <text x="34" y="310">signed SQLite pack &middot; FTS5 &middot; sqlite-vec</text>
+    <text x="34" y="322">secure storage &middot; file cache</text>
+    <text x="414" y="310">generated API client &middot; SSE &middot; auth interceptor</text>
+    <text x="414" y="322">retry &middot; backoff &middot; contract types from OpenAPI</text>
+    <text x="34" y="374">durable intents that must survive being offline: feedback, draft answers, report-an-answer, telemetry</text>
+    <text x="34" y="438">connectivity &middot; Urdu STT and TTS &middot; share and file import &middot; notifications &middot; biometrics &middot; secure keystore</text>
+  </g>
+
+  <g class="ln" marker-end="url(#arw)">
+    <line x1="390" y1="72"  x2="390" y2="76"/>
+    <line x1="390" y1="136" x2="390" y2="140"/>
+    <line x1="390" y1="200" x2="390" y2="204"/>
+    <line x1="200" y1="264" x2="200" y2="268"/>
+    <line x1="580" y1="264" x2="580" y2="268"/>
+    <line x1="200" y1="328" x2="200" y2="332"/>
+    <line x1="580" y1="328" x2="580" y2="332"/>
+    <line x1="390" y1="388" x2="390" y2="396"/>
+  </g>
+
+  <g class="ext">
+    <rect x="790" y="16"  width="130" height="104" rx="4"/>
+    <rect x="790" y="128" width="130" height="104" rx="4"/>
+    <rect x="790" y="240" width="130" height="104" rx="4"/>
+    <rect x="790" y="352" width="130" height="104" rx="4"/>
+  </g>
+  <g class="th"><text x="802" y="36">Accessibility</text><text x="802" y="148">Internationalisation</text>
+    <text x="802" y="260">Telemetry</text><text x="802" y="372">Security</text></g>
+  <g class="tm">
+    <text x="802" y="52">semantics tree</text><text x="802" y="64">contrast &middot; targets</text>
+    <text x="802" y="76">voice in / out</text><text x="802" y="88">reading level</text><text x="802" y="100">reduced motion</text>
+    <text x="802" y="164">two type scales</text><text x="802" y="176">bidi isolation</text>
+    <text x="802" y="188">RTL mirroring</text><text x="802" y="200">digit policy</text><text x="802" y="212">roman input</text>
+    <text x="802" y="276">traces &middot; budgets</text><text x="802" y="288">request_id</text>
+    <text x="802" y="300">no query text</text><text x="802" y="312">when anonymous</text><text x="802" y="324">crash scrubbing</text>
+    <text x="802" y="388">keystore only</text><text x="802" y="400">pinned pack key</text>
+    <text x="802" y="412">SPKI pin set</text><text x="802" y="424">anon object graph</text><text x="802" y="436">no PII in logs</text>
+  </g>
+  <path class="lnD" d="M782,20 L776,20 L776,452 L782,452"/>
+
+  <path class="lnA" d="M8,424 L8,44" marker-end="url(#arwA)"/>
+  <text class="ta" x="4" y="240" transform="rotate(-90 4 240)" text-anchor="middle">depends on &#8595;</text>
+</svg>
+<figcaption><b>L7.5 is accented because it is the load-bearing sublayer.</b> On every other client the local store is a cache; here it is an authoritative, signed copy of Pakistani statute law, and the read path in &sect;3 prefers it by default rather than falling back to it. Note that L7.5 and L7.6 are siblings with no edge between them &mdash; the decision about which one answers a read is made one level up, in a repository, which is what keeps every layer above completely source-agnostic.</figcaption>
+</figure>
+
+    <h3><span class="mk">2.1</span>Sublayer contracts</h3>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Sublayer</th><th>Owns</th><th>Exposes</th><th>Forbidden</th></tr></thead>
+        <tbody>
+          <tr><td class="id">L7.1</td><td class="k">Presentation</td><td>Widgets and pages consuming immutable view state; the design system; screen-state taxonomy (loading, empty, error, abstained, offline, stale)</td><td>Reading a repository, calling an API, formatting a citation, computing a date, deciding what is in force</td></tr>
+          <tr><td class="id">L7.2</td><td class="k">Interaction state</td><td>Notifiers exposing <code>AsyncValue&lt;ViewState&gt;</code>; the router; the schema-driven form engine; optimistic edit buffers</td><td>Persisting anything, holding domain rules, importing an HTTP or SQLite type</td></tr>
+          <tr><td class="id">L7.3</td><td class="k">Client domain</td><td>Client use cases; <code>LocalePolicy</code>, <code>ReadingLevelPolicy</code>, <code>AsOfPolicy</code>, <code>ScriptPolicy</code>; client entities</td><td>Knowing whether data came from the pack or the API</td></tr>
+          <tr><td class="id">L7.4</td><td class="k">Data access</td><td><code>LawRepository</code>, <code>AnswerRepository</code>, <code>PrecedentRepository</code>, <code>DraftRepository</code>, <code>PackRepository</code>, <code>ProcedureRepository</code>; source selection and cache policy</td><td>Exposing DTOs upward; leaking a nullable network type into a domain entity</td></tr>
+          <tr><td class="id">L7.5</td><td class="k">Local store</td><td><code>LocalPackSource</code> (SQLite, FTS5, sqlite-vec), <code>SecureStore</code>, file cache; signature verification and transactional patch application</td><td>Network access of any kind; applying an unverified patch</td></tr>
+          <tr><td class="id">L7.6</td><td class="k">Remote access</td><td>Generated client from the OpenAPI spec; SSE stream reader; auth, retry, trace-header interceptors</td><td>Hand-written request or response models; retrying a non-idempotent call</td></tr>
+          <tr><td class="id">L7.7</td><td class="k">Platform services</td><td>Connectivity, Urdu STT and TTS, share and file import, notifications, keystore, biometrics</td><td>Containing product logic; being imported above L7.4 except through a use case</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+<figure>
+  <span class="fignum">Figure 3 &mdash; C4 Level 3 &middot; mobile application components</span>
+<svg class="dg" viewBox="0 0 940 500" role="img" aria-label="C4 level three components of the mobile application: screens and domain widgets feed notifiers and a router, which call client use cases, which call six repositories. Repositories choose between a local pack source and an API client with a server-sent-events reader, alongside secure storage and an offline write queue, all resting on platform services.">
+  <g class="bx">
+    <rect x="24"  y="16"  width="430" height="50" rx="3"/>
+    <rect x="472" y="16"  width="200" height="50" rx="3"/>
+    <rect x="690" y="16"  width="226" height="50" rx="3"/>
+    <rect x="24"  y="90"  width="280" height="50" rx="3"/>
+    <rect x="322" y="90"  width="200" height="50" rx="3"/>
+    <rect x="540" y="90"  width="180" height="50" rx="3"/>
+    <rect x="738" y="90"  width="178" height="50" rx="3"/>
+    <rect x="24"  y="164" width="430" height="50" rx="3"/>
+    <rect x="472" y="164" width="220" height="50" rx="3"/>
+    <rect x="710" y="164" width="206" height="50" rx="3"/>
+    <rect x="24"  y="238" width="892" height="62" rx="3"/>
+    <rect x="472" y="326" width="200" height="62" rx="3"/>
+    <rect x="690" y="326" width="226" height="62" rx="3"/>
+    <rect x="322" y="326" width="128" height="62" rx="3"/>
+    <rect x="24"  y="418" width="892" height="52" rx="3"/>
+  </g>
+  <rect class="accf" x="24" y="326" width="276" height="62" rx="3"/>
+
+  <g class="th" font-size="10.5">
+    <text x="34" y="36">Screens</text><text x="482" y="36">Domain widgets</text><text x="700" y="36">Design system</text>
+    <text x="34" y="110">Notifiers (Riverpod)</text><text x="332" y="110">Router (go_router)</text>
+    <text x="550" y="110">Form engine</text><text x="748" y="110">Screen-state shell</text>
+    <text x="34" y="184">Client use cases</text><text x="482" y="184">Locale &amp; script policy</text><text x="720" y="184">Reading-level &amp; as-of policy</text>
+    <text x="34" y="258">Repositories</text>
+    <text x="482" y="346">API client (generated)</text><text x="700" y="346">SSE reader</text><text x="332" y="346">Secure store</text>
+    <text x="34" y="438">Platform services</text>
+  </g>
+  <text class="ta" x="34" y="346" font-size="10.5">Local pack source</text>
+
+  <g class="tm">
+    <text x="34" y="52">search &middot; provision &middot; ask &middot; precedent &middot; draft &middot; procedure &middot; tools &middot; library &middot; offline &middot; settings</text>
+    <text x="482" y="52">ProvisionView &middot; CitationChip</text>
+    <text x="700" y="52">tokens &middot; two type scales &middot; motion</text>
+    <text x="34" y="126">one per screen &middot; AsyncValue&lt;ViewState&gt;</text>
+    <text x="332" y="126">deep links &middot; provision URLs</text>
+    <text x="550" y="126">renders field schema</text>
+    <text x="748" y="126">loading &middot; empty &middot; error &middot; abstained</text>
+    <text x="34" y="200">AskQuestion &middot; OpenProvision &middot; TraceP recedent &middot; DraftDocument &middot; SyncPack</text>
+    <text x="482" y="200">UI lang &middot; content lang &middot; input script</text>
+    <text x="720" y="200">plain / professional &middot; as_of default</text>
+    <text x="34" y="276">LawRepository &middot; AnswerRepository &middot; PrecedentRepository &middot; DraftRepository &middot; ProcedureRepository &middot; PackRepository</text>
+    <text x="34" y="290">each one decides local versus remote; nothing above this line knows which answered</text>
+    <text x="34" y="362">SQLite + FTS5 + sqlite-vec</text>
+    <text x="34" y="376">signature verify &middot; txn patch apply</text>
+    <text x="482" y="362">typed from OpenAPI &middot; auth,</text>
+    <text x="482" y="376">retry, trace interceptors</text>
+    <text x="700" y="362">streams answer blocks as</text>
+    <text x="700" y="376">they are verified</text>
+    <text x="332" y="362">keystore /</text><text x="332" y="376">keychain only</text>
+    <text x="34" y="454">connectivity &middot; Urdu STT / TTS &middot; share &amp; file import &middot; notifications &middot; biometrics</text>
+  </g>
+
+  <g class="lnD" marker-end="url(#arwO)">
+    <line x1="164" y1="90"  x2="164" y2="70"/>
+    <line x1="164" y1="164" x2="164" y2="144"/>
+    <line x1="164" y1="238" x2="164" y2="218"/>
+    <line x1="422" y1="90"  x2="422" y2="70"/>
+    <line x1="630" y1="90"  x2="630" y2="70"/>
+    <line x1="827" y1="90"  x2="827" y2="70"/>
+    <line x1="300" y1="184" x2="300" y2="140"/>
+    <line x1="560" y1="164" x2="560" y2="144"/>
+    <line x1="160" y1="326" x2="160" y2="304"/>
+    <line x1="386" y1="326" x2="386" y2="304"/>
+    <line x1="572" y1="326" x2="572" y2="304"/>
+    <line x1="800" y1="326" x2="800" y2="304"/>
+    <line x1="470" y1="418" x2="470" y2="392"/>
+  </g>
+  <path class="lnD" d="M690,352 L676,352" marker-end="url(#arwO)"/>
+  <g class="tm">
+    <text x="170" y="316">reads</text>
+    <text x="392" y="316">tokens</text>
+    <text x="578" y="316">calls</text>
+    <text x="806" y="316">streams</text>
+  </g>
+  <text class="ta" x="24" y="494" font-size="9.5">Import rule enforced in CI: no widget may import a repository, a source, or a platform service. Violations fail the build, not review.</text>
+</svg>
+<figcaption><b>Six repositories, and the source decision lives in all six.</b> That is the single most important structural property of this client: <code>LawRepository.getProvision(id, asOf)</code> resolves from the signed local pack when it can and the API when it must, and every caller above &mdash; use case, notifier, widget &mdash; is written as though only one source exists. Airplane mode therefore changes what data is available, never which code runs.</figcaption>
+</figure>
+  </div>
+</section>
+
+
+<!-- ============ 3 ============ -->
+<section>
+  <div class="rail"><span class="num">&sect;3</span><span class="tag">Offline<br>architecture</span></div>
+  <div class="body">
+    <h2>The pack in the pocket</h2>
+    <p class="lede">QA-9 says full statutory lookup at zero connectivity. That is not a caching requirement &mdash; it is a distribution requirement, and it produces the most consequential design in the client: a signed, versioned, transactionally-updated copy of Pakistani statute law that the app treats as authoritative rather than as a cache.</p>
+
+    <h3><span class="mk">3.1</span>Content classes decide the read path</h3>
+    <p>Everything the client can read falls into one of three classes, and the class &mdash; not the network state &mdash; determines where a read goes first.</p>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Class</th><th>Content</th><th>Read path</th><th>Offline behaviour</th></tr></thead>
+        <tbody>
+          <tr><td class="k"><span class="chip c-have">Pack-authoritative</span></td><td>Statutory text, provision tree, cross-references, definitions, precomputed explainers, glossary, procedure guides, limitation and fee tables</td><td>Local first, always. Never revalidated per read &mdash; the pack is signed, so its content is as trustworthy as the server&rsquo;s</td><td>Fully available. This is the majority of citizen usage.</td></tr>
+          <tr><td class="k"><span class="chip c-part">Network-preferred</span></td><td>Search ranking, as-at-date versions outside the pack window, provisions in an uninstalled tier</td><td>Network when available; degraded local equivalent when not, explicitly labelled</td><td>Reduced quality, announced. Offline search is lexical plus glossary rather than server-reranked.</td></tr>
+          <tr><td class="k"><span class="chip c-part">Answer-pack-served</span></td><td>Grounded answers to questions in the head of the distribution &mdash; the offline answer tier (&sect;3.4)</td><td>Local question index first; network only on a miss</td><td>Available with full citations and provenance, showing the canonical question matched.</td></tr>
+          <tr><td class="k"><span class="chip c-miss">Network-required</span></td><td>Novel questions that miss the answer pack, precedent and citator, judgment text, document drafting</td><td>Network only. INV-2 forbids a client-side substitute</td><td>Unavailable, with a specific explanation and an offline alternative offered &mdash; never a spinner, never a silent failure.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note">
+      <h4>Why judgments are not in the pack</h4>
+      <p>Precedent is a graph query over hundreds of thousands of paragraphs plus treatment classification. Shipping it would multiply pack size by an order of magnitude and still give a worse answer than the server. It is declared network-required and the UI says so plainly. Choosing what <em>not</em> to ship offline is as much a part of this design as choosing what to ship &mdash; and &sect;3.4 applies the same reasoning in the other direction, shipping <em>answers</em> because they are small and verified, rather than a generator because it is fashionable.</p>
+    </div>
+
+<figure>
+  <span class="fignum">Figure 4 &mdash; UML activity &middot; the offline-first read path</span>
+<svg class="dg" viewBox="0 0 940 546" role="img" aria-label="UML activity diagram of the client read path. A read request is classified by content class. Pack-authoritative reads check whether the provision is in an installed tier and serve from the local pack with a pack-version stamp. Network-preferred reads use the server when online and a labelled local equivalent when not. Generated answers first attempt the offline answer pack, and only fall through to the network or to an explained unavailable state when no stored answer clears the similarity threshold.">
+  <circle cx="70" cy="30" r="7" fill="currentColor"/>
+  <g class="bx"><rect x="14" y="52" width="112" height="38" rx="12"/></g>
+  <text x="70" y="70" text-anchor="middle" font-size="10">read request</text>
+  <text x="70" y="82" text-anchor="middle" class="tm">kind, id, as_of</text>
+  <path class="acc" d="M70,116 L130,142 L70,168 L10,142 z"/>
+  <text class="ta" x="70" y="139" text-anchor="middle" font-size="9.5">content</text>
+  <text class="ta" x="70" y="151" text-anchor="middle" font-size="9.5">class?</text>
+
+  <g class="bx">
+    <rect x="196" y="60"  width="150" height="38" rx="12"/>
+    <rect x="392" y="60"  width="170" height="38" rx="12"/>
+    <rect x="608" y="60"  width="170" height="38" rx="12"/>
+    <rect x="392" y="196" width="170" height="38" rx="12"/>
+    <rect x="608" y="196" width="170" height="38" rx="12"/>
+    <rect x="392" y="330" width="190" height="38" rx="12"/>
+    <rect x="628" y="330" width="190" height="38" rx="12"/>
+    <rect x="196" y="416" width="180" height="38" rx="12"/>
+    <rect x="668" y="416" width="250" height="38" rx="12"/>
+  </g>
+  <rect class="accf" x="418" y="416" width="220" height="38" rx="12"/>
+  <path class="acc" d="M266,116 L336,142 L266,168 L196,142 z"/>
+  <text class="ta" x="266" y="139" text-anchor="middle" font-size="9.5">tier</text>
+  <text class="ta" x="266" y="151" text-anchor="middle" font-size="9.5">installed?</text>
+  <path class="acc" d="M266,244 L336,270 L266,296 L196,270 z"/>
+  <text class="ta" x="266" y="267" text-anchor="middle" font-size="9.5">online?</text>
+  <path class="acc" d="M266,362 L336,388 L266,414 L196,388 z"/>
+  <text class="ta" x="266" y="385" text-anchor="middle" font-size="9.5">online?</text>
+  <path class="acc" d="M541,478 L611,504 L541,530 L471,504 z"/>
+  <text class="ta" x="541" y="501" text-anchor="middle" font-size="9.5">sim &ge; &tau;&#8336;</text>
+  <text class="ta" x="541" y="513" text-anchor="middle" font-size="9.5">and fresh?</text>
+
+  <g text-anchor="middle" font-size="10">
+    <text x="271" y="84">serve from pack</text>
+    <text x="477" y="84">stamp pack version</text>
+    <text x="693" y="84">render</text>
+    <text x="477" y="220">server search + rerank</text>
+    <text x="693" y="220">render, normal quality</text>
+    <text x="487" y="354">local FTS5 + glossary</text>
+    <text x="723" y="354">render, labelled</text>
+    <text x="286" y="440">query the answer pack</text>
+    <text x="528" y="440">call API through gate</text>
+    <text x="793" y="440">abstain offline + queue the question</text>
+  </g>
+  <g class="tm" text-anchor="middle">
+    <text x="271" y="96">no revalidation</text>
+    <text x="477" y="96">&ldquo;as in pack v17, 12 Aug&rdquo;</text>
+    <text x="723" y="366">&ldquo;offline search&rdquo;</text>
+    <text x="286" y="452">on-device ANN over question index</text>
+    <text x="793" y="452">answers when connectivity returns</text>
+  </g>
+
+  <g class="ln" marker-end="url(#arw)">
+    <line x1="70"  y1="37"  x2="70"  y2="48"/>
+    <line x1="70"  y1="90"  x2="70"  y2="112"/>
+    <line x1="130" y1="142" x2="192" y2="142"/>
+    <line x1="336" y1="130" x2="392" y2="90"/>
+    <line x1="346" y1="79"  x2="388" y2="79"/>
+    <line x1="562" y1="79"  x2="604" y2="79"/>
+    <line x1="336" y1="258" x2="392" y2="222"/>
+    <line x1="562" y1="215" x2="604" y2="215"/>
+    <line x1="336" y1="282" x2="392" y2="340"/>
+    <line x1="582" y1="349" x2="624" y2="349"/>
+    <line x1="336" y1="400" x2="414" y2="428"/>
+    <line x1="376" y1="435" x2="466" y2="490"/>
+    <line x1="611" y1="504" x2="664" y2="450"/>
+  </g>
+  <path class="ln" d="M70,168 L70,270 L192,270"/>
+  <path class="ln" d="M70,296 L70,388 L192,388"/>
+  <path class="ln" d="M266,296 L266,362"/>
+  <path class="ln" d="M266,168 L266,244"/>
+  <path class="lnA" d="M266,168 L266,196 L388,215" marker-end="url(#arwA)"/>
+  <path class="lnA" d="M196,435 L120,435 L120,504 L466,504" marker-end="url(#arwA)"/>
+  <path class="lnA" d="M541,478 L541,466 L638,440" marker-end="url(#arwA)"/>
+  <g class="ta" font-size="9.5">
+    <text x="342" y="112">[yes]</text>
+    <text x="272" y="190">[no &mdash; not installed]</text>
+    <text x="342" y="238">[yes]</text>
+    <text x="342" y="306">[no]</text>
+    <text x="344" y="368">[no]</text>
+    <text x="344" y="424">[yes]</text>
+    <text x="132" y="496">[no]</text>
+    <text x="556" y="470">[hit]</text>
+    <text x="616" y="522">[miss]</text>
+    <text x="86" y="200">network-preferred</text>
+    <text x="86" y="330">generated answer</text>
+    <text x="140" y="134">pack-authoritative</text>
+  </g>
+  <text class="tm" x="278" y="208">falls through to the same online branch</text>
+  <text class="tm" x="646" y="490">stored verified answer, full provenance, shown with</text>
+  <text class="tm" x="646" y="502">the canonical question it matched</text>
+</svg>
+<figcaption><b>The third branch is the change.</b> A generated answer is no longer simply network-required: it first consults the offline answer pack, and only falls through to the network &mdash; or to an honest offline abstention &mdash; when nothing clears the similarity threshold. That threshold is calibrated exactly as &tau; is calibrated in L3, because returning a stored answer for a question it does not actually match would be a fabrication by a different route. Nothing here lowers a confidence bar to produce an answer; the answer either already exists and was verified, or it does not.</figcaption>
+</figure>
+
+    <h3><span class="mk">3.2</span>Pack anatomy and tiers</h3>
+
+<figure>
+  <span class="fignum">Figure 5 &mdash; Pack anatomy, tiers and size budget</span>
+<svg class="dg" viewBox="0 0 940 496" role="img" aria-label="Anatomy of the offline pack: a signed SQLite file containing metadata, instrument, provision, provision text, explainer, glossary, cross-reference, procedure and statutory table entities, plus an FTS5 full text index, an optional sqlite-vec semantic index, and an answer pack of pre-generated verified answers with their question embeddings. A size budget bar shows core, semantic, answers and provincial tiers, totalling roughly fifty-five megabytes of download and one hundred and fifty on disk for the full base experience.">
+  <path class="bx" d="M20,16 L120,16 L120,34 L520,34 L520,376 L20,376 Z"/>
+  <text class="th" x="30" y="30" font-size="10.5">pack.sqlite (tiered)</text>
+  <text class="ta" x="512" y="30" text-anchor="end" font-size="9.5">Ed25519 signed</text>
+
+  <g class="bx">
+    <rect x="38" y="48"  width="464" height="34" rx="3"/>
+    <rect x="38" y="92"  width="222" height="52" rx="3"/>
+    <rect x="280" y="92" width="222" height="52" rx="3"/>
+    <rect x="38" y="154" width="222" height="52" rx="3"/>
+    <rect x="280" y="154" width="222" height="52" rx="3"/>
+    <rect x="38" y="216" width="464" height="40" rx="3"/>
+  </g>
+  <rect class="accf" x="38" y="266" width="464" height="40" rx="3"/>
+  <rect class="accf" x="38" y="316" width="464" height="48" rx="3"/>
+
+  <g class="th" font-size="10"><text x="48" y="64">meta</text>
+    <text x="48" y="108">instrument &middot; provision</text><text x="290" y="108">provision_text</text>
+    <text x="48" y="170">explainer</text><text x="290" y="170">glossary &middot; xref &middot; defined_term</text>
+    <text x="48" y="232">fts &mdash; FTS5 virtual table</text></g>
+  <text class="ta" x="48" y="282" font-size="10">vec &mdash; sqlite-vec &nbsp;<tspan class="tm">(semantic tier)</tspan></text>
+  <text class="ta" x="48" y="332" font-size="10">answer &middot; answer_question &middot; answer_vec &nbsp;<tspan class="tm">(answer tier)</tspan></text>
+  <g class="tm">
+    <text x="48" y="76">pack_version &middot; corpus_version &middot; built_at &middot; tier_manifest &middot; signature &middot; schema_version</text>
+    <text x="48" y="122">ltree path, kind, label,</text><text x="48" y="134">heading, status, parent</text>
+    <text x="290" y="122">current-in-force text only,</text><text x="290" y="134">en + ur, with validity dates</text>
+    <text x="48" y="184">plain-speech per section,</text><text x="48" y="196">en + ur, verified server-side</text>
+    <text x="290" y="184">roman / urdu / english aliases,</text><text x="290" y="196">concept &rarr; provision mapping</text>
+    <text x="48" y="248">porter + unicode61 tokenisers, one index per language, prefix queries enabled</text>
+    <text x="48" y="298">14k section-level vectors, 384-dim int8, plus a quantised encoder for the query side</text>
+    <text x="48" y="348">~12k canonical questions with 384-dim embeddings, each mapped to a stored answer</text>
+    <text x="48" y="360">carrying its citation IDs, its corpus_version, and the provisions it depends on</text>
+  </g>
+
+  <text class="th" x="20" y="404" font-size="10.5">Size budget &mdash; download / on disk</text>
+  <g class="bx"><rect x="20" y="414" width="500" height="26" rx="3"/></g>
+  <rect class="ph" x="21" y="415" width="180" height="24"/>
+  <rect class="phl" x="201" y="415" width="140" height="24"/>
+  <rect class="ph" x="341" y="415" width="70" height="24"/>
+  <g class="tm">
+    <text x="30" y="431">core 17 / 51</text>
+    <text x="211" y="431">semantic 27 / 32</text>
+    <text x="349" y="431">answers</text>
+    <text x="418" y="431">provincial 20 / 60 each</text>
+  </g>
+  <text class="tm" x="20" y="456">Measured: core 17/51, semantic 27/32, answers 12/27. Base experience &mdash; app + core + semantic + answers &mdash; is <tspan class="th">56 MB download, 135 MB on disk</tspan>.</text>
+  <text class="tm" x="20" y="470">Full federal (1,030 acts) is 55 / 165; all statutes is 130 / 400, Wi-Fi only and explicitly opt-in. The APK never bundles a pack.</text>
+  <text class="tm" x="20" y="484">A pack file can also be imported from local storage or shared device to device; the signature check makes that safe, and it matters where data costs bite.</text>
+
+  <g class="bx">
+    <rect x="560" y="48"  width="356" height="76" rx="3"/>
+    <rect x="560" y="136" width="356" height="88" rx="3"/>
+    <rect x="560" y="236" width="356" height="88" rx="3"/>
+    <rect x="560" y="336" width="356" height="68" rx="3"/>
+  </g>
+  <g class="th" font-size="10.5">
+    <text x="572" y="68">Two embedding spaces, stated</text>
+    <text x="572" y="156">Answers are invalidated, not aged out</text>
+    <text x="572" y="256">Every offline view is stamped</text>
+    <text x="572" y="356">What the pack never contains</text>
+  </g>
+  <g class="tm">
+    <text x="572" y="86">Server retrieval uses a 1024-dim multilingual encoder;</text>
+    <text x="572" y="100">the device uses a 384-dim quantised one. Offline results</text>
+    <text x="572" y="114">are recall-oriented and lexically re-ranked, and labelled.</text>
+    <text x="572" y="174">Each stored answer records the provisions it cites. A</text>
+    <text x="572" y="188">patch that amends one of those provisions carries an</text>
+    <text x="572" y="202">INVALIDATE op for every answer depending on it, so a</text>
+    <text x="572" y="216">stale answer is removed rather than quietly served.</text>
+    <text x="572" y="274">Provision views and stored answers rendered from the</text>
+    <text x="572" y="288">pack carry the pack version and build date inline &mdash; not</text>
+    <text x="572" y="302">in settings. A reader must never have to wonder whether</text>
+    <text x="572" y="316">what they are reading predates an amendment.</text>
+    <text x="572" y="374">No judgments, no citator, no user content, no credentials.</text>
+    <text x="572" y="388">Repealed law is included but flagged; historical versions</text>
+    <text x="572" y="402">and novel generated answers are not.</text>
+  </g>
+  <path class="lnD" d="M524,176 L556,176" marker-end="url(#arwO)"/>
+</svg>
+<figcaption><b>The answer tier is the cheapest capability in this document.</b> Twelve megabytes buys grounded, cited, server-verified answers to the head of the query distribution with no model on the device and no network. It works because our generation layer is already strictly grounded and already caches: an answer that was verified once on a server is more trustworthy than one a 300 MB on-device model could produce, and roughly a thirtieth of the size.</figcaption>
+</figure>
+
+<figure>
+  <span class="fignum">Figure 6 &mdash; UML state machine &middot; pack lifecycle</span>
+<svg class="dg" viewBox="0 0 940 412" role="img" aria-label="UML state machine for the offline pack. From not installed the pack downloads, verifies and becomes active. A rejected verification returns to the previous active pack. From active, an update available state leads to fetching a delta chain, verifying, applying transactionally and returning to active; a failed apply rolls back. Active packs become stale past a currency threshold and can be evicted back to not installed. A chain that is too long triggers a full re-download.">
+  <circle cx="30" cy="120" r="7" fill="currentColor"/>
+  <g class="bx">
+    <rect x="60"  y="98"  width="128" height="44" rx="15"/>
+    <rect x="228" y="98"  width="128" height="44" rx="15"/>
+    <rect x="228" y="242" width="128" height="44" rx="15"/>
+    <rect x="596" y="30"  width="140" height="44" rx="15"/>
+    <rect x="776" y="30"  width="140" height="44" rx="15"/>
+    <rect x="776" y="120" width="140" height="44" rx="15"/>
+    <rect x="596" y="210" width="140" height="44" rx="15"/>
+    <rect x="596" y="300" width="140" height="44" rx="15"/>
+    <rect x="60"  y="300" width="128" height="44" rx="15"/>
+  </g>
+  <rect class="acc" x="396" y="98" width="150" height="52" rx="16"/>
+
+  <g text-anchor="middle" font-size="10">
+    <text x="124" y="118">Not installed</text>
+    <text x="292" y="118">Downloading</text>
+    <text x="292" y="262">Verifying</text>
+    <text x="666" y="50">Update available</text>
+    <text x="846" y="50">Fetching delta</text>
+    <text x="846" y="140">Verifying delta</text>
+    <text x="666" y="230">Applying (txn)</text>
+    <text x="666" y="320">Rejected</text>
+    <text x="124" y="320">Evicted</text>
+  </g>
+  <g class="tm" text-anchor="middle">
+    <text x="124" y="132">first run &middot; after evict</text>
+    <text x="292" y="132">Wi-Fi, resumable</text>
+    <text x="292" y="276">Ed25519 + sha256</text>
+    <text x="666" y="64">manifest polled daily</text>
+    <text x="846" y="64">patch chain v_n &rarr; v_m</text>
+    <text x="846" y="154">per-patch hash</text>
+    <text x="666" y="244">rollback on any error</text>
+    <text x="666" y="334">previous pack retained</text>
+    <text x="124" y="334">user freed space</text>
+  </g>
+  <text class="ta" x="471" y="120" text-anchor="middle" font-size="11">Active</text>
+  <text class="ta" x="471" y="136" text-anchor="middle" font-size="9.5">serves all pack reads</text>
+
+  <g class="ln" marker-end="url(#arw)">
+    <line x1="37"  y1="120" x2="56"  y2="120"/>
+    <line x1="188" y1="120" x2="224" y2="120"/>
+    <line x1="292" y1="142" x2="292" y2="238"/>
+    <line x1="356" y1="256" x2="440" y2="156"/>
+    <line x1="546" y1="112" x2="592" y2="66"/>
+    <line x1="736" y1="52"  x2="772" y2="52"/>
+    <line x1="846" y1="74"  x2="846" y2="116"/>
+    <line x1="776" y1="152" x2="740" y2="212"/>
+    <line x1="596" y1="228" x2="546" y2="140"/>
+    <line x1="666" y1="254" x2="666" y2="296"/>
+    <line x1="596" y1="318" x2="200" y2="318"/>
+    <line x1="124" y1="300" x2="124" y2="146"/>
+    <line x1="471" y1="150" x2="471" y2="300" />
+  </g>
+  <path class="ln" d="M228,270 L120,270 L120,146" marker-end="url(#arw)"/>
+  <path class="lnA" d="M846,164 L846,272 L740,272" marker-end="url(#arwA)"/>
+  <path class="lnA" d="M736,318 L546,318 L471,318 L471,152" marker-end="url(#arwA)"/>
+  <path class="lnD" d="M916,52 L930,52 L930,290 L292,290 L292,146" marker-end="url(#arw)"/>
+
+  <g class="ta" font-size="9.5">
+    <text x="366" y="200">[signature valid]</text>
+    <text x="128" y="264">[invalid]</text>
+    <text x="854" y="216">[hash mismatch]</text>
+    <text x="480" y="290">[apply failed]</text>
+  </g>
+  <g class="tm">
+    <text x="552" y="88">amendment published</text>
+    <text x="366" y="126">&nbsp;</text>
+    <text x="206" y="332">user evicts</text>
+    <text x="60" y="230">re-download</text>
+    <text x="300" y="304">[chain &gt; 12 versions] &rarr; full re-download</text>
+    <text x="480" y="182">stale past currency</text>
+    <text x="480" y="196">threshold &rarr; banner,</text>
+    <text x="480" y="210">still serves reads</text>
+  </g>
+</svg>
+<figcaption><b>Every failure edge returns to the last known-good pack.</b> Rejected signature, mismatched patch hash, failed transaction &mdash; all three land back in <code>Active</code> on the previous version rather than in any partially-updated state. A stale but internally consistent corpus is always safer than a current but unverifiable one, and there is no state in this machine where the app serves law it has not verified.</figcaption>
+</figure>
+
+    <h3><span class="mk">3.3</span>Patch format</h3>
+    <p>Deltas are row-level operations, not a binary diff of the database file. A page-level diff would be fragile across SQLite versions and vacuum states, and would defeat resumability.</p>
+    <pre><b>patch v17 &rarr; v18</b>
+  header    from_version, to_version, schema_version, built_at, sha256, <u>ed25519_sig</u>
+  ops[]     <b>UPSERT</b> instrument   &#123;id, &#8230;&#125;
+            <b>UPSERT</b> provision    &#123;id, path, label, heading, status&#125;
+            <b>UPSERT</b> provision_text &#123;provision_id, text_en, text_ur, validity&#125;
+            <b>DELETE</b> provision    &#123;id&#125;          <i>only when an instrument is withdrawn</i>
+            <b>UPSERT</b> explainer    &#123;provision_id, plain_en, plain_ur&#125;
+  post[]    <b>REINDEX</b> fts(scope)                 <i>partial, scoped to touched instruments</i>
+            <b>REVEC</b>   vec(scope)                 <i>only if the semantic tier is installed</i>
+
+<i>Application is one SQLite transaction per patch, chained. Signature verified before</i>
+<i>the transaction opens; integrity hash compared after it commits, before the version</i>
+<i>pointer moves. Any failure rolls back and the version pointer never advances.</i></pre>
+    <p><strong>Chain length is capped at twelve.</strong> A device that has been offline for months takes a full re-download rather than replaying a long chain &mdash; simpler to reason about, and usually smaller.</p>
+
+    <h3><span class="mk">3.4</span>Offline grounded answers &mdash; RAG without a model on the device</h3>
+    <p>&ldquo;Offline RAG&rdquo; sounds like it requires an on-device generator. Priced honestly it does not, and it should not: a 1B parameter model quantised to four bits is roughly 800&nbsp;MB, needs several seconds of prefill for a 2,000-token context on a mid-tier phone, and would still reason about Pakistani law worse than the server did. Shipping it would multiply the install size by six to lower the answer quality.</p>
+    <p>The better move follows from something the architecture already guarantees: <strong>our answers are strictly grounded and therefore reusable.</strong> An answer that was generated against verified provisions, had its citations rendered from the database, and passed the entailment verifier is a durable artefact. So we ship the answers, not the generator.</p>
+
+<figure>
+  <span class="fignum">Figure 17 &mdash; Three tiers of offline answering</span>
+<svg class="dg" viewBox="0 0 940 462" role="img" aria-label="Three tiers of offline answering. An offline question is embedded on device and matched by approximate nearest neighbour against a question index. Above the similarity threshold a tier A stored verified answer is returned. Otherwise a tier B deterministic template composition is attempted. Otherwise, if the optional generator tier is installed, tier C performs an extractive rewrite of retrieved provisions. If none apply the system abstains offline and queues the question. A build pipeline below shows question mining, generation, verification and packing.">
+  <g class="bx">
+    <rect x="20"  y="60" width="110" height="48" rx="12"/>
+    <rect x="150" y="60" width="130" height="48" rx="12"/>
+    <rect x="300" y="60" width="140" height="48" rx="12"/>
+    <rect x="620" y="54" width="300" height="64" rx="4"/>
+    <rect x="620" y="154" width="300" height="64" rx="4"/>
+    <rect x="620" y="348" width="300" height="56" rx="4"/>
+  </g>
+  <rect class="accf" x="620" y="254" width="300" height="64" rx="4"/>
+  <g class="acc">
+    <path d="M520,58 L582,84 L520,110 L458,84 z"/>
+    <path d="M520,158 L582,184 L520,210 L458,184 z"/>
+    <path d="M520,258 L582,284 L520,310 L458,284 z"/>
+  </g>
+  <g text-anchor="middle" font-size="10">
+    <text x="75"  y="82">offline question</text>
+    <text x="215" y="82">embed on device</text>
+    <text x="370" y="82">ANN over question</text>
+  </g>
+  <g class="tm" text-anchor="middle">
+    <text x="75"  y="96">typed or spoken</text>
+    <text x="215" y="96">384-dim quantised</text>
+    <text x="370" y="96">index, sqlite-vec</text>
+  </g>
+  <g class="ta" text-anchor="middle" font-size="9.5">
+    <text x="520" y="81">similarity</text><text x="520" y="93">&ge; &tau;&#8336; ?</text>
+    <text x="520" y="181">template</text><text x="520" y="193">match?</text>
+    <text x="520" y="281">generator</text><text x="520" y="293">tier?</text>
+  </g>
+
+  <g class="th" font-size="10.5">
+    <text x="632" y="74">Tier A &nbsp;stored verified answer</text>
+    <text x="632" y="174">Tier B &nbsp;deterministic composition</text>
+    <text x="632" y="368">Abstain offline, queue the question</text>
+  </g>
+  <text class="ta" x="632" y="274" font-size="10.5">Tier C &nbsp;extractive rewrite &mdash; opt-in</text>
+  <g class="tm">
+    <text x="632" y="90">Generated and verified server-side against the corpus.</text>
+    <text x="632" y="102">Full citations, provenance sheet, reading levels, both</text>
+    <text x="632" y="114">languages. Shows the canonical question it matched.</text>
+    <text x="632" y="190">Punishment for X &middot; limitation for Y &middot; which forum hears Z.</text>
+    <text x="632" y="202">A pure function of pack data through a fixed template.</text>
+    <text x="632" y="214">No model involved, exact citations, always available.</text>
+    <text x="632" y="290">~300 MB quantised model, Wi-Fi only, clearly experimental.</text>
+    <text x="632" y="302">Constrained to rewriting retrieved provisions at plain-speech</text>
+    <text x="632" y="314">level &mdash; never to answering a novel legal question.</text>
+    <text x="632" y="384">The question is answered on the next connection and the</text>
+    <text x="632" y="396">user is notified. Silence is never presented as an answer.</text>
+  </g>
+
+  <g class="ln" marker-end="url(#arw)">
+    <line x1="130" y1="84" x2="146" y2="84"/>
+    <line x1="280" y1="84" x2="296" y2="84"/>
+    <line x1="440" y1="84" x2="454" y2="84"/>
+    <line x1="582" y1="84" x2="616" y2="86"/>
+    <line x1="520" y1="110" x2="520" y2="154"/>
+    <line x1="582" y1="184" x2="616" y2="186"/>
+    <line x1="520" y1="210" x2="520" y2="254"/>
+    <line x1="582" y1="284" x2="616" y2="286"/>
+  </g>
+  <path class="lnA" d="M520,310 L520,376 L616,376" marker-end="url(#arwA)"/>
+  <g class="ta" font-size="9.5">
+    <text x="590" y="76">[hit]</text><text x="526" y="132">[miss]</text>
+    <text x="590" y="176">[yes]</text><text x="526" y="232">[no]</text>
+    <text x="590" y="276">[installed]</text><text x="526" y="340">[not installed]</text>
+  </g>
+
+  <line class="sep" x1="20" y1="368" x2="580" y2="368"/>
+  <text class="ta" x="20" y="388" font-size="9.5">HOW THE ANSWER TIER IS BUILT &mdash; server side, offline batch</text>
+  <g class="bx">
+    <rect x="20"  y="398" width="130" height="44" rx="3"/>
+    <rect x="165" y="398" width="130" height="44" rx="3"/>
+    <rect x="310" y="398" width="130" height="44" rx="3"/>
+    <rect x="455" y="398" width="125" height="44" rx="3"/>
+  </g>
+  <g class="th" font-size="9.6">
+    <text x="28" y="414">1 mine questions</text>
+    <text x="173" y="414">2 generate</text>
+    <text x="318" y="414">3 verify</text>
+    <text x="463" y="414">4 pack</text>
+  </g>
+  <g class="tm">
+    <text x="28" y="428">golden set &middot; per-section</text><text x="28" y="438">canonicals &middot; glossary &times; intent</text>
+    <text x="173" y="428">full L3 + L4 pipeline,</text><text x="173" y="438">gate included</text>
+    <text x="318" y="428">entailment tier 3,</text><text x="318" y="438">below threshold &rarr; dropped</text>
+    <text x="463" y="428">embed questions,</text><text x="463" y="438">record cited provisions</text>
+  </g>
+  <g class="ln" marker-end="url(#arw)">
+    <line x1="150" y1="420" x2="161" y2="420"/>
+    <line x1="295" y1="420" x2="306" y2="420"/>
+    <line x1="440" y1="420" x2="451" y2="420"/>
+  </g>
+</svg>
+<figcaption><b>Tier A is real retrieval-augmented generation &mdash; the generation simply happened earlier, on better hardware, and was verified before it shipped.</b> The similarity threshold &tau;&#8336; is calibrated on the golden set&rsquo;s citizen stratum for a target precision, exactly as &tau; is in L3, because returning a stored answer for a question it does not match is a fabrication by another route. The matched canonical question is always displayed, so the reader can see what was actually answered and reject it themselves.</figcaption>
+</figure>
+
+    <div class="scroll">
+      <table>
+        <caption>Coverage is a measured metric, not a claim. It is reported per language and per stratum on the golden set, and regression blocks a pack release.</caption>
+        <thead><tr><th>Tier</th><th>Size</th><th>Quality</th><th>Target coverage</th><th>Ships in</th></tr></thead>
+        <tbody>
+          <tr><td class="k">A &mdash; stored answers</td><td class="n">12 MB dl<br>28 MB disk</td><td>Identical to online &mdash; same pipeline, same verifier, same citations</td><td class="n">&ge;55% of citizen queries at &ge;95% precision</td><td>Phase 4, with the app</td></tr>
+          <tr><td class="k">B &mdash; templates</td><td class="n">&lt;1 MB</td><td>Exact. Deterministic composition over pack data</td><td class="n">~15%, overlapping A</td><td>Phase 3, ships with the pack</td></tr>
+          <tr><td class="k">C &mdash; on-device model</td><td class="n">~300 MB opt-in</td><td>Lower, labelled. Rewrites retrieved text; does not reason</td><td class="n">not measured as coverage</td><td>Phase 6, experimental</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note">
+      <h4>The invalidation rule that makes this safe</h4>
+      <p>Every stored answer records the provisions it cites and the corpus version it was generated against. A pack patch that amends any cited provision carries an <code>INVALIDATE</code> operation for every dependent answer, so the answer is <em>removed</em> rather than served stale. Without that rule the answer tier would slowly become a cache of law that no longer exists &mdash; which is the failure mode this entire product is built to avoid.</p>
+    </div>
+
+    <h3><span class="mk">3.5</span>Two sync engines, because there are two trust models</h3>
+    <p>The corpus flows one way and is signed; user data flows both ways and must merge. Trying to serve both with one mechanism produces either a corpus that a client can corrupt or user data that cannot be edited offline. They are separate engines with separate storage and separate failure behaviour.</p>
+
+<figure>
+  <span class="fignum">Figure 18 &mdash; Corpus sync and user-data sync</span>
+<svg class="dg" viewBox="0 0 940 424" role="img" aria-label="Two sync engines side by side. On the left, corpus sync flows one way from the server corpus through a patch builder, signing and publication to object storage, then to the device pack, with no upward path. On the right, user-data sync is bidirectional between a device store and an outbox through a sync engine to server user tables, resolving conflicts by last writer wins on a server-assigned version with tombstones for deletes.">
+  <text class="ta" x="20" y="26" font-size="10.5">CORPUS SYNC &mdash; one way, signed, never merged</text>
+  <line class="sep" x1="466" y1="14" x2="466" y2="410"/>
+  <g class="bx">
+    <rect x="30" y="46"  width="180" height="46" rx="3"/>
+    <rect x="30" y="116" width="180" height="42" rx="3"/>
+    <rect x="30" y="182" width="180" height="42" rx="3"/>
+    <rect x="30" y="248" width="180" height="42" rx="3"/>
+  </g>
+  <rect class="accf" x="30" y="314" width="180" height="46" rx="3"/>
+  <g class="th" font-size="10">
+    <text x="40" y="66">Server corpus (L2)</text>
+    <text x="40" y="136">Patch builder</text>
+    <text x="40" y="202">Sign manifest</text>
+    <text x="40" y="268">Object store / CDN</text>
+  </g>
+  <text class="ta" x="40" y="334" font-size="10">Device pack</text>
+  <g class="tm">
+    <text x="40" y="80">publish transaction is the trigger</text>
+    <text x="40" y="150">row-level ops, scoped reindex</text>
+    <text x="40" y="216">Ed25519, key pinned in the binary</text>
+    <text x="40" y="282">immutable, content-addressed</text>
+    <text x="40" y="348">verify &rarr; apply in one transaction</text>
+  </g>
+  <g class="ln" marker-end="url(#arw)">
+    <line x1="120" y1="92"  x2="120" y2="112"/>
+    <line x1="120" y1="158" x2="120" y2="178"/>
+    <line x1="120" y1="224" x2="120" y2="244"/>
+    <line x1="120" y1="290" x2="120" y2="310"/>
+  </g>
+  <g class="tm">
+    <text x="228" y="72">There is no upward edge. A device</text>
+    <text x="228" y="86">cannot propose a corpus change; it</text>
+    <text x="228" y="100">can only file a curation report, which</text>
+    <text x="228" y="114">enters L1 through the console.</text>
+    <text x="228" y="146">Conflict resolution does not exist</text>
+    <text x="228" y="160">because conflict cannot arise: the</text>
+    <text x="228" y="174">server is the only writer.</text>
+    <text x="228" y="206">Failure is always &ldquo;keep the previous</text>
+    <text x="228" y="220">pack&rdquo;, never a partial state.</text>
+    <text x="228" y="252">Chain capped at twelve patches;</text>
+    <text x="228" y="266">beyond that, full re-download.</text>
+    <text x="228" y="330">Answer-tier INVALIDATE ops travel</text>
+    <text x="228" y="344">in the same patches, so answers</text>
+    <text x="228" y="358">and law can never drift apart.</text>
+  </g>
+
+  <text class="ta" x="490" y="26" font-size="10.5">USER-DATA SYNC &mdash; bidirectional, merged, small</text>
+  <g class="bx">
+    <rect x="500" y="46" width="180" height="46" rx="3"/>
+    <rect x="710" y="46" width="180" height="46" rx="3"/>
+    <rect x="580" y="132" width="230" height="46" rx="3"/>
+    <rect x="580" y="222" width="230" height="46" rx="3"/>
+  </g>
+  <g class="th" font-size="10">
+    <text x="510" y="66">Device user tables</text>
+    <text x="720" y="66">Outbox</text>
+    <text x="590" y="152">Sync engine</text>
+    <text x="590" y="242">Server user tables</text>
+  </g>
+  <g class="tm">
+    <text x="510" y="80">bookmarks &middot; matters &middot; drafts &middot; history</text>
+    <text x="720" y="80">durable intents, ordered, idempotent</text>
+    <text x="590" y="166">push outbox, then pull since cursor</text>
+    <text x="590" y="256">RLS-scoped to the owning user</text>
+  </g>
+  <g class="ln" marker-end="url(#arw)">
+    <line x1="600" y1="92" x2="600" y2="128"/>
+    <line x1="790" y1="92" x2="790" y2="128"/>
+    <line x1="670" y1="178" x2="670" y2="218"/>
+    <line x1="720" y1="218" x2="720" y2="182"/>
+  </g>
+  <path class="ln" d="M660,128 L660,110 L640,110 L640,96" marker-end="url(#arw)"/>
+  <g class="tm">
+    <text x="606" y="112">write</text>
+    <text x="646" y="112">apply</text>
+    <text x="796" y="112">drain</text>
+    <text x="606" y="200">push</text>
+    <text x="726" y="200">pull</text>
+  </g>
+  <g class="tm">
+    <text x="490" y="296">&#8226; Conflicts resolve last-writer-wins on a <tspan class="th">server-assigned version</tspan>, never on device clock time.</text>
+    <text x="490" y="314">&#8226; Deletes are tombstones with a retention window, so a delete on one device is not resurrected by another.</text>
+    <text x="490" y="332">&#8226; Draft documents are the exception: they are single-device by default and sync only on explicit &ldquo;continue on another device&rdquo;.</text>
+    <text x="490" y="350">&#8226; The outbox is absent from the anonymous object graph (&sect;8.2), so an anonymous session has nothing to sync.</text>
+    <text x="490" y="368">&#8226; Volume is tiny &mdash; kilobytes per user. This engine is deliberately simple; CRDTs would be cost without benefit here.</text>
+    <text x="490" y="394">Both engines share the ISync contract surface but not a line of implementation.</text>
+  </g>
+</svg>
+<figcaption><b>The asymmetry is the design.</b> Corpus sync has no merge logic at all because the device is never a writer &mdash; which is precisely what lets the pack be treated as authoritative rather than as a cache (CDR-2). User data has merge logic because the user genuinely edits offline, but its volume is small enough that last-writer-wins with tombstones is the correct amount of machinery. Conflating the two would force the corpus to carry merge semantics it does not need, and would make the signed-authority argument collapse.</figcaption>
+</figure>
+  </div>
+</section>
+
+
+<!-- ============ 4 ============ -->
+<section>
+  <div class="rail"><span class="num">&sect;4</span><span class="tag">Navigation<br>&amp; IA</span></div>
+  <div class="body">
+    <h2>Routes are provision identities</h2>
+    <p class="lede">INV-4 has a direct consequence for navigation: every durable location in the product is addressed by a provision, instrument or judgment identity &mdash; never by a chunk, a search-result index, or a session-scoped token. A bookmark taken today resolves after five re-indexes.</p>
+
+<figure>
+  <span class="fignum">Figure 7 &mdash; Route hierarchy and capability matrix</span>
+<svg class="dg" viewBox="0 0 940 606" role="img" aria-label="Route hierarchy for the client, listing every route with four annotations: whether it works offline, whether it requires an account, which surfaces expose it, and which use case it serves. Statutory browsing, procedure guides and calculator tools work fully offline; question answering, precedent, and drafting require the network.">
+  <g class="tm">
+    <text x="30" y="26">ROUTE</text>
+    <text x="540" y="26">OFFLINE</text>
+    <text x="646" y="26">ACCOUNT</text>
+    <text x="742" y="26">SURFACES</text>
+    <text x="862" y="26">UC</text>
+  </g>
+  <line class="sep" x1="30" y1="34" x2="916" y2="34"/>
+
+  <g font-size="10.5">
+    <text x="30" y="56">/</text>
+    <text x="30" y="82">&#9500;&#9472; /search</text>
+    <text x="30" y="108">&#9500;&#9472; /law/:jurisdiction/:instrument</text>
+    <text x="30" y="134">&#9474;&nbsp;&nbsp;&#9492;&#9472; /:provision</text>
+    <text x="30" y="160">&#9474;&nbsp;&nbsp;&nbsp;&nbsp;&#9500;&#9472; ?as_of=YYYY-MM-DD</text>
+    <text x="30" y="186">&#9474;&nbsp;&nbsp;&nbsp;&nbsp;&#9492;&#9472; /references</text>
+    <text x="30" y="212">&#9500;&#9472; /ask</text>
+    <text x="30" y="238">&#9474;&nbsp;&nbsp;&#9492;&#9472; /:requestId</text>
+    <text x="30" y="264">&#9500;&#9472; /precedent/provision/:id</text>
+    <text x="30" y="290">&#9500;&#9472; /precedent/judgment/:id</text>
+    <text x="30" y="316">&#9500;&#9472; /draft</text>
+    <text x="30" y="342">&#9474;&nbsp;&nbsp;&#9500;&#9472; /:type/interview</text>
+    <text x="30" y="368">&#9474;&nbsp;&nbsp;&#9492;&#9472; /:type/preview</text>
+    <text x="30" y="394">&#9500;&#9472; /procedure</text>
+    <text x="30" y="420">&#9474;&nbsp;&nbsp;&#9492;&#9472; /:id</text>
+    <text x="30" y="446">&#9500;&#9472; /tools/limitation</text>
+    <text x="30" y="472">&#9500;&#9472; /tools/court-fee</text>
+    <text x="30" y="498">&#9500;&#9472; /tools/forum</text>
+    <text x="30" y="524">&#9500;&#9472; /library</text>
+    <text x="30" y="550">&#9500;&#9472; /offline</text>
+    <text x="30" y="576">&#9492;&#9472; /settings</text>
+  </g>
+
+  <g font-size="9.5">
+    <text class="ta" x="540" y="56">full</text>
+    <text class="ta" x="540" y="82">degraded</text>
+    <text class="ta" x="540" y="108">full</text>
+    <text class="ta" x="540" y="134">full</text>
+    <text class="ta" x="540" y="160">pack window</text>
+    <text class="ta" x="540" y="186">full</text>
+    <text x="540" y="212" fill="currentColor" opacity=".5">none</text>
+    <text x="540" y="238" fill="currentColor" opacity=".5">cached only</text>
+    <text x="540" y="264" fill="currentColor" opacity=".5">none</text>
+    <text x="540" y="290" fill="currentColor" opacity=".5">none</text>
+    <text class="ta" x="540" y="316">list only</text>
+    <text x="540" y="342" fill="currentColor" opacity=".5">none</text>
+    <text x="540" y="368" fill="currentColor" opacity=".5">none</text>
+    <text class="ta" x="540" y="394">full</text>
+    <text class="ta" x="540" y="420">full</text>
+    <text class="ta" x="540" y="446">full</text>
+    <text class="ta" x="540" y="472">full</text>
+    <text class="ta" x="540" y="498">full</text>
+    <text class="ta" x="540" y="524">full</text>
+    <text class="ta" x="540" y="550">full</text>
+    <text class="ta" x="540" y="576">full</text>
+  </g>
+  <g class="tm" font-size="9.5">
+    <text x="646" y="56">no</text><text x="646" y="82">no</text><text x="646" y="108">no</text>
+    <text x="646" y="134">no</text><text x="646" y="160">yes</text><text x="646" y="186">no</text>
+    <text x="646" y="212">yes</text><text x="646" y="238">yes</text><text x="646" y="264">yes</text>
+    <text x="646" y="290">yes</text><text x="646" y="316">no</text><text x="646" y="342">yes</text>
+    <text x="646" y="368">yes</text><text x="646" y="394">no</text><text x="646" y="420">no</text>
+    <text x="646" y="446">no</text><text x="646" y="472">no</text><text x="646" y="498">no</text>
+    <text x="646" y="524">yes</text><text x="646" y="550">no</text><text x="646" y="576">no</text>
+
+    <text x="742" y="56">M W</text><text x="742" y="82">M W</text><text x="742" y="108">M W P</text>
+    <text x="742" y="134">M W P</text><text x="742" y="160">M W</text><text x="742" y="186">M W P</text>
+    <text x="742" y="212">M W</text><text x="742" y="238">M W</text><text x="742" y="264">M W</text>
+    <text x="742" y="290">M W P</text><text x="742" y="316">M W</text><text x="742" y="342">M W</text>
+    <text x="742" y="368">M W</text><text x="742" y="394">M W P</text><text x="742" y="420">M W P</text>
+    <text x="742" y="446">M W</text><text x="742" y="472">M W</text><text x="742" y="498">M W</text>
+    <text x="742" y="524">M W</text><text x="742" y="550">M</text><text x="742" y="576">M W</text>
+
+    <text x="862" y="56">&mdash;</text><text x="862" y="82">01</text><text x="862" y="108">01</text>
+    <text x="862" y="134">01 02</text><text x="862" y="160">04</text><text x="862" y="186">01</text>
+    <text x="862" y="212">03 10</text><text x="862" y="238">03 16</text><text x="862" y="264">05</text>
+    <text x="862" y="290">05 07</text><text x="862" y="316">06</text><text x="862" y="342">06</text>
+    <text x="862" y="368">06</text><text x="862" y="394">08</text><text x="862" y="420">08</text>
+    <text x="862" y="446">09</text><text x="862" y="472">09</text><text x="862" y="498">09</text>
+    <text x="862" y="524">13</text><text x="862" y="550">11</text><text x="862" y="576">12</text>
+  </g>
+
+  <line class="sep" x1="530" y1="34" x2="530" y2="590"/>
+  <line class="sep" x1="636" y1="34" x2="636" y2="590"/>
+  <line class="sep" x1="732" y1="34" x2="732" y2="590"/>
+  <line class="sep" x1="852" y1="34" x2="852" y2="590"/>
+  <text class="tm" x="30" y="600">M mobile &middot; W web research &middot; P public pages. Public routes are the crawlable subset: statutory text, references and procedure &mdash; never a generated answer.</text>
+</svg>
+<figcaption><b>Read the offline column downward: eleven of twenty-one routes work with no network at all.</b> That is QA-9 expressed as an information architecture rather than a promise. Note that <code>/ask/:requestId</code> is a real route &mdash; an answer is addressable, which is what makes UC-16 (investigate an answer) possible from a shared link and what carries the <code>request_id</code> behind INV-3.</figcaption>
+</figure>
+
+    <h3><span class="mk">4.1</span>Deep links and the public URL contract</h3>
+    <pre><b>app + web share one URL grammar</b>
+  /law/fed/act-1860-45/s-302                  <i>the canonical provision URL</i>
+  /law/fed/act-1860-45/s-302?as_of=2014-03-03 <i>point-in-time (INV-5)</i>
+  /law/punjab/act-2019-12/s-7/cl-b            <i>clause-level deep link</i>
+  /precedent/provision/fed:act-1860-45:s-302  <i>citator for a provision</i>
+
+<b>rules</b>
+  &#8226; The URL is derived from the provision identity in document 01 &sect;3.1 by
+    replacing dots with slashes. It is stable for the life of the provision.
+  &#8226; Web and app resolve identical paths; an Android App Link opens the app
+    when installed and the public page when not.
+  &#8226; No query parameter may change what the law <u>says</u> &mdash; only <u>as_of</u>, which
+    selects a version, and <u>lang</u>, which selects presentation.</pre>
+  </div>
+</section>
+
+<!-- ============ 5 ============ -->
+<section>
+  <div class="rail"><span class="num">&sect;5</span><span class="tag">Component<br>architecture</span></div>
+  <div class="body">
+    <h2>Components that encode the invariants</h2>
+    <p class="lede">Most of the component library is unremarkable. Six components are not: they are where the guarantees from document 01 become something a person can see, and they are specified here rather than left to a designer&rsquo;s discretion.</p>
+
+<figure>
+  <span class="fignum">Figure 8 &mdash; Component hierarchy</span>
+<svg class="dg" viewBox="0 0 940 470" role="img" aria-label="Four-tier component hierarchy: primitives such as bilingual text and tokens, elements such as citation chips and status banners, composites such as provision view and answer block list, and screen shells that compose them, with the six invariant-bearing components highlighted.">
+  <g class="bx">
+    <rect x="20" y="16"  width="900" height="88" rx="4"/>
+    <rect x="20" y="120" width="900" height="100" rx="4"/>
+    <rect x="20" y="236" width="900" height="112" rx="4"/>
+    <rect x="20" y="364" width="900" height="88" rx="4"/>
+  </g>
+  <g class="ta" font-size="9.5">
+    <text x="32" y="34">TIER 1 &mdash; PRIMITIVES</text>
+    <text x="32" y="138">TIER 2 &mdash; ELEMENTS</text>
+    <text x="32" y="254">TIER 3 &mdash; COMPOSITES</text>
+    <text x="32" y="382">TIER 4 &mdash; SCREEN SHELLS</text>
+  </g>
+  <line class="sep" x1="20" y1="42" x2="920" y2="42"/>
+  <line class="sep" x1="20" y1="146" x2="920" y2="146"/>
+  <line class="sep" x1="20" y1="262" x2="920" y2="262"/>
+  <line class="sep" x1="20" y1="390" x2="920" y2="390"/>
+
+  <g class="bx" opacity=".85">
+    <rect x="32" y="52" width="150" height="40" rx="3"/>
+    <rect x="196" y="52" width="130" height="40" rx="3"/>
+    <rect x="340" y="52" width="130" height="40" rx="3"/>
+    <rect x="484" y="52" width="140" height="40" rx="3"/>
+    <rect x="638" y="52" width="130" height="40" rx="3"/>
+    <rect x="782" y="52" width="126" height="40" rx="3"/>
+  </g>
+  <g class="bx" opacity=".85">
+    <rect x="196" y="156" width="150" height="52" rx="3"/>
+    <rect x="360" y="156" width="150" height="52" rx="3"/>
+    <rect x="524" y="156" width="150" height="52" rx="3"/>
+    <rect x="688" y="156" width="150" height="52" rx="3"/>
+  </g>
+  <g class="bx" opacity=".85">
+    <rect x="360" y="272" width="170" height="64" rx="3"/>
+    <rect x="544" y="272" width="170" height="64" rx="3"/>
+    <rect x="728" y="272" width="180" height="64" rx="3"/>
+  </g>
+  <g class="bx" opacity=".85">
+    <rect x="32" y="400" width="200" height="40" rx="3"/>
+    <rect x="246" y="400" width="200" height="40" rx="3"/>
+    <rect x="460" y="400" width="200" height="40" rx="3"/>
+    <rect x="674" y="400" width="234" height="40" rx="3"/>
+  </g>
+  <rect class="accf" x="32" y="156" width="150" height="52" rx="3"/>
+  <rect class="accf" x="32" y="272" width="314" height="64" rx="3"/>
+
+  <g class="th" font-size="10">
+    <text x="42" y="70">BilingualText</text><text x="206" y="70">Tokens</text><text x="350" y="70">Surface</text>
+    <text x="494" y="70">Pressable</text><text x="648" y="70">Field</text><text x="792" y="70">Motion</text>
+    <text x="206" y="176">StatusBanner</text><text x="370" y="176">TreatmentBadge</text>
+    <text x="534" y="176">ScopeBar</text><text x="698" y="176">ReadingLevelToggle</text>
+    <text x="370" y="292">ProvisionView</text><text x="554" y="292">CitatorList</text><text x="738" y="292">InterviewStepper</text>
+  </g>
+  <text class="ta" x="42" y="176" font-size="10">CitationChip</text>
+  <text class="ta" x="42" y="292" font-size="10">AnswerBlockList &nbsp;&middot;&nbsp; AbstentionCard &nbsp;&middot;&nbsp; ProvenanceSheet</text>
+  <g class="th" font-size="10">
+    <text x="42" y="418">ProvisionScreen</text><text x="256" y="418">AskScreen</text>
+    <text x="470" y="418">DraftScreen</text><text x="684" y="418">ProcedureScreen &middot; Tools</text>
+  </g>
+  <g class="tm">
+    <text x="42" y="84">bidi-safe text primitive &mdash; every</text>
+    <text x="206" y="84">colour, type, space,</text><text x="350" y="84">card, sheet, divider</text>
+    <text x="494" y="84">48 dp target, focus ring</text><text x="648" y="84">typed input + errors</text>
+    <text x="792" y="84">respects reduced motion</text>
+    <text x="42" y="190">tap a citation &rarr; opens</text><text x="42" y="202">ProvenanceSheet</text>
+    <text x="206" y="190">repealed &middot; not yet in force</text><text x="206" y="202">superseded at as_of &middot; under review</text>
+    <text x="370" y="190">applied &middot; distinguished</text><text x="370" y="202">overruled &middot; confidence shown</text>
+    <text x="534" y="190">jurisdiction &middot; as_of &middot; court</text><text x="534" y="202">always visible, never hidden</text>
+    <text x="698" y="190">plain speech &harr; professional</text><text x="698" y="202">same grounded payload</text>
+    <text x="42" y="306">the three components that make</text>
+    <text x="42" y="320">groundedness and abstention</text>
+    <text x="42" y="332">visible rather than claimed</text>
+    <text x="370" y="306">tree, clause indentation,</text><text x="370" y="318">provisos, amendment chain,</text><text x="370" y="330">source PDF page link</text>
+    <text x="554" y="306">treatments ordered by court</text><text x="554" y="318">seniority, with coverage</text><text x="554" y="330">disclosure</text>
+    <text x="738" y="306">renders a server field schema;</text><text x="738" y="318">the client never invents a</text><text x="738" y="330">field or a clause</text>
+  </g>
+  <text class="tm" x="42" y="96">string routes through it</text>
+
+  <g class="lnD" marker-end="url(#arwO)">
+    <line x1="107" y1="156" x2="107" y2="96"/>
+    <line x1="189" y1="272" x2="150" y2="212"/>
+    <line x1="445" y1="272" x2="271" y2="212"/>
+    <line x1="132" y1="400" x2="290" y2="340"/>
+    <line x1="346" y1="400" x2="200" y2="340"/>
+    <line x1="560" y1="400" x2="800" y2="340"/>
+  </g>
+  <text class="tm" x="440" y="460">Rule: a tier may compose only from tiers beneath it. A screen shell contains layout and no logic; a primitive contains no domain vocabulary.</text>
+</svg>
+<figcaption><b>Four accented components carry the invariants.</b> <code>CitationChip</code> accepts a resolved citation object and has no code path that assembles one from parts &mdash; INV-1 made unbuildable rather than merely forbidden. <code>AbstentionCard</code> is a tier-3 composite, not an error variant, so it cannot be reached by an error handler that thinks it is being helpful. <code>ProvenanceSheet</code> and <code>AnswerBlockList</code> together make every claim traceable in two taps.</figcaption>
+</figure>
+
+<figure>
+  <span class="fignum">Figure 9 &mdash; Screen anatomy &middot; grounded answer and abstention</span>
+<svg class="dg" viewBox="0 0 940 590" role="img" aria-label="Annotated wireframes. The left phone frame shows the answer screen: app bar with language and reading-level controls, query echo, a persistent scope bar showing jurisdiction and as-of date, two answer blocks each ending in a citation chip with one carrying a verification qualifier, a persistent disclaimer bar, and an open provenance sheet showing the authoritative provision text with the matched span highlighted. The right frame shows the abstention screen: a heading stating no statutory basis was found, a statement of what was searched, nearest results explicitly demarcated as unconfirmed, and three next actions.">
+  <rect class="bx" x="30" y="24" width="270" height="530" rx="16"/>
+  <rect class="bxf" x="40" y="36" width="250" height="32" rx="4"/>
+  <g font-size="9.5">
+    <text x="50" y="56">&#8592;  Answer</text>
+    <text x="228" y="56" class="ta">&#1575;/A</text>
+    <text x="262" y="56" class="ta">&#9776;</text>
+  </g>
+  <rect class="bx" x="40" y="76" width="250" height="26" rx="4"/>
+  <text x="50" y="93" font-size="9.5" opacity=".75">&ldquo;my landlord locked me out&rdquo;</text>
+  <rect class="accf" x="40" y="110" width="250" height="24" rx="4"/>
+  <text x="50" y="126" font-size="9" class="ta">Punjab &middot; as at 24 Aug 2026 &middot; plain speech</text>
+
+  <rect class="bx" x="40" y="142" width="250" height="60" rx="4"/>
+  <rect class="ph" x="50" y="152" width="220" height="7" rx="2"/>
+  <rect class="ph" x="50" y="164" width="230" height="7" rx="2"/>
+  <rect class="ph" x="50" y="176" width="150" height="7" rx="2"/>
+  <rect class="accf" x="50" y="188" width="112" height="12" rx="6"/>
+  <text x="56" y="197" font-size="8" class="ta">s.9 Specific Relief</text>
+
+  <rect class="bx" x="40" y="210" width="250" height="68" rx="4"/>
+  <rect class="ph" x="50" y="220" width="228" height="7" rx="2"/>
+  <rect class="ph" x="50" y="232" width="196" height="7" rx="2"/>
+  <rect class="accf" x="50" y="244" width="104" height="12" rx="6"/>
+  <text x="56" y="253" font-size="8" class="ta">s.10 W.P. Rent Ord.</text>
+  <rect class="bxg" x="50" y="262" width="230" height="12" rx="3"/>
+  <text x="56" y="271" font-size="8" opacity=".72">&#9888; partially supported &mdash; see source</text>
+
+  <rect class="bxf" x="40" y="286" width="250" height="26" rx="4"/>
+  <text x="50" y="303" font-size="8.4" opacity=".8">Legal information, not advice. Consult an advocate.</text>
+
+  <rect class="bxf" x="40" y="322" width="250" height="224" rx="10"/>
+  <rect class="ph" x="150" y="330" width="30" height="4" rx="2"/>
+  <text x="50" y="352" font-size="9.5" class="th">Section 9, Specific Relief Act 1877</text>
+  <text x="50" y="366" font-size="8.4" opacity=".7">In force 1877-02-01 &rarr; present &middot; federal</text>
+  <line class="sep" x1="50" y1="376" x2="280" y2="376"/>
+  <rect class="ph" x="50" y="386" width="228" height="7" rx="2"/>
+  <rect class="phl" x="50" y="398" width="196" height="7" rx="2"/>
+  <rect class="phl" x="50" y="410" width="168" height="7" rx="2"/>
+  <rect class="ph" x="50" y="422" width="212" height="7" rx="2"/>
+  <text x="50" y="446" font-size="8.4" class="ta">highlighted run = the span this claim rests on</text>
+  <line class="sep" x1="50" y1="456" x2="280" y2="456"/>
+  <g font-size="8.6" opacity=".8">
+    <text x="50" y="474">Amendment chain &middot; 2 versions</text>
+    <text x="50" y="490">Judicial treatment &middot; 14 judgments</text>
+    <text x="50" y="506">Open source PDF, page 12</text>
+    <text x="50" y="522">Copy citation</text>
+  </g>
+  <rect class="bxg" x="50" y="530" width="230" height="0"/>
+
+  <g class="lnA">
+    <line x1="292" y1="52"  x2="320" y2="52"/>
+    <line x1="292" y1="122" x2="320" y2="122"/>
+    <line x1="292" y1="194" x2="320" y2="176"/>
+    <line x1="292" y1="268" x2="320" y2="252"/>
+    <line x1="292" y1="299" x2="320" y2="322"/>
+    <line x1="292" y1="400" x2="320" y2="400"/>
+  </g>
+  <g class="ta" font-size="10.5">
+    <text x="326" y="48">1 &nbsp;Script and reading level are one tap away</text>
+    <text x="326" y="118">2 &nbsp;Scope bar is permanent chrome</text>
+    <text x="326" y="172">3 &nbsp;Every block ends in a citation chip</text>
+    <text x="326" y="248">4 &nbsp;Verifier qualifier, shown not hidden</text>
+    <text x="326" y="318">5 &nbsp;Disclaimer is structural, not dismissible</text>
+    <text x="326" y="396">6 &nbsp;ProvenanceSheet &mdash; two taps to the source</text>
+  </g>
+  <g class="tm" font-size="9.5">
+    <text x="336" y="62">Not buried in settings. Changing either re-renders</text>
+    <text x="336" y="74">the same grounded payload, never re-queries the law.</text>
+    <text x="336" y="132">Jurisdiction and as_of are always visible because an</text>
+    <text x="336" y="144">answer is only true within them (INV-5, QA-5).</text>
+    <text x="336" y="186">A block with no citation is dropped before it reaches</text>
+    <text x="336" y="198">the client. The chip is the affordance into provenance.</text>
+    <text x="336" y="262">A claim that scored between the drop and pass</text>
+    <text x="336" y="274">thresholds is rendered with a visible qualifier rather</text>
+    <text x="336" y="286">than silently kept or silently removed.</text>
+    <text x="336" y="332">Present on every generated surface. Register is</text>
+    <text x="336" y="344">enforced upstream; this is the visible half (QA-13).</text>
+    <text x="336" y="410">Authoritative text from the corpus, validity dates,</text>
+    <text x="336" y="422">the matched span highlighted, and onward links to</text>
+    <text x="336" y="434">the amendment chain, the citator and the source PDF.</text>
+    <text x="336" y="446">Works offline for any provision in an installed tier.</text>
+  </g>
+
+  <rect class="bx" x="660" y="24" width="250" height="330" rx="16"/>
+  <rect class="bxf" x="670" y="36" width="230" height="30" rx="4"/>
+  <text x="680" y="55" font-size="9.5">&#8592;  No answer</text>
+  <rect class="acc" x="670" y="76" width="230" height="46" rx="4"/>
+  <text x="682" y="96" font-size="10" class="ta">No statutory basis found</text>
+  <text x="682" y="112" font-size="8.6" opacity=".8">We will not guess at the law.</text>
+  <rect class="bx" x="670" y="132" width="230" height="60" rx="4"/>
+  <text x="680" y="149" font-size="8.6" class="th">What was searched</text>
+  <g font-size="8.4" opacity=".78">
+    <text x="680" y="164">Punjab + federal &middot; as at 24 Aug 2026</text>
+    <text x="680" y="177">1,412 instruments &middot; 58,900 provisions</text>
+    <text x="680" y="190">pack v17 + live index</text>
+  </g>
+  <line class="sep" x1="670" y1="204" x2="900" y2="204"/>
+  <text x="680" y="220" font-size="8.6" opacity=".7">Nearest matches &mdash; not confirmed relevant</text>
+  <g class="bxg">
+    <rect x="670" y="228" width="230" height="24" rx="3"/>
+    <rect x="670" y="256" width="230" height="24" rx="3"/>
+  </g>
+  <rect class="ph" x="678" y="237" width="150" height="6" rx="2"/>
+  <rect class="ph" x="678" y="265" width="176" height="6" rx="2"/>
+  <g class="bx">
+    <rect x="670" y="292" width="230" height="22" rx="4"/>
+    <rect x="670" y="318" width="110" height="22" rx="4"/>
+    <rect x="790" y="318" width="110" height="22" rx="4"/>
+  </g>
+  <g font-size="8.6">
+    <text x="680" y="307">Rephrase the question</text>
+    <text x="680" y="333">Browse the Act</text>
+    <text x="800" y="333">Find an advocate</text>
+  </g>
+
+  <text class="ta" x="660" y="392" font-size="10.5">Abstention is a destination, not an error</text>
+  <g class="tm" font-size="9.5">
+    <text x="660" y="410">It has its own route, its own layout and its own three</text>
+    <text x="660" y="424">actions. It never renders as a toast, a retry prompt or</text>
+    <text x="660" y="438">an empty state, because those framings invite the user</text>
+    <text x="660" y="452">to read silence as absence of law rather than absence</text>
+    <text x="660" y="466">of confidence.</text>
+    <text x="660" y="490">Stating the search scope turns a refusal into</text>
+    <text x="660" y="504">information: the reader learns what was covered and</text>
+    <text x="660" y="518">can widen the jurisdiction or the date themselves.</text>
+    <text x="660" y="542">The referral action is the honest off-ramp required by</text>
+    <text x="660" y="556">QA-13, and it appears here rather than only on error.</text>
+  </g>
+</svg>
+<figcaption><b>Both screens are specified, not sketched.</b> The scope bar, the citation chip, the verifier qualifier and the disclaimer are non-removable chrome &mdash; a design revision may restyle them but may not delete them, because each is the visible half of an invariant. The abstention screen gets equal design effort to the answer screen precisely because it is the one users are most likely to misread.</figcaption>
+</figure>
+
+    <h3><span class="mk">5.1</span>Contracts of the invariant-bearing components</h3>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Component</th><th>Accepts</th><th>Guarantees</th><th>Enforces</th></tr></thead>
+        <tbody>
+          <tr><td class="k">BilingualText</td><td><code>{runs: [{text, script, dir}], role}</code></td><td>Correct bidi isolation on every mixed run; the script-appropriate type scale; Western digits preserved in statutory identifiers</td><td class="n">QA-6</td></tr>
+          <tr><td class="k">CitationChip</td><td><code>ResolvedCitation {provisionId, label, shortTitle, validity}</code> &mdash; never strings to concatenate</td><td>Cannot render without a resolved identity; tapping always opens the matching <code>ProvenanceSheet</code></td><td class="n">INV-1</td></tr>
+          <tr><td class="k">ProvenanceSheet</td><td><code>{provision, matchedSpan, validity, sourcePage, treatments}</code></td><td>Shows authoritative text verbatim; highlights the exact span; states validity; links onward to the amendment chain and citator</td><td class="n">QA-1</td></tr>
+          <tr><td class="k">AnswerBlockList</td><td><code>[{text, citations[], verdict}]</code></td><td>Drops any block with zero citations; renders <code>partial</code> verdicts with a visible qualifier; never merges blocks across citations</td><td class="n">INV-1 QA-1</td></tr>
+          <tr><td class="k">AbstentionCard</td><td><code>{searchedScope, nearest[], suggestions[]}</code></td><td>Distinct route and layout; nearest results visually demarcated and never styled as results; always offers the referral action</td><td class="n">INV-2 QA-2</td></tr>
+          <tr><td class="k">StatusBanner</td><td><code>{status, effectiveRange, asOf, supersededBy?}</code></td><td>Renders above the provision text, not below it; cannot be collapsed for <code>repealed</code> or <code>not_yet_commenced</code></td><td class="n">INV-5 QA-5</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3><span class="mk">5.2</span>Screen-state taxonomy</h3>
+    <p>Every screen resolves to exactly one of eight states. The shell renders the state; the notifier chooses it. There is no ninth state and no ad-hoc inline spinner.</p>
+    <pre><b>sealed ScreenState</b>
+  <b>Loading</b>      skeleton matched to the eventual layout, never a centred spinner
+  <b>Ready</b>        content
+  <b>Empty</b>        a valid query with no matches <i>&mdash; distinct from Abstained</i>
+  <u>Abstained</u>    the gate declined <i>&mdash; only reachable on generated surfaces</i>
+  <b>Offline</b>      network-required content on a device with no network
+  <b>Stale</b>        served from a pack older than the currency threshold
+  <b>Degraded</b>     served by a reduced path <i>(lexical-only search, cached answer)</i>
+  <b>Error</b>        an actual fault <i>&mdash; the only state that offers &ldquo;retry&rdquo;</i>
+
+<i>Rule: Abstained, Offline, Stale and Degraded are outcomes, not faults. None of</i>
+<i>them may borrow error styling, an error icon, or a retry affordance.</i></pre>
+  </div>
+</section>
+
+
+<!-- ============ 6 ============ -->
+<section>
+  <div class="rail"><span class="num">&sect;6</span><span class="tag">Bilingual<br>&amp; bidi</span></div>
+  <div class="body">
+    <h2>Two scripts, one sentence</h2>
+    <p class="lede">QA-6 asks for bilingual equity, and most implementations deliver it by translating the interface and stopping. The hard part is that a single Urdu sentence about Pakistani law contains left-to-right statutory identifiers, and getting that wrong does not look like a typography bug &mdash; it looks like a citation to a different section.</p>
+
+    <h3><span class="mk">6.1</span>Three independent axes</h3>
+    <p>Language is not one setting. Conflating these is the root cause of most bilingual legal UI failures.</p>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Axis</th><th>Values</th><th>Controls</th><th>Independent because</th></tr></thead>
+        <tbody>
+          <tr><td class="k">UI language</td><td class="n">en &middot; ur</td><td>Chrome, labels, navigation, layout direction</td><td>A user may want Urdu chrome around English statutory text &mdash; and frequently does, because the statute <em>is</em> English.</td></tr>
+          <tr><td class="k">Content language</td><td class="n">en &middot; ur &middot; both</td><td>Explanations, answers, judgment summaries. <strong>Never the statutory text itself</strong></td><td>Statutory text is shown verbatim in its enacted language always; only explanation is translated (document 01, ADR-4).</td></tr>
+          <tr><td class="k">Input script</td><td class="n">latin &middot; arabic &middot; roman-urdu</td><td>Query normalisation, glossary alias lookup, keyboard hint</td><td>Detected per keystroke, not chosen. A user with Urdu chrome will still type <code>talaq</code> on a Latin keyboard.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+<figure>
+  <span class="fignum">Figure 10 &mdash; Bidirectional text pipeline and neutral resolution</span>
+<svg class="dg" viewBox="0 0 940 512" role="img" aria-label="Diagram of bidirectional text handling. The upper half shows a mixed Urdu and Latin run sequence in logical order, with neutral characters between the runs; without isolation those neutrals resolve to the paragraph direction and attach to the wrong end of the citation. The lower half shows the same sequence wrapped in first-strong isolate and pop-directional-isolate marks, where neutrals resolve inside the isolate and the citation stays intact. A six-stage pipeline on the right shows run segmentation, script detection, digit policy, isolation wrapping, scale assignment and paragraph direction resolution.">
+  <text class="ta" x="20" y="24" font-size="10.5">WITHOUT ISOLATION &mdash; the failure</text>
+  <text class="tm" x="20" y="40">logical order in memory, base paragraph direction = RTL</text>
+  <g class="bx">
+    <rect x="20"  y="52" width="120" height="34" rx="3"/>
+    <rect x="152" y="52" width="26"  height="34" rx="3"/>
+    <rect x="190" y="52" width="150" height="34" rx="3"/>
+    <rect x="352" y="52" width="26"  height="34" rx="3"/>
+    <rect x="390" y="52" width="120" height="34" rx="3"/>
+  </g>
+  <text class="urdu" x="80" y="76" text-anchor="middle" font-size="13">&#1602;&#1578;&#1604;&#1616; &#1593;&#1605;&#1583;</text>
+  <text x="266" y="74" text-anchor="middle" font-size="11">s. 302&#8211;304 PPC</text>
+  <text class="urdu" x="450" y="76" text-anchor="middle" font-size="13">&#1705;&#1746; &#1578;&#1581;&#1578;</text>
+  <text class="ta" x="165" y="74" text-anchor="middle" font-size="12">N</text>
+  <text class="ta" x="365" y="74" text-anchor="middle" font-size="12">N</text>
+  <g class="tm" text-anchor="middle">
+    <text x="80" y="100">RTL run</text><text x="266" y="100">LTR run</text><text x="450" y="100">RTL run</text>
+    <text x="165" y="100">neutral</text><text x="365" y="100">neutral</text>
+  </g>
+
+  <text class="tm" x="20" y="132">resolved visual order &mdash; neutrals inherit the paragraph direction</text>
+  <g class="bx">
+    <rect x="20"  y="144" width="120" height="34" rx="3"/>
+    <rect x="152" y="144" width="150" height="34" rx="3"/>
+    <rect x="314" y="144" width="120" height="34" rx="3"/>
+  </g>
+  <rect class="acc" x="446" y="144" width="180" height="34" rx="3"/>
+  <text class="urdu" x="80" y="168" text-anchor="middle" font-size="13">&#1705;&#1746; &#1578;&#1581;&#1578;</text>
+  <text x="227" y="166" text-anchor="middle" font-size="11">s. 302&#8211;304 PPC</text>
+  <text class="urdu" x="374" y="168" text-anchor="middle" font-size="13">&#1602;&#1578;&#1604;&#1616; &#1593;&#1605;&#1583;</text>
+  <text class="ta" x="536" y="166" text-anchor="middle" font-size="10">brackets, dashes, commas migrate</text>
+  <path class="lnA" d="M446,161 L436,161" marker-end="url(#arwA)"/>
+  <text class="tm" x="20" y="196">A range separator or bracket that moves to the opposite end of a citation produces a different citation. This is not cosmetic.</text>
+
+  <line class="sep" x1="20" y1="216" x2="640" y2="216"/>
+
+  <text class="ta" x="20" y="244" font-size="10.5">WITH FIRST-STRONG ISOLATES &mdash; the fix</text>
+  <text class="tm" x="20" y="260">every non-native run wrapped in U+2068 FSI &hellip; U+2069 PDI</text>
+  <g class="bx">
+    <rect x="20"  y="272" width="120" height="34" rx="3"/>
+    <rect x="390" y="272" width="120" height="34" rx="3"/>
+  </g>
+  <rect class="accf" x="152" y="272" width="226" height="34" rx="3"/>
+  <text class="urdu" x="80" y="296" text-anchor="middle" font-size="13">&#1602;&#1578;&#1604;&#1616; &#1593;&#1605;&#1583;</text>
+  <text x="265" y="294" text-anchor="middle" font-size="11" class="ta">&#8296; s. 302&#8211;304 PPC &#8297;</text>
+  <text class="urdu" x="450" y="296" text-anchor="middle" font-size="13">&#1705;&#1746; &#1578;&#1581;&#1578;</text>
+  <text class="tm" x="265" y="320" text-anchor="middle">neutrals now resolve inside the isolate</text>
+
+  <text class="tm" x="20" y="352">resolved visual order &mdash; the citation is one indivisible island</text>
+  <g class="bx">
+    <rect x="20"  y="364" width="120" height="34" rx="3"/>
+    <rect x="390" y="364" width="120" height="34" rx="3"/>
+  </g>
+  <rect class="accf" x="152" y="364" width="226" height="34" rx="3"/>
+  <text class="urdu" x="80" y="388" text-anchor="middle" font-size="13">&#1705;&#1746; &#1578;&#1581;&#1578;</text>
+  <text x="265" y="386" text-anchor="middle" font-size="11" class="ta">s. 302&#8211;304 PPC</text>
+  <text class="urdu" x="450" y="388" text-anchor="middle" font-size="13">&#1602;&#1578;&#1604;&#1616; &#1593;&#1605;&#1583;</text>
+  <text class="tm" x="20" y="418">Isolates, not the deprecated LRE/RLE embeddings: embeddings leak across adjacent runs, so two citations separated by Urdu can still interfere.</text>
+
+  <line class="sep" x1="660" y1="16" x2="660" y2="470"/>
+  <text class="ta" x="676" y="30" font-size="10.5">BilingualText pipeline</text>
+  <g class="bx">
+    <rect x="676" y="44"  width="244" height="42" rx="3"/>
+    <rect x="676" y="94"  width="244" height="42" rx="3"/>
+    <rect x="676" y="144" width="244" height="42" rx="3"/>
+    <rect x="676" y="194" width="244" height="42" rx="3"/>
+    <rect x="676" y="244" width="244" height="42" rx="3"/>
+    <rect x="676" y="294" width="244" height="42" rx="3"/>
+  </g>
+  <g class="th" font-size="10">
+    <text x="686" y="60">1 &nbsp;run segmentation</text>
+    <text x="686" y="110">2 &nbsp;script detection</text>
+    <text x="686" y="160">3 &nbsp;digit policy</text>
+    <text x="686" y="210">4 &nbsp;isolation wrapping</text>
+    <text x="686" y="260">5 &nbsp;scale assignment</text>
+    <text x="686" y="310">6 &nbsp;paragraph direction</text>
+  </g>
+  <g class="tm">
+    <text x="686" y="76">split on script boundary, not on space</text>
+    <text x="686" y="126">Arabic &middot; Latin &middot; digits &middot; neutral</text>
+    <text x="686" y="176">statutory identifiers stay Western</text>
+    <text x="686" y="226">FSI &hellip; PDI around every foreign run</text>
+    <text x="686" y="276">Nastaliq or Latin metrics per run</text>
+    <text x="686" y="326">from UI language, not from content</text>
+  </g>
+  <g class="ln" marker-end="url(#arw)">
+    <line x1="798" y1="86"  x2="798" y2="90"/>
+    <line x1="798" y1="136" x2="798" y2="140"/>
+    <line x1="798" y1="186" x2="798" y2="190"/>
+    <line x1="798" y1="236" x2="798" y2="240"/>
+    <line x1="798" y1="286" x2="798" y2="290"/>
+  </g>
+  <text class="ta" x="676" y="362" font-size="10">Digit policy, stated</text>
+  <g class="tm">
+    <text x="676" y="380">Section numbers, article numbers, years in</text>
+    <text x="676" y="394">citations, SRO numbers and case numbers use</text>
+    <text x="676" y="408">Western digits in both scripts, always. Only</text>
+    <text x="676" y="422">quantities and dates in running prose may take</text>
+    <text x="676" y="436">Eastern Arabic-Indic forms, and only when the</text>
+    <text x="676" y="450">UI language is Urdu.</text>
+    <text x="676" y="470">A localised section number is a wrong citation.</text>
+  </g>
+</svg>
+<figcaption><b>This is the specific mechanism, not a general plea for care.</b> Neutral characters &mdash; brackets, dashes, commas, the range separator in <code>302&ndash;304</code> &mdash; take their direction from context. Inside a right-to-left paragraph they resolve right-to-left and attach to the wrong end of an embedded citation. First-strong isolates give those neutrals a local context to resolve within. Every string in the product routes through <code>BilingualText</code>, which is why this can be guaranteed rather than remembered.</figcaption>
+</figure>
+
+    <h3><span class="mk">6.2</span>Two type scales, selected by script</h3>
+    <p>Nastaliq is a sloped, deeply cascading script: a line of Urdu occupies far more vertical space than a line of Latin at the same nominal size, its descenders collide at Latin line-heights, and its optical size runs small. A single scale cannot serve both, and a scale chosen by <em>locale</em> breaks on the mixed run this section is about. The scale is therefore chosen <strong>per run, by script.</strong></p>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Role</th><th>Latin</th><th>Nastaliq</th><th>Note</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Statutory body</td><td class="n">16 / 1.62</td><td class="n">19 / 2.05</td><td>Urdu is set larger and much looser; the two must share a baseline grid so a mixed line does not jitter</td></tr>
+          <tr><td class="k">Provision heading</td><td class="n">17 / 1.35 &middot; 600</td><td class="n">20 / 1.8 &middot; 400</td><td>Nastaliq has no usable bold; emphasis comes from size and colour, never synthetic weight</td></tr>
+          <tr><td class="k">Answer prose</td><td class="n">16 / 1.6</td><td class="n">19 / 2.0</td><td>&mdash;</td></tr>
+          <tr><td class="k">Citation chip</td><td class="n">13 / 1.2 &middot; mono</td><td class="n">13 / 1.2 &middot; mono</td><td>Always Latin metrics &mdash; a citation is never set in Nastaliq</td></tr>
+          <tr><td class="k">Caption / meta</td><td class="n">13 / 1.5</td><td class="n">15 / 1.9</td><td>&mdash;</td></tr>
+          <tr><td class="k">Minimum touch label</td><td class="n">14</td><td class="n">17</td><td>Nastaliq legibility floor is materially higher; 14 px Urdu is unreadable on a mid-tier screen</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3><span class="mk">6.3</span>What mirrors and what does not</h3>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Mirrors under RTL</th><th>Never mirrors</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Layout axis (<code>start</code>/<code>end</code>, never <code>left</code>/<code>right</code>) &middot; navigation and back affordances &middot; list chevrons &middot; progress and stepper direction &middot; provision clause indentation &middot; drawer side &middot; slider direction</td>
+            <td>Source PDF page previews &middot; the amendment timeline, which is chronological and always runs left to right &middot; numerals within a citation &middot; the curation console&rsquo;s source-versus-parse comparison &middot; media transport controls &middot; anything reproducing a printed legal document</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p>The amendment timeline is the instructive case: it is a chronological axis, not a reading order. Mirroring it in Urdu would put 2026 on the left and 1860 on the right, which reads as a claim about time rather than about language. Directionality follows the semantics of the axis, not the direction of the surrounding text.</p>
+
+    <h3><span class="mk">6.4</span>Roman Urdu at the client edge</h3>
+    <pre><b>input</b>       "mje talaq k baad bachon ki custody chahiye"
+<b>detect</b>      latin script + roman-urdu classifier &rarr; script = roman-urdu
+<b>normalise</b>   consonant folding (k/ke/kay &rarr; ke) &middot; vowel elision &middot; digraph
+            variants (kh/x, q/k) &middot; repeated-letter collapse
+<b>expand</b>      glossary alias lookup, <u>client-side against the pack</u>:
+              talaq   &rarr; divorce, dissolution of marriage
+              custody &rarr; hizanat, guardianship, custody of minors
+<b>send</b>        original text + detected script + expanded concept IDs
+            <i>the server re-does this authoritatively; the client copy exists so that</i>
+            <i>offline search works and so the keyboard hint is right</i></pre>
+    <p>Normalisation is deliberately duplicated on both sides. The client copy is a convenience that must never disagree with the server; both read the same versioned glossary artefact, and a mismatch in glossary version is a client warning, not a silent divergence.</p>
+  </div>
+</section>
+
+
+<!-- ============ 7 ============ -->
+<section>
+  <div class="rail"><span class="num">&sect;7</span><span class="tag">Access-<br>ibility</span></div>
+  <div class="body">
+    <h2>Designing for the reader who cannot read well</h2>
+    <p class="lede">National literacy sits near 60%, and legal literacy far below that. The accessibility work here is not a compliance pass bolted on at the end &mdash; two of these features reach more people than any model improvement we could ship.</p>
+
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Need</th><th>Mechanism</th><th>Where it lives</th><th>Verified by</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Cannot read fluently</td><td><strong>Urdu voice in and out.</strong> Speak a question, hear the answer. Statutory text is read at professional register; explanations at plain register</td><td>L7.7 platform &rarr; L7.3 <code>ReadingLevelPolicy</code></td><td>Task completion by a non-reading participant in the user study</td></tr>
+          <tr><td class="k">Legal register is opaque</td><td><strong>Reading-level control</strong> on the same grounded payload. Plain speech comes from the precomputed explainer offline and a cached plain rendering online &mdash; never a second retrieval</td><td>L7.3 policy, L7.1 rendering</td><td>Both renderings cite identical provisions; asserted in a widget test</td></tr>
+          <tr><td class="k">Screen reader users</td><td>Semantic tree authored deliberately: provision heading is a heading, the clause tree is a nested list, the citation chip announces &ldquo;citation, section 302, Pakistan Penal Code, opens source&rdquo;</td><td>L7.1 primitives</td><td>Traversal-order test per screen in CI</td></tr>
+          <tr><td class="k">Low-end devices, bright sun</td><td>Contrast floor 4.5:1 for body and 3:1 for large text in <em>both</em> themes; no information carried by colour alone &mdash; treatment badges pair colour with a word</td><td>Design tokens, L7.1</td><td>Automated contrast assertion over the token matrix</td></tr>
+          <tr><td class="k">Motor and touch</td><td>48&nbsp;dp minimum target with 8&nbsp;dp separation; the citation chip is a full-height tap target, not just its text</td><td><code>Pressable</code> primitive</td><td>Golden tests measure hit rectangles</td></tr>
+          <tr><td class="k">Vestibular sensitivity</td><td><code>prefers-reduced-motion</code> honoured; the provenance sheet cross-fades instead of sliding when set</td><td><code>Motion</code> primitive</td><td>Golden test in both motion modes</td></tr>
+          <tr><td class="k">Unfamiliar with apps</td><td>Icons never appear without a text label in primary navigation; destructive and paid actions state their consequence in the button, not in a following dialog</td><td>L7.1 conventions</td><td>Review checklist; no icon-only primary action ships</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note blue">
+      <h4>Where voice runs, and why it matters for privacy</h4>
+      <p>Speech-to-text runs on-device where the platform provides an offline Urdu model, and falls back to a server call otherwise. That fallback is disclosed at the moment of use, and it is <strong>disabled entirely in anonymous mode</strong> &mdash; a voice query that leaves the device is a recording of someone describing a legal problem aloud, which is precisely the data QA-12 exists to protect. Text-to-speech is always on-device.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8 ============ -->
+<section>
+  <div class="rail"><span class="num">&sect;8</span><span class="tag">State, data<br>&amp; security</span></div>
+  <div class="body">
+    <h2>State, sources and secrets</h2>
+
+    <h3><span class="mk">8.1</span>State management</h3>
+    <p>Riverpod with code generation, and one rule that matters more than the choice of library: <strong>a notifier exposes an immutable view state and nothing else.</strong> No widget reads a repository, no repository holds UI state, and no notifier persists anything.</p>
+    <pre><b>unidirectional, per screen</b>
+  intent      user action &rarr; Notifier method
+  work        Notifier &rarr; UseCase &rarr; Repository &rarr; (LocalPack | Api)
+  state       Repository returns <u>entities</u>; UseCase applies policy;
+              Notifier emits <b>AsyncValue&lt;ViewState&gt;</b>
+  render      Widget rebuilds from ViewState &mdash; a pure function of state
+
+<b>forbidden</b>
+  &#8226; a widget that computes an in-force date, formats a citation, or
+    decides whether something is repealed
+  &#8226; a notifier that imports <i>package:sqlite3</i> or <i>package:http</i>
+  &#8226; a repository that returns a DTO, a nullable network type, or a Future
+    that the caller must remember to catch</pre>
+
+    <h3><span class="mk">8.2</span>Anonymous mode is a different object graph</h3>
+    <p>Document 01 requires that anonymous mode be enforced at session scope rather than checked at call sites. A boolean consulted in twenty places will eventually be missed in the twenty-first. Instead the dependency container is rebuilt with different concrete implementations, and the code that could write is simply not present in the graph.</p>
+
+<figure>
+  <span class="fignum">Figure 11 &mdash; Anonymous mode object graph</span>
+<svg class="dg" viewBox="0 0 940 400" role="img" aria-label="Two dependency graphs side by side. In a normal session the widget tree and notifiers resolve repositories bound to an API source, a persistent history store, a telemetry sink and an offline write queue. In an anonymous session the identical widget tree and notifiers resolve the same repository interfaces bound instead to an anonymous API source, an in-memory history store, a null telemetry sink and no write queue, with voice fallback disabled.">
+  <text class="th" x="20" y="24" font-size="11">Normal session</text>
+  <text class="ta" x="500" y="24" font-size="11">Anonymous session</text>
+  <line class="sep" x1="470" y1="12" x2="470" y2="384"/>
+
+  <g class="bx">
+    <rect x="20" y="36"  width="420" height="40" rx="3"/>
+    <rect x="20" y="88"  width="420" height="40" rx="3"/>
+    <rect x="20" y="140" width="420" height="40" rx="3"/>
+    <rect x="20" y="200" width="200" height="46" rx="3"/>
+    <rect x="240" y="200" width="200" height="46" rx="3"/>
+    <rect x="20" y="258" width="200" height="46" rx="3"/>
+    <rect x="240" y="258" width="200" height="46" rx="3"/>
+    <rect x="20" y="316" width="420" height="40" rx="3"/>
+  </g>
+  <g class="th" font-size="10">
+    <text x="30" y="60">Widget tree</text>
+    <text x="30" y="112">Notifiers</text>
+    <text x="30" y="164">Repositories (interfaces)</text>
+    <text x="30" y="220">ApiSource</text>
+    <text x="250" y="220">HistoryStore</text>
+    <text x="30" y="278">TelemetrySink</text>
+    <text x="250" y="278">OfflineWriteQueue</text>
+    <text x="30" y="340">LocalPackSource &mdash; read only, identical in both graphs</text>
+  </g>
+  <g class="tm">
+    <text x="30" y="72">identical in both graphs</text>
+    <text x="30" y="124">identical in both graphs</text>
+    <text x="30" y="176">identical in both graphs &mdash; same types, same methods</text>
+    <text x="30" y="234">bearer token, user scope</text>
+    <text x="250" y="234">SQLite, encrypted at rest</text>
+    <text x="30" y="292">events + request_id</text>
+    <text x="250" y="292">durable, survives restart</text>
+    <text x="30" y="354">the signed pack never varies by session type</text>
+  </g>
+
+  <g class="bx">
+    <rect x="500" y="36"  width="420" height="40" rx="3"/>
+    <rect x="500" y="88"  width="420" height="40" rx="3"/>
+    <rect x="500" y="140" width="420" height="40" rx="3"/>
+    <rect x="500" y="316" width="420" height="40" rx="3"/>
+  </g>
+  <g class="acc">
+    <rect x="500" y="200" width="200" height="46" rx="3"/>
+    <rect x="720" y="200" width="200" height="46" rx="3"/>
+    <rect x="500" y="258" width="200" height="46" rx="3"/>
+    <rect x="720" y="258" width="200" height="46" rx="3"/>
+  </g>
+  <g class="th" font-size="10">
+    <text x="510" y="60">Widget tree</text>
+    <text x="510" y="112">Notifiers</text>
+    <text x="510" y="164">Repositories (interfaces)</text>
+    <text x="510" y="340">LocalPackSource &mdash; read only, identical in both graphs</text>
+  </g>
+  <g class="ta" font-size="10">
+    <text x="510" y="220">AnonApiSource</text>
+    <text x="730" y="220">InMemoryHistoryStore</text>
+    <text x="510" y="278">NullTelemetrySink</text>
+    <text x="730" y="278">&#8212; absent &#8212;</text>
+  </g>
+  <g class="tm">
+    <text x="510" y="72">byte-for-byte the same code</text>
+    <text x="510" y="124">byte-for-byte the same code</text>
+    <text x="510" y="176">byte-for-byte the same code</text>
+    <text x="510" y="234">no bearer token, no cookie,</text><text x="510" y="245">ephemeral session key</text>
+    <text x="730" y="234">RAM only, cleared on exit,</text><text x="730" y="245">never touches disk</text>
+    <text x="510" y="292">every call is a no-op</text>
+    <text x="730" y="292">nothing durable can be</text><text x="730" y="303">queued, so nothing leaks</text>
+    <text x="510" y="354">reads are safe; the pack contains no user content</text>
+  </g>
+
+  <g class="lnD" marker-end="url(#arwO)">
+    <line x1="230" y1="88" x2="230" y2="80"/>
+    <line x1="230" y1="140" x2="230" y2="132"/>
+    <line x1="120" y1="200" x2="120" y2="184"/>
+    <line x1="340" y1="200" x2="340" y2="184"/>
+    <line x1="120" y1="258" x2="120" y2="250"/>
+    <line x1="340" y1="258" x2="340" y2="250"/>
+    <line x1="230" y1="316" x2="230" y2="310"/>
+    <line x1="710" y1="88" x2="710" y2="80"/>
+    <line x1="710" y1="140" x2="710" y2="132"/>
+    <line x1="600" y1="200" x2="600" y2="184"/>
+    <line x1="820" y1="200" x2="820" y2="184"/>
+    <line x1="600" y1="258" x2="600" y2="250"/>
+    <line x1="710" y1="316" x2="710" y2="310"/>
+  </g>
+  <text class="ta" x="500" y="380" font-size="9.5">Voice fallback to the server is unavailable in this graph &mdash; the capability is not wired, not merely disabled.</text>
+</svg>
+<figcaption><b>The top three rows are identical, and that is the whole point.</b> No screen, notifier or repository contains an <code>if (anonymous)</code> branch, so no future feature can forget to write one. Leaving anonymous mode tears down the container and rebuilds it; entering it discards the previous graph and everything it held in memory. The property being enforced &mdash; nothing is persisted &mdash; is a fact about which objects exist, which is checkable by a test that asserts the container binds no durable writer.</figcaption>
+</figure>
+
+    <h3><span class="mk">8.3</span>Cache and freshness policy</h3>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Data</th><th>Source of truth</th><th>Client policy</th><th>Invalidation</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Statutory text, current</td><td>Signed pack</td><td>Read forever, never revalidate</td><td>Only by a verified pack patch</td></tr>
+          <tr><td class="k">Statutory text, historical</td><td>Server</td><td>Cache per <code>(provisionId, as_of)</code>, immutable once fetched</td><td>Never &mdash; a past version cannot change</td></tr>
+          <tr><td class="k">Explainers</td><td>Pack, then server</td><td>Pack copy preferred; server copy cached 30 days</td><td>Pack patch, or explicit refresh</td></tr>
+          <tr><td class="k">Search results</td><td>Server</td><td>Not cached across sessions; kept for back-navigation only</td><td>On query, scope or <code>as_of</code> change</td></tr>
+          <tr><td class="k">Answers</td><td>Server</td><td>Cached per <code>request_id</code> for the session; persisted only if the user saves it</td><td>Never auto-refreshed &mdash; an answer is a record of a moment</td></tr>
+          <tr><td class="k">Precedent / citator</td><td>Server</td><td>Cached 24 h</td><td>TTL, or a corpus-version bump</td></tr>
+          <tr><td class="k">Drafts in progress</td><td>Client</td><td>Persisted locally, encrypted, resumable</td><td>On submit or explicit discard</td></tr>
+          <tr><td class="k">Auth tokens</td><td>Platform keystore</td><td>Never in shared preferences, never in the SQLite pack, never logged</td><td>On sign-out, refresh failure, or biometric lock</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3><span class="mk">8.4</span>Client security posture</h3>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Control</th><th>Implementation</th><th>Failure behaviour</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Pack authenticity</td><td>Ed25519 public key compiled into the binary; manifest signature checked before any transaction opens, per-patch SHA-256 checked after commit</td><td>Reject, keep previous pack, report the event. Never apply partially.</td></tr>
+          <tr><td class="k">Transport</td><td>TLS with an SPKI pin set including at least one backup pin, plus a remote kill switch to disable pinning if rotation goes wrong</td><td>Hard fail on mismatch; the kill switch is the only recovery path and is itself signed.</td></tr>
+          <tr><td class="k">Secrets at rest</td><td>Android Keystore / iOS Keychain only. Drafts and saved matters encrypted with a key held there</td><td>Biometric or device-credential re-auth; no plaintext fallback.</td></tr>
+          <tr><td class="k">Telemetry scrubbing</td><td>Query text, answer text, draft field values and voice audio are never emitted. Crash reports strip strings from any type marked <code>@Sensitive</code></td><td>The sink drops rather than truncates &mdash; a truncated legal query is still a legal query.</td></tr>
+          <tr><td class="k">Replay identity</td><td>Client generates a <code>request_id</code>, sends it as a trace header, and displays it in the report-an-answer sheet</td><td>Satisfies INV-3 end to end; in anonymous mode the id is ephemeral and never stored locally.</td></tr>
+          <tr><td class="k">Screenshot and backup</td><td>Draft and saved-matter screens set the secure-window flag; the app is excluded from cloud auto-backup</td><td>&mdash;</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+<figure>
+  <span class="fignum">Figure 12 &mdash; UML sequence &middot; expanding provenance, online and offline</span>
+<svg class="dg" viewBox="0 0 940 400" role="img" aria-label="UML sequence diagram for expanding a citation into the provenance sheet, with participants citation chip, notifier, law repository, local pack source and API client. An alt fragment shows the provision resolved from the local pack when its tier is installed, and fetched from the API otherwise, with an offline branch that renders an explained unavailable state.">
+  <g class="bxf">
+    <rect x="20"  y="18" width="150" height="34" rx="3"/>
+    <rect x="210" y="18" width="140" height="34" rx="3"/>
+    <rect x="390" y="18" width="160" height="34" rx="3"/>
+    <rect x="590" y="18" width="160" height="34" rx="3"/>
+    <rect x="790" y="18" width="130" height="34" rx="3"/>
+  </g>
+  <g class="th" text-anchor="middle" font-size="10">
+    <text x="95"  y="39">:CitationChip</text><text x="280" y="39">:Notifier</text>
+    <text x="470" y="39">:LawRepository</text><text x="670" y="39">:LocalPackSource</text><text x="855" y="39">:ApiClient</text>
+  </g>
+  <g class="life">
+    <line x1="95"  y1="52" x2="95"  y2="386"/><line x1="280" y1="52" x2="280" y2="386"/>
+    <line x1="470" y1="52" x2="470" y2="386"/><line x1="670" y1="52" x2="670" y2="386"/>
+    <line x1="855" y1="52" x2="855" y2="386"/>
+  </g>
+  <g class="bxf"><rect x="465" y="96" width="10" height="252"/></g>
+
+  <g class="ln" marker-end="url(#arw)">
+    <line x1="95"  y1="70"  x2="274" y2="70"/>
+    <line x1="286" y1="96"  x2="463" y2="96"/>
+    <line x1="477" y1="160" x2="666" y2="160"/>
+    <line x1="477" y1="248" x2="851" y2="248"/>
+  </g>
+  <g class="lnD" marker-end="url(#arwO)">
+    <line x1="666" y1="188" x2="479" y2="188"/>
+    <line x1="463" y1="206" x2="286" y2="206"/>
+    <line x1="851" y1="276" x2="479" y2="276"/>
+    <line x1="463" y1="294" x2="286" y2="294"/>
+    <line x1="274" y1="366" x2="99"  y2="366"/>
+  </g>
+  <path class="ln" d="M477,116 L530,116 L530,134 L479,134" marker-end="url(#arw)"/>
+
+  <g font-size="9.6">
+    <text x="101" y="64">tap &mdash; ResolvedCitation &#123;provisionId&#125;</text>
+    <text x="292" y="90">openProvenance(provisionId, asOf)</text>
+    <text x="534" y="112">check tier manifest</text><text x="534" y="130">for this instrument</text>
+    <text x="483" y="154">getProvision(id, asOf, matchSpan)</text>
+    <text x="676" y="182">provision + validity + source page ref</text>
+    <text x="292" y="200">ProvenanceViewState &mdash; <tspan class="ta">no network touched</tspan></text>
+    <text x="483" y="242">GET /provisions/&#123;id&#125;?as_of=</text>
+    <text x="676" y="270">provision + validity</text>
+    <text x="292" y="288">ProvenanceViewState</text>
+    <text x="105" y="360">render sheet, highlight matched span</text>
+  </g>
+
+  <rect class="acc" x="440" y="132" width="480" height="184" rx="3" fill="none"/>
+  <path class="acc" d="M440,132 L500,132 L510,146 L510,150 L440,150"/>
+  <text class="ta" x="448" y="145" font-size="9.5">alt</text>
+  <text class="ta" x="518" y="145" font-size="9.5">[instrument tier installed]</text>
+  <line class="acc" x1="440" y1="222" x2="920" y2="222" stroke-dasharray="6 4"/>
+  <text class="ta" x="448" y="236" font-size="9.5">[not installed]</text>
+  <text class="tm" x="530" y="310">if also offline &rarr; Offline screen state naming the missing tier, with a one-tap download</text>
+</svg>
+<figcaption><b>The chip does not know which branch will run, and neither does the notifier.</b> Both call the same repository method with the same arguments; only <code>LawRepository</code> consults the tier manifest. This is the client-side expression of the source-agnostic rule in &sect;2.1, and it is why the provenance affordance behaves identically in an airport with no signal and on a desk with fibre.</figcaption>
+</figure>
+  </div>
+</section>
+
+
+<!-- ============ 9 ============ -->
+<section>
+  <div class="rail"><span class="num">&sect;9</span><span class="tag">Perform-<br>ance</span></div>
+  <div class="body">
+    <h2>Budgets, enforced in CI</h2>
+    <p class="lede">Written against the device our users actually own &mdash; a 4&nbsp;GB mid-tier Android phone on a congested 3G connection &mdash; not against a development machine. Each budget has a gate; a build that exceeds one fails.</p>
+
+<figure>
+  <span class="fignum">Figure 13 &mdash; Startup and query budgets</span>
+<svg class="dg" viewBox="0 0 940 336" role="img" aria-label="Waterfall chart of client performance budgets. Cold start is broken into engine initialisation, dependency injection, opening the pack, first skeleton frame, route restore with a local query, and first content paint, reaching interactive at twelve hundred milliseconds against a fifteen hundred millisecond budget. Warm start reaches content in one hundred and eighty milliseconds. Offline full-text search completes in one hundred and eighty milliseconds and offline vector search in five hundred and twenty.">
+  <line class="sep" x1="150" y1="46" x2="920" y2="46"/>
+  <g class="tm" text-anchor="middle">
+    <text x="150" y="38">0</text><text x="342" y="38">400 ms</text><text x="535" y="38">800</text>
+    <text x="727" y="38">1200</text><text x="920" y="38">1600</text>
+  </g>
+  <g class="sep">
+    <line x1="342" y1="46" x2="342" y2="300"/>
+    <line x1="535" y1="46" x2="535" y2="300"/>
+    <line x1="727" y1="46" x2="727" y2="300"/>
+  </g>
+
+  <text class="th" x="20" y="80" font-size="10.5">Cold start</text>
+  <text class="tm" x="20" y="94">to interactive</text>
+  <g class="bx">
+    <rect x="150" y="62" width="87"  height="26" rx="2"/>
+    <rect x="237" y="62" width="67"  height="26" rx="2"/>
+    <rect x="304" y="62" width="48"  height="26" rx="2"/>
+    <rect x="352" y="62" width="48"  height="26" rx="2"/>
+    <rect x="400" y="62" width="183" height="26" rx="2"/>
+  </g>
+  <rect class="accf" x="583" y="62" width="144" height="26" rx="2"/>
+  <g class="tm" font-size="8.8">
+    <text x="156" y="79">engine init 180</text>
+    <text x="243" y="79">DI 140</text>
+    <text x="308" y="79">pack 100</text>
+    <text x="356" y="79">frame 1</text>
+    <text x="406" y="79">restore route + local query 380</text>
+  </g>
+  <text class="ta" x="589" y="79" font-size="8.8">first content paint 300</text>
+  <line class="lnA" x1="727" y1="56" x2="727" y2="96"/>
+  <text class="ta" x="734" y="108" font-size="9.5">interactive 1200 &middot; budget 1500</text>
+
+  <text class="th" x="20" y="146" font-size="10.5">Warm start</text>
+  <text class="tm" x="20" y="160">resume from background</text>
+  <g class="bx"><rect x="150" y="128" width="29" height="26" rx="2"/></g>
+  <rect class="accf" x="179" y="128" width="58" height="26" rx="2"/>
+  <g class="tm" font-size="8.8"><text x="154" y="145">60</text></g>
+  <text class="ta" x="184" y="145" font-size="8.8">paint 120</text>
+  <text class="ta" x="248" y="145" font-size="9.5">180 &middot; budget 400</text>
+
+  <text class="th" x="20" y="212" font-size="10.5">Offline search</text>
+  <text class="tm" x="20" y="226">FTS5 lexical, p95</text>
+  <rect class="accf" x="150" y="194" width="87" height="26" rx="2"/>
+  <text class="ta" x="248" y="211" font-size="9.5">180 &middot; budget 300</text>
+
+  <text class="tm" x="20" y="278">sqlite-vec semantic, p95</text>
+  <rect class="accf" x="150" y="248" width="250" height="26" rx="2"/>
+  <text class="ta" x="410" y="265" font-size="9.5">520 &middot; budget 800 &mdash; only when the semantic tier is installed</text>
+
+  <text class="tm" x="20" y="318">Measured on a 4 GB mid-tier Android device, release build, profile mode disabled, cold cache. Every figure is a p95, not a median.</text>
+</svg>
+<figcaption><b>The largest single segment is a local query, not a network call.</b> That is what an offline-first design buys: the critical path to first content never leaves the device, so the cold-start number is stable regardless of network conditions. The budget that most constrains design is the 25 MB APK ceiling &mdash; it is why the pack is downloaded rather than bundled, why the on-device encoder is an optional tier, and why offline answers ship as a 12 MB tier of verified artefacts rather than as a 300 MB generator.</figcaption>
+</figure>
+
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Budget</th><th>Target</th><th>Gate</th></tr></thead>
+        <tbody>
+          <tr><td class="k">APK size</td><td class="n">&le; 25 MB</td><td>CI fails the build above the ceiling; size delta is reported on every pull request</td></tr>
+          <tr><td class="k">Cold start to interactive</td><td class="n">&le; 1500 ms p95</td><td>Instrumented startup test on a fixed emulator profile, run nightly</td></tr>
+          <tr><td class="k">Frame budget</td><td class="n">no frame &gt; 16.7 ms</td><td>Scroll test over a 2,000-provision list; jank frames must be zero</td></tr>
+          <tr><td class="k">Offline FTS / vector</td><td class="n">&le; 300 / 800 ms p95</td><td>Benchmark against a fixture pack in CI</td></tr>
+          <tr><td class="k">Web research LCP / INP / CLS</td><td class="n">&le; 2.0 s / 200 ms / 0.05</td><td>Lighthouse CI on a throttled mid-tier profile</td></tr>
+          <tr><td class="k">Public page HTML weight</td><td class="n">&le; 60 KB, zero required JS</td><td>Byte budget assertion; a JS-disabled render test must show the full statutory text</td></tr>
+          <tr><td class="k">Pack download</td><td class="n">core &le; 20 MB<br>base total &le; 60 MB</td><td>Pack build step fails above the ceiling, per tier and in total</td></tr>
+          <tr><td class="k">Answer-tier coverage</td><td class="n">&ge; 55% at &ge; 95% precision</td><td>Measured on the golden set citizen stratum; a regression blocks the pack release</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10 ============ -->
+<section>
+  <div class="rail"><span class="num">&sect;10</span><span class="tag">Web<br>&amp; SEO</span></div>
+  <div class="body">
+    <h2>The web tier and the distribution flywheel</h2>
+    <p class="lede">ADR-9 in document 01 makes public statute pages an architectural decision rather than a marketing one. Pakistan Code is effectively unindexed; a crawlable, fast, citable page for every provision is the cheapest acquisition channel available to this project by an order of magnitude.</p>
+
+<figure>
+  <span class="fignum">Figure 14 &mdash; Web rendering strategy by route group</span>
+<svg class="dg" viewBox="0 0 940 372" role="img" aria-label="Three route groups with different rendering strategies. The public group is statically generated at build time with incremental revalidation triggered by a corpus publish webhook and served from the CDN with no origin call and no required JavaScript. The application group renders a React server component shell per request with client islands and requires authentication. The console group is entirely client rendered behind an authenticated curator scope.">
+  <g class="tm">
+    <text x="150" y="26">BUILD TIME</text><text x="430" y="26">REQUEST TIME</text><text x="700" y="26">CLIENT</text>
+  </g>
+  <line class="sep" x1="20" y1="34" x2="920" y2="34"/>
+  <line class="sep" x1="400" y1="34" x2="400" y2="352"/>
+  <line class="sep" x1="670" y1="34" x2="670" y2="352"/>
+
+  <rect class="accf" x="20" y="52" width="120" height="88" rx="4"/>
+  <text class="ta" x="30" y="72" font-size="10.5">(public)</text>
+  <g class="tm">
+    <text x="30" y="88">/law/**</text><text x="30" y="102">/precedent/judgment/**</text>
+    <text x="30" y="116">/procedure/**</text><text x="30" y="132">no account, no JS</text>
+  </g>
+  <g class="bx">
+    <rect x="160" y="52" width="220" height="40" rx="3"/>
+    <rect x="160" y="100" width="220" height="40" rx="3"/>
+    <rect x="420" y="52" width="230" height="40" rx="3"/>
+    <rect x="690" y="52" width="230" height="88" rx="3"/>
+  </g>
+  <g class="th" font-size="10">
+    <text x="170" y="70">SSG &mdash; one page per provision</text>
+    <text x="170" y="118">sitemap + JSON-LD emitted</text>
+    <text x="430" y="70">CDN edge, no origin call</text>
+    <text x="700" y="70">Static HTML, readable</text>
+  </g>
+  <g class="tm">
+    <text x="170" y="84">generated from ICorpusRead at build</text>
+    <text x="170" y="132">Legislation schema &middot; hreflang en / ur</text>
+    <text x="430" y="84">ISR revalidate on corpus publish webhook</text>
+    <text x="700" y="86">with JavaScript disabled. Progressive</text>
+    <text x="700" y="100">enhancement adds the as-of control and</text>
+    <text x="700" y="114">search; the law itself needs no script.</text>
+    <text x="700" y="130">&#8804; 60 KB HTML.</text>
+  </g>
+
+  <g class="bx">
+    <rect x="20" y="168" width="120" height="88" rx="4"/>
+    <rect x="160" y="180" width="220" height="64" rx="3"/>
+    <rect x="420" y="168" width="230" height="88" rx="3"/>
+    <rect x="690" y="168" width="230" height="88" rx="3"/>
+  </g>
+  <g class="th" font-size="10.5"><text x="30" y="188">(app)</text></g>
+  <g class="th" font-size="10">
+    <text x="170" y="200">nothing prebuilt</text>
+    <text x="430" y="188">RSC shell per request</text>
+    <text x="700" y="188">Client islands</text>
+  </g>
+  <g class="tm">
+    <text x="30" y="204">/search &middot; /ask</text><text x="30" y="218">/precedent/provision</text>
+    <text x="30" y="232">/draft &middot; /library</text><text x="30" y="248">account required</text>
+    <text x="170" y="216">authenticated and personalised;</text>
+    <text x="170" y="230">nothing here may be cached publicly</text>
+    <text x="430" y="204">layout, navigation and scope bar</text>
+    <text x="430" y="218">stream from the server; auth resolved</text>
+    <text x="430" y="232">before any data call. No CDN caching.</text>
+    <text x="430" y="246">SSE for streamed answers.</text>
+    <text x="700" y="204">answer view, citator, interview,</text>
+    <text x="700" y="218">as-of scrubber, boolean search</text>
+    <text x="700" y="232">builder &mdash; the genuinely interactive</text>
+    <text x="700" y="246">surfaces, and only those.</text>
+  </g>
+
+  <g class="bx">
+    <rect x="20" y="284" width="120" height="60" rx="4"/>
+    <rect x="420" y="284" width="230" height="60" rx="3"/>
+    <rect x="690" y="284" width="230" height="60" rx="3"/>
+  </g>
+  <text class="th" x="30" y="304" font-size="10.5">(console)</text>
+  <g class="tm"><text x="30" y="320">/console/**</text><text x="30" y="336">curator scope</text></g>
+  <text class="th" x="430" y="304" font-size="10">Auth + scope check only</text>
+  <text class="th" x="700" y="304" font-size="10">Fully client rendered</text>
+  <g class="tm">
+    <text x="430" y="320">no server rendering worth doing for a</text>
+    <text x="430" y="334">dense internal tool behind a login</text>
+    <text x="700" y="320">optimistic edits, undo stack, keyboard</text>
+    <text x="700" y="334">shortcuts, no mobile layout</text>
+  </g>
+  <text class="tm" x="160" y="304">&mdash;</text>
+
+  <g class="ln" marker-end="url(#arw)">
+    <line x1="380" y1="96" x2="416" y2="72"/>
+    <line x1="650" y1="72" x2="686" y2="72"/>
+    <line x1="380" y1="212" x2="416" y2="212"/>
+    <line x1="650" y1="212" x2="686" y2="212"/>
+    <line x1="650" y1="314" x2="686" y2="314"/>
+  </g>
+</svg>
+<figcaption><b>Only one route group produces HTML at build time, and it is the one nobody logs in to.</b> That separation is what lets the public tier be fast, cacheable and indexable while the research tier stays personalised and uncacheable &mdash; without either compromising for the other. The revalidation trigger is the corpus publish transaction in L1, so a page can never claim a currency the corpus does not have.</figcaption>
+</figure>
+
+    <h3><span class="mk">10.1</span>SEO architecture</h3>
+    <ul>
+      <li><strong>Internal links come from the cross-reference graph.</strong> Section 302 links to 299, 304 and 311 because the corpus says it does. The link structure is generated from data rather than authored, which makes it complete, correct, and free.</li>
+      <li><strong>Structured data</strong> &mdash; <code>Legislation</code> JSON-LD per provision with jurisdiction, enactment date, and status; <code>BreadcrumbList</code> for the instrument tree.</li>
+      <li><strong>Sitemap index partitioned by jurisdiction</strong>, regenerated on corpus publish. Roughly 60,000 URLs at launch and growing.</li>
+      <li><strong><code>hreflang</code> pairs</strong> for the English and Urdu renderings of the same provision, with a shared canonical.</li>
+      <li><strong>No generated content on public pages at launch.</strong> Authoritative statutory text and verified explainers only, and explainers are labelled as machine-generated. Publishing unreviewed AI prose at scale under our own domain is a reputational and legal risk we take deliberately, later, or not at all.</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ============ 11 ============ -->
+<section>
+  <div class="rail"><span class="num">&sect;11</span><span class="tag">Curation<br>console</span></div>
+  <div class="body">
+    <h2>The console is a corpus instrument</h2>
+    <p class="lede">Document 01 makes the curation console a phase-1 deliverable because automated segmentation lands near 90% and the remaining ~470 documents reach the corpus through a human. Its design goal is a single number: seconds per correction.</p>
+
+<figure>
+  <span class="fignum">Figure 15 &mdash; Curation console layout</span>
+<svg class="dg" viewBox="0 0 940 486" role="img" aria-label="Annotated layout of the curation console: a top bar with the document identity and failing gate, a left pane showing the rendered source page with detected text regions overlaid, a centre pane showing the parsed provision tree with an incorrectly merged section highlighted, and a right pane listing correction operations, the gate report and the submit control.">
+  <rect class="bx" x="20" y="16" width="900" height="30" rx="3"/>
+  <g font-size="9.5">
+    <text x="30" y="35" class="th">Pakistan Penal Code 1860 &middot; page 106 of 179</text>
+    <text x="420" y="35" class="ta">GATE FAILED &mdash; sequence</text>
+    <text x="620" y="35" opacity=".7">item 38 of 470</text>
+    <text x="790" y="35" opacity=".7">J / K to move &middot; S split &middot; M merge</text>
+  </g>
+
+  <rect class="bx" x="20" y="58" width="330" height="368" rx="3"/>
+  <text class="tm" x="30" y="76">SOURCE &mdash; rendered page, text regions overlaid</text>
+  <g class="ph">
+    <rect x="36" y="88" width="290" height="8" rx="2"/>
+    <rect x="36" y="104" width="250" height="8" rx="2"/>
+    <rect x="52" y="128" width="270" height="8" rx="2"/>
+    <rect x="52" y="144" width="230" height="8" rx="2"/>
+    <rect x="68" y="168" width="250" height="8" rx="2"/>
+    <rect x="68" y="184" width="210" height="8" rx="2"/>
+    <rect x="68" y="208" width="240" height="8" rx="2"/>
+    <rect x="36" y="248" width="200" height="8" rx="2"/>
+    <rect x="36" y="272" width="286" height="8" rx="2"/>
+    <rect x="36" y="288" width="240" height="8" rx="2"/>
+    <rect x="36" y="330" width="180" height="7" rx="2"/>
+    <rect x="36" y="344" width="200" height="7" rx="2"/>
+  </g>
+  <rect class="acc" x="30" y="240" width="304" height="60" rx="2"/>
+  <text class="ta" x="36" y="316" font-size="8.6">selected region &rarr; maps to the tree node on the right</text>
+  <text class="tm" x="36" y="368">footnote zone, detected positionally</text>
+  <text class="tm" x="36" y="392">page furniture, stripped before segmentation</text>
+  <rect class="bxg" x="30" y="324" width="304" height="34" rx="2"/>
+  <rect class="bxg" x="30" y="380" width="304" height="18" rx="2"/>
+
+  <rect class="bx" x="362" y="58" width="330" height="368" rx="3"/>
+  <text class="tm" x="372" y="76">PARSED TREE &mdash; editable, ltree-backed</text>
+  <g font-size="9.4">
+    <text x="372" y="98">&#9500;&#9472; CH-XVI &nbsp;Of offences affecting the human body</text>
+    <text x="372" y="118">&#9474;&nbsp;&nbsp;&#9500;&#9472; s-300</text>
+    <text x="372" y="138">&#9474;&nbsp;&nbsp;&#9500;&#9472; s-301</text>
+    <text x="372" y="158">&#9474;&nbsp;&nbsp;&#9500;&#9472; s-302</text>
+    <text x="372" y="178">&#9474;&nbsp;&nbsp;&#9474;&nbsp;&nbsp;&#9500;&#9472; cl-a</text>
+    <text x="372" y="198">&#9474;&nbsp;&nbsp;&#9474;&nbsp;&nbsp;&#9500;&#9472; cl-b</text>
+    <text x="372" y="218">&#9474;&nbsp;&nbsp;&#9474;&nbsp;&nbsp;&#9500;&#9472; cl-c</text>
+    <text x="372" y="238">&#9474;&nbsp;&nbsp;&#9474;&nbsp;&nbsp;&#9492;&#9472; proviso-1</text>
+  </g>
+  <rect class="acc" x="366" y="248" width="322" height="46" rx="2"/>
+  <text class="ta" x="372" y="266" font-size="9.4">&#9474;&nbsp;&nbsp;&#9492;&#9472; s-303  &nbsp;&#9888; contains s-304 text</text>
+  <text class="ta" x="372" y="284" font-size="8.6">sequence gate: 304 missing after 303</text>
+  <g font-size="9.4">
+    <text x="372" y="312">&#9500;&#9472; s-305</text>
+    <text x="372" y="332">&#9492;&#9472; s-306</text>
+  </g>
+  <line class="sep" x1="366" y1="348" x2="688" y2="348"/>
+  <text class="tm" x="372" y="366">node text, editable inline</text>
+  <g class="ph">
+    <rect x="372" y="376" width="300" height="7" rx="2"/>
+    <rect x="372" y="390" width="264" height="7" rx="2"/>
+    <rect x="372" y="404" width="220" height="7" rx="2"/>
+  </g>
+
+  <rect class="bx" x="704" y="58" width="216" height="368" rx="3"/>
+  <text class="tm" x="714" y="76">OPERATIONS</text>
+  <g class="bx">
+    <rect x="714" y="86" width="196" height="24" rx="3"/>
+    <rect x="714" y="116" width="196" height="24" rx="3"/>
+    <rect x="714" y="146" width="196" height="24" rx="3"/>
+    <rect x="714" y="176" width="196" height="24" rx="3"/>
+    <rect x="714" y="206" width="196" height="24" rx="3"/>
+  </g>
+  <g font-size="9.4">
+    <text x="724" y="102">Split node at cursor</text>
+    <text x="724" y="132">Merge with next</text>
+    <text x="724" y="162">Relabel &middot; change kind</text>
+    <text x="724" y="192">Reparent (drag or key)</text>
+    <text x="724" y="222">Mark as source defect</text>
+  </g>
+  <line class="sep" x1="714" y1="238" x2="910" y2="238"/>
+  <text class="tm" x="714" y="256">GATE REPORT</text>
+  <g font-size="9" opacity=".85">
+    <text x="714" y="276">coverage &nbsp;&nbsp;&nbsp;99.2%</text>
+    <text x="714" y="294">sequence &nbsp;&nbsp;&nbsp;FAIL</text>
+    <text x="714" y="312">TOC diff &nbsp;&nbsp;&nbsp;1 node</text>
+    <text x="714" y="330">xref resolve &nbsp;97.1%</text>
+    <text x="714" y="348">amendments &nbsp;&nbsp;OK</text>
+    <text x="714" y="366">duplicate &nbsp;&nbsp;&nbsp;none</text>
+  </g>
+  <line class="sep" x1="714" y1="380" x2="910" y2="380"/>
+  <rect class="accf" x="714" y="392" width="196" height="26" rx="3"/>
+  <text class="ta" x="724" y="409" font-size="9.4">Re-run gates &amp; submit</text>
+
+  <g class="lnA">
+    <line x1="334" y1="270" x2="366" y2="270"/>
+  </g>
+  <text class="tm" x="20" y="450">Selection is bidirectional: clicking a source region selects its tree node and vice versa, which is what turns &ldquo;find the mistake&rdquo; from a reading task into a pointing task.</text>
+  <text class="tm" x="20" y="470">Every edit is versioned and attributed; submit re-runs the gate suite server-side, so a correction that breaks another gate is rejected before it reaches the live index.</text>
+</svg>
+<figcaption><b>The two panes are the tool.</b> Everything else is affordance. A curator&rsquo;s job is to answer &ldquo;does the parse match the page?&rdquo;, and putting the rendered source beside the editable tree with linked selection turns a twenty-minute investigation into a twenty-second correction. At 470 documents, that ratio is the difference between a corpus that reaches 99% and one that does not.</figcaption>
+</figure>
+  </div>
+</section>
+
+<!-- ============ 12 ============ -->
+<section>
+  <div class="rail"><span class="num">&sect;12</span><span class="tag">Testing<br>&amp; release</span></div>
+  <div class="body">
+    <h2>Gates and channels</h2>
+
+<figure>
+  <span class="fignum">Figure 16 &mdash; Client release pipeline</span>
+<svg class="dg" viewBox="0 0 940 356" role="img" aria-label="Client release pipeline: a commit runs static gates, unit and widget golden tests across two scripts and two themes, a contract test against the OpenAPI specification, accessibility checks, and size and startup budgets. Passing builds produce an Android app bundle, a web bundle and a pack build, which promote through internal, closed beta and production channels.">
+  <circle cx="30" cy="70" r="7" fill="currentColor"/>
+  <g class="bx">
+    <rect x="56"  y="48" width="130" height="44" rx="3"/>
+    <rect x="206" y="48" width="150" height="44" rx="3"/>
+    <rect x="376" y="48" width="150" height="44" rx="3"/>
+    <rect x="546" y="48" width="150" height="44" rx="3"/>
+    <rect x="716" y="48" width="150" height="44" rx="3"/>
+  </g>
+  <g class="th" font-size="10">
+    <text x="66" y="66">1 static</text><text x="216" y="66">2 unit + widget</text>
+    <text x="386" y="66">3 contract</text><text x="556" y="66">4 accessibility</text><text x="726" y="66">5 budgets</text>
+  </g>
+  <g class="tm">
+    <text x="66" y="82">lint &middot; import-linter</text>
+    <text x="216" y="82">goldens &times;2 scripts &times;2 themes</text>
+    <text x="386" y="82">generated client vs OpenAPI</text>
+    <text x="556" y="82">semantics &middot; contrast &middot; targets</text>
+    <text x="726" y="82">size &middot; startup &middot; frame &middot; LCP</text>
+  </g>
+  <g class="ln" marker-end="url(#arw)">
+    <line x1="37"  y1="70" x2="52"  y2="70"/>
+    <line x1="186" y1="70" x2="202" y2="70"/>
+    <line x1="356" y1="70" x2="372" y2="70"/>
+    <line x1="526" y1="70" x2="542" y2="70"/>
+    <line x1="696" y1="70" x2="712" y2="70"/>
+  </g>
+
+  <g class="bx">
+    <rect x="140" y="146" width="200" height="46" rx="3"/>
+    <rect x="370" y="146" width="200" height="46" rx="3"/>
+    <rect x="600" y="146" width="200" height="46" rx="3"/>
+  </g>
+  <g class="th" font-size="10">
+    <text x="150" y="166">Android App Bundle</text><text x="380" y="166">Web bundle</text><text x="610" y="166">Pack build</text>
+  </g>
+  <g class="tm">
+    <text x="150" y="182">signed, per-ABI split</text>
+    <text x="380" y="182">public SSG + app + console</text>
+    <text x="610" y="182">core &middot; semantic &middot; provincial tiers</text>
+  </g>
+  <path class="ln" d="M791,92 L791,120 L240,120 L240,142" marker-end="url(#arw)"/>
+  <path class="ln" d="M470,120 L470,142" marker-end="url(#arw)"/>
+  <path class="ln" d="M700,120 L700,142" marker-end="url(#arw)"/>
+
+  <g class="bx">
+    <rect x="140" y="240" width="200" height="40" rx="14"/>
+    <rect x="370" y="240" width="200" height="40" rx="14"/>
+  </g>
+  <rect class="acc" x="600" y="240" width="200" height="40" rx="14"/>
+  <g text-anchor="middle" font-size="10">
+    <text x="240" y="264">internal track</text>
+    <text x="470" y="264">closed beta</text>
+  </g>
+  <text class="ta" x="700" y="264" text-anchor="middle" font-size="10">production &middot; staged rollout</text>
+  <g class="ln" marker-end="url(#arw)">
+    <line x1="240" y1="192" x2="240" y2="236"/>
+    <line x1="340" y1="260" x2="366" y2="260"/>
+    <line x1="570" y1="260" x2="596" y2="260"/>
+  </g>
+  <g class="tm">
+    <text x="248" y="216">team devices</text>
+    <text x="344" y="252">+ 30 study</text>
+    <text x="344" y="264">participants</text>
+    <text x="574" y="252">5% &rarr; 25%</text>
+    <text x="574" y="264">&rarr; 100%</text>
+  </g>
+  <path class="lnA" d="M700,280 L700,308 L240,308 L240,284" marker-end="url(#arwA)"/>
+  <text class="ta" x="380" y="322" font-size="9.5">crash-free rate or startup budget regression &rarr; halt rollout, roll back</text>
+  <text class="tm" x="600" y="216">pack releases promote independently of app releases &mdash; a corpus update never waits for a store review</text>
+</svg>
+<figcaption><b>Pack and app release on separate cadences.</b> An amendment published on Tuesday reaches devices as a signed patch that evening; the application binary follows its own store-review cycle. Decoupling them is what makes the corpus-currency promise credible, and it is why the pack schema carries its own version independent of the app version.</figcaption>
+</figure>
+
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Test class</th><th>Scope</th><th>What it protects</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Widget goldens</td><td>Every tier-2 and tier-3 component, rendered in Latin and Nastaliq, light and dark &mdash; four images per component</td><td>QA-6. A type-scale or mirroring regression is visible in a diff rather than in a store review</td></tr>
+          <tr><td class="k">Bidi unit tests</td><td>A fixture corpus of mixed Urdu and citation strings, asserting run order and isolate placement</td><td>The failure in Figure 10, permanently</td></tr>
+          <tr><td class="k">Contract tests</td><td>Generated client regenerated in CI and diffed against the committed one</td><td>QA-11. A backend change breaks the build, never a user</td></tr>
+          <tr><td class="k">Offline integration</td><td>Full airplane-mode journey: search, open provision, read explainer, run limitation calculator, attempt an answer and get the Offline state</td><td>QA-9, end to end</td></tr>
+          <tr><td class="k">Pack integrity</td><td>Apply a chain of twelve patches, assert integrity hash; apply a tampered patch, assert rejection and rollback</td><td>The state machine in Figure 6</td></tr>
+          <tr><td class="k">Invariant tests</td><td>Assert no durable writer binds in the anonymous container; assert no widget imports a repository; assert <code>CitationChip</code> cannot construct a label</td><td>INV-1, QA-12, the layering rule</td></tr>
+          <tr><td class="k">Accessibility</td><td>Traversal order, semantic labels, contrast over the token matrix, hit-rectangle measurement</td><td>QA-14</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ A ============ -->
+<section>
+  <div class="rail"><span class="num">A</span><span class="tag">Trace-<br>ability</span></div>
+  <div class="body">
+    <h2>Appendix A &mdash; Every requirement, closed</h2>
+    <p class="lede">One row per obligation document 01 places on L7, with the mechanism, its location, and how it is verified. A row without a verification column is an intention, not a requirement.</p>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Req</th><th>Mechanism in L7</th><th>Where</th><th>Verified by</th></tr></thead>
+        <tbody>
+          <tr><td class="id">INV-1</td><td><code>CitationChip</code> accepts only a <code>ResolvedCitation</code>; no string assembly exists client-side</td><td class="n">&sect;5.1, Fig 8</td><td>Invariant test: the type has no public constructor from parts</td></tr>
+          <tr><td class="id">INV-2</td><td><code>AbstentionCard</code> is a tier-3 composite with its own route and screen state; error styling is unavailable to it</td><td class="n">&sect;5.2, Fig 9</td><td>Screen-state exhaustiveness test; golden image review</td></tr>
+          <tr><td class="id">INV-3</td><td>Client-generated <code>request_id</code> sent as a trace header and shown in the report sheet</td><td class="n">&sect;8.4</td><td>Integration test asserts header presence and UI surfacing</td></tr>
+          <tr><td class="id">INV-4</td><td>Routes, bookmarks and deep links key on provision identity; chunk ids do not exist above L2</td><td class="n">&sect;4.1, Fig 7</td><td>Import-linter rule plus a route-grammar test</td></tr>
+          <tr><td class="id">INV-5</td><td><code>ScopeBar</code> shows <code>as_of</code> permanently; every repository call carries it</td><td class="n">&sect;5.1, Fig 9</td><td>Repository signature test: no read method omits <code>asOf</code></td></tr>
+          <tr><td class="id">QA-1</td><td><code>ProvenanceSheet</code> with span highlight, validity and source page; two taps from any claim</td><td class="n">&sect;5.1, Fig 12</td><td>Integration test from claim to highlighted span, online and offline</td></tr>
+          <tr><td class="id">QA-2</td><td>Abstention states the searched scope and demarcates unconfirmed results; offers the referral off-ramp</td><td class="n">Fig 9</td><td>Golden review; user-study comprehension question</td></tr>
+          <tr><td class="id">QA-5</td><td><code>StatusBanner</code> above provision text, non-collapsible for repealed and not-yet-commenced</td><td class="n">&sect;5.1</td><td>Widget test over all five lifecycle states</td></tr>
+          <tr><td class="id">QA-6</td><td>Three independent language axes; per-run script scales; FSI/PDI isolation; Western digits for identifiers</td><td class="n">&sect;6, Fig 10</td><td>Bidi unit suite; goldens in both scripts; parity measured against the server metric</td></tr>
+          <tr><td class="id">QA-8</td><td>Local-first critical path; skeletons matched to layout; streamed answers</td><td class="n">&sect;9, Fig 13</td><td>Startup, frame and Lighthouse gates in CI</td></tr>
+          <tr><td class="id">QA-9</td><td>Signed pack as an authoritative source; eleven of twenty-one routes fully offline; the answer tier extends this to grounded answers for the head of the query distribution; degradation ladder mapped to screen states</td><td class="n">&sect;3, Fig 4&ndash;6, 17&ndash;18</td><td>Airplane-mode integration journey; pack integrity suite; answer-tier coverage measured on the golden set</td></tr>
+          <tr><td class="id">QA-10</td><td>APK ceiling, optional semantic tier, pack downloaded not bundled &mdash; user-side cost, mirrored from the server-side budget</td><td class="n">&sect;3.2, &sect;9</td><td>Size gates on APK and each pack tier</td></tr>
+          <tr><td class="id">QA-11</td><td>Generated API client; source-agnostic repositories; layered imports enforced</td><td class="n">&sect;2.1, Fig 3</td><td>Contract diff test; import-linter</td></tr>
+          <tr><td class="id">QA-12</td><td>Anonymous mode as a distinct object graph with no durable writer bound; voice fallback unwired</td><td class="n">&sect;8.2, Fig 11</td><td>Container-binding assertion; telemetry sink no-op test</td></tr>
+          <tr><td class="id">QA-13</td><td>Disclaimer as permanent chrome on generated surfaces; referral action on abstention and deadline-bearing results</td><td class="n">&sect;5, Fig 9</td><td>Golden review; presence assertion per generated screen</td></tr>
+          <tr><td class="id">QA-14</td><td>Urdu voice in and out, reading-level control, semantic tree, 48 dp targets, contrast floor, reduced motion</td><td class="n">&sect;7</td><td>Accessibility gate in CI; user study with non-reading participants</td></tr>
+          <tr><td class="id">UC-01&ndash;16</td><td>Every use case has a route, an owning screen and a declared offline capability</td><td class="n">Fig 7</td><td>Route-to-use-case coverage assertion; smoke suite per use case</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ B ============ -->
+<section>
+  <div class="rail"><span class="num">B</span><span class="tag">Decisions</span></div>
+  <div class="body">
+    <h2>Appendix B &mdash; Client decision records</h2>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>CDR</th><th>Decision</th><th>Because</th><th>Cost accepted</th></tr></thead>
+        <tbody>
+          <tr><td class="id">CDR-1</td><td class="k">Riverpod with code generation over BLoC</td><td>Compile-safe injection and far less ceremony for a four-person team; the container swap in CDR-7 is trivial in Riverpod and awkward otherwise</td><td>Smaller local hiring pool than BLoC; mitigated by a written conventions file</td></tr>
+          <tr><td class="id">CDR-2</td><td class="k">Offline-first is the default read path, not a fallback</td><td>The pack is signed and therefore as trustworthy as the server; revalidating it would add latency for no correctness gain</td><td>Staleness must be surfaced explicitly on every pack-served view</td></tr>
+          <tr><td class="id">CDR-3</td><td class="k">The pack is downloaded, never bundled in the binary</td><td>A 100 MB install is a hard barrier on metered connections and low-storage devices; keeping the APK under 25 MB keeps the funnel open</td><td>First run needs connectivity, or a sideloaded pack file</td></tr>
+          <tr><td class="id">CDR-4</td><td class="k">On-device semantic search is an optional tier</td><td>FTS5 plus the curated romanised glossary answers most offline lookups; a 25 MB encoder should not be mandatory. It is however a prerequisite for the answer tier, so the two are offered together</td><td>Two offline search qualities to explain and to test</td></tr>
+          <tr><td class="id">CDR-5</td><td class="k">Two embedding spaces, disclosed in the UI</td><td>A 1024-dim server encoder cannot run on a mid-tier phone; pretending device and server search are equivalent would be dishonest</td><td>Offline results are labelled and measurably weaker</td></tr>
+          <tr><td class="id">CDR-6</td><td class="k">Row-level patches, not binary file diffs</td><td>Page-level diffs are fragile across SQLite versions and vacuum states, and defeat resumability</td><td>Larger patches than an optimal binary diff</td></tr>
+          <tr><td class="id">CDR-7</td><td class="k">Anonymous mode swaps the object graph</td><td>A boolean checked at call sites will eventually be missed; absence of a writer cannot be forgotten</td><td>Two container configurations to maintain and test</td></tr>
+          <tr><td class="id">CDR-8</td><td class="k">Type scale selected per run by script, not by locale</td><td>A single sentence contains both scripts; a locale-selected scale breaks exactly on the mixed run that matters most</td><td>Every text render walks runs rather than taking a single style</td></tr>
+          <tr><td class="id">CDR-9</td><td class="k">Public statute pages require no JavaScript</td><td>It is a legal reference that people will cite, print and read on constrained devices; and it is the crawl surface behind ADR-9</td><td>The as-of control and search on public pages are progressive enhancements</td></tr>
+          <tr><td class="id">CDR-10</td><td class="k">Judgments are not shipped offline</td><td>Precedent is a graph query plus treatment classification; shipping it would multiply pack size and still answer worse than the server</td><td>Citator is network-required, stated plainly in the UI</td></tr>
+          <tr><td class="id">CDR-13</td><td class="k">Offline answers ship as verified artefacts, not as an on-device generator</td><td>A 1B four-bit model is ~800 MB, is slow to prefill on a mid-tier phone, and reasons about Pakistani law worse than the server already did. A 12 MB answer tier is higher quality and a thirtieth of the size</td><td>Coverage is bounded by what was mined and generated; a miss abstains offline rather than improvising</td></tr>
+          <tr><td class="id">CDR-14</td><td class="k">Two sync engines, one for the corpus and one for user data</td><td>The corpus is signed and server-authored, so it needs no merge logic; user data is user-authored and must merge. One engine would force the corpus to carry semantics that break the signed-authority argument</td><td>Two mechanisms to build and test, though the second is deliberately small</td></tr>
+          <tr><td class="id">CDR-11</td><td class="k">API client generated from OpenAPI, diffed in CI</td><td>Four people in one repository need contract drift to break a build, not production</td><td>A backend change can block a client build until regenerated</td></tr>
+          <tr><td class="id">CDR-12</td><td class="k">Abstention, offline, stale and degraded are outcomes, not errors</td><td>Error framing invites the reader to interpret silence as absence of law rather than absence of confidence</td><td>Four extra screen states to design, test and translate</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3><span class="mk">B.1</span>What this document does not decide</h3>
+    <p>Visual identity, illustration, iconography and motion choreography belong to <strong>document 12, Design System &amp; UX</strong>. The token <em>structure</em> and the bilingual type scales are fixed here because they are architectural &mdash; a locale-selected scale would break the mixed-run guarantee &mdash; but the specific hues, spacing ramp and icon set are not. Screen-by-screen interaction specifications for drafting and procedure belong to document 06, which owns those domains.</p>
+  </div>
+</section>
+
+</div>

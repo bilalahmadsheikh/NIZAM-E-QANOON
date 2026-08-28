@@ -1,0 +1,860 @@
+<title>Nizam-e-Qanoon Data and Storage</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+:root{
+  --paper:#F3F4F7; --surface:#FFFFFF; --surface-2:#EDEFF3; --surface-3:#E3E7EE;
+  --ink:#14171E; --ink-2:#4C5566; --ink-3:#7E879A;
+  --rule:#DCDFE7; --rule-2:#C6CBD6;
+  --indigo:#26397A; --indigo-soft:#E4E8F5;
+  --rubric:#9E3B2F; --rubric-soft:#F6E7E4;
+  --ok:#2C6349; --ok-soft:#E0EDE7;
+  --warn:#7E6114; --warn-soft:#F3EBD8;
+  --shadow:0 1px 2px rgba(20,23,30,.05), 0 8px 24px -12px rgba(20,23,30,.14);
+  --f-display:"Newsreader", Georgia, serif;
+  --f-body:"Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --measure:70ch; --rail:9.5rem;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0D0F14; --surface:#14171E; --surface-2:#1B1F28; --surface-3:#232935;
+    --ink:#E6E9EF; --ink-2:#A0A9BA; --ink-3:#6D7688;
+    --rule:#252A34; --rule-2:#333A47;
+    --indigo:#93A8E8; --indigo-soft:#1B2136;
+    --rubric:#D8867A; --rubric-soft:#2B1D1B;
+    --ok:#6FBF95; --ok-soft:#152520;
+    --warn:#D3AB5C; --warn-soft:#241E10;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 30px -14px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0D0F14; --surface:#14171E; --surface-2:#1B1F28; --surface-3:#232935;
+  --ink:#E6E9EF; --ink-2:#A0A9BA; --ink-3:#6D7688;
+  --rule:#252A34; --rule-2:#333A47;
+  --indigo:#93A8E8; --indigo-soft:#1B2136;
+  --rubric:#D8867A; --rubric-soft:#2B1D1B;
+  --ok:#6FBF95; --ok-soft:#152520;
+  --warn:#D3AB5C; --warn-soft:#241E10;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 30px -14px rgba(0,0,0,.7);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);
+  font-size:16.5px;line-height:1.62;-webkit-font-smoothing:antialiased}
+.wrap{max-width:76rem;margin:0 auto;padding:0 1.5rem 8rem}
+.masthead{border-bottom:2px solid var(--ink);padding:3.5rem 0 1.25rem;margin-bottom:2rem}
+.kicker{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--rubric);margin:0 0 1rem}
+h1{font-family:var(--f-display);font-weight:500;font-size:clamp(2.4rem,5.8vw,3.9rem);
+  line-height:1.03;letter-spacing:-.021em;margin:0 0 .5rem;text-wrap:balance}
+.dek{font-family:var(--f-display);font-size:clamp(1.05rem,2.1vw,1.3rem);color:var(--ink-2);
+  max-width:56ch;margin:0 0 1.9rem;font-style:italic}
+.meta{display:flex;flex-wrap:wrap;gap:.5rem 2.25rem;font-family:var(--f-mono);font-size:.7rem;
+  letter-spacing:.05em;color:var(--ink-3);border-top:1px solid var(--rule);padding-top:.9rem}
+.meta b{color:var(--ink-2);font-weight:500}
+section{display:grid;grid-template-columns:var(--rail) minmax(0,1fr);gap:0 2.5rem;
+  padding-top:3.4rem;border-top:1px solid var(--rule);margin-top:3.4rem}
+section.first{border-top:none;margin-top:0}
+.rail{position:sticky;top:1.5rem;align-self:start;padding-top:.4rem}
+.rail .num{font-family:var(--f-mono);font-size:1.05rem;font-weight:600;color:var(--rubric);letter-spacing:-.02em;display:block}
+.rail .tag{font-family:var(--f-mono);font-size:.63rem;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--ink-3);display:block;margin-top:.5rem;line-height:1.55}
+.body{min-width:0}
+@media (max-width:880px){
+  section{grid-template-columns:1fr;gap:0}
+  .rail{position:static;display:flex;align-items:baseline;gap:.85rem;margin-bottom:.9rem;padding-top:0}
+  .rail .tag{margin-top:0}
+}
+h2{font-family:var(--f-display);font-weight:500;font-size:clamp(1.6rem,3.3vw,2.2rem);
+  line-height:1.14;letter-spacing:-.017em;margin:0 0 .8rem;text-wrap:balance}
+h3{font-family:var(--f-body);font-weight:700;font-size:1.01rem;margin:2.6rem 0 .55rem}
+h3 .mk{font-family:var(--f-mono);color:var(--rubric);font-weight:600;margin-inline-end:.55rem;font-size:.88em}
+h4{font-family:var(--f-mono);font-weight:600;font-size:.71rem;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--ink-3);margin:1.9rem 0 .6rem}
+p{margin:0 0 1.05rem;max-width:var(--measure)}
+.lede{font-size:1.075rem;color:var(--ink-2);max-width:62ch}
+ul,ol{margin:0 0 1.15rem;padding-inline-start:1.3rem;max-width:var(--measure)}
+li{margin-bottom:.4rem}
+li::marker{color:var(--ink-3)}
+a{color:var(--indigo);text-underline-offset:.18em;word-break:break-word}
+a:focus-visible{outline:2px solid var(--indigo);outline-offset:3px;border-radius:2px}
+code{font-family:var(--f-mono);font-size:.855em;font-variant-ligatures:none}
+p code,li code,td code,figcaption code{background:var(--surface-2);border:1px solid var(--rule);
+  padding:.06em .34em;border-radius:3px;color:var(--ink)}
+.scroll{overflow-x:auto;margin:1.4rem 0 1.9rem;border:1px solid var(--rule);border-radius:5px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:.83rem;line-height:1.5}
+th{text-align:left;font-family:var(--f-mono);font-weight:600;font-size:.645rem;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--ink-3);padding:.7rem .8rem;border-bottom:1px solid var(--rule-2);
+  white-space:nowrap;background:var(--surface-2)}
+td{padding:.65rem .8rem;border-bottom:1px solid var(--rule);vertical-align:top}
+tr:last-child td{border-bottom:none}
+tbody tr:hover td{background:var(--surface-2)}
+td.n,th.n{font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap;text-align:right}
+td.n{font-size:.9em}
+td.id{font-family:var(--f-mono);font-size:.76rem;color:var(--rubric);white-space:nowrap;font-weight:500}
+td.k{font-weight:600;min-width:9.5rem}
+tfoot td{font-weight:700;border-top:1px solid var(--rule-2);background:var(--surface-2)}
+caption{caption-side:bottom;text-align:left;font-size:.76rem;color:var(--ink-3);padding:.7rem .8rem;border-top:1px solid var(--rule)}
+.chip{display:inline-block;font-family:var(--f-mono);font-size:.6rem;letter-spacing:.09em;
+  text-transform:uppercase;font-weight:600;padding:.2em .5em;border-radius:3px;white-space:nowrap;border:1px solid transparent}
+.c-have{background:var(--ok-soft);color:var(--ok);border-color:var(--ok)}
+.c-part{background:var(--warn-soft);color:var(--warn);border-color:var(--warn)}
+.c-miss{background:var(--rubric-soft);color:var(--rubric);border-color:var(--rubric)}
+.c-new{background:var(--indigo-soft);color:var(--indigo);border-color:var(--indigo)}
+.c-plain{background:var(--surface-2);color:var(--ink-3);border-color:var(--rule-2)}
+.note{border-inline-start:3px solid var(--rubric);background:var(--surface);padding:1rem 1.15rem;
+  margin:1.5rem 0;border-radius:0 4px 4px 0;max-width:var(--measure);box-shadow:var(--shadow)}
+.note.blue{border-inline-start-color:var(--indigo)}
+.note p:last-child,.note ul:last-child{margin-bottom:0}
+.note h4{margin-top:0}
+figure{margin:2rem 0;background:var(--surface);border:1px solid var(--rule);border-radius:5px;
+  padding:1.4rem 1.2rem .9rem;box-shadow:var(--shadow);overflow-x:auto}
+figure svg{display:block;width:100%;min-width:40rem;max-width:100%;height:auto;color:var(--ink)}
+figcaption{margin-top:1rem;padding-top:.8rem;border-top:1px solid var(--rule);
+  font-size:.78rem;color:var(--ink-3);line-height:1.55}
+figcaption b{color:var(--ink-2);font-weight:600}
+.fignum{font-family:var(--f-mono);font-size:.63rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--rubric);font-weight:600;display:block;margin-bottom:.7rem}
+pre{background:var(--surface);border:1px solid var(--rule);border-radius:5px;padding:1rem 1.05rem;
+  overflow-x:auto;margin:1.25rem 0;font-family:var(--f-mono);font-size:.765rem;line-height:1.62;color:var(--ink-2)}
+pre b{color:var(--ink);font-weight:600}
+pre i{color:var(--ink-3);font-style:normal}
+pre u{color:var(--rubric);text-decoration:none}
+.dgdefs{position:absolute;width:0;height:0;overflow:hidden}
+.dgdefs .mk{fill:var(--ink)}
+.dgdefs .mkA{fill:var(--rubric)}
+.dg{font-family:var(--f-mono);font-size:10.5px}
+.dg .bx{fill:none;stroke:currentColor;stroke-width:1.2}
+.dg .bxf{fill:var(--surface-2);stroke:currentColor;stroke-width:1.2}
+.dg .bxg{fill:none;stroke:currentColor;stroke-width:1;opacity:.4}
+.dg .ext{fill:none;stroke:currentColor;stroke-width:1.2;stroke-dasharray:5 3;opacity:.7}
+.dg .acc{fill:none;stroke:var(--rubric);stroke-width:1.6}
+.dg .accf{fill:var(--rubric-soft);stroke:var(--rubric);stroke-width:1.4}
+.dg text{fill:currentColor}
+.dg .ta{fill:var(--rubric);font-weight:600}
+.dg .tm{fill:currentColor;opacity:.62;font-size:9.5px}
+.dg .th{font-weight:600}
+.dg .ln{stroke:currentColor;stroke-width:1.1;fill:none}
+.dg .lnA{stroke:var(--rubric);stroke-width:1.4;fill:none}
+.dg .lnD{stroke:currentColor;stroke-width:1.1;fill:none;stroke-dasharray:5 3}
+.dg .life{stroke:currentColor;stroke-width:1;stroke-dasharray:3 4;opacity:.45}
+.dg .sep{stroke:currentColor;stroke-width:1;opacity:.35}
+</style>
+
+<svg class="dgdefs" aria-hidden="true" focusable="false">
+  <defs>
+    <marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path class="mk" d="M0,1 L9,5 L0,9 z"/></marker>
+    <marker id="arwA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path class="mkA" d="M0,1 L9,5 L0,9 z"/></marker>
+    <marker id="arwO" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,1 L9,5 L0,9" fill="none" stroke="currentColor" stroke-width="1.4"/></marker>
+  </defs>
+</svg>
+
+<div class="wrap">
+
+<header class="masthead">
+  <p class="kicker">Document 03 &middot; layer L2 &middot; child of 01 Master Architecture</p>
+  <h1>Nizam-e-Qanoon Data and Storage</h1>
+  <p class="dek">The schema that makes temporal correctness a database property, the indexes that make retrieval fast, and the single transaction that is the only way law enters the live corpus.</p>
+  <div class="meta">
+    <span><b>Version</b> 1.0</span>
+    <span><b>Layer</b> L2</span>
+    <span><b>Provides</b> ICorpusWrite &middot; ICorpusRead &middot; IIndexSearch &middot; ILexicalSearch</span>
+    <span><b>Figures</b> 3</span>
+  </div>
+</header>
+
+<!-- ============ 1 ============ -->
+<section class="first">
+  <div class="rail"><span class="num">&sect;1</span><span class="tag">Extensions<br>&amp; types</span></div>
+  <div class="body">
+    <h2>What the database must provide</h2>
+    <p class="lede">Four extensions, each earning its place by making something structurally impossible rather than merely convenient. Any host that cannot supply them changes what this layer can guarantee, which is why the substitution is modelled rather than hidden.</p>
+
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Extension</th><th>Used for</th><th>If unavailable</th></tr></thead>
+        <tbody>
+          <tr><td class="k"><code>vector</code> (pgvector)</td><td>Binary-quantised embeddings and HNSW indexes over them</td><td>No dense retrieval. There is no substitute; this one is non-negotiable</td></tr>
+          <tr><td class="k"><code>pg_search</code> (ParadeDB)</td><td>True BM25 with length normalisation over provision and paragraph text</td><td>Fall back to <code>tsvector</code> + GIN behind <code>ILexicalSearch</code> (&sect;6). Ranking quality drops by a <em>measured</em> amount</td></tr>
+          <tr><td class="k"><code>ltree</code></td><td>Provision tree paths; subtree and ancestor queries without recursive joins</td><td>Recursive CTEs over <code>parent_id</code>. Correct but materially slower on deep trees</td></tr>
+          <tr><td class="k"><code>btree_gist</code></td><td>The exclusion constraint that makes overlapping validity intervals impossible</td><td>Application-enforced temporal integrity, which is to say no integrity at all. This is the reason SQLite was rejected as a server engine</td></tr>
+          <tr><td class="k"><code>pg_trgm</code></td><td>Fuzzy matching for romanised Urdu aliases and misspelled act titles</td><td>Exact matching only; Roman Urdu recall drops</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+<pre><b>CREATE EXTENSION IF NOT EXISTS</b> vector;       <i>-- pgvector</i>
+<b>CREATE EXTENSION IF NOT EXISTS</b> pg_search;    <i>-- ParadeDB BM25; shared_preload_libraries below PG17</i>
+<b>CREATE EXTENSION IF NOT EXISTS</b> ltree;
+<b>CREATE EXTENSION IF NOT EXISTS</b> btree_gist;   <i>-- required by the EXCLUDE constraint in 2.3</i>
+<b>CREATE EXTENSION IF NOT EXISTS</b> pg_trgm;
+
+<i>-- asserted by a migration; the build fails loudly rather than drifting</i>
+<b>DO $$ BEGIN</b>
+  <b>IF</b> current_setting('server_version_num')::int &lt; 170000 <b>THEN</b>
+    <b>RAISE EXCEPTION</b> 'PostgreSQL 17 or newer required';
+  <b>END IF</b>;
+  <b>IF</b> (<b>SELECT</b> datcollate <b>FROM</b> pg_database <b>WHERE</b> datname = current_database())
+     &lt;&gt; 'en_US.UTF-8' <b>THEN</b>
+    <b>RAISE EXCEPTION</b> 'collation mismatch: index ordering would differ from the build host';
+  <b>END IF</b>;
+<b>END $$;</b></pre>
+
+    <h3><span class="mk">1.1</span>Enumerated domains</h3>
+<pre><b>CREATE TYPE</b> jurisdiction     <b>AS ENUM</b> ('fed','punjab','sindh','kp','balochistan','ict','ajk','gb');
+<b>CREATE TYPE</b> instrument_kind  <b>AS ENUM</b> ('constitution','act','ordinance','order','regulation',
+                                        'rules','sro','notification');
+<b>CREATE TYPE</b> provision_kind   <b>AS ENUM</b> ('part','chapter','section','article','subsection','clause',
+                                        'proviso','explanation','illustration','schedule','preamble');
+<b>CREATE TYPE</b> lifecycle_state  <b>AS ENUM</b> ('in_force','repealed','spent','lapsed','not_yet_commenced');
+<b>CREATE TYPE</b> version_op       <b>AS ENUM</b> ('original','inserted','substituted','omitted','amended');
+<b>CREATE TYPE</b> court            <b>AS ENUM</b> ('SC','FSC','LHC','SHC','PHC','BHC','IHC');
+<b>CREATE TYPE</b> treatment        <b>AS ENUM</b> ('cites','applies','interprets','follows',
+                                        'distinguishes','doubts','overrules');
+<b>CREATE TYPE</b> disposition      <b>AS ENUM</b> ('allowed','dismissed','partly_allowed','remanded','disposed');
+<b>CREATE TYPE</b> publish_scope    <b>AS ENUM</b> ('core','federal','provincial','judgments','all');</pre>
+    <p><code>publish_scope</code> is the mechanism behind ADR-1e. Every instrument carries one, and the live index contains only the scopes a deployment has enabled &mdash; which is how the same schema and the same migrations serve a 248 MB free-tier demo and a 10 GB pilot.</p>
+  </div>
+</section>
+
+<!-- ============ 2 ============ -->
+<section>
+  <div class="rail"><span class="num">&sect;2</span><span class="tag">Core<br>schema</span></div>
+  <div class="body">
+    <h2>The legal core</h2>
+
+    <h3><span class="mk">2.1</span>Instrument</h3>
+<pre><b>CREATE TABLE</b> instrument (
+  id                  uuid <b>PRIMARY KEY DEFAULT</b> gen_random_uuid(),
+  jurisdiction        jurisdiction    <b>NOT NULL</b>,
+  kind                instrument_kind <b>NOT NULL</b>,
+  number              text            <b>NOT NULL</b>,   <i>-- "XLV", "12", "745(I)"</i>
+  year                smallint        <b>NOT NULL</b>,
+  short_title         text            <b>NOT NULL</b>,
+  long_title          text,
+  preamble            text,
+  enacted_on          date,
+  commenced_on        date,
+  gazette_ref         text,
+  status              lifecycle_state <b>NOT NULL DEFAULT</b> 'in_force',
+  repealed_on         date,
+  repealed_by_id      uuid <b>REFERENCES</b> instrument(id),
+  <u>scope</u>               publish_scope   <b>NOT NULL</b>,       <i>-- ADR-1e</i>
+  <u>published</u>           boolean         <b>NOT NULL DEFAULT</b> false,
+  source_sha256       char(64)        <b>NOT NULL</b>,
+  source_url          text            <b>NOT NULL</b>,
+  extraction_conf     real,
+  created_at          timestamptz     <b>NOT NULL DEFAULT</b> now(),
+  <b>CONSTRAINT</b> uq_instrument <b>UNIQUE</b> (jurisdiction, kind, number, year),
+  <b>CONSTRAINT</b> ck_repeal <b>CHECK</b> ((status = 'repealed') = (repealed_on <b>IS NOT NULL</b>))
+);</pre>
+    <p><code>source_sha256</code> is not decoration: it is how the ~48 duplicate documents measured in the federal corpus are detected, and how a re-scrape proves a source has genuinely changed before an ingest run is triggered.</p>
+
+    <h3><span class="mk">2.2</span>Provision &mdash; the citable unit</h3>
+<pre><b>CREATE TABLE</b> provision (
+  id            uuid <b>PRIMARY KEY DEFAULT</b> gen_random_uuid(),
+  instrument_id uuid <b>NOT NULL REFERENCES</b> instrument(id) <b>ON DELETE CASCADE</b>,
+  parent_id     uuid <b>REFERENCES</b> provision(id) <b>ON DELETE CASCADE</b>,
+  <u>path</u>          ltree <b>NOT NULL</b>,        <i>-- fed.act.1860_45.ch_XVI.s_302.cl_c</i>
+  kind          provision_kind <b>NOT NULL</b>,
+  label         text <b>NOT NULL</b>,         <i>-- "302", "337A", "(c)", "Proviso" &mdash; verbatim</i>
+  heading       text,
+  marginal_note text,
+  ordinal       integer <b>NOT NULL</b>,      <i>-- sort order within the parent</i>
+  <b>CONSTRAINT</b> uq_provision_path <b>UNIQUE</b> (path)
+);
+
+<i>-- ON DELETE CASCADE on both foreign keys is the composition in the domain model:</i>
+<i>-- a provision cannot outlive its instrument, a child cannot outlive its parent.</i></pre>
+
+    <h3><span class="mk">2.3</span>Provision version &mdash; where temporal correctness is enforced</h3>
+<pre><b>CREATE TABLE</b> provision_version (
+  id                 uuid <b>PRIMARY KEY DEFAULT</b> gen_random_uuid(),
+  provision_id       uuid <b>NOT NULL REFERENCES</b> provision(id) <b>ON DELETE CASCADE</b>,
+  <u>validity</u>           daterange <b>NOT NULL</b>,   <i>-- '[1860-10-06,2005-01-01)' ; upper NULL = in force</i>
+  text_en            text,
+  text_ur            text,
+  text_normalised    text <b>NOT NULL</b>,
+  operation          version_op <b>NOT NULL DEFAULT</b> 'original',
+  amended_by_id      uuid <b>REFERENCES</b> instrument(id),
+  amendment_note     text,                <i>-- "Subs. by Act XLIII of 2016, s.3" &mdash; verbatim footnote</i>
+  extraction_conf    real,
+  verified_by        text,
+  verified_at        timestamptz,
+
+  <u>CONSTRAINT no_overlap EXCLUDE USING gist (</u>
+  <u>  provision_id WITH =,</u>
+  <u>  validity     WITH &amp;&amp;</u>
+  <u>)</u>
+);</pre>
+    <div class="note">
+      <h4>The four lines that carry INV-5</h4>
+      <p>That exclusion constraint makes two overlapping validity intervals for the same provision <strong>impossible to insert</strong>. A buggy amendment resolver fails loudly at commit rather than quietly producing a corpus where section 302 has two simultaneous texts and a point-in-time query returns whichever the planner reached first. It is the single most important line in this schema, and it is the reason SQLite &mdash; which has no <code>EXCLUDE</code> constraint &mdash; was rejected as a server engine despite matching the mobile pack.</p>
+    </div>
+
+    <h3><span class="mk">2.4</span>Amendment events and cross-references</h3>
+<pre><b>CREATE TABLE</b> amendment_event (
+  id                     uuid <b>PRIMARY KEY DEFAULT</b> gen_random_uuid(),
+  amending_instrument_id uuid <b>REFERENCES</b> instrument(id),
+  target_provision_id    uuid <b>REFERENCES</b> provision(id) <b>ON DELETE CASCADE</b>,
+  operation              version_op <b>NOT NULL</b>,
+  footnote_marker        text,          <i>-- the superscript digit as printed</i>
+  raw_note               text <b>NOT NULL</b>,  <i>-- unparsed, always retained</i>
+  effective_on           date,
+  <u>resolved</u>               boolean <b>NOT NULL DEFAULT</b> false,
+  resolution_error       text
+);
+
+<b>CREATE TABLE</b> provision_xref (
+  src_provision_id uuid <b>NOT NULL REFERENCES</b> provision(id) <b>ON DELETE CASCADE</b>,
+  dst_provision_id uuid <b>NOT NULL REFERENCES</b> provision(id) <b>ON DELETE CASCADE</b>,
+  raw_text         text <b>NOT NULL</b>,        <i>-- "under section 304"</i>
+  <b>PRIMARY KEY</b> (src_provision_id, dst_provision_id, raw_text)
+);</pre>
+    <p><code>raw_note</code> is retained unparsed forever. When the amendment grammar improves, every unresolved event can be reprocessed without re-reading a single PDF &mdash; and <code>resolved = false</code> rows are a queue, not a failure.</p>
+
+    <h3><span class="mk">2.5</span>Judgments</h3>
+<pre><b>CREATE TABLE</b> judgment (
+  id                uuid <b>NOT NULL DEFAULT</b> gen_random_uuid(),
+  court             court <b>NOT NULL</b>,
+  bench             text[],
+  judges            text[],
+  decided_on        date <b>NOT NULL</b>,
+  case_no           text <b>NOT NULL</b>,
+  neutral_citation  text,
+  reporter_refs     text[],            <i>-- "PLD 2016 SC 1" as an identifier only</i>
+  parties_raw       text,
+  parties_redacted  text,
+  disposition       disposition,
+  subject_tags      text[],
+  source_sha256     char(64) <b>NOT NULL</b>,
+  <b>PRIMARY KEY</b> (id, decided_on)
+) <u>PARTITION BY RANGE (decided_on)</u>;
+
+<b>CREATE TABLE</b> judgment_paragraph (
+  id          uuid <b>NOT NULL DEFAULT</b> gen_random_uuid(),
+  judgment_id uuid <b>NOT NULL</b>,
+  decided_on  date <b>NOT NULL</b>,       <i>-- carried down so the partition key is local</i>
+  para_no     integer <b>NOT NULL</b>,
+  role        text,                  <i>-- facts | arguments | reasoning | holding | order</i>
+  text        text <b>NOT NULL</b>,
+  <b>PRIMARY KEY</b> (id, decided_on)
+) <u>PARTITION BY RANGE (decided_on)</u>;
+
+<b>CREATE TABLE</b> citation_edge (
+  id               uuid <b>PRIMARY KEY DEFAULT</b> gen_random_uuid(),
+  src_paragraph_id uuid <b>NOT NULL</b>,
+  dst_provision_id uuid <b>REFERENCES</b> provision(id) <b>ON DELETE CASCADE</b>,
+  dst_judgment_id  uuid,
+  treatment        treatment <b>NOT NULL</b>,
+  confidence       real <b>NOT NULL</b>,
+  method           text <b>NOT NULL</b>,   <i>-- grammar | model | human</i>
+  quoted_span      int4range,
+  verified_by      text,
+  <b>CONSTRAINT</b> ck_one_dst <b>CHECK</b> (
+    (dst_provision_id <b>IS NOT NULL</b>)::int + (dst_judgment_id <b>IS NOT NULL</b>)::int = 1)
+);</pre>
+  </div>
+</section>
+
+
+<!-- ============ 3 ============ -->
+<section>
+  <div class="rail"><span class="num">&sect;3</span><span class="tag">Chunks<br>&amp; vectors</span></div>
+  <div class="body">
+    <h2>Chunks store offsets, not text</h2>
+    <p class="lede">A chunk is an index artefact with no independent existence. Storing its text would duplicate the entire corpus &mdash; 158 MB at statutory scale, 2 GB with judgments &mdash; for nothing, since the provision text is already stored and already indexed.</p>
+
+<pre><b>CREATE TABLE</b> chunk (
+  id             bigint <b>GENERATED ALWAYS AS IDENTITY PRIMARY KEY</b>,
+  version_id     uuid <b>NOT NULL REFERENCES</b> provision_version(id) <b>ON DELETE CASCADE</b>,
+  seq            smallint <b>NOT NULL</b>,
+  <u>char_start</u>     integer <b>NOT NULL</b>,     <i>-- offsets into provision_version.text_normalised</i>
+  <u>char_end</u>       integer <b>NOT NULL</b>,
+  context_prefix text <b>NOT NULL</b>,        <i>-- act short title + chapter heading, ~80 chars</i>
+  <u>embedding</u>      bit(1024) <b>NOT NULL</b>,   <i>-- binary-quantised; 136 bytes on disk</i>
+  <b>CONSTRAINT</b> ck_span <b>CHECK</b> (char_end &gt; char_start),
+  <b>CONSTRAINT</b> uq_chunk <b>UNIQUE</b> (version_id, seq)
+);</pre>
+
+    <div class="note blue">
+      <h4>Why <code>bit(1024)</code> is a column and not an expression index</h4>
+      <p>pgvector&rsquo;s documented binary-quantisation pattern keeps the full-precision <code>vector</code> in the table and indexes <code>binary_quantize(embedding)::bit(n)</code> as an expression, so the table still pays 4,104 bytes per row and only the <em>index</em> shrinks. We store the bits directly instead &mdash; 136 bytes per row &mdash; and do not retain the full-precision vector at all.</p>
+      <p style="margin-top:.7rem">That is only safe because we never rescore inside the database. Precision is recovered one stage later by the cross-encoder, which reads the <em>provision text</em>, not any embedding. A system without a reranking stage could not make this trade; ours was built with one as the gate. The consequence for storage is 21.5 MB of chunk rows instead of 649 MB at full statutory scale.</p>
+    </div>
+
+    <p>Re-embedding is therefore a full rebuild of <code>chunk</code> rather than an in-place update &mdash; which is correct, because a new embedding model produces a differently-shaped space and mixing two generations in one index would be silently wrong. The rebuild is a <code>TRUNCATE</code> plus a batch pass, and it never touches <code>provision_version</code>.</p>
+
+    <h3><span class="mk">3.1</span>Glossary, definitions and the answer tier</h3>
+<pre><b>CREATE TABLE</b> glossary_concept (
+  id            uuid <b>PRIMARY KEY DEFAULT</b> gen_random_uuid(),
+  concept       text <b>NOT NULL UNIQUE</b>,
+  terms_en      text[] <b>NOT NULL DEFAULT</b> '{}',
+  terms_ur      text[] <b>NOT NULL DEFAULT</b> '{}',
+  <u>terms_roman</u>   text[] <b>NOT NULL DEFAULT</b> '{}',   <i>-- talaq, talak, tallaq &hellip;</i>
+  provision_ids uuid[] <b>NOT NULL DEFAULT</b> '{}'
+);
+
+<b>CREATE TABLE</b> stored_answer (                    <i>-- the offline answer tier, doc 08 &sect;3.4</i>
+  id                uuid <b>PRIMARY KEY DEFAULT</b> gen_random_uuid(),
+  canonical_question text <b>NOT NULL</b>,
+  question_embedding bit(1024) <b>NOT NULL</b>,
+  jurisdiction      jurisdiction <b>NOT NULL</b>,
+  blocks            jsonb <b>NOT NULL</b>,           <i>-- [{text, cites:[provision_id], span}]</i>
+  <u>cited_provisions</u>  uuid[] <b>NOT NULL</b>,          <i>-- drives INVALIDATE on amendment</i>
+  corpus_version    bigint <b>NOT NULL</b>,
+  verifier_score    real <b>NOT NULL</b>,
+  <b>CONSTRAINT</b> ck_verified <b>CHECK</b> (verifier_score &gt;= 0.97)
+);</pre>
+    <p>The check constraint is the point: an answer that did not clear the entailment threshold <strong>cannot be inserted</strong> into the shippable set. And <code>cited_provisions</code> is what makes invalidation mechanical &mdash; a publish that amends any provision emits a delete for every stored answer depending on it, in the same transaction.</p>
+  </div>
+</section>
+
+<!-- ============ 4 ============ -->
+<section>
+  <div class="rail"><span class="num">&sect;4</span><span class="tag">Indexes</span></div>
+  <div class="body">
+    <h2>Every index, and the stage it serves</h2>
+
+<figure>
+  <span class="fignum">Figure 1 &mdash; Retrieval stages mapped to indexes</span>
+<svg class="dg" viewBox="0 0 940 426" role="img" aria-label="Bipartite map linking six retrieval stages on the left to eight indexes on the right. The citation fast path uses the unique path index. Lexical search uses the BM25 index. Dense retrieval uses the HNSW binary index. Graph expansion uses the cross-reference indexes. The as-of filter uses the validity GiST index. Provision fetch uses the ltree GiST index, and the citator uses the citation edge index. Roman Urdu lookup uses trigram indexes on the glossary.">
+  <g class="bx">
+    <rect x="20" y="34"  width="252" height="44" rx="3"/>
+    <rect x="20" y="90"  width="252" height="44" rx="3"/>
+    <rect x="20" y="146" width="252" height="44" rx="3"/>
+    <rect x="20" y="202" width="252" height="44" rx="3"/>
+    <rect x="20" y="258" width="252" height="44" rx="3"/>
+    <rect x="20" y="314" width="252" height="44" rx="3"/>
+  </g>
+  <g class="th" font-size="10">
+    <text x="32" y="52">citation fast path</text>
+    <text x="32" y="108">lexical candidates</text>
+    <text x="32" y="164">dense candidates</text>
+    <text x="32" y="220">graph expansion</text>
+    <text x="32" y="276">as_of filter</text>
+    <text x="32" y="332">provision fetch &amp; citator</text>
+  </g>
+  <g class="tm">
+    <text x="32" y="68">s.302 PPC &rarr; direct, &lt;5 ms</text>
+    <text x="32" y="124">BM25, top 150</text>
+    <text x="32" y="180">hamming ANN, over-fetch 10&times;</text>
+    <text x="32" y="236">pull cross-referenced provisions</text>
+    <text x="32" y="292">applied to every read (INV-5)</text>
+    <text x="32" y="348">whole provisions + treatments</text>
+  </g>
+
+  <g class="bx">
+    <rect x="612" y="18"  width="308" height="38" rx="3"/>
+    <rect x="612" y="66"  width="308" height="38" rx="3"/>
+    <rect x="612" y="162" width="308" height="38" rx="3"/>
+    <rect x="612" y="210" width="308" height="38" rx="3"/>
+    <rect x="612" y="258" width="308" height="38" rx="3"/>
+    <rect x="612" y="306" width="308" height="38" rx="3"/>
+    <rect x="612" y="354" width="308" height="38" rx="3"/>
+  </g>
+  <rect class="accf" x="612" y="114" width="308" height="38" rx="3"/>
+
+  <g class="th" font-size="9.6">
+    <text x="622" y="34">uq_provision_path &mdash; btree unique</text>
+    <text x="622" y="82">ix_provision_bm25 &mdash; pg_search</text>
+    <text x="622" y="178">ix_xref_src / ix_xref_dst &mdash; btree</text>
+    <text x="622" y="226">no_overlap &mdash; gist (from EXCLUDE)</text>
+    <text x="622" y="274">ix_provision_path &mdash; gist (ltree)</text>
+    <text x="622" y="322">ix_edge_dst_provision &mdash; btree</text>
+    <text x="622" y="370">ix_glossary_roman &mdash; gin (trgm)</text>
+  </g>
+  <text class="ta" x="622" y="130" font-size="9.6">ix_chunk_hnsw &mdash; hnsw bit_hamming_ops</text>
+  <g class="tm">
+    <text x="622" y="48">exact path lookup &middot; ~14 MB</text>
+    <text x="622" y="96">length-normalised BM25 &middot; ~121 MB</text>
+    <text x="622" y="146">m=16, ef_construction=64 &middot; ~54 MB</text>
+    <text x="622" y="192">graph traversal both ways &middot; ~54 MB</text>
+    <text x="622" y="240">also the temporal integrity guarantee &middot; ~18 MB</text>
+    <text x="622" y="288">subtree and ancestor queries &middot; ~29 MB</text>
+    <text x="622" y="336">citator by provision &middot; ~40 MB</text>
+    <text x="622" y="384">fuzzy romanised aliases &middot; ~2 MB</text>
+  </g>
+
+  <g class="ln">
+    <line x1="272" y1="52"  x2="608" y2="34"/>
+    <line x1="272" y1="112" x2="608" y2="82"/>
+    <line x1="272" y1="168" x2="608" y2="132"/>
+    <line x1="272" y1="224" x2="608" y2="180"/>
+    <line x1="272" y1="280" x2="608" y2="228"/>
+    <line x1="272" y1="336" x2="608" y2="276"/>
+    <line x1="272" y1="342" x2="608" y2="324"/>
+    <line x1="272" y1="118" x2="608" y2="372"/>
+  </g>
+
+  <line class="sep" x1="20" y1="378" x2="580" y2="378"/>
+  <text class="th" x="20" y="396" font-size="10">Total index footprint at full statutory scale: ~332 MB</text>
+  <text class="tm" x="20" y="412">Against 158 MB of stored text. Indexes outweigh the law itself two to one &mdash; the fact that reframes every capacity question.</text>
+</svg>
+<figcaption><b>One index is accented because it is the one that could have dominated everything.</b> A full-precision HNSW over 158,000 chunks would be 1,577 MB &mdash; larger than every other index combined and larger than the corpus. Binary quantisation puts it at 54 MB, which is smaller than the cross-reference indexes. Note also that the exclusion constraint&rsquo;s GiST index does double duty: it enforces temporal integrity <em>and</em> serves the <code>as_of</code> filter on every single read.</figcaption>
+</figure>
+
+<pre><i>-- lexical: BM25 where available</i>
+<b>CREATE INDEX</b> ix_provision_bm25 <b>ON</b> provision_version
+  <b>USING</b> bm25 (id, text_normalised) <b>WITH</b> (key_field='id');
+
+<i>-- lexical: the portable fallback, indexed as an expression (not a stored column)</i>
+<b>CREATE INDEX</b> ix_provision_fts <b>ON</b> provision_version
+  <b>USING</b> gin (to_tsvector('english', text_normalised));
+
+<i>-- dense: HNSW over the bit column</i>
+<b>CREATE INDEX</b> ix_chunk_hnsw <b>ON</b> chunk
+  <b>USING</b> hnsw (embedding <u>bit_hamming_ops</u>) <b>WITH</b> (m=16, ef_construction=64);
+
+<i>-- tree</i>
+<b>CREATE INDEX</b> ix_provision_path <b>ON</b> provision <b>USING</b> gist (path);
+<b>CREATE INDEX</b> ix_provision_instr <b>ON</b> provision (instrument_id, ordinal);
+
+<i>-- temporal: the EXCLUDE constraint already created a gist index; this covers the common read</i>
+<b>CREATE INDEX</b> ix_version_lookup <b>ON</b> provision_version (provision_id, validity);
+
+<i>-- graph</i>
+<b>CREATE INDEX</b> ix_xref_src <b>ON</b> provision_xref (src_provision_id);
+<b>CREATE INDEX</b> ix_xref_dst <b>ON</b> provision_xref (dst_provision_id);
+<b>CREATE INDEX</b> ix_edge_dst_provision <b>ON</b> citation_edge (dst_provision_id, treatment);
+
+<i>-- roman urdu</i>
+<b>CREATE INDEX</b> ix_glossary_roman <b>ON</b> glossary_concept <b>USING</b> gin (terms_roman);
+<b>CREATE INDEX</b> ix_glossary_trgm  <b>ON</b> glossary_concept <b>USING</b> gin (concept gin_trgm_ops);</pre>
+
+    <h3><span class="mk">4.1</span>The two queries that must be fast</h3>
+<pre><i>-- point-in-time provision read. Every client read goes through this shape.</i>
+<b>SELECT</b> p.path, p.label, p.heading, v.text_en, v.validity, i.status
+<b>FROM</b> provision p
+<b>JOIN</b> instrument i <b>ON</b> i.id = p.instrument_id <b>AND</b> i.published
+<b>JOIN</b> provision_version v <b>ON</b> v.provision_id = p.id
+                          <b>AND</b> v.validity <u>@&gt;</u> $as_of::date      <i>-- gist, INV-5</i>
+<b>WHERE</b> p.path <u>&lt;@</u> $subtree::ltree                            <i>-- gist</i>
+<b>ORDER BY</b> p.path;
+
+<i>-- dense candidates with over-fetch, jurisdiction- and time-filtered</i>
+<b>SELECT</b> c.version_id, c.char_start, c.char_end
+<b>FROM</b> chunk c
+<b>JOIN</b> provision_version v <b>ON</b> v.id = c.version_id <b>AND</b> v.validity @&gt; $as_of::date
+<b>JOIN</b> provision p <b>ON</b> p.id = v.provision_id
+<b>JOIN</b> instrument i <b>ON</b> i.id = p.instrument_id
+                  <b>AND</b> i.published <b>AND</b> i.jurisdiction = <b>ANY</b>($juris)
+<b>ORDER BY</b> c.embedding <u>&lt;~&gt;</u> $qbits::bit(1024)                 <i>-- hamming, hnsw</i>
+<b>LIMIT</b> 500;                                                <i>-- 10x over-fetch for 50 kept</i></pre>
+    <p>The second query filters <em>and</em> orders by an index, which is exactly the shape that used to over-filter in pgvector before iterative index scans landed. Verify the plan uses the HNSW index rather than falling back to a sequential scan whenever the jurisdiction filter is narrow &mdash; and raise <code>hnsw.ef_search</code> per session rather than globally.</p>
+  </div>
+</section>
+
+
+<!-- ============ 5 ============ -->
+<section>
+  <div class="rail"><span class="num">&sect;5</span><span class="tag">Lexical<br>port</span></div>
+  <div class="body">
+    <h2>ILexicalSearch &mdash; two implementations, one benchmark</h2>
+    <p class="lede">This is the seam that keeps the hosting decision reversible. No managed Postgres permits <code>pg_search</code>, so the fallback must exist, must work, and must have a <em>measured</em> quality cost rather than an assumed one.</p>
+
+<pre><b>class</b> LexicalSearch(Protocol):
+    <b>def</b> search(q: str, filters: Filters, k: int) -&gt; list[Candidate]: ...
+
+<i># implementation A &mdash; ParadeDB, true BM25 with length normalisation</i>
+<b>SELECT</b> id, paradedb.score(id) <b>AS</b> score
+<b>FROM</b> provision_version
+<b>WHERE</b> id @@@ paradedb.match('text_normalised', $q)
+<b>ORDER BY</b> score <b>DESC LIMIT</b> $k;
+
+<i># implementation B &mdash; portable, ts_rank_cd</i>
+<b>SELECT</b> id, ts_rank_cd(to_tsvector('english', text_normalised),
+                        websearch_to_tsquery('english', $q), <u>32</u>) <b>AS</b> score
+<b>FROM</b> provision_version
+<b>WHERE</b> to_tsvector('english', text_normalised) @@ websearch_to_tsquery('english', $q)
+<b>ORDER BY</b> score <b>DESC LIMIT</b> $k;
+<i>-- normalisation flag 32 divides by (rank + 1); the closest ts_rank_cd gets to</i>
+<i>-- BM25 length normalisation, and still materially different on long provisions</i></pre>
+
+    <div class="scroll">
+      <table>
+        <caption>The benchmark is a required deliverable, not an optional experiment. Run it once on the local <code>pg_search</code> baseline before any managed host is considered.</caption>
+        <thead><tr><th>Property</th><th>A &mdash; pg_search</th><th>B &mdash; ts_rank_cd</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Length normalisation</td><td>Proper BM25 <code>b</code> parameter</td><td>Approximated by a division flag. Our provisions range from one line to three pages, so this matters</td></tr>
+          <tr><td class="k">Term saturation</td><td>BM25 <code>k1</code></td><td>None &mdash; term frequency accumulates linearly</td></tr>
+          <tr><td class="k">Phrase and proximity</td><td>Native, with slop</td><td><code>&lt;-&gt;</code> operators; workable, clumsier</td></tr>
+          <tr><td class="k">Index size</td><td>~121 MB</td><td>~121 MB</td></tr>
+          <tr><td class="k">Available on managed hosts</td><td><span class="chip c-miss">No</span></td><td><span class="chip c-have">Yes</span></td></tr>
+          <tr><td class="k">Measured NDCG@10 delta</td><td colspan="2">To be filled from the golden set. Report it in the thesis whichever way it falls &mdash; a small delta justifies the managed path, a large one justifies self-hosting</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6 ============ -->
+<section>
+  <div class="rail"><span class="num">&sect;6</span><span class="tag">Publish</span></div>
+  <div class="body">
+    <h2>The only write path into the live corpus</h2>
+
+<figure>
+  <span class="fignum">Figure 2 &mdash; The publish transaction</span>
+<svg class="dg" viewBox="0 0 940 452" role="img" aria-label="Sequence diagram of the publish transaction. The gate runner hands a gate report to the publisher, which stores the source document in R2, then opens one Postgres transaction: upsert the instrument unpublished, replace the provision tree, insert provision versions where the exclusion constraint fires on any overlap, insert amendment events, cross-references and chunks, delete stored answers whose cited provisions changed, then mark the instrument published and bump the corpus version before committing. Any constraint violation rolls the whole thing back and quarantines the document.">
+  <g class="bxf">
+    <rect x="30"  y="18" width="150" height="34" rx="3"/>
+    <rect x="250" y="18" width="150" height="34" rx="3"/>
+    <rect x="470" y="18" width="170" height="34" rx="3"/>
+    <rect x="720" y="18" width="150" height="34" rx="3"/>
+  </g>
+  <g class="th" text-anchor="middle" font-size="10">
+    <text x="105" y="39">:GateRunner</text><text x="325" y="39">:Publisher</text>
+    <text x="555" y="39">:Postgres</text><text x="795" y="39">:R2</text>
+  </g>
+  <g class="life">
+    <line x1="105" y1="52" x2="105" y2="438"/><line x1="325" y1="52" x2="325" y2="438"/>
+    <line x1="555" y1="52" x2="555" y2="438"/><line x1="795" y1="52" x2="795" y2="438"/>
+  </g>
+  <g class="bxf"><rect x="320" y="74" width="10" height="330"/></g>
+
+  <g class="ln" marker-end="url(#arw)">
+    <line x1="105" y1="74"  x2="318" y2="74"/>
+    <line x1="332" y1="100" x2="791" y2="100"/>
+    <line x1="332" y1="132" x2="551" y2="132"/>
+    <line x1="332" y1="160" x2="551" y2="160"/>
+    <line x1="332" y1="188" x2="551" y2="188"/>
+    <line x1="332" y1="216" x2="551" y2="216"/>
+    <line x1="332" y1="244" x2="551" y2="244"/>
+    <line x1="332" y1="286" x2="551" y2="286"/>
+    <line x1="332" y1="314" x2="551" y2="314"/>
+    <line x1="332" y1="342" x2="551" y2="342"/>
+  </g>
+  <g class="lnD" marker-end="url(#arwO)">
+    <line x1="551" y1="366" x2="334" y2="366"/>
+    <line x1="318" y1="392" x2="107" y2="392"/>
+  </g>
+
+  <g font-size="9.6">
+    <text x="111" y="68">publish(instrument, provisions[], versions[], edges[], gate_report)</text>
+    <text x="338" y="94">put(source.pdf, sha256) &mdash; <tspan class="tm">outside the transaction; blobs are immutable</tspan></text>
+    <text x="338" y="126"><tspan class="ta">BEGIN</tspan></text>
+    <text x="338" y="154">upsert instrument &hellip; <tspan class="ta">published = false</tspan></text>
+    <text x="338" y="182">delete + insert provision tree (paths, ltree)</text>
+    <text x="338" y="210">insert provision_version &mdash; <tspan class="ta">EXCLUDE fires here on any overlap</tspan></text>
+    <text x="338" y="238">insert amendment_event, provision_xref, chunk</text>
+    <text x="338" y="280">delete stored_answer <tspan class="ta">where cited_provisions &amp;&amp; changed</tspan></text>
+    <text x="338" y="308">update instrument set published = true, scope = $scope</text>
+    <text x="338" y="336">corpus_version = nextval('corpus_version_seq')</text>
+    <text x="338" y="360"><tspan class="ta">COMMIT</tspan></text>
+    <text x="111" y="386">PublishResult { instrument_id, corpus_version, counts }</text>
+  </g>
+
+  <rect class="acc" x="290" y="256" width="630" height="44" rx="3" fill="none"/>
+  <text class="ta" x="300" y="270" font-size="9.5">the invalidation step &mdash; answers and law can never drift apart</text>
+
+  <rect class="acc" x="290" y="404" width="630" height="34" rx="3" fill="none"/>
+  <path class="acc" d="M290,404 L346,404 L356,418 L356,422 L290,422"/>
+  <text class="ta" x="298" y="417" font-size="9.5">alt</text>
+  <text class="ta" x="364" y="417" font-size="9.5">[any constraint violation] &rarr; ROLLBACK, quarantine the document, name the failing gate</text>
+</svg>
+<figcaption><b>One transaction per instrument, all or nothing.</b> Everything is written unpublished, the exclusion constraint gets a chance to reject a bad amendment resolution mid-transaction, dependent stored answers are removed in the same commit, and only the final statement makes the instrument visible. There is no second write path into the live index &mdash; not from the API, not from the curation console, not from a migration. A reader therefore never observes a half-published act, and the corpus version bumped at the end is what triggers pack patches, ISR revalidation of public pages, and cache invalidation downstream.</figcaption>
+</figure>
+
+<pre><b>CREATE SEQUENCE</b> corpus_version_seq;
+
+<i>-- scope gating (ADR-1e): the live view a deployment actually serves</i>
+<b>CREATE VIEW</b> live_provision <b>AS</b>
+<b>SELECT</b> p.* <b>FROM</b> provision p
+<b>JOIN</b> instrument i <b>ON</b> i.id = p.instrument_id
+<b>WHERE</b> i.published
+  <b>AND</b> i.scope = <b>ANY</b>(current_setting('nzq.enabled_scopes')::publish_scope[]);
+
+<i>-- a 500 MB free-tier deployment sets:  nzq.enabled_scopes = '{core,federal}'</i>
+<i>-- a full pilot sets:                   nzq.enabled_scopes = '{core,federal,provincial,judgments}'</i></pre>
+  </div>
+</section>
+
+<!-- ============ 7 ============ -->
+<section>
+  <div class="rail"><span class="num">&sect;7</span><span class="tag">Partitions</span></div>
+  <div class="body">
+    <h2>Judgments are partitioned; statutes are not</h2>
+
+<figure>
+  <span class="fignum">Figure 3 &mdash; Judgment partitioning and pruning</span>
+<svg class="dg" viewBox="0 0 940 292" role="img" aria-label="Judgment tables partitioned by decision year from before 2010 through 2026. A query restricted to 2015 and 2016 touches only two partitions, pruning the rest. Statute tables are left unpartitioned because they are small and every query filters by validity rather than by date range.">
+  <text class="th" x="20" y="26" font-size="10.5">judgment &middot; judgment_paragraph &mdash; PARTITION BY RANGE (decided_on)</text>
+  <g class="bxg">
+    <rect x="20"  y="40" width="98" height="52" rx="3"/>
+    <rect x="126" y="40" width="72" height="52" rx="3"/>
+    <rect x="206" y="40" width="72" height="52" rx="3"/>
+    <rect x="286" y="40" width="72" height="52" rx="3"/>
+    <rect x="446" y="40" width="72" height="52" rx="3"/>
+    <rect x="526" y="40" width="72" height="52" rx="3"/>
+    <rect x="606" y="40" width="72" height="52" rx="3"/>
+    <rect x="686" y="40" width="72" height="52" rx="3"/>
+    <rect x="766" y="40" width="72" height="52" rx="3"/>
+    <rect x="846" y="40" width="74" height="52" rx="3"/>
+  </g>
+  <rect class="accf" x="366" y="40" width="72" height="52" rx="3"/>
+  <g class="tm" text-anchor="middle">
+    <text x="69"  y="60">&lt; 2010</text><text x="162" y="60">2012</text><text x="242" y="60">2013</text>
+    <text x="322" y="60">2014</text><text x="482" y="60">2017</text><text x="562" y="60">2018</text>
+    <text x="642" y="60">2020</text><text x="722" y="60">2022</text><text x="802" y="60">2024</text><text x="883" y="60">2026</text>
+  </g>
+  <text class="ta" x="402" y="60" text-anchor="middle">2015&ndash;16</text>
+  <g class="tm" text-anchor="middle">
+    <text x="69"  y="78">~28k</text><text x="162" y="78">~7k</text><text x="242" y="78">~7k</text>
+    <text x="322" y="78">~7k</text><text x="482" y="78">~8k</text><text x="562" y="78">~8k</text>
+    <text x="642" y="78">~8k</text><text x="722" y="78">~9k</text><text x="802" y="78">~9k</text><text x="883" y="78">~9k</text>
+  </g>
+  <text class="ta" x="402" y="78" text-anchor="middle">~15k</text>
+
+  <text class="tm" x="20" y="116">WHERE decided_on &gt;= '2015-01-01' AND decided_on &lt; '2017-01-01'  &rarr;  the planner touches two partitions and skips the other eight</text>
+
+  <line class="sep" x1="20" y1="136" x2="920" y2="136"/>
+  <g class="th" font-size="10">
+    <text x="20" y="160">Why partition judgments</text>
+    <text x="480" y="160">Why not partition statutes</text>
+  </g>
+  <g class="tm">
+    <text x="20" y="180">&#8226; 4.8M paragraph rows; a single index no longer fits comfortably</text>
+    <text x="20" y="196">&#8226; citator queries are almost always date-bounded &mdash; &ldquo;since 2010&rdquo;</text>
+    <text x="20" y="212">&#8226; ingest is append-heavy by year; a new partition is a new file</text>
+    <text x="20" y="228">&#8226; old years can move to slower storage or be detached wholesale</text>
+    <text x="20" y="244">&#8226; index maintenance and vacuum run per partition, not per table</text>
+    <text x="480" y="180">&#8226; 362k provision rows &mdash; small, and it stays small</text>
+    <text x="480" y="196">&#8226; queries filter by validity range and ltree path, not by a date key</text>
+    <text x="480" y="212">&#8226; the natural partition key would be jurisdiction, which is</text>
+    <text x="480" y="226">&nbsp;&nbsp;low-cardinality and skews badly &mdash; Sindh alone is a third</text>
+    <text x="480" y="244">&#8226; partitioning would complicate the EXCLUDE constraint for nothing</text>
+  </g>
+  <text class="ta" x="20" y="276">Partition when a table is large <tspan class="th">and</tspan> queries filter on the partition key. Judgments meet both tests; provisions meet neither.</text>
+</svg>
+<figcaption><b>Partitioning is a response to a measured problem, not a default.</b> Judgments qualify on both tests &mdash; volume and a date-shaped access pattern &mdash; and the operational benefits compound: a year&rsquo;s worth of judgments can be detached, archived to R2 Infrequent Access, and reattached without touching the rest of the corpus. Statutes fail both tests, and partitioning them would complicate the exclusion constraint that carries INV-5 in exchange for nothing.</figcaption>
+</figure>
+
+<pre><i>-- yearly partitions from 2010; everything older in one catch-all</i>
+<b>CREATE TABLE</b> judgment_p_pre2010 <b>PARTITION OF</b> judgment
+  <b>FOR VALUES FROM</b> (<b>MINVALUE</b>) <b>TO</b> ('2010-01-01');
+<b>CREATE TABLE</b> judgment_p2015 <b>PARTITION OF</b> judgment
+  <b>FOR VALUES FROM</b> ('2015-01-01') <b>TO</b> ('2016-01-01');
+<i>-- &hellip; created ahead of time by a scheduled job, never on demand</i>
+
+<b>CREATE INDEX ON</b> judgment_paragraph <b>USING</b> bm25 (id, text) <b>WITH</b> (key_field='id');
+<i>-- indexes declared on the parent propagate to every partition, existing and future</i></pre>
+  </div>
+</section>
+
+<!-- ============ 8 ============ -->
+<section>
+  <div class="rail"><span class="num">&sect;8</span><span class="tag">User data<br>&amp; RLS</span></div>
+  <div class="body">
+    <h2>Operational tables</h2>
+<pre><b>CREATE TABLE</b> app_user (
+  id           uuid <b>PRIMARY KEY DEFAULT</b> gen_random_uuid(),
+  phone_e164   text <b>UNIQUE</b>,          <i>-- phone-first; email optional</i>
+  email        text <b>UNIQUE</b>,
+  tier         text <b>NOT NULL DEFAULT</b> 'free',
+  created_at   timestamptz <b>NOT NULL DEFAULT</b> now(),
+  deleted_at   timestamptz            <i>-- soft delete; the erasure job is separate</i>
+);
+
+<b>CREATE TABLE</b> bookmark (
+  id           uuid <b>PRIMARY KEY DEFAULT</b> gen_random_uuid(),
+  user_id      uuid <b>NOT NULL REFERENCES</b> app_user(id) <b>ON DELETE CASCADE</b>,
+  provision_id uuid <b>NOT NULL REFERENCES</b> provision(id),
+  as_of        date,
+  note         text,
+  <u>version</u>      bigint <b>NOT NULL DEFAULT</b> nextval('user_version_seq'),  <i>-- LWW key</i>
+  updated_at   timestamptz <b>NOT NULL DEFAULT</b> now(),
+  deleted      boolean <b>NOT NULL DEFAULT</b> false                          <i>-- tombstone</i>
+);
+
+<b>CREATE TABLE</b> answer_audit (                <i>-- INV-3: every answer replayable</i>
+  request_id     uuid <b>PRIMARY KEY</b>,
+  user_id        uuid <b>REFERENCES</b> app_user(id),   <i>-- NULL in anonymous mode</i>
+  query_text     text,                            <i>-- NULL in anonymous mode</i>
+  filters        jsonb <b>NOT NULL</b>,
+  retrieved      jsonb <b>NOT NULL</b>,                <i>-- provision ids with stage scores</i>
+  gate_decision  jsonb <b>NOT NULL</b>,
+  prompt_sha256  char(64),
+  model_version  text,
+  verifier       jsonb,
+  corpus_version bigint <b>NOT NULL</b>,
+  created_at     timestamptz <b>NOT NULL DEFAULT</b> now()
+) <b>PARTITION BY RANGE</b> (created_at);</pre>
+
+    <h3><span class="mk">8.1</span>Row-level security</h3>
+<pre><b>ALTER TABLE</b> bookmark <b>ENABLE ROW LEVEL SECURITY</b>;
+<b>ALTER TABLE</b> bookmark <b>FORCE ROW LEVEL SECURITY</b>;   <i>-- applies to the table owner too</i>
+
+<b>CREATE POLICY</b> bookmark_owner <b>ON</b> bookmark
+  <b>USING</b> (user_id = current_setting('nzq.user_id', true)::uuid)
+  <b>WITH CHECK</b> (user_id = current_setting('nzq.user_id', true)::uuid);
+
+<i>-- the corpus is world-readable to the application role and writable only by the</i>
+<i>-- publisher role; there is no policy that lets a user session write to it at all</i>
+<b>REVOKE INSERT, UPDATE, DELETE ON</b> instrument, provision, provision_version,
+                                  chunk, citation_edge <b>FROM</b> app_role;
+<b>GRANT SELECT ON ALL TABLES IN SCHEMA</b> public <b>TO</b> app_role;</pre>
+    <p><code>FORCE ROW LEVEL SECURITY</code> matters more than it looks: without it, policies are bypassed for the table owner, which is exactly the role a migration or a careless connection string is likely to use. And the corpus grants are the database-level expression of &ldquo;there is no second write path&rdquo; &mdash; the application role physically cannot publish.</p>
+
+    <h3><span class="mk">8.2</span>Sync, server side</h3>
+<pre><i>-- corpus sync: one-way, signed. The client is never a writer.</i>
+<b>SELECT</b> patch_id, from_version, to_version, sha256, signature, url
+<b>FROM</b> pack_patch
+<b>WHERE</b> from_version &gt;= $client_version <b>AND</b> tier = <b>ANY</b>($installed_tiers)
+<b>ORDER BY</b> from_version;
+
+<i>-- user-data sync: bidirectional, last-writer-wins on a server-assigned version</i>
+<b>SELECT</b> * <b>FROM</b> bookmark
+<b>WHERE</b> user_id = $uid <b>AND</b> version &gt; $cursor
+<b>ORDER BY</b> version <b>LIMIT</b> 500;                  <i>-- tombstones included, filtered client-side</i></pre>
+    <p>The cursor is the sequence value, never a timestamp. Device clocks are wrong often enough that a timestamp cursor silently loses writes, and the failure is invisible until a user notices a bookmark they deleted has returned.</p>
+  </div>
+</section>
+
+<!-- ============ 9 ============ -->
+<section>
+  <div class="rail"><span class="num">&sect;9</span><span class="tag">Migrations<br>&amp; recovery</span></div>
+  <div class="body">
+    <h2>Discipline</h2>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Rule</th><th>Why</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Every object comes from a migration</td><td>ADR-1g. A schema created in pgAdmin is reproducible nowhere, and the move from laptop to server stops being a restore</td></tr>
+          <tr><td class="k">Migrations are reversible or explicitly irreversible</td><td>A downgrade that silently drops data is worse than no downgrade. Mark destructive steps and require a backup assertion before them</td></tr>
+          <tr><td class="k">Index creation is <code>CONCURRENTLY</code> in production</td><td>A plain <code>CREATE INDEX</code> takes an <code>ACCESS EXCLUSIVE</code> lock. On a 158k-row chunk table that is seconds; on judgment paragraphs it is an outage</td></tr>
+          <tr><td class="k">Extension and collation asserted</td><td>&sect;1. Silent divergence in <code>lc_collate</code> changes index ordering and text comparison, and is genuinely hard to diagnose after the fact</td></tr>
+          <tr><td class="k">Backfills are separate from schema changes</td><td>A migration that rewrites 4.8M rows inside a transaction holds locks for the duration. Add the column, deploy, backfill in batches, then add the constraint</td></tr>
+          <tr><td class="k">Re-embedding is a rebuild, never an update</td><td>Two embedding generations in one index is silently wrong. <code>TRUNCATE chunk</code>, re-embed, rebuild HNSW</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>Recovery</h4>
+    <ul>
+      <li><strong>pgBackRest to R2</strong> &mdash; weekly full, daily incremental, continuous WAL archive, fourteen-day window. This is the point-in-time recovery that Supabase charges $100/month for.</li>
+      <li><strong>Monthly restore drill</strong> into a scratch container, with the golden set run against the restored copy. A backup nobody has restored is a hypothesis.</li>
+      <li><strong>The corpus is rebuildable</strong> from R2 blobs plus the scraper manifests plus the migrations, without any backup at all. That is the deepest safety property in the system: the database is derived data, and only user content is genuinely irreplaceable &mdash; which is also why user tables are tiny and easy to protect separately.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ R ============ -->
+<section>
+  <div class="rail"><span class="num">R</span><span class="tag">Sources</span></div>
+  <div class="body">
+    <h2>References</h2>
+    <ol style="font-size:.8rem;line-height:1.6">
+      <li style="margin-bottom:.55rem"><b>pgvector binary quantisation</b> &mdash; <code>bit_hamming_ops</code>, the expression-index pattern this document deliberately departs from, and the storage arithmetic (<code>vector(n)</code> = 4n+8 bytes; <code>bit(n)</code> = &lceil;n/8&rceil;+8; 4,104 &rarr; 136 at 1024 dimensions). <a href="https://deepwiki.com/pgvector/pgvector/7.3-binary-quantization">deepwiki.com/pgvector/pgvector</a></li>
+      <li style="margin-bottom:.55rem"><b>pgvector HNSW tuning</b> &mdash; parallel builds, iterative index scans for filtered queries, and the constraint that cluster-wide <code>hnsw.ef_search</code> requires <code>ALTER SYSTEM</code> plus <code>pg_reload_conf()</code>. <a href="https://nerdleveltech.com/pgvector-hnsw-postgres-18-production-tuning-tutorial">nerdleveltech.com</a></li>
+      <li style="margin-bottom:.55rem"><b>ParadeDB pg_search</b> &mdash; BM25 over Tantivy; <code>shared_preload_libraries</code> requirement below PG 17; amd64 and arm64 packages; AGPL-3.0 Community edition. <a href="https://docs.paradedb.com/deploy/self-hosted/extension">docs.paradedb.com</a></li>
+      <li style="margin-bottom:.55rem"><b>Corpus measurements</b> &mdash; 4,710 documents, 243 MB extracted text, 113,158 top-level sections, 4.17&times; compression; storage model and index footprints. Capacity plan &sect;1&ndash;&sect;2, measured 28 Aug 2026.</li>
+    </ol>
+  </div>
+</section>
+
+</div>

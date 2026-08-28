@@ -1,0 +1,1214 @@
+<title>Nizam-e-Qanoon Build Blueprint</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Nastaliq+Urdu:wght@400;600&display=swap">
+
+<style>
+:root{
+  --paper:#F3F4F7;
+  --surface:#FFFFFF;
+  --surface-2:#EDEFF3;
+  --ink:#14171E;
+  --ink-2:#4C5566;
+  --ink-3:#7E879A;
+  --rule:#DCDFE7;
+  --rule-2:#C6CBD6;
+  --indigo:#26397A;
+  --indigo-soft:#E4E8F5;
+  --rubric:#9E3B2F;
+  --rubric-soft:#F6E7E4;
+  --ok:#2C6349;
+  --ok-soft:#E0EDE7;
+  --warn:#7E6114;
+  --warn-soft:#F3EBD8;
+  --shadow:0 1px 2px rgba(20,23,30,.05), 0 8px 24px -12px rgba(20,23,30,.14);
+
+  --f-display:"Newsreader", Georgia, "Times New Roman", serif;
+  --f-body:"Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --f-urdu:"Noto Nastaliq Urdu", "Jameel Noori Nastaleeq", serif;
+
+  --measure:69ch;
+  --rail:9.5rem;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0D0F14;
+    --surface:#14171E;
+    --surface-2:#1B1F28;
+    --ink:#E6E9EF;
+    --ink-2:#A0A9BA;
+    --ink-3:#6D7688;
+    --rule:#252A34;
+    --rule-2:#333A47;
+    --indigo:#93A8E8;
+    --indigo-soft:#1B2136;
+    --rubric:#D8867A;
+    --rubric-soft:#2B1D1B;
+    --ok:#6FBF95;
+    --ok-soft:#152520;
+    --warn:#D3AB5C;
+    --warn-soft:#241E10;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 30px -14px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0D0F14;
+  --surface:#14171E;
+  --surface-2:#1B1F28;
+  --ink:#E6E9EF;
+  --ink-2:#A0A9BA;
+  --ink-3:#6D7688;
+  --rule:#252A34;
+  --rule-2:#333A47;
+  --indigo:#93A8E8;
+  --indigo-soft:#1B2136;
+  --rubric:#D8867A;
+  --rubric-soft:#2B1D1B;
+  --ok:#6FBF95;
+  --ok-soft:#152520;
+  --warn:#D3AB5C;
+  --warn-soft:#241E10;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 30px -14px rgba(0,0,0,.7);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--f-body);
+  font-size:16.5px;
+  line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:74rem;margin:0 auto;padding:0 1.5rem 8rem}
+
+.masthead{
+  border-bottom:2px solid var(--ink);
+  padding:3.5rem 0 1.25rem;
+  margin-bottom:2rem;
+}
+.kicker{
+  font-family:var(--f-mono);
+  font-size:.68rem;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--rubric);
+  margin:0 0 1rem;
+}
+h1{
+  font-family:var(--f-display);
+  font-weight:500;
+  font-size:clamp(2.5rem,6.2vw,4.1rem);
+  line-height:1.02;
+  letter-spacing:-.021em;
+  margin:0 0 .45rem;
+  text-wrap:balance;
+}
+h1 .ur{font-family:var(--f-urdu);font-size:.6em;line-height:1;color:var(--ink-2);display:inline-block;margin-inline-start:.55rem}
+.dek{
+  font-family:var(--f-display);
+  font-size:clamp(1.05rem,2.1vw,1.32rem);
+  color:var(--ink-2);
+  max-width:54ch;
+  margin:0 0 1.9rem;
+  font-style:italic;
+}
+.meta{
+  display:flex;flex-wrap:wrap;gap:.5rem 2.25rem;
+  font-family:var(--f-mono);font-size:.7rem;
+  letter-spacing:.05em;color:var(--ink-3);
+  border-top:1px solid var(--rule);padding-top:.9rem;
+}
+.meta b{color:var(--ink-2);font-weight:500}
+
+section{
+  display:grid;
+  grid-template-columns:var(--rail) minmax(0,1fr);
+  gap:0 2.5rem;
+  padding-top:3.4rem;
+  border-top:1px solid var(--rule);
+  margin-top:3.4rem;
+}
+section.first{border-top:none;margin-top:0}
+.rail{position:sticky;top:1.5rem;align-self:start;padding-top:.4rem}
+.rail .num{
+  font-family:var(--f-mono);
+  font-size:1.05rem;font-weight:600;
+  color:var(--rubric);
+  letter-spacing:-.02em;
+  display:block;
+}
+.rail .tag{
+  font-family:var(--f-mono);font-size:.63rem;
+  letter-spacing:.13em;text-transform:uppercase;
+  color:var(--ink-3);display:block;margin-top:.5rem;line-height:1.55;
+}
+.body{min-width:0}
+@media (max-width:880px){
+  section{grid-template-columns:1fr;gap:0}
+  .rail{position:static;display:flex;align-items:baseline;gap:.85rem;margin-bottom:.9rem;padding-top:0}
+  .rail .tag{margin-top:0}
+}
+
+h2{
+  font-family:var(--f-display);
+  font-weight:500;font-size:clamp(1.65rem,3.4vw,2.25rem);
+  line-height:1.14;letter-spacing:-.017em;
+  margin:0 0 .8rem;text-wrap:balance;
+}
+h3{
+  font-family:var(--f-body);
+  font-weight:700;font-size:1.02rem;
+  margin:2.6rem 0 .55rem;
+}
+h3 .mk{font-family:var(--f-mono);color:var(--rubric);font-weight:600;margin-inline-end:.55rem;font-size:.88em}
+h4{
+  font-family:var(--f-mono);font-weight:600;font-size:.71rem;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);
+  margin:2rem 0 .6rem;
+}
+p{margin:0 0 1.05rem;max-width:var(--measure)}
+.lede{font-size:1.075rem;color:var(--ink-2);max-width:62ch}
+ul,ol{margin:0 0 1.15rem;padding-inline-start:1.3rem;max-width:var(--measure)}
+li{margin-bottom:.42rem}
+li::marker{color:var(--ink-3)}
+strong{font-weight:600}
+a{color:var(--indigo);text-underline-offset:.18em;text-decoration-thickness:.06em}
+a:focus-visible,summary:focus-visible{outline:2px solid var(--indigo);outline-offset:3px;border-radius:2px}
+
+code{font-family:var(--f-mono);font-size:.855em;font-variant-ligatures:none}
+p code,li code,td code,figcaption code{
+  background:var(--surface-2);border:1px solid var(--rule);
+  padding:.06em .34em;border-radius:3px;color:var(--ink);
+}
+.ur{font-family:var(--f-urdu)}
+
+.scroll{overflow-x:auto;margin:1.4rem 0 1.9rem;border:1px solid var(--rule);border-radius:5px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:.845rem;line-height:1.5}
+th{
+  text-align:left;font-family:var(--f-mono);font-weight:600;
+  font-size:.655rem;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--ink-3);padding:.72rem .85rem;
+  border-bottom:1px solid var(--rule-2);white-space:nowrap;
+  background:var(--surface-2);
+}
+td{padding:.68rem .85rem;border-bottom:1px solid var(--rule);vertical-align:top}
+tr:last-child td{border-bottom:none}
+tbody tr:hover td{background:var(--surface-2)}
+td.n{font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap;font-size:.9em}
+td.id{font-family:var(--f-mono);font-size:.77rem;color:var(--rubric);white-space:nowrap;font-weight:500}
+td.k{font-weight:600;min-width:10rem}
+caption{caption-side:bottom;text-align:left;font-size:.76rem;color:var(--ink-3);padding:.7rem .85rem;border-top:1px solid var(--rule)}
+
+.chip{
+  display:inline-block;font-family:var(--f-mono);font-size:.6rem;
+  letter-spacing:.09em;text-transform:uppercase;font-weight:600;
+  padding:.2em .5em;border-radius:3px;white-space:nowrap;border:1px solid transparent;
+}
+.c-have{background:var(--ok-soft);color:var(--ok);border-color:var(--ok)}
+.c-part{background:var(--warn-soft);color:var(--warn);border-color:var(--warn)}
+.c-miss{background:var(--rubric-soft);color:var(--rubric);border-color:var(--rubric)}
+.c-new{background:var(--indigo-soft);color:var(--indigo);border-color:var(--indigo)}
+.c-plain{background:var(--surface-2);color:var(--ink-3);border-color:var(--rule-2)}
+
+.note{
+  border-inline-start:3px solid var(--rubric);
+  background:var(--surface);
+  padding:1rem 1.15rem;margin:1.5rem 0;border-radius:0 4px 4px 0;
+  max-width:var(--measure);
+  box-shadow:var(--shadow);
+}
+.note.blue{border-inline-start-color:var(--indigo)}
+.note p:last-child{margin-bottom:0}
+.note h4{margin-top:0}
+
+figure{margin:2rem 0;background:var(--surface);border:1px solid var(--rule);border-radius:5px;padding:1.5rem 1.25rem 1rem;box-shadow:var(--shadow);overflow-x:auto}
+figure svg{display:block;width:100%;min-width:34rem;max-width:100%;height:auto;color:var(--ink)}
+figcaption{
+  margin-top:1.1rem;padding-top:.85rem;border-top:1px solid var(--rule);
+  font-size:.79rem;color:var(--ink-3);line-height:1.55;
+}
+figcaption b{color:var(--ink-2);font-weight:600}
+
+pre{
+  background:var(--surface);border:1px solid var(--rule);border-radius:5px;
+  padding:1rem 1.1rem;overflow-x:auto;margin:1.3rem 0;
+  font-family:var(--f-mono);font-size:.785rem;line-height:1.65;color:var(--ink-2);
+}
+pre b{color:var(--ink);font-weight:600}
+pre i{color:var(--ink-3);font-style:normal}
+pre u{color:var(--rubric);text-decoration:none}
+
+details{border:1px solid var(--rule);border-radius:5px;background:var(--surface);margin:1.2rem 0;max-width:var(--measure)}
+summary{cursor:pointer;padding:.75rem 1rem;font-weight:600;font-size:.9rem;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"\25B8";color:var(--rubric);margin-inline-end:.6rem;display:inline-block}
+details[open] summary::before{content:"\25BE"}
+details .in{padding:1rem;border-top:1px solid var(--rule)}
+details .in > *:last-child{margin-bottom:0}
+
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(9rem,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:5px;overflow:hidden;margin:1.6rem 0}
+.stat{background:var(--surface);padding:1rem 1.05rem}
+.stat .v{font-family:var(--f-display);font-size:1.85rem;font-weight:500;line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.stat .l{font-family:var(--f-mono);font-size:.63rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-top:.5rem;line-height:1.45}
+.stat.hi .v{color:var(--rubric)}
+
+.acc-f{fill:var(--rubric)}
+.acc-s{stroke:var(--rubric)}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<div class="wrap">
+
+<header class="masthead">
+  <p class="kicker">Engineering blueprint &middot; v1 &middot; reconciled against four source proposals</p>
+  <h1>Nizam-e-Qanoon<span class="ur">نظامِ قانون</span></h1>
+  <p class="dek">Everything we are building, how each piece gets built, and the architecture that holds it together — costed, sequenced, and checked against the corpus already sitting on disk.</p>
+  <div class="meta">
+    <span><b>Prepared</b> 24 Aug 2026</span>
+    <span><b>Team</b> 4 &middot; GIKI FCSE</span>
+    <span><b>Corpus measured</b> 4,710 PDFs / 1.6 GB</span>
+    <span><b>Status</b> pre-implementation</span>
+  </div>
+</header>
+
+<!-- ══════════════ 1 ══════════════ -->
+<section class="first">
+  <div class="rail"><span class="num">§1</span><span class="tag">Ground<br>truth</span></div>
+  <div class="body">
+    <h2>What the data on disk actually says</h2>
+    <p class="lede">Before any architecture, the facts. I sampled every archive in <code>data/</code> and parsed the manifests. Three findings overturn assumptions baked into all four proposals.</p>
+
+    <div class="scroll">
+      <table>
+        <caption>Measured 24 Aug 2026. Text-layer rate from a 25-PDF random sample per corpus (first 5 pages, &gt;300 extracted chars = has text layer).</caption>
+        <thead><tr><th>Corpus</th><th>PDFs</th><th>Size</th><th>Text layer</th><th>Structure</th><th>State</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Federal (Pakistan Code)</td><td class="n">1,038</td><td class="n">444 MB</td><td class="n">24/25</td><td>Year folders 1839–2026 + latest ordinances</td><td><span class="chip c-have">Have</span></td></tr>
+          <tr><td class="k">Punjab</td><td class="n">1,064</td><td class="n">344 MB</td><td class="n">25/25</td><td>Laws + Service Rules subtree</td><td><span class="chip c-have">Have</span></td></tr>
+          <tr><td class="k">Sindh</td><td class="n">1,728</td><td class="n">546 MB</td><td class="n">25/25</td><td>Acts by year, <code>missing.csv</code> present</td><td><span class="chip c-have">Have</span></td></tr>
+          <tr><td class="k">Khyber Pakhtunkhwa</td><td class="n">516</td><td class="n">149 MB</td><td class="n">25/25</td><td>Laws by year</td><td><span class="chip c-have">Have</span></td></tr>
+          <tr><td class="k">Balochistan</td><td class="n">364</td><td class="n">199 MB</td><td class="n">21/25</td><td>Laws by year</td><td><span class="chip c-part">Partial</span></td></tr>
+          <tr><td class="k">AJK &amp; Gilgit-Baltistan</td><td class="n">0</td><td class="n">—</td><td class="n">—</td><td>Not scraped</td><td><span class="chip c-miss">Missing</span></td></tr>
+          <tr><td class="k">Case law (SC / 5 HCs / FSC)</td><td class="n">0</td><td class="n">—</td><td class="n">—</td><td>Not scraped</td><td><span class="chip c-miss">Missing</span></td></tr>
+          <tr><td class="k">SROs, gazettes, notifications</td><td class="n">0</td><td class="n">—</td><td class="n">—</td><td>Punjab service rules only</td><td><span class="chip c-miss">Missing</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3><span class="mk">1.1</span>OCR is not a pillar — it is an edge case</h3>
+    <p>All four documents treat OCR as a headline workstream: Tesseract 5 for English, UTRNet for Nastaliq, an entire "Aim 2". The measurement says <strong>~96% of the corpus already carries a clean, extractable text layer.</strong> Here is a verbatim <code>pdftotext -layout</code> extraction from the Pakistan Penal Code, untouched:</p>
+    <pre>         <b>302. Punishment of qatl-i-amd.</b> Whoever commits qatl-e-amd shall, subject to the
+provisions of this Chapter be__
+
+                  (a) punished with death as qisas
+
+                  (b) punished with death for imprisonment for life as ta'zir having regard to the facts
+                           and circumstances of the case, if the proof in either of the forms specified in
+                           section 304 is not available or
+
+                  (c) punished with imprisonment of either description for a term which may extend
+                           to twenty-five years, where according to the Injunctions of Islam the
+                           punishment of qisas is not applicable <u>2</u>[:]
+
+<u>1</u><i>Ins. by Act 1 of 2005, s. 2.</i>
+<u>2</u><i>Subs. by Act XLIII of 2016, s.3.</i>
+
+                                   <i>Page 106 of 179</i>
+         <u>1</u>[Provided that nothing in clause (c) shall apply where the principle of fasad-fil-arz is
+attracted and in such cases only clause (a) or clause (b) shall apply.]</pre>
+    <p>Read what is in there: section number, section heading, body, lettered clauses with real indentation, a proviso, and <strong>numbered footnote markers bound to amendment provenance</strong> — <code>Subs. by Act XLIII of 2016, s.3</code>. That last part is the most valuable structured signal in the entire corpus and no proposal mentions it.</p>
+    <p><strong>Consequence:</strong> OCR drops from a pillar to a ~150-PDF fallback path (mostly Balochistan). The engineering weeks that frees go into structural parsing and case law, which are where the project actually lives or dies.</p>
+
+    <h3><span class="mk">1.2</span>The corpus has real defects that must be handled, not assumed away</h3>
+    <div class="scroll">
+      <table>
+        <caption>Parsed from <code>Federal Laws/output/manifest.csv</code> (2,079 rows) and observed in extracted text.</caption>
+        <thead><tr><th>Defect</th><th>Evidence</th><th>Handling</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Duplicate documents</td><td class="n">1,030 paths → 982 unique SHA-256</td><td>~48 acts share a PDF with another act. Upstream serves the wrong file. Dedupe by hash, then manually reconcile — do not silently collapse, the title may be right and the file wrong.</td></tr>
+          <tr><td class="k">Download failures</td><td class="n">8 rows <code>status=failed</code></td><td>Retry queue in the ingest runner; failures are first-class rows, never silent gaps.</td></tr>
+          <tr><td class="k">Repealed law mixed with live law</td><td>Filenames like <code>Opium Act (Repeal by XXV of 1997)</code></td><td>Repeal status must be a modelled field. Serving repealed law as current is the single worst failure this product can commit.</td></tr>
+          <tr><td class="k">Unicode loss on Urdu inclusions</td><td><code>338. Isqat-i-Haml ( )</code> — the Urdu term inside the parens is gone</td><td>Layout extraction alone is insufficient. Second pass with a font-aware extractor (PyMuPDF) to recover embedded non-Latin glyph runs.</td></tr>
+          <tr><td class="k">Em-dash mangling</td><td><code>be__</code> instead of <code>be—</code></td><td>Deterministic normalisation table, applied and unit-tested.</td></tr>
+          <tr><td class="k">Page furniture inside text</td><td><code>Page 106 of 179</code> mid-provision</td><td>Header/footer detection by positional repetition across pages, stripped before segmentation.</td></tr>
+          <tr><td class="k">"(Under Review)" markers</td><td>PPC and CrPC filenames both carry it</td><td>Provenance/confidence flag surfaced in the UI, not hidden.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3><span class="mk">1.3</span>The critical gap: there is no case law</h3>
+    <p>Aim 7 — the citation network, arguably the most defensible thing in the whole proposal — depends entirely on Supreme Court and High Court judgments. We have <strong>zero</strong>. Statutes without precedent gives you a better Pakistan Code; statutes <em>with</em> precedent gives you something PakistanLawSite charges for and Harvey cannot do.</p>
+    <div class="note">
+      <h4>Start this week</h4>
+      <p>Judgment acquisition is the long pole: five High Courts plus the Supreme Court plus the Federal Shariat Court, each with a different site, each rate-limited, and collection realistically takes six to ten weeks of wall-clock time. Nothing downstream of it can start until it does. It should begin before a single line of API code is written.</p>
+      <p style="margin-top:.7rem"><strong>Copyright line to hold:</strong> judgments published on official court websites are public records and are fine. PLD / SCMR / YLR <em>headnotes and editorial matter</em> are Oratier/PLD Publishers copyright — we never scrape those. We may cite the reporter reference (<code>PLD 2016 SC 1</code>) as a factual identifier; we may not reproduce their prose.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ 2 ══════════════ -->
+<section>
+  <div class="rail"><span class="num">§2</span><span class="tag">Departures</span></div>
+  <div class="body">
+    <h2>Twelve places I am changing the plan</h2>
+    <p class="lede">The proposals were written to be persuasive. This is the version written to be built. Each row is a deliberate departure with the reasoning attached — take them individually, argue any of them.</p>
+
+    <div class="scroll">
+      <table>
+        <thead><tr><th>#</th><th>Proposal says</th><th>We do</th><th>Why</th></tr></thead>
+        <tbody>
+          <tr><td class="id">D1</td><td class="k">Qdrant + Supabase Postgres, dual database</td><td>One Postgres. <code>pgvector</code> HNSW for dense, <code>pg_search</code> (ParadeDB) for real BM25, <code>ltree</code> for provision trees.</td><td>Our whole corpus is ~1.5 M chunks. Qdrant earns its keep past ~10 M vectors. Two stores means two write paths, eventual inconsistency between a chunk and its vector, two backup regimes, and a second bill — for zero measurable gain. One store gives us transactional re-indexing: amend a section and its text, vector, and FTS entry move in the same commit.</td></tr>
+          <tr><td class="id">D2</td><td class="k">Fine-tune Llama 3.1 8B with LoRA as the answer engine</td><td>Fine-tune the <em>retriever and reranker</em>. Generation goes through a provider-agnostic port, defaulting to a hosted frontier-small model, with a self-hosted open-weights path kept live.</td><td>Under strict RAG the generator does reading comprehension and rewriting — the facts arrive in the context window. LoRA on an 8B buys almost nothing there and costs instruction-following and Urdu fluency. Whereas a fine-tuned bi-encoder and cross-encoder move NDCG@10 by double digits on domain data. That is where the measurable research contribution is, and it is far cheaper to train.</td></tr>
+          <tr><td class="id">D3</td><td class="k">OCR pipeline as Aim 2 (Tesseract + UTRNet)</td><td>Text-layer extraction first; OCR as a ~150-document fallback lane.</td><td>96% of the corpus already has text. Measured, §1.1.</td></tr>
+          <tr><td class="id">D4</td><td class="k">CLIR: Urdu → translate → English search → English answer → translate back</td><td>Direct cross-lingual retrieval with a multilingual embedding model; native Urdu generation. Translation retained only as a reranking signal and for glossing.</td><td>A four-hop translation sandwich compounds error at every hop and doubles latency. Modern multilingual encoders put Urdu and English in one space, so an Urdu query retrieves English provisions directly. And a statute must <em>never</em> be shown as a machine translation presented as law — we show authoritative English text with a clearly-labelled Urdu explanation beside it.</td></tr>
+          <tr><td class="id">D5</td><td class="k">Roman Urdu — not mentioned anywhere</td><td>First-class input mode: transliteration normalisation plus a romanised alias index over legal terms.</td><td>Most Pakistanis type Urdu in Latin script. A system that handles <span class="ur">طلاق</span> but not <code>talaq</code> or <code>talak</code> fails the majority of its actual users on the first keystroke. This is a bigger accessibility win than the entire Nastaliq OCR workstream.</td></tr>
+          <tr><td class="id">D6</td><td class="k">"Zero hallucination", "architecturally impossible"</td><td>Attributed generation: never generate a citation, run a span-level entailment check on every claim, and abstain on a calibrated threshold. Publish the measured rate.</td><td>Unfalsifiable claims collapse the first time a demo misfires in front of the panel. The defensible version is stronger anyway: citations are <em>templated in from the retrieval payload</em>, never emitted by the model, so a fabricated citation is structurally impossible — and everything else is measured, not asserted.</td></tr>
+          <tr><td class="id">D7</td><td class="k">Static corpus of current law</td><td>Bitemporal provisions. Every section is a series of versions with validity intervals; "the law as it stood on 3 March 2014" is a first-class query.</td><td>Criminal liability attaches under the law in force at the time of the act. Every practising lawyer needs this and no Pakistani product has it. The footnote apparatus in the PDFs (<code>Subs. by Act XLIII of 2016</code>) hands us most of the raw material for free.</td></tr>
+          <tr><td class="id">D8</td><td class="k">Kubernetes, Docker orchestration, serverless GPU</td><td>One VPS, Docker Compose, Caddy, Cloudflare in front. Batch GPU rented by the hour for re-indexing only.</td><td>Kubernetes for four developers and a few hundred users is a second full-time job. Serverless GPU cold starts (20–60 s for an 8B) destroy chat UX. Scale when a metric says to, not before.</td></tr>
+          <tr><td class="id">D9</td><td class="k">Mobile-only, Flutter for everything</td><td>Flutter for the app; a separate server-rendered web tier with a public, crawlable page per provision.</td><td>Pakistan Code is effectively unindexed by search engines. A clean HTML page for every section of every Pakistani statute would rank for thousands of long-tail queries within months — near-free distribution, and the single cheapest growth channel available to us. It is also the surface lawyers actually work on.</td></tr>
+          <tr><td class="id">D10</td><td class="k">Chunk-based retrieval</td><td>The <em>Provision</em> is the canonical citable unit. Chunks are a derived index artefact.</td><td>Citations must point at <code>PPC/s.302/cl.(c)</code>, not chunk&nbsp;#48291. Re-chunking then never breaks a stored citation, a bookmark, or a generated document, and the UI can deep-link to the exact clause.</td></tr>
+          <tr><td class="id">D11</td><td class="k">Admin tooling — unmentioned</td><td>A curation console from week 3.</td><td>Automated parsing of 4,700 heterogeneous PDFs will be roughly 90% correct. The remaining 10% is thousands of provisions. Without a tool that lets a law student fix a mis-split section in twenty seconds, corpus quality plateaus at "demo-grade" and stays there.</td></tr>
+          <tr><td class="id">D12</td><td class="k">Evaluation set assumed to exist ("500 annotated queries")</td><td>Build it in week 2 and treat it as a shipped artefact, with inter-annotator agreement reported.</td><td>Nothing else can be tuned, thresholded, or defended without it. It is also publishable on its own — Pakistan has no legal IR benchmark. Build it early or the numbers in the thesis are guesses.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============== 3 ============== -->
+<section>
+  <div class="rail"><span class="num">&sect;3</span><span class="tag">The<br>mechanism</span></div>
+  <div class="body">
+    <h2>How a question becomes a cited answer</h2>
+    <p class="lede">This is the diagram to internalise — everything else in the document supports it. Two properties carry the whole design: the generator never emits a citation, and there is a single gate that can stop the pipeline and say nothing.</p>
+
+<figure>
+<svg viewBox="0 0 940 372" role="img" aria-label="Query pipeline: a query is parsed; an exact-citation fast path bypasses retrieval; otherwise BM25, dense and graph retrieval fuse by reciprocal rank fusion, are reranked by a cross-encoder, and must pass a calibrated threshold gate that can abstain. Surviving context is assembled, sent to a generator that emits citation identifiers only, citation text is rendered from the database, and an entailment verifier checks each claim before the answer is returned.">
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,1 L9,5 L0,9 z" fill="currentColor"/>
+    </marker>
+    <marker id="arR" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,1 L9,5 L0,9 z" fill="#9E3B2F" class="acc-f"/>
+    </marker>
+  </defs>
+  <g fill="none" stroke="currentColor" stroke-width="1.2">
+    <rect x="14"  y="84"  width="92"  height="46" rx="4"/>
+    <rect x="140" y="84"  width="118" height="46" rx="4"/>
+    <rect x="294" y="62"  width="104" height="26" rx="3"/>
+    <rect x="294" y="94"  width="104" height="26" rx="3"/>
+    <rect x="294" y="126" width="104" height="26" rx="3"/>
+    <rect x="434" y="84"  width="76"  height="46" rx="4"/>
+    <rect x="546" y="84"  width="126" height="46" rx="4"/>
+    <rect x="14"  y="300" width="124" height="46" rx="4"/>
+    <rect x="174" y="300" width="136" height="46" rx="4"/>
+    <rect x="346" y="300" width="146" height="46" rx="4"/>
+    <rect x="528" y="300" width="152" height="46" rx="4"/>
+    <rect x="716" y="300" width="104" height="46" rx="4"/>
+  </g>
+  <g fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="4 3">
+    <rect x="300" y="12" width="234" height="36" rx="4"/>
+  </g>
+  <g fill="none" stroke="#9E3B2F" class="acc-s" stroke-width="1.6">
+    <rect x="700" y="84"  width="90"  height="46" rx="4"/>
+    <rect x="676" y="172" width="138" height="40" rx="4"/>
+  </g>
+
+  <g font-family="IBM Plex Mono, monospace" font-size="10.5" fill="currentColor" text-anchor="middle">
+    <text x="60"  y="103">query</text><text x="60" y="117">en &#183; ur &#183; roman</text>
+    <text x="199" y="99">parse</text><text x="199" y="112">lang &#183; forum</text><text x="199" y="125">intent &#183; cite</text>
+    <text x="346" y="79">BM25 lexical</text>
+    <text x="346" y="111">dense vector</text>
+    <text x="346" y="143">graph expand</text>
+    <text x="472" y="103">RRF</text><text x="472" y="117">fuse</text>
+    <text x="609" y="103">cross-encoder</text><text x="609" y="117">rerank &#183; tuned</text>
+    <text x="76"  y="319">assemble</text><text x="76" y="333">whole provisions</text>
+    <text x="242" y="319">generate</text><text x="242" y="333">emits cite IDs only</text>
+    <text x="419" y="319">render citations</text><text x="419" y="333">text from DB</text>
+    <text x="604" y="319">entailment verify</text><text x="604" y="333">per claim vs span</text>
+    <text x="768" y="319">answer</text><text x="768" y="333">+ provenance</text>
+    <text x="417" y="27">citation grammar detected</text><text x="417" y="40">s.302 PPC &#183; Art 184(3) &#183; SRO 745</text>
+  </g>
+  <g font-family="IBM Plex Mono, monospace" font-size="10.5" fill="#9E3B2F" class="acc-f" text-anchor="middle" font-weight="600">
+    <text x="745" y="103">GATE</text><text x="745" y="118">score &#8805; &#964;</text>
+    <text x="745" y="190">abstain</text><text x="745" y="203">no statutory basis</text>
+  </g>
+
+  <g stroke="currentColor" stroke-width="1.2" fill="none" marker-end="url(#ar)">
+    <line x1="106" y1="107" x2="134" y2="107"/>
+    <line x1="258" y1="107" x2="290" y2="76"/>
+    <line x1="258" y1="107" x2="288" y2="107"/>
+    <line x1="258" y1="107" x2="290" y2="138"/>
+    <line x1="398" y1="75"  x2="430" y2="102"/>
+    <line x1="398" y1="107" x2="428" y2="107"/>
+    <line x1="398" y1="139" x2="430" y2="112"/>
+    <line x1="510" y1="107" x2="540" y2="107"/>
+    <line x1="672" y1="107" x2="694" y2="107"/>
+    <line x1="138" y1="323" x2="168" y2="323"/>
+    <line x1="310" y1="323" x2="340" y2="323"/>
+    <line x1="492" y1="323" x2="522" y2="323"/>
+    <line x1="680" y1="323" x2="710" y2="323"/>
+    <path d="M199,84 L199,30 L294,30"/>
+    <path d="M534,30 L880,30 L880,266 L768,266 L768,294"/>
+  </g>
+  <g stroke="#9E3B2F" class="acc-s" stroke-width="1.5" fill="none" marker-end="url(#arR)">
+    <line x1="745" y1="130" x2="745" y2="166"/>
+    <path d="M790,107 L832,107 L832,254 L76,254 L76,294"/>
+  </g>
+  <g font-family="IBM Plex Mono, monospace" font-size="9.5" fill="currentColor">
+    <text x="243" y="24">fast path &#183; no model call</text>
+    <text x="820" y="182">verified text only</text>
+  </g>
+  <g font-family="IBM Plex Mono, monospace" font-size="9.5" fill="#9E3B2F" class="acc-f">
+    <text x="754" y="152">below &#964;</text>
+    <text x="798" y="100">pass</text>
+  </g>
+</svg>
+<figcaption><b>The gate is the product.</b> Everything left of it is deterministic and reproducible. The generator receives only provisions that cleared a calibrated relevance threshold, and it emits <em>citation identifiers</em> &mdash; never citation text. The renderer substitutes authoritative text from the database afterwards, so a fabricated section number cannot reach the user. The one remaining failure mode, a claim that overreaches its source, is caught by the entailment pass and measured rather than asserted away. The dashed box is the fast path: roughly a quarter of professional queries are explicit references, answered in single-digit milliseconds with no model involved at all.</figcaption>
+</figure>
+
+    <h3><span class="mk">3.1</span>The layer stack</h3>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Layer</th><th>What lives here</th><th>Technology</th><th>Scales by</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Clients</td><td>Flutter app with offline pack; Next.js web plus a public page per provision; admin console</td><td>Flutter/Dart, Next.js, on-device SQLite + sqlite-vec + FTS5</td><td>CDN &mdash; effectively free</td></tr>
+          <tr><td class="k">Edge</td><td>TLS, caching, rate limits, bot control</td><td>Cloudflare free tier</td><td>Free</td></tr>
+          <tr><td class="k">API</td><td>Modular monolith: <code>corpus</code>, <code>retrieval</code>, <code>generation</code>, <code>documents</code>, <code>procedure</code>, <code>identity</code>, <code>billing</code></td><td>FastAPI, async, SSE streaming</td><td>Horizontal &mdash; stateless</td></tr>
+          <tr><td class="k">Inference workers</td><td>Embedding, cross-encoder rerank, entailment verifier</td><td>ONNX Runtime int8 on CPU; separate process, own queue</td><td>Add a worker, then a GPU box</td></tr>
+          <tr><td class="k">Ingest workers</td><td>Fetch, extract, segment, enrich, version, index, QA</td><td>Python; Postgres-backed queue via <code>FOR UPDATE SKIP LOCKED</code></td><td>Add a worker</td></tr>
+          <tr><td class="k">Data</td><td>Provisions, versions, judgments, citation edges, vectors, BM25 index, users</td><td>One Postgres 17 + pgvector + pg_search + ltree</td><td>Vertical to ~64 GB, then read replicas</td></tr>
+          <tr><td class="k">Blobs</td><td>Source PDFs, generated documents, offline packs</td><td>Cloudflare R2 &mdash; zero egress fees</td><td>Negligible</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>There is one deliberate seam: <strong>inference workers are a separate process from day one</strong>, because they need different hardware from the API and we want to move them onto a GPU box without touching request handling. Everything else stays in a single deployable until a metric forces the split.</p>
+  </div>
+</section>
+
+
+<!-- ============== 4 ============== -->
+<section>
+  <div class="rail"><span class="num">&sect;4</span><span class="tag">Corpus<br>the moat</span></div>
+  <div class="body">
+    <h2>The corpus layer</h2>
+    <p class="lede">Every model we use is a commodity available to anyone. A correctly segmented, version-tracked, cross-referenced, precedent-linked corpus of Pakistani law is not. This layer is the only thing in the system a competitor cannot buy, and it should get a disproportionate share of our effort.</p>
+
+    <h3><span class="mk">4.1</span>The canonical unit is a Provision, not a chunk</h3>
+    <p>Chunks are a disposable index artefact. Citations, bookmarks, generated documents, offline packs, deep links and precedent edges all point at a <strong>provision</strong> with a stable identity:</p>
+    <pre><b>pk:fed/act/1860-45/ch-XVI/s-302/cl-c</b>
+<i>|   |    |       |       |     |</i>
+<i>|   |    |       |       |     +-- clause (c)</i>
+<i>|   |    |       |       +-------- section 302</i>
+<i>|   |    |       +---------------- chapter XVI</i>
+<i>|   |    +------------------------ Act XLV of 1860 (PPC)</i>
+<i>|   +----------------------------- instrument type</i>
+<i>+--------------------------------- jurisdiction: federal</i></pre>
+    <p>Stored as a Postgres <code>ltree</code> path so subtree queries (&ldquo;everything under Chapter XVI&rdquo;) and ancestor queries (&ldquo;which section does this proviso belong to?&rdquo;) are index-backed one-liners. Re-chunk the corpus five times and not one stored citation breaks.</p>
+
+    <h3><span class="mk">4.2</span>Instruments, provisions, and versions</h3>
+    <pre><b>instrument</b>       <i>Act | Ordinance | Order | Rules | SRO | Notification | Constitution</i>
+  jurisdiction   <u>fed | punjab | sindh | kp | balochistan | ict | ajk | gb</u>
+  number, year, short_title, long_title, preamble
+  enacted_on, commenced_on, gazette_ref
+  repealed_on, repealed_by_instrument_id, <u>status: in_force|repealed|lapsed|spent</u>
+  source_pdf_sha256, source_url, extraction_confidence
+
+<b>provision</b>        <i>tree node, one row per node</i>
+  instrument_id, path <u>ltree</u>, kind <u>chapter|part|section|subsection|clause
+                                    |proviso|explanation|illustration|schedule</u>
+  label ("302", "(c)", "Proviso"), heading, ordinal
+  marginal_note
+
+<b>provision_version</b>   <i>the temporal payload &mdash; this is where text lives</i>
+  provision_id, <u>valid_from</u>, <u>valid_to</u>   <i>NULL = still in force</i>
+  text_en, text_ur, text_normalised
+  operation <u>original|inserted|substituted|omitted|amended</u>
+  amended_by_instrument_id, amendment_note   <i>"Subs. by Act XLIII of 2016, s.3"</i>
+  <u>EXCLUDE USING gist (provision_id WITH =, validity WITH &amp;&amp;)</u>  <i>no overlaps, enforced by the DB</i></pre>
+    <p>That last line matters: a Postgres exclusion constraint makes overlapping validity intervals for the same provision <em>impossible to insert</em>. Temporal correctness becomes a schema property rather than something we hope the ingest code remembers.</p>
+
+<figure>
+<svg viewBox="0 0 900 250" role="img" aria-label="Timeline of section 302 of the Pakistan Penal Code showing four successive versions with validity intervals, each opened by an amending instrument, and a point-in-time query on 3 March 2014 resolving to the third version rather than the current text.">
+  <defs>
+    <marker id="ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,1 L9,5 L0,9 z" fill="#9E3B2F" class="acc-f"/>
+    </marker>
+  </defs>
+  <line x1="60" y1="196" x2="860" y2="196" stroke="currentColor" stroke-width="1.2"/>
+  <g stroke="currentColor" stroke-width="1" opacity=".45">
+    <line x1="60"  y1="196" x2="60"  y2="203"/>
+    <line x1="250" y1="196" x2="250" y2="203"/>
+    <line x1="470" y1="196" x2="470" y2="203"/>
+    <line x1="700" y1="196" x2="700" y2="203"/>
+    <line x1="860" y1="196" x2="860" y2="203"/>
+  </g>
+  <g font-family="IBM Plex Mono, monospace" font-size="10" fill="currentColor" opacity=".7" text-anchor="middle">
+    <text x="60"  y="218">1860</text>
+    <text x="250" y="218">1990</text>
+    <text x="470" y="218">2005</text>
+    <text x="700" y="218">2016</text>
+    <text x="860" y="218">today</text>
+  </g>
+
+  <g fill="none" stroke="currentColor" stroke-width="1.2">
+    <rect x="60"  y="52"  width="190" height="26" rx="3"/>
+    <rect x="250" y="86"  width="220" height="26" rx="3"/>
+    <rect x="700" y="154" width="160" height="26" rx="3"/>
+  </g>
+  <rect x="470" y="120" width="230" height="26" rx="3" fill="none" stroke="#9E3B2F" class="acc-s" stroke-width="1.8"/>
+
+  <g font-family="IBM Plex Mono, monospace" font-size="10.5" fill="currentColor">
+    <text x="70"  y="69">v1  original 1860</text>
+    <text x="260" y="103">v2  Ord. of 1990 &#183; qisas &amp; diyat</text>
+    <text x="710" y="171">v4  Act XLIII of 2016</text>
+  </g>
+  <text x="480" y="137" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="#9E3B2F" class="acc-f" font-weight="600">v3  Act I of 2005 &#183; fasad-fil-arz proviso</text>
+
+  <g stroke="currentColor" stroke-width="1" opacity=".3" stroke-dasharray="3 3">
+    <line x1="250" y1="78"  x2="250" y2="196"/>
+    <line x1="470" y1="112" x2="470" y2="196"/>
+    <line x1="700" y1="146" x2="700" y2="196"/>
+  </g>
+
+  <line x1="596" y1="30" x2="596" y2="116" stroke="#9E3B2F" class="acc-s" stroke-width="1.5" marker-end="url(#ar2)"/>
+  <text x="596" y="22" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="#9E3B2F" class="acc-f" text-anchor="middle" font-weight="600">query: as at 2014-03-03</text>
+</svg>
+<figcaption><b>Point-in-time law is a query, not a special case.</b> Each bar is one <code>provision_version</code> row with its validity interval; each dashed line is an amending instrument that closed one version and opened the next. An offence committed in 2014 is tried under v3 &mdash; and serving the reader v4 instead would be wrong in a way that changes the outcome of a case. Every retrieval carries an <code>as_of</code> date, defaulting to today; the whole index is filtered by it.</figcaption>
+</figure>
+
+    <h3><span class="mk">4.3</span>The ingestion pipeline</h3>
+    <p>Seven stages, each idempotent, content-addressed by the source SHA-256, individually resumable, and each writing a row that records what it did. Re-running stage 4 on 4,700 documents must be a normal Tuesday, not an incident.</p>
+
+<figure>
+<svg viewBox="0 0 900 236" role="img" aria-label="Ingestion pipeline: fetch to object storage, extract text with an OCR fallback branch for scanned pages, normalise, segment into a provision tree, enrich with amendments and cross-references, build temporal versions, index into vectors, BM25 and graph edges, then quality gates that either publish or route a document to the human curation console which loops back to segmentation.">
+  <defs>
+    <marker id="ar3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,1 L9,5 L0,9 z" fill="currentColor"/>
+    </marker>
+    <marker id="ar3R" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,1 L9,5 L0,9 z" fill="#9E3B2F" class="acc-f"/>
+    </marker>
+  </defs>
+  <g fill="none" stroke="currentColor" stroke-width="1.2">
+    <rect x="10"  y="76" width="90"  height="44" rx="4"/>
+    <rect x="128" y="76" width="96"  height="44" rx="4"/>
+    <rect x="252" y="76" width="96"  height="44" rx="4"/>
+    <rect x="376" y="76" width="104" height="44" rx="4"/>
+    <rect x="508" y="76" width="104" height="44" rx="4"/>
+    <rect x="640" y="76" width="96"  height="44" rx="4"/>
+    <rect x="764" y="76" width="126" height="44" rx="4"/>
+    <rect x="128" y="10" width="96"  height="34" rx="4" stroke-dasharray="4 3"/>
+  </g>
+  <rect x="376" y="178" width="236" height="40" rx="4" fill="none" stroke="#9E3B2F" class="acc-s" stroke-width="1.6"/>
+
+  <g font-family="IBM Plex Mono, monospace" font-size="10.5" fill="currentColor" text-anchor="middle">
+    <text x="55"  y="94">1 fetch</text><text x="55" y="108">R2 + sha256</text>
+    <text x="176" y="94">2 extract</text><text x="176" y="108">text layer</text>
+    <text x="300" y="94">3 normalise</text><text x="300" y="108">strip furniture</text>
+    <text x="428" y="94">4 segment</text><text x="428" y="108">provision tree</text>
+    <text x="560" y="94">5 enrich</text><text x="560" y="108">amend &#183; xref</text>
+    <text x="688" y="94">6 version</text><text x="688" y="108">validity</text>
+    <text x="827" y="94">7 index</text><text x="827" y="108">vec &#183; bm25 &#183; graph</text>
+    <text x="176" y="26">OCR lane</text><text x="176" y="39">~150 docs</text>
+  </g>
+  <g font-family="IBM Plex Mono, monospace" font-size="10.5" fill="#9E3B2F" class="acc-f" text-anchor="middle" font-weight="600">
+    <text x="494" y="196">QA gates fail &#8594; curation console</text>
+    <text x="494" y="210">human fix, re-run from stage 4</text>
+  </g>
+
+  <g stroke="currentColor" stroke-width="1.2" fill="none" marker-end="url(#ar3)">
+    <line x1="100" y1="98" x2="122" y2="98"/>
+    <line x1="224" y1="98" x2="246" y2="98"/>
+    <line x1="348" y1="98" x2="370" y2="98"/>
+    <line x1="480" y1="98" x2="502" y2="98"/>
+    <line x1="612" y1="98" x2="634" y2="98"/>
+    <line x1="736" y1="98" x2="758" y2="98"/>
+    <path d="M100,90 L110,90 L110,27 L122,27"/>
+    <path d="M224,27 L240,27 L240,90 L246,92"/>
+  </g>
+  <g stroke="#9E3B2F" class="acc-s" stroke-width="1.5" fill="none" marker-end="url(#ar3R)">
+    <path d="M827,120 L827,198 L618,198"/>
+    <path d="M428,178 L428,126"/>
+  </g>
+</svg>
+<figcaption><b>The human loop is part of the pipeline, not a rescue operation.</b> Automated segmentation of 4,700 heterogeneous PDFs lands around 90% correct. The remaining ~470 documents are found by the QA gates, queued to the curation console, fixed by hand, and re-run from stage 4. Designing that loop in on day one is the difference between a corpus that reaches 99% and one that stalls at demo quality.</figcaption>
+</figure>
+
+    <h4>What each stage actually does</h4>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Stage</th><th>Work</th><th>Hard parts</th></tr></thead>
+        <tbody>
+          <tr><td class="id">1 fetch</td><td>Scrape, hash, store the byte-exact original in R2, record provenance URL and timestamp</td><td>Already built and good &mdash; the existing scrapers have manifests, SHA-256, and resume. Extend to judgments and gazettes.</td></tr>
+          <tr><td class="id">2 extract</td><td>Layout-aware extraction preserving x/y position, font, size, indent depth, page boundaries</td><td>Use PyMuPDF, not <code>pdftotext</code>. We need coordinates to detect footnote zones and indent levels. Text-layer confidence check routes ~150 scanned docs to the OCR lane.</td></tr>
+          <tr><td class="id">3 normalise</td><td>Strip repeated headers/footers by positional recurrence; fix <code>__</code> to em-dash; recover Urdu glyph runs; Unicode NFC</td><td>Page furniture must be detected statistically (same text at same y across pages), not by regex &mdash; formats vary per province.</td></tr>
+          <tr><td class="id">4 segment</td><td>Build the provision tree from numbering grammar plus indentation plus font weight</td><td>The hardest stage. Pakistani numbering includes <code>302</code>, <code>337A</code>, <code>337Z</code>, <code>365 A</code> (with a space), <code>184(3)</code>, roman chapters, and schedules with their own numbering. Grammar-based parser with a per-instrument override table.</td></tr>
+          <tr><td class="id">5 enrich</td><td>Bind footnote markers to their text; parse <code>Ins./Subs./Omitted by ...</code> into amendment events; extract cross-references and defined terms</td><td>The footnote apparatus is the gold seam. Markers are glued to adjacent characters (<code>2[:]</code>) so binding is positional, not textual.</td></tr>
+          <tr><td class="id">6 version</td><td>Resolve amendment events against the amending instrument dates; build validity intervals; propagate repeal</td><td>Amending acts must themselves be in the corpus and dated. Circular and retrospective amendments need a resolution order. Unresolvable cases are flagged, never guessed.</td></tr>
+          <tr><td class="id">7 index</td><td>Chunk provisions with parent-heading context, embed, write vectors, BM25 tsvector, and citation edges &mdash; all in one transaction per instrument</td><td>Chunking respects provision boundaries: never split a section mid-clause, always prepend act title and chapter heading so a chunk is self-describing.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>Quality gates &mdash; the definition of &ldquo;ingested&rdquo;</h4>
+    <p>A document is not published to the live index until it passes all of these. Anything that fails goes to the curation queue with the failing gate named.</p>
+    <ul>
+      <li><strong>Coverage</strong> &mdash; concatenated provision text reconstructs &ge;98% of normalised source characters. Catches dropped pages and swallowed sections.</li>
+      <li><strong>Sequence</strong> &mdash; section labels are monotonic within their chapter, accounting for letter suffixes and omissions. Catches mis-splits.</li>
+      <li><strong>Table-of-contents reconciliation</strong> &mdash; most Pakistan Code PDFs carry a full TOC. Parse it independently and diff against the parsed body. This single gate catches the majority of segmentation errors for free.</li>
+      <li><strong>Cross-reference resolution</strong> &mdash; &ge;95% of internal references resolve to an existing provision. Catches numbering errors.</li>
+      <li><strong>Amendment resolution</strong> &mdash; every footnote citing an amending instrument resolves to an instrument in the corpus, or is flagged.</li>
+      <li><strong>Duplicate detection</strong> &mdash; SHA-256 collision against a different title raises a review item (we have ~48 of these already).</li>
+      <li><strong>Spot check</strong> &mdash; 5 random provisions per instrument rendered side-by-side with the source page for human sign-off on first ingest.</li>
+    </ul>
+
+    <h3><span class="mk">4.4</span>Judgments and the citation graph</h3>
+    <p>Same pipeline, different segmentation target: judgments split into <strong>numbered paragraphs</strong>, which are the citable unit for precedent, plus a header block (court, bench, judges, case number, date, parties, counsel) and a disposition.</p>
+    <pre><b>judgment</b>
+  court <u>SC|LHC|SHC|PHC|BHC|IHC|FSC</u>, bench[], judges[], decided_on
+  case_no, neutral_citation, reporter_refs[]  <i>"PLD 2016 SC 1" as identifier only</i>
+  parties_raw, parties_redacted, subject_tags[]
+  disposition <u>allowed|dismissed|partly_allowed|remanded|disposed</u>
+
+<b>judgment_paragraph</b>
+  judgment_id, para_no, text, role <u>facts|arguments|reasoning|holding|order</u>
+
+<b>citation_edge</b>          <i>the graph &mdash; recursive CTEs, no Neo4j needed</i>
+  src (judgment_paragraph), dst (provision | judgment)
+  treatment <u>cites|applies|interprets|follows|distinguishes|doubts|overrules</u>
+  confidence, extraction_method <u>regex|model|human</u>, verified_by</pre>
+    <p><strong>Extraction is two-pass.</strong> A citation grammar (high precision, moderate recall) finds the references; a model classifies the <em>treatment</em> from the surrounding paragraph. Treatment classification is the part that can be wrong, so it carries a confidence score and never renders as a bare assertion &mdash; the UI shows the paragraph that produced it so a lawyer can judge for themselves.</p>
+    <div class="note blue">
+      <h4>Why this is the defensible piece</h4>
+      <p>Anyone can put statutes behind an embedding model in a weekend. A verified graph of how the Supreme Court has treated each provision, with paragraph-level anchors and point-in-time validity, takes a year and cannot be shortcut. It is also what turns a citizen tool into something a working advocate will pay for.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============== 5 ============== -->
+<section>
+  <div class="rail"><span class="num">&sect;5</span><span class="tag">Retrieval</span></div>
+  <div class="body">
+    <h2>Retrieval, stage by stage</h2>
+    <p class="lede">Retrieval quality sets the ceiling on everything downstream. A perfect generator on bad context produces a confident wrong answer; a mediocre generator on perfect context produces a useful one.</p>
+
+    <h3><span class="mk">5.1</span>Stage 0 &mdash; query understanding, before any model runs</h3>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Signal</th><th>Method</th><th>Effect on retrieval</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Explicit citation</td><td>Grammar over the Pakistani citation space: <code>s.302 PPC</code>, <code>section 9(c) CNSA</code>, <code>Art 184(3)</code>, <code>PLD 2016 SC 1</code>, <code>2019 SCMR 1</code>, <code>SRO 745(I)/2023</code></td><td>Direct fetch. Bypasses the entire pipeline. Deterministic, ~5 ms, 100% precision.</td></tr>
+          <tr><td class="k">Language</td><td>Script detection plus a romanised-Urdu classifier</td><td>Selects normalisation path and answer language. Roman Urdu goes through transliteration expansion.</td></tr>
+          <tr><td class="k">Jurisdiction</td><td>User profile, then query cues (&ldquo;in Lahore&rdquo;, &ldquo;Sindh tenancy&rdquo;), then default federal</td><td>Hard filter. Punjab rent law and Sindh rent law are different statutes; returning the wrong province is a wrong answer, not a near miss.</td></tr>
+          <tr><td class="k">Temporal</td><td>Date expressions; default <code>as_of = today</code></td><td>Filters <code>provision_version</code> validity intervals.</td></tr>
+          <tr><td class="k">Intent</td><td>Small classifier: <code>lookup</code> / <code>explain</code> / <code>scenario</code> / <code>procedure</code> / <code>draft</code> / <code>precedent</code></td><td>Selects the pipeline. A <code>draft</code> intent should never reach the Q&amp;A path.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3><span class="mk">5.2</span>Stage 1 &mdash; four candidate generators in parallel</h3>
+    <ul>
+      <li><strong>BM25</strong> over provision text, heading, marginal note, and act title, with heading and title boosted. Real BM25 via ParadeDB <code>pg_search</code>, not <code>ts_rank_cd</code> &mdash; the length normalisation matters when provisions range from one line to three pages.</li>
+      <li><strong>Dense</strong> over provision chunks. Start with an off-the-shelf multilingual encoder (BGE-M3 class: 8k context, Urdu and English in one space, dense + sparse + multi-vector from one model). Fine-tune it on our golden set in phase&nbsp;2 &mdash; this is contribution #1.</li>
+      <li><strong>Definition expansion</strong> &mdash; if a query term matches a term defined in a candidate act, pull the defining provision. Legal texts define their own vocabulary and the definition is frequently the answer.</li>
+      <li><strong>Graph expansion</strong> &mdash; pull provisions cross-referenced by the top lexical hits. Ask about s.302 and you need s.299 (definitions), s.304 (proof), s.311 (fasad-fil-arz). No embedding model retrieves those; the reference graph does, for free.</li>
+    </ul>
+    <p>Recall target: ~150 candidates. Optimise this stage for recall only &mdash; precision is the reranker&rsquo;s job.</p>
+
+    <h3><span class="mk">5.3</span>Stage 2 &mdash; fusion by reciprocal rank</h3>
+    <p>Reciprocal Rank Fusion, not score normalisation. BM25 scores and cosine similarities are not commensurable, and any weighting we hand-tune between them will be overfitted to whatever queries we happened to test. RRF uses only rank position, needs no tuning, and is robust when one retriever fails badly on a given query.</p>
+    <pre>score(d)  =  sum over retrievers r  of   1 / ( k + rank_r(d) )      <i>k = 60</i></pre>
+
+    <h3><span class="mk">5.4</span>Stage 3 &mdash; cross-encoder rerank</h3>
+    <p>A multilingual cross-encoder (bge-reranker-v2-m3 class, ~560M) scores each (query, provision) pair jointly. At int8 via ONNX Runtime this runs ~40&ndash;60 pairs/second per CPU core, which is fine at our QPS; it moves to a GPU worker when it stops being fine.</p>
+    <p><strong>This is where our fine-tuning budget goes.</strong> Training a reranker on a few thousand labelled Pakistani legal query&ndash;provision pairs is cheap (hours on a rented 4090, well under $20), gives a large and directly measurable NDCG@10 gain, and is a far more defensible research contribution than another LoRA on an 8B chat model.</p>
+
+    <h3><span class="mk">5.5</span>Stage 4 &mdash; the gate</h3>
+    <p>Two conditions, both calibrated on the golden set rather than guessed:</p>
+    <ul>
+      <li><strong>Absolute threshold</strong> &mdash; the top reranker score must exceed &tau;, chosen for a target precision (start at 95%) on held-out queries.</li>
+      <li><strong>Coverage</strong> &mdash; for multi-part questions, each identified sub-question needs at least one passing provision, or the answer is partial and says so.</li>
+    </ul>
+    <p>Below threshold, the system abstains with a specific message and offers the nearest non-passing results as &ldquo;possibly related, not confident&rdquo; &mdash; visibly separated from an answer. <strong>Abstention rate is a headline metric we publish, not a failure we hide.</strong> A system that never abstains is a system that is guessing.</p>
+
+    <h3><span class="mk">5.6</span>Stage 5 &mdash; context assembly</h3>
+    <p>Never hand the model a half-section. Assembly expands each passing chunk to its full parent provision, then attaches the act short title, chapter heading, in-force dates, and any repeal or amendment warning. Deduplicates overlapping provisions, orders by statutory sequence rather than score (a model reads law better in its own order), and budgets tokens with the highest-scoring material protected from truncation.</p>
+
+    <h3><span class="mk">5.7</span>Roman Urdu, concretely</h3>
+    <p>The mechanism is a normalisation table plus an alias index, not a model:</p>
+    <pre><i>user types</i>   "mje talaq k baad bachon ki custody chahiye"
+<i>normalise</i>   mujhe talaq ke baad bachon ki custody chahiye
+<i>alias hits</i>  talaq   &#8594; <u>divorce, dissolution of marriage</u>  <i>(DMMA 1939, MFLO 1961 s.7)</i>
+             custody &#8594; <u>hizanat, guardianship, custody of minors</u>
+                        <i>(Guardians and Wards Act 1890 ss.7,17,25)</i>
+<i>retrieve</i>    English corpus, jurisdiction-filtered
+<i>answer</i>      Urdu prose + English statutory text shown verbatim alongside</pre>
+    <p>The alias index is a curated legal glossary: each concept maps a set of Urdu, romanised-Urdu (with spelling variants), and English legal terms onto the provisions that govern it. Perhaps 400&ndash;600 entries covers the overwhelming majority of citizen queries. It is hand-built, cheap, deterministic, and it is the single highest-leverage accessibility artefact in the project.</p>
+  </div>
+</section>
+
+<!-- ============== 6 ============== -->
+<section>
+  <div class="rail"><span class="num">&sect;6</span><span class="tag">Generation<br>&amp; grounding</span></div>
+  <div class="body">
+    <h2>Generation and the grounding contract</h2>
+
+    <h3><span class="mk">6.1</span>The model is behind a port, always</h3>
+    <p>One interface, several implementations, chosen per request by cost and difficulty. We never write provider-specific code outside an adapter.</p>
+    <pre><b>class LLMProvider(Protocol):</b>
+    def complete(prompt, schema, max_tokens, cache_key) -&gt; StructuredAnswer
+    def stream(...) -&gt; Iterator[Delta]
+
+<i>routing</i>
+  lookup / explain   &#8594; hosted small model, cached system prompt   <i>cheapest path</i>
+  scenario / draft   &#8594; hosted reasoning-tier model
+  sovereign / demo   &#8594; self-hosted open weights (vLLM), LoRA-tuned
+  offline            &#8594; no generation; retrieval and stored explainers only</pre>
+    <p>The self-hosted path is not decoration. It carries the FYP&rsquo;s fine-tuning requirement, it is the answer to any data-sovereignty question from a government or institutional user, and it gives the thesis a genuine hosted-versus-tuned-open-weights comparison on the same benchmark &mdash; a better chapter than &ldquo;we fine-tuned it and it worked.&rdquo;</p>
+
+    <h3><span class="mk">6.2</span>Structured output, never prose</h3>
+    <p>The model emits a validated object. It references provisions by identifier; it never writes a section number, a case citation, a date, or a URL.</p>
+    <pre>{
+  "abstain": false,
+  "blocks": [
+    { "text": "Intentional murder is punishable by death or life imprisonment.",
+      "cites": [{ "provision": <u>"pk:fed/act/1860-45/s-302/cl-a"</u>, "span": [0, 84] }] },
+    { "text": "Where the proof required for qisas is unavailable, the court may
+               instead impose ta'zir.",
+      "cites": [{ "provision": <u>"pk:fed/act/1860-45/s-302/cl-b"</u>, "span": [12, 190] }] }
+  ],
+  "caveats": ["Sentencing depends on facts the court finds proved."],
+  "followups": ["What is the difference between qisas and ta'zir?"]
+}</pre>
+    <ul>
+      <li><strong>Every block carries at least one citation.</strong> A block without one is dropped before rendering &mdash; a schema rule, not a prompt request.</li>
+      <li><strong>The renderer substitutes citation text from the database</strong> using the identifier. If the identifier does not exist, the block is dropped and the event logged. Fabricated citations are structurally unreachable.</li>
+      <li><strong>Spans point into the retrieved provision text</strong>, which is what makes the next stage possible.</li>
+    </ul>
+
+    <h3><span class="mk">6.3</span>The entailment verifier</h3>
+    <p>For each block, check that the cited span actually supports the claim. Three tiers, chosen by cost and stakes:</p>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Tier</th><th>Method</th><th>Cost</th><th>Used for</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Cheap</td><td>Lexical and numeric overlap: every number, date, duration and monetary amount in the claim must appear in the span</td><td>~0 ms</td><td>Every block. Catches the most damaging error class &mdash; wrong sentence lengths and wrong fines.</td></tr>
+          <tr><td class="k">Standard</td><td>Cross-lingual NLI model (mDeBERTa-xnli class), span as premise, claim as hypothesis</td><td>~30 ms</td><td>Every block. Below threshold, the block is flagged rather than dropped, and shown with a visible qualifier.</td></tr>
+          <tr><td class="k">Strict</td><td>Second model call as adversarial judge, prompted to refute</td><td>~$0.001</td><td>Blocks that touch criminal liability, limitation periods, or anything time-barred. Also the full evaluation run.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>The measured pass rate of this verifier <em>is</em> our faithfulness number. It is computed continuously in production, not once for the thesis.</p>
+
+    <h3><span class="mk">6.4</span>What the model is forbidden to do</h3>
+    <ul>
+      <li>Produce a section number, article number, case citation, SRO number, statute date or URL. All of these are rendered from database records.</li>
+      <li>Answer when the gate abstained. There is no fallback to general knowledge &mdash; the code path does not exist.</li>
+      <li>Recommend a course of action in the user&rsquo;s own matter. The register is &ldquo;the law provides X&rdquo;, never &ldquo;you should do X.&rdquo; This is the Legal Practitioners and Bar Councils Act line, and it is enforced at prompt level and checked by a classifier on output.</li>
+      <li>Present a translation of statutory text as the statutory text. Urdu output is explanation; the English provision is always shown verbatim beside it.</li>
+    </ul>
+
+    <h3><span class="mk">6.5</span>Cost control</h3>
+    <ul>
+      <li><strong>Prompt caching</strong> on the static system prompt, schema and few-shots &mdash; roughly a 90% reduction on that portion of every request.</li>
+      <li><strong>Semantic response cache</strong> &mdash; the same question in different words, same jurisdiction, same <code>as_of</code>, hits a cached answer. Legal queries are heavily long-tailed but the head is very heavy: &ldquo;what is the punishment for theft&rdquo; will be asked thousands of times.</li>
+      <li><strong>Precomputed explainers</strong> &mdash; a plain-language explanation of every significant provision, generated once in batch and stored. Most citizen lookups then need zero live inference, and these ship in the offline pack too.</li>
+      <li><strong>Fast path</strong> &mdash; explicit-citation queries never touch a model at all.</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ============== 7 ============== -->
+<section>
+  <div class="rail"><span class="num">&sect;7</span><span class="tag">Product<br>surfaces</span></div>
+  <div class="body">
+    <h2>The product surfaces</h2>
+    <p class="lede">Four things sit on top of the corpus and the pipeline. Each is separable, each is independently valuable, and each has a different failure mode to design against.</p>
+
+    <h3><span class="mk">7.1</span>Precedent &mdash; the citator</h3>
+    <p>Given any provision, answer: who has interpreted it, how, and is that reading still good law? This is the feature working advocates will pay for.</p>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Capability</th><th>Build</th><th>Failure mode to design against</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Treatment list</td><td>Recursive CTE over <code>citation_edge</code> filtered by provision, ordered by court seniority then date</td><td>Missing judgments read as &ldquo;no precedent&rdquo;. Always show coverage: <em>&ldquo;from 3,412 SC judgments indexed, 2009&ndash;2026&rdquo;.</em></td></tr>
+          <tr><td class="k">Still good law?</td><td>Traverse forward edges for <code>overrules</code> / <code>doubts</code>; surface as a signal with the source paragraph, never as a bare verdict</td><td>A confident wrong &ldquo;still good&rdquo; badge is a malpractice generator. Show the evidence and let the lawyer judge.</td></tr>
+          <tr><td class="k">Structured summary</td><td>Batch-generated per judgment: facts, provisions applied, arguments, reasoning, holding, order &mdash; each field span-verified against the judgment text</td><td>Summaries that editorialise. Fields are extractive-biased and verified like any other generated claim.</td></tr>
+          <tr><td class="k">Outcome statistics</td><td>Aggregate over <code>disposition</code> filtered by provision, court, period</td><td>Selection bias. Only reported judgments are indexed, and they are not a random sample &mdash; state that on the chart.</td></tr>
+          <tr><td class="k">Paragraph deep-link</td><td><code>judgment_paragraph</code> anchors in URLs</td><td>&mdash;</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3><span class="mk">7.2</span>The document factory</h3>
+    <p>The architecture the proposals describe is correct and I would keep it: <strong>AI conducts the interview, deterministic code selects the clauses.</strong> A model must never choose which clause enters a legally operative document. Four stages:</p>
+    <ol>
+      <li><strong>Interview</strong> &mdash; a schema-driven dialogue. The document type defines required and conditional fields; the model handles phrasing, clarification and validation, but the field list is code. Every answer is typed and validated (CNIC format, dates, amounts, jurisdiction).</li>
+      <li><strong>Clause selection</strong> &mdash; a rule table keyed on document type, province, and the interview answers. Rules cite the statute that requires each clause (Stamp Act 1899, Registration Act 1908, Transfer of Property Act 1882, the relevant provincial rent ordinance). Fully auditable; every clause in a generated document can be traced to the rule and the statute that put it there.</li>
+      <li><strong>Stamp duty and fee computation</strong> &mdash; per-province, per-instrument, deterministic, versioned by date. Genuinely useful, entirely non-AI, and it is what makes the output usable rather than decorative.</li>
+      <li><strong>Typeset</strong> &mdash; Jinja2 into LaTeX, compiled by <code>pdflatex</code> in a sandboxed container, with correct margins for stamp affixation, witness blocks, and page numbering. Bilingual documents use XeLaTeX with a Nastaliq font.</li>
+    </ol>
+    <div class="note">
+      <h4>The one thing to get right here</h4>
+      <p>Never let a generated document imply it has been reviewed. Every output carries a visible provenance block: which template version, which clause rules fired, which statute each clause rests on, and an unambiguous statement that it has not been settled by an advocate. A rejected document is a bad day; a document that costs someone their property because it looked official is the end of the project.</p>
+    </div>
+    <p><strong>Template set, in build order:</strong> affidavit (general) &middot; rent agreement, residential &middot; rent agreement, commercial &middot; legal notice &middot; general power of attorney &middot; special power of attorney &middot; sale agreement for immovable property &middot; employment contract &middot; NDA &middot; partnership deed &middot; will &middot; succession-certificate application &middot; bail application &middot; consumer complaint. Start with three, get them reviewed by a practising advocate, then scale &mdash; template count is a poor proxy for value and a good proxy for liability.</p>
+
+    <h3><span class="mk">7.3</span>Procedure &mdash; the deterministic layer</h3>
+    <p>Underrated in all four proposals. These features involve no generative AI, cannot hallucinate, and are what actually gets a citizen from &ldquo;I know the law&rdquo; to &ldquo;I did the thing.&rdquo;</p>
+    <ul>
+      <li><strong>Limitation calculator</strong> &mdash; the Limitation Act 1908 schedule encoded as data. Enter the cause of action and its date, get the deadline and the article that governs it. Missing a limitation period is one of the most common and most catastrophic self-representation errors, and this is a pure lookup table.</li>
+      <li><strong>Forum finder</strong> &mdash; which court, which district, what pecuniary limit, what territorial jurisdiction. Encoded from the CPC and provincial civil courts ordinances.</li>
+      <li><strong>Court fee calculator</strong> &mdash; Court Fees Act 1870 plus provincial amendments, by suit value and relief type.</li>
+      <li><strong>Step-by-step guides</strong> &mdash; expert-authored, versioned, each step citing its statutory basis, with verified official links stored as data and health-checked weekly. Never model-generated.</li>
+      <li><strong>Document checklists</strong> per procedure, exportable.</li>
+    </ul>
+
+    <h3><span class="mk">7.4</span>Clients</h3>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Surface</th><th>Stack</th><th>Job</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Android app</td><td>Flutter</td><td>Primary citizen surface</td><td>Android-first: iOS is a small minority of the Pakistani market. Cross-platform codebase, but ship and test Android.</td></tr>
+          <tr><td class="k">Offline pack</td><td>SQLite + FTS5 + sqlite-vec</td><td>Full statutory access with no connection</td><td>Ships the Constitution, PPC, CrPC, CPC, Qanun-e-Shahadat, major family laws, plus precomputed explainers. Target &lt;120 MB compressed. <code>sqlite-vec</code> makes on-device semantic search a shipping feature, not the R&amp;D stretch goal the proposals treat it as.</td></tr>
+          <tr><td class="k">Delta updates</td><td>Versioned patch feed</td><td>Keep the offline pack current</td><td>Each pack has a version; the server returns the patch chain from the client version forward. Signed, so a tampered patch cannot alter statutory text on a device.</td></tr>
+          <tr><td class="k">Web app</td><td>Next.js</td><td>Lawyer and researcher surface</td><td>Where real research happens. Multi-pane, keyboard-driven, boolean search, export.</td></tr>
+          <tr><td class="k">Public statute pages</td><td>Next.js SSG</td><td>Distribution</td><td>A crawlable page per provision, per instrument, per judgment. Pakistan Code is not meaningfully indexed. This is our cheapest acquisition channel by an order of magnitude, and it costs almost nothing to serve.</td></tr>
+          <tr><td class="k">Curation console</td><td>Next.js, internal</td><td>Corpus quality</td><td>Source page image beside parsed provision tree; split, merge, relabel, fix text, approve. Every edit versioned and attributed. Built week 3, not month 5.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>Accessibility, seriously</h4>
+    <p>National literacy is around 60%, and legal literacy far below that. Two features do more for reach than any model improvement:</p>
+    <ul>
+      <li><strong>Voice input and output in Urdu.</strong> A user who cannot comfortably read can speak a question and hear the answer. This is the difference between serving the top decile of the target population and serving the target population.</li>
+      <li><strong>A reading-level control</strong> on explanations &mdash; the same grounded content, rendered at plain-speech or professional register.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============== 8 ============== -->
+<section>
+  <div class="rail"><span class="num">&sect;8</span><span class="tag">Cost<br>&amp; ops</span></div>
+  <div class="body">
+    <h2>What it costs to run</h2>
+    <p class="lede">&ldquo;Cheap&rdquo; was a requirement, so here is the arithmetic rather than an adjective. These are monthly figures for a real pilot serving thousands of users, not a demo.</p>
+
+    <div class="stats">
+      <div class="stat"><div class="v">$18</div><div class="l">Month, dev phase</div></div>
+      <div class="stat"><div class="v">$95</div><div class="l">Month, pilot</div></div>
+      <div class="stat hi"><div class="v">$0.004</div><div class="l">Per AI answer</div></div>
+      <div class="stat"><div class="v">&lt;$40</div><div class="l">Total fine-tuning</div></div>
+    </div>
+
+    <div class="scroll">
+      <table>
+        <caption>Pilot assumption: ~10,000 AI answers/month, ~200k page views, one full corpus re-index per month. Cached prompt prefix assumed for the static system prompt.</caption>
+        <thead><tr><th>Line</th><th>Choice</th><th>Dev</th><th>Pilot</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Application server</td><td>Hetzner CCX23, 4 vCPU / 16 GB dedicated</td><td class="n">&euro;13</td><td class="n">&euro;25</td></tr>
+          <tr><td class="k">Database</td><td>Same box initially; own box at pilot scale</td><td class="n">&mdash;</td><td class="n">&euro;25</td></tr>
+          <tr><td class="k">Object storage</td><td>Cloudflare R2, ~8 GB, zero egress</td><td class="n">$0.12</td><td class="n">$0.15</td></tr>
+          <tr><td class="k">CDN / TLS / WAF</td><td>Cloudflare free tier</td><td class="n">$0</td><td class="n">$0</td></tr>
+          <tr><td class="k">Generation</td><td>Hosted small model, prompt-cached, semantic cache in front</td><td class="n">~$5</td><td class="n">~$40</td></tr>
+          <tr><td class="k">Embedding + rerank</td><td>Self-hosted ONNX int8 on the app box</td><td class="n">$0</td><td class="n">$0</td></tr>
+          <tr><td class="k">Batch GPU</td><td>Rented 4090 by the hour for re-index and training</td><td class="n">~$3</td><td class="n">~$8</td></tr>
+          <tr><td class="k">SMS OTP</td><td>Local aggregator, ~PKR 1.5/msg</td><td class="n">$0</td><td class="n">~$6</td></tr>
+          <tr><td class="k">Backups</td><td>pgBackRest to R2, daily full + WAL</td><td class="n">$0.10</td><td class="n">$0.50</td></tr>
+          <tr><td class="k">Monitoring</td><td>Self-hosted Grafana + Loki + Tempo on the app box</td><td class="n">$0</td><td class="n">$0</td></tr>
+          <tr><td class="k">Domain</td><td>&mdash;</td><td class="n">$1</td><td class="n">$1</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p><strong>The two decisions that produce this number</strong> are one database instead of two, and self-hosting the small models (embedder, reranker, verifier) while renting only the large one. A Qdrant instance plus Supabase Pro plus a warm GPU would be roughly $300&ndash;500/month for the same throughput, and slower, because of the cold starts.</p>
+
+    <h4>Operational discipline</h4>
+    <ul>
+      <li><strong>Trace every retrieval stage.</strong> OpenTelemetry spans for parse, each retriever, fusion, rerank, gate decision, assembly, generation, verification &mdash; with scores. Without this, debugging a bad answer is guesswork, and you will spend more time on bad answers than on features.</li>
+      <li><strong>Every answer is reproducible.</strong> Persist the query, resolved filters, retrieved provision IDs with scores, the gate decision, the prompt hash, the model version, and the verifier result. When a user reports a wrong answer &mdash; or a panel member does &mdash; we replay it exactly.</li>
+      <li><strong>Evaluation in CI.</strong> The golden set runs on every change to retrieval or prompts. A regression in NDCG@10 or faithfulness blocks the merge. This is the single highest-value piece of engineering process in the project.</li>
+      <li><strong>Restore drills.</strong> A backup that has never been restored is not a backup. Once a month, restore to a scratch box and run the eval suite against it.</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ============== 9 ============== -->
+<section>
+  <div class="rail"><span class="num">&sect;9</span><span class="tag">Full<br>inventory</span></div>
+  <div class="body">
+    <h2>Every feature, with its build note</h2>
+    <p class="lede">The complete surface, consolidated from all four documents plus what they miss. <span class="chip c-have">Have</span> means it exists on disk or is built. <span class="chip c-new">New</span> marks additions that are not in any source proposal.</p>
+
+    <h4>A &mdash; Corpus</h4>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>#</th><th>Feature</th><th>How</th><th>State</th><th>Phase</th></tr></thead>
+        <tbody>
+          <tr><td class="id">A1</td><td class="k">Federal statutes</td><td>Existing scraper; 1,030 acts, 982 unique files, 8 retries pending</td><td><span class="chip c-have">Have</span></td><td class="n">0</td></tr>
+          <tr><td class="id">A2</td><td class="k">Provincial statutes &times;4</td><td>Existing scrapers; Punjab, Sindh, KP, Balochistan</td><td><span class="chip c-have">Have</span></td><td class="n">0</td></tr>
+          <tr><td class="id">A3</td><td class="k">AJK + Gilgit-Baltistan</td><td>Two new scrapers on the same skeleton</td><td><span class="chip c-miss">Missing</span></td><td class="n">3</td></tr>
+          <tr><td class="id">A4</td><td class="k">Case law: SC, 5 HCs, FSC</td><td>Seven scrapers, staggered and rate-limited. <strong>The long pole &mdash; start immediately</strong></td><td><span class="chip c-miss">Missing</span></td><td class="n">1</td></tr>
+          <tr><td class="id">A5</td><td class="k">Subordinate legislation: rules, SROs, notifications</td><td>Punjab service rules present; needs federal SRO and provincial gazette sources</td><td><span class="chip c-part">Partial</span></td><td class="n">3</td></tr>
+          <tr><td class="id">A6</td><td class="k">Provision tree segmentation</td><td>Grammar parser + indentation + font weight; TOC reconciliation gate</td><td><span class="chip c-plain">Build</span></td><td class="n">1</td></tr>
+          <tr><td class="id">A7</td><td class="k">Amendment extraction from footnotes</td><td>Positional footnote binding, then <code>Ins./Subs./Om. by</code> grammar</td><td><span class="chip c-new">New</span></td><td class="n">2</td></tr>
+          <tr><td class="id">A8</td><td class="k">Bitemporal versioning</td><td><code>provision_version</code> with a GiST exclusion constraint on validity</td><td><span class="chip c-new">New</span></td><td class="n">2</td></tr>
+          <tr><td class="id">A9</td><td class="k">Repeal and lapse tracking</td><td>Instrument lifecycle fields; propagated to every child provision</td><td><span class="chip c-new">New</span></td><td class="n">1</td></tr>
+          <tr><td class="id">A10</td><td class="k">Cross-reference graph</td><td>Citation grammar over provision text, resolved to provision IDs</td><td><span class="chip c-plain">Build</span></td><td class="n">2</td></tr>
+          <tr><td class="id">A11</td><td class="k">Definitions index</td><td>Extract defined terms per instrument; scope-aware</td><td><span class="chip c-new">New</span></td><td class="n">2</td></tr>
+          <tr><td class="id">A12</td><td class="k">Bilingual legal glossary / romanised alias index</td><td>Hand-curated, 400&ndash;600 concepts &times; Urdu / Roman / English</td><td><span class="chip c-new">New</span></td><td class="n">2</td></tr>
+          <tr><td class="id">A13</td><td class="k">Gazette change monitoring</td><td>Scheduled scrape + content hash diff + re-index trigger</td><td><span class="chip c-plain">Build</span></td><td class="n">4</td></tr>
+          <tr><td class="id">A14</td><td class="k">OCR fallback lane</td><td>~150 scanned docs, mostly Balochistan; Nastaliq only where needed</td><td><span class="chip c-plain">Build</span></td><td class="n">3</td></tr>
+          <tr><td class="id">A15</td><td class="k">Provenance and confidence per provision</td><td>Source PDF hash, extraction method, QA gate results, human-verified flag</td><td><span class="chip c-new">New</span></td><td class="n">1</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>B &mdash; Search and retrieval</h4>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>#</th><th>Feature</th><th>How</th><th>State</th><th>Phase</th></tr></thead>
+        <tbody>
+          <tr><td class="id">B1</td><td class="k">Exact citation lookup</td><td>Pakistani citation grammar; direct fetch, no model</td><td><span class="chip c-plain">Build</span></td><td class="n">1</td></tr>
+          <tr><td class="id">B2</td><td class="k">BM25 lexical search</td><td>ParadeDB <code>pg_search</code>, heading and title boosted</td><td><span class="chip c-plain">Build</span></td><td class="n">1</td></tr>
+          <tr><td class="id">B3</td><td class="k">Dense semantic search</td><td>Multilingual encoder, pgvector HNSW</td><td><span class="chip c-plain">Build</span></td><td class="n">2</td></tr>
+          <tr><td class="id">B4</td><td class="k">RRF fusion + cross-encoder rerank</td><td>Rank-only fusion; reranker fine-tuned on the golden set</td><td><span class="chip c-plain">Build</span></td><td class="n">2</td></tr>
+          <tr><td class="id">B5</td><td class="k">Calibrated abstention gate</td><td>Threshold chosen for target precision on held-out queries</td><td><span class="chip c-plain">Build</span></td><td class="n">2</td></tr>
+          <tr><td class="id">B6</td><td class="k">Roman Urdu and Urdu input</td><td>Transliteration normalisation + alias index (A12)</td><td><span class="chip c-new">New</span></td><td class="n">2</td></tr>
+          <tr><td class="id">B7</td><td class="k">Point-in-time search</td><td><code>as_of</code> filter on version validity</td><td><span class="chip c-new">New</span></td><td class="n">3</td></tr>
+          <tr><td class="id">B8</td><td class="k">Faceted filtering</td><td>Jurisdiction, instrument type, year, status, court</td><td><span class="chip c-plain">Build</span></td><td class="n">2</td></tr>
+          <tr><td class="id">B9</td><td class="k">Boolean and proximity operators</td><td>Professional mode over the BM25 index</td><td><span class="chip c-plain">Build</span></td><td class="n">3</td></tr>
+          <tr><td class="id">B10</td><td class="k">Cross-province comparison</td><td>Align equivalent provisions across the four provincial codes</td><td><span class="chip c-new">New</span></td><td class="n">4</td></tr>
+          <tr><td class="id">B11</td><td class="k">Saved searches and change alerts</td><td>Stored query + diff notification when matched provisions change</td><td><span class="chip c-plain">Build</span></td><td class="n">4</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>C &mdash; Generation</h4>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>#</th><th>Feature</th><th>How</th><th>State</th><th>Phase</th></tr></thead>
+        <tbody>
+          <tr><td class="id">C1</td><td class="k">Grounded Q&amp;A with citations</td><td>Structured output, citation IDs only, DB-rendered text</td><td><span class="chip c-plain">Build</span></td><td class="n">2</td></tr>
+          <tr><td class="id">C2</td><td class="k">Scenario analysis</td><td>Fact extraction &#8594; issue spotting &#8594; per-issue retrieval &#8594; grounded synthesis</td><td><span class="chip c-plain">Build</span></td><td class="n">3</td></tr>
+          <tr><td class="id">C3</td><td class="k">Entailment verification</td><td>Three tiers: numeric overlap, NLI, adversarial judge</td><td><span class="chip c-new">New</span></td><td class="n">3</td></tr>
+          <tr><td class="id">C4</td><td class="k">Precomputed plain-language explainers</td><td>Batch-generated per provision, verified, stored, shipped offline</td><td><span class="chip c-new">New</span></td><td class="n">3</td></tr>
+          <tr><td class="id">C5</td><td class="k">Structured judgment summaries</td><td>Six extractive-biased fields, each span-verified</td><td><span class="chip c-plain">Build</span></td><td class="n">3</td></tr>
+          <tr><td class="id">C6</td><td class="k">Native Urdu answers</td><td>Direct generation; statutory text always shown in English alongside</td><td><span class="chip c-plain">Build</span></td><td class="n">3</td></tr>
+          <tr><td class="id">C7</td><td class="k">Provenance UI</td><td>Every claim expands to its source provision and matched span</td><td><span class="chip c-new">New</span></td><td class="n">3</td></tr>
+          <tr><td class="id">C8</td><td class="k">Reading-level control</td><td>Same grounded content, plain or professional register</td><td><span class="chip c-new">New</span></td><td class="n">4</td></tr>
+          <tr><td class="id">C9</td><td class="k">Self-hosted tuned model path</td><td>vLLM + LoRA on open weights; benchmarked against the hosted default</td><td><span class="chip c-plain">Build</span></td><td class="n">4</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>D &mdash; Precedent &nbsp;&middot;&nbsp; E &mdash; Documents &nbsp;&middot;&nbsp; F &mdash; Procedure</h4>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>#</th><th>Feature</th><th>How</th><th>State</th><th>Phase</th></tr></thead>
+        <tbody>
+          <tr><td class="id">D1</td><td class="k">Judgment full text, paragraph-anchored</td><td>Same pipeline, paragraph segmentation</td><td><span class="chip c-plain">Build</span></td><td class="n">2</td></tr>
+          <tr><td class="id">D2</td><td class="k">Citator: treatment of a provision</td><td>Recursive CTE over citation edges, ordered by court seniority</td><td><span class="chip c-plain">Build</span></td><td class="n">3</td></tr>
+          <tr><td class="id">D3</td><td class="k">Treatment classification</td><td>Grammar finds the reference; model classifies treatment with confidence</td><td><span class="chip c-plain">Build</span></td><td class="n">3</td></tr>
+          <tr><td class="id">D4</td><td class="k">Good-law signal</td><td>Forward traversal for overruling; shown with evidence, never as a bare badge</td><td><span class="chip c-new">New</span></td><td class="n">4</td></tr>
+          <tr><td class="id">D5</td><td class="k">Outcome statistics</td><td>Aggregated dispositions, with sample-bias disclosure</td><td><span class="chip c-new">New</span></td><td class="n">4</td></tr>
+          <tr><td class="id">E1</td><td class="k">Template library</td><td>3 reviewed templates first, then scale; advocate sign-off per template</td><td><span class="chip c-plain">Build</span></td><td class="n">3</td></tr>
+          <tr><td class="id">E2</td><td class="k">Schema-driven AI interview</td><td>Field list is code; model handles phrasing and validation only</td><td><span class="chip c-plain">Build</span></td><td class="n">3</td></tr>
+          <tr><td class="id">E3</td><td class="k">Deterministic clause engine</td><td>Rule table keyed on type + province + answers; each rule cites its statute</td><td><span class="chip c-plain">Build</span></td><td class="n">3</td></tr>
+          <tr><td class="id">E4</td><td class="k">Stamp duty calculator</td><td>Per-province, per-instrument, date-versioned tables</td><td><span class="chip c-new">New</span></td><td class="n">3</td></tr>
+          <tr><td class="id">E5</td><td class="k">LaTeX typesetting for stamp paper</td><td>Jinja2 &#8594; LaTeX &#8594; sandboxed pdflatex; XeLaTeX + Nastaliq for bilingual</td><td><span class="chip c-plain">Build</span></td><td class="n">3</td></tr>
+          <tr><td class="id">E6</td><td class="k">Document provenance block</td><td>Template version, rules fired, statutes relied on, non-review notice</td><td><span class="chip c-new">New</span></td><td class="n">3</td></tr>
+          <tr><td class="id">E7</td><td class="k">Upload and review a document</td><td>Extract &#8594; classify &#8594; check required clauses against the rule table</td><td><span class="chip c-plain">Build</span></td><td class="n">5</td></tr>
+          <tr><td class="id">F1</td><td class="k">Limitation period calculator</td><td>Limitation Act 1908 schedule as data. Pure lookup, high value</td><td><span class="chip c-new">New</span></td><td class="n">3</td></tr>
+          <tr><td class="id">F2</td><td class="k">Forum and jurisdiction finder</td><td>CPC + provincial civil courts ordinances encoded as rules</td><td><span class="chip c-new">New</span></td><td class="n">4</td></tr>
+          <tr><td class="id">F3</td><td class="k">Court fee calculator</td><td>Court Fees Act 1870 + provincial amendments</td><td><span class="chip c-new">New</span></td><td class="n">4</td></tr>
+          <tr><td class="id">F4</td><td class="k">Step-by-step procedural guides</td><td>Expert-authored, versioned, each step citing statute. Never generated</td><td><span class="chip c-plain">Build</span></td><td class="n">3</td></tr>
+          <tr><td class="id">F5</td><td class="k">Verified official links</td><td>Stored as data, weekly automated health check</td><td><span class="chip c-plain">Build</span></td><td class="n">3</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>G &mdash; Platform, trust and safety</h4>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>#</th><th>Feature</th><th>How</th><th>State</th><th>Phase</th></tr></thead>
+        <tbody>
+          <tr><td class="id">G1</td><td class="k">Phone-first authentication</td><td>OTP via local aggregator; email optional. Most users have no email</td><td><span class="chip c-new">New</span></td><td class="n">2</td></tr>
+          <tr><td class="id">G2</td><td class="k">Anonymous mode</td><td>No persistence, no logs, ephemeral session key, disabled analytics</td><td><span class="chip c-plain">Build</span></td><td class="n">2</td></tr>
+          <tr><td class="id">G3</td><td class="k">History, bookmarks, matter folders</td><td>Row-level security; per-user encryption for notes</td><td><span class="chip c-plain">Build</span></td><td class="n">3</td></tr>
+          <tr><td class="id">G4</td><td class="k">Offline pack manager + signed deltas</td><td>Version chain; signature verified on device</td><td><span class="chip c-plain">Build</span></td><td class="n">4</td></tr>
+          <tr><td class="id">G5</td><td class="k">Urdu voice in and out</td><td>STT and TTS. The largest single accessibility gain available</td><td><span class="chip c-new">New</span></td><td class="n">5</td></tr>
+          <tr><td class="id">G6</td><td class="k">Bilingual UI with RTL</td><td>Full localisation, hand-verified legal terminology, Nastaliq typography</td><td><span class="chip c-plain">Build</span></td><td class="n">2</td></tr>
+          <tr><td class="id">G7</td><td class="k">Curation console</td><td>Internal tool; source image beside parse tree; versioned edits</td><td><span class="chip c-new">New</span></td><td class="n">1</td></tr>
+          <tr><td class="id">G8</td><td class="k">Answer audit log</td><td>Full replay record for every answer: inputs, scores, gate, prompt hash, verifier</td><td><span class="chip c-new">New</span></td><td class="n">2</td></tr>
+          <tr><td class="id">G9</td><td class="k">Feedback to review queue</td><td>User reports route to curation with the replay attached</td><td><span class="chip c-plain">Build</span></td><td class="n">3</td></tr>
+          <tr><td class="id">G10</td><td class="k">UPL guardrails</td><td>Register enforcement at prompt and output-classifier level; disclaimers</td><td><span class="chip c-plain">Build</span></td><td class="n">2</td></tr>
+          <tr><td class="id">G11</td><td class="k">Red-team suite</td><td>Adversarial prompts as a CI test suite, not a one-off exercise</td><td><span class="chip c-new">New</span></td><td class="n">4</td></tr>
+          <tr><td class="id">G12</td><td class="k">Public SEO statute pages</td><td>SSG page per provision, instrument, judgment</td><td><span class="chip c-new">New</span></td><td class="n">3</td></tr>
+          <tr><td class="id">G13</td><td class="k">Developer API</td><td>The retrieval layer, keyed and metered</td><td><span class="chip c-plain">Build</span></td><td class="n">5</td></tr>
+          <tr><td class="id">G14</td><td class="k">Freemium billing</td><td>Free statutes and search; paid AI volume, documents, offline pack</td><td><span class="chip c-plain">Build</span></td><td class="n">5</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============== 10 ============== -->
+<section>
+  <div class="rail"><span class="num">&sect;10</span><span class="tag">Sequence</span></div>
+  <div class="body">
+    <h2>Build order, and what unblocks what</h2>
+    <p class="lede">Ordered by dependency, not by which part is most fun. The two things with the longest lead time &mdash; judgment scraping and the golden evaluation set &mdash; start in the first fortnight, before any application code exists.</p>
+
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Phase</th><th>Ships</th><th>Unblocks</th><th>Done when</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="id">0<br>wk 1&ndash;2</td>
+            <td class="k">Foundations, in parallel<br><br>Postgres schema, migrations, repo, CI, tracing skeleton &middot; <strong>judgment scrapers launched</strong> &middot; <strong>golden set annotation started</strong> &middot; corpus defect triage (48 duplicates, 8 failures)</td>
+            <td>Everything</td>
+            <td>Judgment scrapers running unattended; 100 annotated queries done; schema migrations reversible; a trace visible end to end for a stub request.</td>
+          </tr>
+          <tr>
+            <td class="id">1<br>wk 3&ndash;6</td>
+            <td class="k">Corpus v1 + curation<br><br>Stages 1&ndash;4 of ingest &middot; TOC reconciliation gate &middot; repeal modelling &middot; curation console &middot; BM25 &middot; citation-grammar fast path</td>
+            <td>All retrieval</td>
+            <td>All five statute corpora segmented into provision trees; every instrument passes the coverage, sequence and TOC gates or sits in the curation queue; citation lookup answers <code>s.302 PPC</code> correctly and instantly.</td>
+          </tr>
+          <tr>
+            <td class="id">2<br>wk 7&ndash;10</td>
+            <td class="k">Hybrid retrieval + grounded answers<br><br>Embeddings &middot; pgvector HNSW &middot; RRF &middot; cross-encoder &middot; calibrated gate &middot; structured generation &middot; audit log &middot; glossary and Roman Urdu &middot; auth &middot; anonymous mode</td>
+            <td>Every AI feature</td>
+            <td>Golden set at 500 queries; NDCG@10 measured and in CI; the system demonstrably abstains on out-of-corpus questions; every answer replayable from its audit record.</td>
+          </tr>
+          <tr>
+            <td class="id">3<br>wk 11&ndash;15</td>
+            <td class="k">Depth<br><br>Amendment extraction and bitemporal versions &middot; judgment ingest and citation graph &middot; entailment verifier &middot; document factory (3 templates) &middot; limitation calculator &middot; procedural guides &middot; public statute pages &middot; fine-tuned reranker</td>
+            <td>Precedent, drafting, distribution</td>
+            <td>Point-in-time query returns the correct historical text for a known amendment; citator returns treatment for a provision with paragraph anchors; a generated rent agreement reviewed and approved by a practising advocate.</td>
+          </tr>
+          <tr>
+            <td class="id">4<br>wk 16&ndash;20</td>
+            <td class="k">Clients<br><br>Flutter app &middot; offline pack with sqlite-vec &middot; signed delta updates &middot; web research surface &middot; bilingual UI &middot; gazette monitoring &middot; self-hosted tuned model &middot; red-team suite</td>
+            <td>Real users</td>
+            <td>App works fully offline in airplane mode; delta update applies cleanly across three versions; red-team suite green in CI.</td>
+          </tr>
+          <tr>
+            <td class="id">5<br>wk 21&ndash;24</td>
+            <td class="k">Evidence and polish<br><br>Full evaluation run &middot; user study &middot; voice I/O &middot; performance &middot; security review &middot; thesis and demo</td>
+            <td>Submission</td>
+            <td>Every headline metric measured on held-out data with confidence intervals; a 30-participant study completed; a demo that survives a hostile question.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note">
+      <h4>The four-person split that actually works</h4>
+      <p>Split by <em>layer</em>, not by feature, so people own an interface rather than a screen. <strong>Data engineer</strong> owns stages 1&ndash;7 and the corpus gates &mdash; the hardest and most valuable seat. <strong>Retrieval engineer</strong> owns stages 0&ndash;5 of the query path, the golden set, and evaluation. <strong>Application engineer</strong> owns the API, documents, procedure, auth, billing. <strong>Client engineer</strong> owns Flutter, offline, web, and the curation console. The golden set is annotated by all four together &mdash; that shared session is also how everyone learns the domain.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============== 11 ============== -->
+<section>
+  <div class="rail"><span class="num">&sect;11</span><span class="tag">Evidence</span></div>
+  <div class="body">
+    <h2>How we prove it works</h2>
+    <p class="lede">The proposals set targets (NDCG@10 &ge; 0.75, hallucination &lt; 2%, citation accuracy &gt; 95%) without saying what they would be measured against. That instrument has to be built first, and it is worth building well &mdash; Pakistan has no public legal IR benchmark, so it is publishable on its own.</p>
+
+    <h3><span class="mk">11.1</span>The golden set</h3>
+    <ul>
+      <li><strong>500 queries</strong>, stratified: 40% citizen-scenario, 25% professional lookup, 15% procedural, 10% Urdu or Roman Urdu, 10% <em>deliberately unanswerable</em> from our corpus.</li>
+      <li>That last stratum is the one everyone forgets and the only way to measure abstention honestly. Without it, a system that always answers looks perfect.</li>
+      <li>Graded relevance per query (0&ndash;3) over provisions, annotated by two people independently, with <strong>Cohen&rsquo;s &kappa; reported</strong>. If agreement is poor the metric is noise, and better to know that in week 4.</li>
+      <li>Frozen test split, never used for tuning. Separate dev split for threshold calibration and reranker training.</li>
+    </ul>
+
+    <h3><span class="mk">11.2</span>Metrics, and what each one catches</h3>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Layer</th><th>Metric</th><th>Target</th><th>Catches</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Retrieval</td><td>NDCG@10, Recall@50, MRR@10</td><td class="n">&ge;0.75 / &ge;0.90 / &ge;0.70</td><td>Wrong or missing law reaching the model</td></tr>
+          <tr><td class="k">Gate</td><td>Abstention precision and recall on the unanswerable stratum</td><td class="n">&ge;0.90 / &ge;0.85</td><td>Confident answers with no legal basis</td></tr>
+          <tr><td class="k">Grounding</td><td>Span-entailment pass rate</td><td class="n">&ge;0.97</td><td>Claims that overreach their source</td></tr>
+          <tr><td class="k">Citation</td><td>Resolution rate and applicability rate</td><td class="n">1.00 / &ge;0.95</td><td>Resolution is 1.00 by construction; applicability needs human review</td></tr>
+          <tr><td class="k">Temporal</td><td>Point-in-time accuracy on 50 known amendments</td><td class="n">&ge;0.95</td><td>Serving the wrong version of a section</td></tr>
+          <tr><td class="k">Corpus</td><td>Segmentation F1 on 100 hand-labelled instruments</td><td class="n">&ge;0.97</td><td>Everything downstream &mdash; this is the base rate</td></tr>
+          <tr><td class="k">Bilingual</td><td>Parity: NDCG gap between Urdu and English versions of the same query</td><td class="n">&le;0.05</td><td>Urdu users getting a worse product</td></tr>
+          <tr><td class="k">Latency</td><td>p50 / p95 end to end</td><td class="n">&lt;1.5 s / &lt;4 s</td><td>A correct system nobody waits for</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Bilingual parity is the metric I would most want in the thesis. It is a direct, honest measure of whether the equity claim in the proposal is true, and no competitor reports anything like it.</p>
+
+    <h3><span class="mk">11.3</span>Ablations that make the thesis</h3>
+    <p>Each of these isolates one architectural claim, and each one is a figure:</p>
+    <ul>
+      <li>BM25 only &rarr; dense only &rarr; hybrid &rarr; hybrid + rerank &rarr; + graph expansion. Shows each stage earning its place.</li>
+      <li>Off-the-shelf reranker versus fine-tuned. This is the fine-tuning contribution, quantified.</li>
+      <li>Gate on versus off, measured on the unanswerable stratum. This is the anti-hallucination claim, quantified.</li>
+      <li>Translation-pipeline CLIR versus direct cross-lingual retrieval. Tests the departure in &sect;2 D4 rather than assuming it.</li>
+      <li>Hosted model versus self-hosted LoRA-tuned open weights, same context, same benchmark.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============== 12 ============== -->
+<section>
+  <div class="rail"><span class="num">&sect;12</span><span class="tag">Risk</span></div>
+  <div class="body">
+    <h2>What can go wrong</h2>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Risk</th><th>Likelihood</th><th>Response</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Court sites block or rate-limit the judgment scrapers</td><td><span class="chip c-miss">High</span></td><td>Start in week 1 so there is time to recover. Polite crawling with long backoff, per-site scheduling, resumable manifests. If a site hard-blocks, write to the registrar &mdash; these are public records and a research request from a university is frequently granted.</td></tr>
+          <tr><td class="k">Segmentation quality plateaus below the gate thresholds</td><td><span class="chip c-miss">High</span></td><td>This is why the curation console is phase 1. Budget real hours for human correction; recruit two law students. Corpus quality is the ceiling on everything and cannot be recovered later by a better model.</td></tr>
+          <tr><td class="k">Amendment extraction proves unreliable</td><td><span class="chip c-part">Medium</span></td><td>Degrade gracefully: ship current-law-only with amendment notes shown as raw footnote text, and mark point-in-time as available for the subset that resolved cleanly. Never guess a version boundary &mdash; flag it.</td></tr>
+          <tr><td class="k">A wrong answer causes real harm</td><td><span class="chip c-part">Medium</span></td><td>Register discipline, prominent disclaimers, abstention over guessing, full replay logs, an obvious reporting path, and a lawyer-referral off-ramp for anything with a live deadline. Carry the audit log from day one so an incident can be investigated rather than argued about.</td></tr>
+          <tr><td class="k">Scope collapse &mdash; nine aims, four people, one year</td><td><span class="chip c-miss">High</span></td><td>The phase table is the contract. Phases 0&ndash;3 are the project; 4&ndash;5 are the product. A working corpus with excellent retrieval and honest abstention beats nine half-built aims, both as a thesis and as a thing that exists afterwards.</td></tr>
+          <tr><td class="k">Copyright challenge from a reporter service</td><td><span class="chip c-plain">Low</span></td><td>Only official court text and government-published statutes. Reporter references used as identifiers, never their headnotes or editorial matter. Source URL and hash retained for every document so provenance is provable.</td></tr>
+          <tr><td class="k">Model provider price or policy change</td><td><span class="chip c-part">Medium</span></td><td>The provider port (&sect;6.1) plus a maintained self-hosted path means switching is a config change, and we have already benchmarked the alternative.</td></tr>
+          <tr><td class="k">Personal data exposure</td><td><span class="chip c-plain">Low</span></td><td>PII redaction before any text enters a training corpus. Anonymous mode with no persistence. Row-level security. Deletion honoured end to end including backups, anticipating the Personal Data Protection Bill.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============== 13 ============== -->
+<section>
+  <div class="rail"><span class="num">&sect;13</span><span class="tag">Open</span></div>
+  <div class="body">
+    <h2>Decisions I need from you</h2>
+    <p class="lede">Everything above is written so work can start without these answered. Each one changes something specific downstream.</p>
+    <ol>
+      <li><strong>Is the nine-aim structure contractual with your supervisor?</strong> If the panel is marking against those nine aims verbatim, I will keep the numbering and map this architecture onto it rather than replacing it &mdash; the substance survives either way, but OCR-as-Aim-2 and Llama-LoRA-as-Aim-4 need a defensible retelling if they must stay.</li>
+      <li><strong>Who is the primary user in year one &mdash; citizens or advocates?</strong> Both are served by the same corpus, but they pull the roadmap apart: citizens want explainers, procedure, documents and voice; advocates want the citator, boolean search, point-in-time and export. I would build advocate-first because they pay and they find our errors for us, then widen. Say if you disagree.</li>
+      <li><strong>Do you have a practising advocate who will review output?</strong> Not optional for the document factory. One advocate reviewing three templates and fifty answers de-risks the entire liability surface. If you do not have one, this becomes a phase-0 task.</li>
+      <li><strong>Budget ceiling per month?</strong> I have designed to roughly $20 during development and under $100 at pilot. If the real ceiling is $0 out of pocket, tell me &mdash; there is a fully free-tier variant, it is just slower and caps out sooner.</li>
+      <li><strong>Hard deadline?</strong> The phase table assumes ~24 weeks. If the FYP deadline is tighter, I cut phase 4 clients before I cut phase 1 corpus quality.</li>
+      <li><strong>Any institutional constraint requiring self-hosted models only?</strong> Changes the default provider routing, not the architecture.</li>
+    </ol>
+    <div class="note blue">
+      <h4>Where I would start tomorrow</h4>
+      <p>Three things, in parallel, before any application code: point the judgment scrapers at the Supreme Court and the five High Courts; sit the four of you down and annotate the first hundred golden-set queries; and write the ingest stages 1&ndash;4 against the PPC alone until the parsed provision tree matches the printed table of contents exactly. If those three are working in a fortnight, the rest of this document is execution.</p>
+    </div>
+  </div>
+</section>
+
+</div>

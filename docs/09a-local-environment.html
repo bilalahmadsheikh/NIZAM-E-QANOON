@@ -1,0 +1,652 @@
+<title>Nizam-e-Qanoon Local Environment</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+:root{
+  --paper:#F3F4F7; --surface:#FFFFFF; --surface-2:#EDEFF3; --surface-3:#E3E7EE;
+  --ink:#14171E; --ink-2:#4C5566; --ink-3:#7E879A;
+  --rule:#DCDFE7; --rule-2:#C6CBD6;
+  --indigo:#26397A; --indigo-soft:#E4E8F5;
+  --rubric:#9E3B2F; --rubric-soft:#F6E7E4;
+  --ok:#2C6349; --ok-soft:#E0EDE7;
+  --warn:#7E6114; --warn-soft:#F3EBD8;
+  --shadow:0 1px 2px rgba(20,23,30,.05), 0 8px 24px -12px rgba(20,23,30,.14);
+  --f-display:"Newsreader", Georgia, serif;
+  --f-body:"Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --measure:70ch; --rail:9.5rem;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0D0F14; --surface:#14171E; --surface-2:#1B1F28; --surface-3:#232935;
+    --ink:#E6E9EF; --ink-2:#A0A9BA; --ink-3:#6D7688;
+    --rule:#252A34; --rule-2:#333A47;
+    --indigo:#93A8E8; --indigo-soft:#1B2136;
+    --rubric:#D8867A; --rubric-soft:#2B1D1B;
+    --ok:#6FBF95; --ok-soft:#152520;
+    --warn:#D3AB5C; --warn-soft:#241E10;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 30px -14px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0D0F14; --surface:#14171E; --surface-2:#1B1F28; --surface-3:#232935;
+  --ink:#E6E9EF; --ink-2:#A0A9BA; --ink-3:#6D7688;
+  --rule:#252A34; --rule-2:#333A47;
+  --indigo:#93A8E8; --indigo-soft:#1B2136;
+  --rubric:#D8867A; --rubric-soft:#2B1D1B;
+  --ok:#6FBF95; --ok-soft:#152520;
+  --warn:#D3AB5C; --warn-soft:#241E10;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 30px -14px rgba(0,0,0,.7);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);
+  font-size:16.5px;line-height:1.62;-webkit-font-smoothing:antialiased}
+.wrap{max-width:76rem;margin:0 auto;padding:0 1.5rem 8rem}
+.masthead{border-bottom:2px solid var(--ink);padding:3.5rem 0 1.25rem;margin-bottom:2rem}
+.kicker{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--rubric);margin:0 0 1rem}
+h1{font-family:var(--f-display);font-weight:500;font-size:clamp(2.4rem,5.8vw,3.9rem);
+  line-height:1.03;letter-spacing:-.021em;margin:0 0 .5rem;text-wrap:balance}
+.dek{font-family:var(--f-display);font-size:clamp(1.05rem,2.1vw,1.3rem);color:var(--ink-2);
+  max-width:56ch;margin:0 0 1.9rem;font-style:italic}
+.meta{display:flex;flex-wrap:wrap;gap:.5rem 2.25rem;font-family:var(--f-mono);font-size:.7rem;
+  letter-spacing:.05em;color:var(--ink-3);border-top:1px solid var(--rule);padding-top:.9rem}
+.meta b{color:var(--ink-2);font-weight:500}
+section{display:grid;grid-template-columns:var(--rail) minmax(0,1fr);gap:0 2.5rem;
+  padding-top:3.4rem;border-top:1px solid var(--rule);margin-top:3.4rem}
+section.first{border-top:none;margin-top:0}
+.rail{position:sticky;top:1.5rem;align-self:start;padding-top:.4rem}
+.rail .num{font-family:var(--f-mono);font-size:1.05rem;font-weight:600;color:var(--rubric);letter-spacing:-.02em;display:block}
+.rail .tag{font-family:var(--f-mono);font-size:.63rem;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--ink-3);display:block;margin-top:.5rem;line-height:1.55}
+.body{min-width:0}
+@media (max-width:880px){
+  section{grid-template-columns:1fr;gap:0}
+  .rail{position:static;display:flex;align-items:baseline;gap:.85rem;margin-bottom:.9rem;padding-top:0}
+  .rail .tag{margin-top:0}
+}
+h2{font-family:var(--f-display);font-weight:500;font-size:clamp(1.6rem,3.3vw,2.2rem);
+  line-height:1.14;letter-spacing:-.017em;margin:0 0 .8rem;text-wrap:balance}
+h3{font-family:var(--f-body);font-weight:700;font-size:1.01rem;margin:2.6rem 0 .55rem}
+h3 .mk{font-family:var(--f-mono);color:var(--rubric);font-weight:600;margin-inline-end:.55rem;font-size:.88em}
+h4{font-family:var(--f-mono);font-weight:600;font-size:.71rem;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--ink-3);margin:1.9rem 0 .6rem}
+p{margin:0 0 1.05rem;max-width:var(--measure)}
+.lede{font-size:1.075rem;color:var(--ink-2);max-width:62ch}
+ul,ol{margin:0 0 1.15rem;padding-inline-start:1.3rem;max-width:var(--measure)}
+li{margin-bottom:.4rem}
+li::marker{color:var(--ink-3)}
+a{color:var(--indigo);text-underline-offset:.18em;word-break:break-word}
+a:focus-visible{outline:2px solid var(--indigo);outline-offset:3px;border-radius:2px}
+code{font-family:var(--f-mono);font-size:.855em;font-variant-ligatures:none}
+p code,li code,td code,figcaption code{background:var(--surface-2);border:1px solid var(--rule);
+  padding:.06em .34em;border-radius:3px;color:var(--ink)}
+.scroll{overflow-x:auto;margin:1.4rem 0 1.9rem;border:1px solid var(--rule);border-radius:5px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:.83rem;line-height:1.5}
+th{text-align:left;font-family:var(--f-mono);font-weight:600;font-size:.645rem;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--ink-3);padding:.7rem .8rem;border-bottom:1px solid var(--rule-2);
+  white-space:nowrap;background:var(--surface-2)}
+td{padding:.65rem .8rem;border-bottom:1px solid var(--rule);vertical-align:top}
+tr:last-child td{border-bottom:none}
+tbody tr:hover td{background:var(--surface-2)}
+td.n,th.n{font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap;text-align:right}
+td.n{font-size:.9em}
+td.id{font-family:var(--f-mono);font-size:.76rem;color:var(--rubric);white-space:nowrap;font-weight:500}
+td.k{font-weight:600;min-width:9.5rem}
+tfoot td{font-weight:700;border-top:1px solid var(--rule-2);background:var(--surface-2)}
+caption{caption-side:bottom;text-align:left;font-size:.76rem;color:var(--ink-3);padding:.7rem .8rem;border-top:1px solid var(--rule)}
+.chip{display:inline-block;font-family:var(--f-mono);font-size:.6rem;letter-spacing:.09em;
+  text-transform:uppercase;font-weight:600;padding:.2em .5em;border-radius:3px;white-space:nowrap;border:1px solid transparent}
+.c-have{background:var(--ok-soft);color:var(--ok);border-color:var(--ok)}
+.c-part{background:var(--warn-soft);color:var(--warn);border-color:var(--warn)}
+.c-miss{background:var(--rubric-soft);color:var(--rubric);border-color:var(--rubric)}
+.c-new{background:var(--indigo-soft);color:var(--indigo);border-color:var(--indigo)}
+.c-plain{background:var(--surface-2);color:var(--ink-3);border-color:var(--rule-2)}
+.note{border-inline-start:3px solid var(--rubric);background:var(--surface);padding:1rem 1.15rem;
+  margin:1.5rem 0;border-radius:0 4px 4px 0;max-width:var(--measure);box-shadow:var(--shadow)}
+.note.blue{border-inline-start-color:var(--indigo)}
+.note p:last-child,.note ul:last-child{margin-bottom:0}
+.note h4{margin-top:0}
+figure{margin:2rem 0;background:var(--surface);border:1px solid var(--rule);border-radius:5px;
+  padding:1.4rem 1.2rem .9rem;box-shadow:var(--shadow);overflow-x:auto}
+figure svg{display:block;width:100%;min-width:40rem;max-width:100%;height:auto;color:var(--ink)}
+figcaption{margin-top:1rem;padding-top:.8rem;border-top:1px solid var(--rule);
+  font-size:.78rem;color:var(--ink-3);line-height:1.55}
+figcaption b{color:var(--ink-2);font-weight:600}
+.fignum{font-family:var(--f-mono);font-size:.63rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--rubric);font-weight:600;display:block;margin-bottom:.7rem}
+pre{background:var(--surface);border:1px solid var(--rule);border-radius:5px;padding:1rem 1.05rem;
+  overflow-x:auto;margin:1.25rem 0;font-family:var(--f-mono);font-size:.775rem;line-height:1.65;color:var(--ink-2)}
+pre b{color:var(--ink);font-weight:600}
+pre i{color:var(--ink-3);font-style:normal}
+pre u{color:var(--rubric);text-decoration:none}
+.dgdefs{position:absolute;width:0;height:0;overflow:hidden}
+.dgdefs .mk{fill:var(--ink)}
+.dgdefs .mkA{fill:var(--rubric)}
+.dg{font-family:var(--f-mono);font-size:10.5px}
+.dg .bx{fill:none;stroke:currentColor;stroke-width:1.2}
+.dg .bxf{fill:var(--surface-2);stroke:currentColor;stroke-width:1.2}
+.dg .bxg{fill:none;stroke:currentColor;stroke-width:1;opacity:.4}
+.dg .ext{fill:none;stroke:currentColor;stroke-width:1.2;stroke-dasharray:5 3;opacity:.7}
+.dg .acc{fill:none;stroke:var(--rubric);stroke-width:1.6}
+.dg .accf{fill:var(--rubric-soft);stroke:var(--rubric);stroke-width:1.4}
+.dg text{fill:currentColor}
+.dg .ta{fill:var(--rubric);font-weight:600}
+.dg .tm{fill:currentColor;opacity:.62;font-size:9.5px}
+.dg .th{font-weight:600}
+.dg .ln{stroke:currentColor;stroke-width:1.1;fill:none}
+.dg .lnA{stroke:var(--rubric);stroke-width:1.4;fill:none}
+.dg .lnD{stroke:currentColor;stroke-width:1.1;fill:none;stroke-dasharray:5 3}
+.dg .sep{stroke:currentColor;stroke-width:1;opacity:.35}
+.dg .bar{fill:var(--indigo)}
+.dg .barA{fill:var(--rubric)}
+.refs{font-size:.8rem;line-height:1.6}
+.refs li{margin-bottom:.55rem}
+</style>
+
+<svg class="dgdefs" aria-hidden="true" focusable="false">
+  <defs>
+    <marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path class="mk" d="M0,1 L9,5 L0,9 z"/></marker>
+    <marker id="arwA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path class="mkA" d="M0,1 L9,5 L0,9 z"/></marker>
+    <marker id="arwO" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,1 L9,5 L0,9" fill="none" stroke="currentColor" stroke-width="1.4"/></marker>
+  </defs>
+</svg>
+
+<div class="wrap">
+
+<header class="masthead">
+  <p class="kicker">Document 09a &middot; child of 09 Platform &amp; Operations &middot; verified 28 Aug 2026</p>
+  <h1>Nizam-e-Qanoon Local Environment</h1>
+  <p class="dek">Exactly what each machine needs, what every process consumes, and the bootstrap that takes a clean laptop to a queryable national legal corpus in one overnight run.</p>
+  <div class="meta">
+    <span><b>Scope</b> ADR-1g &mdash; build production locally</span>
+    <span><b>Revision</b> 1.1 &mdash; RAM corrected</span>
+    <span><b>Figures</b> 2</span>
+    <span><b>Pairs with</b> 09b Production Deployment</span>
+  </div>
+</header>
+
+<!-- ============ 1 ============ -->
+<section class="first">
+  <div class="rail"><span class="num">&sect;1</span><span class="tag">Machine<br>or job</span></div>
+  <div class="body">
+    <h2>There is one machine and one job</h2>
+    <p class="lede">The distinction matters more than any spec. <strong>Parsing the corpus is a job that runs a handful of times in the project&rsquo;s entire life.</strong> Every developer machine restores the result instead &mdash; and never opens a PDF at all.</p>
+
+    <div class="scroll">
+      <table>
+        <caption>Corrected from v1.0, which framed the build machine as a per-developer profile. It is not: it is a few hours of rented compute, three or four times ever.</caption>
+        <thead><tr><th></th><th>The developer machine</th><th>The build job</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Who needs it</td><td>Everyone, every day</td><td>One person, three or four times in the project</td></tr>
+          <tr><td class="k">What it does</td><td>Restores a physical backup and develops against it</td><td>Parses 4,710 statutes and ~120,000 judgments once, then publishes a backup</td></tr>
+          <tr><td class="k">RAM</td><td class="n"><strong>16 GB comfortable</strong><br>8 GB for client work</td><td class="n">16 GB is enough<br>32 GB is faster</td></tr>
+          <tr><td class="k">Cores</td><td class="n">4</td><td class="n">8 &mdash; parse is embarrassingly parallel</td></tr>
+          <tr><td class="k">Free disk</td><td class="n">~35 GB<br><span class="tm">~25 GB without Flutter</span></td><td class="n">~120 GB<br><span class="tm">judgment sources dominate</span></td></tr>
+          <tr><td class="k">Where it runs</td><td>Your laptop</td><td><strong>Rent it.</strong> A Hetzner box for one day is about &euro;2, or use the production server before it goes live</td></tr>
+          <tr><td class="k">Runs how often</td><td>Continuously</td><td>Once on first build; again only when the parser or the embedding model changes</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3><span class="mk">1.1</span>How everyone else gets the corpus</h3>
+    <p>Because the Postgres image is digest-pinned and identical everywhere, the corpus ships as a <strong>physical</strong> pgBackRest backup rather than a logical dump. A physical restore is a file copy: the indexes arrive already built, so there is no HNSW rebuild on the receiving machine.</p>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Corpus</th><th class="n">Backup size</th><th class="n">Physical restore</th><th class="n">pg_restore instead</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Statutes only</td><td class="n">~280 MB</td><td class="n"><strong>&lt; 1 min</strong></td><td class="n">~4 min &mdash; rebuilds every index</td></tr>
+          <tr><td class="k">With judgments</td><td class="n">~3.5 GB</td><td class="n"><strong>~6 min</strong></td><td class="n">~50 min &mdash; the HNSW build dominates</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>This is also why the restore drill in &sect;7 is not overhead: the procedure that gives a new developer a corpus is the same procedure that recovers production, so it gets exercised weekly rather than discovered during an incident.</p>
+
+    <h3><span class="mk">1.2</span>Where PDF parsing actually appears</h3>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Context</th><th>Parses PDFs?</th><th>Volume</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Developer machine</td><td><span class="chip c-miss">Never</span></td><td>Restores a backup</td></tr>
+          <tr><td class="k">CI</td><td><span class="chip c-part">Fixtures only</span></td><td>~20 documents, seconds</td></tr>
+          <tr><td class="k">Production, steady state</td><td><span class="chip c-part">Deltas only</span></td><td>20&ndash;50 new gazette documents per week. One small worker, minutes</td></tr>
+          <tr><td class="k">Production, user upload</td><td><span class="chip c-part">On demand</span></td><td>One document at a time, bounded and sandboxed</td></tr>
+          <tr><td class="k">The build job</td><td><span class="chip c-have">All of it</span></td><td>4,710 + ~120,000 documents. Once</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Content-hash gating is what keeps the steady state small: a re-scrape that finds no change does no work, so the ingest worker in production is a cron job sized in hundreds of megabytes, not the eight-worker pool the build job uses.</p>
+
+    <div class="note">
+      <h4>The one hardware rule that still matters</h4>
+      <p>Keep <code>pgdata</code> on the internal NVMe, inside the Linux filesystem. On Windows that means inside WSL2, never on <code>/mnt/c</code> &mdash; the 9p bridge is roughly ten times slower for many small files, and every index operation is random I/O. Source documents can live on external storage; they are read sequentially, once, by a job you are renting a machine for anyway.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2 ============ -->
+<section>
+  <div class="rail"><span class="num">&sect;2</span><span class="tag">Software<br>inventory</span></div>
+  <div class="body">
+    <h2>Exactly what to install</h2>
+    <p class="lede">Everything that touches the database or the corpus runs in Docker, so its version is pinned by an image digest and identical to production. Everything else is a host toolchain.</p>
+
+    <h4>In Docker &mdash; pinned, identical to production</h4>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Component</th><th>Image / version</th><th class="n">Disk</th><th>Why this one</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Postgres + extensions</td><td><code>paradedb/paradedb:latest-pg17</code>, digest-pinned</td><td class="n">1.5 GB</td><td>Ships <code>pg_search</code> (BM25 over Tantivy) preinstalled alongside stock Postgres 17. Building <code>pg_search</code> from source needs a full Rust and <code>pgrx</code> toolchain; the image removes that from every developer&rsquo;s setup. <code>pgvector</code> and <code>ltree</code> added in our own layer</td></tr>
+          <tr><td class="k">API</td><td><code>python:3.12-slim</code> + uv</td><td class="n">0.9 GB</td><td>uv resolves and installs an order of magnitude faster than pip, and its lockfile is exact</td></tr>
+          <tr><td class="k">Inference worker</td><td>same base + ONNX Runtime</td><td class="n">1.1 GB</td><td>CPU int8 inference; no CUDA in the local image</td></tr>
+          <tr><td class="k">Ingest worker</td><td>same base + PyMuPDF, Tesseract</td><td class="n">1.3 GB</td><td>Pulled on developer machines but normally idle &mdash; it processes deltas, not the corpus. Tesseract only for the ~150-document OCR fallback lane</td></tr>
+          <tr><td class="k">pgAdmin 4</td><td><code>dpage/pgadmin4</code></td><td class="n">0.5 GB</td><td>Inspection only &mdash; never the source of schema truth (&sect;6)</td></tr>
+          <tr><td class="k">MinIO</td><td><code>minio/minio</code></td><td class="n">0.3 GB</td><td>S3-compatible stand-in for Cloudflare R2, so the blob code path is identical locally</td></tr>
+          <tr><td class="k">Observability</td><td>Grafana, Loki, Tempo</td><td class="n">1.2 GB</td><td>Optional locally; the retrieval traces are what make a bad answer debuggable</td></tr>
+        </tbody>
+        <tfoot><tr><td>Docker images total</td><td></td><td class="n">~6.8 GB</td><td></td></tr></tfoot>
+      </table>
+    </div>
+
+    <h4>On the host</h4>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Tool</th><th>Version</th><th class="n">Disk</th><th>Needed by</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Docker Engine + Compose v2</td><td>current</td><td class="n">1 GB</td><td>Everyone. On Windows, Docker Desktop with the WSL2 backend</td></tr>
+          <tr><td class="k">Python</td><td>3.12</td><td class="n">3 GB</td><td>Everyone &mdash; virtualenvs for tooling and migrations</td></tr>
+          <tr><td class="k">uv</td><td>current</td><td class="n">&lt;0.1 GB</td><td>Dependency management, lockfile</td></tr>
+          <tr><td class="k">Node.js</td><td>22 LTS</td><td class="n">2 GB</td><td>Web app, public pages, curation console</td></tr>
+          <tr><td class="k">Flutter SDK + Android SDK</td><td>stable channel</td><td class="n">15 GB</td><td>Client engineer only. The Android emulator image is most of this</td></tr>
+          <tr><td class="k">TeX Live (subset)</td><td><code>scheme-medium</code> + <code>polyglossia</code>, Nastaliq font</td><td class="n">2.5 GB</td><td>Document factory only. Runs in a container in production; locally it is easier on the host</td></tr>
+          <tr><td class="k">poppler-utils</td><td>current</td><td class="n">&lt;0.1 GB</td><td><code>pdftotext</code> for quick corpus inspection and for the extraction cross-check</td></tr>
+          <tr><td class="k">git + git-lfs</td><td>current</td><td class="n">0.2 GB</td><td>Everyone. LFS for golden-set fixtures, never for the corpus</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3><span class="mk">2.1</span>Disk budget, itemised</h3>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Item</th><th class="n">Developer</th><th class="n">Build job</th><th>Note</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Docker images</td><td class="n">6.8 GB</td><td class="n">6.8 GB</td><td>&mdash;</td></tr>
+          <tr><td class="k">Host toolchains</td><td class="n">23.8 GB</td><td class="n">23.8 GB</td><td>Flutter and Android SDK are 15 GB of this; omit if not the client engineer</td></tr>
+          <tr><td class="k">Source PDFs &mdash; statutes</td><td class="n">&mdash;</td><td class="n">1.9 GB</td><td>Measured: 1,857 MB across 4,710 files. Developers never hold these</td></tr>
+          <tr><td class="k">Source documents &mdash; judgments</td><td class="n">&mdash;</td><td class="n">~40 GB</td><td>~120,000 documents; the single largest item</td></tr>
+          <tr><td class="k">Extraction staging</td><td class="n">&mdash;</td><td class="n">4 GB</td><td>Normalised text before segmentation; deletable after a successful run</td></tr>
+          <tr><td class="k">Postgres data directory</td><td class="n">0.8&ndash;10 GB</td><td class="n">10 GB</td><td>From the capacity-plan storage model</td></tr>
+          <tr><td class="k">WAL + restored backup</td><td class="n">4 GB</td><td class="n">8 GB</td><td><code>max_wal_size</code> is raised during bulk load</td></tr>
+          <tr><td class="k">Model artifacts (ONNX int8)</td><td class="n">2 GB</td><td class="n">2 GB</td><td>Itemised in &sect;5</td></tr>
+          <tr><td class="k">Transient during model conversion</td><td class="n">&mdash;</td><td class="n">6 GB</td><td>fp32 originals; deletable once converted</td></tr>
+        </tbody>
+        <tfoot><tr><td>Free disk to have available</td><td class="n">~35 GB</td><td class="n">~103 GB</td><td>Developer figure drops to ~20 GB without the Flutter and Android SDKs</td></tr></tfoot>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ 3 ============ -->
+<section>
+  <div class="rail"><span class="num">&sect;3</span><span class="tag">Topology<br>&amp; memory</span></div>
+  <div class="body">
+    <h2>What runs, and what it consumes</h2>
+
+<figure>
+  <span class="fignum">Figure 1 &mdash; Local topology on a 16 GB laptop</span>
+<svg class="dg" viewBox="0 0 940 412" role="img" aria-label="Local development topology on a sixteen gigabyte laptop. A Docker Compose network runs Postgres with two gigabytes of shared buffers, the FastAPI service, an inference worker holding three quantised models, a small delta ingest worker, pgAdmin and MinIO. Outside Docker, Node runs the development server. The eight-worker ingest pool and the Android emulator are marked as absent, belonging to the rented build job and to a physical phone respectively.">
+  <rect class="bxg" x="16" y="16" width="908" height="380" rx="6" stroke-dasharray="6 4"/>
+  <text class="tm" x="26" y="34">laptop &mdash; 16 GB RAM, 4 cores, NVMe &middot; corpus arrives by restore, never by parse</text>
+
+  <rect class="bx" x="32" y="46" width="562" height="334" rx="4"/>
+  <text class="ta" x="44" y="64" font-size="9.5">docker compose &mdash; network: nzq</text>
+
+  <rect class="accf" x="48" y="76" width="248" height="66" rx="3"/>
+  <g class="bx">
+    <rect x="312" y="76"  width="266" height="66" rx="3"/>
+    <rect x="48"  y="158" width="248" height="66" rx="3"/>
+    <rect x="312" y="158" width="266" height="66" rx="3"/>
+    <rect x="48"  y="240" width="248" height="52" rx="3"/>
+    <rect x="312" y="240" width="266" height="52" rx="3"/>
+  </g>
+  <text class="ta" x="58" y="94" font-size="10.5">postgres</text>
+  <g class="th" font-size="10.5">
+    <text x="322" y="94">api</text>
+    <text x="58" y="176">inference</text>
+    <text x="322" y="176">ingest &times;1</text>
+    <text x="58" y="258">pgadmin + minio</text>
+    <text x="322" y="258">restored corpus</text>
+  </g>
+  <g class="tm">
+    <text x="58" y="110">paradedb:pg17 &middot; pgvector &middot; ltree</text>
+    <text x="58" y="124">shared_buffers <tspan class="ta">2 GB</tspan> &middot; :5432</text>
+    <text x="58" y="136" class="ta">3 GB total</text>
+    <text x="322" y="110">FastAPI + uvicorn, 2 workers</text>
+    <text x="322" y="124">:8000 &middot; SSE &middot; OpenAPI</text>
+    <text x="322" y="136" class="ta">0.5 GB</text>
+    <text x="58" y="192">embedder 560 MB &middot; reranker 35 MB</text>
+    <text x="58" y="206">entailment 280 MB &mdash; all int8</text>
+    <text x="58" y="218" class="ta">1.5 GB resident</text>
+    <text x="322" y="192">delta ingest only &mdash; a handful of</text>
+    <text x="322" y="206">documents, to exercise the path</text>
+    <text x="322" y="218" class="ta">0.3 GB</text>
+    <text x="58" y="274">inspection &middot; R2 stand-in</text>
+    <text x="58" y="286" class="ta">0.6 GB</text>
+    <text x="322" y="274">statutes 750 MB on disk &middot; judgments 10 GB</text>
+    <text x="322" y="286" class="ta">restored in under a minute</text>
+  </g>
+
+  <rect class="bxg" x="48" y="308" width="530" height="58" rx="3"/>
+  <text class="ta" x="58" y="326" font-size="9.5">ABSENT FROM THIS MACHINE</text>
+  <g class="tm">
+    <text x="58" y="344">the eight-worker ingest pool &mdash; it belongs to the rented build job (&sect;1)</text>
+    <text x="58" y="358">the observability stack &mdash; start it only when debugging retrieval, and stop it after</text>
+  </g>
+
+  <rect class="bx" x="612" y="46" width="296" height="334" rx="4"/>
+  <text class="ta" x="624" y="64" font-size="9.5">host &mdash; outside Docker</text>
+  <g class="bx">
+    <rect x="628" y="76"  width="264" height="64" rx="3"/>
+    <rect x="628" y="156" width="264" height="72" rx="3"/>
+    <rect x="628" y="244" width="264" height="60" rx="3"/>
+  </g>
+  <g class="th" font-size="10.5">
+    <text x="640" y="94">Node 22 &mdash; next dev</text>
+    <text x="640" y="174">Physical Android phone</text>
+    <text x="640" y="262">CLI</text>
+  </g>
+  <g class="tm">
+    <text x="640" y="110">web &middot; public pages &middot; console &middot; :3000</text>
+    <text x="640" y="126" class="ta">1.5 GB &mdash; the largest host process</text>
+    <text x="640" y="190">over USB. Replaces the emulator and</text>
+    <text x="640" y="204">tests the thing users actually hold.</text>
+    <text x="640" y="218" class="ta">saves 4 GB &mdash; the single biggest win</text>
+    <text x="640" y="280">uv &middot; alembic &middot; pdftotext &middot; git-lfs</text>
+    <text x="640" y="294" class="ta">migrations run from here, in git</text>
+  </g>
+  <text class="ta" x="624" y="336" font-size="10">Running total: ~10.5 GB</text>
+  <text class="tm" x="624" y="352">on a 16 GB machine, with 5.5 GB left</text>
+  <text class="tm" x="624" y="366">for the page cache to do real work</text>
+</svg>
+<figcaption><b>The two things not on this machine are what made the earlier estimate wrong.</b> The eight-worker ingest pool belongs to a rented build job, and the Android emulator is replaced by a phone on a cable. Removing both, and correcting the reranker from a 560M-parameter model to the fine-tuned MiniLM-class one the architecture already specifies, takes a 32 GB requirement down to about 10.5 GB.</figcaption>
+</figure>
+
+    <h3><span class="mk">3.1</span>Memory budget, corrected</h3>
+    <div class="scroll">
+      <table>
+        <caption>v1.0 of this document said 32 GB. That figure conflated the developer machine with the build job and assumed a 560M-parameter reranker that document 09b &sect;1.1 already argues against. Corrected here.</caption>
+        <thead><tr><th>Process</th><th class="n">Client work</th><th class="n">Backend work</th><th class="n">v1.0 said</th><th>Correction</th></tr></thead>
+        <tbody>
+          <tr><td class="k">OS + Docker runtime</td><td class="n">3.0 GB</td><td class="n">3.0 GB</td><td class="n">3.0</td><td>&mdash;</td></tr>
+          <tr><td class="k">Postgres</td><td class="n">&mdash;</td><td class="n">3.0 GB</td><td class="n">12.0</td><td><code>shared_buffers</code> 2 GB, not 8. The statutory index working set is ~400 MB &mdash; sizing to 25% of host RAM is an OLTP rule that does not fit a small hot index over a large cold corpus</td></tr>
+          <tr><td class="k">Inference worker</td><td class="n">&mdash;</td><td class="n">1.5 GB</td><td class="n">2.5</td><td>Embedder 560 MB + reranker <strong>35 MB</strong> + entailment 280 MB, int8. The old figure assumed a 560M reranker</td></tr>
+          <tr><td class="k">Ingest workers</td><td class="n">&mdash;</td><td class="n">0.3 GB</td><td class="n">2.0</td><td>One delta worker, not eight. The pool belongs to the build job</td></tr>
+          <tr><td class="k">API</td><td class="n">0.5 GB</td><td class="n">0.5 GB</td><td class="n">0.5</td><td>&mdash;</td></tr>
+          <tr><td class="k">pgAdmin + MinIO</td><td class="n">0.6 GB</td><td class="n">0.6 GB</td><td class="n">0.6</td><td>&mdash;</td></tr>
+          <tr><td class="k">Observability stack</td><td class="n">&mdash;</td><td class="n">&mdash;</td><td class="n">1.5</td><td>On demand only, and stopped afterwards</td></tr>
+          <tr><td class="k">Node dev server</td><td class="n">1.5 GB</td><td class="n">1.5 GB</td><td class="n">1.5</td><td>&mdash;</td></tr>
+          <tr><td class="k">Android emulator</td><td class="n">&mdash;</td><td class="n">&mdash;</td><td class="n">4.0</td><td>Use a physical phone. More accurate, and four gigabytes cheaper</td></tr>
+        </tbody>
+        <tfoot>
+          <tr><td>Running total</td><td class="n">5.6 GB</td><td class="n">10.4 GB</td><td class="n">27.6</td><td></td></tr>
+          <tr><td>Machine</td><td class="n">8 GB works</td><td class="n"><strong>16 GB comfortable</strong></td><td class="n">32 GB</td><td></td></tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <div class="note blue">
+      <h4>A 16 GB laptop runs the full corpus, including judgments</h4>
+      <p>The 10 GB judgment database sits on disk, not in memory. With <code>shared_buffers</code> at 2 GB plus whatever the OS caches, roughly a third of it stays hot &mdash; and the rest falls through to NVMe at about 100 microseconds a page. Retrieval p95 rises from around 190 ms to perhaps 350 ms.</p>
+      <p style="margin-top:.7rem"><strong>That is a latency difference, not a quality difference.</strong> Nothing about ranking, grounding, citation accuracy or abstention depends on how much of the index is cached. You would notice it while developing; no test would fail because of it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4 ============ -->
+<section>
+  <div class="rail"><span class="num">&sect;4</span><span class="tag">Postgres<br>config</span></div>
+  <div class="body">
+    <h2>Configuration, computed</h2>
+    <p class="lede">Default Postgres is tuned for a shared server from a decade ago and will make every number in this document wrong. These values are derived from the profile, not copied from a blog post.</p>
+
+<pre><i># postgresql.conf &mdash; developer machine, 16 GB host, ~3 GB budget for Postgres</i>
+
+<b>shared_buffers</b>                  = 2GB      <i>sized to the working set, not to a share of host</i>
+                                             <i>RAM. The statutory index hot set is ~400 MB</i>
+<b>effective_cache_size</b>            = 8GB      <i>planner hint: what the OS is likely caching.</i>
+                                             <i>Not an allocation &mdash; it only shapes plans</i>
+<b>work_mem</b>                        = 64MB     <i>per sort/hash node, per parallel worker.</i>
+                                             <i>64MB x 4 workers x 8 conns = 2GB worst case</i>
+<b>maintenance_work_mem</b>            = 1GB      <i>only matters on the build job; a developer</i>
+                                             <i>machine restores indexes rather than building them</i>
+<b>max_worker_processes</b>            = 16
+<b>max_parallel_workers</b>            = 4        <i>= physical cores</i>
+<b>max_parallel_workers_per_gather</b> = 4
+<b>max_parallel_maintenance_workers</b>= 4        <i>parallel HNSW build &mdash; the single biggest</i>
+                                             <i>win on index build time</i>
+<b>random_page_cost</b>                = 1.1      <i>NVMe. Leaving this at 4.0 makes the planner</i>
+                                             <i>avoid index scans it should be using</i>
+<b>effective_io_concurrency</b>        = 200      <i>NVMe queue depth</i>
+<b>wal_buffers</b>                     = 64MB
+<b>max_wal_size</b>                    = 8GB      <i>bulk load; lower to 2GB for normal operation</i>
+<b>checkpoint_timeout</b>              = 15min
+<b>checkpoint_completion_target</b>    = 0.9
+<b>jit</b>                             = off      <i>hurts more than it helps on our query shapes</i>
+
+<i># extensions</i>
+<b>shared_preload_libraries</b>        = 'pg_search'   <i>required only below PG 17; harmless on 17</i>
+
+<i># session-level, set by the retrieval layer rather than globally</i>
+<b>hnsw.ef_search</b>                  = 100      <i>raise for recall, lower for latency.</i>
+                                             <i>Cluster-wide changes need ALTER SYSTEM +</i>
+                                             <i>pg_reload_conf(), not ALTER ROLE</i></pre>
+
+    <div class="note blue">
+      <h4>Bulk-load profile</h4>
+      <p>During a full corpus ingest, switch to a second config: <code>maintenance_work_mem = 8GB</code>, <code>max_wal_size = 16GB</code>, <code>autovacuum = off</code> on the four large tables, <code>synchronous_commit = off</code>. Then re-enable autovacuum, run <code>ANALYZE</code>, and build the HNSW and BM25 indexes <em>last</em>. Building indexes before the load is the most common way to turn a 45-minute index build into a six-hour one.</p>
+    </div>
+
+    <h3><span class="mk">4.1</span>Build-job adjustments</h3>
+    <p>The rented build machine is the only place these apply, and every line is reverted once the corpus backup is published.</p>
+    <pre><b>shared_buffers</b>        = 8GB     <b>effective_cache_size</b> = 20GB
+<b>work_mem</b>              = 64MB    <b>maintenance_work_mem</b> = 8GB   <i>during the HNSW build</i>
+<b>max_parallel_workers</b>  = 8       <b>max_parallel_maintenance_workers</b> = 4
+<b>max_wal_size</b>          = 16GB    <b>synchronous_commit</b> = off
+<b>autovacuum</b>            = off     <i>on the four large tables only; re-enable and ANALYZE after</i></pre>
+  </div>
+</section>
+
+<!-- ============ 5 ============ -->
+<section>
+  <div class="rail"><span class="num">&sect;5</span><span class="tag">Models<br>&amp; GPU</span></div>
+  <div class="body">
+    <h2>Model artifacts and the one job that needs a GPU</h2>
+    <div class="scroll">
+      <table>
+        <caption>Sizes are approximate and depend on the exact checkpoint. Convert to ONNX int8 once, commit the digest, and never let two machines run different weights.</caption>
+        <thead><tr><th>Model</th><th>Role</th><th class="n">fp32</th><th class="n">ONNX int8</th><th>Runs on</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Multilingual embedder, 1024-dim</td><td>Server-side chunk and query embedding; the vectors that get binary-quantised</td><td class="n">~2.2 GB</td><td class="n">~560 MB</td><td>CPU for queries, GPU for the corpus pass</td></tr>
+          <tr><td class="k">Multilingual embedder, 384-dim quantised</td><td>Offline pack vectors and the on-device encoder shipped in the semantic tier</td><td class="n">~120 MB</td><td class="n">~25 MB</td><td>CPU</td></tr>
+          <tr><td class="k">Cross-encoder reranker</td><td>Stage-3 precision; the reason binary quantisation is safe</td><td class="n">~130 MB</td><td class="n"><strong>~35 MB</strong></td><td>CPU, int8. MiniLM-class and fine-tuned &mdash; see 09b &sect;1.1 for why small is the right call</td></tr>
+          <tr><td class="k">NLI entailment</td><td>Tier-2 claim verification</td><td class="n">~1.1 GB</td><td class="n">~280 MB</td><td>CPU, int8</td></tr>
+        </tbody>
+        <tfoot><tr><td>Steady-state on disk</td><td></td><td class="n">~3.5 GB</td><td class="n">~0.9 GB</td><td>Keep only the int8 files after conversion</td></tr></tfoot>
+      </table>
+    </div>
+
+    <h3><span class="mk">5.1</span>Embedding throughput, and why judgments need rented silicon</h3>
+    <div class="scroll">
+      <table>
+        <caption>Chunk counts from the capacity plan. CPU rates are for an 8-core laptop with batching; GPU rates for a rented consumer card. Verify on your own hardware before planning around them.</caption>
+        <thead><tr><th>Pass</th><th class="n">Chunks</th><th class="n">CPU</th><th class="n">Rented GPU</th><th>Verdict</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Statutes, 1024-dim</td><td class="n">158,000</td><td class="n">~53 min<br><span class="tm">~50/sec</span></td><td class="n">~5 min<br><span class="tm">~1,500/sec</span></td><td><span class="chip c-have">CPU is fine</span></td></tr>
+          <tr><td class="k">Statutes, 384-dim for the pack</td><td class="n">14,000</td><td class="n">~35 sec<br><span class="tm">~400/sec</span></td><td class="n">&mdash;</td><td><span class="chip c-have">CPU is fine</span></td></tr>
+          <tr><td class="k">Judgments, 1024-dim</td><td class="n">4,800,000</td><td class="n">~27 hours</td><td class="n">~53 min</td><td><span class="chip c-miss">Rent a GPU</span></td></tr>
+          <tr><td class="k">Answer-tier questions</td><td class="n">12,000</td><td class="n">~30 sec</td><td class="n">&mdash;</td><td><span class="chip c-have">CPU is fine</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p><strong>One rented hour, under a dollar, once.</strong> The judgment embedding pass is the only workload in the entire project that justifies a GPU, and it is a batch job that runs when the corpus lands and again only when the embedding model changes. Rent a consumer card by the hour, mount the corpus, write vectors back over the network, and destroy the instance. Buying a GPU for this would be a category error &mdash; and note that the same conclusion holds in production, where ADR-1f keeps the GPU node off every request path.</p>
+  </div>
+</section>
+
+
+<!-- ============ 6 ============ -->
+<section>
+  <div class="rail"><span class="num">&sect;6</span><span class="tag">Bootstrap</span></div>
+  <div class="body">
+    <h2>The build job, start to finish</h2>
+    <p class="lede">This sequence runs on the <em>rented</em> machine, three or four times in the project&rsquo;s life. Every stage writes its state to the database, so an interrupted run continues rather than restarting &mdash; which matters because stage 3 on the full corpus runs for two hours. A developer setting up for the first time runs steps 0 to 2 and then restores a backup instead of steps 3 to 5.</p>
+
+<pre><i># 0 &mdash; prerequisites, once</i>
+docker compose version                       <i>v2, and set the Desktop memory cap explicitly</i>
+uv --version ; node -v ; git lfs install
+
+<i># 1 &mdash; bring up the stack and create the schema</i>
+git clone &lt;repo&gt; &amp;&amp; cd nizam
+cp .env.example .env                         <i>set POSTGRES_PASSWORD, R2 keys optional locally</i>
+docker compose up -d postgres minio
+uv run alembic upgrade head                  <u>the schema exists only because of this</u>
+uv run python -m nizam.ops.verify_extensions <i>fails loudly on a version mismatch</i>
+
+<i># 2 &mdash; fetch model artifacts and convert once</i>
+uv run python -m nizam.ops.fetch_models --int8
+docker compose up -d inference api
+
+<i># 3 &mdash; ingest, resumable at every stage</i>
+uv run python -m nizam.corpus.run --source federal   --workers 8
+uv run python -m nizam.corpus.run --source provincial --workers 8
+uv run python -m nizam.corpus.run --source judgments  --workers 8   <i>build job only</i>
+
+<i># 4 &mdash; embed. CPU for statutes; rent a card for judgments</i>
+uv run python -m nizam.index.embed --scope statutes            <i>~53 min CPU</i>
+uv run python -m nizam.index.embed --scope judgments --remote  <i>~53 min on a rented GPU</i>
+
+<i># 5 &mdash; build indexes last, with the bulk-load config still active</i>
+uv run python -m nizam.index.build --hnsw --bm25 --analyze
+
+<i># 6 &mdash; prove it</i>
+uv run pytest tests/integration
+uv run python -m nizam.evals.run --set golden --report
+uv run python -m nizam.ops.backup --to local &amp;&amp; uv run python -m nizam.ops.restore --check</pre>
+
+<figure>
+  <span class="fignum">Figure 2 &mdash; The build job, run once</span>
+<svg class="dg" viewBox="0 0 940 386" role="img" aria-label="Gantt chart of the one-time corpus build job. Compose and migrate take five minutes, statute extraction fifteen, judgment extraction two hours, segmentation and enrichment forty minutes, quality gates twenty, publication ten, embedding on a rented GPU fifty-eight, HNSW index build forty-five, full-text index twenty-five, and the evaluation run fifteen, totalling about five hours and fifty minutes. A note shows that CPU-only embedding would take twenty-seven hours instead.">
+  <g class="bxg">
+    <line x1="190" y1="34" x2="190" y2="320"/>
+    <line x1="307" y1="34" x2="307" y2="320"/>
+    <line x1="423" y1="34" x2="423" y2="320"/>
+    <line x1="540" y1="34" x2="540" y2="320"/>
+    <line x1="657" y1="34" x2="657" y2="320"/>
+    <line x1="773" y1="34" x2="773" y2="320"/>
+    <line x1="890" y1="34" x2="890" y2="320"/>
+  </g>
+
+  <g class="bar">
+    <rect x="190" y="42"  width="10"  height="18" rx="3"><title>compose up + alembic upgrade — 5 min</title></rect>
+    <rect x="200" y="70"  width="29"  height="18" rx="3"><title>extract + normalise statutes — 15 min</title></rect>
+    <rect x="229" y="98"  width="233" height="18" rx="3"><title>extract + normalise judgments — 120 min</title></rect>
+    <rect x="462" y="126" width="78"  height="18" rx="3"><title>segment, enrich, version — 40 min</title></rect>
+    <rect x="540" y="154" width="39"  height="18" rx="3"><title>seven QA gates — 20 min</title></rect>
+    <rect x="579" y="182" width="19"  height="18" rx="3"><title>publish transaction — 10 min</title></rect>
+  </g>
+  <g class="barA">
+    <rect x="598" y="210" width="113" height="18" rx="3"><title>embed 4.96M chunks on a rented GPU — 58 min</title></rect>
+  </g>
+  <g class="bar">
+    <rect x="711" y="238" width="88"  height="18" rx="3"><title>HNSW build, parallel — 45 min</title></rect>
+    <rect x="799" y="266" width="49"  height="18" rx="3"><title>BM25 and GIN indexes — 25 min</title></rect>
+    <rect x="848" y="294" width="29"  height="18" rx="3"><title>golden-set evaluation — 15 min</title></rect>
+  </g>
+
+  <g class="tm" text-anchor="end">
+    <text x="182" y="55">compose + migrate</text>
+    <text x="182" y="83">extract statutes</text>
+    <text x="182" y="111">extract judgments</text>
+    <text x="182" y="139">segment / enrich / version</text>
+    <text x="182" y="167">QA gates</text>
+    <text x="182" y="195">publish</text>
+    <text x="182" y="223">embed (rented GPU)</text>
+    <text x="182" y="251">HNSW build</text>
+    <text x="182" y="279">BM25 + GIN</text>
+    <text x="182" y="307">golden-set eval</text>
+  </g>
+  <g class="tm">
+    <text x="206" y="55">5m</text>
+    <text x="235" y="83">15m</text>
+    <text x="468" y="111">2h</text>
+    <text x="546" y="139">40m</text>
+    <text x="585" y="167">20m</text>
+    <text x="604" y="195">10m</text>
+    <text x="717" y="223" class="ta">58m</text>
+    <text x="805" y="251">45m</text>
+    <text x="854" y="279">25m</text>
+    <text x="883" y="307">15m</text>
+  </g>
+
+  <line class="sep" x1="190" y1="320" x2="890" y2="320"/>
+  <g class="tm" text-anchor="middle">
+    <text x="190" y="336">0</text><text x="307" y="336">1h</text><text x="423" y="336">2h</text>
+    <text x="540" y="336">3h</text><text x="657" y="336">4h</text><text x="773" y="336">5h</text><text x="890" y="336">6h</text>
+  </g>
+  <text class="ta" x="890" y="358" text-anchor="end">total 5h 53m &mdash; one overnight run</text>
+  <text class="tm" x="190" y="358">Statutes-only completes the same sequence in about 2h 40m, entirely on CPU. Everyone else restores the result in under a minute.</text>
+  <text class="ta" x="190" y="376">Substituting CPU for the accented bar makes it 27 hours &mdash; which is the whole argument for renting a card for one hour.</text>
+</svg>
+<figcaption><b>Index builds come last, and that ordering is not cosmetic.</b> Building HNSW or BM25 before the bulk load forces the index to be maintained per row instead of constructed once from sorted input, and turns the accented tail of this chart into most of a day. The other structural point is that only one bar is red: everything except the judgment embedding pass runs comfortably on the laptop itself.</figcaption>
+</figure>
+  </div>
+</section>
+
+<!-- ============ 7 ============ -->
+<section>
+  <div class="rail"><span class="num">&sect;7</span><span class="tag">Parity</span></div>
+  <div class="body">
+    <h2>Proving the local build is production</h2>
+    <p class="lede">The whole point of ADR-1g is that what you build locally <em>is</em> the production database, so moving it is a restore rather than a rebuild. These are the checks that keep that true.</p>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Check</th><th>How</th><th>Fails when</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Schema comes only from migrations</td><td>CI runs <code>alembic upgrade head</code> against an empty database, dumps the schema, and diffs it against a committed golden schema file</td><td>Someone created an index in pgAdmin. This is the most common and most damaging drift</td></tr>
+          <tr><td class="k">Extension versions pinned</td><td>A migration asserts <code>pg_search</code>, <code>vector</code> and <code>ltree</code> versions and raises on mismatch</td><td>A newer image silently changes ranking or index format</td></tr>
+          <tr><td class="k">Image digest pinned</td><td>Compose references <code>@sha256:…</code>, not <code>:latest</code></td><td><code>latest</code> moved and two developers now disagree about BM25 scores</td></tr>
+          <tr><td class="k">Collation identical</td><td>Assert <code>lc_collate</code> and <code>lc_ctype</code> in the same migration</td><td>A different collation changes index ordering and text comparison &mdash; silent, and genuinely nasty to diagnose</td></tr>
+          <tr><td class="k">Postgres major version identical</td><td>Assert <code>server_version_num</code> range</td><td>A physical restore across major versions is impossible; you would need a dump</td></tr>
+          <tr><td class="k">Backup round-trips</td><td>Monthly: restore the local repository into a scratch container and run the golden set against it</td><td>The backup was never valid. Better to learn this on a laptop</td></tr>
+          <tr><td class="k">Evaluation is reproducible</td><td>Golden-set NDCG@10 and faithfulness recorded per commit; CI blocks regressions</td><td>Retrieval quality changed and nobody noticed which change did it</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note">
+      <h4>The rule, stated once</h4>
+      <p>pgAdmin4 is a viewer. Every schema object &mdash; table, index, constraint, extension, role, policy &mdash; is created by a migration file in git and by nothing else. If the answer to &ldquo;how do I recreate this on the server?&rdquo; is anything other than &ldquo;run the migrations&rdquo;, the local environment has stopped being production and the move in document 09b stops being a two-hour restore.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ R ============ -->
+<section>
+  <div class="rail"><span class="num">R</span><span class="tag">Sources</span></div>
+  <div class="body">
+    <h2>References</h2>
+    <p class="lede">Retrieved 28 August 2026. Vendor limits and prices change without notice &mdash; re-verify before committing to any of them.</p>
+    <ol class="refs">
+      <li><b>pg_search / ParadeDB</b> &mdash; extension overview, Docker image, and self-hosted install for amd64 and arm64. <a href="https://docs.paradedb.com/deploy/self-hosted/extension">docs.paradedb.com/deploy/self-hosted/extension</a> &middot; <a href="https://pgxn.org/dist/pg_search/">pgxn.org/dist/pg_search</a>. Community edition is AGPL-3.0; supported on PostgreSQL 14+; <code>shared_preload_libraries</code> required below PG 17.</li>
+      <li><b>pgvector binary quantisation</b> &mdash; <code>binary_quantize()</code>, <code>bit_hamming_ops</code>, and the storage arithmetic (<code>vector(n)</code> = 4n+8 bytes, <code>bit(n)</code> = &lceil;n/8&rceil;+8 bytes; 4,104 &rarr; 136 at 1024 dimensions). HNSW dimension ceilings: 2,000 for <code>vector</code>, 4,000 for <code>halfvec</code>, 64,000 for <code>bit</code>. <a href="https://deepwiki.com/pgvector/pgvector/7.3-binary-quantization">deepwiki.com/pgvector/pgvector</a></li>
+      <li><b>pgvector HNSW tuning</b> &mdash; parallel index builds, iterative scans, and the note that cluster-wide <code>hnsw.ef_search</code> must be set via <code>ALTER SYSTEM</code> plus <code>pg_reload_conf()</code> rather than <code>ALTER ROLE</code>. <a href="https://nerdleveltech.com/pgvector-hnsw-postgres-18-production-tuning-tutorial">nerdleveltech.com</a></li>
+      <li><b>Corpus measurements</b> &mdash; 4,710 documents, 1,857 MB of PDF, 243 MB of extracted text, 113,158 top-level sections, 4.17&times; gzip ratio. Measured directly from the archives in <code>data/</code> on 28 August 2026; method and per-corpus figures in the capacity plan &sect;1.</li>
+    </ol>
+  </div>
+</section>
+
+</div>
