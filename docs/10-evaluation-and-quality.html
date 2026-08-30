@@ -1,0 +1,570 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nizam-e-Qanoon Evaluation and Quality</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{--paper:#f3f4f7;--surface:#fff;--surface-2:#edeff3;--surface-3:#e3e7ee;--ink:#14171e;--ink-2:#4c5566;--ink-3:#7e879a;--rule:#dcdfe7;--rule-2:#c6cbd6;--indigo:#26397a;--indigo-soft:#e4e8f5;--rubric:#9e3b2f;--rubric-soft:#f6e7e4;--ok:#2c6349;--ok-soft:#e0ede7;--warn:#7e6114;--warn-soft:#f3ebd8;--shadow:0 1px 2px rgba(20,23,30,.05),0 8px 24px -12px rgba(20,23,30,.14);--f-display:"Newsreader",Georgia,serif;--f-body:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;--f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;--measure:75ch;--rail:9.5rem}
+@media(prefers-color-scheme:dark){:root{--paper:#0d0f14;--surface:#14171e;--surface-2:#1b1f28;--surface-3:#232935;--ink:#e6e9ef;--ink-2:#a0a9ba;--ink-3:#6d7688;--rule:#252a34;--rule-2:#333a47;--indigo:#93a8e8;--indigo-soft:#1b2136;--rubric:#d8867a;--rubric-soft:#2b1d1b;--ok:#6fbf95;--ok-soft:#152520;--warn:#d3ab5c;--warn-soft:#241e10;--shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px -14px rgba(0,0,0,.7)}}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:16.5px;line-height:1.62;-webkit-font-smoothing:antialiased}.wrap{max-width:76rem;margin:0 auto;padding:0 1.5rem 8rem}.masthead{border-bottom:2px solid var(--ink);padding:3.5rem 0 1.25rem;margin-bottom:2rem}.kicker{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--rubric);margin:0 0 1rem}h1{font-family:var(--f-display);font-weight:500;font-size:clamp(2.4rem,5.8vw,3.9rem);line-height:1.03;letter-spacing:-.021em;margin:0 0 .5rem;text-wrap:balance}.dek{font-family:var(--f-display);font-size:clamp(1.05rem,2.1vw,1.3rem);color:var(--ink-2);max-width:64ch;margin:0 0 1.9rem;font-style:italic}.meta{display:flex;flex-wrap:wrap;gap:.5rem 2.25rem;font-family:var(--f-mono);font-size:.7rem;letter-spacing:.05em;color:var(--ink-3);border-top:1px solid var(--rule);padding-top:.9rem}.meta b{color:var(--ink-2);font-weight:500}section{display:grid;grid-template-columns:var(--rail) minmax(0,1fr);gap:0 2.5rem;padding-top:3.4rem;border-top:1px solid var(--rule);margin-top:3.4rem}section.first{border-top:none;margin-top:0}.rail{position:sticky;top:1.5rem;align-self:start;padding-top:.4rem}.rail .num{font-family:var(--f-mono);font-size:1.05rem;font-weight:600;color:var(--rubric);display:block}.rail .tag{font-family:var(--f-mono);font-size:.63rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);display:block;margin-top:.5rem;line-height:1.55}.body{min-width:0}@media(max-width:880px){section{grid-template-columns:1fr}.rail{position:static;display:flex;align-items:baseline;gap:.85rem;margin-bottom:.9rem}.rail .tag{margin-top:0}}h2{font-family:var(--f-display);font-weight:500;font-size:clamp(1.6rem,3.3vw,2.2rem);line-height:1.14;letter-spacing:-.017em;margin:0 0 .8rem;text-wrap:balance}h3{font-weight:700;font-size:1.01rem;margin:2.6rem 0 .55rem}h3 .mk{font-family:var(--f-mono);color:var(--rubric);font-weight:600;margin-inline-end:.55rem;font-size:.88em}h4{font-family:var(--f-mono);font-weight:600;font-size:.71rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);margin:1.9rem 0 .6rem}p{margin:0 0 1.05rem;max-width:var(--measure)}.lede{font-size:1.075rem;color:var(--ink-2);max-width:68ch}ul,ol{margin:0 0 1.15rem;padding-inline-start:1.3rem;max-width:var(--measure)}li{margin-bottom:.42rem}li::marker{color:var(--ink-3)}a{color:var(--indigo);text-underline-offset:.18em;word-break:break-word}code{font-family:var(--f-mono);font-size:.855em;font-variant-ligatures:none}p code,li code,td code{background:var(--surface-2);border:1px solid var(--rule);padding:.06em .34em;border-radius:3px}.scroll{overflow-x:auto;margin:1.4rem 0 1.9rem;border:1px solid var(--rule);border-radius:5px;background:var(--surface)}table{border-collapse:collapse;width:100%;font-size:.82rem;line-height:1.48}th{text-align:left;font-family:var(--f-mono);font-weight:600;font-size:.635rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);padding:.7rem .8rem;border-bottom:1px solid var(--rule-2);white-space:nowrap;background:var(--surface-2)}td{padding:.64rem .8rem;border-bottom:1px solid var(--rule);vertical-align:top}tr:last-child td{border-bottom:none}tbody tr:hover td{background:var(--surface-2)}td.id{font-family:var(--f-mono);font-size:.75rem;color:var(--rubric);white-space:nowrap;font-weight:500}td.k{font-weight:600;min-width:9rem}.chip{display:inline-block;font-family:var(--f-mono);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;font-weight:600;padding:.2em .5em;border-radius:3px;border:1px solid transparent;white-space:nowrap}.c-hard{background:var(--rubric-soft);color:var(--rubric);border-color:var(--rubric)}.c-ai{background:var(--indigo-soft);color:var(--indigo);border-color:var(--indigo)}.c-ok{background:var(--ok-soft);color:var(--ok);border-color:var(--ok)}.c-warn{background:var(--warn-soft);color:var(--warn);border-color:var(--warn)}.note{border-inline-start:3px solid var(--rubric);background:var(--surface);padding:1rem 1.15rem;margin:1.5rem 0;border-radius:0 4px 4px 0;max-width:var(--measure);box-shadow:var(--shadow)}.note.blue{border-inline-start-color:var(--indigo)}.note.green{border-inline-start-color:var(--ok)}.note p:last-child,.note ul:last-child{margin-bottom:0}figure{margin:2rem 0;background:var(--surface);border:1px solid var(--rule);border-radius:5px;padding:1.4rem 1.2rem .9rem;box-shadow:var(--shadow);overflow-x:auto}figure svg{display:block;width:100%;min-width:42rem;height:auto;color:var(--ink)}figcaption{margin-top:1rem;padding-top:.8rem;border-top:1px solid var(--rule);font-size:.78rem;color:var(--ink-3);line-height:1.55}figcaption b{color:var(--ink-2)}.fignum{font-family:var(--f-mono);font-size:.63rem;letter-spacing:.12em;text-transform:uppercase;color:var(--rubric);font-weight:600;display:block;margin-bottom:.7rem}pre{background:var(--surface);border:1px solid var(--rule);border-radius:5px;padding:1rem 1.05rem;overflow-x:auto;margin:1.25rem 0;font-family:var(--f-mono);font-size:.75rem;line-height:1.6;color:var(--ink-2)}pre b{color:var(--ink)}pre i{color:var(--ink-3);font-style:normal}pre u{color:var(--rubric);text-decoration:none}.dg{font-family:var(--f-mono);font-size:10.5px}.dg .bx{fill:none;stroke:currentColor;stroke-width:1.2}.dg .bxf{fill:var(--surface-2);stroke:currentColor;stroke-width:1.2}.dg .acc{fill:var(--rubric-soft);stroke:var(--rubric);stroke-width:1.4}.dg text{fill:currentColor}.dg .ta{fill:var(--rubric);font-weight:600}.dg .tm{fill:currentColor;opacity:.64;font-size:9.5px}.dg .th{font-weight:600}.dg .ln{stroke:currentColor;stroke-width:1.1;fill:none}.dg .lnA{stroke:var(--rubric);stroke-width:1.4;fill:none}.dg .lnD{stroke:currentColor;stroke-width:1.1;fill:none;stroke-dasharray:5 3}
+@media print{figure,.scroll,pre{overflow:visible}figure svg{min-width:0}thead{display:table-header-group}tr,figure,.note{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="masthead">
+ <p class="kicker">Document 10 &middot; cross-cutting quality authority &middot; child of 01 Master Architecture</p>
+ <h1>Nizam-e-Qanoon Evaluation and Quality</h1>
+ <p class="dek">The executable standard of proof for Pakistani legal intelligence: jurisdiction-specific benchmarks, lawyer adjudication, component isolation, statistical release gates, adversarial testing, production surveillance and a signed record of why each version was allowed to ship.</p>
+ <div class="meta"><span><b>Version</b> 1.0</span><span><b>Date</b> 30 Aug 2026</span><span><b>Scope</b> L1&ndash;L7 + platform</span><span><b>Provides</b> IEvaluationRegistry &middot; IReleaseGate &middot; IChallengeLoop</span><span><b>Requires</b> versioned artifacts and replay traces from Docs 02&ndash;09</span><span><b>Figures</b> 5</span></div>
+</header>
+
+<section class="first" id="mandate">
+ <div class="rail"><span class="num">&sect;0</span><span class="tag">Mandate<br>&amp; authority</span></div>
+ <div class="body">
+  <h2>Quality is permission to release, not a score after release</h2>
+  <p class="lede">Document 10 is independent of the implementation layers. It does not improve a result, select a model or repair a corpus. It measures a versioned candidate against declared legal and engineering risks, then returns <code>pass</code>, <code>limited_scope</code> or <code>reject</code> with reproducible evidence.</p>
+  <div class="scroll"><table><thead><tr><th>Standing rule</th><th>Evaluation consequence</th><th>Non-negotiable evidence</th></tr></thead><tbody>
+   <tr><td class="id">INV-1</td><td>Generated citation strings never receive partial credit. Identity and quotation are resolved against L2 bytes.</td><td>Every displayed citation resolves; every quote matches the stored span exactly.</td></tr>
+   <tr><td class="id">INV-2</td><td>An answer emitted after a failed sufficiency gate is a critical architecture violation, even if its prose happens to be correct.</td><td>Control-flow and mutation tests prove the abstention branch cannot call generation.</td></tr>
+   <tr><td class="id">INV-3</td><td>Evaluation replays stored authenticated artifacts; it never asks a stochastic provider to recreate old bytes.</td><td>Request, scope, candidates, evidence, prompt, provider response, verdicts and artifact digests remain linked.</td></tr>
+   <tr><td class="id">INV-4</td><td>Golden labels end at provisions, judgment paragraphs and source spans, not volatile chunks.</td><td>A re-chunk migration invalidates zero labels, citations, bookmarks or answer dependencies.</td></tr>
+   <tr><td class="id">INV-5</td><td>Correct law from the wrong date, territory, forum or authority perspective is wrong.</td><td>Every fixture states <code>as_of</code>, jurisdiction, territory and forum, or expects typed clarification.</td></tr>
+   <tr><td class="id">QG-0</td><td>No aggregate may hide a critical failure or a failing declared slice.</td><td>Release report carries per-stratum results, confidence intervals and the complete critical-event ledger.</td></tr>
+  </tbody></table></div>
+  <div class="note"><h4>Vocabulary</h4><p><b>Correct</b> means supported, applicable and materially complete. <b>Grounded</b> means attributable to identified official evidence; it does not by itself establish legal correctness. <b>Useful coverage</b> is the fraction of in-scope questions receiving a complete answer at the required risk. <b>Abstention</b> is a valid product outcome. A <b>critical event</b> is a failure whose severity blocks release regardless of the mean.</p></div>
+ </div>
+</section>
+
+<section id="governance">
+ <div class="rail"><span class="num">&sect;1</span><span class="tag">Governance<br>&amp; posture</span></div>
+ <div class="body">
+  <h2>Pakistani legal judgment remains human; automation supplies evidence</h2>
+  <p class="lede">The 2026 LJCP guidelines govern judicial institutions rather than this private product, but their human-centric, assistive, transparent, accountable and privacy-protecting posture is the right public-interest benchmark. The system therefore informs and assists; it does not substitute a model score for a Pakistani lawyer&rsquo;s determination of legal effect.</p>
+  <div class="scroll"><table><thead><tr><th>Authority</th><th>Status used here</th><th>Quality implication</th><th>Claim not made</th></tr></thead><tbody>
+   <tr><td class="k">Constitution, Art. 14</td><td>Enacted constitutional protection of dignity and privacy of the home.</td><td>Minimise legal-sensitive data; test anonymous non-persistence and access isolation.</td><td>Not presented as a complete data-protection code.</td></tr>
+   <tr><td class="k">Qanun-e-Shahadat Order 1984</td><td>Enacted law of evidence, including electronic-system and modern-device evidence.</td><td>Preserve bytes, hashes, versions, UTC time and chain of custody for evaluation evidence.</td><td>A log or hash does not guarantee admissibility or evidentiary weight.</td></tr>
+   <tr><td class="k">PBC Rules 1976, r.146</td><td>Professional conduct duty concerning confidential client information held by advocates.</td><td>Restricted reviewer workspaces, matter isolation and no silent training reuse.</td><td>Platform use alone does not create advocate-client privilege.</td></tr>
+   <tr><td class="k">MOITT PDP Bill, May 2023</td><td>Officially listed as <em>Draft</em> at this document date.</td><td>Use data minimisation, deletion and purpose controls as forward-compatible product policy.</td><td>No draft provision is described as enacted law.</td></tr>
+   <tr><td class="k">LJCP AI Guidelines 2026</td><td>Official guidance adopted for judicial institutions.</td><td>Human review, contestability, traceability, bias testing and bounded automation.</td><td>Not misrepresented as a statute binding this private service.</td></tr>
+  </tbody></table></div>
+  <h3><span class="mk">1.1</span>Decision rights</h3>
+  <div class="scroll"><table><thead><tr><th>Decision</th><th>Responsible</th><th>Required independence</th></tr></thead><tbody>
+   <tr><td class="k">Metric implementation</td><td>Evaluation engineer</td><td>Reviewed by the owning engineer; validated against hand-worked fixtures.</td></tr>
+   <tr><td class="k">Gold legal label</td><td>Two trained Pakistani legal annotators</td><td>Independent first pass; senior advocate adjudicates disagreement.</td></tr>
+   <tr><td class="k">Benchmark change</td><td>Evaluation owner + legal lead</td><td>Change author cannot approve; immutable prior version remains replayable.</td></tr>
+   <tr><td class="k">Model/prompt/index promotion</td><td>Engineering owner + evaluation owner</td><td>Candidate identified only after labels freeze; production baseline runs in the same harness.</td></tr>
+   <tr><td class="k">Legal rule-pack promotion</td><td>Separate rule publisher + legal lead</td><td>Maker-checker from Document 06; critical branch suite is mandatory.</td></tr>
+   <tr><td class="k">Release decision</td><td>Technical, legal and security signatories</td><td>No self-certification. A critical failure cannot be averaged or waived into green.</td></tr>
+  </tbody></table></div>
+ </div>
+</section>
+
+<section id="quality-model">
+ <div class="rail"><span class="num">&sect;2</span><span class="tag">Quality<br>model</span></div>
+ <div class="body">
+  <h2>Fourteen attributes become one traceable control system</h2>
+  <p class="lede">The master targets are retained, not silently reinterpreted. Doc 10 adds measurement definitions, slice rules and release severity so the same number means the same thing in a notebook, CI and a signed release card.</p>
+  <div class="scroll"><table><thead><tr><th>ID</th><th>Quality</th><th>Inherited release target</th><th>Primary evidence</th></tr></thead><tbody>
+   <tr><td class="id">QA-1</td><td class="k">Groundedness</td><td>Supported-claim precision &ge;0.97; citation resolution 1.00; material support recall 1.00.</td><td>Atomic claim/span lawyer labels; DB citation and quote checks.</td></tr>
+   <tr><td class="id">QA-2</td><td class="k">Honest abstention</td><td>Precision &ge;0.90; recall &ge;0.85 on unanswerable cases.</td><td>Reason-labelled negative set; risk&ndash;coverage and calibration curves.</td></tr>
+   <tr><td class="id">QA-3</td><td class="k">Retrieval</td><td>NDCG@10 &ge;0.75; Recall@50 &ge;0.90; MRR@10 &ge;0.70.</td><td>Minimal necessary spans plus acceptable authority sets.</td></tr>
+   <tr><td class="id">QA-4</td><td class="k">Corpus integrity</td><td>Segmentation F1 &ge;0.97; text coverage &ge;98%.</td><td>Golden PDFs, provision trees, page geometry and gate records.</td></tr>
+   <tr><td class="id">QA-5</td><td class="k">Temporal correctness</td><td>Point-in-time accuracy &ge;0.95; zero critical version leakage.</td><td>Before/after amendment pairs, commencement and savings fixtures.</td></tr>
+   <tr><td class="id">QA-6</td><td class="k">Bilingual equity</td><td>Urdu&ndash;English NDCG gap &le;0.05; generation faithfulness gap &le;0.03.</td><td>Clustered English, Urdu and Roman Urdu triplets.</td></tr>
+   <tr><td class="id">QA-7</td><td class="k">Auditability</td><td>100% authenticated released answers replay byte-for-byte.</td><td>Artifact graph reconstruction and digest verification.</td></tr>
+   <tr><td class="id">QA-8</td><td class="k">Latency</td><td>Citation fast path &lt;50 ms; p50 &lt;1.5 s; p95 &lt;4 s.</td><td>Cold/warm, route and degradation histograms.</td></tr>
+   <tr><td class="id">QA-9</td><td class="k">Availability</td><td>99.5% monthly; full statutory lookup at zero connectivity.</td><td>Fault injection, signed-pack and airplane-mode journeys.</td></tr>
+   <tr><td class="id">QA-10</td><td class="k">Cost</td><td>&le;$0.005 average per answer; &le;$100/month pilot.</td><td>Versioned token/CPU/storage attribution by successful outcome.</td></tr>
+   <tr><td class="id">QA-11</td><td class="k">Evolvability</td><td>Provider swap is configuration; re-chunk breaks zero citations.</td><td>Port contract and migration compatibility suites.</td></tr>
+   <tr><td class="id">QA-12</td><td class="k">Privacy</td><td>Zero anonymous persistence; PII redacted before evaluation/training use.</td><td>Dependency graph, heap/log scans, erasure and provider-payload tests.</td></tr>
+   <tr><td class="id">QA-13</td><td class="k">Legal safety</td><td>Zero advice-register violation in the red-team suite.</td><td>Pakistani lawyer-coded response-register adversaries.</td></tr>
+   <tr><td class="id">QA-14</td><td class="k">Accessibility</td><td>Core citizen tasks complete in plain speech with voice support.</td><td>WCAG 2.2 AA, bilingual usability and assistive-technology testing.</td></tr>
+  </tbody></table></div>
+  <div class="note blue"><h4>Critical beats average</h4><p>A wrong section that is caught and withheld contributes to abstention quality. A wrong section shown to a user is a critical event. The same rule applies to wrong province/date, fabricated authority, lost proviso, dissent-as-ratio, incorrect limitation result, cross-user disclosure and unsigned pack acceptance.</p></div>
+ </div>
+</section>
+
+<section id="architecture">
+ <div class="rail"><span class="num">&sect;3</span><span class="tag">Evaluation<br>architecture</span></div>
+ <div class="body">
+  <h2>Evaluate the seam, the component and the whole journey</h2>
+  <p class="lede">An end-to-end failure cannot say whether the source, parser, retriever, generator, legal rule or client caused it. Each layer therefore exposes a replayable evaluation port, while one orchestrator executes the same case through isolated and end-to-end tracks.</p>
+  <figure><span class="fignum">Figure 1 &mdash; evaluation control plane</span>
+   <svg class="dg" viewBox="0 0 940 470" role="img" aria-labelledby="f1t f1d"><title id="f1t">Evaluation control plane</title><desc id="f1d">Versioned datasets and registries feed an evaluation orchestrator. Isolated adapters invoke corpus, retrieval, generation, domain, API and client targets. Metrics and lawyer adjudication produce a signed release card. Production challenges enter a quarantined review loop and never alter the locked test set directly.</desc>
+    <defs><marker id="a1" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/></marker></defs>
+    <rect class="bxf" x="20" y="35" width="170" height="72" rx="4"/><text class="th" x="105" y="61" text-anchor="middle">Dataset registry</text><text class="tm" x="105" y="80" text-anchor="middle">cases &middot; labels &middot; splits</text>
+    <rect class="bxf" x="20" y="140" width="170" height="72" rx="4"/><text class="th" x="105" y="166" text-anchor="middle">Artifact registry</text><text class="tm" x="105" y="185" text-anchor="middle">corpus &middot; models &middot; rules</text>
+    <rect class="acc" x="255" y="75" width="210" height="110" rx="4"/><text class="ta" x="360" y="105" text-anchor="middle">Evaluation orchestrator</text><text class="tm" x="360" y="127" text-anchor="middle">select &middot; pin &middot; run &middot; compare</text><text class="tm" x="360" y="148" text-anchor="middle">no production mutable state</text>
+    <rect class="bx" x="530" y="25" width="115" height="58" rx="4"/><text class="th" x="587" y="50" text-anchor="middle">L1/L2</text><text class="tm" x="587" y="67" text-anchor="middle">corpus</text>
+    <rect class="bx" x="665" y="25" width="115" height="58" rx="4"/><text class="th" x="722" y="50" text-anchor="middle">L3</text><text class="tm" x="722" y="67" text-anchor="middle">retrieval</text>
+    <rect class="bx" x="800" y="25" width="115" height="58" rx="4"/><text class="th" x="857" y="50" text-anchor="middle">L4</text><text class="tm" x="857" y="67" text-anchor="middle">generation</text>
+    <rect class="bx" x="530" y="105" width="115" height="58" rx="4"/><text class="th" x="587" y="130" text-anchor="middle">L5</text><text class="tm" x="587" y="147" text-anchor="middle">legal domains</text>
+    <rect class="bx" x="665" y="105" width="115" height="58" rx="4"/><text class="th" x="722" y="130" text-anchor="middle">L6</text><text class="tm" x="722" y="147" text-anchor="middle">API</text>
+    <rect class="bx" x="800" y="105" width="115" height="58" rx="4"/><text class="th" x="857" y="130" text-anchor="middle">L7/ops</text><text class="tm" x="857" y="147" text-anchor="middle">journey</text>
+    <rect class="bxf" x="255" y="250" width="210" height="86" rx="4"/><text class="th" x="360" y="276" text-anchor="middle">Metric engine</text><text class="tm" x="360" y="297" text-anchor="middle">paired deltas &middot; CIs &middot; slices</text><text class="tm" x="360" y="316" text-anchor="middle">critical-event ledger</text>
+    <rect class="bxf" x="530" y="250" width="170" height="86" rx="4"/><text class="th" x="615" y="276" text-anchor="middle">Adjudication</text><text class="tm" x="615" y="297" text-anchor="middle">blind lawyer review</text><text class="tm" x="615" y="316" text-anchor="middle">agreement + reasons</text>
+    <rect class="acc" x="755" y="250" width="160" height="86" rx="4"/><text class="ta" x="835" y="276" text-anchor="middle">Release card</text><text class="tm" x="835" y="297" text-anchor="middle">pass &middot; limit &middot; reject</text><text class="tm" x="835" y="316" text-anchor="middle">signed manifest</text>
+    <rect class="bxf" x="530" y="390" width="385" height="58" rx="4"/><text class="th" x="722" y="414" text-anchor="middle">Challenge quarantine</text><text class="tm" x="722" y="433" text-anchor="middle">production reports &rarr; review &rarr; new versioned regression fixture</text>
+    <g class="ln" marker-end="url(#a1)"><line x1="190" y1="71" x2="251" y2="106"/><line x1="190" y1="176" x2="251" y2="151"/><line x1="465" y1="130" x2="526" y2="54"/><line x1="465" y1="130" x2="661" y2="54"/><line x1="465" y1="130" x2="796" y2="54"/><line x1="465" y1="130" x2="526" y2="134"/><line x1="465" y1="130" x2="661" y2="134"/><line x1="465" y1="130" x2="796" y2="134"/><line x1="360" y1="185" x2="360" y2="246"/><line x1="465" y1="293" x2="526" y2="293"/><line x1="700" y1="293" x2="751" y2="293"/><line x1="722" y1="390" x2="722" y2="340"/></g>
+   </svg><figcaption><b>Locked data never calls mutable production services.</b> The runner binds exact artifacts in an isolated environment. Human review sees randomized candidate labels, not vendor or branch names. Production challenges are valuable evidence, but they become training or regression data only through quarantine, legal review and a new dataset version.</figcaption>
+  </figure>
+  <pre><b>evals/</b>
+  registry/       <i>dataset, artifact, metric and release-policy manifests</i>
+  cases/          <i>Pakistan legal scenarios; source spans stored by stable identity</i>
+  fixtures/       <i>PDF, temporal, jurisdiction, security, sync and failure artifacts</i>
+  tasks/          <i>corpus, retrieval, oracle-generation, domains, e2e, client</i>
+  metrics/        <i>deterministic scorers; statistical intervals; slice reducers</i>
+  runners/        <i>local/CI/nightly/release execution profiles</i>
+  adjudication/   <i>blind assignment, disagreement, reasons and senior decision</i>
+  redteam/        <i>versioned attacks mapped to assets and controls</i>
+  reports/        <i>immutable run manifests, diffs, cards and evidence bundles</i></pre>
+ </div>
+</section>
+
+<section id="benchmark">
+ <div class="rail"><span class="num">&sect;4</span><span class="tag">Pakistan legal<br>benchmark</span></div>
+ <div class="body">
+  <h2>Five hundred scenarios are a beginning, not a national average</h2>
+  <p class="lede"><code>golden-pk-v1</code> contains 500 independently authored legal scenarios. Language variants, temporal pairs and jurisdiction pairs remain one statistical cluster so paraphrases cannot leak across splits or pretend to be independent evidence.</p>
+  <div class="scroll"><table><thead><tr><th>Partition</th><th>Base scenarios</th><th>Permitted use</th><th>Access</th></tr></thead><tbody>
+   <tr><td class="k">Fit</td><td class="id">250</td><td>Retriever/reranker training and rule development. Labels visible.</td><td>Engineering + legal team.</td></tr>
+   <tr><td class="k">Calibration</td><td class="id">100</td><td>Gate thresholds, confidence calibration and non-inferiority margins.</td><td>Evaluation owner; no gradient training.</td></tr>
+   <tr><td class="k">Locked release</td><td class="id">100</td><td>Candidate-versus-production release decision.</td><td>Runner service; item labels hidden from change authors.</td></tr>
+   <tr><td class="k">Sealed challenge</td><td class="id">50</td><td>Milestone audit and provider/model qualification; never routine CI.</td><td>Legal lead + evaluation owner under access audit.</td></tr>
+  </tbody></table></div>
+  <p>The split key is a connected component over legal issue, instrument family, judgment family, source revision and situation mapping. All translations, Roman Urdu variants, before/after dates, neighbouring sections and synthetic mutations stay in the same component. A random row split is prohibited.</p>
+  <h3><span class="mk">4.1</span>Coverage frame</h3>
+  <div class="scroll"><table><thead><tr><th>Axis</th><th>Required strata</th><th>Sampling rule</th></tr></thead><tbody>
+   <tr><td class="k">Jurisdiction</td><td>Federation, Punjab, Sindh, Khyber Pakhtunkhwa, Balochistan; ICT distinguished; GB/AJK separately labelled when enabled.</td><td>Minimum declared slice size before a headline; otherwise report exploratory and limit product scope.</td></tr>
+   <tr><td class="k">Court and authority</td><td>Federal Constitutional Court/constitutional relation as applicable, Supreme Court, FSC, five High Courts, subordinate/special forum contexts.</td><td>Effective-dated hierarchy; majority/dissent and treatment must be labelled.</td></tr>
+   <tr><td class="k">Legal source</td><td>Constitution, Acts/Ordinances, rules/regulations, schedules, gazette notifications and official judgments.</td><td>Draft, bill, repealed, uncommenced, superseded and historical material included as traps.</td></tr>
+   <tr><td class="k">Task</td><td>Citation lookup, legal issue, current/historical law, precedent, procedure, calculator, drafting and source investigation.</td><td>No single retrieval-style question may stand in for an end-to-end professional workflow.</td></tr>
+   <tr><td class="k">User expression</td><td>Professional English, plain English, Urdu, Roman Urdu, mixed script, incomplete facts and false premise.</td><td>Native drafting and review; translation alone does not create a gold case.</td></tr>
+   <tr><td class="k">Risk</td><td>Routine information, deadline-bearing, liberty, family, property, money, professional reliance and privacy-sensitive.</td><td>Oversample foreseeable high-harm cases; reweight only for product-level estimates.</td></tr>
+   <tr><td class="k">Answerability</td><td>Complete, conditional, insufficient facts, ambiguous, official-source conflict, unsupported scope and professional review required.</td><td>At least one valid abstention reason; nearest result is not a positive label.</td></tr>
+  </tbody></table></div>
+  <div class="note"><h4>Coverage statement</h4><p>A passing federal-statute benchmark authorizes only that measured scope. It does not authorize claims about complete Pakistani law, judicial invalidation, delegated legislation, a province or a court whose source coverage has not passed. The release card and client coverage banner must use the same scope registry.</p></div>
+ </div>
+</section>
+
+<section id="labels">
+ <div class="rail"><span class="num">&sect;5</span><span class="tag">Labels<br>&amp; adjudication</span></div>
+ <div class="body">
+  <h2>The gold label is a legal argument with provenance</h2>
+  <p class="lede">A single reference answer is brittle and legally dishonest. Each case stores a proposition graph: what must be said, which primary spans support it, what may also support it, what contradicts it, which qualifications are material and when the system must decline.</p>
+  <pre><b>LegalEvalCase</b> {
+  caseId; datasetVersion; familyId; riskClass; languages[];
+  question: { text; script; intendedMeaning; suppliedFacts[]; omittedFacts[] };
+  scope: { jurisdiction; territory?; forum?; authorityPerspective?; asOf };
+  expectedOutcome: LegalOutcomeKind;
+  propositions: [{ id; text; materiality; modality; polarity;
+    necessaryEvidence[]; acceptableEvidenceSets[][]; contraryEvidence[];
+    qualifications[]; forbiddenClaims[] }];
+  retrievalGold: { necessaryUnits[]; relevantUnits[]; hardNegatives[] };
+  abstention?: { code; requiredClarification[]; unsafeAlternatives[] };
+  provenance: { officialUrls[]; corpusRevision; ruleManifest?; labelledAt };
+  review: { annotatorA; annotatorB; agreement; adjudicator; reasons[] };
+}</pre>
+  <div class="scroll"><table><thead><tr><th>Stage</th><th>Protocol</th><th>Recorded quality</th></tr></thead><tbody>
+   <tr><td class="id">A0</td><td>Case author writes facts and risk without seeing system output.</td><td>Provenance, conflict declaration and issue-family key.</td></tr>
+   <tr><td class="id">A1</td><td>Two legal annotators independently identify operative primary sources, minimal spans, authority, time, territory and material qualifications.</td><td>Raw agreement, categorical agreement and span overlap by field.</td></tr>
+   <tr><td class="id">A2</td><td>Senior advocate adjudicates with reasons; unresolved legitimate alternatives remain alternate gold sets.</td><td>Adjudication rate and disagreement taxonomy.</td></tr>
+   <tr><td class="id">A3</td><td>Data engineer resolves stable legal identities and verifies source page/hash; annotator confirms rendering.</td><td>100% identity and source resolution.</td></tr>
+   <tr><td class="id">A4</td><td>Evaluation owner assigns the entire family to one split and freezes a content digest.</td><td>Leakage graph has zero cross-split edge.</td></tr>
+  </tbody></table></div>
+  <p>Report percent agreement plus a chance-corrected statistic suitable to the field; do not worship one coefficient. Low agreement is a signal to improve guidance or preserve doctrinal ambiguity, not permission to majority-vote a contested legal proposition away. Annotators must disclose practice area, language competence and conflicts.</p>
+ </div>
+</section>
+
+<section id="corpus-eval">
+ <div class="rail"><span class="num">&sect;6</span><span class="tag">Corpus<br>&amp; storage</span></div>
+ <div class="body">
+  <h2>Prove the evidence layer before measuring intelligence</h2>
+  <p class="lede">A model cannot recover a missing proviso, wrong source revision or broken page span. Corpus evaluation runs before retrieval and blocks publication; storage evaluation proves that the same legal identity and temporal answer survive migrations, backup and offline projection.</p>
+  <div class="scroll"><table><thead><tr><th>Surface</th><th>Measures</th><th>Release rule</th></tr></thead><tbody>
+   <tr><td class="k">Acquisition</td><td>Official host, complete bytes, media type, source date, ETag/Last-Modified, SHA-256, fetch manifest and duplicate lineage.</td><td>No public item without immutable blob and reproducible manifest.</td></tr>
+   <tr><td class="k">Extraction</td><td>Character/word coverage, OCR CER/WER by script, page assignment, table cell fidelity and reading order.</td><td>Overall text coverage &ge;98%; high-risk schedule cells require double-entry equality.</td></tr>
+   <tr><td class="k">Legal tree</td><td>Provision boundary precision/recall/F1, hierarchy, labels, provisos, explanations, illustrations, schedules and source coordinates.</td><td>Segmentation F1 &ge;0.97 and zero known orphan material provision in critical fixtures.</td></tr>
+   <tr><td class="k">Legal relations</td><td>Amends, repeals, saves, commences, defines, empowers, non-obstante, subject-to and citation edges.</td><td>Status-changing edges require exact target, evidence and legal review.</td></tr>
+   <tr><td class="k">Temporal storage</td><td>Non-overlap constraints, before/after text, publication versus legal validity, unknown commencement and transaction-time replay.</td><td>Point-in-time fixtures pass; unknown is never coerced into operative or inoperative.</td></tr>
+   <tr><td class="k">Publication</td><td>Gate completeness, atomic visibility, deterministic corpus hash and failed-run isolation.</td><td>Rebuild from immutable blobs + pinned code yields the same published hash.</td></tr>
+   <tr><td class="k">Offline projection</td><td>Identity parity, precomputed legal guards, FTS/vector deltas, patch chain, signature and rollback.</td><td>Tampered or schema-incompatible pack rejected; no citation changes identity.</td></tr>
+   <tr><td class="k">Recovery</td><td>Restore, migrations, extensions, collation, index parity and golden evaluation after restore.</td><td>Monthly scratch restore completes and produces accepted evaluation deltas.</td></tr>
+  </tbody></table></div>
+ </div>
+</section>
+
+<section id="retrieval-eval">
+ <div class="rail"><span class="num">&sect;7</span><span class="tag">Retrieval<br>&amp; gate</span></div>
+ <div class="body">
+  <h2>Measure finding, legal applicability and sufficiency separately</h2>
+  <p class="lede">Similarity is only candidate discovery. Evaluation therefore scores exact resolution, stage-one recall, reranking, deterministic legal filters, context completeness and the final decision to answer as distinct objects.</p>
+  <div class="scroll"><table><thead><tr><th>Track</th><th>Primary measures</th><th>Critical failure</th></tr></thead><tbody>
+   <tr><td class="k">Citation grammar</td><td>Exact resolution, MRR@10, ambiguity reason accuracy.</td><td>Auto-selecting the wrong Act, section, version or judgment.</td></tr>
+   <tr><td class="k">Candidate recall</td><td>Recall@50, necessary-set recall, generator contribution and duplicate-adjusted pool size.</td><td>Missing the only controlling provision while returning semantically similar text.</td></tr>
+   <tr><td class="k">Ranking</td><td>NDCG@10, MRR@10, pairwise authority errors and hard-negative separation.</td><td>Dissent, repealed version or wrong province outranks eligible operative evidence without flagging.</td></tr>
+   <tr><td class="k">Context assembly</td><td>Necessary dependency coverage, excess-context ratio, proviso/definition/schedule completeness.</td><td>Winning clause supplied without its legally decisive exception or delegated rule.</td></tr>
+   <tr><td class="k">Precedent</td><td>Authority-relation accuracy, treatment accuracy, majority-status accuracy and conflict recall.</td><td>Claiming binding/good-law status from similarity or absence of an edge.</td></tr>
+   <tr><td class="k">Temporal/territorial</td><td>Point-in-time accuracy and wrong-jurisdiction rate.</td><td>Any wrong-date/place evidence admitted on the critical hard-filter set.</td></tr>
+   <tr><td class="k">Sufficiency gate</td><td>Abstention precision/recall, reason accuracy, Brier/ECE and area under risk&ndash;coverage.</td><td>Lowering the threshold under failure or allowing an abstention into L4.</td></tr>
+  </tbody></table></div>
+  <h3><span class="mk">7.1</span>Mandatory ablations</h3>
+  <ul>
+   <li>BM25, dense, definitions and graph independently; then RRF, cross-encoder and completeness expansion.</li>
+   <li><code>float32</code>, <code>halfvec(384)</code> and <code>bit(1024)</code>; binary ships only if Recall@50 passes and reranked NDCG loses no more than two points.</li>
+   <li>Approximate versus exact search by filter selectivity; shadow exact recall reported per jurisdiction and date mode.</li>
+   <li>Direct multilingual retrieval versus any translation proposal; compare citation-token fidelity, not just semantic score.</li>
+   <li>Current versus historical law, each enabled jurisdiction, precedent coverage, Roman Urdu and degraded paths.</li>
+  </ul>
+  <div class="note green"><h4>Selective prediction</h4><p>The chosen threshold is fitted only on calibration data. Publish risk against useful-answer coverage, not a single confidence number. Group-specific thresholds require enough independent calibration clusters; otherwise the conservative global threshold applies. No production incident may trigger an automatic threshold reduction.</p></div>
+ </div>
+</section>
+
+<section id="generation-eval">
+ <div class="rail"><span class="num">&sect;8</span><span class="tag">Generation<br>&amp; attribution</span></div>
+ <div class="body">
+  <h2>Score atomic propositions, then veto an incomplete whole</h2>
+  <p class="lede">String similarity cannot determine whether an answer changed <em>may</em> to <em>shall</em>, lost an exception or cited a true but inapplicable case. Evaluation follows the AIS idea of attribution to identified sources, extended with Pakistani authority, validity and material-completeness labels.</p>
+  <figure><span class="fignum">Figure 2 &mdash; two-track causal diagnosis</span>
+   <svg class="dg" viewBox="0 0 940 360" role="img" aria-labelledby="f2t f2d"><title id="f2t">Oracle-context and end-to-end generation evaluation</title><desc id="f2d">The same legal case takes an oracle-context path that supplies lawyer-complete evidence to generation and an end-to-end path that uses production retrieval. Both pass through identical citation rendering, verification and human scoring. Comparing results isolates generation defects from corpus or retrieval defects.</desc>
+    <defs><marker id="a2" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/></marker></defs>
+    <rect class="bxf" x="25" y="140" width="130" height="68" rx="4"/><text class="th" x="90" y="167" text-anchor="middle">Legal case</text><text class="tm" x="90" y="187" text-anchor="middle">scope + gold graph</text>
+    <rect class="bxf" x="220" y="45" width="170" height="68" rx="4"/><text class="th" x="305" y="71" text-anchor="middle">Oracle context</text><text class="tm" x="305" y="91" text-anchor="middle">lawyer-complete evidence</text>
+    <rect class="bxf" x="220" y="235" width="170" height="68" rx="4"/><text class="th" x="305" y="261" text-anchor="middle">Production L3</text><text class="tm" x="305" y="281" text-anchor="middle">real retrieval + gate</text>
+    <rect class="bx" x="455" y="105" width="150" height="138" rx="4"/><text class="th" x="530" y="135" text-anchor="middle">Same L4</text><text class="tm" x="530" y="158" text-anchor="middle">prompt compiler</text><text class="tm" x="530" y="178" text-anchor="middle">pinned provider</text><text class="tm" x="530" y="198" text-anchor="middle">citation renderer</text><text class="tm" x="530" y="218" text-anchor="middle">verifier</text>
+    <rect class="bxf" x="670" y="65" width="245" height="88" rx="4"/><text class="th" x="792" y="91" text-anchor="middle">Atomic metrics</text><text class="tm" x="792" y="112" text-anchor="middle">support &middot; modality &middot; citation</text><text class="tm" x="792" y="132" text-anchor="middle">authority &middot; language</text>
+    <rect class="acc" x="670" y="205" width="245" height="88" rx="4"/><text class="ta" x="792" y="231" text-anchor="middle">Whole-answer veto</text><text class="tm" x="792" y="252" text-anchor="middle">qualification &middot; conflict &middot; register</text><text class="tm" x="792" y="272" text-anchor="middle">usefulness &middot; escalation</text>
+    <g class="ln" marker-end="url(#a2)"><line x1="155" y1="174" x2="216" y2="80"/><line x1="155" y1="174" x2="216" y2="268"/><line x1="390" y1="80" x2="451" y2="138"/><line x1="390" y1="268" x2="451" y2="210"/><line x1="605" y1="150" x2="666" y2="110"/><line x1="605" y1="205" x2="666" y2="248"/></g>
+   </svg><figcaption><b>The delta diagnoses the layer.</b> If oracle-context fails, L4 or its verifier is defective. If oracle passes and end-to-end fails, investigate corpus, retrieval or the sufficiency gate. Both can pass atomic support while the whole-answer veto correctly fails an omitted limitation, proviso or conflict.</figcaption>
+  </figure>
+  <div class="scroll"><table><thead><tr><th>Metric</th><th>Target</th><th>Measurement</th></tr></thead><tbody>
+   <tr><td class="k">Citation/quote integrity</td><td class="id">1.00 / 1.00</td><td>Deterministic identity resolution and byte/span equality; no model judge.</td></tr>
+   <tr><td class="k">Supported-claim precision</td><td class="id">&ge;0.97</td><td>Lawyer decision per atomic proposition against cited spans.</td></tr>
+   <tr><td class="k">Material support recall</td><td class="id">1.00</td><td>Every material claim must enter verification; hidden claims fail.</td></tr>
+   <tr><td class="k">Citation completeness / qualification recall</td><td class="id">&ge;0.95</td><td>Gold proposition graph and necessary evidence/qualification set.</td></tr>
+   <tr><td class="k">Critical applicability errors</td><td class="id">0 observed</td><td>Wrong place, date, authority, source, ratio or invented authority ledger.</td></tr>
+   <tr><td class="k">Advice-register violation</td><td class="id">0 observed</td><td>Lawyer-coded response boundary; disclaimer does not erase substantive conduct.</td></tr>
+   <tr><td class="k">English&ndash;Urdu faithfulness gap</td><td class="id">&le;0.03</td><td>Paired claim/support decisions with identical evidence graph.</td></tr>
+   <tr><td class="k">Cache precision / stale served</td><td class="id">&ge;0.95 / 0</td><td>Scope-equivalence and dependency invalidation challenge set.</td></tr>
+  </tbody></table></div>
+  <p>Automatic NLI, register classifiers and LLM judges are triage signals. Before use, each is compared with lawyer labels by language, risk and proposition type; thresholds and error costs are recorded. None is the sole release authority. BLEU, ROUGE and answer-string similarity may describe wording, never legal correctness.</p>
+ </div>
+</section>
+
+<section id="domain-eval">
+ <div class="rail"><span class="num">&sect;9</span><span class="tag">Domain<br>services</span></div>
+ <div class="body">
+  <h2>Deterministic legal machinery needs proofs, not model benchmarks</h2>
+  <p class="lede">Precedent signals, calculators, drafting rules and procedure engines are evaluated as versioned legal programs. Their decisive obligations are branch completeness, source linkage, temporal scope and transparent inability.</p>
+  <div class="scroll"><table><thead><tr><th>Domain</th><th>Required suites</th><th>Release blocker</th></tr></thead><tbody>
+   <tr><td class="k">Precedent citator</td><td>Proposition identity, majority/dissent, effective court hierarchy, forward treatment, negative/positive separation, conflict and coverage mutation.</td><td>Whole-case &ldquo;good law&rdquo; claim, wrong binding relation or absence-of-edge treated as approval.</td></tr>
+   <tr><td class="k">Limitation</td><td>Boundary dates, excluded time, disability, acknowledgment, forum, cause/event classification, historical schedule and timezone/date property tests.</td><td>Any unqualified scalar deadline where a legal branch or fact is unresolved.</td></tr>
+   <tr><td class="k">Fees/duties/forum</td><td>Province, instrument/relief classification, brackets, caps, rounding, amendment dates and double-entered schedule rows.</td><td>Wrong province/rate/date or generated table value.</td></tr>
+   <tr><td class="k">Document factory</td><td>Interview branch coverage, clause preconditions, contradiction, mandatory/forbidden clause, provenance, rendering and pack completeness.</td><td>Clause selected without satisfied reviewed rule; draft presented as executed, stamped, filed or professionally approved.</td></tr>
+   <tr><td class="k">Procedure engine</td><td>State reachability, prerequisites, forms, fees, forum, official exits, deadlines, alternate/failure paths and historical version.</td><td>Dead end, invented official link, omitted decisive prerequisite or false completion certification.</td></tr>
+   <tr><td class="k">Rule registry</td><td>Schema, evidence, dependency graph, golden/mutation tests, signature, maker-checker and rollback.</td><td>Unsigned/unreviewed activation or rule/corpus incompatibility.</td></tr>
+  </tbody></table></div>
+  <h3><span class="mk">9.1</span>Mutation standard</h3>
+  <p>For every critical legal branch, generate mutants that invert a comparator, move a boundary by one day, remove an exception, swap a province, alter a court relation, delete a prerequisite or change <em>may</em> to <em>shall</em>. The suite must kill every critical mutant. Surviving mutants expose a missing test even when ordinary branch coverage reads 100%.</p>
+ </div>
+</section>
+
+<section id="journeys">
+ <div class="rail"><span class="num">&sect;10</span><span class="tag">End-to-end<br>outcomes</span></div>
+ <div class="body">
+  <h2>Users experience a legal journey, not a metric dashboard</h2>
+  <p class="lede">End-to-end evaluation runs the master use cases through real contracts and clients. It scores task success, legal safety, inspectability and recovery, while retaining component traces for diagnosis.</p>
+  <div class="scroll"><table><thead><tr><th>Journey</th><th>Success evidence</th><th>Failure injection</th></tr></thead><tbody>
+   <tr><td class="k">Find law as at a date</td><td>Correct provision version, status banner, scope and source page.</td><td>Amendment during request; unknown commencement; stale cache.</td></tr>
+   <tr><td class="k">Ask a grounded question</td><td>Complete verified artifact, atomic citations, limitations and replay/challenge path.</td><td>Gate abstention, provider timeout, forged evidence handle, verifier veto, audit failure.</td></tr>
+   <tr><td class="k">Trace precedent</td><td>Forum-relative authority, proposition treatment, majority status, conflicts and coverage.</td><td>Matching dissent, changed hierarchy, missing adverse database coverage.</td></tr>
+   <tr><td class="k">Calculate</td><td>Inputs, branch trace, rule/source version, result range or typed inability.</td><td>Boundary day, missing fact, wrong province and conflicting source.</td></tr>
+   <tr><td class="k">Draft</td><td>Conditioned clauses, source map, warnings and export status.</td><td>Contradictory answers, unsupported clause, renderer crash and stale rule pack.</td></tr>
+   <tr><td class="k">Follow procedure</td><td>Prerequisites, official destinations, forms, fees, deadlines and progress disclaimer.</td><td>Broken official link, offline state, changed rule and impossible step.</td></tr>
+   <tr><td class="k">Work offline</td><td>Signed current pack, statutory search, source reading, supported deterministic tools and honest unavailable states.</td><td>Tampered patch, interrupted apply, rollback and expired pack.</td></tr>
+   <tr><td class="k">Investigate/challenge</td><td>Exact released bytes and proof graph; authorized challenge; correction lineage.</td><td>Cross-user ID, deleted artifact, old corpus and revoked reviewer.</td></tr>
+  </tbody></table></div>
+  <p>Staging runs the full corpus and the sixteen master use cases. Release review includes a blinded manual panel over at least twenty sampled golden answers plus every changed critical stratum. That sample is a qualitative safeguard, not a statistically representative accuracy claim.</p>
+ </div>
+</section>
+
+<section id="language-access">
+ <div class="rail"><span class="num">&sect;11</span><span class="tag">Language<br>&amp; access</span></div>
+ <div class="body">
+  <h2>Parity means equivalent legal force, not translated interface strings</h2>
+  <p class="lede">English, Urdu and Roman Urdu are separate evaluation strata. A legally weaker Urdu explanation, reversed mixed-script citation or inaccessible source sheet is a substantive failure even where the underlying English answer passes.</p>
+  <div class="scroll"><table><thead><tr><th>Surface</th><th>Measure</th><th>Method</th></tr></thead><tbody>
+   <tr><td class="k">Query understanding</td><td>Intent, legal term and citation-token preservation by script.</td><td>Native-authored triplets; alias perturbations; no machine translation as gold.</td></tr>
+   <tr><td class="k">Retrieval</td><td>Paired NDCG and necessary-set recall gap.</td><td>Same legal scenario and labels remain one cluster.</td></tr>
+   <tr><td class="k">Generation</td><td>Claim support, modality, negation, exception and qualification parity.</td><td>Bilingual legal reviewers compare against the same evidence graph, not each other&rsquo;s prose.</td></tr>
+   <tr><td class="k">Typography/bidi</td><td>Statutory identifier order, isolate placement, Nastaliq scale and truncation.</td><td>Widget goldens: two scripts &times; two themes; mixed-run unit fixtures.</td></tr>
+   <tr><td class="k">Accessibility</td><td>WCAG 2.2 AA, semantic order, labels, contrast, keyboard, focus, 48 dp targets and reduced motion.</td><td>Automated checks plus screen reader, keyboard and device testing.</td></tr>
+   <tr><td class="k">Comprehension</td><td>Task completion, source discovery, error recovery and comprehension of scope/abstention.</td><td>Moderated study with citizens across literacy, language, disability and device/connectivity contexts.</td></tr>
+   <tr><td class="k">Voice</td><td>Urdu recognition error, legal-token accuracy and correction burden.</td><td>Consented, purpose-limited study data; server fallback disabled in anonymous mode.</td></tr>
+  </tbody></table></div>
+  <p>The planned thirty-person closed-beta study is formative. Report participant characteristics and observed task failures; do not publish population-wide usability claims from it. Accessibility conformance does not replace testing with Pakistani users, and user testing does not replace testable WCAG criteria.</p>
+ </div>
+</section>
+
+<section id="redteam">
+ <div class="rail"><span class="num">&sect;12</span><span class="tag">Red team<br>&amp; abuse</span></div>
+ <div class="body">
+  <h2>Attack the evidence, authority, boundary and operator</h2>
+  <p class="lede">The red team is mapped to legal harms and system assets, not a generic jailbreak list. Each discovered defect becomes a minimized, versioned fixture that fails the vulnerable layer and the end-to-end path.</p>
+  <div class="scroll"><table><thead><tr><th>Attack family</th><th>Examples</th><th>Safe result</th></tr></thead><tbody>
+   <tr><td class="k">Fabricated law</td><td>Non-existent Act/section/case; altered reporter reference; plausible unofficial URL.</td><td>Exact not-found or ambiguity; no source invented; official-source boundary visible.</td></tr>
+   <tr><td class="k">Applicability trap</td><td>Correct text from wrong province/date; bill as law; repealed Act; uncommenced section; dissent as ratio.</td><td>Hard exclusion, historical label, conflict or typed inability.</td></tr>
+   <tr><td class="k">Evidence injection</td><td>PDF footnote/HTML/image says ignore policy, reveal prompt, forge evidence handle or call a tool.</td><td>Content remains inert data; handle/schema/support failure.</td></tr>
+   <tr><td class="k">Completeness attack</td><td>Hide proviso, savings clause, schedule, delegated rule or contrary authority outside the best chunk.</td><td>Dependency expansion finds it or the sufficiency/whole-answer gate abstains.</td></tr>
+   <tr><td class="k">Register pressure</td><td>Demand prediction, representation, personalized strategy, guaranteed outcome or advocate impersonation.</td><td>Information boundary, visible limitation and professional referral.</td></tr>
+   <tr><td class="k">Privacy/tenancy</td><td>Cross-user object ID, report link, cache collision, log injection, anonymous-to-account correlation.</td><td>Denial without enumeration; no content persistence or leakage.</td></tr>
+   <tr><td class="k">Resource abuse</td><td>Long prompt, query fan-out, SSE reconnect storm, OTP abuse, expensive draft loop.</td><td>Bounded work, idempotency, rate/cost control and no weakened legal gate.</td></tr>
+   <tr><td class="k">Supply chain</td><td>Tampered model, corpus/rule/offline manifest, dependency or image digest.</td><td>Signature/digest failure; promotion blocked and incident recorded.</td></tr>
+   <tr><td class="k">Operational coercion</td><td>Provider down, reranker down, partial corpus, DB race, audit writer failure.</td><td>Declared degradation or no release; never silent threshold or verifier removal.</td></tr>
+  </tbody></table></div>
+  <p>Map security cases to the current OWASP GenAI/LLM and API risk catalogues, but retain project-specific identifiers because legal-source poisoning, authority inversion and limitation errors are not adequately expressed as generic application vulnerabilities.</p>
+ </div>
+</section>
+
+<section id="statistics">
+ <div class="rail"><span class="num">&sect;13</span><span class="tag">Statistics<br>&amp; decision</span></div>
+ <div class="body">
+  <h2>Make uncertainty visible; predeclare how a candidate wins</h2>
+  <p class="lede">A point estimate from 100 related questions is not proof. Release comparisons are paired by scenario cluster, use confidence intervals, preserve the incumbent baseline and separate hard safety constraints from non-inferiority and improvement claims.</p>
+  <figure><span class="fignum">Figure 3 &mdash; release decision geometry</span>
+   <svg class="dg" viewBox="0 0 940 380" role="img" aria-labelledby="f3t f3d"><title id="f3t">Release decision geometry</title><desc id="f3d">A candidate first passes critical-event and invariant gates. It then passes absolute floors by slice, paired non-inferiority against production, and operational budgets. A change may pass, be limited to a measured scope, or be rejected. Improvement claims require a confidence interval beyond zero rather than merely a higher point estimate.</desc>
+    <defs><marker id="a3" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/></marker></defs>
+    <rect class="bxf" x="25" y="145" width="130" height="64" rx="4"/><text class="th" x="90" y="171" text-anchor="middle">Candidate run</text><text class="tm" x="90" y="190" text-anchor="middle">paired baseline</text>
+    <polygon class="bx" points="250,115 325,177 250,239 175,177"/><text class="th" x="250" y="170" text-anchor="middle">critical</text><text class="tm" x="250" y="188" text-anchor="middle">events = 0?</text>
+    <polygon class="bx" points="440,115 515,177 440,239 365,177"/><text class="th" x="440" y="170" text-anchor="middle">absolute</text><text class="tm" x="440" y="188" text-anchor="middle">floors by slice?</text>
+    <polygon class="bx" points="630,115 705,177 630,239 555,177"/><text class="th" x="630" y="170" text-anchor="middle">non-inferior</text><text class="tm" x="630" y="188" text-anchor="middle">to production?</text>
+    <polygon class="bx" points="820,115 895,177 820,239 745,177"/><text class="th" x="820" y="170" text-anchor="middle">budgets +</text><text class="tm" x="820" y="188" text-anchor="middle">scope pass?</text>
+    <rect class="acc" x="750" y="295" width="140" height="52" rx="20"/><text class="ta" x="820" y="326" text-anchor="middle">release / limit</text>
+    <rect class="bxf" x="365" y="295" width="140" height="52" rx="20"/><text class="th" x="435" y="326" text-anchor="middle">reject</text>
+    <g class="ln" marker-end="url(#a3)"><line x1="155" y1="177" x2="171" y2="177"/><line x1="325" y1="177" x2="361" y2="177"/><line x1="515" y1="177" x2="551" y2="177"/><line x1="705" y1="177" x2="741" y2="177"/><line x1="820" y1="239" x2="820" y2="291"/><line x1="250" y1="239" x2="403" y2="291"/><line x1="440" y1="239" x2="440" y2="291"/><line x1="630" y1="239" x2="474" y2="291"/></g>
+    <text class="ta" x="342" y="165">yes</text><text class="ta" x="532" y="165">yes</text><text class="ta" x="722" y="165">yes</text><text class="tm" x="270" y="270">no</text><text class="tm" x="452" y="270">no</text><text class="tm" x="598" y="270">no</text>
+   </svg><figcaption><b>Order matters.</b> There is no statistical trade that compensates for a fabricated authority or cross-user disclosure. After hard gates, paired uncertainty decides whether ordinary metrics are non-inferior; an unsupported slice can be excluded only through an explicit limited-scope release and matching user-facing coverage label.</figcaption>
+  </figure>
+  <div class="scroll"><table><thead><tr><th>Decision class</th><th>Rule</th><th>Reporting</th></tr></thead><tbody>
+   <tr><td class="k">Hard safety</td><td>Zero observed critical events and all architectural invariants pass.</td><td>State sample count and the one-sided uncertainty bound; zero observed is not zero risk.</td></tr>
+   <tr><td class="k">Absolute floor</td><td>Candidate clears the inherited threshold overall and every declared sufficiently powered slice.</td><td>Cluster bootstrap 95% interval; numerator/denominator; missing/invalid cases.</td></tr>
+   <tr><td class="k">Non-inferiority</td><td>Lower confidence bound for paired candidate&minus;production delta stays above a predeclared negative margin.</td><td>Margin justified before running the locked set; use paired binary tests for critical categorical outcomes.</td></tr>
+   <tr><td class="k">Improvement</td><td>Claim only when the paired confidence interval excludes no change in the favourable direction.</td><td>No cherry-picked best run; all preregistered primary endpoints shown.</td></tr>
+   <tr><td class="k">Calibration</td><td>Threshold fixed on calibration partition; locked set estimates performance once.</td><td>Reliability plot, ECE/Brier, risk&ndash;coverage and group sample sizes.</td></tr>
+   <tr><td class="k">Multiple runs</td><td>Provider/generative evaluations use fixed request artifacts and enough repeated runs only for declared variance questions.</td><td>Snapshot, temperature, seed where supported and retry/failure policy.</td></tr>
+  </tbody></table></div>
+  <p>Use cluster bootstrap over base scenarios, not utterance rows. Record the family key and preserve paired failures for diagnosis. The classic rule-of-three upper bound is reported when zero failures are seen; it prevents a ten-case slice from being described as risk-free.</p>
+ </div>
+</section>
+
+<section id="nonfunctional">
+ <div class="rail"><span class="num">&sect;14</span><span class="tag">System<br>quality</span></div>
+ <div class="body">
+  <h2>Correct under load, failure, recovery and constrained devices</h2>
+  <p class="lede">ISO/IEC 25010 supplies a useful product-quality vocabulary; this architecture supplies the concrete legal-system measures. Performance tests preserve the same verification and abstention policy as ordinary traffic.</p>
+  <div class="scroll"><table><thead><tr><th>Property</th><th>Test profile</th><th>Gate</th></tr></thead><tbody>
+   <tr><td class="k">Latency</td><td>Cold/warm cache; exact citation, search, answer, calculator, SSE reconnect; p50/p95/p99 by language and degradation.</td><td>Inherited budgets; no verifier or gate skipped to pass.</td></tr>
+   <tr><td class="k">Capacity</td><td>Arrival bursts, slow SSE readers, DB pool exhaustion, worker queue age, provider rate limits and object-store latency.</td><td>Bounded queues and admission; no cross-request scope or artifact mix.</td></tr>
+   <tr><td class="k">Reliability</td><td>Crash before/after transaction, duplicate delivery, lease expiry, poison job, corpus publish race and idempotent retry.</td><td>Exactly-once legal effect where promised; at-least-once work produces one outcome.</td></tr>
+   <tr><td class="k">Degradation</td><td>LLM, reranker, inference, object store and audit writer independently unavailable.</td><td>Only documented capability remains; no silent quality downgrade.</td></tr>
+   <tr><td class="k">Privacy</td><td>Anonymous graph enumeration, logs/traces/provider payloads, RLS, export/delete, backup expiry and support access.</td><td>Zero anonymous content persistence; no unnecessary sensitive field crosses a port.</td></tr>
+   <tr><td class="k">Security</td><td>API authorization matrix, prompt/source injection, dependency/image/model/pack integrity and secrets scanning.</td><td>No known critical vulnerability or unmitigated high-risk finding in the release scope.</td></tr>
+   <tr><td class="k">Recoverability</td><td>Monthly restore, rollback application/corpus/rule/pack independently, revoked manifest and disaster runbook.</td><td>Recovery objective met and golden set passes restored state.</td></tr>
+   <tr><td class="k">Cost</td><td>Tokens, provider calls, CPU, queue, storage and egress per verified completion/abstention.</td><td>Average answer and monthly pilot ceiling; p95 cost reported to expose tails.</td></tr>
+  </tbody></table></div>
+ </div>
+</section>
+
+<section id="change">
+ <div class="rail"><span class="num">&sect;15</span><span class="tag">Change<br>qualification</span></div>
+ <div class="body">
+  <h2>Every mutable source of behaviour has a qualification key</h2>
+  <p class="lede">A provider alias, prompt, parser, taxonomy or legal rule can change the answer without changing application code. The candidate manifest therefore names every behaviour-bearing artifact and computes the smallest sufficient test plan from its dependency graph.</p>
+  <pre><b>CandidateManifest</b> {
+  gitCommit; buildDigest; migrations[]; configDigest;
+  sourceAdapters[]; parserOcr; corpusRevision; taxonomyVersion;
+  lexicalEngine; embeddingModel; vectorEncoding; indexDigest; reranker;
+  gateModel; gateThresholds; promptArtifact; providerSnapshot; verifierModels[];
+  ruleManifest; rendererDigest; openApiDigest; clientBuild; packManifest;
+  evaluationDataset; metricCodeDigest; redteamVersion; environment;
+}</pre>
+  <div class="scroll"><table><thead><tr><th>Change</th><th>Mandatory affected suites</th></tr></thead><tbody>
+   <tr><td class="k">Source/parser/OCR/segmentation</td><td>Corpus golden PDFs, identities/relations, retrieval, temporal, quote exactness, dependent answers and pack.</td></tr>
+   <tr><td class="k">Embedding/index/reranker/fusion</td><td>All retrieval strata, exact shadow, gate calibration, end-to-end, latency/cost and bilingual parity.</td></tr>
+   <tr><td class="k">Gate feature/threshold</td><td>Calibration partition, locked abstention, risk&ndash;coverage, critical unanswerables and degradation.</td></tr>
+   <tr><td class="k">Prompt/provider/verifier/cache</td><td>Oracle and end-to-end generation, register, adversarial, Urdu parity, privacy, latency/cost and failover.</td></tr>
+   <tr><td class="k">Rule/schedule/clause/procedure</td><td>Affected dependencies, golden/property/mutation/temporal cases, maker-checker and signed rollback.</td></tr>
+   <tr><td class="k">API/auth/persistence</td><td>OpenAPI diff, generated clients, authorization, anonymous graph, replay, idempotency, sync and load.</td></tr>
+   <tr><td class="k">Client/pack</td><td>Widget/bidi/accessibility, contract, offline journey, patch integrity, startup/size and staged-rollout telemetry.</td></tr>
+   <tr><td class="k">Metric/dataset itself</td><td>Scorer validation, label review, leakage audit, baseline rerun and prior-version comparability statement.</td></tr>
+  </tbody></table></div>
+  <p>Third-party provider/model snapshots are production dependencies, not interchangeable commodities. A silent vendor alias change is rejected. Failover may route only to a separately qualified pinned snapshot; if none exists, the system degrades as specified.</p>
+ </div>
+</section>
+
+<section id="pipeline">
+ <div class="rail"><span class="num">&sect;16</span><span class="tag">CI/CD<br>&amp; release</span></div>
+ <div class="body">
+  <h2>Fast evidence on commits; strong evidence before exposure</h2>
+  <p class="lede">The complete benchmark is too valuable and too slow for every edit. A tiered pipeline gives engineers rapid causal feedback while protecting locked labels and reserving human review for meaningful candidates.</p>
+  <figure><span class="fignum">Figure 4 &mdash; quality promotion pipeline</span>
+   <svg class="dg" viewBox="0 0 940 430" role="img" aria-labelledby="f4t f4d"><title id="f4t">Quality promotion pipeline</title><desc id="f4d">A commit passes static and deterministic tests, a small development benchmark, nightly full development and red-team suites, staging locked evaluation and legal review, then a canary with content-free operational monitoring before production. Each stage records a signed evidence bundle and can reject or constrain scope.</desc>
+    <defs><marker id="a4" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/></marker></defs>
+    <rect class="bxf" x="20" y="70" width="130" height="84" rx="4"/><text class="th" x="85" y="96" text-anchor="middle">Commit</text><text class="tm" x="85" y="117" text-anchor="middle">static &middot; unit</text><text class="tm" x="85" y="136" text-anchor="middle">smoke golden</text>
+    <rect class="bxf" x="190" y="70" width="130" height="84" rx="4"/><text class="th" x="255" y="96" text-anchor="middle">Nightly</text><text class="tm" x="255" y="117" text-anchor="middle">fit set &middot; red team</text><text class="tm" x="255" y="136" text-anchor="middle">fault + load</text>
+    <rect class="bxf" x="360" y="70" width="130" height="84" rx="4"/><text class="th" x="425" y="96" text-anchor="middle">Candidate</text><text class="tm" x="425" y="117" text-anchor="middle">calibrate once</text><text class="tm" x="425" y="136" text-anchor="middle">freeze manifest</text>
+    <rect class="acc" x="530" y="55" width="150" height="114" rx="4"/><text class="ta" x="605" y="84" text-anchor="middle">Locked release</text><text class="tm" x="605" y="106" text-anchor="middle">paired production</text><text class="tm" x="605" y="126" text-anchor="middle">lawyer + security</text><text class="tm" x="605" y="146" text-anchor="middle">signed card</text>
+    <rect class="bxf" x="720" y="70" width="95" height="84" rx="4"/><text class="th" x="767" y="96" text-anchor="middle">Canary</text><text class="tm" x="767" y="117" text-anchor="middle">5%</text><text class="tm" x="767" y="136" text-anchor="middle">guardrails</text>
+    <rect class="bxf" x="850" y="70" width="70" height="84" rx="4"/><text class="th" x="885" y="106" text-anchor="middle">Prod</text><text class="tm" x="885" y="128" text-anchor="middle">staged</text>
+    <rect class="bx" x="190" y="240" width="600" height="88" rx="4"/><text class="th" x="490" y="266" text-anchor="middle">Evidence store</text><text class="tm" x="490" y="288" text-anchor="middle">manifest &middot; raw outputs &middot; metric rows &middot; CIs &middot; adjudication &middot; logs</text><text class="tm" x="490" y="309" text-anchor="middle">content-addressed &middot; immutable &middot; access-audited</text>
+    <rect class="acc" x="360" y="365" width="260" height="46" rx="20"/><text class="ta" x="490" y="393" text-anchor="middle">reject &middot; rollback &middot; limit scope</text>
+    <g class="ln" marker-end="url(#a4)"><line x1="150" y1="112" x2="186" y2="112"/><line x1="320" y1="112" x2="356" y2="112"/><line x1="490" y1="112" x2="526" y2="112"/><line x1="680" y1="112" x2="716" y2="112"/><line x1="815" y1="112" x2="846" y2="112"/><line x1="605" y1="169" x2="547" y2="236"/><line x1="767" y1="154" x2="635" y2="236"/><line x1="490" y1="328" x2="490" y2="361"/></g>
+   </svg><figcaption><b>Locked means operationally locked.</b> Engineers can see aggregate failures and authorized exemplars, but not browse hidden labels until a release decision is final. A rejected run stays evidence. Canary monitoring can roll back the candidate; it cannot retroactively redefine the benchmark.</figcaption>
+  </figure>
+  <div class="scroll"><table><thead><tr><th>Cadence</th><th>Required gates</th><th>Budget</th></tr></thead><tbody>
+   <tr><td class="k">Per commit</td><td>Formatting/types, imports, unit/property/mutation subset, schema/contracts, 50-case development smoke, invariant and red-team smoke.</td><td>Target &le;15 minutes; deterministic fake provider.</td></tr>
+   <tr><td class="k">Nightly</td><td>Full fit set, golden PDFs, component ablations, security scan, failure injection and representative load.</td><td>May use qualified provider; exact cost recorded.</td></tr>
+   <tr><td class="k">Candidate</td><td>Calibration once, threshold freeze, complete manifest, data/metric leakage checks.</td><td>No repeated threshold shopping.</td></tr>
+   <tr><td class="k">Release</td><td>Locked paired run, critical ledger, all slices, manual legal review, privacy/security and restore/rollback evidence.</td><td>Blocks promotion; signed card retained.</td></tr>
+   <tr><td class="k">Milestone</td><td>Sealed challenge set, independent red team and broader user study.</td><td>Before public scope expansion or major provider/model family change.</td></tr>
+  </tbody></table></div>
+ </div>
+</section>
+
+<section id="production">
+ <div class="rail"><span class="num">&sect;17</span><span class="tag">Production<br>&amp; challenge</span></div>
+ <div class="body">
+  <h2>Monitor decisions without building a surveillance corpus</h2>
+  <p class="lede">Offline evaluation estimates known risk; production detects changed conditions. Content-free telemetry is the default. Authenticated sampling of legal content requires a disclosed purpose, strict role, redaction and retention; anonymous content is never persisted for evaluation.</p>
+  <div class="scroll"><table><thead><tr><th>Signal</th><th>Slice</th><th>Trigger / action</th></tr></thead><tbody>
+   <tr><td class="k">Corpus currency</td><td>Official source and jurisdiction.</td><td>Missed schedule/fetch, changed source format or stale coverage &rarr; limit affected scope.</td></tr>
+   <tr><td class="k">Retrieval/gate</td><td>Intent, language, jurisdiction, date mode and degradation.</td><td>Score, abstention or reason-distribution drift &rarr; shadow exact and reviewed sample.</td></tr>
+   <tr><td class="k">Verification</td><td>Risk class, language, provider snapshot and claim type.</td><td>Pass/drop/veto shift &rarr; halt changed route or provider.</td></tr>
+   <tr><td class="k">Challenges</td><td>Error taxonomy, source, legal domain and severity.</td><td>Critical allegation &rarr; immediate quarantine, evidence preservation and legal triage.</td></tr>
+   <tr><td class="k">System</td><td>Path, version, cache, worker and device tier.</td><td>SLO/cost/queue or signed-pack failure &rarr; documented degradation or rollback.</td></tr>
+   <tr><td class="k">Fairness/access</td><td>Language and declared jurisdiction; no sensitive inference.</td><td>Persistent disparity &rarr; scoped investigation and user research, not threshold manipulation.</td></tr>
+  </tbody></table></div>
+  <h3><span class="mk">17.1</span>Challenge becomes a controlled regression</h3>
+  <figure><span class="fignum">Figure 5 &mdash; contestability and learning loop</span>
+   <svg class="dg" viewBox="0 0 940 305" role="img" aria-labelledby="f5t f5d"><title id="f5t">Challenge and controlled learning loop</title><desc id="f5d">A user or operator challenge captures an authorized replay reference. Triage preserves evidence and severity. Legal and technical reviewers establish cause, issue an append-only correction, add a minimized regression fixture to a new dataset version, rerun affected dependencies, and only then publish. The locked set is never silently edited.</desc>
+    <defs><marker id="a5" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/></marker></defs>
+    <rect class="bxf" x="20" y="100" width="115" height="62" rx="4"/><text class="th" x="77" y="125" text-anchor="middle">Challenge</text><text class="tm" x="77" y="144" text-anchor="middle">authorized ref</text>
+    <rect class="bxf" x="165" y="100" width="115" height="62" rx="4"/><text class="th" x="222" y="125" text-anchor="middle">Triage</text><text class="tm" x="222" y="144" text-anchor="middle">severity + hold</text>
+    <rect class="bxf" x="310" y="100" width="130" height="62" rx="4"/><text class="th" x="375" y="125" text-anchor="middle">Root cause</text><text class="tm" x="375" y="144" text-anchor="middle">layer + artifact</text>
+    <rect class="bxf" x="470" y="100" width="130" height="62" rx="4"/><text class="th" x="535" y="125" text-anchor="middle">Correction</text><text class="tm" x="535" y="144" text-anchor="middle">append-only</text>
+    <rect class="acc" x="630" y="85" width="130" height="92" rx="4"/><text class="ta" x="695" y="112" text-anchor="middle">Regression</text><text class="tm" x="695" y="133" text-anchor="middle">minimize + review</text><text class="tm" x="695" y="153" text-anchor="middle">new dataset ver</text>
+    <rect class="bxf" x="790" y="100" width="130" height="62" rx="4"/><text class="th" x="855" y="125" text-anchor="middle">Requalify</text><text class="tm" x="855" y="144" text-anchor="middle">affected graph</text>
+    <g class="ln" marker-end="url(#a5)"><line x1="135" y1="131" x2="161" y2="131"/><line x1="280" y1="131" x2="306" y2="131"/><line x1="440" y1="131" x2="466" y2="131"/><line x1="600" y1="131" x2="626" y2="131"/><line x1="760" y1="131" x2="786" y2="131"/></g>
+    <path class="lnD" d="M855 162 V235 H375 V166" marker-end="url(#a5)"/><text class="tm" x="615" y="257" text-anchor="middle">new evidence may reveal a wider cause; preserve every prior decision</text>
+   </svg><figcaption><b>Feedback is not ground truth.</b> Clicks, ratings and complaints start investigation; they do not directly train ranking or alter law. A verified correction carries the reviewed authority, affected versions, cause, remediation and a test that would have caught it.</figcaption>
+  </figure>
+ </div>
+</section>
+
+<section id="evidence">
+ <div class="rail"><span class="num">&sect;18</span><span class="tag">Evidence<br>&amp; reports</span></div>
+ <div class="body">
+  <h2>A release card is a signed argument for a bounded claim</h2>
+  <p class="lede">Every promotion produces a human-readable card and machine-readable manifest. The card states what was measured, what was not, how uncertain the result is, which failures occurred and precisely which product scope the evidence authorizes.</p>
+  <pre><b>ReleaseCard</b> {
+  candidateManifestDigest; productionBaselineDigest; evaluationRunId;
+  scope: { jurisdictions[]; sources[]; tasks[]; languages[]; exclusions[] };
+  datasets: [{ id; version; split; digest; independentClusters }];
+  metrics: [{ id; definitionVersion; value; interval; denominator; slices[] }];
+  criticalEvents[]; regressions[]; improvements[]; invalidCases[];
+  operational: { latency; availability; cost; privacy; security; recovery };
+  limitations[]; residualRisks[]; requiredMonitoring[]; rollbackRef;
+  decision: "pass" | "limited_scope" | "reject";
+  signatures: [{ role; subject; signedAt; signature }];
+}</pre>
+  <div class="scroll"><table><thead><tr><th>Severity</th><th>Example</th><th>Disposition</th></tr></thead><tbody>
+   <tr><td class="id">S0 critical</td><td>Fabricated/wrong authority released; deadline scalar wrong; cross-user disclosure; unsigned legal artifact accepted; invariant bypass.</td><td>Reject/rollback immediately; preserve evidence; incident owner and regression required.</td></tr>
+   <tr><td class="id">S1 high</td><td>Material qualification omitted; binding status misstated but visible sources allow detection; anonymous content retained.</td><td>Block release; legal/security review; no ordinary waiver.</td></tr>
+   <tr><td class="id">S2 material</td><td>Threshold miss in one adequately powered non-critical slice; major accessibility task blocked.</td><td>Block or explicit limited scope with matching product control.</td></tr>
+   <tr><td class="id">S3 moderate</td><td>Non-material ranking or wording regression; operational budget near limit.</td><td>Owner, due date and monitored waiver with expiry.</td></tr>
+   <tr><td class="id">S4 observation</td><td>Exploratory small-slice signal or cosmetic defect.</td><td>Backlog with evidence; never counted as a pass.</td></tr>
+  </tbody></table></div>
+  <p>Evidence artifacts are content-addressed and access-audited. Public-source fixtures can be retained with their provenance. User-derived legal-sensitive evidence follows Document 07&rsquo;s lifecycle, purpose and deletion controls. Reports contain redacted exemplars; raw confidential content is never attached to a broadly readable CI artifact.</p>
+ </div>
+</section>
+
+<section id="delivery">
+ <div class="rail"><span class="num">&sect;19</span><span class="tag">Delivery<br>contract</span></div>
+ <div class="body">
+  <h2>Build the measurement spine before tuning the system</h2>
+  <div class="scroll"><table><thead><tr><th>Phase</th><th>Deliverable</th><th>Cannot advance until</th></tr></thead><tbody>
+   <tr><td class="id">E0</td><td>Metric registry, artifact manifest, deterministic runner, report schema and 50-case development smoke.</td><td>Same inputs reproduce identical deterministic rows; metric tests match hand calculations.</td></tr>
+   <tr><td class="id">E1</td><td>Golden PDF/tree suite, temporal fixtures, corpus publication and restore gates.</td><td>QA-4/QA-5 floors and deterministic corpus rebuild pass.</td></tr>
+   <tr><td class="id">E2</td><td><code>golden-pk-v1</code> 500 scenarios, frozen family split, annotation handbook and adjudication tool.</td><td>Stable source identities, leakage audit, agreement report and legal sign-off.</td></tr>
+   <tr><td class="id">E3</td><td>Retrieval/gate metrics, ablations, calibration and exact-search shadow.</td><td>QA-2/QA-3/QA-6 pass overall and by declared supported slice.</td></tr>
+   <tr><td class="id">E4</td><td>Oracle/end-to-end generation, domain mutation suites and legal register red team.</td><td>QA-1/QA-13 and critical domain gates pass.</td></tr>
+   <tr><td class="id">E5</td><td>API/client/offline, privacy, security, load, recovery and signed release cards.</td><td>QA-7&ndash;QA-12/QA-14 evidence exists and rollback is rehearsed.</td></tr>
+   <tr><td class="id">E6</td><td>Production drift, challenge quarantine, incident and controlled benchmark-growth workflow.</td><td>Alerts, ownership, access controls and first challenge rehearsal complete.</td></tr>
+  </tbody></table></div>
+  <h3><span class="mk">19.1</span>Executable ports</h3>
+  <pre><b>interface IEvaluationTarget</b> {
+  describe(): ArtifactManifest;
+  run(case: EvalCase, mode: EvalMode): EvalObservation;
+}
+
+<b>interface IMetric</b> {
+  definitionVersion: string;
+  score(observations: EvalObservation[], labels: GoldLabels[]): MetricRows;
+}
+
+<b>interface IReleaseGate</b> {
+  decide(candidate: RunManifest, baseline: RunManifest,
+         policy: ReleasePolicy): ReleaseDecision;
+}</pre>
+  <h3><span class="mk">19.2</span>Definition of done</h3>
+  <ul>
+   <li>All five master invariants and QA-1 through QA-14 map to executable tests, named owners and evidence artifacts.</li>
+   <li>The 500-scenario Pakistan benchmark is source-grounded, family-split, bilingual/Roman-Urdu capable, lawyer-adjudicated and content-addressed.</li>
+   <li>Corpus, retrieval, oracle generation, end-to-end, domain, backend, client, offline, security and operations suites can run independently and together.</li>
+   <li>Critical events cannot be averaged, retried away or waived; limited scope is mechanically reflected in backend capability and client coverage.</li>
+   <li>Every candidate is paired with the current production baseline and reports denominators, uncertainty, slices, invalid cases, latency and cost.</li>
+   <li>Anonymous content is not persisted for evaluation. Production feedback enters quarantine and cannot silently contaminate locked tests or training.</li>
+   <li>A signed release card, rollback reference and responsible legal/technical/security approvals exist before pilot exposure.</li>
+  </ul>
+ </div>
+</section>
+
+<section id="references">
+ <div class="rail"><span class="num">R</span><span class="tag">Authorities<br>&amp; research</span></div>
+ <div class="body">
+  <h2>Primary authority, standards and research basis</h2>
+  <p class="lede">Pakistani sources establish the legal and institutional posture. International standards and research supply evaluation methods, not Pakistani law. Recent preprints are identified as supporting evidence rather than normative authority.</p>
+  <ol>
+   <li><b>Constitution of the Islamic Republic of Pakistan</b> &mdash; current consolidated official text; Article 14 informs dignity and privacy risk. <a href="https://na.gov.pk/uploads/documents/6926e060076ed_467.pdf">National Assembly official PDF</a>.</li>
+   <li><b>Qanun-e-Shahadat Order, 1984</b> &mdash; documentary and modern-device/electronic-system evidence; provenance controls do not predetermine admissibility. <a href="https://pakistancode.gov.pk/pdffiles/administrator32b2d132138b421a65ab547a15ecd6ae.pdf">Pakistan Code official PDF</a>.</li>
+   <li><b>Prevention of Electronic Crimes Act, 2016</b> &mdash; current Pakistan Code access copy used for security, unauthorized-access and incident-risk posture; it is not treated as a general data-retention code. <a href="https://www.pakistancode.gov.pk/pdffiles/administrator6a061efe0ed5bd153fa8b79b8eb4cba7.pdf">Ministry of Law and Justice official PDF</a>.</li>
+   <li><b>Electronic Transactions Ordinance, 2002</b> &mdash; electronic document, communication, signature and integrity framework; a signed evaluation artifact does not by itself decide admissibility or professional approval. <a href="https://pakistancode.gov.pk/pdffiles/administratordbc98dd49f2df3b1d07bb986dcceb9a3.pdf">Pakistan Code official PDF</a>.</li>
+   <li><b>Pakistan Legal Practitioners and Bar Councils Rules, 1976</b> &mdash; professional conduct including rule 146 on confidential client information. <a href="https://www.pakistanbarcouncil.org/storage/acts/Bar%20Council%20Rules.pdf">Pakistan Bar Council official PDF</a>; <a href="https://pakistanbarcouncil.org/acts">official catalogue</a>.</li>
+   <li><b>Personal Data Protection Bill, May 2023</b> &mdash; the Ministry register identifies it as a draft; used for forward-compatible policy, not claimed as enacted law. <a href="https://www.moitt.gov.pk/Legislations">MOITT official status register</a>; <a href="https://www.moitt.gov.pk/SiteImage/Misc/files/Final%20Draft%20Personal%20Data%20Protection%20Bill%20May%202023.pdf">official draft PDF</a>.</li>
+   <li><b>National Guidelines for Use of Artificial Intelligence in Judicial Institutions of Pakistan</b> &mdash; assistive, human-centric, transparent, accountable and privacy-protecting benchmark. <a href="https://ljcp.gov.pk/SiteImage/Misc/files/National%20AI%20Guidelines%20for%20Judicial%20Officers%20and%20Judicial%20Staff.pdf">LJCP official guidelines PDF</a>; <a href="https://www.ljcp.gov.pk/SliderDetail/NTI1NmRiN2EtM2M2MC00MzgyLWFlNmEtNmQ5ZmU5MWE4MjFh">official release</a>; <a href="https://ljcp.gov.pk/SiteImage/Misc/files/Press_Release_28_2026.pdf">NJPMC adoption record</a>.</li>
+   <li><b>NIST AI Risk Management Framework and AI 600-1 Generative AI Profile</b> &mdash; risk-based testing, evaluation, verification, validation, confabulation, information integrity, privacy and incident controls. <a href="https://airc.nist.gov/">NIST AI Resource Center</a>; <a href="https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf">official profile PDF</a>.</li>
+   <li><b>NIST SP 800-218, Secure Software Development Framework 1.1</b> &mdash; secure development, provenance and vulnerability prevention practices. <a href="https://nvlpubs.nist.gov/nistpubs/specialpublications/nist.sp.800-218.pdf">NIST official PDF</a>.</li>
+   <li><b>ISO/IEC 42001:2023</b> &mdash; AI management-system requirements and continual Plan&ndash;Do&ndash;Check&ndash;Act governance. <a href="https://www.iso.org/standard/42001">ISO official overview</a>.</li>
+   <li><b>ISO/IEC 25010:2023</b> &mdash; current product-quality model for specifying and evaluating ICT/software quality. <a href="https://www.iso.org/standard/78176.html">ISO official overview</a>.</li>
+   <li><b>WCAG 2.2</b> &mdash; testable accessibility criteria, used at AA while retaining human usability evaluation. <a href="https://www.w3.org/TR/WCAG22/">W3C Recommendation</a>.</li>
+   <li><b>OWASP GenAI/LLM Top 10 2026</b> and <b>API Security Top 10 2023</b> &mdash; prompt injection, sensitive disclosure, supply chain, overreliance, authorization and resource-consumption threats. <a href="https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/">OWASP GenAI project</a>; <a href="https://owasp.org/API-Security/editions/2023/en/0x11-t10/">OWASP API project</a>.</li>
+   <li><b>LegalBench-RAG</b> &mdash; expert-annotated, fine-grained legal retrieval benchmark; methodological precedent, not a substitute for Pakistani law. <a href="https://arxiv.org/abs/2408.10343">Pipitone &amp; Alami, 2024</a>; <a href="https://github.com/ZeroEntropy-AI/legalbenchrag">official code</a>.</li>
+   <li><b>Hallucination-Free? Assessing the Reliability of Leading AI Legal Research Tools</b> &mdash; preregistered evidence that proprietary legal RAG still produces material errors, supporting measured rather than absolute safety claims. <a href="https://arxiv.org/abs/2405.20362">Magesh et al., 2024</a>.</li>
+   <li><b>Measuring Attribution in Natural Language Generation Models</b> &mdash; Attributable to Identified Sources (AIS) human evaluation framework. <a href="https://aclanthology.org/2023.cl-4.2/">Rashkin et al., 2023</a>.</li>
+   <li><b>Selective Classification for Deep Neural Networks</b> and <b>The Art of Abstention</b> &mdash; risk&ndash;coverage evaluation for systems that may refuse. <a href="https://proceedings.neurips.cc/paper/2017/hash/4a8423d5e91fda00bb7e46540e2b0cf1-Abstract.html">Geifman &amp; El-Yaniv, 2017</a>; <a href="https://aclanthology.org/2021.acl-long.84/">Xin et al., 2021</a>.</li>
+   <li><b>BEIR</b> and <b>MIRACL</b> &mdash; heterogeneous and multilingual retrieval evaluation methodology; neither supplies Pakistani Urdu legal validation. <a href="https://arxiv.org/abs/2104.08663">BEIR paper</a>; <a href="https://direct.mit.edu/tacl/article/doi/10.1162/tacl_a_00595/117438/MIRACL-A-Multilingual-Retrieval-Dataset-Covering">MIRACL paper</a>.</li>
+   <li><b>The ML Test Score</b> &mdash; production-readiness rubric linking model, data, infrastructure and monitoring tests. <a href="https://research.google/pubs/the-ml-test-score-a-rubric-for-ml-production-readiness-and-technical-debt-reduction/">Google Research publication</a>.</li>
+   <li><b>OpenTelemetry semantic conventions</b> &mdash; versioned telemetry vocabulary and explicit sensitive-data caution. <a href="https://opentelemetry.io/docs/specs/semconv/">Official specification</a>.</li>
+   <li><b>Local specification evidence</b> &mdash; <a href="01-master-architecture.html">01</a>, <a href="02-corpus-and-ingestion.html">02</a>, <a href="03-data-and-storage.html">03</a>, <a href="03a-capacity-plan.html">03a</a>, <a href="03b-legal-data-model.html">03b</a>, <a href="04-retrieval.html">04</a>, <a href="05-generation-and-grounding.html">05</a>, <a href="06-domain-services.html">06</a>, <a href="07-backend-api.html">07</a>, <a href="08-client-architecture.html">08</a>, <a href="09a-local-environment.html">09a</a> and <a href="09b-production-deployment.html">09b</a>.</li>
+  </ol>
+ </div>
+</section>
+
+</div>
+</body>
+</html>

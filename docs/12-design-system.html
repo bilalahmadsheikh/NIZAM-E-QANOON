@@ -1,0 +1,881 @@
+<title>Nizam-e-Qanoon Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Karla:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&family=Noto+Nastaliq+Urdu:wght@400;600&display=swap">
+
+<style>
+:root{
+  /* ── ground: parchment, never white ── */
+  --parchment:#F3EFE6;
+  --parchment-2:#EAE4D6;
+  --card:#FBF8F1;
+  --pine:#17352E;
+  --pine-2:#1F4840;
+  --pine-3:#2C5F54;
+  --brass:#B8873C;
+  --brass-deep:#8A6216;
+  --brass-tint:#F0E4CB;
+  --oxide:#A0392C;
+  --oxide-tint:#F6E3DE;
+  --ink:#1A1F1C;
+  --ink-2:#5A625C;
+  --ink-3:#8E958E;
+  --rule:#DFD8C8;
+  --rule-2:#CFC6B2;
+  --shadow-s:0 1px 2px rgba(26,31,28,.04), 0 6px 16px -8px rgba(26,31,28,.10);
+  --shadow-m:0 2px 6px rgba(26,31,28,.05), 0 18px 44px -18px rgba(26,31,28,.18);
+
+  --f-display:"Spectral", Georgia, "Times New Roman", serif;
+  --f-body:"Karla", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --f-urdu:"Noto Nastaliq Urdu", serif;
+  --measure:66ch;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --parchment:#121916;
+    --parchment-2:#0C110F;
+    --card:#1A2320;
+    --pine:#D9E4DF;
+    --pine-2:#B5C9C1;
+    --pine-3:#8FAFA4;
+    --brass:#D4A557;
+    --brass-deep:#E0B76F;
+    --brass-tint:#2A2416;
+    --oxide:#E0897B;
+    --oxide-tint:#2C1B18;
+    --ink:#EDE8DC;
+    --ink-2:#A8A79A;
+    --ink-3:#767A72;
+    --rule:#28312D;
+    --rule-2:#3A443F;
+    --shadow-s:0 1px 2px rgba(0,0,0,.4), 0 8px 20px -10px rgba(0,0,0,.6);
+    --shadow-m:0 2px 8px rgba(0,0,0,.5), 0 24px 56px -22px rgba(0,0,0,.75);
+  }
+}
+:root[data-theme="dark"]{
+  --parchment:#121916; --parchment-2:#0C110F; --card:#1A2320;
+  --pine:#D9E4DF; --pine-2:#B5C9C1; --pine-3:#8FAFA4;
+  --brass:#D4A557; --brass-deep:#E0B76F; --brass-tint:#2A2416;
+  --oxide:#E0897B; --oxide-tint:#2C1B18;
+  --ink:#EDE8DC; --ink-2:#A8A79A; --ink-3:#767A72;
+  --rule:#28312D; --rule-2:#3A443F;
+  --shadow-s:0 1px 2px rgba(0,0,0,.4), 0 8px 20px -10px rgba(0,0,0,.6);
+  --shadow-m:0 2px 8px rgba(0,0,0,.5), 0 24px 56px -22px rgba(0,0,0,.75);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--parchment);
+  color:var(--ink);
+  font-family:var(--f-body);
+  font-size:16.5px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:70rem;margin:0 auto;padding:0 2rem 10rem}
+
+/* ── hero: the immersive pine field ── */
+.hero{
+  background:
+    radial-gradient(120% 80% at 15% 0%, rgba(184,135,60,.16), transparent 60%),
+    radial-gradient(90% 70% at 90% 10%, rgba(44,95,84,.5), transparent 65%),
+    #17352E;
+  color:#F3EFE6;
+  margin:0 -2rem 5rem;
+  padding:6rem 2rem 5rem;
+  position:relative;
+  overflow:hidden;
+}
+.hero::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:1px;
+  background:linear-gradient(to right, transparent, rgba(184,135,60,.7), transparent);
+}
+.hero-in{max-width:66rem;margin:0 auto}
+.kicker{
+  font-family:var(--f-mono);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;
+  color:#D4A557;margin:0 0 1.75rem;
+}
+h1{
+  font-family:var(--f-display);font-weight:400;
+  font-size:clamp(3rem,8vw,5.75rem);line-height:.98;letter-spacing:-.025em;
+  margin:0 0 1.5rem;text-wrap:balance;color:#F7F3E9;
+}
+h1 em{font-style:italic;color:#D4A557}
+.dek{
+  font-family:var(--f-display);font-size:clamp(1.15rem,2.3vw,1.5rem);
+  line-height:1.5;color:rgba(243,239,230,.78);max-width:44ch;margin:0 0 2.75rem;
+}
+.hero-meta{
+  display:flex;flex-wrap:wrap;gap:.6rem 2.5rem;
+  font-family:var(--f-mono);font-size:.7rem;letter-spacing:.09em;
+  color:rgba(243,239,230,.5);padding-top:1.75rem;
+  border-top:1px solid rgba(243,239,230,.14);
+}
+.hero-meta b{color:#D4A557;font-weight:500}
+
+/* ── sections ── */
+section{padding-top:5.5rem}
+.eyebrow{
+  display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;
+}
+.eyebrow span{
+  font-family:var(--f-mono);font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--brass-deep);white-space:nowrap;
+}
+.eyebrow::after{content:"";height:1px;flex:1;background:var(--rule)}
+h2{
+  font-family:var(--f-display);font-weight:400;
+  font-size:clamp(2rem,4.4vw,3rem);line-height:1.08;letter-spacing:-.02em;
+  margin:0 0 1.25rem;text-wrap:balance;
+}
+h2 em{font-style:italic;color:var(--brass-deep)}
+h3{font-family:var(--f-body);font-weight:700;font-size:1.05rem;letter-spacing:-.005em;margin:3.5rem 0 .9rem}
+h4{font-family:var(--f-mono);font-weight:500;font-size:.68rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ink-3);margin:0 0 1rem}
+p{margin:0 0 1.3rem;max-width:var(--measure)}
+.lede{font-family:var(--f-display);font-size:1.3rem;line-height:1.6;color:var(--ink-2);max-width:56ch;margin-bottom:2.5rem}
+ul{margin:0 0 1.4rem;padding-inline-start:1.2rem;max-width:var(--measure)}
+li{margin-bottom:.55rem}
+li::marker{color:var(--brass)}
+strong{font-weight:700}
+em{font-style:italic}
+code{font-family:var(--f-mono);font-size:.85em}
+a{color:var(--brass-deep)}
+
+/* ── panels ── */
+.panel{
+  background:var(--card);border:1px solid var(--rule);border-radius:20px;
+  padding:2rem;box-shadow:var(--shadow-s);
+}
+.panel-pine{
+  background:linear-gradient(155deg,#1F4840,#17352E 60%);
+  border:1px solid rgba(184,135,60,.2);border-radius:20px;padding:2rem;color:#F3EFE6;
+}
+.grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(19rem,1fr));gap:1.5rem}
+.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1.5rem}
+.stack{display:flex;flex-direction:column;gap:1.5rem}
+
+/* ── swatches ── */
+.sw{border-radius:16px;overflow:hidden;border:1px solid var(--rule);background:var(--card)}
+.sw-chip{height:6.5rem;display:flex;align-items:flex-end;padding:.85rem}
+.sw-chip span{font-family:var(--f-mono);font-size:.65rem;letter-spacing:.08em;
+  background:rgba(255,255,255,.9);color:#1A1F1C;padding:.2rem .45rem;border-radius:4px}
+.sw-body{padding:.9rem 1rem 1.1rem;display:flex;flex-direction:column;gap:.3rem}
+.sw-name{font-weight:700;font-size:.9rem}
+.sw-note{font-size:.8rem;line-height:1.5;color:var(--ink-2)}
+.sw-ratio{font-family:var(--f-mono);font-size:.68rem;color:var(--brass-deep);letter-spacing:.04em}
+
+/* ── tables ── */
+.scroll{overflow-x:auto;margin:1.6rem 0 2rem;border:1px solid var(--rule);border-radius:16px;background:var(--card)}
+table{border-collapse:collapse;width:100%;font-size:.86rem;line-height:1.55}
+th{text-align:left;font-family:var(--f-mono);font-weight:500;font-size:.64rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink-3);padding:.9rem 1rem;border-bottom:1px solid var(--rule-2);
+  white-space:nowrap;background:var(--parchment-2)}
+td{padding:.85rem 1rem;border-bottom:1px solid var(--rule);vertical-align:top}
+tr:last-child td{border-bottom:none}
+td.k{font-weight:700;min-width:9rem}
+td.n{font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap;font-size:.9em;text-align:right}
+
+pre{background:var(--parchment-2);border:1px solid var(--rule);border-radius:16px;
+  padding:1.5rem 1.6rem;overflow-x:auto;margin:1.5rem 0;
+  font-family:var(--f-mono);font-size:.78rem;line-height:1.75;color:var(--ink-2)}
+pre b{color:var(--ink);font-weight:500}
+pre u{color:var(--brass-deep);text-decoration:none}
+pre i{color:var(--ink-3);font-style:normal}
+
+.note{border-left:2px solid var(--brass);padding:0 0 0 1.5rem;margin:2rem 0;max-width:var(--measure)}
+.note h4{color:var(--brass-deep);margin-bottom:.6rem}
+.note p:last-child{margin-bottom:0}
+</style>
+
+<div class="wrap">
+
+<header class="hero">
+  <div class="hero-in">
+    <p class="kicker">Document 12 &middot; Design System</p>
+    <h1>Stamp<br><em>Paper</em></h1>
+    <p class="dek">Pakistani judicial stamp paper is warm cream, printed in pine green, sealed in brass and numbered in oxide red. The whole palette was already sitting on the desk.</p>
+    <div class="hero-meta">
+      <span><b>Ground</b> parchment, never white</span>
+      <span><b>Type</b> Spectral &middot; Karla</span>
+      <span><b>Structure</b> iOS &mdash; open, unhurried</span>
+      <span><b>Version</b> 1.0</span>
+    </div>
+  </div>
+</header>
+
+<!-- ============ 1 ============ -->
+<section>
+  <div class="eyebrow"><span>01 &mdash; Direction</span></div>
+  <h2>Warm, not <em>corporate</em></h2>
+  <p class="lede">Legal software defaults to navy, gold and a white page. It reads as institutional, and institutional is exactly the feeling that keeps people from asking a legal question in the first place.</p>
+
+  <div class="grid-2">
+    <div class="panel">
+      <h4>What we took</h4>
+      <p style="margin-bottom:0;font-size:.94rem;line-height:1.7;">The physical artefact. Judicial stamp paper carries a cream ground, a green-blue guilloche, an embossed seal and red serial numbering &mdash; four colours that already mean something in this jurisdiction, already sit together, and already read as authoritative without shouting.</p>
+    </div>
+    <div class="panel">
+      <h4>What we left</h4>
+      <p style="margin-bottom:0;font-size:.94rem;line-height:1.7;">The white page. A flat white background makes every card float in nothing and every screen read as a form. Parchment gives the interface a floor, so cards can be genuinely white and actually lift.</p>
+    </div>
+  </div>
+
+  <div class="panel-pine" style="margin-top:1.5rem;">
+    <h4 style="color:#D4A557;">The rule that keeps it premium</h4>
+    <p style="margin-bottom:0;color:rgba(243,239,230,.85);font-size:1.02rem;line-height:1.75;max-width:60ch;">Space is the luxury signal, not ornament. Every screen in &sect;06 could hold twice the content and deliberately does not &mdash; a section of law given room to breathe reads as considered; the same section packed tight reads as a database dump. When in doubt, remove an element rather than shrink the gaps.</p>
+  </div>
+</section>
+
+<!-- ============ 2 ============ -->
+<section>
+  <div class="eyebrow"><span>02 &mdash; Colour</span></div>
+  <h2>Four colours and their <em>quiet neighbours</em></h2>
+  <p class="lede">One warm ground, one deep field, one metal, one alarm. Everything else is a neutral holding them apart.</p>
+
+  <div class="grid-3">
+    <div class="sw">
+      <div class="sw-chip" style="background:#F3EFE6;"><span>#F3EFE6</span></div>
+      <div class="sw-body">
+        <div class="sw-name">Parchment</div>
+        <div class="sw-note">The floor. Warm enough that white cards read as paper laid on a desk rather than shapes on a void.</div>
+      </div>
+    </div>
+    <div class="sw">
+      <div class="sw-chip" style="background:#17352E;"><span>#17352E</span></div>
+      <div class="sw-body">
+        <div class="sw-name">Pine</div>
+        <div class="sw-note">Immersive surfaces &mdash; hero, sheets, the tab bar at rest. Deep enough to sit under brass without fighting it.</div>
+        <div class="sw-ratio">11.6:1 on parchment</div>
+      </div>
+    </div>
+    <div class="sw">
+      <div class="sw-chip" style="background:#B8873C;"><span>#B8873C</span></div>
+      <div class="sw-body">
+        <div class="sw-name">Brass</div>
+        <div class="sw-note">The seal. Accents, active states, section numerals. Fill and large type only.</div>
+        <div class="sw-ratio">use #8A6216 for body text</div>
+      </div>
+    </div>
+    <div class="sw">
+      <div class="sw-chip" style="background:#A0392C;"><span>#A0392C</span></div>
+      <div class="sw-body">
+        <div class="sw-name">Oxide</div>
+        <div class="sw-note">Serial-number red. Repealed, struck down, destructive. Reserved &mdash; never decorative.</div>
+        <div class="sw-ratio">5.9:1 on parchment</div>
+      </div>
+    </div>
+    <div class="sw">
+      <div class="sw-chip" style="background:#FBF8F1;border-bottom:1px solid #DFD8C8;"><span>#FBF8F1</span></div>
+      <div class="sw-body">
+        <div class="sw-name">Card</div>
+        <div class="sw-note">Warm off-white. Lifts off parchment with almost no shadow, which is what keeps the surface calm.</div>
+      </div>
+    </div>
+    <div class="sw">
+      <div class="sw-chip" style="background:#1A1F1C;"><span>#1A1F1C</span></div>
+      <div class="sw-body">
+        <div class="sw-name">Ink</div>
+        <div class="sw-note">Green-biased black. Pure black on parchment reads cold and slightly dirty.</div>
+        <div class="sw-ratio">14.6:1 on parchment</div>
+      </div>
+    </div>
+  </div>
+
+  <h3>Dark is a different room, not the lights off</h3>
+  <p>Inverting a warm palette produces mud. Instead the ground becomes pine-black, cream carries the text, and <strong>brass takes over as the primary accent</strong> &mdash; it lifts on dark far better than green does, so the identity survives the switch instead of going grey.</p>
+
+  <div class="grid-3">
+    <div class="sw" style="background:#121916;border-color:#28312D;">
+      <div class="sw-chip" style="background:#12191E;"><span style="background:rgba(237,232,220,.9)">#121916</span></div>
+      <div class="sw-body">
+        <div class="sw-name" style="color:#EDE8DC;">Ground</div>
+        <div class="sw-note" style="color:#A8A79A;">Pine pulled almost to black. Not neutral black &mdash; the hue is still there.</div>
+      </div>
+    </div>
+    <div class="sw" style="background:#121916;border-color:#28312D;">
+      <div class="sw-chip" style="background:#1A2320;"><span style="background:rgba(237,232,220,.9)">#1A2320</span></div>
+      <div class="sw-body">
+        <div class="sw-name" style="color:#EDE8DC;">Surface</div>
+        <div class="sw-note" style="color:#A8A79A;">Cards lift by lightness. Shadows do almost nothing on a dark ground.</div>
+      </div>
+    </div>
+    <div class="sw" style="background:#121916;border-color:#28312D;">
+      <div class="sw-chip" style="background:#D4A557;"><span>#D4A557</span></div>
+      <div class="sw-body">
+        <div class="sw-name" style="color:#EDE8DC;">Brass, raised</div>
+        <div class="sw-note" style="color:#A8A79A;">Now the primary accent. Lightness up, chroma held.</div>
+        <div class="sw-ratio" style="color:#D4A557;">5.9:1 on ground</div>
+      </div>
+    </div>
+  </div>
+
+  <h3>Legal status has four values and no more</h3>
+  <p>Colour never carries these alone. Every one ships with a mark and a word, because a colour-blind reader and a printed page both have to work.</p>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th>State</th><th>Mark</th><th>Light</th><th>Dark</th><th>Rule</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="k"><span style="display:inline-flex;align-items:center;gap:.4rem;background:var(--brass-tint);border:1px solid var(--brass);border-radius:6px;padding:.2rem .5rem;font-size:.72rem;font-weight:700;color:var(--brass-deep);letter-spacing:.02em;">IN FORCE</span></td>
+          <td>Seal</td><td class="n">#8A6216</td><td class="n">#D4A557</td>
+          <td>The only state that is not a warning. Brass, because it is the seal on a valid instrument.</td>
+        </tr>
+        <tr>
+          <td class="k"><span style="display:inline-flex;align-items:center;gap:.4rem;background:var(--oxide-tint);border:1px solid var(--oxide);border-radius:6px;padding:.2rem .5rem;font-size:.72rem;font-weight:700;color:var(--oxide);letter-spacing:.02em;">REPEALED</span></td>
+          <td>Cross</td><td class="n">#A0392C</td><td class="n">#E0897B</td>
+          <td>Also struck down and invalidated. Cannot be collapsed by the reader.</td>
+        </tr>
+        <tr>
+          <td class="k"><span style="display:inline-flex;align-items:center;gap:.4rem;background:transparent;border:1px dashed var(--rule-2);border-radius:6px;padding:.2rem .5rem;font-size:.72rem;font-weight:700;color:var(--ink-2);letter-spacing:.02em;">NOT IN FORCE</span></td>
+          <td>Dashed edge</td><td class="n">#5A625C</td><td class="n">#A8A79A</td>
+          <td>Enacted, never commenced. A dashed border does the work &mdash; no third hue needed.</td>
+        </tr>
+        <tr>
+          <td class="k"><span style="display:inline-flex;align-items:center;gap:.4rem;background:var(--parchment-2);border:1px solid var(--rule);border-radius:6px;padding:.2rem .5rem;font-size:.72rem;font-weight:700;color:var(--ink-2);letter-spacing:.02em;">AMENDED</span></td>
+          <td>None</td><td class="n">#5A625C</td><td class="n">#A8A79A</td>
+          <td>Deliberately neutral. Amendment is ordinary; alarming the reader about it is noise.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+
+<!-- ============ 3 ============ -->
+<section>
+  <div class="eyebrow"><span>03 &mdash; Type</span></div>
+  <h2>Chrome is borrowed. <em>Content is ours.</em></h2>
+  <p class="lede">One decision carries the whole system. Navigation uses a face that gets out of the way; statutory text uses one with a voice, so law reads like law rather than like an app.</p>
+
+  <div class="grid-3">
+    <div class="panel" style="display:flex;flex-direction:column;gap:1rem;">
+      <div style="font-family:var(--f-display);font-size:3.6rem;line-height:1;font-weight:400;">Aa</div>
+      <div>
+        <div style="font-weight:700;font-size:.95rem;margin-bottom:.3rem;">Spectral</div>
+        <div style="font-size:.86rem;line-height:1.6;color:var(--ink-2);">Statutory text, headings, explanations. A transitional serif drawn for screens &mdash; warm, slightly narrow, and unmistakably a book face. Georgia falls back with close metrics.</div>
+      </div>
+    </div>
+    <div class="panel" style="display:flex;flex-direction:column;gap:1rem;">
+      <div style="font-family:var(--f-body);font-size:3.6rem;line-height:1;font-weight:600;letter-spacing:-.02em;">Aa</div>
+      <div>
+        <div style="font-weight:700;font-size:.95rem;margin-bottom:.3rem;">Karla</div>
+        <div style="font-size:.86rem;line-height:1.6;color:var(--ink-2);">Interface, labels, buttons, tab bar. A grotesque with just enough irregularity to feel drawn rather than generated. Never used for the text of a provision.</div>
+      </div>
+    </div>
+    <div class="panel" style="display:flex;flex-direction:column;gap:1rem;">
+      <div style="font-family:var(--f-urdu);font-size:2.4rem;line-height:1.9;direction:rtl;">ا ب</div>
+      <div>
+        <div style="font-weight:700;font-size:.95rem;margin-bottom:.3rem;">Noto Nastaliq Urdu</div>
+        <div style="font-size:.86rem;line-height:1.6;color:var(--ink-2);">Every Urdu run, chrome and content alike. There is no acceptable substitute, and no synthetic bold &mdash; emphasis comes from size and colour.</div>
+      </div>
+    </div>
+  </div>
+
+  <h3>The scale, and its Nastaliq twin</h3>
+  <p>Nastaliq runs larger with roughly double the leading. The two scales are chosen <strong>per run, by script</strong> &mdash; not per locale &mdash; because one sentence routinely contains both, and choosing by locale breaks on exactly that line.</p>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Role</th><th>Specimen</th><th>Latin</th><th>Nastaliq</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="k">Display</td>
+          <td><span style="font-family:var(--f-display);font-size:2rem;font-weight:400;letter-spacing:-.02em;">Specific Relief Act</span></td>
+          <td class="n">44 / 1.04</td><td class="n">50 / 1.7</td>
+        </tr>
+        <tr>
+          <td class="k">Provision heading</td>
+          <td><span style="font-family:var(--f-display);font-size:1.25rem;font-weight:600;">9. Suit by person dispossessed</span></td>
+          <td class="n">20 / 1.3</td><td class="n">23 / 1.85</td>
+        </tr>
+        <tr>
+          <td class="k">Statutory body</td>
+          <td><span style="font-family:var(--f-display);font-size:1.06rem;line-height:1.68;">If any person is dispossessed without his consent of immoveable property&hellip;</span></td>
+          <td class="n">17 / 1.68</td><td class="n">20 / 2.1</td>
+        </tr>
+        <tr>
+          <td class="k">Interface label</td>
+          <td><span style="font-size:.95rem;font-weight:600;">Trace precedent</span></td>
+          <td class="n">15 / 1.4</td><td class="n">18 / 1.9</td>
+        </tr>
+        <tr>
+          <td class="k">Meta</td>
+          <td><span style="font-family:var(--f-mono);font-size:.76rem;letter-spacing:.04em;color:var(--ink-2);">In force 1877-02-01 &rarr; present</span></td>
+          <td class="n">12 / 1.45</td><td class="n">15 / 1.9</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>The citation island</h3>
+  <p>This is where bilingual legal interfaces break, and the failure does not look like a typography bug &mdash; it looks like a citation to a different section.</p>
+
+  <div class="grid-2">
+    <div class="panel" style="border-color:var(--oxide);">
+      <h4 style="color:var(--oxide);">Without isolation</h4>
+      <div style="direction:rtl;font-family:var(--f-urdu);font-size:1.35rem;line-height:2.2;margin-bottom:1rem;">قتلِ عمد <span style="font-family:var(--f-body);font-size:.95rem;background:var(--oxide-tint);padding:.1rem .35rem;border-radius:5px;">302&ndash;304 .s PPC</span> کے تحت</div>
+      <p style="font-size:.88rem;line-height:1.65;color:var(--ink-2);margin-bottom:0;">Brackets, commas and the range dash take direction from context. Inside a right-to-left paragraph they resolve right-to-left and migrate to the wrong end.</p>
+    </div>
+    <div class="panel" style="border-color:var(--brass);">
+      <h4 style="color:var(--brass-deep);">First-strong isolates</h4>
+      <div style="direction:rtl;font-family:var(--f-urdu);font-size:1.35rem;line-height:2.2;margin-bottom:1rem;">قتلِ عمد <span dir="ltr" style="font-family:var(--f-body);font-size:.95rem;background:var(--brass-tint);padding:.1rem .35rem;border-radius:5px;unicode-bidi:isolate;">s. 302&ndash;304 PPC</span> کے تحت</div>
+      <p style="font-size:.88rem;line-height:1.65;color:var(--ink-2);margin-bottom:0;">Every foreign run wrapped in <code>U+2068 &hellip; U+2069</code>. Neutrals resolve inside the isolate; the citation stays one island. Isolates, never the deprecated embeddings.</p>
+    </div>
+  </div>
+
+  <div class="note">
+    <h4>Digits stay Western</h4>
+    <p>Section numbers, article numbers, years in citations and case numbers use 0&ndash;9 in both scripts, always. A localised section number is a wrong citation. Only quantities in running prose may take Eastern Arabic-Indic forms, and only when the interface language is Urdu.</p>
+  </div>
+</section>
+
+<!-- ============ 4 ============ -->
+<section>
+  <div class="eyebrow"><span>04 &mdash; Space &amp; form</span></div>
+  <h2>Room is the <em>whole point</em></h2>
+  <p class="lede">iOS does not feel calm because of its corner radii. It feels calm because it refuses to fill the screen. Density is the single easiest way to make this product feel like a database and the hardest thing to walk back.</p>
+
+  <div class="grid-2">
+    <div class="panel" style="background:var(--parchment-2);">
+      <h4 style="color:var(--oxide);">Cramped</h4>
+      <div style="background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:.5rem;display:flex;flex-direction:column;gap:.25rem;">
+        <div style="font-family:var(--f-display);font-size:.82rem;font-weight:600;">302. Punishment of qatl-i-amd</div>
+        <div style="font-size:.7rem;color:var(--ink-3);">Penal Code 1860 &middot; Ch. XVI &middot; federal &middot; in force</div>
+        <div style="font-family:var(--f-display);font-size:.75rem;line-height:1.3;color:var(--ink-2);">Whoever commits qatl-e-amd shall, subject to the provisions of this Chapter, be punished with death as qisas&hellip;</div>
+        <div style="display:flex;gap:.2rem;"><span style="font-size:.6rem;background:var(--brass-tint);padding:.1rem .3rem;border-radius:3px;">s.304</span><span style="font-size:.6rem;background:var(--brass-tint);padding:.1rem .3rem;border-radius:3px;">s.311</span><span style="font-size:.6rem;background:var(--brass-tint);padding:.1rem .3rem;border-radius:3px;">14 judgments</span></div>
+      </div>
+      <p style="font-size:.85rem;line-height:1.6;color:var(--ink-2);margin:1.1rem 0 0;">Everything fits. Nothing is readable, nothing is tappable, and the law looks like a search result.</p>
+    </div>
+
+    <div class="panel">
+      <h4 style="color:var(--brass-deep);">Given room</h4>
+      <div style="background:var(--card);border:1px solid var(--rule);border-radius:16px;padding:1.5rem;display:flex;flex-direction:column;gap:1rem;box-shadow:var(--shadow-s);">
+        <div style="display:flex;align-items:baseline;gap:.75rem;">
+          <span style="font-family:var(--f-display);font-size:1.75rem;font-weight:400;color:var(--brass);line-height:1;">302</span>
+          <span style="font-family:var(--f-display);font-size:1.05rem;font-weight:600;line-height:1.3;">Punishment of qatl-i-amd</span>
+        </div>
+        <div style="font-family:var(--f-display);font-size:.95rem;line-height:1.7;color:var(--ink-2);">Whoever commits qatl-e-amd shall, subject to the provisions of this Chapter, be punished with death as <em>qisas</em>&hellip;</div>
+        <div style="height:1px;background:var(--rule);"></div>
+        <div style="display:flex;align-items:center;gap:.6rem;font-family:var(--f-mono);font-size:.68rem;letter-spacing:.06em;color:var(--ink-3);">
+          <span style="color:var(--brass-deep);">IN FORCE</span><span>&middot;</span><span>PENAL CODE 1860</span>
+        </div>
+      </div>
+      <p style="font-size:.85rem;line-height:1.6;color:var(--ink-2);margin:1.1rem 0 0;">Half the information, twice the confidence. The section numeral becomes the anchor and everything secondary steps back.</p>
+    </div>
+  </div>
+
+  <h3>The measures</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Token</th><th>Value</th><th>Where</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Spacing base</td><td class="n">4 pt</td><td>Ramp: 4 &middot; 8 &middot; 12 &middot; 16 &middot; 24 &middot; 32 &middot; 44 &middot; 64. Nothing between steps.</td></tr>
+        <tr><td class="k">Screen gutter</td><td class="n">24 pt</td><td>Never below 20. This alone separates premium from cramped on a phone.</td></tr>
+        <tr><td class="k">Card padding</td><td class="n">24 pt</td><td>20 on compact cards. Never 12 &mdash; that is the density trap.</td></tr>
+        <tr><td class="k">Between cards</td><td class="n">16 pt</td><td>Enough to read as separate objects rather than a table.</td></tr>
+        <tr><td class="k">Touch target</td><td class="n">48 pt</td><td>Minimum, with 8 pt of clear space. Applies to the citation chip too.</td></tr>
+        <tr><td class="k">Radius</td><td class="n">10 &middot; 14 &middot; 20 &middot; 28</td><td>Chip &middot; control &middot; card &middot; sheet. Continuous curvature where the platform offers it.</td></tr>
+        <tr><td class="k">Elevation</td><td class="n">2 levels</td><td>Card and sheet. A third level means the hierarchy is wrong, not that a shadow is missing.</td></tr>
+        <tr><td class="k">Reading measure</td><td class="n">38&ndash;44 ch</td><td>Statutory text on a phone. Longer lines are why legal apps feel exhausting.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+
+<!-- ============ 5 ============ -->
+<section>
+  <div class="eyebrow"><span>05 &mdash; Components</span></div>
+  <h2>Four of these are <em>promises</em></h2>
+  <p class="lede">The seal, the citation chip, the scope band and the disclaimer are not styling decisions. Each is the visible half of a guarantee the architecture makes &mdash; a redesign may restyle them; it may not remove them.</p>
+
+  <h3>Buttons</h3>
+  <div class="panel">
+    <div style="display:flex;flex-wrap:wrap;gap:1rem;align-items:center;">
+      <div style="height:52px;padding:0 1.6rem;border-radius:14px;background:linear-gradient(180deg,#1F4840,#17352E);color:#F7F3E9;display:flex;align-items:center;gap:.6rem;font-weight:600;font-size:1rem;box-shadow:0 1px 0 rgba(255,255,255,.12) inset, 0 6px 16px -8px rgba(23,53,46,.7);">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D4A557" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 15a3 3 0 01-3 3H8l-4 3V6a3 3 0 013-3h10a3 3 0 013 3z"/></svg>
+        Ask this question
+      </div>
+      <div style="height:52px;padding:0 1.6rem;border-radius:14px;background:var(--card);border:1px solid var(--rule-2);color:var(--ink);display:flex;align-items:center;font-weight:600;font-size:1rem;">Browse the Act</div>
+      <div style="height:52px;padding:0 1.4rem;border-radius:14px;color:var(--brass-deep);display:flex;align-items:center;gap:.5rem;font-weight:600;font-size:1rem;">
+        Read in Urdu
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+      </div>
+      <div style="height:52px;padding:0 1.4rem;border-radius:14px;border:1px solid var(--oxide);color:var(--oxide);display:flex;align-items:center;font-weight:600;font-size:1rem;">Report this answer</div>
+    </div>
+    <p style="font-size:.86rem;line-height:1.65;color:var(--ink-2);margin:1.5rem 0 0;max-width:62ch;">52 pt tall, not 44 &mdash; the minimum is a floor, not a target. The primary carries a one-pixel inner highlight and a shadow tinted with its own hue rather than grey, which is most of what separates a premium control from a coloured rectangle.</p>
+  </div>
+
+  <h3>The seal</h3>
+  <div class="grid-2">
+    <div class="panel">
+      <div style="display:flex;flex-wrap:wrap;gap:.75rem;align-items:center;margin-bottom:1.25rem;">
+        <span style="display:inline-flex;align-items:center;gap:.45rem;background:var(--brass-tint);border:1px solid var(--brass);border-radius:999px;padding:.4rem .85rem;font-size:.78rem;font-weight:700;letter-spacing:.06em;color:var(--brass-deep);">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5.5"/><path d="M8.5 13.5L7 21l5-2.5L17 21l-1.5-7.5"/></svg>
+          IN FORCE
+        </span>
+        <span style="display:inline-flex;align-items:center;gap:.45rem;background:var(--oxide-tint);border:1px solid var(--oxide);border-radius:999px;padding:.4rem .85rem;font-size:.78rem;font-weight:700;letter-spacing:.06em;color:var(--oxide);">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+          REPEALED
+        </span>
+        <span style="display:inline-flex;align-items:center;gap:.45rem;border:1px dashed var(--rule-2);border-radius:999px;padding:.4rem .85rem;font-size:.78rem;font-weight:700;letter-spacing:.06em;color:var(--ink-2);">NOT IN FORCE</span>
+      </div>
+      <p style="font-size:.88rem;line-height:1.65;color:var(--ink-2);margin:0;">A ribbon-seal mark rather than a tick. It borrows from the embossed seal on the paper itself, and it is the one place a small piece of ornament earns its keep &mdash; because it is doing semantic work.</p>
+    </div>
+
+    <div class="panel">
+      <div style="display:flex;flex-direction:column;gap:.9rem;margin-bottom:1.25rem;">
+        <span style="display:inline-flex;align-items:center;gap:.5rem;align-self:flex-start;background:var(--brass-tint);border:1px solid var(--brass);border-radius:10px;padding:.6rem .9rem;font-size:.92rem;font-weight:600;color:var(--brass-deep);">
+          s.9 Specific Relief Act
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+        </span>
+        <span style="display:inline-flex;align-items:center;gap:.5rem;align-self:flex-start;border:1px dashed var(--rule-2);border-radius:10px;padding:.6rem .9rem;font-size:.92rem;font-weight:600;color:var(--ink-2);">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5"/></svg>
+          partly supported
+        </span>
+      </div>
+      <p style="font-size:.88rem;line-height:1.65;color:var(--ink-2);margin:0;"><strong>Citation chip.</strong> Takes a resolved citation object, never strings to join, so a fabricated section number has nowhere to come from. The full chip is the tap target, not the text inside it.</p>
+    </div>
+  </div>
+
+  <h3>Bands and fields</h3>
+  <div class="stack">
+    <div class="panel" style="display:flex;flex-direction:column;gap:1.25rem;">
+      <div style="display:flex;align-items:center;gap:.7rem;background:var(--brass-tint);border:1px solid rgba(184,135,60,.4);border-radius:14px;padding:.85rem 1.1rem;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--brass-deep)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M12 21s7-5.5 7-11a7 7 0 10-14 0c0 5.5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+        <span style="font-size:.88rem;font-weight:700;color:var(--brass-deep);">Punjab</span>
+        <span style="color:var(--brass);opacity:.6;">&middot;</span>
+        <span style="font-size:.88rem;font-weight:700;color:var(--brass-deep);font-variant-numeric:tabular-nums;">as at 28 Aug 2026</span>
+        <span style="color:var(--brass);opacity:.6;">&middot;</span>
+        <span style="font-size:.88rem;font-weight:700;color:var(--brass-deep);">plain speech</span>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--brass-deep)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="margin-left:auto;flex-shrink:0;"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:.7rem;height:56px;background:var(--parchment-2);border:1px solid var(--rule);border-radius:16px;padding:0 1.1rem;">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" stroke-width="2" stroke-linecap="round" style="flex-shrink:0;"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4.2-4.2"/></svg>
+        <span style="font-size:1rem;color:var(--ink-3);flex:1;">Ask, or search a section</span>
+        <div style="display:flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:999px;background:var(--card);border:1px solid var(--rule-2);flex-shrink:0;">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--brass-deep)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v3"/></svg>
+        </div>
+      </div>
+
+      <div style="display:flex;background:var(--parchment-2);border:1px solid var(--rule);border-radius:16px;padding:4px;gap:4px;max-width:24rem;">
+        <div style="flex:1;height:44px;border-radius:12px;background:var(--card);box-shadow:var(--shadow-s);display:flex;align-items:center;justify-content:center;font-size:.95rem;font-weight:700;">Plain speech</div>
+        <div style="flex:1;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:.95rem;font-weight:500;color:var(--ink-2);">Professional</div>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:.7rem;background:transparent;border:1px solid var(--rule);border-radius:14px;padding:.8rem 1.1rem;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ink-2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7.5v.01"/></svg>
+        <span style="font-size:.85rem;line-height:1.5;color:var(--ink-2);">Legal information, not advice. Consult an advocate for your matter.</span>
+      </div>
+    </div>
+  </div>
+
+  <h3>The deadline</h3>
+  <div class="panel-pine" style="display:flex;gap:1.75rem;align-items:center;flex-wrap:wrap;">
+    <div style="display:flex;align-items:center;gap:1.1rem;">
+      <div style="width:56px;height:56px;border-radius:16px;border:1px solid rgba(212,165,87,.45);background:rgba(212,165,87,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#D4A557" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 6.5V12l3.5 2.2"/></svg>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:.2rem;">
+        <div style="font-family:var(--f-display);font-size:1.5rem;font-weight:500;color:#F7F3E9;line-height:1.2;">You have six months</div>
+        <div style="font-size:.88rem;color:rgba(243,239,230,.7);">Counted from the day you were dispossessed</div>
+      </div>
+    </div>
+    <p style="font-size:.86rem;line-height:1.65;color:rgba(243,239,230,.72);margin:0;flex:1;min-width:18rem;">Urgency without alarm. A limitation period is the most consequential thing on the screen, so it gets the pine field and the brass rather than a red banner &mdash; red is reserved for law that no longer exists.</p>
+  </div>
+</section>
+
+
+<!-- ============ 6 ============ -->
+<section>
+  <div class="eyebrow"><span>06 &mdash; Screens</span></div>
+  <h2>The system, <em>at rest</em></h2>
+  <p class="lede">Four screens at true size. Note what is not on them: no dense metadata rows, no more than one primary action, and no fake status bar &mdash; on a device the real one renders on top.</p>
+
+  <div style="display:flex;gap:2.5rem;overflow-x:auto;padding:1rem .25rem 2rem;">
+
+    <!-- HOME -->
+    <div style="flex-shrink:0;display:flex;flex-direction:column;gap:1rem;">
+      <div style="width:390px;height:844px;border-radius:44px;border:1px solid var(--rule-2);background:var(--parchment);overflow:hidden;position:relative;box-shadow:var(--shadow-m);">
+        <div style="padding:64px 24px 0;display:flex;flex-direction:column;gap:22px;">
+
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <div style="font-family:var(--f-display);font-size:38px;font-weight:400;letter-spacing:-.025em;line-height:1.02;color:var(--ink);">Nizam-e-<br>Qanoon</div>
+            <div style="font-size:15px;color:var(--ink-2);">Pakistani law, in plain language</div>
+          </div>
+
+          <div style="display:flex;align-items:center;gap:11px;height:54px;background:var(--card);border:1px solid var(--rule);border-radius:16px;padding:0 16px;box-shadow:var(--shadow-s);">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" stroke-width="2" stroke-linecap="round" style="flex-shrink:0;"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4.2-4.2"/></svg>
+            <span style="font-size:16px;color:var(--ink-3);flex:1;">Ask, or search a section</span>
+            <div style="width:34px;height:34px;border-radius:999px;background:var(--brass-tint);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--brass-deep)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v3"/></svg>
+            </div>
+          </div>
+
+          <div style="font-family:var(--f-display);font-size:20px;font-weight:600;color:var(--ink);margin-top:6px;">Start from what happened</div>
+
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            <div style="background:var(--card);border:1px solid var(--rule);border-radius:22px;padding:22px;display:flex;flex-direction:column;gap:12px;box-shadow:var(--shadow-s);">
+              <div style="width:44px;height:44px;border-radius:14px;background:var(--brass-tint);display:flex;align-items:center;justify-content:center;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--brass-deep)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 4l9 6.5"/><path d="M5 10v9h14v-9"/><path d="M10 19v-5h4v5"/></svg>
+              </div>
+              <div style="font-family:var(--f-display);font-size:20px;font-weight:600;line-height:1.25;color:var(--ink);">Locked out by a landlord</div>
+              <div style="font-size:14px;line-height:1.55;color:var(--ink-2);">You can be put back in possession without proving you own the place.</div>
+              <div style="display:inline-flex;align-items:center;gap:6px;align-self:flex-start;margin-top:2px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brass-deep)" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+                <span style="font-size:12.5px;font-weight:700;color:var(--brass-deep);letter-spacing:.03em;">Six-month deadline</span>
+              </div>
+            </div>
+
+            <div style="background:var(--card);border:1px solid var(--rule);border-radius:22px;padding:22px;display:flex;flex-direction:column;gap:12px;box-shadow:var(--shadow-s);">
+              <div style="width:44px;height:44px;border-radius:14px;background:var(--brass-tint);display:flex;align-items:center;justify-content:center;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--brass-deep)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20v-1a5 5 0 015-5h2a5 5 0 015 5v1"/><circle cx="10" cy="7" r="3.5"/></svg>
+              </div>
+              <div style="font-family:var(--f-display);font-size:20px;font-weight:600;line-height:1.25;color:var(--ink);">Dismissed without notice</div>
+              <div style="font-size:14px;line-height:1.55;color:var(--ink-2);">What notice or pay you were owed, and where to file.</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="position:absolute;left:0;right:0;bottom:0;height:88px;background:linear-gradient(180deg,rgba(243,239,230,0),var(--parchment) 40%);display:flex;align-items:flex-start;padding-top:14px;border-top:1px solid var(--rule);">
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--brass-deep)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 4l9 6.5"/><path d="M5 10v9h14v-9"/></svg>
+            <span style="font-size:11px;font-weight:700;color:var(--brass-deep);">Home</span>
+          </div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4.2-4.2"/></svg>
+            <span style="font-size:11px;color:var(--ink-3);">Search</span>
+          </div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 15a3 3 0 01-3 3H8l-4 3V6a3 3 0 013-3h10a3 3 0 013 3z"/></svg>
+            <span style="font-size:11px;color:var(--ink-3);">Ask</span>
+          </div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h12a1 1 0 011 1v15l-7-4-7 4V5a1 1 0 011-1z"/></svg>
+            <span style="font-size:11px;color:var(--ink-3);">Library</span>
+          </div>
+        </div>
+      </div>
+      <div style="font-family:var(--f-mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);text-align:center;">Home &mdash; two cards, not six</div>
+    </div>
+
+    <!-- PROVISION -->
+    <div style="flex-shrink:0;display:flex;flex-direction:column;gap:1rem;">
+      <div style="width:390px;height:844px;border-radius:44px;border:1px solid var(--rule-2);background:var(--parchment);overflow:hidden;position:relative;box-shadow:var(--shadow-m);">
+        <div style="padding:62px 24px 0;display:flex;flex-direction:column;gap:20px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <div style="display:flex;align-items:center;gap:5px;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--brass-deep)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>
+              <span style="font-size:16px;font-weight:600;color:var(--brass-deep);">Penal Code</span>
+            </div>
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="var(--brass-deep)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h12a1 1 0 011 1v15l-7-4-7 4V5a1 1 0 011-1z"/></svg>
+          </div>
+
+          <div style="display:flex;align-items:flex-start;gap:16px;">
+            <div style="font-family:var(--f-display);font-size:56px;font-weight:300;color:var(--brass);line-height:.85;letter-spacing:-.03em;">302</div>
+            <div style="font-family:var(--f-display);font-size:22px;font-weight:600;line-height:1.28;color:var(--ink);padding-top:6px;">Punishment of qatl-i-amd</div>
+          </div>
+
+          <div style="display:flex;align-items:center;gap:10px;">
+            <span style="display:inline-flex;align-items:center;gap:6px;background:var(--brass-tint);border:1px solid var(--brass);border-radius:999px;padding:6px 12px;font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--brass-deep);">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5.5"/><path d="M8.5 13.5L7 21l5-2.5L17 21l-1.5-7.5"/></svg>
+              IN FORCE
+            </span>
+            <span style="font-family:var(--f-mono);font-size:11.5px;letter-spacing:.05em;color:var(--ink-3);">AS AT TODAY</span>
+          </div>
+
+          <div style="height:1px;background:linear-gradient(to right,var(--brass),var(--rule) 40%,transparent);"></div>
+
+          <div style="display:flex;flex-direction:column;gap:16px;font-family:var(--f-display);">
+            <div style="font-size:17px;line-height:1.7;color:var(--ink);">Whoever commits qatl-e-amd shall, subject to the provisions of this Chapter, be&mdash;</div>
+            <div style="display:flex;gap:14px;">
+              <span style="font-size:16px;color:var(--brass);flex-shrink:0;">(a)</span>
+              <span style="font-size:17px;line-height:1.7;color:var(--ink);">punished with death as <em>qisas</em>;</span>
+            </div>
+            <div style="display:flex;gap:14px;">
+              <span style="font-size:16px;color:var(--brass);flex-shrink:0;">(b)</span>
+              <span style="font-size:17px;line-height:1.7;color:var(--ink);">punished with death or imprisonment for life as <em>ta&rsquo;zir</em>, having regard to the facts and circumstances of the case&hellip;</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="position:absolute;left:24px;right:24px;bottom:110px;">
+          <div style="height:54px;border-radius:16px;background:linear-gradient(180deg,#1F4840,#17352E);color:#F7F3E9;display:flex;align-items:center;justify-content:center;gap:10px;font-size:16px;font-weight:600;box-shadow:0 1px 0 rgba(255,255,255,.12) inset,0 8px 20px -10px rgba(23,53,46,.8);">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D4A557" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14H6z"/><path d="M9 12h7M9 16h5"/></svg>
+            How courts have read this
+          </div>
+        </div>
+
+        <div style="position:absolute;left:0;right:0;bottom:0;height:88px;background:var(--parchment);display:flex;align-items:flex-start;padding-top:14px;border-top:1px solid var(--rule);">
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 4l9 6.5"/><path d="M5 10v9h14v-9"/></svg><span style="font-size:11px;color:var(--ink-3);">Home</span></div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--brass-deep)" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4.2-4.2"/></svg><span style="font-size:11px;font-weight:700;color:var(--brass-deep);">Search</span></div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 15a3 3 0 01-3 3H8l-4 3V6a3 3 0 013-3h10a3 3 0 013 3z"/></svg><span style="font-size:11px;color:var(--ink-3);">Ask</span></div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h12a1 1 0 011 1v15l-7-4-7 4V5a1 1 0 011-1z"/></svg><span style="font-size:11px;color:var(--ink-3);">Library</span></div>
+        </div>
+      </div>
+      <div style="font-family:var(--f-mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);text-align:center;">Provision &mdash; the numeral anchors</div>
+    </div>
+
+    <!-- ANSWER -->
+    <div style="flex-shrink:0;display:flex;flex-direction:column;gap:1rem;">
+      <div style="width:390px;height:844px;border-radius:44px;border:1px solid var(--rule-2);background:var(--parchment);overflow:hidden;position:relative;box-shadow:var(--shadow-m);">
+        <div style="padding:62px 24px 0;display:flex;flex-direction:column;gap:20px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <div style="display:flex;align-items:center;gap:5px;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--brass-deep)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>
+              <span style="font-size:16px;font-weight:600;color:var(--brass-deep);">Ask</span>
+            </div>
+            <div style="display:flex;background:var(--parchment-2);border:1px solid var(--rule);border-radius:11px;padding:3px;gap:3px;">
+              <div style="padding:5px 13px;border-radius:8px;background:var(--card);box-shadow:var(--shadow-s);font-size:13px;font-weight:700;">A</div>
+              <div style="padding:5px 13px;border-radius:8px;font-size:13px;color:var(--ink-2);">&#1575;</div>
+            </div>
+          </div>
+
+          <div style="font-family:var(--f-display);font-size:19px;font-weight:400;font-style:italic;line-height:1.45;color:var(--ink-2);">&ldquo;My landlord changed the locks while I was away&rdquo;</div>
+
+          <div style="background:linear-gradient(155deg,#1F4840,#17352E 65%);border-radius:20px;padding:20px;display:flex;align-items:center;gap:16px;">
+            <div style="width:50px;height:50px;border-radius:15px;border:1px solid rgba(212,165,87,.45);background:rgba(212,165,87,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4A557" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 6.5V12l3.5 2.2"/></svg>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:3px;">
+              <div style="font-family:var(--f-display);font-size:19px;font-weight:500;color:#F7F3E9;">You have six months</div>
+              <div style="font-size:13px;color:rgba(243,239,230,.7);">From the day you were dispossessed</div>
+            </div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            <div style="font-family:var(--f-display);font-size:17px;line-height:1.7;color:var(--ink);">You can ask a civil court to put you back in possession, and you do not have to prove you own the property &mdash; only that you were there and were removed without consent.</div>
+            <span style="display:inline-flex;align-items:center;gap:8px;align-self:flex-start;background:var(--brass-tint);border:1px solid var(--brass);border-radius:12px;padding:11px 14px;font-size:14px;font-weight:600;color:var(--brass-deep);">
+              s.9 Specific Relief Act
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+            </span>
+          </div>
+        </div>
+
+        <div style="position:absolute;left:24px;right:24px;bottom:106px;display:flex;align-items:center;gap:10px;border:1px solid var(--rule);border-radius:14px;padding:12px 14px;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--ink-2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7.5v.01"/></svg>
+          <span style="font-size:12.5px;line-height:1.45;color:var(--ink-2);">Legal information, not advice.</span>
+        </div>
+
+        <div style="position:absolute;left:0;right:0;bottom:0;height:88px;background:var(--parchment);display:flex;align-items:flex-start;padding-top:14px;border-top:1px solid var(--rule);">
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 4l9 6.5"/><path d="M5 10v9h14v-9"/></svg><span style="font-size:11px;color:var(--ink-3);">Home</span></div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4.2-4.2"/></svg><span style="font-size:11px;color:var(--ink-3);">Search</span></div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--brass-deep)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 15a3 3 0 01-3 3H8l-4 3V6a3 3 0 013-3h10a3 3 0 013 3z"/></svg><span style="font-size:11px;font-weight:700;color:var(--brass-deep);">Ask</span></div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h12a1 1 0 011 1v15l-7-4-7 4V5a1 1 0 011-1z"/></svg><span style="font-size:11px;color:var(--ink-3);">Library</span></div>
+        </div>
+      </div>
+      <div style="font-family:var(--f-mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);text-align:center;">Answer &mdash; deadline before doctrine</div>
+    </div>
+
+    <!-- ABSTENTION -->
+    <div style="flex-shrink:0;display:flex;flex-direction:column;gap:1rem;">
+      <div style="width:390px;height:844px;border-radius:44px;border:1px solid var(--rule-2);background:var(--parchment);overflow:hidden;position:relative;box-shadow:var(--shadow-m);">
+        <div style="padding:62px 24px 0;display:flex;flex-direction:column;gap:22px;">
+          <div style="display:flex;align-items:center;gap:5px;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--brass-deep)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>
+            <span style="font-size:16px;font-weight:600;color:var(--brass-deep);">Ask</span>
+          </div>
+
+          <div style="font-family:var(--f-display);font-size:17px;font-style:italic;line-height:1.5;color:var(--ink-2);">&ldquo;Can I sue my neighbour over the noise from his generator at night?&rdquo;</div>
+
+          <div style="display:flex;flex-direction:column;gap:14px;">
+            <div style="width:56px;height:56px;border-radius:18px;border:1px dashed var(--rule-2);display:flex;align-items:center;justify-content:center;">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4.2-4.2M8.5 11h5"/></svg>
+            </div>
+            <div style="font-family:var(--f-display);font-size:30px;font-weight:400;line-height:1.15;letter-spacing:-.02em;color:var(--ink);">No clear basis found</div>
+            <div style="font-size:15px;line-height:1.6;color:var(--ink-2);">Nothing in the law we hold answers this closely enough to rely on. We will not guess at it for you.</div>
+          </div>
+
+          <div style="height:1px;background:var(--rule);"></div>
+
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <div style="font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);">What was searched</div>
+            <div style="display:flex;flex-direction:column;gap:9px;font-size:14.5px;color:var(--ink);">
+              <div>Punjab and federal law</div>
+              <div style="font-variant-numeric:tabular-nums;">In force on 28 August 2026</div>
+              <div style="font-variant-numeric:tabular-nums;">1,412 Acts &middot; 58,900 provisions</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="position:absolute;left:24px;right:24px;bottom:106px;display:flex;flex-direction:column;gap:12px;">
+          <div style="height:54px;border-radius:16px;background:linear-gradient(180deg,#1F4840,#17352E);color:#F7F3E9;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:600;box-shadow:0 1px 0 rgba(255,255,255,.12) inset,0 8px 20px -10px rgba(23,53,46,.8);">Rephrase the question</div>
+          <div style="height:52px;border-radius:16px;border:1px solid var(--rule-2);background:var(--card);display:flex;align-items:center;justify-content:center;gap:9px;font-size:15.5px;font-weight:600;color:var(--ink);">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--brass-deep)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20v-1a5 5 0 015-5h2a5 5 0 015 5v1"/><circle cx="10" cy="7" r="3.5"/></svg>
+            Find an advocate
+          </div>
+        </div>
+
+        <div style="position:absolute;left:0;right:0;bottom:0;height:88px;background:var(--parchment);display:flex;align-items:flex-start;padding-top:14px;border-top:1px solid var(--rule);">
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 4l9 6.5"/><path d="M5 10v9h14v-9"/></svg><span style="font-size:11px;color:var(--ink-3);">Home</span></div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4.2-4.2"/></svg><span style="font-size:11px;color:var(--ink-3);">Search</span></div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--brass-deep)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 15a3 3 0 01-3 3H8l-4 3V6a3 3 0 013-3h10a3 3 0 013 3z"/></svg><span style="font-size:11px;font-weight:700;color:var(--brass-deep);">Ask</span></div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h12a1 1 0 011 1v15l-7-4-7 4V5a1 1 0 011-1z"/></svg><span style="font-size:11px;color:var(--ink-3);">Library</span></div>
+        </div>
+      </div>
+      <div style="font-family:var(--f-mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);text-align:center;">Abstention &mdash; a destination, not an error</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ 7 ============ -->
+<section>
+  <div class="eyebrow"><span>07 &mdash; Motion &amp; tokens</span></div>
+  <h2>Springs, never <em>ease-in-out</em></h2>
+  <p class="lede">Linear and cubic easing is what makes a cross-platform app feel borrowed. Everything that moves here uses a spring, and almost nothing moves.</p>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Motion</th><th>Spring</th><th>Applies to</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Sheet present</td><td class="n">0.40 / 0.82</td><td>Provenance sheet, filters. Response over damping &mdash; it should settle, not bounce.</td></tr>
+        <tr><td class="k">Push / pop</td><td class="n">0.35 / 0.90</td><td>Navigation. Interruptible by the back-swipe at any point.</td></tr>
+        <tr><td class="k">Press</td><td class="n">scale 0.97</td><td>Cards and buttons. 80 ms in, spring out.</td></tr>
+        <tr><td class="k">Content in</td><td class="n">opacity + 8 pt</td><td>Answer blocks as they stream. Never a spinner where a skeleton fits.</td></tr>
+        <tr><td class="k">Reduced motion</td><td class="n">cross-fade</td><td>Every one of the above collapses to a 120 ms fade.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Tokens</h3>
+<pre><i>// colour</i>
+<b>parchment</b>   #F3EFE6   <u>ground &mdash; never white</u>
+<b>card</b>        #FBF8F1   surface
+<b>pine</b>        #17352E   immersive field, primary button
+<b>brass</b>       #B8873C   accent, fills, large type
+<b>brass-deep</b>  #8A6216   accent as body text (4.8:1)
+<b>oxide</b>       #A0392C   repealed, struck down, destructive
+<b>ink</b>         #1A1F1C   text (14.6:1)
+<b>ink-2</b>       #5A625C   secondary
+<b>rule</b>        #DFD8C8   hairlines
+
+<i>// dark &mdash; a different room, not the lights off</i>
+<b>ground</b>      #121916   <b>surface</b> #1A2320   <b>ink</b> #EDE8DC
+<b>brass</b>       #D4A557   <u>becomes the primary accent</u>
+<b>oxide</b>       #E0897B
+
+<i>// type</i>
+<b>display</b>     Spectral 300/400/500/600   <i>statutory text, headings</i>
+<b>body</b>        Karla 400/500/600/700      <i>interface only</i>
+<b>mono</b>        IBM Plex Mono 400/500      <i>tokens, dates, identifiers</i>
+<b>urdu</b>        Noto Nastaliq Urdu 400/600 <i>every Urdu run</i>
+
+<i>// space</i>
+<b>ramp</b>        4 8 12 16 24 32 44 64
+<b>gutter</b>      24    <b>card-pad</b> 24    <b>card-gap</b> 16
+<b>target</b>      48 min, 52 preferred
+<b>radius</b>      10 chip &middot; 14 control &middot; 20 card &middot; 28 sheet &middot; 44 device</pre>
+
+  <div class="note">
+    <h4>What this document is not</h4>
+    <p>It fixes the vocabulary, not the screens. Screen-by-screen interaction specs for drafting and procedure belong to document 06; the offline, bilingual and accessibility rules this palette has to satisfy are in document 08 &sect;6&ndash;7. If a future screen needs a colour that is not here, the answer is almost always a different arrangement of these, not a tenth token.</p>
+  </div>
+</section>
+
+</div>

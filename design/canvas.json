@@ -1,0 +1,20 @@
+{
+  "artboards": [
+    { "file": "Main.dc.html",        "x": 0,    "y": 0,    "w": 1080, "h": 1100, "title": "Colour" },
+    { "file": "Typography.dc.html",  "x": 1180, "y": 0,    "w": 900,  "h": 1380, "title": "Type" },
+    { "file": "Components.dc.html",  "x": 2180, "y": 0,    "w": 900,  "h": 1500, "title": "Components" },
+    { "file": "Home.dc.html",        "x": 0,    "y": 1650, "w": 390,  "h": 844,  "title": "Home" },
+    { "file": "Provision.dc.html",   "x": 490,  "y": 1650, "w": 390,  "h": 844,  "title": "Provision" },
+    { "file": "Answer.dc.html",      "x": 980,  "y": 1650, "w": 390,  "h": 844,  "title": "Answer" },
+    { "file": "Abstention.dc.html",  "x": 1470, "y": 1650, "w": 390,  "h": 844,  "title": "Abstention" }
+  ],
+  "annotations": [
+    { "id": "note-foundations", "x": 0, "y": -140, "w": 520,
+      "text": "Foundations\n\nJade instead of the navy-and-gold every legal product reaches for. One tint does every interactive job; oxide and ochre are reserved for legal status and never borrowed for decoration." },
+    { "id": "note-screens", "x": 0, "y": 1510, "w": 520,
+      "text": "Screens — iOS, 390×844\n\nPinterest's structure with text as the hero: cards to browse, sheets for detail, generous whitespace. No fake status bar — the real one renders on top on a device." },
+    { "id": "note-invariant", "x": 980, "y": 2540, "w": 460,
+      "text": "The citation chip and the provenance sheet are not styling. They are how the grounding guarantee becomes something a person can check — two taps from any claim to the statutory text it rests on." }
+  ],
+  "launch": { "view": "canvas" }
+}

@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nizam-e-Qanoon Generation and Grounding</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{--paper:#f3f4f7;--surface:#fff;--surface-2:#edeff3;--surface-3:#e3e7ee;--ink:#14171e;--ink-2:#4c5566;--ink-3:#7e879a;--rule:#dcdfe7;--rule-2:#c6cbd6;--indigo:#26397a;--indigo-soft:#e4e8f5;--rubric:#9e3b2f;--rubric-soft:#f6e7e4;--ok:#2c6349;--ok-soft:#e0ede7;--warn:#7e6114;--warn-soft:#f3ebd8;--shadow:0 1px 2px rgba(20,23,30,.05),0 8px 24px -12px rgba(20,23,30,.14);--f-display:"Newsreader",Georgia,serif;--f-body:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;--f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;--measure:72ch;--rail:9.5rem}
+@media(prefers-color-scheme:dark){:root{--paper:#0d0f14;--surface:#14171e;--surface-2:#1b1f28;--surface-3:#232935;--ink:#e6e9ef;--ink-2:#a0a9ba;--ink-3:#6d7688;--rule:#252a34;--rule-2:#333a47;--indigo:#93a8e8;--indigo-soft:#1b2136;--rubric:#d8867a;--rubric-soft:#2b1d1b;--ok:#6fbf95;--ok-soft:#152520;--warn:#d3ab5c;--warn-soft:#241e10;--shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px -14px rgba(0,0,0,.7)}}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:16.5px;line-height:1.62;-webkit-font-smoothing:antialiased}.wrap{max-width:76rem;margin:0 auto;padding:0 1.5rem 8rem}.masthead{border-bottom:2px solid var(--ink);padding:3.5rem 0 1.25rem;margin-bottom:2rem}.kicker{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--rubric);margin:0 0 1rem}h1{font-family:var(--f-display);font-weight:500;font-size:clamp(2.4rem,5.8vw,3.9rem);line-height:1.03;letter-spacing:-.021em;margin:0 0 .5rem;text-wrap:balance}.dek{font-family:var(--f-display);font-size:clamp(1.05rem,2.1vw,1.3rem);color:var(--ink-2);max-width:59ch;margin:0 0 1.9rem;font-style:italic}.meta{display:flex;flex-wrap:wrap;gap:.5rem 2.25rem;font-family:var(--f-mono);font-size:.7rem;letter-spacing:.05em;color:var(--ink-3);border-top:1px solid var(--rule);padding-top:.9rem}.meta b{color:var(--ink-2);font-weight:500}section{display:grid;grid-template-columns:var(--rail) minmax(0,1fr);gap:0 2.5rem;padding-top:3.4rem;border-top:1px solid var(--rule);margin-top:3.4rem}section.first{border-top:none;margin-top:0}.rail{position:sticky;top:1.5rem;align-self:start;padding-top:.4rem}.rail .num{font-family:var(--f-mono);font-size:1.05rem;font-weight:600;color:var(--rubric);display:block}.rail .tag{font-family:var(--f-mono);font-size:.63rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);display:block;margin-top:.5rem;line-height:1.55}.body{min-width:0}@media(max-width:880px){section{grid-template-columns:1fr}.rail{position:static;display:flex;align-items:baseline;gap:.85rem;margin-bottom:.9rem}.rail .tag{margin-top:0}}h2{font-family:var(--f-display);font-weight:500;font-size:clamp(1.6rem,3.3vw,2.2rem);line-height:1.14;letter-spacing:-.017em;margin:0 0 .8rem;text-wrap:balance}h3{font-weight:700;font-size:1.01rem;margin:2.6rem 0 .55rem}h3 .mk{font-family:var(--f-mono);color:var(--rubric);font-weight:600;margin-inline-end:.55rem;font-size:.88em}h4{font-family:var(--f-mono);font-weight:600;font-size:.71rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);margin:1.9rem 0 .6rem}p{margin:0 0 1.05rem;max-width:var(--measure)}.lede{font-size:1.075rem;color:var(--ink-2);max-width:64ch}ul,ol{margin:0 0 1.15rem;padding-inline-start:1.3rem;max-width:var(--measure)}li{margin-bottom:.42rem}li::marker{color:var(--ink-3)}a{color:var(--indigo);text-underline-offset:.18em;word-break:break-word}code{font-family:var(--f-mono);font-size:.855em;font-variant-ligatures:none}p code,li code,td code{background:var(--surface-2);border:1px solid var(--rule);padding:.06em .34em;border-radius:3px}.scroll{overflow-x:auto;margin:1.4rem 0 1.9rem;border:1px solid var(--rule);border-radius:5px;background:var(--surface)}table{border-collapse:collapse;width:100%;font-size:.83rem;line-height:1.5}th{text-align:left;font-family:var(--f-mono);font-weight:600;font-size:.645rem;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3);padding:.7rem .8rem;border-bottom:1px solid var(--rule-2);white-space:nowrap;background:var(--surface-2)}td{padding:.65rem .8rem;border-bottom:1px solid var(--rule);vertical-align:top}tr:last-child td{border-bottom:none}tbody tr:hover td{background:var(--surface-2)}td.id{font-family:var(--f-mono);font-size:.76rem;color:var(--rubric);white-space:nowrap;font-weight:500}td.k{font-weight:600;min-width:9rem}.chip{display:inline-block;font-family:var(--f-mono);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;font-weight:600;padding:.2em .5em;border-radius:3px;border:1px solid transparent;white-space:nowrap}.c-hard{background:var(--rubric-soft);color:var(--rubric);border-color:var(--rubric)}.c-ai{background:var(--indigo-soft);color:var(--indigo);border-color:var(--indigo)}.c-ok{background:var(--ok-soft);color:var(--ok);border-color:var(--ok)}.c-warn{background:var(--warn-soft);color:var(--warn);border-color:var(--warn)}.note{border-inline-start:3px solid var(--rubric);background:var(--surface);padding:1rem 1.15rem;margin:1.5rem 0;border-radius:0 4px 4px 0;max-width:var(--measure);box-shadow:var(--shadow)}.note.blue{border-inline-start-color:var(--indigo)}.note.green{border-inline-start-color:var(--ok)}.note p:last-child,.note ul:last-child{margin-bottom:0}figure{margin:2rem 0;background:var(--surface);border:1px solid var(--rule);border-radius:5px;padding:1.4rem 1.2rem .9rem;box-shadow:var(--shadow);overflow-x:auto}figure svg{display:block;width:100%;min-width:42rem;height:auto;color:var(--ink)}figcaption{margin-top:1rem;padding-top:.8rem;border-top:1px solid var(--rule);font-size:.78rem;color:var(--ink-3);line-height:1.55}figcaption b{color:var(--ink-2)}.fignum{font-family:var(--f-mono);font-size:.63rem;letter-spacing:.12em;text-transform:uppercase;color:var(--rubric);font-weight:600;display:block;margin-bottom:.7rem}pre{background:var(--surface);border:1px solid var(--rule);border-radius:5px;padding:1rem 1.05rem;overflow-x:auto;margin:1.25rem 0;font-family:var(--f-mono);font-size:.755rem;line-height:1.62;color:var(--ink-2)}pre b{color:var(--ink)}pre i{color:var(--ink-3);font-style:normal}pre u{color:var(--rubric);text-decoration:none}.dg{font-family:var(--f-mono);font-size:10.5px}.dg .bx{fill:none;stroke:currentColor;stroke-width:1.2}.dg .bxf{fill:var(--surface-2);stroke:currentColor;stroke-width:1.2}.dg .acc{fill:var(--rubric-soft);stroke:var(--rubric);stroke-width:1.4}.dg text{fill:currentColor}.dg .ta{fill:var(--rubric);font-weight:600}.dg .tm{fill:currentColor;opacity:.64;font-size:9.5px}.dg .th{font-weight:600}.dg .ln{stroke:currentColor;stroke-width:1.1;fill:none}.dg .lnA{stroke:var(--rubric);stroke-width:1.4;fill:none}.dg .lnD{stroke:currentColor;stroke-width:1.1;fill:none;stroke-dasharray:5 3}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="masthead">
+ <p class="kicker">Document 05 &middot; layer L4 &middot; child of 01 Master Architecture</p>
+ <h1>Nizam-e-Qanoon Generation and Grounding</h1>
+ <p class="dek">A constrained legal explanation engine: the model proposes atomic, evidence-addressed claims; code resolves the law, verifies support, preserves uncertainty, and releases only a complete answer that survived every gate.</p>
+ <div class="meta"><span><b>Version</b> 1.0</span><span><b>Date</b> 30 Aug 2026</span><span><b>Layer</b> L4</span><span><b>Provides</b> IGenerate</span><span><b>Requires</b> IRetrieve &middot; ICorpusRead &middot; ILLMProvider &middot; IInference</span><span><b>Figures</b> 4</span></div>
+</header>
+
+<section class="first">
+ <div class="rail"><span class="num">&sect;1</span><span class="tag">Mandate<br>&amp; invariants</span></div>
+ <div class="body">
+  <h2>The model writes language; it does not decide truth</h2>
+  <p class="lede">L4 accepts a sealed <code>GroundingContext</code> from Document 04 and returns a <code>VerifiedAnswer</code> or a typed <code>GenerationAbstention</code>. It cannot search, broaden scope, repair a failed retrieval gate, infer authority from model memory, or call a domain service.</p>
+  <div class="scroll"><table><thead><tr><th>Inherited rule</th><th>Executable L4 consequence</th></tr></thead><tbody>
+   <tr><td class="id">INV-1</td><td>The model emits request-local evidence handles only. Citation labels, dates, URLs, reporter references and quoted text are resolved from L2 after generation.</td></tr>
+   <tr><td class="id">INV-2</td><td><code>Abstention</code> never enters L4. Verification failure produces a typed answer failure; there is no general-knowledge fallback.</td></tr>
+   <tr><td class="id">INV-3</td><td>Persist context, prompt artifact, provider response, every transformation and verdict so a stored answer is byte-replayable.</td></tr>
+   <tr><td class="id">INV-4</td><td>No output contains a chunk ID. Public provenance ends at a provision or judgment paragraph plus source offsets/pages.</td></tr>
+   <tr><td class="id">INV-5</td><td>The answer repeats jurisdiction, forum, <code>asOf</code>, knowledge/corpus revision and coverage limits; none may be rewritten by the model.</td></tr>
+  </tbody></table></div>
+  <h3><span class="mk">1.1</span>Release bars</h3>
+  <p>Claim/span support <strong>&ge;0.97</strong>; citation resolution <strong>1.00</strong>; material-claim support recall <strong>1.00</strong>; no wrong-date, wrong-jurisdiction or invented-source event in the critical set; advice-register violations <strong>0</strong>; persisted answers byte-replayable <strong>100%</strong>; end-to-end p50/p95 below <strong>1.5/4 seconds</strong>; average cost <strong>&le;$0.005</strong>.</p>
+  <div class="note"><p><strong>What “replay” means.</strong> Hosted generation is stochastic and provider aliases drift. Exact replay means returning and inspecting the stored provider response and verified artifact with all pinned inputs—not asking a model to regenerate identical bytes. Anonymous mode intentionally retains none of those bodies; QA-12 privacy overrides durable replay for that session.</p></div>
+ </div>
+</section>
+
+<section>
+ <div class="rail"><span class="num">&sect;2</span><span class="tag">Precedents<br>&amp; boundary</span></div>
+ <div class="body">
+  <h2>Learn from legal AI without inheriting its claims</h2>
+  <p class="lede">The useful precedent is not a vendor slogan. It is a checkable design pattern: stable legal identity, linked primary sources, treatment evidence, atomic attribution, lawyer-built evaluation and visible limits.</p>
+  <div class="scroll"><table><thead><tr><th>System / project</th><th>Pattern adopted</th><th>What Nizam-e-Qanoon adds or rejects</th></tr></thead><tbody>
+   <tr><td class="k">Lexis+ / Shepard&rsquo;s</td><td>Answers link into authoritative legal sources and expose citation-treatment signals.</td><td>Adopt source-first verification; reject any inference that linked citations alone prove the adjacent claim.</td></tr>
+   <tr><td class="k">Westlaw / CoCounsel</td><td>Legal workflows grounded in a curated research corpus with source links.</td><td>Adopt inspectability and task profiles; keep Pakistani authority/time/territory as explicit data, not proprietary model behaviour.</td></tr>
+   <tr><td class="k">CourtListener / RECAP</td><td>Citation lookup and graph APIs separate source identity from generated prose.</td><td>Adopt deterministic resolution; add official-source restrictions, bitemporal provisions and Pakistan&rsquo;s effective-dated authority matrix.</td></tr>
+   <tr><td class="k">Harvard Caselaw Access Project</td><td>Machine-readable case law and open API/bulk access.</td><td>Adopt corpus openness as a goal; do not mistake availability for binding effect or current treatment.</td></tr>
+   <tr><td class="k">EUR-Lex ELI</td><td>Stable human- and machine-readable identifiers, including article-level legal identity.</td><td>Adopt canonical legal-unit identity; preserve local instrument/provision identifiers and source provenance.</td></tr>
+   <tr><td class="k">LegalBench / LegalBench-RAG</td><td>Legal-professional task design and precise source-span retrieval evaluation.</td><td>Adopt lawyer-led, task-stratified evaluation; build a Pakistan-specific Urdu/English benchmark rather than importing scores.</td></tr>
+  </tbody></table></div>
+  <div class="note blue"><p>A preregistered Stanford evaluation found that leading proprietary RAG legal-research tools still produced hallucinations in 17&ndash;33% of tested responses. This document therefore follows ADR-6: <strong>measured attributed generation, never “hallucination-free.”</strong></p></div>
+  <h3><span class="mk">2.1</span>Layer boundary</h3>
+  <ul>
+   <li><strong>L3</strong> decides whether evidence is sufficient and supplies applicable, typed evidence. L4 cannot retrieve.</li>
+   <li><strong>L4</strong> phrases and verifies claims. It may summarize a supplied finding but may not create a legal status.</li>
+   <li><strong>L5</strong> owns precedent treatment/good-law classification, deterministic calculators, clause selection and procedure tables. L5 may call L4; L4 never calls L5.</li>
+   <li><strong>L6</strong> owns sessions, persistence, public API and SSE. It serves exact-citation lookup directly and never sends it through generation.</li>
+  </ul>
+  <p>The current Constitution&rsquo;s post-2025 authority relations make this boundary essential. The generator receives an <code>AuthorityFinding</code>; it never derives “binding,” “controlling,” “overruled” or “good law” from court names or prose.</p>
+ </div>
+</section>
+
+<section>
+ <div class="rail"><span class="num">&sect;3</span><span class="tag">Typed<br>contracts</span></div>
+ <div class="body">
+  <h2>Generate a proposition graph, not a paragraph</h2>
+  <p class="lede">Free-form paragraphs mix supported and unsupported clauses under one citation. The model instead produces small atomic claims whose evidence can be checked independently.</p>
+<pre><b>type GenerationRequest = {</b>
+  requestId; task: "legal_answer" | "provision_explainer" |
+                   "judgment_summary" | "draft_phrase";
+  context: GroundingContext; contextDigest;
+  language: "en" | "ur"; readingLevel: "plain" | "professional";
+  register: "legal_information"; riskClass; schemaVersion; anonymous;
+<b>}</b>
+
+<b>type AtomicClaim = {</b>
+  claimId; text;
+  support: { handle: EvidenceHandle; role:
+    "primary" | "definition" | "qualification" | "counterauthority" }[];
+  epistemic: "source_stated" | "conditional_inference" | "uncertain";
+  riskTags: RiskTag[];
+<b>}</b>
+
+<b>type DraftBlock = {</b>
+  blockId; kind: "short_answer" | "rule" | "conditional_application" |
+    "qualification" | "conflict" | "procedure" | "coverage_limit";
+  required: boolean; claims: AtomicClaim[];
+<b>}</b></pre>
+  <p>Evidence handles are request-local aliases such as <code>E1</code>, dynamically allow-listed in the JSON Schema. They are not public IDs and the model cannot invent a valid handle. <code>additionalProperties:false</code>, bounded arrays/strings and a pinned JSON Schema 2020-12 dialect make malformed output a typed failure, not an invitation to “repair” prose.</p>
+  <h3><span class="mk">3.1</span>Verified output</h3>
+<pre><b>type VerifiedAnswer = {</b>
+  answerId; requestId; task; language; readingLevel;
+  scope: { jurisdiction; territory; forum; asOf; knowledgeAsOf; corpusVersion };
+  blocks: VerifiedBlock[]; conflicts: ResolvedConflict[];
+  coverageLimits: CoverageLimit[]; escalation?: Escalation;
+  disclaimer: DisclaimerId; artifactDigest; pipelineVersions;
+<b>}</b>
+
+<b>type VerifiedBlock = {</b>
+  blockId; kind; claims: VerifiedClaim[];
+  citations: ResolvedCitation[]; verdict: "pass";
+<b>}</b></pre>
+  <p><code>IGenerate.answer(context, style)</code> remains the public compatibility wrapper. The general internal port becomes <code>generate(GenerationRequest) &rarr; VerifiedArtifact | GenerationAbstention</code> so L5 can request a judgment summary or safe phrase without violating the dependency graph. This is a proposed correction to Document 01, not a silent interface change.</p>
+ </div>
+</section>
+
+<section>
+ <div class="rail"><span class="num">&sect;4</span><span class="tag">Trust<br>pipeline</span></div>
+ <div class="body">
+  <h2>One-way trust, with code on both sides of the model</h2>
+  <figure><span class="fignum">Figure 1 &middot; grounded generation spine</span>
+   <svg class="dg" viewBox="0 0 940 320" role="img" aria-labelledby="f1t f1d"><title id="f1t">Grounded generation trust pipeline</title><desc id="f1d">A sealed context is checked, compiled into a data-only prompt, sent through a provider, structurally validated, citations resolved from the database, claims verified in tiers, legal register and completeness checked, then persisted and streamed.</desc>
+    <rect class="acc" x="15" y="110" width="115" height="62" rx="4"/><text class="ta" x="73" y="135" text-anchor="middle">Sealed context</text><text class="tm" x="73" y="153" text-anchor="middle">L3 passed gate</text>
+    <rect class="bxf" x="160" y="110" width="120" height="62" rx="4"/><text class="th" x="220" y="135" text-anchor="middle">Preflight</text><text class="tm" x="220" y="153" text-anchor="middle">hash &middot; scope &middot; cache</text>
+    <rect class="bxf" x="310" y="110" width="120" height="62" rx="4"/><text class="th" x="370" y="135" text-anchor="middle">Prompt compiler</text><text class="tm" x="370" y="153" text-anchor="middle">policy + DATA_ONLY</text>
+    <rect class="acc" x="460" y="110" width="120" height="62" rx="4"/><text class="ta" x="520" y="135" text-anchor="middle">Provider</text><text class="tm" x="520" y="153" text-anchor="middle">structured draft</text>
+    <rect class="bxf" x="610" y="35" width="130" height="62" rx="4"/><text class="th" x="675" y="60" text-anchor="middle">Schema + IDs</text><text class="tm" x="675" y="78" text-anchor="middle">allow-list only</text>
+    <rect class="bxf" x="610" y="110" width="130" height="62" rx="4"/><text class="th" x="675" y="135" text-anchor="middle">DB renderer</text><text class="tm" x="675" y="153" text-anchor="middle">citations + quotes</text>
+    <rect class="bxf" x="610" y="185" width="130" height="62" rx="4"/><text class="th" x="675" y="210" text-anchor="middle">Verifier</text><text class="tm" x="675" y="228" text-anchor="middle">T1 + T2 + T3</text>
+    <rect class="acc" x="785" y="110" width="140" height="62" rx="4"/><text class="ta" x="855" y="135" text-anchor="middle">Answer gate</text><text class="tm" x="855" y="153" text-anchor="middle">complete | abstain</text>
+    <path class="lnA" d="M130 141 L160 141"/><path class="ln" d="M280 141 L310 141"/><path class="ln" d="M430 141 L460 141"/><path class="lnA" d="M580 141 C596 141 594 67 610 67"/><path class="ln" d="M675 97 L675 110"/><path class="ln" d="M675 172 L675 185"/><path class="lnA" d="M740 216 C770 216 760 153 785 146"/>
+    <rect class="bx" x="310" y="265" width="430" height="38" rx="4"/><text class="tm" x="525" y="289" text-anchor="middle">content-addressed trace: prompt &middot; completion &middot; claims &middot; verdicts &middot; versions</text>
+    <path class="lnD" d="M520 172 L520 265"/><path class="lnD" d="M675 247 L675 265"/>
+   </svg><figcaption><b>No model output crosses two deterministic boundaries unchanged.</b> Before the call, the prompt compiler limits authority and treats all text as data. After the call, schema, database identity, support, register and answer completeness are checked before any legal block can leave the service.</figcaption>
+  </figure>
+  <h3><span class="mk">4.1</span>Prompt compiler</h3>
+  <p>Compile in this order: immutable policy and output schema; task/scope; evidence manifest; evidence bodies; conflict/coverage findings; user question. User and corpus text are separately delimited and labelled <code>DATA_ONLY</code>. The provider has no tools, search, database access, network action or secret. The prompt asks for concise claims and support handles, never chain-of-thought.</p>
+  <div class="note"><p><strong>Official does not mean instructional.</strong> A court PDF or Gazette can contain text that resembles an instruction, and ingestion errors can expose hidden/bidirectional characters. Retrieved text never gains instruction priority. L1 sanitizes markup; L4 rechecks control characters, isolates bidirectional runs, constrains output and verifies the result.</p></div>
+ </div>
+</section>
+
+<section>
+ <div class="rail"><span class="num">&sect;5</span><span class="tag">Provider<br>port</span></div>
+ <div class="body">
+  <h2>A provider is a replaceable language component</h2>
+<pre><b>interface ILLMProvider {</b>
+  complete(req: ProviderRequest): Promise&lt;ProviderCompletion | ProviderFailure&gt;;
+  capabilities(): { schema; snapshot; retention; region; maxContext };
+<b>}</b>
+
+<b>ProviderRequest = {</b>
+  messages; jsonSchema; schemaVersion; modelSnapshot;
+  maxTokens; temperature; deadline; prefixCacheKey;
+<b>}</b></pre>
+  <ul>
+   <li>Vendor SDK imports exist only in <code>generation/providers/</code>. Each adapter maps the same request and failure taxonomy.</li>
+   <li>Choose a pinned hosted small model for normal explanation and a qualified reasoning tier for complex multi-source scenarios. Selection is by locked-set quality, Urdu parity, latency, retention and price ceiling—not a leaderboard.</li>
+   <li>Use low variance and structured decoding, but never call the output deterministic. JSON shape correctness does not imply semantic correctness.</li>
+   <li>One failover is permitted only to an independently qualified pinned snapshot. No recursive retries, silent “latest” alias, or model that skipped the same safety evaluation.</li>
+   <li>The self-hosted generator is a benchmark/batch/sovereign deployment profile, not the pilot hot path. ADR-2 puts fine-tuning into retrieval/reranking; no generator LoRA is required for MVP.</li>
+  </ul>
+  <h3><span class="mk">5.1</span>Admission and privacy</h3>
+  <p>An adapter is enabled only after documenting retention/training terms, data region, incident process, snapshot semantics, rate limits and deletion behaviour. Send no account/profile fields and redact names, CNIC, phone, address or other facts irrelevant to the legal issue. If sensitive traffic has no approved provider, serve current verified artifacts/search or abstain; never downgrade confidentiality.</p>
+  <h3><span class="mk">5.2</span>Budget</h3>
+  <p>Normal output is 4&ndash;7 atomic claims, approximately 600 output tokens, with a compact evidence window capped by a configured input budget. Static policy/schema/few-shot prefixes use provider prefix caching. The local NLI batch remains roughly 40 ms for five claims under the inherited estimate. Provider network time dominates, but verification is never skipped to recover the 4-second p95.</p>
+ </div>
+</section>
+
+<section>
+ <div class="rail"><span class="num">&sect;6</span><span class="tag">Citation<br>&amp; claims</span></div>
+ <div class="body">
+  <h2>The database, not the model, names the law</h2>
+  <p class="lede">A citation is a resolved relationship between a claim and an official, versioned legal unit. It is not decorative text at the end of a paragraph.</p>
+<pre><i>// model output</i>
+{ claimId: "C2", text: "...", support: [{handle:"E3", role:"qualification"}] }
+
+<i>// request-local handle map; never exposed publicly</i>
+E3 -&gt; { legalUnitId, sourceVersionId, allowedOffsets, contextDigest }
+
+<i>// renderer fetches at the pinned revision</i>
+<b>ResolvedCitation</b> {
+  legalUnitId; sourceVersionId; displayLabel; shortTitle;
+  validity; jurisdiction; officialSourceUrl; sourceSha256; sourcePages;
+  matchedOffsets; status; authorityFinding?; treatmentCoverage?;
+}</pre>
+  <ul>
+   <li>An unknown, duplicated, out-of-bundle or wrong-version handle rejects the claim and raises defect telemetry.</li>
+   <li>The model cannot output a citation-shaped string, URL, statute date, reporter reference or verbatim quote. If a quote is needed, it requests an allowed span and the renderer slices stored text exactly.</li>
+   <li>Every material atomic claim has at least one supporting relation. A multi-source conclusion cites every source necessary for the conjunction.</li>
+   <li>Support and relevance are separate: each cited item must actually contribute. Extra citations cannot launder an unsupported proposition.</li>
+  </ul>
+  <h3><span class="mk">6.1</span>Answer order</h3>
+  <p>Permanent scope and corpus coverage; concise conditional answer; governing rule; required definitions/provisos/exceptions/delegated instruments; conditional application to user-stated facts; conflict/unknowns; neutral next steps and referral. Deadlines, custody/liberty risks and non-operative status surface before background. User allegations remain “facts as stated,” never findings.</p>
+  <div class="note blue"><p><strong>No chain-of-thought record.</strong> The proposition/evidence graph is the auditable reasoning surface. Hidden model reasoning is neither legal authority nor reliable provenance and is not requested, stored or shown.</p></div>
+ </div>
+</section>
+
+<section>
+ <div class="rail"><span class="num">&sect;7</span><span class="tag">Verification<br>cascade</span></div>
+ <div class="body">
+  <h2>Atomic verification, then an answer-level veto</h2>
+  <figure><span class="fignum">Figure 2 &middot; claim state machine</span>
+   <svg class="dg" viewBox="0 0 940 275" role="img" aria-labelledby="f2t f2d"><title id="f2t">State machine for a generated atomic claim</title><desc id="f2d">A draft claim must pass schema and allow-list checks, citation resolution, deterministic support checks, NLI, optional high-risk adversarial verification and policy checks before it is verified. Optional failure can drop the claim; material failure fails the answer.</desc>
+    <rect class="bxf" x="20" y="96" width="105" height="52" rx="16"/><text class="th" x="73" y="127" text-anchor="middle">Draft</text>
+    <rect class="bxf" x="160" y="96" width="115" height="52" rx="16"/><text class="th" x="218" y="118" text-anchor="middle">Structured</text><text class="tm" x="218" y="135" text-anchor="middle">schema + IDs</text>
+    <rect class="bxf" x="310" y="96" width="115" height="52" rx="16"/><text class="th" x="368" y="118" text-anchor="middle">Resolved</text><text class="tm" x="368" y="135" text-anchor="middle">DB identity</text>
+    <rect class="bxf" x="460" y="96" width="115" height="52" rx="16"/><text class="th" x="518" y="118" text-anchor="middle">T1 checked</text><text class="tm" x="518" y="135" text-anchor="middle">exact invariants</text>
+    <rect class="bxf" x="610" y="96" width="115" height="52" rx="16"/><text class="th" x="668" y="118" text-anchor="middle">T2/T3 checked</text><text class="tm" x="668" y="135" text-anchor="middle">support</text>
+    <rect class="acc" x="760" y="96" width="115" height="52" rx="16"/><text class="ta" x="818" y="127" text-anchor="middle">Verified</text>
+    <path class="ln" d="M125 122 L160 122"/><path class="ln" d="M275 122 L310 122"/><path class="ln" d="M425 122 L460 122"/><path class="ln" d="M575 122 L610 122"/><path class="lnA" d="M725 122 L760 122"/>
+    <rect class="acc" x="300" y="205" width="275" height="48" rx="4"/><text class="ta" x="438" y="225" text-anchor="middle">Rejected</text><text class="tm" x="438" y="242" text-anchor="middle">optional: drop &middot; material: whole-answer abstention</text>
+    <path class="lnD" d="M218 148 C218 180 330 185 350 205"/><path class="lnD" d="M368 148 L400 205"/><path class="lnD" d="M518 148 L475 205"/><path class="lnD" d="M668 148 C668 180 560 185 535 205"/>
+    <text class="tm" x="20" y="40">No failed claim returns to Draft. “Try again” creates a differently worded risk, not external evidence.</text>
+   </svg><figcaption><b>Claim pass is necessary but not sufficient.</b> After individual claims survive, the answer gate checks required coverage, qualifications and conflict preservation. A collection of true fragments can still be a materially misleading answer.</figcaption>
+  </figure>
+  <div class="scroll"><table><thead><tr><th>Tier</th><th>Checks</th><th>Failure</th></tr></thead><tbody>
+   <tr><td class="id">T0</td><td>JSON Schema, size/Unicode bounds, allowed block kinds and evidence handles; no URLs/HTML/citation-shaped strings.</td><td>Whole completion rejected as <code>SCHEMA_INVALID</code>; no repair prompt</td></tr>
+   <tr><td class="id">T1</td><td>Exact quote offsets; numbers, dates, durations and amounts; identity/version/as-of; jurisdiction; negation; <em>shall/may</em>; exception/proviso; required evidence roles.</td><td>Claim rejected with deterministic reason</td></tr>
+   <tr><td class="id">T2</td><td>Local multilingual NLI over the atomic claim and its cited premises; contradiction/neutral/low score fails. Each citation also tested for necessity.</td><td>Claim rejected; NLI is a filter, never proof</td></tr>
+   <tr><td class="id">T3</td><td>Independent adversarial verifier tries to falsify liability, limitation/deadline, eligibility, custody, authority/conflict, eviction, family-status and irreversible-transfer claims.</td><td><code>unsupported</code> or <code>ambiguous</code> rejects the claim</td></tr>
+   <tr><td class="id">T4</td><td>Register, policy, whole-answer coverage/coherence, conflict and escalation checks.</td><td>Drop optional context or fail complete answer</td></tr>
+  </tbody></table></div>
+  <p>A missing optional background claim may be dropped. Failure of the direct answer, governing rule, required qualification/exception, conflict disclosure or procedural precondition produces <code>ANSWER_INCOMPLETE_AFTER_VERIFICATION</code>. “Partially supported legal proposition” is never a shippable verdict; only an explicit coverage-limit block may describe uncertainty.</p>
+ </div>
+</section>
+
+<section>
+ <div class="rail"><span class="num">&sect;8</span><span class="tag">Legal<br>safety</span></div>
+ <div class="body">
+  <h2>Preserve legal force, not just meaning</h2>
+  <div class="scroll"><table><thead><tr><th>Generator may</th><th>Generator may not</th></tr></thead><tbody>
+   <tr><td>Faithfully paraphrase a supplied operative rule</td><td>Infer commencement, repeal, territorial reach or invalidation</td></tr>
+   <tr><td>State a conditional: “If X is established, the provision states Y”</td><td>Find facts, decide credibility, predict an outcome or guarantee relief</td></tr>
+   <tr><td>Combine compatible rules with all necessary support</td><td>Choose a winner among an unresolved <code>ConflictSet</code></td></tr>
+   <tr><td>Explain typed authority/treatment findings from L5</td><td>Call a case binding, controlling, overruled or good law from prose alone</td></tr>
+   <tr><td>Describe a source-backed procedure neutrally</td><td>Calculate fees, limitation, shares, forum or clauses assigned to deterministic L5 services</td></tr>
+   <tr><td>Identify missing facts and official coverage gaps</td><td>Turn corpus silence into “no law exists” or fill a gap from model memory</td></tr>
+  </tbody></table></div>
+  <h3><span class="mk">8.1</span>Information, not representation</h3>
+  <p>The Legal Practitioners and Bar Councils Act, 1973 reserves practice of law to advocates. This product therefore adopts a conservative information boundary, without pretending that the statute alone conclusively classifies every automated explanation. Launch requires Pakistani counsel review. The output register is “the law provides” and “the source states,” not personalized commands, tactics, document-signing approval or advocate impersonation.</p>
+  <p>A structural, non-dismissible disclaimer states jurisdiction/date, corpus coverage, that facts were not independently verified, and that the output is legal information rather than representation. Wording in English and Urdu is approved and versioned by counsel. It is never model-authored and never treated as a substitute for correct output.</p>
+  <h3><span class="mk">8.2</span>Escalation</h3>
+  <p>Escalate for arrest/liberty/bail, an imminent filing/appeal/limitation date, violence or immediate safety, eviction, irreversible waiver/transfer, child/family status, constitutional validity, unresolved forum/jurisdiction, contrary authority, incomplete delegated law/commencement/treatment coverage, or a request for representation/tactics. Return why human review matters, what material is present/missing, useful dates/documents to gather, and a curated official legal-aid/advocate route. Contact links are maintained data, never generated.</p>
+  <h3><span class="mk">8.3</span>Bilingual equivalence</h3>
+  <p>English and native Urdu are two renderings of the same proposition IDs, evidence relations, modality and caveats. Enacted English text remains verbatim and visibly distinct; Urdu is labelled explanation unless an authentic Urdu source exists. XNLI Urdu is only a generic checkpoint smoke test. Shipping requires lawyer-labelled Pakistani legal claim/span parity, including <em>shall/may</em>, negation, provisos, dates and mixed-script citations. Roman Urdu is accepted at L3; L4 returns native Urdu rather than unstable Roman legal prose.</p>
+ </div>
+</section>
+
+<section>
+ <div class="rail"><span class="num">&sect;9</span><span class="tag">Cache &amp;<br>offline tier</span></div>
+ <div class="body">
+  <h2>Reuse proof, not merely similar prose</h2>
+  <figure><span class="fignum">Figure 3 &middot; verified artifact dependencies</span>
+   <svg class="dg" viewBox="0 0 940 290" role="img" aria-labelledby="f3t f3d"><title id="f3t">Verified answer cache and dependency invalidation</title><desc id="f3d">An immutable verified answer depends on source versions, legal authority and treatment snapshots, coverage findings, and pipeline versions. Any dependency change invalidates online cache and offline pack entries.</desc>
+    <rect class="acc" x="355" y="105" width="230" height="75" rx="4"/><text class="ta" x="470" y="132" text-anchor="middle">Verified artifact</text><text class="tm" x="470" y="151" text-anchor="middle">claims + citations + verdicts</text><text class="tm" x="470" y="166" text-anchor="middle">immutable digest</text>
+    <rect class="bxf" x="20" y="25" width="180" height="52" rx="4"/><text class="th" x="110" y="47" text-anchor="middle">Source versions</text><text class="tm" x="110" y="64" text-anchor="middle">IDs + SHA + offsets</text>
+    <rect class="bxf" x="20" y="113" width="180" height="52" rx="4"/><text class="th" x="110" y="135" text-anchor="middle">Legal findings</text><text class="tm" x="110" y="152" text-anchor="middle">authority + treatment + coverage</text>
+    <rect class="bxf" x="20" y="201" width="180" height="52" rx="4"/><text class="th" x="110" y="223" text-anchor="middle">Scope</text><text class="tm" x="110" y="240" text-anchor="middle">intent + place + forum + dates</text>
+    <rect class="bxf" x="735" y="25" width="180" height="52" rx="4"/><text class="th" x="825" y="47" text-anchor="middle">Pipeline versions</text><text class="tm" x="825" y="64" text-anchor="middle">prompt + model + verifier</text>
+    <rect class="bxf" x="735" y="113" width="180" height="52" rx="4"/><text class="th" x="825" y="135" text-anchor="middle">Exact online cache</text><text class="tm" x="825" y="152" text-anchor="middle">current dependency check</text>
+    <rect class="bxf" x="735" y="201" width="180" height="52" rx="4"/><text class="th" x="825" y="223" text-anchor="middle">Signed offline tier</text><text class="tm" x="825" y="240" text-anchor="middle">INVALIDATE in patch</text>
+    <path class="ln" d="M200 51 L355 124"/><path class="ln" d="M200 139 L355 143"/><path class="ln" d="M200 227 L355 163"/><path class="ln" d="M735 51 L585 124"/><path class="lnA" d="M585 142 L735 139"/><path class="lnA" d="M585 162 L735 227"/>
+   </svg><figcaption><b>Correctness expires by dependency, not by clock.</b> A source amendment, treatment/authority change, coverage correction or policy/verifier release invalidates only artifacts that depend on it. TTL may control storage; it never establishes legal currency.</figcaption>
+  </figure>
+  <h3><span class="mk">9.1</span>Three different caches</h3>
+  <ul>
+   <li><strong>Provider prefix cache:</strong> a billing/latency optimization for static policy, schema and examples; no correctness semantics.</li>
+   <li><strong>Exact verified-artifact cache:</strong> reuse only when query intent/scope, exact dates, evidence/context fingerprint, conflict/coverage findings, language/register and every pipeline version match.</li>
+   <li><strong>Curated answer tier:</strong> batch-generated, fully verified artifacts admitted to the signed offline pack; current dependency checks and release review required.</li>
+  </ul>
+  <p>A semantic nearest match may nominate an artifact, but it never authorizes reuse. Require semantic-equivalence confirmation, exact legal-scope equality, live dependency fingerprint and locked-set cache precision <strong>&ge;0.95</strong>. Disable semantic reuse for precedent/conflict, limitation, liberty/custody and other high-risk scenarios until separately proven safe. Show the canonical matched question and corpus/build date.</p>
+  <h3><span class="mk">9.2</span>Required L2 correction</h3>
+  <p>The current <code>stored_answer.cited_provisions[]</code> and one global <code>verifier_score</code> cannot express judgment/schedule dependencies or per-claim proof. Normalize <code>answer_dependency</code>, <code>answer_claim</code>, <code>answer_claim_evidence</code>, <code>verification_result</code> and <code>artifact_invalidation</code>. Publication invalidates affected artifacts in the same transaction. The offline tier admits only all-pass blocks; online uncertainty appears only as explicit coverage limits.</p>
+ </div>
+</section>
+
+<section>
+ <div class="rail"><span class="num">&sect;10</span><span class="tag">Audit<br>&amp; privacy</span></div>
+ <div class="body">
+  <h2>Store the evidence of the answer</h2>
+  <div class="scroll"><table><thead><tr><th>Record</th><th>Minimum content</th><th>Purpose</th></tr></thead><tbody>
+   <tr><td class="k">generation_run</td><td>Request/retrieval refs, task/scope, context digest, provider/model snapshot and parameters, token/cost/latency, status</td><td>Operational replay and cost</td></tr>
+   <tr><td class="k">prompt_artifact</td><td>Content-addressed complete compiled prompt, schema/policy versions; encrypted or restricted blob reference</td><td>A hash alone cannot reconstruct a prompt</td></tr>
+   <tr><td class="k">provider_completion</td><td>Raw structured response or restricted reference, digest, finish/refusal reason</td><td>Exact byte replay despite provider drift</td></tr>
+   <tr><td class="k">answer_artifact</td><td>Final verified payload, artifact digest, invalidation state</td><td>Immutable served answer</td></tr>
+   <tr><td class="k">claim + evidence</td><td>Atomic claim, materiality, source/version/offset relations</td><td>Normalized provenance and impact analysis</td></tr>
+   <tr><td class="k">verification_result</td><td>Tier, model/threshold, score/verdict/reason per claim</td><td>Audit, calibration and debugging</td></tr>
+  </tbody></table></div>
+  <p>Conceptually this forms a W3C PROV-style graph: evidence/prompt/answer are entities; retrieve/generate/verify/render are activities; providers/models/curators are agents; each artifact is explicitly derived from its inputs. MVP keeps relational tables rather than introducing RDF.</p>
+  <h3><span class="mk">10.1</span>Anonymous mode</h3>
+  <p>No user ID, query, prompt/provider body, answer body, cache insertion, analytics content or durable generation row. Keep only ephemeral in-memory state and content-free operational counters, then destroy them. OpenTelemetry spans never contain query/evidence/answer text; GenAI semantic conventions are still evolving, so the project pins its own stable, content-free attributes.</p>
+  <h3><span class="mk">10.2</span>Report and incident loop</h3>
+  <p>A report carries <code>answerId</code>/<code>requestId</code> into a review queue with the exact artifact, claim/evidence graph and verifier trace. A reviewer can invalidate an artifact immediately, classify root cause—corpus, retrieval, authority, generation, verification or UI—and create a regression fixture. User feedback never directly updates prompts, labels or the live answer tier.</p>
+ </div>
+</section>
+
+<section>
+ <div class="rail"><span class="num">&sect;11</span><span class="tag">Runtime &amp;<br>degradation</span></div>
+ <div class="body">
+  <h2>Verify completely before streaming legally meaningful text</h2>
+  <figure><span class="fignum">Figure 4 &middot; request sequence and release barrier</span>
+   <svg class="dg" viewBox="0 0 940 320" role="img" aria-labelledby="f4t f4d"><title id="f4t">Generation request sequence</title><desc id="f4d">API obtains a passed context, generation checks cache and calls a provider, corpus resolves citations, inference verifies claims, answer completeness passes, the artifact is stored, and only then verified blocks are streamed.</desc>
+    <g class="th"><text x="70" y="30" text-anchor="middle">L6 API</text><text x="235" y="30" text-anchor="middle">L4 Generation</text><text x="405" y="30" text-anchor="middle">Provider</text><text x="575" y="30" text-anchor="middle">L2 Corpus</text><text x="745" y="30" text-anchor="middle">Inference</text><text x="880" y="30" text-anchor="middle">Store</text></g>
+    <g class="lnD"><path d="M70 40 L70 295"/><path d="M235 40 L235 295"/><path d="M405 40 L405 295"/><path d="M575 40 L575 295"/><path d="M745 40 L745 295"/><path d="M880 40 L880 295"/></g>
+    <g class="tm"><text x="80" y="68">answer(passed context)</text><text x="245" y="98">complete(schema)</text><text x="415" y="128">structured draft</text><text x="245" y="158">resolve handles + spans</text><text x="585" y="188">official citations</text><text x="245" y="218">verify claim batch</text><text x="755" y="248">verdicts</text><text x="245" y="272">completeness + policy PASS</text><text x="750" y="303">persist, then SSE verified blocks</text></g>
+    <path class="lnA" d="M70 72 L235 72"/><path class="ln" d="M235 102 L405 102"/><path class="ln" d="M405 132 L235 132"/><path class="ln" d="M235 162 L575 162"/><path class="ln" d="M575 192 L235 192"/><path class="ln" d="M235 222 L745 222"/><path class="ln" d="M745 252 L235 252"/><path class="lnA" d="M235 278 L880 278"/><path class="lnA" d="M880 292 L70 292"/>
+   </svg><figcaption><b>SSE is not raw token streaming.</b> The API may emit status/progress events while work proceeds, but legal blocks are buffered until claim verification and whole-answer completeness pass. This prevents a later failure from leaving a misleading partial answer on screen.</figcaption>
+  </figure>
+  <div class="scroll"><table><thead><tr><th>Failure</th><th>Permitted outcome</th><th>Forbidden shortcut</th></tr></thead><tbody>
+   <tr><td>Provider unavailable/timeout</td><td>Current exact artifact/answer tier, or <code>GENERATION_UNAVAILABLE</code></td><td>Unqualified provider or ungrounded local prose</td></tr>
+   <tr><td>Schema/refusal/truncation</td><td>Typed generation abstention</td><td>Repair loop or parsing “close enough” JSON</td></tr>
+   <tr><td>Inference/verifier unavailable</td><td>Already verified artifacts remain; novel generation stops</td><td>Skip T2/T3 or lower threshold</td></tr>
+   <tr><td>Citation resolution mismatch</td><td>Material claim fails; defect alert</td><td>Display model-written citation text</td></tr>
+   <tr><td>Optional claim fails</td><td>Drop, then rerun completeness/coherence</td><td>Visible “partial support” on a legal proposition</td></tr>
+   <tr><td>Required claim/qualification fails</td><td><code>GENERATION_UNVERIFIED</code> with retrieval/search alternatives</td><td>Keep the rest as a confident answer</td></tr>
+  </tbody></table></div>
+  <h3><span class="mk">11.1</span>Observability</h3>
+  <p>Spans: accept, cache lookup, prompt assembly, provider route/call, schema validation, citation resolution, deterministic/NLI/adversarial verification, register classification, completeness, persistence and stream release. Metrics by task/language/provider/model include schema-invalid, unknown handle, claim pass/drop, whole-answer failure, register violation, cache hit/invalidation/stale-blocked, tokens, cost and latency. Content never appears in span attributes.</p>
+ </div>
+</section>
+
+<section>
+ <div class="rail"><span class="num">&sect;12</span><span class="tag">Evaluation<br>&amp; red team</span></div>
+ <div class="body">
+  <h2>Measure support, completeness and usefulness separately</h2>
+  <p class="lede">A system that answers nothing has perfect factual precision. Report risk against useful-answer coverage, and isolate L4 from retrieval so a generation defect cannot hide inside an end-to-end average.</p>
+  <h3><span class="mk">12.1</span>Two benchmark tracks</h3>
+  <ul>
+   <li><strong>Oracle-context:</strong> lawyers provide the complete evidence bundle. Measures generation, attribution, legal modality, verification and register.</li>
+   <li><strong>End-to-end:</strong> real L3 output. Measures the full ceiling, including corpus/retrieval/coverage failure.</li>
+  </ul>
+  <p>Stratify both by English/Urdu/mixed output, Roman Urdu input, task, statute/precedent/procedure, present/historical law, jurisdiction, conflict, answerable/unanswerable and risk class. Split by instrument/case family and legal issue to prevent near-duplicate leakage. Two Pakistani legal annotators independently mark atomic support, minimal spans, citation necessity/completeness, material qualifications, applicability and advice register; a senior reviewer adjudicates and agreement is reported.</p>
+  <div class="scroll"><table><thead><tr><th>Metric</th><th>Release target</th><th>Why it exists</th></tr></thead><tbody>
+   <tr><td class="k">Citation resolution / quote exactness</td><td class="id">1.00 / 1.00</td><td>Structural identity and verbatim source integrity</td></tr>
+   <tr><td class="k">Human supported-claim precision</td><td class="id">&ge;0.97</td><td>Atomic faithfulness; inherited QA-1</td></tr>
+   <tr><td class="k">Material support recall</td><td class="id">1.00</td><td>No essential legal claim escapes verification</td></tr>
+   <tr><td class="k">Citation completeness / qualification recall</td><td class="id">&ge;0.95</td><td>Prevents selective truth that omits provisos/conflict</td></tr>
+   <tr><td class="k">Wrong place/date/authority on critical set</td><td class="id">0</td><td>Legally relevant but inapplicable evidence is still wrong</td></tr>
+   <tr><td class="k">Advice-register violation</td><td class="id">0</td><td>Enforces the product boundary</td></tr>
+   <tr><td class="k">English&ndash;Urdu faithfulness gap</td><td class="id">&le;0.03</td><td>Generation parity, separate from L3 NDCG gap</td></tr>
+   <tr><td class="k">Cache precision / stale served</td><td class="id">&ge;0.95 / 0</td><td>Reuse must preserve scope and currency</td></tr>
+  </tbody></table></div>
+  <p>Also report complete-answer rate, useful coverage, selective risk&ndash;coverage curves, NLI AUROC/AUPRC and calibration error by language/risk, latency, cost, cache deflection and lawyer-rated material completeness. Automated judges are diagnostic until calibrated against lawyer labels; they are never the only merge gate.</p>
+  <h3><span class="mk">12.2</span>Adversarial fixtures</h3>
+  <div class="scroll"><table><thead><tr><th>Fixture</th><th>Required result</th></tr></thead><tbody>
+   <tr><td>User or retrieved footnote says “ignore policy,” forges E7, asks for prompt/HTML/image</td><td>No action/active content; schema or support failure</td></tr>
+   <tr><td>Correct section from wrong province/date/version</td><td>Hard failure; no legal block released</td></tr>
+   <tr><td>Claim changes <em>may</em> to <em>shall</em>, drops “unless,” or flips negation</td><td>T1/T2 rejection</td></tr>
+   <tr><td>One true sentence omits the decisive proviso, savings clause or delegated rule</td><td>Whole-answer completeness veto</td></tr>
+   <tr><td>Dissent matches query; L5 authority finding absent</td><td>No ratio/binding claim; abstain or coverage limit</td></tr>
+   <tr><td>Conflicting authorities with a more recent, lower-similarity case</td><td>Conflict preserved; no semantic winner</td></tr>
+   <tr><td>Urdu explanation strengthens duty or removes exception</td><td>Bilingual verifier rejection</td></tr>
+   <tr><td>Provider times out after emitting half a draft</td><td>No raw text reaches client; typed unavailable/cache alternative</td></tr>
+  </tbody></table></div>
+  <h3><span class="mk">12.3</span>Ablations</h3>
+  <p>Free prose vs constrained schema; block vs atomic claims; T1 only vs +T2 vs +T3; same vs independent adversarial verifier; raw vs data-only/no-tools context; exact vs fuzzy cache; provider/model snapshots; English vs Urdu; oracle vs retrieved context. Report paired deltas with confidence intervals. A prompt/model/verifier change cannot merge if any critical stratum regresses.</p>
+ </div>
+</section>
+
+<section>
+ <div class="rail"><span class="num">&sect;13</span><span class="tag">Delivery<br>contract</span></div>
+ <div class="body">
+  <h2>Build the trust path before the clever path</h2>
+  <div class="scroll"><table><thead><tr><th>Phase</th><th>Deliverable</th><th>Exit gate</th></tr></thead><tbody>
+   <tr><td class="id">G0</td><td>Contracts, fake/replay provider, prompt compiler, strict schema, evidence handles</td><td>Malformed/forged output cannot cross the adapter; no external model required in CI</td></tr>
+   <tr><td class="id">G1</td><td>DB citation/quote renderer, T0/T1 checks, artifact/audit persistence</td><td>Citation and quote exactness 1.00; persisted replay 100%</td></tr>
+   <tr><td class="id">G2</td><td>Hosted provider route, multilingual T2, register/whole-answer gate</td><td>Oracle-context faithfulness, Urdu parity and zero-register targets pass</td></tr>
+   <tr><td class="id">G3</td><td>Selective T3, escalation, exact verified cache</td><td>High-risk locked set passes inside latency/cost budget</td></tr>
+   <tr><td class="id">G4</td><td>Batch provision explainers, dependency invalidation, signed answer tier</td><td>Cache/pack precision &ge;0.95; stale served = 0; release review complete</td></tr>
+   <tr><td class="id">G5</td><td>L5 task profiles and independently benchmarked self-hosted option</td><td>Authority/calculator boundaries proven and provider swap is configuration</td></tr>
+  </tbody></table></div>
+  <h3><span class="mk">13.1</span>Definition of done</h3>
+  <ul>
+   <li>No code path generates after L3 abstention or for exact-citation lookup.</li>
+   <li>No public citation, quote, date or URL originates in model output.</li>
+   <li>Every material claim is atomic, supported, resolved and verified; required-claim failure aborts the answer.</li>
+   <li>Whole-answer checks preserve qualifications, conflict, temporal/jurisdiction scope and deterministic-service boundaries.</li>
+   <li>Only verified artifacts/blocks are released; raw provider tokens never reach the client.</li>
+   <li>Persisted artifacts replay exactly; anonymous mode leaves no content behind.</li>
+   <li>Dependency invalidation covers provisions, judgments, schedules, authority/treatment, corpus and pipeline versions.</li>
+   <li>Locked lawyer-labelled tests, red team, latency, cost and bilingual gates pass in CI.</li>
+  </ul>
+ </div>
+</section>
+
+<section>
+ <div class="rail"><span class="num">R</span><span class="tag">Primary<br>sources</span></div>
+ <div class="body">
+  <h2>References</h2>
+  <ol style="font-size:.8rem;line-height:1.62">
+   <li><b>Constitution of Pakistan</b> &mdash; current consolidated authority framework, including Articles 189 and 201. National Assembly, amended through 21 Nov 2025. <a href="https://na.gov.pk/uploads/documents/6926e060076ed_467.pdf">Official PDF</a>; source <a href="https://www.na.gov.pk/uploads/documents/691ec19a6a212_270.pdf">Twenty-Seventh Amendment Act, 2025</a>.</li>
+   <li><b>Legal Practitioners and Bar Councils Act, 1973</b> &mdash; section 22 practice boundary and statutory professional framework. <a href="https://pakistancode.gov.pk/pdffiles/administrator5d15510c6d8f928c6bbc3c27f313e44c.pdf">Pakistan Code official PDF</a>. Governing rules and free-legal-aid material are published by the <a href="https://www.pakistanbarcouncil.org/acts">Pakistan Bar Council</a>.</li>
+   <li><b>Hallucination-Free? Assessing the Reliability of Leading AI Legal Research Tools</b> &mdash; Magesh et al.; preregistered empirical evaluation of LexisNexis and Thomson Reuters tools. <a href="https://arxiv.org/abs/2405.20362">Paper</a>.</li>
+   <li><b>Lexis+ with Prot&eacute;g&eacute;</b> &mdash; official description of authoritative-source linking and Shepard&rsquo;s validation. <a href="https://www.lexisnexis.com/en-us/products/lexis-plus-protege/legal-research.page">Official product page</a>.</li>
+   <li><b>CoCounsel Legal</b> &mdash; official Thomson Reuters source-linking/task-workflow description. <a href="https://cocoagent-service.cocounsel.thomsonreuters.com/mcp/guide">Official guide</a>.</li>
+   <li><b>CourtListener REST API</b> &mdash; citation lookup/verification and graph API precedent. <a href="https://www.courtlistener.com/help/api/rest/">Free Law Project documentation</a>.</li>
+   <li><b>Caselaw Access Project</b> &mdash; open, machine-readable case-law corpus/API precedent. <a href="https://lil.law.harvard.edu/our-work/caselaw-access-project/">Harvard Library Innovation Lab</a>.</li>
+   <li><b>European Legislation Identifier</b> &mdash; stable, machine-readable legal identity precedent. <a href="https://eur-lex.europa.eu/content/help/eurlex-content/eli.html?locale=en">EUR-Lex official documentation</a>.</li>
+   <li><b>LegalBench</b> &mdash; Guha et al., 2023; 162 lawyer/researcher-contributed legal reasoning tasks. <a href="https://arxiv.org/abs/2308.11462">Paper</a>.</li>
+   <li><b>LegalBench-RAG</b> &mdash; Pipitone &amp; Alami, 2024; expert-annotated, precise legal retrieval spans. <a href="https://arxiv.org/abs/2408.10343">Paper</a>.</li>
+   <li><b>ALCE: Enabling Large Language Models to Generate Text with Citations</b> &mdash; Gao, Yen, Yu &amp; Chen, EMNLP 2023; separates citation correctness and completeness. <a href="https://aclanthology.org/2023.emnlp-main.398/">Paper</a>.</li>
+   <li><b>Attributable to Identified Sources</b> &mdash; Rashkin et al., Computational Linguistics 2023; human source-attribution evaluation framework. <a href="https://aclanthology.org/2023.cl-4.2/">Paper</a>.</li>
+   <li><b>FActScore</b> &mdash; Min et al., EMNLP 2023; atomic-fact decomposition and support scoring. <a href="https://arxiv.org/abs/2305.14251">Paper</a>.</li>
+   <li><b>AttributionBench</b> &mdash; Li et al., ACL Findings 2024; demonstrates continuing limits of automatic attribution evaluation. <a href="https://arxiv.org/abs/2402.15089">Paper</a>.</li>
+   <li><b>TRUE</b> and <b>SummaC</b> &mdash; factual-consistency evaluation and the importance of claim/source granularity for NLI. <a href="https://aclanthology.org/2022.naacl-main.287/">TRUE</a>; <a href="https://aclanthology.org/2022.tacl-1.10/">SummaC</a>.</li>
+   <li><b>Large Language Models Cannot Self-Correct Reasoning Yet</b> &mdash; Huang et al., ICLR 2024; evidence against unaided retry/self-correction as a safety mechanism. <a href="https://arxiv.org/abs/2310.01798">Paper</a>.</li>
+   <li><b>Indirect prompt injection</b> &mdash; Greshake et al., 2023; retrieved data can act as adversarial instructions. <a href="https://arxiv.org/abs/2302.12173">Paper</a>; practical controls in the <a href="https://cheatsheetseries.owasp.org/cheatsheets/RAG_Security_Cheat_Sheet.html">OWASP RAG Security Cheat Sheet</a>.</li>
+   <li><b>JSON Schema Draft 2020-12</b> &mdash; provider-neutral structural-output validation. <a href="https://json-schema.org/draft/2020-12">Official specification</a>.</li>
+   <li><b>NIST AI 600-1 Generative AI Profile</b> &mdash; confabulation, information integrity, privacy, security, provenance and continuous evaluation/red-team risk controls. <a href="https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf">Official PDF</a>.</li>
+   <li><b>W3C PROV-O</b> &mdash; recommendation for entities, activities, agents and derivation relationships used conceptually by the audit graph. <a href="https://www.w3.org/TR/prov-o/">W3C Recommendation</a>.</li>
+   <li><b>Local architecture evidence</b> &mdash; <a href="01-master-architecture.html">Document 01</a>, <a href="03-data-and-storage.html">03</a>, <a href="03b-legal-data-model.html">03b</a>, <a href="04-retrieval.html">04</a>, <a href="08-client-architecture.html">08</a>, <a href="09a-local-environment.html">09a</a> and <a href="09b-production-deployment.html">09b</a>.</li>
+  </ol>
+ </div>
+</section>
+</div>
+</body>
+</html>

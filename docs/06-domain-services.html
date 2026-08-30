@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nizam-e-Qanoon Domain Services</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{--paper:#f3f4f7;--surface:#fff;--surface-2:#edeff3;--surface-3:#e3e7ee;--ink:#14171e;--ink-2:#4c5566;--ink-3:#7e879a;--rule:#dcdfe7;--rule-2:#c6cbd6;--indigo:#26397a;--indigo-soft:#e4e8f5;--rubric:#9e3b2f;--rubric-soft:#f6e7e4;--ok:#2c6349;--ok-soft:#e0ede7;--warn:#7e6114;--warn-soft:#f3ebd8;--shadow:0 1px 2px rgba(20,23,30,.05),0 8px 24px -12px rgba(20,23,30,.14);--f-display:"Newsreader",Georgia,serif;--f-body:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;--f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;--measure:74ch;--rail:9.5rem}
+@media(prefers-color-scheme:dark){:root{--paper:#0d0f14;--surface:#14171e;--surface-2:#1b1f28;--surface-3:#232935;--ink:#e6e9ef;--ink-2:#a0a9ba;--ink-3:#6d7688;--rule:#252a34;--rule-2:#333a47;--indigo:#93a8e8;--indigo-soft:#1b2136;--rubric:#d8867a;--rubric-soft:#2b1d1b;--ok:#6fbf95;--ok-soft:#152520;--warn:#d3ab5c;--warn-soft:#241e10;--shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px -14px rgba(0,0,0,.7)}}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:16.5px;line-height:1.62;-webkit-font-smoothing:antialiased}.wrap{max-width:76rem;margin:0 auto;padding:0 1.5rem 8rem}.masthead{border-bottom:2px solid var(--ink);padding:3.5rem 0 1.25rem;margin-bottom:2rem}.kicker{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--rubric);margin:0 0 1rem}h1{font-family:var(--f-display);font-weight:500;font-size:clamp(2.4rem,5.8vw,3.9rem);line-height:1.03;letter-spacing:-.021em;margin:0 0 .5rem;text-wrap:balance}.dek{font-family:var(--f-display);font-size:clamp(1.05rem,2.1vw,1.3rem);color:var(--ink-2);max-width:62ch;margin:0 0 1.9rem;font-style:italic}.meta{display:flex;flex-wrap:wrap;gap:.5rem 2.25rem;font-family:var(--f-mono);font-size:.7rem;letter-spacing:.05em;color:var(--ink-3);border-top:1px solid var(--rule);padding-top:.9rem}.meta b{color:var(--ink-2);font-weight:500}section{display:grid;grid-template-columns:var(--rail) minmax(0,1fr);gap:0 2.5rem;padding-top:3.4rem;border-top:1px solid var(--rule);margin-top:3.4rem}section.first{border-top:none;margin-top:0}.rail{position:sticky;top:1.5rem;align-self:start;padding-top:.4rem}.rail .num{font-family:var(--f-mono);font-size:1.05rem;font-weight:600;color:var(--rubric);display:block}.rail .tag{font-family:var(--f-mono);font-size:.63rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);display:block;margin-top:.5rem;line-height:1.55}.body{min-width:0}@media(max-width:880px){section{grid-template-columns:1fr}.rail{position:static;display:flex;align-items:baseline;gap:.85rem;margin-bottom:.9rem}.rail .tag{margin-top:0}}h2{font-family:var(--f-display);font-weight:500;font-size:clamp(1.6rem,3.3vw,2.2rem);line-height:1.14;letter-spacing:-.017em;margin:0 0 .8rem;text-wrap:balance}h3{font-weight:700;font-size:1.01rem;margin:2.6rem 0 .55rem}h3 .mk{font-family:var(--f-mono);color:var(--rubric);font-weight:600;margin-inline-end:.55rem;font-size:.88em}h4{font-family:var(--f-mono);font-weight:600;font-size:.71rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);margin:1.9rem 0 .6rem}p{margin:0 0 1.05rem;max-width:var(--measure)}.lede{font-size:1.075rem;color:var(--ink-2);max-width:66ch}ul,ol{margin:0 0 1.15rem;padding-inline-start:1.3rem;max-width:var(--measure)}li{margin-bottom:.42rem}li::marker{color:var(--ink-3)}a{color:var(--indigo);text-underline-offset:.18em;word-break:break-word}code{font-family:var(--f-mono);font-size:.855em;font-variant-ligatures:none}p code,li code,td code{background:var(--surface-2);border:1px solid var(--rule);padding:.06em .34em;border-radius:3px}.scroll{overflow-x:auto;margin:1.4rem 0 1.9rem;border:1px solid var(--rule);border-radius:5px;background:var(--surface)}table{border-collapse:collapse;width:100%;font-size:.83rem;line-height:1.5}th{text-align:left;font-family:var(--f-mono);font-weight:600;font-size:.645rem;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3);padding:.7rem .8rem;border-bottom:1px solid var(--rule-2);white-space:nowrap;background:var(--surface-2)}td{padding:.65rem .8rem;border-bottom:1px solid var(--rule);vertical-align:top}tr:last-child td{border-bottom:none}tbody tr:hover td{background:var(--surface-2)}td.id{font-family:var(--f-mono);font-size:.76rem;color:var(--rubric);white-space:nowrap;font-weight:500}td.k{font-weight:600;min-width:9rem}.chip{display:inline-block;font-family:var(--f-mono);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;font-weight:600;padding:.2em .5em;border-radius:3px;border:1px solid transparent;white-space:nowrap}.c-hard{background:var(--rubric-soft);color:var(--rubric);border-color:var(--rubric)}.c-ai{background:var(--indigo-soft);color:var(--indigo);border-color:var(--indigo)}.c-ok{background:var(--ok-soft);color:var(--ok);border-color:var(--ok)}.c-warn{background:var(--warn-soft);color:var(--warn);border-color:var(--warn)}.note{border-inline-start:3px solid var(--rubric);background:var(--surface);padding:1rem 1.15rem;margin:1.5rem 0;border-radius:0 4px 4px 0;max-width:var(--measure);box-shadow:var(--shadow)}.note.blue{border-inline-start-color:var(--indigo)}.note.green{border-inline-start-color:var(--ok)}.note p:last-child,.note ul:last-child{margin-bottom:0}figure{margin:2rem 0;background:var(--surface);border:1px solid var(--rule);border-radius:5px;padding:1.4rem 1.2rem .9rem;box-shadow:var(--shadow);overflow-x:auto}figure svg{display:block;width:100%;min-width:42rem;height:auto;color:var(--ink)}figcaption{margin-top:1rem;padding-top:.8rem;border-top:1px solid var(--rule);font-size:.78rem;color:var(--ink-3);line-height:1.55}figcaption b{color:var(--ink-2)}.fignum{font-family:var(--f-mono);font-size:.63rem;letter-spacing:.12em;text-transform:uppercase;color:var(--rubric);font-weight:600;display:block;margin-bottom:.7rem}pre{background:var(--surface);border:1px solid var(--rule);border-radius:5px;padding:1rem 1.05rem;overflow-x:auto;margin:1.25rem 0;font-family:var(--f-mono);font-size:.755rem;line-height:1.62;color:var(--ink-2)}pre b{color:var(--ink)}pre i{color:var(--ink-3);font-style:normal}pre u{color:var(--rubric);text-decoration:none}.dg{font-family:var(--f-mono);font-size:10.5px}.dg .bx{fill:none;stroke:currentColor;stroke-width:1.2}.dg .bxf{fill:var(--surface-2);stroke:currentColor;stroke-width:1.2}.dg .acc{fill:var(--rubric-soft);stroke:var(--rubric);stroke-width:1.4}.dg text{fill:currentColor}.dg .ta{fill:var(--rubric);font-weight:600}.dg .tm{fill:currentColor;opacity:.64;font-size:9.5px}.dg .th{font-weight:600}.dg .ln{stroke:currentColor;stroke-width:1.1;fill:none}.dg .lnA{stroke:var(--rubric);stroke-width:1.4;fill:none}.dg .lnD{stroke:currentColor;stroke-width:1.1;fill:none;stroke-dasharray:5 3}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="masthead">
+ <p class="kicker">Document 06 &middot; layer L5 &middot; child of 01 Master Architecture</p>
+ <h1>Nizam-e-Qanoon Domain Services</h1>
+ <p class="dek">An evidence-bearing Pakistani legal decision layer: precedent is a qualified graph signal, deadlines and fees are versioned calculations, procedures are authored rules, and operative document clauses enter only through reviewed deterministic code.</p>
+ <div class="meta"><span><b>Version</b> 1.0</span><span><b>Date</b> 30 Aug 2026</span><span><b>Layer</b> L5</span><span><b>Provides</b> IPrecedent &middot; IDraft &middot; IProcedure</span><span><b>Requires</b> ICorpusRead &middot; IGenerate</span><span><b>Figures</b> 4</span></div>
+</header>
+
+<section class="first">
+ <div class="rail"><span class="num">&sect;1</span><span class="tag">Mandate<br>&amp; proof</span></div>
+ <div class="body">
+  <h2>Translate law into traceable decisions, never invisible opinion</h2>
+  <p class="lede">L5 converts facts already supplied by a user into narrow domain results: treatment evidence, a calculation, an ordered procedure, or a document assembled from approved clauses. It does not retrieve open-ended law, invent facts, decide a dispute, predict a judge, or replace an advocate.</p>
+  <div class="scroll"><table><thead><tr><th>Invariant</th><th>Executable consequence</th><th>Proof basis</th></tr></thead><tbody>
+   <tr><td class="id">D-INV-1</td><td>Every conclusion carries jurisdiction, <code>asOf</code>, rule-pack version, corpus version, source provisions and a human-readable trace.</td><td>Pakistan Code directs doubtful users to the relevant Gazette; the Publication of Laws of Pakistan Act creates the Laws of Pakistan Cell.</td></tr>
+   <tr><td class="id">D-INV-2</td><td>Rules and tables are effective-dated and territorial. A federal consolidation cannot silently supply a provincial fee or stamp rate.</td><td>Court-Fees Act ss.20, 26, 35 and provincial amendments; provincial Stamp Act schedules; KP fee abolition is a concrete divergence.</td></tr>
+   <tr><td class="id">D-INV-3</td><td>A precedent status is an evidence-bearing signal with coverage, not a green/red badge.</td><td>Constitution arts.189 and 201 establish binding relations; later treatment, bench composition, question of law and corpus gaps remain separate facts.</td></tr>
+   <tr><td class="id">D-INV-4</td><td>The model may phrase or summarize; it cannot choose a clause, deadline, rate, forum, authority class or treatment.</td><td>NJPMC&rsquo;s 2026 Guidelines position AI as assistive while preserving human judgment, accountability and transparency.</td></tr>
+   <tr><td class="id">D-INV-5</td><td>No result labelled &ldquo;reviewed,&rdquo; &ldquo;file-ready&rdquo; or &ldquo;good law&rdquo; without the corresponding human workflow and evidence.</td><td>Legal Practitioners and Bar Councils Act 1973 s.22; product boundary requires counsel review rather than an overbroad claim about all automation.</td></tr>
+  </tbody></table></div>
+  <div class="note"><p><strong>Legal status of the executable rule.</strong> The Gazette or judgment remains authoritative. A <code>RuleVersion</code> is Nizam-e-Qanoon&rsquo;s reviewed interpretation of that source, not a new source of law. Every screen and artifact must preserve that distinction.</p></div>
+  <h3><span class="mk">1.1</span>Release bars</h3>
+  <p>Source resolution <strong>1.00</strong>; published rules with two-person legal approval <strong>1.00</strong>; arithmetic and calendar fixtures <strong>1.00</strong>; wrong province/date/court hierarchy in the critical set <strong>0</strong>; unexplained precedent edge <strong>0</strong>; clause without rule and source <strong>0</strong>; stale result after dependency publication <strong>0</strong>; English&ndash;Urdu material-parity gap <strong>&le;0.03</strong>.</p>
+ </div>
+</section>
+
+<section>
+ <div class="rail"><span class="num">&sect;2</span><span class="tag">Pakistani<br>source order</span></div>
+ <div class="body">
+  <h2>Authority begins with the promulgated source, not the convenient website</h2>
+  <p class="lede">A domain result is only as defensible as its source resolution. Pakistan Code is an essential official access layer, but its own disclaimer says material is under review and doubtful questions should return to Gazette notifications. The service therefore stores source rank and never collapses an access copy into promulgation proof.</p>
+  <div class="scroll"><table><thead><tr><th>Rank</th><th>Source class</th><th>Use</th><th>Publication rule</th></tr></thead><tbody>
+   <tr><td class="id">P0</td><td class="k">Constitution / Gazette / official judgment PDF</td><td>Controlling text, commencement, amendment, judicial holding and order</td><td>Required for every operative rule; hash, page and provision/paragraph anchor stored</td></tr>
+   <tr><td class="id">P1</td><td class="k">Official consolidated code</td><td>Current readable text and amendment footnotes from Pakistan Code, Punjab Laws, Sindh Code and KP Code</td><td>Useful access copy; compare to P0 before a calculator or clause rule becomes active</td></tr>
+   <tr><td class="id">P2</td><td class="k">Official administrative portal</td><td>Current operational rates, forms, e-stamp workflow, court rules, calendars and filing instructions</td><td>May drive operations only when its issuing authority and effective date are captured</td></tr>
+   <tr><td class="id">P3</td><td class="k">Reporter / editorial source</td><td>Parallel citation, digest and discovery</td><td>Never the sole source for text, treatment or a calculator parameter</td></tr>
+   <tr><td class="id">P4</td><td class="k">Model or secondary commentary</td><td>Candidate extraction and review assistance</td><td>Cannot publish a rule or treatment edge</td></tr>
+  </tbody></table></div>
+  <h3><span class="mk">2.1</span>Effective authority matrix after the Twenty-Seventh Amendment</h3>
+  <div class="scroll"><table><thead><tr><th>Deciding court</th><th>Binding reach encoded by L5</th><th>Guard</th></tr></thead><tbody>
+   <tr><td class="k">Federal Constitutional Court</td><td>Under current Article 189(1), a decision on a question/principle of law binds all other courts, including the Supreme Court.</td><td>Only matters within the actual decision; capture majority, separate opinions and issue proposition.</td></tr>
+   <tr><td class="k">Supreme Court</td><td>Under Article 189(2), a decision on a question/principle of law binds all other courts except the Federal Constitutional Court.</td><td>Do not apply the pre-November-2025 hierarchy to an <code>asOf</code> date after the amendment.</td></tr>
+   <tr><td class="k">High Court</td><td>Article 201 binds courts subordinate to that High Court to the stated extent.</td><td>Territorial High Court and subordinate forum must match; other High Courts are persuasive unless another rule applies.</td></tr>
+   <tr><td class="k">Federal Shariat Court / specialist hierarchy</td><td>Apply the Constitution and enabling statute&rsquo;s typed appellate and binding relations.</td><td>No generic numeric &ldquo;court rank&rdquo;; domain and appeal route are required.</td></tr>
+  </tbody></table></div>
+  <p>The hierarchy is bitemporal. A case decided before the amendment keeps its decision date; the question whether and how it controls a later matter is evaluated against the constitutional and transitional framework applicable to the query date. L5 consumes explicit court-domain edges from <a href="03b-legal-data-model.html">Document 03b</a> and does not infer them from a court-name string.</p>
+ </div>
+</section>
+
+<section>
+ <div class="rail"><span class="num">&sect;3</span><span class="tag">Bounded<br>contexts</span></div>
+ <div class="body">
+  <h2>One modular monolith, three legal domains, one rule registry</h2>
+  <p class="lede">Deploy L5 inside the backend monolith. Split ownership by bounded context, not by network hop. A shared deterministic kernel resolves scope, sources, time, rules, trace and publication; each domain owns its vocabulary and outcomes.</p>
+  <figure><span class="fignum">Figure 1 &middot; L5 component boundary</span>
+   <svg class="dg" viewBox="0 0 940 380" role="img" aria-labelledby="f1t f1d"><title id="f1t">Domain services component boundary</title><desc id="f1d">The API calls precedent, drafting and procedure ports. All share a scope resolver, rule registry, deterministic evaluator and provenance ledger. The precedent module reads the judgment graph; drafting uses interview, clauses and rendering; procedure uses guides, calendars, fees and forum data. Only summarisation and phrasing call verified generation.</desc>
+    <rect class="acc" x="25" y="145" width="125" height="70" rx="4"/><text class="ta" x="87" y="174" text-anchor="middle">L6 API</text><text class="tm" x="87" y="193" text-anchor="middle">auth + sessions</text>
+    <rect class="bxf" x="205" y="35" width="190" height="78" rx="4"/><text class="th" x="300" y="62" text-anchor="middle">Precedent</text><text class="tm" x="300" y="81" text-anchor="middle">treatment graph &middot; signal</text><text class="tm" x="300" y="96" text-anchor="middle">judgment summary</text>
+    <rect class="bxf" x="205" y="145" width="190" height="78" rx="4"/><text class="th" x="300" y="172" text-anchor="middle">Documents</text><text class="tm" x="300" y="191" text-anchor="middle">interview &middot; clause engine</text><text class="tm" x="300" y="206" text-anchor="middle">renderer &middot; provenance</text>
+    <rect class="bxf" x="205" y="255" width="190" height="78" rx="4"/><text class="th" x="300" y="282" text-anchor="middle">Procedure</text><text class="tm" x="300" y="301" text-anchor="middle">limitation &middot; fees &middot; forum</text><text class="tm" x="300" y="316" text-anchor="middle">guides &middot; checklists</text>
+    <rect class="acc" x="455" y="96" width="205" height="188" rx="4"/><text class="ta" x="557" y="123" text-anchor="middle">Deterministic kernel</text><text x="475" y="153">ScopeResolver</text><text x="475" y="181">RuleRegistry</text><text x="475" y="209">RuleEvaluator</text><text x="475" y="237">Calendar + Money</text><text x="475" y="265">Trace + Provenance</text>
+    <rect class="bxf" x="720" y="55" width="190" height="95" rx="4"/><text class="th" x="815" y="82" text-anchor="middle">L2 corpus</text><text class="tm" x="815" y="103" text-anchor="middle">provisions &middot; versions</text><text class="tm" x="815" y="119" text-anchor="middle">judgments &middot; edges</text><text class="tm" x="815" y="135" text-anchor="middle">Gazette artifacts</text>
+    <rect class="bxf" x="720" y="230" width="190" height="95" rx="4"/><text class="th" x="815" y="257" text-anchor="middle">L4 generation</text><text class="tm" x="815" y="278" text-anchor="middle">verified summary only</text><text class="tm" x="815" y="294" text-anchor="middle">safe interview phrasing</text><text class="tm" x="815" y="310" text-anchor="middle">never authority</text>
+    <path class="lnA" d="M150 180 L205 74 M150 180 L205 184 M150 180 L205 294"/><path class="ln" d="M395 74 L455 135 M395 184 L455 190 M395 294 L455 245"/><path class="ln" d="M660 145 L720 105 M660 240 L720 277"/>
+   </svg><figcaption><b>The kernel is shared; legal meanings are not.</b> A limitation suspension, a precedent distinction and a tenancy-clause condition use the same publication and trace machinery but remain different domain types. This avoids both a giant generic rule table and duplicated audit logic.</figcaption>
+  </figure>
+  <div class="scroll"><table><thead><tr><th>Module</th><th>Owns</th><th>May call</th><th>Must not own</th></tr></thead><tbody>
+   <tr><td class="id">precedent/</td><td>Treatment proposition, case authority signal, coverage and structured judgment profile</td><td>ICorpusRead; IGenerate for verified summary</td><td>Open search, model-inferred court hierarchy, bare good-law verdict</td></tr>
+   <tr><td class="id">documents/</td><td>Interview schema, typed answers, clause rules, template, render and artifact provenance</td><td>ICorpusRead; IGenerate for wording only</td><td>Model clause selection, legal review claim, payment/e-stamp issuance</td></tr>
+   <tr><td class="id">procedure/</td><td>Guides, limitation, fees, stamp duty, forum, checklists and holiday calendars</td><td>ICorpusRead</td><td>Prediction, discretionary judicial findings, hidden assumptions</td></tr>
+   <tr><td class="id">rules/</td><td>Draft/review/publish lifecycle, deterministic evaluator, dependency graph and trace</td><td>ICorpusRead</td><td>HTTP, users, billing, model SDKs</td></tr>
+  </tbody></table></div>
+ </div>
+</section>
+
+<section>
+ <div class="rail"><span class="num">&sect;4</span><span class="tag">Executable<br>law model</span></div>
+ <div class="body">
+  <h2>A rule is a proposition tied to text, scope and time</h2>
+  <p class="lede">Do not start with a general-purpose expert-system language. Start with a small, typed expression grammar sufficient for comparison, dates, money, set membership and explicit priorities. Preserve an export mapping to LegalRuleML concepts, but keep the runtime understandable to Pakistani lawyers and application engineers.</p>
+<pre><b>type RuleVersion = {</b>
+  ruleId; version; domain; status: "draft" | "review" | "published" | "retired";
+  jurisdiction; territory[]; forumKinds[]; matterKinds[];
+  validFrom; validTo?; transactionFrom; transactionTo?;
+  authority: AuthorityAnchor[];        <i>// provision/judgment paragraph/Gazette page</i>
+  proposition;                         <i>// lawyer-readable controlled English</i>
+  when: Expr; unless?: Expr[]; priority: PrioritySpec;
+  effect: Effect; requiredInputs: FieldSpec[];
+  interpretationNotes[]; testFixtureIds[];
+  draftedBy; reviewedBy[]; approvedAt?; digest;
+<b>}</b>
+
+<b>type Effect =</b>
+  | { kind: "period"; value: Duration; accrual: AccrualRule }
+  | { kind: "money"; formula: MoneyExpr; rounding: RoundingRule }
+  | { kind: "forum"; courtTypeId; filingPlaceRule }
+  | { kind: "require_clause" | "forbid_clause"; clauseId }
+  | { kind: "procedure_step"; stepId; prerequisites[] }
+  | { kind: "authority_relation"; relation; target };
+
+<b>type DecisionTrace = {</b>
+  inputDigest; scope; candidates[]; applicable[]; rejected[];
+  evaluations: { ruleVersion; condition; inputs; result }[];
+  conflicts[]; assumptions[]; unknowns[]; result; dependencyDigest;
+<b>}</b></pre>
+  <h3><span class="mk">4.1</span>No arbitrary code in published content</h3>
+  <ul>
+   <li>Expressions are parsed to an allow-listed AST. No <code>eval</code>, imports, reflection, SQL, network, filesystem or model call.</li>
+   <li>Money uses decimal arithmetic with an explicit currency and rounding rule. Dates use civil-date types, not local timestamps.</li>
+   <li>Every input is typed, unit-labelled and either user-asserted, corpus-derived or administrative data. The trace distinguishes them.</li>
+   <li>Priority is explicit: constitutional hierarchy, special/local law, non-obstante/subject-to edges, later effective provision, or unresolved conflict. A row order is never legal priority.</li>
+   <li>Unknown facts propagate. They do not become <code>false</code>. The result is <code>complete</code>, <code>conditional</code>, <code>not_covered</code> or <code>conflict</code>.</li>
+  </ul>
+  <div class="note blue"><p><strong>Research precedent.</strong> OASIS LegalRuleML explicitly models jurisdiction, temporality, defeasibility, negation, authority and the link between a legal rule and its natural-language source. OECD Rules as Code and New Zealand Better Rules likewise insist that machine-consumable rules remain alongside human-readable rules. We adopt those properties, not their full syntax.</p></div>
+ </div>
+</section>
+
+<section>
+ <div class="rail"><span class="num">&sect;5</span><span class="tag">Precedent<br>citator</span></div>
+ <div class="body">
+  <h2>Answer “what happened to this proposition?”, not “is this case good?”</h2>
+  <p class="lede">A judgment may remain valid on one proposition and be doubted, distinguished or displaced on another. The citator&rsquo;s unit is therefore a normalized legal proposition linked to exact paragraphs, not the whole case.</p>
+<pre><b>type TreatmentEdge = {</b>
+  citingOpinionId; citingParagraphIds[];
+  citedOpinionId; citedParagraphIds[]; propositionId;
+  treatment: "followed" | "applied" | "approved" | "affirmed" |
+             "distinguished" | "doubted" | "disapproved" |
+             "overruled" | "reversed" | "explained" | "cited";
+  polarity: "positive" | "negative" | "neutral";
+  effectScope: "proposition" | "holding" | "order" | "unknown";
+  extraction: { method; confidence; modelVersion? };
+  reviewStatus: "machine_candidate" | "lawyer_verified" | "contested";
+  evidenceQuoteOffsets[]; sourceVersionId;
+<b>}</b></pre>
+  <figure><span class="fignum">Figure 2 &middot; precedent signal computation</span>
+   <svg class="dg" viewBox="0 0 940 330" role="img" aria-labelledby="f2t f2d"><title id="f2t">Precedent signal computation</title><desc id="f2d">A target judgment is split into propositions. Forward treatment edges are filtered by source identity, majority status, court domain, query date and territorial reach. Negative and positive evidence remains separate. Coverage and conflicts are attached before a qualified signal is released.</desc>
+    <rect class="acc" x="20" y="120" width="125" height="70" rx="4"/><text class="ta" x="82" y="147" text-anchor="middle">Target case</text><text class="tm" x="82" y="167" text-anchor="middle">opinion + paragraphs</text>
+    <rect class="bxf" x="185" y="120" width="145" height="70" rx="4"/><text class="th" x="257" y="147" text-anchor="middle">Propositions</text><text class="tm" x="257" y="167" text-anchor="middle">holding-level identity</text>
+    <rect class="bxf" x="370" y="35" width="160" height="70" rx="4"/><text class="th" x="450" y="62" text-anchor="middle">Forward edges</text><text class="tm" x="450" y="82" text-anchor="middle">verified paragraph evidence</text>
+    <rect class="bxf" x="370" y="120" width="160" height="70" rx="4"/><text class="th" x="450" y="147" text-anchor="middle">Authority filter</text><text class="tm" x="450" y="167" text-anchor="middle">court &middot; domain &middot; asOf</text>
+    <rect class="bxf" x="370" y="205" width="160" height="70" rx="4"/><text class="th" x="450" y="232" text-anchor="middle">Opinion filter</text><text class="tm" x="450" y="252" text-anchor="middle">majority &middot; dissent &middot; order</text>
+    <rect class="bxf" x="575" y="75" width="155" height="70" rx="4"/><text class="th" x="652" y="102" text-anchor="middle">Evidence ledger</text><text class="tm" x="652" y="122" text-anchor="middle">positive / negative</text>
+    <rect class="bxf" x="575" y="185" width="155" height="70" rx="4"/><text class="th" x="652" y="212" text-anchor="middle">Coverage</text><text class="tm" x="652" y="232" text-anchor="middle">courts &middot; years &middot; gaps</text>
+    <rect class="acc" x="775" y="120" width="145" height="70" rx="4"/><text class="ta" x="847" y="147" text-anchor="middle">Qualified signal</text><text class="tm" x="847" y="167" text-anchor="middle">evidence + uncertainty</text>
+    <path class="lnA" d="M145 155 L185 155"/><path class="ln" d="M330 155 L370 70 M330 155 L370 155 M330 155 L370 240"/><path class="ln" d="M530 70 L575 110 M530 155 L575 110 M530 240 L575 220"/><path class="lnA" d="M730 110 L775 145 M730 220 L775 165"/>
+   </svg><figcaption><b>No score erases evidence.</b> The UI may sort treatment, but must show the actual citing paragraph, deciding court, opinion role, date and coverage. A lawyer can disagree with classification without losing the source.</figcaption>
+  </figure>
+  <h3><span class="mk">5.1</span>Signal contract</h3>
+<pre><b>type AuthoritySignal = {</b>
+  judgmentId; propositionSignals[];
+  summary: "no_adverse_treatment_found" | "adverse_treatment_found" |
+           "mixed_or_distinguished" | "coverage_insufficient";
+  supportingEdges[]; adverseEdges[]; unresolvedEdges[];
+  hierarchyApplied[]; coverage: { courts[]; from; to; documents; missingSources[] };
+  generatedAt; asOf; corpusVersion; traceId;
+<b>}</b></pre>
+  <p><code>no_adverse_treatment_found</code> means exactly that within declared coverage. It never becomes &ldquo;still good law.&rdquo; Machine extraction can prioritize review, but <code>overruled</code>, <code>reversed</code> and proposition-level negative treatment require lawyer verification before public display.</p>
+  <h3><span class="mk">5.2</span>Ingestion and identity</h3>
+  <p>Use official judgment portals for the Federal Constitutional Court, Supreme Court and each High Court. Preserve case number, decision date, upload date, bench, author, separate/dissenting opinions, disposition and source hash. Reporter citations are aliases. Paragraph anchors are canonical where the judgment numbers paragraphs; otherwise create stable source offsets while retaining page coordinates.</p>
+ </div>
+</section>
+
+<section>
+ <div class="rail"><span class="num">&sect;6</span><span class="tag">Judgment<br>profiles</span></div>
+ <div class="body">
+  <h2>Summaries are verified profiles, not editorial headnotes</h2>
+  <p class="lede">L5 chooses the schema and supplies the judgment; L4 may phrase fields, but <a href="05-generation-and-grounding.html">Document 05</a>&rsquo;s atomic support and whole-answer veto apply. No summary field can create a treatment or authority edge.</p>
+  <div class="scroll"><table><thead><tr><th>Field</th><th>Evidence rule</th><th>Failure behavior</th></tr></thead><tbody>
+   <tr><td class="k">Procedural posture</td><td>Case header, impugned order and disposition paragraphs</td><td>Unknown if source pages are missing</td></tr>
+   <tr><td class="k">Material facts</td><td>Each fact linked to a paragraph; party allegation labelled as allegation</td><td>Drop unsupported fact</td></tr>
+   <tr><td class="k">Questions/issues</td><td>Express issue paragraph or clearly qualified reconstruction</td><td>Mark <code>inferred_issue</code>, never quotation</td></tr>
+   <tr><td class="k">Arguments</td><td>Keep each party and court treatment separate</td><td>No laundering an argument into a holding</td></tr>
+   <tr><td class="k">Reasoning and holding</td><td>Majority paragraphs and exact proposition support</td><td>Whole profile fails if decisive qualification is unsupported</td></tr>
+   <tr><td class="k">Order</td><td>Operative final paragraphs only</td><td>No inference from case metadata</td></tr>
+  </tbody></table></div>
+  <p>Profiles are regenerated only when the judgment source, schema, verifier or correction record changes. A later judgment changes the citator&rsquo;s treatment view, not the historical text of the earlier judgment profile.</p>
+ </div>
+</section>
+
+<section>
+ <div class="rail"><span class="num">&sect;7</span><span class="tag">Limitation<br>engine</span></div>
+ <div class="body">
+  <h2>A deadline is an event calculation with legal branches</h2>
+  <p class="lede">The Limitation Act&rsquo;s First Schedule supplies periods and starting points, but a useful calculator must also model the mandatory bar in section 3, court closure in section 4, the limited extension route in section 5, disability, exclusions, fraud, acknowledgment, payment, continuing wrongs and the special/local-law rule in section 29.</p>
+  <div class="scroll"><table><thead><tr><th>Stage</th><th>Deterministic work</th><th>Required evidence / guard</th></tr></thead><tbody>
+   <tr><td class="id">LIM-0</td><td>Resolve claim/application/appeal type, relief, forum, governing special law and <code>asOf</code>.</td><td>Ambiguous cause maps to candidates; service never chooses a cause of action for the user.</td></tr>
+   <tr><td class="id">LIM-1</td><td>Select applicable Schedule article or special/local period and accrual rule.</td><td>Section 29(2) determines which general provisions remain available when a special/local law differs.</td></tr>
+   <tr><td class="id">LIM-2</td><td>Construct event timeline: accrual, knowledge, death/representation, disability, prior proceeding, stay, acknowledgment and payment.</td><td>Every date labelled asserted, documented or inferred; inferred dates cannot yield a final deadline.</td></tr>
+   <tr><td class="id">LIM-3</td><td>Apply included/excluded day rules, calendar arithmetic and effective court closures.</td><td>Official court calendar version and timezone; no timestamp arithmetic.</td></tr>
+   <tr><td class="id">LIM-4</td><td>Evaluate exclusions/restarts in legal order and retain every rejected branch.</td><td>Section 5 is not a general power to extend every suit; service states the relevant proceeding class.</td></tr>
+   <tr><td class="id">LIM-5</td><td>Return base date, adjustments, computed last day, safer filing-by date and uncertainty.</td><td>Where a judicial finding such as sufficient cause, good faith, fraud or due diligence is required, return conditional branches and advocate escalation.</td></tr>
+  </tbody></table></div>
+  <figure><span class="fignum">Figure 3 &middot; limitation decision path</span>
+   <svg class="dg" viewBox="0 0 940 315" role="img" aria-labelledby="f3t f3d"><title id="f3t">Limitation calculation decision path</title><desc id="f3d">The calculator resolves matter, special law, period and accrual. It builds an event timeline, applies available exclusions and restarts, then calendar rules. Judicially discretionary facts produce conditional branches. A complete trace returns the deadline or an explicit inability.</desc>
+    <rect class="acc" x="15" y="112" width="120" height="64" rx="4"/><text class="ta" x="75" y="138" text-anchor="middle">Typed matter</text><text class="tm" x="75" y="157" text-anchor="middle">forum + asOf</text>
+    <rect class="bxf" x="165" y="112" width="130" height="64" rx="4"/><text class="th" x="230" y="138" text-anchor="middle">Special-law gate</text><text class="tm" x="230" y="157" text-anchor="middle">s.29 interaction</text>
+    <rect class="bxf" x="325" y="112" width="130" height="64" rx="4"/><text class="th" x="390" y="138" text-anchor="middle">Period + accrual</text><text class="tm" x="390" y="157" text-anchor="middle">Schedule / local law</text>
+    <rect class="bxf" x="485" y="35" width="145" height="64" rx="4"/><text class="th" x="557" y="61" text-anchor="middle">Event timeline</text><text class="tm" x="557" y="80" text-anchor="middle">asserted + documented</text>
+    <rect class="bxf" x="485" y="112" width="145" height="64" rx="4"/><text class="th" x="557" y="138" text-anchor="middle">Adjustments</text><text class="tm" x="557" y="157" text-anchor="middle">exclude / restart</text>
+    <rect class="bxf" x="485" y="189" width="145" height="64" rx="4"/><text class="th" x="557" y="215" text-anchor="middle">Court calendar</text><text class="tm" x="557" y="234" text-anchor="middle">closure + day rules</text>
+    <rect class="bxf" x="670" y="75" width="125" height="64" rx="4"/><text class="th" x="732" y="101" text-anchor="middle">Fact gate</text><text class="tm" x="732" y="120" text-anchor="middle">known | conditional</text>
+    <rect class="acc" x="825" y="112" width="100" height="64" rx="4"/><text class="ta" x="875" y="138" text-anchor="middle">Result</text><text class="tm" x="875" y="157" text-anchor="middle">date + trace</text>
+    <path class="lnA" d="M135 144 L165 144"/><path class="ln" d="M295 144 L325 144 M455 144 L485 67 M455 144 L485 144 M455 144 L485 221"/><path class="ln" d="M630 67 L670 103 M630 144 L670 107 M630 221 L670 115"/><path class="lnA" d="M795 107 L825 135"/>
+   </svg><figcaption><b>Discretion is surfaced, not automated.</b> The engine can calculate both branches for a contested date or statutory condition. It cannot decide credibility, sufficient cause, good faith, concealment or due diligence.</figcaption>
+  </figure>
+  <h3><span class="mk">7.1</span>Result shape</h3>
+<pre><b>type LimitationResult = {</b>
+  status: "complete" | "conditional" | "not_covered" | "conflict";
+  governingRule; period; accrualEvent; baseDeadline?;
+  adjustments: { kind; from; to; days; authority; condition? }[];
+  finalDeadline?; conservativeFileBy?; calendarVersion;
+  assumptions[]; disputedInputs[]; alternatives[]; authorities[]; traceId;
+<b>}</b></pre>
+  <div class="note"><p><strong>Never market a limitation date as guaranteed.</strong> Section 3 makes lateness consequential even when limitation is not pleaded, while sections 4&ndash;25 and special/local laws can alter computation. The product must show the full calculation and tell users to file earlier and obtain legal review.</p></div>
+ </div>
+</section>
+
+<section>
+ <div class="rail"><span class="num">&sect;8</span><span class="tag">Fees, stamp<br>&amp; forum</span></div>
+ <div class="body">
+  <h2>Province, relief and date are mandatory calculator inputs</h2>
+  <p class="lede">The federal-era Court-Fees and Stamp Acts are only the trunk. Provincial finance acts, amendment acts, rules, remissions and operational valuation systems alter the result. Khyber Pakhtunkhwa&rsquo;s Court Fees (Abolition) Ordinance is proof that a national rate table would be structurally wrong.</p>
+  <div class="scroll"><table><thead><tr><th>Calculator</th><th>Minimum inputs</th><th>Source stack</th><th>Output guard</th></tr></thead><tbody>
+   <tr><td class="k">Court fee</td><td>Province/ICT, court, filing kind, relief, valuation basis, amount, date, exemptions</td><td>Court-Fees Act; provincial amendment/finance acts; High Court process-fee rules; Gazette remissions</td><td>Separate institution fee, process fee and incidental charges; never one opaque total</td></tr>
+   <tr><td class="k">Stamp duty</td><td>Province/ICT, instrument classification, consideration/value, property location/use, execution date, parties</td><td>Stamp Act and current provincial Schedule I; Gazette notifications; official e-stamp parameters</td><td>Show classification and rate; link to official payment/verification portal rather than issuing a stamp</td></tr>
+   <tr><td class="k">Registration</td><td>Instrument, property, term/value, location, execution/presentation dates</td><td>Registration Act ss.17&ndash;35 plus provincial rules and fee notifications</td><td>Return compulsory/optional/unknown and presentation requirements; not title assurance</td></tr>
+   <tr><td class="k">Forum</td><td>Matter, statute, relief, value, territory, parties, subject property and date</td><td>Constitution/enabling statute; CPC ss.15&ndash;20; civil-court laws; special tribunals and local limits</td><td>Return candidate forum and unresolved venue facts; no prediction that jurisdiction objection will succeed</td></tr>
+  </tbody></table></div>
+  <h3><span class="mk">8.1</span>Parameters are data, classifications are reviewed rules</h3>
+<pre><b>rate_table</b>(table_id, kind, jurisdiction, valid_from, valid_to, source_version_id, digest)
+<b>rate_band</b>(table_id, instrument_or_relief, lower_bound, upper_bound,
+          fixed_amount, rate, cap, floor, rounding_rule, condition_expr)
+<b>valuation_rule</b>(rule_version_id, subject_kind, measure, formula_expr, source_anchor)
+<b>court_competence</b>(court_type_id, territory_id, matter_kind, pecuniary_range,
+                 valid_from, valid_to, enabling_source_anchor)
+<b>court_calendar</b>(court_id, closed_date, reason, notification_source_anchor, version)</pre>
+  <p>Punjab&rsquo;s official PLRA e-stamping service already calculates stamp duty, CVT and related charges and issues a verifiable challan/e-stamp. Nizam-e-Qanoon should deep-link or reconcile against that official service where available, not compete with it as a payment authority. Differences between our estimate and an official portal are a blocking incident for the affected rule pack.</p>
+ </div>
+</section>
+
+<section id="documents">
+ <div class="rail"><span class="num">&sect;9</span><span class="tag">Document<br>factory</span></div>
+ <div class="body">
+  <h2>The interview gathers facts; reviewed rules construct the instrument</h2>
+  <p class="lede">The document factory follows the proven guided-interview pattern used by docassemble, but adds Pakistan-specific source, province, language, stamp, registration and provenance controls. AI can simplify a question; it never alters the field schema or operative clause set.</p>
+  <figure><span class="fignum">Figure 4 &middot; deterministic document assembly</span>
+   <svg class="dg" viewBox="0 0 940 335" role="img" aria-labelledby="f4t f4d"><title id="f4t">Deterministic document assembly</title><desc id="f4d">A reviewed document pack provides a field schema, clause rules and templates. The user interview yields typed facts. The rule engine selects clauses, computes duties and validates completeness. The renderer compiles bilingual artifacts in a sandbox and attaches provenance and a non-review notice.</desc>
+    <rect class="acc" x="20" y="105" width="120" height="70" rx="4"/><text class="ta" x="80" y="132" text-anchor="middle">Document pack</text><text class="tm" x="80" y="151" text-anchor="middle">reviewed + published</text>
+    <rect class="bxf" x="180" y="35" width="140" height="70" rx="4"/><text class="th" x="250" y="62" text-anchor="middle">Field schema</text><text class="tm" x="250" y="81" text-anchor="middle">typed + conditional</text>
+    <rect class="bxf" x="180" y="125" width="140" height="70" rx="4"/><text class="th" x="250" y="152" text-anchor="middle">Clause rules</text><text class="tm" x="250" y="171" text-anchor="middle">required / optional / barred</text>
+    <rect class="bxf" x="180" y="215" width="140" height="70" rx="4"/><text class="th" x="250" y="242" text-anchor="middle">Templates</text><text class="tm" x="250" y="261" text-anchor="middle">English + Urdu</text>
+    <rect class="bxf" x="365" y="35" width="145" height="70" rx="4"/><text class="th" x="437" y="62" text-anchor="middle">Interview</text><text class="tm" x="437" y="81" text-anchor="middle">validated facts only</text>
+    <rect class="acc" x="365" y="125" width="145" height="70" rx="4"/><text class="ta" x="437" y="152" text-anchor="middle">Rule evaluation</text><text class="tm" x="437" y="171" text-anchor="middle">trace every clause</text>
+    <rect class="bxf" x="365" y="215" width="145" height="70" rx="4"/><text class="th" x="437" y="242" text-anchor="middle">Fees / duties</text><text class="tm" x="437" y="261" text-anchor="middle">estimate + official link</text>
+    <rect class="bxf" x="555" y="80" width="145" height="70" rx="4"/><text class="th" x="627" y="107" text-anchor="middle">Completeness gate</text><text class="tm" x="627" y="126" text-anchor="middle">facts + clauses + conflicts</text>
+    <rect class="bxf" x="555" y="190" width="145" height="70" rx="4"/><text class="th" x="627" y="217" text-anchor="middle">Sandbox render</text><text class="tm" x="627" y="236" text-anchor="middle">DOCX / PDF</text>
+    <rect class="acc" x="750" y="125" width="170" height="70" rx="4"/><text class="ta" x="835" y="152" text-anchor="middle">Artifact + provenance</text><text class="tm" x="835" y="171" text-anchor="middle">not advocate-reviewed</text>
+    <path class="lnA" d="M140 140 L180 70 M140 140 L180 160 M140 140 L180 250"/><path class="ln" d="M320 70 L365 70 M320 160 L365 160 M320 250 L365 250"/><path class="ln" d="M510 70 L555 115 M510 160 L555 115 M510 250 L555 225"/><path class="ln" d="M627 150 L627 190"/><path class="lnA" d="M700 225 L750 175"/>
+   </svg><figcaption><b>The artifact is reproducible.</b> Given the same typed answers, source versions, rule pack and template, the same logical document is produced. Generated wording is outside operative clauses and is stored as a separate verified artifact.</figcaption>
+  </figure>
+  <h3><span class="mk">9.1</span>Document pack</h3>
+<pre><b>type DocumentPackVersion = {</b>
+  documentType; jurisdiction; language; validFrom; validTo?;
+  fieldSchema; interviewFlow; clauseRules[]; clauseVersions[];
+  templateVersions: { docx; pdf; urdu? }; feeRuleRefs[];
+  registrationRules[]; executionChecklist[]; reviewPolicy;
+  sourceAnchors[]; lawyerApprovals[]; regressionSuite; digest;
+<b>}</b></pre>
+  <div class="scroll"><table><thead><tr><th>First pack</th><th>Why</th><th>Controlling source map</th><th>Hard limitation</th></tr></thead><tbody>
+   <tr><td class="k">General affidavit</td><td>Bounded fields and execution blocks; exercises bilingual rendering</td><td>Applicable court/notarial/oath rules and filing-specific form requirements</td><td>No claim that facts are sworn until execution before the proper authority</td></tr>
+   <tr><td class="k">Residential tenancy &mdash; Punjab/ICT separately</td><td>High citizen value and clear proof of territorial divergence</td><td>Punjab Rented Premises Act 2009 or Islamabad Rent Restriction Ordinance 2001; Registration and Stamp laws</td><td>No &ldquo;Pakistan-wide rent agreement&rdquo;; Sindh/KP/Balochistan require separate packs</td></tr>
+   <tr><td class="k">Legal notice shell</td><td>Reusable service/address/claim structure</td><td>Matter-specific notice provision and service rule selected before the shell</td><td>No model-authored allegation, remedy choice or threat; advocate review strongly required</td></tr>
+  </tbody></table></div>
+  <h3><span class="mk">9.2</span>Rendering and safety</h3>
+  <ul>
+   <li>DOCX is the editable professional artifact; PDF is a preview/finalized rendering. XeLaTeX or an equivalently tested engine handles Urdu, mixed direction and embedded fonts.</li>
+   <li>Rendering runs without network, shell escape, user-controlled template paths or executable macros. Uploaded images are decoded and re-encoded.</li>
+   <li>Artifact provenance lists every clause ID/version, rule that fired, source anchors, omitted optional clauses, duty estimate, template digest and whether an advocate reviewed it.</li>
+   <li>A material field change invalidates prior review and render signatures. Anonymous sessions retain no answers or artifacts after delivery.</li>
+  </ul>
+ </div>
+</section>
+
+<section>
+ <div class="rail"><span class="num">&sect;10</span><span class="tag">Procedure<br>guides</span></div>
+ <div class="body">
+  <h2>A guide is a versioned state machine with official exits</h2>
+  <p class="lede">Procedure should not be generated as a confident list. Each guide is expert-authored from the governing law and current court/agency instructions, and each step has prerequisites, outputs, timing, fees, form versions and a verified official destination.</p>
+<pre><b>type ProcedureGuideVersion = {</b>
+  procedureId; jurisdiction; forum; validFrom; validTo?;
+  entryConditions[]; requiredFacts[]; steps: ProcedureStep[];
+  alternatives[]; stopConditions[]; escalationTriggers[];
+  sourceAnchors[]; officialLinks[]; calendarRefs[];
+  reviewedBy[]; publishedAt; digest;
+<b>}</b>
+
+<b>type ProcedureStep = {</b>
+  stepId; titleEn; titleUr; prerequisiteExpr; requiredDocuments[];
+  action; responsibleActor; destination; deadlineRule?; feeRule?;
+  produces[]; next[]; authorityAnchors[]; operationalLinkId?;
+<b>}</b></pre>
+  <div class="scroll"><table><thead><tr><th>Control</th><th>Implementation</th></tr></thead><tbody>
+   <tr><td class="k">Official-link integrity</td><td>Allow-listed government/court domains; scheduled HEAD/GET check; content fingerprint and redirect review; last-verified date shown.</td></tr>
+   <tr><td class="k">Forms</td><td>Store form version, issuing body and effective interval. A replaced form invalidates the affected step and offline pack.</td></tr>
+   <tr><td class="k">Local practice</td><td>Label administrative practice separately from legislation/rules; require registry confirmation date and never present it as statutory law.</td></tr>
+   <tr><td class="k">Accessibility</td><td>Plain English and Urdu, printable checklist, low-bandwidth version, official source link and advocate/legal-aid referral.</td></tr>
+   <tr><td class="k">Completion</td><td>User check-off records progress only; it never certifies legal compliance or filing acceptance.</td></tr>
+  </tbody></table></div>
+ </div>
+</section>
+
+<section>
+ <div class="rail"><span class="num">&sect;11</span><span class="tag">Rule<br>publication</span></div>
+ <div class="body">
+  <h2>Treat legal content changes like signed production releases</h2>
+  <p class="lede">A Git commit is not legal approval, and a lawyer&rsquo;s email is not a reproducible deployment. Rule publishing combines source evidence, structured review, executable tests, maker-checker separation and atomic activation.</p>
+  <div class="scroll"><table><thead><tr><th>Gate</th><th>Actor</th><th>Evidence</th><th>Failure</th></tr></thead><tbody>
+   <tr><td class="id">R0 Source</td><td>Legal data curator</td><td>P0/P1 source identity, hash, dates, extent, amendment/commencement chain</td><td>No rule draft</td></tr>
+   <tr><td class="id">R1 Model</td><td>Legal engineer</td><td>Controlled-English proposition, typed expression, examples and non-examples</td><td>Return to draft</td></tr>
+   <tr><td class="id">R2 Legal</td><td>Pakistani advocate for domain/province</td><td>Interpretation, exceptions, conflict, source anchors and user-facing wording</td><td>Cannot approve own draft alone</td></tr>
+   <tr><td class="id">R3 Technical</td><td>Application engineer</td><td>Schema, deterministic execution, property tests, security and performance</td><td>Cannot publish</td></tr>
+   <tr><td class="id">R4 Regression</td><td>CI + reviewer</td><td>Golden/mutation/temporal/bilingual fixtures and affected-dependency report</td><td>Block merge</td></tr>
+   <tr><td class="id">R5 Publish</td><td>Authorized publisher</td><td>Signed manifest; transaction activates pack and invalidates dependents</td><td>Previous version remains active</td></tr>
+   <tr><td class="id">R6 Monitor</td><td>Legal operations</td><td>Gazette/court/portal watch, broken links, user challenges and incident SLA</td><td>Quarantine affected result class</td></tr>
+  </tbody></table></div>
+  <h3><span class="mk">11.1</span>Corrections are append-only</h3>
+  <p>Never overwrite a published rule. Publish a successor with transaction time, legal validity interval and reason; retain the old digest for replay. An emergency quarantine can stop serving a rule immediately without pretending its historical publication never happened.</p>
+  <h3><span class="mk">11.2</span>Challenge workflow</h3>
+  <p>Every result exposes &ldquo;challenge this rule/treatment.&rdquo; The challenge carries only the trace and user-selected issue unless the user elects to add facts. A lawyer can mark <code>confirmed</code>, <code>needs_source</code>, <code>classification_error</code>, <code>outdated</code> or <code>interpretive_dispute</code>. Interpretive disputes stay visible and do not become silent edits.</p>
+ </div>
+</section>
+
+<section>
+ <div class="rail"><span class="num">&sect;12</span><span class="tag">Persistence<br>&amp; invalidation</span></div>
+ <div class="body">
+  <h2>Store dependencies, not just answers</h2>
+  <p class="lede">A deadline, fee, precedent signal or document is derived state. It is safe to cache only when every source and rule dependency is recorded and invalidated together.</p>
+<pre><b>domain_result</b>(id, kind, scope_json, input_digest, status, result_json,
+              rule_pack_digest, corpus_version, trace_id, created_at, expires_at)
+<b>domain_result_dependency</b>(result_id, dependency_kind, dependency_id,
+                         dependency_version, dependency_digest)
+<b>rule_pack</b>(id, domain, jurisdiction, version, status, manifest_digest,
+          valid_from, valid_to, transaction_from, transaction_to)
+<b>rule_version</b>(id, rule_id, pack_id, proposition, expression_ast,
+             authority_json, review_json, digest)
+<b>decision_trace</b>(id, input_digest, candidates_json, evaluation_json,
+               conflict_json, result_digest, created_at)
+<b>legal_artifact</b>(id, session_id, template_digest, logical_digest,
+               binary_digest, provenance_json, review_status, retention_class)</pre>
+  <div class="scroll"><table><thead><tr><th>Event</th><th>Invalidates</th><th>Action</th></tr></thead><tbody>
+   <tr><td>Provision/version/extent/commencement published</td><td>Rules anchored to it; procedures, calculations and documents derived from those rules</td><td>Quarantine or recompute before serving</td></tr>
+   <tr><td>Judgment/opinion/treatment edge published or corrected</td><td>Affected proposition signals and summaries</td><td>Recompute graph view; preserve old trace</td></tr>
+   <tr><td>Rate, calendar, court competence or form changes</td><td>Fee/deadline/forum results and affected guide/document packs</td><td>Invalidate by dependency, not TTL alone</td></tr>
+   <tr><td>Rule or template successor published</td><td>All logical results using old digest for current requests</td><td>Historical replay remains available; new render uses successor only after explicit migration</td></tr>
+  </tbody></table></div>
+  <p>Anonymous mode stores no facts, traces containing facts or artifacts after the response. Operational metrics use aggregate counters. Named drafting matters receive explicit retention controls because party names, CNICs, addresses, property details and dispute facts are sensitive legal data.</p>
+ </div>
+</section>
+
+<section id="contracts">
+ <div class="rail"><span class="num">&sect;13</span><span class="tag">Contracts<br>&amp; runtime</span></div>
+ <div class="body">
+  <h2>Typed inability is a successful legal-safety outcome</h2>
+<pre><b>interface IPrecedent {</b>
+  treatmentsOf(provisionId, filters): TreatmentView | DomainInability;
+  summarise(judgmentId, profile): VerifiedJudgmentProfile | DomainInability;
+  goodLawSignal(judgmentId, propositionId?, scope): AuthoritySignal | DomainInability;
+<b>}</b>
+
+<b>interface IDraft {</b>
+  startInterview(documentType, jurisdiction, asOf, language): InterviewState | DomainInability;
+  submitAnswers(session, answers): InterviewState | FieldErrors;
+  preview(session): LogicalDocument | DomainInability;
+  render(session, format): LegalArtifact | DomainInability;
+<b>}</b>
+
+<b>interface IProcedure {</b>
+  guide(procedureId, jurisdiction, asOf): ProcedureGuide | DomainInability;
+  limitation(matter, timeline, scope): LimitationResult;
+  courtFee(filing, scope): MoneyResult;
+  stampDuty(instrument, scope): MoneyResult;
+  forum(matter, scope): ForumResult;
+<b>}</b></pre>
+  <p><code>IPrecedent</code>, <code>IDraft</code> and <code>IProcedure</code> remain the public boundaries inherited from <a href="01-master-architecture.html">Document 01</a>. <code>preview</code>, selectable render format and <code>stampDuty</code> are explicit additive proposals for that contract; L6 can expose them only after the master interface and OpenAPI specification are versioned together.</p>
+  <div class="scroll"><table><thead><tr><th>Inability code</th><th>Meaning</th><th>Safe alternative</th></tr></thead><tbody>
+   <tr><td class="id">SCOPE_REQUIRED</td><td>Province/ICT, forum, territory or date missing</td><td>Request exact missing fields</td></tr>
+   <tr><td class="id">RULE_NOT_PUBLISHED</td><td>No reviewed rule pack covers the request</td><td>Show sources/search and advocate referral</td></tr>
+   <tr><td class="id">SOURCE_UNVERIFIED</td><td>Consolidation exists but controlling Gazette/source chain is incomplete</td><td>Show research-only source with warning; no calculation/document</td></tr>
+   <tr><td class="id">FACT_REQUIRES_FINDING</td><td>Credibility, good faith, sufficient cause, fraud, due diligence or legal characterization is contested</td><td>Return conditional branches and counsel escalation</td></tr>
+   <tr><td class="id">AUTHORITY_CONFLICT</td><td>Applicable sources/precedents conflict without a deterministically resolved priority</td><td>Present both with evidence</td></tr>
+   <tr><td class="id">COVERAGE_INSUFFICIENT</td><td>Judgment/source collection cannot support a status claim</td><td>Declare indexed courts/years and avoid negative inference</td></tr>
+   <tr><td class="id">PACK_QUARANTINED</td><td>Legal/technical incident disables the rule pack</td><td>Official link and incident-safe message</td></tr>
+  </tbody></table></div>
+  <h3><span class="mk">13.1</span>Runtime and security</h3>
+  <ul>
+   <li>Normal calculators and published guides run in-process against immutable pack snapshots; no network call and p95 under 150 ms.</li>
+   <li>Precedent graph queries run in PostgreSQL with bounded depth, court/date filters and statement timeouts; summaries are asynchronous or cached verified artifacts.</li>
+   <li>Document compilation runs in an isolated worker with CPU/memory/time limits, read-only templates, no network, no shell escape and content-addressed outputs.</li>
+   <li>A request pins one rule-pack manifest and corpus version. Mid-request publication cannot create a mixed result.</li>
+   <li>Only L6 authorizes sessions and persistence. L5 accepts an <code>anonymous</code> policy flag and returns artifacts without creating a hidden domain-side account or history.</li>
+  </ul>
+  <h3><span class="mk">13.2</span>Offline</h3>
+  <p>Signed offline packs may include published procedure guides, limitation/rate tables, court competence and pre-approved document interview schemas. They exclude the server-scale precedent graph and novel document rendering. Each offline result shows pack version and knowledge date; revoked/quarantined rule IDs are carried by signed patches.</p>
+ </div>
+</section>
+
+<section>
+ <div class="rail"><span class="num">&sect;14</span><span class="tag">Evaluation<br>&amp; delivery</span></div>
+ <div class="body">
+  <h2>Prove each domain with adversarial legal fixtures</h2>
+  <div class="scroll"><table><thead><tr><th>Suite</th><th>Required coverage</th><th>Release target</th></tr></thead><tbody>
+   <tr><td class="k">Temporal</td><td>Day before/on/after amendment, commencement, expiry, court closure and rate boundary</td><td>100% expected trace and result</td></tr>
+   <tr><td class="k">Territorial</td><td>Same facts across Punjab, Sindh, KP, Balochistan and ICT; mismatched property/forum</td><td>0 cross-jurisdiction leak</td></tr>
+   <tr><td class="k">Limitation</td><td>First Schedule, special law, ss.4&ndash;25, s.29, acknowledgment before/after expiry, conditional judicial facts</td><td>100% deterministic fixtures; discretion never collapsed</td></tr>
+   <tr><td class="k">Money</td><td>Band boundaries, caps/floors, exemptions, percentage/fixed combinations, decimal rounding and amended tables</td><td>Exact against lawyer-certified worksheets/official portal samples</td></tr>
+   <tr><td class="k">Precedent</td><td>FCC/SC/HC hierarchy, pre/post amendment, majority/dissent, proposition-level distinction/overruling and missing coverage</td><td>0 bare status; all public adverse edges lawyer-verified</td></tr>
+   <tr><td class="k">Documents</td><td>Every rule branch, mutually exclusive clauses, omitted facts, hostile text, Urdu directionality, render sandbox and provenance</td><td>0 unsourced clause; 100% logical reproducibility</td></tr>
+   <tr><td class="k">Mutation</td><td>Flip shall/may, province, date comparator, negation, rate, priority and exception</td><td>Every material mutation killed by tests</td></tr>
+  </tbody></table></div>
+  <h3><span class="mk">14.1</span>Independent legal validation</h3>
+  <p>For each launch domain, two Pakistani advocates independently annotate source, proposition, scope, exceptions and expected result; a senior reviewer adjudicates. Report agreement and unresolved interpretive disputes. Test data separates rules used to author implementation from a locked challenge set. Production challenges feed triage, never automatic learning.</p>
+  <h3><span class="mk">14.2</span>Build order</h3>
+  <div class="scroll"><table><thead><tr><th>Phase</th><th>Deliverable</th><th>Exit gate</th></tr></thead><tbody>
+   <tr><td class="id">D0</td><td>Scope resolver, rule schema/AST, source anchors, trace, fake packs and publication lifecycle</td><td>Arbitrary code impossible; bitemporal replay and maker-checker proven</td></tr>
+   <tr><td class="id">D1</td><td>Limitation MVP for a tightly enumerated civil/application set</td><td>Lawyer-certified fixtures and conditional branches pass; no broad marketing</td></tr>
+   <tr><td class="id">D2</td><td>Punjab/ICT fee, stamp and forum subsets plus official portal reconciliation</td><td>Exact current samples; divergence incidents block release</td></tr>
+   <tr><td class="id">D3</td><td>Versioned procedure guides, forms, calendars and signed offline pack</td><td>All links/forms verified; bilingual/accessibility review complete</td></tr>
+   <tr><td class="id">D4</td><td>Precedent graph, proposition/treatment review console and qualified signal</td><td>Hierarchy and coverage locked set passes; no unreviewed adverse public edge</td></tr>
+   <tr><td class="id">D5</td><td>Three separately scoped document packs and sandbox renderer</td><td>Every clause sourced; artifacts reproducible; advocate review workflow operational</td></tr>
+   <tr><td class="id">D6</td><td>Additional provinces/domains only by independent pack</td><td>No copy-and-rename jurisdiction port; province-specific legal sign-off</td></tr>
+  </tbody></table></div>
+  <h3><span class="mk">14.3</span>Definition of done</h3>
+  <ul>
+   <li>Every result identifies controlling sources, territory, date, rules, inputs, assumptions, unknowns and coverage.</li>
+   <li>No executable rule is active from an unverified consolidation alone.</li>
+   <li>No model chooses authority, treatment, clause, deadline, fee, stamp rate, forum or procedure step.</li>
+   <li>No &ldquo;good law&rdquo; or &ldquo;no precedent&rdquo; claim replaces evidence and declared coverage.</li>
+   <li>No document clause lacks a published rule and exact legal source.</li>
+   <li>Rule changes publish atomically, invalidate every dependent result and preserve historical replay.</li>
+   <li>Critical temporal, territorial, mutation, bilingual and sandbox suites pass with independent legal review.</li>
+  </ul>
+ </div>
+</section>
+
+<section id="references">
+ <div class="rail"><span class="num">R</span><span class="tag">Primary<br>sources</span></div>
+ <div class="body">
+  <h2>References and proof register</h2>
+  <ol style="font-size:.8rem;line-height:1.62">
+   <li><b>Constitution of the Islamic Republic of Pakistan</b> &mdash; current consolidated text through 21 Nov 2025; Articles 189 and 201 and the post-Twenty-Seventh-Amendment court structure. <a href="https://na.gov.pk/uploads/documents/6926e060076ed_467.pdf">National Assembly official PDF</a>. Presidential assent to the Twenty-Seventh Amendment was recorded on 13 Nov 2025 by the <a href="https://www.president.gov.pk/news/sdr-asf-aaly-zrdary-n-27oy-ayyny-trmym-bl-br-dstkht-kr-dyy-go-dono-ayoano-s-mnthor-o-chky-2">President of Pakistan</a>.</li>
+   <li><b>Federal Constitutional Court</b> &mdash; official institutional jurisdiction and commencement description. <a href="https://www.fccp.gov.pk/about-us">FCCP official portal</a>. An official FCCP judgment reproduces current Article 189 and its binding order. <a href="https://fccp.gov.pk/Judgments/CPLA%20Nos.%20962%2C%20963%20and%20964%20of%202023%28Mr.%20Justice%20Rozi%20Khan%20Barrech%29.pdf">Official judgment PDF</a>.</li>
+   <li><b>Official judgment sources</b> &mdash; <a href="https://www.fccp.gov.pk/judgements">Federal Constitutional Court judgments</a>; <a href="https://scp.gov.pk/JudgmentsSearch">Supreme Court judgments search</a>; <a href="https://sindhhighcourt.gov.pk/">High Court of Sindh</a>; <a href="https://www.peshawarhighcourt.gov.pk/app/site/">Peshawar High Court</a>. Each is used as a source adapter, not as proof of complete national coverage.</li>
+   <li><b>Publication of Laws of Pakistan Act, 2016</b> &mdash; maintenance and institutional functions of the Laws of Pakistan Cell. <a href="https://pakistancode.gov.pk/pdffiles/administrator2c06120ab1557a3a4d49b5cab1c70811.pdf">Pakistan Code official PDF</a>.</li>
+   <li><b>Pakistan Code</b> &mdash; Ministry of Law and Justice official access service; its disclaimer says content is under review and doubtful questions should refer to the relevant Gazette notifications. <a href="https://pakistancode.gov.pk/english/">Official portal</a>.</li>
+   <li><b>Provincial official codes</b> &mdash; <a href="https://punjablaws.gov.pk/">Punjab Laws Online</a> (also described by <a href="https://pitb.gov.pk/law_portal">PITB</a>); <a href="https://www.sindhlaws.gov.pk/">Sindh Code</a>; <a href="https://kpcode.kp.gov.pk/">Khyber Pakhtunkhwa Code</a>. They prove why adapters and provenance are jurisdiction-specific.</li>
+   <li><b>Limitation Act, 1908</b> &mdash; sections 3&ndash;25, section 29 and the First Schedule. <a href="https://pakistancode.gov.pk/pdffiles/administrator3294e35255f255ea96b3356091fb4844.pdf">Pakistan Code official PDF</a>.</li>
+   <li><b>Code of Civil Procedure, 1908</b> &mdash; jurisdiction/venue, filing, procedure, pauper suits and court powers relevant to forum, fee and guides. <a href="https://pakistancode.gov.pk/pdffiles/administrator6598dabbad120033d4d42d717dcf9755.pdf">Pakistan Code official PDF</a>.</li>
+   <li><b>Court-Fees Act, 1870</b> &mdash; valuation, schedules, process-fee rules, Gazette publication, remissions and rate variation. <a href="https://pakistancode.gov.pk/pdffiles/administrator9d60b89fa3dd51147d677e764c8772e3.pdf">Pakistan Code official PDF</a>. Provincial divergence example: <a href="https://kpcode.kp.gov.pk/homepage/lawDetails/251">KP Court Fees (Abolition) Ordinance, 1978</a>.</li>
+   <li><b>Stamp Act, 1899</b> &mdash; instrument classification and Schedule I foundation. <a href="https://pakistancode.gov.pk/pdffiles/administrator999043d9ce6f33fcbb5ecd8a58f5c79d.pdf">Pakistan Code official PDF</a>. Provincial proof: <a href="https://www.kpcode.kp.gov.pk/uploads/THE_STAMP_ACT_1899.pdf">KP official consolidation</a> and <a href="https://www.sindhlaws.gov.pk/SindhGazetteDetailDepartment.aspx?DepID=DSC-000002&amp;X=ACT">Sindh amendment catalogue</a>.</li>
+   <li><b>Punjab e-Stamping</b> &mdash; official operational calculation, challan and verification process. <a href="https://www.punjab-zameen.gov.pk/estampInfo">Punjab Land Records Authority</a>; <a href="https://www.punjab-zameen.gov.pk/downloads/e-Stamping_UserGuide_v1.0_%28Citizen_Eng%29.pdf">official user guide</a>.</li>
+   <li><b>Registration Act, 1908</b> &mdash; compulsory/optional registration, time, place and presentation requirements. <a href="https://pakistancode.gov.pk/pdffiles/administrator0f29bc9f1e3dfed37c0034eed1e29d53.pdf">Pakistan Code official PDF</a>.</li>
+   <li><b>Transfer of Property Act, 1882</b> &mdash; property-transfer and lease provisions and express relationship to the Registration Act. <a href="https://pakistancode.gov.pk/pdffiles/administrator77923ce792b475e339e1f46ba0442da3.pdf">Pakistan Code official PDF</a>.</li>
+   <li><b>Islamabad Rent Restriction Ordinance, 2001</b> &mdash; agreement, tenure, registration, rent and controller procedure for ICT. <a href="https://pakistancode.gov.pk/pdffiles/administratorf1b125f14a9e5a6bdd4ea885926304c4.pdf">Pakistan Code official PDF</a>.</li>
+   <li><b>Sindh Rented Premises Ordinance, 1979</b> &mdash; rent, receipt, service and controller rules showing a distinct provincial pack. <a href="https://www.sindhlaws.gov.pk/setup/publications_SindhCode/PUB-15-000484.pdf">Sindh Code official PDF</a>.</li>
+   <li><b>Punjab Rented Premises Act, 2009</b> &mdash; official law repository is <a href="https://punjablaws.gov.pk/">Punjab Laws Online</a>; section 5 requires a tenancy agreement and presentation before the Rent Registrar. It must be verified against the official consolidation/Gazette before pack publication.</li>
+   <li><b>Legal Practitioners and Bar Councils Act, 1973</b> &mdash; section 22 professional-practice boundary. <a href="https://pakistanbarcouncil.org/wp-content/uploads/2021/01/001-052-...-Bar-Council-Act-1.pdf">Pakistan Bar Council official PDF</a>; acts and rules catalogue at the <a href="https://www.pakistanbarcouncil.org/acts">Pakistan Bar Council</a>.</li>
+   <li><b>National Guidelines for Use of Artificial Intelligence in Judicial Institutions of Pakistan</b> &mdash; AI as assistive, human-centric, transparent, accountable and privacy-protecting. <a href="https://www.ljcp.gov.pk/SliderDetail/NTI1NmRiN2EtM2M2MC00MzgyLWFlNmEtNmQ5ZmU5MWE4MjFh">Law and Justice Commission of Pakistan</a>; NJPMC adoption record in <a href="https://ljcp.gov.pk/SiteImage/Misc/files/Press_Release_28_2026.pdf">official decision PDF</a>.</li>
+   <li><b>Rules as Code</b> &mdash; OECD describes official machine-consumable rules alongside natural-language rules and the accountability implications. <a href="https://www.oecd.org/content/dam/oecd/en/publications/reports/2020/10/dechiffrer-le-code_d56cab77/3afe6ba5-en.pdf">Cracking the Code</a>; current <a href="https://www.oecd.org/en/events/public-consultations/2026/07/consultation-on-the-digital-provision-of-law-towards-a-shared-reference-framework-for-law-as-code.html">OECD Law as Code consultation</a>.</li>
+   <li><b>Better Rules &ndash; Better Outcomes</b> &mdash; New Zealand government multidisciplinary, human-and-machine implementation precedent. <a href="https://www.betterrules.govt.nz/">Official programme</a>.</li>
+   <li><b>LegalRuleML Core Specification 1.0</b> &mdash; OASIS standard for jurisdiction, temporality, defeasibility, authority and source-rule isomorphism. <a href="https://docs.oasis-open.org/legalruleml/legalruleml-core-spec/v1.0/os/legalruleml-core-spec-v1.0-os.html">Authoritative specification</a>.</li>
+   <li><b>OpenFisca</b> &mdash; open rules-as-code precedent separating country/domain legislation, variables and parameters from the core simulation engine. <a href="https://openfisca.org/doc/key-concepts/tax_and_benefit_system.html">Official documentation</a>.</li>
+   <li><b>docassemble</b> &mdash; open-source legal guided-interview and document-assembly precedent with multilingual, accessibility and attorney-review workflows. <a href="https://docassemble.org/docs.html">Official documentation</a>.</li>
+   <li><b>European Legislation Identifier</b> &mdash; stable human/machine legal identity and metadata precedent, including article-level identifiers. <a href="https://eur-lex.europa.eu/content/help/eurlex-content/eli.html?locale=en">EUR-Lex official documentation</a>.</li>
+   <li><b>Caselaw Access Project</b> &mdash; machine-readable case-law corpus/API precedent and coverage lesson. <a href="https://lil.law.harvard.edu/our-work/caselaw-access-project/">Harvard Library Innovation Lab</a>.</li>
+   <li><b>Local architecture evidence</b> &mdash; <a href="01-master-architecture.html">Document 01</a>, <a href="02-corpus-and-ingestion.html">02</a>, <a href="03-data-and-storage.html">03</a>, <a href="03b-legal-data-model.html">03b</a>, <a href="04-retrieval.html">04</a>, <a href="05-generation-and-grounding.html">05</a>, <a href="08-client-architecture.html">08</a>, <a href="09a-local-environment.html">09a</a> and <a href="09b-production-deployment.html">09b</a>.</li>
+  </ol>
+ </div>
+</section>
+</div>
+</body>
+</html>

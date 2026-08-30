@@ -1,0 +1,123 @@
+# Layer boundaries for Nizam-e-Qanoon, enforced in CI.
+#
+# These contracts encode docs/01-master-architecture.html §6 and §8. They are the
+# reason the dependency graph in Figure 8 will still be true in six months.
+#
+#   pip install import-linter && lint-imports
+#
+# NOTE: takes effect once the nizam/ package exists. Until then `lint-imports`
+# reports the modules as missing — that is expected, not a misconfiguration.
+
+[importlinter]
+root_package = nizam
+include_external_packages = True
+
+
+# ── 1. The read chain ─────────────────────────────────────────────────────
+# Highest first. A layer may import anything below it and nothing above it.
+# Skipping a level downward is permitted where §4.1 documents the contract
+# (L6 reads ICorpusRead directly, for instance); reaching upward never is.
+
+[importlinter:contract:read-chain]
+name = Read chain runs one way only
+type = layers
+layers =
+    nizam.api
+    nizam.domain
+    nizam.generation
+    nizam.retrieval
+    nizam.storage
+
+
+# ── 2. Corpus is a writer, not a participant ──────────────────────────────
+# L1 sits above storage (it writes through ICorpusWrite) but must never know
+# that retrieval, generation, services or the API exist.
+
+[importlinter:contract:corpus-is-terminal]
+name = Corpus knows only storage
+type = forbidden
+source_modules =
+    nizam.corpus
+forbidden_modules =
+    nizam.retrieval
+    nizam.generation
+    nizam.domain
+    nizam.api
+
+
+# ── 3. shared/ holds no domain logic ──────────────────────────────────────
+# Config, error taxonomy, identifier generation, tracing, feature flags.
+# It is the one package every layer may import, so it must import none of them.
+
+[importlinter:contract:shared-is-leaf]
+name = Shared imports nothing from the project
+type = forbidden
+source_modules =
+    nizam.shared
+forbidden_modules =
+    nizam.corpus
+    nizam.storage
+    nizam.retrieval
+    nizam.generation
+    nizam.domain
+    nizam.api
+
+
+# ── 4. ADR-2: the vendor SDK lives in exactly one adapter ─────────────────
+# The provider port is what makes "swap the model provider with a config
+# change" a property of the structure rather than a promise. If this contract
+# is ever relaxed, QA-11 is no longer true.
+
+[importlinter:contract:provider-port]
+name = Vendor SDKs only inside generation.providers
+type = forbidden
+source_modules =
+    nizam.corpus
+    nizam.storage
+    nizam.retrieval
+    nizam.domain
+    nizam.api
+    nizam.shared
+    nizam.workers
+forbidden_modules =
+    anthropic
+    openai
+ignore_imports =
+    nizam.generation.providers.* -> anthropic
+    nizam.generation.providers.* -> openai
+
+
+# ── 5. INV-4: chunk identifiers are private to L2 ─────────────────────────
+# Nothing above storage may reference a chunk. Provisions are the citable
+# unit, so a re-chunk must not be able to invalidate a stored citation.
+
+[importlinter:contract:chunks-are-private]
+name = Chunk internals do not escape storage
+type = forbidden
+source_modules =
+    nizam.retrieval
+    nizam.generation
+    nizam.domain
+    nizam.api
+forbidden_modules =
+    nizam.storage.chunks
+
+
+# ── 6. Database drivers stay in storage ───────────────────────────────────
+# One datastore, reached one way (ADR-1). A raw driver import above L2 means
+# someone is bypassing the repositories.
+
+[importlinter:contract:db-in-storage]
+name = Database drivers only inside storage
+type = forbidden
+source_modules =
+    nizam.corpus
+    nizam.retrieval
+    nizam.generation
+    nizam.domain
+    nizam.api
+    nizam.shared
+forbidden_modules =
+    psycopg
+    psycopg2
+    sqlalchemy

@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nizam-e-Qanoon UX and Interaction Architecture</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Karla:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Nastaliq+Urdu:wght@400;600&display=swap">
+<style>
+:root{--parchment:#f3efe6;--parchment-2:#eae4d6;--card:#fbf8f1;--pine:#17352e;--pine-2:#1f4840;--pine-3:#2c5f54;--brass:#b8873c;--brass-deep:#805a14;--brass-tint:#f0e4cb;--oxide:#a0392c;--oxide-tint:#f6e3de;--ink:#1a1f1c;--ink-2:#59615b;--ink-3:#858d86;--rule:#dfd8c8;--rule-2:#cfc6b2;--shadow:0 1px 2px rgba(26,31,28,.04),0 12px 32px -16px rgba(26,31,28,.17);--display:"Spectral",Georgia,serif;--body:"Karla",system-ui,sans-serif;--mono:"IBM Plex Mono",monospace;--urdu:"Noto Nastaliq Urdu",serif;--measure:69ch}
+@media(prefers-color-scheme:dark){:root{--parchment:#121916;--parchment-2:#0c110f;--card:#1a2320;--pine:#d9e4df;--pine-2:#b5c9c1;--pine-3:#8fafa4;--brass:#d4a557;--brass-deep:#e0b76f;--brass-tint:#2a2416;--oxide:#e0897b;--oxide-tint:#2c1b18;--ink:#ede8dc;--ink-2:#aaa99e;--ink-3:#797e76;--rule:#29322e;--rule-2:#3a443f}}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--parchment);color:var(--ink);font-family:var(--body);font-size:16.5px;line-height:1.65;-webkit-font-smoothing:antialiased}.wrap{max-width:72rem;margin:auto;padding:0 2rem 9rem}.hero{background:radial-gradient(120% 80% at 15% 0%,rgba(184,135,60,.17),transparent 60%),radial-gradient(90% 70% at 90% 10%,rgba(44,95,84,.5),transparent 65%),#17352e;color:#f3efe6;margin:0 -2rem 5rem;padding:5.8rem 2rem 4.7rem}.hero-in{max-width:67rem;margin:auto}.kicker{font-family:var(--mono);font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:#d4a557;margin:0 0 1.7rem}h1{font-family:var(--display);font-weight:400;font-size:clamp(3rem,7.8vw,5.5rem);line-height:.98;letter-spacing:-.025em;margin:0 0 1.5rem;color:#f7f3e9;max-width:12ch}h1 em{color:#d4a557}.dek{font-family:var(--display);font-size:clamp(1.15rem,2.3vw,1.5rem);line-height:1.52;color:rgba(243,239,230,.8);max-width:48ch;margin:0 0 2.7rem}.meta{display:flex;flex-wrap:wrap;gap:.6rem 2.35rem;font-family:var(--mono);font-size:.69rem;letter-spacing:.07em;color:rgba(243,239,230,.55);padding-top:1.6rem;border-top:1px solid rgba(243,239,230,.14)}.meta b{color:#d4a557;font-weight:500}section{padding-top:5.2rem}.eyebrow{display:flex;align-items:center;gap:1rem;margin-bottom:1.45rem}.eyebrow span{font-family:var(--mono);font-size:.67rem;letter-spacing:.19em;text-transform:uppercase;color:var(--brass-deep);white-space:nowrap}.eyebrow:after{content:"";height:1px;flex:1;background:var(--rule)}h2{font-family:var(--display);font-weight:400;font-size:clamp(2rem,4.3vw,3rem);line-height:1.08;letter-spacing:-.02em;margin:0 0 1.2rem;max-width:24ch}h2 em{color:var(--brass-deep)}h3{font-size:1.05rem;margin:3.1rem 0 .8rem}h3 .mk{font-family:var(--mono);font-size:.75rem;color:var(--brass-deep);margin-right:.55rem}h4{font-family:var(--mono);font-weight:500;font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3);margin:0 0 .8rem}p{margin:0 0 1.25rem;max-width:var(--measure)}.lede{font-family:var(--display);font-size:1.28rem;line-height:1.58;color:var(--ink-2);max-width:58ch;margin-bottom:2.35rem}ul,ol{margin:0 0 1.4rem;padding-left:1.25rem;max-width:var(--measure)}li{margin-bottom:.5rem}li::marker{color:var(--brass)}a{color:var(--brass-deep);text-underline-offset:.18em;word-break:break-word}code{font-family:var(--mono);font-size:.84em}p code,li code,td code{background:var(--parchment-2);border:1px solid var(--rule);border-radius:4px;padding:.06em .3em}.panel{background:var(--card);border:1px solid var(--rule);border-radius:18px;padding:1.75rem;box-shadow:var(--shadow)}.panel-pine{background:linear-gradient(155deg,#1f4840,#17352e 65%);border:1px solid rgba(184,135,60,.25);border-radius:18px;padding:1.8rem;color:#f3efe6}.panel-pine p{color:rgba(243,239,230,.82)}.grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(19rem,1fr));gap:1.35rem}.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1.35rem}.scroll{overflow-x:auto;margin:1.5rem 0 1.9rem;border:1px solid var(--rule);border-radius:15px;background:var(--card)}table{border-collapse:collapse;width:100%;font-size:.84rem;line-height:1.52}th{text-align:left;font-family:var(--mono);font-weight:500;font-size:.63rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);padding:.82rem .9rem;border-bottom:1px solid var(--rule-2);white-space:nowrap;background:var(--parchment-2)}td{padding:.76rem .9rem;border-bottom:1px solid var(--rule);vertical-align:top}tr:last-child td{border-bottom:0}td.k{font-weight:700;min-width:9rem}td.id{font-family:var(--mono);font-size:.72rem;color:var(--oxide);font-weight:500;white-space:nowrap}.note{border-left:2px solid var(--brass);padding:0 0 0 1.4rem;margin:1.8rem 0;max-width:var(--measure)}.note.red{border-color:var(--oxide)}.note p:last-child{margin-bottom:0}pre{background:var(--parchment-2);border:1px solid var(--rule);border-radius:15px;padding:1.35rem;overflow-x:auto;font-family:var(--mono);font-size:.76rem;line-height:1.7;color:var(--ink-2)}figure{margin:2rem 0;background:var(--card);border:1px solid var(--rule);border-radius:18px;padding:1.35rem 1.2rem .9rem;overflow-x:auto;box-shadow:var(--shadow)}figure svg{display:block;width:100%;min-width:43rem;height:auto;color:var(--ink)}.fignum{font-family:var(--mono);font-size:.64rem;letter-spacing:.15em;text-transform:uppercase;color:var(--brass-deep);font-weight:500;display:block;margin-bottom:.8rem}figcaption{font-size:.8rem;color:var(--ink-2);border-top:1px solid var(--rule);margin-top:1rem;padding-top:.8rem}.dg{font-family:var(--mono);font-size:10.5px}.dg .bx{fill:none;stroke:currentColor;stroke-width:1.15}.dg .bxf{fill:var(--parchment-2);stroke:currentColor;stroke-width:1.15}.dg .acc{fill:var(--brass-tint);stroke:var(--brass-deep);stroke-width:1.35}.dg .risk{fill:var(--oxide-tint);stroke:var(--oxide);stroke-width:1.35}.dg text{fill:currentColor}.dg .th{font-weight:500}.dg .tm{opacity:.66;font-size:9px}.dg .ln{stroke:currentColor;stroke-width:1.05;fill:none}.dg .lnD{stroke:currentColor;stroke-width:1.05;fill:none;stroke-dasharray:5 3}.quote{font-family:var(--display);font-size:1.55rem;line-height:1.45;color:var(--pine);max-width:36ch;margin:2rem 0}.ur{font-family:var(--urdu);direction:rtl;line-height:2.2}.refs{font-size:.83rem}.refs li{margin-bottom:.7rem}.footer{margin-top:5rem;border-top:2px solid var(--pine);padding-top:1rem;font-family:var(--mono);font-size:.67rem;color:var(--ink-3)}
+@media(max-width:640px){.wrap{padding-inline:1.15rem}.hero{margin-inline:-1.15rem;padding-inline:1.15rem}.panel,.panel-pine{padding:1.3rem}section{padding-top:4.2rem}}
+@media print{figure,.scroll,pre{overflow:visible}figure svg{min-width:0}thead{display:table-header-group}tr,figure,.panel,.note{break-inside:avoid}.hero{print-color-adjust:exact;-webkit-print-color-adjust:exact}}
+</style>
+</head>
+<body><div class="wrap">
+<header class="hero"><div class="hero-in">
+ <p class="kicker">Document 13 · UX and interaction authority · companion to 12 Design System</p>
+ <h1>Understand first. <em>Act safely.</em></h1>
+ <p class="dek">The behavioural architecture of Nizam-e-Qanoon: how people describe a problem, establish legal scope, inspect authority, understand uncertainty, complete a legal task and recover from failure—in English, Urdu, Roman Urdu, online or offline.</p>
+ <div class="meta"><span><b>Version</b> 1.0</span><span><b>Date</b> 30 Aug 2026</span><span><b>Scope</b> citizen · professional · public · curator</span><span><b>Provides</b> journeys · states · content · research · UX gates</span><span><b>Requires</b> Docs 01–12</span><span><b>Figures</b> 4</span></div>
+</div></header>
+
+<section id="mandate"><div class="eyebrow"><span>00 — Mandate</span></div><h2>UX is the last legal-safety boundary</h2>
+ <p class="lede">A correct database record can still become a dangerous product if the screen hides its date, collapses a qualification, presents a translation as authentic text, makes abstention look like failure, or lets a user mistake possession of a phone for verified professional identity.</p>
+ <div class="scroll"><table><thead><tr><th>UX invariant</th><th>Visible contract</th><th>Release proof</th></tr></thead><tbody>
+  <tr><td class="id">UX-1</td><td>Every legal conclusion exposes jurisdiction, <code>asOf</code>, source coverage and outcome state before reliance.</td><td>Users can correctly state where, when and how qualified the result is.</td></tr>
+  <tr><td class="id">UX-2</td><td>A citation opens the exact database-resolved provision or judgment paragraph, with material context and official-source path.</td><td>Zero model-authored citation string; source-finding task succeeds across scripts.</td></tr>
+  <tr><td class="id">UX-3</td><td>Deadline, liberty, immediate safety and irreversible-action information precedes explanatory doctrine.</td><td>Critical information is noticed and correctly restated before participants continue.</td></tr>
+  <tr><td class="id">UX-4</td><td>Clarification and abstention are first-class destinations; neither is rendered as an error or quietly converted to an answer.</td><td>Participants understand what is missing and what safe next action exists.</td></tr>
+  <tr><td class="id">UX-5</td><td>English, Urdu and Roman-Urdu input preserve the same legal scope, evidence, qualifications and action consequences.</td><td>Meaning-level parity gates from Doc 10 pass; translation cannot alter legal force.</td></tr>
+  <tr><td class="id">UX-6</td><td>Anonymous and authenticated modes make their storage consequences explicit and never imply a capability the composition lacks.</td><td>Users correctly predict what will be saved, shared and deletable.</td></tr>
+  <tr><td class="id">UX-7</td><td>Every core journey works with keyboard/screen reader, 200% zoom, reduced motion, low-end Android and its declared offline state.</td><td>WCAG 2.2 AA process audit plus real-user task completion.</td></tr>
+  <tr><td class="id">UX-8</td><td>Generated prose, reviewed legal rule, official text and professional identity remain visibly distinct.</td><td>No tested user attributes system prose to the State, court or advocate.</td></tr>
+ </tbody></table></div>
+ <div class="note"><h4>Relationship to Document 12</h4><p>Document 12 owns the Stamp Paper visual language—tokens, typography, spacing, component appearance, status colours and motion. Document 13 owns information order, behaviour, states, comprehension, task safety and evidence. A redesign may restyle the system without weakening either contract.</p></div>
+</section>
+
+<section id="basis"><div class="eyebrow"><span>01 — Pakistan context</span></div><h2>Design for uneven access, not a fictional average user</h2>
+ <p class="lede">The Pakistan Bureau of Statistics reports for 2024–25: literacy among people aged ten and above at 63%, individual internet use at 57%, mobile/smartphone ownership at 50%, and household internet use at 70%. These aggregates do not define an individual, but they rule out a text-heavy, always-online, smartphone-expert default.</p>
+ <div class="grid-2">
+  <div class="panel"><h4>Empirical consequence</h4><ul><li>Start from events in ordinary language, not legal taxonomy.</li><li>Keep the exact law available without forcing everyone to read it first.</li><li>Support assisted, shared-device and low-data contexts without exposing legal matters.</li><li>Make offline statutory lookup a declared mode, not a broken online screen.</li><li>Test by province, language, gender, disability, device and digital confidence; do not infer them.</li></ul></div>
+  <div class="panel-pine"><h4 style="color:#d4a557">Rights and public-interest basis</h4><p>The ICT Rights of Persons with Disability Act 2020 addresses accessible websites and access to justice within its statutory scope. Articles 10A, 14, 19A and 25 of the Constitution inform fair process, dignity/privacy, access to information and equality. Applicability is a legal determination; the product nevertheless adopts inclusive access nationwide as its own design commitment.</p></div>
+ </div>
+ <p>The 2026 LJCP AI Guidelines govern judicial institutions rather than this private product, but their official human-centric, assistive, transparent and accountable posture is used as a public-interest benchmark. The interface never turns model output into a judicial decision or advocate’s opinion.</p>
+</section>
+
+<section id="people"><div class="eyebrow"><span>02 — People and harms</span></div><h2>Model circumstances and capabilities, not decorative personas</h2>
+ <div class="scroll"><table><thead><tr><th>Context</th><th>Primary job</th><th>Dangerous misunderstanding</th><th>Design response</th></tr></thead><tbody>
+  <tr><td class="k">Citizen, unknown legal vocabulary</td><td>Describe what happened and learn whether held law can help.</td><td>Nearest semantic result is “their law”.</td><td>Situation intake, scope clarification, material assumptions and typed abstention.</td></tr>
+  <tr><td class="k">Person under urgency</td><td>Find a deadline, safety action, forum or legal-aid route.</td><td>Calm prose means there is time; calculator result is guaranteed.</td><td>Urgency band first, explicit basis, step trace, uncertainty and referral.</td></tr>
+  <tr><td class="k">Citation-led reader</td><td>Open an Act/section/judgment directly.</td><td>Printed text is necessarily current and operative.</td><td>Deterministic fast path, status/as-of banner and version comparison.</td></tr>
+  <tr><td class="k">Advocate/researcher</td><td>Investigate authority, history, treatment and contrary material.</td><td>Similarity or missing negative treatment proves “good law”.</td><td>Evidence graph, coverage statement, majority/dissent and treatment reasons.</td></tr>
+  <tr><td class="k">Drafting user</td><td>Turn supplied facts into a reviewable document.</td><td>Generated wording is filed-ready or advocate-approved.</td><td>Fact/assumption/clause separation, provenance, missing-field gate and draft watermark.</td></tr>
+  <tr><td class="k">Low literacy / low digital confidence</td><td>Understand one next step without navigating legal structure.</td><td>Icon, colour or jargon is self-explanatory.</td><td>Plain speech, one idea at a time, words with marks, audio and supported decision-making.</td></tr>
+  <tr><td class="k">Disabled or older user</td><td>Complete the same task with chosen assistive strategy.</td><td>A technically present alternative is an equivalent experience.</td><td>Semantic process, adaptable presentation and co-design with diverse users.</td></tr>
+  <tr><td class="k">Curator/operator</td><td>Review evidence and publish a bounded corpus/rule change.</td><td>Admin convenience permits self-approval or invisible effect.</td><td>Desktop evidence workspace, maker-checker, impact preview and signed release state.</td></tr>
+ </tbody></table></div>
+ <p>Research recruits by circumstance—language, task, disability, literacy, geography, device, connectivity and professional experience—without suggesting that one characteristic predicts another. Sensitive legal scenarios use fictional facts; participants never have to disclose an active matter to test the product.</p>
+</section>
+
+<section id="ia"><div class="eyebrow"><span>03 — Information architecture</span></div><h2>Three doors reflect three user intentions</h2>
+ <figure><span class="fignum">Figure 1 — stable product mental model</span><svg class="dg" viewBox="0 0 940 430" role="img" aria-labelledby="f1t f1d"><title id="f1t">Information architecture</title><desc id="f1d">Home offers Ask what happened, Search law and Browse the library. Results lead to answer, provision or judgment views with shared source and scope structures. Authenticated users can save these to matters; anonymous users cannot.</desc><defs><marker id="a1" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0 0L8 3L0 6Z" fill="currentColor"/></marker></defs>
+ <rect class="acc" x="380" y="20" width="180" height="65" rx="6"/><text class="th" x="470" y="48" text-anchor="middle">Home</text><text class="tm" x="470" y="66" text-anchor="middle">one promise · three intentions</text>
+ <rect class="bxf" x="50" y="130" width="210" height="80" rx="6"/><text class="th" x="155" y="160" text-anchor="middle">Ask what happened</text><text class="tm" x="155" y="181" text-anchor="middle">facts → clarification → answer</text>
+ <rect class="bxf" x="365" y="130" width="210" height="80" rx="6"/><text class="th" x="470" y="160" text-anchor="middle">Search law</text><text class="tm" x="470" y="181" text-anchor="middle">citation · title · legal phrase</text>
+ <rect class="bxf" x="680" y="130" width="210" height="80" rx="6"/><text class="th" x="785" y="160" text-anchor="middle">Browse library</text><text class="tm" x="785" y="181" text-anchor="middle">jurisdiction → instrument → unit</text>
+ <rect class="risk" x="70" y="285" width="170" height="78" rx="6"/><text class="th" x="155" y="314" text-anchor="middle">Legal answer</text><text class="tm" x="155" y="335" text-anchor="middle">or clarify / abstain</text>
+ <rect class="acc" x="385" y="285" width="170" height="78" rx="6"/><text class="th" x="470" y="314" text-anchor="middle">Provision</text><text class="tm" x="470" y="335" text-anchor="middle">status · version · source</text>
+ <rect class="acc" x="700" y="285" width="170" height="78" rx="6"/><text class="th" x="785" y="314" text-anchor="middle">Judgment</text><text class="tm" x="785" y="335" text-anchor="middle">court · opinion · treatment</text>
+ <rect class="bx" x="340" y="390" width="260" height="34" rx="5"/><text class="tm" x="470" y="412" text-anchor="middle">authenticated only: save to matter · export · share</text>
+ <g class="ln" marker-end="url(#a1)"><path d="M430 85L180 126"/><path d="M470 85V126"/><path d="M510 85L760 126"/><path d="M155 210V281"/><path d="M470 210V281"/><path d="M785 210V281"/><path d="M155 363C155 400 285 405 336 406"/><path d="M470 363V386"/><path d="M785 363C785 400 655 405 604 406"/></g></svg><figcaption><b>Ask, Search and Browse are not tabs over the same behaviour.</b> Ask begins with events; Search begins with a known identifier or phrase; Browse begins with the legal corpus. All converge on stable legal identities and one source-inspection model.</figcaption></figure>
+ <p>“Saved matters” is a workspace, not a fourth discovery mode. “Account” holds identity, sessions, privacy and language. Public pages expose only the published legal corpus. The curation console is a separate staff product and never appears as a citizen navigation branch.</p>
+</section>
+
+<section id="journeys"><div class="eyebrow"><span>04 — Journey catalogue</span></div><h2>Specify the whole task, including the unsafe exits</h2>
+ <div class="scroll"><table><thead><tr><th>ID</th><th>Journey</th><th>Success</th><th>Required alternative</th></tr></thead><tbody>
+  <tr><td class="id">J-01</td><td class="k">Anonymous question</td><td>Understands bounded answer and verifies source without durable content.</td><td>Clarification, abstention or deterministic lookup; sign-in offered only after result.</td></tr>
+  <tr><td class="id">J-02</td><td class="k">Saved matter</td><td>Resumes a pinned answer with changed-law warning and replay provenance.</td><td>Offline read of saved public source; never silently regenerate old answer.</td></tr>
+  <tr><td class="id">J-03</td><td class="k">Exact citation</td><td>Correct unit opens under 50 ms with applicable version and official source.</td><td>Disambiguation list; no nearest-section auto-selection.</td></tr>
+  <tr><td class="id">J-04</td><td class="k">Guided situation</td><td>Only legally material facts collected; rules construct typed outcome.</td><td>Unknown fact branch and professional-review route.</td></tr>
+  <tr><td class="id">J-05</td><td class="k">Deadline/calculation</td><td>Result, governing date, excluded days, jurisdiction and complete trace understood.</td><td>Range/unknown state; no false single date.</td></tr>
+  <tr><td class="id">J-06</td><td class="k">Precedent investigation</td><td>Sees proposition, majority, treatment evidence, court/time and coverage.</td><td>Conflict/coverage warning; no red/green “good law” shortcut.</td></tr>
+  <tr><td class="id">J-07</td><td class="k">Drafting</td><td>Reviews facts, assumptions, clauses, sources and draft status before export.</td><td>Missing-fact stop or lawyer review; model cannot select clause.</td></tr>
+  <tr><td class="id">J-08</td><td class="k">Offline statute</td><td>Finds held provision with pack version/freshness and exact citation.</td><td>“Not held offline” distinct from “law does not exist”.</td></tr>
+  <tr><td class="id">J-09</td><td class="k">Privacy control</td><td>Views stored categories, exports, deletes and sees completion/pending state.</td><td>Proportionate recovery and human support without requesting case narrative.</td></tr>
+  <tr><td class="id">J-10</td><td class="k">Corpus/rule publication</td><td>Reviewer compares source, derivation, impact and gates; separate publisher signs.</td><td>Reject/quarantine with reason; never partially visible.</td></tr>
+ </tbody></table></div>
+ <p>Each journey artefact contains entry/exit, roles, data classes, required facts, request/response schema, screens, focus and announcement behaviour, connectivity modes, state transitions, cancellation/resume, analytics allowlist, threat cases, legal fixtures and acceptance evidence.</p>
+</section>
+
+<section id="intake"><div class="eyebrow"><span>05 — Question intake</span></div><h2>Clarify only what can change the legal result</h2>
+ <figure><span class="fignum">Figure 2 — progressive legal scope</span><svg class="dg" viewBox="0 0 940 315" role="img" aria-labelledby="f2t f2d"><title id="f2t">Progressive clarification flow</title><desc id="f2d">The user states what happened. The system extracts candidate facts without treating them as truth, then asks only material missing questions for place, dates, forum and desired outcome. The user confirms a concise assumption card before retrieval.</desc><defs><marker id="a2" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0 0L8 3L0 6Z" fill="currentColor"/></marker></defs>
+ <rect class="bxf" x="20" y="100" width="150" height="80" rx="6"/><text class="th" x="95" y="130" text-anchor="middle">What happened?</text><text class="tm" x="95" y="151" text-anchor="middle">speech or text · any script</text>
+ <rect class="acc" x="210" y="85" width="175" height="110" rx="6"/><text class="th" x="298" y="115" text-anchor="middle">Candidate facts</text><text class="tm" x="298" y="136" text-anchor="middle">events · dates · parties</text><text class="tm" x="298" y="154" text-anchor="middle">not yet assumed true</text><text class="tm" x="298" y="172" text-anchor="middle">PII minimised</text>
+ <rect class="risk" x="425" y="55" width="190" height="170" rx="6"/><text class="th" x="520" y="86" text-anchor="middle">Material gaps only</text><text class="tm" x="520" y="109" text-anchor="middle">where did it happen?</text><text class="tm" x="520" y="130" text-anchor="middle">when / which event date?</text><text class="tm" x="520" y="151" text-anchor="middle">court / authority / stage?</text><text class="tm" x="520" y="172" text-anchor="middle">what outcome is sought?</text><text class="tm" x="520" y="195" text-anchor="middle">“I don’t know” remains valid</text>
+ <rect class="acc" x="655" y="85" width="180" height="110" rx="6"/><text class="th" x="745" y="115" text-anchor="middle">Scope card</text><text class="tm" x="745" y="136" text-anchor="middle">facts · assumptions · omissions</text><text class="tm" x="745" y="154" text-anchor="middle">jurisdiction · as-of · forum</text><text class="tm" x="745" y="172" text-anchor="middle">user confirms or edits</text>
+ <rect class="bx" x="675" y="260" width="140" height="40" rx="5"/><text class="tm" x="745" y="284" text-anchor="middle">sealed QuerySpec</text><g class="ln" marker-end="url(#a2)"><path d="M170 140H206"/><path d="M385 140H421"/><path d="M615 140H651"/><path d="M745 195V256"/></g></svg><figcaption><b>The system does not conduct an endless interview.</b> It asks a question only when a documented retrieval or rule branch can change. Sensitive facts include a short “why we ask”; exact names, CNIC and addresses are avoided unless a defined workflow requires them.</figcaption></figure>
+ <ul><li>Never silently infer province, territory, forum or operative date from GPS, phone code, language or IP address.</li><li>Differentiate event dates: occurrence, notice, accrual, decision, filing and “law as at”.</li><li>Offer “I do not know”, approximate date and save-and-return where legally safe.</li><li>Repeat assumptions immediately above the answer; a material edit creates a new result, not a changed label.</li><li>When input contains immediate danger or a deadline, surface a bounded warning without pretending to assess emergency facts conclusively.</li></ul>
+</section>
+
+<section id="answer"><div class="eyebrow"><span>06 — Answer anatomy</span></div><h2>Order information by harm, then by explanation</h2>
+ <div class="scroll"><table><thead><tr><th>Order</th><th>Block</th><th>Purpose</th><th>Must expose</th></tr></thead><tbody>
+  <tr><td class="id">01</td><td class="k">Outcome state</td><td>Answer, conditional, clarify, abstain or professional review.</td><td>Not a numeric confidence theatre.</td></tr>
+  <tr><td class="id">02</td><td class="k">Immediate issue</td><td>Deadline, liberty, safety, irreversible filing/payment.</td><td>Basis, event date and uncertainty.</td></tr>
+  <tr><td class="id">03</td><td class="k">Plain conclusion</td><td>One understandable proposition.</td><td>Modality—may, must, cannot, depends.</td></tr>
+  <tr><td class="id">04</td><td class="k">Scope card</td><td>Prevent wrong place/date/forum reliance.</td><td>Jurisdiction, territory, forum, as-of, coverage.</td></tr>
+  <tr><td class="id">05</td><td class="k">Material assumptions</td><td>Show which supplied/unknown facts drive the result.</td><td>User fact versus system assumption.</td></tr>
+  <tr><td class="id">06</td><td class="k">Law and reasoning</td><td>Explain the trace without hiding exceptions.</td><td>Atomic claims linked to evidence handles.</td></tr>
+  <tr><td class="id">07</td><td class="k">Qualifications/conflict</td><td>Preserve provisos, discretion, contrary authority and coverage gaps.</td><td>Why it matters to the result.</td></tr>
+  <tr><td class="id">08</td><td class="k">Sources</td><td>Verify exact primary evidence.</td><td>Official path and precise cited span.</td></tr>
+  <tr><td class="id">09</td><td class="k">Safe next steps</td><td>Action without unlicensed representation.</td><td>Official service or qualified professional where appropriate.</td></tr>
+ </tbody></table></div>
+ <p>The default citizen view is progressive disclosure, not information deletion. Material qualifications are never hidden behind “read more”. The professional view increases evidence density and tools, not legal certainty. The disclaimer is structural chrome, but it cannot cure misleading answer language.</p>
+ <p class="quote">The system should sound certain only when the evidence and applicable legal rule permit certainty.</p>
+</section>
+
+<section id="sources"><div class="eyebrow"><span>07 — Sources and status</span></div><h2>Let the reader inspect the proof without leaving the thought</h2>
+ <div class="grid-2">
+  <div class="panel"><h4>Citation chip interaction</h4><ol><li>Tap/activate opens the exact stable legal unit.</li><li>The matched span is highlighted without stripping provisos or hierarchy.</li><li>Header shows instrument/judgment, jurisdiction, status and effective date.</li><li>Reader can open official source and page coordinates.</li><li>History compares applicable text; it never overwrites the current reading silently.</li></ol></div>
+  <div class="panel"><h4>Judgment evidence</h4><ul><li>Court, date, bench and opinion type</li><li>Proposition actually treated</li><li>Majority, separate and dissenting opinions</li><li>Applies, distinguishes, doubts, overrules or conflict evidence</li><li>Coverage and last checked date</li><li>No “good law” badge derived from similarity or missing edges</li></ul></div>
+ </div>
+ <div class="scroll"><table><thead><tr><th>Legal state</th><th>Reader-facing language</th><th>Interaction consequence</th></tr></thead><tbody>
+  <tr><td class="k">In force for scope/date</td><td>“In force as at [date] for [jurisdiction].”</td><td>May support a current-law result subject to other guards.</td></tr>
+  <tr><td class="k">Amended</td><td>“This text changed on [date]. You are viewing the version applicable on [as-of].”</td><td>Offer structured diff; answer regenerates on date change.</td></tr>
+  <tr><td class="k">Repealed / invalidated / spent</td><td>Name the distinct legal event and effective date.</td><td>Historical view only unless savings/transition makes it relevant.</td></tr>
+  <tr><td class="k">Not yet commenced</td><td>“Published, but commencement for this provision is not established/as appointed.”</td><td>Cannot support unconditional operative-law answer.</td></tr>
+  <tr><td class="k">Unknown / disputed</td><td>State exactly which fact or authority is unresolved.</td><td>Clarify, show competing evidence or abstain.</td></tr>
+ </tbody></table></div>
+ <p>Changing <code>asOf</code> is a new legal query pinned through L3–L6; it cannot merely swap the banner. Public URLs remain stable provision identities and place the date in state/query controls without leaking private user content.</p>
+</section>
+
+<section id="uncertainty"><div class="eyebrow"><span>08 — Uncertainty</span></div><h2>“We will not guess” must still move the person forward</h2>
+ <div class="scroll"><table><thead><tr><th>Outcome</th><th>Explain</th><th>Offer</th><th>Never say</th></tr></thead><tbody>
+  <tr><td class="k">Missing material fact</td><td>The fact and why it changes the branch.</td><td>Answer question, mark unknown or save.</td><td>“Something went wrong.”</td></tr>
+  <tr><td class="k">Jurisdiction/date ambiguity</td><td>Competing scopes and consequence.</td><td>Choose/confirm without inferred default.</td><td>One province/date selected invisibly.</td></tr>
+  <tr><td class="k">Insufficient official evidence</td><td>Sources and corpus scope searched.</td><td>Official-source path, report gap, professional research.</td><td>Nearest result as likely answer.</td></tr>
+  <tr><td class="k">Authority conflict</td><td>Competing propositions, courts, dates and coverage.</td><td>Inspect both; qualified professional review.</td><td>One unexplained confidence score.</td></tr>
+  <tr><td class="k">Outside product scope</td><td>What is not covered.</td><td>Appropriate official/legal-aid or professional route.</td><td>“No law exists.”</td></tr>
+  <tr><td class="k">Technical/provider failure</td><td>Which capability is unavailable, without sensitive detail.</td><td>Deterministic citation/offline lookup, retry later.</td><td>Model-only fallback.</td></tr>
+ </tbody></table></div>
+ <p>An abstention retains the same calm visual hierarchy as an answer. It shows search scope, corpus version/date where useful, one primary recovery action and a report-gap path. It does not shame the question, blame the user or imply that rephrasing guarantees an answer.</p>
+</section>
+
+<section id="language"><div class="eyebrow"><span>09 — Language and bidi</span></div><h2>Parity is legal force, not translated chrome</h2>
+ <div class="grid-2"><div class="panel"><h4>Language contracts</h4><ul><li>English and Urdu are equal product modes.</li><li>Roman Urdu is a supported input/retrieval mode, not labelled an authentic statutory text.</li><li>Official text is verbatim and its authentic language is labelled from L2.</li><li>Plain explanation is visibly separate from translation and quotation.</li><li>Glossary terms preserve definition scope and source.</li><li>“Shall”, “may”, “subject to”, “provided that” and negatives receive legal review.</li></ul></div>
+ <div class="panel"><h4>Bidirectional contract</h4><p class="ur" lang="ur">قتلِ عمد کے بارے میں دفعہ <bdi dir="ltr" style="font-family:var(--body)">s. 302–304 PPC</bdi> ملاحظہ کریں۔</p><p>Urdu blocks declare <code>lang="ur"</code> and <code>dir="rtl"</code>. Citation, case number, date and URL runs are tightly wrapped LTR isolates. Western digits remain in legal identifiers. DOM order follows meaning; CSS must not reverse semantic order.</p></div></div>
+ <h3><span class="mk">9.1</span>Translation assurance</h3><p>One grounded payload drives both languages. Independent bilingual legal reviewers label material propositions, omissions, modality, dates, actors and qualifications. A parity failure with legal effect blocks that language/version. The interface may state “translation under review” but may not silently fall back to a different legal claim.</p>
+</section>
+
+<section id="plain"><div class="eyebrow"><span>10 — Plain language and voice</span></div><h2>Reduce linguistic burden without reducing the law</h2>
+ <div class="scroll"><table><thead><tr><th>Rule</th><th>Implementation</th><th>Legal guard</th></tr></thead><tbody>
+  <tr><td class="k">One proposition</td><td>Short paragraph, informative heading and concrete actor/action.</td><td>Do not separate a rule from its material exception.</td></tr>
+  <tr><td class="k">Common words first</td><td>Plain term followed by legal term and glossary when necessary.</td><td>Defined terms retain instrument-specific meaning.</td></tr>
+  <tr><td class="k">Direct modality</td><td>Say “must”, “may”, “cannot” or “depends because”.</td><td>No stronger modality than source/rule permits.</td></tr>
+  <tr><td class="k">Explain numbers</td><td>Show date/amount in prose plus expandable calculation.</td><td>User can inspect inputs, exclusions and versioned rule.</td></tr>
+  <tr><td class="k">Layer detail</td><td>Plain conclusion → reasoning → exact source.</td><td>Progressive disclosure never deletes qualification.</td></tr>
+ </tbody></table></div>
+ <p>ISO 24495-1:2023 and ISO 24495-2:2025 guide plain-language and legal communication, but English examples are not treated as validated Urdu rules. Pakistani users and bilingual lawyers test actual comprehension.</p>
+ <h3><span class="mk">10.1</span>Voice</h3><ul><li>Voice begins only after explicit activation; always show a live transcript that can be edited before submission.</li><li>Announce whether official text, translation or explanation is being read.</li><li>Dates, section numbers and negation receive pronunciation fixtures; provide replay, speed and text alternatives.</li><li>Do not infer consent or a legally consequential answer from silence, background speech or low-confidence recognition.</li><li>If anonymous voice cannot remain request-local under Doc 11, it is unavailable with a plain explanation—not secretly persisted.</li></ul>
+</section>
+
+<section id="tools"><div class="eyebrow"><span>11 — Calculators and drafting</span></div><h2>Deterministic tools show their work</h2>
+ <div class="grid-2"><div class="panel"><h4>Deadline and money calculation</h4><ol><li>Name jurisdiction, remedy and rule version.</li><li>Collect each legally distinct event date.</li><li>Show included/excluded days, holidays and branch decisions.</li><li>Render result as date, range or unknown—not false precision.</li><li>Confirm inputs before export; attach sources and trace.</li><li>Explain that court findings/discretion may change applicability.</li></ol></div>
+ <div class="panel"><h4>Document drafting</h4><ol><li>Separate supplied facts, assumptions and unresolved fields.</li><li>Reviewed rules—not the model—select approved clauses.</li><li>Trace each clause to rule, version and official source.</li><li>Mark generated text and draft/review state on every page.</li><li>Prevent export when mandatory facts or safety gates fail.</li><li>No “lawyer reviewed” status without named valid review event.</li></ol></div></div>
+ <p>WCAG 2.2’s error-prevention requirements for legal, financial and data actions inform confirmation, review and reversibility. Submission to a court or authority is outside the pilot unless separately designed, authorised, integrated and legally reviewed.</p>
+</section>
+
+<section id="privacy"><div class="eyebrow"><span>12 — Trust and privacy</span></div><h2>Make data consequences legible at the moment of choice</h2>
+ <figure><span class="fignum">Figure 3 — anonymous-to-matter boundary</span><svg class="dg" viewBox="0 0 940 300" role="img" aria-labelledby="f3t f3d"><title id="f3t">Anonymous to saved matter flow</title><desc id="f3d">An anonymous user receives an ephemeral result. Saving is not automatic. If the user chooses save, the system explains what will be stored, authenticates, asks the user to confirm the selected content and creates a new saved matter record.</desc><defs><marker id="a3" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0 0L8 3L0 6Z" fill="currentColor"/></marker></defs>
+ <rect class="acc" x="20" y="95" width="165" height="90" rx="6"/><text class="th" x="103" y="125" text-anchor="middle">Anonymous result</text><text class="tm" x="103" y="146" text-anchor="middle">nothing saved</text><text class="tm" x="103" y="164" text-anchor="middle">source remains public</text>
+ <rect class="risk" x="230" y="80" width="170" height="120" rx="6"/><text class="th" x="315" y="110" text-anchor="middle">Save choice</text><text class="tm" x="315" y="132" text-anchor="middle">what will be stored?</text><text class="tm" x="315" y="150" text-anchor="middle">retention + deletion</text><text class="tm" x="315" y="168" text-anchor="middle">cancel keeps ephemeral</text>
+ <rect class="bxf" x="445" y="95" width="150" height="90" rx="6"/><text class="th" x="520" y="125" text-anchor="middle">Authenticate</text><text class="tm" x="520" y="146" text-anchor="middle">phone possession</text><text class="tm" x="520" y="164" text-anchor="middle">is not legal identity</text>
+ <rect class="acc" x="640" y="80" width="170" height="120" rx="6"/><text class="th" x="725" y="110" text-anchor="middle">Confirm selection</text><text class="tm" x="725" y="132" text-anchor="middle">facts + answer + sources</text><text class="tm" x="725" y="150" text-anchor="middle">name matter privately</text><text class="tm" x="725" y="168" text-anchor="middle">create new artefact</text>
+ <rect class="bx" x="660" y="245" width="130" height="40" rx="5"/><text class="tm" x="725" y="269" text-anchor="middle">saved matter</text><g class="ln" marker-end="url(#a3)"><path d="M185 140H226"/><path d="M400 140H441"/><path d="M595 140H636"/><path d="M725 200V241"/></g></svg><figcaption><b>Sign-in cannot retroactively turn an anonymous trace into stored history.</b> Saving creates a new, user-confirmed artefact from explicitly selected content. Cancellation returns to the anonymous result with no persistence.</figcaption></figure>
+ <ul><li>Anonymous/signed-in state is named near the question field and history control, not buried in policy text.</li><li>Notification previews and screen titles are privacy-neutral by default; user can choose a private matter label.</li><li>Share/export names recipient/scope/expiry and offers revocation where supported. No public bearer link by default.</li><li>Account privacy centre shows categories, sessions, exports, deletion queue and optional-reuse consent independently.</li><li>Security cannot be marketed as advocate-client privilege. Professional confidentiality belongs to applicable legal relationships, not interface decoration.</li></ul>
+</section>
+
+<section id="states"><div class="eyebrow"><span>13 — State architecture</span></div><h2>Design every state before an engineer invents it</h2>
+ <div class="scroll"><table><thead><tr><th>State</th><th>Required message/action</th><th>Forbidden fallback</th></tr></thead><tbody>
+  <tr><td class="k">First use / empty</td><td>Explain the job with two grounded examples; one primary action.</td><td>Fake recent matters or promotional claims.</td></tr>
+  <tr><td class="k">Clarifying</td><td>Progress is semantic (“2 material questions remain”), with back/edit/unknown.</td><td>Arbitrary percent-complete.</td></tr>
+  <tr><td class="k">Searching / streaming</td><td>Announce stage without leaking content; cancel stops work; partial prose is visibly incomplete.</td><td>Clickable unverified citations during stream.</td></tr>
+  <tr><td class="k">Offline</td><td>Pack version, scope and last published date; available actions only.</td><td>Greyed online control without explanation.</td></tr>
+  <tr><td class="k">Stale pack</td><td>Continue historical read, warn before current-law reliance, update/rollback options.</td><td>Present stale material as current.</td></tr>
+  <tr><td class="k">Partial service</td><td>Name unavailable capability; preserve deterministic public-law lookup.</td><td>Model-only or unverified local answer.</td></tr>
+  <tr><td class="k">Auth expired / forbidden</td><td>Preserve unsent local input safely where policy permits; explain recovery.</td><td>Reveal whether another user’s object exists.</td></tr>
+  <tr><td class="k">Changed law</td><td>Keep old artefact replayable; mark superseded context and offer fresh analysis.</td><td>Regenerate old answer invisibly.</td></tr>
+  <tr><td class="k">Deleted / deletion pending</td><td>Show scope and completion stage without retaining deleted narrative.</td><td>UI-only deletion while derivatives remain active.</td></tr>
+ </tbody></table></div>
+ <p>Status updates use programmatically determinable messages without stealing focus. Errors preserve entered values except secrets, attach messages to fields, describe recovery and never expose traces, identifiers or legal content in support codes.</p>
+</section>
+
+<section id="accessibility"><div class="eyebrow"><span>14 — Accessibility</span></div><h2>AA is the floor; task equivalence is the outcome</h2>
+ <p class="lede">Core web journeys target WCAG 2.2 AA as complete processes. Native mobile uses the same success criteria where applicable plus platform semantics and Document 08’s 48 dp target. A conformance claim requires declared scope, versions and evidence; automated scans alone cannot make it.</p>
+ <div class="scroll"><table><thead><tr><th>Capability</th><th>Acceptance contract</th></tr></thead><tbody>
+  <tr><td class="k">Structure/navigation</td><td>One logical heading hierarchy, landmarks, skip link, meaningful titles, stable help and visible location.</td></tr>
+  <tr><td class="k">Keyboard/switch</td><td>All actions reachable; no trap; visible unobscured focus; no drag-only action; reading and focus order match.</td></tr>
+  <tr><td class="k">Screen reader</td><td>Names/roles/states, table relationships, expanded/collapsed source state, status announcements and streaming batches tested.</td></tr>
+  <tr><td class="k">Visual</td><td>Text reflows at 320 CSS px and 200% zoom; contrast and non-colour status marks; no clipped Nastaliq or forced orientation.</td></tr>
+  <tr><td class="k">Motor/touch</td><td>48 dp product target with clear spacing; cancellation/reversal for high-impact action; no precision gesture requirement.</td></tr>
+  <tr><td class="k">Cognitive/language</td><td>Consistent navigation, plain instructions, redundant-entry avoidance, review before legal/data action and no timed reading.</td></tr>
+  <tr><td class="k">Audio/speech</td><td>Transcript/caption alternative, no autoplay, microphone state announced and input does not rely on pronunciation alone.</td></tr>
+  <tr><td class="k">Authentication</td><td>No puzzle/memory/cognitive-function test without accessible alternative; OTP supports paste/autofill and clear expiry/retry.</td></tr>
+ </tbody></table></div>
+ <p>WCAG does not cover every cognitive, language or learning need. The W3C supplemental cognitive guidance and testing with real disabled users therefore sit alongside—not underneath—conformance testing. Urdu screen-reader, font scaling, bidi focus order and mixed-script pronunciation receive dedicated fixtures.</p>
+</section>
+
+<section id="offline"><div class="eyebrow"><span>15 — Mobile and offline</span></div><h2>Connectivity is a capability state, not a moral judgment</h2>
+ <div class="grid-3">
+  <div class="panel"><h4>Full online</h4><p>Retrieval, verified generation, domain tools, authenticated matters and sync. Optimistic chrome never fabricates legal completion.</p></div>
+  <div class="panel"><h4>Degraded online</h4><p>Deterministic citation/public corpus continues. Provider-dependent answer is clearly unavailable; queued writes are idempotent and user-visible.</p></div>
+  <div class="panel"><h4>Offline</h4><p>Signed held statutes, local exact/lexical search, bookmarks and precomputed explainers. No implication that pack scope equals all Pakistani law.</p></div>
+ </div>
+ <ul><li>Pack header shows corpus revision, jurisdictions/source kinds, publication date, signature state and update size before download.</li><li>“Not in this pack”, “not found in held law” and “no applicable law established” are distinct outcomes.</li><li>Install is atomic; tampered/incompatible pack is rejected; last-known-good remains usable and rollback is explained.</li><li>Reconnect compares local intentions and server state; conflicts are presented by meaning, never resolved last-write-wins for legal artefacts.</li><li>Performance budgets from Doc 08 protect usable first content, scrolling and input on representative low-end hardware.</li></ul>
+</section>
+
+<section id="content"><div class="eyebrow"><span>16 — Content system</span></div><h2>Legal language is a versioned interface dependency</h2>
+ <pre><b>ContentPattern</b> {
+  id; purpose; riskClass; journeyStates[];
+  en: { text; readingReview; legalReview };
+  ur: { text; translator; independentLegalReviewer };
+  variables: [{ name; type; source; bidi; formatting }];
+  forbiddenPhrases[]; examples[]; accessibilityNotes[];
+  authority?: { ruleId; sourceIds[]; asOfBehaviour };
+  version; approvedBy; effectiveFrom; regressionFixtures[];
+}</pre>
+ <div class="scroll"><table><thead><tr><th>Register</th><th>Preferred pattern</th><th>Avoid</th></tr></thead><tbody>
+  <tr><td class="k">Evidence</td><td>“Section 9 states…” / “The cited judgment records…”</td><td>“The AI knows…”</td></tr>
+  <tr><td class="k">Conditional</td><td>“If [material fact], then…”</td><td>Hedging every sentence with “may possibly”.</td></tr>
+  <tr><td class="k">Unknown</td><td>“We could not establish [specific fact] from [scope].”</td><td>“No law exists.”</td></tr>
+  <tr><td class="k">Professional review</td><td>“A qualified Pakistani advocate should review [specific issue] because…”</td><td>Generic disclaimer as an answer substitute.</td></tr>
+  <tr><td class="k">Identity</td><td>“Phone number verified” / “Advocate verification valid until…”</td><td>“Verified user” when only possession is known.</td></tr>
+  <tr><td class="k">Draft</td><td>“Draft generated from supplied facts; not filed or advocate-approved.”</td><td>“Legal document complete.”</td></tr>
+ </tbody></table></div>
+ <p>Content changes that affect legal modality, user action, scope, warning or consent are reviewed and released like code. String concatenation cannot assemble citations, Urdu grammar or legal claims; typed variables carry direction, locale, source and formatting.</p>
+</section>
+
+<section id="research"><div class="eyebrow"><span>17 — Research programme</span></div><h2>Co-design with the people the service could otherwise exclude</h2>
+ <figure><span class="fignum">Figure 4 — evidence-to-release research loop</span><svg class="dg" viewBox="0 0 940 300" role="img" aria-labelledby="f4t f4d"><title id="f4t">Research and release loop</title><desc id="f4d">Official data, legal needs and field research define scenarios. Co-design and prototypes are tested with diverse users. Findings become requirements and evaluation fixtures. Release evidence and privacy-safe production challenges feed the next cycle.</desc><defs><marker id="a4" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0 0L8 3L0 6Z" fill="currentColor"/></marker></defs>
+ <rect class="bxf" x="20" y="95" width="150" height="85" rx="6"/><text class="th" x="95" y="125" text-anchor="middle">Needs evidence</text><text class="tm" x="95" y="146" text-anchor="middle">PBS · legal needs</text><text class="tm" x="95" y="164" text-anchor="middle">support + corpus gaps</text>
+ <rect class="acc" x="210" y="80" width="160" height="115" rx="6"/><text class="th" x="290" y="110" text-anchor="middle">Co-design</text><text class="tm" x="290" y="131" text-anchor="middle">citizens · advocates</text><text class="tm" x="290" y="149" text-anchor="middle">disabled users</text><text class="tm" x="290" y="167" text-anchor="middle">Urdu / rural contexts</text>
+ <rect class="risk" x="410" y="80" width="160" height="115" rx="6"/><text class="th" x="490" y="110" text-anchor="middle">Scenario test</text><text class="tm" x="490" y="131" text-anchor="middle">comprehension · action</text><text class="tm" x="490" y="149" text-anchor="middle">source verification</text><text class="tm" x="490" y="167" text-anchor="middle">failure recovery</text>
+ <rect class="acc" x="610" y="80" width="150" height="115" rx="6"/><text class="th" x="685" y="110" text-anchor="middle">Requirements</text><text class="tm" x="685" y="131" text-anchor="middle">journey · state</text><text class="tm" x="685" y="149" text-anchor="middle">content · a11y</text><text class="tm" x="685" y="167" text-anchor="middle">regression fixture</text>
+ <rect class="bxf" x="800" y="95" width="125" height="85" rx="6"/><text class="th" x="863" y="125" text-anchor="middle">Release</text><text class="tm" x="863" y="146" text-anchor="middle">bounded claim</text><text class="tm" x="863" y="164" text-anchor="middle">challenge loop</text>
+ <g class="ln" marker-end="url(#a4)"><path d="M170 138H206"/><path d="M370 138H406"/><path d="M570 138H606"/><path d="M760 138H796"/><path class="lnD" d="M863 180C863 260 290 260 290 199"/></g></svg><figcaption><b>Research changes the specification, not merely a presentation.</b> Findings are traceable to a journey, state, content pattern or evaluation fixture. Production feedback is quarantined and minimised under Docs 10–11 before reuse.</figcaption></figure>
+ <div class="scroll"><table><thead><tr><th>Research stratum</th><th>Minimum variation to seek</th><th>Ethical safeguard</th></tr></thead><tbody>
+  <tr><td class="k">Language/literacy</td><td>Native Urdu, English, Roman Urdu, mixed script; different reading confidence.</td><td>Researcher reads consent aloud; comprehension checked without testing participant.</td></tr>
+  <tr><td class="k">Geography/access</td><td>Federal/four provinces, urban/rural, low-data and shared-device contexts.</td><td>Do not collect exact location or active legal dispute unnecessarily.</td></tr>
+  <tr><td class="k">Disability</td><td>Blind/low vision, Deaf/hard of hearing, motor, speech, cognitive/learning; novice and experienced AT users.</td><td>Accessible materials/environment, chosen support person, fair compensation.</td></tr>
+  <tr><td class="k">Legal experience</td><td>Citizens, legal-aid/frontline workers, advocates, students, researchers and curators.</td><td>Conflicts disclosed; professional participants do not convert session into representation.</td></tr>
+  <tr><td class="k">Risk context</td><td>Eviction, employment, family, property, criminal/procedure and administrative journeys using fictional cases.</td><td>Trauma-aware stop/skip; no demand to recount personal harm.</td></tr>
+ </tbody></table></div>
+ <p>Consent is ongoing, withdrawal is easy, recordings are optional and retention is declared. Researchers record behavioural evidence and participant meaning, not voyeuristic case detail. Small qualitative samples identify failures but are not presented as population prevalence. W3C guidance supports combining diverse disabled-user involvement with standards rather than substituting one for the other.</p>
+</section>
+
+<section id="measurement"><div class="eyebrow"><span>18 — UX assurance</span></div><h2>Measure understanding and safe action, not delight alone</h2>
+ <div class="scroll"><table><thead><tr><th>Measure</th><th>Operational definition</th><th>Critical event</th></tr></thead><tbody>
+  <tr><td class="k">Scope comprehension</td><td>User accurately states jurisdiction, date and important assumptions without prompting.</td><td>Relies on wrong province/date/forum.</td></tr>
+  <tr><td class="k">Source verification</td><td>Finds exact supporting span and identifies official source/status.</td><td>Attributes generated explanation to statute/court.</td></tr>
+  <tr><td class="k">Deadline comprehension</td><td>States date/range, triggering event and uncertainty.</td><td>Deadline overlooked or calculation treated as guaranteed.</td></tr>
+  <tr><td class="k">Abstention comprehension</td><td>Can explain why no answer and choose a safe next step.</td><td>Interprets abstention as “no legal right exists”.</td></tr>
+  <tr><td class="k">Register recognition</td><td>Distinguishes official text, translation, explanation, rule result and professional review.</td><td>Believes model is advocate/court or draft is filed-ready.</td></tr>
+  <tr><td class="k">Journey completion</td><td>Completes defined task without facilitator rescue, by declared language/device/AT slice.</td><td>Core task impossible in a supported mode.</td></tr>
+  <tr><td class="k">Privacy prediction</td><td>Correctly predicts whether content is saved/shared/deletable before action.</td><td>Anonymous user believes history is saved or signed-in user misses disclosure.</td></tr>
+  <tr><td class="k">Recovery</td><td>Returns from offline/provider/auth/validation failure without duplicate or lost legal state.</td><td>Unsafe fallback or silent state corruption.</td></tr>
+ </tbody></table></div>
+ <p>Report task success, critical errors, unassisted completion, comprehension, time where appropriate, confidence calibration and qualitative cause by declared slice. Satisfaction never compensates for a legal-safety failure. Doc 10 controls sampling, confidence intervals, critical-event vetoes, bilingual parity and release cards.</p>
+ <div class="note red"><h4>UX release blockers</h4><p>Any tested path that makes repealed law appear current; hides a material deadline; fabricates or prevents verification of a citation; changes legal meaning in Urdu; turns abstention into an answer/error; implies phone possession is identity; exposes another matter; claims anonymous persistence; accepts a tampered pack; or permits an unreviewed legal action is an S0/S1 event.</p></div>
+</section>
+
+<section id="handoff"><div class="eyebrow"><span>19 — Delivery contract</span></div><h2>Design artefacts are executable agreements</h2>
+ <div class="scroll"><table><thead><tr><th>Artefact</th><th>Required contents</th><th>Owner / consumer</th></tr></thead><tbody>
+  <tr><td class="k">Journey map</td><td>Entry, stages, branches, harm, scope, data, connectivity and outcome.</td><td>UX + legal; product/engineering/evaluation.</td></tr>
+  <tr><td class="k">Screen-state matrix</td><td>All states, content IDs, focus/announcement, offline and privacy behaviour.</td><td>UX; client/API/QA.</td></tr>
+  <tr><td class="k">Interaction contract</td><td>Trigger, precondition, request schema, loading/cancel, success/failure and audit event.</td><td>UX + engineering; generated acceptance test.</td></tr>
+  <tr><td class="k">Content catalogue</td><td>Versioned English/Urdu patterns, variables, modality, reviews and forbidden language.</td><td>Content + bilingual legal reviewers.</td></tr>
+  <tr><td class="k">Accessibility annotation</td><td>Semantics, order, names, status/focus, alternatives, reflow and platform behaviour.</td><td>Accessibility owner; client and QA.</td></tr>
+  <tr><td class="k">Analytics allowlist</td><td>Event purpose, fields, class, retention, aggregation and consent/policy basis.</td><td>Privacy + UX; telemetry implementation.</td></tr>
+  <tr><td class="k">Decision record</td><td>Problem, evidence, alternatives, legal/safety trade-off, decision and revisit trigger.</td><td>Design authority; all layers.</td></tr>
+ </tbody></table></div>
+ <h3><span class="mk">19.1</span>Definition of ready</h3><p>A feature is not ready for implementation until its journey, all failure states, content, data consequence, API contract, accessibility semantics, offline behaviour, legal review points, analytics allowlist and acceptance tests are present. A static happy-path mock is insufficient.</p>
+ <h3><span class="mk">19.2</span>Build order</h3><ol><li>Research foundation and high-harm journey scenarios.</li><li>Information architecture, anonymous question, exact citation and abstention.</li><li>Source viewer, temporal status and English/Urdu parity.</li><li>Authenticated matters, privacy controls and changed-law state.</li><li>Deterministic calculators/procedures, then reviewed drafting.</li><li>Professional research and curation workspaces.</li><li>Continuous accessibility, low-device, offline and comprehension assurance.</li></ol>
+</section>
+
+<section id="references"><div class="eyebrow"><span>R — References</span></div><h2>Authority and research basis</h2>
+ <p class="lede">Primary official sources are preferred. Legal applicability remains a counsel determination. Standards guide design and testing; inclusion here does not claim certification or conformance.</p>
+ <ol class="refs">
+  <li>National Assembly of Pakistan, <a href="https://na.gov.pk/uploads/documents/6926e060076ed_467.pdf">Constitution of the Islamic Republic of Pakistan (official current PDF)</a>, especially Arts. 10A, 14, 19A and 25.</li>
+  <li>Pakistan Code, <a href="https://pakistancode.gov.pk/pdffiles/administrator7878f83d7d67541754c55d07d5be4cc3.pdf">ICT Rights of Persons with Disability Act, 2020</a>, ss.15 and 17; territorial/applicability scope must be legally assessed.</li>
+  <li>Pakistan Bureau of Statistics, <a href="https://www.pbs.gov.pk/wp-content/uploads/2020/07/PSLM_Report_2024-25-Social-Report.pdf">HIES/PSLM 2024–25 Social Report and official indicators</a>, literacy, internet and mobile/smartphone access.</li>
+  <li>Law and Justice Commission of Pakistan, <a href="https://ljcp.gov.pk/SiteImage/Misc/files/National%20AI%20Guidelines%20for%20Judicial%20Officers%20and%20Judicial%20Staff.pdf">National AI Guidelines for Judicial Officers and Judicial Staff</a> and <a href="https://www.ljcp.gov.pk/SliderDetail/NTI1NmRiN2EtM2M2MC00MzgyLWFlNmEtNmQ5ZmU5MWE4MjFh">official announcement</a>.</li>
+  <li>OECD, <a href="https://www.oecd.org/en/publications/toolkit-for-access-to-justice-and-people-centred-justice-systems_aecf7f78-en/full-report/design-and-delivery-of-people-centred-legal-and-justice-services_4f91525e.html">Toolkit for Access to Justice and People-Centred Justice Systems: design and delivery</a>, 2025.</li>
+  <li>ISO, <a href="https://www.iso.org/standard/77520.html">ISO 9241-210:2019, Human-centred design for interactive systems</a>.</li>
+  <li>ISO, <a href="https://www.iso.org/cms/%20render/live/en/sites/isoorg/contents/data/standard/07/89/78907.html?browse=tc">ISO 24495-1:2023, Plain language—governing principles and guidelines</a>; ISO catalogue also records <a href="https://www.iso.org/committee/48104/x/catalogue/">ISO 24495-2:2025, Legal communication</a>.</li>
+  <li>W3C, <a href="https://www.w3.org/TR/WCAG22/">Web Content Accessibility Guidelines 2.2</a>, Recommendation 12 Dec 2024.</li>
+  <li>W3C WAI, <a href="https://www.w3.org/TR/coga-usable/">Making Content Usable for People with Cognitive and Learning Disabilities</a>.</li>
+  <li>W3C WAI, <a href="https://www.w3.org/WAI/planning/involving-users/">Involving Users in Web Projects for Better, Easier Accessibility</a> and <a href="https://www.w3.org/WAI/test-evaluate/involving-users/">Involving Users in Evaluating Web Accessibility</a>.</li>
+  <li>W3C WAI, <a href="https://www.w3.org/WAI/standards-guidelines/mobile/">Mobile Accessibility at W3C</a>. W3C states that WCAG covers mobile; application guidance must be checked for maturity.</li>
+  <li>W3C Internationalization, <a href="https://www.w3.org/International/articles/inline-bidi-markup/">Inline markup and bidirectional text in HTML</a> and <a href="https://www.w3.org/TR/string-meta/">Strings on the Web: Language and Direction Metadata</a>.</li>
+  <li>Document 01, Master Architecture: INV-1–INV-5 and QA-1–QA-14.</li>
+  <li>Documents 03/03b: bitemporal legal identity, authentic language and Pakistan-specific legal status.</li>
+  <li>Documents 04–07: query scope, abstention, verified answer, deterministic domain tools and public API states.</li>
+  <li>Document 08, Client Architecture: four surfaces, signed offline pack, RTL, accessibility and anonymous composition.</li>
+  <li>Documents 10–11: evaluation/release gates, privacy, matter isolation, visible identity limits and incident-safe degradation.</li>
+  <li>Document 12, Design System: Stamp Paper tokens, typography, spacing, component appearance, legal-status treatment and motion.</li>
+ </ol>
+</section>
+<p class="footer">NIZAM-E-QANOON · DOCUMENT 13 · UX AND INTERACTION ARCHITECTURE · v1.0 · 30 AUG 2026<br>Normative companion to Document 12. Visual treatment may evolve; UX-1–UX-8 and the inherited legal/security invariants require an approved architecture revision to weaken.</p>
+</div></body></html>

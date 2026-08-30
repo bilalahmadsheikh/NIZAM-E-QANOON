@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nizam-e-Qanoon Retrieval</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{--paper:#f3f4f7;--surface:#fff;--surface-2:#edeff3;--surface-3:#e3e7ee;--ink:#14171e;--ink-2:#4c5566;--ink-3:#7e879a;--rule:#dcdfe7;--rule-2:#c6cbd6;--indigo:#26397a;--indigo-soft:#e4e8f5;--rubric:#9e3b2f;--rubric-soft:#f6e7e4;--ok:#2c6349;--ok-soft:#e0ede7;--warn:#7e6114;--warn-soft:#f3ebd8;--shadow:0 1px 2px rgba(20,23,30,.05),0 8px 24px -12px rgba(20,23,30,.14);--f-display:"Newsreader",Georgia,serif;--f-body:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;--f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;--measure:72ch;--rail:9.5rem}
+@media(prefers-color-scheme:dark){:root{--paper:#0d0f14;--surface:#14171e;--surface-2:#1b1f28;--surface-3:#232935;--ink:#e6e9ef;--ink-2:#a0a9ba;--ink-3:#6d7688;--rule:#252a34;--rule-2:#333a47;--indigo:#93a8e8;--indigo-soft:#1b2136;--rubric:#d8867a;--rubric-soft:#2b1d1b;--ok:#6fbf95;--ok-soft:#152520;--warn:#d3ab5c;--warn-soft:#241e10;--shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px -14px rgba(0,0,0,.7)}}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:16.5px;line-height:1.62;-webkit-font-smoothing:antialiased}.wrap{max-width:76rem;margin:0 auto;padding:0 1.5rem 8rem}.masthead{border-bottom:2px solid var(--ink);padding:3.5rem 0 1.25rem;margin-bottom:2rem}.kicker{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--rubric);margin:0 0 1rem}h1{font-family:var(--f-display);font-weight:500;font-size:clamp(2.4rem,5.8vw,3.9rem);line-height:1.03;letter-spacing:-.021em;margin:0 0 .5rem;text-wrap:balance}.dek{font-family:var(--f-display);font-size:clamp(1.05rem,2.1vw,1.3rem);color:var(--ink-2);max-width:59ch;margin:0 0 1.9rem;font-style:italic}.meta{display:flex;flex-wrap:wrap;gap:.5rem 2.25rem;font-family:var(--f-mono);font-size:.7rem;letter-spacing:.05em;color:var(--ink-3);border-top:1px solid var(--rule);padding-top:.9rem}.meta b{color:var(--ink-2);font-weight:500}section{display:grid;grid-template-columns:var(--rail) minmax(0,1fr);gap:0 2.5rem;padding-top:3.4rem;border-top:1px solid var(--rule);margin-top:3.4rem}section.first{border-top:none;margin-top:0}.rail{position:sticky;top:1.5rem;align-self:start;padding-top:.4rem}.rail .num{font-family:var(--f-mono);font-size:1.05rem;font-weight:600;color:var(--rubric);display:block}.rail .tag{font-family:var(--f-mono);font-size:.63rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);display:block;margin-top:.5rem;line-height:1.55}.body{min-width:0}@media(max-width:880px){section{grid-template-columns:1fr}.rail{position:static;display:flex;align-items:baseline;gap:.85rem;margin-bottom:.9rem}.rail .tag{margin-top:0}}h2{font-family:var(--f-display);font-weight:500;font-size:clamp(1.6rem,3.3vw,2.2rem);line-height:1.14;letter-spacing:-.017em;margin:0 0 .8rem;text-wrap:balance}h3{font-weight:700;font-size:1.01rem;margin:2.6rem 0 .55rem}h3 .mk{font-family:var(--f-mono);color:var(--rubric);font-weight:600;margin-inline-end:.55rem;font-size:.88em}h4{font-family:var(--f-mono);font-weight:600;font-size:.71rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);margin:1.9rem 0 .6rem}p{margin:0 0 1.05rem;max-width:var(--measure)}.lede{font-size:1.075rem;color:var(--ink-2);max-width:64ch}ul,ol{margin:0 0 1.15rem;padding-inline-start:1.3rem;max-width:var(--measure)}li{margin-bottom:.42rem}li::marker{color:var(--ink-3)}a{color:var(--indigo);text-underline-offset:.18em;word-break:break-word}code{font-family:var(--f-mono);font-size:.855em;font-variant-ligatures:none}p code,li code,td code{background:var(--surface-2);border:1px solid var(--rule);padding:.06em .34em;border-radius:3px}.scroll{overflow-x:auto;margin:1.4rem 0 1.9rem;border:1px solid var(--rule);border-radius:5px;background:var(--surface)}table{border-collapse:collapse;width:100%;font-size:.83rem;line-height:1.5}th{text-align:left;font-family:var(--f-mono);font-weight:600;font-size:.645rem;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3);padding:.7rem .8rem;border-bottom:1px solid var(--rule-2);white-space:nowrap;background:var(--surface-2)}td{padding:.65rem .8rem;border-bottom:1px solid var(--rule);vertical-align:top}tr:last-child td{border-bottom:none}tbody tr:hover td{background:var(--surface-2)}td.id{font-family:var(--f-mono);font-size:.76rem;color:var(--rubric);white-space:nowrap;font-weight:500}td.k{font-weight:600;min-width:9rem}.chip{display:inline-block;font-family:var(--f-mono);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;font-weight:600;padding:.2em .5em;border-radius:3px;border:1px solid transparent;white-space:nowrap}.c-hard{background:var(--rubric-soft);color:var(--rubric);border-color:var(--rubric)}.c-rank{background:var(--indigo-soft);color:var(--indigo);border-color:var(--indigo)}.c-ok{background:var(--ok-soft);color:var(--ok);border-color:var(--ok)}.c-warn{background:var(--warn-soft);color:var(--warn);border-color:var(--warn)}.note{border-inline-start:3px solid var(--rubric);background:var(--surface);padding:1rem 1.15rem;margin:1.5rem 0;border-radius:0 4px 4px 0;max-width:var(--measure);box-shadow:var(--shadow)}.note.blue{border-inline-start-color:var(--indigo)}.note.green{border-inline-start-color:var(--ok)}.note p:last-child,.note ul:last-child{margin-bottom:0}figure{margin:2rem 0;background:var(--surface);border:1px solid var(--rule);border-radius:5px;padding:1.4rem 1.2rem .9rem;box-shadow:var(--shadow);overflow-x:auto}figure svg{display:block;width:100%;min-width:42rem;height:auto;color:var(--ink)}figcaption{margin-top:1rem;padding-top:.8rem;border-top:1px solid var(--rule);font-size:.78rem;color:var(--ink-3);line-height:1.55}figcaption b{color:var(--ink-2)}.fignum{font-family:var(--f-mono);font-size:.63rem;letter-spacing:.12em;text-transform:uppercase;color:var(--rubric);font-weight:600;display:block;margin-bottom:.7rem}pre{background:var(--surface);border:1px solid var(--rule);border-radius:5px;padding:1rem 1.05rem;overflow-x:auto;margin:1.25rem 0;font-family:var(--f-mono);font-size:.755rem;line-height:1.62;color:var(--ink-2)}pre b{color:var(--ink)}pre i{color:var(--ink-3);font-style:normal}pre u{color:var(--rubric);text-decoration:none}.dg{font-family:var(--f-mono);font-size:10.5px}.dg .bx{fill:none;stroke:currentColor;stroke-width:1.2}.dg .bxf{fill:var(--surface-2);stroke:currentColor;stroke-width:1.2}.dg .acc{fill:var(--rubric-soft);stroke:var(--rubric);stroke-width:1.4}.dg text{fill:currentColor}.dg .ta{fill:var(--rubric);font-weight:600}.dg .tm{fill:currentColor;opacity:.64;font-size:9.5px}.dg .th{font-weight:600}.dg .ln{stroke:currentColor;stroke-width:1.1;fill:none}.dg .lnA{stroke:var(--rubric);stroke-width:1.4;fill:none}.dg .lnD{stroke:currentColor;stroke-width:1.1;fill:none;stroke-dasharray:5 3}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="masthead">
+  <p class="kicker">Document 04 &middot; layer L3 &middot; child of 01 Master Architecture</p>
+  <h1>Nizam-e-Qanoon Retrieval</h1>
+  <p class="dek">The evidence-selection contract between a versioned Pakistani legal corpus and grounded generation: exact when the law is named, hybrid when the issue is described, authority-aware always, and silent when the evidence is not sufficient.</p>
+  <div class="meta"><span><b>Version</b> 1.0</span><span><b>Date</b> 28 Aug 2026</span><span><b>Layer</b> L3</span><span><b>Provides</b> IRetrieve</span><span><b>Requires</b> IIndexSearch &middot; ICorpusRead &middot; IInference</span><span><b>Figures</b> 4</span></div>
+</header>
+
+<section class="first">
+ <div class="rail"><span class="num">&sect;1</span><span class="tag">Mandate<br>&amp; boundary</span></div>
+ <div class="body">
+  <h2>Retrieval decides what the answer is allowed to know</h2>
+  <p class="lede">L3 does not answer legal questions. It converts a question into a replayable, legally scoped evidence bundle or a typed abstention. L4 may reason only over that bundle; it may never search around the gate.</p>
+  <div class="scroll"><table><thead><tr><th>Inherited invariant</th><th>L3 consequence</th></tr></thead><tbody>
+   <tr><td class="id">INV-1</td><td>Citations are database renderings of stable provision or judgment identifiers. Model-generated citation strings are never accepted.</td></tr>
+   <tr><td class="id">INV-2</td><td>Every request exits as <code>GroundingContext</code> or <code>Abstention</code>; no caller can bypass the sufficiency gate.</td></tr>
+   <tr><td class="id">INV-3</td><td>Persist query interpretation, filters, corpus version, every candidate rank/score, fusion, rerank, gate version and final evidence IDs.</td></tr>
+   <tr><td class="id">INV-4</td><td>Chunks find law; provisions and judgment paragraphs cite law. Re-chunking cannot break a public citation.</td></tr>
+   <tr><td class="id">INV-5</td><td><code>as_of</code> is mandatory, defaults to today, and applies before ranking to versions, territory, authority relations and treatment.</td></tr>
+  </tbody></table></div>
+  <div class="note"><p><strong>Non-goals.</strong> L3 does not extract PDFs, publish sources, decide ultimate legal meaning, draft advice, or hide corpus gaps. Those belong to L1/L2, L4, or an explicit human review path.</p></div>
+  <h3><span class="mk">1.1</span>Ship gates inherited from Document 01</h3>
+  <p>On the locked Pakistani test set: <strong>NDCG@10 &ge; 0.75</strong>, <strong>Recall@50 &ge; 0.90</strong>, <strong>MRR@10 &ge; 0.70</strong>, point-in-time correctness <strong>&ge; 0.95</strong>, Urdu&ndash;English NDCG gap <strong>&le; 0.05</strong>, and abstention precision/recall <strong>&ge; 0.90 / 0.85</strong>. The direct-citation fast path remains below 50 ms; full retrieval fits the existing end-to-end p50/p95 budget of 1.5/4 seconds.</p>
+ </div>
+</section>
+
+<section>
+ <div class="rail"><span class="num">&sect;2</span><span class="tag">Query<br>contract</span></div>
+ <div class="body">
+  <h2>Parse deterministically before searching statistically</h2>
+  <p class="lede">A legal query is not just text. It is text plus time, forum, territory, source class, cited identifiers and uncertainty. The parser preserves all of it and invents none of it.</p>
+<pre><b>type QuerySpec = {</b>
+  requestId: UUID; raw: string; normalized: string;
+  language: "en" | "ur" | "roman-ur" | "mixed";
+  intent: "citation" | "provision" | "issue" | "precedent" | "procedure";
+  asOf: LocalDate; knowledgeAsOf: CorpusRevisionId; eventDates: LegalEventDate[];
+  jurisdiction?: Jurisdiction; territory?: Territory; legislativeOrigin?: Jurisdiction;
+  forum?: CourtId; authorityPerspective?: CourtId; sourceKinds: SourceKind[];
+  citations: ParsedCitation[]; terms: TermVariant[];
+  unresolved: Ambiguity[]; parserVersion: string;
+<b>}</b></pre>
+  <h3><span class="mk">2.1</span>Normalization without evidence destruction</h3>
+  <ul>
+   <li>Apply Unicode NFC, whitespace and punctuation normalization; preserve the raw query and character map.</li>
+   <li>Normalize Urdu presentation forms and Urdu/Arabic digit variants for matching, never for display.</li>
+   <li>Roman Urdu produces versioned alias candidates from <code>glossary_concept</code>; it is not silently translated into English.</li>
+   <li>Expand known legal abbreviations and spelling variants as parallel terms. Never rewrite an Act, section, court or case number to the “nearest” identifier.</li>
+   <li>Detect explicit dates and phrases such as “in 2020” or “before amendment”; an explicit date overrides the default and is visible to the user.</li>
+  </ul>
+  <p><code>asOf</code> is the legal-effective date; <code>knowledgeAsOf</code> pins what the system knew for replay. An offence, transaction, accrual and filing may require different event dates, especially for savings and limitation. A date mentioned in narrative is not silently promoted to <code>asOf</code>. Territory, legislative origin, forum and the court from whose perspective authority is assessed are separate fields; guessing one from another is prohibited.</p>
+  <h3><span class="mk">2.2</span>Citation grammar</h3>
+  <p>The grammar recognizes instrument title/number/year, article or section/subsection, rules, case number, neutral citation and reporter reference. A complete parse routes to exact resolution. A partial parse narrows candidates but cannot auto-select among collisions. Reporter references are identifiers only; the system retrieves official judgment text, not copyrighted reporter headnotes.</p>
+  <div class="note blue"><p><strong>Ambiguity is data.</strong> “Section 9” without an Act, or “LHC 2022” without a case, yields structured choices or <code>AMBIGUOUS_CITATION</code>. Fuzzy matching may suggest; it may not resolve.</p></div>
+ </div>
+</section>
+
+<section>
+ <div class="rail"><span class="num">&sect;3</span><span class="tag">Routing<br>&amp; policy</span></div>
+ <div class="body">
+  <h2>One public interface, two retrieval paths</h2>
+  <figure><span class="fignum">Figure 1 &middot; retrieval control flow</span>
+   <svg class="dg" viewBox="0 0 940 285" role="img" aria-labelledby="f1t f1d"><title id="f1t">Retrieval routing and evidence gate</title><desc id="f1d">Query parsing routes exact citations to deterministic resolution and issue questions to four candidate generators, then both paths pass legal validation and the sufficiency gate.</desc>
+    <rect class="bxf" x="18" y="90" width="130" height="58" rx="4"/><text class="th" x="83" y="114" text-anchor="middle">QuerySpec</text><text class="tm" x="83" y="132" text-anchor="middle">text + law filters</text>
+    <rect class="acc" x="188" y="35" width="170" height="64" rx="4"/><text class="ta" x="273" y="60" text-anchor="middle">Exact citation path</text><text class="tm" x="273" y="79" text-anchor="middle">resolve &rarr; fetch &rarr; validate</text>
+    <rect class="bxf" x="188" y="145" width="170" height="64" rx="4"/><text class="th" x="273" y="170" text-anchor="middle">Research path</text><text class="tm" x="273" y="189" text-anchor="middle">4 generators &rarr; RRF</text>
+    <rect class="bxf" x="405" y="145" width="145" height="64" rx="4"/><text class="th" x="478" y="170" text-anchor="middle">Cross-encoder</text><text class="tm" x="478" y="189" text-anchor="middle">rerank top 50</text>
+    <rect class="bxf" x="600" y="90" width="145" height="64" rx="4"/><text class="th" x="673" y="115" text-anchor="middle">Legal validator</text><text class="tm" x="673" y="134" text-anchor="middle">time &middot; territory &middot; authority</text>
+    <rect class="acc" x="795" y="90" width="125" height="64" rx="4"/><text class="ta" x="858" y="115" text-anchor="middle">Gate</text><text class="tm" x="858" y="134" text-anchor="middle">bundle | abstain</text>
+    <path class="lnA" d="M148 109 L188 68"/><path class="ln" d="M148 131 L188 174"/><path class="ln" d="M358 177 L405 177"/><path class="lnA" d="M358 68 C470 68 500 105 600 116"/><path class="ln" d="M550 177 C573 177 575 133 600 124"/><path class="lnA" d="M745 122 L795 122"/>
+    <text class="tm" x="157" y="72">complete</text><text class="tm" x="154" y="174">semantic</text>
+    <rect class="bx" x="600" y="220" width="320" height="42" rx="4"/><text class="tm" x="760" y="246" text-anchor="middle">trace every stage against corpus + model versions</text>
+    <path class="lnD" d="M858 154 L858 220"/>
+   </svg><figcaption><b>Exact address beats approximate relevance.</b> A valid citation bypasses embedding and generation, but never bypasses publication, time or territory validation. Both paths terminate at the same typed gate.</figcaption>
+  </figure>
+  <div class="scroll"><table><thead><tr><th>Intent</th><th>Primary route</th><th>Required completion check</th></tr></thead><tbody>
+   <tr><td class="k">Exact citation</td><td>Identifier resolver; no ANN</td><td>One published legal unit valid at <code>as_of</code>, or explicit ambiguity/not-found</td></tr>
+   <tr><td class="k">Provision lookup</td><td>Lexical + dense + definitions</td><td>Winning provision expanded to its complete citable unit</td></tr>
+   <tr><td class="k">Issue / scenario</td><td>All four generators + reranker</td><td>Governing rule, definitions, exceptions and enabling rules covered</td></tr>
+   <tr><td class="k">Precedent</td><td>Judgment lexical/dense + citator graph</td><td>Authority and subsequent treatment known; official text available</td></tr>
+   <tr><td class="k">Procedure / fees</td><td>Provision + delegated instruments</td><td>Rules/schedules current for forum and date; otherwise abstain</td></tr>
+  </tbody></table></div>
+ </div>
+</section>
+
+<section>
+ <div class="rail"><span class="num">&sect;4</span><span class="tag">Candidate<br>generation</span></div>
+ <div class="body">
+  <h2>Four independent ways to be found</h2>
+  <p class="lede">Each generator receives the same hard-filtered universe and returns ranks, not supposedly comparable scores. Independence is deliberate: exact words, semantic paraphrase, defined terms and legal relationships fail differently.</p>
+  <figure><span class="fignum">Figure 2 &middot; hybrid candidate plane</span>
+   <svg class="dg" viewBox="0 0 940 300" role="img" aria-labelledby="f2t f2d"><title id="f2t">Four candidate generators feeding reciprocal rank fusion</title><desc id="f2d">BM25, dense vectors, definitions and legal graph operate over a hard-filtered search projection and feed RRF and provision-level deduplication.</desc>
+    <rect class="acc" x="25" y="110" width="165" height="68" rx="4"/><text class="ta" x="108" y="136" text-anchor="middle">Search projection</text><text class="tm" x="108" y="155" text-anchor="middle">published &middot; time &middot; place</text>
+    <rect class="bxf" x="245" y="20" width="150" height="54" rx="4"/><text class="th" x="320" y="44" text-anchor="middle">Lexical</text><text class="tm" x="320" y="61" text-anchor="middle">BM25 / FTS</text>
+    <rect class="bxf" x="245" y="87" width="150" height="54" rx="4"/><text class="th" x="320" y="111" text-anchor="middle">Dense</text><text class="tm" x="320" y="128" text-anchor="middle">HNSW bit(1024)</text>
+    <rect class="bxf" x="245" y="154" width="150" height="54" rx="4"/><text class="th" x="320" y="178" text-anchor="middle">Definitions</text><text class="tm" x="320" y="195" text-anchor="middle">aliases + scopes</text>
+    <rect class="bxf" x="245" y="221" width="150" height="54" rx="4"/><text class="th" x="320" y="245" text-anchor="middle">Legal graph</text><text class="tm" x="320" y="262" text-anchor="middle">typed 1&ndash;2 hops</text>
+    <rect class="acc" x="490" y="104" width="155" height="78" rx="4"/><text class="ta" x="568" y="132" text-anchor="middle">RRF</text><text class="tm" x="568" y="151" text-anchor="middle">k = 60 &middot; ranks only</text><text class="tm" x="568" y="166" text-anchor="middle">generator provenance</text>
+    <rect class="bxf" x="735" y="104" width="175" height="78" rx="4"/><text class="th" x="823" y="132" text-anchor="middle">Canonical collapse</text><text class="tm" x="823" y="151" text-anchor="middle">chunk &rarr; legal unit</text><text class="tm" x="823" y="166" text-anchor="middle">top 50 diverse</text>
+    <path class="lnA" d="M190 144 C215 144 215 47 245 47"/><path class="ln" d="M190 144 C215 144 215 114 245 114"/><path class="ln" d="M190 144 C215 144 215 181 245 181"/><path class="ln" d="M190 144 C215 144 215 248 245 248"/>
+    <path class="ln" d="M395 47 C450 47 450 123 490 130"/><path class="ln" d="M395 114 L490 137"/><path class="ln" d="M395 181 L490 151"/><path class="ln" d="M395 248 C450 248 450 164 490 158"/><path class="lnA" d="M645 143 L735 143"/>
+   </svg><figcaption><b>Fusion is not a licence to search the wrong law.</b> Jurisdiction, effective date, source publication and known territorial operation are columns on the indexed search projection and are applied before candidates enter any list.</figcaption>
+  </figure>
+  <h3><span class="mk">4.1</span>Lexical</h3>
+  <p>Use ParadeDB BM25 behind <code>ILexicalSearch</code>, with fields for title, heading, provision label, body, citation tokens and case metadata. Phrase matches and exact section labels receive field boosts. Pin the extension version: current ParadeDB SQL is version-sensitive. PostgreSQL <code>ts_rank_cd</code> is a supported fallback, <em>not</em> “equivalent BM25”; flag 32 is <code>rank/(rank+1)</code>, not length normalization. Benchmark the fallback independently. Use fixed expression indexes per script/configuration&mdash;<code>english</code> for English and <code>simple</code> plus normalized aliases for Urdu/Roman Urdu&mdash;because a single English dictionary silently damages recall.</p>
+  <h3><span class="mk">4.2</span>Dense</h3>
+  <p>Embed the original multilingual query directly. HNSW over the inherited <code>bit(1024)</code> representation returns a broad pool; retain the 10&times; overfetch and rerank with the full-precision query/candidate representation where available. Start <code>hnsw.ef_search</code> at 100, then tune from measured recall. For selective filters, use pgvector iterative scans and an adaptive planner: exact search over a small prefiltered set; HNSW otherwise.</p>
+  <div class="note"><p><strong>Required L2 correction.</strong> ANN predicates hidden behind joins may be applied after index traversal. Materialize a denormalized <code>search_projection</code> carrying legal-unit ID, jurisdiction, validity, publication/status, territory key and embedding on the indexed row. This is a migration owned by Document 03, not an excuse for L3 to post-filter invalid results. Judgment dense retrieval likewise requires a paragraph projection/embedding before the precedent phase can ship.</p></div>
+  <h3><span class="mk">4.3</span>Definitions and graph</h3>
+  <p>The definition generator resolves English, Urdu and Roman aliases to concepts, then retrieves the definition provision and provisions inside its effective scope. The graph generator starts independently from explicit citation, forum, subject and controlled-term seeds; after fusion, a second deterministic completeness pass expands the winning units. It traverses an allow-list of typed edges&mdash;<code>defines</code>, <code>subject_to</code>, <code>notwithstanding</code>, <code>empowers</code>, <code>amends</code>, <code>repeals</code>, <code>cites</code>, <code>followed</code>, <code>distinguished</code>, <code>overruled</code>&mdash;for at most two hops. Every hop is time-filtered, direction-aware, and recorded. It expands evidence; it never manufactures relevance from an untyped co-occurrence.</p>
+ </div>
+</section>
+
+<section>
+ <div class="rail"><span class="num">&sect;5</span><span class="tag">Fusion<br>&amp; reranking</span></div>
+ <div class="body">
+  <h2>Fuse ranks, then teach relevance in-domain</h2>
+<pre><i>// generator g ranks legal unit d at rank_g(d), starting at 1</i>
+<b>rrf(d) = &Sigma;<sub>g contains d</sub> 1 / (60 + rank<sub>g</sub>(d))</b>
+
+<i>// collapse multiple chunks without letting long provisions dominate</i>
+unitScore = max(chunkRrf) + 0.15 * secondBest(chunkRrf)
+candidate = { unitId, bestSpan, generatorRanks, matchedTerms, graphPaths }</pre>
+  <p>RRF is the default because the four score distributions are not calibrated to one another. The constant 60 follows the original formulation and becomes a tested configuration value, not a per-query knob. Keep at most two chunks per legal unit before collapse, cap any one instrument at 40% of the rerank slate, and reserve places for each generator that produced a credible result.</p>
+  <h3><span class="mk">5.1</span>Cross-encoder contract</h3>
+  <ul>
+   <li>Rerank 50 candidates using a small multilingual cross-encoder; input is query plus heading, hierarchical prefix and the minimal matched span.</li>
+   <li>Return a semantic relevance logit only. Authority, validity and publication are deterministic policy fields, not tokens the model is trusted to interpret.</li>
+   <li>Fine-tune on Pakistani lawyer relevance labels with hard negatives from the same Act, adjacent section, neighbouring jurisdiction, expired version, lower court and later adverse treatment.</li>
+   <li>Version model, tokenizer, prompt template and training-set digest. Calibrate separately for English, Urdu, Roman Urdu and mixed queries where sample size permits.</li>
+  </ul>
+  <p>Cross-encoders are slower but stronger pair scorers, which is why they are a second stage rather than an index. BEIR also cautions against assuming a dense retriever generalizes: BM25 is a strong robust baseline and reranking tends to improve quality at a compute cost. Both findings justify this cascade, not a dense-only design.</p>
+ </div>
+</section>
+
+<section>
+ <div class="rail"><span class="num">&sect;6</span><span class="tag">Legal<br>correctness</span></div>
+ <div class="body">
+  <h2>Legal priority is a temporal relation, not a score boost</h2>
+  <p class="lede">A semantically perfect passage from the wrong province, date, court or legal version is a wrong result. Those properties constrain eligibility and presentation before relevance is allowed to order anything.</p>
+  <div class="scroll"><table><thead><tr><th>Signal</th><th>Policy</th><th>Failure output</th></tr></thead><tbody>
+   <tr><td class="k">Jurisdiction / territory</td><td><span class="chip c-hard">hard</span> Include applicable federal law plus the selected territorial law; never substitute a neighbouring province.</td><td><code>JURISDICTION_UNRESOLVED</code> or explicit multi-jurisdiction comparison</td></tr>
+   <tr><td class="k">Temporal validity</td><td><span class="chip c-hard">hard</span> Apply <code>as_of</code> to provisions, amendments, commencement, territory and authority/treatment relations.</td><td><code>NO_VALID_VERSION</code>; show known nearest dates only as metadata</td></tr>
+   <tr><td class="k">Publication / source</td><td><span class="chip c-hard">hard</span> Only published, officially sourced text enters an answer bundle.</td><td><code>SOURCE_UNVERIFIED</code></td></tr>
+   <tr><td class="k">Court authority</td><td><span class="chip c-hard">matrix</span> Effective-dated binding relation by deciding court, subject-matter jurisdiction, receiving forum and decision date.</td><td><code>FORUM_UNRESOLVED</code> or label authorities without declaring one controlling</td></tr>
+   <tr><td class="k">Treatment</td><td><span class="chip c-hard">status</span> Overruled/reversed/invalidation edges change usability; followed/distinguished explain application.</td><td><code>ADVERSE_TREATMENT_UNRESOLVED</code></td></tr>
+   <tr><td class="k">Semantic relevance</td><td><span class="chip c-rank">rank</span> Orders eligible evidence; cannot restore an ineligible source.</td><td>Low score contributes to <code>INSUFFICIENT_EVIDENCE</code></td></tr>
+  </tbody></table></div>
+  <h3><span class="mk">6.1</span>Effective-dated authority matrix</h3>
+  <p>The current Constitution reflects the Twenty-Seventh Amendment (2025). Article 189 now gives decisions of the Federal Constitutional Court on questions/principles of law binding effect over all other courts, including the Supreme Court; Supreme Court decisions bind all other courts except the Federal Constitutional Court. Article 201 governs the binding effect of High Court decisions on subordinate courts, subject to Article 189. Federal Shariat Court decisions have their own constitutional channel. Therefore <code>court enum + numeric rank</code> is not legally adequate.</p>
+<pre><b>AuthorityRule</b> {
+  decidingCourtId; receivingForumId; subjectMatter;
+  validFrom; validTo; effect: "binding" | "persuasive" | "outside-scope";
+  constitutionalBasis; sourceVersionId;
+}
+
+<i>// resolve as the law of authority stood on the research date</i>
+authority = matrix.resolve(decidingCourt, forum, subjectMatter, asOf)
+<b>assert authority.sourceVersionId is official and replayable</b></pre>
+  <div class="note"><p><strong>Architecture correction required.</strong> Documents 01 and 03 predate this change and their fixed court hierarchy/enum is stale. Add <code>court</code>, <code>court_alias</code>, <code>court_jurisdiction</code> and effective-dated <code>authority_rule</code> data before precedent retrieval ships. Until then, precedent mode must abstain from claims about binding status.</p></div>
+  <h3><span class="mk">6.2</span>Commencement, repeal and continuity</h3>
+  <p>Temporal expansion implements the General Clauses Act, 1897 as structured rules, not prompt lore. Its sections 5 and 6 address commencement and the continuing effect of repeal; section 8 carries references through repeal and re-enactment; sections 20A and 21 govern Gazette publication and amendment/rescission of subordinate instruments; sections 22 and 24 cover pre-commencement rules and continuity after repeal/re-enactment. The assembler must fetch the relevant commencement, savings, amendment and delegated-instrument evidence before passing the gate.</p>
+  <h3><span class="mk">6.3</span>Conflict bundles</h3>
+  <p>Do not collapse contrary authorities into one winner using recency or similarity. When eligible decisions conflict, return the leading proposition, contrary decisions, court/bench/date, treatment edges and the authority relation to the user&rsquo;s forum. The generator must describe the conflict or abstain; it may not synthesize a nonexistent settled rule.</p>
+  <h3><span class="mk">6.4</span>Operative evidence versus historical discovery</h3>
+  <p>Expose two typed modes. <code>operative_evidence</code> may pass the gate only when validity, territory and status permit reliance. <code>historical_discovery</code> may return repealed, superseded, not-yet-commenced or adversely treated material with a prominent status banner, but it cannot ground a statement of current law. Commencement is tri-state: <code>confirmed_in_force</code>, <code>confirmed_not_in_force</code>, or <code>unknown_due_to_coverage</code>. Missing gazette data is never coerced to “not commenced”; an issue requiring that fact abstains.</p>
+  <h3><span class="mk">6.5</span>Boundary with the citator</h3>
+  <p>L3 retrieves official judgment paragraphs and stored treatment edges needed for evidence selection. L5 <code>IPrecedent</code> owns the final treatment classification and “good law” assessment. Until that service and the effective-dated authority data are available, L3 may report recorded treatment facts but must not label a case controlling, overruled or good law on inference alone.</p>
+ </div>
+</section>
+
+<section>
+ <div class="rail"><span class="num">&sect;7</span><span class="tag">Evidence<br>assembly</span></div>
+ <div class="body">
+  <h2>Retrieve narrow; assemble complete</h2>
+  <p class="lede">Precise spans win retrieval, but legal meaning often depends on a proviso, definition, explanation, schedule or enabling rule outside the winning chunk. Context assembly repairs that boundary deterministically.</p>
+  <figure><span class="fignum">Figure 3 &middot; legal context expansion</span>
+   <svg class="dg" viewBox="0 0 940 260" role="img" aria-labelledby="f3t f3d"><title id="f3t">Expansion from matched span to complete legal evidence bundle</title><desc id="f3d">The matched span expands to its whole provision and relevant definitions, qualifications, enabling rules and authority metadata within a token budget.</desc>
+    <rect class="bxf" x="20" y="91" width="135" height="65" rx="4"/><text class="th" x="88" y="118" text-anchor="middle">Matched span</text><text class="tm" x="88" y="137" text-anchor="middle">private chunk ID</text>
+    <rect class="acc" x="205" y="91" width="155" height="65" rx="4"/><text class="ta" x="283" y="118" text-anchor="middle">Citable unit</text><text class="tm" x="283" y="137" text-anchor="middle">whole provision / para</text>
+    <rect class="bxf" x="420" y="20" width="145" height="52" rx="4"/><text class="th" x="493" y="43" text-anchor="middle">Definitions</text><text class="tm" x="493" y="59" text-anchor="middle">scoped + effective</text>
+    <rect class="bxf" x="420" y="99" width="145" height="52" rx="4"/><text class="th" x="493" y="122" text-anchor="middle">Qualifications</text><text class="tm" x="493" y="138" text-anchor="middle">proviso / exception</text>
+    <rect class="bxf" x="420" y="178" width="145" height="52" rx="4"/><text class="th" x="493" y="201" text-anchor="middle">Dependencies</text><text class="tm" x="493" y="217" text-anchor="middle">rules / schedules</text>
+    <rect class="acc" x="635" y="80" width="150" height="86" rx="4"/><text class="ta" x="710" y="107" text-anchor="middle">Budget selector</text><text class="tm" x="710" y="126" text-anchor="middle">coverage &gt; novelty</text><text class="tm" x="710" y="143" text-anchor="middle">dedupe &middot; diversify</text>
+    <rect class="bxf" x="835" y="91" width="90" height="65" rx="4"/><text class="th" x="880" y="118" text-anchor="middle">Bundle</text><text class="tm" x="880" y="137" text-anchor="middle">stable IDs</text>
+    <path class="lnA" d="M155 123 L205 123"/><path class="ln" d="M360 108 L420 48"/><path class="ln" d="M360 123 L420 125"/><path class="ln" d="M360 139 L420 204"/><path class="lnA" d="M565 48 C610 48 600 97 635 108"/><path class="ln" d="M565 125 L635 125"/><path class="ln" d="M565 204 C610 204 600 153 635 143"/><path class="lnA" d="M785 123 L835 123"/>
+   </svg><figcaption><b>Minimal does not mean fragmentary.</b> LegalBench-RAG motivates precise relevant spans; this assembler adds only dependencies needed to interpret that span, with provenance for every addition.</figcaption>
+  </figure>
+<pre><b>type EvidenceItem = {</b>
+  legalUnitId; sourceVersionId; sourceUrl; sourceSha256; sourcePages[]; official: true;
+  displayCitation; text; matchedOffsets[]; asOf; knowledgeAsOf;
+  jurisdiction; territory; authority?: AuthorityFinding;
+  treatments[]; inclusionReason; retrievalTraceRef;
+<b>}</b>
+<b>type GroundingContext = {</b>
+  query: QuerySpec; items: EvidenceItem[]; coverage: CoverageFinding;
+  conflicts: ConflictSet[]; corpusVersion; retrievalRunId;
+<b>}</b></pre>
+  <p>Choose context by marginal coverage: governing rule first, then a necessary definition/qualification/dependency, then corroborating authority. After reranking about 50 candidates, admit at most about 20 legal units to gate/assembly, subject to token budget and necessary-set coverage. Collapse duplicate quotations and overlapping spans. Order statutes in legal structure, not relevance-score order. A source earns space because it closes a named coverage gap, not because it is the sixth passage saying the same thing.</p>
+ </div>
+</section>
+
+<section>
+ <div class="rail"><span class="num">&sect;8</span><span class="tag">Gate &amp;<br>abstention</span></div>
+ <div class="body">
+  <h2>Confidence is calibrated evidence sufficiency</h2>
+  <p>The gate is a small, interpretable classifier over retrieval signals, followed by non-negotiable legal vetoes. Its threshold <code>&tau;</code> is fitted on a held-out, lawyer-labelled set for the target precision/recall; it is never hand-selected from a few demos and never lowered during degradation.</p>
+  <figure><span class="fignum">Figure 4 &middot; sufficiency decision</span>
+   <svg class="dg" viewBox="0 0 940 235" role="img" aria-labelledby="f4t f4d"><title id="f4t">Evidence sufficiency gate</title><desc id="f4d">Ranking, coverage, agreement and legal validation signals flow into calibrated confidence, while hard legal vetoes independently force abstention.</desc>
+    <rect class="bxf" x="20" y="30" width="185" height="48" rx="4"/><text class="th" x="113" y="52" text-anchor="middle">Retrieval strength</text><text class="tm" x="113" y="67" text-anchor="middle">top score &middot; margin &middot; RRF</text>
+    <rect class="bxf" x="20" y="94" width="185" height="48" rx="4"/><text class="th" x="113" y="116" text-anchor="middle">Evidence coverage</text><text class="tm" x="113" y="131" text-anchor="middle">rule &middot; exception &middot; dependency</text>
+    <rect class="bxf" x="20" y="158" width="185" height="48" rx="4"/><text class="th" x="113" y="180" text-anchor="middle">Agreement</text><text class="tm" x="113" y="195" text-anchor="middle">generators &middot; contradiction</text>
+    <rect class="acc" x="285" y="69" width="190" height="93" rx="4"/><text class="ta" x="380" y="99" text-anchor="middle">Calibrated model</text><text class="tm" x="380" y="119" text-anchor="middle">P(sufficient | features)</text><text class="tm" x="380" y="138" text-anchor="middle">intent + language strata</text>
+    <rect class="bxf" x="540" y="30" width="180" height="60" rx="4"/><text class="th" x="630" y="54" text-anchor="middle">Legal vetoes</text><text class="tm" x="630" y="72" text-anchor="middle">time / place / source / authority</text>
+    <rect class="acc" x="540" y="126" width="180" height="60" rx="4"/><text class="ta" x="630" y="151" text-anchor="middle">Decision</text><text class="tm" x="630" y="170" text-anchor="middle">pass iff p &ge; &tau; and no veto</text>
+    <rect class="bxf" x="795" y="62" width="125" height="52" rx="4"/><text class="th" x="858" y="85" text-anchor="middle">Bundle</text><text class="tm" x="858" y="101" text-anchor="middle">groundable</text>
+    <rect class="bxf" x="795" y="142" width="125" height="52" rx="4"/><text class="th" x="858" y="165" text-anchor="middle">Abstention</text><text class="tm" x="858" y="181" text-anchor="middle">reason + remedy</text>
+    <path class="ln" d="M205 54 C250 54 250 92 285 100"/><path class="ln" d="M205 118 L285 118"/><path class="ln" d="M205 182 C250 182 250 144 285 136"/><path class="lnA" d="M475 116 L540 156"/><path class="lnA" d="M630 90 L630 126"/><path class="ln" d="M720 145 L795 96"/><path class="ln" d="M720 166 L795 168"/>
+   </svg><figcaption><b>The score cannot override the law.</b> Even high statistical confidence fails closed when an official source, valid version, territory or required authority finding is missing.</figcaption>
+  </figure>
+  <h3><span class="mk">8.1</span>Features and typed outcomes</h3>
+  <p>Features include top reranker score and margin, generator agreement, exact citation resolution, necessary-set coverage, language/script, query ambiguity, authority resolution, source verification, treatment conflict and corpus coverage. Test calibration error and reliability by intent and language; use group-specific thresholds only with enough held-out examples, otherwise fall back to the conservative global threshold.</p>
+<pre><b>type Abstention = {</b>
+  code: "AMBIGUOUS_CITATION" | "JURISDICTION_UNRESOLVED" |
+        "NO_VALID_VERSION" | "SOURCE_UNVERIFIED" | "FORUM_UNRESOLVED" |
+        "ADVERSE_TREATMENT_UNRESOLVED" | "MISSING_DELEGATED_AUTHORITY" |
+        "COMMENCEMENT_UNKNOWN" | "CORPUS_GAP" |
+        "INSUFFICIENT_EVIDENCE" | "RETRIEVAL_DEGRADED";
+  publicReason; missing: Requirement[]; suggestions: Clarification[];
+  confidence; threshold; retrievalRunId;
+<b>}</b></pre>
+  <p>Abstention must be actionable: identify the missing jurisdiction/date/Act/forum or say that the official corpus lacks the material. Never say merely “I cannot answer,” and never fill the gap from model memory.</p>
+ </div>
+</section>
+
+<section>
+ <div class="rail"><span class="num">&sect;9</span><span class="tag">Runtime<br>&amp; operations</span></div>
+ <div class="body">
+  <h2>Fast enough to be cautious</h2>
+  <div class="scroll"><table><thead><tr><th>Stage</th><th>Budget</th><th>Operational rule</th></tr></thead><tbody>
+   <tr><td class="k">Parse / policy</td><td>&le; 2 ms</td><td>Compiled citation grammar and in-memory alias automaton; DB confirms identifiers</td></tr>
+   <tr><td class="k">Query embedding</td><td>&le; 20 ms</td><td>Version-keyed cache for normalized public queries; no cross-user private text cache</td></tr>
+   <tr><td class="k">4 generators</td><td>&le; 45 ms</td><td>Parallel, same snapshot and filters; statement timeout per generator</td></tr>
+   <tr><td class="k">Rerank 50</td><td>&le; 60 ms</td><td>ONNX int8, bounded batch; fewer candidates only by measured latency policy</td></tr>
+   <tr><td class="k">Validate / assemble / gate</td><td>&le; 25 ms</td><td>Batch fetch and graph lookup; no N+1 queries</td></tr>
+  </tbody></table></div>
+  <h3><span class="mk">9.1</span>Adaptive vector execution</h3>
+<pre><i>// count estimate comes from the denormalized, prefiltered search projection</i>
+if estimatedEligible &lt;= EXACT_SCAN_LIMIT:
+    exactHammingOrFloatScan(filters, query)       <i>// deterministic recall</i>
+else:
+    SET LOCAL hnsw.ef_search = tunedEf
+    SET LOCAL hnsw.iterative_scan = strict_order
+    hnswSearch(filters, query, overfetch = 10 * k)
+
+<b>shadowSample:</b> compare approximate top-k with exact; alert on recall drift</pre>
+  <p>pgvector recommends monitoring approximate recall against exact search. Run exact shadow queries on a small, stratified sample and report recall by jurisdiction/filter selectivity, not only globally. A fast national-average metric can hide a failing Balochistan or historical-date slice.</p>
+  <h3><span class="mk">9.2</span>Degradation</h3>
+  <ul>
+   <li><strong>Embedder or HNSW unavailable:</strong> lexical + definition + graph path, marked <code>lexical_only</code>; normal gate threshold remains.</li>
+   <li><strong>Reranker unavailable:</strong> RRF order with a separately calibrated degraded-mode gate; if that calibration has not shipped, abstain.</li>
+   <li><strong>Graph incomplete:</strong> provision lookup may continue, but queries requiring definitions, delegated rules, treatment or authority fail the relevant coverage check.</li>
+   <li><strong>Database snapshot changes mid-request:</strong> retry the whole retrieval once; never assemble across corpus versions.</li>
+  </ul>
+  <h3><span class="mk">9.3</span>Audit and privacy</h3>
+  <p>The retrieval trace stores normalized filters, candidate IDs and stage scores, graph paths, model/index versions, gate features/decision, latency and corpus version. Anonymous mode does not persist raw query text or user ID; use an ephemeral request digest for aggregation. Access logs never contain evidence text. Retention and erasure follow Document 03&rsquo;s user-data policy while immutable public-corpus identifiers remain replayable.</p>
+  <h3><span class="mk">9.4</span>Offline is a labelled lower tier</h3>
+  <p>The mobile pack uses FTS5 + glossary and may add <code>sqlite-vec</code> with the inherited 384-dimensional device encoder. It has no cross-encoder and is presented as “offline search,” not as quality-equivalent grounded research. Targets remain p95 &le;300 ms for FTS and &le;800 ms for vector search on a 4 GB Android device. Online and offline scores are never mixed or compared as if calibrated.</p>
+  <h3><span class="mk">9.5</span>Exact, versioned caching</h3>
+  <p>A small process-local LRU may cache query embeddings and short-lived retrieval results. The key includes normalized query, language, sorted scopes, exact <code>asOf</code>, source/court filters, <code>corpusVersion</code>, taxonomy, embedding/reranker hashes, retrieval configuration and degradation mode. Do not add Redis for the single-VPS pilot, round dates, share results across full/degraded modes, or cache an inferred jurisdiction as if the user supplied it. Semantic answer caching belongs to Document 05.</p>
+ </div>
+</section>
+
+<section>
+ <div class="rail"><span class="num">&sect;10</span><span class="tag">Evaluation<br>&amp; learning</span></div>
+ <div class="body">
+  <h2>A Pakistani legal benchmark is part of the product</h2>
+  <p class="lede">There is no credible launch from generic English retrieval scores. The locked set must reflect Pakistani instruments, courts, amendments, scripts, provinces, ambiguity and genuine absence.</p>
+  <div class="scroll"><table><thead><tr><th>Stratum</th><th>Required labels</th><th>Primary metric / failure</th></tr></thead><tbody>
+   <tr><td class="k">Exact citations</td><td>Canonical unit, valid version, ambiguity</td><td>MRR / exact resolution; false auto-resolution = critical</td></tr>
+   <tr><td class="k">Issue questions</td><td>Necessary evidence set plus optional relevant set</td><td>Recall@50, NDCG@10, necessary-set coverage</td></tr>
+   <tr><td class="k">Temporal pairs</td><td>Same question before/after amendment</td><td>Point-in-time accuracy; any version leakage</td></tr>
+   <tr><td class="k">Jurisdiction pairs</td><td>Same issue across federal/provinces/territories</td><td>Wrong-jurisdiction rate = 0 on hard-filtered cases</td></tr>
+   <tr><td class="k">Precedent</td><td>Forum, subject, binding/persuasive, treatment</td><td>Authority/treatment accuracy and conflict recall</td></tr>
+   <tr><td class="k">Bilingual triplets</td><td>Equivalent English, Urdu, Roman Urdu questions</td><td>Paired NDCG gap, not translated-answer similarity</td></tr>
+   <tr><td class="k">Unanswerable</td><td>Missing source/date/place/forum, false premise</td><td>Abstention precision/recall and reason accuracy</td></tr>
+  </tbody></table></div>
+  <h3><span class="mk">10.1</span>Annotation protocol</h3>
+  <p>Two trained legal annotators independently mark the minimal sufficient spans, canonical citable units, required dependencies, temporal/jurisdiction scope and authority. A senior reviewer adjudicates disagreement. Preserve alternate relevant authorities instead of forcing a single-document gold label. LegalBench-RAG&rsquo;s span-level emphasis is useful, but its contracts domain is not a substitute for this jurisdiction-specific set.</p>
+  <h3><span class="mk">10.2</span>Mandatory ablations</h3>
+  <ul>
+   <li>BM25 alone, dense alone, BM25+dense, +definitions, +graph, +cross-encoder.</li>
+   <li>Float32 vs <code>halfvec(384)</code> vs <code>bit(1024)</code>; binary ships only if reranked NDCG loss is no more than two points and Recall@50 clears target.</li>
+   <li>HNSW vs exact by filter-selectivity bucket; current vs historical dates; each jurisdiction.</li>
+   <li>Direct multilingual retrieval vs any proposed translation hop. Direct remains unless paired evaluation proves otherwise and citation-token fidelity is unchanged.</li>
+   <li>Gate reliability curves and expected calibration error by intent/language, plus selective accuracy as coverage falls.</li>
+  </ul>
+  <h3><span class="mk">10.3</span>Adversarial fixtures that must stay green</h3>
+  <div class="scroll"><table><thead><tr><th>Fixture</th><th>Failure prevented</th></tr></thead><tbody>
+   <tr><td>“Tenant law” with no territory</td><td>Guessing a province; require clarification or explicitly scoped comparison</td></tr>
+   <tr><td>Conduct before amendment; proceeding after it</td><td>Applying present text retrospectively or omitting savings</td></tr>
+   <tr><td>Parent Act says “as prescribed” but rules are absent</td><td>Inventing the decisive fee, form, condition or procedure</td></tr>
+   <tr><td>Rules under a repealed and re-enacted Act</td><td>Discarding a still-continuing instrument or retaining an inconsistent one</td></tr>
+   <tr><td>Pre-/post-2025 constitutional precedent pair</td><td>Applying today&rsquo;s FCC/SC authority relation to the wrong period</td></tr>
+   <tr><td>Matching language appears only in a dissent</td><td>Treating a non-majority proposition as binding ratio</td></tr>
+   <tr><td>No adverse edge in incomplete judgment coverage</td><td>Claiming “good law” from absence of evidence</td></tr>
+   <tr><td>Later curator correction to an old provision</td><td>Replay failure when legal <code>asOf</code> is stored without corpus revision</td></tr>
+  </tbody></table></div>
+  <h3><span class="mk">10.4</span>Feedback without contamination</h3>
+  <p>Lawyer judgments enter a reviewed relevance-label queue, never the live index directly. Split by legal issue/instrument family before training to prevent near-duplicate leakage. Promote a model only on the untouched locked set; run the prior model as baseline and publish deltas by stratum. A click is navigation telemetry, not proof of legal relevance.</p>
+ </div>
+</section>
+
+<section>
+ <div class="rail"><span class="num">&sect;11</span><span class="tag">Delivery<br>contract</span></div>
+ <div class="body">
+  <h2>Implementation order and acceptance</h2>
+  <div class="scroll"><table><thead><tr><th>Phase</th><th>Deliverable</th><th>Cannot advance until</th></tr></thead><tbody>
+   <tr><td class="id">R0</td><td>QuerySpec, citation grammar, exact provision path, traces</td><td>100% golden citation resolution or typed ambiguity; INV-3 replay proven</td></tr>
+   <tr><td class="id">R1</td><td>Statute BM25 + dense + RRF + provision assembly</td><td>Recall/NDCG/temporal/jurisdiction targets pass</td></tr>
+   <tr><td class="id">R2</td><td>Definitions, typed graph expansion, calibrated gate</td><td>Necessary-set coverage and abstention targets pass</td></tr>
+   <tr><td class="id">R3</td><td>Cross-encoder and bilingual/Roman Urdu tuning</td><td>Paired bilingual gap and latency budget pass</td></tr>
+   <tr><td class="id">R4</td><td>Precedent retrieval and citator</td><td>Official judgment projection plus effective-dated court/authority schema exists</td></tr>
+  </tbody></table></div>
+  <h3><span class="mk">11.1</span>Port shape</h3>
+<pre><b>interface IRetrieve {</b>
+  retrieve(query: QuerySpec, options: RetrievalOptions):
+    Promise&lt;GroundingContext | Abstention&gt;;
+<b>}</b>
+
+<b>interface IIndexSearch {</b>
+  lexical(q, filters, limit): RankedCandidate[];
+  dense(embedding, filters, limit, searchPlan): RankedCandidate[];
+  definitions(terms, filters, limit): RankedCandidate[];
+  graph(seeds, edgeAllowList, filters, limit): RankedCandidate[];
+<b>}</b></pre>
+  <h3><span class="mk">11.2</span>Definition of done</h3>
+  <ul>
+   <li>No path can call generation without a passing bundle; contract test proves the boundary.</li>
+   <li>Every displayed citation resolves to an official stored source and exact citable unit.</li>
+   <li>Replay reconstructs the same candidate ranks from pinned corpus/index/model versions.</li>
+   <li>All quality targets pass overall and by declared jurisdiction/language strata; critical legal-filter errors are zero in the locked set.</li>
+   <li>Load test meets the existing latency/cost budget with cold-cache and degraded-mode runs.</li>
+   <li>Known schema dependencies&mdash;search projection, judgment embeddings and authority matrix&mdash;are migrated before their modes are enabled.</li>
+  </ul>
+ </div>
+</section>
+
+<section>
+ <div class="rail"><span class="num">R</span><span class="tag">Primary<br>sources</span></div>
+ <div class="body">
+  <h2>References</h2>
+  <ol style="font-size:.8rem;line-height:1.62">
+   <li><b>Constitution of Pakistan, consolidated text</b> &mdash; Articles 189 and 201 and the current constitutional court structure. National Assembly of Pakistan, amended through 21 Nov 2025. <a href="https://na.gov.pk/uploads/documents/6926e060076ed_467.pdf">Official PDF</a>.</li>
+   <li><b>Constitution (Twenty-Seventh Amendment) Act, 2025</b> &mdash; source amendment creating the Federal Constitutional Court and substituting the binding-precedent provisions. National Assembly of Pakistan. <a href="https://www.na.gov.pk/uploads/documents/691ec19a6a212_270.pdf">Official Gazette PDF</a>.</li>
+   <li><b>The Judicial System of Pakistan</b> &mdash; official institutional overview and court structure; historical descriptions must be read subject to later constitutional amendments. Supreme Court of Pakistan. <a href="https://www.supremecourt.gov.pk/downloads_judgements/all_downloads/Judicial_System_of_Pakistan/thejudicialsystemofPakistan.pdf">Official PDF</a>.</li>
+   <li><b>General Clauses Act, 1897</b> &mdash; commencement, effect of repeal, re-enacted references, Gazette publication and continuity/amendment of subordinate instruments. Pakistan Code, Ministry of Law and Justice. <a href="https://pakistancode.gov.pk/pdffiles/administratore8a332cad1093952d0ecb86288b38c75.pdf">Official PDF</a>.</li>
+   <li><b>pgvector</b> &mdash; HNSW filtering, iterative scans, binary quantization, reranking and exact-search recall monitoring. <a href="https://github.com/pgvector/pgvector">Official repository</a>.</li>
+   <li><b>PostgreSQL 17 full-text search controls</b> &mdash; query constructors, <code>ts_rank</code>/<code>ts_rank_cd</code> and normalization flag semantics. <a href="https://www.postgresql.org/docs/17/textsearch-controls.html">Official documentation</a>.</li>
+   <li><b>ParadeDB full-text search and filtering</b> &mdash; BM25 indexing, tokenizer/filter configuration and predicate pushdown. <a href="https://docs.paradedb.com/documentation/full-text/overview">Official overview</a>; <a href="https://docs.paradedb.com/documentation/filtering">filtering</a>.</li>
+   <li><b>Reciprocal Rank Fusion Outperforms Condorcet and Individual Rank Learning Methods</b> &mdash; Cormack, Clarke &amp; B&uuml;ttcher, SIGIR 2009; original RRF method and constant. <a href="https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf">Author-hosted paper</a>.</li>
+   <li><b>Sentence Transformers CrossEncoder training</b> &mdash; second-stage reranking architecture and evaluation workflow. <a href="https://www.sbert.net/docs/cross_encoder/training_overview.html">Official documentation</a>.</li>
+   <li><b>BEIR</b> &mdash; Thakur et al., 2021; heterogeneous evaluation showing BM25 as a robust baseline and the effectiveness/cost of reranking. <a href="https://arxiv.org/abs/2104.08663">Paper</a>.</li>
+   <li><b>Multilingual E5 Text Embeddings</b> &mdash; Wang et al., 2024; multilingual contrastive embedding research supporting direct multilingual retrieval candidates. <a href="https://arxiv.org/abs/2402.05672">Paper</a>.</li>
+   <li><b>MIRACL</b> &mdash; Zhang et al., TACL 2023; native-speaker relevance judgments across 18 languages and multilingual retrieval evaluation methodology. It does not include Urdu, so it is methodological evidence, not local validation. <a href="https://direct.mit.edu/tacl/article/doi/10.1162/tacl_a_00595/117438/MIRACL-A-Multilingual-Retrieval-Dataset-Covering">Paper</a>.</li>
+   <li><b>LegalBench-RAG</b> &mdash; Pipitone &amp; Alami, 2024; 6,858 expert-annotated legal query/answer pairs and character-span retrieval evaluation emphasizing minimal relevant context. <a href="https://arxiv.org/abs/2408.10343">Paper</a>; <a href="https://github.com/ZeroEntropy-AI/legalbenchrag">official code</a>.</li>
+   <li><b>Legal RAG Bench</b> &mdash; Butler &amp; Butler, 2026; end-to-end factorial evaluation supporting retrieval as a major determinant of legal RAG quality. Recent preprint; used as supporting evidence only. <a href="https://arxiv.org/abs/2603.01710">Paper</a>.</li>
+   <li><b>Selective Classification for Deep Neural Networks</b> &mdash; Geifman &amp; El-Yaniv, NeurIPS 2017; risk&ndash;coverage framing for calibrated abstention. <a href="https://proceedings.neurips.cc/paper/2017/file/4a8423d5e91a00bb7e46540e2b0cf1-Paper.pdf">Paper</a>.</li>
+   <li><b>Local architecture evidence</b> &mdash; <a href="01-master-architecture.html">Document 01</a>, <a href="02-corpus-and-ingestion.html">02</a>, <a href="03-data-and-storage.html">03</a>, <a href="03a-capacity-plan.html">03a</a> and <a href="03b-legal-data-model.html">03b</a>: invariants, official-source corpus policy, measured capacity, bitemporal schema, typed legal graph, interfaces and performance envelope.</li>
+  </ol>
+ </div>
+</section>
+</div>
+</body>
+</html>

@@ -1,0 +1,622 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nizam-e-Qanoon Backend API</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{--paper:#f3f4f7;--surface:#fff;--surface-2:#edeff3;--surface-3:#e3e7ee;--ink:#14171e;--ink-2:#4c5566;--ink-3:#7e879a;--rule:#dcdfe7;--rule-2:#c6cbd6;--indigo:#26397a;--indigo-soft:#e4e8f5;--rubric:#9e3b2f;--rubric-soft:#f6e7e4;--ok:#2c6349;--ok-soft:#e0ede7;--warn:#7e6114;--warn-soft:#f3ebd8;--shadow:0 1px 2px rgba(20,23,30,.05),0 8px 24px -12px rgba(20,23,30,.14);--f-display:"Newsreader",Georgia,serif;--f-body:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;--f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;--measure:74ch;--rail:9.5rem}
+@media(prefers-color-scheme:dark){:root{--paper:#0d0f14;--surface:#14171e;--surface-2:#1b1f28;--surface-3:#232935;--ink:#e6e9ef;--ink-2:#a0a9ba;--ink-3:#6d7688;--rule:#252a34;--rule-2:#333a47;--indigo:#93a8e8;--indigo-soft:#1b2136;--rubric:#d8867a;--rubric-soft:#2b1d1b;--ok:#6fbf95;--ok-soft:#152520;--warn:#d3ab5c;--warn-soft:#241e10;--shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px -14px rgba(0,0,0,.7)}}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:16.5px;line-height:1.62;-webkit-font-smoothing:antialiased}.wrap{max-width:76rem;margin:0 auto;padding:0 1.5rem 8rem}.masthead{border-bottom:2px solid var(--ink);padding:3.5rem 0 1.25rem;margin-bottom:2rem}.kicker{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--rubric);margin:0 0 1rem}h1{font-family:var(--f-display);font-weight:500;font-size:clamp(2.4rem,5.8vw,3.9rem);line-height:1.03;letter-spacing:-.021em;margin:0 0 .5rem;text-wrap:balance}.dek{font-family:var(--f-display);font-size:clamp(1.05rem,2.1vw,1.3rem);color:var(--ink-2);max-width:64ch;margin:0 0 1.9rem;font-style:italic}.meta{display:flex;flex-wrap:wrap;gap:.5rem 2.25rem;font-family:var(--f-mono);font-size:.7rem;letter-spacing:.05em;color:var(--ink-3);border-top:1px solid var(--rule);padding-top:.9rem}.meta b{color:var(--ink-2);font-weight:500}section{display:grid;grid-template-columns:var(--rail) minmax(0,1fr);gap:0 2.5rem;padding-top:3.4rem;border-top:1px solid var(--rule);margin-top:3.4rem}section.first{border-top:none;margin-top:0}.rail{position:sticky;top:1.5rem;align-self:start;padding-top:.4rem}.rail .num{font-family:var(--f-mono);font-size:1.05rem;font-weight:600;color:var(--rubric);display:block}.rail .tag{font-family:var(--f-mono);font-size:.63rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);display:block;margin-top:.5rem;line-height:1.55}.body{min-width:0}@media(max-width:880px){section{grid-template-columns:1fr}.rail{position:static;display:flex;align-items:baseline;gap:.85rem;margin-bottom:.9rem}.rail .tag{margin-top:0}}h2{font-family:var(--f-display);font-weight:500;font-size:clamp(1.6rem,3.3vw,2.2rem);line-height:1.14;letter-spacing:-.017em;margin:0 0 .8rem;text-wrap:balance}h3{font-weight:700;font-size:1.01rem;margin:2.6rem 0 .55rem}h3 .mk{font-family:var(--f-mono);color:var(--rubric);font-weight:600;margin-inline-end:.55rem;font-size:.88em}h4{font-family:var(--f-mono);font-weight:600;font-size:.71rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);margin:1.9rem 0 .6rem}p{margin:0 0 1.05rem;max-width:var(--measure)}.lede{font-size:1.075rem;color:var(--ink-2);max-width:68ch}ul,ol{margin:0 0 1.15rem;padding-inline-start:1.3rem;max-width:var(--measure)}li{margin-bottom:.42rem}li::marker{color:var(--ink-3)}a{color:var(--indigo);text-underline-offset:.18em;word-break:break-word}code{font-family:var(--f-mono);font-size:.855em;font-variant-ligatures:none}p code,li code,td code{background:var(--surface-2);border:1px solid var(--rule);padding:.06em .34em;border-radius:3px}.scroll{overflow-x:auto;margin:1.4rem 0 1.9rem;border:1px solid var(--rule);border-radius:5px;background:var(--surface)}table{border-collapse:collapse;width:100%;font-size:.82rem;line-height:1.48}th{text-align:left;font-family:var(--f-mono);font-weight:600;font-size:.635rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);padding:.7rem .8rem;border-bottom:1px solid var(--rule-2);white-space:nowrap;background:var(--surface-2)}td{padding:.64rem .8rem;border-bottom:1px solid var(--rule);vertical-align:top}tr:last-child td{border-bottom:none}tbody tr:hover td{background:var(--surface-2)}td.id{font-family:var(--f-mono);font-size:.75rem;color:var(--rubric);white-space:nowrap;font-weight:500}td.k{font-weight:600;min-width:9rem}.chip{display:inline-block;font-family:var(--f-mono);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;font-weight:600;padding:.2em .5em;border-radius:3px;border:1px solid transparent;white-space:nowrap}.c-hard{background:var(--rubric-soft);color:var(--rubric);border-color:var(--rubric)}.c-ai{background:var(--indigo-soft);color:var(--indigo);border-color:var(--indigo)}.c-ok{background:var(--ok-soft);color:var(--ok);border-color:var(--ok)}.c-warn{background:var(--warn-soft);color:var(--warn);border-color:var(--warn)}.note{border-inline-start:3px solid var(--rubric);background:var(--surface);padding:1rem 1.15rem;margin:1.5rem 0;border-radius:0 4px 4px 0;max-width:var(--measure);box-shadow:var(--shadow)}.note.blue{border-inline-start-color:var(--indigo)}.note.green{border-inline-start-color:var(--ok)}.note p:last-child,.note ul:last-child{margin-bottom:0}figure{margin:2rem 0;background:var(--surface);border:1px solid var(--rule);border-radius:5px;padding:1.4rem 1.2rem .9rem;box-shadow:var(--shadow);overflow-x:auto}figure svg{display:block;width:100%;min-width:42rem;height:auto;color:var(--ink)}figcaption{margin-top:1rem;padding-top:.8rem;border-top:1px solid var(--rule);font-size:.78rem;color:var(--ink-3);line-height:1.55}figcaption b{color:var(--ink-2)}.fignum{font-family:var(--f-mono);font-size:.63rem;letter-spacing:.12em;text-transform:uppercase;color:var(--rubric);font-weight:600;display:block;margin-bottom:.7rem}pre{background:var(--surface);border:1px solid var(--rule);border-radius:5px;padding:1rem 1.05rem;overflow-x:auto;margin:1.25rem 0;font-family:var(--f-mono);font-size:.75rem;line-height:1.6;color:var(--ink-2)}pre b{color:var(--ink)}pre i{color:var(--ink-3);font-style:normal}pre u{color:var(--rubric);text-decoration:none}.dg{font-family:var(--f-mono);font-size:10.5px}.dg .bx{fill:none;stroke:currentColor;stroke-width:1.2}.dg .bxf{fill:var(--surface-2);stroke:currentColor;stroke-width:1.2}.dg .acc{fill:var(--rubric-soft);stroke:var(--rubric);stroke-width:1.4}.dg text{fill:currentColor}.dg .ta{fill:var(--rubric);font-weight:600}.dg .tm{fill:currentColor;opacity:.64;font-size:9.5px}.dg .th{font-weight:600}.dg .ln{stroke:currentColor;stroke-width:1.1;fill:none}.dg .lnA{stroke:var(--rubric);stroke-width:1.4;fill:none}.dg .lnD{stroke:currentColor;stroke-width:1.1;fill:none;stroke-dasharray:5 3}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="masthead">
+ <p class="kicker">Document 07 &middot; layer L6 &middot; child of 01 Master Architecture</p>
+ <h1>Nizam-e-Qanoon Backend API</h1>
+ <p class="dek">The enforceable boundary around Pakistani legal intelligence: versioned HTTP contracts, phone-first identity, verified answer orchestration, privacy-shaped persistence, signed distribution and an audit trail that can prove what the system knew and did.</p>
+ <div class="meta"><span><b>Version</b> 1.0</span><span><b>Date</b> 30 Aug 2026</span><span><b>Layer</b> L6</span><span><b>Provides</b> IPublicAPI &middot; ISync &middot; IUserSync</span><span><b>Requires</b> IRetrieve &middot; IGenerate &middot; IPrecedent &middot; IDraft &middot; IProcedure</span><span><b>Figures</b> 5</span></div>
+</header>
+
+<section class="first">
+ <div class="rail"><span class="num">&sect;0</span><span class="tag">Mandate<br>&amp; proof</span></div>
+ <div class="body">
+  <h2>The API coordinates legal truth; it never manufactures it</h2>
+  <p class="lede">L6 is the sole synchronous entry point and the sole authority for identity, persistence and release. It converts stable layer contracts into a client-safe protocol while preserving every abstention, qualification, source version and inability returned below it.</p>
+  <div class="scroll"><table>
+   <thead><tr><th>Inherited rule</th><th>Backend enforcement</th><th>Acceptance evidence</th></tr></thead>
+   <tbody>
+    <tr><td class="id">INV-1</td><td>Public schemas accept and return <code>ResolvedCitation</code>; no route accepts model-authored citation text, URL, date or identifier.</td><td>Schema and architecture test prove no citation-string constructor in L6.</td></tr>
+    <tr><td class="id">INV-2</td><td><code>Abstention</code> cannot enter <code>IGenerate</code>. The answer orchestrator has disjoint passed and abstained branches.</td><td>Mutation test fails if a generation call occurs on the abstention branch.</td></tr>
+    <tr><td class="id">INV-3</td><td>An authenticated answer is releasable only after its verified artifact and replay graph commit. Anonymous privacy deliberately supersedes durable replay.</td><td>100% non-anonymous completions replay byte-for-byte from pinned artifacts.</td></tr>
+    <tr><td class="id">INV-4</td><td>Chunk identifiers are rejected at the public schema boundary; durable URLs and client state use instrument, provision, judgment or answer identity.</td><td>OpenAPI contains no public <code>chunk_id</code>.</td></tr>
+    <tr><td class="id">INV-5</td><td>Every legal read has an explicit <code>as_of</code>; today is resolved once at request admission in <code>Asia/Karachi</code>, then carried as a value.</td><td>Contract test rejects an unresolved temporal scope below the route layer.</td></tr>
+    <tr><td class="id">QA-12</td><td>Anonymous admission binds an ephemeral execution policy with no durable writer, cache insertion, content telemetry, history, sync or artifact retention.</td><td>Dependency-graph test enumerates zero persistence ports.</td></tr>
+   </tbody>
+  </table></div>
+  <div class="note"><h4>Normative language</h4><p><b>Must</b> and <b>shall</b> are release requirements. An <b>outcome</b> is a valid legal result such as abstention or insufficient facts; a <b>problem</b> is a protocol or system fault. L6 must never translate the first into the second merely to simplify a client.</p></div>
+ </div>
+</section>
+
+<section>
+ <div class="rail"><span class="num">&sect;1</span><span class="tag">Boundary<br>&amp; modules</span></div>
+ <div class="body">
+  <h2>A modular monolith with ports, not internal HTTP</h2>
+  <p class="lede">One FastAPI deployment owns routes and orchestration; the legal modules remain ordinary typed Python dependencies. Inference and rendering are separate workers because they have different resource and isolation needs, not because service boundaries are fashionable.</p>
+  <figure><span class="fignum">Figure 1 &mdash; L6 component boundary</span>
+   <svg class="dg" viewBox="0 0 940 430" role="img" aria-labelledby="f1t f1d"><title id="f1t">Backend component boundary</title><desc id="f1d">Clients enter through edge controls and FastAPI routes. Middleware establishes request context. Application orchestrators call retrieval, generation, precedent, drafting and procedure ports. Identity, audit, metering, sync and jobs use PostgreSQL. Inference, SMS, model provider and object storage are narrow external adapters.</desc>
+    <defs><marker id="a1" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/></marker></defs>
+    <rect class="bxf" x="20" y="30" width="130" height="70" rx="4"/><text class="th" x="85" y="57" text-anchor="middle">L7 clients</text><text class="tm" x="85" y="76" text-anchor="middle">REST + SSE</text>
+    <rect class="bx" x="190" y="30" width="145" height="70" rx="4"/><text class="th" x="262" y="57" text-anchor="middle">Edge</text><text class="tm" x="262" y="76" text-anchor="middle">TLS &middot; coarse limits</text>
+    <rect class="acc" x="375" y="20" width="220" height="90" rx="4"/><text class="ta" x="485" y="48" text-anchor="middle">FastAPI route layer</text><text class="tm" x="485" y="68" text-anchor="middle">auth &middot; validation &middot; version</text><text class="tm" x="485" y="85" text-anchor="middle">problem mapping &middot; SSE</text>
+    <rect class="bxf" x="635" y="30" width="280" height="70" rx="4"/><text class="th" x="775" y="57" text-anchor="middle">Request context</text><text class="tm" x="775" y="76" text-anchor="middle">actor &middot; mode &middot; scope &middot; snapshots</text>
+    <rect class="bxf" x="180" y="155" width="600" height="90" rx="4"/><text class="th" x="480" y="180" text-anchor="middle">Application orchestrators</text><text class="tm" x="480" y="201" text-anchor="middle">answer &middot; research &middot; precedent &middot; draft &middot; procedure &middot; sync &middot; curation</text><text class="tm" x="480" y="220" text-anchor="middle">transaction boundaries, release policy and idempotency &mdash; no legal reasoning</text>
+    <rect class="bx" x="20" y="292" width="130" height="66" rx="4"/><text class="th" x="85" y="316" text-anchor="middle">IRetrieve</text><text class="tm" x="85" y="337" text-anchor="middle">context | abstain</text>
+    <rect class="bx" x="170" y="292" width="130" height="66" rx="4"/><text class="th" x="235" y="316" text-anchor="middle">IGenerate</text><text class="tm" x="235" y="337" text-anchor="middle">verified only</text>
+    <rect class="bx" x="320" y="292" width="145" height="66" rx="4"/><text class="th" x="392" y="316" text-anchor="middle">Domain ports</text><text class="tm" x="392" y="337" text-anchor="middle">precedent &middot; rules</text>
+    <rect class="bx" x="485" y="292" width="135" height="66" rx="4"/><text class="th" x="552" y="316" text-anchor="middle">Identity</text><text class="tm" x="552" y="337" text-anchor="middle">sessions &middot; policy</text>
+    <rect class="bx" x="640" y="292" width="135" height="66" rx="4"/><text class="th" x="707" y="316" text-anchor="middle">Audit + usage</text><text class="tm" x="707" y="337" text-anchor="middle">append-only</text>
+    <rect class="bx" x="795" y="292" width="120" height="66" rx="4"/><text class="th" x="855" y="316" text-anchor="middle">Sync + jobs</text><text class="tm" x="855" y="337" text-anchor="middle">two trusts</text>
+    <text class="tm" x="20" y="402">Persistent state: PostgreSQL 17 + R2/MinIO &nbsp;&middot;&nbsp; narrow runtime adapters: inference worker, LLM provider, SMS gateway</text>
+    <g class="ln" marker-end="url(#a1)"><line x1="150" y1="65" x2="186" y2="65"/><line x1="335" y1="65" x2="371" y2="65"/><line x1="595" y1="65" x2="631" y2="65"/><line x1="485" y1="110" x2="485" y2="151"/><line x1="480" y1="245" x2="85" y2="288"/><line x1="480" y1="245" x2="235" y2="288"/><line x1="480" y1="245" x2="392" y2="288"/><line x1="480" y1="245" x2="552" y2="288"/><line x1="480" y1="245" x2="707" y2="288"/><line x1="480" y1="245" x2="855" y2="288"/></g>
+   </svg><figcaption><b>The route layer is intentionally boring.</b> It converts transport into typed commands and typed results back into transport. It does not query tables opportunistically, import a vendor SDK or reinterpret a legal result. All internal calls are in-process ports; network separation occurs only where isolation or hardware proves it necessary.</figcaption>
+  </figure>
+  <pre><b>nizam/api/</b>
+  app.py                 <i>composition root and lifespan</i>
+  middleware/            <i>context, auth, limits, idempotency, audit envelope</i>
+  routes/                <i>thin v1 routers; no SQL and no legal logic</i>
+  contracts/             <i>Pydantic strict input/output types; OpenAPI source</i>
+  application/           <i>use-case orchestrators and transaction policy</i>
+  identity/ policies/    <i>authentication and authorization decisions</i>
+  audit/ metering/       <i>replay graph, incidents and append-only usage</i>
+  sync/ jobs/            <i>separate corpus/user sync and durable work</i>
+  adapters/              <i>Postgres, SMS, object store; no LLM adapter here</i></pre>
+ </div>
+</section>
+
+<section>
+ <div class="rail"><span class="num">&sect;2</span><span class="tag">Context<br>&amp; snapshots</span></div>
+ <div class="body">
+  <h2>Resolve ambiguity once; pin legal state for the whole request</h2>
+  <p class="lede">A long model call must not hold a database transaction open, yet a legal answer cannot combine one corpus release with another. Admission therefore takes a short read transaction, resolves scope and pins immutable identifiers; every downstream read supplies those identifiers explicitly.</p>
+  <pre><b>RequestContext</b> {
+  requestId: UUIDv7; traceId: TraceId; apiVersion: "v1";
+  actor: AnonymousActor | UserActor | ServiceActor;
+  execution: "anonymous_ephemeral" | "authenticated_persistent";
+  locale: "en-PK" | "ur-PK"; readingLevel: "plain" | "professional";
+  legalScope: { jurisdiction; territory?; forum?; authorityPerspective?; asOf };
+  knowledgeAsOf: CorpusRevisionId; corpusVersion: bigint;
+  ruleManifest?: RulePackManifestId; taxonomyVersion: string;
+  policy: { entitlements[]; dataClass; retentionClass; riskClass };
+  deadline: Instant; client: { app; version; deviceClass? };
+}</pre>
+  <div class="scroll"><table>
+   <thead><tr><th>Admission decision</th><th>Rule</th><th>Failure</th></tr></thead>
+   <tbody>
+    <tr><td class="k">Request identity</td><td>Client supplies <code>X-Request-ID</code> as UUIDv7 or server creates it. Duplicate identity is allowed only through idempotency.</td><td><code>invalid_request_identity</code></td></tr>
+    <tr><td class="k">Date</td><td>Resolve missing <code>as_of</code> to the current Pakistan civil date once; emit the resolved date in every legal response.</td><td><code>invalid_legal_date</code></td></tr>
+    <tr><td class="k">Jurisdiction</td><td>Never infer a province from IP, SIM or profile. User-supplied and system-inferred values remain labelled separately.</td><td>Typed <code>scope_required</code> outcome</td></tr>
+    <tr><td class="k">Corpus</td><td>Pin one published corpus version and enabled scope. A mid-request publication cannot enter the result.</td><td>Retry preflight once; then <code>corpus_unavailable</code></td></tr>
+    <tr><td class="k">Rules</td><td>Calculators and drafts pin one active, signed rule manifest compatible with the corpus and date.</td><td><code>rule_pack_unavailable</code> outcome</td></tr>
+    <tr><td class="k">Deadline</td><td>One absolute deadline propagates to database statements and adapters; child calls receive smaller budgets.</td><td><code>operation_timed_out</code></td></tr>
+   </tbody>
+  </table></div>
+  <p>Connections set actor context with transaction-scoped <code>SET LOCAL</code> before any RLS-protected query and clear automatically at commit. A pooled connection must never retain user scope. Corpus reads use the restricted application role; corpus publication remains physically unavailable to L6.</p>
+ </div>
+</section>
+
+<section id="protocol">
+ <div class="rail"><span class="num">&sect;3</span><span class="tag">HTTP<br>contract</span></div>
+ <div class="body">
+  <h2>Contract-first, additive within v1, mechanically diffed</h2>
+  <p class="lede"><code>openapi/nizam-v1.yaml</code> is generated from strict route contracts, linted and diffed in CI. OpenAPI 3.2 describes REST operations; the SSE event catalogue is a companion schema because an event stream is not an ordinary JSON response.</p>
+  <div class="scroll"><table>
+   <thead><tr><th>Concern</th><th>Normative decision</th></tr></thead>
+   <tbody>
+    <tr><td class="k">Base and versions</td><td><code>https://api.nizam.pk/v1</code>. Breaking representation or semantic changes require <code>/v2</code>; additive optional fields and new endpoints stay in v1.</td></tr>
+    <tr><td class="k">Serialization</td><td>UTF-8 JSON, RFC 3339 instants, ISO 8601 civil dates, decimal money as strings plus ISO currency, UUIDv7 public request/resource identifiers.</td></tr>
+    <tr><td class="k">Strictness</td><td>Mutation inputs reject unknown fields. Outputs are typed discriminated unions. Numeric dates, floats for money and unbounded strings are forbidden.</td></tr>
+    <tr><td class="k">Pagination</td><td>Opaque, signed cursor over a stable sort and snapshot; never an offset for changing judgment or audit collections.</td></tr>
+    <tr><td class="k">Conditional reads</td><td>Public immutable legal resources expose strong <code>ETag</code>; temporal and corpus version are in the representation and cache key.</td></tr>
+    <tr><td class="k">Mutations</td><td><code>Idempotency-Key</code> required for answer creation, draft rendering, reports, sync push and publication commands.</td></tr>
+    <tr><td class="k">Errors</td><td><code>application/problem+json</code> following RFC 9457. Domain outcomes remain normal typed representations, not fake HTTP errors.</td></tr>
+    <tr><td class="k">Deprecation</td><td>Mark in OpenAPI, emit <code>Deprecation</code> and <code>Sunset</code>, retain at least two supported client releases, publish migration notes.</td></tr>
+   </tbody>
+  </table></div>
+  <h3><span class="mk">3.1</span>Request headers</h3>
+  <pre><b>Authorization:</b> Bearer &lt;short-lived access token&gt;
+<b>X-Request-ID:</b> 0198...                 <i>client-generated UUIDv7</i>
+<b>Idempotency-Key:</b> 0198...              <i>required on costly/stateful POST</i>
+<b>traceparent:</b> 00-&lt;trace-id&gt;-&lt;parent-id&gt;-01
+<b>Accept-Language:</b> ur-PK, en-PK;q=0.8
+<b>X-Client-Version:</b> android/1.4.2
+<b>X-Corpus-Version:</b> 1842              <i>optional client observation, never authority</i></pre>
+ </div>
+</section>
+
+<section id="identity">
+ <div class="rail"><span class="num">&sect;4</span><span class="tag">Identity<br>&amp; sessions</span></div>
+ <div class="body">
+  <h2>Phone-first is an access choice, not a claim of strong identity</h2>
+  <p class="lede">SMS proves temporary control of a number; it does not prove the subscriber is the named person or an enrolled advocate. The backend keeps account login, professional verification and privileged-administrator assurance as separate facts.</p>
+  <div class="scroll"><table>
+   <thead><tr><th>Control</th><th>Citizen / advocate account</th><th>Privileged staff</th></tr></thead>
+   <tbody>
+    <tr><td class="k">Initial sign-in</td><td>E.164 Pakistani number; single-use SMS OTP; email optional.</td><td>Invite only; verified organizational identity.</td></tr>
+    <tr><td class="k">Assurance</td><td>Possession-level account. Advocate status is a separately reviewed credential with issuer and expiry.</td><td>Phishing-resistant passkey/WebAuthn preferred; TOTP recovery; SMS alone forbidden.</td></tr>
+    <tr><td class="k">Access token</td><td colspan="2">Five-minute signed token containing opaque subject, session id, assurance, scopes and token version; no phone, email or professional data.</td></tr>
+    <tr><td class="k">Refresh</td><td colspan="2">Opaque 256-bit rotating token, hashed at rest, one family per device. Reuse revokes the whole family and creates a security event.</td></tr>
+    <tr><td class="k">OTP</td><td colspan="2">Challenge-specific salted hash, ten-minute maximum, accepted once, five verification attempts, resend cooldown and progressive account/IP/device controls.</td></tr>
+    <tr><td class="k">Recovery</td><td>New-number recovery is delayed and risk-reviewed; saved legal data is not disclosed through an OTP-only shortcut.</td><td>Two-person recovery with recorded evidence.</td></tr>
+   </tbody>
+  </table></div>
+  <h3><span class="mk">4.1</span>Anonymous execution is a different composition root</h3>
+  <p>Anonymous entry creates an opaque, SameSite-bound session and constructs <code>AnonymousExecutionPolicy</code>. That graph binds ephemeral in-memory buffers and no-op content telemetry; it does not bind answer history, drafts, user sync, semantic-cache insertion, billing identity or durable audit bodies. Joining later starts a fresh account context; it never imports anonymous history without an explicit, itemized user action.</p>
+  <div class="note green"><h4>Privacy beats replay</h4><p>For anonymous work, retain content-free counters only: route class, coarse result class, latency bucket and service health. No query digest intended for later correlation, no evidence text, no answer body and no device fingerprint. An ephemeral request identifier may exist in memory only for the lifetime of the response.</p></div>
+ </div>
+</section>
+
+<section id="authorization">
+ <div class="rail"><span class="num">&sect;5</span><span class="tag">Authorization<br>&amp; tenancy</span></div>
+ <div class="body">
+  <h2>Every object lookup is an authorization decision</h2>
+  <p class="lede">Roles express capability; ownership, matter membership, jurisdiction and workflow state decide the object. Route decorators alone are insufficient, so policy checks occur in the application service and PostgreSQL RLS supplies a second boundary for user data.</p>
+  <div class="scroll"><table>
+   <thead><tr><th>Principal</th><th>May do</th><th>Must not do</th></tr></thead>
+   <tbody>
+    <tr><td class="k">Anonymous</td><td>Public law, search, unsaved verified answer, deterministic public calculator.</td><td>History, drafts, downloads retained after delivery, reports containing stored replay.</td></tr>
+    <tr><td class="k">Citizen</td><td>Own bookmarks, answers, matters and drafts; public legal tools within entitlement.</td><td>Read another user&rsquo;s opaque id; assert advocate status.</td></tr>
+    <tr><td class="k">Verified advocate</td><td>Professional view and exports; own matters; advocate-only beta features.</td><td>Access any client/matter not expressly assigned.</td></tr>
+    <tr><td class="k">Curator</td><td>Assigned ingestion failures, source images, structured corrections, re-run gates.</td><td>Publish corpus directly; view user legal matters.</td></tr>
+    <tr><td class="k">Legal reviewer</td><td>Review assigned rules, clauses, challenged answers and redacted replay packages.</td><td>Publish a rule they authored; browse unrelated user content.</td></tr>
+    <tr><td class="k">Rule author</td><td>Create immutable candidate versions and tests.</td><td>Activate their candidate.</td></tr>
+    <tr><td class="k">Rule publisher</td><td>Approve a separately authored candidate after gates and signature.</td><td>Edit evidence during approval; self-approve.</td></tr>
+    <tr><td class="k">Support</td><td>Account metadata and user-provided request id; time-limited audited impersonation-free diagnostics.</td><td>Query, answer, draft or matter bodies by default.</td></tr>
+    <tr><td class="k">Administrator</td><td>Identity, entitlement, operational configuration.</td><td>Bypass maker-checker, corpus publisher role or RLS through the application.</td></tr>
+   </tbody>
+  </table></div>
+  <p>Opaque identifiers are not authorization. Every <code>GET /drafts/{id}</code>, event stream, artifact URL and sync record verifies actor-object relation. Signed object-store URLs are short-lived, single-purpose and minted only after authorization; storage buckets are never public.</p>
+ </div>
+</section>
+
+<section id="answers">
+ <div class="rail"><span class="num">&sect;6</span><span class="tag">Answer<br>orchestration</span></div>
+ <div class="body">
+  <h2>Persist the proof before releasing the legal prose</h2>
+  <p class="lede">The backend streams progress, not speculative model tokens. Retrieval may abstain; generation may abstain; verification may drop a claim or veto the whole artifact. Only a complete verified artifact crosses the release barrier.</p>
+  <figure><span class="fignum">Figure 2 &mdash; Grounded answer state machine</span>
+   <svg class="dg" viewBox="0 0 940 500" role="img" aria-labelledby="f2t f2d"><title id="f2t">Answer orchestration state machine</title><desc id="f2d">An admitted answer pins scope and versions, retrieves evidence, branches to abstention if the gate fails, otherwise generates and verifies. A verified artifact is committed with audit before its blocks are streamed. Anonymous work uses an ephemeral release branch with no persistence. Cancellation and faults have typed terminal states.</desc>
+    <defs><marker id="a2" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/></marker></defs>
+    <g class="bxf"><rect x="25" y="45" width="125" height="52" rx="20"/><rect x="190" y="45" width="125" height="52" rx="4"/><rect x="355" y="45" width="125" height="52" rx="4"/><rect x="520" y="45" width="125" height="52" rx="4"/><rect x="685" y="45" width="125" height="52" rx="4"/></g>
+    <g text-anchor="middle"><text class="th" x="87" y="76">admitted</text><text class="th" x="252" y="76">scope pinned</text><text class="th" x="417" y="76">retrieving</text><text class="th" x="582" y="76">generating</text><text class="th" x="747" y="76">verifying</text></g>
+    <polygon class="bx" points="417,145 487,190 417,235 347,190"/><text class="th" x="417" y="186" text-anchor="middle">gate</text><text class="tm" x="417" y="203" text-anchor="middle">pass?</text>
+    <polygon class="bx" points="747,145 817,190 747,235 677,190"/><text class="th" x="747" y="186" text-anchor="middle">whole</text><text class="tm" x="747" y="203" text-anchor="middle">answer pass?</text>
+    <rect class="acc" x="805" y="280" width="115" height="58" rx="4"/><text class="ta" x="862" y="304" text-anchor="middle">release barrier</text><text class="tm" x="862" y="323" text-anchor="middle">persist proof first</text>
+    <rect class="bxf" x="650" y="390" width="140" height="52" rx="20"/><text class="th" x="720" y="420" text-anchor="middle">completed</text>
+    <rect class="bxf" x="260" y="290" width="140" height="52" rx="20"/><text class="th" x="330" y="320" text-anchor="middle">abstained</text>
+    <rect class="bxf" x="500" y="290" width="160" height="52" rx="20"/><text class="th" x="580" y="313" text-anchor="middle">verification</text><text class="tm" x="580" y="329" text-anchor="middle">abstained / escalated</text>
+    <rect class="bx" x="25" y="390" width="150" height="52" rx="20"/><text class="th" x="100" y="420" text-anchor="middle">cancelled / failed</text>
+    <g class="ln" marker-end="url(#a2)"><line x1="150" y1="71" x2="186" y2="71"/><line x1="315" y1="71" x2="351" y2="71"/><line x1="480" y1="71" x2="516" y2="71"/><line x1="645" y1="71" x2="681" y2="71"/><line x1="417" y1="97" x2="417" y2="141"/><line x1="487" y1="190" x2="578" y2="101"/><line x1="347" y1="190" x2="330" y2="286"/><line x1="747" y1="97" x2="747" y2="141"/><line x1="817" y1="190" x2="856" y2="276"/><line x1="677" y1="190" x2="580" y2="286"/><line x1="862" y1="338" x2="745" y2="386"/></g>
+    <text class="ta" x="515" y="165">pass</text><text class="tm" x="337" y="245">no generation</text><text class="ta" x="830" y="238">pass</text><text class="tm" x="580" y="365">no partial legal answer</text>
+   </svg><figcaption><b>The release barrier is the backend&rsquo;s central safety property.</b> For authenticated requests, the verified artifact, dependency set, provider response and audit graph commit before any legal block is visible. Anonymous requests pass the same verification barrier but use an in-memory event buffer that is destroyed after delivery.</figcaption>
+  </figure>
+  <h3><span class="mk">6.1</span>Two-step streaming contract</h3>
+  <p><code>POST /v1/answers</code> validates, idempotently creates the operation and returns <code>202</code> with its resource and event URL. <code>GET /v1/answers/{id}/events</code> serves <code>text/event-stream</code>. This corrects the conceptual one-request sequence in Document 01 so standard EventSource reconnection and authorization can be implemented cleanly.</p>
+  <pre><b>event:</b> answer.status
+<b>id:</b> 3
+<b>data:</b> {"request_id":"...","phase":"verifying","progress":"claims"}
+
+<b>event:</b> answer.block
+<b>id:</b> 4
+<b>data:</b> {"block":{...verified block with resolved citations...}}
+
+<b>event:</b> answer.completed
+<b>id:</b> 5
+<b>data:</b> {"answer_id":"...","artifact_digest":"...","scope":{...}}</pre>
+  <ul>
+   <li>Allowed events: <code>answer.status</code>, <code>answer.abstained</code>, <code>answer.block</code>, <code>answer.completed</code>, <code>answer.cancelled</code> and <code>answer.problem</code>. Raw provider deltas are impossible at this boundary.</li>
+   <li>Events have monotonically increasing per-answer ids. <code>Last-Event-ID</code> replays only after actor authorization and only from the stored verified journal.</li>
+   <li>Anonymous replay exists only within the same ephemeral session and process for five minutes. Loss returns <code>410 anonymous_stream_expired</code>; the user may restart, not recover hidden persistence.</li>
+   <li>Heartbeat comments every 15 seconds carry no content. Proxy buffering is disabled. Disconnect cancels provider work when no durable consumer remains, except after the release barrier where completion is cheap and deterministic.</li>
+  </ul>
+ </div>
+</section>
+
+<section id="catalogue">
+ <div class="rail"><span class="num">&sect;7</span><span class="tag">Endpoint<br>catalogue</span></div>
+ <div class="body">
+  <h2>The public surface, grouped by trust and resource</h2>
+  <p class="lede">This catalogue is normative at operation level; the OpenAPI file owns field-level schemas. No route returns database rows, accepts arbitrary filters or exposes a vendor/model endpoint.</p>
+  <div class="scroll"><table>
+   <thead><tr><th>Group</th><th>Operations</th><th>Auth</th><th>Important rule</th></tr></thead>
+   <tbody>
+    <tr><td class="id">identity</td><td><code>POST /auth/otp/request</code><br><code>POST /auth/otp/verify</code><br><code>POST /auth/refresh</code><br><code>POST /auth/logout</code><br><code>GET /sessions</code><br><code>DELETE /sessions/{id}</code></td><td>Mixed</td><td>Enumeration-safe responses; refresh rotation; session ownership.</td></tr>
+    <tr><td class="id">profile</td><td><code>GET/PATCH /me</code><br><code>DELETE /me</code><br><code>GET /me/export</code></td><td>User</td><td>Allow-listed fields; erasure workflow and signed export artifact.</td></tr>
+    <tr><td class="id">law</td><td><code>GET /law/instruments/{id}</code><br><code>GET /law/provisions/{id}</code><br><code>GET /law/provisions/{id}/versions</code><br><code>GET /law/provisions/{id}/source</code></td><td>Public</td><td><code>as_of</code>, status, source rank and corpus version always visible.</td></tr>
+    <tr><td class="id">search</td><td><code>POST /search</code><br><code>POST /citations/resolve</code></td><td>Public / quota</td><td>Exact citation path skips generation; search returns scope and degradation.</td></tr>
+    <tr><td class="id">answers</td><td><code>POST /answers</code><br><code>GET /answers/{id}</code><br><code>GET /answers/{id}/events</code><br><code>POST /answers/{id}/reports</code><br><code>DELETE /answers/{id}</code></td><td>Mixed</td><td>Ownership; no raw token stream; audit-before-release; anonymous GET is session-bound and ephemeral.</td></tr>
+    <tr><td class="id">precedent</td><td><code>GET /precedent/provisions/{id}/treatments</code><br><code>GET /precedent/judgments/{id}</code><br><code>POST /precedent/judgments/{id}/summaries</code><br><code>GET /precedent/judgments/{id}/authority-signal</code></td><td>Public / quota</td><td>Signals remain qualified by proposition, forum, date, evidence and coverage.</td></tr>
+    <tr><td class="id">procedure</td><td><code>GET /procedure/guides/{id}</code><br><code>POST /procedure/limitation</code><br><code>POST /procedure/court-fee</code><br><code>POST /procedure/stamp-duty</code><br><code>POST /procedure/forum</code></td><td>Mixed</td><td>Province, date, relief and facts enforced by each typed input; conditional results preserved.</td></tr>
+    <tr><td class="id">drafts</td><td><code>POST /drafts</code><br><code>GET /drafts/{id}</code><br><code>PATCH /drafts/{id}/answers</code><br><code>POST /drafts/{id}/preview</code><br><code>POST /drafts/{id}/renders</code><br><code>GET /drafts/{id}/artifacts/{artifact}</code><br><code>DELETE /drafts/{id}</code></td><td>User</td><td>Optimistic version; deterministic clauses; render job isolated; signed download.</td></tr>
+    <tr><td class="id">library</td><td><code>GET/POST /bookmarks</code><br><code>PATCH/DELETE /bookmarks/{id}</code><br><code>GET/POST /matters</code><br><code>PATCH/DELETE /matters/{id}</code></td><td>User</td><td>RLS and object policy; provision identities only.</td></tr>
+    <tr><td class="id">corpus sync</td><td><code>GET /packs/manifest</code><br><code>GET /packs/{id}</code></td><td>Public / entitlement</td><td>One-way signed chain; tier and schema compatibility; no uploads.</td></tr>
+    <tr><td class="id">user sync</td><td><code>POST /user-sync/push</code><br><code>GET /user-sync/pull</code></td><td>User</td><td>Idempotent mutation ids; server sequence cursor; tombstones.</td></tr>
+    <tr><td class="id">curation</td><td><code>GET /console/queue</code><br><code>GET /console/items/{id}</code><br><code>POST /console/items/{id}/patches</code><br><code>POST /console/items/{id}/gates</code><br><code>POST /console/items/{id}/submit</code></td><td>Curator</td><td>Assignment, revision precondition, attributed patch; cannot publish directly.</td></tr>
+    <tr><td class="id">rules</td><td><code>POST /console/rule-packs</code><br><code>POST /console/rule-packs/{id}/review</code><br><code>POST /console/rule-packs/{id}/publish</code><br><code>POST /console/rule-packs/{id}/challenge</code></td><td>Separated roles</td><td>Maker-checker, locked evidence and tests, signed atomic activation.</td></tr>
+    <tr><td class="id">operations</td><td><code>GET /health/live</code><br><code>GET /health/ready</code><br><code>GET /version</code></td><td>Public, minimal</td><td>Liveness never checks dependencies; readiness discloses no secret topology.</td></tr>
+   </tbody>
+  </table></div>
+  <p><code>preview</code>, selectable render format and <code>stampDuty</code> are the additive L5 proposals recorded in Document 06. They ship only in the same change that versions the master interfaces and generated clients; Doc 07 does not silently legalize a boundary mismatch.</p>
+ </div>
+</section>
+
+<section id="outcomes">
+ <div class="rail"><span class="num">&sect;8</span><span class="tag">Outcomes<br>&amp; problems</span></div>
+ <div class="body">
+  <h2>Uncertainty is data, not an exception</h2>
+  <p class="lede">A calculator needing a judicial finding, a precedent graph with incomplete coverage and a retrieval abstention are successful safety outcomes. HTTP errors are reserved for invalid commands, policy refusal and system faults.</p>
+  <pre><b>LegalOutcome&lt;T&gt;</b> =
+  | { outcome: "complete"; value: T; scope; provenance; warnings[] }
+  | { outcome: "conditional"; branches[]; requiredFindings[]; scope; provenance }
+  | { outcome: "insufficient_facts"; requiredInputs[]; candidates[]; scope }
+  | { outcome: "abstained"; searched; nearestUnconfirmed[]; reason; referral? }
+  | { outcome: "unsupported_scope"; requested; available[]; officialLinks[] }
+  | { outcome: "official_source_conflict"; evidence[]; blockedAction }
+  | { outcome: "professional_review_required"; value?; reasons[]; urgency? };</pre>
+  <div class="scroll"><table>
+   <thead><tr><th>Class</th><th>Status</th><th>Example</th><th>Retry?</th></tr></thead>
+   <tbody>
+    <tr><td class="k">Validation</td><td class="id">400 / 422</td><td>Malformed JSON versus well-formed command with invalid field constraints.</td><td>After correction</td></tr>
+    <tr><td class="k">Authentication</td><td class="id">401</td><td>Expired token; response carries safe authentication challenge.</td><td>Refresh once</td></tr>
+    <tr><td class="k">Authorization</td><td class="id">403 / 404</td><td>Capability denied; use non-enumerating 404 for private object lookup.</td><td>No</td></tr>
+    <tr><td class="k">Conflict</td><td class="id">409 / 412</td><td>Idempotency key reused with another body; stale draft version or rule revision.</td><td>Reconcile</td></tr>
+    <tr><td class="k">Gone</td><td class="id">410</td><td>Expired anonymous stream or superseded download token.</td><td>Restart</td></tr>
+    <tr><td class="k">Quota</td><td class="id">429</td><td>Rate or entitlement exhausted; bounded <code>Retry-After</code> where applicable.</td><td>Later / upgrade</td></tr>
+    <tr><td class="k">Dependency</td><td class="id">502 / 503 / 504</td><td>Invalid upstream response, unavailable capability, deadline exceeded.</td><td>Only idempotent</td></tr>
+   </tbody>
+  </table></div>
+  <pre><b>Content-Type:</b> application/problem+json
+{
+  "type": "https://api.nizam.pk/problems/idempotency-conflict",
+  "title": "Idempotency key already represents another command",
+  "status": 409,
+  "code": "IDEMPOTENCY_BODY_MISMATCH",
+  "instance": "/problems/0198...",
+  "request_id": "0198...",
+  "recoverable": false
+}</pre>
+  <p>Problem details never include queries, evidence text, SQL, stack traces, provider messages, phone numbers or existence-sensitive object facts. Human text is localized; clients branch only on stable <code>code</code> and typed extension fields.</p>
+ </div>
+</section>
+
+<section id="audit">
+ <div class="rail"><span class="num">&sect;9</span><span class="tag">Audit<br>&amp; challenge</span></div>
+ <div class="body">
+  <h2>A replay is a proof graph, not another model call</h2>
+  <p class="lede">Hosted models are stochastic and aliases drift. Exact replay means presenting the stored provider response and verified artifact with the same pinned inputs, transformations and decisions&mdash;never asking a model to reproduce the text.</p>
+  <figure><span class="fignum">Figure 3 &mdash; Answer evidence and replay graph</span>
+   <svg class="dg" viewBox="0 0 940 390" role="img" aria-labelledby="f3t f3d"><title id="f3t">Answer audit evidence graph</title><desc id="f3d">An answer audit links request interpretation, retrieval trace, grounding context, prompt artifact, provider response, verification graph and released artifact. Each node is content addressed and references exact corpus, model and rule versions. A report snapshots the graph into a restricted review case.</desc>
+    <defs><marker id="a3" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/></marker></defs>
+    <g class="bxf"><rect x="20" y="55" width="120" height="58" rx="4"/><rect x="170" y="55" width="120" height="58" rx="4"/><rect x="320" y="55" width="120" height="58" rx="4"/><rect x="470" y="55" width="120" height="58" rx="4"/><rect x="620" y="55" width="120" height="58" rx="4"/><rect x="770" y="55" width="145" height="58" rx="4"/></g>
+    <g text-anchor="middle"><text class="th" x="80" y="80">request</text><text class="tm" x="80" y="98">scope + actor class</text><text class="th" x="230" y="80">retrieval trace</text><text class="tm" x="230" y="98">scores + gate</text><text class="th" x="380" y="80">context</text><text class="tm" x="380" y="98">evidence handles</text><text class="th" x="530" y="80">prompt</text><text class="tm" x="530" y="98">schema + digest</text><text class="th" x="680" y="80">provider</text><text class="tm" x="680" y="98">snapshot + bytes</text><text class="th" x="842" y="80">verified artifact</text><text class="tm" x="842" y="98">claims + citations</text></g>
+    <rect class="acc" x="330" y="175" width="280" height="64" rx="4"/><text class="ta" x="470" y="201" text-anchor="middle">verification graph</text><text class="tm" x="470" y="220" text-anchor="middle">claim &rarr; span &rarr; checks &rarr; verdict</text>
+    <rect class="bxf" x="90" y="300" width="210" height="55" rx="4"/><text class="th" x="195" y="324" text-anchor="middle">pinned dependencies</text><text class="tm" x="195" y="341" text-anchor="middle">corpus &middot; pipeline &middot; model &middot; rules</text>
+    <rect class="bx" x="640" y="300" width="210" height="55" rx="4"/><text class="th" x="745" y="324" text-anchor="middle">restricted review case</text><text class="tm" x="745" y="341" text-anchor="middle">report + redacted snapshot</text>
+    <g class="ln" marker-end="url(#a3)"><line x1="140" y1="84" x2="166" y2="84"/><line x1="290" y1="84" x2="316" y2="84"/><line x1="440" y1="84" x2="466" y2="84"/><line x1="590" y1="84" x2="616" y2="84"/><line x1="740" y1="84" x2="766" y2="84"/><line x1="680" y1="113" x2="560" y2="171"/><line x1="842" y1="113" x2="580" y2="171"/><line x1="470" y1="239" x2="245" y2="296"/><line x1="610" y1="207" x2="741" y2="296"/></g>
+    <text class="tm" x="20" y="28">Every body is encrypted and content-addressed; relational rows store stable ids and digests.</text>
+   </svg><figcaption><b>Audit and observability are different stores.</b> Audit holds restricted evidence needed to reproduce and investigate a legal output; telemetry holds low-cardinality operational signals. Copying prompts or answers into traces would defeat both access control and retention.</figcaption>
+  </figure>
+  <div class="scroll"><table>
+   <thead><tr><th>Audit element</th><th>Minimum fields</th><th>Integrity</th></tr></thead>
+   <tbody>
+    <tr><td class="k">Admission</td><td>Request id, actor class, legal scope, corpus/rule snapshots, client and API versions.</td><td>Canonical JSON digest.</td></tr>
+    <tr><td class="k">Retrieval</td><td>Parser, filters, candidates and all stage scores, graph paths, gate features/version/decision.</td><td>Immutable trace reference.</td></tr>
+    <tr><td class="k">Generation</td><td>Context digest, prompt artifact, provider/model snapshot, parameters, raw structured response, cost/timing.</td><td>Encrypted body + digest.</td></tr>
+    <tr><td class="k">Verification</td><td>Claim/evidence graph, deterministic and NLI checks, thresholds, verdicts, dropped claims and completeness result.</td><td>Append-only verdict rows.</td></tr>
+    <tr><td class="k">Release</td><td>Exact returned bytes, SSE event journal, disclaimer, dependency set, artifact digest.</td><td>Hash chain over events.</td></tr>
+    <tr><td class="k">Challenge</td><td>User reason, request id, consented snapshot, triage owner, root cause, invalidations, regression fixture.</td><td>Attributed append-only actions.</td></tr>
+   </tbody>
+  </table></div>
+  <p>A reviewer can immediately mark an artifact <code>withdrawn</code>, which blocks new reads and invalidates dependent cached/offline answers. Corrected artifacts are new versions; history is never overwritten. User feedback never edits prompts, labels, rules or the live corpus automatically.</p>
+ </div>
+</section>
+
+<section id="privacy">
+ <div class="rail"><span class="num">&sect;10</span><span class="tag">Pakistan<br>legal posture</span></div>
+ <div class="body">
+  <h2>Engineer to enacted duties; label policy choices honestly</h2>
+  <p class="lede">Pakistan has relevant constitutional, cybercrime, electronic-record, evidence and professional-conduct law, but the Ministry of IT still lists the Personal Data Protection Bill as a draft. The architecture adopts data-minimisation and user-control protections as product policy without misrepresenting a bill as binding legislation.</p>
+  <div class="scroll"><table>
+   <thead><tr><th>Authority</th><th>What it supports</th><th>Backend consequence</th><th>Do not overclaim</th></tr></thead>
+   <tbody>
+    <tr><td class="k">Constitution, Art. 14</td><td>Dignity and, subject to law, privacy of the home are inviolable.</td><td>Privacy threat modelling and restrained collection are constitutional-risk controls.</td><td>It is not a complete statutory data-protection code.</td></tr>
+    <tr><td class="k">PECA 2016, as amended</td><td>Offences and powers concerning unauthorized access/copying/interference and electronic systems.</td><td>Least privilege, access audit, incident preservation, strong admin controls and secure disclosure.</td><td>PECA is not a general consent/retention framework for this product.</td></tr>
+    <tr><td class="k">Electronic Transactions Ordinance 2002</td><td>Legal recognition of electronic documents, communications and signatures, subject to its scope and exclusions.</td><td>Canonical artifacts, signature metadata, integrity hashes and attributable publication events.</td><td>A generated PDF is not thereby executed, registered, stamped or professionally reviewed.</td></tr>
+    <tr><td class="k">Qanun-e-Shahadat Order 1984</td><td>Electronic-system output can qualify as primary evidence under stated conditions; modern-device evidence may be produced.</td><td>Preserve exact bytes, system/version records, UTC time, hashes, chain of custody and working-order evidence.</td><td>Database logs do not guarantee admissibility; courts determine evidentiary weight.</td></tr>
+    <tr><td class="k">PBC Rules 1976, r.146</td><td>An advocate must not act adversely using confidential information obtained from a client or former client.</td><td>Advocate workspaces get matter isolation, restricted support, explicit exports and no training reuse.</td><td>Use of this platform alone does not create advocate-client privilege.</td></tr>
+    <tr><td class="k">Legal Practitioners Act 1973</td><td>Professional practice is reserved to enrolled advocates.</td><td>Information register, reviewed drafting boundaries, no advocate claim without verification, referral for live matters.</td><td>Disclaimers do not cure conduct that is substantively legal practice.</td></tr>
+    <tr><td class="k">LJCP AI Guidelines 2026</td><td>Human-centric, assistive, transparent, accountable and privacy-protecting judicial AI benchmark.</td><td>Human review, traceability, contestability, bounded automation and evaluation.</td><td>Guidelines for judicial institutions are not presented as a private-product statute.</td></tr>
+   </tbody>
+  </table></div>
+  <h3><span class="mk">10.1</span>Data classes and lifecycle</h3>
+  <div class="scroll"><table>
+   <thead><tr><th>Class</th><th>Examples</th><th>Default lifecycle</th></tr></thead>
+   <tbody>
+    <tr><td class="id">PUBLIC</td><td>Promulgated sources, judgments, verified public metadata.</td><td>Versioned indefinitely; corrections append; source bytes immutable.</td></tr>
+    <tr><td class="id">ACCOUNT</td><td>Phone, email, session, entitlement, professional-verification evidence.</td><td>Minimum fields while account active; erase/cryptographically retire after verified deletion except narrow fraud/security record.</td></tr>
+    <tr><td class="id">LEGAL-SENSITIVE</td><td>Queries, saved answers, party names, CNIC, address, property and dispute facts.</td><td>Persist only for authenticated, disclosed features; user can delete; no training reuse without separate specific consent.</td></tr>
+    <tr><td class="id">AUDIT-RESTRICTED</td><td>Provider body, prompt, verification graph, challenged artifact.</td><td>Encrypted, role-restricted, lifecycle tied to answer or disclosed incident hold; access itself audited.</td></tr>
+    <tr><td class="id">OPERATIONAL</td><td>Content-free trace, latency, health, counters.</td><td>Fourteen-day logs per deployment plan; longer aggregated metrics contain no user content.</td></tr>
+    <tr><td class="id">EPHEMERAL</td><td>Anonymous query, answer and stream buffer; OTP plaintext.</td><td>Memory only; destroyed on completion/expiry. OTP plaintext is never stored.</td></tr>
+   </tbody>
+  </table></div>
+  <p>Account deletion starts an auditable erasure workflow covering primary user tables, object artifacts, search/cache entries and encryption keys. Backups expire under their documented rotation; the live system retains a non-reversible deletion receipt. A legal hold must name authority, scope, approver and expiry. These are product controls pending a separately approved retention schedule&mdash;not invented statutory periods.</p>
+ </div>
+</section>
+
+<section id="jobs">
+ <div class="rail"><span class="num">&sect;11</span><span class="tag">Jobs<br>&amp; effects</span></div>
+ <div class="body">
+  <h2>Durable work is state; a background callback is not</h2>
+  <p class="lede">Judgment summaries, document renders, pack builds, exports, notifications and large review jobs enter a PostgreSQL-backed queue in the same transaction as the command. FastAPI in-process background tasks are reserved for dispensable, content-free cleanup.</p>
+  <pre><b>job</b>(id, kind, actor_id, scope_json, input_digest, payload_ciphertext,
+    status, priority, attempts, max_attempts, available_at, lease_owner,
+    lease_until, heartbeat_at, result_ref, error_code, created_at, finished_at)
+
+<b>outbox_event</b>(id, aggregate_type, aggregate_id, event_type, payload_json,
+    created_at, claimed_at, delivered_at, attempts)
+
+<b>idempotency_record</b>(actor_scope, route, key, request_digest, status,
+    response_status, response_headers, response_body_ref, expires_at)</pre>
+  <figure><span class="fignum">Figure 4 &mdash; Transactional job and outbox lifecycle</span>
+   <svg class="dg" viewBox="0 0 940 360" role="img" aria-labelledby="f4t f4d"><title id="f4t">Transactional asynchronous work lifecycle</title><desc id="f4d">The API validates and authorizes a command, writes the domain record, job and outbox event in one transaction, and returns the operation resource. A worker leases jobs with skip locked, heartbeats, performs isolated work, writes the result and a completion event in one transaction. A dispatcher delivers effects idempotently. Retries consult durable state.</desc>
+    <defs><marker id="a4" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/></marker></defs>
+    <rect class="bxf" x="20" y="45" width="150" height="60" rx="4"/><text class="th" x="95" y="70" text-anchor="middle">API command</text><text class="tm" x="95" y="90" text-anchor="middle">validate + authorize</text>
+    <rect class="acc" x="215" y="35" width="220" height="80" rx="4"/><text class="ta" x="325" y="61" text-anchor="middle">transaction A</text><text class="tm" x="325" y="81" text-anchor="middle">aggregate + job + outbox</text><text class="tm" x="325" y="98" text-anchor="middle">commit together</text>
+    <rect class="bxf" x="480" y="45" width="170" height="60" rx="4"/><text class="th" x="565" y="70" text-anchor="middle">202 operation</text><text class="tm" x="565" y="90" text-anchor="middle">poll / SSE status URL</text>
+    <rect class="bxf" x="215" y="205" width="220" height="80" rx="4"/><text class="th" x="325" y="231" text-anchor="middle">worker lease</text><text class="tm" x="325" y="251" text-anchor="middle">FOR UPDATE SKIP LOCKED</text><text class="tm" x="325" y="268" text-anchor="middle">heartbeat + bounded retry</text>
+    <rect class="acc" x="480" y="205" width="170" height="80" rx="4"/><text class="ta" x="565" y="231" text-anchor="middle">transaction B</text><text class="tm" x="565" y="251" text-anchor="middle">result + completion</text><text class="tm" x="565" y="268" text-anchor="middle">or typed terminal failure</text>
+    <rect class="bxf" x="700" y="205" width="215" height="80" rx="4"/><text class="th" x="807" y="231" text-anchor="middle">outbox dispatcher</text><text class="tm" x="807" y="251" text-anchor="middle">idempotent external effect</text><text class="tm" x="807" y="268" text-anchor="middle">delivery recorded</text>
+    <g class="ln" marker-end="url(#a4)"><line x1="170" y1="75" x2="211" y2="75"/><line x1="435" y1="75" x2="476" y2="75"/><path d="M325,115 L325,201"/><line x1="435" y1="245" x2="476" y2="245"/><line x1="650" y1="245" x2="696" y2="245"/></g>
+    <text class="tm" x="20" y="330">A crash before commit creates nothing. A crash after commit leaves discoverable work. A duplicate delivery observes the same idempotency key.</text>
+   </svg><figcaption><b>Exactly-once delivery is not claimed.</b> Work and effects are at-least-once; handlers make the observable result effectively once through stable keys, input digests, unique constraints and state checks. The durable record, not the queue message, is truth.</figcaption>
+  </figure>
+  <div class="scroll"><table>
+   <thead><tr><th>Job</th><th>Isolation</th><th>Retry</th><th>Terminal review</th></tr></thead>
+   <tbody>
+    <tr><td class="k">Document render</td><td>No network, read-only templates, no shell escape, CPU/RAM/wall limits, disposable work directory.</td><td>Only deterministic infrastructure failures; same input digest.</td><td>Template/rule defect queue.</td></tr>
+    <tr><td class="k">Judgment summary</td><td>Verified L4 port; pinned judgment and pipeline.</td><td>Provider failures within budget; no quality-failure retry loop.</td><td>Generation/verification incident.</td></tr>
+    <tr><td class="k">Pack build</td><td>Publisher role and signing key isolated from API.</td><td>From immutable manifest; failed signature never publishes.</td><td>Release engineer.</td></tr>
+    <tr><td class="k">Export/erasure</td><td>User-scoped; encrypted artifact or enumerated deletion plan.</td><td>Per item idempotently.</td><td>Privacy operations.</td></tr>
+   </tbody>
+  </table></div>
+ </div>
+</section>
+
+<section id="sync">
+ <div class="rail"><span class="num">&sect;12</span><span class="tag">Two sync<br>engines</span></div>
+ <div class="body">
+  <h2>Signed authority flows down; user intent merges both ways</h2>
+  <p class="lede">Corpus sync and user sync share HTTP infrastructure but no state machine. The corpus is server-authored evidence and never accepts a client write. User data is editable offline and therefore needs mutation identity, versions, tombstones and conflict semantics.</p>
+  <div class="scroll"><table>
+   <thead><tr><th>Property</th><th>Corpus packs</th><th>User data</th></tr></thead>
+   <tbody>
+    <tr><td class="k">Direction</td><td>Server &rarr; device only.</td><td>Device &harr; server.</td></tr>
+    <tr><td class="k">Trust</td><td>Ed25519-signed manifest; per-object SHA-256; pinned public key.</td><td>Authenticated actor + RLS + per-mutation id.</td></tr>
+    <tr><td class="k">Cursor</td><td><code>from_version</code> to exact <code>to_version</code>; maximum chain 12.</td><td>Server sequence, never device timestamp.</td></tr>
+    <tr><td class="k">Conflict</td><td>Impossible by design; device is not a writer.</td><td>Last accepted server version wins per record; conflict returned for explicit user resolution where destructive.</td></tr>
+    <tr><td class="k">Delete</td><td>Signed withdrawal/delete and dependent <code>INVALIDATE</code> operations.</td><td>Tombstone retained through the documented multi-device window.</td></tr>
+    <tr><td class="k">Failure</td><td>Reject whole patch, keep previous pack; long gap gets full pack.</td><td>Accept valid mutations individually; return per-item results, then pull.</td></tr>
+   </tbody>
+  </table></div>
+  <pre><b>GET /v1/packs/manifest?from=1840&amp;tiers=core,punjab</b>
+{ schema_version, from_version, to_version, built_at, expires_at,
+  tiers[], patches:[{id,url,bytes,sha256}], invalidations[], signature, key_id }
+
+<b>POST /v1/user-sync/push</b>
+{ device_id, mutations:[{mutation_id, entity, entity_id, base_version, op, value}] }
+&rarr; { results:[{mutation_id,status,server_version,current?}], high_watermark }
+
+<b>GET /v1/user-sync/pull?after=&lt;opaque-server-cursor&gt;&amp;limit=500</b>
+&rarr; { records[], tombstones[], next_cursor, has_more }</pre>
+  <p>Pack URLs are content-addressed and may be CDN-cached; manifests are short-lived and scope-aware. User-sync responses are private, non-cacheable and contain only the authenticated user&rsquo;s rows. The anonymous dependency graph has neither engine.</p>
+ </div>
+</section>
+
+<section id="control">
+ <div class="rail"><span class="num">&sect;13</span><span class="tag">Cost<br>&amp; concurrency</span></div>
+ <div class="body">
+  <h2>Idempotency, quotas and caches carry legal scope</h2>
+  <p class="lede">Controls are keyed by the semantic cost and risk of an operation. A single requests-per-minute rule would under-protect OTP and rendering while unnecessarily constraining statutory lookup.</p>
+  <div class="scroll"><table>
+   <thead><tr><th>Operation class</th><th>Primary dimensions</th><th>Control</th></tr></thead>
+   <tbody>
+    <tr><td class="k">OTP request/verify</td><td>Normalized phone HMAC, IP prefix, device session, challenge.</td><td>Progressive cooldown, attempt ceiling, enumeration-safe response, abuse review.</td></tr>
+    <tr><td class="k">Public law/search</td><td>Edge identity + session; cheap versus inference search.</td><td>High read quota, query complexity and result caps, statement timeout.</td></tr>
+    <tr><td class="k">Grounded answer</td><td>Account/anonymous session, entitlement, concurrent operations, provider tokens.</td><td>Small concurrency limit, daily allowance, cost reservation before provider call.</td></tr>
+    <tr><td class="k">Precedent graph</td><td>Depth, date span, court filters, rows examined.</td><td>Depth and node caps; no arbitrary graph query language.</td></tr>
+    <tr><td class="k">Render/export</td><td>Actor, document type, pages/bytes, active jobs.</td><td>Idempotency, queue quota, sandbox budget and artifact expiry.</td></tr>
+    <tr><td class="k">Sync</td><td>Account/device, records/bytes, cursor age.</td><td>500-record pages, body limits, mutation dedupe, full-pack off-ramp.</td></tr>
+    <tr><td class="k">Console</td><td>Staff identity, role, workflow and write risk.</td><td>Low mutation rate, step-up assurance, revision precondition and audit.</td></tr>
+   </tbody>
+  </table></div>
+  <h3><span class="mk">13.1</span>Idempotency</h3>
+  <p>The key is bound to actor scope, route, API major and canonical request digest. Same key and digest returns the stored status/body; same key with another digest returns 409. In-flight duplicates wait briefly or receive 409 with the operation URL. Records expire after 24 hours for authenticated commands; anonymous keys live only in the ephemeral session.</p>
+  <h3><span class="mk">13.2</span>Caching</h3>
+  <ul>
+   <li>Exact legal cache keys include normalized input, explicit and inferred scope separately, exact <code>as_of</code>, corpus/rule/taxonomy versions, pipeline/model hashes, language, reading level, entitlements and degradation mode.</li>
+   <li>No shared cache for private query text, matters, drafts, user sync or review cases. Public immutable law may use CDN <code>public, immutable</code>; authenticated data uses <code>private, no-store</code> unless explicitly safe.</li>
+   <li>Semantic similarity may nominate a verified answer but cannot authorize reuse; L4&rsquo;s equivalence, scope and dependency gates remain mandatory.</li>
+   <li>No Redis at pilot. Process-local LRU handles small public metadata; PostgreSQL owns shared idempotency, quotas, jobs and cache records. Add a network cache only after measured lock/contention evidence.</li>
+  </ul>
+  <p>Metering is an append-only usage ledger separate from payment: actor/entitlement, operation class, reserved/actual units, provider cost and reversal. B2B API keys and charging stay disabled in v1, but scopes and units exist so institutional exposure later does not require rewriting authorization.</p>
+ </div>
+</section>
+
+<section id="security">
+ <div class="rail"><span class="num">&sect;14</span><span class="tag">Security<br>&amp; abuse</span></div>
+ <div class="body">
+  <h2>The threat model follows legal data and expensive capabilities</h2>
+  <p class="lede">The dominant risks are horizontal access to another person&rsquo;s matter, account takeover through phone recovery, resource exhaustion through AI/render endpoints, prompt-data exfiltration, malicious document content and misuse of curator/publisher powers.</p>
+  <div class="scroll"><table>
+   <thead><tr><th>Threat</th><th>Prevent</th><th>Detect / contain</th></tr></thead>
+   <tbody>
+    <tr><td class="k">Broken object authorization</td><td>Policy on every lookup, RLS forced, non-enumerating private ids, signed download after check.</td><td>Cross-owner canary tests, denied-access metrics, revoke session.</td></tr>
+    <tr><td class="k">Mass assignment</td><td>Strict allow-listed commands; never bind persistence models from request JSON.</td><td>Unknown-field 422 metric and schema fuzzing.</td></tr>
+    <tr><td class="k">OTP/account recovery abuse</td><td>One-use challenges, progressive limits, delayed number change, privileged MFA.</td><td>Velocity/risk events; family revocation; user notice.</td></tr>
+    <tr><td class="k">Resource exhaustion</td><td>Body, list, graph, token, concurrency, DB statement and worker budgets.</td><td>Cost reservation, queue depth alerts, kill/cancel by request id.</td></tr>
+    <tr><td class="k">Prompt injection</td><td>Corpus/user text is data-only, no tools in provider, allow-listed evidence handles, structured schema.</td><td>Schema/handle violations; verification veto; provider isolated to L4.</td></tr>
+    <tr><td class="k">Malicious source/upload</td><td>MIME and magic checks, size caps, quarantine, non-root sandbox, no network or shell.</td><td>Scanner/extractor failure queue; destroy work directory.</td></tr>
+    <tr><td class="k">SSRF / unsafe URLs</td><td>No user URL fetch. Official links come from reviewed registry; ingestion adapters enforce destination allow-lists.</td><td>Outbound-deny network policy and DNS alerts.</td></tr>
+    <tr><td class="k">Rule/corpus supply chain</td><td>Separate publisher role, reviewed manifest, locked tests, signing key outside API, dependency pinning.</td><td>Signature verification, provenance audit, atomic rollback.</td></tr>
+    <tr><td class="k">Sensitive telemetry</td><td>Content-free attributes, phone HMAC only where required for abuse control, no prompt/answer capture.</td><td>CI log scanner and production canaries.</td></tr>
+    <tr><td class="k">Dependency compromise</td><td>Lock file, hashes, minimal images, SBOM, signature/provenance checks, scheduled patching.</td><td>Vulnerability alerts, image quarantine, reproducible rebuild.</td></tr>
+   </tbody>
+  </table></div>
+  <p>Secrets arrive at runtime, never in source, images, Compose files or telemetry. Separate credentials exist for API, migrator, corpus publisher, workers and backup. The API has read-only corpus grants; the renderer has no database or network credential; the pack signer is absent from the API container.</p>
+  <div class="note"><h4>Evidence preservation</h4><p>Security response records hashes, UTC timestamps, actor/session identifiers, immutable public-resource ids and access events. It does not create an unrestricted copy of every user&rsquo;s legal content. Incident evidence is separately authorized, encrypted, scoped and expired.</p></div>
+ </div>
+</section>
+
+<section id="operations">
+ <div class="rail"><span class="num">&sect;15</span><span class="tag">SLOs<br>&amp; degradation</span></div>
+ <div class="body">
+  <h2>Observe decisions without observing confidential text</h2>
+  <p class="lede">Each request propagates W3C <code>traceparent</code>, uses the client request id as a searchable business correlation key and emits bounded OpenTelemetry spans. Queries, evidence, prompts, answers, party names, phone numbers and artifact URLs are forbidden attributes.</p>
+  <div class="scroll"><table>
+   <thead><tr><th>Indicator</th><th>Objective / gate</th><th>Action</th></tr></thead>
+   <tbody>
+    <tr><td class="k">API availability</td><td>&ge;99.5% monthly, excluding announced maintenance.</td><td>Error-budget policy freezes risky releases.</td></tr>
+    <tr><td class="k">Citation fast path</td><td>p50 &lt;50 ms application budget on warm data.</td><td>Inspect plan/cache; never route through model.</td></tr>
+    <tr><td class="k">Grounded answer</td><td>p50 &lt;1.5 s; p95 &lt;4 s target from master, reported by cache/path.</td><td>Separate provider, retrieval, verifier and queue spans before scaling.</td></tr>
+    <tr><td class="k">Audit commit</td><td>100% non-anonymous released answers.</td><td>Block release and page immediately.</td></tr>
+    <tr><td class="k">Stale answer</td><td>0 served after dependency invalidation.</td><td>Disable affected cache/pack tier; incident review.</td></tr>
+    <tr><td class="k">Anonymous persistence</td><td>0 content rows, objects or content spans.</td><td>Release blocker and privacy incident.</td></tr>
+    <tr><td class="k">SSE completion</td><td>&ge;99% after operation accepted, excluding user cancellation.</td><td>Inspect proxy buffering, disconnects and replay journal.</td></tr>
+    <tr><td class="k">Job age</td><td>Render p95 &lt;30 s; ingest/corpus lag follows 48 h alert in deployment plan.</td><td>Scale worker only after class-specific diagnosis.</td></tr>
+   </tbody>
+  </table></div>
+  <h3><span class="mk">15.1</span>Degradation contract</h3>
+  <div class="scroll"><table>
+   <thead><tr><th>Failure</th><th>Still permitted</th><th>Backend response</th></tr></thead>
+   <tbody>
+    <tr><td class="k">LLM provider</td><td>Search, citation lookup, cached verified artifacts, precedent lists, guides and deterministic calculators.</td><td>Typed degraded capability; never ungrounded fallback.</td></tr>
+    <tr><td class="k">Inference worker</td><td>Lexical search, citation lookup, whole-provision browse, deterministic L5.</td><td>Generation unavailable because verification cannot complete; threshold never lowered.</td></tr>
+    <tr><td class="k">Audit writer</td><td>Public law/search and anonymous verified delivery.</td><td>Authenticated answer release blocked; service problem after safe cancellation.</td></tr>
+    <tr><td class="k">Object storage</td><td>Text, search, answers and calculators.</td><td>Source/render/pack download unavailable; no broken URL emitted.</td></tr>
+    <tr><td class="k">Rule pack stale/conflicted</td><td>Unaffected domains and statutory research.</td><td>Affected calculator/draft returns typed source conflict or unavailable scope.</td></tr>
+    <tr><td class="k">Database</td><td>Nothing server-side; signed device pack remains independent.</td><td>Readiness false, status response; no empty-result masquerade.</td></tr>
+   </tbody>
+  </table></div>
+  <p><code>/health/live</code> answers only whether the process event loop is responsive. <code>/health/ready</code> checks database, migrations, corpus publication, worker compatibility and signing/adapter configuration with tight timeouts; it returns coarse component classes rather than connection details. Startup fails closed on schema or contract incompatibility.</p>
+ </div>
+</section>
+
+<section id="deployment">
+ <div class="rail"><span class="num">&sect;16</span><span class="tag">Runtime<br>&amp; config</span></div>
+ <div class="body">
+  <h2>Stateless API processes; state and truth remain explicit</h2>
+  <p class="lede">The production shape inherits Documents 09a and 09b: Python 3.12 slim image locked with <code>uv</code>, four Uvicorn workers on the pilot host, PostgreSQL as the only operational state store and R2/MinIO for content-addressed blobs.</p>
+  <ul>
+   <li>Async routes perform I/O through async clients. CPU-bound embedding, reranking, verification and rendering never run in the API event loop.</li>
+   <li>Startup runs no migrations. A separate migrator role applies reviewed Alembic migrations before readiness. All schema objects and roles originate in migrations.</li>
+   <li>Configuration is typed, validated and printed only as a redacted fingerprint. Environment differences select adapters and enabled corpus scopes, never alternate business logic.</li>
+   <li>Graceful shutdown stops admission, drains short requests, marks streams reconnectable, returns unleased jobs and respects a bounded termination window.</li>
+   <li>Database pools have per-worker ceilings; transactions are short; long legal work pins version ids rather than holding snapshots open.</li>
+  </ul>
+  <pre><b>required configuration classes</b>
+Environment &middot; Database &middot; ObjectStore &middot; Identity &middot; SMS &middot; LLMRoute
+Inference &middot; CorpusScope &middot; RuleManifests &middot; SigningPublicKeys
+Limits &middot; Retention &middot; Telemetry &middot; Features
+
+<b>startup compatibility gates</b>
+db_schema == app_expected
+openapi_contract == committed_digest
+inference_protocol in supported
+corpus_schema in supported
+active_rule_manifest.signature == valid
+anonymous_graph.durable_writers == 0</pre>
+  <p>Feature flags may route a cohort between already-qualified implementations. They may not lower a gate, skip verification, enable an unreviewed rule, change retention silently or expose a model/provider endpoint. Every safety-relevant flag has owner, reason, expiry, audit and kill switch.</p>
+ </div>
+</section>
+
+<section id="delivery">
+ <div class="rail"><span class="num">&sect;17</span><span class="tag">Tests<br>&amp; build</span></div>
+ <div class="body">
+  <h2>Build the safety spine before adding product breadth</h2>
+  <p class="lede">The definition of done is not that Swagger opens. It is that an answer, abstention, calculator branch, pack patch and anonymous request each traverse their complete trust path under failures and remain explainable.</p>
+  <figure><span class="fignum">Figure 5 &mdash; Backend release gates and implementation sequence</span>
+   <svg class="dg" viewBox="0 0 940 420" role="img" aria-labelledby="f5t f5d"><title id="f5t">Backend delivery sequence and release gates</title><desc id="f5d">Six implementation increments build composition and contracts, identity, legal reads, answer orchestration, domain and sync APIs, then console and hardening. Each increment passes static boundaries, unit/property tests, integration tests, OpenAPI consumer contracts, legal golden tests, security tests, load tests and recovery rehearsal before promotion.</desc>
+    <defs><marker id="a5" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/></marker></defs>
+    <g class="bxf"><rect x="20" y="45" width="135" height="62" rx="4"/><rect x="175" y="45" width="135" height="62" rx="4"/><rect x="330" y="45" width="135" height="62" rx="4"/><rect x="485" y="45" width="135" height="62" rx="4"/><rect x="640" y="45" width="135" height="62" rx="4"/><rect x="795" y="45" width="125" height="62" rx="4"/></g>
+    <g text-anchor="middle"><text class="th" x="87" y="70">B0 contract</text><text class="tm" x="87" y="89">context + skeleton</text><text class="th" x="242" y="70">B1 identity</text><text class="tm" x="242" y="89">policy + anonymous</text><text class="th" x="397" y="70">B2 legal read</text><text class="tm" x="397" y="89">law + search</text><text class="th" x="552" y="70">B3 answers</text><text class="tm" x="552" y="89">audit + SSE</text><text class="th" x="707" y="70">B4 domains</text><text class="tm" x="707" y="89">draft + sync</text><text class="th" x="857" y="70">B5 console</text><text class="tm" x="857" y="89">harden + operate</text></g>
+    <g class="ln" marker-end="url(#a5)"><line x1="155" y1="76" x2="171" y2="76"/><line x1="310" y1="76" x2="326" y2="76"/><line x1="465" y1="76" x2="481" y2="76"/><line x1="620" y1="76" x2="636" y2="76"/><line x1="775" y1="76" x2="791" y2="76"/></g>
+    <rect class="acc" x="40" y="175" width="860" height="65" rx="4"/><text class="ta" x="470" y="201" text-anchor="middle">merge gates on every increment</text><text class="tm" x="470" y="221" text-anchor="middle">boundaries &middot; schema &middot; unit/property &middot; integration &middot; generated-client diff &middot; legal golden &middot; security</text>
+    <g class="bxf"><rect x="95" y="300" width="185" height="55" rx="16"/><rect x="377" y="300" width="185" height="55" rx="16"/></g><rect class="acc" x="660" y="300" width="185" height="55" rx="16"/>
+    <text class="th" x="187" y="332" text-anchor="middle">local + CI</text><text class="th" x="469" y="332" text-anchor="middle">staging replay</text><text class="ta" x="752" y="332" text-anchor="middle">canary &rarr; production</text>
+    <g class="ln" marker-end="url(#a5)"><line x1="280" y1="327" x2="373" y2="327"/><line x1="562" y1="327" x2="656" y2="327"/></g>
+    <text class="tm" x="40" y="396">Rollback app independently; rule packs, corpus packs and clients promote on their own signed/versioned cadences.</text>
+   </svg><figcaption><b>B3 is the critical milestone.</b> It proves the full grounded path, audit-before-release, honest abstention, reconnectable verified streaming and anonymous non-persistence before document breadth, billing or institutional API work can distract the team.</figcaption>
+  </figure>
+  <div class="scroll"><table>
+   <thead><tr><th>Gate</th><th>Required proof</th></tr></thead>
+   <tbody>
+    <tr><td class="id">G1 boundaries</td><td>Import-linter proves routes cannot import SQL repositories directly, L6 cannot import provider SDKs and no layer reaches past fixed ports.</td></tr>
+    <tr><td class="id">G2 contract</td><td>OpenAPI lint and breaking-change diff; generated Flutter/web clients compile; unknown fields and public chunk ids fail.</td></tr>
+    <tr><td class="id">G3 invariants</td><td>Abstention never calls generation; no block precedes verification/audit; anonymous graph has no durable writer; all legal reads carry <code>as_of</code>.</td></tr>
+    <tr><td class="id">G4 identity</td><td>OTP replay, brute force, enumeration, refresh reuse, revocation, recovery and assurance downgrade adversarial tests.</td></tr>
+    <tr><td class="id">G5 authorization</td><td>Role-object-state matrix and generated cross-tenant tests for every resource route; RLS forced even for table owner path used by app.</td></tr>
+    <tr><td class="id">G6 orchestration</td><td>Golden answer, abstention, provider timeout, verifier veto, audit failure, disconnect/reconnect, cancellation and corpus publication race.</td></tr>
+    <tr><td class="id">G7 effects</td><td>Crash before/after transaction, duplicate job and outbox delivery, lease expiry, poison item and renderer isolation.</td></tr>
+    <tr><td class="id">G8 privacy</td><td>Log/trace snapshot scanner; erasure map; export authorization; anonymous heap/session expiry; no provider fields unnecessary to task.</td></tr>
+    <tr><td class="id">G9 legal</td><td>Pakistani advocates validate response register, domain outcome mapping, urgency/referral and replay evidence; unresolved issues are retained, not majority-voted away.</td></tr>
+    <tr><td class="id">G10 resilience</td><td>Cold-cache load, slow-client SSE, pool exhaustion, worker/provider/object-store/database faults, backup restore and signed-pack rollback.</td></tr>
+   </tbody>
+  </table></div>
+  <h3><span class="mk">17.1</span>Definition of done</h3>
+  <ul>
+   <li>Every operation in &sect;7 exists in OpenAPI or is explicitly phase-gated; no undocumented route ships.</li>
+   <li>All five master invariants and QA-7, QA-8, QA-9, QA-10, QA-11, QA-12 and QA-13 have executable backend evidence.</li>
+   <li>Every domain inability survives transport without becoming a confident scalar, empty result or generic error.</li>
+   <li>Authenticated released answers replay exactly; anonymous requests leave no content behind; both use the same retrieval/generation verification gates.</li>
+   <li>Generated clients pass contract diff, the legal locked set has no critical regression, and rollback is rehearsed before pilot traffic.</li>
+  </ul>
+ </div>
+</section>
+
+<section id="references">
+ <div class="rail"><span class="num">R</span><span class="tag">Authorities<br>&amp; standards</span></div>
+ <div class="body">
+  <h2>Primary sources and implementation standards</h2>
+  <p class="lede">Legal sources establish the risk posture; technical standards establish interoperable mechanisms. Product safeguards that go beyond current enacted Pakistani law are identified as policy choices, not attributed to a statute.</p>
+  <ol>
+   <li><b>Constitution of the Islamic Republic of Pakistan</b> &mdash; Article 14 on dignity and privacy of the home; current consolidated text. <a href="https://na.gov.pk/uploads/documents/6926e060076ed_467.pdf">National Assembly official PDF</a>.</li>
+   <li><b>Prevention of Electronic Crimes Act, 2016</b> &mdash; current Pakistan Code access copy incorporating the Prevention of Electronic Crimes (Amendment) Act, 2025. <a href="https://www.pakistancode.gov.pk/pdffiles/administrator6a061efe0ed5bd153fa8b79b8eb4cba7.pdf">Ministry of Law and Justice PDF</a>.</li>
+   <li><b>Electronic Transactions Ordinance, 2002</b> &mdash; electronic documents, communications, signatures, integrity and certification framework. <a href="https://pakistancode.gov.pk/pdffiles/administratordbc98dd49f2df3b1d07bb986dcceb9a3.pdf">Pakistan Code official PDF</a>.</li>
+   <li><b>Qanun-e-Shahadat Order, 1984</b> &mdash; Articles 73 and 164 and electronic-system/modern-device evidence. <a href="https://pakistancode.gov.pk/pdffiles/administrator32b2d132138b421a65ab547a15ecd6ae.pdf">Pakistan Code official PDF</a>.</li>
+   <li><b>Legal Practitioners and Bar Councils Act, 1973</b> &mdash; professional-practice framework. <a href="https://pakistancode.gov.pk/pdffiles/administrator4068b39bc9eebedce40baf56a335243d.pdf">Pakistan Code official PDF</a>.</li>
+   <li><b>Pakistan Legal Practitioners and Bar Councils Rules, 1976</b> &mdash; professional conduct, including rule 146 concerning confidential information obtained from clients/former clients. <a href="https://www.pakistanbarcouncil.org/storage/acts/Bar%20Council%20Rules.pdf">Pakistan Bar Council official PDF</a> and <a href="https://www.pakistanbarcouncil.org/acts">official catalogue</a>.</li>
+   <li><b>Personal Data Protection Bill</b> &mdash; the Ministry of IT legislation register lists the May 2023 instrument as a draft; this document therefore does not treat it as enacted law. <a href="https://www.moitt.gov.pk/Legislations">Official status register</a>.</li>
+   <li><b>National Guidelines for Use of Artificial Intelligence in Judicial Institutions of Pakistan</b> &mdash; human-centric, assistive, transparent, accountable and privacy-protecting principles. <a href="https://www.ljcp.gov.pk/SliderDetail/NTI1NmRiN2EtM2M2MC00MzgyLWFlNmEtNmQ5ZmU5MWE4MjFh">Law and Justice Commission of Pakistan</a>; adoption in the <a href="https://ljcp.gov.pk/SiteImage/Misc/files/Press_Release_28_2026.pdf">NJPMC official decision record</a>.</li>
+   <li><b>OpenAPI Specification 3.2.0</b> &mdash; language-neutral HTTP interface description and current specification used for generated clients and contract diffing. <a href="https://spec.openapis.org/oas/v3.2.0.html">OpenAPI Initiative specification</a>.</li>
+   <li><b>RFC 9457</b> &mdash; Problem Details for HTTP APIs and <code>application/problem+json</code>. <a href="https://www.rfc-editor.org/rfc/rfc9457.html">RFC Editor</a>.</li>
+   <li><b>WHATWG HTML &mdash; Server-sent events</b> &mdash; <code>text/event-stream</code>, event ids and <code>Last-Event-ID</code> reconnection semantics. <a href="https://html.spec.whatwg.org/dev/server-sent-events.html">Living Standard</a>.</li>
+   <li><b>W3C Trace Context</b> &mdash; interoperable <code>traceparent</code> and <code>tracestate</code> propagation. <a href="https://www.w3.org/TR/trace-context/">W3C Recommendation</a>.</li>
+   <li><b>NIST SP 800-63B-4</b> &mdash; authenticator lifecycle, replay resistance and rate limiting; used as security guidance, not claimed Pakistani law. <a href="https://pages.nist.gov/800-63-4/sp800-63b.html">NIST official publication</a>.</li>
+   <li><b>OWASP API Security Top 10 (2023)</b> &mdash; object/property authorization, resource consumption, sensitive flows and unsafe upstream consumption. <a href="https://owasp.org/API-Security/editions/2023/en/0x00-header/">OWASP project</a>.</li>
+   <li><b>PostgreSQL 17 Row Security</b> &mdash; policy behaviour, default denial and role considerations used as defence in depth for user data. <a href="https://www.postgresql.org/docs/17/ddl-rowsecurity.html">Official documentation</a>.</li>
+   <li><b>RFC 8032</b> &mdash; EdDSA/Ed25519 signature construction used by offline manifests. <a href="https://www.rfc-editor.org/info/rfc8032/">RFC Editor</a>.</li>
+   <li><b>OpenTelemetry semantic conventions</b> &mdash; common HTTP/database/AI telemetry names and explicit warning that model inputs/outputs may contain sensitive data. <a href="https://opentelemetry.io/docs/specs/semconv/">Official specification</a>.</li>
+   <li><b>NIST AI 600-1</b> &mdash; Generative AI Profile covering confabulation, privacy, information integrity, provenance, evaluation and incident risks. <a href="https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf">NIST official PDF</a>.</li>
+   <li><b>FastAPI documentation</b> &mdash; async I/O, process workers and deployment mechanics for the selected runtime. <a href="https://fastapi.tiangolo.com/async/">Concurrency</a> and <a href="https://fastapi.tiangolo.com/deployment/server-workers/">workers</a>.</li>
+   <li><b>Local specification evidence</b> &mdash; <a href="01-master-architecture.html">Document 01</a>, <a href="02-corpus-and-ingestion.html">02</a>, <a href="03-data-and-storage.html">03</a>, <a href="03a-capacity-plan.html">03a</a>, <a href="03b-legal-data-model.html">03b</a>, <a href="04-retrieval.html">04</a>, <a href="05-generation-and-grounding.html">05</a>, <a href="06-domain-services.html">06</a>, <a href="08-client-architecture.html">08</a>, <a href="09a-local-environment.html">09a</a> and <a href="09b-production-deployment.html">09b</a>.</li>
+  </ol>
+ </div>
+</section>
+</div>
+</body>
+</html>

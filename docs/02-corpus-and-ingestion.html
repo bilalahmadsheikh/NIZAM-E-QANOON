@@ -1,0 +1,373 @@
+<title>Nizam-e-Qanoon Corpus and Ingestion</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Nastaliq+Urdu:wght@400&display=swap">
+
+<style>
+:root{
+  --paper:#F3F4F7;--surface:#FFF;--surface-2:#EDEFF3;--surface-3:#E3E7EE;
+  --ink:#14171E;--ink-2:#4C5566;--ink-3:#7E879A;--rule:#DCDFE7;--rule-2:#C6CBD6;
+  --indigo:#26397A;--indigo-soft:#E4E8F5;--rubric:#9E3B2F;--rubric-soft:#F6E7E4;
+  --ok:#2C6349;--ok-soft:#E0EDE7;--warn:#7E6114;--warn-soft:#F3EBD8;
+  --shadow:0 1px 2px rgba(20,23,30,.05),0 8px 24px -12px rgba(20,23,30,.14);
+  --f-display:"Newsreader",Georgia,serif;--f-body:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;--measure:72ch;--rail:9.5rem
+}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#0D0F14;--surface:#14171E;--surface-2:#1B1F28;--surface-3:#232935;
+  --ink:#E6E9EF;--ink-2:#A0A9BA;--ink-3:#6D7688;--rule:#252A34;--rule-2:#333A47;
+  --indigo:#93A8E8;--indigo-soft:#1B2136;--rubric:#D8867A;--rubric-soft:#2B1D1B;
+  --ok:#6FBF95;--ok-soft:#152520;--warn:#D3AB5C;--warn-soft:#241E10}}
+*{box-sizing:border-box} body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:16.5px;line-height:1.62;-webkit-font-smoothing:antialiased}
+.wrap{max-width:76rem;margin:0 auto;padding:0 1.5rem 8rem}.masthead{border-bottom:2px solid var(--ink);padding:3.5rem 0 1.25rem;margin-bottom:2rem}
+.kicker{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--rubric);margin:0 0 1rem}
+h1{font-family:var(--f-display);font-weight:500;font-size:clamp(2.4rem,5.8vw,3.9rem);line-height:1.03;letter-spacing:-.021em;margin:0 0 .5rem;text-wrap:balance}
+.dek{font-family:var(--f-display);font-size:clamp(1.05rem,2.1vw,1.3rem);color:var(--ink-2);max-width:58ch;margin:0 0 1.9rem;font-style:italic}
+.meta{display:flex;flex-wrap:wrap;gap:.5rem 2.25rem;font-family:var(--f-mono);font-size:.7rem;letter-spacing:.05em;color:var(--ink-3);border-top:1px solid var(--rule);padding-top:.9rem}.meta b{color:var(--ink-2);font-weight:500}
+section{display:grid;grid-template-columns:var(--rail) minmax(0,1fr);gap:0 2.5rem;padding-top:3.4rem;border-top:1px solid var(--rule);margin-top:3.4rem}section.first{border-top:none;margin-top:0}
+.rail{position:sticky;top:1.5rem;align-self:start;padding-top:.4rem}.rail .num{font-family:var(--f-mono);font-size:1.05rem;font-weight:600;color:var(--rubric);display:block}.rail .tag{font-family:var(--f-mono);font-size:.63rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);display:block;margin-top:.5rem;line-height:1.55}.body{min-width:0}
+@media(max-width:880px){section{grid-template-columns:1fr}.rail{position:static;display:flex;align-items:baseline;gap:.85rem;margin-bottom:.9rem}.rail .tag{margin:0}}
+h2{font-family:var(--f-display);font-weight:500;font-size:clamp(1.6rem,3.3vw,2.2rem);line-height:1.14;letter-spacing:-.017em;margin:0 0 .8rem;text-wrap:balance}
+h3{font-size:1.01rem;margin:2.6rem 0 .55rem}h3 .mk{font-family:var(--f-mono);color:var(--rubric);font-weight:600;margin-inline-end:.55rem;font-size:.88em}
+h4{font-family:var(--f-mono);font-size:.71rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);margin:1.9rem 0 .6rem}p{margin:0 0 1.05rem;max-width:var(--measure)}.lede{font-size:1.075rem;color:var(--ink-2);max-width:64ch}
+ul,ol{margin:0 0 1.15rem;padding-inline-start:1.3rem;max-width:var(--measure)}li{margin-bottom:.4rem}li::marker{color:var(--ink-3)}
+a{color:var(--indigo);text-underline-offset:.18em;word-break:break-word}code{font-family:var(--f-mono);font-size:.855em}p code,li code,td code{background:var(--surface-2);border:1px solid var(--rule);padding:.06em .34em;border-radius:3px}
+.scroll{overflow-x:auto;margin:1.4rem 0 1.9rem;border:1px solid var(--rule);border-radius:5px;background:var(--surface)}table{border-collapse:collapse;width:100%;font-size:.83rem;line-height:1.5}
+th{text-align:left;font-family:var(--f-mono);font-size:.645rem;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3);padding:.7rem .8rem;border-bottom:1px solid var(--rule-2);white-space:nowrap;background:var(--surface-2)}
+td{padding:.65rem .8rem;border-bottom:1px solid var(--rule);vertical-align:top}tr:last-child td{border-bottom:none}tbody tr:hover td{background:var(--surface-2)}td.n,th.n{font-family:var(--f-mono);white-space:nowrap;text-align:right}td.id{font-family:var(--f-mono);font-size:.76rem;color:var(--rubric);white-space:nowrap}td.k{font-weight:600;min-width:9rem}caption{caption-side:bottom;text-align:left;font-size:.76rem;color:var(--ink-3);padding:.7rem .8rem;border-top:1px solid var(--rule)}
+.chip{display:inline-block;font-family:var(--f-mono);font-size:.6rem;letter-spacing:.09em;text-transform:uppercase;font-weight:600;padding:.2em .5em;border-radius:3px;white-space:nowrap;border:1px solid}.c-have{background:var(--ok-soft);color:var(--ok)}.c-part{background:var(--warn-soft);color:var(--warn)}.c-miss{background:var(--rubric-soft);color:var(--rubric)}.c-new{background:var(--indigo-soft);color:var(--indigo)}
+.note{border-inline-start:3px solid var(--rubric);background:var(--surface);padding:1rem 1.15rem;margin:1.5rem 0;border-radius:0 4px 4px 0;max-width:var(--measure);box-shadow:var(--shadow)}.note.blue{border-inline-start-color:var(--indigo)}.note p:last-child,.note ul:last-child{margin-bottom:0}
+figure{margin:2rem 0;background:var(--surface);border:1px solid var(--rule);border-radius:5px;padding:1.4rem 1.2rem .9rem;box-shadow:var(--shadow);overflow-x:auto}figure svg{display:block;width:100%;min-width:40rem;height:auto;color:var(--ink)}figcaption{margin-top:1rem;padding-top:.8rem;border-top:1px solid var(--rule);font-size:.78rem;color:var(--ink-3)}.fignum{font-family:var(--f-mono);font-size:.63rem;letter-spacing:.12em;text-transform:uppercase;color:var(--rubric);font-weight:600;display:block;margin-bottom:.7rem}
+pre{background:var(--surface);border:1px solid var(--rule);border-radius:5px;padding:1rem;overflow-x:auto;font-family:var(--f-mono);font-size:.765rem;line-height:1.62;color:var(--ink-2)}pre b{color:var(--ink)}pre i{color:var(--ink-3);font-style:normal}
+.dg{font-family:var(--f-mono);font-size:10.5px}.dg .bx{fill:none;stroke:currentColor;stroke-width:1.2}.dg .bxf{fill:var(--surface-2);stroke:currentColor;stroke-width:1.2}.dg .accf{fill:var(--rubric-soft);stroke:var(--rubric);stroke-width:1.4}.dg text{fill:currentColor}.dg .ta{fill:var(--rubric);font-weight:600}.dg .tm{fill:currentColor;opacity:.62;font-size:9.5px}.dg .th{font-weight:600}.dg .ln{stroke:currentColor;stroke-width:1.1;fill:none}.dg .lnA{stroke:var(--rubric);stroke-width:1.4;fill:none}.dg .lnD{stroke:currentColor;stroke-width:1.1;fill:none;stroke-dasharray:5 3}
+</style>
+
+<div class="wrap">
+<header class="masthead">
+  <p class="kicker">Document 02 &middot; layer L1 &middot; child of 01 Master Architecture</p>
+  <h1>Nizam-e-Qanoon Corpus and Ingestion</h1>
+  <p class="dek">How official Pakistani law becomes a versioned, citable and quality-gated corpus&mdash;once per source revision, never during a user query.</p>
+  <div class="meta">
+    <span><b>Version</b> 1.0</span><span><b>Layer</b> L1</span>
+    <span><b>Provides</b> ICorpusCandidate</span><span><b>Consumes</b> official publications only</span>
+    <span><b>Baseline</b> 4,710 PDFs &middot; measured 28 Aug 2026</span>
+  </div>
+</header>
+
+<section class="first">
+  <div class="rail"><span class="num">&sect;0</span><span class="tag">Mandate</span></div>
+  <div class="body">
+    <h2>The corpus is evidence, not a folder of PDFs</h2>
+    <p class="lede">The five downloaded archives are a strong baseline: 4,710 official-code PDFs, 1,857 MB on disk and about 243 MB after text extraction. They are not yet a legally dependable corpus. A dependable corpus also knows where each file came from, when it was fetched, what publication it represents, what it changes, where every provision appears on the source page, and whether the result passed objective gates.</p>
+    <div class="note">
+      <h4>Non-negotiable rule</h4>
+      <p><strong>PDF extraction is performed once for a new content hash.</strong> Search, RAG and document generation read structured rows from Document 03. They never open or parse a PDF. A file is reprocessed only when its bytes change, the parser version changes, or a curator explicitly requests repair.</p>
+    </div>
+    <div class="scroll"><table>
+      <thead><tr><th>This layer owns</th><th>This layer does not own</th></tr></thead>
+      <tbody>
+        <tr><td>Source discovery, respectful fetching, immutable blobs, manifests, text/OCR extraction, layout recovery, legal segmentation, metadata and relationship candidates, QA gates, curation packages and publication requests</td><td>Production database constraints and indexes (03), ranking (04), answer generation (05), legal tools (06), APIs (07), or client presentation (08)</td></tr>
+        <tr><td>Evidence for every derived fact: source URL, file hash, page, span, parser version, confidence and review state</td><td>Declaring a provision legally operative from an uncertain inference. Unresolved commencement or invalidation remains explicitly unknown</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</section>
+
+<section>
+  <div class="rail"><span class="num">&sect;1</span><span class="tag">Authority<br>model</span></div>
+  <div class="body">
+    <h2>Keep the publication, consolidation and cross-check separate</h2>
+    <p class="lede">Several official sites may carry the same Act, but they do not play the same evidential role. The pipeline records each observation and resolves them by authority and date; it never silently overwrites one official copy with another.</p>
+    <div class="scroll"><table>
+      <thead><tr><th>Rank</th><th>Source role</th><th>Use</th><th>Conflict policy</th></tr></thead>
+      <tbody>
+        <tr><td class="id">A1</td><td class="k">Official Gazette publication</td><td>Enacted text, notification number, publication date, commencement notices, rules and SROs</td><td>Preserve as the publication event. Escalate a byte/text conflict; never auto-merge</td></tr>
+        <tr><td class="id">A2</td><td class="k">Official legislature record</td><td>Act number, passage, assent, Gazette date and newly enacted PDF</td><td>Cross-check A1; useful as the fastest new-law signal</td></tr>
+        <tr><td class="id">A3</td><td class="k">Government law-code consolidation</td><td>Convenient current text, amendments incorporated, subject and chronology indexes</td><td>Serve only with its consolidation date; verify changes against A1/A2</td></tr>
+        <tr><td class="id">A4</td><td class="k">Court or regulator publication</td><td>Judgments, orders, rules, regulations, circulars and sector instruments</td><td>Authoritative for that issuing body; connect to the enabling law and later appellate treatment</td></tr>
+        <tr><td class="id">A5</td><td class="k">Secondary discovery source</td><td>Finding a missing citation or document</td><td>Never publish from it. Use it only to locate an A1&ndash;A4 copy</td></tr>
+      </tbody>
+    </table></div>
+    <p>A source is &ldquo;official&rdquo; because it is controlled by the issuing government, legislature, court or regulator&mdash;not merely because its domain looks governmental. Every adapter is manually approved once with organization, jurisdiction, TLS status, publication role and terms recorded in the source registry.</p>
+  </div>
+</section>
+
+<section>
+  <div class="rail"><span class="num">&sect;2</span><span class="tag">Source<br>registry</span></div>
+  <div class="body">
+    <h2>What is covered now, and what must be added</h2>
+    <h3><span class="mk">2.1</span>Existing official-code baseline</h3>
+    <div class="scroll"><table>
+      <caption>Counts are the measured local archives, not claims about the total number of laws in force.</caption>
+      <thead><tr><th>Jurisdiction</th><th class="n">Local PDFs</th><th>Status</th><th>Official source</th><th>Role</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Federal</td><td class="n">1,038</td><td><span class="chip c-have">Downloaded</span></td><td><a href="https://pakistancode.gov.pk/english/">Pakistan Code</a></td><td>Consolidated statutes</td></tr>
+        <tr><td class="k">Punjab</td><td class="n">1,064</td><td><span class="chip c-have">Downloaded</span></td><td><a href="https://punjabcode.punjab.gov.pk/en/get_laws">Punjab Code</a> &middot; <a href="https://punjablaws.gov.pk/">Punjab Laws Online</a></td><td>Laws and rules; HTML cross-check where available</td></tr>
+        <tr><td class="k">Sindh</td><td class="n">1,728</td><td><span class="chip c-have">Downloaded</span></td><td><a href="https://sindhlaws.gov.pk/Chrono.aspx?pg=ACT">Sindh Laws</a></td><td>Acts, ordinances and rules; language variants where published</td></tr>
+        <tr><td class="k">Khyber Pakhtunkhwa</td><td class="n">516</td><td><span class="chip c-have">Downloaded</span></td><td><a href="https://kpcode.kp.gov.pk/homepage/chronological">KP Code</a></td><td>Chronological laws and rules</td></tr>
+        <tr><td class="k">Balochistan</td><td class="n">364</td><td><span class="chip c-have">Downloaded</span></td><td><a href="http://balochistancode.gob.pk/">Balochistan Code</a></td><td>Laws and rules; HTTP-only origin flagged in provenance</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3><span class="mk">2.2</span>Official enactment and territory feeds to add</h3>
+    <div class="scroll"><table>
+      <thead><tr><th>Priority</th><th>Publisher</th><th>Official collection</th><th>Why it is needed</th></tr></thead>
+      <tbody>
+        <tr><td class="id">P0</td><td class="k">Printing Corporation of Pakistan</td><td><a href="https://www.pcp.gov.pk/">Gazette of Pakistan</a></td><td>Primary publication for Acts, ordinances, rules, SROs and commencement notifications</td></tr>
+        <tr><td class="id">P0</td><td class="k">National Assembly</td><td><a href="https://www.na.gov.pk/en/acts.php">Acts of Parliament</a></td><td>Fast federal delta feed and downloadable enacted PDFs</td></tr>
+        <tr><td class="id">P0</td><td class="k">Senate</td><td><a href="https://senate.gov.pk/en/acts.php">Acts</a></td><td>Assent and Gazette-publication dates provide an independent federal cross-check</td></tr>
+        <tr><td class="id">P0</td><td class="k">Provincial legislatures</td><td><a href="https://www.pap.gov.pk/">Punjab</a> &middot; <a href="https://www.pas.gov.pk/acts">Sindh</a> &middot; <a href="https://www.pakp.gov.pk/act/">KP</a> &middot; <a href="https://pabalochistan.gov.pk/public/acts">Balochistan</a></td><td>New Acts, Act numbers, passage and assent dates before code portals consolidate them</td></tr>
+        <tr><td class="id">P1</td><td class="k">Gilgit-Baltistan Assembly</td><td><a href="https://gba.gov.pk/acts/">Acts</a></td><td>Adds a presently absent jurisdiction; ingestion must not mislabel it as federal</td></tr>
+        <tr><td class="id">P1</td><td class="k">AJK Legislative Assembly</td><td><a href="https://ajkassembly.gok.pk/acts/">Acts</a></td><td>Adds a separately governed legal corpus with explicit territorial identity</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3><span class="mk">2.3</span>Judicial sources required for legal status and precedent</h3>
+    <div class="scroll"><table>
+      <thead><tr><th>Priority</th><th>Court</th><th>Official collection</th><th>Corpus effect</th></tr></thead>
+      <tbody>
+        <tr><td class="id">P0</td><td class="k">Supreme Court</td><td><a href="https://scp.gov.pk/JudgmentsSearch">Judgments Search</a></td><td>Binding precedent, appeals, constitutional interpretation and status of lower-court treatment</td></tr>
+        <tr><td class="id">P0</td><td class="k">Federal Shariat Court</td><td><a href="https://www.federalshariatcourt.gov.pk/">Official court site</a></td><td>Repugnancy declarations under the constitutional Shariat jurisdiction</td></tr>
+        <tr><td class="id">P1</td><td class="k">High Courts</td><td><a href="https://lhc.gov.pk/">Lahore</a> &middot; <a href="https://sindhhighcourt.gov.pk/">Sindh</a> &middot; <a href="https://peshawarhighcourt.gov.pk/app/site/">Peshawar</a> &middot; <a href="https://bhc.gov.pk/resources/judgments">Balochistan</a> &middot; <a href="https://mis.ihc.gov.pk/frmJgmnt?jgs=1">Islamabad</a></td><td>Provincially binding interpretation, invalidation, stays and treatment of provisions</td></tr>
+      </tbody>
+    </table></div>
+    <div class="note blue"><p><strong>Coverage disclosure:</strong> until gazette and judgment adapters pass their completeness gates, the product may state what an official-code provision says, but must label commencement and judicial-validity coverage as incomplete. Absence of a judgment in our corpus is never evidence that no judgment exists.</p></div>
+
+    <h3><span class="mk">2.4</span>Delegated legislation&mdash;phase after the core codes</h3>
+    <p>Rules and regulatory instruments often contain the fee, form, threshold or procedure that an Act merely says will be &ldquo;prescribed.&rdquo; Add adapters by user demand, always linking the instrument to its enabling provision:</p>
+    <div class="scroll"><table>
+      <thead><tr><th>Official publisher</th><th>Collection</th><th>Instruments</th></tr></thead>
+      <tbody>
+        <tr><td class="k"><a href="https://www.fbr.gov.pk/sros">Federal Board of Revenue</a></td><td>SROs and notifications</td><td>Income tax, sales tax, federal excise and customs; retain draft/final/superseded state separately</td></tr>
+        <tr><td class="k"><a href="https://www.secp.gov.pk/laws/acts/">SECP</a></td><td>Laws</td><td>Acts, ordinances, rules, regulations, notifications, directives, guidelines and circulars</td></tr>
+        <tr><td class="k"><a href="https://www.sbp.org.pk/laws-regulations">State Bank of Pakistan</a></td><td>Laws and regulations</td><td>Banking laws, prudential regulations, manuals and circulars with update dates</td></tr>
+        <tr><td class="k"><a href="https://www.ppra.org.pk/regulation.asp">PPRA</a></td><td>Rules and regulations</td><td>Federal procurement rules, SRO-backed regulations and later amendments</td></tr>
+        <tr><td class="k"><a href="https://www.ecp.gov.pk/">Election Commission</a></td><td>Election laws and orders</td><td>Election statutes, rules, Commission orders and judgments</td></tr>
+        <tr><td class="k"><a href="https://cc.gov.pk/home/rules_new">Competition Commission</a></td><td>Rules, regulations and orders</td><td>Competition-law instruments and adjudicatory orders</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</section>
+
+<section>
+  <div class="rail"><span class="num">&sect;3</span><span class="tag">Acquisition</span></div>
+  <div class="body">
+    <h2>Every fetch is reproducible and non-destructive</h2>
+    <figure><span class="fignum">Figure 1 &mdash; source acquisition and identity</span>
+      <svg class="dg" viewBox="0 0 940 300" role="img" aria-label="An official index is observed, document metadata is normalized, bytes are fetched to an immutable blob store, a hash creates content identity, duplicates are linked, and changed content enters extraction while unchanged content stops.">
+        <rect class="bxf" x="20" y="65" width="135" height="58" rx="4"/><text class="th" x="34" y="88">Official index</text><text class="tm" x="34" y="105">HTML, API, sitemap</text>
+        <rect class="bx" x="185" y="65" width="145" height="58" rx="4"/><text class="th" x="199" y="88">Observe record</text><text class="tm" x="199" y="105">URL + legal metadata</text>
+        <rect class="bx" x="360" y="65" width="145" height="58" rx="4"/><text class="th" x="374" y="88">Fetch bytes</text><text class="tm" x="374" y="105">conditional GET</text>
+        <rect class="accf" x="535" y="65" width="145" height="58" rx="4"/><text class="ta" x="549" y="88">Hash + freeze</text><text class="tm" x="549" y="105">SHA-256, R2 key</text>
+        <rect class="bx" x="710" y="28" width="205" height="58" rx="4"/><text class="th" x="724" y="51">Known content hash</text><text class="tm" x="724" y="68">link observation; no parse</text>
+        <rect class="bx" x="710" y="103" width="205" height="58" rx="4"/><text class="th" x="724" y="126">New content hash</text><text class="tm" x="724" y="143">create extraction job</text>
+        <path class="ln" d="M155 94 H185"/><path class="ln" d="M330 94 H360"/><path class="lnA" d="M505 94 H535"/><path class="ln" d="M680 82 H710"/><path class="lnA" d="M680 106 H710"/>
+        <text class="ta" x="20" y="215">Immutable facts</text><text class="tm" x="20" y="236">source_id &middot; canonical URL &middot; discovered_at &middot; fetched_at &middot; HTTP status &middot; ETag &middot; Last-Modified</text><text class="tm" x="20" y="254">MIME sniff &middot; byte length &middot; SHA-256 &middot; object key &middot; scraper version &middot; referring index snapshot</text>
+      </svg>
+      <figcaption>The URL is an observation key, not document identity: official portals change filenames and links. Byte identity is the SHA-256 hash; legal identity is resolved later from jurisdiction, instrument type, number and year.</figcaption>
+    </figure>
+    <h3><span class="mk">3.1</span>Fetcher contract</h3>
+    <ul>
+      <li>Identify the client and obey published robots and rate constraints; one host-specific token bucket, jitter and exponential backoff.</li>
+      <li>Use <code>If-None-Match</code> and <code>If-Modified-Since</code> where supported. A <code>304</code> records freshness without downloading or parsing.</li>
+      <li>Accept a PDF only when HTTP succeeds, MIME sniffing and <code>%PDF-</code> agree, size is plausible and the full-stream hash completes. Preserve HTML source snapshots as well as document bytes.</li>
+      <li>Write to a temporary object, verify, then atomically promote to <code>raw/{source_id}/{sha256}</code>. Never overwrite a prior source blob.</li>
+      <li>Record missing links and parse errors as first-class observations. A disappearing official file triggers review; it does not delete the published corpus.</li>
+    </ul>
+<pre><b>source_observation</b>
+source_id, canonical_url, referring_url, discovered_at, fetched_at,
+http_status, etag, last_modified, media_type, byte_length, sha256,
+object_key, scraper_version, source_metadata, outcome, error_code</pre>
+  </div>
+</section>
+
+<section>
+  <div class="rail"><span class="num">&sect;4</span><span class="tag">Extract<br>&amp; recover</span></div>
+  <div class="body">
+    <h2>Use the cheapest faithful lane for each page</h2>
+    <p class="lede">OCR is a fallback, not the default. Many legal PDFs already contain usable text, while some mix born-digital pages with scanned schedules or Gazette stamps. Routing is page-level so one bad page does not force OCR across an entire Act.</p>
+    <div class="scroll"><table>
+      <thead><tr><th>Lane</th><th>Detection</th><th>Processing</th><th>Acceptance</th></tr></thead>
+      <tbody>
+        <tr><td class="id">E1</td><td class="k">Official HTML</td><td>DOM blocks retained with heading/list/table semantics</td><td>Heading sequence and text checksum stable after boilerplate removal</td></tr>
+        <tr><td class="id">E2</td><td class="k">Born-digital PDF</td><td>Layout-aware glyph/text extraction with coordinates</td><td>&ge;95% printable characters; no missing-page or repeated-glyph anomaly</td></tr>
+        <tr><td class="id">E3</td><td class="k">Mixed PDF</td><td>E2 on good pages; render and OCR only failed pages</td><td>Every page assigned a lane; page order preserved</td></tr>
+        <tr><td class="id">E4</td><td class="k">Scanned PDF</td><td>300 DPI render, deskew, denoise, script-aware OCR; English and Urdu/Sindhi models selected per region</td><td>Legal-token checks plus human review below threshold</td></tr>
+        <tr><td class="id">E5</td><td class="k">Image/table schedule</td><td>Region detection; cell grid and row/column recovery; source image retained</td><td>Totals, headers and row counts reconcile or route to curation</td></tr>
+      </tbody>
+    </table></div>
+    <h3><span class="mk">4.1</span>Never destroy the page evidence</h3>
+    <p>The canonical output is not a plain text file. Each block carries <code>{page, bbox, reading_order, script, extractor, confidence}</code>; every provision stores page anchors back to the immutable source. Hyphen repair, ligature expansion and whitespace normalization create derived text while the exact extracted form remains available for audit.</p>
+    <div class="note"><p><strong>No translation in ingestion.</strong> English, Urdu and Sindhi publications are separate official expressions linked by instrument identity. Generated translation belongs to the explanation layer and must never replace statutory wording.</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="rail"><span class="num">&sect;5</span><span class="tag">Legal<br>structure</span></div>
+  <div class="body">
+    <h2>Parse the law, not arbitrary token windows</h2>
+    <figure><span class="fignum">Figure 2 &mdash; legal structure and retrieval units</span>
+      <svg class="dg" viewBox="0 0 940 330" role="img" aria-label="A legal instrument is parsed into preamble, chapters, sections, subsections, clauses, provisos, explanations and schedules. Stable provisions are citable identities, versions hold text through time, and retrieval chunks point back to provisions.">
+        <rect class="accf" x="25" y="28" width="190" height="55" rx="4"/><text class="ta" x="40" y="51">Instrument identity</text><text class="tm" x="40" y="68">jurisdiction &middot; type &middot; no &middot; year</text>
+        <rect class="bx" x="275" y="20" width="185" height="44" rx="4"/><text class="th" x="290" y="47">Preamble / long title</text>
+        <rect class="bx" x="275" y="78" width="185" height="44" rx="4"/><text class="th" x="290" y="105">Chapter / Part</text>
+        <rect class="bxf" x="520" y="28" width="190" height="55" rx="4"/><text class="th" x="535" y="51">Provision identity</text><text class="tm" x="535" y="68">stable citation target</text>
+        <rect class="bx" x="520" y="105" width="190" height="55" rx="4"/><text class="th" x="535" y="128">Provision version</text><text class="tm" x="535" y="145">valid from &rarr; valid to</text>
+        <rect class="bx" x="755" y="105" width="160" height="55" rx="4"/><text class="th" x="770" y="128">RAG chunks</text><text class="tm" x="770" y="145">derived, replaceable</text>
+        <rect class="bx" x="275" y="168" width="185" height="126" rx="4"/><text class="th" x="290" y="192">Section tree</text><text class="tm" x="290" y="213">subsection</text><text class="tm" x="290" y="232">clause / subclause</text><text class="tm" x="290" y="251">proviso / explanation</text><text class="tm" x="290" y="270">illustration / exception</text>
+        <rect class="bx" x="520" y="190" width="190" height="82" rx="4"/><text class="th" x="535" y="214">Schedules / tables</text><text class="tm" x="535" y="235">forms &middot; fees &middot; offences</text><text class="tm" x="535" y="253">limitation &middot; stamp duty</text>
+        <path class="lnA" d="M215 55 H275"/><path class="ln" d="M460 100 H490 V55 H520"/><path class="ln" d="M460 230 H490 V55 H520"/><path class="ln" d="M615 83 V105"/><path class="ln" d="M710 132 H755"/><path class="ln" d="M615 160 V190"/>
+      </svg>
+      <figcaption>Provision identity survives amendment and re-chunking. Chunks are retrieval artefacts, never citation targets. This implements INV-4 from Document 01.</figcaption>
+    </figure>
+    <h3><span class="mk">5.1</span>Numbering grammar</h3>
+    <p>Parse headings and labels with a jurisdiction-aware grammar: <code>section 3</code>, <code>3-A</code>, <code>3AA</code>, <code>(1)</code>, <code>(a)</code>, <code>(i)</code>, provisos, explanations, illustrations and schedules. Indentation and coordinates are evidence, not truth; numbering, punctuation, font changes and table-of-contents reconciliation vote together.</p>
+    <h3><span class="mk">5.2</span>Chunking for RAG</h3>
+    <ul>
+      <li>Chunk only after the legal tree exists. Default boundary is a complete subsection or a group of adjacent clauses under one subsection.</li>
+      <li>Repeat compact context&mdash;instrument title, jurisdiction, section heading and defined-term scope&mdash;in chunk metadata, not by altering quoted text.</li>
+      <li>Never split a proviso, exception, explanation or definition from the rule it qualifies. Oversized schedules use row-aware chunks.</li>
+      <li>Each chunk retains ordered character spans into one provision version. Regeneration may change chunk IDs without changing citations or bookmarks.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="rail"><span class="num">&sect;6</span><span class="tag">Enrich<br>&amp; link</span></div>
+  <div class="body">
+    <h2>Extract candidates; require evidence before legal effect</h2>
+    <div class="scroll"><table>
+      <thead><tr><th>Candidate</th><th>Detected from</th><th>Resolution</th><th>Publish rule</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Instrument identity</td><td>Title, Act/Ordinance number, year, jurisdiction, official index metadata</td><td>Deterministic composite key plus aliases</td><td>Block if ambiguous</td></tr>
+        <tr><td class="k">Amends / repeals</td><td>Amending clauses, repeal and savings clauses, Gazette metadata</td><td>Target provision + operation + effective date</td><td>Auto-publish only on exact target and validated operation</td></tr>
+        <tr><td class="k">Commences</td><td>Commencement clause or later Gazette notification</td><td>Instrument or section-level date</td><td>Unknown until official notification is present</td></tr>
+        <tr><td class="k">Cross-reference</td><td>&ldquo;subject to,&rdquo; &ldquo;notwithstanding,&rdquo; &ldquo;under section,&rdquo; schedules and definitions</td><td>Typed edge with printed citation and resolved target</td><td>Unresolved citations remain visible defects</td></tr>
+        <tr><td class="k">Empowers</td><td>&ldquo;may make rules,&rdquo; &ldquo;as prescribed,&rdquo; notification powers</td><td>Enabling provision &rarr; rule/SRO</td><td>Human review for the first document family, then tested rules</td></tr>
+        <tr><td class="k">Judicial treatment</td><td>Court name, case metadata, cited provisions, disposition and operative order</td><td>Interprets, applies, distinguishes, overrules, invalidates or stays</td><td>No status-changing edge from an LLM alone</td></tr>
+      </tbody>
+    </table></div>
+    <p>Models may propose classifications and spans. Deterministic resolvers verify the target, while a curator approves any candidate that can change legal status. Every accepted edge keeps the source page and exact words that support it.</p>
+  </div>
+</section>
+
+<section>
+  <div class="rail"><span class="num">&sect;7</span><span class="tag">Versioning<br>&amp; identity</span></div>
+  <div class="body">
+    <h2>Never confuse a new file with a new law</h2>
+    <div class="scroll"><table>
+      <thead><tr><th>Identity</th><th>Key</th><th>Purpose</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Source observation</td><td><code>source_id + canonical_url + fetched_at</code></td><td>Proves what the portal exposed at a time</td></tr>
+        <tr><td class="k">Blob</td><td><code>sha256(bytes)</code></td><td>Deduplicates byte-identical files without losing separate official observations</td></tr>
+        <tr><td class="k">Expression</td><td><code>blob + language + publication role</code></td><td>Separates English, Urdu and Sindhi versions and Gazette/code copies</td></tr>
+        <tr><td class="k">Instrument</td><td><code>jurisdiction + type + number + year</code></td><td>Stable legal work identity; title changes become aliases</td></tr>
+        <tr><td class="k">Provision</td><td><code>instrument + structural lineage</code></td><td>Stable citation identity across amendments</td></tr>
+        <tr><td class="k">Provision version</td><td><code>provision + valid range + transaction range</code></td><td>Answers &ldquo;law as at date&rdquo; and preserves corrections</td></tr>
+      </tbody>
+    </table></div>
+    <h3><span class="mk">7.1</span>Change classification</h3>
+    <ul>
+      <li><strong>Mirror change:</strong> URL or filename changed but hash did not&mdash;link a new observation, do no extraction.</li>
+      <li><strong>Presentation change:</strong> hash changed but normalized legal text did not&mdash;retain the new expression and page anchors; do not create a legal version.</li>
+      <li><strong>Consolidation change:</strong> legal text changed on a code portal&mdash;diff at provision level and require an amending authority before publication.</li>
+      <li><strong>New enactment or notification:</strong> create the publication event, resolve affected provisions and publish atomically only after gates pass.</li>
+      <li><strong>Parser correction:</strong> transaction-time correction, not a claim that the law changed on that date.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="rail"><span class="num">&sect;8</span><span class="tag">Quality<br>gates</span></div>
+  <div class="body">
+    <h2>Nothing reaches retrieval because a script finished</h2>
+    <div class="scroll"><table>
+      <thead><tr><th>Gate</th><th>Check</th><th>Automatic threshold</th><th>Failure route</th></tr></thead>
+      <tbody>
+        <tr><td class="id">G1</td><td class="k">Source integrity</td><td>Official registry match; successful fetch; valid MIME/header; hash and blob durable</td><td>Retry or source review</td></tr>
+        <tr><td class="id">G2</td><td class="k">Page completeness</td><td>Expected page count equals processed pages; no empty internal page without image evidence</td><td>Page OCR or curation</td></tr>
+        <tr><td class="id">G3</td><td class="k">Text quality</td><td>Printable/script ratios, legal-token dictionary and OCR confidence above lane threshold</td><td>Alternate extractor or OCR review</td></tr>
+        <tr><td class="id">G4</td><td class="k">Structural integrity</td><td>Unique ordered section labels; balanced hierarchy; contents reconciliation</td><td>Side-by-side tree correction</td></tr>
+        <tr><td class="id">G5</td><td class="k">Metadata identity</td><td>Jurisdiction, type, number/year or a documented historical exception</td><td>Legal metadata review</td></tr>
+        <tr><td class="id">G6</td><td class="k">Relationship integrity</td><td>All status-changing targets resolved; inverse edges and dates consistent</td><td>Legal review</td></tr>
+        <tr><td class="id">G7</td><td class="k">Regression</td><td>Golden documents, provision counts and known difficult pages unchanged or approved</td><td>Block parser release</td></tr>
+        <tr><td class="id">G8</td><td class="k">Publish transaction</td><td>All rows, versions, edges, chunks and audit record commit together</td><td>Rollback; live corpus unchanged</td></tr>
+      </tbody>
+    </table></div>
+    <h3><span class="mk">8.1</span>Curation is an auditable patch</h3>
+    <p>The curator sees the rendered source page and parsed tree together. Allowed operations are typed&mdash;split/merge block, relabel node, correct text with source span, resolve identity, accept/reject relationship. Each correction stores before, after, operator, timestamp, reason and page evidence. Re-running the same parser applies approved patches after extraction, so manual work survives rebuilds.</p>
+    <div class="note"><p><strong>Sampling is risk-based:</strong> 100% of OCR documents, status-changing relationships, commencement/invalidation candidates and parser regressions; a stratified sample of clean born-digital documents by source and era.</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="rail"><span class="num">&sect;9</span><span class="tag">Operations</span></div>
+  <div class="body">
+    <h2>One historical build, then small deltas</h2>
+    <div class="scroll"><table>
+      <thead><tr><th>Job</th><th>Cadence</th><th>Scope</th><th>Alert</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Legislature and Gazette watch</td><td class="n">Daily</td><td>New Acts, ordinances, rules, SROs and commencement notices</td><td>Feed stale &gt;48 h; numbering gap; official copies disagree</td></tr>
+        <tr><td class="k">Code-portal reconciliation</td><td class="n">Weekly</td><td>New or changed consolidated statutes and rules across jurisdictions</td><td>Unexplained text change or source disappearance</td></tr>
+        <tr><td class="k">Superior-court watch</td><td class="n">Daily</td><td>New judgments and corrected/revised opinions</td><td>Feed stale; metadata or PDF missing</td></tr>
+        <tr><td class="k">Regulator watch</td><td class="n">Daily/weekly</td><td>Enabled domain adapters only</td><td>Draft/final ambiguity; supersession unresolved</td></tr>
+        <tr><td class="k">Completeness reconciliation</td><td class="n">Monthly</td><td>Sequence gaps, duplicate identities, unresolved citations, stale sources</td><td>Coverage dashboard and curator queue</td></tr>
+      </tbody>
+    </table></div>
+    <h3><span class="mk">9.1</span>Idempotent job graph</h3>
+<pre><b>discover</b>(source_cursor)
+  &rarr; <b>fetch</b>(observation)                 <i># no-op for 304 or known hash</i>
+  &rarr; <b>extract</b>(sha256, extractor_version) <i># cached by exact inputs</i>
+  &rarr; <b>segment</b>(extraction, grammar_version)
+  &rarr; <b>enrich</b>(tree, resolver_version)
+  &rarr; <b>gate</b>(candidate, gate_version)
+  &rarr; <b>curate?</b>(failure package)
+  &rarr; <b>publish</b>(candidate_set)             <i># single L1 &rarr; L2 boundary</i></pre>
+    <p>Every stage is content-addressed and retryable. Queues provide work delivery, not truth; the durable stage record decides whether work has already succeeded. A dead-letter item names its source, stage, attempt count and stable error code.</p>
+  </div>
+</section>
+
+<section>
+  <div class="rail"><span class="num">&sect;10</span><span class="tag">Delivery<br>plan</span></div>
+  <div class="body">
+    <h2>Build in the order that removes legal risk</h2>
+    <div class="scroll"><table>
+      <thead><tr><th>Phase</th><th>Deliverable</th><th>Exit condition</th></tr></thead>
+      <tbody>
+        <tr><td class="id">1</td><td class="k">Harden existing five adapters</td><td>Unified manifest, immutable blobs, respectful fetch policy and source-level completeness report for all 4,710 local PDFs</td></tr>
+        <tr><td class="id">2</td><td class="k">Extraction and legal tree</td><td>All pages assigned a lane; provision tree and page spans; G1&ndash;G5 pass; difficult-document golden set locked</td></tr>
+        <tr><td class="id">3</td><td class="k">Legislature + Gazette deltas</td><td>New enactments discovered daily; assent/publication/commencement recorded; code changes reconciled to authority</td></tr>
+        <tr><td class="id">4</td><td class="k">Supreme, FSC and High Courts</td><td>Judgments linked to provisions with explicit court hierarchy and review for invalidation/status edges</td></tr>
+        <tr><td class="id">5</td><td class="k">GB and AJK</td><td>Separate jurisdiction identities, completeness reports and client coverage labels</td></tr>
+        <tr><td class="id">6</td><td class="k">Demand-led regulators</td><td>Each instrument resolves to enabling law; draft/final/superseded status verified</td></tr>
+      </tbody>
+    </table></div>
+    <h3><span class="mk">10.1</span>Definition of done for Document 02</h3>
+    <ul>
+      <li>A complete rebuild from immutable blobs and versioned code produces the same published corpus hash.</li>
+      <li>No user request reads or parses a PDF; production serves only published L2 records.</li>
+      <li>Every displayed quotation resolves to official URL, content hash, page and source span.</li>
+      <li>Every source has a currency and completeness status visible to operations and expressible to users.</li>
+      <li>A failed or partial ingest cannot change the live corpus.</li>
+      <li>Unknown commencement or judicial status is represented as unknown, never guessed from silence.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="rail"><span class="num">R</span><span class="tag">Official<br>sources</span></div>
+  <div class="body">
+    <h2>References</h2>
+    <p class="lede">Only issuing-government, legislature, court and regulator sites are used below. Access and page structure were checked on 28 August 2026; adapters must treat URLs and markup as changeable.</p>
+    <ol style="font-size:.8rem;line-height:1.6">
+      <li><b>Federal statutes:</b> <a href="https://pakistancode.gov.pk/english/">Pakistan Code</a>; <a href="https://www.na.gov.pk/en/acts.php">National Assembly&mdash;Acts of Parliament</a>; <a href="https://senate.gov.pk/en/acts.php">Senate&mdash;Acts</a>. The Senate index records Act number, assent date and Gazette-publication date.</li>
+      <li><b>Gazette:</b> <a href="https://www.pcp.gov.pk/">Printing Corporation of Pakistan</a>, whose official domain publishes Gazette PDFs.</li>
+      <li><b>Provincial codes and legislatures:</b> <a href="https://punjabcode.punjab.gov.pk/en/get_laws">Punjab Code</a>, <a href="https://www.pap.gov.pk/">Punjab Assembly</a>, <a href="https://sindhlaws.gov.pk/Chrono.aspx?pg=ACT">Sindh Laws</a>, <a href="https://www.pas.gov.pk/acts">Sindh Assembly</a>, <a href="https://kpcode.kp.gov.pk/homepage/chronological">KP Code</a>, <a href="https://www.pakp.gov.pk/act/">KP Assembly</a>, <a href="http://balochistancode.gob.pk/">Balochistan Code</a>, and <a href="https://pabalochistan.gov.pk/public/acts">Balochistan Assembly</a>.</li>
+      <li><b>Other territories:</b> <a href="https://gba.gov.pk/acts/">Gilgit-Baltistan Assembly&mdash;Acts</a>; <a href="https://ajkassembly.gok.pk/acts/">AJK Legislative Assembly&mdash;Acts</a>.</li>
+      <li><b>Superior courts:</b> <a href="https://scp.gov.pk/JudgmentsSearch">Supreme Court judgments</a>, <a href="https://www.federalshariatcourt.gov.pk/">Federal Shariat Court</a>, <a href="https://lhc.gov.pk/">Lahore High Court</a>, <a href="https://sindhhighcourt.gov.pk/">Sindh High Court</a>, <a href="https://peshawarhighcourt.gov.pk/app/site/">Peshawar High Court</a>, <a href="https://bhc.gov.pk/resources/judgments">Balochistan High Court</a>, and <a href="https://mis.ihc.gov.pk/frmJgmnt?jgs=1">Islamabad High Court judgments</a>.</li>
+      <li><b>Delegated and sector law:</b> <a href="https://www.fbr.gov.pk/sros">FBR SROs</a>, <a href="https://www.secp.gov.pk/documents/acts/">SECP laws</a>, <a href="https://www.sbp.org.pk/laws-regulations">SBP laws and regulations</a>, <a href="https://www.ppra.org.pk/regulation.asp">PPRA regulations</a>, <a href="https://www.ecp.gov.pk/">ECP legal matters</a>, and <a href="https://cc.gov.pk/home/rules_new">Competition Commission rules</a>.</li>
+      <li><b>Local measurements:</b> 4,710 PDFs, 1,857 MB source data, approximately 243 MB extracted text and 113,158 top-level sections; measured from the five local archives on 28 August 2026. Detailed method: Document 03a &sect;1.</li>
+    </ol>
+  </div>
+</section>
+</div>
