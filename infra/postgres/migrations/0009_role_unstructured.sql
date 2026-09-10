@@ -1,0 +1,31 @@
+-- 0009  block_role gains 'unstructured'
+--
+-- Nine documents in the corpus have text but no resolvable provision structure.
+-- Three kinds, all real, none a parser defect:
+--
+--   * a lifecycle notice -- the whole PDF reads "THIS LAW HAS BEEN REPEALED"
+--   * a document whose legal content is a TABLE (document #3420 is 21 pages of
+--     recruitment rules in ten columns: post, appointing authority, minimum
+--     qualification, method of recruitment, age limits). It has no sections
+--     because it has no sections; doc 03b models this as a schedule table
+--   * a source whose text layer is unusable -- a corrupt embedded font, or
+--     Urdu Nastaliq that Tesseract cannot read (measured WER 2.401)
+--
+-- Before this, such a document was rejected and its blocks were written nowhere,
+-- so 733 blocks and 35,086 characters existed in `text_block` and in no ledger.
+-- That is exactly the failure mode CORPUS-CRITERIA C4 exists to catch, and it
+-- caught it.
+--
+-- 'unstructured' is NOT a synonym for 'unassigned', and the distinction is the
+-- whole point:
+--
+--   unassigned    the document WAS segmented and the walk never reached this
+--                 block. A bug. Must be 0.
+--   unstructured  the document has no provision structure at all. The text is
+--                 stored, reachable through the document and the page, and the
+--                 document sits in a named queue with its reason recorded.
+--
+-- No explicit transaction here: ALTER TYPE ... ADD VALUE must commit before the
+-- new label can be used, and 0010 uses it.
+
+ALTER TYPE block_role ADD VALUE IF NOT EXISTS 'unstructured';

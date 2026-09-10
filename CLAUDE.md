@@ -4,9 +4,13 @@ Pakistan's first intelligent legal infrastructure — a bilingual, offline-capab
 statutory corpus and judicial precedent of the federation and four provinces. Final Year Project,
 GIKI FCSE, four developers.
 
-**Current state: the specification set is complete; application code has not started.** Sixteen
-documents in `docs/` fix the architecture. `data/` holds the scrapers and 1.6 GB of source archives
-(gitignored). There is no `nizam/` package yet — the first one written should follow §8 of doc 01.
+**Current state: L1 extraction and L2 base segmentation are built and measured; L2 production qualification remains open, and L3 upward has not started.** Sixteen documents
+in `docs/` fix the architecture, and where implementation has diverged the docs carry an "as built"
+correction rather than a quiet edit. The corpus lives in Postgres: 4,595 documents, 63,047 pages,
+128,636,469 characters, 4,788 active expressions and 512,094 active provisions. `./nz audit`
+runs 30 criteria; 29 pass. Only S7 structural adjudication remains red; reviewed
+multi-instrument materialisation is complete and S10 is zero. There is no
+`chunk`, `embedding`, `legal_edge`, facet or judgment table yet — those are the next layers.
 
 ---
 
@@ -61,7 +65,7 @@ Layer rule: a layer calls **only** the layer immediately below it, plus the shar
 | Doc | Covers |
 |---|---|
 | `01-master-architecture` | Layers, domain model, interface contracts, 20 UML/C4 views, ADR index |
-| `02-corpus-and-ingestion` | Sources, extraction, segmentation, enrichment, the seven QA gates |
+| `02-corpus-and-ingestion` | Sources, extraction, segmentation, enrichment, quality gates (§8 as built: 30 criteria) |
 | `03-data-and-storage` | Schema, extensions, indexes, publish transaction, migrations |
 | `03a-capacity-plan` | Measured corpus sizing, free-tier analysis, hosting ladder |
 | `03b-legal-data-model` | 14 legal edge types, 9 facets, schedules as tables, SQLite projection |
@@ -88,12 +92,23 @@ Agents: `legal-source-scout`, `vendor-verifier`, `grounding-reviewer`, `schema-r
 
 ## Measured facts — do not re-derive
 
-From `data/`, measured 28 Aug 2026:
+From the built corpus (`nizam_clean`), measured 10 Sep 2026. These supersede the 28 Aug estimates,
+which were scaled from a 144-PDF sample:
 
-- **4,710 PDFs · 1,857 MB · 243 MB extracted text · 113,158 top-level sections**
-- **~96% carry a clean text layer** — OCR is a ~150-document fallback, not a pillar
-- Legal text compresses **4.17×**; federal corpus has 1,030 paths but **982 unique SHA-256**
-- Full statutory corpus in Postgres with indexes: **~744 MB**. With case law: **~10 GB**
+- **4,757 effective catalogue items · 4,716 landed (99.14%) · 4,595 distinct blobs · 41 genuinely unresolved**
+- **63,047 pages · 128,636,469 extracted characters · 955,153 active text blocks**
+- **512,094 active provisions from 106,021 sections** — tree expansion **4.83×**, not the 3.2× estimated
+- **Statutory corpus on disk: 1,682 MB** after multi-expression materialisation and restore-tested pruning of superseded
+  derived trees and removal of 1,563,444 synthetic ancestor-prefix rows. The 744 MB
+  estimate in 03a predates `provision_block`, `instrument_toc_entry`, `provision_ancestor` and
+  append-only revisions — see 03a §2A. **Supabase's 500 MB free tier no longer holds it**
+- **~96% carry a clean text layer** — OCR evidence covers 106 documents and remains a fallback, not a pillar
+- Character evidence against an independent extractor: **minimum recall 0.9991600; minimum precision 0.9976800 under the accepted evidence policy**
+- Contents agreement: **median 1.0000**, with **1,988 canonical gaps across 607 expressions**
+  (**2,120** when redundant provenance trees are included);
+  all active printed entries retain their exact source block/page
+- **3,720 expressions / 300,137 provisions / 285,156 versions** are in the fail-closed legal release;
+  **2,312 S7 decisions across 406 observations** remain blocked
 - Production needs **~14 GB RAM**, well under one core at 50k MAU. RAM buys latency, not correctness
 - A single €21–40 VPS carries **50,000–100,000 MAU**; at scale infrastructure is ~3% of the bill
 
@@ -102,11 +117,24 @@ From `data/`, measured 28 Aug 2026:
 ## Repo layout
 
 ```
-docs/          the specification set — the contract
+docs/          the specification set — the contract, plus SCHEMA.md and CORPUS-CRITERIA.md
+nizam/         the package: corpus/ (extract, ocr, segment), storage/, workers/, shared/
+infra/         compose file, Postgres image, migrations (0000–0041), scripts
+tools/         audit/criteria.sql and state.sql, the corpus browser, diagnostics
+tests/         pure-function tests; the segmenter's regressions live here
 data/          scrapers + source archives (archives gitignored, 1.6 GB)
-design/        design canvas working files
 .claude/       skills and agents
+nz  ·  nz.ps1  one command: up status psql extract ocr verify audit state browse test snapshot
 ```
 
 Schema lives in migrations in git, never in a GUI. The Postgres image is digest-pinned so a laptop
 and the server cannot drift. Commits end with the `Co-Authored-By` trailer; branch before pushing.
+
+Two rules the corpus taught, both after shipping the mistake:
+
+- **Source and decision evidence is append-only.** Re-extracting or re-segmenting first *retires*
+  the previous revision (`is_active`, `supersedes_*_id`, `retired_at`). Superseded derived trees may
+  be pruned only by the archive-manifest plus restore-proof workflow; current-state queries still
+  use active views, and application queries use the narrower release views.
+- **A criterion that encodes today's measurement is a tripwire, not a test.** Two were written as
+  fixed counts and both failed on healthy data within a day. Assert the rule; report the number.

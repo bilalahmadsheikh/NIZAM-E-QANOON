@@ -209,7 +209,8 @@ pre u{color:var(--rubric);text-decoration:none}
 <b>CREATE TYPE</b> instrument_kind  <b>AS ENUM</b> ('constitution','act','ordinance','order','regulation',
                                         'rules','sro','notification');
 <b>CREATE TYPE</b> provision_kind   <b>AS ENUM</b> ('part','chapter','section','article','subsection','clause',
-                                        'proviso','explanation','illustration','schedule','preamble');
+                                        'proviso','explanation','illustration','schedule','preamble',
+                                        'form','appendix','annexure','order');
 <b>CREATE TYPE</b> lifecycle_state  <b>AS ENUM</b> ('in_force','repealed','spent','lapsed','not_yet_commenced');
 <b>CREATE TYPE</b> version_op       <b>AS ENUM</b> ('original','inserted','substituted','omitted','amended');
 <b>CREATE TYPE</b> court            <b>AS ENUM</b> ('SC','FSC','LHC','SHC','PHC','BHC','IHC');
@@ -358,6 +359,63 @@ pre u{color:var(--rubric);text-decoration:none}
   <b>CONSTRAINT</b> ck_one_dst <b>CHECK</b> (
     (dst_provision_id <b>IS NOT NULL</b>)::int + (dst_judgment_id <b>IS NOT NULL</b>)::int = 1)
 );</pre>
+  </div>
+</section>
+
+
+<!-- ============ 2A — the corpus layer, as built ============ -->
+<section>
+  <div class="rail"><span class="num">&sect;2A</span><span class="tag">Corpus<br>layer</span></div>
+  <div class="body">
+    <h2>The tables below the legal core</h2>
+    <p class="lede">&sect;2 begins at <code>instrument</code>. Everything that produces one &mdash; the bytes, the extraction, the evidence that the extraction was faithful &mdash; is specified in document 02 and was not given a schema here. It has one now, and it is more than half the database. The authoritative dump is <code>docs/SCHEMA.md</code>, read from <code>pg_catalog</code>; this section states the shape and the reason for each rung.</p>
+
+    <h4>The identity ladder (doc 02 &sect;7)</h4>
+    <pre>source_observation   what a portal exposed, when          <b>observation identity</b>
+      &darr; sha256
+blob                 bytes                                 <b>byte identity</b>
+      &darr; sha256
+document &mdash; page &mdash; text_block                          <b>one extraction of those bytes</b>
+      &darr; source_observation_id
+instrument                                                 <b>the legal expression</b>
+      &darr; instrument_id
+provision &larr; provision_block                              <b>INV-4, the citable unit</b>
+      &darr;
+provision_version                                          <b>INV-5, law as at a date</b></pre>
+
+    <h4>Accounting and evidence</h4>
+    <div class="scroll">
+      <table>
+        <caption>Tables added during implementation, each to make a correctness claim checkable rather than asserted.</caption>
+        <thead><tr><th>Table</th><th>What it holds</th><th>The claim it makes provable</th></tr></thead>
+        <tbody>
+          <tr><td><code>provision_block</code></td><td>every text block, its role, and the provision it became</td><td><b>Nothing is discarded.</b> Roles are <code>body, contents, preface, preamble, heading, footnote, running_header, schedule_row, unstructured, unassigned</code>. <code>unassigned</code> must be 0 &mdash; it is the defect counter.</td></tr>
+          <tr><td><code>instrument_toc_entry</code></td><td>the statute&rsquo;s ordered printed contents list, its exact source block/physical page, and the resolved provision</td><td>Segmentation is validated against the document&rsquo;s own words; repeated printed labels survive, and an unresolved entry is a named gap rather than a hidden count.</td></tr>
+          <tr><td><code>extraction_attempt</code>, <code>segmentation_run</code>, <code>acquisition_attempt</code></td><td>every attempt, successful or not, with its reason</td><td><b>Failures are never silent.</b> Ledgers are append-only and never pruned.</td></tr>
+          <tr><td><code>extraction_verification</code></td><td>per-document metrics against an independent extractor</td><td>Fidelity is evidence with a row behind it, not a corpus mean.</td></tr>
+          <tr><td><code>block_assignment_set</code></td><td>which segmentation run produced which block roles</td><td>Re-segmentation retires an assignment set; it does not overwrite one.</td></tr>
+          <tr><td><code>segmentation_curation_patch</code></td><td>source page, stable locator, exact before/after text, evidence and review state</td><td>A PDF-verified correction changes only derived parser input, applies exactly once or fails closed, and never mutates extracted text.</td></tr>
+          <tr><td><code>segmentation_structural_candidate</code></td><td>one immutable repeated-label decision with candidate/canonical provisions, source blocks, physical pages and parser evidence</td><td>S7 is item-level and reconstructable; an aggregate counter can no longer hide a missing decision.</td></tr>
+          <tr><td><code>segmentation_structural_adjudication</code></td><td>append-only machine, source or human resolutions with method, rationale, evidence and supersession</td><td>Structural uncertainty can be reviewed without editing source text or destroying rejected interpretations.</td></tr>
+          <tr><td><code>revision_archive_batch</code>, <code>instrument_revision_archive_manifest</code></td><td>dump path/hash, restore proof and a row-level map from each pruned revision to its retained successor</td><td>Superseded derived trees leave the hot database only after recoverability is demonstrated; source evidence remains in place.</td></tr>
+          <tr><td><code>provision_ancestor</code></td><td>one row per provision and real <code>parent_id</code> ancestor</td><td>Query acceleration only. Disposable, regenerable, <u>not</u> source evidence &mdash; synthetic path-identity prefixes are excluded.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="bx" style="margin-top:1rem">
+      <p><strong>Correction to &sect;4: the ltree GiST index does not work at corpus scale.</strong> &sect;4 lists a GiST index on <code>provision.path</code> for &ldquo;subtree and ancestor queries without recursive joins&rdquo;. Once the corpus became append-only, retired revisions legitimately repeat their paths, and the duplicate-heavy history made the index pathological: writes first exceeded <code>max_stack_depth</code>, and with the ceiling raised they wedged the database mid-run.</p>
+      <p style="margin-top:.55rem">It is replaced by <code>provision_ancestor</code>, an explicit ancestor closure answered by ordinary B-tree equality. Migration 0027 corrected its extent: closure is generated recursively from real <code>parent_id</code> edges, not from the three synthetic ltree labels that identify an observation. This removed 1,563,444 unreachable rows without touching canonical data. <code>provision.path</code> remains ltree and remains the canonical, immutable lineage; exact historical lookup is covered by <code>uq_provision_instrument_path</code>. Migrations 0017, 0018 and 0027.</p>
+    </div>
+
+    <div class="bx" style="margin-top:.8rem">
+      <p><strong>Correction to &sect;6: the write path is retire-and-append, not delete-and-rebuild.</strong> &sect;6 describes one materialisation per document replaced in a transaction. Migration 0012 made <code>document</code>, <code>instrument</code> and <code>block_assignment_set</code> revision-bearing: <code>is_active</code>, <code>supersedes_*_id</code>, <code>retired_at</code>, <code>verification_state</code>. A re-run retires the previous revision and appends a new one, so a regression is diagnosable rather than lost.</p>
+      <p style="margin-top:.55rem">Every current-state view and every audit query must therefore filter <code>is_active</code>. A query that reads the base tables directly counts every generation ever produced &mdash; which is a real defect this project shipped once and caught in review.</p>
+      <p style="margin-top:.55rem"><strong>Active is still not the publication boundary.</strong> It means the newest evidentiary revision and deliberately includes quarantined material. Migrations 0030 and 0035&ndash;0040 require passed source evidence, canonical identity, complete printed contents, no pending S7 candidate, and no unresolved multi-instrument boundary. On 10 September 2026 the legal views contain 3,720 instruments, 300,137 provisions and 285,156 versions. Production retrieval must use these views; reviewers retain every active revision and archived proof of safely pruned superseded derived trees.</p>
+      <p style="margin-top:.55rem"><strong>One observation can materialise several expressions.</strong> Migration 0040 replaces the old one-instrument-per-observation assumption with uniqueness on <code>(source_observation_id, expression_ordinal)</code>. Each expression stores a guarded first/last source block and a versioned <code>instrument_expression_manifest</code>; one active assignment set still accounts for every source block exactly once. <code>save_many()</code> retires and appends the whole expression set atomically, so a partial split cannot publish.</p>
+    </div>
+
+    <p style="margin-top:.7rem">Instruments are keyed on <code>source_observation_id</code>, not <code>document_id</code>: the same Act published on a federal and a provincial portal is two official observations of one work, and doc 03b &sect;3 requires both to remain separately segmentable until identity resolution is reviewed.</p>
   </div>
 </section>
 
@@ -545,7 +603,7 @@ pre u{color:var(--rubric);text-decoration:none}
                   <b>AND</b> i.published <b>AND</b> i.jurisdiction = <b>ANY</b>($juris)
 <b>ORDER BY</b> c.embedding <u>&lt;~&gt;</u> $qbits::bit(1024)                 <i>-- hamming, hnsw</i>
 <b>LIMIT</b> 500;                                                <i>-- 10x over-fetch for 50 kept</i></pre>
-    <p>The second query filters <em>and</em> orders by an index, which is exactly the shape that used to over-filter in pgvector before iterative index scans landed. Verify the plan uses the HNSW index rather than falling back to a sequential scan whenever the jurisdiction filter is narrow &mdash; and raise <code>hnsw.ef_search</code> per session rather than globally.</p>
+    <p><strong>As-built release correction:</strong> the conceptual queries above use <code>published</code>, but the current implementation has stronger evidence boundaries. Chunk creation and application reads must start from <code>v_release_provision_version</code> joined to <code>v_release_provision</code> and <code>v_release_instrument</code>; base-table active rows include retained S7 uncertainty. The second query filters <em>and</em> orders by an index, which is exactly the shape that used to over-filter in pgvector before iterative index scans landed. Verify the plan uses the HNSW index rather than falling back to a sequential scan whenever the jurisdiction filter is narrow &mdash; and raise <code>hnsw.ef_search</code> per session rather than globally.</p>
   </div>
 </section>
 

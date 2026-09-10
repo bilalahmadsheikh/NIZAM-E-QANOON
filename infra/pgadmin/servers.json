@@ -1,0 +1,14 @@
+{
+  "Servers": {
+    "1": {
+      "Name": "Nizam-e-Qanoon (local)",
+      "Group": "Nizam",
+      "Host": "postgres",
+      "Port": 5432,
+      "MaintenanceDB": "nizam_clean",
+      "Username": "nizam",
+      "SSLMode": "prefer",
+      "Comment": "Local corpus database. Opens on nizam_clean, the only live corpus database. Inspection only - every schema object comes from a migration in git (doc 09a s7). pgAdmin will ask for the password once on first connect; it is POSTGRES_PASSWORD in infra/.env. Tick 'Save password'."
+    }
+  }
+}

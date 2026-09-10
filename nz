@@ -1,0 +1,270 @@
+#!/usr/bin/env bash
+# nz -- one command for the Nizam-e-Qanoon local environment.
+#
+#   ./nz up            start the database, apply migrations, verify
+#   ./nz status        what is running, and what is in the database
+#   ./nz psql          open a SQL prompt
+#   ./nz psql-clean    open a SQL prompt against the candidate database
+#   ./nz extract       run L1 extraction over the corpus (lane E2)
+#   ./nz ocr           run OCR over the scans E2 could not read (lane E4)
+#   ./nz verify        cross-check the database against the source PDFs
+#   ./nz verify-clean  run every extraction verifier against nizam_clean
+#   ./nz audit         every completeness and accuracy criterion, pass/fail
+#   ./nz audit-clean   run those criteria against nizam_clean
+#   ./nz state         how far along the corpus is, as percentages
+#   ./nz state-clean   report nizam_clean corpus progress
+#   ./nz context       regenerate docs/AGENT-CONTEXT.md -- schema + the rules
+#   ./nz lint          report corpus smells the 30 invariants do not cover
+#   ./nz drift         what changed since last run, and which worker wrote it
+#   ./nz browse        read the corpus in a browser, PDF beside extracted text
+#   ./nz test          tests + the self test
+#   ./nz test-clean    tests + environment self-test against nizam_clean
+#   ./nz snapshot      snapshot now (respects the change/settle gates)
+#   ./nz restore       restore the newest snapshot
+#   ./nz down          stop the containers (data is kept)
+#   ./nz bootstrap     a fresh machine, from nothing to a working database
+#
+# Run it from WSL. From PowerShell use .\nz.ps1, which forwards here.
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+INFRA="$ROOT/infra"
+cd "$ROOT"
+
+# uv installs to ~/.local/bin, which a non-login shell may not have on PATH.
+export PATH="$HOME/.local/bin:$PATH"
+
+b()   { printf '\033[1m%s\033[0m\n' "$*"; }
+die() { printf '\033[31m%s\033[0m\n' "$*" >&2; exit 1; }
+dc()  { docker compose -f "$INFRA/compose.yaml" "$@"; }
+
+_env() { [ -f "$INFRA/.env" ] && { set -a; . "$INFRA/.env"; set +a; }; }
+_psql() {
+  _env
+  local db="${NIZAM_TARGET_DB:-${POSTGRES_DB:-nizam_clean}}"
+  dc exec -T postgres psql -U "${POSTGRES_USER:-nizam}" -d "$db" "$@"
+}
+
+need_docker() {
+  command -v docker >/dev/null || die "docker is not installed -- run: ./nz bootstrap"
+  docker info >/dev/null 2>&1 || die "cannot reach the docker daemon.
+  start it:      sudo systemctl start docker
+  or check the group:  groups | grep docker
+  if it is missing, run 'wsl --shutdown' from PowerShell and reopen."
+}
+
+need_uv() {
+  command -v uv >/dev/null || die "uv is not installed -- run: ./nz bootstrap"
+}
+
+cmd_up() {
+  need_docker
+  [ -f "$INFRA/.env" ] || die "no infra/.env -- copy infra/.env.example and set the three passwords"
+  b "starting containers"
+  dc up -d --quiet-pull
+  b "waiting for postgres"
+  for i in $(seq 1 60); do
+    [ "$(docker inspect -f '{{.State.Health.Status}}' nizam-postgres 2>/dev/null || echo x)" = healthy ] \
+      && { echo "  healthy"; break; }
+    [ "$i" -eq 60 ] && { dc logs --tail=30 postgres; die "postgres did not become healthy"; }
+    sleep 3
+  done
+  b "verifying the cluster (doc 03 §1)"
+  _psql -q -v ON_ERROR_STOP=1 -f /etc/postgresql/verify.sql | tail -14
+  b "migrations"
+  bash "$INFRA/scripts/migrate.sh"
+  if [ "$(_psql -tAc 'SELECT count(*) FROM source_observation' | tr -d '[:space:]')" = "0" ]; then
+    b "loading acquisition observations"
+    bash "$INFRA/scripts/load-observations.sh"
+  fi
+  echo
+  cmd_status
+}
+
+cmd_status() {
+  need_docker; _env
+  b "containers"
+  dc ps --format '  {{.Name}}  {{.State}}  {{.Status}}' 2>/dev/null || true
+  if [ "$(docker inspect -f '{{.State.Running}}' nizam-postgres 2>/dev/null || echo false)" = true ]; then
+    echo
+    b "database"
+    # Exact counts, not n_live_tup. Those are planner estimates maintained by
+    # autovacuum and they go badly stale right after a bulk load -- reporting
+    # 44 documents when there are 4,589 is worse than reporting nothing.
+    _psql -c "
+      SELECT t.table, t.rows,
+             pg_size_pretty(pg_total_relation_size(('public.'||t.table)::regclass)) AS size
+        FROM (
+          SELECT 'source_observation' AS table, count(*) AS rows FROM source_observation
+          UNION ALL SELECT 'blob',               count(*) FROM blob
+          UNION ALL SELECT 'document',           count(*) FROM document
+          UNION ALL SELECT 'page',               count(*) FROM page
+          UNION ALL SELECT 'text_block',         count(*) FROM text_block
+          UNION ALL SELECT 'extraction_attempt', count(*) FROM extraction_attempt
+        ) t ORDER BY t.rows DESC;" 2>/dev/null || true
+    local queued
+    queued=$(_psql -tAc 'SELECT count(*) FROM v_extract_queue' 2>/dev/null | tr -d '[:space:]' || echo '?')
+    echo "  waiting to be extracted: ${queued}"
+    echo
+    b "open it"
+    echo "  pgAdmin    http://localhost:${PGADMIN_PORT:-5050}"
+    echo "  MinIO      http://localhost:${MINIO_CONSOLE_PORT:-9001}"
+    echo "  Postgres   localhost:${POSTGRES_PORT:-5433}  db=${POSTGRES_DB:-nizam_clean} user=${POSTGRES_USER:-nizam}"
+  fi
+}
+
+cmd_psql()     { need_docker; _env
+                 local db="${NIZAM_TARGET_DB:-${POSTGRES_DB:-nizam_clean}}"
+                 dc exec postgres psql -U "${POSTGRES_USER:-nizam}" -d "$db" "$@"; }
+cmd_psql_clean() { NIZAM_TARGET_DB="${NIZAM_CLEAN_DB:-nizam_clean}" cmd_psql "$@"; }
+cmd_extract()  { need_docker; need_uv; uv run python -m nizam.workers.extract "$@"; }
+cmd_ocr()      { need_docker; need_uv
+                 command -v tesseract >/dev/null || die "tesseract is not installed:
+  sudo apt-get install -y tesseract-ocr tesseract-ocr-eng tesseract-ocr-urd tesseract-ocr-snd"
+                 uv run python -m nizam.workers.ocr "$@"; }
+cmd_verify()   { need_docker; need_uv
+                 command -v pdftotext >/dev/null || die "poppler-utils is not installed:
+  sudo apt-get install -y poppler-utils"
+                 echo "== lane E2: cross-check against pdftotext"
+                 uv run python -m nizam.workers.verify_extraction "${@:---sample 250}"
+                 echo; echo "== lane E4: OCR quality (doc 02 §4)"
+                 uv run python -m nizam.workers.verify_ocr || true; }
+cmd_verify_clean() {
+  need_docker; need_uv
+  command -v pdftotext >/dev/null || die "poppler-utils is required"
+  local failed=0
+  echo "== clean lane E2/E3: character completeness and precision"
+  POSTGRES_DB="${NIZAM_CLEAN_DB:-nizam_clean}" \
+    uv run python -m nizam.workers.verify_extraction --all || failed=1
+  echo; echo "== clean OCR: confidence, legal language and yield"
+  POSTGRES_DB="${NIZAM_CLEAN_DB:-nizam_clean}" \
+    uv run python -m nizam.workers.verify_ocr || failed=1
+  echo; echo "== sequence: word order and sentence fidelity"
+  POSTGRES_DB="${NIZAM_CLEAN_DB:-nizam_clean}" \
+    uv run python -m nizam.workers.verify_order --all || failed=1
+  echo; echo "== text layer: statutory-language plausibility"
+  POSTGRES_DB="${NIZAM_CLEAN_DB:-nizam_clean}" \
+    uv run python -m nizam.workers.verify_text_quality --all || failed=1
+  return "$failed"
+}
+cmd_browse()   { need_docker; need_uv
+                 echo "corpus browser -> http://localhost:${1:-5055}"
+                 uv run python tools/corpus-browser/serve.py --port "${1:-5055}"; }
+cmd_audit()    { need_docker
+                 b "docs/CORPUS-CRITERIA.md -- measured"
+                 _psql -v ON_ERROR_STOP=1 -f - < "$ROOT/tools/audit/criteria.sql"; }
+cmd_audit_clean() { NIZAM_TARGET_DB="${NIZAM_CLEAN_DB:-nizam_clean}" cmd_audit "$@"; }
+cmd_state()    { need_docker
+                 b "corpus state -- how far along, as percentages"
+                 _psql -f - < "$ROOT/tools/audit/state.sql"; }
+cmd_state_clean() { NIZAM_TARGET_DB="${NIZAM_CLEAN_DB:-nizam_clean}" cmd_state "$@"; }
+cmd_drift()   { need_docker; need_uv
+                 b "corpus drift -- what changed since last time, and who"
+                 POSTGRES_DB="${NIZAM_CLEAN_DB:-nizam_clean}" \
+                   uv run python tools/drift.py "$@"; }
+cmd_lint()    { need_docker; need_uv
+                 b "corpus lint -- smells, not invariants (the audit is the gate)"
+                 POSTGRES_DB="${NIZAM_CLEAN_DB:-nizam_clean}"                    uv run python tools/lint_corpus.py "$@"; }
+cmd_context() { need_docker; need_uv
+                 b "regenerating docs/AGENT-CONTEXT.md from the live database"
+                 POSTGRES_DB="${NIZAM_CLEAN_DB:-nizam_clean}"                    uv run python tools/gen_context.py "$@"; }
+cmd_snapshot() { bash "$INFRA/scripts/snapshot.sh" "$@"; }
+cmd_restore()  { bash "$INFRA/scripts/restore.sh" "$@"; }
+cmd_logs()     { need_docker; dc logs -f --tail=80 "$@"; }
+cmd_down()     { need_docker; b "stopping (volumes kept)"; dc down; }
+
+cmd_test() {
+  need_docker; need_uv
+  b "unit tests"
+  uv run pytest tests/ -q
+  echo
+  b "environment self test"
+  bash "$INFRA/scripts/selftest.sh"
+}
+cmd_test_clean() { NIZAM_TARGET_DB="${NIZAM_CLEAN_DB:-nizam_clean}" cmd_test "$@"; }
+
+cmd_bootstrap() {
+  b "1/4  Docker Engine and the snapshot timer"
+  if ! dpkg -s docker-ce >/dev/null 2>&1; then
+    SETUP_USER="${SETUP_USER:-$USER}" bash "$INFRA/wsl/setup-docker.sh"
+    die "Docker installed. Group membership needs a new session:
+  run 'wsl --shutdown' in PowerShell, reopen WSL, then './nz bootstrap' again."
+  else
+    echo "  docker-ce present"
+  fi
+
+  b "2/4  uv"
+  if ! command -v uv >/dev/null; then
+    curl -LsSf https://astral.sh/uv/install.sh | sh >/dev/null 2>&1
+    export PATH="$HOME/.local/bin:$PATH"
+  fi
+  echo "  $(uv --version)"
+
+  b "3/4  configuration"
+  if [ ! -f "$INFRA/.env" ]; then
+    python3 - "$INFRA/.env.example" "$INFRA/.env" <<'PY'
+import secrets, string, sys
+alpha = string.ascii_letters + string.digits
+src, dst = sys.argv[1], sys.argv[2]
+s = open(src, encoding="utf-8").read()
+for key in ("POSTGRES_PASSWORD", "PGADMIN_PASSWORD", "MINIO_ROOT_PASSWORD"):
+    s = s.replace(f"{key}=", f"{key}=" + "".join(secrets.choice(alpha) for _ in range(20)), 1)
+open(dst, "w", encoding="utf-8", newline="\n").write(s)
+print("  generated infra/.env with fresh passwords")
+PY
+  else
+    echo "  infra/.env already present"
+  fi
+
+  b "4/4  corpus"
+  _env
+  local root="${CORPUS_ROOT:-/mnt/e/nizam-data}"
+  if [ ! -d "$root/raw" ]; then
+    [ -d "$ROOT/data" ] || die "no data/ directory with the source archives"
+    uv run python tools/corpus-land/land.py --archives data --out "$root"
+  else
+    echo "  $(find "$root/raw" -type f | wc -l) blobs already landed"
+  fi
+
+  echo
+  cmd_up
+  cat <<EOF
+
+Bootstrap complete. Next:
+    ./nz extract --all      populate the database from the PDFs
+    ./nz status             see what is in it
+EOF
+}
+
+# Print the header comment as help: every line from 2 up to the first that is
+# not a comment, so the block and this function can never drift apart.
+usage() { awk 'NR>1 { if ($0 !~ /^#/) exit; sub(/^# ?/, ""); print }' "${BASH_SOURCE[0]}"; }
+
+case "${1:-}" in
+  up)        shift; cmd_up "$@" ;;
+  down)      shift; cmd_down "$@" ;;
+  status|ps) shift; cmd_status "$@" ;;
+  psql|sql)  shift; cmd_psql "$@" ;;
+  psql-clean|sql-clean) shift; cmd_psql_clean "$@" ;;
+  extract)   shift; cmd_extract "$@" ;;
+  ocr)       shift; cmd_ocr "$@" ;;
+  verify)    shift; cmd_verify "$@" ;;
+  verify-clean) shift; cmd_verify_clean "$@" ;;
+  audit)     shift; cmd_audit "$@" ;;
+  audit-clean) shift; cmd_audit_clean "$@" ;;
+  state)     shift; cmd_state "$@" ;;
+  state-clean) shift; cmd_state_clean "$@" ;;
+  context)   shift; cmd_context "$@" ;;
+  lint)      shift; cmd_lint "$@" ;;
+  drift)     shift; cmd_drift "$@" ;;
+  browse)    shift; cmd_browse "$@" ;;
+  snapshot)  shift; cmd_snapshot "$@" ;;
+  restore)   shift; cmd_restore "$@" ;;
+  test)      shift; cmd_test "$@" ;;
+  test-clean) shift; cmd_test_clean "$@" ;;
+  logs)      shift; cmd_logs "$@" ;;
+  bootstrap) shift; cmd_bootstrap "$@" ;;
+  ""|-h|--help|help) usage ;;
+  *) die "unknown command: $1
+$(usage)" ;;
+esac

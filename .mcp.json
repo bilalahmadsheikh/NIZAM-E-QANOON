@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "nizam-db": {
+      "command": "wsl.exe",
+      "args": [
+        "-d", "Ubuntu", "-e", "bash", "-lc",
+        "cd /mnt/e/Nizam_e_Qanoon && exec uv run python tools/mcp_db_server.py"
+      ]
+    }
+  }
+}

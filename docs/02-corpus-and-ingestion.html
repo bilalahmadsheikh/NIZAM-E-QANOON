@@ -221,8 +221,10 @@ object_key, scraper_version, source_metadata, outcome, error_code</pre>
       <figcaption>Provision identity survives amendment and re-chunking. Chunks are retrieval artefacts, never citation targets. This implements INV-4 from Document 01.</figcaption>
     </figure>
     <h3><span class="mk">5.1</span>Numbering grammar</h3>
-    <p>Parse headings and labels with a jurisdiction-aware grammar: <code>section 3</code>, <code>3-A</code>, <code>3AA</code>, <code>(1)</code>, <code>(a)</code>, <code>(i)</code>, provisos, explanations, illustrations and schedules. Indentation and coordinates are evidence, not truth; numbering, punctuation, font changes and table-of-contents reconciliation vote together.</p>
-    <h3><span class="mk">5.2</span>Chunking for RAG</h3>
+    <p>Parse headings and labels with a jurisdiction-aware grammar: <code>section 3</code>, <code>3-A</code>, <code>3AA</code>, dotted labels such as <code>10.3.3</code>, whitespace-padded forms such as <code>6 . 2 .</code>, <code>(1)</code>, <code>(a)</code>, <code>(i)</code>, provisos, explanations, illustrations, schedules, forms, appendices, annexures and CPC-style Orders. Decimal rates, tariff codes, years and amendment-footnote citations are explicit negative cases. Indentation and coordinates are evidence, not truth; numbering, punctuation, font changes and table-of-contents reconciliation vote together.</p>
+    <h3><span class="mk">5.2</span>The printed contents list as source evidence</h3>
+    <p>Preserve the contents list as an ordered relation, not a label-to-heading dictionary: repeated printed labels are real evidence and must not collapse. Every <code>instrument_toc_entry</code> stores the exact source block and physical PDF page, plus the provision it resolves to. Use it to locate the body boundary, repair only OCR-fused labels supported by the printed heading, score tree coverage, and create an explicit <code>v_toc_gap</code> worklist. A late contents page or an unmarked numeric run may be an index, schedule or table; it cannot move the body boundary unless the marker, page position and document-relative boundary tests agree.</p>
+    <h3><span class="mk">5.3</span>Chunking for RAG</h3>
     <ul>
       <li>Chunk only after the legal tree exists. Default boundary is a complete subsection or a group of adjacent clauses under one subsection.</li>
       <li>Repeat compact context&mdash;instrument title, jurisdiction, section heading and defined-term scope&mdash;in chunk metadata, not by altering quoted text.</li>
@@ -296,7 +298,34 @@ object_key, scraper_version, source_metadata, outcome, error_code</pre>
     </table></div>
     <h3><span class="mk">8.1</span>Curation is an auditable patch</h3>
     <p>The curator sees the rendered source page and parsed tree together. Allowed operations are typed&mdash;split/merge block, relabel node, correct text with source span, resolve identity, accept/reject relationship. Each correction stores before, after, operator, timestamp, reason and page evidence. Re-running the same parser applies approved patches after extraction, so manual work survives rebuilds.</p>
-    <div class="note"><p><strong>Sampling is risk-based:</strong> 100% of OCR documents, status-changing relationships, commencement/invalidation candidates and parser regressions; a stratified sample of clean born-digital documents by source and era.</p></div>
+    <div class="note"><p><strong>Sampling is risk-based:</strong> every OCR document, status-changing relationship, commencement/invalidation candidate and parser regression; a stratified sample of clean born-digital documents by source and era.</p></div>
+
+    <h4 style="margin-top:1.2rem">As built: the gates became thirty criteria</h4>
+    <p>The gate table above states what must be true. Implementation turned each into a query with a named threshold, and adding the checks the corpus itself demanded took the set to thirty. They live in <code>docs/CORPUS-CRITERIA.md</code> and run against the candidate as <code>./nz audit</code>.</p>
+    <div class="scroll">
+      <table>
+        <caption>Measured on <code>nizam_clean</code>, 10 September 2026 &mdash; 4,595 documents, 63,047 pages, 128,636,469 characters. 29 of 30 criteria pass; only S7 remains open. The fail-closed scopes contain 4,594 documents and 3,720 legal expressions.</caption>
+        <thead><tr><th>Family</th><th>Asks</th><th class="n">State</th></tr></thead>
+        <tbody>
+          <tr><td><b>C1&ndash;C8</b> completeness</td><td>Every file becomes a blob, every blob is read, every block is accounted for, every character reachable, no failure silent</td><td class="n">all <b>PASS</b></td></tr>
+          <tr><td><b>A1&ndash;A9</b> accuracy</td><td>Character recall and precision against an independent extractor, no invented provisions, contents/source-anchor agreement, the as-at query returns the corpus</td><td class="n">all <b>PASS</b>; one malformed source remains explicitly unverifiable and quarantined</td></tr>
+          <tr><td><b>S1&ndash;S10</b> structure</td><td>No orphans, no cross-instrument tree, unique paths, dense order, unambiguous sibling citations, exact patch replay, exact candidate itemization, exact real-provision ancestor closure, and no unresolved internal-instrument boundary</td><td class="n">9 PASS; S7 has <b>2,312 pending decisions in 406 observations</b></td></tr>
+          <tr><td><b>Q1&ndash;Q3</b> quality evidence</td><td>OCR, word order and text plausibility measured for every applicable document and accepted under the evidence policy</td><td class="n">all <b>PASS</b>; document release is 4,594/4,595</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="margin-top:.7rem">Four of these deserve naming because they did not exist as concepts when this document was written:</p>
+    <ul>
+      <li><strong>C4/C5 &mdash; every block accounted for, every character reachable.</strong> &sect;5 says segmentation must not lose text. It did not say how that would be proved. <code>provision_block</code> gives every block a role, and the role <code>unassigned</code> is the defect counter: it must be 0. Before this existed, 18.6% of extracted characters were in no provision and nothing distinguished &ldquo;correctly classified as apparatus&rdquo; from &ldquo;silently dropped&rdquo;.</li>
+      <li><strong>S7 &mdash; automatic decisions must be adjudicated.</strong> Migrations 0035&ndash;0037 keep every decision source-anchored and fail closed. Of 6,684 current canonical-expression candidates, 4,372 are adjudicated and 2,312 across 406 observations remain pending; aggregate-to-item mismatch is zero. All retained decisions came from one evidence-driven machine adjudicator and are not a substitute for human legal review. Parser <code>/24</code> adds detached heading/body and explicit contents-layout proof. No text or alternative is deleted.</li>
+      <li><strong>Residual structural class.</strong> Some PDFs split a numbered marginal heading and its same-number operative body into consecutive source blocks. Those pairs are preserved but remain blocked because they require a source-span-preserving merge and corrected tree revision, not an <code>accept_non_citable</code> decision. Compiled instruments and uncontained schedules remain separate legal-review classes.</li>
+      <li><strong>S9 &mdash; acceleration must contain legal nodes only.</strong> <code>provision_ancestor</code> is checked against the exact recursive <code>parent_id</code> closure. Migration 0027 removed 1,563,444 synthetic jurisdiction/type/instrument path prefixes; the current closure is 1,208,678 self-and-real-ancestor rows with no missing, extra or stale rows.</li>
+      <li><strong>S10 &mdash; one PDF may contain many laws.</strong> Migration 0040 gives every legal expression a stable ordinal, primary/embedded role and guarded source-block span. The Constitution appendices, Estacode, PEF sets and other reviewed compilations are now 131 active expression manifests across 11 observations. A full span-aware detector rerun and the persisted queue both report zero unresolved boundaries.</li>
+      <li><strong>Release is narrower than active.</strong> Migration 0030 exposes independently passed source evidence through <code>v_release_document</code>, <code>v_release_page</code> and <code>v_release_text_block</code>. Migrations 0035&ndash;0040 add the legal release views and expression model, excluding pending S7 candidates, 109 identity-linked redundant trees and 1,988 unresolved entries promised by printed contents across 607 canonical expressions. The provenance-inclusive contents view retains 2,120 gaps. The current legal release contains 3,720 instruments and 300,137 provisions.</li>
+    </ul>
+    <div class="bx" style="margin-top:.9rem">
+      <p><strong>A gate that encodes a measurement is a tripwire, not a test.</strong> Two criteria were written as fixed counts and both failed on healthy data within a day: one compared landed observations to blobs with a hardcoded offset, the other capped unstructured documents at nine. Both now assert the rule &mdash; every landed hash has a blob and every blob has a source; every unstructured document has a recorded reason &mdash; and the count is reported rather than thresholded.</p>
+    </div>
   </div>
 </section>
 

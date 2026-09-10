@@ -1,0 +1,130 @@
+# Nizam-e-Qanoon -- the local stack, identical to what the VPS will run.
+#
+# Runs on Docker Engine inside WSL2 Ubuntu (see wsl/setup-docker.sh), not Docker
+# Desktop. That is not a workaround: the VPS will run `docker compose` on Ubuntu,
+# so this is the same thing, and Docker's data-root lives inside the Ubuntu ext4
+# disk -- which is on E: -- so images, volumes and pgdata are all on E: without a
+# single bind mount to a Windows path.
+#
+# Every image is pinned by digest. Doc 09a §7 treats a moved tag as drift:
+# "latest moved and two developers now disagree about BM25 scores."
+# Digests resolved from the registry on 30 Aug 2026. To re-resolve:
+#   infra/scripts/resolve-digests.sh
+
+name: nizam
+
+x-logging: &logging
+  driver: json-file
+  options: { max-size: "10m", max-file: "3" }
+
+services:
+  postgres:
+    # ParadeDB ships pg_search (BM25 over Tantivy) preinstalled next to stock
+    # PostgreSQL 17. Building it from source needs a full Rust + pgrx toolchain,
+    # and there is no Windows build at all -- 09a §2 picks the image to keep that
+    # off every machine.
+    image: paradedb/paradedb:0.25.6-pg17@sha256:044b8cc5b40159714e88e3f546fc74de11cf215c030190cc82c6627015d728ea
+    container_name: nizam-postgres
+    restart: unless-stopped
+    logging: *logging
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-nizam_clean}
+      POSTGRES_USER: ${POSTGRES_USER:-nizam}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in infra/.env}
+      # Doc 03 §1 asserts datcollate = 'en_US.UTF-8' and a migration raises on
+      # mismatch. This MUST match the VPS: a different collation changes index
+      # ordering and text comparison silently, and a physical restore onto a
+      # differently-collated cluster is invalid (09a §7).
+      LANG: en_US.UTF-8
+      POSTGRES_INITDB_ARGS: "--locale=en_US.UTF-8 --encoding=UTF8 --data-checksums"
+    command:
+      - postgres
+      - -c
+      - config_file=/etc/postgresql/postgresql.conf
+    volumes:
+      # A NAMED VOLUME, deliberately. It lives in Docker's data-root inside the
+      # Ubuntu ext4 disk. 09a §1.2: never put pgdata on /mnt/c or /mnt/e -- the
+      # 9p bridge is ~10x slower for many small files and every index operation
+      # is random I/O.
+      - pgdata:/var/lib/postgresql/data
+      - ./postgres/postgresql.dev.conf:/etc/postgresql/postgresql.conf:ro
+      - ./postgres/postgresql.bulk.conf:/etc/postgresql/postgresql.bulk.conf:ro
+      - ./postgres/verify.sql:/etc/postgresql/verify.sql:ro
+      - ./postgres/migrations:/etc/postgresql/migrations:ro
+      # Source blobs are read sequentially, once, by the ingest pass. 09a §1.2
+      # explicitly allows those on external storage, so the E: mount is fine.
+      - ${CORPUS_ROOT:-/mnt/e/nizam-data}:/corpus:ro
+      - ${CORPUS_ROOT:-/mnt/e/nizam-data}/snapshots:/snapshots
+    ports:
+      - "127.0.0.1:${POSTGRES_PORT:-5432}:5432"
+    shm_size: 1gb
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-nizam} -d ${POSTGRES_DB:-nizam_clean}"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 40s
+
+  pgadmin:
+    # The "see the whole database" surface -- browse schemas, tables and rows,
+    # run SQL, read query plans and index sizes. 09a §2 is explicit about its
+    # role: "Inspection only -- never the source of schema truth." Every schema
+    # object comes from a migration file in git and nothing else (09a §7).
+    image: dpage/pgadmin4:9.17@sha256:2f4ce946ddf8360680d7eff4eaba1d91859eb6b4003e6623bad5c63a322c2f4d
+    container_name: nizam-pgadmin
+    restart: unless-stopped
+    logging: *logging
+    depends_on:
+      postgres: { condition: service_healthy }
+    environment:
+      # Fallback matches infra/.env.example. It is unused while
+      # PGADMIN_CONFIG_SERVER_MODE is False -- desktop mode has no login wall --
+      # but a mismatch here becomes a lockout the moment server mode is enabled.
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL:-dev@nizam.pk}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD:?set PGADMIN_PASSWORD in infra/.env}
+      PGADMIN_DISABLE_POSTFIX: "True"
+      PGADMIN_CONFIG_SERVER_MODE: "False"          # single-user: no login wall
+      PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED: "False"
+    volumes:
+      - pgadmindata:/var/lib/pgadmin
+      # Pre-registers the nizam server so it is already in the tree on first open.
+      # Host and port here are the CONTAINER's view (service name, internal port);
+      # a desktop pgAdmin on Windows uses localhost:5433 instead.
+      #
+      # The password is not pre-loaded. A "PassFile" key in servers.json is
+      # silently ignored by pgAdmin 9.x -- its server table has no passfile
+      # column -- so pgAdmin asks once on first connect and remembers it.
+      # servers.json is only read when the pgadmin volume is empty.
+      - ./pgadmin/servers.json:/pgadmin4/servers.json:ro
+    ports:
+      - "127.0.0.1:${PGADMIN_PORT:-5050}:80"
+
+  minio:
+    # S3-compatible stand-in for Cloudflare R2 so the blob code path is the same
+    # locally as in production (09a §2). Newest tag on Docker Hub is 2025-09-07;
+    # the public image has not moved since -- re-check before choosing object
+    # storage for production (09b).
+    image: minio/minio:RELEASE.2025-09-07T16-13-09Z@sha256:14cea493d9a34af32f524e538b8346cf79f3321eff8e708c1e2960462bd8936e
+    container_name: nizam-minio
+    restart: unless-stopped
+    logging: *logging
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER:-nizam}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:?set MINIO_ROOT_PASSWORD in infra/.env}
+    volumes:
+      - miniodata:/data
+    ports:
+      - "127.0.0.1:${MINIO_PORT:-9000}:9000"
+      - "127.0.0.1:${MINIO_CONSOLE_PORT:-9001}:9001"
+    healthcheck:
+      test: ["CMD-SHELL", "mc ready local || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 6
+      start_period: 20s
+
+volumes:
+  pgdata:
+  pgadmindata:
+  miniodata:

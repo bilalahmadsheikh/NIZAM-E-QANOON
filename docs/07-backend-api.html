@@ -106,6 +106,7 @@
    </tbody>
   </table></div>
   <p>Connections set actor context with transaction-scoped <code>SET LOCAL</code> before any RLS-protected query and clear automatically at commit. A pooled connection must never retain user scope. Corpus reads use the restricted application role; corpus publication remains physically unavailable to L6.</p>
+  <div class="note"><p><strong>Database contract as built.</strong> The application role receives legal rows through <code>v_release_instrument</code>, <code>v_release_provision</code> and <code>v_release_provision_version</code>, never active base tables. The release identifier must pin verifier, adjudication, identity, contents-completeness, expression-manifest and boundary state. On 10 September 2026 this boundary contains 3,720 instruments, 300,137 provisions and 285,156 versions; blocked evidence remains accessible only to the curation role. One source observation may expose several expressions, so API identity includes the materialised instrument UUID and never assumes one PDF equals one law.</p></div>
  </div>
 </section>
 

@@ -36,6 +36,7 @@ from pathlib import Path
 from urllib.parse import urljoin
 
 import requests
+from scraper_paths import short_pdf_filename
 from bs4 import BeautifulSoup
 
 # --------------------------------------------------------------------------
@@ -444,7 +445,7 @@ def process_act(session: requests.Session, year: int, title: str, detail_url: st
     entry.pdf_url = pdf_url
 
     # 3. Build destination path
-    filename = sanitize_filename(clean_title) + ".pdf"
+    filename = short_pdf_filename(pdf_url)
     dest_path = OUTPUT_DIR / str(year) / filename
     entry.local_path = str(dest_path)
 

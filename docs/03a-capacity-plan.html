@@ -294,6 +294,55 @@ system headroom     <b>1.25&times;</b>  catalogs, bloat, WAL, autovacuum slack</
 </section>
 
 
+<!-- ============ 2A — as built ============ -->
+<section>
+  <div class="rail"><span class="num">&sect;2A</span><span class="tag">As<br>built</span></div>
+  <div class="body">
+    <h2>What it actually cost</h2>
+    <p class="lede">The model in &sect;2 was written before a single row existed. The corpus has now been built and repeatedly revised against source evidence. Superseded derived trees have been archive-first compacted, while source evidence, active trees and proof manifests remain; this forensic build must still not be confused with a compact release export.</p>
+
+    <div class="scroll">
+      <table>
+        <caption>Measured on <code>nizam_clean</code>, 10 September 2026: 4,595 active documents, 63,047 pages, 128,636,469 extracted characters. Statutory corpus plus retained derived revision history and evidence &mdash; no chunks, vectors or case law.</caption>
+        <thead><tr><th>Assumption (&sect;2)</th><th class="n">Estimated</th><th class="n">As built</th><th>Why it moved</th></tr></thead>
+        <tbody>
+          <tr><td>Tree expansion, sections &rarr; nodes</td><td class="n">3.2&times;</td><td class="n"><b>4.83&times;</b></td><td>106,021 sections yield 512,094 active provisions after compilation appendices became separate legal expressions. Clauses, subsections, forms, Orders and preserved schedule/table rows nest deeper than assumed.</td></tr>
+          <tr><td><code>provision</code> row</td><td class="n">210 B</td><td class="n">232 B</td><td>close</td></tr>
+          <tr><td>Index overhead per node</td><td class="n">200 B</td><td class="n"><b>403 B</b></td><td>3 btree + 1 GiST was optimistic; the path, parent, label and instrument+ordinal indexes all earn their place.</td></tr>
+          <tr><td>ltree GiST on <code>provision.path</code></td><td class="n">1 index</td><td class="n"><b>replaced</b></td><td>See below. It did not work at corpus scale.</td></tr>
+          <tr><td><b>Total hot build database</b></td><td class="n">744 MB</td><td class="n"><b>1,682 MB</b></td><td>Includes 4,788 active expression trees, nine identity-proof endpoints and immutable archive/expression manifests. The restore-tested post-prune dump is 204,509,189 bytes.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>Evidence structures the original model did not contain</h4>
+    <p>Most of the gap is not underestimation. It is tables that did not exist when &sect;2 was written, each added to satisfy a correctness requirement:</p>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Table</th><th class="n">Rows</th><th class="n">Total size</th><th>Why it exists</th></tr></thead>
+        <tbody>
+          <tr><td><code>provision_ancestor</code></td><td class="n">1,208,678</td><td class="n">431 MB</td><td>The B-tree closure stores only self plus real active <code>parent_id</code> ancestors. Disposable and exactly checked by S9.</td></tr>
+          <tr><td><code>provision_block</code></td><td class="n">1,046,209</td><td class="n">172 MB</td><td>Every retained tree assigns every source block a role, so loss is a query rather than a claim.</td></tr>
+          <tr><td><code>instrument_toc_entry</code></td><td class="n">87,054</td><td class="n">37 MB</td><td>Ordered printed contents evidence for active trees and retained proof endpoints, including exact source block/page.</td></tr>
+          <tr><td><code>segmentation_structural_candidate</code></td><td class="n">7,239</td><td class="n">5.8 MB</td><td>Immutable item-level parser decisions tied to source pages; retired evidence is embedded in archive manifests.</td></tr>
+          <tr><td><code>segmentation_structural_adjudication</code></td><td class="n">4,498</td><td class="n">6.0 MB</td><td>Append-only independent decisions for retained trees; no uncertainty is erased to make a counter pass.</td></tr>
+          <tr><td><code>instrument_identity_resolution</code></td><td class="n">110</td><td class="n">128 kB+</td><td>Exact full-tree fingerprints link redundant legal expressions while preserving every source observation.</td></tr>
+          <tr><td><code>instrument_expression_manifest</code></td><td class="n">142</td><td class="n">small</td><td>131 active and 11 retired source-block boundary maps preserve multi-expression provenance.</td></tr>
+          <tr><td><code>instrument_revision_archive_manifest</code></td><td class="n">15,989</td><td class="n">60 MB</td><td>Hashes, counts and embedded structural evidence preserve proof for compacted superseded derived revisions.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="bx" style="margin-top:1rem">
+      <p><strong>Append-only revisions need a hot-retention boundary.</strong> Migration 0012 correctly made re-extraction and re-segmentation retire-and-append so regressions remain diagnosable. Once those revisions had immutable archive manifests and a restore-tested snapshot, superseded derived trees were safely compacted. After migration 0040 materialised compilation expressions, another isolated restore test exposed and fixed ordinal-matching and manifest-reference defects before exactly 20 additional retired trees were archived and pruned. Source PDFs, observations, documents, blocks, OCR evidence, expression manifests and active trees were not deleted. The live database now has 4,797 instrument rows: 4,788 active and nine retired identity-resolution endpoints that must remain for exact proof.</p>
+      <p style="margin-top:.55rem">Practically: the live build database is <b>1,682 MB</b> after post-prune vacuum/analyze. Its 204,509,189-byte dump was restored and signature-checked after parser <code>/24</code>, migrations through <code>0041</code>, multi-expression materialisation and archive-first compaction. A later serving export may be smaller, but must retain source evidence and use only fail-closed release views.</p>
+    </div>
+
+    <p style="margin-top:.7rem">The compacted forensic build is below 2 GB before retrieval indexes, operational headroom and future revisions. That is not enough margin for a production 2 GB tier; size lexical/vector indexes against the release subset before choosing hosting. The Supabase 500 MB free tier remains suitable only for a deliberately scoped subset, never this complete build database.</p>
+  </div>
+</section>
+
+
 <!-- ============ 3 ============ -->
 <section>
   <div class="rail"><span class="num">&sect;3</span><span class="tag">Does it<br>fit?</span></div>

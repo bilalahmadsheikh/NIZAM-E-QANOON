@@ -118,3 +118,21 @@ desktop.ini
 tmp/
 scratch/
 *.tmp
+
+# pgAdmin password file, generated from infra/.env
+infra/pgadmin/pgpass
+
+# ── Agent working directories and diagnostic renders ───────────
+# Both agents render PDF pages to verify a reading against its source. The
+# renders are evidence for one decision, not artefacts of the corpus: the
+# decision itself is recorded in the database (extraction_assertion,
+# page_ocr_adjudication), which is what a reader should be able to check.
+# Keeping the images would put tens of megabytes of transient proof in git.
+.artifacts/
+*-proof.png
+*-source.png
+replacement-*.png
+overlay-*.png
+
+# Scratch downloads and page dumps, whatever the extension.
+.tmp-*
