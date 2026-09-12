@@ -33,6 +33,9 @@ ALLOWED_HOSTS = {
     "sindhlaws.gov.pk",
     "kpcode.kp.gov.pk",
     "balochistancode.gob.pk",
+    "balochistan.gov.pk",
+    "health.balochistan.gov.pk",
+    "pabalochistan.gov.pk",
 }
 USER_AGENT = "Nizam-e-Qanoon corpus recovery/1 (+official legal research)"
 
@@ -132,7 +135,8 @@ def store_bytes(kind: str, source_id: str, digest: str, data: bytes) -> str:
 
 
 def persist(row: tuple, requested_url: str, status: int | None, final_url: str,
-            media_type: str, data: bytes, fetch_error: str | None) -> str:
+            media_type: str, data: bytes, fetch_error: str | None, *,
+            metadata_relation: str = "recovery_of") -> str:
     observation_id, source_id, _url, referring_url, metadata = row
     digest = hashlib.sha256(data).hexdigest() if data else None
     ok, pdf_error = valid_pdf(data) if data else (False, fetch_error or "empty response")
@@ -160,7 +164,7 @@ def persist(row: tuple, requested_url: str, status: int | None, final_url: str,
                 ON CONFLICT (sha256) DO NOTHING
                 """, (digest, source_id, object_key, len(data)))
             recovered_meta = dict(metadata or {})
-            recovered_meta["recovery_of"] = observation_id
+            recovered_meta[metadata_relation] = observation_id
             cur.execute("""
                 INSERT INTO source_observation
                   (source_id,canonical_url,referring_url,discovered_at,fetched_at,
@@ -176,8 +180,21 @@ def persist(row: tuple, requested_url: str, status: int | None, final_url: str,
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Retry failed official PDF observations")
-    parser.add_argument("--all", action="store_true")
-    parser.add_argument("--observation", type=int)
+    target = parser.add_mutually_exclusive_group(required=True)
+    target.add_argument("--all", action="store_true")
+    target.add_argument("--observation", type=int)
+    target.add_argument(
+        "--alternate-for", type=int, metavar="OBSERVATION_ID",
+        help="land a second official copy without changing the original observation",
+    )
+    parser.add_argument(
+        "--url",
+        help="official PDF URL; required with --alternate-for",
+    )
+    parser.add_argument(
+        "--expected-sha256",
+        help="fail before persistence unless the fetched bytes have this SHA-256",
+    )
     parser.add_argument("--limit", type=int)
     parser.add_argument("--after-observation", type=int,
                         help="resume strictly after this observation id")
@@ -185,21 +202,47 @@ def main() -> int:
     parser.add_argument("--timeout", type=int, default=60,
                         help="seconds per HTTP attempt")
     args = parser.parse_args()
-    if not args.all and args.observation is None:
-        parser.error("one of --all or --observation is required")
-
     if args.attempts < 1 or args.timeout < 1:
         parser.error("--attempts and --timeout must be positive")
-    rows = targets(args.observation, args.limit, args.after_observation)
+    if args.alternate_for is not None:
+        if not args.url:
+            parser.error("--alternate-for requires --url")
+        if args.limit or args.after_observation is not None:
+            parser.error("--limit/--after-observation do not apply to --alternate-for")
+        with connect() as conn, conn.cursor() as cur:
+            cur.execute("""
+                SELECT o.id,o.source_id,o.canonical_url,o.referring_url,
+                       o.source_metadata
+                  FROM source_observation o WHERE o.id=%s
+            """, (args.alternate_for,))
+            row = cur.fetchone()
+        if row is None:
+            parser.error(f"unknown source observation {args.alternate_for}")
+        rows = [row]
+    else:
+        if args.url or args.expected_sha256:
+            parser.error("--url/--expected-sha256 require --alternate-for")
+        rows = targets(args.observation, args.limit, args.after_observation)
     recovered = failed = 0
     for n, row in enumerate(rows, 1):
         observation_id, source_id, raw_url, _ref, metadata = row
         title = (metadata or {}).get("title", "")
         try:
-            url = safe_official_url(raw_url)
+            url = safe_official_url(args.url if args.alternate_for is not None else raw_url)
             status, final_url, media_type, data, error = fetch(
                 url, attempts=args.attempts, timeout=args.timeout)
-            outcome = persist(row, url, status, final_url, media_type, data, error)
+            digest = hashlib.sha256(data).hexdigest() if data else None
+            if args.expected_sha256 and digest != args.expected_sha256.lower():
+                raise ValueError(
+                    f"official response SHA-256 {digest or 'empty'} does not match "
+                    f"expected {args.expected_sha256.lower()}"
+                )
+            outcome = persist(
+                row, url, status, final_url, media_type, data, error,
+                metadata_relation=(
+                    "alternate_of" if args.alternate_for is not None else "recovery_of"
+                ),
+            )
         except Exception as exc:
             outcome = "network_error"
             with connect() as conn, conn.cursor() as cur:

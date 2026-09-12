@@ -67,10 +67,29 @@ def main() -> int:
             row["sections"] += sections
             row["instruments"] += 1
 
-    targets = [t for t in legal_write.documents_needing_segmentation(
-                   redo=True, include_review=True) if t[0] in stored]
+    # The segmentation work queue is observation-oriented, so a document that
+    # currently materialises more than one legal expression can appear more
+    # than once. Comparing or emitting it twice is not harmless: the ordinary
+    # worker would perform two append-only replays, and it is the wrong worker
+    # for a multi-expression source in the first place. Keep one target per
+    # document and reserve reviewed multi-expression documents for the
+    # dedicated materializer.
+    queued = [t for t in legal_write.documents_needing_segmentation(
+              redo=True, include_review=True) if t[0] in stored]
+    targets_by_document: dict[int, tuple] = {}
+    for target in queued:
+        targets_by_document.setdefault(target[0], target)
+    targets = [target for doc_id, target in targets_by_document.items()
+               if stored[doc_id]["instruments"] == 1]
+    multi_expression = sorted(
+        doc_id for doc_id in targets_by_document
+        if stored[doc_id]["instruments"] > 1
+    )
     print(f"comparing {len(targets)} blocked documents against the current parser",
           file=sys.stderr)
+    if multi_expression:
+        print(f"holding {len(multi_expression)} multi-expression documents for "
+              "the dedicated materializer", file=sys.stderr)
 
     pays, costs, same, failed, held = [], [], [], [], []
     for n, (doc_id, sha, obs, source_id, title, year,
@@ -87,8 +106,16 @@ def main() -> int:
         except Exception as exc:                        # noqa: BLE001
             failed.append((doc_id, f"{type(exc).__name__}: {exc}"[:90]))
             continue
-        now_unlinked = sum(1 for e in inst.toc_entries
-                           if e.get("provision_key") is None)
+        # The pending view has two arms: unresolved persisted TOC rows and the
+        # segmentation run's legacy ``missing`` labels. Counting only proposed
+        # entry rows produced a dangerous false improvement for documents 1438
+        # and 2581: the parser recognised four TOC rows and linked all four, but
+        # still reported 21/20 promised labels missing. Zero unlinked rows was
+        # therefore not zero gaps. Fail closed on either signal.
+        now_unlinked_entries = sum(
+            1 for e in inst.toc_entries if e.get("provision_key") is None
+        )
+        now_unlinked = max(now_unlinked_entries, len(seg.missing))
         now_demoted = seg.repeated_labels_demoted
         now_sections = sum(1 for r in inst.provisions if r["kind"] == "section")
         was = stored[doc_id]

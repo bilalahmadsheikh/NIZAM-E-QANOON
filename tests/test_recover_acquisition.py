@@ -16,6 +16,13 @@ def test_non_official_host_is_rejected():
         raise AssertionError("non-official host was accepted")
 
 
+def test_balochistan_department_host_is_accepted():
+    value = safe_official_url(
+        "https://health.balochistan.gov.pk/wp-content/uploads/2025/03/2012.pdf"
+    )
+    assert value.startswith("https://health.balochistan.gov.pk/")
+
+
 def test_html_error_body_is_not_a_pdf():
     ok, reason = valid_pdf(b"<html>not found</html>")
     assert not ok

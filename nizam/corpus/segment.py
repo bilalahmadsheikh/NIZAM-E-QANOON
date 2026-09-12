@@ -499,6 +499,19 @@ _INNER_RULE = re.compile(
     r"\s*-?\s*[A-Z]{0,3}\s*[.\-:])",
     re.I)
 
+# OCR layout engines preserve a printed list as one ``ListGroup`` block.  The
+# HTML-to-text candidate is still source-faithful, but clauses ``(a)`` through
+# ``(m)`` then sit inside one typographic block and only the first becomes a
+# node.  Expose alphabetic/romanette starts under the same conservative guard
+# as numeric inner units: a source line break or preceding list punctuation.
+# This does not match prose references such as ``under clause (b)``.
+_INNER_ALPHA = re.compile(
+    r"(?:(?<=[.;:\u2014\-])\s+|(?<=\n)[ \t\u00a0]*)"
+    r"(?=\(\s*(?:[a-z]{1,2}|(?:x{0,3})(?:ix|iv|v?i{1,3}))\s*\)\s*"
+    r"[A-Za-z\"\u201c\u2018])",
+    re.I,
+)
+
 # Editorial source histories are occasionally fused to the final operative
 # clause in the same extracted block. Expose the canonical ``For Statement of
 # Objects and Reasons`` marker as its own unit so it and the continuation below
@@ -580,6 +593,7 @@ def subdivide(text: str) -> list[str]:
 
     raw_cuts = ({m.end() for m in _INNER.finditer(text)}
                 | {m.end() for m in _INNER_RULE.finditer(text)}
+                | {m.end() for m in _INNER_ALPHA.finditer(text)}
                 | {m.end() for m in _INNER_SOURCE_NOTE.finditer(text)}
                 | {m.end() for m in _INNER_BARE.finditer(text)}
                 | {m.end() for m in _INNER_DIV.finditer(text)})
