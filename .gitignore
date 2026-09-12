@@ -168,3 +168,7 @@ overlay-*.png
 .pairs.txt
 .q.sql
 .q[0-9]*.sql
+.fp_bare_*
+.probe_bare.sh
+.watch4.sh
+.tail.sql

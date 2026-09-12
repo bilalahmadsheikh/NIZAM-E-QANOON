@@ -1683,9 +1683,31 @@ def _classify_body(text: str, toc: dict[str, str],
         label = _norm(bare.group(1)).replace(" ", "")
         rest = bare.group(2)
         inline_heading = _norm(rest).split(":", 1)[0].split(".", 1)[0]
-        if (_toc_label_is_next(label, toc, seen)
-                and (_heading_supports(inline_heading, toc.get(label))
-                     or _heading_supports(previous_heading, toc.get(label)))):
+        promised = toc.get(label)
+        heading_agrees = (_heading_supports(inline_heading, promised)
+                          or _heading_supports(previous_heading, promised))
+        # `_toc_label_is_next` keeps a bare table cell from opening a section,
+        # and it is the right default. But it is a CHAIN: one opener the parser
+        # misses blocks every section after it, however plainly each is printed.
+        # The NEPRA Licensing Regulations lose eleven of twelve that way -- the
+        # body prints "1", "3", "4" each alone on a line above its own heading,
+        # section 2's opener is fused into the definitions block and section 3's
+        # into "PART- II", and from there nothing is ever "next" again.
+        #
+        # So accept a break in the chain only on the strongest evidence the page
+        # can give: the label is one the printed contents promises, it has not
+        # been seen, and the heading printed beneath the number is EXACTLY the
+        # heading the contents prints against that label -- not merely one that
+        # `_heading_supports`, which asks the weaker question of whether the
+        # words continue into it.
+        exact_promised_heading = bool(
+            promised
+            and (seen is None or label not in seen)
+            and _norm(inline_heading).casefold().rstrip(". ")
+                == _norm(promised).casefold().rstrip(". ")
+        )
+        if heading_agrees and (_toc_label_is_next(label, toc, seen)
+                               or exact_promised_heading):
             return "section", label, rest
     # A small number of official gazettes print the label and heading in one
     # block but omit punctuation after the number (``13  Efficiency and
