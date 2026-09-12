@@ -3405,6 +3405,34 @@ def segment(blocks: list[dict], curation_patches: list[dict] | None = None,
                 else:
                     parent = root
 
+                # S6 admits no two sibling sections under one citation label,
+                # and this pass runs AFTER repeated-label demotion, so it can
+                # create the very collision that pass exists to prevent. It did:
+                # document 4501 already holds section 34A, and materialising the
+                # omitted 34A beside it made the citation ambiguous. The
+                # disposition is a statement ABOUT a section, so where the
+                # parent already has one under that label, record it on that
+                # node rather than manufacturing a second.
+                existing = next(
+                    (child for child in parent.children
+                     if child.kind in {"section", "article"}
+                     and _citation_label_key(child.label)
+                         == _citation_label_key(resolved["label"])),
+                    None,
+                )
+                # Fall through with the existing node rather than skipping: the
+                # block below is what records the lifecycle fact, and an
+                # assertion left unapplied raises. The disposition is
+                # source_verified -- a person read the page and reported the
+                # section omitted -- so where it and the parse disagree the
+                # reading wins, and the source block stays in the assignment
+                # ledger either way, so C5 is unaffected.
+                if existing is not None:
+                    resolved["node"] = existing
+                    resolved["method"] = "source_verified_disposition"
+                    node = existing
+
+            if node is None:
                 node = Node(
                     kind="section", label=resolved["label"], depth=parent.depth + 1,
                     first_page=resolved.get("source_page"),
