@@ -191,3 +191,6 @@ overlay-*.png
 .probe_pl.py
 .fix_disposition.py
 .stale[0-9]*.txt
+.fp_paren_*
+.probe_paren.sh
+.patch_inner_paren.py

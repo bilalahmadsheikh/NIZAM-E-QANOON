@@ -474,6 +474,11 @@ _INNER = re.compile(
     r"|(?:\d{1,4}\s*)?\[\s*[lI]\d{1,3}[A-Z]{0,3}\s*\.\s*[A-Z]" # 3[l35A. OCR glyph
     r"|\d{5,8}[A-Z]{0,3}\s*\.\s+[A-Z(]"                    # 52337A. TOC-proved fused marker
     r"|\d{1,4}\s*[-–]?\s*[A-Z]{0,3}\s*\.\s+[A-Z(*]"       # 302. heading / 42. ***
+    # ``21.(1)`` -- the first subsection set tight against the number,
+    # with no space after the period. Every alternative above requires
+    # that space, so this opener stayed inside the previous section's
+    # block and the section did not exist.
+    r"|\d{1,4}\s*[-–]?\s*[A-Z]{0,3}\s*\.\s*\(\s*\d{1,3}[A-Z]?\s*\)\s*[A-Za-z]"
     # Consolidations keep repealed/omitted provisions as directly citable
     # placeholders, commonly ``3. [Repeal.]``. When PyMuPDF fuses that line
     # to the preceding provision, the opening bracket used to make the label
