@@ -38,7 +38,9 @@ SELECT i.document_id, i.id::text,
          WHERE c.instrument_id = i.id),
        (i.id IN (SELECT id FROM v_release_instrument)),
        (SELECT count(*) FROM provision p WHERE p.instrument_id = i.id
-          AND p.is_active AND p.kind IN ('section','article'))
+          AND p.is_active AND p.kind IN ('section','article')),
+       (SELECT count(*) FROM provision p WHERE p.instrument_id = i.id
+          AND p.is_active)
   FROM instrument i
  WHERE i.is_active AND i.duplicate_of IS NULL
    AND (EXISTS (SELECT 1 FROM v_toc_gap_pending g WHERE g.instrument_id = i.id)
@@ -56,10 +58,12 @@ def main() -> int:
     with connect() as conn, conn.cursor() as cur:
         cur.execute(STORED)
         stored: dict[int, dict] = {}
-        for doc, iid, gaps, s7_pending, s7_decided, released, sections in cur:
+        for (doc, iid, gaps, s7_pending, s7_decided, released, sections,
+             provisions) in cur:
             row = stored.setdefault(doc, {
-                "gaps": 0, "s7_pending": 0, "s7_decided": 0,
+                "gaps": 0, "s7_pending": 0, "s7_decided": 0, "provisions": 0,
                 "released": False, "sections": 0, "instruments": 0})
+            row["provisions"] += provisions
             row["gaps"] += gaps
             row["s7_pending"] += s7_pending
             row["s7_decided"] += s7_decided
@@ -118,10 +122,21 @@ def main() -> int:
         now_unlinked = max(now_unlinked_entries, len(seg.missing))
         now_demoted = seg.repeated_labels_demoted
         now_sections = sum(1 for r in inst.provisions if r["kind"] == "section")
+        now_provisions = len(inst.provisions)
         was = stored[doc_id]
         was_collisions = was["s7_pending"] + was["s7_decided"]
+        # A replay also pays when it opens provisions that were fused inside one
+        # block -- clauses (a) to (m) kept as a single OCR ListGroup unit, where
+        # only the first became a node. Those are citable units under INV-4, so
+        # gaining them is gaining citability even when no contents row moves.
+        # Guarded the same way as everything else: never at the cost of a gap, a
+        # collision, a section, or a released instrument.
         better = (now_unlinked < was["gaps"]
-                  or (now_unlinked <= was["gaps"] and now_demoted < was_collisions))
+                  or (now_unlinked <= was["gaps"] and now_demoted < was_collisions)
+                  or (now_unlinked <= was["gaps"]
+                      and now_demoted <= was_collisions
+                      and now_provisions > was["provisions"]
+                      and now_sections >= was["sections"]))
         worse = now_unlinked > was["gaps"] or now_demoted > was_collisions
         record = (doc_id, was, now_unlinked, now_demoted, now_sections)
         # A large statute that loses half its sections needs reading, not a
