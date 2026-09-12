@@ -744,3 +744,33 @@ The remaining 590 are a reading task, not an engineering one. 1,450 pages
 covering 832 gaps in 224 documents are rendered and hashed under
 `.artifacts/toc-gap-review/`, and `tools/merge_gap_render_manifest.py` keeps the
 manifest whole.
+
+---
+
+# The "bigger twin" shortcut does not work
+
+After the Raisani Hospital Act was fixed by fetching its complete Gazette copy,
+the obvious next move was to look for documents whose complete twin is *already
+in the corpus*: same year, similar title, more pages. Eleven instruments have
+over half their contents unresolved; three of them matched such a twin.
+
+**All three are wrong merges, each for a different reason.**
+
+| truncated | twin | why it is not a duplicate |
+|---|---|---|
+| 1927 Land Preservation Act, 1900 (17p, **sindh**) | 2366 West Pakistan Land Preservation Act, 1900 (22p, **kp**) | the same 1900 Act **adapted by two provinces**. Two instruments, not one. |
+| 4450 Sindh Civil Servants Promotion Rules 2022 (29p) | 4471 same title (40p) | 4450 is not the rules. It is **THE SINDH GOVERNMENT GAZETTE, Karachi, 31 March 2022, No. 13** — an entire gazette issue whose Part I carries many notifications; the first on page 1 concerns a doctor's ex-Pakistan leave. Linking it away would bury every other notification in it. It wants an S10 split. |
+| 4564 Workers Compensation Rules, 2020 (36p) | 4483 Sindh Workers Compensation Rule, 2020 (37p) | unverified, and the two above are reason enough not to take it on title and page count. |
+
+The signals that separate them are cheap and must be checked before any link:
+
+* **jurisdiction** — a provincial adaptation is its own instrument;
+* **what the document IS** — a gazette issue is a container of many
+  instruments, and its page-one title says so;
+* **the rendered first page** — both of the above were visible on it, and
+  neither was visible in the metadata.
+
+So the Raisani pattern does not generalise from the catalogue. It worked there
+because the *same* Act existed in two acquisitions of the same jurisdiction, one
+demonstrably truncated, and both were read. Absent that, a bigger twin is a
+coincidence of title and length.
