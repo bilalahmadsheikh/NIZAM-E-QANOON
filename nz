@@ -16,6 +16,14 @@
 #   ./nz context       regenerate docs/AGENT-CONTEXT.md -- schema + the rules
 #   ./nz lint          report corpus smells the 30 invariants do not cover
 #   ./nz drift         what changed since last run, and which worker wrote it
+#   ./nz cluster       rank TOC/S7 defects by role-aware, per-document signatures
+#   ./nz s7            classify unresolved repeated-label collisions
+#   ./nz land-archive  land an unacquired law from the August portal archives
+#   ./nz s7-audit      draw the weighted sample; --render N for source pages
+#   ./nz s7-citability did a demotion remove a citation, or only a duplicate
+#   ./nz s7-adjudicate decide the demotions that provably cost no citation
+#   ./nz disposition-review  render omitted/repealed TOC evidence (read-only)
+#   ./nz disposition-materialize  exact-tree omitted-section revisions
 #   ./nz browse        read the corpus in a browser, PDF beside extracted text
 #   ./nz test          tests + the self test
 #   ./nz test-clean    tests + environment self-test against nizam_clean
@@ -117,6 +125,15 @@ cmd_psql()     { need_docker; _env
                  local db="${NIZAM_TARGET_DB:-${POSTGRES_DB:-nizam_clean}}"
                  dc exec postgres psql -U "${POSTGRES_USER:-nizam}" -d "$db" "$@"; }
 cmd_psql_clean() { NIZAM_TARGET_DB="${NIZAM_CLEAN_DB:-nizam_clean}" cmd_psql "$@"; }
+cmd_psql_file() {
+  need_docker
+  local file="${1:-}"
+  [ -n "$file" ] || die "usage: ./nz psql-file path/inside/repository.sql"
+  [[ "$file" != /* && "$file" != *".."* ]] \
+    || die "psql-file must be a repository-relative path without '..'"
+  [ -f "$ROOT/$file" ] || die "SQL file not found: $file"
+  _psql -v ON_ERROR_STOP=1 -f - < "$ROOT/$file"
+}
 cmd_extract()  { need_docker; need_uv; uv run python -m nizam.workers.extract "$@"; }
 cmd_ocr()      { need_docker; need_uv
                  command -v tesseract >/dev/null || die "tesseract is not installed:
@@ -168,6 +185,26 @@ cmd_lint()    { need_docker; need_uv
 cmd_context() { need_docker; need_uv
                  b "regenerating docs/AGENT-CONTEXT.md from the live database"
                  POSTGRES_DB="${NIZAM_CLEAN_DB:-nizam_clean}"                    uv run python tools/gen_context.py "$@"; }
+cmd_cluster() { need_docker; need_uv
+                 POSTGRES_DB="${NIZAM_CLEAN_DB:-nizam_clean}" \
+                   uv run python tools/cluster_defects.py "$@"; }
+cmd_s7()      { need_docker; need_uv
+                 POSTGRES_DB="${NIZAM_CLEAN_DB:-nizam_clean}" \
+                   uv run python tools/s7_triage.py "$@"; }
+cmd_land_archive() { need_docker; need_uv
+                 POSTGRES_DB="${NIZAM_CLEAN_DB:-nizam_clean}"                    uv run python tools/land_from_archive.py "$@"; }
+cmd_s7_audit() { need_docker; need_uv
+                 POSTGRES_DB="${NIZAM_CLEAN_DB:-nizam_clean}"                    uv run python tools/s7_audit_sample.py "$@"; }
+cmd_s7_citability() { need_docker; need_uv
+                 POSTGRES_DB="${NIZAM_CLEAN_DB:-nizam_clean}"                    uv run python tools/s7_citability_check.py "$@"; }
+cmd_s7_adjudicate() { need_docker; need_uv
+                 POSTGRES_DB="${NIZAM_CLEAN_DB:-nizam_clean}"                    uv run python tools/adjudicate_citation_preserving.py "$@"; }
+cmd_disposition_review() { need_docker; need_uv
+                 POSTGRES_DB="${NIZAM_CLEAN_DB:-nizam_clean}" \
+                   uv run python tools/review_toc_dispositions.py "$@"; }
+cmd_disposition_materialize() { need_docker; need_uv
+                 POSTGRES_DB="${NIZAM_CLEAN_DB:-nizam_clean}" \
+                   uv run python tools/materialize_toc_dispositions.py "$@"; }
 cmd_snapshot() { bash "$INFRA/scripts/snapshot.sh" "$@"; }
 cmd_restore()  { bash "$INFRA/scripts/restore.sh" "$@"; }
 cmd_logs()     { need_docker; dc logs -f --tail=80 "$@"; }
@@ -246,6 +283,7 @@ case "${1:-}" in
   status|ps) shift; cmd_status "$@" ;;
   psql|sql)  shift; cmd_psql "$@" ;;
   psql-clean|sql-clean) shift; cmd_psql_clean "$@" ;;
+  psql-file) shift; cmd_psql_file "$@" ;;
   extract)   shift; cmd_extract "$@" ;;
   ocr)       shift; cmd_ocr "$@" ;;
   verify)    shift; cmd_verify "$@" ;;
@@ -257,6 +295,14 @@ case "${1:-}" in
   context)   shift; cmd_context "$@" ;;
   lint)      shift; cmd_lint "$@" ;;
   drift)     shift; cmd_drift "$@" ;;
+  cluster)   shift; cmd_cluster "$@" ;;
+  s7)        shift; cmd_s7 "$@" ;;
+  land-archive) shift; cmd_land_archive "$@" ;;
+  s7-audit)  shift; cmd_s7_audit "$@" ;;
+  s7-citability) shift; cmd_s7_citability "$@" ;;
+  s7-adjudicate) shift; cmd_s7_adjudicate "$@" ;;
+  disposition-review) shift; cmd_disposition_review "$@" ;;
+  disposition-materialize) shift; cmd_disposition_materialize "$@" ;;
   browse)    shift; cmd_browse "$@" ;;
   snapshot)  shift; cmd_snapshot "$@" ;;
   restore)   shift; cmd_restore "$@" ;;

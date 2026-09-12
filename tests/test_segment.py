@@ -59,6 +59,94 @@ def test_bracketed_repeal_fused_to_preceding_section_is_subdivided():
     ]
 
 
+def test_roman_section_division_contains_its_restarted_numbering():
+    """Financial regulations use SECTION-IV as a structural division."""
+    seg = segment(blocks(
+        "9. Income Tax deduction. Tax shall be deducted.",
+        "SECTION – IV\nACCOUNTING POLICY",
+        "1. Accounting Convention. Accounts use historical cost.",
+        "2. Double Entry Accounting System. Transactions use double entry.",
+        "SECTION – V\nPOWERS FOR RE-APPROPRIATION",
+        "1. Re-appropriation. The Board has full powers.",
+    ))
+    assert [(n.kind, n.label) for n in seg.root.children] == [
+        ("section", "9"), ("part", "IV"), ("part", "V"),
+    ]
+    assert [(n.kind, n.label) for n in seg.root.children[1].children] == [
+        ("section", "1"), ("section", "2"),
+    ]
+    assert [(n.kind, n.label) for n in seg.root.children[2].children] == [
+        ("section", "1"),
+    ]
+
+
+def test_decimal_label_does_not_consume_first_word_of_body():
+    assert classify("5.3 A full year's depreciation will be charged.") == (
+        "section", "5.3", "A full year's depreciation will be charged.",
+    )
+    assert classify("2.1 THE authority shall decide the matter.") == (
+        "section", "2.1", "THE authority shall decide the matter.",
+    )
+    assert classify("5.3A. Inserted provision text.") == (
+        "section", "5.3A", "Inserted provision text.",
+    )
+    assert classify("5.3 - A. Hyphenated inserted provision.") == (
+        "section", "5.3 - A", "Hyphenated inserted provision.",
+    )
+
+
+def test_roman_section_division_rejects_wrong_global_toc_label_match():
+    source = blocks(
+        "CONTENTS",
+        "1. Intro.\n2. Scope.\n3. Administration.\n"
+        "4. Topic A.\n5. Topic E.",
+        page=1,
+    ) + blocks(
+        "WHEREAS it is expedient to regulate the subject;",
+        "1. Intro. Opening text.",
+        "2. Scope. Application text.",
+        "3. Administration. Administrative text.",
+        "5. Topic F. Incidental same-numbered text.",
+        "SECTION - II\nTOPIC A",
+        "1. Topic A. Body text.\n2. Topic B. Body text.\n"
+        "3. Topic C. Body text.\n4. Topic D. Body text.",
+        page=2,
+    )
+    for block_id, block in enumerate(source):
+        block["id"] = block_id
+    seg = segment(source)
+    entries = {entry["label"]: entry for entry in seg.toc_entries}
+    # The only body label 5 says Topic F and precedes the Roman container, but
+    # the document's TOC has already switched to its global display index at
+    # entry 4. It still must not satisfy TOC 5 Topic E.
+    assert entries["5"]["node"] is None
+
+
+def test_restarted_number_after_decimal_child_stays_under_roman_division():
+    source = blocks(
+        "CONTENTS",
+        "1. Intro.\n2. Scope.\n3. Administration.\n"
+        "4. Authority.\n5. Funds.\n6. Banks.",
+        page=1,
+    ) + blocks(
+        "WHEREAS it is expedient to regulate the subject;",
+        "1. Intro. Opening text.\n2. Scope. Application text.\n"
+        "3. Administration. Administrative text.\n"
+        "4. Authority. Authority text.",
+        "SECTION - III\nFUNDS",
+        "3. Banks.\n3.1 Account opening. Body text.\n"
+        "4. Budget. Body text.",
+        page=2,
+    )
+    for block_id, block in enumerate(source):
+        block["id"] = block_id
+    seg = segment(source)
+    division = next(node for node in seg.root.children
+                    if node.kind == "part" and node.label == "III")
+    local_four = next(node for node in division.children if node.label == "4")
+    assert local_four.parent is division
+
+
 def test_three_digit_amendment_markers_do_not_hide_inserted_sections():
     """Sales Tax Act 1990 page 30 prints superscript notes 189--192 directly
     before sections 3A--3B.  They are source apparatus, not label digits.
@@ -101,6 +189,151 @@ def test_punctuated_amendment_footnote_is_not_section_one():
     assert seg.block_roles[bs[-1]["id"]][0] == "footnote"
 
 
+def test_punctuated_subs_vide_note_is_not_a_section():
+    bs = blocks(
+        "1. Short title. This Act may be called the Example Act.",
+        "2. Definitions. In this Act, prescribed means prescribed by rules.",
+        "3. Duty. The Board shall perform its duty.",
+        "1. Subs Vide the Khyber Pakhtunkhwa Act IV of 2011.",
+    )
+    seg = segment(bs)
+    assert [node.label for node in seg.root.children
+            if node.kind == "section"] == ["1", "2", "3"]
+    assert seg.block_roles[bs[-1]["id"]][0] == "footnote"
+
+
+def test_multi_note_gazette_footer_is_not_subdivided_into_sections():
+    bs = blocks(
+        "1. Short title. This Act may be called the Example Act.",
+        "2. Definitions. In this Act, prescribed means prescribed by rules.",
+        "1. For the applicable Rules, see the Balochistan Gazette No. 16.\n"
+        "2 Section 6-A inserted by Ordinance XII of 1980.\n"
+        "3 A new section 6-B inserted by Act IV of 2026.\n"
+        "4 Numbered as sub section (1) by Act IV of 2026.",
+        "1 New section 5-A inserted by Act II of 2013.\n"
+        "2 S. No. ‘5-A’, substituted by Act VI of 2021.",
+    )
+    seg = segment(bs)
+    assert [node.label for node in seg.root.children
+            if node.kind == "section"] == ["1", "2"]
+    assert all(seg.block_roles[block["id"]][0] == "footnote"
+               for block in bs[-2:])
+
+
+def test_wrapped_rupee_amount_is_not_subdivided_into_a_section():
+    from nizam.corpus.segment import subdivide
+
+    text = (
+        "and for every Rs. 500 or part thereof in excess of Rs.\n"
+        "1000.\nTen rupees."
+    )
+    assert subdivide(text) == [text]
+
+
+def test_fused_source_history_and_its_page_continuation_are_apparatus():
+    bs = blocks(
+        "3. Interpretation. Operative text.\n"
+        "1For Statement of Objects and Reasons, see Gazette of India, 1876.",
+        "This Act has been extended to the administered areas.\n"
+        "2Subs. by the amending Act, s. 2.",
+        "4. Next duty. Operative text.",
+    )
+    bs[2]["page_no"] = 2
+    seg = segment(bs)
+    sections = [node for node in seg.root.children if node.kind == "section"]
+    assert [node.label for node in sections] == ["3", "4"]
+    assert "Statement of Objects" not in sections[0].text
+    assert seg.block_roles[bs[1]["id"]][0] == "footnote"
+
+
+def test_section_citation_insertion_note_is_not_label_one_s():
+    bs = blocks(
+        "45. Delivery. The holder may deliver the instrument.",
+        "1S. 45A ins. by the Negotiable Instruments Act, 1885, s. 3.",
+    )
+    seg = segment(bs)
+    assert [node.label for node in seg.root.children
+            if node.kind == "section"] == ["45"]
+    assert seg.block_roles[bs[1]["id"]][0] == "footnote"
+
+
+def test_indented_dotted_subparts_follow_inline_parenthesized_one():
+    bs = blocks(
+        "CONTENTS", "1. Short title.", "2. Definitions.", "3. Duty.",
+        "It is hereby enacted as follows:",
+        "1. Short title.—(1) This Act may be called the Example Act.",
+        "2. It extends to the whole of Pakistan.",
+        "3. It shall come into force at once.",
+        "2. Definitions. In this Act, prescribed means prescribed by rules.",
+        "3. Duty. The Authority shall act.",
+    )
+    for index, block in enumerate(bs):
+        block["page_no"] = 1 if index <= 3 else 2
+        block["x0"] = 162.0 if index in {6, 7} else 126.0
+    seg = segment(bs)
+    sections = [node for node in seg.root.children if node.kind == "section"]
+    assert [node.label for node in sections] == ["1", "2", "3"]
+    assert [node.label for node in sections[0].children] == ["2", "3"]
+    assert all(node.kind == "subsection" for node in sections[0].children)
+    assert seg.repeated_labels_demoted == 0
+
+
+def test_dotted_resident_definition_items_are_not_sections():
+    """Source-proved numbered lists remain under the definition they qualify.
+
+    The Sindh Sales Tax on Services Act prints list items 1--3 with dots inside
+    subsection (33), and item 3 continues after a page break.  They must not
+    collide with the Act's citable sections 1 and 3.
+    """
+    bs = blocks(
+        "CONTENTS", "1. Short title.", "2. Definitions.",
+        "3. Taxable Service.", "It is hereby enacted as follows:",
+        "1. Short title. This Act may be called the Example Act.",
+        "2. Definitions. In this Actâ€”",
+        "(33) resident meansâ€”", "(i) an individual is resident ifâ€”",
+        "1. he has a place of business; or 2. has his permanent address here;",
+        "(iii) a company is resident ifâ€”",
+        "1. its office is here; or 2. it has a place of business;",
+        "or", "3. its management is situated here;",
+        "3. Taxable Service. A taxable service is listed in the Schedule.",
+    )
+    for index, block in enumerate(bs):
+        block["page_no"] = 1 if index <= 4 else (2 if index <= 12 else 3)
+        block["x0"] = 180.0 if index in {9, 11, 13} else 72.0
+    seg = segment(bs)
+    assert [node.label for node in seg.root.children
+            if node.kind == "section"] == ["1", "2", "3"]
+    assert seg.repeated_labels_demoted == 0
+    assert seg.missing == []
+
+
+def test_bracketed_starred_omission_without_full_stop_is_a_section():
+    seg = segment(blocks(
+        "CONTENTS", "30. Prior.", "31. Omitted.", "32. Following.",
+        "It is hereby enacted as follows:",
+        "30. Prior. Operative text.",
+        "2[ 31***]",
+        "32. Following. Operative text.",
+    ))
+    assert [node.label for node in seg.root.children
+            if node.kind == "section"] == ["30", "31", "32"]
+
+
+def test_fused_amendment_marker_does_not_hide_omitted_heading():
+    from nizam.corpus.segment import _heading_supports
+
+    assert _heading_supports("2[Omitted.]", "[Omitted]")
+
+
+def test_full_numeric_sequence_wins_when_omitted_toc_row_was_not_parsed():
+    from nizam.corpus.segment import _repair_label
+
+    toc = {str(number): f"Heading {number}" for number in range(1, 16)}
+    assert _repair_label(
+        "16", toc, set(toc), "2[Omitted.]",
+    ) == "16"
+
+
 def test_superscript_note_marker_block_is_not_decimal_section():
     bs = blocks(
         "1. Duty. Duty is imposed at the notified rate.",
@@ -132,6 +365,24 @@ def test_compiled_act_amendment_typography_is_repaired_only_with_toc_proof():
                                   "125": "Omitted"}, {"24A"}) == "25"
     assert _repair_label("125", {"24A": "Appearance", "25": "Omitted",
                                   "125": "Omitted"}, {"24A", "25"}) == "125"
+    # A valid three-digit section must not lose its leading digit merely
+    # because an earlier omitted section shares the suffix.  The body's own
+    # heading independently identifies the full label.
+    railways_toc = {
+        "15": "Omitted", "16": "Omitted", "115": "Disposal of fines",
+        "116": "Altering or defacing pass or ticket",
+    }
+    assert _repair_label(
+        "116", railways_toc, {"15", "115"},
+        "Altering or defacing pass or ticket. If a passenger...",
+    ) == "116"
+    # The source renders this as superscript footnote 7 + section 9; extraction
+    # fuses the glyphs to 79. Independent heading evidence selects section 9.
+    assert _repair_label(
+        "79", {"8": "Alteration of pipes", "9": "Temporary entry",
+               "78": "Omitted", "79": "Settlement of compensation"},
+        {"8"}, "Temporary entry upon land for repairing an accident.",
+    ) == "9"
     assert len(subdivide(
         "Prior enacted text.\n321[14AB.Discontinuance of connections."
         "\n32214AC. Bar on operations."
@@ -461,6 +712,51 @@ def test_a_section_promised_but_absent_is_an_unmatched_entry():
     assert gaps[0]["method"] == "unmatched"
 
 
+def test_source_verified_omission_becomes_an_empty_citable_version():
+    """A printed omission is lifecycle metadata, never invented body text."""
+    toc = ["CONTENTS"] + [
+        f"{n}. {'[Omitted]' if n == 7 else f'Heading number {n}.'}"
+        for n in range(1, 12)
+    ]
+    body = [f"{n}. Heading number {n}. Some enacted text here."
+            for n in range(1, 12) if n != 7]
+    source = blocks(*toc, *body)
+    seg = segment(source, toc_dispositions=[{
+        "id": 41,
+        "toc_entry_ordinal": 6,
+        "printed_label": "7",
+        "printed_heading": "[Omitted]",
+        "disposition": "omitted",
+        "source_block_id": 7,
+        "source_page": 1,
+        "amending_instrument_id": None,
+    }])
+    entry = next(item for item in seg.toc_entries if item["label"] == "7")
+    node = entry["node"]
+    assert node is not None
+    assert entry["method"] == "source_verified_disposition"
+    assert node.kind == "section"
+    assert node.text == ""
+    assert node.operation == "omitted"
+    assert node.amendment_note == "[Omitted]"
+    assert node.toc_disposition_assertion_id == 41
+    assert node.first_block == 7
+    assert "7" not in seg.missing
+
+
+def test_stale_toc_disposition_coordinates_fail_closed():
+    toc = ["CONTENTS"] + [f"{n}. Heading {n}." for n in range(1, 8)]
+    body = [f"{n}. Heading {n}. Enacted text." for n in range(1, 8) if n != 4]
+    import pytest
+    with pytest.raises(ValueError, match="stale or unmatched TOC disposition"):
+        segment(blocks(*toc, *body), toc_dispositions=[{
+            "id": 42, "toc_entry_ordinal": 3, "printed_label": "4",
+            "printed_heading": "Heading 4.", "disposition": "omitted",
+            "source_block_id": 999, "source_page": 1,
+            "amending_instrument_id": None,
+        }])
+
+
 # --------------------------------------------------- finding the body boundary
 def test_a_refuted_contents_hypothesis_is_rejected():
     """The Punjab Distillery Rules print no contents list. The chooser took its
@@ -689,6 +985,37 @@ def test_enactment_recovers_body_before_later_schedule_number_restart():
     assert all((n.heading or "").startswith("Main rule") for n in sections)
 
 
+def test_explicit_cross_referenced_schedule_stops_principal_body_scan():
+    """Later Standing Order labels remain inside their printed Schedule."""
+    toc = ["THE EXAMPLE ORDINANCE", "CONTENTS"] + [
+        f"{n}. Main section {n}." for n in range(1, 11)
+    ] + ["SCHEDULE STANDING ORDERS"] + [
+        f"{n}. Standing order {n}." for n in range(1, 13)
+    ]
+    body = ["It is hereby enacted as follows:"] + [
+        f"{n}. Main section {n}. Operative text." for n in range(1, 11)
+    ] + ["SCHEDULE\nSTANDING ORDERS [SECTION 2(g)]"] + [
+        f"{n}. Standing order {n}. Schedule text." for n in range(1, 13)
+    ]
+    bs = blocks(*toc, *body)
+    for index, block in enumerate(bs):
+        block["page_no"] = 1 if index < len(toc) else 2
+
+    seg = segment(bs)
+    root_sections = [node for node in seg.root.children
+                     if node.kind == "section"]
+    schedule = next(node for node in seg.root.children
+                    if node.kind == "schedule")
+    assert [node.label for node in root_sections] == [
+        str(n) for n in range(1, 11)
+    ]
+    assert [node.label for node in schedule.children] == [
+        str(n) for n in range(1, 13)
+    ]
+    assert all(node.kind == "clause" for node in schedule.children)
+    assert seg.repeated_labels_demoted == 0
+
+
 def test_rulemaking_formula_plus_opening_toc_headings_proves_body():
     """A notification may not repeat the Rules title beside its formula."""
     toc = ["THE FOOD RULES, 2011", "CONTENTS"] + [
@@ -809,6 +1136,94 @@ def test_unmarked_two_page_contents_in_short_act_does_not_demote_body():
         str(n) for n in range(1, 13)]
 
 
+def test_enactment_correction_runs_before_unmarked_front_matter_gate():
+    """A numbered list inside section 3 must not hide the real page-3 restart.
+
+    Document 2552 prints an unmarked 1..22 contents list on pages 1-2.  The Act
+    restarts at 1 after its repeated title and enactment on page 3, but section
+    3 contains a numbered membership list on page 4.  Both restart candidates
+    have perfect label agreement.  The ordinary tie-breaker chooses the later
+    list, so the enacting formula must correct that provisional choice before
+    the front-matter placement gate decides whether a TOC exists.
+    """
+    bs: list[dict] = []
+    ident = 0
+    headings = {n: f"Statutory heading number {n}" for n in range(1, 9)}
+    for n in range(1, 9):
+        bs.append({"id": ident, "text": f"{n}. {headings[n]}",
+                   "page_no": 1 if n <= 4 else 2,
+                   "y0": 80.0 + n * 20, "page_height": 792.0})
+        ident += 1
+    for text in (
+        "THE EXAMPLE AUTHORITY ACT, 2026",
+        "WHEREAS it is expedient to establish an Authority; "
+        "It is hereby enacted as follows:",
+    ):
+        bs.append({"id": ident, "text": text, "page_no": 3,
+                   "y0": 60.0 + ident * 5, "page_height": 792.0})
+        ident += 1
+    for n in range(1, 9):
+        bs.append({"id": ident,
+                   "text": f"{n}. {headings[n]}. Operative enacted text.",
+                   "page_no": 3 if n <= 2 else 4 + (n - 3) // 2,
+                   "y0": 100.0 + (n % 2) * 200, "page_height": 792.0})
+        ident += 1
+        if n == 3:
+            for member in range(1, 9):
+                bs.append({"id": ident,
+                           "text": f"{member}. Member category {member}",
+                           "page_no": 4, "y0": 320.0 + member * 20,
+                           "page_height": 792.0})
+                ident += 1
+
+    seg = segment(bs)
+    assert seg.toc_found
+    assert seg.body_starts_page == 3
+    sections = [n for n in seg.root.children if n.kind == "section"]
+    assert sections[0].first_block == 10
+    assert [n.label for n in sections] == [str(n) for n in range(1, 9)]
+
+
+def test_serial_number_table_rows_belong_to_the_open_subsection():
+    """A printed S. No./column grid is not a second set of Act sections."""
+    toc = ["CONTENTS"] + [
+        "1. Short title.",
+        "2. Definitions.",
+        "3. Authority.",
+        "4. Powers of the Authority.",
+    ]
+    body = [
+        "1. Short title. This Act may be called the Example Act.",
+        "2. Definitions. In this Act, unless the context otherwise requires.",
+        "3. Authority. (1) There shall be an Authority.",
+        "(2) The Authority shall consist of the following, namely:",
+        "S. No.\nMembership\nStatus\n(1)\n(2)\n(3)\n"
+        "1. Prime Minister\nChairperson",
+        "2. Finance Minister\nMember",
+        "3. Secretary\nMember",
+        "4. Managing Director\nMember",
+        "4. Powers of the Authority. The Authority may exercise its powers.",
+    ]
+
+    seg = segment(blocks(*toc, *body))
+    sections = [n for n in seg.root.children if n.kind == "section"]
+    assert [n.label for n in sections] == ["1", "2", "3", "4"]
+    authority = sections[2]
+    rows = [n for n in seg.flatten()
+            if n.kind == "clause" and n.label in {"1", "2", "3", "4"}]
+    assert [n.label for n in rows] == ["1", "2", "3", "4"]
+    def belongs_to_authority(row):
+        parent = row.parent
+        while parent is not None:
+            if parent is authority:
+                return True
+            parent = parent.parent
+        return False
+
+    assert all(belongs_to_authority(row) for row in rows)
+    assert seg.repeated_labels_demoted == 0
+
+
 def test_front_numbered_table_with_same_labels_is_not_contents_without_heading_support():
     """High label overlap is insufficient when the predicted headings differ."""
     bs: list[dict] = []
@@ -838,6 +1253,40 @@ def test_page_footnotes_are_not_mistaken_for_a_two_column_contents():
     from nizam.corpus.segment import _twocol_run
     notes = [f"{n}\nInserted by the Finance Act, 200{n}." for n in (1, 2, 1, 2, 1, 2)]
     assert _twocol_run(blocks(*notes)) == []
+
+
+def test_two_column_contents_keeps_bare_omitted_rows():
+    """An official contents ledger may cite repealed slots as ``[Omitted]``.
+
+    Those rows are still ground-truth citations and must remain between their
+    enacted neighbours; they are not amendment-note apparatus.
+    """
+    from nizam.corpus.segment import _twocol_run
+
+    entries = [
+        f"{n}\n[Omitted]" if n in (6, 8) else f"{n}\nHeading number {n}"
+        for n in range(1, 10)
+    ]
+    run = _twocol_run(blocks(*entries), {str(n) for n in range(1, 10)})
+    assert [item[2] for item in run] == [str(n) for n in range(1, 10)]
+    assert run[5][3] == "[Omitted]"
+
+
+def test_two_column_contents_keeps_inserted_suffix_sequence_and_omissions():
+    from nizam.corpus.segment import _twocol_run
+
+    labels = [
+        "12", "13", "14", "14A", "14B", "14C", "15", "16", "17",
+        "18", "19", "19A", "20", "21", "21A", "22", "30", "31", "32",
+        "33", "33A", "34",
+    ]
+    entries = [
+        f"{label}\nOmitted." if label in {"31", "33A"}
+        else f"{label}\nHeading {label}"
+        for label in labels
+    ]
+    run = _twocol_run(blocks(*entries), set(labels))
+    assert [item[2] for item in run] == labels
 
 
 def test_detached_numbered_heading_and_same_number_body_are_one_section():
@@ -885,6 +1334,36 @@ def test_explicit_contents_plus_formula_and_marginal_headings_proves_body():
     assert seg.toc_found
     assert seg.body_starts_page == 2
     assert [n.label for n in seg.root.children if n.kind == "section"] == ["1", "2", "3"]
+
+
+def test_formula_boundary_uses_same_page_heading_after_numbered_body():
+    """A left marginal heading may follow its right-column operative block."""
+    bs = blocks(
+        "THE TECHNICAL EDUCATION ACT, 2026", "CONTENTS",
+        "1. Short title, extent and commencement.",
+        "2. Definitions.",
+        "3. Constitution of the Board.",
+        "4. Powers and functions of the Board.",
+        "5. Term of office.",
+        "THE TECHNICAL EDUCATION ACT, 2026",
+        "It is hereby enacted as follows:",
+        "1. (1) This Act may be called the Technical Education Act, 2026.",
+        "Short title extent and commencement. 2. In this Act, definitions apply.",
+        "3. Substituted by the Amendment Act, 2025.",
+        "4. Substituted by the Amendment Act, 2025.",
+        "Definitions. 3. The Government shall constitute a Board.",
+        "Constitution of the Board. 4. The Board shall exercise its powers.",
+        "Powers and functions of the Board. 5. Members shall hold office for three years.",
+        "Term of office.",
+    )
+    for i, block in enumerate(bs):
+        block["page_no"] = 1 if i < 7 else 2
+    seg = segment(bs)
+    assert seg.toc_found
+    assert seg.body_starts_page == 2
+    assert [n.label for n in seg.root.children if n.kind == "section"] == [
+        "1", "2", "3", "4", "5",
+    ]
 
 
 def test_detached_marginal_heading_blocks_attach_to_next_section():
@@ -941,6 +1420,63 @@ def test_toc_proves_unpunctuated_section_in_marginal_layout():
     ]
 
 
+def test_fused_margin_recovery_only_touches_an_unresolved_toc_label():
+    bs = blocks(
+        "CONTENTS",
+        "1. Short title.", "2. Definitions.", "3. Authority.",
+        "4. Powers.", "5. Procedure.",
+        "It is hereby enacted as follows:",
+        "1. This Act may be called the Example Act.",
+        # Real Balochistan fusion (document 362) places an additional printed
+        # paragraph marker between the section number and its body.  The
+        # ordinary inline-margin grammar intentionally does not guess through
+        # that shape; the geometry+TOC path does.
+        "Definitions.\n2. a. In this Act, prescribed means prescribed by rules.",
+        "3. The Authority is established.", "4. The Authority may act.",
+        "5. The prescribed procedure applies.",
+    )
+    for index, block in enumerate(bs):
+        block["page_no"] = 1 if index <= 5 else 2
+        block["x0"], block["x1"] = 161.0, 520.0
+    for index in range(7, len(bs)):
+        bs[index]["x0"] = 214.0
+    bs[8]["x0"], bs[8]["x1"] = 110.0, 526.0
+
+    seg = segment(bs, split_fused_margins=True)
+    section_two = next(node for node in seg.root.children if node.label == "2")
+    assert seg.missing == []
+    assert seg.marginal_notes_split == 1
+    assert section_two.marginal_note == "Definitions."
+
+
+def test_fusion_does_not_split_a_later_schedule_label_already_in_body():
+    """Geometry cannot override an already-satisfied contents citation."""
+    bs = blocks(
+        "CONTENTS",
+        "1. Short title.", "2. Definitions.", "3. Authority.",
+        "4. Powers.", "5. Procedure.",
+        "It is hereby enacted as follows:",
+        "1. This Act may be called the Example Act.",
+        "2. In this Act, prescribed means prescribed by rules.",
+        "3. The Authority is established.", "4. The Authority may act.",
+        "5. The prescribed procedure applies.",
+        "SCHEDULE\nCHARITABLE PURPOSES",
+        "Definitions. 2. Education and public welfare.",
+    )
+    for index, block in enumerate(bs):
+        block["page_no"] = 1 if index <= 5 else (2 if index <= 11 else 3)
+        block["x0"], block["x1"] = 161.0, 520.0
+    for index in range(7, 12):
+        bs[index]["x0"] = 214.0
+    bs[-1]["x0"], bs[-1]["x1"] = 110.0, 526.0
+
+    seg = segment(bs, split_fused_margins=True)
+    assert seg.missing == []
+    assert seg.marginal_notes_split == 0
+    assert [node.label for node in seg.root.children
+            if node.kind == "section"] == ["1", "2", "3", "4", "5"]
+
+
 def test_toc_reconciliation_accepts_only_unambiguous_dash_typography():
     """Official editions interchange 53-A, 53A and 53 A, but decimal dots
     carry legal structure and must not be erased.  Ambiguous variants fail
@@ -955,6 +1491,23 @@ def test_toc_reconciliation_accepts_only_unambiguous_dash_typography():
         {"5-A", "5A"}, {"5 A"})
     assert matched_toc == set()
     assert matched_body == set()
+
+
+def test_toc_reconciliation_accepts_only_unambiguous_numeric_zero_padding():
+    """A contents display label ``01`` denotes body section ``1``.
+
+    The exact printed forms remain distinct evidence.  If both forms occur in
+    the contents, normalization must fail closed instead of linking two rows to
+    one citable provision.
+    """
+    matched_toc, matched_body = _reconcile_label_sets(
+        {"01", "02", "10"}, {"1", "2", "10"})
+    assert matched_toc == {"01", "02", "10"}
+    assert matched_body == {"1", "2", "10"}
+
+    matched_toc, matched_body = _reconcile_label_sets({"01", "1"}, {"1"})
+    assert matched_toc == {"1"}
+    assert matched_body == {"1"}
 
 
 def test_toc_entry_links_across_dash_typography_without_relabelling_body():
@@ -1066,6 +1619,68 @@ def test_resolved_toc_entry_backfills_marginal_section_heading():
     assert sections[1].heading == "Definitions."
 
 
+def test_repeated_schedule_label_links_with_following_marginal_heading():
+    bs = blocks(
+        "CONTENTS",
+        "1. Main opening.", "2. Main definitions.", "3. Main duty.",
+        "SCHEDULE REGULATIONS OF THE BOARD",
+        "1. Powers and duties of the Chairman.",
+        "2. Powers and duties of the Secretary.",
+        "3. Powers and duties of the Controller of Examinations.",
+        "It is hereby enacted as follows:",
+        "1. Main opening. Operative text.",
+        "2. Main definitions. Operative text.",
+        "3. Main duty. Operative text.",
+        "SCHEDULE REGULATIONS OF THE BOARD",
+        "1. The Chairman shall exercise control over the office.",
+        "2. The Secretary shall administer the office.",
+        "3. The Controller shall control examinations.",
+        "Powers and duties of the Controller of Examinations.",
+    )
+    for index, block in enumerate(bs):
+        block["page_no"] = 1 if index <= 7 else (2 if index <= 11 else 3)
+        block["x0"], block["x1"] = 108.0, 516.0
+        block["y0"], block["y1"] = float(index * 20), float(index * 20 + 18)
+    bs[-2]["y0"], bs[-2]["y1"] = 100.0, 130.0
+    bs[-1]["x0"], bs[-1]["x1"] = 523.0, 591.0
+    bs[-1]["y0"], bs[-1]["y1"] = 100.0, 135.0
+    seg = segment(bs)
+    schedule_three = seg.toc_entries[-1]
+    assert schedule_three["node"] is not None
+    assert schedule_three["node"].kind == "clause"
+    assert schedule_three["node"].heading == (
+        "Powers and duties of the Controller of Examinations."
+    )
+    assert schedule_three["method"] == "label_heading_exact"
+
+
+def test_compound_schedule_toc_rows_link_to_their_subsections():
+    bs = blocks(
+        "CONTENTS", "1. Main opening.", "4. Main constitution.",
+        "SCHEDULE REGULATIONS OF THE BOARD",
+        "1. Chair duty.",
+        "4(1). Constitution of the Academic Committee.",
+        "4(2). Term of office of members of the Academic Committee.",
+        "4(3). Quorum for the meeting.",
+        "It is hereby enacted as follows:",
+        "1. Main opening. Operative text.",
+        "4. Main constitution. (1) Main member text. (2) Main term text. (3) Main quorum text.",
+        "SCHEDULE REGULATIONS OF THE BOARD",
+        "1. Chair duty. Schedule text.",
+        "4. (1) The Academic Committee shall consist of members. Constitution of the Academic Committee.",
+        "(2) The members shall hold office for two years. Term of office of members of the Academic Committee.",
+        "(3) The quorum shall be one third. Quorum for the meeting.",
+    )
+    for index, block in enumerate(bs):
+        block["page_no"] = 1 if index <= 7 else (2 if index <= 10 else 3)
+    seg = segment(bs)
+    compounds = [entry for entry in seg.toc_entries if "(" in entry["label"]]
+    assert [entry["label"] for entry in compounds] == ["4(1)", "4(2)", "4(3)"]
+    assert all(entry["node"] is not None for entry in compounds)
+    assert all(entry["node"].kind == "subsection" for entry in compounds)
+    assert all(entry["node"].first_page == 3 for entry in compounds)
+
+
 def test_repeated_section_label_does_not_reuse_unrelated_schedule_clause():
     """One schedule clause 11 may satisfy its own contents row, but cannot
     also conceal a missing section 11 in the principal Act.
@@ -1147,6 +1762,176 @@ def test_unnumbered_schedule_links_by_exact_rule_reference():
     assert part_two["node"].kind == "part"
     assert part_two["node"].parent is schedule_entry["node"]
     assert seg.missing == []
+
+
+def test_standalone_schedule_after_notification_body_opens_without_toc():
+    """An embedded notification span need not repeat the package contents.
+
+    Punjab's minimum-wage package prints the second notification's sections
+    2--7, its departmental signature, and then an uppercase ``SCHEDULE`` whose
+    first industry item shares the same extracted block.  The explicit display
+    heading is source evidence; its numbered wage-table rows are clauses of the
+    schedule, not hundreds of competing sections of the notification.
+    """
+    seg = segment(blocks(
+        "2. Definitions apply to this notification.",
+        "3. Minimum wages shall be paid.",
+        "4. Existing favourable terms continue.",
+        "5. The earlier notification is superseded.",
+        "6. This notification applies to the listed industries.",
+        "7. This notification comes into force on 1 July 2013.",
+        "SECRETARY\nGOVERNMENT OF THE PUNJAB",
+        "SCHEDULE\n\n1. Applicable to workers employed in manufacturing of "
+        "Body Building Auto Vehicles Industry.",
+        "1. Assistant Manager\n2. Accountant\n3. Foreman",
+        "2. Applicable to workers employed in the Bicycle Industry.",
+    ), detect_contents=False)
+    top_sections = [node.label for node in seg.root.children
+                    if node.kind == "section"]
+    schedules = [node for node in seg.root.children
+                 if node.kind == "schedule"]
+    assert top_sections == ["2", "3", "4", "5", "6", "7"]
+    assert len(schedules) == 1
+    assert schedules[0].label == "SCHEDULE"
+    schedule_rows = schedules[0].children
+    assert schedule_rows
+    assert all(node.kind == "clause" for node in schedule_rows)
+    assert [node.label for node in schedule_rows] == ["1", "1", "2", "3", "2"]
+
+
+def test_source_review_can_force_a_distant_package_contents_row():
+    """A package TOC row may belong to an Act embedded many pages later."""
+    bs = blocks(
+        "1. Short title. 2. Definitions. 3. Levy. 4. Registration.",
+        "It is hereby enacted as follows:",
+        "1. Short title. This Act may be called the Tobacco Act.",
+        "2. Definitions. In this Act, tobacco means tobacco leaf.",
+        "3. Levy. A duty shall be levied.",
+        "4. Registration. Every unit shall register.",
+    )
+    bs[0]["page_no"] = 1
+    for block in bs[1:]:
+        block["page_no"] = 14
+    ordinary = segment(bs)
+    forced = segment(bs, force_opening_contents=True)
+    assert not ordinary.toc_found
+    assert forced.toc_found
+    assert forced.missing == []
+    assert [node.label for node in forced.root.children
+            if node.kind == "section"] == ["1", "2", "3", "4"]
+
+
+def test_unlisted_schedule_without_signature_can_return_to_main_rules():
+    """A schedule inside a long rules compendium is not necessarily the tail."""
+    seg = segment(blocks(
+        "Rule 2. Opening rule.", "Rule 3. Next rule.", "Rule 4. Next rule.",
+        "Rule 5. Next rule.", "Rule 6. Next rule.", "Rule 7. Rule before schedule.",
+        "SCHEDULE I\n1. First scheduled form.",
+        "2. Second scheduled form.",
+        "CHAPTER 45\nWARDER ESTABLISHMENT",
+        "Rule 8. Main rules resume after the schedule.",
+    ), detect_contents=False)
+    schedules = [node for node in seg.flatten() if node.kind == "schedule"]
+    assert len(schedules) == 1
+    assert all(node.kind == "clause" for node in schedules[0].children)
+    resumed = [node for node in seg.flatten()
+               if node.kind == "section" and node.label == "8"]
+    assert len(resumed) == 1
+    assert resumed[0].parent is not schedules[0]
+
+
+def test_rule_resumption_baseline_comes_from_source_not_parser_state():
+    """An earlier false auxiliary state must not poison a later resumption.
+
+    Punjab Prisons Rules contains editorial material that can keep the parser
+    inside an auxiliary container even while the source continues printing
+    explicit ``Rule N`` blocks.  When a later genuine schedule ends, its next
+    Rule must be compared with the source sequence before that schedule, not a
+    counter that stopped changing when the earlier container opened.
+    """
+    seg = segment(blocks(
+        "Rule 63. Earlier enacted rule.",
+        "Rule 64. Last rule reliably classified before editorial material.",
+        "SCHEDULE\n1. Editorial material begins.",
+        "Rule 1105. Source still prints an explicit rule prefix.",
+        "Rule 1106. The rule immediately before the inserted schedule.",
+        "SCHEDULE I\n1. First scheduled form.",
+        "2. Second scheduled form.",
+        "Rule 1107. Main rules resume after the inserted schedule.",
+    ), detect_contents=False)
+    resumed = [node for node in seg.flatten()
+               if node.kind == "section" and node.label == "1107"]
+    assert len(resumed) == 1, "; ".join(
+        f"{node.kind}:{node.label}@{node.parent.kind if node.parent else '-'}"
+        for node in seg.flatten()
+    )
+    assert resumed[0].parent.kind != "schedule"
+
+
+def test_short_colon_heading_introduces_the_following_rule():
+    """A display heading ending in a colon is not unfinished legal prose.
+
+    Punjab Prisons Rules prints hundreds of marginal/display headings followed
+    by ``Rule N``.  The line-wrapped cross-reference guard must still catch
+    prose ending ``mentioned in column No. 2 of / Rule 21``, but it must not
+    absorb an enacted rule into a short heading such as this one.
+    """
+    seg = segment(blocks(
+        "CHAPTER-28\nDiscipline and daily routine:",
+        "Discipline and movements of prisoners:",
+        "Rule 657. Prisoners shall remain under discipline and control.",
+    ), detect_contents=False)
+    rules = [node for node in seg.flatten()
+             if node.kind == "section" and node.label == "657"]
+    assert len(rules) == 1
+    assert rules[0].text.startswith("Prisoners shall remain")
+
+
+def test_trailing_display_heading_in_prior_rule_introduces_next_rule():
+    """A PDF block can end the prior rule and append the next marginal title."""
+    seg = segment(blocks(
+        "Rule 663. Prisoners shall obey officers and visitors.\n"
+        "Distribution into work parties:",
+        "Rule 664. (i) After breakfast, prisoners shall form work parties.",
+    ), detect_contents=False)
+    rules = [node for node in seg.root.children if node.kind == "section"]
+    assert [node.label for node in rules] == ["663", "664"]
+
+
+def test_monotonic_rule_prefix_outvotes_unpunctuated_marginal_heading():
+    """A printed consecutive Rule is stronger than unfinished punctuation.
+
+    Punjab Prisons Rules frequently ends one extracted block with a marginal
+    heading that has no colon or full stop. Punctuation alone calls that block
+    unfinished and absorbs the next enacted Rule. The explicit 77 -> 78 source
+    sequence proves the boundary without guessing from heading prose.
+    """
+    seg = segment(blocks(
+        "Rule77. The clothing shall be washed and safely stored.",
+        "Disposal of cash property of the prisoners",
+        "Rule 78. The cash property shall be paid on release.",
+    ), detect_contents=False)
+    rules = [node for node in seg.root.children if node.kind == "section"]
+    assert [node.label for node in rules] == ["77", "78"]
+    assert "cash property" in rules[-1].text.lower()
+
+
+def test_explicit_rule_occurrence_beats_bare_repeated_numeric_row():
+    """Without a TOC, keep the source-labelled Rule rather than a bare row."""
+    seg = segment(blocks(
+        "678. A bare numbered table or list row.",
+        "Rule 677. Prisoners may take exercise on holidays.",
+        "Games",
+        "Rule 678. Prisoners may play indoor and outdoor games.",
+    ), detect_contents=False)
+    citable = [node for node in seg.root.children
+               if node.kind == "section" and node.label == "678"]
+    demoted = [node for node in seg.root.children
+               if node.kind == "clause" and node.label == "678"]
+    assert len(citable) == 1
+    assert "prisoners may play" in citable[0].text.lower()
+    assert len(demoted) == 1
+    assert "bare numbered" in (demoted[0].heading or "").lower()
 
 
 def test_toc_proves_inline_unpunctuated_section_but_bare_table_row_fails():
@@ -1268,6 +2053,22 @@ def test_new_section_after_prior_numbered_sentence_is_not_a_dotted_label():
     assert any(piece.lstrip().startswith("8.") for piece in pieces)
 
 
+def test_year_order_citation_on_wrapped_line_is_not_a_division():
+    """A cited Order's year is prose, not a new structural container.
+
+    PyMuPDF can place the cited title at the start of a new extracted line even
+    though it remains inside a definition.  The inner-division splitter must
+    preserve that definition as one unit.
+    """
+    text = (
+        "(g) Facilities means hospitals seized under the United Nations "
+        "(Security Council) Act 1948 read with the United Nations Security "
+        "Council (Freezing and Seizure)\n"
+        "Order 2019, published in the Gazette of Pakistan on 4 March 2019."
+    )
+    assert subdivide(text) == [text]
+
+
 def test_bracketed_deleted_section_word_form_is_classified():
     text = "1[Deleted.]\n1[Section 10.\nPrimary Education Surcharge —Deleted\n]"
     pieces = subdivide(text)
@@ -1283,3 +2084,196 @@ def test_bracketed_inserted_hyphenated_section_is_classified():
     )
     assert result is not None
     assert result[:2] == ("section", "3-A")
+
+
+def test_amending_act_section_with_marginal_heading_is_not_a_footnote():
+    """An amending Act's operative sections read exactly like amendment notes.
+
+    In the West Pakistan Hill Tract Improvement Act every amending section says
+    "In section N of the said Act ... shall be deemed to be substituted" -- the
+    punctuated-amendment pattern's own shape. Demoting one to apparatus leaves
+    the marginal heading printed beside it owning no provision, and the writer
+    then strands its characters as 'unassigned' (C4/C5). Where the walk has
+    already matched that marginal heading to a printed contents entry and proved
+    it prints in its own column, that evidence outranks the text shape.
+    """
+    bs = blocks(
+        "CONTENTS",
+        "1. Short title and commencement.",
+        "2. Definitions.",
+        "3. Constitution of the Trust.",
+        "4. Amendment of section 15.",
+        "5. Amendment of section 17.",
+        "It is hereby enacted as follows:",
+        "1. (1) This Act may be called the Example Amendment Act.",
+        "2. In this Act, prescribed means prescribed by rules.",
+        "3. The Trust shall be constituted as provided in this Act.",
+        "Amendment of section 15.",
+        "4.\nIn section 15 of the said Act, for the word and figures \"and 24\" "
+        "the figures, word and letter \"24 and 24-A\" preceded by a comma, "
+        "shall be deemed to be substituted.",
+        "Amendment of section 17.",
+        "5.\nIn sub-section (3) of section 17 of the said Act, after the "
+        "figures \"24\" the words shall be deemed to be inserted.",
+    )
+    for index, block in enumerate(bs):
+        block["page_no"] = 1 if index <= 5 else 2
+        block["x0"], block["x1"] = 86.0, 494.0
+        block["y0"], block["y1"] = float(index * 40), float(index * 40 + 30)
+    # Both marginal headings print in the narrow right-hand column, each
+    # vertically aligned with the section it heads.
+    for marginal, body in ((10, 11), (12, 13)):
+        bs[marginal]["x0"], bs[marginal]["x1"] = 501.0, 564.0
+        bs[marginal]["y0"] = bs[body]["y0"]
+        bs[marginal]["y1"] = bs[body]["y1"]
+
+    seg = segment(bs)
+    assert seg.toc_found, "fixture must print a contents list"
+    roles = {bid: role for bid, (role, _node) in seg.block_roles.items()}
+    assert roles[11] != "footnote", "the operative section became apparatus"
+
+    # Every block whose role must own a provision has one. That is what keeps
+    # the marginal heading's characters reachable.
+    stranded = [bid for bid, (role, node) in seg.block_roles.items()
+                if node is None
+                and role in ("body", "heading", "schedule_row", "preamble")]
+    assert stranded == [], stranded
+
+    labels = [node.label for node in seg.flatten() if node.kind == "section"]
+    assert "4" in labels, labels
+
+
+def test_numeric_table_does_not_hang_the_footnote_marker_test():
+    r"""A contribution table must not take exponential time to reject.
+
+    Document 3912, the Punjab Contributory Provident Fund Rules, carries an
+    808-character table of 132 numeric lines. The footnote-marker test used one
+    pattern whose leading ``\s*`` and repeated ``\n\s*`` could both claim the
+    same newline, so proving the table is NOT a run of markers meant trying
+    every way to divide that whitespace. It had not finished after five minutes,
+    which made the document impossible to re-segment at all.
+
+    The answer is False -- four-digit rates are not footnote markers -- and the
+    check must reach it immediately. The bound is deliberately loose: the point
+    is minutes versus milliseconds, not a benchmark.
+    """
+    import time
+
+    from nizam.corpus.segment import _footnote_markers_only
+
+    rows = []
+    for n in range(1, 34):
+        rows += [f"{n} ", "", f"{440 + n * 20}  ", f"{640 + n * 20}  ",
+                 f"{1020 + n * 10}  ", f"{16 + n % 8} ", "", "20  "]
+    table = "\n".join(rows)
+    assert sum(1 for line in table.split("\n")
+               if line.strip() and len(line.strip()) > 3) >= 30
+
+    started = time.perf_counter()
+    result = _footnote_markers_only(table)
+    elapsed = time.perf_counter() - started
+
+    assert result is False
+    assert elapsed < 1.0, f"took {elapsed:.1f}s -- the pattern is backtracking"
+
+
+def test_footnote_marker_block_is_still_recognised():
+    """The replacement keeps the behaviour the single pattern was written for."""
+    from nizam.corpus.segment import _footnote_markers_only
+
+    assert _footnote_markers_only("1.\n2.\n3.") is True
+    assert _footnote_markers_only("1\n \n2\n \n3\n") is True
+    assert _footnote_markers_only("12:\n13:") is True
+    # One line is not a run of markers, and a four-digit number is not one.
+    assert _footnote_markers_only("1.") is False
+    assert _footnote_markers_only("1.\n1020") is False
+    assert _footnote_markers_only("1.\nIn section 15 of the said Act") is False
+
+
+def test_incomplete_contents_does_not_strip_a_plausible_rule_number():
+    """Absence from the contents proves fusion only when the number is implausible.
+
+    The Sindh mining rules print a contents list of 1,2,4,5,6,7,44,45 ... 72 --
+    nothing at all between 7 and 44. Rules 21 and 22 are therefore missing from
+    it, and reading that absence as superscript fusion stripped them to 1 and 2.
+    Rule 22, "Records, and Reporting by Licensee", stopped being citable even
+    though page 22 prints it with an ordinary bold heading.
+
+    A number the document's own contents shows to be in range is a provision
+    number. A number far outside that range still is not.
+    """
+    sparse = {label: f"heading {label}" for label in
+              ["1", "2", "4", "5", "6", "7"] + [str(n) for n in range(44, 73)]}
+
+    # In range (the contents itself reaches 72) and simply not listed.
+    assert _repair_label("21", sparse) == "21"
+    assert _repair_label("22", sparse) == "22"
+    # Still listed, still untouched.
+    assert _repair_label("44", sparse) == "44"
+
+
+def test_superscript_fusion_is_still_undone_when_the_number_is_implausible():
+    """The repair this guard narrows must keep working.
+
+    PyMuPDF glues a footnote marker to the number that follows, so section 366
+    carrying footnote 1 arrives as "1366". No statute numbering to 500 has a
+    section 1366, and the contents says so.
+    """
+    dense = {str(n): f"heading {n}" for n in range(1, 501)}
+    assert _repair_label("1366", dense) == "366"
+    assert _repair_label("1500", dense) == "500"
+    # A label the contents does list is never stripped.
+    assert _repair_label("366", dense) == "366"
+
+
+def test_repair_label_without_a_contents_list_changes_nothing():
+    assert _repair_label("21", {}) == "21"
+    assert _repair_label("1366", {}) == "1366"
+
+
+def test_marginal_heading_fused_ahead_of_its_section_still_opens_it():
+    r"""A heading glued in front of its own section used to delete the section.
+
+    PyMuPDF emits "Repeal.\n27.\n2The Balochistan Education Foundation
+    Ordinance, 1994 ... is hereby repealed." as one block, so section 27 was
+    appended to section 26 and left the corpus.
+
+    The rule is anchored to the START of a block on purpose. Tried as a general
+    internal cut it also fired inside footnote runs, which carry the same
+    number-dot-superscript shape, and shredded them into fabricated sections --
+    costing one document twenty-one of its twenty-seven.
+    """
+    pieces = subdivide("Repeal.\n27.\n2The Balochistan Education Foundation "
+                       "Ordinance, 1994 (IV of 1994), is hereby repealed.")
+    assert len(pieces) == 2, pieces
+    opened = classify(pieces[1])
+    assert opened is not None and opened[:2] == ("section", "27")
+
+    # A footnote run offers the same shape and must stay whole.
+    assert len(subdivide("1Subs. by Act No. XX of 1972, ss. 2 and 3. \n"
+                         "2Subs. by A. O., 1937.")) == 1
+
+
+def test_a_detached_heading_never_loses_its_provision():
+    """A heading owning nothing is refused by the writer, so it must own something.
+
+    291 heading blocks across 71 documents were latent C5 failures: their body
+    never became a provision, legal_write refused to store a heading without
+    one, and their characters fell out of the ledger the moment the document was
+    replayed. The words are printed on the page and belong to the provision they
+    head, so a detached heading takes the node of the next block that has one.
+    """
+    bs = blocks(
+        "CONTENTS", "1. Short title.", "2. Definitions.",
+        "It is hereby enacted as follows:",
+        "1. Short title. This Act may be called the Example Act.",
+        "Definitions.",
+        "2. In this Act, prescribed means prescribed by rules.",
+    )
+    for index, block in enumerate(bs):
+        block["page_no"] = 1 if index <= 2 else 2
+    seg = segment(bs)
+    stranded = [bid for bid, (role, node) in seg.block_roles.items()
+                if node is None
+                and role in ("body", "heading", "schedule_row", "preamble")]
+    assert stranded == [], stranded

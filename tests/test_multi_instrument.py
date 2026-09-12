@@ -100,6 +100,10 @@ def test_instrument_kind_uses_terminal_legal_form():
 def test_instrument_year_uses_terminal_legal_form_year():
     from nizam.workers.segment import infer_year
     assert infer_year("Revival of the Constitution of 1973 Order, 1985",None,"") == 1985
+    assert infer_year(
+        "Income Tax Ordinance, 2001 (Same as official website dated 31-07-2025)",
+        "2001", "",
+    ) == 2001
 
 
 def test_expression_ordinal_makes_paths_distinct_and_retains_source_span():

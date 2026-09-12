@@ -136,3 +136,24 @@ overlay-*.png
 
 # Scratch downloads and page dumps, whatever the extension.
 .tmp-*
+
+# session scratch: fingerprint passes, document-id lists, ad-hoc probes.
+# The keepers were promoted to tools/ (fingerprint_segmentation.py,
+# compare_fingerprints.py, do-not-replay.txt).
+.fp_*.tsv
+.fp_*.err
+.probe_*
+.*_docs.txt
+.do_not_replay.txt
+.cmp*.py
+.lk_*.txt
+.replay_docs.txt
+.absence_docs.txt
+.all_active_docs.txt
+.both_docs.txt
+.ell_docs.txt
+.noc.txt
+.render_absence.log
+
+# rendered review artifacts (evidence, not source): renders + manifests
+.review/

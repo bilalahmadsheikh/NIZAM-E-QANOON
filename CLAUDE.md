@@ -6,10 +6,12 @@ GIKI FCSE, four developers.
 
 **Current state: L1 extraction and L2 base segmentation are built and measured; L2 production qualification remains open, and L3 upward has not started.** Sixteen documents
 in `docs/` fix the architecture, and where implementation has diverged the docs carry an "as built"
-correction rather than a quiet edit. The corpus lives in Postgres: 4,595 documents, 63,047 pages,
-128,636,469 characters, 4,788 active expressions and 512,094 active provisions. `./nz audit`
-runs 30 criteria; 29 pass. Only S7 structural adjudication remains red; reviewed
-multi-instrument materialisation is complete and S10 is zero. There is no
+correction rather than a quiet edit. The corpus lives in Postgres: 4,596 documents, 63,878 pages,
+128,654,015 characters, 4,695 active expressions and 517,171 active provisions. `./nz audit`
+runs 30 criteria; 29 pass. Only S7 structural adjudication remains red, and the
+remaining 1,531 units need source review of documents that print no contents
+list — no aggregate can settle them. Acquisition is fully accounted: every
+catalogued item either landed or carries a declared, evidence-backed exception. There is no
 `chunk`, `embedding`, `legal_edge`, facet or judgment table yet — those are the next layers.
 
 ---
@@ -92,13 +94,13 @@ Agents: `legal-source-scout`, `vendor-verifier`, `grounding-reviewer`, `schema-r
 
 ## Measured facts — do not re-derive
 
-From the built corpus (`nizam_clean`), measured 10 Sep 2026. These supersede the 28 Aug estimates,
+From the built corpus (`nizam_clean`), measured 11 Sep 2026. These supersede the 28 Aug estimates,
 which were scaled from a 144-PDF sample:
 
-- **4,757 effective catalogue items · 4,716 landed (99.14%) · 4,595 distinct blobs · 41 genuinely unresolved**
-- **63,047 pages · 128,636,469 extracted characters · 955,153 active text blocks**
-- **512,094 active provisions from 106,021 sections** — tree expansion **4.83×**, not the 3.2× estimated
-- **Statutory corpus on disk: 1,682 MB** after multi-expression materialisation and restore-tested pruning of superseded
+- **4,757 effective catalogue items · 4,717 landed (99.16%) · 4,596 distinct blobs · 40 genuinely unresolved**
+- **63,878 pages · 128,654,015 extracted characters · 969,053 text blocks**
+- **517,171 active provisions from 103,169 sections** — tree expansion **4.99×**, not the 3.2× estimated
+- **Statutory corpus on disk: 1,912 MB** after multi-expression materialisation and restore-tested pruning of superseded
   derived trees and removal of 1,563,444 synthetic ancestor-prefix rows. The 744 MB
   estimate in 03a predates `provision_block`, `instrument_toc_entry`, `provision_ancestor` and
   append-only revisions — see 03a §2A. **Supabase's 500 MB free tier no longer holds it**
@@ -107,8 +109,10 @@ which were scaled from a 144-PDF sample:
 - Contents agreement: **median 1.0000**, with **1,988 canonical gaps across 607 expressions**
   (**2,120** when redundant provenance trees are included);
   all active printed entries retain their exact source block/page
-- **3,720 expressions / 300,137 provisions / 285,156 versions** are in the fail-closed legal release;
-  **2,312 S7 decisions across 406 observations** remain blocked
+- **3,992 expressions / 358,365 provisions** are in the fail-closed legal release;
+  **1,533 S7 units across 252 observations** and **1,443 contents gaps** remain blocked.
+  `docs/RELEASING-THE-BLOCKED-INSTRUMENTS.md` maps every blocked expression to the repair that
+  frees it; `tools/audit/blocked-release-worklist.sql` re-derives it
 - Production needs **~14 GB RAM**, well under one core at 50k MAU. RAM buys latency, not correctness
 - A single €21–40 VPS carries **50,000–100,000 MAU**; at scale infrastructure is ~3% of the bill
 

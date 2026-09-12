@@ -11,7 +11,7 @@ import json
 
 from nizam.storage import legal_write
 from nizam.storage.db import connect
-from nizam.corpus.segment import _section_numbers, parse_contents
+from nizam.corpus.segment import _section_numbers, _twocol_run, parse_contents
 from nizam.workers.segment import build
 
 
@@ -33,6 +33,15 @@ def main() -> int:
         "--compact",
         action="store_true",
         help="print only machine-readable reconciliation deltas",
+    )
+    parser.add_argument(
+        "--tree",
+        action="store_true",
+        help="print the prospective provision tree with source anchors",
+    )
+    parser.add_argument(
+        "--marginal-fusion", action="store_true",
+        help="enable the gated geometric margin/body split",
     )
     args = parser.parse_args()
 
@@ -70,8 +79,13 @@ def main() -> int:
     document_id, sha256, observation_id, source_id, title, year, url = target
     blocks = legal_write.blocks_for(document_id)
     if args.toc_debug:
+        raw_numbers = _section_numbers(blocks)
+        print("raw_twocol_run=" + json.dumps(
+            _twocol_run(blocks, {label for _, _, label, _ in raw_numbers}),
+            ensure_ascii=False,
+        ))
         print("raw_section_numbers=" + json.dumps(
-            _section_numbers(blocks), ensure_ascii=False,
+            raw_numbers, ensure_ascii=False,
         ))
         toc_debug, boundary_debug, found_debug = parse_contents(blocks)
         print("raw_toc=" + json.dumps(toc_debug, ensure_ascii=False))
@@ -81,6 +95,7 @@ def main() -> int:
         document_id, sha256, observation_id, source_id, title, year, url,
         blocks, legal_write.observed_on(observation_id),
         legal_write.segmentation_patches_for(observation_id),
+        split_fused_margins=args.marginal_fusion,
     )
     longest = max(instrument.provisions, key=lambda row: len(row["path"].encode()))
     print(f"provisions={len(instrument.provisions)}")
@@ -93,6 +108,20 @@ def main() -> int:
     print(f"toc_matched={segmentation.matched}")
     print(f"toc_missing={json.dumps(segmentation.missing, ensure_ascii=False)}")
     print(f"toc_extra={json.dumps(segmentation.extra, ensure_ascii=False)}")
+    if args.tree:
+        print("prospective_tree=" + json.dumps([
+            {
+                "kind": node.kind,
+                "label": node.label,
+                "heading": node.heading,
+                "text": node.text[:180],
+                "page": node.first_page,
+                "block": node.first_block,
+                "parent_kind": node.parent.kind if node.parent else None,
+                "parent_label": node.parent.label if node.parent else None,
+            }
+            for node in segmentation.flatten()
+        ], ensure_ascii=False, indent=2))
     if args.compact:
         entries_by_key = {
             (entry["ordinal"], entry["label"]): entry
@@ -207,6 +236,22 @@ def main() -> int:
             print(
                 f'{entry["ordinal"]}\t{entry["label"]}\t'
                 f'{entry.get("source_page") or ""}\t{heading}'
+            )
+        print("prospective_compound_candidates:")
+        print("citation\tpage\tblock\tkind\theading\ttext")
+        for node in segmentation.flatten():
+            if (node.kind != "subsection" or node.parent is None
+                    or node.parent.kind not in {"section", "article", "clause"}):
+                continue
+            citation = f"{node.parent.label}({node.label})"
+            if not any(entry["label"] == citation
+                       for entry in segmentation.toc_entries):
+                continue
+            heading = (node.heading or "").replace("\t", " ")
+            value = node.text[:160].replace("\t", " ").replace("\n", " ")
+            print(
+                f"{citation}\t{node.first_page}\t{node.first_block}\t"
+                f"{node.kind}\t{heading}\t{value}"
             )
     else:
         print("pending_toc_reconciliation=" + json.dumps(

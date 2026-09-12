@@ -115,3 +115,7 @@ class SegmentedInstrument:
     source_start_block_id: int | None = None
     source_end_block_id: int | None = None
     expression_role: str = "primary"
+    # Exact-tree overlays (for example a rendered-source omitted-section fact)
+    # preserve every instrument metadata field from this immutable predecessor.
+    # Ordinary parser builds leave this NULL and use their inferred metadata.
+    copy_instrument_id: str | None = None

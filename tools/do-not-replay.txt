@@ -1,0 +1,10 @@
+# Documents a replay would make WORSE, measured 12 Sep 2026.
+#
+# Each gains S7 candidates (which block release) without gaining any contents
+# linkage, so replaying them costs release and returns nothing. Document 4440
+# alone accounts for 74 of the 107 added demotions (1,188 -> 1,262).
+#
+# Re-derive with tools/fingerprint_segmentation.py run twice and
+# tools/compare_fingerprints.py; do not treat this list as permanent, since a
+# later parser fix may make some of them pay.
+118,121,258,699,1017,1549,2599,2839,2983,3036,3130,3455,3670,3794,3836,4440

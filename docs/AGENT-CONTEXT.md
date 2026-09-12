@@ -1,6 +1,6 @@
 # Agent context — Nizam-e-Qanoon corpus
 
-*Generated 2026-09-10 17:32 UTC from `nizam_clean`. Regenerate with `./nz context`.*
+*Generated 2026-09-11 21:08 UTC from `nizam_clean`. Regenerate with `./nz context`.*
 
 Every number here is a measurement, not a target. If it looks stale, it is — regenerate rather than trusting it.
 
@@ -9,8 +9,8 @@ Every number here is a measurement, not a target. If it looks stale, it is — r
 1. **`is_active` on every current-state query.** The corpus is append-only
    (migration 0012). Re-extracting or re-segmenting *retires* the previous
    revision rather than deleting it. A query that reads a base table without
-   this counts every generation ever produced — 38,594 of the
-   551,737 provision rows belong to superseded revisions.
+   this counts every generation ever produced — 94,315 of the
+   609,226 provision rows belong to superseded revisions.
 
 2. **`duplicate_of IS NULL` on `instrument`.** Exact duplicates are *linked*,
    not removed. 110 instruments are marked as duplicates today. Omitting
@@ -30,34 +30,40 @@ Every number here is a measurement, not a target. If it looks stale, it is — r
 
 | | |
 |---|---|
-| Active documents | 4,595 |
-| Instruments (live, non-duplicate) | 4,679 |
-| — of those, release-ready | **3,768** |
+| Active documents | 4,596 |
+| Instruments (live, non-duplicate) | 4,681 |
+| — of those, release-ready | **3,976** |
 | — marked duplicate | 110 |
-| Provisions live / retired | 513,143 / 38,594 |
-| Text blocks (active documents) | 955,153 |
-| Database size | 1729 MB |
+| Provisions live / retired | 514,911 / 94,315 |
+| Text blocks (active documents) | 955,255 |
+| Database size | 1912 MB |
 
 ### Known problems right now
 
 | problem | count |
 |---|---|
-| S7 pending label decisions | 2370 |
+| S7 pending label decisions | 2140 |
 | S10 multi-instrument boundaries | 0 |
-| TOC gaps across active provenance trees (raw) | 1745 |
-| Canonical TOC gaps pending resolution | 1611 |
-| Instruments blocked from release | 911 |
-| Catalogue entries that never landed a file | 41 |
-| Structural adjudications made by machine alone | 4498 |
+| TOC gaps across active provenance trees (raw) | 1453 |
+| Canonical TOC gaps pending resolution | 1255 |
+| Instruments blocked from release | 705 |
+| Catalogue entries that never landed a file | 40 |
+| Structural adjudications made by machine alone | 6129 |
 
 ### Tables
 
 
-**`acquisition_attempt`** — 82 rows, 128 kB
+**`acquisition_attempt`** — 82 rows, 136 kB
   
 `id bigint, source_observation_id bigint, requested_url text, final_url text, http_status integer, media_type text, byte_length bigint, response_sha256 character, object_key text, outcome text, error text, attempted_at timestamp with time zone`
   
 FK: source_observation_id → source_observation
+
+**`acquisition_exception`** — 0 rows, 96 kB
+  
+`id bigint, source_observation_id bigint, reason text, attempts_considered integer, first_attempt_at timestamp with time zone, last_attempt_at timestamp with time zone, observed_error text, evidence jsonb, asserted_by text, asserted_at timestamp with time zone, supersedes_id bigint`
+  
+FK: source_observation_id → source_observation; supersedes_id → acquisition_exception
 
 **`blob`** — 4,595 rows, 1696 kB
   
@@ -65,7 +71,7 @@ One stored PDF, addressed by sha256.
   
 `sha256 character, source_id text, object_key text, byte_length bigint, media_type text, first_seen timestamp with time zone, created_at timestamp with time zone`
 
-**`block_assignment_set`** — 4,833 rows, 1232 kB
+**`block_assignment_set`** — 5,112 rows, 1312 kB
   
 `id uuid, document_id bigint, source_observation_id bigint, instrument_id uuid, segmenter text, is_active boolean, supersedes_set_id uuid, retired_at timestamp with time zone, created_at timestamp with time zone`
   
@@ -113,7 +119,7 @@ Evidence from the independent pdftotext cross-check. char_recall and char_precis
   
 FK: document_id → document
 
-**`instrument`** — 4,797 rows, 11 MB
+**`instrument`** — 5,076 rows, 11 MB
   
 One legal instrument: an Act, Ordinance, Rules. The thing a citation names.
   
@@ -145,7 +151,7 @@ FK: canonical_instrument_id → instrument; duplicate_instrument_id → instrume
   
 FK: batch_id → revision_archive_batch; source_observation_id → source_observation
 
-**`instrument_source`** — 4,797 rows, 536 kB
+**`instrument_source`** — 4,797 rows, 568 kB
   
 `instrument_id uuid, source_observation_id bigint, role text`
   
@@ -157,7 +163,7 @@ FK: instrument_id → instrument; source_observation_id → source_observation
   
 FK: instrument_id → instrument; source_observation_id → source_observation
 
-**`instrument_toc_entry`** — 87,054 rows, 43 MB
+**`instrument_toc_entry`** — 96,852 rows, 52 MB
   
 `id bigint, instrument_id uuid, ordinal integer, printed_label text, printed_heading text, printed_page integer, entry_kind text, provision_id uuid, match_method text, source_block_id bigint, source_page integer`
   
@@ -193,7 +199,7 @@ A proposed OCR reading of one page. A proposal, never applied automatically.
   
 FK: document_id → document; document_id → page; page_no → page
 
-**`provision`** — 528,132 rows, 254 MB
+**`provision`** — 592,800 rows, 325 MB
   
 A section/subsection in the instrument's tree. INV-4 makes this the citable unit. Text lives in provision_version, not here.
   
@@ -203,27 +209,27 @@ A section/subsection in the instrument's tree. INV-4 makes this the citable unit
   
 FK: first_block → text_block; instrument_id → instrument; parent_id → provision
 
-**`provision_ancestor`** — 1,210,634 rows, 429 MB
+**`provision_ancestor`** — 1,224,581 rows, 429 MB
   
 `ancestor_path USER-DEFINED, provision_id uuid, distance smallint`
   
 FK: provision_id → provision
 
-**`provision_block`** — 1,046,209 rows, 182 MB
+**`provision_block`** — 1,151,442 rows, 218 MB
   
 `block_id bigint, document_id bigint, provision_id uuid, role USER-DEFINED, chars integer, assignment_set_id uuid`
   
 FK: assignment_set_id → block_assignment_set; block_id → text_block; document_id → document; provision_id → provision
 
-**`provision_version`** — 504,545 rows, 349 MB
+**`provision_version`** — 566,725 rows, 409 MB
   
 The text of a provision over time. INV-5: read as at a date.
   
 ⚠️ **Filter:** bounded by validity; never read the base table for current text.
   
-`id uuid, provision_id uuid, validity daterange, text_en text, text_ur text, text_normalised text, operation USER-DEFINED, amended_by_id uuid, amendment_note text, extraction_conf real, verified_by text, verified_at timestamp with time zone, created_at timestamp with time zone`
+`id uuid, provision_id uuid, validity daterange, text_en text, text_ur text, text_normalised text, operation USER-DEFINED, amended_by_id uuid, amendment_note text, extraction_conf real, verified_by text, verified_at timestamp with time zone, created_at timestamp with time zone, source_toc_disposition_assertion_id bigint`
   
-FK: amended_by_id → instrument; provision_id → provision
+FK: amended_by_id → instrument; provision_id → provision; source_toc_disposition_assertion_id → toc_disposition_assertion
 
 **`revision_archive_batch`** — 4 rows, 64 kB
   
@@ -253,13 +259,13 @@ FK: document_id → document; instrument_id → instrument; source_observation_i
   
 FK: source_observation_id → source_observation
 
-**`segmentation_run`** — 20,941 rows, 9440 kB
+**`segmentation_run`** — 20,941 rows, 9576 kB
   
 `id bigint, document_id bigint, instrument_id uuid, segmenter text, outcome text, reason text, provisions integer, sections integer, max_depth integer, body_starts_page integer, toc_found boolean, toc_entries integer, toc_matched integer, toc_missing integer, toc_extra integer, toc_agreement numeric, detail jsonb, duration_ms integer, run_at timestamp with time zone, source_observation_id bigint`
   
 FK: document_id → document; instrument_id → instrument; source_observation_id → source_observation
 
-**`segmentation_structural_adjudication`** — 4,498 rows, 6352 kB
+**`segmentation_structural_adjudication`** — 6,129 rows, 9400 kB
   
 A decision on one structural candidate. Today every row was made by nizam.structural_adjudicator/1 -- a machine, unreviewed.
   
@@ -267,7 +273,7 @@ A decision on one structural candidate. Today every row was made by nizam.struct
   
 FK: candidate_id → segmentation_structural_candidate; supersedes_adjudication_id → segmentation_structural_adjudication
 
-**`segmentation_structural_candidate`** — 7,239 rows, 6392 kB
+**`segmentation_structural_candidate`** — 8,918 rows, 7920 kB
   
 A sibling-label collision the segmenter resolved automatically (S7). Its evidence->>'group_size' says how many shared the label.
   
@@ -293,7 +299,13 @@ Raw extracted text with page and geometry. The input to segmentation, not a cita
   
 FK: document_id → page; page_no → page
 
-**`toc_gap_adjudication`** — 0 rows, 80 kB
+**`toc_disposition_assertion`** — 162 rows, 248 kB
+  
+`id bigint, source_observation_id bigint, expression_ordinal smallint, toc_entry_ordinal integer, reviewed_toc_entry_id bigint, printed_label text, printed_heading text, disposition text, source_block_id bigint, source_page integer, render_artifact text, render_sha256 character, amending_instrument_id uuid, amending_instrument_citation text, evidence jsonb, reviewed_by text, reviewed_at timestamp with time zone, supersedes_id bigint`
+  
+FK: amending_instrument_id → instrument; reviewed_toc_entry_id → instrument_toc_entry; source_block_id → text_block; source_observation_id → source_observation; supersedes_id → toc_disposition_assertion
+
+**`toc_gap_adjudication`** — 71 rows, 176 kB
   
 `id uuid, instrument_id uuid, document_id bigint, printed_label text, resolution text, source_page integer, evidence jsonb, rationale text, decided_by text, decided_at timestamp with time zone, supersedes_id uuid, toc_entry_id bigint`
   
@@ -301,6 +313,8 @@ FK: document_id → document; instrument_id → instrument; supersedes_id → to
 
 ### Views — prefer these over base tables
 
+- **`v_acquisition_exception_latest`**
+- **`v_acquisition_unresolved`**
 - **`v_active_boundary_candidate`**
 - **`v_active_structural_candidate`**
 - **`v_block_accounting`**
@@ -326,6 +340,7 @@ FK: document_id → document; instrument_id → instrument; supersedes_id → to
 - **`v_structural_adjudication_latest`**
 - **`v_structural_adjudication_pending`** — S7 work not yet decided.
 - **`v_toc`** — Printed contents entries with their source anchors.
+- **`v_toc_disposition_assertion_latest`**
 - **`v_toc_gap`** — Documents whose printed contents list a section the body lacks.
 - **`v_toc_gap_adjudication_latest`**
 - **`v_toc_gap_pending`**

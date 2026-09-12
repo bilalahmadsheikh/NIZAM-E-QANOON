@@ -23,7 +23,7 @@ from nizam.shared.corpus_types import SegmentedInstrument
 from nizam.storage import legal_write
 from nizam.storage.db import connect
 
-SEGMENTER = "nizam.corpus.segment/39"
+SEGMENTER = "nizam.corpus.segment/55"
 
 # Any stable 64-bit number; it only has to match across processes.
 _LOCK_KEY = 0x4E495A414D534547        # "NIZAMSEG"
@@ -123,7 +123,18 @@ def infer_year(title: str, meta_year: str | None, head_text: str) -> int:
     # The terminal year identifies the legal form in titles such as
     # ``Revival of the Constitution of 1973 Order, 1985``.  Taking the first
     # year silently turns a 1985 Order into a 1973 instrument.
-    title_years = YEAR.findall(title or "")
+    title_text = re.sub(
+        r"\([^)]*(?:official website|under review|dated\s+\d{1,2}[-/])[^)]*\)\s*$",
+        "", title or "", flags=re.I,
+    )
+    legal_form_years = re.findall(
+        r"\b(?:Act|Ordinance|Rules?|Regulations?|Order|Notification)\b"
+        r"\s*,?\s*(1[89]\d{2}|20[0-4]\d)\b",
+        title_text, re.I,
+    )
+    if legal_form_years:
+        return int(legal_form_years[-1])
+    title_years = YEAR.findall(title_text)
     if title_years:
         return int(title_years[-1])
     for candidate in (meta_year or "", head_text[:1500]):
@@ -137,9 +148,17 @@ def build(document_id: int, sha256: str, source_observation_id: int,
           source_id: str, title: str | None, meta_year: str | None,
           source_url: str | None, blocks: list[dict], as_at: str,
           curation_patches: list[dict] | None = None,
+          toc_dispositions: list[dict] | None = None,
+          split_fused_margins: bool = False,
+          detect_contents: bool = True,
+          force_opening_contents: bool = False,
           expression_ordinal: int = 0,
           expression_role: str = "primary") -> tuple:
-    seg = segment(blocks, curation_patches=curation_patches)
+    seg = segment(blocks, curation_patches=curation_patches,
+                  toc_dispositions=toc_dispositions,
+                  split_fused_margins=split_fused_margins,
+                  detect_contents=detect_contents,
+                  force_opening_contents=force_opening_contents)
     head = " ".join(b["text"] for b in blocks[:40])[:4000]
 
     # The ltree prefix carries instrument identity, exactly as doc 03 §2.2 writes
@@ -181,11 +200,16 @@ def build(document_id: int, sha256: str, source_observation_id: int,
             "kind": node.kind,
             "label": node.label[:200],
             "heading": (node.heading or None),
+            "marginal_note": (node.marginal_note or None),
             "ordinal": i,
             "first_page": node.first_page,
             "last_page": node.last_page,
             "first_block": node.first_block,
             "text": node.text or None,
+            "operation": node.operation,
+            "amendment_note": node.amendment_note,
+            "amended_by_id": node.amended_by_id,
+            "toc_disposition_assertion_id": node.toc_disposition_assertion_id,
         })
 
     # Translate the segmenter's node-keyed ledger into row keys the writer can
@@ -251,7 +275,12 @@ def build(document_id: int, sha256: str, source_observation_id: int,
         document_id=document_id, source_observation_id=source_observation_id,
         sha256=sha256,
         jurisdiction=jur, kind=kind, number=number, year=year,
-        short_title=(title or f"document {document_id}")[:400],
+        # A catalogue title arrives as the portal printed it, so it can carry the
+        # line breaks of the HTML cell it was read from -- 190 instruments held a
+        # raw carriage return mid-title, which is what a user sees. The break is
+        # an artefact of the page, never part of the law's name, and the value as
+        # scraped stays verbatim in source_observation.source_metadata.
+        short_title=" ".join((title or f"document {document_id}").split())[:400],
         long_title=None, preamble=preamble, source_url=source_url,
         as_at=as_at, confidence=round(seg.agreement, 4) if seg.toc_found else None,
         provisions=rows, block_roles=ledger, toc_entries=toc_rows,
@@ -270,6 +299,8 @@ def main() -> int:
     g.add_argument("--document", type=int)
     g.add_argument("--observation", type=int,
                    help="re-segment exactly one source observation")
+    g.add_argument("--observations",
+                   help="comma-separated source observation ids for a bounded replay")
     g.add_argument("--documents",
                    help="comma-separated document ids for a bounded replay")
     g.add_argument("--retry-errors", action="store_true",
@@ -301,6 +332,8 @@ def main() -> int:
     ap.add_argument("--toc-improvements-summary", action="store_true",
                     help="dry-run and print TOC improvements as compact TSV")
     ap.add_argument("--quiet", action="store_true")
+    ap.add_argument("--marginal-fusion", action="store_true",
+                    help="enable the separately gated geometric margin/body split")
     a = ap.parse_args()
     if a.toc_improvements_only or a.toc_improvements_summary:
         a.dry_run = True
@@ -309,6 +342,12 @@ def main() -> int:
         targets = [t for t in legal_write.documents_needing_segmentation(
                    redo=True, include_review=a.include_review)
                    if t[2] == a.observation]
+    elif a.observations:
+        observation_ids = {int(value) for value in a.observations.split(",")
+                           if value.strip()}
+        targets = [t for t in legal_write.documents_needing_segmentation(
+                   redo=True, include_review=a.include_review)
+                   if t[2] in observation_ids]
     elif a.document:
         targets = [t for t in legal_write.documents_needing_segmentation(
                    redo=True, include_review=a.include_review)
@@ -480,8 +519,11 @@ def main() -> int:
                 continue
             as_at = legal_write.observed_on(observation_id)
             patches = legal_write.segmentation_patches_for(observation_id)
+            toc_dispositions = legal_write.toc_dispositions_for(observation_id)
             inst, seg = build(doc_id, sha, observation_id, source_id, title, year,
-                              source_url, blocks, as_at, patches)
+                              source_url, blocks, as_at, patches,
+                              toc_dispositions=toc_dispositions,
+                              split_fused_margins=a.marginal_fusion)
             if (a.detached_heading_body
                     and seg.detached_heading_bodies_merged == 0):
                 continue
@@ -623,6 +665,8 @@ def main() -> int:
                         "changed_field_counts": changed_field_counts,
                         "changed_nodes": changed_nodes,
                         "new_missing_labels": seg.missing,
+                        "expected_dispositions": len(toc_dispositions),
+                        "materialised_dispositions": seg.toc_dispositions_materialised,
                     })
             if a.heading_only and not is_heading_only:
                 continue
@@ -693,6 +737,10 @@ def main() -> int:
                         "repeated_labels_demoted": seg.repeated_labels_demoted,
                         "schedule_sections_retyped": seg.schedule_sections_retyped,
                         "detached_heading_bodies_merged": seg.detached_heading_bodies_merged,
+                        "marginal_notes_split": seg.marginal_notes_split,
+                        "toc_dispositions_materialised": sum(
+                            1 for row in inst.provisions
+                            if row["toc_disposition_assertion_id"] is not None),
                         "curation_patches_applied": seg.curation_patches_applied,
                         "blocks_unassigned": sum(1 for r in inst.block_roles
                                                  if r[1] == "unassigned")},
@@ -728,7 +776,9 @@ def main() -> int:
         print("TOC-improving replays:")
         if a.toc_improvements_summary:
             print("document\tobservation\told_pending\tnew_pending\tdelta\t"
-                  "tree_identical\tsections\tcandidates\tadded\tremoved\tchanged")
+                  "dispositions\t"
+                  "tree_identical\tsections\tcandidates\tadded\tremoved\t"
+                  "changed\tchanged_fields\tadded_nodes\tremoved_nodes")
             for item in sorted(
                     toc_improving_replays,
                     key=lambda value: (
@@ -739,11 +789,26 @@ def main() -> int:
                 print(
                     f'{item["document_id"]}\t{item["source_observation_id"]}\t'
                     f'{item["old_pending_entries"]}\t{item["new_pending_entries"]}\t'
-                    f'{delta}\t{str(item["tree_identical"]).lower()}\t'
+                    f'{delta}\t{item["materialised_dispositions"]}/'
+                    f'{item["expected_dispositions"]}\t'
+                    f'{str(item["tree_identical"]).lower()}\t'
                     f'{item["old_sections"]}->{item["new_sections"]}\t'
                     f'{item["old_candidates"]}->{item["new_candidates"]}\t'
                     f'{len(item["added_nodes"])}\t{len(item["removed_nodes"])}'
-                    f'\t{sum(item["changed_field_counts"].values())}'
+                    f'\t{sum(item["changed_field_counts"].values())}\t'
+                    + ",".join(
+                        f"{field}:{count}" for field, count in sorted(
+                            item["changed_field_counts"].items()
+                        )
+                    )
+                    + "\t" + ",".join(
+                        f"{node['kind']}:{node['label']}@p{node['page']}#b{node['block']}"
+                        for node in item["added_nodes"]
+                    )
+                    + "\t" + ",".join(
+                        f"{node['kind']}:{node['label']}@p{node['page']}#b{node['block']}"
+                        for node in item["removed_nodes"]
+                    )
                 )
         else:
             print(json.dumps(toc_improving_replays, ensure_ascii=False, indent=2))

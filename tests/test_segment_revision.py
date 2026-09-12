@@ -55,3 +55,35 @@ def test_build_exposes_item_level_repeated_label_evidence():
     assert decision["canonical_source_block_id"] == 10
     assert decision["printed_label"] == "1"
     assert decision["evidence"]["same_parent"] is True
+
+
+def test_catalogue_title_line_breaks_do_not_reach_the_instrument_title():
+    """A portal title arrives wrapped by the HTML cell it was read from.
+
+    190 active instruments carried a raw carriage return mid-title, which is
+    what a user sees in a citation. The break belongs to the page, not to the
+    law's name; the value as scraped stays verbatim in source_metadata.
+    """
+    blocks = [
+        {"id": 1, "text": "1. Short title. Example text.", "page_no": 1,
+         "y0": 100.0, "page_height": 792.0},
+    ]
+    inst, _ = build(
+        77, "a" * 64, 123, "pk-punjab",
+        "AGRICULTURAL INCOME TAX (AMENDMENT)\r\n          ACT, 2001",
+        "2001", None, blocks, "2026-08-28",
+    )
+
+    assert inst.short_title == "AGRICULTURAL INCOME TAX (AMENDMENT) ACT, 2001"
+    assert "\r" not in inst.short_title
+    assert "\n" not in inst.short_title
+
+
+def test_untitled_observation_still_gets_its_document_placeholder():
+    blocks = [
+        {"id": 1, "text": "1. Short title. Example text.", "page_no": 1,
+         "y0": 100.0, "page_height": 792.0},
+    ]
+    inst, _ = build(77, "a" * 64, 123, "pk-punjab", None, None, None,
+                    blocks, "2026-08-28")
+    assert inst.short_title == "document 77"

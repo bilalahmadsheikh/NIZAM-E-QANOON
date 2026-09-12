@@ -126,7 +126,28 @@ def segmentation_patches_for(source_observation_id: int) -> list[dict]:
         return [dict(zip(keys, row)) for row in cur.fetchall()]
 
 
-def save(inst: SegmentedInstrument, segmenter: str = "nizam.corpus.segment/39") -> str:
+def toc_dispositions_for(source_observation_id: int,
+                         expression_ordinal: int = 0) -> list[dict]:
+    """Rendered-source disposition assertions that survive tree revisions."""
+    with connect() as conn, conn.cursor() as cur:
+        cur.execute("""
+            SELECT id,source_observation_id,expression_ordinal,toc_entry_ordinal,
+                   printed_label,printed_heading,disposition,source_block_id,
+                   source_page,amending_instrument_id::text,
+                   amending_instrument_citation,evidence,reviewed_by,reviewed_at
+              FROM v_toc_disposition_assertion_latest
+             WHERE source_observation_id=%s AND expression_ordinal=%s
+             ORDER BY toc_entry_ordinal
+        """, (source_observation_id, expression_ordinal))
+        keys = ("id", "source_observation_id", "expression_ordinal",
+                "toc_entry_ordinal", "printed_label", "printed_heading",
+                "disposition", "source_block_id", "source_page",
+                "amending_instrument_id", "amending_instrument_citation",
+                "evidence", "reviewed_by", "reviewed_at")
+        return [dict(zip(keys, row)) for row in cur.fetchall()]
+
+
+def save(inst: SegmentedInstrument, segmenter: str = "nizam.corpus.segment/52") -> str:
     """Append and activate one complete legal-tree revision atomically."""
     with connect() as conn, conn.cursor() as cur:
         # Lock the observation and its current materialisation.  Earlier trees
@@ -165,20 +186,41 @@ def save(inst: SegmentedInstrument, segmenter: str = "nizam.corpus.segment/39") 
             cur.execute("""UPDATE block_assignment_set
                                SET is_active=false,retired_at=now() WHERE id=%s""",
                         (previous_set_id,))
-        cur.execute("""
-            INSERT INTO instrument (jurisdiction, kind, number, year, short_title,
-                                    long_title, preamble, source_sha256, document_id,
-                                    source_url, extraction_conf, status,
-                                    source_observation_id, supersedes_instrument_id,
-                                    expression_ordinal,source_start_block_id,
-                                    source_end_block_id,expression_role)
-            VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,'unknown',%s,%s,%s,%s,%s,%s)
-            RETURNING id""",
-            (inst.jurisdiction, inst.kind, inst.number, inst.year, inst.short_title,
-             inst.long_title, inst.preamble, inst.sha256, inst.document_id,
-             inst.source_url, inst.confidence, inst.source_observation_id, previous_id,
-             inst.expression_ordinal,inst.source_start_block_id,
-             inst.source_end_block_id,inst.expression_role))
+        if inst.copy_instrument_id is not None:
+            if str(previous_id) != str(inst.copy_instrument_id):
+                raise ValueError("exact-tree predecessor is not the active instrument")
+            cur.execute("""
+                INSERT INTO instrument
+                    (jurisdiction,kind,number,year,short_title,long_title,preamble,
+                     enacted_on,commenced_on,gazette_ref,status,repealed_on,
+                     repealed_by_id,scope,published,source_sha256,document_id,
+                     source_url,extraction_conf,duplicate_of,source_observation_id,
+                     supersedes_instrument_id,verification_state,
+                     expression_ordinal,source_start_block_id,source_end_block_id,
+                     expression_role)
+                SELECT jurisdiction,kind,number,year,short_title,long_title,preamble,
+                       enacted_on,commenced_on,gazette_ref,status,repealed_on,
+                       repealed_by_id,scope,published,source_sha256,document_id,
+                       source_url,extraction_conf,duplicate_of,source_observation_id,
+                       id,verification_state,expression_ordinal,source_start_block_id,
+                       source_end_block_id,expression_role
+                  FROM instrument WHERE id=%s
+                RETURNING id""", (inst.copy_instrument_id,))
+        else:
+            cur.execute("""
+                INSERT INTO instrument (jurisdiction, kind, number, year, short_title,
+                                        long_title, preamble, source_sha256, document_id,
+                                        source_url, extraction_conf, status,
+                                        source_observation_id, supersedes_instrument_id,
+                                        expression_ordinal,source_start_block_id,
+                                        source_end_block_id,expression_role)
+                VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,'unknown',%s,%s,%s,%s,%s,%s)
+                RETURNING id""",
+                (inst.jurisdiction, inst.kind, inst.number, inst.year, inst.short_title,
+                 inst.long_title, inst.preamble, inst.sha256, inst.document_id,
+                 inst.source_url, inst.confidence, inst.source_observation_id, previous_id,
+                 inst.expression_ordinal,inst.source_start_block_id,
+                 inst.source_end_block_id,inst.expression_role))
         instrument_id = cur.fetchone()[0]
         cur.execute("""INSERT INTO instrument_source
                         (instrument_id,source_observation_id,role)
@@ -199,24 +241,30 @@ def save(inst: SegmentedInstrument, segmenter: str = "nizam.corpus.segment/39") 
             parent_uuid = ids.get(row["parent_key"]) if row["parent_key"] is not None else None
             cur.execute("""
                 INSERT INTO provision (instrument_id, parent_id, path, kind, label,
-                                       heading, ordinal, first_page, last_page, first_block)
-                VALUES (%s,%s,%s::ltree,%s,%s,%s,%s,%s,%s,%s)
+                                       heading,marginal_note,ordinal,first_page,
+                                       last_page,first_block)
+                VALUES (%s,%s,%s::ltree,%s,%s,%s,%s,%s,%s,%s,%s)
                 RETURNING id""",
                 (instrument_id, parent_uuid, row["path"], row["kind"], row["label"],
-                 row["heading"], row["ordinal"], row["first_page"], row["last_page"],
-                 row["first_block"]))
+                 row["heading"],row.get("marginal_note"),row["ordinal"],
+                 row["first_page"],row["last_page"],row["first_block"]))
             ids[row["key"]] = cur.fetchone()[0]
 
-            if row["text"]:
+            if row["text"] or row.get("operation") != "original":
                 # validity opens at the date the source was observed. See the
                 # comment on provision_version.validity in migration 0004: we
                 # hold consolidated current text, not amendment history, so
                 # claiming it applied from the year of enactment would be false.
                 cur.execute("""
                     INSERT INTO provision_version
-                        (provision_id, validity, text_en, text_normalised, operation)
-                    VALUES (%s, daterange(%s, NULL, '[)'), %s, %s, 'original')""",
-                    (ids[row["key"]], inst.as_at, row["text"], row["text"]))
+                        (provision_id,validity,text_en,text_normalised,operation,
+                         amended_by_id,amendment_note,
+                         source_toc_disposition_assertion_id)
+                    VALUES (%s,daterange(%s,NULL,'[)'),%s,%s,%s,%s,%s,%s)""",
+                    (ids[row["key"]],inst.as_at,row["text"],row["text"] or "",
+                     row.get("operation", "original"),row.get("amended_by_id"),
+                     row.get("amendment_note"),
+                     row.get("toc_disposition_assertion_id")))
 
         # Every block in the document, with its role -- CORPUS-CRITERIA C4/C5.
         # Written in the same transaction as the tree, so a document can never be
@@ -300,6 +348,7 @@ def save(inst: SegmentedInstrument, segmenter: str = "nizam.corpus.segment/39") 
                      source_page,canonical_source_block_id,canonical_source_page,
                      proposed_resolution,segmenter,evidence)
                 VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+                RETURNING id
             """, (
                 instrument_id,inst.source_observation_id,inst.document_id,
                 candidate_id,canonical_id,parent_id,decision["decision_kind"],
@@ -310,12 +359,30 @@ def save(inst: SegmentedInstrument, segmenter: str = "nizam.corpus.segment/39") 
                 decision["proposed_resolution"],segmenter,
                 json.dumps(decision["evidence"],ensure_ascii=False),
             ))
+            new_candidate_id = cur.fetchone()[0]
+            carried = decision.get("carried_adjudication")
+            if carried is not None:
+                carried_evidence = dict(carried["evidence"] or {})
+                carried_evidence["carried_from_candidate_id"] = carried["candidate_id"]
+                carried_evidence["carried_from_adjudication_id"] = carried["id"]
+                carried_evidence["exact_tree_revision"] = True
+                cur.execute("""
+                    INSERT INTO segmentation_structural_adjudication
+                        (candidate_id,resolution,review_basis,method,rationale,
+                         evidence,decided_by)
+                    VALUES (%s,%s,%s,%s,%s,%s,%s)
+                """, (
+                    new_candidate_id,carried["resolution"],carried["review_basis"],
+                    "carried_by_exact_tree_revision/1",carried["rationale"],
+                    json.dumps(carried_evidence,ensure_ascii=False),
+                    "nizam.exact_tree_revision/1",
+                ))
         return instrument_id
 
 
 def save_many(insts: list[SegmentedInstrument], full_blocks: list[dict],
               manifests: list[dict],
-              segmenter: str = "nizam.corpus.segment/24+multi/1") -> list[str]:
+              segmenter: str = "nizam.corpus.segment/52+multi/1") -> list[str]:
     """Atomically replace one observation with several legal expressions.
 
     Source blocks are not copied.  A single active assignment set covers the
@@ -343,17 +410,42 @@ def save_many(insts: list[SegmentedInstrument], full_blocks: list[dict],
     if len(ordered_block_ids) != len(set(ordered_block_ids)):
         raise ValueError("full document block list contains duplicates")
     full_block_set = set(ordered_block_ids)
+    block_position = {block_id:index for index,block_id in
+                      enumerate(ordered_block_ids)}
 
     # Validate source ownership before opening the write transaction.  A block
     # may belong to at most one legal expression; gaps are document apparatus.
     claimed: set[int] = set()
-    for inst in insts:
+    for inst,manifest in zip(insts,manifests):
         ids = [row[0] for row in inst.block_roles]
         if not ids or not set(ids) <= full_block_set:
             raise ValueError(f"expression {inst.expression_ordinal} has an invalid source span")
         overlap = claimed & set(ids)
         if overlap:
             raise ValueError(f"source blocks assigned to multiple expressions: {sorted(overlap)[:5]}")
+        spans = manifest.get("spans") or [{
+            "start_block_id": manifest["start_block_id"],
+            "end_block_id": manifest["end_block_id"],
+        }]
+        span_ids: list[int] = []
+        previous_end = -1
+        for span in spans:
+            first = block_position.get(span["start_block_id"])
+            last = block_position.get(span["end_block_id"])
+            if first is None or last is None or first > last:
+                raise ValueError(
+                    f"expression {inst.expression_ordinal} has an invalid manifest span")
+            if first <= previous_end:
+                raise ValueError(
+                    f"expression {inst.expression_ordinal} has overlapping/out-of-order spans")
+            span_ids.extend(ordered_block_ids[first:last + 1])
+            previous_end = last
+        if (len(span_ids) != len(ids)
+                or len(span_ids) != len(set(span_ids))
+                or set(span_ids) != set(ids)):
+            raise ValueError(
+                f"expression {inst.expression_ordinal} manifest spans do not exactly "
+                "match its block ledger")
         claimed.update(ids)
 
     with connect() as conn, conn.cursor() as cur:
@@ -432,18 +524,23 @@ def save_many(insts: list[SegmentedInstrument], full_blocks: list[dict],
                 parent_id = ids.get(row["parent_key"]) if row["parent_key"] is not None else None
                 cur.execute("""
                     INSERT INTO provision
-                        (instrument_id,parent_id,path,kind,label,heading,ordinal,
-                         first_page,last_page,first_block)
-                    VALUES (%s,%s,%s::ltree,%s,%s,%s,%s,%s,%s,%s) RETURNING id""",
+                        (instrument_id,parent_id,path,kind,label,heading,marginal_note,
+                         ordinal,first_page,last_page,first_block)
+                    VALUES (%s,%s,%s::ltree,%s,%s,%s,%s,%s,%s,%s,%s) RETURNING id""",
                     (instrument_id,parent_id,row["path"],row["kind"],row["label"],
-                     row["heading"],row["ordinal"],row["first_page"],row["last_page"],
-                     row["first_block"]))
+                     row["heading"],row.get("marginal_note"),row["ordinal"],
+                     row["first_page"],row["last_page"],row["first_block"]))
                 ids[row["key"]] = cur.fetchone()[0]
-                if row["text"]:
+                if row["text"] or row.get("operation") != "original":
                     cur.execute("""INSERT INTO provision_version
-                                    (provision_id,validity,text_en,text_normalised,operation)
-                                    VALUES (%s,daterange(%s,NULL,'[)'),%s,%s,'original')""",
-                                (ids[row["key"]],inst.as_at,row["text"],row["text"]))
+                        (provision_id,validity,text_en,text_normalised,operation,
+                         amended_by_id,amendment_note,
+                         source_toc_disposition_assertion_id)
+                        VALUES (%s,daterange(%s,NULL,'[)'),%s,%s,%s,%s,%s,%s)""",
+                        (ids[row["key"]],inst.as_at,row["text"],row["text"] or "",
+                         row.get("operation", "original"),row.get("amended_by_id"),
+                         row.get("amendment_note"),
+                         row.get("toc_disposition_assertion_id")))
             provision_ids[inst.expression_ordinal] = ids
 
             cur.execute("""WITH RECURSIVE ancestry AS (
@@ -501,7 +598,8 @@ def save_many(insts: list[SegmentedInstrument], full_blocks: list[dict],
                  start_block_id,end_block_id,detected_title,detected_kind,
                  detected_year,detected_number,review_basis,method,evidence,
                  materialized_instrument_id,supersedes_manifest_id)
-                VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s::jsonb,%s,%s)""",
+                VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s::jsonb,%s,%s)
+                RETURNING id""",
                 (observation_id,document_id,ordinal,manifest["expression_role"],
                  manifest["start_block_id"],manifest["end_block_id"],
                  manifest["detected_title"],manifest["detected_kind"],
@@ -509,6 +607,17 @@ def save_many(insts: list[SegmentedInstrument], full_blocks: list[dict],
                  manifest["review_basis"],manifest["method"],
                  json.dumps(manifest["evidence"],ensure_ascii=False),by_ordinal[ordinal],
                  previous_manifest_by_ordinal.get(ordinal)))
+            manifest_id = cur.fetchone()[0]
+            spans = manifest.get("spans") or [{
+                "start_block_id": manifest["start_block_id"],
+                "end_block_id": manifest["end_block_id"],
+            }]
+            for span_ordinal,span in enumerate(spans):
+                cur.execute("""INSERT INTO instrument_expression_span
+                    (manifest_id,span_ordinal,start_block_id,end_block_id)
+                    VALUES (%s,%s,%s,%s)""",
+                    (manifest_id,span_ordinal,span["start_block_id"],
+                     span["end_block_id"]))
 
         # Translate each expression-local node key to its new provision UUID.
         ledger: dict[int, tuple[str, str | None, int]] = {}

@@ -72,6 +72,16 @@ RULES: list[tuple[str, str, re.Pattern]] = [
     ("part",    "part",    re.compile(
         r"^\s*PART(?:\s+|\s*[-\u2013\u2014]\s*)([IVXLC\d]+[A-Z]?)"
         r"\s*[.\-\u2013\u2014:]?\s*(.*)$", re.I | re.S)),
+    # A small set of Pakistani regulations call their top-level divisions
+    # ``SECTION - IV`` and restart ordinary Arabic numbering inside each one.
+    # Treating SECTION only as an Arabic provision leaves those restarts under
+    # the preceding provision (observation 4725 nested Accounting Policy under
+    # regulation 9). Roman numerals make this form unambiguously structural;
+    # store it as the schema's part-like container rather than inventing an
+    # Arabic section label from the contents-page running index.
+    ("part",    "part",    re.compile(
+        r"^\s*SECTION\s*[-\u2013\u2014:]\s*([IVXLC]+)"
+        r"\s*[.\-\u2013\u2014:]?\s*(.*)$", re.I | re.S)),
     ("chapter", "chapter", re.compile(
         r"^\s*CHAPTER(?:\s+|\s*[-\u2013\u2014]\s*)([IVXLC\d]+[A-Z]?)"
         r"\s*[.\-\u2013\u2014:]?\s*(.*)$", re.I | re.S)),
@@ -118,7 +128,7 @@ RULES: list[tuple[str, str, re.Pattern]] = [
     # as section-kind until the model grows distinct kinds. Terminal
     # punctuation prevents matching prose references such as "under rule 2".
     ("section", "section", re.compile(
-        r"^\s*(?:Rules?|Regulations?)\s+"
+        r"^\s*(?:Rules?|Regulations?)\s*"
         r"(\d{1,4}(?:\s*\.\s*\d{1,4}){0,4}\s*-?\s*[A-Z]{0,3})"
         r"\s*[.\-:]\s*(.*)$", re.I | re.S)),
     # Numbered units. Hierarchical regulation/rule labels must precede the
@@ -130,7 +140,8 @@ RULES: list[tuple[str, str, re.Pattern]] = [
     # unit until the schema grows a distinct regulation/rule provision kind.
     ("section",    "section",    re.compile(
         r"^\s*" + _AMEND_PREFIX
-        + r"(\d{1,4}(?:\s*\.\s*\d{1,4}){1,4}\s*[-â€“]?\s*[A-Z]{0,3})"
+        + r"(\d{1,4}(?:\s*\.\s*\d{1,4}){1,4}"
+          r"(?:[A-Z]{1,3}|\s*[-\u2013]\s*[A-Z]{1,3})?)"
           r"(?:\s*[.â€“â€”:]\s*|\s+)(.*)$", re.S)),
     # An omitted provision may be printed wholly inside amendment brackets:
     # ``506[33A***].`` in the official Sales Tax Act. The stars are the body,
@@ -182,18 +193,49 @@ def _is_running_header(text: str) -> bool:
     flat = _FOOTER_STRIP.sub("", text)
     return bool(flat) and len(flat) <= 24 and bool(_PAGE_FOOTER.match(flat))
 _FOOTNOTE = re.compile(
-    r"^\s*\d{1,2}\s*(?:Substituted|Subs|Inserted|Ins|Added|Omitted|Ibid|"
-    r"Deleted|Del|Repealed|Rep|This\s+Act\s+was\s+(?:assented|published)|"
-    r"For\s+(?:statement|report)\b)\b", re.I)
+    r"^\s*\d{1,2}\s*(?:"
+    r"[.:-]?\s*(?:Substituted|Subs|Inserted|Ins|Added|Ibid|"
+    r"(?:A\s+)?New\s+(?:sub[- ]?)?section)\b|"
+    r"S\.?\s*No\.?\s*.{0,40}\b(?:substituted|inserted|omitted|deleted)\b|"
+    r"[.:-]?\s*For\b.{0,120}\b(?:Gazette|statement|report)\b|"
+    r"S\.?\s*\d{1,4}[A-Z]?\s*,?\s*"
+      r"(?:ins|inserted|subs|substituted|omitted|deleted)\b|"
+    r"(?:Omitted|Deleted|Del|Repealed|Rep|"
+    r"This\s+Act\s+was\s+(?:assented|published))\b)", re.I)
+_SOURCE_HISTORY_START = re.compile(
+    r"^\s*\d{1,2}\s*[.:-]?\s*For\s+Statement\s+of\s+Objects?\s+and\s+Reasons?\b",
+    re.I,
+)
 _PUNCTUATED_AMENDMENT_FOOTNOTE = re.compile(
     r"^\s*\d{1,3}\s*[.:-]\s*\n\s*"
     r"In\s+(?:Sections?|Rules?|Articles?)\b.{0,220}"
     r"\b(?:substitut(?:ed|ion)|insert(?:ed|ion)|omit(?:ted|ssion)|amend(?:ed|ment))\b",
     re.I | re.S,
 )
-_FOOTNOTE_MARKERS_ONLY = re.compile(
-    r"^\s*\d{1,3}\s*[.:]?\s*(?:\n\s*\d{1,3}\s*[.:]?\s*)+$",
-)
+_FOOTNOTE_MARKER_LINE = re.compile(r"^\s*\d{1,3}\s*[.:]?\s*$")
+
+
+def _footnote_markers_only(text: str) -> bool:
+    """A block holding nothing but footnote marker numbers, one per line.
+
+    Tested line by line rather than with the single pattern this replaces --
+    ``^\\s*\\d{1,3}\\s*[.:]?\\s*(?:\\n\\s*\\d{1,3}\\s*[.:]?\\s*)+$`` -- because
+    ``\\s`` matches a newline, so the leading ``\\s*`` and the repeated group's
+    ``\\n\\s*`` can both claim the same one. Where most lines match and one does
+    not, proving the overall failure means trying every way to divide that
+    whitespace, which is exponential in the number of lines.
+
+    It is not hypothetical. Document 3912, the Punjab Contributory Provident
+    Fund Rules, carries an 808-character contribution table of 132 numeric
+    lines; 97 are one to three digits and 35 are four, so the answer is False
+    and the pattern had not produced it after five minutes -- long enough that
+    re-segmenting that document could not complete. Splitting on newlines first
+    makes each line independent, so the check is linear and returns the same
+    answer.
+    """
+    lines = [line for line in text.split("\n") if line.strip()]
+    return len(lines) >= 2 and all(_FOOTNOTE_MARKER_LINE.match(line)
+                                   for line in lines)
 _PREAMBLE = re.compile(r"^\s*(Preamble|WHEREAS)\b", re.I)
 _CONTENTS = re.compile(
     r"^\s*(?:"
@@ -212,6 +254,21 @@ _TOC_SCHEDULE = re.compile(r"^\s*(the\s+)?[IVXLC\d]*\s*schedule\b", re.I)
 _TOC_PART = re.compile(
     r"^\s*part(?:\s+|\s*[-\u2013\u2014]\s*)([IVXLC\d]+[A-Z]?)\b", re.I,
 )
+_NUMBERED_TABLE_HEADER = re.compile(r"\bS\.?\s*No\.?\b", re.I)
+_TABLE_COLUMN_ORDINAL = re.compile(r"\(\s*(\d{1,2})\s*\)")
+
+
+def _is_numbered_table_header(text: str) -> bool:
+    """Recognise a source-printed serial-number table header.
+
+    ``S. No.`` alone occurs in prose and amendment apparatus, so it is not
+    sufficient.  Requiring at least two distinct parenthesised column ordinals
+    identifies the actual table grid while remaining independent of portal-
+    specific coordinates and column names.
+    """
+    value = _norm(text)
+    columns = set(_TABLE_COLUMN_ORDINAL.findall(value))
+    return bool(_NUMBERED_TABLE_HEADER.search(value)) and len(columns) >= 2
 
 # A long printed contents can itself contain nested Order/rule numbering.  Its
 # repeated 1..N runs may score like a body boundary even though the enactment
@@ -286,6 +343,11 @@ class Node:
     kind: str                    # provision_kind
     label: str
     heading: str | None = None
+    marginal_note: str | None = None
+    operation: str = "original"
+    amendment_note: str | None = None
+    amended_by_id: str | None = None
+    toc_disposition_assertion_id: int | None = None
     text_parts: list[str] = field(default_factory=list)
     depth: int = 0
     first_page: int | None = None
@@ -315,6 +377,8 @@ class Segmentation:
     repeated_label_decisions: list = field(default_factory=list)
     schedule_sections_retyped: int = 0
     detached_heading_bodies_merged: int = 0
+    marginal_notes_split: int = 0
+    toc_dispositions_materialised: int = 0
     curation_patches_applied: int = 0
     # block id -> (role, node or None). Every block in the document appears here
     # exactly once; see docs/CORPUS-CRITERIA.md C4/C5.
@@ -431,9 +495,19 @@ _INNER = re.compile(
 # two directly citable units.
 _INNER_RULE = re.compile(
     r"(?<=\n)[ \t\u00a0]*"
-    r"(?=(?:Rules?|Regulations?)\s+\d{1,4}(?:\s*\.\s*\d{1,4}){0,4}"
+    r"(?=(?:Rules?|Regulations?)\s*\d{1,4}(?:\s*\.\s*\d{1,4}){0,4}"
     r"\s*-?\s*[A-Z]{0,3}\s*[.\-:])",
     re.I)
+
+# Editorial source histories are occasionally fused to the final operative
+# clause in the same extracted block. Expose the canonical ``For Statement of
+# Objects and Reasons`` marker as its own unit so it and the continuation below
+# can be assigned to apparatus without swallowing the preceding law.
+_INNER_SOURCE_NOTE = re.compile(
+    r"(?<=\n)[ \t\u00a0]*"
+    r"(?=\d{1,2}\s*[.:-]?\s*For\s+Statement\s+of\s+Objects?\s+and\s+Reasons?\b)",
+    re.I,
+)
 
 # A source-proved section can omit the full stop after its number while still
 # beginning on a new extracted line (Sindh High Court Rules: ``13  Efficiency
@@ -461,11 +535,33 @@ _INNER_BARE = re.compile(
 _INNER_DIV = re.compile(
     r"(?<=\n)[ \t\u00a0]*"
     r"(?=(?:THE\s+)?"
-    r"(?:PART|CHAPTER|SCHEDULE|FORM|APPENDIX|APPENDICES|ANNEX|ANNEXURE|ORDER\s+[IVXLC0-9]+"
+    # A four-digit year after ``Order`` is ordinarily a citation embedded in
+    # prose (``Freezing and Seizure) Order 2019, published ...``), not a nested
+    # structural heading.  Let a block-start title remain classifiable, but do
+    # not manufacture an inner Order node merely because a wrapped citation
+    # begins a new extracted line (document 3180, block 321097).
+    r"(?:PART|CHAPTER|SCHEDULE|FORM|APPENDIX|APPENDICES|ANNEX|ANNEXURE|"
+    r"ORDER\s+(?!(?:18|19|20)\d{2}\b)[IVXLC0-9]+"
     r"|(?:FIRST|SECOND|THIRD|FOURTH|FIFTH|SIXTH|SEVENTH|EIGHTH|NINTH|TENTH)"
     r"[\s-]*SCHEDULE"
     r"|[IVXLC0-9]+[\s-]*SCHEDULE)\b)",
     re.I)
+
+
+# A marginal heading fused ahead of its own section hides the section entirely.
+# PyMuPDF emits the heading, the number and the text as one block, so section 27
+# of the Balochistan Education Foundation Act is appended to section 26 and
+# leaves the corpus.
+#
+# This is deliberately a rule about the START of a block, not a general internal
+# cut. Tried as an _INNER alternative it also fired inside footnote runs -- a
+# line of amendment notes offers the same number-dot-superscript shape -- and
+# shredded them into fabricated sections.
+_FUSED_MARGIN_PREFIX = re.compile(
+    r"^([A-Z][^\n]{2,60}?\.)\s*\n\s*(\d{1,4}\s*[-–]?\s*[A-Z]{0,3}\s*\.\s*"
+    r"(?:\d{1,3}(?=[A-Z])|[A-Z(*]).*)$",
+    re.S,
+)
 
 
 def subdivide(text: str) -> list[str]:
@@ -478,8 +574,13 @@ def subdivide(text: str) -> list[str]:
     _INNER is the guard, and it is a strict one: a cut needs a sentence ending or
     a line break *and* a form that opens a provision.
     """
+    fused = _FUSED_MARGIN_PREFIX.match(text)
+    if fused and not _FOOTNOTE.match(text):
+        return [fused.group(1)] + subdivide(fused.group(2))
+
     raw_cuts = ({m.end() for m in _INNER.finditer(text)}
                 | {m.end() for m in _INNER_RULE.finditer(text)}
+                | {m.end() for m in _INNER_SOURCE_NOTE.finditer(text)}
                 | {m.end() for m in _INNER_BARE.finditer(text)}
                 | {m.end() for m in _INNER_DIV.finditer(text)})
     # Do not cut a whitespace-padded dotted citation label (``6 . 2 .``) at
@@ -488,6 +589,13 @@ def subdivide(text: str) -> list[str]:
     cuts = sorted(c for c in raw_cuts if not (
         (re.search(r"\d[ \t]*\.[ \t]*$", text[:c])
          and re.match(r"\d{1,4}\s*\.", text[c:]))
+        # A tariff cell can wrap a currency amount after its abbreviation:
+        # ``in excess of Rs.\n1000.\nTen rupees.``.  The amount plus the
+        # capitalised rate has exactly the typography of an internal section,
+        # but the explicit currency prefix proves it is tabular data. Keep it
+        # in the governing amendment instead of fabricating section 1000.
+        or (re.search(r"\bRs\.\s*$", text[:c], re.I)
+            and re.match(r"\d{1,4}\s*\.", text[c:]))
         # A division word may be the heading of the numbered provision just
         # before it.  Official contents pages commonly extract ``3.\nFORM AND
         # VERIFICATION ...`` as one block.  Cutting at FORM leaves section 3
@@ -568,7 +676,15 @@ _TOC_MIN_AGREEMENT = 0.30
 # list was invisible, the body was mistaken for it, and 218 sections were lost.
 _TWOCOL = re.compile(
     r"(?:^|\n)[ \t\u00a0]*(\d{1,4}\s*[-\u2013]?\s*[A-Z]{0,3})[ \t\u00a0]*\n"
-    r"[ \t\u00a0]*([A-Z][^\n]{2,110})", re.M)
+    # A consolidated contents list can preserve an expressly omitted provision
+    # as ``16\n[Omitted]``.  The opening bracket made those real printed rows
+    # invisible because the ordinary heading branch deliberately starts with a
+    # capital letter.  Admit only the closed, bare disposition placeholder here;
+    # broad bracketed text would turn schedules and amendment apparatus into TOC
+    # entries.
+    r"[ \t\u00a0]*((?:[A-Z][^\n]{2,110})|"
+    r"(?:\[\s*(?:Omitted|Deleted|Repealed)\s*\.?\s*\])|"
+    r"(?:\*+\s*\]?\s*(?:Omitted|Deleted|Repealed)\s*\.?))", re.M | re.I)
 # Amendment footnotes wear the same shape -- "1\nInserted by the Finance Act,
 # 2003" -- and restart on every page. They are evidence about the law, not a
 # contents list.
@@ -605,17 +721,32 @@ def _twocol_run(blocks: list[dict],
     for i, b in enumerate(blocks):
         for m in _TWOCOL.finditer(b["text"]):
             head = m.group(2).strip()
-            if _AMEND_NOTE.match(head):
+            # A bare disposition word is still a real contents citation
+            # (``31 / Omitted.``). Longer ``Omitted by Act ...`` text is an
+            # amendment note and remains excluded.
+            if (_AMEND_NOTE.match(head)
+                    and not re.fullmatch(
+                        r"(?:Omitted|Deleted|Repealed)\s*\.?", head, re.I
+                    )):
                 continue
             label = m.group(1).replace(" ", "")
             n = re.match(r"^(\d+)", label)
             if n:
                 hits.append((i, int(n.group(1)), label, _norm(head)))
 
+    def order_key(value: str) -> tuple[int, str]:
+        match = re.match(
+            r"^(\d{1,4})(?:\s*[-\u2013]?\s*([A-Z]{1,3}))?$",
+            value.replace(" ", ""),
+            re.I,
+        )
+        return ((int(match.group(1)), (match.group(2) or "").casefold())
+                if match else (-1, ""))
+
     best: list[tuple[int, int, str, str]] = []
     run: list[tuple[int, int, str, str]] = []
     for h in hits:
-        if run and h[1] <= run[-1][1]:
+        if run and order_key(h[2]) <= order_key(run[-1][2]):
             if len(run) > len(best):
                 best = run
             run = []
@@ -733,13 +864,53 @@ def parse_contents(blocks: list[dict]) -> tuple[dict[str, str], int, bool]:
                 return bool(m) and int(m.group(1)) == min(numeric)
         return False
 
+    def heading_corroboration(boundary: int, toc: dict[str, str]) -> float:
+        """How much of an unmarked list repeats as later substantive headings.
+
+        Label overlap alone can make a numbered front table look like contents.
+        A real contents list also predicts the words that open the later unit.
+        Prefix matching is intentional: a body entry continues from its heading
+        into enacted text, while a contents entry stops at the heading.
+        """
+        later: dict[str, list[str]] = {}
+        for idx, _, label, heading in nums:
+            if idx < boundary or not heading:
+                continue
+            key = _repair_label(label, toc).replace(" ", "")
+            later.setdefault(key, []).append(_norm(heading).casefold())
+        supported = 0
+        expected = 0
+        for label, heading in toc.items():
+            wanted = _norm(heading).casefold().rstrip(".–—- ")
+            if not wanted:
+                continue
+            expected += 1
+            if any(actual.startswith(wanted)
+                   or wanted.startswith(actual.rstrip(".–—- "))
+                   or SequenceMatcher(None, wanted, actual).ratio() >= 0.82
+                   for actual in later.get(label, [])):
+                supported += 1
+        return supported / expected if expected else 0.0
+
     tied = [(c, sc, toc) for c, sc, toc in scored
             if sc >= best_score - 1e-9 and len(toc) >= 2]
     clean = [t for t in tied if opens_at_first_section(t[0], t[2])]
     pick = (clean or tied)
     if not pick:
         return {}, 0, False
-    best_idx, best_score, best_toc = pick[-1]
+    # Among boundaries that label overlap alone cannot separate, prefer the one
+    # whose following headings the contents list actually predicts. Taking the
+    # last tied candidate assumes a later boundary means more contents, which is
+    # right for a genuine two-page contents list and wrong for a numbered table
+    # inside the body: a membership grid restarting at 1 ties on labels alone,
+    # yet its rows ("Prime Minister", "Finance Minister") repeat none of the
+    # promised headings while the real opening repeats all of them. Position
+    # still decides a corroboration tie, so documents the headings cannot
+    # separate keep the boundary they had.
+    best_idx, best_score, best_toc = max(
+        enumerate(pick),
+        key=lambda item: (heading_corroboration(item[1][0], item[1][2]), item[0]),
+    )[1]
 
     # Some official gazettes typeset marginal headings in a left column and
     # the numbered operative text in a right column. The body parser then sees
@@ -803,55 +974,8 @@ def parse_contents(blocks: list[dict]) -> tuple[dict[str, str], int, bool]:
     # The guard is deliberately conservative: rejecting an uncertain TOC keeps
     # every page in the body; accepting a false one removes enacted law from the
     # provision tree. Explicit printed markers are not subject to this fallback.
-    boundary_page = int(blocks[best_idx].get("page_no", 1))
     last_page = max((int(b.get("page_no", 1)) for b in blocks), default=1)
 
-    def heading_corroboration(boundary: int, toc: dict[str, str]) -> float:
-        """How much of an unmarked list repeats as later substantive headings.
-
-        Label overlap alone can make a numbered front table look like contents.
-        A real contents list also predicts the words that open the later unit.
-        Prefix matching is intentional: a body entry continues from its heading
-        into enacted text, while a contents entry stops at the heading.
-        """
-        later: dict[str, list[str]] = {}
-        for idx, _, label, heading in nums:
-            if idx < boundary or not heading:
-                continue
-            key = _repair_label(label, toc).replace(" ", "")
-            later.setdefault(key, []).append(_norm(heading).casefold())
-        supported = 0
-        expected = 0
-        for label, heading in toc.items():
-            wanted = _norm(heading).casefold().rstrip(".–—- ")
-            if not wanted:
-                continue
-            expected += 1
-            if any(actual.startswith(wanted)
-                   or wanted.startswith(actual.rstrip(".–—- "))
-                   or SequenceMatcher(None, wanted, actual).ratio() >= 0.82
-                   for actual in later.get(label, [])):
-                supported += 1
-        return supported / expected if expected else 0.0
-
-    heading_support = heading_corroboration(best_idx, best_toc)
-    # A two-page contents list in a ten-page colonial Act puts the body on page
-    # 3, which is 30% of the file and used to fail this guard.  The Ferries Act
-    # then kept the page-1 labels as citable sections and demoted every enacted
-    # section on pages 3-10.  Very high contents/body agreement is independent
-    # evidence that permits this small-document case.  The known false front
-    # tables that motivated the ratio guard score at most 0.83, so they remain
-    # rejected.
-    implicit_is_front_matter = (
-        boundary_page == 1
-        or (boundary_page <= 10
-            and boundary_page / max(last_page, 1) <= 0.20)
-        or (boundary_page <= 3 and best_score >= 0.90
-            and heading_support >= 0.80))
-    found = bool(best_toc) and (
-        saw_marker or (len(best_toc) >= 5 and implicit_is_front_matter))
-    if not found:
-        return {}, 0, False
 
     def agreement_at(candidate_boundary: int) -> float:
         body_labels = {
@@ -875,30 +999,50 @@ def parse_contents(blocks: list[dict]) -> tuple[dict[str, str], int, bool]:
         whose title is not repeated nearby, while rejecting an appended,
         unrelated enactment.
         """
-        compared = matched = 0
-        outcomes: list[bool] = []
+        matched = 0
         seen_labels: set[str] = set()
         needed = min(5, len(best_toc))
+        promised = list(best_toc)[:needed]
         for idx, _, label, heading in nums:
             if idx < candidate_boundary:
                 continue
+            if matched >= needed:
+                break
             key = _repair_label(label, best_toc).replace(" ", "")
-            if key not in best_toc or key in seen_labels:
+            # Amendment notes and tables may repeat the same small numbers
+            # between real opening sections.  They are collisions, not
+            # negative evidence.  Seek each promised opening label in order
+            # and accept an occurrence only when its local source heading also
+            # corroborates the printed contents.
+            if key != promised[matched] or key in seen_labels:
+                continue
+            wanted = _norm(best_toc[key]).casefold().rstrip(".â€“â€”- ")
+            # Official two-column Acts can emit a marginal heading beside,
+            # immediately before, or immediately after the numbered operative
+            # block. `_section_numbers` exposes only the inline tail, so judge
+            # the opening run against its same-page layout neighbourhood too.
+            # Formula, repeated-title, ordered multi-label, and document-level
+            # agreement guards must still concur before the boundary moves.
+            page = blocks[idx].get("page_no")
+            sources = [heading, blocks[idx].get("text", "")]
+            for neighbour in (idx - 1, idx + 1):
+                if (0 <= neighbour < len(blocks)
+                        and blocks[neighbour].get("page_no") == page):
+                    sources.append(blocks[neighbour].get("text", ""))
+            actuals = [
+                _norm(source).casefold()
+                for source in sources if _norm(source)
+            ]
+            is_match = any(
+                wanted in candidate or _heading_supports(candidate, wanted)
+                for candidate in actuals
+            )
+            if not is_match:
                 continue
             seen_labels.add(key)
-            wanted = _norm(best_toc[key]).casefold().rstrip(".â€“â€”- ")
-            actual = _norm(heading).casefold().rstrip(".â€“â€”- ")
-            compared += 1
-            is_match = (actual.startswith(wanted) or wanted.startswith(actual)
-                        or SequenceMatcher(None, wanted, actual).ratio() >= 0.82)
-            outcomes.append(is_match)
-            if is_match:
-                matched += 1
-            if compared >= needed:
-                break
+            matched += 1
         minimum = min(3, needed)
-        return (compared >= minimum
-                and (all(outcomes[:minimum]) or matched / compared >= 0.80))
+        return matched >= minimum
 
     # Prefer an explicit enactment marker when it proves the numeric boundary
     # stopped inside a long contents list.  Select the first section-shaped
@@ -973,6 +1117,29 @@ def parse_contents(blocks: list[dict]) -> tuple[dict[str, str], int, bool]:
                     and boundary_preserves_toc(idx)):
                 best_idx = idx
                 break
+    # Judge front-matter placement only after the source-evidence corrections
+    # above.  A numeric tie can initially choose an inner membership list or a
+    # schedule restart inside the body.  Rejecting that provisional boundary
+    # before the repeated title/enacting formula gets a vote made the correction
+    # below unreachable: document 2552 chose an item list on page 4 and returned
+    # ``toc_found=False`` even though its Act restarts, with matching headings,
+    # immediately after the enactment on page 3.
+    boundary_page = int(blocks[best_idx].get("page_no", 1))
+    heading_support = heading_corroboration(best_idx, best_toc)
+    # A two-page contents list in a ten-page colonial Act puts the body on page
+    # 3, which is 30% of the file and used to fail this guard.  Very high
+    # contents/body agreement plus heading repetition independently proves this
+    # small-document case.  Known false front tables score at most 0.83.
+    implicit_is_front_matter = (
+        boundary_page == 1
+        or (boundary_page <= 10
+            and boundary_page / max(last_page, 1) <= 0.20)
+        or (boundary_page <= 3 and best_score >= 0.90
+            and heading_support >= 0.80))
+    found = bool(best_toc) and (
+        saw_marker or (len(best_toc) >= 5 and implicit_is_front_matter))
+    if not found:
+        return {}, 0, False
     return best_toc, best_idx, True
 
 
@@ -988,19 +1155,44 @@ def _toc_source_entries(blocks: list[dict], boundary: int,
     """
     dotted = _section_numbers(blocks)
     twocol = _twocol_run(blocks, {label for _, _, label, _ in dotted})
-    candidates = sorted(dotted + twocol, key=lambda h: h[0])
+    # A contents list may cite subprovisions directly (``4(1). Heading``).
+    # Keep that printed citation intact in the evidence ledger; the body
+    # grammar still parses section 4 and subsection (1) separately.
+    compound: list[tuple[int, int, str, str]] = []
+    for idx, block in enumerate(blocks[:boundary]):
+        for piece in subdivide(block["text"]):
+            match = re.match(
+                r"^\s*(\d{1,4})\s*\(\s*(\d{1,3}[A-Z]?)\s*\)"
+                r"\s*\.\s*(.+)$", piece, re.S,
+            )
+            if match:
+                compound.append((
+                    idx, int(match.group(1)),
+                    f"{match.group(1)}({match.group(2)})",
+                    _norm(match.group(3)),
+                ))
+    candidates = sorted(dotted + twocol + compound, key=lambda h: h[0])
     out: list[dict] = []
     seen: set[tuple[int, str, str]] = set()
     for idx, _, label, heading in candidates:
         if idx >= boundary:
             break
-        if label not in toc or not heading:
+        block = blocks[idx]
+        if _is_furniture(
+                block["text"], block.get("y0", 0),
+                block.get("page_height", 792) or 792,
+        ):
+            continue
+        compound_label = re.match(r"^(\d{1,4})\(", label)
+        if ((label not in toc
+             and (compound_label is None
+                  or compound_label.group(1) not in toc))
+                or not heading):
             continue
         key = (idx, label, heading)
         if key in seen:
             continue
         seen.add(key)
-        block = blocks[idx]
         out.append({
             "ordinal": len(out),
             "label": label,
@@ -1012,7 +1204,8 @@ def _toc_source_entries(blocks: list[dict], boundary: int,
 
 
 def _repair_label(label: str, toc: dict[str, str],
-                  seen: set[str] | None = None) -> str:
+                  seen: set[str] | None = None,
+                  actual_heading: str | None = None) -> str:
     """Undo superscript fusion using the contents list as the arbiter.
 
     PyMuPDF glues a superscript footnote marker to the number that follows it, so
@@ -1029,19 +1222,75 @@ def _repair_label(label: str, toc: dict[str, str],
     key = label.replace(" ", "")
     if not toc:
         return label
+    # Absence from the contents is evidence of fusion only when the label as
+    # read is implausible for this document. "1366" is: no statute numbering to
+    # 500 has a section 1366, so the leading 1 is a footnote marker. "21" is
+    # not, in a document whose own contents runs to 72 -- there the absence
+    # says the contents is incomplete, not that the number is wrong.
+    #
+    # The Sindh mining rules prove the difference. Their contents lists
+    # 1,2,4,5,6,7,44,45 ... 72 and nothing between 7 and 44, so rules 21 and 22
+    # are missing from it. Read literally, the old test stripped both to 1 and
+    # 2, and rule 22 -- "Records, and Reporting by Licensee", printed on page 22
+    # with an ordinary bold heading -- stopped being citable at all.
+    printed_numbers = [int(entry) for entry in toc if entry.isdigit()]
+    highest_printed = max(printed_numbers) if printed_numbers else 0
+    # Absence is evidence only where the contents is actually speaking. A list
+    # that prints 15 and 17 but not 16 is saying 16 is not a section; a list
+    # that jumps from 7 to 44 is saying nothing whatever about 21. Measure the
+    # distance to the nearest printed number: the Sindh mining rules' hole
+    # around rule 21 is 14 wide, while the Zina Ordinance prints 17 one step
+    # from the 16 it omits, and that is the difference between an incomplete
+    # contents and a deliberate one.
+    nearest_printed = min(
+        (abs(number - int(key)) for number in printed_numbers),
+        default=None) if key.isdigit() else None
+    within_printed_range = (
+        key.isdigit() and highest_printed and int(key) <= highest_printed
+        and nearest_printed is not None and nearest_printed > 3)
     toc_order = list(toc)
     for strip in (1, 2, 3, 4):
+        # A number the document's own contents shows to be in range is a
+        # provision number, not a marker glued to a shorter one.
+        if within_printed_range and key not in toc:
+            break
         if len(key) > strip and key[:strip].isdigit():
             candidate = key[strip:]
             if candidate and candidate[0].isdigit() and candidate in toc:
+                # If the full numeric reading continues the body sequence and
+                # the stripped label has already occurred, the leading digit
+                # is part of the provision number.  This covers an official
+                # contents list that omits its own omitted rows: after section
+                # 15, body ``16. 2[Omitted.]`` is section 16, not a second 6.
+                if (seen is not None and candidate in seen
+                        and key.isdigit()):
+                    numeric_seen = [
+                        int(value) for value in seen if value.isdigit()
+                    ]
+                    if numeric_seen and int(key) == max(numeric_seen) + 1:
+                        continue
                 if key in toc:
                     # Ambiguous fusion: CPC page 20 emits footnote 1 + section
                     # 25 as ``125.``, while the same Code also has a genuine
-                    # section 125. Printed order settles it. Repair only when
-                    # the candidate is still unseen and its immediately prior
-                    # TOC entry has already appeared; the later real 125 then
-                    # remains 125 because 25 is already seen.
+                    # section 125.  First use the independently printed body
+                    # heading: this prevents a genuine Railways section 116
+                    # ("Altering or defacing pass or ticket") from being
+                    # relabelled section 16 merely because omitted section 16
+                    # is still unseen.  If headings cannot distinguish the two,
+                    # printed order settles it, but a sequence already reaching
+                    # the full label wins over stripping it.
+                    if actual_heading:
+                        exact_support = _heading_supports(
+                            actual_heading, toc.get(key))
+                        candidate_support = _heading_supports(
+                            actual_heading, toc.get(candidate))
+                        if exact_support != candidate_support:
+                            return candidate if candidate_support else key
                     if seen is None or candidate in seen:
+                        continue
+                    exact_position = toc_order.index(key)
+                    if (exact_position == 0
+                            or toc_order[exact_position - 1] in seen):
                         continue
                     position = toc_order.index(candidate)
                     if position == 0 or toc_order[position - 1] not in seen:
@@ -1058,7 +1307,17 @@ def _citation_label_key(label: str) -> str:
     typographic in that position.  Dots are deliberately preserved: ``2.1``
     must never become section ``21``.
     """
-    return re.sub(r"[\s\-\u2013\u2014]+", "", label).casefold()
+    key = re.sub(r"[\s\-\u2013\u2014]+", "", label).casefold()
+    # Contents tables in ten active Sindh documents zero-pad their display
+    # numbers (``01`` ... ``09``), while the operative body prints ordinary
+    # section labels (``1`` ... ``9``).  Padding is typography, but only for a
+    # wholly numeric label: stripping zeroes from an alphanumeric identifier
+    # could change a publisher-defined citation.  The callers remain
+    # ambiguity-safe and accept a normalized key only when it identifies one
+    # unmatched label on each side.
+    if key.isdigit() and len(key) > 1 and key.startswith("0"):
+        key = key.lstrip("0") or "0"
+    return key
 
 
 def _reconcile_label_sets(promised: set[str], seen: set[str]) -> tuple[set[str], set[str]]:
@@ -1098,6 +1357,12 @@ def _heading_supports(candidate: str | None, expected: str | None) -> bool:
     """Does source layout text independently support the printed TOC heading?"""
     got = _norm(candidate or "").casefold().strip(" .:-–—")
     want = _norm(expected or "").casefold().strip(" .:-–—")
+    # A superscript amendment-note marker can be fused to an omitted heading
+    # (body ``2[Omitted.]`` versus contents ``[Omitted]``). It is provenance,
+    # not a word in the heading.
+    got = re.sub(r"^\d{1,4}\s*(?=\[)", "", got)
+    got = re.sub(r"\.\]$", "]", got)
+    want = re.sub(r"\.\]$", "]", want)
     if not got or not want:
         return False
     got_words = re.findall(r"[a-z0-9]+", got)
@@ -1108,10 +1373,151 @@ def _heading_supports(candidate: str | None, expected: str | None) -> bool:
             break
         common_prefix += 1
     got_heading = re.split(r"\s*[–—]\s*", got, maxsplit=1)[0]
+    # Edit-distance similarity is useful for OCR damage in substantive
+    # headings, but unsafe for terse legal labels: ``Topic E`` and ``Topic F``
+    # score above 0.82 despite naming different things. Short headings must
+    # agree by exact/prefix words; reserve fuzzy corroboration for enough text
+    # to make the score discriminative.
+    fuzzy_heading = min(len(got_heading), len(want)) >= 12
+    fuzzy_full = min(len(got), len(want)) >= 12
     return (got.startswith(want) or want.startswith(got)
             or common_prefix >= 5
-            or SequenceMatcher(None, got_heading, want).ratio() >= 0.82
-            or SequenceMatcher(None, got, want).ratio() >= 0.82)
+            or (fuzzy_heading
+                and SequenceMatcher(None, got_heading, want).ratio() >= 0.82)
+            or (fuzzy_full and SequenceMatcher(None, got, want).ratio() >= 0.82))
+
+
+def _opening_toc_hints(blocks: list[dict]) -> tuple[dict[str, str], int]:
+    """Recover conservative TOC heading hints when fusion defeats its boundary.
+
+    This does not declare a contents list. It captures only the first numbered
+    run after an explicit CONTENTS marker and before the enactment/body restart,
+    so geometry-backed marginal-note splitting can repair the evidence that
+    :func:`parse_contents` will then judge normally.
+    """
+    numbers = _section_numbers(blocks)
+    if not numbers:
+        return {}, 0
+    first_number = numbers[0][0]
+    markers = [index for index, block in enumerate(blocks[:first_number + 1])
+               if _has_contents_marker(block["text"])]
+    if not markers:
+        return {}, 0
+    marker = markers[-1]
+    formula = next((index for index, block in enumerate(blocks[marker + 1:], marker + 1)
+                    if _ENACTING_FORMULA.search(block["text"])), None)
+
+    body_floor = formula + 1 if formula is not None else 0
+    if not body_floor:
+        labels_seen: set[str] = set()
+        for index, _, label, _ in numbers:
+            if index <= marker:
+                continue
+            key = _citation_label_key(label)
+            if key in labels_seen and len(labels_seen) >= 2:
+                body_floor = index
+                break
+            labels_seen.add(key)
+    if not body_floor:
+        return {}, 0
+
+    hints: dict[str, str] = {}
+    seen_keys: set[str] = set()
+    for index, _, label, heading in numbers:
+        if index <= marker:
+            continue
+        if index >= body_floor:
+            break
+        key = _citation_label_key(label)
+        if key in seen_keys:
+            break
+        seen_keys.add(key)
+        if heading:
+            hints[label.replace(" ", "")] = heading
+    return hints, body_floor
+
+
+def _split_fused_marginal_notes(blocks: list[dict], toc: dict[str, str],
+                                body_floor: int) -> int:
+    """Split a left-column marginal note fused to its operative section.
+
+    Thresholds are document-relative because the five source portals use
+    different page boxes. Text is removed from neither the source block nor the
+    corpus ledger: the derived block feeds only the operative tail to the
+    numbering grammar and carries the prefix as ``marginal_note`` for storage
+    on the resulting provision.
+    """
+    if not toc:
+        return 0
+    geometry = sorted(float(block["x0"]) for block in blocks
+                      if block.get("x0") is not None and block.get("x1") is not None)
+    if len(geometry) < 4:
+        return 0
+    # percentile_disc(0.10) / percentile_disc(0.50), matching the corpus SQL.
+    x_left = geometry[max(0, (len(geometry) + 9) // 10 - 1)]
+    x_body = geometry[max(0, (len(geometry) + 1) // 2 - 1)]
+    headings_by_key: dict[str, list[tuple[str, str]]] = {}
+    for label, heading in toc.items():
+        headings_by_key.setdefault(_citation_label_key(label), []).append(
+            (label, heading))
+
+    # Never split a later same-numbered schedule/list row when the ordinary
+    # body walk can already see the promised section.  Document 1117 proves
+    # why this must precede geometry: sections 8--15 are normal right-column
+    # openings, followed by a charity-purpose schedule whose rows carry those
+    # same numbers and span the page.  Geometry alone split the schedule,
+    # moved the body boundary from page 2 to 17, and collapsed 228 provisions
+    # to 96.  Fusion is a recovery operation, so it is eligible only for TOC
+    # labels that the unsplit body numbering cannot already reconcile.
+    body_labels = {
+        _repair_label(label, toc, actual_heading=heading).replace(" ", "")
+        for _index, _number, label, heading
+        in _section_numbers(blocks[body_floor:])
+    }
+    matched_toc, _matched_body = _reconcile_label_sets(set(toc), body_labels)
+    unresolved_keys = {
+        _citation_label_key(label) for label in toc if label not in matched_toc
+    }
+    if not unresolved_keys:
+        return 0
+
+    split_count = 0
+    for index, block in enumerate(blocks):
+        if index < body_floor:
+            continue
+        x0, x1 = block.get("x0"), block.get("x1")
+        if x0 is None or x1 is None:
+            continue
+        if float(x0) > x_left + 6 or float(x1) <= x_body + 40:
+            continue
+        text = block["text"]
+        for marker in re.finditer(r"(?<!\S)(?=\d{1,4})", text):
+            if marker.start() == 0:
+                continue
+            tail = text[marker.start():]
+            decision = _classify_body(tail, toc)
+            if decision is None or decision[0] != "section":
+                continue
+            repaired = _repair_label(decision[1], toc, actual_heading=decision[2])
+            if _citation_label_key(repaired) not in unresolved_keys:
+                continue
+            candidates = headings_by_key.get(_citation_label_key(repaired), [])
+            if len(candidates) != 1:
+                continue
+            expected = candidates[0][1]
+            marginal = _norm(text[:marker.start()])
+            # Marginal notes are concise headings. This length guard prevents a
+            # full-width paragraph that merely cites a later section from being
+            # cut even if its opening words resemble a contents heading.
+            if (not marginal
+                    or len(marginal) > max(80, 2 * len(_norm(expected)) + 20)
+                    or not _heading_supports(marginal, expected)):
+                continue
+            block["text"] = tail
+            block["marginal_note"] = marginal
+            split_count += 1
+            break
+    return split_count
 
 
 def _heading_lead(value: str | None) -> str:
@@ -1139,6 +1545,26 @@ def _schedule_identity(value: str | None) -> str | None:
         "fifth": "v", "sixth": "vi", "seventh": "vii",
     }
     return names.get(match.group(1), match.group(1))
+
+
+def _explicit_schedule_cross_reference(value: str | None) -> bool:
+    """Is this a display schedule heading tied to a provision by the source?
+
+    Some consolidations print no schedule ordinal, but do print a self-contained
+    heading such as ``SCHEDULE / STANDING ORDERS [SECTION 2(g)]``. That
+    bracketed section reference is independent source evidence of a legal
+    schedule boundary, not a prose mention of a schedule.
+    """
+    normalized = _norm(value or "")
+    return bool(
+        re.match(r"^(?:THE\s+)?SCHEDULE\b", normalized)
+        and re.search(
+            r"[\[(]\s*SECTION\s+\d{1,4}[A-Z]?"
+            r"(?:\s*\([^)]+\))?\s*[\])]",
+            normalized,
+            re.I,
+        )
+    )
 
 
 def _schedule_rule_reference(value: str | None) -> str | None:
@@ -1180,6 +1606,22 @@ def _classify_body(text: str, toc: dict[str, str],
     if decision is not None:
         return decision
 
+    # Some official consolidations omit the final full stop from a bracketed
+    # starred omission (``2[31***]``). Keep this out of the general grammar:
+    # the same shape appears in contents tables beside a page number. The
+    # document's printed TOC must independently promise the label before it can
+    # become a body section.
+    starred_undotted = re.match(
+        r"^\s*" + _AMEND_PREFIX
+        + r"(\d{1,4}[A-Z]{0,3})\s*\*+\s*\]\s*(.*)$",
+        text,
+        re.S,
+    )
+    if starred_undotted:
+        label = _norm(starred_undotted.group(1)).replace(" ", "")
+        if label in toc:
+            return "section", label, starred_undotted.group(2)
+
     # Some official consolidations close the amendment bracket before the
     # provision's full stop (Punjab Electricity Act p.2: ``7[3-A].``).  The
     # general amendment prefix intentionally does not consume that closing
@@ -1192,6 +1634,21 @@ def _classify_body(text: str, toc: dict[str, str],
         label = _norm(closed_bracket.group(1)).replace(" ", "")
         if label in toc:
             return "section", label, closed_bracket.group(2)
+
+    # Four Balochistan Acts and one other print their section 1 with a lowercase
+    # L where the digit belongs -- "l. (1) This Act may be called ...". The
+    # extraction is faithful; the glyph in the source text layer is wrong. No
+    # digit means no section opens, so section 1 of those Acts -- its short
+    # title, extent and commencement -- is absent from the corpus entirely.
+    #
+    # This stays out of the general grammar because "(l)" is an ordinary
+    # alphabetic clause label. It is admissible only where the document's own
+    # contents promises section 1, the text then opens as a section does, and no
+    # section 1 has been seen -- so a real clause can never take this path.
+    ell_for_one = re.match(r"^\s*l\s*\.\s*((?:\(\s*1\s*\)|[A-Z]).*)$", text, re.S)
+    if (ell_for_one and "1" in toc
+            and (seen is None or "1" not in seen)):
+        return "section", "1", ell_for_one.group(1)
 
     bracketed_section_word = re.match(
         r"^\s*\d{1,4}\s*\[\s*Sections?\s+"
@@ -1342,7 +1799,11 @@ def _apply_curation_patches(blocks: list[dict], patches: list[dict]) -> tuple[li
     return derived, applied
 
 
-def segment(blocks: list[dict], curation_patches: list[dict] | None = None) -> Segmentation:
+def segment(blocks: list[dict], curation_patches: list[dict] | None = None,
+            toc_dispositions: list[dict] | None = None,
+            split_fused_margins: bool = False,
+            detect_contents: bool = True,
+            force_opening_contents: bool = False) -> Segmentation:
     """Build the provision tree.
 
     `blocks` are dicts with text, page_no, y0, page_height and id, in reading
@@ -1350,7 +1811,33 @@ def segment(blocks: list[dict], curation_patches: list[dict] | None = None) -> S
     """
     blocks, patches_applied = _apply_curation_patches(
         blocks, curation_patches or [])
-    toc, boundary, toc_found = parse_contents(blocks)
+    toc_dispositions = toc_dispositions or []
+    applied_disposition_ids: set[int] = set()
+    # Ask the ordinary boundary detector first. If fused marginal notes have
+    # hidden too many body labels for it to accept an otherwise explicit TOC,
+    # recover only provisional opening-run hints. After the geometric split the
+    # full detector runs again; hints never become corpus facts by themselves.
+    toc, boundary, toc_found = (
+        parse_contents(blocks) if detect_contents else ({}, 0, False)
+    )
+    if force_opening_contents and detect_contents and not toc_found and blocks:
+        # A source-reviewed embedded expression can own a contents row printed
+        # on the package's first page while its body begins many pages later.
+        # The ordinary implicit-list guard correctly rejects that geometry in
+        # the general corpus.  Supplying an in-memory marker lets the same TOC
+        # parser run under explicit caller evidence; the synthetic block is
+        # removed from the returned boundary and never enters the ledger.
+        marker = dict(blocks[0])
+        marker.update({"id": None, "text": "CONTENTS"})
+        toc, probe_boundary, toc_found = parse_contents([marker] + blocks)
+        boundary = max(0, probe_boundary - 1) if toc_found else 0
+    toc_hints, body_floor = (
+        (toc, boundary) if toc_found else _opening_toc_hints(blocks)
+    )
+    marginal_notes_split = (_split_fused_marginal_notes(
+        blocks, toc_hints, body_floor) if split_fused_margins else 0)
+    if marginal_notes_split:
+        toc, boundary, toc_found = parse_contents(blocks)
     printed_toc = _toc_source_entries(blocks, boundary, toc) if toc_found else []
     body = blocks[boundary:] if boundary else blocks
     body_page = body[0]["page_no"] if body else 1
@@ -1380,8 +1867,50 @@ def segment(blocks: list[dict], curation_patches: list[dict] | None = None) -> S
     in_schedule = False
     schedule_node: Node | None = None
     explicit_table_owner: Node | None = None
+    roman_section_division_seen = False
+    roman_section_division_nodes: list[Node] = []
     max_before_schedule = 0     # highest section number seen when a schedule opened
+    max_prefixed_rule_before_schedule = 0
     detached_heading_bodies_merged = 0
+    marginal_note_blocks_attached: set[int] = set()
+    source_block_by_id = {block.get("id"): block for block in body}
+
+    # The body column's own left edge, for the two indentation tests below.
+    #
+    # Those tests ask whether a numbered block sits deeper than the provision
+    # that owns it, and they asked it against the OWNER'S first block. In a
+    # gazette that sets marginal headings in a left column that is not a
+    # baseline: the Balochistan Essential Education Services Act prints section
+    # 2 as one fused block, "Definition. 2. In this Act, ...", starting at x0
+    # 118 in the margin, while section 3's heading is a SEPARATE margin block
+    # and its text starts at 230.5 in the body column. 230.5 >= 118 + 18, so
+    # section 3 read as an indented sub-item of section 2 and was demoted to a
+    # clause -- printed law, no longer citable at its own number. Reading page 3
+    # settled it: "3. (1) The Government may, by notification in the official
+    # Gazette, declare any Education Service to be an Essential Service", with
+    # the contents' exact heading beside it.
+    #
+    # So compare against the body column as well. A genuinely indented sub-item
+    # clears both edges and is still demoted; a section merely sitting at the
+    # normal body margin no longer is. percentile 10/50 of x0, the same pair
+    # `_toc_marginal_share` and tools/audit use.
+    _x0s = sorted(float(block["x0"]) for block in body
+                  if block.get("x0") is not None)
+    body_column_x0 = (_x0s[max(0, (len(_x0s) + 1) // 2 - 1)]
+                      if len(_x0s) >= 4 else None)
+
+    def _indented_past_body(block: dict, owner_block: dict | None) -> bool:
+        """Deeper than its owner AND deeper than the body column's left edge."""
+        if (owner_block is None or block.get("x0") is None
+                or owner_block.get("x0") is None):
+            return False
+        if block["x0"] < owner_block["x0"] + 18:
+            return False
+        # No usable geometry: keep the original single-edge behaviour rather
+        # than silently turning the test off.
+        if body_column_x0 is None:
+            return True
+        return block["x0"] >= body_column_x0 + 18
 
     # Each block is cut at its internal provision starts before the grammar runs,
     # so a block holding three sections yields three units rather than one.
@@ -1394,10 +1923,27 @@ def segment(blocks: list[dict], curation_patches: list[dict] | None = None) -> S
         pieces = ([b["text"]] if (
             _FOOTNOTE.match(b["text"])
             or _PUNCTUATED_AMENDMENT_FOOTNOTE.match(b["text"])
-            or _FOOTNOTE_MARKERS_ONLY.match(b["text"])
+            or _footnote_markers_only(b["text"])
         ) else subdivide(b["text"]))
         for piece in pieces:
             units.append((b, piece))
+
+    def preceding_prefixed_rule_number(unit_index: int) -> int:
+        """Nearest earlier explicit Rule/Regulation number in source order.
+
+        Nearest is intentional. Editorial amendment notes can mention a much
+        larger Rule number earlier on the page; a global maximum would then
+        hide an ordinary 77 -> 78 enacted sequence.
+        """
+        for _, prior_text in reversed(units[:unit_index]):
+            match = re.match(
+                r"^\s*(?:Rules?|Regulations?)\s*(\d{1,4})\b",
+                prior_text,
+                re.I,
+            )
+            if match:
+                return int(match.group(1))
+        return 0
 
     # Some official layouts print a marginal heading in a separate, narrow
     # column immediately before the wide operative block. PyMuPDF preserves
@@ -1406,27 +1952,58 @@ def segment(blocks: list[dict], curation_patches: list[dict] | None = None) -> S
     # blocks only when four independent facts agree: same page, immediately
     # preceding short blocks, horizontally separate columns, and the combined
     # words match the next numbered provision's printed TOC heading.
-    detached_heading_for_body: dict[int, list[int]] = {}
+    detached_heading_for_body: dict[int, tuple[list[int], str]] = {}
     detached_heading_ids: set[int] = set()
     if toc:
-        for body_index, provision_block in enumerate(body):
-            provision = next(
-                (
-                    decision
-                    for piece in subdivide(provision_block["text"])
-                    for decision in [_classify_body(piece, toc)]
-                    if decision is not None and decision[0] == "section"
-                ),
-                None,
+        toc_headings_by_label: dict[str, list[str]] = {}
+        for entry in printed_toc:
+            key = _citation_label_key(entry.get("label") or "")
+            value = _norm(entry.get("heading") or "")
+            if value and value not in toc_headings_by_label.setdefault(key, []):
+                toc_headings_by_label[key].append(value)
+            compound_label = re.match(r"^(\d{1,4})\(", key)
+            if compound_label and value not in toc_headings_by_label.setdefault(
+                    compound_label.group(1), []):
+                toc_headings_by_label[compound_label.group(1)].append(value)
+
+        def horizontally_separate(candidate: dict, provision_block: dict) -> bool:
+            candidate_x0 = candidate.get("x0")
+            candidate_x1 = candidate.get("x1")
+            body_x0 = provision_block.get("x0")
+            body_x1 = provision_block.get("x1")
+            if None in (candidate_x0, candidate_x1, body_x0, body_x1):
+                return False
+            return bool(
+                candidate_x0 >= body_x1 - 2
+                or candidate_x1 <= body_x0 + 2
+                # PyMuPDF occasionally combines the operative left column and
+                # a different marginal note into one wide block. A narrow
+                # right-column block aligned with that row is still separate.
+                or (candidate_x0 >= body_x0 + 300
+                    and candidate_x1 - candidate_x0 <= 140)
             )
+
+        for body_index, provision_block in enumerate(body):
+            provision = next((
+                decision
+                for piece in subdivide(provision_block["text"])
+                for decision in [_classify_body(piece, toc)]
+                if decision is not None
+                and (decision[0] == "section"
+                     or (decision[0] == "subsection"
+                         and re.match(r"^\s*\(\s*1\s*\)", decision[2])))
+            ), None)
             if provision is None:
                 continue
             label = _norm(provision[1]).replace(" ", "")
-            expected_heading = toc.get(label)
+            expected_headings = toc_headings_by_label.get(
+                _citation_label_key(label),
+                [toc[label]] if label in toc else [],
+            )
             body_id = provision_block.get("id")
             body_x0 = provision_block.get("x0")
             body_x1 = provision_block.get("x1")
-            if (not expected_heading or body_id is None
+            if (not expected_headings or body_id is None
                     or body_x0 is None or body_x1 is None):
                 continue
             prior_blocks: list[dict] = []
@@ -1446,30 +2023,68 @@ def segment(blocks: list[dict], curation_patches: list[dict] | None = None) -> S
                         or any(classify(piece) is not None
                                for piece in subdivide(prior["text"]))):
                     break
-                prior_x0 = prior.get("x0")
-                prior_x1 = prior.get("x1")
-                if prior_x0 is None or prior_x1 is None:
-                    break
-                separate_column = (
-                    prior_x0 >= body_x1 - 2 or prior_x1 <= body_x0 + 2
-                )
-                if not separate_column:
+                if not horizontally_separate(prior, provision_block):
                     break
                 prior_blocks.append(prior)
             prior_blocks.reverse()
             for start in range(len(prior_blocks)):
                 selected = prior_blocks[start:]
                 combined = " ".join(_norm(row["text"]) for row in selected)
-                if not _heading_supports(combined, expected_heading):
+                supported = [expected for expected in expected_headings
+                             if _heading_supports(combined, expected)]
+                if len(supported) != 1:
                     continue
                 heading_ids = [row["id"] for row in selected
                                if row.get("id") is not None]
                 if heading_ids and not any(
                         block_id in detached_heading_ids
                         for block_id in heading_ids):
-                    detached_heading_for_body[body_id] = heading_ids
+                    detached_heading_for_body[body_id] = (
+                        heading_ids, supported[0],
+                    )
                     detached_heading_ids.update(heading_ids)
                 break
+            if body_id in detached_heading_for_body:
+                continue
+
+            # Two-column extraction may emit the right marginal heading after
+            # the operative block, sometimes after up to two left-column list
+            # items. Accept one short, vertically aligned, separate-column
+            # block only when it supports exactly one of the printed headings
+            # for this repeated label.
+            body_y0 = provision_block.get("y0")
+            body_y1 = provision_block.get("y1")
+            if body_y0 is None or body_y1 is None:
+                continue
+            for following in body[body_index + 1:body_index + 5]:
+                if following.get("page_no") != provision_block.get("page_no"):
+                    break
+                value = _norm(following.get("text") or "")
+                if (not value or len(value) > 110
+                        or _is_running_header(value)
+                        or value in running_headings
+                        or any(classify(piece) is not None
+                               for piece in subdivide(following["text"]))
+                        or not horizontally_separate(
+                            following, provision_block,
+                        )):
+                    continue
+                candidate_y0 = following.get("y0")
+                candidate_y1 = following.get("y1")
+                if (candidate_y0 is None or candidate_y1 is None
+                        or candidate_y0 > body_y1 + 20
+                        or candidate_y1 < body_y0 - 20):
+                    continue
+                supported = [expected for expected in expected_headings
+                             if _heading_supports(value, expected)]
+                following_id = following.get("id")
+                if (len(supported) == 1 and following_id is not None
+                        and following_id not in detached_heading_ids):
+                    detached_heading_for_body[body_id] = (
+                        [following_id], supported[0],
+                    )
+                    detached_heading_ids.add(following_id)
+                    break
 
     def mark(block: dict, role: str, node=None):
         """Record a block's role. First writer wins, so a block subdivided into
@@ -1500,9 +2115,19 @@ def segment(blocks: list[dict], curation_patches: list[dict] | None = None) -> S
         boundary_seen: set[str] = set()
         for i, (_, t) in enumerate(units):
             c = _classify_body(t, toc)
+            # A source-labelled schedule with its own statutory cross-reference
+            # ends the principal body even when schedule item numbers later
+            # climb above the Act's final section. Without this stop, Standing
+            # Orders 11--20 make an Act ending at section 10 appear to continue
+            # through section 20.
+            if (c and c[0] == "schedule" and boundary_seen
+                    and _explicit_schedule_cross_reference(t)):
+                break
             if not c or c[0] != "section":
                 continue
-            k = _repair_label(c[1], toc, boundary_seen).replace(" ", "")
+            k = _repair_label(
+                c[1], toc, boundary_seen, c[2]
+            ).replace(" ", "")
             m = re.match(r"^(\d+)", k)
             if k in toc and m and int(m.group(1)) > highest:
                 highest = int(m.group(1))
@@ -1555,7 +2180,14 @@ def segment(blocks: list[dict], curation_patches: list[dict] | None = None) -> S
             parts.append(value)
         return " ".join(reversed(parts)) if parts else None
 
+    source_history_page: int | None = None
     for idx, (b, text) in enumerate(units):
+        # Once a canonical source-history footnote starts, its wrapped
+        # continuation may occupy several blocks and lose the superscript
+        # marker. It remains apparatus through the end of that physical page.
+        if source_history_page == b["page_no"]:
+            mark(b, "footnote")
+            continue
         if _is_running_header(text):
             mark(b, "running_header")
             continue
@@ -1565,11 +2197,23 @@ def segment(blocks: list[dict], curation_patches: list[dict] | None = None) -> S
         # Amendment notes are sometimes set beside the amended line rather
         # than in the bottom margin.  Their fused superscript number (for
         # example ``16Substituted``) must not become section 1625 or 2014.
-        if (_FOOTNOTE.match(text)
-                or _PUNCTUATED_AMENDMENT_FOOTNOTE.match(text)):
+        # An amending Act states its amendments as its own operative sections,
+        # so ``4. In section 15 of the said Act ... shall be substituted`` is
+        # the section, not a note about one -- textually identical to the
+        # apparatus this pattern exists to catch. The walk has already told the
+        # two apart above: a block reached here as the body of a detached
+        # marginal heading was matched to a printed contents heading and proved
+        # to sit in its own column, which apparatus never is. Prefer that
+        # evidence over the text shape, or the marginal heading is left owning
+        # nothing and its characters fall out of the ledger (C4/C5).
+        if ((_FOOTNOTE.match(text)
+                or _PUNCTUATED_AMENDMENT_FOOTNOTE.match(text))
+                and b.get("id") not in detached_heading_for_body):
             mark(b, "footnote")
+            if _SOURCE_HISTORY_START.match(text):
+                source_history_page = b["page_no"]
             continue
-        if _FOOTNOTE_MARKERS_ONLY.match(text):
+        if _footnote_markers_only(text):
             mark(b, "footnote")
             continue
 
@@ -1577,7 +2221,8 @@ def segment(blocks: list[dict], curation_patches: list[dict] | None = None) -> S
         # it.  Its numbered rows are data, not competing sections of the Act.
         # Keep the heading itself reachable as body text and remember the
         # owning provision until a TOC-proved next section closes the table.
-        if re.fullmatch(r"(?:THE\s+)?TABLE\s*[.:-]?", _norm(text), re.I):
+        if (re.fullmatch(r"(?:THE\s+)?TABLE\s*[.:-]?", _norm(text), re.I)
+                or _is_numbered_table_header(text)):
             if current is not root:
                 owner = current
                 while owner is not root and owner.kind in (
@@ -1623,9 +2268,26 @@ def segment(blocks: list[dict], curation_patches: list[dict] | None = None) -> S
             continue
 
         kind, label, rest = c
+        # A small number of official schedules parenthesize a top-level rule
+        # number before its first subrule (``(12) (1) ...``), while their own
+        # printed contents and aligned marginal heading cite plain rule 12.
+        # Promote only inside an open schedule and only when that independent
+        # heading evidence names exactly one printed entry for the label.
+        if (kind == "subsection" and in_schedule
+                and re.match(r"^\s*\(\s*1\s*\)", rest)):
+            supported_schedule_headings = [
+                entry["heading"] for entry in printed_toc
+                if _citation_label_key(entry["label"])
+                   == _citation_label_key(label)
+                and _heading_supports(heading_context, entry.get("heading"))
+            ]
+            if len(set(supported_schedule_headings)) == 1:
+                kind = "section"
 
         if kind in ("section", "article") and explicit_table_owner is not None:
-            table_key = _repair_label(label, toc, seen).replace(" ", "")
+            table_key = _repair_label(
+                label, toc, seen, rest
+            ).replace(" ", "")
             expected_heading = toc.get(table_key)
             next_promised_section = (
                 _toc_label_is_next(table_key, toc, seen)
@@ -1658,9 +2320,31 @@ def segment(blocks: list[dict], curation_patches: list[dict] | None = None) -> S
         # This retains genuine ``Rule N.`` provisions while preventing a
         # definition ending ``...mentioned in column No. 2 of / Rule 21.``
         # from stealing the later real rule 21.
+        prior_content = previous_content(idx)
+        prior_lines = [
+            _norm(line) for line in (prior_content or "").splitlines()
+            if _norm(line)
+        ]
+        trailing_rule_heading = prior_lines[-1] if prior_lines else ""
+        prefixed_rule = re.match(
+            r"^\s*(?:Rules?|Regulations?)\s*(\d{1,4})\b", text, re.I,
+        )
+        prior_prefixed_rule = preceding_prefixed_rule_number(idx)
+        sequential_prefixed_rule = bool(
+            prefixed_rule
+            and int(prefixed_rule.group(1)) == prior_prefixed_rule + 1
+        )
+        displayed_rule_heading = bool(
+            prefixed_rule
+            and trailing_rule_heading
+            and len(trailing_rule_heading) <= 160
+            and trailing_rule_heading.endswith(":")
+        )
         if (kind == "section"
-                and re.match(r"^\s*(?:Rules?|Regulations?)\s+", text, re.I)
-                and _continues_previous(previous_content(idx))
+                and re.match(r"^\s*(?:Rules?|Regulations?)\s*\d", text, re.I)
+                and _continues_previous(prior_content)
+                and not displayed_rule_heading
+                and not sequential_prefixed_rule
                 and not _toc_label_is_next(
                     _norm(label).replace(" ", ""), toc, seen
                 )):
@@ -1689,7 +2373,24 @@ def segment(blocks: list[dict], curation_patches: list[dict] | None = None) -> S
             mark(b, "running_header")
             continue
 
-        toc_proves_schedule = (
+        # A materialised expression does not inherit a compilation's editorial
+        # contents page.  Some official notifications nevertheless prove their
+        # schedule directly: after several enacted sections and the signature,
+        # a new source block starts with the standalone, uppercase display word
+        # ``SCHEDULE``.  The first numbered schedule item may share that block.
+        # Requiring (1) no TOC, (2) at least two already-opened sections, and
+        # (3) an exact uppercase first line keeps ordinary prose references to
+        # "the Schedule" on the conservative cross-reference path below.
+        unlisted_display_schedule = bool(
+            not toc
+            and len(seen) >= 2
+            and current is not root
+            and re.match(
+                r"^\s*(?:THE\s+)?SCHEDULE[ \t]*(?:\r?\n|$)",
+                b["text"],
+            )
+        )
+        source_proves_schedule = (
             kind == "schedule"
             # The override is only for a display heading that starts its
             # physical source block.  A subdivided mid-sentence reference to
@@ -1698,10 +2399,14 @@ def segment(blocks: list[dict], curation_patches: list[dict] | None = None) -> S
             # the official Sindh source that exposed this ambiguity.
             and re.match(r"^\s*(?:THE\s+)?SCHEDULE\b", b["text"])
                 is not None
-            and _schedule_identity(f"{label} {rest}")
-                in toc_schedule_identities
+            and (
+                _schedule_identity(f"{label} {rest}")
+                    in toc_schedule_identities
+                or _explicit_schedule_cross_reference(b["text"])
+                or unlisted_display_schedule
+            )
         )
-        if kind in _HEADING_KINDS and not toc_proves_schedule and (
+        if kind in _HEADING_KINDS and not source_proves_schedule and (
                 _runs_on(rest)
                 or (kind == "schedule" and idx < last_body_section)
                 or _continues_previous(previous_content(idx))):
@@ -1733,6 +2438,88 @@ def segment(blocks: list[dict], curation_patches: list[dict] | None = None) -> S
             current = node
             continue
 
+        # Numbered lists inside an enacted provision sometimes use ``1.`` / ``2.``
+        # / ``3.`` rather than parentheses.  In isolation those blocks satisfy
+        # the section grammar, but the source layout and surrounding prose can
+        # prove that they are local list items.  Keep this deliberately narrower
+        # than the repeated-label repair below: either (a) a label already used
+        # by the Act is followed by the next dotted item in the *same* block, or
+        # (b) an indented item continues visibly unfinished prose.  In both cases
+        # the candidate must fail to match the independently printed TOC heading.
+        # This is the typography used by the definition of ``resident`` in the
+        # Sindh Sales Tax on Services Act, including item 3 across pages 10--11.
+        if kind == "section" and not in_schedule and current is not root:
+            owner = current
+            while owner is not root and owner.kind not in {"section", "article"}:
+                owner = owner.parent or root
+            candidate_key = _repair_label(label, toc, seen, rest).replace(" ", "")
+            candidate_number = (
+                int(candidate_key) if candidate_key.isdigit() else None
+            )
+            owner_block = source_block_by_id.get(owner.first_block)
+            indented = _indented_past_body(b, owner_block)
+            has_next_item = bool(
+                candidate_number is not None
+                and re.search(
+                    rf"(?:^|\s){candidate_number + 1}\s*\.\s+", rest
+                )
+            )
+            heading_disagrees = not _heading_supports(
+                rest, toc.get(candidate_key)
+            )
+            if (owner is not root and candidate_key in toc and heading_disagrees
+                    and ((candidate_key in seen and has_next_item)
+                         or (indented
+                             and _continues_previous(previous_content(idx))))):
+                kind = "clause"
+
+        # A few official consolidations print section subparts as indented
+        # ``2.`` and ``3.`` after an inline ``(1)`` instead of retaining the
+        # parentheses.  Do not let those typography-only dots create duplicate
+        # top-level sections. Five independent signals are required: an open
+        # section whose text visibly starts with (1), same page, deeper source
+        # indentation, consecutive subpart numbering, and a heading that does
+        # not match the independently printed TOC entry for the same number.
+        if kind == "section" and not in_schedule and current is not root:
+            owner = current
+            while owner is not root and owner.kind not in {"section", "article"}:
+                owner = owner.parent or root
+            candidate_key = _repair_label(label, toc, seen, rest).replace(" ", "")
+            candidate_number = (
+                int(candidate_key) if candidate_key.isdigit() else None
+            )
+            numeric_children = [
+                int(child.label) for child in owner.children
+                if child.kind == "subsection" and child.label.isdigit()
+            ] if owner is not root else []
+            expected_number = (
+                max(numeric_children) + 1 if numeric_children else 2
+            )
+            owner_block = source_block_by_id.get(owner.first_block)
+            indented = _indented_past_body(b, owner_block)
+            if (owner is not root
+                    and re.match(r"^\s*\(\s*1\s*\)", owner.text)
+                    and owner.first_page == b["page_no"]
+                    and indented
+                    and candidate_number == expected_number
+                    and candidate_key in toc
+                    and not _heading_supports(rest, toc.get(candidate_key))):
+                depth = owner.depth + 1
+                while stack and stack[-1].depth >= depth:
+                    stack.pop()
+                node = Node(
+                    kind="subsection", label=candidate_key, depth=depth,
+                    text_parts=[_norm(rest)] if rest else [],
+                    first_page=b["page_no"], last_page=b["page_no"],
+                    first_block=b.get("id"), parent=owner,
+                )
+                owner.children.append(node)
+                node.blocks.append(b.get("id"))
+                mark(b, "body", node)
+                stack.append(node)
+                current = node
+                continue
+
         # Once a schedule has opened, a numbered item belongs INSIDE it -- it is
         # not section 3 of the Act starting over.
         #
@@ -1759,23 +2546,44 @@ def segment(blocks: list[dict], curation_patches: list[dict] | None = None) -> S
         # demoted, and they keep their text as content of whatever precedes them.
         if (kind in ("section", "article") and not in_schedule
                 and last_body_section >= 0 and idx > last_body_section
-                and _repair_label(label, toc, seen).replace(" ", "") in seen):
+                and _repair_label(
+                    label, toc, seen, rest
+                ).replace(" ", "") in seen):
             # Repeated numeric rows are siblings, never a 189-level chain. The
             # old code made each row the parent of the next (`current=node`), so
             # a tariff table produced paths 1,499 bytes deep and broke ltree's
             # GiST page split. Climb out of an open clause/qualifier to the
             # stable provision that owns the trailing table; continuation prose
             # still attaches to the individual row via `current` below.
-            parent = current if current is not root else root
-            while parent is not root and parent.kind in ({"clause"} | QUALIFIERS):
-                parent = parent.parent or root
-            node = Node(kind="clause", label=label, heading=None,
+            roman_parent = next((candidate for candidate in reversed(stack)
+                                 if any(candidate is division
+                                        for division
+                                        in roman_section_division_nodes)), None)
+            if roman_parent is not None:
+                # Local numbering beneath ``SECTION - Roman`` is a sibling
+                # sequence even when a decimal child (3.4) was the immediately
+                # preceding unit. Attaching local 4 beneath 3.4 made Budget a
+                # child of a bank-reconciliation sentence in observation 4725.
+                parent = roman_parent
+            else:
+                parent = current if current is not root else root
+                while (parent is not root
+                       and parent.kind in ({"clause"} | QUALIFIERS)):
+                    parent = parent.parent or root
+            detached_heading = detached_heading_for_body.get(b.get("id"))
+            node = Node(kind="clause", label=label,
+                        heading=(detached_heading[1]
+                                 if detached_heading else None),
                         depth=parent.depth + 1,
                         text_parts=[_norm(rest)] if rest else [],
                         first_page=b["page_no"], last_page=b["page_no"],
                         first_block=b.get("id"), parent=parent)
             parent.children.append(node)
             node.blocks.append(b.get("id"))
+            if detached_heading:
+                node.blocks[0:0] = detached_heading[0]
+                for heading_block_id in detached_heading[0]:
+                    seg_roles[heading_block_id] = ("heading", node)
             mark(b, "schedule_row", node)
             current = node
             continue
@@ -1795,7 +2603,7 @@ def segment(blocks: list[dict], curation_patches: list[dict] | None = None) -> S
             # resuming. Without this reset one false schedule silently converts
             # the entire remainder of a statute into table rows: the Balochistan
             # Sale Tax Act kept 10 sections of 101 for exactly that reason.
-            key = _repair_label(label, toc, seen).replace(" ", "")
+            key = _repair_label(label, toc, seen, rest).replace(" ", "")
             resumes = False
             if toc and key in toc and key not in seen:
                 # Only the body can resume, and the body is over once the last
@@ -1807,12 +2615,40 @@ def segment(blocks: list[dict], curation_patches: list[dict] | None = None) -> S
             elif (not toc and schedule_node is not None
                   and schedule_node.kind == "schedule"):
                 m = re.match(r"^(\d+)", key)
-                if m and int(m.group(1)) > max_before_schedule:
+                # Recompute from the immutable source prefix immediately before
+                # this candidate. Parser state is deliberately not consulted:
+                # it may already be wrong because an earlier auxiliary heading
+                # failed to close. The nearest/highest explicit Rule prefix is
+                # the independent evidence that Rule 1107 follows Rule 1106.
+                source_rule_before = max_prefixed_rule_before_schedule
+                # With no contents list, a bare ``8.`` after sections 2--7 is
+                # equally likely to be row 8 of a schedule.  A source-printed
+                # ``Rule 1107.`` after rules through 1106 is a much stronger
+                # resumption signal.  This distinction keeps the Punjab wage
+                # tables inside their schedule while letting the Prisons Rules
+                # resume after an inserted disciplinary schedule.
+                if (m and int(m.group(1)) > source_rule_before
+                        # An expressly omitted or OCR-missed rule can leave a
+                        # small gap at the resumption point.  Larger jumps stay
+                        # inside the schedule and require source review.
+                        and int(m.group(1)) <= source_rule_before + 3
+                        and re.match(
+                            r"^\s*(?:Sections?|Rules?|Regulations?)\s*\d",
+                            text, re.I,
+                        )):
                     resumes = True
             if resumes:
-                in_schedule, schedule_node = False, None
-                while stack and stack[-1].depth >= DEPTH.get(kind, 3):
+                # Close the actual auxiliary node, not merely nodes at the
+                # incoming provision's depth. A schedule is usually depth 1;
+                # the old ``depth >= 3`` unwind left it on the stack, created
+                # the resumed Rule beneath it, and the safety post-pass then
+                # retyped that Rule to a schedule-row clause.
+                closing_schedule = schedule_node
+                while stack and stack[-1] is not closing_schedule:
                     stack.pop()
+                if stack and stack[-1] is closing_schedule:
+                    stack.pop()
+                in_schedule, schedule_node = False, None
             else:
                 row_container = (stack[-1] if stack and
                                  stack[-1].kind in (
@@ -1827,12 +2663,19 @@ def segment(blocks: list[dict], curation_patches: list[dict] | None = None) -> S
                 # Recording it as one inflates the section count and produces
                 # many provisions labelled "1" under one schedule. It is content
                 # of the schedule, so it is stored as a clause of it.
-                node = Node(kind="clause", label=label, heading=None, depth=depth,
+                detached_heading = detached_heading_for_body.get(b.get("id"))
+                node = Node(kind="clause", label=label,
+                            heading=(detached_heading[1]
+                                     if detached_heading else None), depth=depth,
                             text_parts=[_norm(rest)] if rest else [],
                             first_page=b["page_no"], last_page=b["page_no"],
                             first_block=b.get("id"), parent=parent)
                 parent.children.append(node)
                 node.blocks.append(b.get("id"))
+                if detached_heading:
+                    node.blocks[0:0] = detached_heading[0]
+                    for heading_block_id in detached_heading[0]:
+                        seg_roles[heading_block_id] = ("heading", node)
                 mark(b, "schedule_row", node)
                 stack.append(node)
                 current = node
@@ -1852,9 +2695,17 @@ def segment(blocks: list[dict], curation_patches: list[dict] | None = None) -> S
 
         heading, body_text = (None, _norm(rest))
         if kind == "section":
-            label = _repair_label(label, toc, seen)
+            label = _repair_label(label, toc, seen, rest)
             key = label.replace(" ", "")
-            heading, body_text = _split_heading(rest, toc.get(key))
+            # Once a document has entered a ``SECTION - Roman`` division its
+            # body numbering is local to that division, while the contents can
+            # continue with a separate global display index.  Feeding a global
+            # TOC heading into a local same-numbered node would make the later
+            # entry linker corroborate evidence that the parser itself copied.
+            # Keep those evidence streams independent: infer the local heading
+            # from body text and let reconciliation prove (or reject) the link.
+            toc_heading = None if roman_section_division_seen else toc.get(key)
+            heading, body_text = _split_heading(rest, toc_heading)
             # Many gazette PDFs lay out a marginal heading and operative text
             # in separate columns/blocks.  In reading order this becomes:
             #
@@ -1879,6 +2730,11 @@ def segment(blocks: list[dict], curation_patches: list[dict] | None = None) -> S
                     and (not candidate_text or heading_similarity < 0.88)):
                 if candidate_text:
                     prior.text_parts.append(candidate_text)
+                block_id = b.get("id")
+                if (b.get("marginal_note") and block_id is not None
+                        and block_id not in marginal_note_blocks_attached):
+                    prior.marginal_note = _norm(b["marginal_note"])
+                    marginal_note_blocks_attached.add(block_id)
                 prior.last_page = b["page_no"]
                 prior.blocks.append(b.get("id"))
                 mark(b, "body", prior)
@@ -1896,15 +2752,41 @@ def segment(blocks: list[dict], curation_patches: list[dict] | None = None) -> S
             heading = _norm(rest) or None
             body_text = ""
 
-        node = Node(kind=kind, label=label, heading=heading, depth=depth,
+        # A Roman ``SECTION - IV`` is a structural division whose children
+        # restart at 1. In such documents the contents often uses a separate,
+        # globally increasing display index. Remember that numbering regime so
+        # entry resolution cannot join unrelated objects on label alone.
+        is_roman_section_division = bool(
+            kind == "part"
+            and re.match(
+                r"^\s*SECTION\s*[-\u2013\u2014:]\s*[IVXLC]+", text, re.I,
+            )
+        )
+        if is_roman_section_division:
+            roman_section_division_seen = True
+
+        detached_heading = detached_heading_for_body.get(b.get("id"))
+        if kind == "section" and not heading and detached_heading:
+            heading = detached_heading[1]
+        marginal_note = None
+        block_id = b.get("id")
+        if (kind == "section" and b.get("marginal_note")
+                and block_id is not None
+                and block_id not in marginal_note_blocks_attached):
+            marginal_note = _norm(b["marginal_note"])
+            marginal_note_blocks_attached.add(block_id)
+        node = Node(kind=kind, label=label, heading=heading,
+                    marginal_note=marginal_note, depth=depth,
                     text_parts=[body_text] if body_text else [],
                     first_page=b["page_no"], last_page=b["page_no"],
                     first_block=b.get("id"), parent=parent)
         parent.children.append(node)
+        if is_roman_section_division:
+            roman_section_division_nodes.append(node)
         node.blocks.append(b.get("id"))
         if kind == "section":
-            heading_block_ids = detached_heading_for_body.get(
-                b.get("id"), []
+            heading_block_ids = (
+                detached_heading[0] if detached_heading else []
             )
             if heading_block_ids:
                 node.blocks[0:0] = heading_block_ids
@@ -1923,6 +2805,21 @@ def segment(blocks: list[dict], curation_patches: list[dict] | None = None) -> S
             max_before_schedule = max(
                 [0] + [int(m.group(1)) for lbl in seen
                        for m in [re.match(r"^(\d+)", lbl)] if m])
+            # Snapshot the source sequence at the auxiliary boundary. Rules
+            # printed inside the Schedule may have their own high or restarted
+            # numbering and must not redefine where the parent Rules resume.
+            max_prefixed_rule_before_schedule = max(
+                [0] + [
+                    int(match.group(1))
+                    for _, prior_text in units[:idx]
+                    for match in [re.match(
+                        r"^\s*(?:Rules?|Regulations?)\s*(\d{1,4})\b",
+                        prior_text,
+                        re.I,
+                    )]
+                    if match
+                ]
+            )
 
     # Everything before the body boundary is the contents list, and everything
     # the walk never reached is 'unassigned' -- the defect counter. No block may
@@ -1931,6 +2828,28 @@ def segment(blocks: list[dict], curation_patches: list[dict] | None = None) -> S
         bid = b.get("id")
         if bid is not None and bid not in seg_roles:
             seg_roles[bid] = ("contents", None)
+    # A detached marginal heading whose body never became a provision owns
+    # nothing, and legal_write refuses to store a heading without one -- so its
+    # characters fall out of the ledger and C5 fails. That is the right refusal
+    # and the wrong outcome: the words are printed on the page and belong to the
+    # provision they head. Give each one the node of the next block that has
+    # one, which in a marginal layout is the section the heading sits beside.
+    #
+    # Document 775 page 7 shows how it arises. "Indemnity." is fused to section
+    # 10's text in a single full-width block, so section 10 never opens cleanly,
+    # and the NEXT heading -- "Members, officers, / officials not personally",
+    # aligned with section 11 -- is left with nothing to attach to.
+    ordered = [b.get("id") for b in blocks if b.get("id") is not None]
+    for position, bid in enumerate(ordered):
+        entry = seg_roles.get(bid)
+        if entry is None or entry[0] != "heading" or entry[1] is not None:
+            continue
+        successor = next((seg_roles[nxt][1] for nxt in ordered[position + 1:]
+                          if seg_roles.get(nxt) and seg_roles[nxt][1] is not None),
+                         None)
+        if successor is not None:
+            seg_roles[bid] = ("heading", successor)
+
     for b in blocks:
         bid = b.get("id")
         if bid is not None and bid not in seg_roles:
@@ -1995,7 +2914,27 @@ def segment(blocks: list[dict], curation_patches: list[dict] | None = None) -> S
                     enumerate(nodes),
                     key=lambda pair: (heading_score(pair[1]), -pair[0]))[1]
             else:
-                canonical = nodes[0]
+                # With no contents list, a source-printed ``Rule 678.`` is
+                # stronger identity evidence than a bare ``678.`` previously
+                # inferred from a table/list row. The old first-occurrence
+                # default kept the bare row citable and demoted the actual Rule
+                # in Punjab Prisons Rules. Prefer an explicit block-start legal
+                # unit prefix; ties remain source-order stable.
+                def explicit_unit_score(candidate: Node) -> int:
+                    block = source_block_by_id.get(candidate.first_block) or {}
+                    value = block.get("text") or ""
+                    return int(bool(re.match(
+                        r"^\s*(?:Sections?|Rules?|Regulations?)\s*"
+                        + re.escape(candidate.label)
+                        + r"\b",
+                        value,
+                        re.I,
+                    )))
+
+                canonical = max(
+                    enumerate(nodes),
+                    key=lambda pair: (explicit_unit_score(pair[1]), -pair[0]),
+                )[1]
             if key in label_nodes:
                 label_nodes[key] = canonical
             for node in nodes:
@@ -2027,6 +2966,7 @@ def segment(blocks: list[dict], curation_patches: list[dict] | None = None) -> S
                        repeated_label_decisions=repeated_label_decisions,
                        schedule_sections_retyped=schedule_sections_retyped,
                        detached_heading_bodies_merged=detached_heading_bodies_merged,
+                       marginal_notes_split=marginal_notes_split,
                        curation_patches_applied=patches_applied)
     if toc:
         # Entries pointing at a schedule are reconciled against the schedules
@@ -2059,6 +2999,16 @@ def segment(blocks: list[dict], curation_patches: list[dict] | None = None) -> S
             # Rules/items nested under an Order or schedule are represented as
             # clauses and remain eligible, but require heading/order evidence
             # below when label identity alone is insufficient.
+            if (node.kind == "subsection" and node.parent is not None
+                    and node.parent.kind in {"section", "article", "clause"}):
+                compound_key = _citation_label_key(
+                    f"{node.parent.label}({node.label})"
+                )
+                compound_bucket = nodes_by_citation_key.setdefault(
+                    compound_key, [],
+                )
+                if all(existing is not node for existing in compound_bucket):
+                    compound_bucket.append(node)
             if node.kind not in {"section", "article", "clause"}:
                 continue
             bucket = nodes_by_citation_key.setdefault(
@@ -2071,10 +3021,57 @@ def segment(blocks: list[dict], curation_patches: list[dict] | None = None) -> S
             key = _citation_label_key(entry["label"])
             toc_key_counts[key] = toc_key_counts.get(key, 0) + 1
 
+        # Some compilations switch from true provision labels to a globally
+        # increasing contents index when a Roman ``SECTION`` division begins.
+        # Locate that transition from the first TOC heading independently
+        # represented by a Roman division (observation 4725: TOC 5 ``Funds``
+        # -> body ``SECTION - III / FUNDS``). From that entry onward, even a
+        # same-numbered node printed before the division needs heading evidence:
+        # pages 5-6 contain unrelated enabling-Ordinance sections 10 and 11.
+        roman_global_start_ordinal: int | None = None
+        for entry in printed_toc:
+            if any(_heading_supports(
+                    division.heading or division.text,
+                    entry.get("heading"),
+                ) for division in roman_section_division_nodes):
+                roman_global_start_ordinal = entry["ordinal"]
+                break
+
+        def mixed_numbering_entry(entry: dict) -> bool:
+            return (roman_global_start_ordinal is not None
+                    and entry["ordinal"] >= roman_global_start_ordinal)
+
+        def under_roman_section_division(node: Node) -> bool:
+            parent = node.parent
+            while parent is not None:
+                if any(parent is division
+                       for division in roman_section_division_nodes):
+                    return True
+                parent = parent.parent
+            return False
+
         def toc_node(entry: dict) -> tuple[Node | None, str]:
             entry_label = entry["label"]
             citation_key = _citation_label_key(entry_label)
             candidates = nodes_by_citation_key.get(citation_key, [])
+            expected_heading = entry.get("heading")
+            compound_entry = bool(re.match(r"^\d{1,4}\(", citation_key))
+
+            def heading_evidence(node: Node) -> str:
+                own = node.heading or node.text
+                if compound_entry and node.parent is not None:
+                    parent = node.parent.heading or node.parent.text
+                    return " ".join(value for value in (parent, own) if value)
+                return own
+
+            def supports_heading(node: Node) -> bool:
+                evidence = _norm(heading_evidence(node)).casefold()
+                expected = _norm(expected_heading or "").casefold()
+                return bool(expected) and (
+                    expected in evidence
+                    or _heading_supports(evidence, expected)
+                )
+
             exact_typography = [
                 node for node in candidates
                 if node.label.replace(" ", "") == entry_label.replace(" ", "")
@@ -2083,15 +3080,35 @@ def segment(blocks: list[dict], curation_patches: list[dict] | None = None) -> S
             # one printed occurrence and one primary body provision. Repeated
             # labels and nested clauses continue through corroborating heading
             # and order checks below.
-            if (len(candidates) == 1
+            #
+            # Count only provisions that could BE the promised section. An S7
+            # demotion leaves a clause carrying the same citation key beside the
+            # section, and counting it made `len(candidates) == 1` false, so
+            # this path was abandoned for a row that had exactly one possible
+            # answer. A demoted clause is non-citable by construction -- that is
+            # what the demotion decided -- so it can never be what a contents
+            # row promising a section refers to.
+            #
+            # This was costly. As later versions demoted more repeated labels,
+            # more contents rows stopped matching: 240 rows that had matched by
+            # plain `label` went unmatched, taking 56 instruments out of the
+            # release view. Document 140 is the plain case -- sections 2 and 3
+            # present, their rows unmatched, and exactly two demotions.
+            primary = [node for node in candidates
+                       if node.kind in {"section", "article"}]
+            if (len(primary) == 1
                     and toc_key_counts[citation_key] == 1
-                    and candidates[0].kind in {"section", "article"}):
+                    and (not mixed_numbering_entry(entry)
+                         and not under_roman_section_division(primary[0])
+                         or _heading_supports(
+                             primary[0].heading or primary[0].text,
+                             expected_heading,
+                         ))):
                 method = "label" if exact_typography else "label_typography"
-                return candidates[0], method
-            expected_heading = entry.get("heading")
+                return primary[0], method
             exact_heading_matches = [
                 node for node in candidates
-                if _heading_lead(node.heading or node.text)
+                if _heading_lead(heading_evidence(node))
                    == _heading_lead(expected_heading)
             ]
             if len(exact_heading_matches) == 1:
@@ -2101,7 +3118,7 @@ def segment(blocks: list[dict], curation_patches: list[dict] | None = None) -> S
                 return node, method
             heading_matches = [
                 node for node in candidates
-                if _heading_supports(node.heading or node.text, expected_heading)
+                if supports_heading(node)
             ]
             if len(heading_matches) == 1:
                 node = heading_matches[0]
@@ -2184,6 +3201,22 @@ def segment(blocks: list[dict], curation_patches: list[dict] | None = None) -> S
             }
             candidates = [node for node in candidates
                           if id(node) not in used_node_ids]
+            # In a Roman SECTION document the TOC's global display index and
+            # the body's local child label are different numbering systems.
+            # Source order alone cannot bridge them: doing so linked TOC 10 to
+            # an unrelated local section 10 in observation 4725.  Preserve the
+            # ordinary omitted-heading recovery elsewhere, but require actual
+            # heading evidence in this mixed-numbering regime.
+            if roman_section_division_seen:
+                candidates = [
+                    node for node in candidates
+                    if ((not mixed_numbering_entry(resolved)
+                         and not under_roman_section_division(node))
+                        or _heading_supports(
+                            node.heading or node.text,
+                            resolved.get("heading"),
+                        ))
+                ]
             # Bounded order may recover an omitted/weakly-headed rule only in
             # a clause sequence. It must not use an incidental clause nested
             # between two top-level sections to manufacture a section match.
@@ -2196,6 +3229,139 @@ def segment(blocks: list[dict], curation_patches: list[dict] | None = None) -> S
             if len(candidates) == 1:
                 resolved["node"] = candidates[0]
                 resolved["method"] = "label_order"
+
+        # A consolidated statute may preserve an omitted/repealed section only
+        # in its printed contents.  That is a lifecycle fact, not missing body
+        # text.  Materialise it only from a separately recorded assertion whose
+        # entry identity and rendered source coordinates still match this exact
+        # parser run.  The resulting citable node has an operation='omitted'
+        # version and no invented operative text.
+        disposition_by_key = {
+            (int(item["source_block_id"]),
+             _citation_label_key(item["printed_label"])): item
+            for item in toc_dispositions
+        }
+
+        def disposition_word(value: str | None) -> str | None:
+            match = re.match(
+                r"^\s*(?:\d+\s*)?[\[(]*\s*(omitted|repealed)\b",
+                value or "", re.I,
+            )
+            return match.group(1).casefold() if match else None
+
+        def is_disposition_placeholder(node: Node) -> bool:
+            value = _norm(" ".join((node.heading or "", node.text))).casefold()
+            return (len(value) <= 500
+                    and ("omitt" in value or "repeal" in value
+                         or bool(re.fullmatch(r"[\s\[\]()*._-]+", value))))
+
+        def section_neighbour(index: int, step: int):
+            cursor = index + step
+            while 0 <= cursor < len(resolved_entries):
+                node = resolved_entries[cursor].get("node")
+                if node is not None and node.kind in {"section", "article"}:
+                    return cursor, node
+                cursor += step
+            return None, None
+
+        def structure_between(start: int | None, stop: int | None) -> bool:
+            if start is None or stop is None:
+                return False
+            low, high = sorted((start, stop))
+            return any(
+                item.get("node") is not None
+                and item["node"].kind in {
+                    "part", "chapter", "division", "schedule", "appendix",
+                }
+                for item in resolved_entries[low + 1:high]
+            )
+
+        for index, resolved in enumerate(resolved_entries):
+            assertion = disposition_by_key.get((
+                int(resolved.get("source_block_id") or -1),
+                _citation_label_key(resolved["label"]),
+            ))
+            if assertion is None:
+                continue
+            exact_identity = (
+                resolved.get("source_block_id") == assertion.get("source_block_id")
+                and resolved.get("source_page") == assertion.get("source_page")
+                and disposition_word(resolved.get("heading"))
+                    == assertion.get("disposition")
+            )
+            if not exact_identity:
+                raise ValueError(
+                    "stale TOC disposition assertion for ordinal "
+                    f"{resolved['ordinal']} label {resolved['label']}"
+                )
+
+            node = resolved.get("node")
+            if (node is not None
+                    and (node.kind not in {"section", "article"}
+                         or not is_disposition_placeholder(node))):
+                # An identically numbered schedule row or historical footnote
+                # is not the current citable section. Keep that evidence where
+                # it is and create the explicit omitted node below.
+                node = None
+                resolved["node"] = None
+
+            if node is None:
+                prior_index, prior = section_neighbour(index, -1)
+                next_index, following = section_neighbour(index, 1)
+                prior_parent = prior.parent if prior is not None else None
+                next_parent = following.parent if following is not None else None
+                if prior_parent is next_parent and prior_parent is not None:
+                    parent = prior_parent
+                elif structure_between(prior_index, index) and next_parent is not None:
+                    parent = next_parent
+                elif structure_between(index, next_index) and prior_parent is not None:
+                    parent = prior_parent
+                elif prior_parent is not None and next_parent is None:
+                    parent = prior_parent
+                elif next_parent is not None and prior_parent is None:
+                    parent = next_parent
+                elif prior_parent is not None and next_parent is not None:
+                    before = index - int(prior_index)
+                    after = int(next_index) - index
+                    parent = prior_parent if before <= after else next_parent
+                else:
+                    parent = root
+
+                node = Node(
+                    kind="section", label=resolved["label"], depth=parent.depth + 1,
+                    first_page=resolved.get("source_page"),
+                    last_page=resolved.get("source_page"),
+                    first_block=resolved.get("source_block_id"), parent=parent,
+                )
+                prior_sibling = next((
+                    item.get("node") for item in reversed(resolved_entries[:index])
+                    if item.get("node") is not None
+                    and item["node"].parent is parent
+                ), None)
+                next_sibling = next((
+                    item.get("node") for item in resolved_entries[index + 1:]
+                    if item.get("node") is not None
+                    and item["node"].parent is parent
+                ), None)
+                if next_sibling is not None and next_sibling in parent.children:
+                    parent.children.insert(parent.children.index(next_sibling), node)
+                elif prior_sibling is not None and prior_sibling in parent.children:
+                    parent.children.insert(parent.children.index(prior_sibling) + 1, node)
+                else:
+                    parent.children.append(node)
+                resolved["node"] = node
+                resolved["method"] = "source_verified_disposition"
+
+            # A placeholder is lifecycle metadata, not operative text. Its
+            # source block remains preserved in the assignment ledger.
+            node.text_parts = []
+            node.heading = None
+            node.operation = "omitted"
+            node.amendment_note = _norm(assertion["printed_heading"])
+            node.amended_by_id = assertion.get("amending_instrument_id")
+            node.toc_disposition_assertion_id = int(assertion["id"])
+            applied_disposition_ids.add(int(assertion["id"]))
+            resolved["method"] = "source_verified_disposition"
         represented_labels = {
             entry["label"] for entry in resolved_entries
             if entry["kind"] != "schedule"
@@ -2208,7 +3374,10 @@ def segment(blocks: list[dict], curation_patches: list[dict] | None = None) -> S
         # schedule/rule row may retain its full heading in node text.
         for entry in resolved_entries:
             node = entry["node"]
-            if (node is not None and node.kind in {"section", "article"}
+            if (node is not None
+                    and (node.kind in {"section", "article"}
+                         or (node.kind == "subsection"
+                             and re.match(r"^\d{1,4}\(", entry["label"])))
                     and not node.heading and entry.get("heading")):
                 node.heading = _norm(entry["heading"])
         unresolved_labels = {
@@ -2222,6 +3391,28 @@ def segment(blocks: list[dict], curation_patches: list[dict] | None = None) -> S
             entry for entry in resolved_entries
         ]
         seg.toc = {k: v for k, v in toc.items() if k not in sched_entries}
+    if len(applied_disposition_ids) != len(toc_dispositions):
+        missing_assertions = [item for item in toc_dispositions
+                              if int(item["id"]) not in applied_disposition_ids]
+        available = [
+            {
+                "assertion": int(item["id"]),
+                "expected": (item["toc_entry_ordinal"], item["printed_label"]),
+                "same_label_entries": [
+                    (entry["ordinal"], entry["label"],
+                     entry.get("source_block_id"), entry.get("heading"))
+                    for entry in seg.toc_entries
+                    if _citation_label_key(entry["label"])
+                       == _citation_label_key(item["printed_label"])
+                ],
+            }
+            for item in missing_assertions
+        ]
+        raise ValueError(
+            "stale or unmatched TOC disposition assertions were not materialised: "
+            + repr(available[:20])
+        )
+    seg.toc_dispositions_materialised = len(applied_disposition_ids)
     return seg
 
 

@@ -87,11 +87,21 @@ CHECKS = [
         "name": "adjudications-with-no-human",
         "severity": "medium",
         "why": "S7 exists to catch automatic choices. A decision made and approved by "
-               "the same program is not a review.",
-        "fix": "Sample-audit against source pages before treating the criterion as met.",
+               "the same program is not a review. The last column says whether the "
+               "decisions cite a rendered-source audit in their own evidence -- a "
+               "method that does is still machine-evidenced, but its rule has been "
+               "checked against pages a person read, and that is the difference "
+               "between an unexamined rule and a measured one.",
+        "fix": "Sample-audit against source pages before treating the criterion as "
+               "met: ./nz s7-audit --render N draws the weighted sample and renders "
+               "it; E:/nizam-data/s7-audit/RESULT.md records what reading them found.",
         "sql": """
             SELECT decided_by, resolution, count(*) AS decisions,
-                   min(decided_at)::date AS first, max(decided_at)::date AS last
+                   min(decided_at)::date AS first, max(decided_at)::date AS last,
+                   CASE WHEN bool_and(evidence ? 'sample_pages_rendered_and_read')
+                        THEN 'yes, ' || max((evidence->>'sample_pages_rendered_and_read')::int)
+                             || ' pages'
+                        ELSE 'no' END AS source_audited
               FROM segmentation_structural_adjudication
              GROUP BY decided_by, resolution
             HAVING decided_by NOT ILIKE '%@%' AND decided_by NOT ILIKE '%human%'
@@ -140,15 +150,47 @@ CHECKS = [
     {
         "name": "document-with-no-instrument",
         "severity": "high",
-        "why": "An active document nothing points at is text the corpus cannot cite.",
-        "fix": "Segment it, or record why it carries no instrument.",
+        "why": "An active document nothing points at is text the corpus cannot cite. "
+               "A document whose source was reviewed and found to carry no citable "
+               "structure -- a repeal placeholder, a cadre table -- is excluded, "
+               "because the reason is recorded and checkable; what this reports is "
+               "the ones nobody has explained.",
+        "fix": "Segment it, or record why it carries no instrument: an "
+               "extraction_assertion naming the document and the reason its source "
+               "has no provisions (see tools/evidence/declare-uncitable-documents.sql).",
         "sql": """
             SELECT d.id AS document_id, d.lane, d.page_count, d.char_count
               FROM document d
              WHERE d.is_active
                AND NOT EXISTS (SELECT 1 FROM instrument i
                                 WHERE i.document_id = d.id AND i.is_active)
+               AND NOT EXISTS (SELECT 1 FROM extraction_assertion a
+                                WHERE a.sha256 = d.sha256
+                                  AND a.kind = 'source_content_confirmed'
+                                  AND (a.detail ->> 'document_id')::bigint = d.id
+                                  AND a.detail ->> 'purpose' IN (
+                                        'no-operative-text',
+                                        'table-document-no-provisions'))
              ORDER BY d.char_count DESC""",
+    },
+    {
+        "name": "acquisition-exception-with-no-decision",
+        "severity": "medium",
+        "why": "A catalogued item that did not land, was not recovered, and carries "
+               "no declared reason is indistinguishable from work nobody has done. "
+               "The attempt ledger says what happened on each fetch; only an "
+               "acquisition_exception says that no further fetch is expected to "
+               "succeed, and why.",
+        "fix": "Retry it with nizam.workers.recover_acquisition, or declare it: "
+               "see tools/evidence/declare-acquisition-exceptions.sql, which reads "
+               "its evidence from the attempt ledger rather than asserting it.",
+        "sql": """
+            SELECT source_id,
+                   coalesce(error_code, '<none>') AS error_code,
+                   count(*) AS items,
+                   max(attempts) AS attempts_so_far
+              FROM v_acquisition_unresolved
+             GROUP BY 1, 2 ORDER BY items DESC""",
     },
     {
         "name": "provision-with-nothing-at-all",

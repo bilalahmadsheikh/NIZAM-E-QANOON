@@ -11,6 +11,7 @@ import argparse
 import json
 import re
 import time
+from collections import Counter
 
 from nizam.storage import legal_write
 from nizam.storage.db import connect
@@ -21,9 +22,38 @@ METHOD = "nizam.multi_expression_materializer/1"
 # These have an independently citable outer instrument followed by appendices.
 PRIMARY_DOCUMENTS = {1106, 3389, 3553, 3696, 3912, 4434, 4452}
 # These are editorial compilations, not themselves legal instruments.
-COMPILATION_DOCUMENTS = {3423, 3949, 4497}
+COMPILATION_DOCUMENTS = {3423, 3949, 4440, 4497}
 REVIEWED_DOCUMENTS = PRIMARY_DOCUMENTS | COMPILATION_DOCUMENTS
 REJECTED_EDITORIAL_BOUNDARIES = {893415}
+# The package contents is outside each legal expression span.  If the parser
+# tries to discover a second contents list inside these spans, the opening run
+# of enacted sections is itself mistaken for contents and discarded.  This is
+# a source-reviewed property of the package, not a general parser heuristic.
+NO_LOCAL_CONTENTS_DOCUMENTS = {4440}
+# The Finance Act's contents embeds the new Tobacco Act's own section list, and
+# the Act itself is inserted before the Finance Act resumes its appendices.
+# Both legal expressions therefore own disjoint immutable spans.  These exact
+# endpoints partition all 633 blocks and were checked against rendered pages
+# 1, 14, 17 and 18; no text is copied or discarded.
+REVIEWED_EXPRESSION_SPANS = {
+    4452: {
+        0: [(816322, 816330), (816332, 816490), (816545, 816954)],
+        1: [(816331, 816331), (816491, 816544)],
+    },
+}
+FORCED_EXPRESSION_CONTENTS = {(4452, 1)}
+SOURCE_REVIEW_DETAILS = {
+    4452: {
+        "reviewed_pages": [1, 14, 17, 18],
+        "reviewed_on": "2026-09-12",
+        "source_facts": [
+            "page_1_nests_the_tobacco_act_contents_under_finance_act_section_15",
+            "page_14_prints_finance_act_section_15_then_tobacco_act_section_1",
+            "page_17_ends_the_tobacco_act_at_section_9",
+            "page_18_resumes_finance_act_appendix_I_with_section_3_cross_reference",
+        ],
+    },
+}
 
 
 def _title_tokens(value: str) -> set[str]:
@@ -140,13 +170,20 @@ def _load(document_id: int,observation_id: int | None = None) -> tuple[dict, lis
         already_materialized = cur.fetchone()[0] > 0
         if already_materialized:
             cur.execute("""
-                SELECT c.id::text,c.start_block_id,c.source_page,c.detected_title,
-                       c.detected_kind,c.detected_year,c.detected_number,c.confidence,
-                       c.method,c.evidence
+                SELECT coalesce(c.id::text,m.evidence->>'candidate_id'),
+                       m.start_block_id,b.page_no,m.detected_title,
+                       m.detected_kind::text,m.detected_year,m.detected_number,
+                       coalesce(c.confidence,1.0),m.method,
+                       jsonb_build_object(
+                         'manifest_id',m.id,
+                         'manifest_evidence',m.evidence,
+                         'candidate_evidence',c.evidence)
                   FROM instrument_expression_manifest m
-                  JOIN segmentation_boundary_candidate c
+                  JOIN text_block b ON b.id=m.start_block_id
+                  LEFT JOIN segmentation_boundary_candidate c
                     ON c.id=(m.evidence->>'candidate_id')::uuid
                  WHERE m.source_observation_id=%s AND m.is_active
+                   AND m.expression_role='embedded'
                  ORDER BY m.expression_ordinal
             """, (outer["source_observation_id"],))
         else:
@@ -275,7 +312,12 @@ def prepare(document_id: int,observation_id: int | None = None) -> tuple[list, l
             # blocks 886064 onward are editorial apparatus for later items.
             if spec["title"].startswith("Police Service of Pakistan"):
                 end = min(end,position[886063])
-        span = blocks[spec["start"]:end + 1]
+        reviewed_spans = REVIEWED_EXPRESSION_SPANS.get(document_id, {}).get(ordinal)
+        span_ranges = ([(position[first], position[last])
+                        for first,last in reviewed_spans]
+                       if reviewed_spans else [(spec["start"], end)])
+        span = [block for first,last in span_ranges
+                for block in blocks[first:last + 1]]
         if not span:
             raise ValueError(f"empty source span for expression {ordinal}")
         inst,seg = build(
@@ -283,7 +325,10 @@ def prepare(document_id: int,observation_id: int | None = None) -> tuple[list, l
             outer["source_id"],spec["title"],
             str(spec["year"] or outer["meta_year"] or ""),outer["source_url"],
             span,as_at,patches,expression_ordinal=ordinal,
-            expression_role=spec["role"])
+            expression_role=spec["role"],
+            detect_contents=document_id not in NO_LOCAL_CONTENTS_DOCUMENTS,
+            force_opening_contents=(document_id, ordinal)
+                in FORCED_EXPRESSION_CONTENTS)
         if not inst.provisions:
             raise ValueError(
                 f"expression {ordinal} ({spec['title']!r}, blocks "
@@ -300,7 +345,17 @@ def prepare(document_id: int,observation_id: int | None = None) -> tuple[list, l
             "span_block_count": len(span),
             "span_first_page": span[0]["page_no"],
             "span_last_page": span[-1]["page_no"],
+            "source_spans": [
+                {
+                    "start_block_id": blocks[first]["id"],
+                    "end_block_id": blocks[last]["id"],
+                    "first_page": blocks[first]["page_no"],
+                    "last_page": blocks[last]["page_no"],
+                }
+                for first,last in span_ranges if first <= last
+            ],
         }
+        evidence.update(SOURCE_REVIEW_DETAILS.get(document_id, {}))
         manifests.append({
             "expression_ordinal": ordinal,
             "expression_role": spec["role"],
@@ -313,6 +368,13 @@ def prepare(document_id: int,observation_id: int | None = None) -> tuple[list, l
             "review_basis": "source_verified",
             "method": METHOD,
             "evidence": evidence,
+            "spans": [
+                {
+                    "start_block_id": blocks[first]["id"],
+                    "end_block_id": blocks[last]["id"],
+                }
+                for first,last in span_ranges if first <= last
+            ],
         })
     return insts,segs,manifests,blocks
 
@@ -345,9 +407,28 @@ def main() -> int:
                 "last_page": max(row["last_page"] for row in inst.provisions
                                  if row["last_page"] is not None),
                 "provisions": len(inst.provisions),
+                "provision_kinds": dict(sorted(Counter(
+                    row["kind"] for row in inst.provisions
+                ).items())),
+                "top_level_citable_labels": [
+                    row["label"] for row in inst.provisions
+                    if row["parent_key"] is None
+                    and row["kind"] in {"section", "article"}
+                ],
                 "s7_candidates": len(inst.structural_decisions),
                 "toc_found": seg.toc_found,
                 "toc_missing": len(seg.missing) if seg.toc else 0,
+                "toc_missing_labels": seg.missing if seg.toc else [],
+                "toc_unmatched_entries": [
+                    {
+                        "ordinal": entry["ordinal"],
+                        "label": entry["label"],
+                        "heading": entry["heading"],
+                        "kind": entry["kind"],
+                        "source_page": entry.get("source_page"),
+                    }
+                    for entry in seg.toc_entries if entry.get("node") is None
+                ],
                 "unassigned_blocks": sum(1 for row in inst.block_roles
                                          if row[1] == "unassigned"),
             } for inst,seg in zip(insts,segs)],
