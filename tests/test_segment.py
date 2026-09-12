@@ -315,8 +315,23 @@ def test_bracketed_starred_omission_without_full_stop_is_a_section():
         "2[ 31***]",
         "32. Following. Operative text.",
     ))
-    assert [node.label for node in seg.root.children
-            if node.kind == "section"] == ["30", "31", "32"]
+    sections = [node for node in seg.root.children if node.kind == "section"]
+    # What this test is for: "2[ 31***]" -- a starred omission with no full stop
+    # after the number -- opens section 31.
+    assert {node.label for node in sections} == {"30", "31", "32"}
+    assert [node.label for node in sections].count("31") == 1
+
+    # Order is deliberately NOT asserted. This fixture's "CONTENTS" is not
+    # detected as one, so its three contents lines stay in the body and collide
+    # with the three real openers. Canonical selection now prefers the
+    # occurrence that carries law over the one that merely repeats the heading,
+    # so section 30 resolves to the block holding "Operative text." rather than
+    # to the bare contents line -- which reorders root.children and is the
+    # point. Across the corpus that moves 440 citations in 72 documents off a
+    # heading and onto the provision; tools/measure_canonical_choice.py counts
+    # it, because the segmentation fingerprint cannot see it.
+    thirty = next(node for node in sections if node.label == "30")
+    assert "Operative text." in "".join(thirty.text_parts)
 
 
 def test_fused_amendment_marker_does_not_hide_omitted_heading():

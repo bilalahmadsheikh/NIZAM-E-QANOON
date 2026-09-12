@@ -2939,15 +2939,44 @@ def segment(blocks: list[dict], curation_patches: list[dict] | None = None,
         for (_, key), nodes in sibling_groups.items():
             if len(nodes) < 2:
                 continue
+            # Heading agreement alone picks the wrong occurrence whenever a
+            # document prints its section headings twice -- once in a list and
+            # once above the law. The list entry IS the heading, so it scores
+            # 1.0; the real section carries the operative text and often no
+            # heading at all, so it scores 0.0 and is demoted. The University of
+            # Karachi Ordinance loses section after section that way: "48.
+            # Repeal and savings." on page 31 is kept and "48. (1) The
+            # University of Karachi Ordinance, 1962 ..." on page 45 -- the
+            # provision itself -- becomes a clause.
+            #
+            # A unit carrying no law is not the section, whatever its heading
+            # says and whether or not the document prints a contents list. Rank
+            # on that first in BOTH branches below; the existing signals decide
+            # among units that do carry law, and source order breaks ties.
+            def carries_law(candidate: Node) -> int:
+                # "Text is non-empty" does not separate them: a contents line
+                # "48. Repeal and savings." parses with rest "Repeal and
+                # savings.", so the heading IS its whole text. What separates
+                # them is text BEYOND the heading.
+                if candidate.children:
+                    return 1
+                body = _norm("".join(candidate.text_parts)).casefold()
+                head = _norm(candidate.heading or "").casefold()
+                if head and body.startswith(head.rstrip(". ")):
+                    body = body[len(head.rstrip(". ")):]
+                return int(len(body.strip(" .—–-")) >= 20)
+
             expected = _norm(toc.get(key, "")).casefold()
             if expected:
                 def heading_score(candidate: Node) -> float:
                     actual = _norm(candidate.heading or "").casefold()
                     return (SequenceMatcher(None, expected, actual).ratio()
                             if actual else 0.0)
+
                 canonical = max(
                     enumerate(nodes),
-                    key=lambda pair: (heading_score(pair[1]), -pair[0]))[1]
+                    key=lambda pair: (carries_law(pair[1]),
+                                      heading_score(pair[1]), -pair[0]))[1]
             else:
                 # With no contents list, a source-printed ``Rule 678.`` is
                 # stronger identity evidence than a bare ``678.`` previously
@@ -2966,9 +2995,13 @@ def segment(blocks: list[dict], curation_patches: list[dict] | None = None,
                         re.I,
                     )))
 
+                # Same first rank as the contents branch: a unit carrying no
+                # law is not the section, whether or not the document prints a
+                # contents list to say so.
                 canonical = max(
                     enumerate(nodes),
-                    key=lambda pair: (explicit_unit_score(pair[1]), -pair[0]),
+                    key=lambda pair: (carries_law(pair[1]),
+                                      explicit_unit_score(pair[1]), -pair[0]),
                 )[1]
             if key in label_nodes:
                 label_nodes[key] = canonical
@@ -2988,6 +3021,16 @@ def segment(blocks: list[dict], curation_patches: list[dict] | None = None,
                         heading_score(node) if expected else None),
                     "canonical_heading_score": (
                         heading_score(canonical) if expected else None),
+                    # Whether each occurrence carries text beyond its own
+                    # heading. This is the signal canonical selection now ranks
+                    # on, and a reviewer needs it: where the kept occurrence
+                    # carries law and the demoted one is a bare repeat of the
+                    # heading, the heading SCORES will be inverted -- the
+                    # heading line matches the contents perfectly and the
+                    # provision often has no heading at all -- so a rule reading
+                    # only those scores would call the right choice wrong.
+                    "canonical_carries_law": bool(carries_law(canonical)),
+                    "candidate_carries_law": bool(carries_law(node)),
                 })
                 node.kind = "clause"
                 repeated_labels_demoted += 1

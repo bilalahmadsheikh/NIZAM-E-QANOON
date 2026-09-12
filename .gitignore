@@ -172,3 +172,9 @@ overlay-*.png
 .probe_bare.sh
 .watch4.sh
 .tail.sql
+.fp_law*
+.probe_law*.sh
+.watch[0-9]*.sh
+.canon*.txt
+.canonoff.sh
+.tf.py

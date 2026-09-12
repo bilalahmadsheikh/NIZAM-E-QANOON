@@ -267,6 +267,8 @@ def build(document_id: int, sha256: str, source_observation_id: int,
                 "canonical_heading": canonical.heading,
                 "candidate_heading_score": decision["candidate_heading_score"],
                 "canonical_heading_score": decision["canonical_heading_score"],
+                "candidate_carries_law": decision["candidate_carries_law"],
+                "canonical_carries_law": decision["canonical_carries_law"],
             },
         })
 

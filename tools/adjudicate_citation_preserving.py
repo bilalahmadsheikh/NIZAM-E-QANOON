@@ -119,6 +119,22 @@ SELECT c.id::text,
         OR ((c.evidence->>'toc_heading') IS NULL
             AND EXISTS (SELECT 1 FROM instrument_toc_entry e
                          WHERE e.instrument_id = c.instrument_id))
+        -- ... or the demoted unit carries no law at all: no children, and no
+        -- text beyond a repeat of its own heading. Demoting a bare heading line
+        -- cannot remove a provision's text from citability, so this is stronger
+        -- than heading agreement rather than weaker.
+        --
+        -- It has to be stated separately because the heading SCORES invert in
+        -- exactly this case: the heading line matches the printed contents
+        -- perfectly while the provision beside it often has no heading at all,
+        -- so the first test above reads the correct choice as the wrong one.
+        -- The University of Karachi Ordinance is the case -- "48. Repeal and
+        -- savings." against "48. (1) The University of Karachi Ordinance, 1962
+        -- ...". Document 16 is NOT admitted here and still needs a reading:
+        -- both of its occurrences carry law ("It shall come into force at once"
+        -- against the omission of section 9-A), so this branch never fires.
+        OR ((c.evidence->>'canonical_carries_law')::boolean IS TRUE
+            AND (c.evidence->>'candidate_carries_law')::boolean IS FALSE)
    )
  ORDER BY c.document_id, c.source_page
 """
