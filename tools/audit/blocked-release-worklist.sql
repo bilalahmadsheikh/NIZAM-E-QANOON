@@ -270,10 +270,16 @@ SELECT a.document_id, a.printed_label, a.page_no, a.heading_block_len AS hlen,
 \echo '=== FINAL: release yield of the layout-aware parser repair ==='
 -- gaps the repair would close: class a (relink), class b, class d (demoted),
 -- and class e whose promised heading is printed in the body with text after it.
+-- What a corrected parse could close. Deliberately NOT included: a gap whose
+-- promised heading is printed in the body but whose promised NUMBER is not
+-- printed beside it. That set looks closable and is not -- document 169 prints
+-- "Amendment of West Pakistan Act No. XXXII of 1958." as the marginal note of
+-- section FIVE, and its contents lists that heading at 6 only because rows 4
+-- and 5 are a duplicated line. Reading page 3 settled it: the Act ends at
+-- section 5. Counting heading matches alone claimed 593 closable gaps where
+-- requiring the number gives 123.
 CREATE TEMP TABLE _closable AS
  SELECT toc_entry_id FROM _gapc WHERE klass IN ('a','b','d')
- UNION
- SELECT a.toc_entry_id FROM _after a WHERE a.next_two_blocks_chars >= 120
  UNION
  SELECT f.toc_entry_id FROM _found f WHERE f.block_carries_the_number;
 ANALYZE _closable;

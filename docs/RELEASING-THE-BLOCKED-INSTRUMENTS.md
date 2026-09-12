@@ -680,3 +680,67 @@ corpus reaching 4,213 of 4,695 released with both intact is the honest ceiling
 of machine work; the last 482 are a reading task, and 1,450 pages for 832 gaps
 across 224 documents are already rendered and hashed under
 `.artifacts/toc-gap-review/` for it.
+
+---
+
+# Final correction, and the honest ceiling
+
+Two more rows of the yield table rested on the same kind of loose match, and
+both are now tightened. **Every number in this document above this line that
+came from the first version of the script is too high.**
+
+## R1 (relink) is exhausted, not worth 19
+
+184 class-a gaps remain across 40 instruments:
+
+| | gaps |
+|---|---:|
+| several sections share the citation key | 65 |
+| several pending entries share the key | 115 |
+| the section already answers another contents row | 52 |
+| **unambiguous** | **4** |
+
+And all four of those are false matches, because `_citation_label_key` strips
+dots, so `2.1` and `21` are the same citation:
+
+| document | contents prints | matched body label |
+|---|---|---|
+| 3912 | `21`, `22` | `2.1`, `2.2` |
+| 4347 | `2.5.5` | `25.5` |
+| 4416 | `1.1` (p6) | `11` (p66) |
+
+`relink_toc_typography.py` plans zero links and is right to. R1 is done.
+
+## The closable set was counting heading matches
+
+`_closable` included every gap whose promised heading appears in the body with
+substantive text after it. That is the test **document 169 disproved**: it
+prints `Amendment of West Pakistan Act No. XXXII of 1958.` as the marginal note
+of section *five*, and its contents lists that heading at 6 only because rows 4
+and 5 are a duplicated line. Counting heading matches alone gives 593 closable
+gaps; requiring the promised **number** beside the heading gives **123**.
+
+The script now requires the number, with the reasoning in a comment.
+
+## Where it actually lands
+
+| | instruments |
+|---|---:|
+| blocked | **703** |
+| freed by **every** machine repair available | **113** |
+| **needs a person to read a page** | **590** |
+| ... of those, blocked by a single unit | 215 |
+| documents behind the remaining gaps | 387 |
+
+**Ceiling of machine work: 3,992 + 113 = 4,105 of 4,695 expressions.**
+
+Successive honest measurements moved that ceiling 4,266 → 4,213 → **4,105**.
+Every step down came from finding a test that matched more than it proved, and
+in each case the looser number was the flattering one. The three that were wrong
+— loose class d, heading-without-number, and dot-stripped citation keys — are
+now fixed in the script and carry their reasoning inline.
+
+The remaining 590 are a reading task, not an engineering one. 1,450 pages
+covering 832 gaps in 224 documents are rendered and hashed under
+`.artifacts/toc-gap-review/`, and `tools/merge_gap_render_manifest.py` keeps the
+manifest whole.
