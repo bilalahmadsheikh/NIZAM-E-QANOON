@@ -708,6 +708,12 @@ _AMEND_NOTE = re.compile(
     re.I)
 
 
+# A contents row that is itself a disposition placeholder:
+# "4 [Repealed.]", "56 [Omitted]", "93 Repealed."
+_DISPOSITION_ROW = re.compile(
+    r"^\s*[\[(]?\s*(?:omitted|deleted|repealed)\b", re.I)
+
+
 def _twocol_run(blocks: list[dict],
                 dotted: set[str] | None = None) -> list[tuple[int, int, str, str]]:
     """Contents entries printed as a two-column table, if there is a run of them.
@@ -772,7 +778,22 @@ def _twocol_run(blocks: list[dict],
 
     if dotted is None:
         dotted = {lbl for _, _, lbl, _ in _section_numbers(blocks)}
-    labels = {lbl for _, _, lbl, _ in best}
+    # A contents row that IS a disposition placeholder -- "4 [Repealed.]",
+    # "56 [Omitted]" -- cannot corroborate against the body's dotted numbering,
+    # because the whole point of it is that no such section is in the body. It
+    # therefore has no business in the denominator of a test that asks how much
+    # of this list the body confirms: keeping it there penalises a contents list
+    # for being accurate about its own repeals.
+    #
+    # The Registration Act, 1908 is the case. Its five-page contents scores
+    # 89/99 = 0.899 against a 0.90 floor and is rejected by one entry; five of
+    # its rows are [Repealed.] placeholders, and without them it is 86/94 =
+    # 0.9149. Rejecting it cost the whole Act -- toc_found False, and the body
+    # then swallowed into a schedule under Part XV with no citable section at
+    # all.
+    placeholders = {lbl for _, _, lbl, head in best
+                    if _DISPOSITION_ROW.match(head)}
+    labels = {lbl for _, _, lbl, _ in best} - placeholders
     if not labels or len(labels & dotted) / len(labels) < _TWOCOL_MIN_CORROBORATION:
         return []
     return best

@@ -45,11 +45,24 @@ def main() -> int:
         if b == a:
             continue
         moved.append(doc)
-        # The gate counts unlinked contents rows; fewer is better.
-        if a["unlinked"] < b["unlinked"] or (a["unlinked"] == b["unlinked"]
-                                             and a["demoted"] < b["demoted"]):
+        # `missing_toc` is -1 when the parser found NO contents list at all, and
+        # a document with no contents has no unlinked rows by construction. So
+        # "unlinked 0 -> 3" can mean a contents list was FOUND with three rows
+        # unresolved, which is the opposite of a regression, and comparing the
+        # two numbers directly calls it one.
+        #
+        # The Registration Act, 1908 is the case: its five-page contents went
+        # undetected, the whole Act was swallowed into a schedule, and it scored
+        # a perfect 0 unlinked while holding no citable section at all. Finding
+        # the contents took it to 99 entries, 96 matched, 3 unresolved -- and
+        # this comparison flagged it "REGRESSED" on the 0 -> 3.
+        found_contents = b["missing_toc"] < 0 <= a["missing_toc"]
+        lost_contents = a["missing_toc"] < 0 <= b["missing_toc"]
+        if found_contents or (a["unlinked"] < b["unlinked"]) or (
+                a["unlinked"] == b["unlinked"] and a["demoted"] < b["demoted"]):
             better.append((doc, b, a))
-        elif a["unlinked"] > b["unlinked"] or a["stranded"] > b["stranded"]:
+        elif lost_contents or a["unlinked"] > b["unlinked"] or (
+                a["stranded"] > b["stranded"]):
             worse.append((doc, b, a))
 
     print(f"documents whose output moved: {len(moved)}")
