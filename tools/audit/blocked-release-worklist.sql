@@ -26,26 +26,40 @@ SET work_mem='256MB';
 -- ── contents-gap classes ────────────────────────────────────────────────────
 CREATE TEMP TABLE _prov AS
  SELECT p.instrument_id, p.kind::text AS kind,
+        -- Whether the node hangs directly off the instrument, a part or a
+        -- chapter. Class d below needs it: see the comment there.
+        (par.id IS NULL OR par.kind::text IN ('part','chapter')) AS top_level,
         regexp_replace(lower(p.label),'[^a-z0-9]','','g') AS lk,
         regexp_replace(lower(coalesce(p.heading,'')),'[^a-z0-9]','','g') AS hk
    FROM provision p JOIN instrument i ON i.id=p.instrument_id
                                      AND i.is_active AND i.duplicate_of IS NULL
+   LEFT JOIN provision par ON par.id=p.parent_id AND par.is_active
   WHERE p.is_active;
 CREATE INDEX ON _prov (instrument_id, lk);
 CREATE INDEX ON _prov (instrument_id, hk);
 ANALYZE _prov;
 CREATE TEMP TABLE _gapc AS
 SELECT g.instrument_id, g.toc_entry_id,
+  -- CLASS D IS NARROWER THAN IT LOOKS, and the first version of this script
+  -- got it wrong by a factor of ten. "The label exists somewhere in the tree as
+  -- a non-section" matches almost any gap: a contents row promising section 5
+  -- finds subsection (5) of section 3, or definition clause (5) of section 2.
+  -- Document 876's "section 10" matched `(10) "Patron" means the Patron of the
+  -- University`. Measured over the queue: 346 gaps match that loose test and
+  -- ZERO of them have a non-section whose HEADING is the promised one.
+  -- So require the match to be structurally plausible -- a node hanging off the
+  -- instrument, a part or a chapter, where a section would hang -- and class d
+  -- falls from 346 to 35 in 13 documents.
   CASE WHEN m.sec>0 THEN 'a' WHEN g.hk<>'' AND m.byhead=1 THEN 'b'
        WHEN g.hk<>'' AND m.byhead>1 THEN 'c'
-       WHEN m.anylbl>0 THEN 'd' ELSE 'e' END AS klass
+       WHEN m.anylbl_top>0 THEN 'd' ELSE 'e' END AS klass
 FROM (SELECT toc_entry_id, instrument_id,
              regexp_replace(lower(printed_label),'[^a-z0-9]','','g') AS lk,
              regexp_replace(lower(coalesce(printed_heading,'')),'[^a-z0-9]','','g') AS hk
         FROM v_toc_gap_pending) g
 LEFT JOIN LATERAL (
   SELECT count(*) FILTER (WHERE p.lk=g.lk AND p.kind IN ('section','article')) AS sec,
-         count(*) FILTER (WHERE p.lk=g.lk) AS anylbl,
+         count(*) FILTER (WHERE p.lk=g.lk AND p.top_level) AS anylbl_top,
          count(*) FILTER (WHERE g.hk<>'' AND p.hk=g.hk) AS byhead
     FROM _prov p WHERE p.instrument_id=g.instrument_id
                    AND (p.lk=g.lk OR (g.hk<>'' AND p.hk=g.hk))) m ON true;

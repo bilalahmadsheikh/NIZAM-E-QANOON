@@ -601,3 +601,82 @@ This is not a release blocker and the gate does not test it. It is recorded
 because it is the one measure that tracks the project's actual requirement —
 every law citable at the number its source prints — and the gap queue does not
 see it.
+
+---
+
+# Correction: class d was overstated tenfold, and this document said so
+
+The yield table near the top credits the "layout repair" with 161 instruments on
+the strength of **464 class-d gaps** — "the label exists, but only as a demoted
+clause". That number was wrong, and the error was in the test, not the data.
+
+`label exists somewhere in the tree as a non-section` matches almost any gap. A
+contents row promising section 5 finds subsection (5) of section 3, or
+definition clause (5) of section 2. Measured:
+
+| | gaps |
+|---|---:|
+| match the loose test | 346 |
+| ... where the non-section's **heading** is the promised heading | **0** |
+| ... where the non-section hangs off the instrument, a part or a chapter | 35 |
+| **class d, actually** | **35, in 13 documents** |
+
+Worked examples of the false positives:
+
+| document | contents promises | the loose test matched |
+|---|---|---|
+| 876 | `10. Finance and Planning Committee` | `(10) "Patron" means the Patron of the University` |
+| 1034 | `5. Constitution of the Board` | `(5) If a question arises whether any matter is of policy…` |
+| 141 | `2. Amendment of section 19…` | `(2) The Committee on Public Accounts shall scrutinize…` |
+
+**Zero of 346** have a non-section carrying the promised heading. So the
+"printed law demoted to a clause" story — true of documents 173, 176, 1248 and
+3880, which were read and fixed — does **not** describe what remains in the
+queue. It described the documents it was found in.
+
+`tools/audit/blocked-release-worklist.sql` now requires the match to be
+structurally plausible, and carries this reasoning in a comment so the next
+person does not re-derive it.
+
+## Yields, corrected
+
+| repair | frees |
+|---|---:|
+| relink class-a gaps (overlay, no replay) | 19 |
+| `found_elsewhere` class-b | 2 |
+| reparent `nesting` S7 | 12 |
+| parser repair, class-d + inverted S7 | 36 |
+| *cumulative mechanisable* | **88** |
+| **needs a person to read a page** | **615** |
+
+| | instruments |
+|---|---:|
+| blocked | 703 |
+| freed by every mechanisable repair | **221** |
+| **still blocked, needing a person** | **482** |
+
+Ceiling without human reading: **3,992 + 221 = 4,213** of 4,695.
+
+## What this means for "production ready"
+
+The remaining queue is **not** mostly machine-fixable, and saying otherwise
+would be the comfortable answer rather than the true one. It is:
+
+* **482 instruments** whose contents rows need a page read to say whether the
+  source omits the section or the parser missed it, and
+* **1,533 S7 units**, of which the completed rendered-source audit already
+  established that no aggregate can settle the residue.
+
+Both are gated on a human by deliberate design. Migration 0042 requires
+`absent_in_source` to carry `human_page_review: true` and a render artifact, and
+says why in its own text: *"a human page-reading result, not a parser
+inference… so a future bulk tool cannot silently manufacture these decisions."*
+`v_structural_adjudication_pending` opens only on `accept_non_citable`, so no
+`restore_citable` or `reparent` row clears the gate without the tree actually
+being repaired.
+
+Those two rules are what stop the audit going green over uncitable law. The
+corpus reaching 4,213 of 4,695 released with both intact is the honest ceiling
+of machine work; the last 482 are a reading task, and 1,450 pages for 832 gaps
+across 224 documents are already rendered and hashed under
+`.artifacts/toc-gap-review/` for it.
