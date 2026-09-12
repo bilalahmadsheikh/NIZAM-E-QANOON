@@ -2289,9 +2289,22 @@ def segment(blocks: list[dict], curation_patches: list[dict] | None = None,
                 label, toc, seen, rest
             ).replace(" ", "")
             expected_heading = toc.get(table_key)
+            # The promised heading is not always run into the body text. Where
+            # a gazette sets marginal headings, it is a separate block BEFORE
+            # the numbered one, which `previous_heading_context` exists to
+            # collect -- and which the schedule branch a few lines above already
+            # consults. Asking only `rest` therefore fails for exactly the
+            # documents that print headings in the margin, and the whole Act
+            # after a section declaring a Table becomes rows of that Table.
+            # The Balochistan Sales Tax on Services Act is the case: section 48
+            # says "column 2 of the Table below", and sections 49 to 62 -- every
+            # one printed with its own number and marginal heading -- became
+            # clauses of section 48's subsection (2), so 41 promised sections
+            # stopped being citable.
             next_promised_section = (
                 _toc_label_is_next(table_key, toc, seen)
-                and _heading_supports(rest, expected_heading)
+                and (_heading_supports(rest, expected_heading)
+                     or _heading_supports(heading_context, expected_heading))
             )
             if next_promised_section:
                 explicit_table_owner = None

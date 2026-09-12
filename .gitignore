@@ -157,3 +157,14 @@ overlay-*.png
 
 # rendered review artifacts (evidence, not source): renders + manifests
 .review/
+.fp_tbl_*
+.tbl_docs.txt
+.diag*.py
+.diag_run.sh
+.probe_table.sh
+.watch*.sh
+.run_probe*.py
+.seg_probe.py
+.pairs.txt
+.q.sql
+.q[0-9]*.sql

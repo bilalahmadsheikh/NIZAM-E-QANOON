@@ -518,3 +518,86 @@ Balochistan Sales Tax on Services Act. Its defect is *not* the one fixed here:
 instrumenting it fires no demotion rule at all, and the tree shows **104
 subsections parented directly to a chapter** where sections should be. That is
 a third distinct defect and wants its own diagnosis.
+
+---
+
+# A second defect: a Table swallowing the rest of the Act
+
+Document 3255 was the largest remaining cluster — 82 gaps. Instrumenting it
+fired **no demotion rule at all**, and the node-kind histogram said why:
+
+```
+('subsection', 'chapter'): 104      ('section', 'chapter'): 39
+```
+
+Sections 49 to 62 were `clause`s parented to section 48's subsection (2).
+Section 48 reads *"If a person commits any offence described in column 2 of the
+Table below…"*, which makes it an `explicit_table_owner`; every later numbered
+row then becomes a clause of that table unless the row is the next section the
+contents promises **and** its own text supports the printed heading:
+
+```python
+next_promised_section = (
+    _toc_label_is_next(table_key, toc, seen)
+    and _heading_supports(rest, expected_heading)      # <- only `rest`
+)
+```
+
+That is the same blind spot as the first defect. Where a gazette sets marginal
+headings, the heading is a **separate block before the numbered one** — which
+`previous_heading_context` exists to collect, and which the schedule branch
+*three lines above* already consults. So the fix is the adjacent code's own
+pattern:
+
+```python
+    and (_heading_supports(rest, expected_heading)
+         or _heading_supports(heading_context, expected_heading))
+```
+
+## Measured, not assumed
+
+679 blocked documents, guard on and off:
+
+| field | before | after | |
+|---|---:|---:|---|
+| sections | 29,392 | 29,428 | **+36** |
+| unlinked contents rows | 1,545 | 1,536 | **−9** |
+| provisions · stranded · demoted | — | — | **unchanged** |
+
+**1 document moved, 0 regressed.** Document 3880, the Sindh Control of Narcotic
+Substances Act: **9 sections → 45**, 357 provisions, contents agreement 0.976.
+Thirty-six sections of narcotics law became citable again.
+
+Doc 3255 itself is **not** fixed by this, and should not be forced. Its page 44
+interleaves the penalty Table with the body in one flattened reading order —
+`Compounding of` at x0 82, a table row at 211, a table column at 343, then `51.`
+at 194.5. The heading scan stops at the intervening prose, correctly. Repairing
+it needs column-aware reading order at **L1**, not another parser guard, and
+that is a different component.
+
+# The next diagnostic: a zero gap count can still hide an uncitable section
+
+Document 4058 has 101 contents rows and **one** gap — yet its tree holds 126
+subsections parented directly to chapters. A contents entry may link to *any*
+provision, so an entry pointing at a clause satisfies the gap queue while the
+section it promises is not citable (INV-4).
+
+Measured over every linked contents row whose `entry_kind` is `section`:
+
+| the row links to a | rows | instruments | in release |
+|---|---:|---:|---:|
+| section | 81,053 | 3,095 | 60,654 |
+| **clause** | **890** | 25 | 743 |
+| **subsection** | **7** | 2 | 7 |
+
+**Document 4490 is 604 of the 897 and is a false positive**: it is the Code of
+Civil Procedure, whose contents lists Order *rules*, and a rule under an Order
+is correctly not a section of the Act. That leaves roughly **290 rows across 26
+instruments** worth reading — the largest being the Balochistan Sale Tax Act
+(47), the Industrial and Commercial Employment Standing Orders (25) and Bolan
+University of Medical Sciences (24).
+
+This is not a release blocker and the gate does not test it. It is recorded
+because it is the one measure that tracks the project's actual requirement —
+every law citable at the number its source prints — and the gap queue does not
+see it.
