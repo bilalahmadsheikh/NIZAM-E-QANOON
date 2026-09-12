@@ -774,3 +774,72 @@ So the Raisani pattern does not generalise from the catalogue. It worked there
 because the *same* Act existed in two acquisitions of the same jurisdiction, one
 demonstrably truncated, and both were read. Absent that, a bigger twin is a
 coincidence of title and length.
+
+---
+
+# A replay I should not have run, and what it exposed
+
+`find_stale_trees` classifies a document as **costs** when today's parser would
+make it worse, and refuses to emit it. Document 3691 was in that set. I replayed
+it anyway, as a controlled test of whether a document blocked only by S7
+collisions could be replayed and then re-adjudicated back into release.
+
+It could not, and the tool was right.
+
+**ESSENTIAL PERSONNEL (REGISTRATION) ORDINANCE**, 15 pages, was released with 7
+sections. Today's parser gives **131**, with contents agreement **0.0534** — the
+parser's own signal that the contents list it found is not one. The replay took
+it out of the release set and added 60 gaps. Revisions only move forward, so the
+prior tree is retired and this cannot be undone by re-running; only a corrected
+parse will restore it.
+
+None of today's ten parser changes caused this. Document 3691 reads 131 sections
+in **all four** whole-corpus passes, including the earliest baseline. Today's
+parser is simply worse than the one that wrote its stored tree, which is exactly
+the case the *costs* classification exists to protect.
+
+## The defect it exposed
+
+The Ordinance's real contents has seven entries — Short title, Definitions,
+Liability to register at employment exchanges, Place of Registration,
+Registration Certificate, Penalties and Procedure, Powers to amend Schedules.
+`raw_toc` runs straight past them into the **Schedule**:
+
+```
+"7": "Powers to amend Schedules", "8": "Chemist.", "9": "Metallurgist.",
+"10": "Geologist.", "11": "Mineralogist.", "12": "Meteorologist.", ...
+```
+
+An occupations list, absorbed as contents entries and then materialised as
+top-level sections.
+
+`_TOC_MIN_AGREEMENT` is 0.30 and this scores 0.053, so the floor should have
+rejected it. It did not, because the **marker path** overrides the floor: where a
+document prints an explicit `CONTENTS` marker and an enacting formula and the
+first three promised headings are visible at the opening, `parse_contents`
+accepts the boundary and sets `best_score = _TOC_MIN_AGREEMENT`.
+
+That override is there for a real reason — a marginal-heading layout where the
+body parser sees few of the promised labels, so aggregate agreement rejects a
+genuine contents list. What it does not do is **bound how far the contents list
+extends**. Three corroborated headings at the top license the whole run,
+including a Schedule that happens to be numbered.
+
+The shape of a fix is therefore: on the marker path, stop the contents at the
+last entry the body corroborates rather than accepting every numbered row after
+the marker. That is a change to contents detection, which is the highest-risk
+area in the segmenter -- a wrong contents cuts the body -- and it wants its own
+whole-corpus measurement.
+
+## The trade this was testing, measured
+
+`tools/released_but_understructured.py` reports it. Of 4,026 released
+single-expression instruments, **57 would gain sections but lose release**, with
+**666 citable sections** at stake — sections that sit today as subsections under
+a chapter or part and are therefore not citable at the number the statute prints.
+The Sindh Public Procurement Act, 2009 is the clearest: released with 36
+sections, where today's parser finds 87 and 232 of its subsections hang directly
+off `part I`.
+
+Those 57 are a real question and not a mechanical one. Document 3691 is why they
+are not simply replayed.
