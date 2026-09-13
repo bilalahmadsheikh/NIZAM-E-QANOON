@@ -1674,6 +1674,28 @@ def _classify_body(text: str, toc: dict[str, str],
         if label in toc:
             return "section", label, starred_undotted.group(2)
 
+    # An official print that omits the full stop after the section number:
+    #
+    #     16 Zone approval criteria.- 2[* * * * * * *]
+    #     20 Punishment of bigamy.-Any Hindu marriage solemnized after ...
+    #    185D Transfer of cases.- (1) Where more than one Special Judge ...
+    #
+    # classify() returns None for all of these and ('section', ...) the moment a
+    # period is added, so a whole section is lost to one missing character. It
+    # is right to reject a bare "N " prefix in the general grammar: the same
+    # shape is ordinary prose ("under section 16 Zone approval criteria"), a
+    # table row, and a list item. What separates them here is the document's own
+    # contents, which is this parser's stated ground truth -- require the label
+    # to be promised AND the text after it to open with the heading promised for
+    # that label. Corroborated both ways, 18 of these exist in the corpus.
+    periodless = re.match(r"^\s*(\d{1,4}(?:\s*-\s*[A-Za-z0-9]{1,3}|[A-Z]{1,3})?)"
+                          r"\s+(\S.*)$", text, re.S)
+    if periodless:
+        label = _norm(periodless.group(1)).replace(" ", "")
+        rest = periodless.group(2)
+        if label in toc and _heading_supports(rest, toc[label]):
+            return "section", label, rest
+
     # Some official consolidations close the amendment bracket before the
     # provision's full stop (Punjab Electricity Act p.2: ``7[3-A].``).  The
     # general amendment prefix intentionally does not consume that closing
