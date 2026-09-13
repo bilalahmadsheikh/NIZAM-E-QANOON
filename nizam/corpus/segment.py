@@ -990,6 +990,18 @@ def parse_contents(blocks: list[dict]) -> tuple[dict[str, str], int, bool]:
             if len(opening) >= min(3, len(best_toc)) and matched_layout == len(opening):
                 best_idx = opening[0][0]
                 best_score = _TOC_MIN_AGREEMENT
+                # The boundary and the contents must describe the SAME split.
+                # This path replaces the boundary with the opening it found and
+                # used to leave `best_toc` as whatever max() had chosen, so the
+                # two stopped agreeing: the Essential Personnel (Registration)
+                # Ordinance kept a 131-entry contents -- Schedule I's list of
+                # occupations, "8 Chemist", "9 Metallurgist", "10 Geologist" --
+                # against a boundary at block 27, where its seven printed
+                # contents rows end and section 1 begins. 124 of those entries
+                # could never match a body of seven sections, and every one of
+                # them became a top-level section. Recompute the contents for
+                # the boundary actually taken.
+                _, best_toc = score(best_idx)
                 break
 
     # The score IS the evidence. A boundary scoring 0.06 is not a contents list
