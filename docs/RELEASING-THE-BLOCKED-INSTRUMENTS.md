@@ -1066,3 +1066,60 @@ whose body the parser cannot read, wearing trees built from their footnotes.
 Fixing them means parsing those bodies, which is the same right-margin gazette
 problem recorded above. Until then the honest position is that these 73
 documents hold sections that are not law, and the corpus knows which they are.
+
+---
+
+# Reading the "costs" set instead of counting it
+
+`find_stale_trees` has reported 77-87 documents where replaying would make
+things worse, all session, as an opaque number. `tools/where_the_parser_is_worse.py`
+prints the difference per document instead:
+
+```
+blocked documents compared        : 527
+today's parser would make worse   : 87
+  sections it would lose in total : 462
+  gaps it would add in total      : 437
+
+   doc         sections           gaps  title
+  4244     142 -> 20         0 -> 0     Sindh Law Officer (Conditions of Service)
+  4473     106 -> 26         0 -> 0     Sind Standard Weights and Measures
+  2146      95 -> 27         0 -> 0     Sindh Local Councils (Property) Rules
+  3867     111 -> 75         7 -> 60    The Punjab Excise Act, 1914
+  3949      30 -> 16         0 -> 61    Punjab Education Foundation Regulations
+```
+
+It is not one problem. Reading the entries separates them:
+
+**Compendiums, and the S10 detector misses nearly all of them.** Document 3949
+is four separate rule-sets in one PDF, each with its own `SECTIONS` list
+restarting at 1:
+
+```
+THE PUNJAB EDUCATION FOUNDATION (CONDUCT OF BUSINESS) RULES, 2005
+  SECTIONS   1. Short title ...  2. Definitions  3. Powers and ...
+... RULES, 2005
+  SECTIONS   1. Short Title ...  2. Definitions  3. Funds of the Foundation
+THE PUNJAB EDUCATION FOUNDATION (CONTRACT APPOINTMENT) RULES, 2005
+  SECTIONS   1. Short Title ...  2. Definitions  3. Employment on Contract
+THE PUNJAB EDUCATION FOUNDATION SERVICE RULES 2006
+  SECTIONS   1. Short title ...  2. Definitions  3. Senior ...
+```
+
+The parser reads the first contents list and then cannot find its sections,
+because that Act's body sits after three more contents lists. It ends with 16
+sections against 16 promised labels, none matched.
+
+**34 blocked documents print three or more section-list headers and hold 185
+pending gaps** -- 18% of the queue. `detect_multi_instrument.py` proposes THREE
+splits in the whole corpus. The detector is far narrower than the evidence.
+
+That is the next piece of work with a clear shape, and it is an S10 problem
+rather than a segmentation one: no parser rule recovers an Act whose body is
+separated from its contents by three other Acts. The remedy is to split the
+document first, which the corpus already has a mechanism and an audit criterion
+for.
+
+**The rest are the containers already recorded above** -- 4244 a compendium of a
+different shape, 2146 and 4264 with a schedule or form swallowing the body, 3867
+and 3213 right-margin gazettes. None is a threshold to tune.
