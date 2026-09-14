@@ -1696,6 +1696,29 @@ def _classify_body(text: str, toc: dict[str, str],
         if label in toc and _heading_supports(rest, toc[label]):
             return "section", label, rest
 
+    # A marginal note fused INLINE, ahead of the number, with no line break:
+    #
+    #     'Visitation. 10. (1) The Chancellor may cause an inspection or'
+    #     'Chancellor. 9. (1) The Governor of Balochistan shall be the ...'
+    #     'Power and Function of 4.       The following shall be the powers ...'
+    #
+    # _FUSED_MARGIN_PREFIX already splits this shape, but only when a NEWLINE
+    # separates the note from the number -- the extractor joined these two
+    # columns onto one line, so the block opens with prose and classify()
+    # returns None. Document 252's section 4 does not exist for that reason.
+    #
+    # "Power and Function of 4." is also an ordinary sentence fragment, so the
+    # typography cannot decide it. The contents can: require the label to be
+    # promised and the PREFIX to support the heading promised for that label.
+    # 26 blocks in the corpus satisfy both.
+    inline_note = re.match(
+        r"^([^\n\d][^\n]{2,60}?)\s+(\d{1,4}[A-Za-z-]{0,3})\s*\.\s+(\S.*)$",
+        text, re.S)
+    if inline_note:
+        label = _norm(inline_note.group(2)).replace(" ", "")
+        if label in toc and _heading_supports(inline_note.group(1), toc[label]):
+            return "section", label, inline_note.group(3)
+
     # Some official consolidations close the amendment bracket before the
     # provision's full stop (Punjab Electricity Act p.2: ``7[3-A].``).  The
     # general amendment prefix intentionally does not consume that closing

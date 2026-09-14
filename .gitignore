@@ -208,3 +208,6 @@ overlay-*.png
 .seg_probe*.py
 .t.py
 .var_*.py
+.segment_instrumented.py
+.fp_in_*
+.probe_in.sh
