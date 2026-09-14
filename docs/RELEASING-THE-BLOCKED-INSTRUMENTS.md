@@ -1360,3 +1360,43 @@ used**. Superseding a decision is append-only and cheap; doing it before the
 parser stops producing note-sections would only move the error. The parser fix
 comes first, measured ON/OFF corpus-wide like every other change here, and the
 superseding adjudications follow it.
+
+## Applied: 20 documents replayed, 47 released stub citations repaired
+
+`would_replay_fix_stubs` found 87 of the 369 stubs (23.6%) already parsed
+correctly by today's segmenter, in 51 documents. `replay_cost` then measured
+what replaying those 51 would cost the gate and refused 26 of them — the Sales
+Tax Act 1990 at 164 → 71 sections, the Punjab Excise Act at 111 → 75 sections
+and 7 → 60 gaps. Replaying to fix stubs without that check would have destroyed
+more than it repaired.
+
+Of the 24 it cleared, the worker's dry run showed four keeping S7 candidates
+(3644 at 20 → 10, 2649 at 10 → 1, 2815 at 3 → 1, 3305 at 2 → 2), which would
+block them. Those four are held. **The other 20 were replayed.** Every one:
+
+* stayed in the release set,
+* went to **0 pending S7**, retiring 101 collisions that no longer occur,
+* lost no section, and three gained one — Sindh Ferries 20 → 22,
+  Co-operative Societies 49 → 50, Evacuee Trust 32 → 33,
+* held contents agreement at **1.0000** across all 18 that print a list.
+
+`resolve_exact_instrument_duplicates --apply` then linked 99 byte-identical
+revisions, as it must after any replay. Nothing was deleted; `duplicate_of`
+links them and the release views count the expression once.
+
+| | before | after |
+|---|---:|---:|
+| stub citations, all | 359 in 194 docs | **312 in 174 docs** |
+| stub citations, released | 237 in 147 docs | **190 in 127 docs** |
+| audit | 29/30, S7 the only FAIL | **29/30, S7 the only FAIL** |
+| released expressions | 4,146 | **4,146** |
+
+Verified on one by name. **Usurious Loans Act 1918, section 3** was a citable
+node holding 0 characters while 4,223 characters of *Re-opening of
+transactions* sat in a sibling nobody could cite. It is now a section, headed
+*Re-opening of transactions*, with 17 children and 4,223 characters.
+
+The remaining 312 are not a replay. They need the parser fix for phantom
+sections anchored to footnotes and wrapped continuations, and then superseding
+adjudications — in that order, because writing decisions first would only move
+the error.
