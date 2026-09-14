@@ -2609,3 +2609,38 @@ worked around.
 | S7 pending units | 1,087 | **1,046** |
 | citable sections (released) | — | **80,903** |
 | source-verified decisions | 0 | **18** |
+
+## Three misnumbered sources in nineteen readings
+
+Document 3216, the Punjab Excise rules, prints on page 23 — in sequence —
+9.112, 9.113, 9.114, 9.114-A, **9.115, 9.115**, 9.116:
+
+```
+9.115  (1) A distillery pass for the removal of spirit fit for human
+           consumption may be granted in favour of ... (a)-(h), then (2)(a)-(c)
+9.115  When the licensee desires to remove from bond any quantity of fusel oil,
+       a sample shall be forwarded to the Chemical Examiner for analysis ...
+```
+
+Both operative. That is the **third** misnumbered source in nineteen readings,
+after document 3939's two section 11s (with no section 10 at all) and document
+2492's two rule 13s.
+
+**Three of nineteen is about sixteen per cent.** Applied to the 1,046 pending
+units that would be on the order of a hundred and fifty collisions where the
+printed statute numbers two provisions the same — which no parser fix reaches
+and no demotion may close, because both sides are law.
+
+This is worth separating from the rest of the queue in the project's own
+accounting. `./nz s7` classes those collisions as *unclear*, which is right —
+they are unclear to a machine — but they are not undecided. They are decided and
+the decision is "the source is wrong", which the resolution vocabulary cannot
+express: `restore_citable` says the demotion was wrong without saying which
+number the second provision should carry.
+
+| | session start | now |
+|---|---:|---:|
+| released expressions | 4,106 | **4,160** |
+| S7 pending units | 1,087 | **1,045** |
+| source-verified decisions | 0 | **19** |
+| of which the source is misnumbered | — | **3** |
