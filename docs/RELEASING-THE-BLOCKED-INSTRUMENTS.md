@@ -2398,3 +2398,37 @@ That is the same unrecognised-contents defect measured at **54 expressions and
 341 units** earlier, arriving for the fifth time — through the gap queue, the
 stub citations, the S7 queue, the heading misalignment, and now the size tests.
 It is one defect, and it is the one worth fixing.
+
+### Why document 1665's contents is not recognised, and the fix that made it worse
+
+Traced: the Ordinance prints `CONTENTS` at block 1 and lists four entries. But
+`peak_needed` is computed from the **total** number of openers in the document —
+including the sixty numbered rows of its penalty schedules — so `len(nums)` is
+68, the threshold is 8, and a contents run peaking at 4 can never reach it. The
+only fall candidates found sit at block 71, the end of the document.
+
+Letting a printed marker lower that threshold to 2 was tried. It recognises the
+list (`toc=0 → 4, found=False → True`) and **destroys the Act**:
+
+```
+doc 1665: sections 4 -> 48, 0 lost, 44 gained
+  s.1   Exceeding prescribed speed limit. Rs. 200.00/=
+  s.48  Juvenile driving Rs. 350.00/=
+  s.50  Abatement of the above violation Rs. 400.00/=
+```
+
+Every gained "section" is a row of the TWELFTH SCHEDULE's penalty table. The
+lower threshold produces more boundary candidates, the tie-break takes the
+**last** among equals, and it lands at block 66 — inside the schedule — so the
+Act's real sections 1 to 4 fall into the contents region and only the penalty
+rows survive. `diff-trees` reports it as 44 sections *gained* and none lost,
+which is exactly why the reading matters more than the count.
+
+Reverted. **Fourth change measured out today**, and the tie-break is now
+implicated twice: document 1856 lost ss.3 and 4 to it under the footnote rule,
+and document 1665 loses its whole Act to it here. "Take the last boundary among
+equal scores" is safe when the scores mean something and destructive when they
+are all zero or all equal — which is precisely the situation in the documents
+whose contents the parser cannot read.
+
+That, not the threshold, is the thing to fix next.
