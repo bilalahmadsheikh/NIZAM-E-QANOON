@@ -2642,9 +2642,20 @@ def segment(blocks: list[dict], curation_patches: list[dict] | None = None,
         if (kind == "subsection"
                 and _toc_label_is_next(subsection_key, toc, seen)
                 # Strict by measurement, not by oversight -- see the note on
-                # the schedule-rule promotion above.
-                and _heading_supports(heading_context,
-                                      toc.get(subsection_key))):
+                # the schedule-rule promotion above. The heading may sit in the
+                # preceding marginal block OR inside this block's own text: the
+                # Federal Urdu University Ordinance, 2002 prints
+                #
+                #     (1) Short title, application and commencement:-- (1) This
+                #     Ordinance may be called the Federal Urdu University ...
+                #
+                # -- section number parenthesised, heading inline, subsection
+                # after it. Only `heading_context` was consulted, so a heading
+                # printed in the same block could not license the promotion and
+                # the Act's section 1 stayed a subsection.
+                and (_heading_supports(heading_context,
+                                       toc.get(subsection_key))
+                     or _heading_supports(rest, toc.get(subsection_key)))):
             kind, label = "section", subsection_key
 
         if kind in _HEADING_KINDS and _norm(text) in running_headings:
