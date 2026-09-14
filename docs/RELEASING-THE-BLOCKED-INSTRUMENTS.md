@@ -1735,3 +1735,71 @@ start of the block, and the label must be one the contents promises.
 
 Measured ON/OFF over all 4,596 documents before it lands, like every other
 change here.
+
+## Defect class 3: the contents numbers the preamble, so every link is one off
+
+Found by reading document 306, the Sindh Disposal of Urban Land (Repeal) Act
+2005 — a two-section Act whose single gap promises `3. Repeal of Sindh
+Ordinance X of 2002.` Page 1 prints a real contents list:
+
+```
+1. Preamble.
+2. Short title and commencement.
+3. Repeal of Sindh Ordinance X of 2002.
+```
+
+and page 2 prints the body as **1.** Short title and commencement, **2.** Repeal
+of Sindh Ordinance. The publisher numbered the preamble, so the printed contents
+sits one ahead of the printed body. That is a property of the source, not a
+parse error.
+
+What the parser did with it is the defect. `match_method` for all three rows:
+
+| contents entry | linked to | |
+|---|---|---|
+| 1 · Preamble. | section 1 · Short title and commencement | **wrong** |
+| 2 · Short title and commencement. | section 2 · Repeal of Sindh Ordinance | **wrong** |
+| 3 · Repeal of Sindh Ordinance | — | the gap |
+
+**The gap is the visible symptom; two silently wrong links are the damage.** A
+citation rendered from entry 1 would return the wrong provision, and no gate
+sees it — the gap queue counts only the third row.
+
+The cause is in `toc_node`. Its strongest path returns a match on label alone
+when exactly one body provision carries the citation key, with **no heading
+corroboration**:
+
+```python
+if (len(primary) == 1 and toc_key_counts[citation_key] == 1 and ...):
+    method = "label" if exact_typography else "label_typography"
+    return primary[0], method
+```
+
+Requiring a heading there is not the fix, and the file already records why:
+doing so left "240 rows that had matched by plain `label` unmatched, taking 56
+instruments out of the release view". Body sections frequently do not repeat
+their marginal note in their text, so heading agreement fails on correct
+matches as readily as wrong ones.
+
+The fix has to be **document-level**: detect that the whole contents list is
+offset — the first entry is apparatus, the entry count exceeds the section
+count, and shifting by one raises total heading agreement — then shift, rather
+than judging each row alone.
+
+Scale, measured over the 182 expressions blocked by exactly one gap:
+
+| shape | expressions |
+|---|---:|
+| off-by-one, one extra entry and the gap is the **last** row | **36** |
+| one extra entry, gap elsewhere | 61 |
+| contents longer than the body | 18 |
+| other | 67 |
+
+and separately, **11 expressions print a contents list whose first entry is
+`Preamble`** — **10 of those 11 carry a pending gap**, a 91% hit rate that
+confirms the mechanism, with 126 already-linked entries at risk in them.
+
+Document 1014 is the same shape from a different cause: its contents lists
+`3. Constitution of Governing Body.` which the body does not print, so entries
+4 through 8 all sit one ahead, and its gap on `8. Power to make rules.` is the
+provision the body prints as section **7**.
