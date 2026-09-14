@@ -1201,3 +1201,46 @@ What survives is the earlier, narrower observation: document 3949's shape --
 titles followed by their own section lists, formulae later in the bodies -- is
 real and the detector cannot see it. It is simply already split, so it is not
 evidence of a backlog.
+
+---
+
+# A superscript fused to the section number, and why it is left alone
+
+The Dekkhan Agriculturists' Relief Act, 1879 prints its first section as
+
+```
+²1. Short title. Commencement.  This Act may be cited as the ³Dekkhan
+Agriculturists' Relief Act, 1879 ...
+```
+
+The superscript `2` is a footnote marker. Extraction flattens it onto the number,
+so the parser reads `21. Short title. Commencement. ...` and creates **section
+21**. Section 1 is then missing and its contents row sits in the queue.
+
+`_repair_label` exists for exactly this -- it strips a fused superscript when the
+contents promises the shorter label -- and it does not fire here, for a reason
+worth recording: **this Act has a real section 21 too.** The contents promises
+both `1` (Short title) and `21` (Arrest and imprisonment in execution of decree
+for money abolished), so the fused label is indistinguishable from a legitimate
+one by label alone.
+
+The heading could separate them, and does not: `_heading_supports` compares from
+the first word, and the contents concatenates two marginal notes --
+`Short title. Commencement Local extent` -- while the body prints them as
+separate paragraphs. Three words match, then they diverge, and it returns False.
+
+## Measured before deciding
+
+A first count said 254 of 853 numeric gaps have their label as a suffix of an
+existing section label. That number is useless: section 21 legitimately ends in
+`1`, so every gap on label 1 in a document holding a section 21 matches it.
+
+The signature that means something is a section whose label the contents **never
+promised**, ending in a label that is promised and missing. That is **160
+sections across 19 documents**.
+
+It is not acted on. Those 19 documents carry only three or four pending gaps
+each despite holding 21, 17 and 43 phantom sections, so the phantoms mostly are
+not what blocks them; and the repair renames existing sections, which is the
+riskiest edit in the parser for a yield of a few rows. Recorded with the
+measurement instead.
