@@ -1400,3 +1400,108 @@ The remaining 312 are not a replay. They need the parser fix for phantom
 sections anchored to footnotes and wrapped continuations, and then superseding
 adjudications — in that order, because writing decisions first would only move
 the error.
+
+---
+
+# Measured out: the footnote-run rule, and what it proved on the way
+
+A footnote block is apparatus, and `_is_furniture` already says so — but it asks
+two questions a long footnote run answers no to: is the block in the bottom
+margin (a run starts high *because* it is long — the Prevention of Corruption
+Act's page-2 run opens at y0 575 of 792), and does the block **start** with
+amendment vocabulary (its first line is usually the one line without an
+amendment verb). So `subdivide` hands markers 1–5 to the grammar as section
+numbers, and the phantoms that follow are where the stub citations come from.
+
+`_is_footnote_run` asked about the run instead: three or more numbered lines,
+strictly ascending and distinct, at least two matching `_FOOTNOTE`. Unit-checked
+against a real run (True), a contents list (False) and a body run (False).
+
+Measured ON/OFF over all 4,596 documents: **314 documents moved, 23 improved,
+5 REGRESSED.** `unlinked 1,928 → 1,785 (−143)` and `missing_toc 166 → 130 (−36)`
+— the largest gains any change produced this session.
+
+**It does not land.** `./nz diff-trees` named the 17 sections it removes, and
+they are not all phantoms:
+
+* **doc 3184 — correct.** Its 11 lost "sections" are Schedule rows: `Nil. Nil.`,
+  `Plant, materials and stores for maintenance`, `Raw materials such as cotton,
+  silk, jute`, `Other miscellaneous goods`.
+* **docs 1856, 4379, 4489, 4501 — real law.** CrPC s.131 (`When the public
+  security is manifestly endangered by any such assembly`), Income Tax Ordinance
+  s.201, Succession Act ss.146 and 269, and two sections opening `It shall be
+  lawful for the [Provincial Government]`.
+
+The rule is right about every block it claims — each one read against source is
+a genuine footnote run. The damage is downstream: `_section_numbers` feeds only
+contents/boundary logic (five call sites, no separate tree-building consumer),
+so excluding apparatus moves the body floor. In doc 3184 it moves correctly and
+strips phantoms; in the other four it moves later and swallows real sections.
+
+**The next attempt should not re-derive this.** The fix is not a narrower rule —
+narrowing cannot separate these, because the rule is already correct. It is that
+**the body floor must never move later because apparatus was excluded.** Compute
+it both ways and take the earlier.
+
+## What the regression check exposed: 3 of 4 gap counts were false
+
+Chasing doc 3184's "regression" showed its contents entries were linked to the
+wrong provisions entirely — the contents promise the Act's sections, the links
+point at Schedule rows because the numbers matched:
+
+| the contents promises | the link resolves to |
+|---|---|
+| `1 Short title, extent, commencement` | `1. Stores (including medical stores) for relief` |
+| `2 Interpretation` | `2. Arms, ammunitions, stores and equipment of` |
+| `5 Protection of action taken` | `5. Foods stuffs (tinned, canned, bottled…)` |
+
+So its gap count of 3 was never true, and the 17 the rule exposes is the honest
+number. Generalised with `./nz empty-citations`, over 82,229 linked contents
+entries:
+
+| the citation returns | entries | documents | released |
+|---|---:|---:|---:|
+| law | 73,465 | 3,082 | 59,157 |
+| **nothing: no body text, no children** | **4,483** | 816 | 3,596 |
+| **nothing: no body text beneath it** | **1,357** | 424 | 1,123 |
+| **under 60 characters** | **2,145** | 679 | 1,762 |
+| a disposition marker, correctly empty | 779 | 343 | 563 |
+
+**7,985 citations in 1,344 documents return no law; 6,481 are released.** The
+gap queue's 1,005 is a floor, not a total: it counts rows with no link and
+cannot see a link that resolves to nothing.
+
+## The mechanism: the body absorbed into the contents region
+
+Document 3523 promises section 8, *Costs of determination of pollution level*.
+The entry links to a `section 8` node on page 6 carrying **zero** blocks; the
+Act's real section 8 is block 400551 on page 3, and its role is `contents`.
+
+Document 3289 is the extreme. The **Pakistan Single Window Act, 2021** — 17
+pages, released — holds **173 blocks of role `contents` spanning pages 1–14**
+and **3 of role `body`, on pages 15–17**. Almost the entire Act is filed as its
+own contents list. Nothing is lost (C4 and C5 both pass, every block is
+assigned); nothing is citable either.
+
+Seven released documents have fewer body blocks than pages while their contents
+exceed their body:
+
+| doc | pages | contents | body | |
+|---:|---:|---:|---:|---|
+| 2989 | 15 | 375 | 12 | Punjab Mining Staff and Workers Training |
+| 3289 | 17 | 173 | 3 | Pakistan Single Window Act, 2021 |
+| 1822 | 7 | 112 | 1 | Environmental Tribunal Rules, 1999 |
+| 2087 | 8 | 96 | 4 | Irrigation and Drainage Authority Rules |
+| 2534 | 12 | 85 | 10 | KP Promotion, Protection… |
+| 3960 | 38 | 23 | 14 | West Pakistan Repealing Ordinance, 1970 |
+| 4422 | 77 | 19 | 17 | Punjab Lands Improvement Tax Act, 1975 |
+
+## Retracted: 14,302 "disagreeing" contents links
+
+A first pass compared each entry's printed heading against its linked node's
+text with `similarity()` and reported 14,302 disagreements. **That number is an
+artefact and is withdrawn.** This corpus drops `s` characters in many documents,
+so `Treasurer.` extracts as `trea urer` and trigram similarity collapses on
+correct links. `Acting Vice Chancellor` scored below threshold against a node
+reading `acting vice chancellor 12 acting vice chancellor`. Sampling caught it.
+The structural test above replaces it and cannot be reached by that artefact.
