@@ -47,6 +47,15 @@ refused 187 of this tool's own 1,326 decisions (14.1%), 152 of 943 from
 `nizam.structural_adjudicator/1` (16.1%), and refuses 234 of the 1,184 still
 pending (19.8%). Those go to source review, which is where they belonged.
 
+SECOND CORRECTION, same day. That guard is by absolute size and its floor of
+500 characters is too high for the shape that dominates this queue. Eight
+pending candidates were rendered and read; four were inverted, and in three the
+unit KEPT as the section was a contents entry carrying 82, 118 and 60
+characters against bodies of 1,129, 408 and 988. All three sit below the floor.
+A ratio guard is therefore added beside it -- a demoted unit carrying three
+times the kept one, above a 120-character floor -- which refuses 67 more
+pending candidates and would have refused 126 more already recorded.
+
 The decisions already recorded are NOT revised here. They are append-only and a
 superseding `restore_citable` is the correct repair, but writing 187 of them
 before the parser stops producing phantom sections would only move the error.
@@ -199,6 +208,31 @@ SELECT c.id::text,
           WHERE z.id = c.id
             AND z.cand_chars >= 500
             AND z.canon_chars < z.cand_chars * 0.5)
+   -- The same guard by RATIO, because the absolute floor of 500 is too high
+   -- for the shape that actually dominates this queue.
+   --
+   -- Eight pending candidates were rendered and read. Four were inverted --
+   -- the segmenter kept the wrong unit -- and in three of those the kept unit
+   -- was a CONTENTS ENTRY standing where the section should be: documents
+   -- 1224, 1030 and 264, whose kept nodes carry 82, 118 and 60 characters
+   -- against bodies of 1,129, 408 and 988. Every one is far below 500, so the
+   -- guard above stays silent on exactly the cases it was written for.
+   --
+   -- Measured over the whole queue, 503 pending units in 115 expressions have
+   -- that shape: the kept node earlier in the document and under 200
+   -- characters while the demoted one carries more. That is 48% of the
+   -- pending queue, and no machine test in this file could see it.
+   --
+   -- So refuse on proportion as well as size. 120 characters is the floor
+   -- below which neither side carries enough to compare; above it, a demoted
+   -- unit carrying three times the kept one is the inverted shape whatever the
+   -- absolute numbers are. This refuses 67 pending candidates the absolute
+   -- guard admits, and would have refused 126 already recorded.
+   AND NOT EXISTS (
+         SELECT 1 FROM sizes z
+          WHERE z.id = c.id
+            AND z.cand_chars >= 120
+            AND z.canon_chars * 3 < z.cand_chars)
  ORDER BY c.document_id, c.source_page
 """
 

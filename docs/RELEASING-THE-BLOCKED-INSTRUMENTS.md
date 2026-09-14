@@ -2287,3 +2287,47 @@ distinguishes them.
 | decisions recorded | **7 source_verified** — 4 accept, 3 restore_citable |
 | released expressions | 4,152 |
 | S7 pending units | 1,053 |
+
+## The inverted shape, generalised: 48% of the pending queue
+
+The three inverted readings share a signature the ledger can test, once you stop
+asking it the wrong question. Asking whether the kept node's block carries
+`role = 'contents'`, or is some entry's `source_block_id`, or sits on a page the
+contents occupies, all return **5 units in 4 documents** — because **936 of the
+1,053 pending units belong to expressions with no contents entries at all**,
+which is precisely where the inverted cases live. Their kept node is a contents
+block that was never *recognised* as contents, so no toc-based test can reach it.
+
+The positional test does reach it. Within those 936:
+
+| shape | units | expressions | avg kept | avg demoted |
+|---|---:|---:|---:|---:|
+| **kept node earlier in the document AND under 200 chars** | **503** | **115** | **71** | **249** |
+| kept earlier, not thin | 312 | 116 | 568 | 325 |
+| same page | 120 | 60 | 216 | 232 |
+| kept later | 1 | 1 | 186 | 0 |
+
+**503 units — 48% of the pending queue — carry the shape that was read on the
+page four times.** It is a heuristic and is recorded as one; what makes it worth
+acting on is that the three verified cases sit inside it, with kept nodes of 60,
+82 and 118 characters against bodies of 988, 1,129 and 408.
+
+### The stub guard was too blunt, and is now two guards
+
+The guard added this morning refuses `accept_non_citable` when the demoted unit
+carries **500+** characters and the kept one less than half. Every one of the
+three verified inversions is **below that floor** — the guard stays silent on
+exactly the cases it was written for.
+
+So a second guard sits beside it, by proportion rather than size: a demoted unit
+carrying **three times** the kept one, above a 120-character floor where neither
+side carries enough to compare. Measured across the candidate table:
+
+| | absolute guard | ratio guard | ratio catches that absolute misses |
+|---|---:|---:|---:|
+| already decided | 291 | 377 | **126** |
+| still pending | 265 | 296 | **67** |
+
+`./nz s7-adjudicate` now offers **3** eligible candidates. Everything else goes
+to source review, which is the honest destination: the machine cannot tell a
+thin contents entry from a thin section, and the page can.
