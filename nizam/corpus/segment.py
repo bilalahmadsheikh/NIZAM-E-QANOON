@@ -327,6 +327,29 @@ def _norm(text: str) -> str:
     return _WS.sub(" ", unicodedata.normalize("NFC", text)).strip()
 
 
+# Many Pakistani statutes head their contents list with the bare column name
+# rather than the word CONTENTS:
+#
+#     [2nd April, 1991]
+#     Preamble
+#     Sections
+#     1.  Short title and commencement.
+#
+# Without it the Canal and Drainage (Extension to Rohri Canal Area) Act, 1991
+# prints a four-entry contents list that scores 1.000 against its body and is
+# still rejected, because the final guard wants either a marker or five entries.
+# Its four contents lines then became sections, and the real sections 1-4 were
+# demoted to clauses beside them.
+#
+# Deliberately strict: the line must be that word and nothing else, so a
+# sentence mentioning sections cannot pass. `_CONTENTS` stays as it is -- this
+# is weaker evidence and is kept visibly separate from the printed word
+# CONTENTS.
+_CONTENTS_COLUMN_HEADER = re.compile(
+    r"^\s*(?:sections?|rules?|articles?|regulations?|clauses?)\s*[.:]?\s*$",
+    re.I)
+
+
 def _has_contents_marker(text: str) -> bool:
     """Find a printed contents marker even when it shares a PDF text block.
 
@@ -335,7 +358,8 @@ def _has_contents_marker(text: str) -> bool:
     Matching only the start of the block therefore discarded positive source
     evidence that is plainly visible on the rendered page.
     """
-    return any(_CONTENTS.match(line) for line in text.splitlines())
+    return any(_CONTENTS.match(line) or _CONTENTS_COLUMN_HEADER.match(line)
+               for line in text.splitlines())
 
 
 @dataclass
@@ -3086,6 +3110,20 @@ def segment(blocks: list[dict], curation_patches: list[dict] | None = None,
                     return 1
                 body = _norm("".join(candidate.text_parts)).casefold()
                 head = _norm(candidate.heading or "").casefold()
+                # A node parsed straight out of the contents region often has no
+                # heading of its own -- nothing attached one, because its text
+                # IS the heading. Then there is nothing to strip, 34 characters
+                # of "Sind Act VII of 1879 not to apply." count as law, both
+                # occurrences score 1, and source order hands the citation to
+                # the contents line. Document 423 loses section 3 that way, and
+                # document 956 loses sections 2, 6 and 7.
+                #
+                # The contents itself supplies the missing heading: it is the
+                # promise this label was matched on. Falling back to it makes
+                # the contents-line node strip to nothing, which is exactly what
+                # it is -- a heading with no law under it.
+                if not head:
+                    head = _norm(toc.get(key, "")).casefold()
                 if head and body.startswith(head.rstrip(". ")):
                     body = body[len(head.rstrip(". ")):]
                 return int(len(body.strip(" .—–-")) >= 20)

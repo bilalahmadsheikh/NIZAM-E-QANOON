@@ -97,7 +97,14 @@ Agents: `legal-source-scout`, `vendor-verifier`, `grounding-reviewer`, `schema-r
 From the built corpus (`nizam_clean`), measured 11 Sep 2026. These supersede the 28 Aug estimates,
 which were scaled from a 144-PDF sample:
 
-- **4,757 effective catalogue items · 4,717 landed (99.16%) · 4,596 distinct blobs · 40 genuinely unresolved**
+- **4,757 effective catalogue items · 4,596 distinct blobs · 0 unresolved.** Acquisition is
+  closed, not merely measured: of the items that first failed, **14 were recovered by refetch**
+  and **1 by an alternate official copy** (the Raisani Hospital Act's nine-page Gazette, landed
+  against the truncated three-page derivative without touching the original observation), leaving
+  **40 declared exceptions** — 28 catalogued URLs that no longer resolve, 8 serving non-PDF
+  content, 2 with no PDF URL catalogued, 1 portal refusing the request, 1 publishing no English
+  PDF. Each carries its dated attempts and observed error. C1 asserts the rule; the "41" quoted
+  in earlier notes was the queue size at the start of that work, not a standing figure
 - **63,878 pages · 128,654,015 extracted characters · 969,053 text blocks**
 - **517,171 active provisions from 103,169 sections** — tree expansion **4.99×**, not the 3.2× estimated
 - **Statutory corpus on disk: 1,912 MB** after multi-expression materialisation and restore-tested pruning of superseded
