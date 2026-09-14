@@ -691,6 +691,25 @@ def _section_numbers(blocks: list[dict]) -> list[tuple[int, int, str, str]]:
     """(index, number, label, heading) for every block that opens like a section."""
     out = []
     for i, b in enumerate(blocks):
+        # A footnote list in the bottom margin is not a section opener, and
+        # letting it look like one corrupts the CONTENTS BOUNDARY, not merely a
+        # node. The Khyber Pakhtunkhwa (Restricting the Sale of the Holy Quran)
+        # Act, 1939 is the case: its page-2 footnotes read
+        #
+        #     1. Subs vide the Khyber Pakhtunkhwa Act No. IV of 2011.
+        #     2. The word "Province" omitted by W.P. Laws ...
+        #
+        # so the numbering appeared to restart at 1 there, parse_contents chose
+        # that block as where the body resumes, and the Act's real sections --
+        # four blocks earlier on the same page -- were swallowed into the
+        # contents region. The document ends with zero sections and four gaps.
+        #
+        # `_is_furniture` already makes this judgement, on position plus the
+        # footnote vocabulary; it simply was not consulted here, so apparatus
+        # got a vote on where the law begins.
+        if _is_furniture(b.get("text") or "", b.get("y0", 0) or 0,
+                         b.get("page_height", 792) or 792):
+            continue
         for piece in subdivide(b["text"]):
             c = classify(piece)
             if not c or c[0] != "section":
