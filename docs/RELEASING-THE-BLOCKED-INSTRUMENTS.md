@@ -903,3 +903,54 @@ remain in scope.
 
 That is where the opener seam runs out. The next defect will not be an opener
 shape; the sweep has enumerated those.
+
+---
+
+# Document 3255, and why it is not fixed
+
+The Balochistan Sales Tax on Services Act promises 89 sections and the tree
+holds 48. Its 41 gaps are the largest single cluster in the queue, and it was
+worth a long look because the sections ARE printed. It is recorded here as not
+fixed, with what was ruled out, because the next reader should not repeat it.
+
+`_classify_body` reads its section 49 correctly:
+
+    'Default Surcharge. 49. (1) Notwithstanding the provisions of section 24 ...'
+      classify        -> None
+      _classify_body  -> ('section', '49')
+
+So the inline-fused-marginal-note rule works on it. The section is still a
+CLAUSE, nested under section 48's subsection (2) -- the "illustrative purposes"
+subsection that follows its Table.
+
+What was ruled out, each by measurement rather than reading the code:
+
+* **Not a demotion.** `tools/name_the_demotion.py` fires nothing for label 49.
+  Three `kind = "clause"` sites and none of them runs.
+* **Not the schedule path.** A row inside a schedule becomes a clause OF the
+  schedule; this one's parent is a subsection.
+* **Not the trailing-table rule.** That demotes a repeated label after the body
+  ends: it needs `idx > last_body_section` and the label already `seen`. For
+  unit 555 both are false -- 555 < 945, and "49" has not been seen.
+* **Not a broken body marker.** `last_body_section` reaches unit 945 and section
+  89, the Act's last. The marker sees the whole body.
+* **Not the schedule-resumption guard.** With a contents list, resumption needs
+  `key in toc and key not in seen`, which holds, and `idx <= last_body_section`,
+  which also holds.
+
+The actual mechanism is upstream of all of them. `subdivide` cuts the block at
+its internal provision start before anything classifies it, so the three units
+that reach the grammar are
+
+    'Default Surcharge.'   '49.'   '(1) Notwithstanding the provisions ...'
+
+and `'49.'` arrives as a section with NO text. The contents-corroborated rules in
+`_classify_body` never see the whole block, because the cut happened first. What
+then attaches a textless section beneath the preceding subsection is a fourth
+path, and the tree it produces is consistent with several of them.
+
+A fix therefore has to change the ORDER in which cutting and contents
+corroboration happen, not add another rule beside the existing ones. That is a
+structural change to `subdivide`, the function every document passes through,
+and it is not worth attempting at the end of a long session on the evidence of
+one document. It wants its own measurement, and the 41 gaps will still be there.
