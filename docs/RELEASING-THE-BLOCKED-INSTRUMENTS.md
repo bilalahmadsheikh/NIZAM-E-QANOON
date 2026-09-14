@@ -2538,3 +2538,39 @@ closed by accepting:
 `./nz s7` classes the queue as 207 inverted, 178 nesting, 66 compendium, 137
 probably-correct and 447 unclear. Thirteen readings say the proportions are
 roughly right and that "unclear" is where the source misnumberings hide.
+
+## The bounded target: 70 sole-blocker expressions
+
+Sixteen readings in, the queue has a shape worth stating as a target rather than
+a total. **70 expressions are blocked by exactly one S7 unit and have no
+contents gap.** Each is one reading away from release, and the readings have
+been settling at roughly one release per one-and-a-half pages.
+
+The apparatus classes that close them are now catalogued, and every one was
+found by looking at a page:
+
+| what the demoted unit turned out to be | documents |
+|---|---|
+| a circulation list — `A Copy is forwarded for information and necessary action:-` | 4536, 4531, 4514 |
+| a right-margin note column emitted as one block | 844 |
+| the tail of a wrapped cross-reference — `19.`, `Rule 13.` | 3563, 3389 |
+| a stray bare number left by the scan — `20.` | 4528 |
+| a contents entry, correctly demoted | 2550 |
+| quoted amendment text in a footnote | 1288 |
+| a cell in a recruitment schedule table | 3426 |
+
+And the classes that do **not** close them, which is the more important half:
+
+| | documents |
+|---|---|
+| **inverted** — a contents entry kept, the real section demoted | 1224, 1030, 264, 1665 |
+| **source misnumbering** — both sides real, the Act prints 11 twice | 3939 |
+| refused by the stub guard — my reading was of the block, the guard's of the subtree | 2973 |
+
+| | session start | now |
+|---|---:|---:|
+| released expressions | 4,106 | **4,159** |
+| S7 pending units | 1,087 | **1,047** |
+| citable sections (released) | — | **80,895** |
+| source-verified decisions | 0 | **16** |
+| sole-blocker expressions | — | **70** |
