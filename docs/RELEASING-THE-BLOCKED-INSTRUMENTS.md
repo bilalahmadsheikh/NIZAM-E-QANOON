@@ -1244,3 +1244,93 @@ each despite holding 21, 17 and 43 phantom sections, so the phantoms mostly are
 not what blocks them; and the repair renames existing sections, which is the
 riskiest edit in the parser for a yield of a few rows. Recorded with the
 measurement instead.
+
+---
+
+# The citation survives and the provision does not
+
+`./nz s7-citability` reports a clean corpus: over **2,371 demotions, 100% of
+printed labels are still reachable as a section, 0 lost.** That report is
+correct. It is also the wrong question, and asking only it has hidden the
+largest quality defect now in the released set.
+
+The right question is not *is the label citable* but *does the citable node
+carry the provision*. Measured with `./nz stub-citations`, over accepted
+`retype_non_citable` decisions whose retyped node still holds 500+ characters:
+
+| the citable section holds | units | documents | released |
+|---|---:|---:|---:|
+| **under 200 chars — a stub** | **243** | 132 | **165** |
+| much less than the retyped sibling | 116 | 85 | 72 |
+| smaller, same order of size | 100 | 79 | 62 |
+| at least as much — the retype was right | 122 | 81 | 81 |
+
+**359 citations in 194 documents resolve to less than half the provision, and
+237 of them are in released expressions.** Named, all released:
+
+| statute | what citing the section returns | uncitable |
+|---|---|---:|
+| Prevention of Corruption Act 1947, **s.5** | nothing; heading `Criminal misconduct 5A.` | 4,272 ch |
+| Usurious Loans Act 1918, **s.3** | nothing; note `Re-opening of transactions` | 4,223 ch |
+| Explosives Act 1884, **s.2** | the *commencement* clause | 5,123 ch |
+| Torture and Custodial Death Act, **s.2** | `2. It extends to the whole of Pakistan.` | 4,481 ch |
+| Punjab Control of Narcotic Substances Act, **s.7** | 279 chars of a 10,072-char section | 9,793 ch |
+
+Unreleased, and the largest in the corpus: **Punjab Pure Food Rules 2011, rule
+10** — *Non-nutritive constituents and artificial sweetening agent in food* —
+686 citable characters against **138,890 uncitable** across 298 descendants,
+including operative text (`(11) Artificial sweetening agents … shall not be
+sold`). The gate is holding that one, which is the gate working.
+
+## The mechanism is the right-margin layout, again
+
+This is not a new defect. It is the gazette marginal-note layout already
+recorded in *The layout defect, found and fixed* — 238 documents, 753 gaps —
+arriving through a second door:
+
+1. The printed marginal note (`Criminal misconduct`) is its own block.
+2. The segmenter builds it as a **section**.
+3. The real body (`5. (1) A public servant is said to commit …`) becomes a
+   **second sibling with the same label**.
+4. S7 flags `repeated_sibling_label` and proposes `retype_non_citable`.
+5. The adjudicator accepts, keeping the note and burying the body.
+
+So the contents-gap queue and the S7 queue are one root cause counted twice.
+A parser fix that binds the note to its body as a heading closes both.
+
+## The pending queue has the same shape, and the proposal is wrong on it
+
+All **1,035** pending S7 units are a single shape — `repeated_sibling_label`
+proposing `retype_non_citable`. Applying that proposal wholesale, which is what
+"resolve S7" is usually taken to mean, would repeat the defect: in **138 units
+across 63 expressions** the candidate proposed for retyping carries an average
+of **8.0 children and 1,978 characters** against the canonical's **0.6 children
+and 195 characters**. Those need `restore_citable` or `reparent`, not
+acceptance.
+
+Only **21 expressions** have pending units that are *all* structurally safe to
+retype (candidate childless, ≤200 chars, canonical substantial).
+
+**963 of the 1,035 sit on documents that print no contents list**, so no
+aggregate over contents rows can settle them — which is why this queue has not
+moved.
+
+## S10 passes vacuously
+
+`v_active_boundary_candidate` holds **0** rows, so S10 reports PASS. But 34 of
+the S7 expressions carry a dense run of repeated labels restarting at 1 and
+topping out near 9 inside trees of ~29 sections — the signature of a second
+instrument in the same file. **None of the 34 is flagged by the boundary
+detector.** S10 is green because the detector is narrow, not because the corpus
+has no unsplit compendiums. A criterion that passes without having looked is
+worse than one that fails.
+
+## What is not done here
+
+No decision was written and no tree was replayed. All **8,518** S7 decisions in
+the corpus are `accept_non_citable`; the schema admits `restore_citable`,
+`reparent`, `split_instrument` and `reject_candidate`, and **none has ever been
+used**. Superseding a decision is append-only and cheap; doing it before the
+parser stops producing note-sections would only move the error. The parser fix
+comes first, measured ON/OFF corpus-wide like every other change here, and the
+superseding adjudications follow it.
