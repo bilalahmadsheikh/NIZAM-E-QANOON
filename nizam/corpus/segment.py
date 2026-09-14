@@ -1990,6 +1990,15 @@ def segment(blocks: list[dict], curation_patches: list[dict] | None = None,
     # clears both edges and is still demoted; a section merely sitting at the
     # normal body margin no longer is. percentile 10/50 of x0, the same pair
     # `_toc_marginal_share` and tools/audit use.
+    # Weighting this by CHARACTERS rather than block count was tried and
+    # reverted. The reasoning was sound -- a plain median counts a four-word
+    # marginal fragment the same as a full paragraph, so in a gazette with a
+    # populous heading column it lands between the two columns. It did not
+    # help: document 275's weighted figure is 190.0 against a plain 185.5,
+    # because that document is not cleanly two-column at all (x0 clusters at
+    # 72, 166, 190, 217 and 405). And it cost document 3094 a section, measured
+    # 8 -> 7 with a gap appearing. Geometry does not settle these; the printed
+    # heading does, which is what the demotion rule below now consults.
     _x0s = sorted(float(block["x0"]) for block in body
                   if block.get("x0") is not None)
     body_column_x0 = (_x0s[max(0, (len(_x0s) + 1) // 2 - 1)]
@@ -2573,8 +2582,26 @@ def segment(blocks: list[dict], curation_patches: list[dict] | None = None,
                     rf"(?:^|\s){candidate_number + 1}\s*\.\s+", rest
                 )
             )
-            heading_disagrees = not _heading_supports(
-                rest, toc.get(candidate_key)
+            # The block's own tail is not the only place the printed heading
+            # can be. A gazette that sets marginal notes in a side column puts
+            # it in separate blocks, and the detached-heading pass above has
+            # already matched those to this block. Document 275 page 3 prints
+            # "Tax on motor" (x0 109), then "5. There shall be levied and
+            # collected in any area in which" (x0 217), then "vehicles."
+            # (x0 130) -- the heading split around the body block it heads.
+            # The contents promises exactly "5. Tax on motor vehicles.", the
+            # detached pass attached it, and the tail alone still disagreed, so
+            # the whole of section 5 became a clause of section 4.
+            #
+            # Geometry cannot rescue this one: the document's x0 values cluster
+            # at 72, 190, 217, 405 and 166, so there is no single body column to
+            # measure indentation against. The printed heading is the evidence.
+            detached_note = detached_heading_for_body.get(b.get("id"))
+            heading_disagrees = not (
+                _heading_supports(rest, toc.get(candidate_key))
+                or (detached_note is not None
+                    and _heading_supports(detached_note[1],
+                                          toc.get(candidate_key)))
             )
             if (owner is not root and candidate_key in toc and heading_disagrees
                     and ((candidate_key in seen and has_next_item)
