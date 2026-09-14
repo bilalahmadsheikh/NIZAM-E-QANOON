@@ -2870,3 +2870,77 @@ Doc 3151 page 3 renders, at 130 dpi, as a header and three bare markers — `1.`
 exactly. Nothing is lost by accepting the demoted marker, because there is
 nothing there; but the page itself is an acquisition defect, not a segmentation
 one, and is recorded here so it is not rediscovered as a parser bug.
+
+## The 200–499 tranche: where the defects actually live
+
+Batch B is every blocked expression with no contents gap whose **largest**
+demoted subtree falls between 200 and 499 characters — 31 documents, 145 units,
+47 pages, all read.
+
+The population is nothing like batch A's. Batch A was circulation lists and
+contents pages; batch B is substituted schedules, nested sub-lists and sources
+that misnumber themselves.
+
+| what the page showed | units |
+|---|---:|
+| quoted amendment text — schedules, legislative-list entries, notes written *into* the principal instrument | 44 |
+| schedule and penalty-table rows | 37 |
+| circulation lists and form fields | 12 |
+| **inversions and misnumbered sources** | **27** |
+| **law at the root of the tree, needing a parent** | **22** |
+| **two instruments in one document** | **3** |
+
+**93 accepted, 27 restored, 22 reparented, 3 split.** Released **4,181 →
+4,190**; S7 pending **983 → 890**, blocked expressions **198 → 189**.
+
+Batch A accepted 85% of its units; batch B accepts 64%. The demoted-subtree
+size is doing exactly the work it was picked for.
+
+### Quoted amendment text is the single largest class here
+
+An amending instrument prints its own sections *and* the text it writes into the
+principal one, and the quoted text carries its own numbering. Doc 2621 prints
+`13. In the said Ordinance, in Schedule II, for Part 1, the following shall be
+substituted :—` and then a substituted Part I numbered 1 to 25; doc 2762
+substitutes a whole Seventh Schedule numbered 1 to 7; doc 4434, the Constitution
+(Amendment) Order 2007, quotes new Federal Legislative List entries 4 to 13.
+Every one of those numbers collides with a real section of the amending
+instrument. None of them is a section **of that instrument** — they belong to
+the principal one — so accepting is right, and the text stays in the corpus
+under the section that enacts it.
+
+### The three new shapes batch B found
+
+**A document that holds two instruments.** Doc 3800 is a page of the *Gazette of
+Pakistan* (Extra., 23 April 1975) carrying both an amending Act (`3. Amendment
+of section 4, Act VI of 1908`) and the **Baluchistan Constabulary Act** itself
+(`3. Power to maintain Baluchistan Constabulary.—There shall continue to be
+maintained by the Federal Government a force called the Baluchistan
+Constabulary…`). The segmenter merged them, so the two instruments' section 3s
+collided. This is not a repeated sibling label inside one instrument at all;
+`split_instrument` is the word the schema already has for it, and this is the
+first time it has been used.
+
+**An inserted rule printed as a subsection.** Doc 4426 prints
+`1[42. (A) An independent candidate elected under the Act and these rules may
+join a political party within seven days…]` with the marginal note *Joining of a
+political party by Independent Returned Candidate* and the footnote *Inserted by
+Notification No. RO(LG)/MISC/4(18)/2013*. The rule is 42-A; the source numbers
+it `42.` and demotes `(A)` to a subsection, so it collides with the original rule
+42. The same trick appears at rule 55-A.
+
+**A number the scan misread.** Doc 4545's page prints rule 29 and rule 30; the
+text layer reads `30. issuance of ballot paper` for rule 29, so the real rule 30
+— *Marking of ballot paper and casting of vote* — was demoted to make room for
+rule 29 wearing rule 30's number. Doc 4554 in batch A was the same failure with
+`28.` read as `26.`. Neither is a source defect and neither is a segmenter
+defect: it is an extraction defect that surfaces as an S7 collision, which no
+aggregate would ever have separated from a genuine one.
+
+### Running tally over 217 source-verified readings
+
+The share of units that are *not* apparatus is now measured on a population two
+orders of magnitude larger than the first twenty-one readings, and it has held:
+**33% of batch B's units are real defects** against 15% of batch A's. What
+changed is not the rate of error in the corpus but which tranche is being read —
+and the demoted-subtree bound predicts it well enough to schedule the work.
