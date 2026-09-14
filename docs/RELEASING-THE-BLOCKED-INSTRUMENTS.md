@@ -2778,3 +2778,95 @@ Running tally over twenty-one readings:
 and the machine tests still cannot see it: doc 16's kept unit is 50 characters
 against 140, doc 516's is 532 against 624 — both inside the ratio guard's
 tolerance, both wrong.
+
+## Reading by the page, not by the unit: 72 decisions from 33 pages
+
+The reading loop was costing one render script, one hand-computed digest and one
+hand-written reading per unit, and at 186 blocked expressions over 385 distinct
+pages that is not a loop anyone finishes. Two observations fix it.
+
+**One page settles many units.** A circulation list of eleven names produces
+eleven S7 candidates on one page. Reading the page once answers all eleven.
+
+**The gate is per expression.** Settling four of an expression's five units
+releases nothing, so the batch has to be drawn by expression and has to include
+every one of its pending units.
+
+`./nz s7-render` (`tools/render_s7_batch.py`) does the mechanical half: picks a
+batch of pending expressions, renders every distinct page their units cite,
+computes the SHA-256 that `s7-source` will demand, and prints what the corpus
+believes about each unit. It decides nothing — `resolution` and `observed` come
+back null, because a reading is only a reading once someone has looked.
+
+Two measurements ride along, and both earned their place:
+
+- **the demoted node's kind and parent.** All 72 came back `clause ... at root`.
+  That is the segmenter's demotion target, and it says the text is in the corpus
+  but under nothing citable.
+- **whether the demoted node's blocks also hang under a section.** All 72: no.
+  So "is the law still reachable?" reduces to the only question a page can
+  answer — *is the demoted text law at all?*
+
+### The tranche where every demoted node is under 200 characters
+
+25 documents, 72 units, 33 pages. Read in full:
+
+| what the page showed | units | documents |
+|---|---:|---:|
+| circulation / despatch lists | 27 | 8 |
+| contents lists — three of them printed at the END of the document | 10 | 5 |
+| schedule and classification table rows | 11 | 5 |
+| form and proforma fields | 8 | 3 |
+| numbered footnotes, marginal-note columns, empty phantoms | 5 | 4 |
+| **law at the root of the tree, needing a parent** | **5** | **4** |
+| **inversions and misnumbered sources** | **6** | **5** |
+
+**61 accepted, 5 reparented, 6 restored.** Released **4,160 → 4,181**; S7 pending
+**1,045 → 983**, blocked expressions **218 → 198**.
+
+### The six that could not be accepted
+
+- **doc 2059** — the Coastal Development Authority regulations print their
+  contents on page 1. The segmenter read entries 1–6 and let entry 7 open a
+  section, which swallowed the page-1 letterhead. Real rule 7 (`No meeting
+  shall, as for as possible, be adjourn until the agenda thereof is disposed
+  of`) was demoted so a letterhead could be section 7.
+- **doc 3336** — rule 11, `Repeal.- The Efficiency and Discipline Rules in force
+  here-before are hereby repealed`, demoted; the document header kept.
+- **doc 3872 s.4** — the classification table's last row (`4. | Subordinate |
+  Drivers, Attendants/Naib Qasid`) kept as rule 4; the real `4. CLASSIFICATION
+  OF POST:` with sub-rules 4.1–4.2 demoted.
+- **doc 3872 13.2.8** — the page prints `13.2.8.` **twice** and then jumps to
+  `13.2.10.`. Both are operative; the source is misnumbered.
+- **doc 4549 para 25** — page 3 ends at paragraph 25, page 4 prints the
+  Declaration of Geneva and then a **second** paragraph 25 before 26–29.
+- **doc 4554 r.26** — a scan. The page prints `28.`; the text layer reads
+  `26. An employee appvinled to a higher post`. The number, not the source, is
+  wrong, and rule 28 collided with the real rule 26.
+
+### And the five that are law in the wrong place
+
+`doc 1897` prints regulation 6's subsections as `1.` and `2.`; `doc 4497` prints
+rule 3's third subsection as `3.`; `doc 3949` indents two operative items beneath
+clause (k) of rule 3. In each the demoted node holds real text and sits at the
+root of the tree. `reparent` records that without opening the gate, which is
+right: the text is not apparatus and the tree is not yet correct.
+
+**doc 2997 is the one to remember.** Its page 1 is a contents *stub* — six
+numbered markers each followed by four asterisks and nothing else — and the
+segmenter turned it into five root clauses plus a `section 6` holding the page-1
+title block. On page 2 the real rules 1–6 follow, and rule 6 (`Where a carcass or
+meat seized under the Act ... shall be sold by public auction`) is **merged
+inside rule 5's block**. The one pending unit is only the footnote apparatus, and
+accepting it would have been defensible on its own terms — and would have
+released an instrument whose "section 6" is a masthead and whose rule 6 cannot be
+cited at all. A unit-level decision that is right can still be a release that is
+wrong.
+
+### One page that prints no body
+
+Doc 3151 page 3 renders, at 130 dpi, as a header and three bare markers — `1.`,
+`1.`, `2.` — with no text beside them, and the extracted text layer agrees
+exactly. Nothing is lost by accepting the demoted marker, because there is
+nothing there; but the page itself is an acquisition defect, not a segmentation
+one, and is recorded here so it is not rediscovered as a parser bug.

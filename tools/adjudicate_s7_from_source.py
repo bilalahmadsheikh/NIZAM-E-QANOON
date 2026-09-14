@@ -65,6 +65,15 @@ SELECT c.id::text, c.instrument_id::text, c.candidate_provision_id,
      = regexp_replace(lower(%s), '[^a-z0-9]', '', 'g')
 """
 
+FIND_BY_ID = """
+SELECT c.id::text, c.instrument_id::text, c.candidate_provision_id,
+       c.canonical_provision_id, c.printed_label, c.source_page,
+       (SELECT a.id::text FROM v_structural_adjudication_latest a
+         WHERE a.candidate_id = c.id) AS current_adjudication
+  FROM v_active_structural_candidate c
+ WHERE c.id = %s
+"""
+
 SIZES = """
 SELECT (SELECT coalesce(sum(pb.chars), 0) FROM provision x
           JOIN provision_block pb ON pb.provision_id = x.id
@@ -113,7 +122,15 @@ def main() -> int:
                 refused.append((where, "render_sha256 does not match the file"))
                 continue
 
-            cur.execute(FIND, (doc, label))
+            # A document that prints the same label twice -- doc 4482's form
+            # has two "3." -- offers two candidates for one label, and the
+            # reading has to say which. `candidate_id` (from ./nz s7-render)
+            # names it; without one, an ambiguous label is still refused.
+            if r.get("candidate_id"):
+                cur.execute(FIND_BY_ID, (r["candidate_id"],))
+                where = f"{where} cand {r['candidate_id'][:8]}"
+            else:
+                cur.execute(FIND, (doc, label))
             rows = cur.fetchall()
             if len(rows) != 1:
                 refused.append((where, f"{len(rows)} active candidates match; "
