@@ -1611,3 +1611,55 @@ reimplementation of its detector.
 missing-`s` extraction defect. Both were caught the same way: by checking a
 sample or a second instrument before acting on the number. Neither reached the
 database.
+
+---
+
+# The weighted 200-decision audit, re-run and read
+
+The goal names this component, so it is verified here rather than assumed.
+
+**It exists and is cited.** `./nz s7-audit` draws 200 decisions from the 4,498
+made by `nizam.structural_adjudicator/1`, weighted toward large sibling groups.
+**3,758 of the 8,518 recorded decisions cite it by name in their rationale** —
+3,747 from `nizam.citation_preserving_review/1` plus 11 carried by exact tree
+revision. Re-run today it reports the same shape it did in September:
+
+| verdict | n | share | meaning |
+|---|---:|---:|---|
+| **WRONG** | 53 | **26.5%** | the law was demoted and a heading kept in its place |
+| SUSPECT | 32 | 16.0% | compendium — demoting is the wrong repair regardless |
+| unclear | 58 | 29.0% | needs a person to read the page |
+| not-law | 20 | 10.0% | both blocks are footnotes |
+| right | 37 | 18.5% | the kept block does carry the provision |
+
+The tool itself prints `HEURISTIC FLAG RATE (NOT SOURCE-AUDITED)` and says to
+render and read before quoting an error rate. Five pages were rendered and
+read. **This is a five-page reading, not a re-audit of 200**, and is recorded
+with that limit.
+
+| page | what the source prints | verdict |
+|---|---|---|
+| doc 3892 p48 · Sind Co-operative Societies Act 1925 | an **eight-line footnote run**, `1. Cls. (cca), (ccb) and (ccc) ins. by Sind 20 of 1947` … `8. Cl. (mm) … renumbered as cl. (gg)` | WRONG **supported** |
+| doc 3825 p24 · a canal Act | a **seven-line footnote run** whose first line carries no amendment verb — `1. This Act. has been repealed to the Khyber Pakhtunkhwa…` — then six `Subs.` lines | WRONG **supported** |
+| doc 2366 p20 · W.P. Land Preservation Act | right-margin marginal notes plus a footnote run `1/2/3` at the foot | WRONG **supported** |
+| doc 4451 p230 · Customs Act 1969 | an **entire page** of footnotes numbered 40–54 | mechanism **confirmed** |
+| doc 4460 p15 · Punjab Pure Food Rules 2011 | a food-colour schedule; label 2 is the table row `Loss on drying at 135°C … 13` | **false positive** |
+
+**Four of five show footnote apparatus standing where a section should be.**
+
+So the claim carried in the rationale of 3,758 decisions — that reading
+"corrected the length heuristic that had flagged 26.5% as wrong", the long
+demoted block being "almost always a schedule list, a table row or a page
+footnote" — is **too strong**. Schedule rows do produce false positives, and
+doc 4460 is one. They do not dominate. In this reading the dominant mechanism
+is the footnote run, and the block kept as the section is the footnote.
+
+That is the same defect as the stub citations, reached from a third direction,
+and its repair landed today: `_is_footnote_run`, measured over 4,596 documents
+at unlinked 1,928 → 1,781 and missing_toc 166 → 126.
+
+The 3,758 decisions are **not** rewritten. They are append-only and a
+superseding adjudication is the right instrument — after the parser stops
+producing the phantoms, not before, or the error only moves.
+
+Full reading in `/mnt/e/nizam-data/s7-audit/RESULT-2026-09-14.md`.
