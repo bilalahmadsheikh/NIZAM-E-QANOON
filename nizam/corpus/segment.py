@@ -971,7 +971,38 @@ def parse_contents(blocks: list[dict]) -> tuple[dict[str, str], int, bool]:
     # and the old global scan classified those 104 pages as its table of
     # contents. Restrict the evidence to the prefix at or before the first
     # section-shaped entry.
-    marker_end = min(len(blocks), nums[0][0] + 1)
+    #
+    # Bounding that prefix at the FIRST opener is too tight, because a spurious
+    # opener before the marker hides it. The Khyber Pakhtunkhwa Bus Stand and
+    # Traffic Control (Peshawar) Ordinance 1975 prints
+    #
+    #     block 2   1975. 2[KHYBER PAKHTUNKHWA]
+    #     block 4   [24th January, 1975] CONTENTS.
+    #
+    # so the YEAR is read as section 1975, `marker_end` becomes 3, and the
+    # marker at block 4 is never seen. Its contents list of 13 entries is then
+    # parsed as body, its rows are built as sections, and every real section
+    # collides with one -- the document holds 13 sections and 0 contents
+    # entries, and one of its S7 collisions was read on the page and found
+    # inverted.
+    #
+    # Widening the bound to the whole first PAGE was tried and measured over
+    # all 4,596 documents: 9 moved, and it destroyed real law in three of them
+    # -- document 3087 lost "14. Action by the Government", "15. Traveling
+    # allowance", "16. Seniority" and "17. Repeal"; document 4472 lost five
+    # sections including "3. Establishment of Board of Trustees". A whole page
+    # of licence is enough for a numbered front table to be read as contents.
+    #
+    # So bound it past the spurious opener only, and only when that opener is a
+    # YEAR. A four-digit year in a masthead is never a section number, and it
+    # is what actually hides the marker here. Sections 3087, 3532 and 4472 open
+    # on ordinary labels, so their bound does not move at all.
+    def _is_year(label: str | None) -> bool:
+        return bool(re.fullmatch(r"(?:1[89]\d{2}|20\d{2})", (label or "").strip()))
+
+    first_real = next((i for i, (_, _, lbl, _) in enumerate(nums)
+                       if not _is_year(lbl)), 0)
+    marker_end = min(len(blocks), nums[first_real][0] + 1)
     saw_marker = any(_has_contents_marker(b["text"])
                      for b in blocks[:marker_end])
 
