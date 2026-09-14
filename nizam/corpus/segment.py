@@ -345,8 +345,14 @@ def _norm(text: str) -> str:
 # sentence mentioning sections cannot pass. `_CONTENTS` stays as it is -- this
 # is weaker evidence and is kept visibly separate from the printed word
 # CONTENTS.
+# ``c\s*o\s*n\s*t\s*e\s*n\s*t\s*s?`` also appears here rather than in _CONTENTS
+# because of the singular: the Sind Civil Servants Ordinance, 1973 heads its
+# list ``C O N T E N T``, and _CONTENTS requires the trailing S. Loosening it
+# there would let a body line beginning "Content of the application ..." count
+# as a marker; requiring the WHOLE line to be the word cannot.
 _CONTENTS_COLUMN_HEADER = re.compile(
-    r"^\s*(?:sections?|rules?|articles?|regulations?|clauses?)\s*[.:]?\s*$",
+    r"^\s*(?:c\s*o\s*n\s*t\s*e\s*n\s*t\s*s?"
+    r"|sections?|rules?|articles?|regulations?|clauses?)\s*[.:]?\s*$",
     re.I)
 
 
