@@ -2331,3 +2331,35 @@ side carries enough to compare. Measured across the candidate table:
 `./nz s7-adjudicate` now offers **3** eligible candidates. Everything else goes
 to source review, which is the honest destination: the machine cannot tell a
 thin contents entry from a thin section, and the page can.
+
+## The stub guard refused a reading of mine, and was right
+
+Two more candidates were rendered and read.
+
+**Document 3563, rule 19 — accepted.** Page 13 prints rules 17 to 21 normally,
+rule 19 being *Deliberate or unintentional release*. The demoted unit is the
+trailing `19.` at the end of rule 20, where the cross-reference *"in accordance
+with sub-rule (2) of rule 19."* wrapped onto its own line. The tail of a
+citation, not a rule. Released the expression: **4,153 → 4,154**.
+
+**Document 2973, section 2 — refused by the guard.** Page 2 prints sections 1, 2
+*Definitions* and 3 *Qazf* in the ordinary form, and the demoted node's own
+block carries **zero characters**: it is the long rule of underscores separating
+the body from the footnotes. On that reading `accept_non_citable` looked
+obvious, and the tool refused it:
+
+```
+doc 2973 label 2: stub guard: the demoted unit carries 1363 chars
+                  and the kept one 438. Use restore_citable or reparent.
+```
+
+The node's own block is empty; its **subtree** holds 1,363 characters. Accepting
+would have made all of it non-citable. The reading was of the block, and the
+guard was of the provision.
+
+That is the first time a guard in this repo has refused a decision made from a
+page rather than by a machine, and it is worth recording as such. The reason it
+could is that it asks about the subtree, which is what a citation actually
+returns — the same question `find_stub_citations` asks, applied at the moment of
+writing rather than afterwards. A page shows what is printed; it does not show
+what the tree hung beneath it.
