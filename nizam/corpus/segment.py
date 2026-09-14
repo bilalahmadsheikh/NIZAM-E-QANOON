@@ -63,8 +63,21 @@ from dataclasses import dataclass, field
 # unreachable.  Four digits is deliberately bounded and the opening bracket
 # plus a complete provision label below are still required, so ordinary large
 # section numbers are not stripped.
+# Repeated, because a provision amended twice carries two markers. The West
+# Pakistan Motor Vehicles Ordinance prints its section 67 as
+#
+#     1[ 2[67. Compensation for the death of, or injury to, a passenger.--(1) ...
+#
+# -- substituted by one Ordinance and then added to by another. A single
+# optional prefix matched "2[67." and returned ('section','67'); against
+# "1[ 2[67." it returned None, and the section was not in the tree at all while
+# its contents row sat in the gap queue. Found by reading the rendered page of
+# an instrument blocked by exactly one gap.
+#
+# Bounded to three so this cannot consume an arbitrary run of brackets, and the
+# inner shape is unchanged, so nothing that matched before stops matching.
 _AMEND_PREFIX = (
-    r"(?:(?:\d{1,4}\s*)?\[\s*[\"\u201c\u2018']?\s*|[*\u2020\u2021]\s*)?"
+    r"(?:(?:\d{1,4}\s*)?\[\s*[\"\u201c\u2018']?\s*|[*\u2020\u2021]\s*){0,3}"
 )
 
 RULES: list[tuple[str, str, re.Pattern]] = [
