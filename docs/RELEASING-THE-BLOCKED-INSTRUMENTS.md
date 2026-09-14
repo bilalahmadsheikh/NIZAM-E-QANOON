@@ -2574,3 +2574,38 @@ And the classes that do **not** close them, which is the more important half:
 | citable sections (released) | — | **80,895** |
 | source-verified decisions | 0 | **16** |
 | sole-blocker expressions | — | **70** |
+
+## Source misnumbering is not rare: a second Act prints the same number twice
+
+Document 2492's adjudication rules print **two rules numbered 13** on one page,
+both operative, both with their own heading:
+
+```
+13.  Adjudication orders.- The adjudicating officer shall issue a self-speaking
+     order covering, amongst other things:  (i) ... (viii)
+13.  Summary adjudication.- (1) Where a registered person requests for summary
+     adjudication of his case ...  (2) Summary adjudication shall not extinguish
+     the right of a registered person for appeal.
+```
+
+with rule 14 *Form of first appeal* following under Chapter III. That is the
+second document found this way, after 3939's two section 11s and its missing
+section 10.
+
+**Two of eighteen readings are misnumbered sources.** If that rate holds, the
+S7 queue contains on the order of a hundred collisions that no parser can fix
+and no demotion should close, because both sides are law. They need a label
+decision taken against the printed source — a different act from adjudicating a
+demotion, and one the schema has no resolution for: `restore_citable` records
+that the demotion was wrong without saying which number the second rule should
+carry.
+
+That is a gap in the vocabulary, not in the work. Recorded here rather than
+worked around.
+
+| | session start | now |
+|---|---:|---:|
+| released expressions | 4,106 | **4,160** |
+| S7 pending units | 1,087 | **1,046** |
+| citable sections (released) | — | **80,903** |
+| source-verified decisions | 0 | **18** |
