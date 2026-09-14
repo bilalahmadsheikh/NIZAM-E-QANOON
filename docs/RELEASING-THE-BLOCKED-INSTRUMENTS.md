@@ -1155,3 +1155,49 @@ empty. There is a detector and a materializer but no adjudication path between
 them -- 44 candidates exist against 2 decisions. Widening detection without one
 turns a passing criterion red with no mechanism to close what it opens, which is
 worse than the gap it would document. The adjudication path has to come first.
+
+## Correction: the compendium count above was wrong twice
+
+Both numbers in the two sections above are withdrawn. The reasoning that
+produced them failed in two independent ways, and both are worth stating because
+each is a trap the next reader can fall into with the same tools.
+
+**First: the costs set was contaminated by already-split documents.**
+`where_the_parser_is_worse.py` compared a WHOLE-DOCUMENT fingerprint against one
+expression's stored tree. A document that has already been split into several
+instruments always loses that comparison, because the parser run covers all of
+its expressions at once while the stored tree is only one of them. Document 3949
+read as "30 sections -> 16, 0 gaps -> 61" on that basis and was written up as
+the worked example of an unsplit compendium. **It already has three active
+instruments.** Corrected, the set is 85 documents and 371 gaps, not 87 and 437.
+
+This omission has now been made three times in this repository. `find_stale_trees`
+carries the fix, `released_but_understructured` carries the fix, and this tool
+did not until now.
+
+**Second: counting section-list headers does not find compendiums.** The claim
+that 31-34 blocked documents are unsplit compendiums rested on their printing
+three or more `CONTENTS`/`SECTIONS` marker blocks. Reading the actual list kills
+it:
+
+```
+doc 4451  29 markers  Customs Act, 1969
+doc 4498  19 markers  Punjab Police Promotion Rules 1934
+doc 3353  10 markers  Sind Agriculturists' Relief Act, 1879
+doc 4387   6 markers  Cantonments Act, 1924
+```
+
+The Customs Act is one Act. A long statute's contents runs over many pages and
+repeats its column header on each one, so the marker count measures CONTENTS
+PAGES, not instruments. There is no compendium class here to widen the S10
+detector for.
+
+The detector was widened to accept `title + printed section list + rule-1 reset`
+without an enacting formula, and that change is reverted with it: its premise
+was this measurement. The detector still proposes three splits, which on this
+evidence is the right number rather than a shortfall.
+
+What survives is the earlier, narrower observation: document 3949's shape --
+titles followed by their own section lists, formulae later in the bodies -- is
+real and the detector cannot see it. It is simply already split, so it is not
+evidence of a backlog.

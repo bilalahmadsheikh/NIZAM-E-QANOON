@@ -36,6 +36,16 @@ SELECT i.document_id,
    AND (EXISTS (SELECT 1 FROM v_toc_gap_pending g WHERE g.instrument_id = i.id)
      OR EXISTS (SELECT 1 FROM v_structural_adjudication_pending s
                  WHERE s.instrument_id = i.id))
+   -- A document already split into several expressions cannot be compared
+   -- against a WHOLE-DOCUMENT fingerprint: the parser run covers all of them at
+   -- once, so one expression's tree always looks smaller. Document 3949 read as
+   -- "30 sections -> 16, 0 gaps -> 61" that way and was written up as an
+   -- unsplit compendium; it already has three active instruments. The same
+   -- omission has now been made three times in this repo -- find_stale_trees
+   -- and released_but_understructured both carry the fix.
+   AND (SELECT count(*) FROM instrument o
+         WHERE o.document_id = i.document_id
+           AND o.is_active AND o.duplicate_of IS NULL) = 1
 """
 
 
