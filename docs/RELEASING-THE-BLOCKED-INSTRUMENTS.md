@@ -1663,3 +1663,75 @@ superseding adjudication is the right instrument — after the parser stops
 producing the phantoms, not before, or the error only moves.
 
 Full reading in `/mnt/e/nizam-data/s7-audit/RESULT-2026-09-14.md`.
+
+---
+
+# The gap queue is 99.3% parser defect, and reading proved even the residue wrong
+
+The goal asks for the TOC-gap queue to be closed **with source evidence**. The
+source evidence says most of it cannot be closed by a disposition at all.
+
+`review_absent_sections` selects the gaps where the section is plausibly not in
+the source, on two machine checks that both rest on C5 = 0 (every character of
+every PDF is in a `text_block`, so the raw blocks are searched rather than the
+tree, which is the thing in question):
+
+1. the promised heading, normalised and at least 12 characters, appears nowhere
+   in the document outside the contents list's own blocks, **and**
+2. the promised label never opens a body block either.
+
+Run over the whole queue it returns **7 candidates in 6 documents** — out of
+**1,005 pending gaps**. Every other gap fails one of those checks, which means
+the section *is* in the source and the tree cannot see it. **99.3% of the queue
+is a parser defect, not an absence**, and a disposition on any of it would be a
+lie in exactly the way `review_toc_gaps` warns about.
+
+## And then the residue did not survive reading either
+
+Only one of the 7 was short enough to render in full: document 3606, the
+Coastal Development Authority (Accounts, Works, Property and Record) Rules
+1999, whose contents promises `23. Works Registrar.` Both checks passed. Page 8
+prints:
+
+```
+22.(1) If any work is executed departmentally ...      [Works to be executed
+                                                        departmentally.]
+23(1). Unless a work is of urgent nature is to be      [Works executed by
+       executed through the agency of any Department    contract.]
+       of Government ...
+24.(1) Every work executed whether departmentally or   [Works Register.]
+       by contract shall be measured ...
+```
+
+Rule 23 is printed in full. Check 2 missed it because the number is fused to
+its first subsection — `23(1).`, the period after the bracket — while `24.(1)`
+three lines below is the form the grammar knows. **`absent_in_source` on that
+row would have been false**, and the check that would have licensed it is
+blind to precisely this shape.
+
+The contents is also misaligned against its own body: `23. Works Registrar.`
+matches the margin note printed at rule **24** (`Works Register.`). Document
+1014, the Sind (Teaching, Promotion and Use of Sindhi Language) Act 1972, shows
+the same off-by-one — its contents promises `8. Power to make rules.` while the
+body prints that provision as section **7** and stops there. In both, the
+stored headings come from the contents by label, so every heading after the
+divergence names the wrong provision. `marginal_note` is populated on only 7
+sections corpus-wide, so this cannot be measured without reading pages.
+
+## The repair, found by reading
+
+`_classify_body` requires a period immediately after the number:
+
+    "24.(1) Every work executed whether departmentally"  -> section 24
+    "23(1). Unless a work is of urgent nature"           -> None
+    "23 (1) Unless a work is of urgent nature"           -> None
+
+290 blocks in the corpus open this way, 232 of them already carrying role
+`body`, and **16 pending gaps across 16 expressions** promise a label whose
+block opens like that. The rule added is deliberately narrow, because `23(1)`
+is also how a cross-reference is written: the subsection must be **(1)** — a
+section opens at its first, never its fourth — the match must be at the very
+start of the block, and the label must be one the contents promises.
+
+Measured ON/OFF over all 4,596 documents before it lands, like every other
+change here.
