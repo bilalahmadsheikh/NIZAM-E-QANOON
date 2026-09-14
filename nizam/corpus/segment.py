@@ -700,10 +700,63 @@ def _is_furniture(text: str, y0: float, page_height: float) -> bool:
     ))
 
 
-def _section_numbers(blocks: list[dict]) -> list[tuple[int, int, str, str]]:
-    """(index, number, label, heading) for every block that opens like a section."""
+# A numbered line whose number is not the head of a longer number: "1960)."
+# must not read as footnote 19, which is what `\d{1,2}` alone does to it.
+_NUMBERED_LINE = re.compile(r"^\s*(\d{1,2})(?!\d)\s*[.:-]?\s*(\S.*)$")
+
+
+def _is_footnote_run(text: str) -> bool:
+    """Several numbered lines of amendment provenance, wherever they sit.
+
+    `_is_furniture` asks two questions a long footnote run answers no to: is the
+    block in the bottom margin -- a run starts high BECAUSE it is long, the
+    Prevention of Corruption Act's page-2 run opening at y0 575 of 792 -- and
+    does the block START with amendment vocabulary, when its first line is
+    usually the one line carrying no amendment verb:
+
+        1The Act has been applied to Baluchistan, see Gazette of India, 1947
+        2Subs.by the Central Laws (Statute Reform) Ordinance, 1960
+        3The original sub-section (3) omitted by the Prevention of Corruption
+        4Added by the Anti-Corruption Laws (Amendment) Act, 1965
+        5Subs. by the Prevention of Corruption Laws (Amendment) Act, 1977
+
+    So `_FOOTNOTE.match` sees line 1, fails, and `subdivide` hands markers 1
+    through 5 to the grammar as section numbers. That is where the corpus's
+    phantom sections come from, and with them the stub citations.
+
+    Ask about the RUN instead: numbered lines, strictly ascending and distinct
+    the way a footnote list numbers, at least two carrying the amendment
+    vocabulary `_FOOTNOTE` already knows. A contents list is numbered and
+    ascending too, which is why the vocabulary test is required and not
+    optional -- "1. Short title." and "2. Definitions." match none of it.
+    """
+    lines = [ln for ln in text.split("\n") if ln.strip()]
+    if len(lines) < 3:
+        return False
+    numbered = [(int(m.group(1)), ln) for ln in lines
+                if (m := _NUMBERED_LINE.match(ln))]
+    if len(numbered) < 3:
+        return False
+    seq = [n for n, _ in numbered]
+    if seq != sorted(seq) or len(set(seq)) != len(seq):
+        return False
+    return sum(1 for _, ln in numbered if _FOOTNOTE.match(ln)) >= 2
+
+
+def _section_numbers(blocks: list[dict], *,
+                     drop_footnote_runs: bool = True
+                     ) -> list[tuple[int, int, str, str]]:
+    """(index, number, label, heading) for every block that opens like a section.
+
+    ``drop_footnote_runs`` exists because this feeds the contents BOUNDARY, and
+    a boundary can depend on the very apparatus the filter removes -- see
+    `_opening_toc_hints`, which falls back to the unfiltered set rather than
+    give up on a document.
+    """
     out = []
     for i, b in enumerate(blocks):
+        if drop_footnote_runs and _is_footnote_run((b.get("text") or "").strip()):
+            continue
         # A footnote list in the bottom margin is not a section opener, and
         # letting it look like one corrupts the CONTENTS BOUNDARY, not merely a
         # node. The Khyber Pakhtunkhwa (Restricting the Sale of the Holy Quran)
@@ -1548,46 +1601,70 @@ def _opening_toc_hints(blocks: list[dict]) -> tuple[dict[str, str], int]:
     so geometry-backed marginal-note splitting can repair the evidence that
     :func:`parse_contents` will then judge normally.
     """
-    numbers = _section_numbers(blocks)
-    if not numbers:
-        return {}, 0
-    first_number = numbers[0][0]
-    markers = [index for index, block in enumerate(blocks[:first_number + 1])
-               if _has_contents_marker(block["text"])]
-    if not markers:
-        return {}, 0
-    marker = markers[-1]
-    formula = next((index for index, block in enumerate(blocks[marker + 1:], marker + 1)
-                    if _ENACTING_FORMULA.search(block["text"])), None)
+    def derive(numbers: list[tuple[int, int, str, str]]
+               ) -> tuple[dict[str, str], int]:
+        if not numbers:
+            return {}, 0
+        first_number = numbers[0][0]
+        markers = [index for index, block in enumerate(blocks[:first_number + 1])
+                   if _has_contents_marker(block["text"])]
+        if not markers:
+            return {}, 0
+        marker = markers[-1]
+        formula = next((index for index, block
+                        in enumerate(blocks[marker + 1:], marker + 1)
+                        if _ENACTING_FORMULA.search(block["text"])), None)
 
-    body_floor = formula + 1 if formula is not None else 0
-    if not body_floor:
-        labels_seen: set[str] = set()
-        for index, _, label, _ in numbers:
+        body_floor = formula + 1 if formula is not None else 0
+        if not body_floor:
+            labels_seen: set[str] = set()
+            for index, _, label, _ in numbers:
+                if index <= marker:
+                    continue
+                key = _citation_label_key(label)
+                if key in labels_seen and len(labels_seen) >= 2:
+                    body_floor = index
+                    break
+                labels_seen.add(key)
+        if not body_floor:
+            return {}, 0
+
+        hints: dict[str, str] = {}
+        seen_keys: set[str] = set()
+        for index, _, label, heading in numbers:
             if index <= marker:
                 continue
-            key = _citation_label_key(label)
-            if key in labels_seen and len(labels_seen) >= 2:
-                body_floor = index
+            if index >= body_floor:
                 break
-            labels_seen.add(key)
-    if not body_floor:
-        return {}, 0
+            key = _citation_label_key(label)
+            if key in seen_keys:
+                break
+            seen_keys.add(key)
+            if heading:
+                hints[label.replace(" ", "")] = heading
+        return hints, body_floor
 
-    hints: dict[str, str] = {}
-    seen_keys: set[str] = set()
-    for index, _, label, heading in numbers:
-        if index <= marker:
-            continue
-        if index >= body_floor:
-            break
-        key = _citation_label_key(label)
-        if key in seen_keys:
-            break
-        seen_keys.add(key)
-        if heading:
-            hints[label.replace(" ", "")] = heading
-    return hints, body_floor
+    # The boundary here is a REPEAT in the numbering -- the body restating a
+    # label the contents already listed -- so dropping footnote runs can remove
+    # the very repeat it rests on, and this would then return nothing at all,
+    # taking the marginal-note splitting `parse_contents` depends on with it.
+    #
+    # Derive both ways and keep the earlier floor: excluding apparatus must
+    # never make the body region smaller. A floor that is too early only
+    # narrows the contents hints; a floor that is too late buries law.
+    #
+    # This is a guard, not a demonstrated repair. Bisecting the call sites
+    # showed every measured difference between the two parsers flows through
+    # `parse_contents`, not through here, so on the documents checked this
+    # branch changes nothing. It is kept because the failure it prevents --
+    # returning no boundary where one is available -- is silent and costs
+    # sections, and the cost of the guard is one extra pass over the blocks.
+    strict_hints, strict_floor = derive(_section_numbers(blocks))
+    loose_hints, loose_floor = derive(
+        _section_numbers(blocks, drop_footnote_runs=False))
+    if strict_floor and (not loose_floor or strict_floor <= loose_floor):
+        return strict_hints, strict_floor
+    return loose_hints, loose_floor
 
 
 def _split_fused_marginal_notes(blocks: list[dict], toc: dict[str, str],
@@ -1622,10 +1699,17 @@ def _split_fused_marginal_notes(blocks: list[dict], toc: dict[str, str],
     # moved the body boundary from page 2 to 17, and collapsed 228 provisions
     # to 96.  Fusion is a recovery operation, so it is eligible only for TOC
     # labels that the unsplit body numbering cannot already reconcile.
+    #
+    # This set is a GUARD against splitting, not evidence of law, so it takes
+    # the unfiltered numbering. Dropping footnote runs here shrinks it, more
+    # labels read as unresolved, and the geometry splitter fires more often --
+    # the exact direction the paragraph above warns about. A guard should be
+    # maximally willing to say "already reconciled": being wrong there costs a
+    # missed split, being wrong the other way costs sections.
     body_labels = {
         _repair_label(label, toc, actual_heading=heading).replace(" ", "")
         for _index, _number, label, heading
-        in _section_numbers(blocks[body_floor:])
+        in _section_numbers(blocks[body_floor:], drop_footnote_runs=False)
     }
     matched_toc, _matched_body = _reconcile_label_sets(set(toc), body_labels)
     unresolved_keys = {
