@@ -2260,3 +2260,30 @@ the two documents that went to zero are the fixtures to build it against.
 Recorded because this is the third change measured out today, and the pattern
 across all three is the same: **a rule that recovers structure must never be
 allowed to make the body region smaller.**
+
+## Eight readings: four inverted, and the shape is now unmistakable
+
+Two more S7 candidates read.
+
+| document | what the page shows | decision |
+|---|---|---|
+| 844 · Sind Local Government (Second Amendment) Ordinance 1983 | page 4 prints sections 5 and 6 with their marginal notes in the right column, `Insertion of section 39-A in Sind Ordinance XII of 1979.` and `Amendment Schedule V to Sind Ordinance XII of 1979.` The extractor emitted that note column as **one block**, and its trailing `1979.` became a section label | `accept_non_citable` |
+| 264 · KP Property Acquisition (Repeal) Ordinance 1972 | page 2 prints the entire Ordinance. The unit **kept** as section 2 is on page 1 and its first block is the contents entry `2. Repeal of 4[Khyber Pakhtunkhwa] Ord No.XXII of 1972.` | **`restore_citable`** |
+
+**Four of eight readings inverted, and three of those four are the same
+shape**: a contents entry standing where the section should be — documents
+1224, 1030 and now 264. The fourth, document 844, is the right-margin note
+column read as a section, which is the other half of the same story: both are
+apparatus that the tree admitted as law.
+
+That is not a sampling artefact at this point. It is the dominant failure in the
+S7 queue, and every machine test is blind to it because the apparatus node is
+*smaller*, not larger — 60, 82 and 118 characters in the three inverted cases,
+all far below the stub guard's 500-character threshold. Only the page
+distinguishes them.
+
+| | after eight readings |
+|---|---:|
+| decisions recorded | **7 source_verified** — 4 accept, 3 restore_citable |
+| released expressions | 4,152 |
+| S7 pending units | 1,053 |
