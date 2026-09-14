@@ -1890,3 +1890,74 @@ been doing.
 
 Nothing was lost: C4 and C5 both still report 0, the audit is unchanged at
 29/30 with S7 the only FAIL, and no provision, block or revision was deleted.
+
+---
+
+# The gap queue has no large tractable class left
+
+Three parser fixes were found by reading pages today and were worth 2, 5 and 16
+gaps against a queue of 1,000. `./nz gap-causes` was built to rank the classes
+before spending another turn that way. After three corrections to its own
+classification, over 958 pending gaps:
+
+| class | gaps | share | |
+|---|---:|---:|---|
+| heading_only | 304 | 31.7% | **not a defect class — see below** |
+| absent | 223 | 23.3% | neither label nor heading outside the contents |
+| period_other | 178 | 18.6% | label matches a schedule row, heading does not |
+| anywhere_at_start_other | 75 | 7.8% | |
+| periodless_other | 68 | 7.1% | |
+| period_nohead | 23 | 2.4% | heading too damaged to corroborate |
+| **period** | **19** | **2.0%** | **printed plainly, heading agrees, tree missed it** |
+| bracket_amend | 16 | 1.7% | |
+| the rest | 52 | 5.4% | |
+
+Three corrections were needed to get there, and each shrank the number that
+looked actionable:
+
+1. **Heading agreement required.** `period` first read 228. Document 1117's
+   contents promises section 12 *Consequences of de-registration* while its
+   Schedule prints `12. Welfare of the aged and infirm.`; taking the first block
+   carrying the label called that "found". 228 → 52.
+2. **Uncorroborated headings named.** A heading of `* * * *.`,
+   `................` or `11l` cannot corroborate anything, and calling those
+   corroborated kept them in `period`. 52 → **19**.
+3. **heading_only is an artifact.** "Outside the contents" is decided from
+   `provision_block.role`, and a contents list whose rows never linked has no
+   role row, so it defaults to unassigned and reads as body. Document 308's
+   page-2 list — `35. Acquisition lands.`, `36. Contract water and water
+   rates.`, `38. Preferential treatment.` — is its own contents, counted as
+   headings printed in the body. Two attempts to separate them, on
+   `source_block_id` and on the run's `body_starts_page`, left it at 304.
+
+**A parser change was written for heading_only and measured against all 138 of
+its documents with `./nz diff-trees`: 0 sections gained, 0 lost, on every one.**
+It is reverted.
+
+And the 19 that survive every filter mostly parse correctly already. Tested
+directly, `classify` reads `14.Information acquired to be confidential.___(1)`,
+`128[6-A. Furnishing of statement in Form A.I.T. 5-A` and `133[7. Best judgment
+assessment.-` as sections 14, 6-A and 7. Their gaps come from context — a
+boundary, a parent, a seen-set — not from the grammar. The one genuine grammar
+defect among them, `13. 1 The 2[Chairperson]` parsing as label `13. 1` because
+a superscript marker is absorbed, appears in **5 blocks and one pending gap**
+corpus-wide.
+
+## What this means for the goal
+
+Closing the TOC-gap queue was the first named component of this work, and the
+honest position is now measurable rather than asserted: **it cannot be closed by
+parser fixes at scale, and it cannot be closed by dispositions either.**
+
+* `review_absent_sections` offers **7 candidates out of 1,000**, and reading the
+  only fully-renderable one showed the rule *was* printed — so dispositions are
+  not the route.
+* No remaining defect class is worth more than ~20 gaps, and the largest-looking
+  one was an artifact of the measurement.
+
+What remains is a long tail: contents lists that do not correspond to their
+body, labels that coincide with schedule rows, forms and wildlife schedules
+promising entries no body section answers, and genuinely absent sections. Those
+need per-document reading, at a scale of several hundred documents, and each
+reading settles one expression. The rendering for all 1,005 is now in place and
+indexed, which is what that work needs.

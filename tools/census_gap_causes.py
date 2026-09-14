@@ -159,7 +159,17 @@ def main() -> int:
                         and hk[:24] in re.sub(r"[^a-z0-9]", "", t.lower())
                     ]
                     match = (agreeing or hits)[0]
-                    verdict = name if agreeing or len(hk) < 10 else name + "_other"
+                    # A heading too short or too damaged to compare cannot
+                    # corroborate anything, and calling those "corroborated"
+                    # is how `period` first read as 228 and then 42 while
+                    # still carrying "* * * *.", "................" and "11l"
+                    # as its promised headings. Name that case instead.
+                    if agreeing:
+                        verdict = name
+                    elif len(hk) < 10:
+                        verdict = name + "_nohead"
+                    else:
+                        verdict = name + "_other"
                     hit = " ".join(match.split())[:72]
                     break
                 if verdict in ("absent", "anywhere_at_start"):
