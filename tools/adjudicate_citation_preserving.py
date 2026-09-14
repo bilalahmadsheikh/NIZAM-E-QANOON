@@ -32,6 +32,25 @@ parsed as label "2", so the demotion of a "2" did not itself remove rule 22's
 citation. Candidates in documents with a known label-parsing defect of that kind
 are therefore excluded here and left pending for source review.
 
+CORRECTION, 14 Sep 2026. The claim above -- "no demotion in the corpus removes
+a citation" -- is true and was not enough. Preserving the label does not
+preserve the provision: the surviving section can be a phantom anchored to a
+footnote or a wrapped continuation, holding no text, while the demoted unit
+holds the law. Prevention of Corruption Act 1947 s.5 is the case, and branch
+one of the eligibility test ACCEPTS it, because the phantom's heading matches
+the printed contents perfectly and the real body has no heading at all.
+
+Measured over decisions already taken (`./nz stub-citations`): 359 citations
+across 194 documents resolve to less than half the provision, 237 of them
+released. A stub guard is now the last conjunct of SELECT_SQL. It would have
+refused 187 of this tool's own 1,326 decisions (14.1%), 152 of 943 from
+`nizam.structural_adjudicator/1` (16.1%), and refuses 234 of the 1,184 still
+pending (19.8%). Those go to source review, which is where they belonged.
+
+The decisions already recorded are NOT revised here. They are append-only and a
+superseding `restore_citable` is the correct repair, but writing 187 of them
+before the parser stops producing phantom sections would only move the error.
+
 No provision, source block or prior revision is touched. Each decision is a row
 that a later source review can supersede.
 
@@ -69,6 +88,24 @@ gap_label AS (
   SELECT DISTINCT document_id,
          regexp_replace(lower(printed_label), '[^a-z0-9]', '', 'g') AS key
     FROM v_toc_gap_pending
+),
+-- How much law each side of the collision actually carries, subtree included.
+-- `path <@ p.path` includes p itself, so a node's own blocks count.
+sizes AS (
+  SELECT c.id,
+         (SELECT coalesce(sum(pb.chars), 0) FROM provision x
+            JOIN provision_block pb ON pb.provision_id = x.id
+           WHERE x.instrument_id = c.instrument_id AND x.is_active
+             AND x.path <@ canon.path) AS canon_chars,
+         (SELECT coalesce(sum(pb.chars), 0) FROM provision x
+            JOIN provision_block pb ON pb.provision_id = x.id
+           WHERE x.instrument_id = c.instrument_id AND x.is_active
+             AND x.path <@ cand.path) AS cand_chars
+    FROM segmentation_structural_candidate c
+    JOIN provision canon ON canon.id = c.canonical_provision_id
+                        AND canon.is_active
+    JOIN provision cand  ON cand.id  = c.candidate_provision_id
+                        AND cand.is_active
 )
 SELECT c.id::text,
        c.document_id,
@@ -136,6 +173,32 @@ SELECT c.id::text,
         OR ((c.evidence->>'canonical_carries_law')::boolean IS TRUE
             AND (c.evidence->>'candidate_carries_law')::boolean IS FALSE)
    )
+   -- The stub guard, and the reason `find_stub_citations` exists.
+   --
+   -- Every branch above establishes that the LABEL survives. None of them asks
+   -- what the surviving label is worth. It can be a phantom -- a node anchored
+   -- to a footnote or a wrapped continuation, carrying no text at all -- while
+   -- the unit being demoted carries the provision. The Prevention of
+   -- Corruption Act 1947 s.5 is the case: the kept node holds 0 characters and
+   -- heading "Criminal misconduct 5A.", the demoted one holds 4,272 characters
+   -- of the criminal-misconduct provision. Branch one ACCEPTS it, because the
+   -- phantom's heading is a perfect match for the printed contents while the
+   -- real body has no heading at all and scores 0.
+   --
+   -- That inversion is already described in the branch above, for the mirror
+   -- case where the CANDIDATE is the bare heading. It was never guarded in this
+   -- direction. Measured over the decisions taken before this guard existed:
+   -- 359 citations across 194 documents resolve to less than half the
+   -- provision, 237 of them in released expressions.
+   --
+   -- So refuse, whatever the heading says, when the unit being demoted carries
+   -- real text and the unit being kept carries less than half of it. This only
+   -- ever removes candidates from the eligible set; it can admit none.
+   AND NOT EXISTS (
+         SELECT 1 FROM sizes z
+          WHERE z.id = c.id
+            AND z.cand_chars >= 500
+            AND z.canon_chars < z.cand_chars * 0.5)
  ORDER BY c.document_id, c.source_page
 """
 

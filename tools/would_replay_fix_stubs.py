@@ -87,6 +87,8 @@ def main() -> int:
     ap.add_argument("--released-only", action="store_true")
     ap.add_argument("--limit", type=int, help="stop after this many documents")
     ap.add_argument("--show", type=int, default=20)
+    ap.add_argument("--out-fixed", help="write documents a replay would fix here")
+    ap.add_argument("--out-split", help="write documents needing a decision here")
     a = ap.parse_args()
 
     with connect() as conn, conn.cursor() as cur:
@@ -105,6 +107,8 @@ def main() -> int:
 
     tally = collections.Counter()
     still: list[tuple] = []
+    fixed_docs: set[int] = set()
+    split_docs: set[int] = set()
     for n, doc in enumerate(docs, 1):
         with connect() as conn, conn.cursor() as cur:
             cur.execute("""SELECT source_observation_id FROM instrument
@@ -144,10 +148,12 @@ def main() -> int:
                 tally["gone"] += 1
             elif widest > 1:
                 tally["still split"] += 1
+                split_docs.add(doc)
                 still.append((doc, label, chars, released, widest,
                               len(sections)))
             elif sections and sections[0].text.strip():
                 tally["fixed"] += 1
+                fixed_docs.add(doc)
             else:
                 tally["now empty"] += 1
         if n % 25 == 0:
@@ -166,6 +172,21 @@ def main() -> int:
         for doc, label, chars, released, widest, n_sec in still[:a.show]:
             print(f"{doc:>6} {str(label)[:6]:<6} {chars:>8} {widest:>6} "
                   f"{n_sec:>9}  {'y' if released else '.'}")
+
+    # A document can hold both a stub a replay fixes and one that stays split,
+    # so the two sets overlap. Replaying for the first while the second is
+    # undecided is still correct -- a replay never decides anything -- but the
+    # caller should know the document will not leave the queue.
+    for path, ids, what in ((a.out_fixed, fixed_docs, "a replay would fix"),
+                            (a.out_split, split_docs, "need a decision")):
+        if path:
+            with open(path, "w", encoding="utf-8") as fh:
+                for doc in sorted(ids):
+                    fh.write(f"{doc}\n")
+            print(f"wrote {path}: {len(ids)} documents {what}")
+    if a.out_fixed and a.out_split:
+        both = fixed_docs & split_docs
+        print(f"  in both lists: {len(both)}")
     return 0
 
 
