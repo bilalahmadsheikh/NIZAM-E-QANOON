@@ -1435,6 +1435,33 @@ def _toc_label_is_next(label: str, toc: dict[str, str],
     return position == 0 or order[position - 1] in seen
 
 
+def _heading_tail_supports(context: str | None, expected: str | None) -> bool:
+    """Does any TRAILING part of a collected marginal context support the heading?
+
+    ``previous_heading_context`` walks backwards over up to three blocks and
+    joins what it finds, so it can pick up the tail of the PREVIOUS section's
+    marginal note along with this one's. The Balochistan Sales Tax on Services
+    Act collects ``General Default Surcharge.`` for its section 49, where the
+    contents promises ``Default Surcharge`` -- "General" is the end of section
+    48's note, sitting in the same column three blocks up.
+
+    ``_heading_supports`` compares from the first word, so one stray leading
+    word makes it False, and 41 promised sections stopped being citable for it.
+    The detached-heading pass already handles exactly this by trying
+    progressively shorter selections of the blocks it collected; this applies
+    the same idea to the joined string.
+
+    Only SUFFIXES are tried. Dropping words from the front can only discard a
+    neighbour's text; dropping from the back would let an unrelated heading
+    match on a shared first word.
+    """
+    if not context or not expected:
+        return False
+    words = context.split()
+    return any(_heading_supports(" ".join(words[start:]), expected)
+               for start in range(len(words)))
+
+
 def _heading_supports(candidate: str | None, expected: str | None) -> bool:
     """Does source layout text independently support the printed TOC heading?"""
     got = _norm(candidate or "").casefold().strip(" .:-–—")
@@ -2462,7 +2489,8 @@ def segment(blocks: list[dict], curation_patches: list[dict] | None = None,
             next_promised_section = (
                 _toc_label_is_next(table_key, toc, seen)
                 and (_heading_supports(rest, expected_heading)
-                     or _heading_supports(heading_context, expected_heading))
+                     or _heading_tail_supports(heading_context,
+                                               expected_heading))
             )
             if next_promised_section:
                 explicit_table_owner = None

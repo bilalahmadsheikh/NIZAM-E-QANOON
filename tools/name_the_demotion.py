@@ -45,13 +45,13 @@ def build_probe() -> int:
     for lineno, line in enumerate(lines, 1):
         out.append(line)
         match = re.match(r'^(\s*)(kind|node\.kind) = "clause"\s*$', line)
-        if not match:
+        if match:
+            indent, target = match.group(1), match.group(2)
+            var = "label" if target == "kind" else "node.label"
+            out.append(f'{indent}import sys as _s; print(f"DEMOTE@{lineno} '
+                       f'label={{{var}!r}}", file=_s.stderr)')
+            sites += 1
             continue
-        indent, target = match.group(1), match.group(2)
-        var = "label" if target == "kind" else "node.label"
-        out.append(f'{indent}import sys as _s; print(f"DEMOTE@{lineno} '
-                   f'label={{{var}!r}}", file=_s.stderr)')
-        sites += 1
     PROBE.write_text("\n".join(out), encoding="utf-8")
     return sites
 
@@ -72,6 +72,27 @@ def main() -> int:
     module = importlib.util.module_from_spec(spec)
     sys.modules["segment_instrumented"] = module
     spec.loader.exec_module(module)
+
+    # A clause is also produced by CONSTRUCTING one, not only by reassigning
+    # `kind`. Instrumenting the assignments alone reported "no demotion fires"
+    # for document 3255 and led to a wrong conclusion about why its section 49
+    # is a clause. Matching those constructions in the source is fragile --
+    # they span lines -- so wrap the class instead. Module functions resolve
+    # `Node` as a global at call time, so replacing it here catches every site.
+    _Node = module.Node
+
+    def _traced(*args, **kwargs):
+        node = _Node(*args, **kwargs)
+        if kwargs.get("kind") == "clause" or (args and args[0] == "clause"):
+            parent = kwargs.get("parent")
+            where = (f"{parent.kind}:{parent.label!r}" if parent is not None
+                     else "root")
+            line = sys._getframe(1).f_lineno
+            print(f"BUILT@{line} clause label={kwargs.get('label')!r} "
+                  f"under {where}", file=sys.stderr)
+        return node
+
+    module.Node = _traced
 
     with connect() as conn, conn.cursor() as cur:
         cur.execute("""SELECT source_observation_id FROM instrument
