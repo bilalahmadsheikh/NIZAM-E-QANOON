@@ -2432,3 +2432,36 @@ are all zero or all equal — which is precisely the situation in the documents
 whose contents the parser cannot read.
 
 That, not the threshold, is the thing to fix next.
+
+## A recurring apparatus class the readings settle cheaply
+
+Two more expressions released, both by the same shape and neither needing a
+parser change.
+
+**The wrapped cross-reference tail.** A rule ends by citing another rule, the
+citation wraps onto its own line, and the fragment reads as a section opener:
+
+| document | what the page shows | demoted unit |
+|---|---|---|
+| 3563 · biosafety rules | rule 20 ends `...in accordance with sub-rule (2) of rule` / `19.` | `19.` |
+| 3389 · local council rules | rule 15 ends `...shall disallow a supplementary question if it fringes the provision of` / `Rule 13.` | `Rule 13.` |
+
+**The contents entry demoted correctly.** Document 2550's page 10 is a
+continuation of the Coastal Development Authority Act's printed contents —
+`18. MAINTENANCE OF ACCOUNTS` through `26. REPEAL`, capitals, no operative text
+— and the demoted unit is its entry `22. VALIDATION OF PROCEEDINGS` while the
+real section 22 is kept. That is the same contents-becomes-tree defect as the
+five inversions, pointing the *right* way for once, and `accept_non_citable` is
+simply correct.
+
+| | session start | now |
+|---|---:|---:|
+| released expressions | 4,106 | **4,156** |
+| S7 pending units | 1,087 | **1,050** |
+| citable sections (released) | — | **80,751** |
+| source-verified decisions | 0 | **12** — 8 accept, 4 restore_citable |
+
+Twelve readings: five inverted (`restore_citable`), six apparatus
+(`accept_non_citable`), one refused by the stub guard when the reading was of
+the block and the guard was of the subtree. Six expressions released by reading
+alone.
