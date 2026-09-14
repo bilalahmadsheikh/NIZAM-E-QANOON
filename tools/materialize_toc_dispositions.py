@@ -427,9 +427,19 @@ def main() -> int:
         raise SystemExit(f"unknown assertion observations: {sorted(selected-set(targets))}")
 
     plans = []
+    skipped: list[tuple[int, str]] = []
     with only_one_run():
         for observation_id in targets:
-            inst, plan = load_plan(observation_id)
+            try:
+                inst, plan = load_plan(observation_id)
+            except ValueError as exc:
+                # One observation that the exact overlay refuses -- most often
+                # because its instrument already carries TOC adjudications --
+                # used to abort the whole run, so a single unusable target
+                # blocked every other assertion from being materialised. Record
+                # it and carry on; the refusal is still visible in the summary.
+                skipped.append((observation_id, str(exc)))
+                continue
             plans.append(plan)
             if args.apply:
                 new_id = legal_write.save(inst, SEGMENTER)
@@ -497,6 +507,8 @@ def main() -> int:
         f"S7={sum(p['structural_candidates'] for p in plans)}/"
         f"{sum(p['carried_adjudications'] for p in plans)}decided"
     )
+    for observation_id, reason in skipped:
+        print(f"  skip observation {observation_id}: {reason}")
     print(f"{'applied' if args.apply else 'planned'} {len(plans)} exact-tree revisions")
     return 0
 

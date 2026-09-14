@@ -233,10 +233,26 @@ def main() -> int:
         # a reviewer has looked at every rendered source block in this manifest.
         # The actor and reviewer type remain honest; this is not labelled human.
         with connect() as conn, conn.cursor() as cur:
+            refused = 0
             for entry in entries:
                 artifact = entry.get("render_artifact")
                 if not artifact:
                     raise RuntimeError("recording requires a rendered artifact")
+                # A body that HAS text under this label contradicts the reading.
+                # Document 2243's "entry" for label 3 is not a contents row at
+                # all -- the render shows three FOOTNOTES, superscript markers
+                # against amendment history:
+                #
+                #     2.  Subs Vide the Khyber Pakhtunkhwa Act.IV of 2011.
+                #     3.  Omitted Vide Khyber Pakhtunkhwa Act No.XII of 1973.
+                #
+                # Recording that would assert section 3 of the Act was omitted,
+                # on the evidence of a footnote about some other provision. The
+                # detector already computes body_text_present and it is exactly
+                # the signal that separates the two; it was not consulted here.
+                if entry.get("body_text_present"):
+                    refused += 1
+                    continue
                 citation_match = re.search(
                     r"\b(?:by|through)\s+(?:the\s+)?(.+)$",
                     entry["printed_heading"], re.I,
@@ -285,7 +301,8 @@ def main() -> int:
                     previous[0] if previous is not None else None,
                 ))
                 inserted += 1
-        print(f"assertions: {inserted} inserted, {unchanged} unchanged")
+        print(f"assertions: {inserted} inserted, {unchanged} unchanged, "
+              f"{refused} refused because the body has text under that label")
     print(json.dumps(manifest["counts"], indent=2))
     print(f"manifest: {manifest_path}")
     return 0
