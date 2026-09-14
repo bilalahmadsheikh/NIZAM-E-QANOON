@@ -1961,3 +1961,41 @@ promising entries no body section answers, and genuinely absent sections. Those
 need per-document reading, at a scale of several hundred documents, and each
 reading settles one expression. The rendering for all 1,005 is now in place and
 indexed, which is what that work needs.
+
+## A quarter of the queue is a short file, not a missed section
+
+The `absent` class led to document 127, the Balochistan Witness Protection Act:
+**7 pages, 15 sections in the tree, 30 entries in its printed contents**, and 14
+pending gaps running unbroken from section 16 to section 29. Its last block ends
+
+    (b) involving amounts of more than rupees one million if it is alleged
+    that the offenc
+
+mid-word. The file is cut off. No parser fix reaches that, and recording those
+14 rows as `absent_in_source` would assert the legislature never enacted
+sections 16–29 on evidence that only shows the copy is short — the error
+`find_truncated_acquisitions` was written to prevent.
+
+Measured over every expression with a pending gap:
+
+| shape | expressions | gaps |
+|---|---:|---:|
+| **contiguous tail — the last *n* entries, unbroken** | **83** | **239** |
+| contiguous run, not at the end | 153 | 211 |
+| scattered | 101 | 508 |
+
+**239 gaps, 24% of the queue, sit in a contiguous tail.** Of those 83
+expressions, 11 end mid-sentence like document 127 and are provably truncated;
+39 end on terminal punctuation and 33 on a digit, where a cut at a page boundary
+cannot be told from a clean ending without reading the page.
+
+`find_truncated_acquisitions` already finds 12 documents on stricter tests — it
+requires the last provision to sit on the document's **last** page, which
+document 127 fails, its law ending on page 6 of 7. The two signatures are
+complementary and neither subsumes the other.
+
+The repair for this class is not segmentation at all. It is
+`recover_acquisition.py --alternate-for`, which is how the Raisani Hospital
+Act's three-page copy was replaced by the nine-page Gazette, or a declared
+acquisition exception where no complete copy exists. Both are acquisition work
+on a queue that is otherwise closed at 0 unresolved.
