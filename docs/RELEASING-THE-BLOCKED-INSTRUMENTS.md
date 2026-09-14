@@ -2223,3 +2223,40 @@ The real repair is to count a periodless numbered line as a contents entry
 which is the same chicken-and-egg that `_classify_body`'s periodless rule
 resolves with `label in toc`, except there is no toc yet to consult. That is
 worth doing and is not a one-line change.
+
+### Periodless contents recovery: built, verified exhaustively, and reverted
+
+The repair named above was built. Inside a region a printed marker has already
+proved is a contents list, a numbered line with no period is counted as an
+entry — scanning only forward from the marker, only over short blocks, and only
+over blocks the grammar did not already read as openers.
+
+It worked on its target. Document 1030 went from `found=False` to
+`toc=2, body_page=17, found=True`.
+
+Two guards were needed on the way, and the second was not enough:
+
+1. **Run it only as a fallback.** Unconditionally, recovered entries extend the
+   contents region and move the body floor **later**, which swallows sections.
+   Document 1224 — repaired by the year-marker fix in the same session — lost
+   its sections 1 and 2 that way, its floor moving from block 20 to 24. Gating
+   it on "the unmodified numbering yields no boundary at all" fixed that: 1224
+   untouched, 1030 still repaired, 0 sections lost across the six test
+   documents.
+2. **Then the exhaustive check killed it.** Running `parse_contents` both ways
+   over all 4,593 active documents, exactly **6** change — every one from
+   `found=False` to `found=True`, none the other way, which looked ideal. But
+   `./nz diff-trees` over those six shows **documents 661 and 1083 losing every
+   section they have, 3 → 0**. A contents list is recognised and swallows the
+   entire document. A segmenter test fails with it too:
+   `test_a_document_with_no_provisions_yields_no_provisions`.
+
+So it is reverted. The idea is right and the guard is not yet: recognising the
+list must not be allowed to consume the body, and "the unmodified numbering
+yields no boundary" does not imply the recovered boundary is safe. The next
+attempt needs a floor that cannot pass the document's last real section, and
+the two documents that went to zero are the fixtures to build it against.
+
+Recorded because this is the third change measured out today, and the pattern
+across all three is the same: **a rule that recovers structure must never be
+allowed to make the body region smaller.**
