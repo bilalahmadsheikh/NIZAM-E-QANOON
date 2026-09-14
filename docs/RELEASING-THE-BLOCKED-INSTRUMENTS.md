@@ -2363,3 +2363,38 @@ could is that it asks about the subtree, which is what a citation actually
 returns — the same question `find_stub_citations` asks, applied at the moment of
 writing rather than afterwards. A page shows what is printed; it does not show
 what the tree hung beneath it.
+
+## A fifth inversion, and it defeats the size tests entirely
+
+Document 1665, the Provincial Motor Vehicles (Amendment) Ordinance 2000, was
+selected by a filter looking for the *opposite* of the inverted shape — the kept
+side carrying more than three times the demoted one, where `accept_non_citable`
+should be safe. It is inverted anyway.
+
+| | page | first block | chars |
+|---|---:|---|---:|
+| **kept** as section 4 | 1 | `4. Amendment of section 6-A of Sindh Act XXII of 1994.` — a contents entry | **1,038** |
+| **demoted** to a clause | 3 | `4. In the said ordinance for the "TWELFTH SCHEDULE" specified in Appendix II ... shall be substituted.` — the real section, margin note *Substitution of Twelfth Schedule to W.P. Ord. XIX of 1965.* | 318 |
+
+The kept node measures 1,038 characters **because it absorbed the entire printed
+contents list**. So the size test points the wrong way, the ratio guard points
+the wrong way, and both of the guards added today would have let this through.
+
+**Five of ten readings are now inverted, and four of the five are the same
+shape**: a contents entry standing where the section should be — documents 1224,
+1030, 264 and 1665. What separates them is not how much either side carries but
+**what the kept node's first block is**, and that is in the ledger:
+
+```
+kept.first_page = 1  and  kept.first_block is a contents-list block
+```
+
+The obstacle to querying it corpus-wide is the one already recorded: 936 of the
+1,053 pending units belong to expressions with **no contents entries**, so
+`role = 'contents'` and `source_block_id` are both empty for exactly these
+blocks. The list is there on page 1; the ledger does not know it is a list.
+
+That is the same unrecognised-contents defect measured at **54 expressions and
+341 units** earlier, arriving for the fifth time — through the gap queue, the
+stub citations, the S7 queue, the heading misalignment, and now the size tests.
+It is one defect, and it is the one worth fixing.
