@@ -1565,3 +1565,49 @@ again on the record: **40 declared exceptions, 0 unresolved.**
 C1 passes at 0 unstored / 0 unsourced. The "41" in earlier notes was the queue
 size when that work started, not a standing figure; 14 items were recovered by
 refetch and 1 by an alternate official copy.
+
+---
+
+# Retracted: "176 of 192 S7 documents clear by replay"
+
+That claim, recorded earlier today in `would_replay_clear_s7` and its commit,
+is **wrong by two orders of magnitude** and the tool is deleted.
+
+The tool segmented each document with today's parser and counted sibling groups
+sharing a citation label, treating zero as "the collision is gone". But an S7
+candidate is recorded at the moment the segmenter **demotes** one of the pair:
+`inst.structural_decisions` is written as the tree is built, and the finished
+tree therefore never holds two siblings with the same label. The tool was
+counting the residue of a resolution, which is always zero. It measured nothing
+and reported everything.
+
+The segmentation worker already answers this correctly, and has all along —
+`--dry-run` prints `S7=before->after` per document. Over the same 175:
+
+| | documents |
+|---|---:|
+| S7 unchanged | **159** |
+| S7 increases | 8 |
+| S7 reduces | 5 |
+| S7 clears to 0 | **3** |
+
+and two of those three shed sections doing it (4244 at 142 → 20, 4473 at
+106 → 26). **One** document clears without loss.
+
+So the earlier conclusion is withdrawn with it. The S7 queue is **not**
+mostly stale trees. The 20 documents replayed this morning were real — their
+collisions did cease to exist, verified against the same worker output — but
+they were selected as stub-citation repairs, and they do not generalise.
+
+What stands from that section is the part the release view proves rather than
+the part this tool measured: S7 remains a queue where only `accept_non_citable`
+clears a unit, so 451 of the 1,035 need a parser fix rather than a decision.
+How many of those fixes already exist is now **unknown again**, and the honest
+instrument for finding out is `nizam.workers.segment --dry-run`, not a
+reimplementation of its detector.
+
+**The lesson, twice today.** This is the second count retracted in one session
+— the first was 14,302 "disagreeing" contents links, an artefact of the
+missing-`s` extraction defect. Both were caught the same way: by checking a
+sample or a second instrument before acting on the number. Neither reached the
+database.
