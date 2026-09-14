@@ -2045,3 +2045,35 @@ corpus**, and it correctly leaves document 1224 blocked: the gate opens only on
 `accept_non_citable`, and that tree still needs repairing.
 
 204 tests pass. Audit 29/30, S7 the only FAIL.
+
+## Six readings in, and the inverted rate is the finding
+
+Two more expressions were read after the first four. Both turned out inverted,
+and both by the same mechanism: **a block from the printed contents list was
+built as the section, and the body was demoted under it.**
+
+| document | kept as the section | demoted | decision |
+|---|---|---|---|
+| 1224 · a KP Ordinance | page 1, first block is the contents list (1,129 chars) | page 5, `12. Government may make rules to carry out the purposes of this Ordinance.` | `restore_citable` |
+| 1030 · Sind Abolition of Land Revenue and Agriculture Income Tax Ordinance 1977 | page 1, first block is the contents entry `1. Short title and Commencement.` | page 2, `1. (1) This Ordinance may be called the Sind Abolition of Land Revenue… (2) It shall come into force at once.` | `restore_citable` |
+
+**Three of six readings were inverted.** That is a rate worth stating: the
+machine tests cannot see it, because in both cases the demoted unit is small —
+82 and 118 characters — well under the stub guard's 500-character threshold.
+What identifies them is that the *kept* node's first block is a contents entry,
+which is visible in the ledger and was not being asked about.
+
+That is the same defect as document 306's misaligned headings and document
+3523's empty citable node, reached a third way: **the contents list becoming the
+tree.** It is defect class 3, and it is now implicated in the gap queue, the
+stub citations, and the S7 queue alike.
+
+Running total from source review: **4 releases** (4536, and earlier 3606 by a
+parser fix), 6 decisions recorded, 2 of them the first `restore_citable` rows
+this corpus has ever held.
+
+| | start of source review | now |
+|---|---:|---:|
+| released expressions | 4,147 | **4,150** |
+| S7 pending units | 1,074 | **1,071** |
+| decisions by basis | 8,781 machine, 0 source | 8,781 machine, **5 source_verified** |
