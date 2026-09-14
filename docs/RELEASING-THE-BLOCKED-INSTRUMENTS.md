@@ -2123,3 +2123,67 @@ that do print one.
 The repair is in `parse_contents`, which scores candidate boundaries by
 agreement between the contents and the body. For these 54 it selects nothing at
 all. Why it declines a list of ~14 printed entries is the next thing to read.
+
+## Applied: the year that hid the contents marker
+
+The inverted readings pointed at `parse_contents`, and tracing two of them gave
+two different causes:
+
+**Document 1224** — a year read as a section opener truncates the marker scan:
+
+```
+block 2   1975. 2[KHYBER PAKHTUNKHWA]      -> opener labelled "1975"
+block 4   [24th January, 1975] CONTENTS.   -> never reached
+```
+
+`marker_end` is bounded at the first opener, so it becomes 3 and the marker at
+block 4 is invisible. The printed list of 13 entries is parsed as body, its rows
+become sections, and the real sections collide with them — **13 sections, 0
+contents entries, 12 S7 candidates**, one of which was read on the page and
+found inverted.
+
+**Document 1030** — a different cause, not fixed here. Its contents prints
+
+```
+C O N T E N T PREAMBLE SECTIONS
+1. Short title and Commencement.
+2 Abolition of Land Revenue Agriculture Income Tax.   <- no period
+```
+
+The second entry is not counted as an opener, the numbering never reaches peak
+2, so `parse_contents` finds **zero fall candidates** and declines. One missing
+period in one contents entry defeats detection for the whole document.
+
+### The fix, and the version that was measured out first
+
+Widening the marker scan to the whole first **page** was tried and measured over
+all 4,596 documents: 9 moved and it **destroyed real law in three of them** —
+document 3087 lost `14. Action by the Government`, `15. Traveling allowance`,
+`16. Seniority` and `17. Repeal`; document 4472 lost five including
+`3. Establishment of Board of Trustees`. A whole page of licence lets a numbered
+front table be read as contents. That version is not in the tree.
+
+What landed skips **year-labelled** openers only. Verified exhaustively rather
+than sampled: only **40 documents** in the corpus open on a year, so the rule
+provably cannot touch anything else, and all 40 were diffed. **Two sections lost
+across the entire set — `1975` and `1962` — and both are the year phantoms
+themselves.** Documents 3087, 4472, 3532 and 3687 do not move at all.
+
+### Applied
+
+Worker dry run over the 40: S7 candidates **92 → 7**. Five documents improved
+and were replayed.
+
+| | before | after |
+|---|---:|---:|
+| released expressions | 4,150 | **4,152** |
+| S7 pending units | 1,071 | **1,054** |
+| citable sections (released) | 80,586 | **80,636** |
+| contents gaps | 1,000 | 1,005 |
+
+The five extra gaps are the honest measure arriving: documents 1224 and 2475
+held **zero** contents entries before and now hold 13 and 29, so entries that do
+not link are visible as gaps for the first time. The same trade as document
+3184, and the same reason it is not a regression.
+
+Audit 29/30, S7 the only FAIL. C4 and C5 both 0. 204 tests pass.
