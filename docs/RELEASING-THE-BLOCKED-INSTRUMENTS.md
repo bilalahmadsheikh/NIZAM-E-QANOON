@@ -2187,3 +2187,39 @@ not link are visible as gaps for the first time. The same trade as document
 3184, and the same reason it is not a regression.
 
 Audit 29/30, S7 the only FAIL. C4 and C5 both 0. 204 tests pass.
+
+### Document 1030's cause is deeper than the floors, and one fix was measured out
+
+`parse_contents` declines document 1030 at the **four-opener floor**, before its
+marker is even consulted — `len(nums)` is 3, because its page 1 prints
+
+```
+C O N T E N T PREAMBLE SECTIONS
+1. Short title and Commencement.
+2 Abolition of Land Revenue Agriculture Income Tax.   <- no period
+```
+
+and the second entry is never counted as an opener. Three openers in the whole
+document: one contents entry and two body sections.
+
+The obvious repair was tried and **reverted**: compute `saw_marker` before the
+floors, then relax both when a marker is printed — one opener is enough to
+establish a list, and one fall after it is the body. It compiles, and it does
+not work, because the floors are not the blocker. With them relaxed the boundary
+candidates appear, and `score()` still returns 0 for every one of them:
+
+```python
+if len(toc) < 2:
+    return 0.0, toc
+```
+
+The contents region yields **one** entry, so no boundary can ever score. The
+blocker is that the periodless entry is invisible, not that the floors are
+strict. Relaxing them buys nothing here and widens the door everywhere else, so
+it is not in the tree.
+
+The real repair is to count a periodless numbered line as a contents entry
+**inside a region a printed marker has already proved is a contents list** —
+which is the same chicken-and-egg that `_classify_body`'s periodless rule
+resolves with `label in toc`, except there is no toc yet to consult. That is
+worth doing and is not a one-line change.
