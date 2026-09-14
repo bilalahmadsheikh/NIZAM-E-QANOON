@@ -1838,3 +1838,55 @@ headings remain offset by one. Rule 22 carries `Works executed by contract.`,
 which page 8 prints beside rule **23**. That is defect class 3, found today and
 not yet fixed — the section numbers and text are right, the headings name the
 neighbouring provision.
+
+---
+
+# A batch replay that was not worth it, and why the filter selects against the fix
+
+The footnote-run rule measured `unlinked 1,928 -> 1,781` across the corpus, but
+a fingerprint is not a tree: the gain exists only after the documents are
+replayed. So all 339 gap-blocked documents were put through `./nz replay-cost`
+against the new parser, 271 came back safe, the worker's dry run showed **0
+sections lost and 96 gained**, and the 252 with no new S7 candidates were
+replayed. 260 instruments rebuilt, 0 failed.
+
+The result was close to neutral, and one part of it was a mistake:
+
+| | before | after replay | after adjudication |
+|---|---:|---:|---:|
+| released expressions | 4,147 | 4,147 | **4,147** |
+| contents gaps | 1,003 | 1,000 | **1,000** |
+| S7 units | 1,036 | **1,337** | **1,074** |
+| expressions S7-blocked | 212 | 265 | **231** |
+| citable sections (released) | 80,551 | 80,586 | **80,586** |
+
+**The mistake**: the dry run reports S7 candidate counts per document, and 19
+documents whose count would rise were excluded. But a replay gives every
+candidate a **new provision id**, so previously *decided* candidates return as
+undecided — `carried_by_exact_tree_revision` fires only on a byte-identical
+tree revision, and these trees changed by design. 301 units went from decided
+to pending. Re-running the citation-preserving adjudicator, now carrying the
+stub guard, took 263 of them back on freshly-parsed trees, leaving a net **+38
+units and +19 blocked expressions** against **−3 gaps and +35 citable
+sections**.
+
+**The deeper reason the yield was small** is worth more than the arithmetic.
+`replay_cost` filters on what the gate counts — sections lost, gaps gained —
+and the documents where the footnote fix helps most are exactly the ones it
+refuses, because their honest gap count *rises* when phantoms are removed:
+
+| refused by replay_cost | what it actually does |
+|---|---|
+| doc 2225 · Agricultural Produce Act 1937 | 27 phantom "sections" (`Fruit.`, `Eggs.`) → 6 real ones; gaps 2 → 0 |
+| doc 4088 · KP Civil Servants | 42 → 33 sections, gaps 1 → **0** |
+| doc 3184 · Railways (Transport of Goods) Act | 11 Schedule rows removed, gaps 3 → 17 (the honest number) |
+| doc 3867 · Punjab Excise Act | 111 → 83 sections, gaps 7 → 8 |
+
+So the batch replayed mostly documents where the parser produces the same tree,
+and skipped the ones carrying the improvement. **A gate-based filter cannot
+select for a fix whose effect is to make the gate's own number truer.** Those
+documents need reading one at a time, which is what the rest of this file has
+been doing.
+
+Nothing was lost: C4 and C5 both still report 0, the audit is unchanged at
+29/30 with S7 the only FAIL, and no provision, block or revision was deleted.
