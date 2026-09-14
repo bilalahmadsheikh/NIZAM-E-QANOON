@@ -1803,3 +1803,38 @@ Document 1014 is the same shape from a different cause: its contents lists
 `3. Constitution of Governing Body.` which the body does not print, so entries
 4 through 8 all sit one ahead, and its gap on `8. Power to make rules.` is the
 provision the body prints as section **7**.
+
+## Applied: the fused-subsection rule, and the first gap closed by reading
+
+The rule landed after an **exhaustive** check rather than a sample. Only five
+documents in the corpus hold a block it can match, so it provably cannot touch
+anything else; all five were diffed. Three unchanged, two gained a section,
+none lost one.
+
+Replayed:
+
+| | before | after |
+|---|---|---|
+| doc 3606 · Coastal Development Authority Rules | 34 sections, 1 gap, **blocked** | 35 sections, 0 gaps, **RELEASED** |
+| doc 2973 · Offence of Qazf (Enforcement of Hadd) Ordinance | 19 sections, 1 gap, blocked | 20 sections, 0 gaps, blocked on S7 |
+
+Rule 23 of the Coastal Development Authority Rules, *Works Registrar.*, is now
+a citable section carrying 295 characters. It is the gap that
+`review_absent_sections` proposed recording as **absent from the source** — the
+reading is what stopped that, and the rule is what fixed it.
+
+Document 2973 gained section 6, *Proof of qazf liable to hadd.*, and closed its
+gap, but the replay recreated an S7 candidate, so it moves from blocked-on-gap
+to blocked-on-S7. Better tree, same release state.
+
+| | before | after |
+|---|---:|---:|
+| released expressions | 4,146 | **4,147** |
+| contents gaps | 1,005 | **1,003** |
+| S7 units | 1,035 | 1,036 |
+
+**Still wrong in document 3606, and recorded rather than hidden**: its stored
+headings remain offset by one. Rule 22 carries `Works executed by contract.`,
+which page 8 prints beside rule **23**. That is defect class 3, found today and
+not yet fixed — the section numbers and text are right, the headings name the
+neighbouring provision.
