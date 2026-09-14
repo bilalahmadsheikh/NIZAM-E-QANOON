@@ -1334,6 +1334,13 @@ def parse_contents(blocks: list[dict]) -> tuple[dict[str, str], int, bool]:
     # below unreachable: document 2552 chose an item list on page 4 and returned
     # ``toc_found=False`` even though its Act restarts, with matching headings,
     # immediately after the enactment on page 3.
+    # Enactment/title evidence above can replace the numeric candidate. Rebuild
+    # BOTH the promises and their score from that final split: retaining the
+    # old candidate's map imports later schedule items into the Act's contents
+    # even though their blocks are beyond the boundary (docs 1438 and 2581).
+    # The source-entry ledger already uses best_idx, so an unrecomputed map
+    # creates run-only gaps with no printed contents entry behind them.
+    best_score, best_toc = score(best_idx)
     boundary_page = int(blocks[best_idx].get("page_no", 1))
     heading_support = heading_corroboration(best_idx, best_toc)
     # A two-page contents list in a ten-page colonial Act puts the body on page
@@ -1831,6 +1838,24 @@ def _explicit_schedule_cross_reference(value: str | None) -> bool:
             r"(?:\s*\([^)]+\))?\s*[\])]",
             normalized,
             re.I,
+        )
+    )
+
+
+def _detached_schedule_reference(heading: str, following: str) -> bool:
+    """A standalone display heading followed by its exact statutory reference.
+
+    Commercial Documents Evidence Act, doc 1438 p3: THE SCHEDULE and
+    (See sections 2 and 3) are separate PDF blocks. Neither line is a prose
+    reference carried over from the preceding page's amendment apparatus.
+    Callers also require same-page adjacency (doc 02 §5.1).
+    """
+    return bool(
+        re.fullmatch(r"(?:THE\s+)?SCHEDULE", heading.strip())
+        and re.fullmatch(
+            r"[\[(]\s*(?:See\s+)?sections?\s+\d{1,4}[A-Z]?"
+            r"(?:\s*(?:,|and)\s*\d{1,4}[A-Z]?)*\s*[\])]",
+            following.strip(), re.I,
         )
     )
 
@@ -2900,6 +2925,9 @@ def segment(blocks: list[dict], curation_patches: list[dict] | None = None,
                 _schedule_identity(f"{label} {rest}")
                     in toc_schedule_identities
                 or _explicit_schedule_cross_reference(b["text"])
+                or (idx + 1 < len(units)
+                    and units[idx + 1][0].get("page_no") == b.get("page_no")
+                    and _detached_schedule_reference(b["text"], units[idx + 1][1]))
                 or unlisted_display_schedule
             )
         )
@@ -3165,11 +3193,22 @@ def segment(blocks: list[dict], curation_patches: list[dict] | None = None,
                     stack.pop()
                 in_schedule, schedule_node = False, None
             else:
-                row_container = (stack[-1] if stack and
-                                 stack[-1].kind in (
-                                     _AUXILIARY_KINDS | {"part", "chapter"}
-                                 )
-                                 else schedule_node)
+                # The innermost open container, not merely the top of the
+                # stack. Only the FIRST row of a Part ever saw the Part here:
+                # once that row is pushed, `stack[-1]` is the row itself, which
+                # is not a container kind, so every later row fell back to the
+                # schedule, unwound past the Part and became its sibling.
+                #
+                # The Commercial Documents Evidence Act shows it plainly. Its
+                # Schedule prints PART I over twenty-four numbered documents --
+                # "1. Lloyd's Register of Shipping.", "2. Lloyd's Daily
+                # Shipping Index." and so on -- and the tree held item 1 under
+                # Part I with items 2 to 24 beside it, so PART II inherited
+                # nothing of its own either.
+                row_container = next(
+                    (node for node in reversed(stack)
+                     if node.kind in (_AUXILIARY_KINDS | {"part", "chapter"})),
+                    schedule_node)
                 depth = row_container.depth + 1 if row_container else 3
                 while stack and stack[-1].depth >= depth:
                     stack.pop()
