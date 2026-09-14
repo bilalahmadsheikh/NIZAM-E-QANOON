@@ -2502,3 +2502,39 @@ compendium count withdrawn earlier.
 **The one sentence worth keeping:** a rule that recovers structure must never be
 allowed to make the body region smaller. Every change that landed only removes
 phantoms; every change that was measured out moved a boundary later.
+
+## A fourth class: the source itself numbers two sections the same
+
+Document 3939, a Balochistan Act, prints on page 4:
+
+```
+Board Fund.               11. (1) There shall be a fund to be known as Board Fund.
+Maintenance of accounts.  11. The Board shall maintain complete and accurate
+                              books of accounts in such form and manner as may
+                              be prescribed.
+```
+
+with its section numbers running **7, 8, 9, 11, 11, 12** — no section 10 anywhere.
+Both elevens carry their own left-margin note and both are operative law. The
+printed Act is misnumbered.
+
+This is not apparatus, not an inversion, and not a parser defect. S7 fired
+correctly — two siblings *do* share a citation label — and neither side may be
+demoted, because demoting either buries a real provision. Recorded
+`restore_citable`, which leaves the expression blocked, and correctly: INV-4
+cannot be satisfied while two sections claim the same number, and the repair is
+a **label** decision against the source, not a demotion.
+
+So the S7 queue holds at least four distinct things, and only the first can be
+closed by accepting:
+
+| class | what the demoted unit is | resolution |
+|---|---|---|
+| apparatus | circulation lists, margin-note columns, a wrapped `Rule 13.`, a stray `20.`, a contents entry | `accept_non_citable` |
+| inverted | the real section, while a contents entry was kept — 5 of 13 readings | `restore_citable` + parser fix |
+| **source misnumbering** | **real law, and so is the other side** | `restore_citable` + a label decision |
+| compendium | a second instrument's numbering restarting | `split_instrument` |
+
+`./nz s7` classes the queue as 207 inverted, 178 nesting, 66 compendium, 137
+probably-correct and 447 unclear. Thirteen readings say the proportions are
+roughly right and that "unclear" is where the source misnumberings hide.
