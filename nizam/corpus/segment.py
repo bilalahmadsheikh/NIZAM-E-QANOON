@@ -2340,6 +2340,31 @@ def segment(blocks: list[dict], curation_patches: list[dict] | None = None,
             return t
         return None
 
+    # THE RIGHT-MARGIN LAYOUT: built, measured, and removed.
+    #
+    # 238 of the 350 documents holding pending contents gaps set their marginal
+    # notes to the right of the body, and 753 of the 1,045 gaps sit in them, so
+    # this looked like the largest remaining lever. The notes arrive after every
+    # body block and the whole column is usually ONE block separated by blank
+    # lines, which `previous_heading_context` cannot reach because it scans
+    # backwards.
+    #
+    # A helper was added that collected each page's right-margin lines and asked
+    # whether any of them supported the heading the CONTENTS promises for the
+    # label -- deliberately not pairing the n-th note with the n-th section,
+    # since one un-noted section shifts every pairing after it. It was wired
+    # into the Table guard and the demotion guard.
+    #
+    # Measured over 4,596 documents: 6 move, one improves, none regress, and it
+    # costs SIX new demotions to close ONE gap. Net worse under the gate, for
+    # real added complexity, so it is not here.
+    #
+    # The reason it does so little is worth keeping: document 3353, the largest
+    # cluster, does not have its sections demoted at all. Its tree anchors
+    # section 1 to page 11, where the source prints sections 11 and 12 -- the
+    # page anchors themselves are wrong, and no heading evidence repairs that.
+    # See docs/RELEASING-THE-BLOCKED-INSTRUMENTS.md.
+
     def previous_heading_context(idx: int) -> str | None:
         """Collect a short same-page marginal heading split across blocks.
 
@@ -2498,7 +2523,8 @@ def segment(blocks: list[dict], curation_patches: list[dict] | None = None,
                 _toc_label_is_next(table_key, toc, seen)
                 and (_heading_supports(rest, expected_heading)
                      or _heading_tail_supports(heading_context,
-                                               expected_heading))
+                                               expected_heading)
+                     )
             )
             if next_promised_section:
                 explicit_table_owner = None
