@@ -793,6 +793,18 @@ def _twocol_run(blocks: list[dict],
     """
     hits: list[tuple[int, int, str, str]] = []
     for i, b in enumerate(blocks):
+        # NOT filtered for furniture here, and that is measured rather than
+        # assumed. The ascending-run test this function documents has a hole --
+        # a page carrying seven amendment notes numbers them 1 to 7, which
+        # ascends exactly like a short contents list -- so the same
+        # `_is_furniture` guard that `_section_numbers` now applies was added
+        # here too. Over 4,596 documents it changed NOTHING: zero moved. The
+        # body-overlap test below already rejects those runs, so the guard was
+        # dead code and is not here.
+        #
+        # The 216 footnote-shaped contents entries in 31 stored instruments are
+        # therefore a historical artefact of older parses, not something the
+        # current parser still produces.
         for m in _TWOCOL.finditer(b["text"]):
             head = m.group(2).strip()
             # A bare disposition word is still a real contents citation
