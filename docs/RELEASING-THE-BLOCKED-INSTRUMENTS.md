@@ -1011,3 +1011,58 @@ recording the wrong evidence.
 Where the tree is wrong about WHERE a section is, the rendered-page route
 inherits that error. The parse has to be right first. That is the order of work
 for the remaining queue, and it is why the 753 are not simply a reading backlog.
+
+---
+
+# Footnotes stored as sections, and why replaying does not fix them
+
+**142 active sections across 73 documents are anchored to a block in the bottom
+14% of its page whose label restarts well below what that page already
+reached.** That is the signature of a footnote list read as law:
+
+```
+doc  930  "section 1"   1. Subs vide the Khyber Pakhtunkhwa Act No. IV of 2011.
+doc  999  "section 1"   1. Repealed vide A.O 1937.
+doc 1178  "section 3. 4"  3.  4. The words beginning with "and unless" ... rep. ibid.
+doc 3353  "section 1"   1. See now the Code of Civil Procedure, 1908).
+```
+
+Those are the amendment apparatus. Document 3353's page anchors are wrong for
+exactly this reason -- its "sections 1 and 2" are the footnotes at the bottom of
+page 11, which is why `review_toc_gaps` renders page 11 when asked where section
+1 is, and why reading that render settles nothing.
+
+## The current parser already rejects them
+
+`_is_furniture` marks a bottom-margin block as apparatus when it matches the
+footnote vocabulary, and it fires correctly on these:
+
+```
+block 43684  y0 730.6 of 841.7   _FOOTNOTE.match True   _is_furniture True
+```
+
+So these are OLD STORED TREES, not a live defect. The guard was added after they
+were written.
+
+## And replaying them costs more than it gains
+
+| document | stored | today's parser |
+|---|---|---|
+| 930 | 5 sections, 0 gaps | **0 sections**, 7 unlinked |
+| 1026 | 7 sections, 0 gaps | 6 sections, 3 unlinked |
+| 1181 | 8 sections, 0 gaps | **3 sections**, 16 unlinked |
+| 3353 | 83 sections, 48 gaps | 86 sections, 45 unlinked |
+
+Removing the footnote-sections is right, and it exposes that these documents'
+REAL sections are not being parsed either. Document 930 goes to zero sections:
+everything it had was apparatus. So a replay trades a tree that is wrong but
+complete-looking for one that is right and nearly empty, and the gate counts the
+second as worse.
+
+That is what `find_stale_trees` has been reporting as its 80-document "costs"
+set all along. The set is not noise and not a tuning problem -- it is documents
+whose body the parser cannot read, wearing trees built from their footnotes.
+
+Fixing them means parsing those bodies, which is the same right-margin gazette
+problem recorded above. Until then the honest position is that these 73
+documents hold sections that are not law, and the corpus knows which they are.
