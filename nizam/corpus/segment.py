@@ -1794,6 +1794,30 @@ def _classify_body(text: str, toc: dict[str, str],
     if periodless:
         label = _norm(periodless.group(1)).replace(" ", "")
         rest = periodless.group(2)
+        # The heading is the first corroboration, and it is not always in the
+        # block. The Karachi Metropolitan Transport Authority Ordinance prints
+        #
+        #     26        The Chairman, Managing Director, Members, Secretary ...
+        #
+        # with no period, while 23., 24., 25. and 27. all have one, and its
+        # heading sits in the RIGHT margin sharing a block with section 25's.
+        # Nothing in the block can match "Public Servant.".
+        #
+        # The contents' own ORDER can vouch for it instead: this label is
+        # promised, has not been seen, and the label before it in the printed
+        # contents HAS been seen -- the body has just delivered 25 and this
+        # block opens with 26. That is the same ordered evidence
+        # `_toc_label_is_next` already licenses elsewhere.
+        #
+        # The length floor is what keeps a page footer out: "26 | P a g e" is
+        # equally "next" and carries no provision.
+        # Accepting this on the contents' ORDER instead of its heading -- label
+        # promised, unseen, predecessor seen, with a length floor to exclude
+        # page footers -- was tried and measured out. Together with the inline
+        # note loosening below it moved 192 documents and cost 226 new
+        # demotions against 23 recovered contents rows: a periodless number that
+        # merely comes next matches far too much, and every false section it
+        # creates collides with a real label. The heading has to be the test.
         if label in toc and _heading_supports(rest, toc[label]):
             return "section", label, rest
 
@@ -1812,12 +1836,35 @@ def _classify_body(text: str, toc: dict[str, str],
     # typography cannot decide it. The contents can: require the label to be
     # promised and the PREFIX to support the heading promised for that label.
     # 26 blocks in the corpus satisfy both.
+    # The period after the number is OPTIONAL here, and the prefix is matched
+    # suffix-tolerantly, because those two defects co-occur. The Karachi
+    # Metropolitan Transport Authority Ordinance, 1999 prints
+    #
+    #     Liabilities of Member Public servants. 26  The Chairman, Managing
+    #     Director, Members, Secretary, Officers and Members of Staff ...
+    #
+    # -- a right-margin note fused ahead of a periodless number, where 23., 24.,
+    # 25. and 27. on the same page all carry periods. The contents promises
+    # "Public Servant." while the printed note reads "Liabilities of Member
+    # Public servants.", sharing its tail and not its head, because that one
+    # note covers sections 25 and 26 together.
+    #
+    # The contents still decides it, and both halves must agree: the label is
+    # promised, and some TRAILING part of the printed note supports the heading
+    # promised for that label. Suffix tolerance is safe here and was measured
+    # unsafe in the two promotion guards -- this rule reads a block the grammar
+    # already refused, while those invent a section from a printed subsection.
+    # Newlines are allowed INSIDE the note. A marginal column is set narrow, so
+    # the extractor wraps it: this one arrives as "Liabilities\nof\nMember\n
+    # Public\nservants." and a pattern that forbade newlines could not see it at
+    # all. The 60-character bound is what keeps the prefix from swallowing prose.
     inline_note = re.match(
-        r"^([^\n\d][^\n]{2,60}?)\s+(\d{1,4}[A-Za-z-]{0,3})\s*\.\s+(\S.*)$",
+        r"^([^\d][\s\S]{2,60}?)\s+(\d{1,4}[A-Za-z-]{0,3})\s*\.?\s+(\S.*)$",
         text, re.S)
     if inline_note:
         label = _norm(inline_note.group(2)).replace(" ", "")
-        if label in toc and _heading_supports(inline_note.group(1), toc[label]):
+        if label in toc and _heading_tail_supports(inline_note.group(1),
+                                                   toc[label]):
             return "section", label, inline_note.group(3)
 
     # Some official consolidations close the amendment bracket before the

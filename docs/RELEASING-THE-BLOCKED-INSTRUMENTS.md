@@ -1282,21 +1282,47 @@ Unreleased, and the largest in the corpus: **Punjab Pure Food Rules 2011, rule
 including operative text (`(11) Artificial sweetening agents … shall not be
 sold`). The gate is holding that one, which is the gate working.
 
-## The mechanism is the right-margin layout, again
+## The mechanism, measured rather than assumed
 
-This is not a new defect. It is the gazette marginal-note layout already
-recorded in *The layout defect, found and fixed* — 238 documents, 753 gaps —
-arriving through a second door:
+The first draft of this section named the right-margin marginal note as the
+cause, by analogy with *The layout defect, found and fixed*. **That was wrong,
+and checking one document is what showed it.** Document 2692 is a single column
+at `x0=72` with no margin at all, and its note and body share one block:
+`5. Criminal misconduct.⸺ (1) A public servant is said to commit the offence…`.
+The mechanism is recorded here as measured.
 
-1. The printed marginal note (`Criminal misconduct`) is its own block.
-2. The segmenter builds it as a **section**.
-3. The real body (`5. (1) A public servant is said to commit …`) becomes a
-   **second sibling with the same label**.
+What the surviving citable section is made of, over retyped nodes of 500+ chars:
+
+| the citable section | units | documents | released |
+|---|---:|---:|---:|
+| carries real text, just less than the buried sibling | 297 | 170 | 183 |
+| one small block — a note or heading | 165 | 84 | 111 |
+| **no text blocks at all** | **119** | 81 | 86 |
+
+For the 119 that hold no text, the block the tree anchors them to is not a
+section opener. Read directly, it is a **wrapped continuation or a footnote**:
+
+    (2) In case the persons so nominated are minors, or subject…   a subsection
+    Provided that as regards the five professors and the members…  a proviso
+    fifteen days, unless there are exceptional circumstances…      a mid-sentence wrap
+    1For Statement of Objects and Reasons, see Gazette of India…   a footnote
+
+Document 2692's phantom `section 5` is anchored to block 234951 —
+`1The Act has been applied to Baluchistan, see Gazette of India, 1947` — a
+footnote at `y0=575` on the page *before* the real section. So the sequence is:
+
+1. A fragment that is not a section opener acquires a section number.
+2. The segmenter builds it as a **section** with no text under it.
+3. The real body, arriving later with the same label, becomes a **second
+   sibling**, demoted to `clause` (2692's carries role `schedule_row`).
 4. S7 flags `repeated_sibling_label` and proposes `retype_non_citable`.
-5. The adjudicator accepts, keeping the note and burying the body.
+5. The adjudicator accepts, keeping the empty node and burying the body.
 
-So the contents-gap queue and the S7 queue are one root cause counted twice.
-A parser fix that binds the note to its body as a heading closes both.
+This is the footnote-and-continuation family already fixed in `_section_numbers`
+by the `_is_furniture` filter, not the margin family. **The fix has landed; these
+trees predate it and have never been replayed.** That matters for the repair: for
+some share of these documents the correction is a replay, not a new decision.
+How large a share is not yet measured, and is the next thing to measure.
 
 ## The pending queue has the same shape, and the proposal is wrong on it
 
