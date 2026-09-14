@@ -2077,3 +2077,49 @@ this corpus has ever held.
 | released expressions | 4,147 | **4,150** |
 | S7 pending units | 1,074 | **1,071** |
 | decisions by basis | 8,781 machine, 0 source | 8,781 machine, **5 source_verified** |
+
+## The root cause under the inverted readings, with a number
+
+Three of six readings were inverted, all by the contents list becoming the
+tree. The ledger could not find more of them — asking whether the kept node's
+block carries `role = 'contents'` or is some entry's `source_block_id` returns
+**5 units in 4 documents**, because in the inverted cases the contents was never
+recognised as contents in the first place.
+
+That is the actual defect, and it is visible in the run:
+
+| doc | body_starts_page | toc_entries |
+|---|---:|---:|
+| **1030** | **1** | **0** |
+| **1224** | **1** | **0** |
+| 306 | 2 | 3 |
+| 3523 | 4 | 24 |
+
+Documents 1030 and 1224 hold **zero contents entries**. `parse_contents` never
+recognised the list printed on their first page, so the body floor stayed at
+page 1, the contents rows were parsed as body and built as sections, and the
+real sections arriving later collided with them. S7 is the symptom; the
+unrecognised contents list is the cause.
+
+Measured over every S7-blocked expression, counting short numbered blocks on
+the first two pages as evidence that a list is printed:
+
+| root cause | expressions | S7 units |
+|---|---:|---:|
+| **no contents entries, yet the source prints a numbered list** (avg 13.8 such blocks) | **54** | **341** |
+| no contents entries and no list found — genuinely prints none | 143 | 619 |
+| contents entries exist; the collision has another cause | 31 | 111 |
+
+**341 of 1,071 pending units — 32% — sit behind one repairable defect.** That
+is the largest single, evidence-backed class found in either queue, and unlike
+`heading_only` it is not an artifact of the measurement: it was read on the page
+three times before it was counted.
+
+The 619 in the middle row are the ones `CLAUDE.md` has always described as
+"needing source review of documents that print no contents list". That
+description is now confirmed rather than assumed, and separated from the 341
+that do print one.
+
+The repair is in `parse_contents`, which scores candidate boundaries by
+agreement between the contents and the body. For these 54 it selects nothing at
+all. Why it declines a list of ~14 printed entries is the next thing to read.
