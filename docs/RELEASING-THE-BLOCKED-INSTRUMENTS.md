@@ -2737,3 +2737,44 @@ side by side, is the instrument that found them.
 Released expressions did not move: 1438 and 2581 entered the release set and two
 others left it on the eight new S7 candidates. Gaps and tree accuracy improved;
 the release count is flat and honestly so.
+
+## Twenty-one readings: the inverted share holds near half
+
+Two more, both inverted, and one of them is the counter-example
+`adjudicate_citation_preserving` already names in its own docstring.
+
+**Document 16 — Sindh Civil Servants (Amendment) Ordinance 2008.** Page 1
+typesets section 1's second subsection as `2.` rather than `(2)`:
+
+```
+1.  (1)  This Ordinance may be called the Sind Civil Servants
+         Amendment) Ordinance, 2008.
+    2.   It shall come into force at once.
+2.  In the Sind Civil Servants Act, 1973, section 9-A shall be omitted.
+                                    [Omission of section 9-A Sind Act No.XIV of 1973.]
+```
+
+The commencement line was kept as section 2 and the Ordinance's **only**
+operative provision demoted. Accepting would have left a one-provision Ordinance
+with nothing citable in it.
+
+**Document 516 — West Pakistan Land Revenue (Sind Amendment) Act 1974.** Every
+section is an amendment instruction with its own margin note. Section 9 is
+`In the said Act, in section 63—` with `Amendment of section 63 of West Pakistan
+Act XVII of 1967.`, carrying clauses (a), (b) and items (i), (ii) — 624
+characters, and it is the demoted unit. The unit kept as section 9 reads
+`Government may appoint in any Division an Additional Commissioner`, which is
+**quoted text from the principal Act being amended**, not a section of this one.
+
+Running tally over twenty-one readings:
+
+| what the reading found | count |
+|---|---:|
+| apparatus — circulation lists, note columns, cross-reference tails, table rows, footnotes | 11 |
+| **inverted — the real section demoted** | **7** |
+| source misnumbering — both sides law | 3 |
+
+**Seven of twenty-one inverted.** The share has not moved as the sample grew,
+and the machine tests still cannot see it: doc 16's kept unit is 50 characters
+against 140, doc 516's is 532 against 624 — both inside the ratio guard's
+tolerance, both wrong.
