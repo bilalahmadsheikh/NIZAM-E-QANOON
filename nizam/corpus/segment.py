@@ -2464,6 +2464,14 @@ def segment(blocks: list[dict], curation_patches: list[dict] | None = None,
                 entry["heading"] for entry in printed_toc
                 if _citation_label_key(entry["label"])
                    == _citation_label_key(label)
+                # Deliberately NOT suffix-tolerant, unlike the Table rule
+                # below. Extending _heading_tail_supports to this guard and to
+                # the (4)-as-section guard was measured over the corpus: 17
+                # documents moved, none improved, four regressed, and it
+                # produced 17 new demotions and 4 new gaps while creating no
+                # sections at all. A promotion rule wants the STRICTER test --
+                # it invents a section where the source printed a subsection,
+                # so a neighbour's marginal text must not be able to license it.
                 and _heading_supports(heading_context, entry.get("heading"))
             ]
             if len(set(supported_schedule_headings)) == 1:
@@ -2563,6 +2571,8 @@ def segment(blocks: list[dict], curation_patches: list[dict] | None = None,
         subsection_key = label.replace(" ", "")
         if (kind == "subsection"
                 and _toc_label_is_next(subsection_key, toc, seen)
+                # Strict by measurement, not by oversight -- see the note on
+                # the schedule-rule promotion above.
                 and _heading_supports(heading_context,
                                       toc.get(subsection_key))):
             kind, label = "section", subsection_key
