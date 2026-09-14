@@ -1123,3 +1123,35 @@ for.
 **The rest are the containers already recorded above** -- 4244 a compendium of a
 different shape, 2146 and 4264 with a schedule or form swallowing the body, 3867
 and 3213 right-margin gazettes. None is a threshold to tune.
+
+## Why the S10 detector misses them, confirmed
+
+`detect_multi_instrument` requires `ordered_legal_form` before it will propose a
+boundary: an enactment formula within seven blocks of the title, and a section-1
+reset within four blocks after that formula. Tested against document 3949's
+nineteen title-shaped blocks:
+
+```
+p1 'PUNJAB EDUCATION FOUNDATION (PEF) RULES &'   formula False   reset False
+p1 'REGULATIONS'                                  formula False   reset True
+p1 'RULES, 2005'                                  formula False   reset True
+p2 'RULES, 2005'                                  formula False   reset True
+p2 'THE PUNJAB EDUCATION FOUNDATION SERVICE RULES 2006'
+                                                  formula False   reset True
+```
+
+Every internal title has its rule-1 reset. **None has an enacting formula beside
+it**, because a front-loaded compendium prints its contents lists together and
+its enacting formulae later, inside the bodies. The requirement is right for the
+documents it was written against and wrong for this shape.
+
+The fix has a clear specification: accept a boundary on title + contents marker
++ rule-1 reset, without requiring a formula, when the title is followed by a
+printed section list rather than by enacted text.
+
+**It is not done here, deliberately.** `--apply` writes boundary candidates,
+which land in `v_boundary_adjudication_pending`, and S10 asserts that view is
+empty. There is a detector and a materializer but no adjudication path between
+them -- 44 candidates exist against 2 decisions. Widening detection without one
+turns a passing criterion red with no mechanism to close what it opens, which is
+worse than the gap it would document. The adjudication path has to come first.
