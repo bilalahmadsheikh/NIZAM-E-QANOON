@@ -843,3 +843,63 @@ off `part I`.
 
 Those 57 are a real question and not a mechanical one. Document 3691 is why they
 are not simply replayed.
+
+---
+
+# Sweeping for opener defects, and where the seam runs out
+
+Three defects were found one document at a time, and all three had the same
+signature: a block that OPENS with the promised label, whose text the contents
+corroborates, and which the parser refuses.
+
+    16 Zone approval criteria.- ...         no period after the number
+    21.(1) Government may, by notification  no space after the period
+    Power and Function of 4.  The follo...  the marginal note fused inline
+
+`tools/find_unrecognised_openers.py` does that sweep over the whole pending
+queue and groups the refusals by the SHAPE of the characters between the label
+and the text, so a candidate defect arrives with its size attached. One block is
+an anecdote; forty sharing a separator are a rule worth measuring.
+
+**Its first version asked the wrong question.** It tested `classify()`, but the
+contents-corroborated rules live in `_classify_body`, so it reported shapes that
+are already handled -- 245 refusals where the real figure is smaller. Fixed to
+ask what the parser asks.
+
+## What the sweep says is left
+
+| shape | count | verdict |
+|---|---:|---|
+| space only, no period | 121 | mostly `1 \| P a g e` footers, years, footnote markers |
+| label runs into the text | 118 | `1ACT No. VI Of 1878`, `1967`, amendment brackets |
+
+The real residue inside those is small, and two candidate rules were measured
+and **rejected** rather than written:
+
+**Re-parenting an unnumbered marginal heading.** The idea was to open a section
+where the source prints the promised heading with no number beside it. Sizing it
+honestly killed it: the first measurement said 927 of 927 gaps had their heading
+printed in the document -- 100%, because it was matching the contents ROW. After
+excluding contents blocks, 551; the safe "re-parent, nothing cut" subset looked
+like 241, until one was read. Document 3475's match was not an unnumbered
+heading at all but `16 Zone approval criteria.` **carrying** its number and
+missing only a period. The class was largely not the class.
+
+**Sequence-corroborated openers.** Where the body prints no heading at all
+(`15 (1) Where any land has been acquired for a company ...`) the contents
+cannot corroborate, so position would have to: the tree holds N-1 and N+1, and a
+refused block opening with N sits between them in reading order. Exact, and too
+small -- **15 gaps**, of which several are `3 | P a g e` and
+`4 Substituted vide Khyber Pakhtunkhwa Act. No. IV of 2011.` About eight are
+real. A rule that creates sections is not worth writing for eight when a page
+footer is inside its blast radius.
+
+## A bound on heading matching
+
+Of 1,167 pending gaps, **104 have no usable printed heading** -- 42 blank, 25
+stars or dots (`14. *******`), the rest under six letters. Those can never be
+closed by any rule that matches a heading, whatever it does. The other 1,063
+remain in scope.
+
+That is where the opener seam runs out. The next defect will not be an opener
+shape; the sweep has enumerated those.
