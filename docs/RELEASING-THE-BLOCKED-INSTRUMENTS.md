@@ -954,3 +954,60 @@ corroboration happen, not add another rule beside the existing ones. That is a
 structural change to `subdivide`, the function every document passes through,
 and it is not worth attempting at the end of a long session on the evidence of
 one document. It wants its own measurement, and the 41 gaps will still be there.
+
+---
+
+# The right-margin layout, which is now most of what is left
+
+**238 of the 350 documents holding pending contents gaps set their marginal
+headings to the RIGHT of the body, and 753 of the 1,045 gaps sit in them** --
+72%. Every heading-based rule in the segmenter reads the margin through
+`previous_heading_context`, and that function walks BACKWARDS. In this layout it
+can never see the heading it needs.
+
+The Sind Agriculturists' Relief Act, 1879 (document 3353, 48 gaps, the largest
+single cluster) shows the shape exactly. Page 11 holds sections 11 and 12, and
+its blocks arrive in this order:
+
+```
+136  x0  72.0   THE SIND ACT NO. XVII OF 1879 ...        running title
+144  x0  72.9   11. Every suit of the description ...    section 11
+147  x0  72.9   12. In any suit of the description ...   section 12
+148  x0  72.9   and in any suit for the descriptions ...
+149  x0 459.7   <24 blank lines> Agriculturists to be    ALL the headings
+                sued where they reside. ... History of
+                transactions with agriculturists- ...
+150  x0  90.0   1. See now the Code of Civil Procedure   footnotes
+```
+
+Two things make this hard, and both are visible above:
+
+1. **The headings arrive last.** Block 149 follows every body block on the page,
+   so a backwards scan from section 11 reaches the running title, never the
+   note. The detached-heading pass has a forward arm for exactly this; the
+   rules that consult `previous_heading_context` -- the Table rule, and both
+   promotion guards -- do not.
+2. **One block holds the whole column.** The page's marginal notes are a single
+   text_block separated by blank lines, with one `y0` for all of them. They
+   cannot be matched to their sections by geometry, because individually they
+   have none. The only available correspondence is ORDER: the n-th note in the
+   column belongs to the n-th numbered section on the page.
+
+That second point is why this is not a small change. A rule keyed on order is
+only as good as the assumption that every section on the page has a note and
+every note belongs to a section, and a page with one un-noted section silently
+shifts every pairing after it. It needs its own evidence -- probably the
+contents list, checking the shifted pairing against what each label promises --
+and its own whole-corpus measurement.
+
+## Why reading cannot substitute for it
+
+Document 3353's renders point at the wrong pages. Its stored tree anchors
+section 1 to page 11, where the source prints sections 11 and 12, so
+`review_toc_gaps` brackets the render around a page that cannot answer the
+question. Reading it settles nothing, and recording a decision from it would be
+recording the wrong evidence.
+
+Where the tree is wrong about WHERE a section is, the rendered-page route
+inherits that error. The parse has to be right first. That is the order of work
+for the remaining queue, and it is why the 753 are not simply a reading backlog.
