@@ -1505,3 +1505,63 @@ so `Treasurer.` extracts as `trea urer` and trigram similarity collapses on
 correct links. `Acting Vice Chancellor` scored below threshold against a node
 reading `acting vice chancellor 12 acting vice chancellor`. Sampling caught it.
 The structural test above replaces it and cannot be reached by that artefact.
+
+---
+
+# S7 is a parser-repair queue, not a decision queue
+
+This was assumed for most of the session and is worth stating with the view
+that settles it. `v_structural_adjudication_pending` is:
+
+```sql
+  FROM v_active_structural_candidate c
+  LEFT JOIN v_structural_adjudication_latest a ON a.candidate_id = c.id
+ WHERE a.id IS NULL OR a.resolution <> 'accept_non_citable'
+```
+
+A candidate stays pending unless its resolution is **`accept_non_citable`**.
+So `restore_citable`, `reparent` and `split_instrument` clear nothing: they
+record that the demotion was wrong and leave the instrument blocked until the
+tree is actually repaired. `v_release_instrument` blocks on that same view, so
+the gate cannot be opened by declaring a defect — only by fixing it or by
+accepting the demotion as correct.
+
+That is the right design, and it explains why the queue has not moved. Run
+`./nz s7` against the 1,035 pending:
+
+| verdict | units | docs | what it needs |
+|---|---:|---:|---|
+| inverted | 207 | 73 | `restore_citable` — **parser fix, then replay** |
+| nesting | 178 | 39 | `reparent` — **parser fix, then replay** |
+| compendium | 66 | 3 | `split_instrument` — **S10 split, then replay** |
+| probably-correct | 137 | 47 | `accept_non_citable` — a decision can close these |
+| unclear | 447 | 120 | source review |
+
+**Only 137 of 1,035 are closable by decision at all**, and the stub guard added
+to `adjudicate_citation_preserving` refuses the subset of those whose candidate
+carries the law. The other 451 need the parser to stop producing the collision;
+a decision on them is a note, not a resolution.
+
+This is confirmed in practice. The 20 documents replayed today carried 115 S7
+decisions between them; after replay **101 of those collisions no longer occur
+at all** and every one of the 20 went to 0 pending. No adjudication was written.
+
+So the route to S7 = 0 is: fix the parser, replay what the fix improves, and
+reserve adjudication for the residue. Not 1,035 decisions.
+
+## What that means for the 41 acquisition exceptions
+
+Nothing — that queue is closed and was closed before this session. Verified
+again on the record: **40 declared exceptions, 0 unresolved.**
+
+| reason | count |
+|---|---:|
+| catalogued URL no longer resolves | 28 |
+| served content is not a PDF | 8 |
+| no PDF URL catalogued | 2 |
+| portal rejects the request | 1 |
+| no English PDF published | 1 |
+
+C1 passes at 0 unstored / 0 unsourced. The "41" in earlier notes was the queue
+size when that work started, not a standing figure; 14 items were recovered by
+refetch and 1 by an alternate official copy.
