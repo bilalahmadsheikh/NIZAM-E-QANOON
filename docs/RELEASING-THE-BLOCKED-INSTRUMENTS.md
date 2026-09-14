@@ -2644,3 +2644,96 @@ number the second provision should carry.
 | S7 pending units | 1,087 | **1,045** |
 | source-verified decisions | 0 | **19** |
 | of which the source is misnumbered | — | **3** |
+
+---
+
+# The contents map and the boundary must come from the same split
+
+Picked up from an uncommitted working tree with two failing tests.
+
+**The defect.** `parse_contents` can replace its numeric candidate with one
+chosen on enactment or title evidence, but the promises kept in `best_toc` still
+came from the candidate that lost. The source-entry ledger already uses the
+final `best_idx`, so entries whose blocks lie beyond it are imported into the
+Act's contents — documents 1438 and 2581 take their Schedule's twenty-four
+numbered items that way, and every one becomes a run-only gap with no printed
+contents entry behind it.
+
+**The completion.** The fix left one assertion failing: Part I of document
+1438's Schedule held item 1 and nothing else. The cause is in the schedule-row
+path, which looked only at the top of the stack:
+
+```python
+row_container = (stack[-1] if stack and
+                 stack[-1].kind in (_AUXILIARY_KINDS | {"part", "chapter"})
+                 else schedule_node)
+```
+
+Item 1 sees Part I on top and nests at depth 4. Item 1 is then pushed, so item 2
+sees a **clause** on top, falls back to the schedule, unwinds past the Part and
+becomes its sibling. Only ever the first row of a Part was parented correctly,
+which is why Part II inherited nothing either. It now walks the stack for the
+innermost container.
+
+**Measured over all 4,596 documents**: 25 moved, `missing_toc 137 → 0`,
+`sections −333`, `unlinked +7`.
+
+`sections −333` looked catastrophic and is not. Eight of the moved documents
+were read, and every lost section is a phantom:
+
+| document | what the "sections" were |
+|---|---|
+| 1813 · 145 → 7 | village names from a schedule — `Kuz Banda (Banda`, `Gulab Khan).` |
+| 3554 · 72 → 2 | Validation of Laws Act 1975: only 1 and 2 carry text, 3–72 are empty schedule rows |
+| 4461 · 3 → 0 | form rows — `Ownership Documents ID Card Permanent Transfer Deed`, `……… (Attested copy of sanction` |
+| 1262 · 17 → 15 | schedule fee rows — `25/seat/qtr`, `15/seat/qtr` |
+| 1438, 2581 · 28 → 4 | the twenty-four Schedule items the fix exists to remove |
+
+And the five documents counted as regressions have **identical trees** — 0
+sections changed. Their seven new unlinked rows are contents entries that had
+been linking to schedule items beyond the boundary: false links, now visible as
+gaps. The same honest-measure movement as document 3184.
+
+207 tests pass, including the two that arrived failing.
+
+## Applied: 23 replays, and the largest gap reduction of the session
+
+The contents-map fix only exists in a fingerprint until the trees are rebuilt.
+All 25 documents it moves were dry-run through the worker; two gain S7
+candidates (2950 and 3586, both 0 → 10) and were held. The other **23 were
+replayed**.
+
+| | before | after |
+|---|---:|---:|
+| **contents gaps** | 1,005 | **966** |
+| released expressions | 4,160 | 4,160 |
+| S7 pending units | 1,046 | 1,054 |
+| citable sections (released) | 80,903 | 80,578 |
+| audit | 29/30, S7 the only FAIL | 29/30, S7 the only FAIL |
+| C4 · C5 | 0 · 0 | **0 · 0** |
+
+**39 contents gaps closed** — the largest single reduction of the session — and
+the 325 sections lost are the phantoms read on the page before landing.
+
+The two Commercial Documents Evidence Acts are the shape of it:
+
+| | before | after |
+|---|---|---|
+| doc 1438 | 28 "sections", **21 gaps**, blocked | **4 sections, 0 gaps, released** |
+| doc 2581 | 28 "sections", **20 gaps**, blocked | **4 sections, 0 gaps, released** |
+
+Both Acts have four sections and a Schedule. The twenty-four Schedule items were
+being counted as sections *and* imported into the contents as promises nothing
+could satisfy — one defect producing both a wrong tree and twenty-one false
+gaps.
+
+**`replay-cost` refused both.** It scores on sections lost, so it reads
+`28 → 4` as damage and never sees `gaps 21 → 0`. That is the same blind spot
+recorded earlier in this file, now demonstrated to cost the two largest wins
+available: a gate-based filter cannot select for a fix whose effect is to make
+the gate's own number truer. The worker's own dry run, which reports gaps and S7
+side by side, is the instrument that found them.
+
+Released expressions did not move: 1438 and 2581 entered the release set and two
+others left it on the eight new S7 candidates. Gaps and tree accuracy improved;
+the release count is flat and honestly so.
