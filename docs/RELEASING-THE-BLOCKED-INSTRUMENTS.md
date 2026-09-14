@@ -2465,3 +2465,40 @@ Twelve readings: five inverted (`restore_citable`), six apparatus
 (`accept_non_citable`), one refused by the stub guard when the reading was of
 the block and the guard was of the subtree. Six expressions released by reading
 alone.
+
+## Session position, 14 September 2026
+
+Thirteen S7 candidates rendered and read, thirteen decisions attempted, twelve
+recorded and one refused by a guard.
+
+| | start of session | now |
+|---|---:|---:|
+| released expressions | 4,106 | **4,157** |
+| S7 pending units | 1,087 | **1,049** |
+| contents gaps | 1,391 | 1,005 |
+| citable sections (released) | — | **80,765** |
+| stub citations, released | 237 | 190 |
+| S7 decisions by basis | 8,467 machine, **0 source** | 8,781 machine, **13 source_verified** |
+| audit | 29/30, S7 the only FAIL | 29/30, S7 the only FAIL |
+| C4 · C5 | 0 · 0 | **0 · 0** |
+| tests | 194 | **204** |
+
+**What landed:** three parser fixes (the inline fused note, the fused subsection
+opener, the year that hid the contents marker), two guards on the S7 adjudicator
+(absolute and ratio), and the source-review instrument that did not exist.
+
+**What was measured out:** five changes, each with its evidence recorded — the
+wide marker bound that cost document 3087 four sections, the periodless contents
+recovery that took documents 661 and 1083 to zero, the marker peak relaxation
+that turned document 1665's penalty schedule into 44 sections, the order-based
+periodless rule, and the `heading_only` fix that moved nothing on any of its 138
+documents.
+
+**What was retracted:** three of my own numbers — "176 of 192 S7 documents clear
+by replay" (the tool counted the residue of a resolution), 14,302 disagreeing
+contents links (an artefact of the corpus dropping `s` characters), and the
+compendium count withdrawn earlier.
+
+**The one sentence worth keeping:** a rule that recovers structure must never be
+allowed to make the body region smaller. Every change that landed only removes
+phantoms; every change that was measured out moved a boundary later.
