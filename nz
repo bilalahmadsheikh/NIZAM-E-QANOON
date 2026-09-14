@@ -26,6 +26,7 @@
 #   ./nz replay-would-fix  which stub citations a replay fixes without a decision
 #   ./nz replay-cost     what replaying a named document list costs the gate
 #   ./nz empty-citations contents entries whose link resolves to no law
+#   ./nz replay-clears-s7 which S7 collisions today's parser no longer makes
 #   ./nz s7-adjudicate decide the demotions that provably cost no citation
 #   ./nz disposition-review  render omitted/repealed TOC evidence (read-only)
 #   ./nz disposition-materialize  exact-tree omitted-section revisions
@@ -212,6 +213,8 @@ cmd_replay_cost() { need_docker; need_uv
                  POSTGRES_DB="${NIZAM_CLEAN_DB:-nizam_clean}"                    uv run python tools/replay_cost.py "$@"; }
 cmd_empty_citations() { need_docker; need_uv
                  POSTGRES_DB="${NIZAM_CLEAN_DB:-nizam_clean}"                    uv run python tools/find_empty_citations.py "$@"; }
+cmd_replay_clears_s7() { need_docker; need_uv
+                 POSTGRES_DB="${NIZAM_CLEAN_DB:-nizam_clean}"                    uv run python tools/would_replay_clear_s7.py "$@"; }
 cmd_s7_adjudicate() { need_docker; need_uv
                  POSTGRES_DB="${NIZAM_CLEAN_DB:-nizam_clean}"                    uv run python tools/adjudicate_citation_preserving.py "$@"; }
 cmd_disposition_review() { need_docker; need_uv
@@ -320,6 +323,7 @@ case "${1:-}" in
   replay-would-fix) shift; cmd_replay_would_fix "$@" ;;
   replay-cost) shift; cmd_replay_cost "$@" ;;
   empty-citations) shift; cmd_empty_citations "$@" ;;
+  replay-clears-s7) shift; cmd_replay_clears_s7 "$@" ;;
   s7-adjudicate) shift; cmd_s7_adjudicate "$@" ;;
   disposition-review) shift; cmd_disposition_review "$@" ;;
   disposition-materialize) shift; cmd_disposition_materialize "$@" ;;
