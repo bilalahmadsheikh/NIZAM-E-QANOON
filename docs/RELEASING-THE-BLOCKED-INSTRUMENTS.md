@@ -1999,3 +1999,49 @@ The repair for this class is not segmentation at all. It is
 Act's three-page copy was replaced by the nine-page Gazette, or a declared
 acquisition exception where no complete copy exists. Both are acquisition work
 on a queue that is otherwise closed at 0 unresolved.
+
+---
+
+# S7 gets the instrument it never had, and three expressions are released
+
+Every one of the 8,781 S7 decisions in the corpus was `machine_evidenced`. The
+table has admitted `source_verified` since it was created and **nothing had ever
+written it**. That is why the queue could not move: the machine path reports 0
+eligible once its own tests are exhausted, and there was no path from reading a
+page to recording what the page shows.
+
+`./nz s7-source` is that path. It takes readings, one per candidate, each naming
+the rendered page and its SHA-256, and refuses to write without them. The
+rationale stored is the observation, not the conclusion — the discipline
+migration 0050 already requires of an assistant's `absent_in_source` assertion.
+**The stub guard applies here and is not overridable**: `accept_non_citable` is
+refused when the demoted unit carries 500+ characters and the kept one less than
+half, whatever the reader believes, because that is the shape that produced 359
+citations resolving to less than half their provision.
+
+Four pages rendered and read:
+
+| document | what the page shows | decision |
+|---|---|---|
+| 4536 · Balochistan Letters of Administration | page 6 is the Secretariat endorsement, *"A Copy is forwarded for information and necessary action:-"*, circulation list 1–6; item 6 is `P.S. to Secretary, Balochistan Provincial Assembly.` | `accept_non_citable` |
+| 4531 · agricultural produce declaration | page 3 ends *"Copy forwarded to :-"* with 19 addressees; item 1 is `The Principal Secretary to Governor Balochistan Quetta.` | `accept_non_citable` |
+| 4514 · Balochistan amending Act | page 2 carries the same endorsement over No.PAB/Legis:V(18)/2022/8184, list of 7; the Act's own operative text is section 4, *"In the said Act, section 24 shall be omitted."* | `accept_non_citable` |
+| 1224 · a KP Ordinance | page 5 prints `12. Government may make rules to carry out the purposes of this Ordinance.` with the marginal note *Rules.* — **that is the DEMOTED unit**. The unit kept as section 12 sits on page 1 and its first block is the printed contents list, 1,129 characters of it | **`restore_citable`** |
+
+The fourth is the one that matters most. Accepting it would have made a KP
+Ordinance's rule-making power non-citable, and no machine test would have
+objected: the demoted unit is only 82 characters, well under the stub guard's
+threshold. Only the page shows that those 82 characters are the section and the
+1,129 are a contents list.
+
+| | before | after |
+|---|---:|---:|
+| released expressions | 4,147 | **4,150** |
+| S7 pending units | 1,074 | **1,071** |
+| decisions by basis | 8,781 machine | 8,781 machine · **3 source_verified accept · 1 source_verified restore** |
+
+The `restore_citable` is the **first non-accept resolution recorded in this
+corpus**, and it correctly leaves document 1224 blocked: the gate opens only on
+`accept_non_citable`, and that tree still needs repairing.
+
+204 tests pass. Audit 29/30, S7 the only FAIL.

@@ -21,6 +21,7 @@
 #   ./nz land-archive  land an unacquired law from the August portal archives
 #   ./nz s7-audit      draw the weighted sample; --render N for source pages
 #   ./nz s7-citability did a demotion remove a citation, or only a duplicate
+#   ./nz s7-source     record an S7 decision from a page actually read
 #   ./nz stub-citations is the surviving citation a stub while the text is uncitable
 #   ./nz diff-trees      name the nodes two segmenters disagree about
 #   ./nz replay-would-fix  which stub citations a replay fixes without a decision
@@ -217,6 +218,8 @@ cmd_gap_causes() { need_docker; need_uv
                  POSTGRES_DB="${NIZAM_CLEAN_DB:-nizam_clean}"                    uv run python tools/census_gap_causes.py "$@"; }
 cmd_s7_adjudicate() { need_docker; need_uv
                  POSTGRES_DB="${NIZAM_CLEAN_DB:-nizam_clean}"                    uv run python tools/adjudicate_citation_preserving.py "$@"; }
+cmd_s7_source() { need_docker; need_uv
+                 POSTGRES_DB="${NIZAM_CLEAN_DB:-nizam_clean}"                    uv run python tools/adjudicate_s7_from_source.py "$@"; }
 cmd_disposition_review() { need_docker; need_uv
                  POSTGRES_DB="${NIZAM_CLEAN_DB:-nizam_clean}" \
                    uv run python tools/review_toc_dispositions.py "$@"; }
@@ -325,6 +328,7 @@ case "${1:-}" in
   empty-citations) shift; cmd_empty_citations "$@" ;;
   gap-causes) shift; cmd_gap_causes "$@" ;;
   s7-adjudicate) shift; cmd_s7_adjudicate "$@" ;;
+  s7-source) shift; cmd_s7_source "$@" ;;
   disposition-review) shift; cmd_disposition_review "$@" ;;
   disposition-materialize) shift; cmd_disposition_materialize "$@" ;;
   browse)    shift; cmd_browse "$@" ;;
