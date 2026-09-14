@@ -1905,6 +1905,51 @@ def _classify_body(text: str, toc: dict[str, str],
         if label in toc and _heading_supports(rest, toc[label]):
             return "section", label, rest
 
+    # The number fused straight onto its FIRST subsection, with the period
+    # after the bracket instead of after the number:
+    #
+    #     23(1). Unless a work is of urgent nature is to be executed through
+    #     23 (1) Unless a work is of urgent nature ...
+    #
+    # against the ordinary "24.(1) Every work executed whether departmentally"
+    # on the same page, which classify() reads correctly. The Coastal
+    # Development Authority Rules print both, three lines apart.
+    #
+    # This was found by reading, not by aggregate. Rule 23 was one of only
+    # seven gaps in the whole queue that `review_absent_sections` proposed as
+    # absent from the source -- both of its machine checks passed, because the
+    # heading is not in the body and "23" never opens a block in the form the
+    # grammar recognises. The page shows the rule printed in full. Recording
+    # that gap as `absent_in_source` would have been a lie, and the check that
+    # would have licensed it is exactly this blind spot.
+    #
+    # The guard is narrow because "23(1)" is also how a cross-reference is
+    # written. Require the subsection to be (1) -- a section opens at its
+    # first, never its fourth -- the match at the very start of the block, and
+    # the label one the contents promises.
+    #
+    # It is narrower still: NO space before the bracket and a period after it,
+    # which is the form read off the page. The looser "3 (1) There shall be"
+    # was measured over 4,596 documents and moved 18, gaining 5 real sections
+    # and losing none -- but one of the five was document 2452 page 21, "3 (1)
+    # There shall be a Dean for each Faculty", which is paragraph 3(1) of an
+    # appended Statute, not section 3 of the Act. It collided with the real
+    # section 3 and cost that released expression its contents link.
+    #
+    # Spacing is not what separates those: "8 (1) Government may appoint any
+    # Prosecutor" is a real section too. What separates them is that 2452's
+    # match sits deep in a document whose numbering has restarted, and this
+    # rule cannot see that -- `_classify_body` judges one block at a time. The
+    # spaced form is left for whatever fixes the restart problem generally;
+    # taking only the unambiguous form costs three recoveries and no
+    # regressions, and that is the trade this file has taken all along.
+    fused_sub = re.match(r"^\s*(\d{1,4}(?:-[A-Za-z0-9]{1,3}|[A-Z]{1,3})?)"
+                         r"\(\s*1\s*\)\s*\.\s*(\S.*)$", text, re.S)
+    if fused_sub:
+        label = _norm(fused_sub.group(1)).replace(" ", "")
+        if label in toc:
+            return "section", label, "(1) " + fused_sub.group(2)
+
     # A marginal note fused INLINE, ahead of the number, with no line break:
     #
     #     'Visitation. 10. (1) The Chancellor may cause an inspection or'
