@@ -3052,3 +3052,164 @@ this implies, and which the project should adopt:
 The exact `/59` bytes may still be recoverable by the agent that wrote them.
 Reconstructing them from session logs was judged not worth the forensic cost
 while that agent is active.
+
+## 16 September: repairs that restore law, and a catalogue of what is left
+
+Released **4,198 → 4,214**. S7 pending **885 → 850**, contents gaps **935 → 928**.
+Everything below is append-only: source text was never edited, and every replaced
+tree is retired rather than removed.
+
+### Four kinds of repair, each with its own instrument
+
+**1. A misread digit is corrected in the parser's input, not in the evidence.**
+Seven scans print one number and their text layer reads another, so a real rule
+collided with a different one and was demoted:
+
+| document | page prints | text layer reads | what was hidden |
+|---|---|---|---|
+| 4554 | `28.` | `26.` | reversion to a lower grade |
+| 4545 | `29.` | `30.` | issuance of ballot paper |
+| 4557 | `73.` | `43.` | constitution of interview committees |
+| 4611 | `35.` | `38.` | establishment of District Monitoring Committees |
+| 4529 | `58.` | `38.` | power to cancel the lease |
+| 4590 | `39.` | `30.` | amendment of a retention licence |
+| 4602 | `131.`/`36.` | `121.`/`35.` | tour rules; duty to abide by Board rules |
+
+`segmentation_curation_patch` is the right instrument: it corrects a derived
+copy of the parser input, is located by page plus a unique text fragment so it
+survives re-extraction, and fails closed when that locator stops being unique.
+`text_block` is untouched, so the stored text still shows the misread digit while
+the citation label is right — evidence and structure kept apart on purpose.
+
+A detector finds these without reading: a demoted number that fills a hole in
+the section sequence and differs from the missing number by a single digit.
+It proposed 7 candidates; the pages confirmed all 7.
+
+**2. The Constitution and the Elections Act 2017, released.**
+
+- **Constitution, Article 1.** Page 19 prints `¹1. The Republic and its
+  territories.` — a superscript footnote marker before the article number. The
+  text layer flattens it to `11.`, so Article 1 was read as a second Article 11
+  and fell inside the contents region. Until this was fixed, **"Article 1 of the
+  Constitution" resolved to `1. The Acceding State (Property) Order, 1961`**, a
+  list entry in a schedule on page 146.
+- **Article 185** is printed `¹[185, Appellate jurisdiction of the Supreme
+  Court.` — a comma where every other article prints a period. The Constitution's
+  own contents prints `185.`, so the period is restored on the document's own
+  evidence.
+- **Article 187**: the text layer carries a brace, `{187.`, that the page does
+  not print.
+- **Elections Act 2017** prints `130.` twice — once for the 2023-substituted
+  *Vacancy in electoral college*, once for *Drawing of lots* — while its own
+  contents prints `131. Drawing of lots`. And `2[232 3[Disqualification on
+  account of declaration by court` omits the period its contents shows.
+
+Both documents exist twice in the corpus, from two catalogue observations of the
+same PDF (the second titled `document 4419` / `document 4441`). Patches are keyed
+by observation, so each correction had to be recorded twice. **That duplication
+is itself an unresolved identity defect.**
+
+**3. A short statute's contents list is contents, when the body proves it.**
+
+`nizam.corpus.segment/55+shortcontents.1`, on branch `corpus/short-contents-55`.
+The main contents parser cannot see a short statute's contents by construction:
+it needs four numbered units, a climb to 2 before a restart counts, two entries,
+and — without a printed CONTENTS marker — five entries with the body inside the
+first fifth of the pages. So a one-to-seven-section Act has its contents entries
+turned into sections, and every real section collides with one and is demoted.
+The Caste Disabilities Removal Act 1850's only section was demoted so that its
+contents line could be section 1.
+
+The new path runs only when the main parser finds nothing, and demands what a
+numbered front table cannot supply: the front run is 1..k in order on one page,
+every entry a heading with no operative modal; the body repeats **every** label
+in order, opening on the next page or the one after; and **every** heading
+reappears at its body unit, inline or in the same-page block beside it. Two of
+those guards exist because the existing suite caught the first draft: a detached
+heading directly above its own body corroborated itself, and a package contents
+row whose Act begins thirteen pages later was claimed.
+
+Measured over all 4,597 active documents, it fires on 22. Full trees were built
+both ways for each and compared on sections, provisions, contents links,
+stranded text and demotions, then section by section on the blocks each tree
+makes citable. **Ten were replayed**; the other twelve are held — three still
+carry phantom sections made from footnote text (`p. 672.`), one keeps a schedule
+table row as section 5, and the rest change more than their collisions explain.
+
+**4. An omission marker that closes a heading.** The Penal Code's contents
+prints `376B. Exceptional first offenders or repeat offenders [omitted]`, and
+its body prints no 376B (pages 21, 134, 135 read). The disposition check
+accepted a marker only at the START of a heading, so a source-verified omission
+failed closed as stale. `/55+shortcontents.2` also accepts a bracketed marker
+that CLOSES a heading — never a bare word inside one, so `Repeal and savings`
+stays live law, which a negative test fixes.
+
+### The Penal Code: what a compendium hides
+
+Four defects, three now repaired:
+
+- **294B** is printed with two superscript markers, `⁴*[294B.`, and the asterisk
+  stopped the opener.
+- **376B** is recorded as omitted, on the contents page plus both body pages.
+- **462N** is printed in the body, while the contents misprints its label as
+  `362N` — between 462M and 462O, with a heading naming sections 462H to 462M.
+  Recorded as `found_elsewhere` against the printed section.
+- **Sections 127 and 164 were heading fragments.** Both print a bold heading that
+  wraps before a cross-referenced number — `...mentioned in sections 125 and ⏎
+  126. Whoever receives...` — so the parser opened a unit at the cross-reference
+  and put the section's whole operative sentence inside it. Earlier automatic
+  decisions had accepted both, because the label 126 was still reachable
+  elsewhere. Joining the wrapped line restores both sections.
+- **Section 390 (Robbery) is still a clause of section 389**, because the page
+  indents it under the cross-heading *Of Robbery and Dacoity*. No text patch can
+  fix geometry; it needs a parser rule, and the Code stays withheld until then.
+- **The tail of section 158 sits under a footnote node.** The stub guard refused
+  the accept and was right.
+
+### Sections hidden as clauses, corpus-wide
+
+A clause whose label is an integer exactly one past its parent section is
+structurally impossible. There are **329** such nodes in 127 documents, **111 of
+them already released**. Narrowing to those that fill a hole — the next section
+number exists at top level and this label exists nowhere else — leaves 19, of
+which about 12 are real hidden sections: Penal Code 390, Prison Rules 653, mines
+regulations 91/101/111/121/131 and 131/151, and others. Two mechanisms: page
+indentation, and something that nests every `N0 → N1` step. The rest are tariff
+codes and recruitment-table rows, which any fix must leave alone.
+
+### A replay throws away earlier decisions
+
+Replaying the Penal Code re-created its collision candidates, and the decisions
+recorded against the retired revision did not carry over: two units that had been
+adjudicated came back pending. So the order matters — record every correction for
+a document, replay once, then decide its collisions.
+
+### Old parser versions are not the problem
+
+3,257 active instruments still carry trees from `nizam.corpus.segment/5`, 100
+from `/12`, 113 from `/23`. It would be reasonable to expect a blanket replay to
+fix many withheld instruments. It does not: dry-running all **89** withheld
+documents built by pre-`/55` parsers yields 9 contents-improving replays, and
+**every one of them loses sections or creates new collisions**, plus three that
+were already known. Measured, not assumed; no blanket replay was run.
+
+### The catalogue (Step 1 of the parallel plan)
+
+`tools/build_defect_inventory.py` writes one row per defect across every withheld
+instrument — **476 instruments, 1,779 defects** (928 contents gaps, 850 S7 units,
+107 of which already carry a source reading, and one quality-gate case) — naming
+the exact pages a reader must look at: the contents page plus where the label is
+printed in the body, or, when nothing matches, the pages between the nearest
+linked entries on either side. **1,568 distinct pages**, of which 1,062 were
+rendered fresh; a PDF page never changes, so every earlier render is reused.
+
+`tools/shard_catalogue.py` splits that into 39 reader-sized shards of about 45
+pages, keeping each document whole, plus 6 shards for the remaining 186 rows of
+the weighted 200-decision audit. `tools/catalogue_query.py` gives readers
+read-only lookups — what sits under a demoted node, what a page's blocks are and
+who owns them, a provision tree for a page range, and a contents entry with its
+neighbours. `.artifacts/catalogue/READER-INSTRUCTIONS.md` carries the
+classification and the traps that produced wrong readings in this session.
+
+The first four readers were launched and stopped immediately on the account's
+session limit. The catalogue is built and waits.
