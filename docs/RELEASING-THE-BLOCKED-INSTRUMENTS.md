@@ -2944,3 +2944,111 @@ orders of magnitude larger than the first twenty-one readings, and it has held:
 **33% of batch B's units are real defects** against 15% of batch A's. What
 changed is not the rate of error in the corpus but which tranche is being read —
 and the demoted-subtree bound predicts it well enough to schedule the work.
+
+## The 500+ tranche: reading stops releasing, and says why
+
+Batches C, D and E read every sole-blocker expression whose demoted subtree is
+500 characters or more — 42 units on 41 pages, plus doc 3317's two blank-page
+checks and page 2 of docs 1168 and 2288 to settle suspected misnumbering.
+
+| resolution | C | D | E | total |
+|---|---:|---:|---:|---:|
+| accept_non_citable | 0 | 1 | 0 | **1** |
+| restore_citable | 7 | 9 | 6 | **22** |
+| reparent | 4 | 5 | 7 | **16** |
+| split_instrument | 0 | 0 | 2 | **2** |
+| reject_candidate | 1 | 0 | 0 | **1** |
+
+**One accept in 42.** Batch A (subtrees under 200) accepted 85%, batch B
+(200–499) 64%, this tranche 2%. The demoted-subtree bound predicted the
+difficulty of every tranche, and at 500+ it is finished: what remains pending in
+the no-gap pool is almost entirely real structural defect. Reading records those
+defects honestly — `restore_citable`, `reparent` and `split_instrument` all
+leave the unit pending by design — but **only a repaired tree releases them.**
+
+### The defect classes the 500+ tranche is made of
+
+- **Contents entry or masthead kept, the enacted section demoted** (docs 76,
+  79, 1537, 1678, 1888, 2094, 2154, 2975, 3585). The Act's only operative
+  section is the demoted one more often than not. Doc 2154's kept "section 1"
+  is its title block: the superscript footnote marker before `[THE CASTE
+  DISABILITIES REMOVAL ACT, 1850]` was read as a section number.
+- **Quoted substituted text is the whole substance of the amending section**
+  (docs 974, 1134, 2421). `3. In the said Act, for section 3, the following
+  shall be substituted: -` is 70 characters; the substituted `"Levy of tax"`
+  section beneath it is 1,384. Accepting is formally right (the quoted text is
+  not a section *of the amending Ordinance*) and substantively a stub citation.
+  It must be reparented beneath the amending section. In batch B the same class
+  was safely accepted wherever the quoted text was a list item; the stub guard
+  is what separates the two.
+- **A footnote or citation line absorbs the law that follows** (docs 1666,
+  2973, 4467). The node's own block is apparatus; its subtree is rule 3's
+  subsections, the qazf clauses and Explanations, or nine definitions.
+- **The source prints one number twice** (docs 1168/1365 `7-D`, 2017 `11.38`,
+  2288 `5`, 4437 `8`, 4497 `3` twice, 4571 `12`). Now a dozen instances; the
+  schema still has no resolution meaning "misnumbered at source".
+- **The scan's number is misread** (docs 4470 `20`→`10`, 4545 `29`→`30`,
+  4557 `73`→`43`, 4611, 4554 in batch A). An extraction defect that surfaces as
+  a collision.
+- **Numbering restarts inside lettered Parts** (doc 1827: `(B) MANUFACTURE.`
+  and `(C) POSSESSION` each start at rule 1). A citation is only well formed as
+  "rule 1 of Part B".
+- **Bracketed top-level units** (doc 3700: `(4) PENALTIES:`, `(5) INITIATION OF
+  PROCEEDINGS.`), so an inner paragraph `2.` swallowed 13,306 characters.
+- **A compendium's memoranda and statutes share one tree** (ESTACODE, doc 4497
+  p256): paragraphs of an Establishment Division clarification collide with
+  sections of the FPSC Ordinance printed on the same page.
+
+### Two duplicates, only one of them real
+
+Doc 4471's collision is a duplicated scan and was accepted: a page-pair
+similarity check over the whole document finds pages 5 and 6 at 0.888 with the
+same printed footer, `Page 4 of 38`, in a 40-page PDF, and no other body pair
+above 0.63. Doc 3704 looked identical at first sight — two rule 63s differing
+only by `(I)` and `(1)` — and is **not** a duplicate: the two subtrees share
+their opening sentence and diverge (similarity 0.581), and the demoted one alone
+carries `shall at no time exceed 10,000 lbs. in weight in the aggregate`. It was
+restored. A first-sentence match is not evidence of duplication.
+
+### Doc 3317: the guard was right for a reason it cannot see
+
+The stub guard refused to accept doc 3317's demoted node at 522 raw characters
+against 180. Those 522 characters are 235 non-whitespace characters, and every
+one of them is the masthead `The Sind Government Gazette KARACHI, THURSDAY,
+DECEMBER 10, 1970.` repeated on pages 3–7, mis-roled as body. Pages 3–7 print
+58–62 characters each; pages 1–2 print 1,619 and 1,338. The guard measures
+whitespace and furniture, which is a measurement flaw — and it still produced
+the correct outcome, because an instrument whose last five pages print no body
+should not be released. Recorded as `reject_candidate`; the guard was not
+touched. The source needs re-acquisition.
+
+## A replayability gap found at the 16 September checkpoint
+
+Codex's continuation replayed seven documents with parser revisions `/56`–`/59`
+(1224, 16, 1927, 2960, 3485, 4495, 4235). **No revision after `ba15e0f` is
+committed.** The replay records name `nizam.corpus.segment/59` and the dry-run
+evidence records its exact source hash, `f1c40016785e…` — but no file with that
+hash exists in git or on disk. The working tree has since moved on to an
+unreplayed candidate for doc 3353 (hash `883fd764e7ec…`), and that candidate
+**fails two tests on doc 1927**, which `/58` had repaired and released:
+
+```
+FAILED tests/test_dotted_letter_suffix.py::test_actual_toc_5_dot_a_links_only_to_body_5_dash_a
+FAILED tests/test_split_number_footnotes.py::test_real_land_preservation_source_retains_law_and_all_blocks
+    assert result.repeated_labels_demoted == 0   (got 2)
+```
+
+So seven released trees currently cannot be regenerated from version control
+(INV-3). Neither candidate is at fault for being a candidate; the gap is the
+missing commit discipline between "replayed" and "next experiment". The rule
+this implies, and which the project should adopt:
+
+- **commit the parser before a replay writes with it**, and record the commit
+  alongside the source hash; and
+- **a candidate parser is admissible for commit only if it reproduces every
+  already-replayed tree** — the seven documents above are now the fixture set
+  that proves it, and 1927 is the first to fail.
+
+The exact `/59` bytes may still be recoverable by the agent that wrote them.
+Reconstructing them from session logs was judged not worth the forensic cost
+while that agent is active.

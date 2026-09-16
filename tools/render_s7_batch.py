@@ -46,14 +46,26 @@ WITH d AS (
          (SELECT coalesce(sum(pb.chars), 0) FROM provision x
             JOIN provision_block pb ON pb.provision_id = x.id
            WHERE x.instrument_id = s.instrument_id AND x.is_active
-             AND x.path <@ cand.path) AS dsub
+             AND x.path <@ cand.path) AS dsub,
+         EXISTS (SELECT 1 FROM v_structural_adjudication_latest a
+                  WHERE a.candidate_id = s.id
+                    AND a.review_basis = 'source_verified') AS decided
     FROM v_structural_adjudication_pending s
     JOIN provision cand ON cand.id = s.candidate_provision_id AND cand.is_active
 ), e AS (
-  SELECT instrument_id, max(dsub) AS max_sub, count(*) AS units
+  -- `units` counts only units NOT yet source-verified. A `restore_citable`
+  -- or `reparent` decision leaves its unit pending on purpose, so counting
+  -- every pending unit made the batch selector re-offer expressions that had
+  -- already been read end to end -- it ordered by a number that no longer
+  -- moved. What schedules the work is how much reading an expression still
+  -- needs, which is the undecided count.
+  SELECT instrument_id, max(dsub) AS max_sub,
+         count(*) FILTER (WHERE NOT decided) AS units,
+         count(*) AS units_pending
     FROM d GROUP BY 1
 )
-SELECT d.document_id, d.printed_label, d.source_page, d.dsub, e.units, e.max_sub,
+SELECT d.document_id, d.printed_label, d.source_page, d.dsub, e.units,
+       e.units_pending, e.max_sub,
        d.id::text AS candidate_id,
        b.object_key, doc.page_count,
        regexp_replace(coalesce(tb.text, ''), E'\\s+', ' ', 'g') AS demoted_text,
@@ -95,12 +107,11 @@ SELECT d.document_id, d.printed_label, d.source_page, d.dsub, e.units, e.max_sub
    AND e.max_sub >= %(min_subtree)s
    AND NOT EXISTS (SELECT 1 FROM v_toc_gap_pending g
                     WHERE g.instrument_id = d.instrument_id)
-   AND NOT EXISTS (SELECT 1 FROM v_structural_adjudication_latest a
-                    WHERE a.candidate_id = d.id
-                      AND a.review_basis = 'source_verified')
+   AND NOT d.decided
    AND d.instrument_id IN (
         SELECT instrument_id FROM e
          WHERE max_sub < %(max_subtree)s AND max_sub >= %(min_subtree)s
+           AND units > 0
            AND NOT EXISTS (SELECT 1 FROM v_toc_gap_pending g2
                             WHERE g2.instrument_id = e.instrument_id)
          ORDER BY units, instrument_id
@@ -143,7 +154,7 @@ def main() -> int:
         rows = cur.fetchall()
 
     batch, missing = [], 0
-    for (doc, label, page, dsub, units, max_sub, cid, key, pages,
+    for (doc, label, page, dsub, units, upend, max_sub, cid, key, pages,
          demoted, kept, note, ancestry, nsec, shared, nblocks) in rows:
         stem = f"doc{doc}-p{page}"
         path = render(key, page, stem)
@@ -162,6 +173,7 @@ def main() -> int:
             "_source_page": page,
             "_document_pages": pages,
             "_units_in_expression": units,
+            "_units_pending_in_expression": upend,
             "_demoted_subtree_chars": dsub,
             "_largest_subtree_in_expression": max_sub,
             "_demoted_text": (demoted or "")[:400],
