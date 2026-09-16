@@ -23,7 +23,7 @@ from nizam.shared.corpus_types import SegmentedInstrument
 from nizam.storage import legal_write
 from nizam.storage.db import connect
 
-SEGMENTER = "nizam.corpus.segment/55+shortcontents.1"
+SEGMENTER = "nizam.corpus.segment/55+shortcontents.2"
 
 # Any stable 64-bit number; it only has to match across processes.
 _LOCK_KEY = 0x4E495A414D534547        # "NIZAMSEG"

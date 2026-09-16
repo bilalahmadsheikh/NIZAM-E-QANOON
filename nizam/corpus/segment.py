@@ -3987,6 +3987,16 @@ def segment(blocks: list[dict], curation_patches: list[dict] | None = None,
                 r"^\s*(?:\d+\s*)?[\[(]*\s*(omitted|repealed)\b",
                 value or "", re.I,
             )
+            # Some consolidations keep the heading and append the marker: the
+            # Pakistan Penal Code's contents prints "376B. Exceptional first
+            # offenders or repeat offenders [omitted]". Accept a bracketed
+            # marker that CLOSES the heading, never a bare word inside it --
+            # "Repeal and savings" is live law.
+            if match is None:
+                match = re.search(
+                    r"[\[(]\s*(omitted|repealed)\s*\.?\s*[\])]\s*\.?\s*$",
+                    value or "", re.I,
+                )
             return match.group(1).casefold() if match else None
 
         def is_disposition_placeholder(node: Node) -> bool:

@@ -69,3 +69,46 @@ def test_operative_front_list_is_not_contents():
         _block(3, 2, "2. Definitions. In these rules the Board means the Board."),
     ]
     assert _short_front_contents(blocks) is None
+
+
+def _seg_blocks(*texts, page=1):
+    return [{"id": i, "text": t, "page_no": page, "y0": 100.0 + i * 20,
+             "page_height": 792.0} for i, t in enumerate(texts)]
+
+
+def test_trailing_omitted_marker_is_a_source_verified_disposition():
+    """The Pakistan Penal Code keeps the heading and appends the marker:
+    "376B. Exceptional first offenders or repeat offenders [omitted]"."""
+    toc = ["CONTENTS"] + [
+        f"{n}. {'Exceptional first offenders or repeat offenders [omitted]' if n == 7 else f'Heading number {n}.'}"
+        for n in range(1, 12)
+    ]
+    body = [f"{n}. Heading number {n}. Some enacted text here."
+            for n in range(1, 12) if n != 7]
+    seg = segment(_seg_blocks(*toc, *body), toc_dispositions=[{
+        "id": 51, "toc_entry_ordinal": 6, "printed_label": "7",
+        "printed_heading": "Exceptional first offenders or repeat offenders [omitted]",
+        "disposition": "omitted", "source_block_id": 7, "source_page": 1,
+        "amending_instrument_id": None,
+    }])
+    entry = next(item for item in seg.toc_entries if item["label"] == "7")
+    assert entry["method"] == "source_verified_disposition"
+    assert entry["node"].operation == "omitted"
+    assert "7" not in seg.missing
+
+
+def test_live_repeal_heading_is_not_a_disposition():
+    """ "Repeal and savings" names live law; an assertion against it must fail."""
+    import pytest
+    toc = ["CONTENTS"] + [
+        f"{n}. {'Repeal and savings.' if n == 7 else f'Heading number {n}.'}"
+        for n in range(1, 12)
+    ]
+    body = [f"{n}. Heading number {n}. Some enacted text here."
+            for n in range(1, 12) if n != 7]
+    with pytest.raises(ValueError):
+        segment(_seg_blocks(*toc, *body), toc_dispositions=[{
+            "id": 52, "toc_entry_ordinal": 6, "printed_label": "7",
+            "printed_heading": "Repeal and savings.", "disposition": "repealed",
+            "source_block_id": 7, "source_page": 1, "amending_instrument_id": None,
+        }])
