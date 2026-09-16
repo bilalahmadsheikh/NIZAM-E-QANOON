@@ -931,7 +931,7 @@ def _twocol_run(blocks: list[dict],
     return best
 
 
-def parse_contents(blocks: list[dict]) -> tuple[dict[str, str], int, bool]:
+def _parse_contents_main(blocks: list[dict]) -> tuple[dict[str, str], int, bool]:
     """Read the printed contents and find where the body begins.
 
     The boundary is chosen by AGREEMENT rather than by the first numbering fall.
@@ -1358,6 +1358,135 @@ def parse_contents(blocks: list[dict]) -> tuple[dict[str, str], int, bool]:
     if not found:
         return {}, 0, False
     return best_toc, best_idx, True
+
+
+# A contents entry names a provision; it does not enact one. Operative modal
+# words outside quotation marks are what an enacted sentence has and a heading
+# does not, so they disqualify a front list from being read as contents.
+_FRONT_LIST_OPERATIVE = re.compile(r"\b(?:shall|must|may)\b", re.I)
+
+
+def _short_front_contents(blocks: list[dict]) -> tuple[dict[str, str], int] | None:
+    """A complete short contents list, proven by the body repeating all of it.
+
+    `_parse_contents_main` cannot see the contents of a short statute by
+    construction: it gives up below four numbered units, needs a list to climb
+    to 2 before a restart counts, needs two entries, and without a printed
+    CONTENTS marker needs five entries AND a body inside the first fifth of the
+    pages. A one-to-seven-section Act fails at least one of those, so its
+    printed contents entries become sections and every real section collides
+    with one and is demoted -- the source-read S7 queue measured 413 pending
+    units of this shape, among them the Caste Disabilities Removal Act 1850,
+    whose only section was demoted so that its contents entry could be
+    section 1.
+
+    Those floors exist because a numbered front TABLE can look like contents,
+    and accepting a false list removes enacted law. So this path asks for the
+    evidence a table cannot supply, all of it, not a majority:
+
+      * the front run is the numbers 1..k, in order, on one page, and every
+        entry reads as a heading -- short, with no operative modal word;
+      * after it, the body repeats EVERY one of those labels, in the same
+        order; and
+      * EVERY entry's heading reappears at its body unit -- inline, or in the
+        same-page block before or after it, where a marginal note is set.
+
+    A membership list or a schedule's rows fail the third test: nothing later
+    repeats "Prime Minister" beside a section 1. It runs only when the main
+    parser found no contents at all, so every document the main parser already
+    handles is untouched.
+    """
+    nums = _section_numbers(blocks)
+    if len(nums) < 2:
+        return None
+
+    def entry_heading(idx: int, heading: str | None) -> str:
+        text = _norm(heading or "")
+        if text:
+            return text
+        nxt = idx + 1
+        if (nxt < len(blocks)
+                and blocks[nxt].get("page_no") == blocks[idx].get("page_no")
+                and classify(blocks[nxt]["text"]) is None):
+            return _norm(blocks[nxt]["text"])
+        return ""
+
+    first_page = blocks[nums[0][0]].get("page_no")
+    front: list[tuple[int, str, str]] = []
+    for idx, _, label, heading in nums:
+        clean = (label or "").strip()
+        if not re.fullmatch(r"\d{1,3}", clean) or int(clean) != len(front) + 1:
+            break
+        if blocks[idx].get("page_no") != first_page:
+            break
+        wanted = entry_heading(idx, heading)
+        unquoted = re.sub(r'"[^"]*"|\u201c[^\u201d]*\u201d', "", wanted)
+        if (not wanted or len(wanted) > 160
+                or _FRONT_LIST_OPERATIVE.search(unquoted)):
+            return None
+        front.append((idx, clean, wanted))
+    if not front:
+        return None
+
+    last_front = front[-1][0]
+    later = [(idx, (label or "").strip(), heading)
+             for idx, _, label, heading in nums if idx > last_front]
+    body: list[int] = []
+    position = 0
+    for _, label, wanted in front:
+        while position < len(later) and later[position][1] != label:
+            position += 1
+        if position >= len(later):
+            return None
+        body_idx, _, body_heading = later[position]
+        page = blocks[body_idx].get("page_no")
+        # The contents list ends on its own page and the body opens on the
+        # next one or the one after (a title page may sit between). A list
+        # whose sections begin many pages later may belong to an Act embedded
+        # in a larger package, and `force_opening_contents` exists for exactly
+        # that source-reviewed case; the general parser must not claim it.
+        if not body and not (first_page < page <= first_page + 2):
+            return None
+        sources = [body_heading or "", blocks[body_idx].get("text", "")]
+        for neighbour in (body_idx - 1, body_idx + 1):
+            # A neighbour inside the list is the contents entry itself: a
+            # detached heading "1. Short title" set directly above its body
+            # would corroborate its own promise.
+            if (last_front < neighbour < len(blocks)
+                    and blocks[neighbour].get("page_no") == page):
+                sources.append(blocks[neighbour].get("text", ""))
+        want = _norm(wanted).casefold().rstrip(".:-\u2013\u2014 ")
+        if not want or not any(want in _norm(source).casefold()
+                               or _heading_supports(source, wanted)
+                               for source in sources):
+            return None
+        body.append(body_idx)
+        position += 1
+
+    # The body must hold law, not a second copy of the list: at least one
+    # repeated unit carries text beyond its heading.
+    def substantive(i: int, b: int) -> bool:
+        need = len(front[i][2]) + 20
+        if len(_norm(blocks[b].get("text", ""))) >= need:
+            return True
+        return (b + 1 < len(blocks)
+                and blocks[b + 1].get("page_no") == blocks[b].get("page_no")
+                and len(_norm(blocks[b + 1].get("text", ""))) >= need)
+
+    if not any(substantive(i, b) for i, b in enumerate(body)):
+        return None
+    return {label: wanted for _, label, wanted in front}, body[0]
+
+
+def parse_contents(blocks: list[dict]) -> tuple[dict[str, str], int, bool]:
+    """The main contents parser, then the fully corroborated short-list path."""
+    toc, boundary, found = _parse_contents_main(blocks)
+    if found:
+        return toc, boundary, found
+    short = _short_front_contents(blocks)
+    if short is None:
+        return toc, boundary, found
+    return short[0], short[1], True
 
 
 def _toc_source_entries(blocks: list[dict], boundary: int,
