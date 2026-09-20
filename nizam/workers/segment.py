@@ -23,7 +23,7 @@ from nizam.shared.corpus_types import SegmentedInstrument
 from nizam.storage import legal_write
 from nizam.storage.db import connect
 
-SEGMENTER = "nizam.corpus.segment/55"
+SEGMENTER = "nizam.corpus.segment/59"
 
 # Any stable 64-bit number; it only has to match across processes.
 _LOCK_KEY = 0x4E495A414D534547        # "NIZAMSEG"
@@ -149,6 +149,7 @@ def build(document_id: int, sha256: str, source_observation_id: int,
           source_url: str | None, blocks: list[dict], as_at: str,
           curation_patches: list[dict] | None = None,
           toc_dispositions: list[dict] | None = None,
+          structural_resolutions: list[dict] | None = None,
           split_fused_margins: bool = False,
           detect_contents: bool = True,
           force_opening_contents: bool = False,
@@ -156,6 +157,7 @@ def build(document_id: int, sha256: str, source_observation_id: int,
           expression_role: str = "primary") -> tuple:
     seg = segment(blocks, curation_patches=curation_patches,
                   toc_dispositions=toc_dispositions,
+                  structural_resolutions=structural_resolutions,
                   split_fused_margins=split_fused_margins,
                   detect_contents=detect_contents,
                   force_opening_contents=force_opening_contents)
@@ -230,6 +232,7 @@ def build(document_id: int, sha256: str, source_observation_id: int,
                  "heading": (e["heading"] or None),
                  "kind": e["kind"],
                  "source_block_id": e.get("source_block_id"),
+                 "source_char_offset": e.get("source_char_offset"),
                  "source_page": e.get("source_page"),
                  "provision_key": node_key.get(id(e["node"])) if e["node"] is not None else None,
                  "method": e["method"]}
@@ -237,6 +240,13 @@ def build(document_id: int, sha256: str, source_observation_id: int,
 
     structural_decisions = []
     for decision in seg.repeated_label_decisions:
+        # A collision a reviewer settled from the rendered page is not an open
+        # question. The tree still demotes the unit exactly as before; what is
+        # not written is a fresh candidate row, which `v_structural_
+        # adjudication_pending` would hold open forever because migration 0036
+        # keeps every resolution but `accept_non_citable`.
+        if decision.get("settled_by_review"):
+            continue
         candidate = decision["candidate"]
         canonical = decision["canonical"]
         parent = decision["parent"]
@@ -522,9 +532,13 @@ def main() -> int:
             as_at = legal_write.observed_on(observation_id)
             patches = legal_write.segmentation_patches_for(observation_id)
             toc_dispositions = legal_write.toc_dispositions_for(observation_id)
+            # Keyed on the DOCUMENT, not the observation: a decision anchors to
+            # a text block, and blocks belong to documents.
+            structural_resolutions = legal_write.structural_resolutions_for(doc_id)
             inst, seg = build(doc_id, sha, observation_id, source_id, title, year,
                               source_url, blocks, as_at, patches,
                               toc_dispositions=toc_dispositions,
+                              structural_resolutions=structural_resolutions,
                               split_fused_margins=a.marginal_fusion)
             if (a.detached_heading_body
                     and seg.detached_heading_bodies_merged == 0):

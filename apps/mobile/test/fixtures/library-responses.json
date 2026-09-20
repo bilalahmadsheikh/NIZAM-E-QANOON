@@ -1,0 +1,281 @@
+{
+  "/v1/law/instruments?as_of=2026-09-14&q=Usurious+Loans&limit=10": {
+    "as_of": "2026-09-14",
+    "mode": "research_preview",
+    "notice": "Corpus qualification is ongoing. Check the official source; status may be unknown.",
+    "items": [
+      {
+        "id": "3f5e7f4e-2ec2-4517-bd10-634b9cc3681b",
+        "title": "THE WEST PAKISTAN USURIOUS LOANS ORDINANCE, 1959",
+        "kind": "ordinance",
+        "year": 1959,
+        "jurisdiction": "kp",
+        "status": "unknown",
+        "source_url": "https://kpcode.kp.gov.pk/uploads/1959_18_THE_WEST_PAKISTAN_USURIOUS_ORDINANCE_1959.pdf",
+        "document_id": 1421,
+        "source_hash": "ee0336cf639351b185932bb6f5e5b3eb0581e0ec047dd611e210592b4046c615"
+      },
+      {
+        "id": "694551de-6339-4524-8712-73f7d2e01d5b",
+        "title": "Usurious Loans Act, 1918",
+        "kind": "act",
+        "year": 1918,
+        "jurisdiction": "fed",
+        "status": "unknown",
+        "source_url": "https://pakistancode.gov.pk/pdffiles/administratord921936a6103b6b5035e8141f55e9ca3.pdf",
+        "document_id": 2383,
+        "source_hash": "4fd799bd4df9447e5b3b17eaeb86d4068332a3b0d9c17ba5020751d15c8f7485"
+      },
+      {
+        "id": "6c13879e-11a9-4fdf-bb62-410389d69b3c",
+        "title": "PUNJAB USURIOUS LOANS ORDINANCE, 1959",
+        "kind": "ordinance",
+        "year": 1959,
+        "jurisdiction": "punjab",
+        "status": "unknown",
+        "source_url": "https://punjabcode.punjab.gov.pk/uploads/articles/35-punjab-usurious-loans-ordinance-1959-xviii-of-1959-pdf.pdf",
+        "document_id": 4051,
+        "source_hash": "bcd4bfa8c82946e06e6a110afee3f7cb2361664197f990fcf0f9fe20d9c3ecfd"
+      },
+      {
+        "id": "7bab603c-2ea3-4390-b69f-923eb0f75bd9",
+        "title": "West Pakistan Usurious Loans Ordinance, 1959",
+        "kind": "ordinance",
+        "year": 1959,
+        "jurisdiction": "fed",
+        "status": "unknown",
+        "source_url": "https://pakistancode.gov.pk/pdffiles/administratorc66e43065f9cfbeca6b2a2b293502d8e.pdf",
+        "document_id": 1903,
+        "source_hash": "1541ef48cf6c66d8f0e565899880a52aac9697eb8b539728d3e6bb81dd82d465"
+      }
+    ],
+    "next_cursor": null
+  },
+  "/v1/law/instruments/3f5e7f4e-2ec2-4517-bd10-634b9cc3681b?as_of=2026-09-14": {
+    "as_of": "2026-09-14",
+    "mode": "research_preview",
+    "notice": "Corpus qualification is ongoing. Check the official source; status may be unknown.",
+    "item": {
+      "id": "3f5e7f4e-2ec2-4517-bd10-634b9cc3681b",
+      "title": "THE WEST PAKISTAN USURIOUS LOANS ORDINANCE, 1959",
+      "kind": "ordinance",
+      "year": 1959,
+      "jurisdiction": "kp",
+      "status": "unknown",
+      "source_url": "https://kpcode.kp.gov.pk/uploads/1959_18_THE_WEST_PAKISTAN_USURIOUS_ORDINANCE_1959.pdf",
+      "document_id": 1421,
+      "source_hash": "ee0336cf639351b185932bb6f5e5b3eb0581e0ec047dd611e210592b4046c615"
+    }
+  },
+  "/v1/law/instruments/3f5e7f4e-2ec2-4517-bd10-634b9cc3681b/children?as_of=2026-09-14&limit=10": {
+    "as_of": "2026-09-14",
+    "mode": "research_preview",
+    "notice": "Corpus qualification is ongoing. Check the official source; status may be unknown.",
+    "items": [
+      {
+        "id": "4392e379-d1c2-4cc7-9ff3-cf103f806d2d",
+        "instrument_id": "3f5e7f4e-2ec2-4517-bd10-634b9cc3681b",
+        "parent_id": null,
+        "label": "1",
+        "heading": null,
+        "marginal_note": null,
+        "kind": "section",
+        "ordinal": 0,
+        "first_page": 2,
+        "has_children": true
+      },
+      {
+        "id": "ce965f29-5760-4481-8839-0c9794b62cd8",
+        "instrument_id": "3f5e7f4e-2ec2-4517-bd10-634b9cc3681b",
+        "parent_id": null,
+        "label": "2",
+        "heading": null,
+        "marginal_note": null,
+        "kind": "section",
+        "ordinal": 3,
+        "first_page": 2,
+        "has_children": true
+      },
+      {
+        "id": "b4576d09-0bfe-4b5c-9169-e67c222f0a7b",
+        "instrument_id": "3f5e7f4e-2ec2-4517-bd10-634b9cc3681b",
+        "parent_id": null,
+        "label": "3",
+        "heading": null,
+        "marginal_note": null,
+        "kind": "section",
+        "ordinal": 5,
+        "first_page": 2,
+        "has_children": true
+      },
+      {
+        "id": "830abb59-a1d7-47b7-a2c7-7554928867e4",
+        "instrument_id": "3f5e7f4e-2ec2-4517-bd10-634b9cc3681b",
+        "parent_id": null,
+        "label": "1",
+        "heading": null,
+        "marginal_note": null,
+        "kind": "clause",
+        "ordinal": 7,
+        "first_page": 2,
+        "has_children": false
+      },
+      {
+        "id": "f7eb0e2b-2d6c-4437-9f10-4e7f50cfe6df",
+        "instrument_id": "3f5e7f4e-2ec2-4517-bd10-634b9cc3681b",
+        "parent_id": null,
+        "label": "4",
+        "heading": null,
+        "marginal_note": null,
+        "kind": "section",
+        "ordinal": 8,
+        "first_page": 3,
+        "has_children": true
+      },
+      {
+        "id": "2818e24b-ade6-4665-a3ee-fe749739020b",
+        "instrument_id": "3f5e7f4e-2ec2-4517-bd10-634b9cc3681b",
+        "parent_id": null,
+        "label": "5",
+        "heading": null,
+        "marginal_note": null,
+        "kind": "section",
+        "ordinal": 25,
+        "first_page": 5,
+        "has_children": false
+      },
+      {
+        "id": "23a1a8fe-f11f-4616-af32-9a92ee1166bb",
+        "instrument_id": "3f5e7f4e-2ec2-4517-bd10-634b9cc3681b",
+        "parent_id": null,
+        "label": "6",
+        "heading": null,
+        "marginal_note": null,
+        "kind": "section",
+        "ordinal": 26,
+        "first_page": 5,
+        "has_children": true
+      },
+      {
+        "id": "d0f44417-a6ac-4096-a9b1-5e6828d28e98",
+        "instrument_id": "3f5e7f4e-2ec2-4517-bd10-634b9cc3681b",
+        "parent_id": null,
+        "label": "SCHEDULE",
+        "heading": null,
+        "marginal_note": null,
+        "kind": "schedule",
+        "ordinal": 29,
+        "first_page": 6,
+        "has_children": true
+      }
+    ],
+    "next_cursor": null
+  },
+  "/v1/law/provisions/4392e379-d1c2-4cc7-9ff3-cf103f806d2d?as_of=2026-09-14": {
+    "as_of": "2026-09-14",
+    "mode": "research_preview",
+    "notice": "Corpus qualification is ongoing. Check the official source; status may be unknown.",
+    "item": {
+      "id": "4392e379-d1c2-4cc7-9ff3-cf103f806d2d",
+      "instrument_id": "3f5e7f4e-2ec2-4517-bd10-634b9cc3681b",
+      "parent_id": null,
+      "label": "1",
+      "heading": null,
+      "marginal_note": null,
+      "kind": "section",
+      "ordinal": 0,
+      "first_page": 2,
+      "has_children": true,
+      "text_en": null,
+      "text_ur": null,
+      "operation": null,
+      "valid_from": null,
+      "valid_to": null,
+      "instrument": {
+        "id": "3f5e7f4e-2ec2-4517-bd10-634b9cc3681b",
+        "title": "THE WEST PAKISTAN USURIOUS LOANS ORDINANCE, 1959",
+        "kind": "ordinance",
+        "year": 1959,
+        "jurisdiction": "kp",
+        "status": "unknown",
+        "source_url": "https://kpcode.kp.gov.pk/uploads/1959_18_THE_WEST_PAKISTAN_USURIOUS_ORDINANCE_1959.pdf",
+        "document_id": 1421,
+        "source_hash": "ee0336cf639351b185932bb6f5e5b3eb0581e0ec047dd611e210592b4046c615"
+      },
+      "ancestors": []
+    }
+  },
+  "/v1/law/instruments/3f5e7f4e-2ec2-4517-bd10-634b9cc3681b/children?as_of=2026-09-14&parent=4392e379-d1c2-4cc7-9ff3-cf103f806d2d&limit=10": {
+    "as_of": "2026-09-14",
+    "mode": "research_preview",
+    "notice": "Corpus qualification is ongoing. Check the official source; status may be unknown.",
+    "items": [
+      {
+        "id": "12fc8042-a0c0-4320-850b-58469f8fcbef",
+        "instrument_id": "3f5e7f4e-2ec2-4517-bd10-634b9cc3681b",
+        "parent_id": "4392e379-d1c2-4cc7-9ff3-cf103f806d2d",
+        "label": "1",
+        "heading": null,
+        "marginal_note": null,
+        "kind": "subsection",
+        "ordinal": 1,
+        "first_page": 2,
+        "has_children": false
+      },
+      {
+        "id": "98a94645-411f-4899-999e-043c6ab4985f",
+        "instrument_id": "3f5e7f4e-2ec2-4517-bd10-634b9cc3681b",
+        "parent_id": "4392e379-d1c2-4cc7-9ff3-cf103f806d2d",
+        "label": "2",
+        "heading": null,
+        "marginal_note": null,
+        "kind": "subsection",
+        "ordinal": 2,
+        "first_page": 2,
+        "has_children": false
+      }
+    ],
+    "next_cursor": null
+  },
+  "/v1/law/provisions/12fc8042-a0c0-4320-850b-58469f8fcbef?as_of=2026-09-14": {
+    "as_of": "2026-09-14",
+    "mode": "research_preview",
+    "notice": "Corpus qualification is ongoing. Check the official source; status may be unknown.",
+    "item": {
+      "id": "12fc8042-a0c0-4320-850b-58469f8fcbef",
+      "instrument_id": "3f5e7f4e-2ec2-4517-bd10-634b9cc3681b",
+      "parent_id": "4392e379-d1c2-4cc7-9ff3-cf103f806d2d",
+      "label": "1",
+      "heading": null,
+      "marginal_note": null,
+      "kind": "subsection",
+      "ordinal": 1,
+      "first_page": 2,
+      "has_children": false,
+      "text_en": "This Ordinance may be called the West Pakistan Usurious Lands Ordinance, 1959. Short title and extent.",
+      "text_ur": null,
+      "operation": "original",
+      "valid_from": "2026-07-03",
+      "valid_to": null,
+      "instrument": {
+        "id": "3f5e7f4e-2ec2-4517-bd10-634b9cc3681b",
+        "title": "THE WEST PAKISTAN USURIOUS LOANS ORDINANCE, 1959",
+        "kind": "ordinance",
+        "year": 1959,
+        "jurisdiction": "kp",
+        "status": "unknown",
+        "source_url": "https://kpcode.kp.gov.pk/uploads/1959_18_THE_WEST_PAKISTAN_USURIOUS_ORDINANCE_1959.pdf",
+        "document_id": 1421,
+        "source_hash": "ee0336cf639351b185932bb6f5e5b3eb0581e0ec047dd611e210592b4046c615"
+      },
+      "ancestors": [
+        {
+          "id": "4392e379-d1c2-4cc7-9ff3-cf103f806d2d",
+          "label": "1",
+          "heading": null,
+          "kind": "section"
+        }
+      ]
+    }
+  }
+}

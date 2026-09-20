@@ -1,5 +1,7 @@
 # Clean corpus rebuild — final measured state
 
+> Current checkpoint, **15 September 2026, 13:37 UTC**: **4,198/4,688** canonical instruments releasable; **490** withheld; **935 TOC gaps**, **885 S7 units in 173 observations**, **29/30 audit criteria passing**, database **2702 MB**. Installed segmenter is `/59`; reviewed bounded replays of 1927/2960/3485/4495/4235 preserve all 7,832 source blocks and predecessor trees. Claude also continued its source-reading loop; most findings still require structural repair. The service-rules table in 3201 remains held despite zero-queue dry run because page review found broken associations. The dated measurements and pruning discussion below are historical, not today's state or authorization to prune. See [current readiness and source-backed proof](CORPUS-READINESS-2026-09-15.md) and regenerate [agent context](AGENT-CONTEXT.md) with `./nz context` for fresh counts. The complete corpus remains unqualified; use only legal release views in the app.
+
 Status date: 10 September 2026  
 Database: `nizam_clean`  
 Active segmenter: `nizam.corpus.segment/24`  

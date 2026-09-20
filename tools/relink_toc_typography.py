@@ -122,14 +122,16 @@ def load_plan(
 
         cur.execute("""
             SELECT id,ordinal,printed_label,printed_heading,entry_kind,
-                   source_block_id,source_page,provision_id::text,match_method
+                   source_block_id,source_char_offset,source_page,
+                   provision_id::text,match_method
               FROM instrument_toc_entry
              WHERE instrument_id=%s ORDER BY ordinal,id
         """, (old_id,))
         toc = [{
             "id": r[0], "ordinal": r[1], "label": r[2], "heading": r[3],
-            "kind": r[4], "source_block_id": r[5], "source_page": r[6],
-            "node_id": r[7], "method": r[8],
+            "kind": r[4], "source_block_id": r[5],
+            "source_char_offset": r[6], "source_page": r[7],
+            "node_id": r[8], "method": r[9],
         } for r in cur.fetchall()]
         toc_ids = {entry["id"] for entry in toc}
         cur.execute("""
@@ -301,6 +303,7 @@ def load_plan(
         "ordinal": entry["ordinal"], "label": entry["label"],
         "heading": entry["heading"], "kind": entry["kind"],
         "source_block_id": entry["source_block_id"],
+        "source_char_offset": entry["source_char_offset"],
         "source_page": entry["source_page"],
         "provision_key": keys.get(entry["node_id"]),
         "method": entry["method"],

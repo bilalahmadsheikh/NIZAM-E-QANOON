@@ -114,8 +114,21 @@ def main() -> int:
             continue
         lo = row["page_before"] or row["body_starts_page"] or 1
         hi = row["page_after"] or min(lo + 1, row["page_count"])
-        if hi < lo:
-            lo, hi = hi, lo
+        inverted = hi < lo
+        if inverted:
+            # The bracket is not trustworthy: a contents entry AFTER this one is
+            # linked to an earlier page than the entry before it. Swapping the
+            # ends, which this used to do, renders from the LOW one and produces
+            # pages that cannot answer the question -- the Karachi Metropolitan
+            # Transport Authority Ordinance rendered pages 3 and 4 for its
+            # section 26, which sits on page 16 between sections 25 and 27. Five
+            # of the first renders read this session pointed at the wrong pages
+            # for this reason, and a decision made from one of them would have
+            # been made on the wrong evidence.
+            #
+            # The preceding provision's page is the half that is still reliable,
+            # so render forward from it and record that the bracket was broken.
+            hi = min(lo + a.max_pages - 1, row["page_count"])
         pages = list(range(lo, min(hi, lo + a.max_pages - 1) + 1))
         shots = []
         for page in pages:
@@ -137,7 +150,8 @@ def main() -> int:
             "contents_page": row["contents_page"],
             "searched_pages": [s["page"] for s in shots],
             "bracketed_by": {"after_page": row["page_before"],
-                             "before_page": row["page_after"]},
+                             "before_page": row["page_after"],
+                             "inverted": inverted},
             "gaps_in_document": row["gaps_in_document"],
             "renders": shots,
         })

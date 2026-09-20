@@ -116,13 +116,15 @@ def load_plan(observation_id: int) -> tuple[SegmentedInstrument, dict]:
 
         cur.execute("""
             SELECT id,ordinal,printed_label,printed_heading,entry_kind,
-                   source_block_id,source_page,provision_id::text,match_method
+                   source_block_id,source_char_offset,source_page,
+                   provision_id::text,match_method
               FROM instrument_toc_entry WHERE instrument_id=%s ORDER BY ordinal,id
         """, (instrument_id,))
         toc = [{
             "id": row[0], "ordinal": row[1], "label": row[2], "heading": row[3],
-            "kind": row[4], "source_block_id": row[5], "source_page": row[6],
-            "node_id": row[7], "method": row[8],
+            "kind": row[4], "source_block_id": row[5],
+            "source_char_offset": row[6], "source_page": row[7],
+            "node_id": row[8], "method": row[9],
         } for row in cur.fetchall()]
         dangling_toc = [entry["id"] for entry in toc
                         if entry["node_id"] is not None
@@ -329,6 +331,7 @@ def load_plan(observation_id: int) -> tuple[SegmentedInstrument, dict]:
         "ordinal": entry["ordinal"], "label": entry["label"],
         "heading": entry["heading"], "kind": entry["kind"],
         "source_block_id": entry["source_block_id"],
+        "source_char_offset": entry["source_char_offset"],
         "source_page": entry["source_page"],
         "provision_key": keys.get(entry["node_id"]), "method": entry["method"],
     } for entry in toc]

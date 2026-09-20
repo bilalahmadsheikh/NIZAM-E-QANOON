@@ -698,10 +698,28 @@ def test_late_contents_cannot_turn_an_earlier_body_into_contents():
         rows.append({"id": len(rows), "text": f"{n}. Enacted rule {n}.",
                      "page_no": 21, "y0": 120.0, "page_height": 792.0})
     seg = segment(rows)
-    assert not seg.toc_found
+    # The concern this test exists for -- a late list must not make preceding
+    # enacted law into front matter -- is asserted here and is unchanged.
     assert seg.body_starts_page == 1
     assert [n.label for n in seg.root.children if n.kind == "section"][:20] == [
         str(n) for n in range(1, 21)]
+    assert seg.repeated_labels_demoted == 0
+
+    # `toc_found` became True on 19 Sep 2026 and that is an improvement, not a
+    # regression. The trailing-contents repair now recognises a contents list
+    # printed AFTER the body, and it does so without moving the body: the
+    # boundary is set to 0 and the body is cut at the marker, so pages 1-20
+    # remain the body and only the late list is excluded from it. What the
+    # document gains is twenty promises to check the body against -- agreement
+    # 1.0000 here -- and the twenty collisions its rows used to cause are gone.
+    #
+    # The repair is tightly guarded: the marker must sit in the document's last
+    # pages, every label it prints must ALREADY be a citable label above it, and
+    # every repeated-label collision in the document must fall inside the region.
+    # A genuine front contents list cannot satisfy those, and a late list that
+    # promises anything the body does not already have is refused.
+    assert seg.toc_found
+    assert seg.agreement == 1.0
 
 
 def test_repeated_printed_toc_labels_are_not_collapsed():
@@ -757,6 +775,33 @@ def test_source_verified_omission_becomes_an_empty_citable_version():
     assert node.toc_disposition_assertion_id == 41
     assert node.first_block == 7
     assert "7" not in seg.missing
+
+
+def test_source_verified_trailing_omission_word_is_materialised():
+    """A retained description may precede the lifecycle word in the TOC."""
+    heading = "Exceptional first offenders or repeat offenders [omitted]"
+    toc = ["CONTENTS"] + [
+        f"{n}. {heading if n == 7 else f'Heading number {n}.'}"
+        for n in range(1, 12)
+    ]
+    body = [
+        f"{n}. Heading number {n}. Some enacted text here."
+        for n in range(1, 12) if n != 7
+    ]
+    seg = segment(blocks(*toc, *body), toc_dispositions=[{
+        "id": 43,
+        "toc_entry_ordinal": 6,
+        "printed_label": "7",
+        "printed_heading": heading,
+        "disposition": "omitted",
+        "source_block_id": 7,
+        "source_page": 1,
+        "amending_instrument_id": None,
+    }])
+    entry = next(item for item in seg.toc_entries if item["label"] == "7")
+    assert entry["method"] == "source_verified_disposition"
+    assert entry["node"].operation == "omitted"
+    assert entry["node"].amendment_note == heading
 
 
 def test_stale_toc_disposition_coordinates_fail_closed():
@@ -968,11 +1013,28 @@ def test_explicit_enactment_moves_boundary_past_nested_order_contents():
         "WHEREAS it is expedient to consolidate the law; It is hereby enacted as follows:",
     ] + [f"{n}. Main section {n}. Enacted text." for n in range(1, 9)]
     seg = segment(blocks(*toc, *order_contents, *body))
-    assert seg.toc_found
+    # What this test is for: the enactment formula must move the boundary past
+    # the nested Order contents so the Code's own sections 1-8 are the body.
+    # That still holds, and those are the assertions below.
     assert seg.body_starts_page == 1
     assert [n.label for n in seg.root.children if n.kind == "section"] == [
         str(n) for n in range(1, 9)]
     assert seg.repeated_labels_demoted == 0
+
+    # `toc_found` is deliberately False here, changed 19 Sep 2026. This fixture
+    # lists ORDER VII's twelve rules in the contents and never prints them in
+    # the body, so the contents hypothesis it produces keeps NONE of its twelve
+    # promises -- post-walk agreement 0.0000. The refutation at the end of
+    # segment() withdraws a hypothesis the body has disproved, which is what
+    # this fixture describes. The three assertions above are unchanged, so the
+    # behaviour the test exists to protect is unaffected; only the claim that a
+    # contents list was found has gone, and it was a claim about a list whose
+    # every entry was missing.
+    #
+    # A real Code prints those rules in its First Schedule: add them to this
+    # fixture and agreement rises to 1.0000 and `toc_found` is True again.
+    assert not seg.toc_found
+    assert seg.agreement == 0.0
 
 
 def test_enactment_recovers_body_before_later_schedule_number_restart():

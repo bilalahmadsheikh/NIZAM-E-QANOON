@@ -1,5 +1,7 @@
 # What is left in S7 and the contents-gap queue, and why
 
+> **Current correction, 15 September 2026, 13:37 UTC:** this document records a historical investigation, not an exhausted repair path or today's policy blocker. Owner-approved migration **0050** admits explicitly evidenced assistant page review separately from human review. Source-backed append-only parser repairs now make **4,198** instruments releasable; **935 TOC gaps / 885 S7 units** remain, and the audit is **29/30**. New documents 1927/2960/3485/4495/4235 have zero pending TOC/S7 and verified source preservation. The original weighted 200-case audit remains incomplete (28 cases reported read). See [current status, proof and held table defects](CORPUS-READINESS-2026-09-15.md); the earlier “wall” is not grounds to declare source-backed repairs impossible or to invent a human-review flag.
+
 *12 September 2026. Written after exhausting the automatic routes, so the next
 person does not repeat the search.*
 

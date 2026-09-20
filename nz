@@ -23,13 +23,20 @@
 #   ./nz s7-citability did a demotion remove a citation, or only a duplicate
 #   ./nz s7-source     record an S7 decision from a page actually read
 #   ./nz s7-render     render the pages a batch of pending S7 units needs
+#   ./nz s7-audit-batch  finish the weighted 200 audit, one rendered batch at a time
 #   ./nz stub-citations is the surviving citation a stub while the text is uncitable
 #   ./nz diff-trees      name the nodes two segmenters disagree about
 #   ./nz replay-would-fix  which stub citations a replay fixes without a decision
 #   ./nz replay-cost     what replaying a named document list costs the gate
 #   ./nz empty-citations contents entries whose link resolves to no law
 #   ./nz gap-causes     why every pending contents gap is a gap, by class
+#   ./nz mislabelled-headings provisions whose heading is not the one their own block prints
+#   ./nz contents-offset documents whose contents list runs at a constant offset to the body
 #   ./nz s7-adjudicate decide the demotions that provably cost no citation
+#   ./nz reattach      re-attach source-verified readings a replay orphaned
+#                      (run after EVERY replay, with resolve_exact_instrument_duplicates)
+#   ./nz toc-reattach  re-attach contents-gap decisions a replay orphaned
+#                      (same rule: run after EVERY replay, before reading the queue)
 #   ./nz disposition-review  render omitted/repealed TOC evidence (read-only)
 #   ./nz disposition-materialize  exact-tree omitted-section revisions
 #   ./nz browse        read the corpus in a browser, PDF beside extracted text
@@ -217,12 +224,25 @@ cmd_empty_citations() { need_docker; need_uv
                  POSTGRES_DB="${NIZAM_CLEAN_DB:-nizam_clean}"                    uv run python tools/find_empty_citations.py "$@"; }
 cmd_gap_causes() { need_docker; need_uv
                  POSTGRES_DB="${NIZAM_CLEAN_DB:-nizam_clean}"                    uv run python tools/census_gap_causes.py "$@"; }
+cmd_mislabelled_headings() { need_docker; need_uv
+                 POSTGRES_DB="${NIZAM_CLEAN_DB:-nizam_clean}"                    uv run python tools/census_heading_mislabel.py "$@"; }
+cmd_contents_offset() { need_docker; need_uv
+                 POSTGRES_DB="${NIZAM_CLEAN_DB:-nizam_clean}"                    uv run python tools/census_contents_offset.py "$@"; }
 cmd_s7_adjudicate() { need_docker; need_uv
                  POSTGRES_DB="${NIZAM_CLEAN_DB:-nizam_clean}"                    uv run python tools/adjudicate_citation_preserving.py "$@"; }
+cmd_reattach() { need_docker; need_uv
+                 POSTGRES_DB="${NIZAM_CLEAN_DB:-nizam_clean}"                    uv run python tools/reattach_orphaned_adjudications.py "$@"; }
+cmd_toc_reattach() { need_docker; need_uv
+                 POSTGRES_DB="${NIZAM_CLEAN_DB:-nizam_clean}"                    uv run python tools/reattach_orphaned_toc_adjudications.py "$@"; }
+cmd_post_replay() { need_docker; need_uv
+                 b "the repairs a full replay makes necessary, in the only order that works"
+                 POSTGRES_DB="${NIZAM_CLEAN_DB:-nizam_clean}"                    bash tools/post_replay_sequence.sh "$@"; }
 cmd_s7_source() { need_docker; need_uv
                  POSTGRES_DB="${NIZAM_CLEAN_DB:-nizam_clean}"                    uv run python tools/adjudicate_s7_from_source.py "$@"; }
 cmd_s7_render() { need_docker; need_uv
                  POSTGRES_DB="${NIZAM_CLEAN_DB:-nizam_clean}"                    uv run python tools/render_s7_batch.py "$@"; }
+cmd_s7_audit_batch() { need_docker; need_uv
+                 POSTGRES_DB="${NIZAM_CLEAN_DB:-nizam_clean}"                    uv run python tools/s7_audit_batch.py "$@"; }
 cmd_disposition_review() { need_docker; need_uv
                  POSTGRES_DB="${NIZAM_CLEAN_DB:-nizam_clean}" \
                    uv run python tools/review_toc_dispositions.py "$@"; }
@@ -330,9 +350,15 @@ case "${1:-}" in
   replay-cost) shift; cmd_replay_cost "$@" ;;
   empty-citations) shift; cmd_empty_citations "$@" ;;
   gap-causes) shift; cmd_gap_causes "$@" ;;
+  mislabelled-headings) shift; cmd_mislabelled_headings "$@" ;;
+  contents-offset) shift; cmd_contents_offset "$@" ;;
   s7-adjudicate) shift; cmd_s7_adjudicate "$@" ;;
   s7-source) shift; cmd_s7_source "$@" ;;
+  post-replay) shift; cmd_post_replay "$@" ;;
+  reattach)  shift; cmd_reattach "$@" ;;
+  toc-reattach) shift; cmd_toc_reattach "$@" ;;
   s7-render) shift; cmd_s7_render "$@" ;;
+  s7-audit-batch) shift; cmd_s7_audit_batch "$@" ;;
   disposition-review) shift; cmd_disposition_review "$@" ;;
   disposition-materialize) shift; cmd_disposition_materialize "$@" ;;
   browse)    shift; cmd_browse "$@" ;;

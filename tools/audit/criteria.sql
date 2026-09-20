@@ -187,10 +187,67 @@ m AS (
       JOIN live_instrument i ON i.id=e.instrument_id
       LEFT JOIN text_block t ON t.id=e.source_block_id
        AND t.document_id=i.document_id AND t.page_no=e.source_page
-     WHERE e.source_block_id IS NULL OR e.source_page IS NULL OR t.id IS NULL) AS toc_bad_source,
+     WHERE e.source_block_id IS NULL OR e.source_page IS NULL OR t.id IS NULL
+        OR (e.source_char_offset IS NOT NULL
+            AND e.source_char_offset >= length(coalesce(t.text,'')))) AS toc_bad_source,
     (SELECT round(percentile_cont(0.5) WITHIN GROUP (ORDER BY toc_agreement)::numeric,4)
        FROM latest_segmentation WHERE toc_found)                                AS toc_median,
     (SELECT count(*) FROM v_toc_gap_pending)                                    AS toc_pending,
+    -- A10: a contents entry that resolves to EDITORIAL APPARATUS rather than
+    -- law. A5 asks whether a promised entry resolved; it does not ask what it
+    -- resolved TO. Document 4242, the KP Public Service Commission Ordinance,
+    -- is released and answers sections 1, 2 and 3 with
+    -- 'Substituted vide the Khyber Pakhtunkhwa Act No. IV of 2011.' while its
+    -- contents promises 'Short title and commencement', 'Definitions' and
+    -- 'Composition of Commission etc.' The law is present in text_block; the
+    -- citation renders the footnote. That is INV-4 failing while A5 passes.
+    --
+    -- Anchored at the START of the provision's text, deliberately: an
+    -- unanchored `contains` over the same vocabulary flags 4,613 entries in
+    -- 1,691 released instruments, because ordinary sections quote Gazettes and
+    -- amending Acts. A bare `Omitted by...` / `Rep. by...` opener is excluded,
+    -- because an omitted section's printed body IS that sentence.
+    -- The entry's own printed heading must not be apparatus too -- that case is
+    -- a contents-boundary defect, counted separately, not a bad link.
+    (SELECT count(*)
+       FROM instrument_toc_entry t
+       JOIN v_release_instrument ri ON ri.id = t.instrument_id
+       JOIN v_provision pv ON pv.provision_id = t.provision_id
+      WHERE t.provision_id IS NOT NULL
+        AND coalesce(pv.text,'') <> ''
+        AND pv.text ~* ('^\s*(?:\d{1,3}\s*[.:-]?\s*)?('
+        || 'Subs\.|Subs,|Substituted\s+(?:for|by|vide)'
+        || '|Ins\.|Inserted\s+(?:by|vide)|Added\s+(?:by|vide)'
+        || '|Ibid\b|See\s+now\b'
+        || '|For\s+(?:the\s+)?Statement\s+of\s+Objects'
+        || '|This\s+(?:Act|Ordinance|section)\s+(?:has\s+been\s+extended'
+        ||   '|was\s+(?:assented|published|originally|previously)|previously)'
+        || '|Pakistan\s+Code\b'
+        || '|The\s+(?:original\s+)?(?:words?|brackets|provisions?|figures?|letters?|commas?)\b'
+        ||   '[^\n]{0,200}\b(?:rep\.|omitted\s+by|substituted|subs\.|ins\.)'
+        || '|Certain\s+words\b[^\n]{0,200}\bomitted\s+by'
+        || '|S\.?\s*\d{1,4}\s*[-\u2013]?\s*[A-Z]?\s*,?\s*'
+        ||   '(?:ins\.|inserted|subs\.|substituted|omitted|deleted)\b'
+        || '|Proviso\s+omitted\b'
+        || '|For\s+rules\s+see\b|See\s+[Nn]otification\b'
+        || ')')
+        AND coalesce(t.printed_heading,'') !~* ('^\s*(?:\d{1,3}\s*[.:-]?\s*)?('
+        || 'Subs\.|Subs,|Substituted\s+(?:for|by|vide)'
+        || '|Ins\.|Inserted\s+(?:by|vide)|Added\s+(?:by|vide)'
+        || '|Ibid\b|See\s+now\b'
+        || '|For\s+(?:the\s+)?Statement\s+of\s+Objects'
+        || '|This\s+(?:Act|Ordinance|section)\s+(?:has\s+been\s+extended'
+        ||   '|was\s+(?:assented|published|originally|previously)|previously)'
+        || '|Pakistan\s+Code\b'
+        || '|The\s+(?:original\s+)?(?:words?|brackets|provisions?|figures?|letters?|commas?)\b'
+        ||   '[^\n]{0,200}\b(?:rep\.|omitted\s+by|substituted|subs\.|ins\.)'
+        || '|Certain\s+words\b[^\n]{0,200}\bomitted\s+by'
+        || '|S\.?\s*\d{1,4}\s*[-\u2013]?\s*[A-Z]?\s*,?\s*'
+        ||   '(?:ins\.|inserted|subs\.|substituted|omitted|deleted)\b'
+        || '|Proviso\s+omitted\b'
+        || '|For\s+rules\s+see\b|See\s+[Nn]otification\b'
+        || ')')
+    )                                                                           AS toc_links_apparatus,
     (SELECT count(*) FROM live_version v WHERE NOT (v.validity @> current_date))
                                                                                 AS not_operative,
     (SELECT count(*) FROM live_version)                                         AS versions,
@@ -260,6 +317,28 @@ m AS (
     ,(SELECT count(*) FROM live_document WHERE lane<>'E4')                        AS text_verify_expected
     ,(SELECT count(*) FROM latest_text_quality)                                   AS text_verify_recorded
     ,(SELECT count(*) FROM latest_text_quality WHERE outcome<>'passed')           AS text_review
+    -- A11 is recorded by the Python census because its per-token comparison
+    -- cannot be reproduced honestly in this SQL. MEASURED: written as SQL here,
+    -- with guards 1-3 plus prefix containment and no token comparison, the rule
+    -- reported 472 rows in 221 documents against a true count of 101 -- 4.7x,
+    -- and concentrated in the CrPC (44), the Customs Act (14), the PAF Act
+    -- (13), the Army Act (11), the Constitution (11) and the PPC (11), every
+    -- one of them one name spelt two ways. An A11 printing 472 would be a worse
+    -- artefact than no A11. So the value is READ from the recorded census.
+    --
+    -- A stored number is a claim about a corpus, not a fact about this one.
+    -- `is_stale` compares the census's digest of the exact provision population
+    -- it read against that population now, so a replay, a retirement, a
+    -- duplicate resolution or a restore all invalidate it. Three states, three
+    -- answers: never measured, measured for a corpus that has since moved, and
+    -- measured for this one. Only the third may report a pass.
+    ,(SELECT mislabelled FROM v_heading_mislabel_census_current)                  AS heading_not_own
+    ,(SELECT mislabelled_documents FROM v_heading_mislabel_census_current)        AS heading_not_own_docs
+    ,(SELECT variant_spellings FROM v_heading_mislabel_census_current)            AS heading_variants
+    ,(SELECT never_measured FROM v_heading_mislabel_census_current)               AS heading_census_absent
+    ,(SELECT is_stale FROM v_heading_mislabel_census_current)                     AS heading_census_stale
+    ,(SELECT to_char(measured_at,'YYYY-MM-DD HH24:MI')
+        FROM v_heading_mislabel_census_current)                                   AS heading_census_at
     -- S9: the disposable subtree accelerator must be the exact closure of the
     -- real provision parent graph. Synthetic jurisdiction/kind/instrument path
     -- prefixes are not legal nodes and must consume no closure rows.
@@ -314,6 +393,15 @@ SELECT * FROM (
   UNION ALL SELECT 'A9','contents entries retain exact source anchors',
          toc_bad_source::text,'0',
          CASE WHEN toc_bad_source=0 THEN 'PASS' ELSE 'FAIL' END FROM m
+  UNION ALL SELECT 'A10','contents entries resolve to law, not apparatus',
+         toc_links_apparatus::text,'0',
+         CASE WHEN toc_links_apparatus=0 THEN 'PASS' ELSE 'FAIL' END FROM m
+  UNION ALL SELECT 'A11','provision headings match their printed opener (reported)',
+         CASE WHEN heading_census_stale THEN 'census missing or stale'
+              ELSE heading_not_own||' in '||heading_not_own_docs||
+                   ' docs; '||heading_variants||' spelling variants' END,
+         'fresh census; count reported (0 before promotion)',
+         CASE WHEN heading_census_stale THEN 'FAIL' ELSE 'PASS' END FROM m
   UNION ALL SELECT 'A7','as-at query returns the corpus',
          (versions - not_operative)||' / '||versions, 'all',
          CASE WHEN not_operative=0 THEN 'PASS' ELSE 'FAIL' END FROM m

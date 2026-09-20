@@ -1,0 +1,942 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Nizam Library \u2014 research preview",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/v1/law/instruments": {
+      "get": {
+        "summary": "Instruments",
+        "operationId": "instruments_v1_law_instruments_get",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "maxLength": 120,
+              "default": "",
+              "title": "Q"
+            }
+          },
+          {
+            "name": "jurisdiction",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "enum": [
+                "",
+                "fed",
+                "punjab",
+                "sindh",
+                "kp",
+                "balochistan",
+                "ict",
+                "ajk",
+                "gb"
+              ],
+              "type": "string",
+              "default": "",
+              "title": "Jurisdiction"
+            }
+          },
+          {
+            "name": "kind",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "enum": [
+                "",
+                "constitution",
+                "act",
+                "ordinance",
+                "rules",
+                "regulation",
+                "order",
+                "sro",
+                "notification"
+              ],
+              "type": "string",
+              "default": "",
+              "title": "Kind"
+            }
+          },
+          {
+            "name": "as_of",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "As Of"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 50,
+              "minimum": 1,
+              "default": 30,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "after",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 2048
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "After"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstrumentPage"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/law/instruments/{instrument_id}": {
+      "get": {
+        "summary": "Instrument",
+        "operationId": "instrument_v1_law_instruments__instrument_id__get",
+        "parameters": [
+          {
+            "name": "instrument_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Instrument Id"
+            }
+          },
+          {
+            "name": "as_of",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "As Of"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstrumentResult"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/law/instruments/{instrument_id}/children": {
+      "get": {
+        "summary": "Children",
+        "operationId": "children_v1_law_instruments__instrument_id__children_get",
+        "parameters": [
+          {
+            "name": "instrument_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Instrument Id"
+            }
+          },
+          {
+            "name": "parent",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Parent"
+            }
+          },
+          {
+            "name": "as_of",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "As Of"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 50,
+              "minimum": 1,
+              "default": 30,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "after",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 2048
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "After"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NodePage"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/law/provisions/{provision_id}": {
+      "get": {
+        "summary": "Provision",
+        "operationId": "provision_v1_law_provisions__provision_id__get",
+        "parameters": [
+          {
+            "name": "provision_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Provision Id"
+            }
+          },
+          {
+            "name": "as_of",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "As Of"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProvisionResult"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Ancestor": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Label"
+          },
+          "heading": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Heading"
+          },
+          "kind": {
+            "type": "string",
+            "title": "Kind"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "label",
+          "heading",
+          "kind"
+        ],
+        "title": "Ancestor"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "Instrument": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Title"
+          },
+          "kind": {
+            "type": "string",
+            "title": "Kind"
+          },
+          "year": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Year"
+          },
+          "jurisdiction": {
+            "type": "string",
+            "title": "Jurisdiction"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "source_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Url"
+          },
+          "document_id": {
+            "type": "integer",
+            "title": "Document Id"
+          },
+          "source_hash": {
+            "type": "string",
+            "title": "Source Hash"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "kind",
+          "year",
+          "jurisdiction",
+          "status",
+          "source_url",
+          "document_id",
+          "source_hash"
+        ],
+        "title": "Instrument"
+      },
+      "InstrumentPage": {
+        "properties": {
+          "as_of": {
+            "type": "string",
+            "format": "date",
+            "title": "As Of"
+          },
+          "mode": {
+            "type": "string",
+            "const": "research_preview",
+            "title": "Mode",
+            "default": "research_preview"
+          },
+          "notice": {
+            "type": "string",
+            "title": "Notice",
+            "default": "Corpus qualification is ongoing. Check the official source; status may be unknown."
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/Instrument"
+            },
+            "type": "array",
+            "title": "Items"
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Cursor"
+          }
+        },
+        "type": "object",
+        "required": [
+          "as_of",
+          "items",
+          "next_cursor"
+        ],
+        "title": "InstrumentPage"
+      },
+      "InstrumentResult": {
+        "properties": {
+          "as_of": {
+            "type": "string",
+            "format": "date",
+            "title": "As Of"
+          },
+          "mode": {
+            "type": "string",
+            "const": "research_preview",
+            "title": "Mode",
+            "default": "research_preview"
+          },
+          "notice": {
+            "type": "string",
+            "title": "Notice",
+            "default": "Corpus qualification is ongoing. Check the official source; status may be unknown."
+          },
+          "item": {
+            "$ref": "#/components/schemas/Instrument"
+          }
+        },
+        "type": "object",
+        "required": [
+          "as_of",
+          "item"
+        ],
+        "title": "InstrumentResult"
+      },
+      "Node": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "instrument_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Instrument Id"
+          },
+          "parent_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Parent Id"
+          },
+          "label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Label"
+          },
+          "heading": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Heading"
+          },
+          "marginal_note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Marginal Note"
+          },
+          "kind": {
+            "type": "string",
+            "title": "Kind"
+          },
+          "ordinal": {
+            "type": "integer",
+            "title": "Ordinal"
+          },
+          "first_page": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "First Page"
+          },
+          "has_children": {
+            "type": "boolean",
+            "title": "Has Children"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "instrument_id",
+          "parent_id",
+          "label",
+          "heading",
+          "marginal_note",
+          "kind",
+          "ordinal",
+          "first_page",
+          "has_children"
+        ],
+        "title": "Node"
+      },
+      "NodePage": {
+        "properties": {
+          "as_of": {
+            "type": "string",
+            "format": "date",
+            "title": "As Of"
+          },
+          "mode": {
+            "type": "string",
+            "const": "research_preview",
+            "title": "Mode",
+            "default": "research_preview"
+          },
+          "notice": {
+            "type": "string",
+            "title": "Notice",
+            "default": "Corpus qualification is ongoing. Check the official source; status may be unknown."
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/Node"
+            },
+            "type": "array",
+            "title": "Items"
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Cursor"
+          }
+        },
+        "type": "object",
+        "required": [
+          "as_of",
+          "items",
+          "next_cursor"
+        ],
+        "title": "NodePage"
+      },
+      "Provision": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "instrument_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Instrument Id"
+          },
+          "parent_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Parent Id"
+          },
+          "label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Label"
+          },
+          "heading": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Heading"
+          },
+          "marginal_note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Marginal Note"
+          },
+          "kind": {
+            "type": "string",
+            "title": "Kind"
+          },
+          "ordinal": {
+            "type": "integer",
+            "title": "Ordinal"
+          },
+          "first_page": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "First Page"
+          },
+          "has_children": {
+            "type": "boolean",
+            "title": "Has Children"
+          },
+          "text_en": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Text En"
+          },
+          "text_ur": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Text Ur"
+          },
+          "operation": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Operation"
+          },
+          "valid_from": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Valid From"
+          },
+          "valid_to": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Valid To"
+          },
+          "instrument": {
+            "$ref": "#/components/schemas/Instrument"
+          },
+          "ancestors": {
+            "items": {
+              "$ref": "#/components/schemas/Ancestor"
+            },
+            "type": "array",
+            "title": "Ancestors"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "instrument_id",
+          "parent_id",
+          "label",
+          "heading",
+          "marginal_note",
+          "kind",
+          "ordinal",
+          "first_page",
+          "has_children",
+          "text_en",
+          "text_ur",
+          "operation",
+          "valid_from",
+          "valid_to",
+          "instrument",
+          "ancestors"
+        ],
+        "title": "Provision"
+      },
+      "ProvisionResult": {
+        "properties": {
+          "as_of": {
+            "type": "string",
+            "format": "date",
+            "title": "As Of"
+          },
+          "mode": {
+            "type": "string",
+            "const": "research_preview",
+            "title": "Mode",
+            "default": "research_preview"
+          },
+          "notice": {
+            "type": "string",
+            "title": "Notice",
+            "default": "Corpus qualification is ongoing. Check the official source; status may be unknown."
+          },
+          "item": {
+            "$ref": "#/components/schemas/Provision"
+          }
+        },
+        "type": "object",
+        "required": [
+          "as_of",
+          "item"
+        ],
+        "title": "ProvisionResult"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

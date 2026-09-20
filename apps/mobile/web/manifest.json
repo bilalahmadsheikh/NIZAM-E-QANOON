@@ -1,0 +1,19 @@
+{
+    "name": "Nizam-e-Qanoon · Research preview",
+    "short_name": "Nizam",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#F3EFE6",
+    "theme_color": "#17352E",
+    "description": "Source-backed Pakistani legal library preview.",
+    "orientation": "portrait-primary",
+    "prefer_related_applications": false,
+    "icons": [
+        {
+            "src": "nizam.svg",
+            "sizes": "any",
+            "type": "image/svg+xml",
+            "purpose": "any"
+        }
+    ]
+}

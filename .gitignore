@@ -234,3 +234,43 @@ overlay-*.png
 .fp_inl_*
 .probe_inl.sh
 .seg_t.py
+.fp_rm2_*
+.probe_rm2.sh
+.fp_in2_*
+.probe_in2.sh
+
+# ── Root-level session scratch, as a class ─────────────────────
+#
+# The list above grew to roughly 120 entries, added one probe at a time
+# (.fp_*, .probe_*, .diag*, .watch*, .size_*, ...). It still did not cover
+# what a working session produces: 1,388 files were untracked and unignored
+# when this was written. Enumerating throwaways one by one does not converge.
+#
+# So ignore the whole class -- every dot-prefixed entry at the REPO ROOT --
+# and name the handful of real ones. A scratch script belongs at the root with
+# a leading dot; anything worth keeping gets promoted into tools/ or tests/,
+# which is already how this repo has worked.
+/.*
+!/.gitignore
+!/.gitattributes
+!/.claude/
+!/.importlinter
+!/.mcp.json
+!/.github/
+
+# ── The catalogue is knowledge, not evidence ───────────────────
+#
+# `.artifacts/` is ignored above, and for a good reason: it holds 1.5 GB of
+# rendered PDF pages, which are proof for one decision each and are already
+# recorded in the database. But the same directory holds the catalogue -- the
+# written findings of every corpus session, including PATTERNS.md, which is
+# where a measurement that cost hours of reading is written down so nobody
+# re-derives it.
+#
+# None of it was tracked. A fresh clone got the code and lost the reasons.
+# The markdown is ~150 KB against 1.5 GB of renders; keep it.
+!/.artifacts/
+/.artifacts/*
+!/.artifacts/catalogue/
+/.artifacts/catalogue/*
+!/.artifacts/**/*.md
