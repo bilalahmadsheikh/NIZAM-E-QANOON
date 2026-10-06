@@ -23,14 +23,27 @@
 
 \pset pager off
 
+-- Counting unit: one (document, block). The is_active filter above is not
+-- enough on its own. A document with more than one landed observation carries
+-- more than one ACTIVE assignment set -- 85 documents do, 218 sets -- and a
+-- block stranded in both was counted twice. Documents 3677, 4139 and 3970 each
+-- read exactly double until 22 Sep 2026; they are the same documents that carry
+-- two active canonical instruments, so this is the duplicate-instrument gap
+-- showing up in a measurement. Sections 1, 3 and 4 dedupe with DISTINCT ON
+-- before aggregating. (sum(DISTINCT chars) would be wrong: it merges different
+-- blocks that happen to be the same length.)
+
 \echo '-- 1. blocks filed as contents and attached to no provision (active sets only)'
-WITH act AS (SELECT id, document_id FROM block_assignment_set WHERE is_active)
+WITH act AS (SELECT id, document_id FROM block_assignment_set WHERE is_active),
+stranded AS (
+  SELECT DISTINCT ON (a.document_id, pb.block_id) a.document_id, pb.block_id, pb.chars
+  FROM provision_block pb
+  JOIN act a ON a.id = pb.assignment_set_id
+  WHERE pb.role = 'contents' AND pb.provision_id IS NULL)
 SELECT count(*) AS blocks,
-       count(DISTINCT a.document_id) AS documents,
-       sum(pb.chars) AS chars
-FROM provision_block pb
-JOIN act a ON a.id = pb.assignment_set_id
-WHERE pb.role = 'contents' AND pb.provision_id IS NULL;
+       count(DISTINCT document_id) AS documents,
+       sum(chars) AS chars
+FROM stranded;
 
 \echo '-- 2. the contents ROLE outlasting the printed contents LIST'
 WITH act AS (SELECT id, document_id, instrument_id FROM block_assignment_set WHERE is_active),
@@ -53,31 +66,42 @@ FROM role_end r JOIN list_end l ON l.instrument_id = r.instrument_id;
 -- A contents entry is a short line. A block over 200 characters that carries an
 -- operative verb is body text, not a contents entry, and it is attached to no
 -- provision -- law in the database that no citation can reach.
-WITH act AS (SELECT id, document_id FROM block_assignment_set WHERE is_active)
+WITH act AS (SELECT id, document_id FROM block_assignment_set WHERE is_active),
+stranded AS (
+  SELECT DISTINCT ON (a.document_id, pb.block_id) a.document_id, pb.block_id, pb.chars
+  FROM provision_block pb
+  JOIN act a ON a.id = pb.assignment_set_id
+  JOIN text_block tb ON tb.id = pb.block_id
+  WHERE pb.role = 'contents' AND pb.provision_id IS NULL
+    AND length(tb.text) > 200
+    AND tb.text ~ '\y(shall|means|may not|is hereby|are hereby|shall be deemed)\y')
 SELECT count(*) AS blocks,
-       count(DISTINCT a.document_id) AS documents,
-       sum(pb.chars) AS chars
-FROM provision_block pb
-JOIN act a ON a.id = pb.assignment_set_id
-JOIN text_block tb ON tb.id = pb.block_id
-WHERE pb.role = 'contents' AND pb.provision_id IS NULL
-  AND length(tb.text) > 200
-  AND tb.text ~ '\y(shall|means|may not|is hereby|are hereby|shall be deemed)\y';
+       count(DISTINCT document_id) AS documents,
+       sum(chars) AS chars
+FROM stranded;
+-- Roughly a quarter of these rows are PREAMBLES, not stranded sections: 260
+-- blocks in 248 documents read "WHEREAS ... it is hereby enacted", which the
+-- regex catches through "is hereby". Whether a preamble should become a
+-- `preamble` provision is a design question, not this defect.
 
 \echo '-- 4. the documents holding the most of it'
-WITH act AS (SELECT id, document_id FROM block_assignment_set WHERE is_active)
-SELECT a.document_id,
+WITH act AS (SELECT id, document_id FROM block_assignment_set WHERE is_active),
+stranded AS (
+  SELECT DISTINCT ON (a.document_id, pb.block_id)
+         a.document_id, pb.block_id, pb.chars, tb.page_no
+  FROM provision_block pb
+  JOIN act a ON a.id = pb.assignment_set_id
+  JOIN text_block tb ON tb.id = pb.block_id
+  WHERE pb.role = 'contents' AND pb.provision_id IS NULL
+    AND length(tb.text) > 200
+    AND tb.text ~ '\y(shall|means|may not|is hereby|are hereby|shall be deemed)\y')
+SELECT document_id,
        count(*) AS stranded_blocks,
-       sum(pb.chars) AS stranded_chars,
-       min(tb.page_no) AS from_page,
-       max(tb.page_no) AS to_page
-FROM provision_block pb
-JOIN act a ON a.id = pb.assignment_set_id
-JOIN text_block tb ON tb.id = pb.block_id
-WHERE pb.role = 'contents' AND pb.provision_id IS NULL
-  AND length(tb.text) > 200
-  AND tb.text ~ '\y(shall|means|may not|is hereby|are hereby|shall be deemed)\y'
-GROUP BY a.document_id
+       sum(chars) AS stranded_chars,
+       min(page_no) AS from_page,
+       max(page_no) AS to_page
+FROM stranded
+GROUP BY document_id
 ORDER BY stranded_chars DESC
 LIMIT 20;
 

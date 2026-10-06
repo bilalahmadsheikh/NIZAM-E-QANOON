@@ -116,7 +116,7 @@ def test_expression_ordinal_makes_paths_distinct_and_retains_source_span():
     inst, _ = build(
         99, "a" * 64, 77, "pk-federal", "Example Act, 2024", "2024",
         "https://example.invalid/official.pdf", blocks, "2026-09-09",
-        expression_ordinal=2, expression_role="embedded")
+        expression_ordinal=2, expression_role="embedded", profile="default")
     assert inst.expression_ordinal == 2
     assert inst.expression_role == "embedded"
     assert inst.source_start_block_id == 9001
@@ -188,3 +188,188 @@ def test_outer_title_ocr_spelling_variants_are_not_split():
         "1. Short title.—This Act may be called the Nawab Shaheed Ghous Bakksh Raisani Hospital Act, 2012.",
     )
     assert detect(blocks,"Nawab Shaeed Ghous Bakhsh Raisani Memorial Hospital Act 2012") == []
+
+
+# --------------------------------------------------- reviewed expression plans
+import copy
+
+import pytest
+
+from tools import materialize_multi_instrument as materializer
+
+
+def _plan_blocks(first=101, count=12):
+    return [{"id": first + i, "page_no": 1 + i // 4, "text": f"block {first + i} text"}
+            for i in range(count)]
+
+
+def _plan(**changes):
+    plan = {
+        "schema": materializer.PLAN_SCHEMA, "document_id": 7, "source_observation_id": 70,
+        "review_basis": "source_verified",
+        "expressions": [
+            {"ordinal": 0, "role": "primary", "title": "Example Rules, 1996",
+             "kind": "rules", "year": 1996, "number": None,
+             "spans": [{"start_block_id": 105, "end_block_id": 108}],
+             "title_correction": {"from_title": "EXAMPLE RULES 1981", "from_year": 1981,
+                                  "to_year": 1996, "basis": "p2 prints 1996"}},
+            {"ordinal": 1, "role": "embedded", "title": "Notification dated 2003",
+             "kind": "notification", "year": 2003, "number": "N-1",
+             "spans": [{"start_block_id": 101, "end_block_id": 104},
+                       {"start_block_id": 111, "end_block_id": 112}],
+             "relations": [{"type": "amends", "target_ordinal": 0,
+                            "effect": "substitutes the Schedule",
+                            "source_block_id": 102, "basis": "p1 prints it"}]},
+            {"ordinal": 2, "role": "embedded", "title": "Order dated 1998",
+             "kind": "order", "year": 1998, "number": "O-1",
+             "spans": [{"start_block_id": 109, "end_block_id": 110}]},
+        ],
+    }
+    plan.update(changes)
+    return plan
+
+
+def test_plan_resolves_primary_that_does_not_start_the_document():
+    specs = materializer.validate_plan(_plan(), _plan_blocks(), 7, 70)
+    assert [s["ordinal"] for s in specs] == [0, 1, 2]
+    assert specs[0]["role"] == "primary" and specs[0]["ranges"] == [(4, 7)]
+    assert specs[1]["ranges"] == [(0, 3), (10, 11)]
+    assert specs[0]["title_correction"]["to_year"] == 1996
+    assert specs[1]["relations"][0]["type"] == "amends"
+
+
+@pytest.mark.parametrize("mutate, message", [
+    (lambda p: p["expressions"][2]["spans"].__setitem__(
+        0, {"start_block_id": 108, "end_block_id": 110}), "is in expressions"),
+    (lambda p: p["expressions"][1]["spans"].reverse(), "out of reading order"),
+    (lambda p: p["expressions"][2].__setitem__("kind", "circular"), "instrument_kind"),
+    (lambda p: p["expressions"][2]["spans"].__setitem__(
+        0, {"start_block_id": 999, "end_block_id": 110}), "outside document"),
+    (lambda p: p["expressions"][2].__setitem__("role", "primary"), "at most one primary"),
+    (lambda p: p["expressions"][0]["title_correction"].__setitem__("to_year", 1981),
+     "title_correction"),
+    (lambda p: p["expressions"][1]["relations"][0].__setitem__("target_ordinal", 1),
+     "unknown or self"),
+    (lambda p: p["expressions"][1]["relations"][0].__setitem__("type", "repeals"),
+     "is not one of"),
+    (lambda p: p["expressions"][1]["relations"][0].__setitem__("source_block_id", 106),
+     "not inside its own span"),
+    (lambda p: p["expressions"][2].pop("number"), "must state number"),
+    (lambda p: p.__setitem__("source_observation_id", 71), "observation"),
+])
+def test_plan_refuses_what_it_does_not_state_exactly(mutate, message):
+    plan = copy.deepcopy(_plan())
+    mutate(plan)
+    with pytest.raises(ValueError, match=message):
+        materializer.validate_plan(plan, _plan_blocks(), 7, 70)
+
+
+def _patch(pid, page, match, before, after, apparatus=None):
+    evidence = ({"structural_overrides": {"source_apparatus_blocks": apparatus}}
+                if apparatus else {})
+    return {"id": pid, "page_no": page, "match_text": match, "before_text": before,
+            "after_text": after, "evidence": evidence}
+
+
+def test_patches_go_only_to_the_expression_whose_span_they_read():
+    blocks = _plan_blocks()
+    owner = {b["id"]: (0 if b["id"] <= 104 else 1) for b in blocks if b["id"] <= 108}
+    patches = [_patch("a", 1, "block 102 text", "102", "102x", apparatus=[103]),
+               _patch("b", 2, "block 106 text", "106", "106y"),
+               _patch("c", 3, "block 110 text", "110", "110z")]       # apparatus
+    assigned, outside = materializer.assign_patches(blocks, patches, owner)
+    assert [p["id"] for p in assigned[0]] == ["a"]
+    assert [p["id"] for p in assigned[1]] == ["b"]
+    assert [p["id"] for p in outside] == ["c"]
+    assert blocks[1]["text"] == "block 102 text"      # source blocks untouched
+
+
+def test_patch_assignment_still_fails_closed():
+    blocks = _plan_blocks()
+    owner = {b["id"]: 0 for b in blocks}
+    with pytest.raises(ValueError, match="matched 0 blocks"):
+        materializer.assign_patches(blocks, [_patch("x", 1, "not printed", "a", "b")], owner)
+    owner = {b["id"]: (0 if b["id"] <= 104 else 1) for b in blocks}
+    reach = _patch("y", 1, "block 102 text", "102", "102x", apparatus=[106])
+    with pytest.raises(ValueError, match="structural overrides name"):
+        materializer.assign_patches(blocks, [reach], owner)
+
+
+def test_patch_assignment_follows_earlier_rewrites_in_order():
+    blocks = _plan_blocks()
+    owner = {b["id"]: 0 for b in blocks}
+    first = _patch("1", 1, "block 101 text", "101", "unique-marker")
+    second = _patch("2", 1, "unique-marker", "unique-marker", "done")
+    assigned, _ = materializer.assign_patches(blocks, [first, second], owner)
+    assert [p["id"] for p in assigned[0]] == ["1", "2"]
+
+
+def test_unrecorded_readings_carry_structural_overrides_and_skip_recorded():
+    stored = [{"page_no": 1, "match_text": "m1", "before_text": "b1"}]
+    readings = [
+        {"document_id": 7, "page_no": 1, "match_text": "m1", "before_text": "b1",
+         "after_text": "a1"},
+        {"document_id": 7, "page_no": 2, "match_text": "m2", "before_text": "b2",
+         "after_text": "a2", "source_apparatus_blocks": [5, 6], "observed": "x"},
+    ]
+    shaped = materializer.unrecorded_readings(readings, stored, 7)
+    assert len(shaped) == 1
+    assert shaped[0]["evidence"] == {"structural_overrides": {"source_apparatus_blocks": [5, 6]}}
+    with pytest.raises(ValueError, match="document 7"):
+        materializer.unrecorded_readings(readings, [], 8)
+
+
+def _boundary(block, resolution, on_active=False):
+    return {"candidate_id": f"c{block}", "start_block_id": block, "resolution": resolution,
+            "on_active": on_active, "detector": "review"}
+
+
+def test_boundaries_must_agree_with_the_plan():
+    blocks = _plan_blocks()
+    specs = materializer.validate_plan(_plan(), blocks, 7, 70)
+    found = materializer.plan_boundaries(
+        specs, blocks, [_boundary(105, "confirmed_split"), _boundary(109, "confirmed_split"),
+                        _boundary(111, "confirmed_split"), _boundary(107, "not_boundary")])
+    assert found[0]["candidate_id"] == "c105" and found[2]["candidate_id"] == "c109"
+    assert found[1] is None                      # 111 is a second-span start, not an anchor
+    with pytest.raises(ValueError, match="not a span start"):
+        materializer.plan_boundaries(specs, blocks, [_boundary(107, "confirmed_split")])
+    with pytest.raises(ValueError, match="not a span start"):
+        materializer.plan_boundaries(specs, blocks, [_boundary(107, None, on_active=True)])
+    with pytest.raises(ValueError, match="adjudicated not_boundary"):
+        materializer.plan_boundaries(specs, blocks, [_boundary(109, "not_boundary")])
+
+
+def test_reviewed_identity_overrides_title_inference_and_path():
+    blocks = [{"id": 9101, "page_no": 1, "text": "1. These rules may be called the X Rules.",
+               "y0": 10.0, "page_height": 792.0, "x0": 10.0, "x1": 500.0}]
+    title = "Notification dated 27-06-2003 (amending the X Rules, 1996)"
+    inferred, _ = build(268, "a" * 64, 2767, "pk-punjab", title, "2003",
+                        None, blocks, "2026-10-06", expression_ordinal=1,
+                        expression_role="embedded", profile="default")
+    assert (inferred.kind, inferred.year) == ("rules", 1996)
+    inst, _ = build(268, "a" * 64, 2767, "pk-punjab", title, "2003",
+                    None, blocks, "2026-10-06", expression_ordinal=1,
+                    expression_role="embedded", profile="default",
+                    reviewed_identity={"kind": "notification", "year": 2003,
+                                       "number": "SOR-III-1-10/95"})
+    assert (inst.kind, inst.year, inst.number) == ("notification", 2003, "SOR-III-1-10/95")
+    assert inst.short_title == title
+    assert inst.provisions
+    assert all(row["path"].startswith("punjab.notification.y2003_SORIII11095_o2767_e1.")
+               for row in inst.provisions)
+
+
+def test_document_268_plan_partitions_its_blocks():
+    plan = materializer.load_plan(268)
+    assert plan is not None and 268 in materializer.REVIEWED_DOCUMENTS
+    assert 268 not in materializer.PRIMARY_DOCUMENTS | materializer.COMPILATION_DOCUMENTS
+    blocks = [{"id": i, "page_no": 1, "text": ""} for i in range(11925, 12049)]
+    specs = materializer.validate_plan(plan, blocks, 268, 2767)
+    covered = sorted(i for s in specs for a, b in s["ranges"] for i in range(a, b + 1))
+    assert covered == list(range(124))
+    assert [(s["role"], s["kind"], s["year"]) for s in specs] == [
+        ("primary", "rules", 1996), ("embedded", "notification", 2003),
+        ("embedded", "order", 1998)]
+    assert specs[1]["relations"][0]["target_ordinal"] == 0
+    assert specs[0]["title_correction"]["from_year"] == 1981

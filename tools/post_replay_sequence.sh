@@ -68,7 +68,7 @@ fi
 
 # ---------------------------------------------------------------- step 2
 # Restore the reviewed multi-expression splits the plain segmenter refuses to
-# overwrite. Eleven documents error on EVERY full replay by design -- that is a
+# overwrite. These documents error on EVERY full replay by design -- that is a
 # guard working, not a failure. Forcing the plain segmenter past it would
 # collapse a source-reviewed reading into one tree and silently change what is
 # citable.
@@ -79,7 +79,7 @@ fi
 # appendices) and COMPILATION_DOCUMENTS (editorial compilations, not themselves
 # legal instruments). Keep them in step with that file.
 say "2. re-materialise the source-reviewed multi-expression documents"
-MULTI_DOCS="1106 3389 3553 3696 3912 4434 4452 3423 3949 4440 4497"
+MULTI_DOCS="977 1106 3389 3553 3696 3912 4434 4452 3423 3949 4440 4497 268"
 for d in $MULTI_DOCS; do
     if [ "$APPLY" = "1" ]; then
         uv run python tools/materialize_multi_instrument.py --document "$d" --apply --summary-only \
@@ -89,6 +89,18 @@ for d in $MULTI_DOCS; do
             || echo "  document $d: would decline (see above)"
     fi
 done
+
+# --------------------------------------------------------------- step 2a
+# Source incompleteness is durable at document level, but the duplicate_of
+# flag which keeps a truncated copy out of the release view lives on the
+# regenerated instrument. Re-derive it after every replay so a partial portal
+# PDF cannot silently become the published Act again.
+say "2a. re-link declared partial sources to their complete copies"
+if [ "$APPLY" = "1" ]; then
+    uv run python tools/apply_source_incompleteness.py --apply
+else
+    uv run python tools/apply_source_incompleteness.py
+fi
 
 # ---------------------------------------------------------------- step 3
 # Only `source_verified` readings are re-attached, and only those carrying an
@@ -101,7 +113,12 @@ done
 # all -- which is a SUCCESS, not a loss: the parser fixes dissolved the
 # collision, so there is nothing left to adjudicate.
 say "3. re-attach orphaned S7 source readings"
-run ./nz reattach
+if [ "$APPLY" = "1" ]; then
+    ./nz reattach
+    ./nz s7-source --readings .artifacts/s7-source/reattach.json --apply
+else
+    ./nz reattach
+fi
 
 # ---------------------------------------------------------------- step 4
 # `toc_gap_adjudication` already stores document_id, printed_label and

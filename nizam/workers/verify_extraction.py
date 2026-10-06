@@ -347,6 +347,16 @@ def main() -> int:
             )
             cur.execute("UPDATE document SET verification_state=%s WHERE id=%s",
                         ("passed" if outcome == "passed" else "review", doc_id))
+            # Commit per document. This loop used to run as one transaction
+            # that committed only when `with connect()` exited, so a full
+            # `--all` pass -- hours over ~4,500 documents -- kept nothing if it
+            # was interrupted. On 21 Sep 2026 a run reached 4,000 of 4,499 with
+            # no mismatch and none of it survived. The audit reads the LATEST
+            # row per document (criteria.sql, DISTINCT ON document_id ORDER BY
+            # verified_at DESC), so a partial pass is safe: documents it
+            # reached are refreshed, the rest keep their previous verification.
+            # The pdftotext check dominates the runtime; the commit is noise.
+            conn.commit()
             if r.get("recall") is None:
                 unverifiable += 1
             else:

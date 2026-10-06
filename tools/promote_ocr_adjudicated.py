@@ -76,7 +76,7 @@ def weighted_confidence(pairs: list[tuple[str, float | None]]) -> tuple[float, i
     return mean, total_words
 
 ELIGIBLE = """
-SELECT d.id,
+SELECT d.id, d.lane,
        count(DISTINCT p.page_no)                                   AS pages,
        count(DISTINCT acc.page_no)                                 AS accepted_pages
   FROM document d
@@ -91,9 +91,9 @@ SELECT d.id,
           ) latest ON true
          WHERE latest.decision = 'accepted'
   ) acc ON acc.document_id = d.id AND acc.page_no = p.page_no
- WHERE d.is_active AND d.lane = 'E4'
+ WHERE d.is_active AND (d.lane = 'E4' OR (%s AND d.lane = 'E2'))
    AND (%s::bigint[] IS NULL OR d.id = ANY(%s::bigint[]))
- GROUP BY d.id
+ GROUP BY d.id, d.lane
 HAVING count(DISTINCT acc.page_no) > 0
  ORDER BY d.id
 """
@@ -122,13 +122,17 @@ def main() -> int:
                     help="restrict to these active document ids")
     ap.add_argument("--apply", action="store_true",
                     help="write the revisions; without it this only reports")
+    ap.add_argument("--allow-text-layer", action="store_true",
+                    help="also promote a born-digital (E2) document whose text "
+                         "layer a reviewer replaced page by page; only when "
+                         "every page has an accepted reading, never partially")
     ap.add_argument("--allow-partial", action="store_true",
                     help="promote a document where only some pages were "
                          "accepted, keeping the stored text for the rest")
     args = ap.parse_args()
 
     with connect() as conn, conn.cursor() as cur:
-        cur.execute(ELIGIBLE, (args.document_id, args.document_id))
+        cur.execute(ELIGIBLE, (args.allow_text_layer, args.document_id, args.document_id))
         eligible = cur.fetchall()
 
     if not eligible:
@@ -139,8 +143,15 @@ def main() -> int:
         return 0
 
     promoted = skipped = 0
-    for old_id, pages, accepted_pages in eligible:
+    for old_id, lane, pages, accepted_pages in eligible:
         partial = accepted_pages < pages
+        # A born-digital text layer is replaced only as a whole: the reviewer
+        # judged the layer wrong, so no page keeps it beside promoted OCR.
+        if lane == "E2" and partial:
+            print(f"  {old_id}: SKIP -- E2 text layer, {accepted_pages}/{pages} "
+                  f"pages accepted; every page must be accepted")
+            skipped += 1
+            continue
         if partial and not args.allow_partial:
             print(f"  {old_id}: SKIP -- {accepted_pages}/{pages} pages accepted "
                   f"(use --allow-partial to promote anyway)")
@@ -246,7 +257,7 @@ def main() -> int:
         pages_out = [ExtractedPage(
             page_no=r[0], width=float(r[1]), height=float(r[2]),
             char_count=promoted_chars.get(r[0], r[3]),
-            lane=r[4],
+            lane=("E4" if r[0] in promoted_chars else r[4]),
             crop_box=tuple(float(v) for v in r[5]) if r[5] else None,
             media_box=tuple(float(v) for v in r[6]) if r[6] else None,
         ) for r in page_rows]

@@ -14,6 +14,7 @@ import argparse
 import contextlib
 import json
 import os
+import pathlib
 import re
 import sys
 import time
@@ -24,6 +25,21 @@ from nizam.storage import legal_write
 from nizam.storage.db import connect
 
 SEGMENTER = "nizam.corpus.segment/59"
+
+
+def segmenter_identity(profile: str = "default") -> str:
+    """The writer identity stored with a tree built under `profile`.
+
+    The default profile keeps the bare SEGMENTER string, so every tree built
+    without a pin records exactly what it recorded before profiles existed.
+    """
+    return SEGMENTER if profile == "default" else f"{SEGMENTER}+{profile}"
+
+# A corpus-wide destructive replay invalidates instrument-keyed review rows.
+# It must therefore run through ``./nz full-replay --apply``, which snapshots,
+# repairs those rows, re-adjudicates the machine-safe subset, and enforces the
+# release/S7/TOC regression gates.  Bounded replays are intentionally exempt.
+_MANAGED_FULL_REPLAY_ENV = "NIZAM_MANAGED_FULL_REPLAY"
 
 # Any stable 64-bit number; it only has to match across processes.
 _LOCK_KEY = 0x4E495A414D534547        # "NIZAMSEG"
@@ -153,14 +169,31 @@ def build(document_id: int, sha256: str, source_observation_id: int,
           split_fused_margins: bool = False,
           detect_contents: bool = True,
           force_opening_contents: bool = False,
+          structural_overrides: dict | None = None,
           expression_ordinal: int = 0,
-          expression_role: str = "primary") -> tuple:
+          expression_role: str = "primary",
+          profile: str | None = None,
+          reviewed_identity: dict | None = None) -> tuple:
+    # `reviewed_identity` ({"kind", "year", "number"}) is a source-reviewed
+    # expression plan's identity (tools/materialize_multi_instrument.py).  A
+    # title such as "Notification ... (amending the X Rules, 1996)" infers as
+    # Rules of 1996; the plan says a 2003 notification.  Absent, nothing changes.
+    # The profile is the observation's pin unless the caller names one, so the
+    # worker, the multi-instrument materializer and every stale-tree or
+    # fingerprint tool build a pinned document the same way.
+    if profile is None:
+        profile = legal_write.segmentation_profile_for(source_observation_id)
+    # The default parse calls segment() exactly as before profiles existed,
+    # which keeps tools that substitute an older segmenter module working.
+    profile_kwargs = {} if profile == "default" else {"profile": profile}
     seg = segment(blocks, curation_patches=curation_patches,
                   toc_dispositions=toc_dispositions,
                   structural_resolutions=structural_resolutions,
                   split_fused_margins=split_fused_margins,
                   detect_contents=detect_contents,
-                  force_opening_contents=force_opening_contents)
+                  force_opening_contents=force_opening_contents,
+                  structural_overrides=structural_overrides,
+                  **profile_kwargs)
     head = " ".join(b["text"] for b in blocks[:40])[:4000]
 
     # The ltree prefix carries instrument identity, exactly as doc 03 §2.2 writes
@@ -173,6 +206,10 @@ def build(document_id: int, sha256: str, source_observation_id: int,
     kind = infer_kind(title or "")
     year = infer_year(title or "", meta_year, head)
     number = infer_number(head, year)
+    if reviewed_identity is not None:
+        kind = reviewed_identity["kind"]
+        year = int(reviewed_identity["year"])
+        number = reviewed_identity["number"]
     # The document id is always present, not only when the number is missing.
     #
     # Doc 03 §2.2 writes the path as fed.act.1860_45..., which assumes one
@@ -304,6 +341,244 @@ def build(document_id: int, sha256: str, source_observation_id: int,
     return inst, seg
 
 
+_OPENER_KEYS = frozenset({"source_block_id", "label", "heading", "source_prefix",
+                          "after_section_label"})
+
+
+def unnumbered_opener_shape_ok(item) -> bool:
+    """The shape of one reviewed `source_unnumbered_section_openers` entry.
+
+    Every text field is non-empty, except that an opener citing an owner
+    decision (`owner_decision`, profile rule `unnumbered_root_provision`) may
+    give an empty heading: the paragraph it opens prints none, and none is
+    invented.  The segmenter checks the rest against the source."""
+    if not (isinstance(item, dict)
+            and set(item) in (_OPENER_KEYS, _OPENER_KEYS | {"owner_decision"})
+            and type(item["source_block_id"]) is int and item["source_block_id"] > 0
+            and all(isinstance(item[name], str) for name in
+                    ("label", "heading", "source_prefix", "after_section_label"))):
+        return False
+    required = ("label", "source_prefix", "after_section_label") + (
+        () if "owner_decision" in item else ("heading",))
+    return all(item[name].strip() for name in required)
+
+
+def owner_decision_answer(citation: dict, document_id: int) -> dict:
+    """Return the decision-review answer an opener's `owner_decision` cites.
+
+    Checked where a reading enters the system (tools/record_curation_patch.py
+    and the multi-instrument dry run), not at replay: the exports live under
+    the git-ignored .artifacts/, and the recorded patch row is the durable
+    evidence.  Refuses unless the export exists, parses, and holds exactly one
+    answer for this document and question."""
+    if not (isinstance(citation, dict)
+            and set(citation) == {"export", "document_id", "question_id"}):
+        raise ValueError(f"owner_decision must name export, document_id, question_id: {citation!r}")
+    if citation["document_id"] != document_id:
+        raise ValueError(f"owner_decision cites document {citation['document_id']}, "
+                         f"not {document_id}")
+    path = pathlib.Path(citation["export"])
+    if not path.is_file():
+        raise ValueError(f"owner_decision export {path} does not exist")
+    export = json.loads(path.read_text(encoding="utf-8-sig"))
+    answers = [a for a in (export.get("answers") or [])
+               if a.get("document_id") == document_id
+               and a.get("question_id") == citation["question_id"]]
+    if len(answers) != 1:
+        raise ValueError(f"owner_decision export {path} holds {len(answers)} answers for "
+                         f"document {document_id} {citation['question_id']}")
+    return answers[0]
+
+
+def reviewed_structural_overrides(resolutions: list[dict] | None,
+                                  patches: list[dict] | None = None) -> dict:
+    """Merge exact source-reviewed parser overrides, refusing disagreement."""
+    merged: dict = {}
+    for row in resolutions or []:
+        evidence = row.get("evidence") or {}
+        for key, value in (evidence.get("structural_overrides") or {}).items():
+            if key in merged and merged[key] != value:
+                raise ValueError(f"conflicting reviewed structural override {key}")
+            merged[key] = value
+    # A verified observation-scoped curation patch may carry a page-anchored
+    # opening boundary or exact source-block reparent when no S7 collision
+    # case exists. General S7 decisions still require adjudication. The patch
+    # loader excludes unreviewed and retired records, and the segmenter fails
+    # closed if either reparent address is absent or ambiguous.
+    #
+    # It may also name page-read apparatus blocks -- footnotes or endnotes the
+    # parser read as law -- where no collision exists to carry an S7 reading
+    # (doc 2803's closing amendment notes inside rule 30(3); authorised by the
+    # project owner 26 Sep 2026). Each patch anchors to one page, so these
+    # lists are united rather than required to agree.
+    patch_apparatus: set[int] = set()
+    patch_reparents: list[dict] = []
+    patch_continuations: list[dict] = []
+    patch_unnumbered_openers: list[dict] = []
+    patch_unnumbered_parts: list[dict] = []
+    patch_schedule_rows: list[dict] = []
+    for patch in patches or []:
+        evidence = patch.get("evidence") or {}
+        for key, value in (evidence.get("structural_overrides") or {}).items():
+            if key == "source_apparatus_blocks":
+                if not (isinstance(value, list) and value
+                        and all(type(item) is int and item > 0 for item in value)):
+                    raise ValueError(f"unsupported curation structural override {key}")
+                patch_apparatus.update(value)
+                continue
+            if key == "source_body_start_block":
+                valid = type(value) is int and value > 0
+            elif key == "source_reparent_blocks":
+                valid = (isinstance(value, list) and bool(value)
+                         and all(
+                             isinstance(item, dict)
+                             and type(item.get("source_block_id")) is int
+                             and item["source_block_id"] > 0
+                             and type(item.get("parent_block_id")) is int
+                             and item["parent_block_id"] > 0
+                             # provision_kind carries no "item"/"paragraph";
+                             # such a spec would fail the replay on insert.
+                             and item.get("kind") in (
+                                 "clause", "subsection", "explanation", "proviso")
+                             for item in value))
+                if valid:
+                    patch_reparents.extend(value)
+                    continue
+            elif key == "source_continuation_parent_blocks":
+                valid = (isinstance(value, list) and bool(value)
+                         and all(isinstance(item, dict)
+                                 and set(item) == {"source_block_id", "parent_block_id"}
+                                 and type(item["source_block_id"]) is int
+                                 and type(item["parent_block_id"]) is int
+                                 and item["source_block_id"] > 0
+                                 and item["parent_block_id"] > 0
+                                 and item["source_block_id"] != item["parent_block_id"]
+                                 for item in value))
+                if valid:
+                    patch_continuations.extend(value)
+                    continue
+            elif key == "source_unnumbered_section_openers":
+                valid = (isinstance(value, list) and bool(value)
+                         and all(unnumbered_opener_shape_ok(item) for item in value))
+                if valid:
+                    patch_unnumbered_openers.extend(value)
+                    continue
+            elif key == "source_unnumbered_part_headings":
+                valid = (isinstance(value, list) and bool(value)
+                         and all(isinstance(item, dict)
+                                 and set(item) == {"source_block_id", "heading"}
+                                 and type(item["source_block_id"]) is int
+                                 and item["source_block_id"] > 0
+                                 and isinstance(item["heading"], str)
+                                 and item["heading"].strip()
+                                 for item in value))
+                if valid:
+                    patch_unnumbered_parts.extend(value)
+                    continue
+            elif key == "source_schedule_row_openers":
+                valid = (isinstance(value, list) and bool(value)
+                         and all(isinstance(item, dict)
+                                 and set(item) == {"source_block_id", "schedule_block_id",
+                                                   "label", "source_text"}
+                                 and type(item["source_block_id"]) is int
+                                 and type(item["schedule_block_id"]) is int
+                                 and item["source_block_id"] > 0
+                                 and item["schedule_block_id"] > 0
+                                 and item["source_block_id"] != item["schedule_block_id"]
+                                 and isinstance(item["label"], str)
+                                 and item["label"].strip()
+                                 and isinstance(item["source_text"], str)
+                                 and item["source_text"].strip()
+                                 for item in value))
+                if valid:
+                    patch_schedule_rows.extend(value)
+                    continue
+            elif key == "source_schedule_form_group":
+                valid = (isinstance(value, dict)
+                         and set(value) == {
+                             "schedule_block_id", "schedule_label",
+                             "first_form_block_id", "first_form_label",
+                             "second_form_block_id", "second_form_label"}
+                         and all(type(value[name]) is int and value[name] > 0
+                                 for name in ("schedule_block_id",
+                                              "first_form_block_id",
+                                              "second_form_block_id"))
+                         and len({value["schedule_block_id"],
+                                  value["first_form_block_id"],
+                                  value["second_form_block_id"]}) == 3
+                         and all(isinstance(value[name], str)
+                                 and value[name].strip()
+                                 for name in ("schedule_label", "first_form_label",
+                                              "second_form_label")))
+            else:
+                valid = False
+            if not valid:
+                raise ValueError(f"unsupported curation structural override {key}")
+            if key in merged and merged[key] != value:
+                raise ValueError(f"conflicting reviewed structural override {key}")
+            merged[key] = value
+    if patch_apparatus:
+        merged["source_apparatus_blocks"] = sorted(
+            patch_apparatus | set(merged.get("source_apparatus_blocks") or []))
+    if patch_reparents:
+        combined = list(merged.get("source_reparent_blocks") or []) + patch_reparents
+        unique: dict[tuple, dict] = {}
+        for item in combined:
+            key = (item["source_block_id"], item.get("source_label"),
+                   item.get("source_kind"))
+            if key in unique and unique[key] != item:
+                raise ValueError(f"conflicting reviewed source reparent {key}")
+            unique[key] = item
+        merged["source_reparent_blocks"] = list(unique.values())
+    if patch_continuations:
+        combined = list(merged.get("source_continuation_parent_blocks") or []) + patch_continuations
+        unique_continuations: dict[int, dict] = {}
+        for item in combined:
+            source_id = item["source_block_id"]
+            if source_id in unique_continuations and unique_continuations[source_id] != item:
+                raise ValueError(f"conflicting reviewed source continuation {source_id}")
+            unique_continuations[source_id] = item
+        merged["source_continuation_parent_blocks"] = list(unique_continuations.values())
+    if patch_unnumbered_openers:
+        combined = list(merged.get("source_unnumbered_section_openers") or []) + patch_unnumbered_openers
+        unique_openers: dict[int, dict] = {}
+        for item in combined:
+            source_id = item["source_block_id"]
+            if source_id in unique_openers and unique_openers[source_id] != item:
+                raise ValueError(f"conflicting reviewed unnumbered section opener {source_id}")
+            unique_openers[source_id] = item
+        merged["source_unnumbered_section_openers"] = list(unique_openers.values())
+    if patch_unnumbered_parts:
+        combined = list(merged.get("source_unnumbered_part_headings") or []) + patch_unnumbered_parts
+        unique_parts: dict[int, dict] = {}
+        for item in combined:
+            source_id = item["source_block_id"]
+            if source_id in unique_parts and unique_parts[source_id] != item:
+                raise ValueError(f"conflicting reviewed unnumbered part {source_id}")
+            unique_parts[source_id] = item
+        merged["source_unnumbered_part_headings"] = list(unique_parts.values())
+    if patch_schedule_rows:
+        combined = list(merged.get("source_schedule_row_openers") or []) + patch_schedule_rows
+        unique_rows: dict[int, dict] = {}
+        for item in combined:
+            source_id = item["source_block_id"]
+            if source_id in unique_rows and unique_rows[source_id] != item:
+                raise ValueError(f"conflicting reviewed schedule row opener {source_id}")
+            unique_rows[source_id] = item
+        merged["source_schedule_row_openers"] = list(unique_rows.values())
+    return merged
+
+
+def unmanaged_full_replay(args: argparse.Namespace) -> bool:
+    """True when a write-all redo would bypass the required recovery lane."""
+    return bool(
+        args.all
+        and args.redo
+        and not args.dry_run
+        and os.environ.get(_MANAGED_FULL_REPLAY_ENV) != "1"
+    )
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description="L1 segmentation (doc 02 §5)")
     g = ap.add_mutually_exclusive_group(required=True)
@@ -346,9 +621,28 @@ def main() -> int:
     ap.add_argument("--quiet", action="store_true")
     ap.add_argument("--marginal-fusion", action="store_true",
                     help="enable the separately gated geometric margin/body split")
+    ap.add_argument("--profile",
+                    help="dry-run only: preview a segmentation profile without a "
+                         "pin (a written tree takes its profile from the pin)")
     a = ap.parse_args()
     if a.toc_improvements_only or a.toc_improvements_summary:
         a.dry_run = True
+    # A written tree's profile comes only from segmentation_profile_pin, where
+    # the trigger refuses released observations; this flag is a preview.
+    if a.profile is not None and not a.dry_run:
+        print("REFUSING --profile without --dry-run: pin the observation with "
+              "tools/pin_segmentation_profile.py instead", file=sys.stderr)
+        return 2
+
+    if unmanaged_full_replay(a):
+        print(
+            "REFUSING unmanaged full replay: --all --redo retires instrument "
+            "IDs and invalidates S7/TOC review links.\n"
+            "Run ./nz full-replay --apply instead; it snapshots, repairs, and "
+            "fails if release readiness falls or S7/TOC grows.",
+            file=sys.stderr,
+        )
+        return 2
 
     if a.observation:
         targets = [t for t in legal_write.documents_needing_segmentation(
@@ -516,7 +810,14 @@ def main() -> int:
     for n, (doc_id, sha, observation_id, source_id, title, year,
             doc_type, source_url) in enumerate(targets, 1):
         t0 = time.time()
+        writer = SEGMENTER
         try:
+            # A pinned observation is parsed, saved and recorded under its
+            # profile (docs/SEGMENTATION-PROFILES.md); unpinned ones are not
+            # touched by any of this.
+            profile = (a.profile if a.profile is not None
+                       else legal_write.segmentation_profile_for(observation_id))
+            writer = segmenter_identity(profile)
             blocks = legal_write.blocks_for(doc_id)
             # There is deliberately no minimum-block guard here. A PyMuPDF block
             # is typographic, not legal: the Punjab Dourine Rules 1952 arrive as
@@ -524,7 +825,7 @@ def main() -> int:
             # pre-check rejected them before the segmenter -- which subdivides --
             # ever saw them. Judge the result, never the raw block count.
             if not blocks:
-                legal_write.record_run(doc_id, observation_id, None, SEGMENTER, "rejected",
+                legal_write.record_run(doc_id, observation_id, None, writer, "rejected",
                                        reason="document has no text blocks",
                                        duration_ms=int((time.time() - t0) * 1000))
                 failed += 1
@@ -535,11 +836,23 @@ def main() -> int:
             # Keyed on the DOCUMENT, not the observation: a decision anchors to
             # a text block, and blocks belong to documents.
             structural_resolutions = legal_write.structural_resolutions_for(doc_id)
+            structural_overrides = reviewed_structural_overrides(
+                structural_resolutions, patches)
             inst, seg = build(doc_id, sha, observation_id, source_id, title, year,
                               source_url, blocks, as_at, patches,
                               toc_dispositions=toc_dispositions,
                               structural_resolutions=structural_resolutions,
-                              split_fused_margins=a.marginal_fusion)
+                              structural_overrides=structural_overrides or None,
+                              split_fused_margins=a.marginal_fusion,
+                              profile=profile)
+            # The release queue contains candidate rows the writer will
+            # materialize, not every raw collision the segmenter considered.
+            # Source-reviewed reject/restore decisions deliberately suppress a
+            # fresh candidate while preserving the demoted node and its text.
+            # Reporting the raw count made those correctly settled replays
+            # fail S7 itemization forever (doc 1150: one reviewed footnote,
+            # zero candidate rows, metadata incorrectly expected one).
+            new_candidates = len(inst.structural_decisions)
             if (a.detached_heading_body
                     and seg.detached_heading_bodies_merged == 0):
                 continue
@@ -577,11 +890,11 @@ def main() -> int:
                         "provisions": len(new_tree),
                         "changed_headings": changed_headings,
                         "old_candidates": old.get("candidates"),
-                        "new_candidates": seg.repeated_labels_demoted,
+                        "new_candidates": new_candidates,
                     })
                 if (a.dry_run and seg.toc_found and not old.get("toc_found")
                         and seg.body_starts_page > int(old.get("body_page") or 0)
-                        and seg.repeated_labels_demoted
+                        and new_candidates
                             < int(old.get("candidates") or 0)):
                     newly_proved_toc_replays.append({
                         "document_id": doc_id,
@@ -591,7 +904,7 @@ def main() -> int:
                         "old_sections": old.get("sections"),
                         "new_sections": new_sections,
                         "old_candidates": old.get("candidates"),
-                        "new_candidates": seg.repeated_labels_demoted,
+                        "new_candidates": new_candidates,
                         "toc_agreement": round(seg.agreement, 4),
                     })
                 old_missing = old.get("toc_missing")
@@ -664,7 +977,7 @@ def main() -> int:
                         "old_sections": old.get("sections"),
                         "new_sections": new_sections,
                         "old_candidates": old.get("candidates"),
-                        "new_candidates": seg.repeated_labels_demoted,
+                        "new_candidates": new_candidates,
                         "tree_identical": new_tree == old_tree,
                         "added_nodes": [
                             {"kind": row[2], "label": row[3],
@@ -688,13 +1001,13 @@ def main() -> int:
                 continue
             if a.dry_run:
                 done += 1
-                candidate_units += seg.repeated_labels_demoted
-                candidate_observations += int(seg.repeated_labels_demoted > 0)
+                candidate_units += new_candidates
+                candidate_observations += int(new_candidates > 0)
                 agreement_safe = (
                     not old.get("toc_found")
                     or not seg.toc_found
                     or seg.agreement + 0.02 >= float(old.get("toc_agreement") or 0))
-                if (seg.repeated_labels_demoted == 0
+                if (new_candidates == 0
                         and int(old.get("candidates") or 0) > 0
                         and new_sections >= int(old.get("sections") or 0)
                         and agreement_safe):
@@ -716,7 +1029,7 @@ def main() -> int:
                     old_sections = int(old.get("sections") or 0)
                     print(f"  {n:>5}/{len(targets)} dry   #{doc_id:<5} "
                           f"{len(inst.provisions):>5} prov  "
-                          f"S7={old_candidates}->{seg.repeated_labels_demoted:<4} "
+                          f"S7={old_candidates}->{new_candidates:<4} "
                           f"sec={old_sections}->{new_sections:<4} "
                           f"body-page={seg.body_starts_page:<4} "
                           f"{(title or '')[:38]}", flush=True)
@@ -726,8 +1039,8 @@ def main() -> int:
                 # reachable. Every block is recorded as 'unstructured' and the
                 # document joins v_unstructured_document with its reason.
                 unstructured_count = legal_write.save_unstructured(
-                    doc_id, observation_id, blocks, SEGMENTER)
-                legal_write.record_run(doc_id, observation_id, None, SEGMENTER, "rejected",
+                    doc_id, observation_id, blocks, writer)
+                legal_write.record_run(doc_id, observation_id, None, writer, "rejected",
                                        reason="no provision structure; "
                                               f"{unstructured_count} blocks recorded as unstructured",
                                        toc_found=seg.toc_found,
@@ -736,11 +1049,11 @@ def main() -> int:
                                        duration_ms=int((time.time() - t0) * 1000))
                 failed += 1
                 continue
-            instrument_id = legal_write.save(inst, SEGMENTER)
+            instrument_id = legal_write.save(inst, writer)
             sections = sum(1 for r in inst.provisions if r["kind"] == "section")
             depth = max((r["path"].count(".") for r in inst.provisions), default=0)
             legal_write.record_run(
-                doc_id, observation_id, instrument_id, SEGMENTER, "segmented",
+                doc_id, observation_id, instrument_id, writer, "segmented",
                 provisions=len(inst.provisions), sections=sections, max_depth=depth,
                 body_starts_page=seg.body_starts_page, toc_found=seg.toc_found,
                 toc_entries=len(seg.toc_entries) or None,
@@ -750,7 +1063,11 @@ def main() -> int:
                 toc_agreement=round(seg.agreement, 4) if seg.toc else None,
                 detail={"missing": seg.missing[:60], "extra": seg.extra[:60],
                         "blocks_total": len(blocks),
-                        "repeated_labels_demoted": seg.repeated_labels_demoted,
+                        # This field is the expected itemized population used
+                        # by the S7 audit, so it must equal the candidate rows
+                        # written below. Keep the raw diagnostic separately.
+                        "repeated_labels_demoted": new_candidates,
+                        "repeated_labels_demoted_raw": seg.repeated_labels_demoted,
                         "schedule_sections_retyped": seg.schedule_sections_retyped,
                         "detached_heading_bodies_merged": seg.detached_heading_bodies_merged,
                         "marginal_notes_split": seg.marginal_notes_split,
@@ -759,7 +1076,13 @@ def main() -> int:
                             if row["toc_disposition_assertion_id"] is not None),
                         "curation_patches_applied": seg.curation_patches_applied,
                         "blocks_unassigned": sum(1 for r in inst.block_roles
-                                                 if r[1] == "unassigned")},
+                                                 if r[1] == "unassigned"),
+                        # Profile evidence (docs/SEGMENTATION-PROFILES.md):
+                        # present only for a pinned parse that used a rule.
+                        **({"segmentation_profile": seg.profile}
+                           if seg.profile != "default" else {}),
+                        **({"contents_alignment": seg.contents_alignment}
+                           if seg.contents_alignment else {})},
                 duration_ms=int((time.time() - t0) * 1000))
             done += 1
             if seg.toc_found:
@@ -775,7 +1098,7 @@ def main() -> int:
                       f"{(title or '')[:38]}", flush=True)
         except Exception as exc:
             if not a.dry_run:
-                legal_write.record_run(doc_id, observation_id, None, SEGMENTER, "error",
+                legal_write.record_run(doc_id, observation_id, None, writer, "error",
                                        reason=f"{type(exc).__name__}: {exc}"[:400],
                                        duration_ms=int((time.time() - t0) * 1000))
             failed += 1

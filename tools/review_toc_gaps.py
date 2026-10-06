@@ -92,9 +92,17 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--limit", type=int, default=40)
     ap.add_argument("--document", type=int)
+    ap.add_argument("--documents", help="comma-separated bounded document ids")
+    ap.add_argument("--out", type=pathlib.Path, default=OUT)
+    ap.add_argument("--include-contents", action="store_true",
+                    help="also render the printed contents page for a source decision")
     ap.add_argument("--max-pages", type=int, default=2,
                     help="pages to render per gap (default 2)")
     a = ap.parse_args()
+    if a.document and a.documents:
+        ap.error("--document and --documents are mutually exclusive")
+    wanted = ({int(value) for value in a.documents.split(",") if value.strip()}
+              if a.documents else None)
 
     with connect() as conn, conn.cursor() as cur:
         cur.execute(SQL, {"document": a.document})
@@ -104,6 +112,8 @@ def main() -> int:
                 "page_after", "sha256", "object_key", "page_count",
                 "body_starts_page")
         rows = [dict(zip(keys, r)) for r in cur.fetchall()]
+    if wanted is not None:
+        rows = [row for row in rows if row["document_id"] in wanted]
 
     print(f"pending gaps: {len(rows)}")
     rows = rows[:a.limit]
@@ -130,9 +140,11 @@ def main() -> int:
             # so render forward from it and record that the bracket was broken.
             hi = min(lo + a.max_pages - 1, row["page_count"])
         pages = list(range(lo, min(hi, lo + a.max_pages - 1) + 1))
+        if a.include_contents and row["contents_page"] not in pages:
+            pages.insert(0, row["contents_page"])
         shots = []
         for page in pages:
-            dest = OUT / (f"doc{row['document_id']}-e{row['toc_entry_id']}"
+            dest = a.out / (f"doc{row['document_id']}-e{row['toc_entry_id']}"
                           f"-label{row['printed_label']}-p{page}.png")
             digest = render(pdf, page, dest)
             if digest:
@@ -159,8 +171,8 @@ def main() -> int:
               f"pages {[s['page'] for s in shots]}  "
               f"{(row['printed_heading'] or '')[:46]}")
 
-    OUT.mkdir(parents=True, exist_ok=True)
-    path = OUT / "manifest.json"
+    a.out.mkdir(parents=True, exist_ok=True)
+    path = a.out / "manifest.json"
     path.write_text(json.dumps(manifest, ensure_ascii=False, indent=1),
                     encoding="utf-8")
     print(f"\nrendered {len(manifest)} gap(s) -> {path}")

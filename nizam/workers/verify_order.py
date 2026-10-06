@@ -411,6 +411,8 @@ def main() -> int:
                          json.dumps([r["unverifiable_reason"]]),
                          json.dumps({"reason": r["unverifiable_reason"]})),
                     )
+                    # Per-document commit; see the note in the main branch.
+                    conn.commit()
                 flagged.append(r)
                 continue
             results.append(r)
@@ -431,6 +433,12 @@ def main() -> int:
                 if r["problems"]:
                     cur.execute("UPDATE document SET verification_state='review' WHERE id=%s",
                                 (doc_id,))
+                # Commit per document. `--all` walks every active document and
+                # used to hold one transaction until `with connect()` exited,
+                # so an interrupted pass kept nothing -- the same flaw that lost
+                # a 4,000-of-4,499 extraction pass on 21 Sep 2026. The audit
+                # reads the latest row per document, so a partial pass is safe.
+                conn.commit()
             if r["problems"]:
                 flagged.append(r)
                 if printed_flags < 50:

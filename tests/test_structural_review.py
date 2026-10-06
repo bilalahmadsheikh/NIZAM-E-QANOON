@@ -93,9 +93,9 @@ def test_reject_candidate_stops_the_candidate_being_raised():
     """
     plain = blocks(*COLLIDING)
     before, _ = build(1, "s" * 64, 1, "fed", "An Act", "1960", None,
-                      plain, "2026-01-01")
+                      plain, "2026-01-01", profile="default")
     after, seg = build(1, "s" * 64, 1, "fed", "An Act", "1960", None,
-                       plain, "2026-01-01",
+                       plain, "2026-01-01", profile="default",
                        structural_resolutions=[
                            reading(3, "1", "reject_candidate")])
 
@@ -164,6 +164,60 @@ def test_rejecting_the_print_the_parser_kept_is_refused_and_recorded():
         "the rejected print is the canonical unit"]
 
 
+def test_a_swap_that_would_move_the_citation_onto_a_stub_is_refused():
+    """`restore_citable` is one word for two different findings.
+
+    Document 2629 is the first: the parser kept a footnote on page 11 that had
+    swallowed 5,249 characters and demoted the real rule 14, 659 characters on
+    page 17. Document 3216 is the second: page 23 of the Punjab Excise rules
+    prints two rules both numbered 9.115 and the reviewer's own words are
+    "Both are operative" -- swapping there would move the citation off 2,373
+    characters of operative rule onto 316 and demote the rest. Nothing in the
+    resolution separates them, so the parse fails closed on the same shape
+    `tools/adjudicate_s7_from_source.py` refuses an `accept_non_citable` on.
+    """
+    both_operative = blocks(
+        "CHAPTER I",
+        "1. Grant of a pass. " + "A pass may be granted in the following "
+        "circumstances and subject to the following conditions. " * 9,
+        "2. Main rule. The principal rule applies.",
+        "1. Fusel oil. A sample shall be forwarded to the examiner.",
+    )
+    readings = [reading(3, "1", "restore_citable")]
+    steered = segment(both_operative, structural_resolutions=readings)
+
+    assert kinds(steered) == kinds(segment(both_operative))
+    refused = steered.structural_reviews_refused
+    assert [r["reason"] for r in refused] == [
+        "the swap would move the citation onto a stub"]
+    assert refused[0]["chars_losing"] >= 500
+    assert refused[0]["chars_gaining"] * 2 < refused[0]["chars_losing"]
+    assert steered.structural_reviews_enacted == []
+
+
+def test_the_guard_does_not_block_a_swap_between_comparable_units():
+    """It is a stub guard, not a size preference.
+
+    Where both prints carry comparable text the reading decides, which is the
+    ordinary inverted case: the parser had no way to tell them apart and the
+    reviewer did, by opening the page.
+    """
+    comparable = blocks(
+        "CHAPTER I",
+        "1. Application. This Chapter applies to every licensed factory.",
+        "2. Main rule. The principal rule applies.",
+        "1. Registers. Every occupier shall keep the prescribed registers.",
+    )
+    steered = segment(comparable,
+                      structural_resolutions=[reading(3, "1",
+                                                      "restore_citable")])
+    assert [(n.kind, n.first_block) for n in
+            next(c for c in steered.root.children
+                 if c.kind == "chapter").children] == [
+        ("clause", 1), ("section", 2), ("section", 3)]
+    assert steered.structural_reviews_refused == []
+
+
 # --------------------------------------------------------------- the corpus
 #
 # What follows protects a WHERE clause, so it cannot be written against
@@ -228,10 +282,9 @@ def test_a_machine_decision_never_steers_the_parser():
 def test_every_returned_row_is_reviewed_and_enactable():
     """The lookup returns only what a reviewer said and the parser can do.
 
-    `reparent` is excluded because no reparent decision in this corpus records
-    a target parent -- its evidence carries observed, render, render_sha256,
-    source_page and assistant_page_review, and nothing else -- and
-    `split_instrument` because splitting a document is not a parser operation.
+    `reparent` is returned only when its reviewed evidence records exact source
+    and parent blocks. `split_instrument` remains excluded because splitting a
+    document is not a parser operation.
     """
     legal_write, connect = _resolutions()
     with connect() as conn, conn.cursor() as cur:
@@ -251,6 +304,14 @@ def test_every_returned_row_is_reviewed_and_enactable():
         for row in legal_write.structural_resolutions_for(document_id):
             seen += 1
             assert row["review_basis"] in ("source_verified", "human_verified")
-            assert row["resolution"] in ("restore_citable", "reject_candidate")
+            assert row["resolution"] in (
+                "restore_citable", "reparent", "reject_candidate")
+            if row["resolution"] == "reparent":
+                reparents = (row["evidence"].get("structural_overrides") or {}).get(
+                    "source_reparent_blocks")
+                assert isinstance(reparents, list) and reparents
+                assert all(item.get("source_block_id")
+                           and item.get("parent_block_id")
+                           for item in reparents)
             assert row["source_block_id"] is not None
     assert seen, "40 reviewed documents returned no enactable reading"

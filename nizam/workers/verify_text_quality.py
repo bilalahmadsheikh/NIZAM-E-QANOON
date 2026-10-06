@@ -129,6 +129,10 @@ def main() -> int:
             elif args.verbose:
                 print(f"  ok #{document_id} legal={result['legal_rate']:.3f} "
                       f"tokens={result['tokens']}")
+            # Commit per document, so an interrupted `--all` pass keeps what it
+            # verified. The audit reads the latest row per document.
+            if not args.dry_run:
+                conn.commit()
 
     print(f"checked {len(rows)}; review {len(flagged)}")
     if rates:

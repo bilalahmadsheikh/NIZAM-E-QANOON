@@ -1,0 +1,80 @@
+{
+  "schema": "nizam.multi_expression_plan/1",
+  "document_id": 268,
+  "source_observation_id": 2767,
+  "review_basis": "source_verified",
+  "reviewed_on": "2026-10-06",
+  "reviewed_by": "assistant page review (agent AW) on the owner's decision",
+  "owner_decision": {
+    "export": ".artifacts/decision-review/exports/decision-review-2026-10-06-b.json",
+    "card_sha256": "e7933e910896c6d8a00039c9ec60ab2353743dc138bea7526496c9fd15bcdee3",
+    "q1": "other: three instruments -- the 1996 Rules (principal), the 27-06-2003 amending Notification (with its substituted Schedule), the 30-12-1998 Order; 'A copy is forwarded ...' distribution lists are apparatus; stored title 1981 -> 1996",
+    "q2": "as-amended: pp4-5 are the original 1996 Schedule (preserved); pp6-7 are the Schedule substituted by the 2003 Notification (operative in a consolidated reading)"
+  },
+  "reviewed_pages": [
+    {"page": 1, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc268-p1.png", "render_sha256": "3134c12bff6ea341cc2f79581c737e1570b88c81fe005da90be0aa8d366ccdb9"},
+    {"page": 2, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc268-p2.png", "render_sha256": "3f1759c13def4c54df0364158c34b3ed9b4d9c5de697a1eb1abfc19f7c1fe993"},
+    {"page": 3, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc268-p3.png", "render_sha256": "b00bdf43bb1ba736a934b628d09de4458870788415403c43e297efa905af7925"},
+    {"page": 4, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc268-p4.png", "render_sha256": "da9deb36c5122bb95ebc4f7dab9c2f09a91bcbf9d05afa6ac263b90ede2fd06c"},
+    {"page": 5, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc268-p5.png", "render_sha256": "eb89b2e087b89c97b83f5bd291de582d6a6109e621370889142dc781115ce998"},
+    {"page": 6, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc268-p6.png", "render_sha256": "96c3a9517f87757e6129c84b721cab214a7a463a294450ecdeb00d4fbe1af765"},
+    {"page": 7, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc268-p7.png", "render_sha256": "0928335be7082517865292c712cf50d9cb74cfe838aadf35d47bca31339eb783"}
+  ],
+  "expressions": [
+    {
+      "ordinal": 0,
+      "role": "primary",
+      "title": "The Punjab Excise and Taxation Department (Internal Audit) Service Rules, 1996",
+      "kind": "rules",
+      "year": 1996,
+      "number": null,
+      "spans": [
+        {"start_block_id": 11939, "end_block_id": 11950, "pages": "2"},
+        {"start_block_id": 11957, "end_block_id": 12005, "pages": "4-5"}
+      ],
+      "title_correction": {
+        "from_title": "PUNJAB EXCISE & TAXATION DEPARTMENT (Internal AUdit) SERVICE RULES 1981",
+        "from_year": 1981,
+        "to_year": 1996,
+        "basis": "p2 prints 'THE PUNJAB EXCISE AND TAXATION DEPARTMENT (INTERNAL AUDIT) SERVICE RULES, 1996' (blocks 11944-11945); owner decision q1 'Correct the stored title from 1981 to 1996'"
+      },
+      "expected_tree": "preface (notification head and enabling formula), rules 1-3, SCHEDULE (the 1996 original, pp4-5)"
+    },
+    {
+      "ordinal": 1,
+      "role": "embedded",
+      "title": "Notification No. SOR-III-1-10/95 dated 27-06-2003 (amending the Punjab Excise & Taxation Department (Internal Audit) Services Rules, 1996)",
+      "kind": "notification",
+      "year": 2003,
+      "number": "SOR-III-1-10/95",
+      "spans": [
+        {"start_block_id": 11925, "end_block_id": 11938, "pages": "1"},
+        {"start_block_id": 12006, "end_block_id": 12048, "pages": "6-7"}
+      ],
+      "relations": [
+        {
+          "type": "amends",
+          "target_ordinal": 0,
+          "effect": "substitutes the Schedule: in a consolidated reading of the 1996 Rules the Schedule on pp6-7 replaces the original Schedule on pp4-5",
+          "source_block_id": 11932,
+          "source_page": 1,
+          "basis": "p1 prints 'AMENDMENTS / For the existing Schedule the Schedules appended here to shall be substituted'; owner decisions q1 and q2"
+        }
+      ],
+      "expected_tree": "the unnumbered amendment clause (block 11932) and the substituted SCHEDULE (pp6-7)"
+    },
+    {
+      "ordinal": 2,
+      "role": "embedded",
+      "title": "Excise & Taxation Department Order No. SOAI(E&T)3-10/93 dated 30-12-1998",
+      "kind": "order",
+      "year": 1998,
+      "number": "SOAI(E&T)3-10/93",
+      "spans": [
+        {"start_block_id": 11951, "end_block_id": 11956, "pages": "3"}
+      ],
+      "expected_tree": "para 1 (printed unnumbered, block 11952) and para 2"
+    }
+  ],
+  "apparatus": "distribution lists, signatures and endorsements on pp1-3 stay inside their expression spans and are set aside by the reviewed curation readings (source_apparatus_blocks)"
+}

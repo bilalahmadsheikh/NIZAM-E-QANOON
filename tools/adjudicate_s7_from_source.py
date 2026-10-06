@@ -53,6 +53,10 @@ METHOD = "claude.s7-source-review/1"
 DECIDED_BY = "claude.s7-source-review/1"
 RESOLUTIONS = {"accept_non_citable", "restore_citable", "reparent",
                "split_instrument", "reject_candidate"}
+STRUCTURAL_OVERRIDE_KEYS = {
+    "source_body_start_block", "source_apparatus_blocks",
+    "source_reparent_blocks",
+}
 
 FIND = """
 SELECT c.id::text, c.instrument_id::text, c.candidate_provision_id,
@@ -139,6 +143,86 @@ def main() -> int:
             (cid, _iid, cand_pid, canon_pid, printed, page,
              current) = rows[0]
 
+            structural_overrides = r.get("structural_overrides") or {}
+            unknown_overrides = set(structural_overrides) - STRUCTURAL_OVERRIDE_KEYS
+            if unknown_overrides:
+                refused.append((where, "unknown structural overrides: "
+                                + ", ".join(sorted(unknown_overrides))))
+                continue
+            if "source_body_start_block" in structural_overrides:
+                body_start = structural_overrides["source_body_start_block"]
+                cur.execute("""SELECT 1 FROM text_block
+                                WHERE id=%s AND document_id=%s""",
+                            (body_start, doc))
+                if cur.fetchone() is None:
+                    refused.append((where, "source_body_start_block does not "
+                                    "belong to this document"))
+                    continue
+            if "source_apparatus_blocks" in structural_overrides:
+                apparatus = structural_overrides["source_apparatus_blocks"]
+                if (not isinstance(apparatus, list) or not apparatus
+                        or any(not isinstance(value, int) for value in apparatus)
+                        or len(set(apparatus)) != len(apparatus)):
+                    refused.append((where, "source_apparatus_blocks must be a "
+                                    "non-empty list of unique block ids"))
+                    continue
+                cur.execute("""SELECT id FROM text_block
+                                WHERE document_id=%s AND id=ANY(%s)
+                                ORDER BY id""", (doc, apparatus))
+                found = {row[0] for row in cur.fetchall()}
+                missing = sorted(set(apparatus) - found)
+                if missing:
+                    refused.append((where, "source_apparatus_blocks do not "
+                                    "belong to this document: "
+                                    + ", ".join(map(str, missing))))
+                    continue
+            if "source_reparent_blocks" in structural_overrides:
+                reparents = structural_overrides["source_reparent_blocks"]
+                # Only kinds the provision_kind enum carries: a spec with
+                # "item" or "paragraph" passed here and then failed the replay
+                # on insert (agent E, doc 1572, 25 Sep 2026).
+                valid_kinds = {"clause", "subsection"}
+                if (not isinstance(reparents, list) or not reparents
+                        or any(not isinstance(value, dict) for value in reparents)):
+                    refused.append((where, "source_reparent_blocks must be a "
+                                    "non-empty list of objects"))
+                    continue
+                source_ids = [value.get("source_block_id") for value in reparents]
+                parent_ids = [value.get("parent_block_id") for value in reparents]
+
+                def _qualified(value, side):
+                    return (value.get(f"{side}_label") is not None
+                            or value.get(f"{side}_kind") is not None)
+
+                # One block can open a section AND its sub-section (1); with a
+                # label/kind qualifier on both sides a same-block move is exact.
+                malformed = any(
+                    not isinstance(source, int)
+                    or not isinstance(parent, int)
+                    or (source == parent and not (
+                        _qualified(value, "source") and _qualified(value, "parent")))
+                    or value.get("kind") not in valid_kinds
+                    for value, source, parent in zip(
+                        reparents, source_ids, parent_ids)
+                )
+                source_keys = [(value.get("source_block_id"), value.get("source_label"),
+                                value.get("source_kind")) for value in reparents]
+                if malformed or len(set(source_keys)) != len(source_keys):
+                    refused.append((where, "source_reparent_blocks contains "
+                                    "an invalid or repeated source block"))
+                    continue
+                block_ids = sorted(set(source_ids + parent_ids))
+                cur.execute("""SELECT id FROM text_block
+                                WHERE document_id=%s AND id=ANY(%s)
+                                ORDER BY id""", (doc, block_ids))
+                found = {row[0] for row in cur.fetchall()}
+                missing = sorted(set(block_ids) - found)
+                if missing:
+                    refused.append((where, "source_reparent_blocks reference "
+                                    "blocks outside this document: "
+                                    + ", ".join(map(str, missing))))
+                    continue
+
             if resolution == "accept_non_citable":
                 cur.execute(SIZES, (cand_pid,))
                 cand = (cur.fetchone() or [0])[0]
@@ -151,10 +235,32 @@ def main() -> int:
                         f"the kept one {canon}. Use restore_citable or reparent."))
                     continue
 
+            # Provenance of a re-attached reading, when the reading carries it.
+            # It belongs in `evidence`, never in `observed` or `rationale`:
+            # those are the READER'S description of the page, and appending to
+            # them compounds -- before 21 Sep 2026 the re-attach tool appended
+            # 199 characters of prose per replay, leaving 1,439 decisions
+            # carrying 407,500 characters of boilerplate, 12.6% of all S7
+            # observation text, around a shrinking kernel of what was seen.
+            reattachment = None
+            if r.get("reattached_from"):
+                reattachment = {
+                    "from_adjudication_id": r["reattached_from"],
+                    "origin": r.get("reattach_origin") or r["reattached_from"],
+                    "generation": int(r.get("reattach_generation", 1)),
+                    "basis": r.get("reattach_basis", ""),
+                    "tool": "tools/reattach_orphaned_adjudications.py",
+                    "note": "The observation is the original reader's words, "
+                            "carried forward unchanged. Only the pointer into "
+                            "our own numbering broke.",
+                }
+
             planned.append({
                 "candidate_id": cid, "where": where, "resolution": resolution,
                 "observed": observed, "render": str(path), "sha256": digest,
                 "supersedes": current, "page": page,
+                "reattachment": reattachment,
+                "structural_overrides": structural_overrides,
             })
 
         print(f"readings          : {len(readings)}")
@@ -178,6 +284,10 @@ def main() -> int:
                 "source_page": p["page"],
                 "assistant_page_review": True,
             }
+            if p["reattachment"]:
+                evidence["reattachment"] = p["reattachment"]
+            if p["structural_overrides"]:
+                evidence["structural_overrides"] = p["structural_overrides"]
             cur.execute("""
                 INSERT INTO segmentation_structural_adjudication
                     (candidate_id, resolution, review_basis, method, rationale,

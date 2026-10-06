@@ -205,6 +205,9 @@ def main() -> int:
                 )
                 cur.execute("UPDATE document SET verification_state=%s WHERE id=%s",
                             (outcome, doc_id))
+                # Commit per document, so an interrupted pass keeps what it
+                # verified. The audit reads the latest row per document.
+                conn.commit()
 
         for doc_id, sha, conf, rate, per_page, title, problems in flagged:
             print(f"  REVIEW #{doc_id:<5} {sha[:12]}  {'; '.join(problems)}")

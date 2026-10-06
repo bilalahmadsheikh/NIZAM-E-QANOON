@@ -9,7 +9,21 @@ the replay regenerates. Each needs its own repair, and three of them are easy to
 forget because nothing fails loudly when they are skipped -- the corpus simply
 starts double-counting, or silently loses reviewed judgements.
 
-Run these in order.
+Run the managed command instead of executing the checklist by hand:
+
+    ./nz full-replay --apply
+
+The worker now refuses a raw writing `--all --redo`. The managed command takes
+a pre-replay snapshot, performs the steps below, records its evidence under
+`.artifacts/full-replay/<UTC timestamp>/`, and exits non-zero if release
+readiness falls, drops below the 4,020 readiness floor, or either the S7 or TOC
+pending queue grows. It separately refuses growth in S7 itemization mismatches,
+using the same population and definition as the release audit; this prevents a
+replay from appearing to improve the adjudication queue merely because expected
+candidates were not materialized. Bounded and dry-run replays remain available
+because they do not create this corpus-wide failure mode.
+
+The individual steps below document what that command enforces and why.
 
 ## 1. Re-link exact duplicates
 
@@ -32,6 +46,12 @@ corrects a tree that a duplicate was previously linked to, by advancing the
 pointer to the active successor.
 
 ## 2. Re-attach orphaned S7 readings
+
+Before review reattachment, the managed sequence also re-derives the
+document-level source-incompleteness links with
+`tools/apply_source_incompleteness.py`. The source declaration survives a
+replay; the instrument's `duplicate_of` pointer does not. Omitting this step
+republishes known partial copies as if they were the complete Act.
 
     ./nz reattach
 
@@ -179,3 +199,25 @@ means the automatic adjudicator cannot be trusted wholesale, and every one of it
 accepts removes a provision from citation. The high `not_s7` share is itself
 worth diagnosing -- it may indicate the sampler is drawing rows that are not
 collisions at all.
+
+## 7. Re-read the six collisions `.patch_apparatus.py` makes invisible
+
+The apparatus-runs patch (measured 22 Sep 2026: 0 real sections lost, 16
+gained, 26 frame rows retired) has one honest cost. In six apparatus-vs-
+apparatus collisions it removes the footnote that WON, so the losing footnote
+inherits the citable slot. The collision then dissolves, which means **no
+queue row** -- the defect is not worse, but it stops being visible.
+
+Each already carries a correct reading that the dissolved collision silently
+ignores:
+
+    document 2789  pages 11 and 16
+    document 3825  page 28   block 488424   source_verified reject_candidate
+    document 3892  pages 18 and 33
+    document 4453  page 31
+
+After the replay: put block 488424 into `source_apparatus_blocks` through a
+source-reviewed reading (the reviewer's finding already exists; it needs the
+enactable form), and send the other five for a page read. Do not accept them
+by default -- an apparatus block holding a citable slot with no queue row is
+exactly the silent failure the release gate exists to prevent.

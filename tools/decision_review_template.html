@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Owner decision review</title>
+  <style>
+    :root { color-scheme: light; font: 15px/1.45 system-ui, sans-serif; color:#17222e; background:#f1f4f6; }
+    * { box-sizing: border-box; }
+    body { margin:0; }
+    header { background:#14283d; color:white; padding:14px 20px; }
+    h1 { font-size:1.25rem; margin:0 0 4px; }
+    h2 { font-size:1.05rem; margin:0 0 8px; }
+    h3 { font-size:.98rem; margin:0 0 6px; }
+    p { margin:6px 0; }
+    small, .muted { color:#586b7c; }
+    header small { color:#c9d9e6; }
+    button, input, textarea, select { font:inherit; }
+    button { border:1px solid #96aabb; background:white; border-radius:6px; padding:7px 11px; cursor:pointer; }
+    button:hover { background:#e8f2fa; }
+    button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible { outline:3px solid #e9aa36; }
+    .bar { display:flex; gap:10px; align-items:center; flex-wrap:wrap; padding:10px 20px; background:white; border-bottom:1px solid #d4dce2; position:sticky; top:0; z-index:2; }
+    .bar input, .bar select { padding:6px 8px; border:1px solid #a9bac6; border-radius:5px; }
+    .layout { display:grid; grid-template-columns:300px minmax(0,1fr); min-height:calc(100vh - 150px); }
+    nav { background:white; border-right:1px solid #d4dce2; overflow:auto; max-height:calc(100vh - 150px); position:sticky; top:52px; }
+    nav button { display:block; width:100%; text-align:left; border:0; border-bottom:1px solid #eef2f4; border-radius:0; padding:8px 12px; }
+    nav button .t { display:block; font-size:.85rem; color:#586b7c; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    nav button.current { background:#e3eff8; }
+    nav button.done { box-shadow:inset 4px 0 0 #268257; }
+    nav button.partial { box-shadow:inset 4px 0 0 #e9aa36; }
+    nav button.info { box-shadow:inset 4px 0 0 #96aabb; }
+    main { min-width:0; padding:16px; }
+    .card, .question { background:white; border:1px solid #d4dce2; border-radius:8px; padding:14px; margin-bottom:12px; }
+    .kind { display:inline-block; font-size:.8rem; background:#e8eef3; border-radius:4px; padding:1px 7px; margin-left:6px; }
+    .evidence { background:#f7f9fa; border-left:3px solid #96aabb; padding:8px 10px; white-space:pre-wrap; }
+    .pages { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:10px; margin:10px 0; }
+    .pages figure { margin:0; border:1px solid #c3cdd4; border-radius:5px; padding:6px; background:#fafafa; }
+    .pages img { width:100%; height:auto; display:block; }
+    .pages figcaption { font-size:.85rem; margin-top:4px; }
+    .options label { display:block; border:1px solid #c8d2da; border-radius:6px; padding:8px 10px; margin:6px 0; cursor:pointer; }
+    .options label:has(input:checked) { border-color:#146190; background:#eef6fc; }
+    .options .effect { display:block; font-size:.88rem; color:#41576a; margin-left:22px; }
+    .rec { font-size:.78rem; color:#268257; font-weight:600; margin-left:6px; }
+    textarea { display:block; width:100%; min-height:60px; padding:8px; border:1px solid #a9bac6; border-radius:5px; }
+    .confirm { display:block; padding:8px 10px; background:#e9f4fb; border-radius:5px; margin:8px 0; }
+    #message { color:#a23423; font-weight:600; }
+    .info-note { color:#41576a; background:#eef2f4; padding:8px 10px; border-radius:5px; }
+    @media(max-width:1000px) { .layout { grid-template-columns:1fr; } nav { position:static; max-height:260px; } }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Owner decision review</h1>
+    <small id="subtitle">Local, read-only. Your exported JSON is a decision for the lead to validate and carry out; nothing here changes the database.</small>
+  </header>
+  <div class="bar">
+    <label>Reviewer <input id="reviewer" placeholder="Your name" autocomplete="name"></label>
+    <label>Show <select id="filter">
+      <option value="open">Open questions</option>
+      <option value="all">All documents</option>
+      <option value="answered">Answered</option>
+      <option value="info">No decision needed / OCR</option>
+    </select></label>
+    <label>Kind <select id="kind"><option value="">Any</option></select></label>
+    <input id="search" placeholder="Search number or title" size="22">
+    <span id="progress"></span>
+    <button id="export" type="button">Export answers JSON</button>
+    <label>Resume from JSON <input id="resume" type="file" accept="application/json,.json"></label>
+    <span id="message" role="status"></span>
+  </div>
+  <div class="layout">
+    <nav id="nav" aria-label="Documents"></nav>
+    <main id="main"></main>
+  </div>
+  <script>
+    const DATA = /*__DECISION_REVIEW_DATA__*/;
+    const $ = (id) => document.getElementById(id);
+    const storageKey = `nizam-decision-review:${DATA.pack_sha256}`;
+    let state = {};
+    try { state = JSON.parse(localStorage.getItem(storageKey) || "{}"); } catch (_) { state = {}; }
+    state.answers = state.answers || {};
+    if (state.reviewer) $("reviewer").value = state.reviewer;
+    let current = 0;
+    const cards = DATA.cards;
+    const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]));
+    const key = (card, q) => `${card.document_id}:${q.id}`;
+
+    function persist() { try { localStorage.setItem(storageKey, JSON.stringify(state)); } catch (_) {} }
+    function answered(card, q) { const a = state.answers[key(card, q)]; return a && a.choice && a.checked; }
+    function cardStatus(card) {
+      if (!card.needs_owner || !card.questions.length) return "info";
+      const n = card.questions.filter((q) => answered(card, q)).length;
+      return n === card.questions.length ? "done" : (n ? "partial" : "open");
+    }
+    function visible() {
+      const f = $("filter").value, k = $("kind").value, s = $("search").value.trim().toLowerCase();
+      return cards.map((c, i) => [c, i]).filter(([c]) => {
+        const st = cardStatus(c);
+        if (f === "open" && !(st === "open" || st === "partial")) return false;
+        if (f === "answered" && st !== "done") return false;
+        if (f === "info" && st !== "info") return false;
+        if (k && c.kind !== k) return false;
+        if (s && !(String(c.document_id).includes(s) || (c.title || "").toLowerCase().includes(s))) return false;
+        return true;
+      });
+    }
+    function renderNav() {
+      const list = visible();
+      $("nav").innerHTML = list.map(([c, i]) =>
+        `<button type="button" data-i="${i}" class="${cardStatus(c)}${i === current ? " current" : ""}">` +
+        `<b>${c.document_id}</b><span class="kind">${esc(c.kind)}</span><span class="t">${esc(c.title)}</span></button>`).join("");
+      $("nav").querySelectorAll("button").forEach((b) => b.addEventListener("click", () => { current = +b.dataset.i; render(); }));
+      const open = cards.filter((c) => ["open", "partial"].includes(cardStatus(c))).length;
+      const done = cards.filter((c) => cardStatus(c) === "done").length;
+      const qs = cards.reduce((n, c) => n + (c.needs_owner ? c.questions.length : 0), 0);
+      const qa = cards.reduce((n, c) => n + (c.needs_owner ? c.questions.filter((q) => answered(c, q)).length : 0), 0);
+      $("progress").textContent = `${qa}/${qs} questions answered · ${done} documents done · ${open} open`;
+    }
+    function renderCard() {
+      const c = cards[current];
+      if (!c) { $("main").innerHTML = "<p>No document selected.</p>"; return; }
+      let html = `<section class="card"><h2>${c.document_id} · ${esc(c.title)}<span class="kind">${esc(c.kind)}</span></h2>` +
+        `<p>${esc(c.summary)}</p>` + (c.context ? `<p class="muted">${esc(c.context)}</p>` : "") + `</section>`;
+      if (!c.needs_owner || !c.questions.length) {
+        html += `<p class="info-note">${c.kind === "ocr-review" ? "This document waits on OCR review in the OCR review pack (.artifacts/ocr-review-pack-r5/index.html). Nothing to decide here." : "No owner decision needed: " + esc(c.reason || "")}</p>`;
+      }
+      c.questions.forEach((q) => {
+        const a = state.answers[key(c, q)] || {};
+        html += `<section class="question" data-q="${esc(q.id)}"><h3>${esc(q.question)}</h3>` +
+          (q.evidence ? `<div class="evidence">${esc(q.evidence)}</div>` : "") +
+          `<div class="pages">${(q.pages || []).map((p) =>
+            `<figure><a href="${esc(DATA.render_base + p.render)}" target="_blank" rel="noopener"><img loading="lazy" src="${esc(DATA.render_base + p.render)}" alt="page ${p.page_no}"></a>` +
+            `<figcaption>${esc(p.caption || ("p" + p.page_no))}</figcaption></figure>`).join("")}</div>` +
+          `<label class="confirm"><input type="checkbox" class="checked" ${a.checked ? "checked" : ""}> I looked at these page images.</label>` +
+          `<div class="options">${q.options.map((o) =>
+            `<label><input type="radio" name="opt-${esc(q.id)}" value="${esc(o.value)}" ${a.choice === o.value ? "checked" : ""}> ${esc(o.label)}` +
+            `${q.recommended === o.value ? '<span class="rec">recommended</span>' : ""}<span class="effect">${esc(o.effect)}</span></label>`).join("")}</div>` +
+          `<label>Notes (required for "other"; optional otherwise)<textarea class="note">${esc(a.note || "")}</textarea></label></section>`;
+      });
+      html += `<p><button type="button" id="prev">← Previous</button> <button type="button" id="nextBtn">Next →</button></p>`;
+      $("main").innerHTML = html;
+      $("main").querySelectorAll(".question").forEach((sec) => {
+        const q = c.questions.find((x) => x.id === sec.dataset.q);
+        const save = () => {
+          const choice = (sec.querySelector("input[type=radio]:checked") || {}).value || "";
+          state.answers[key(c, q)] = { choice, note: sec.querySelector(".note").value, checked: sec.querySelector(".checked").checked };
+          persist(); renderNav();
+        };
+        sec.querySelectorAll("input,textarea").forEach((el) => el.addEventListener("change", save));
+        sec.querySelector(".note").addEventListener("input", save);
+      });
+      $("prev").addEventListener("click", () => step(-1));
+      $("nextBtn").addEventListener("click", () => step(1));
+      window.scrollTo(0, 0);
+    }
+    function step(d) {
+      const list = visible().map(([, i]) => i);
+      const at = list.indexOf(current);
+      if (list.length) current = list[Math.max(0, Math.min(list.length - 1, (at < 0 ? 0 : at + d)))];
+      render();
+    }
+    function render() { renderNav(); renderCard(); }
+
+    function exportJson() {
+      const reviewer = $("reviewer").value.trim();
+      if (!reviewer) { $("message").textContent = "Enter your name first."; return; }
+      const answers = [];
+      for (const c of cards) for (const q of c.questions) {
+        const a = state.answers[key(c, q)];
+        if (!a || !a.choice) continue;
+        if (!a.checked) { $("message").textContent = `${c.document_id} ${q.id}: tick "I looked at these page images" first.`; return; }
+        if (a.choice === "other" && !a.note.trim()) { $("message").textContent = `${c.document_id} ${q.id}: "other" needs a note.`; return; }
+        answers.push({ document_id: c.document_id, question_id: q.id, card_sha256: c.card_sha256,
+                       choice: a.choice, note: a.note.trim(), reviewed_page_images: true });
+      }
+      if (!answers.length) { $("message").textContent = "Nothing answered yet."; return; }
+      const payload = { schema: "nizam.decision_review.v1", reviewer_name: reviewer, exported_at: new Date().toISOString(),
+                        pack_sha256: DATA.pack_sha256, answer_count: answers.length, answers };
+      const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = `decision-review-${new Date().toISOString().slice(0, 10)}.json`;
+      link.click();
+      $("message").textContent = `Exported ${answers.length} answers.`;
+    }
+    async function resumeJson(file) {
+      try {
+        const data = JSON.parse(await file.text());
+        if (data.schema !== "nizam.decision_review.v1") throw new Error("not a decision review export");
+        const known = new Map(cards.map((c) => [c.document_id, c]));
+        let n = 0, stale = 0;
+        for (const a of data.answers || []) {
+          const c = known.get(a.document_id);
+          if (!c) continue;
+          if (c.card_sha256 !== a.card_sha256) stale++;
+          state.answers[`${a.document_id}:${a.question_id}`] = { choice: a.choice, note: a.note || "", checked: !!a.reviewed_page_images };
+          n++;
+        }
+        if (data.reviewer_name) { state.reviewer = data.reviewer_name; $("reviewer").value = data.reviewer_name; }
+        persist(); render();
+        $("message").textContent = `Resumed ${n} answers` + (stale ? ` (${stale} from cards that changed since; re-check them)` : "") + ".";
+      } catch (e) { $("message").textContent = "Could not resume: " + e.message; }
+    }
+    $("reviewer").addEventListener("input", () => { state.reviewer = $("reviewer").value; persist(); });
+    ["filter", "kind"].forEach((id) => $(id).addEventListener("change", () => { const l = visible(); if (l.length) current = l[0][1]; render(); }));
+    $("search").addEventListener("input", () => { const l = visible(); if (l.length) current = l[0][1]; render(); });
+    $("export").addEventListener("click", exportJson);
+    $("resume").addEventListener("change", (e) => e.target.files[0] && resumeJson(e.target.files[0]));
+    [...new Set(cards.map((c) => c.kind))].sort().forEach((k) => { const o = document.createElement("option"); o.value = o.textContent = k; $("kind").appendChild(o); });
+    $("subtitle").textContent += ` · ${cards.length} documents · built ${DATA.built_at}`;
+    const first = visible(); if (first.length) current = first[0][1];
+    render();
+  </script>
+</body>
+</html>

@@ -75,6 +75,13 @@ WHAT IT REFUSES, and why each refusal is not a defect but the point:
   other_instrument  always refused: its evidence names a regenerated instrument
                     uuid and there is no re-resolution rule for it. None exist
                     today; the refusal is so that none is ever written blind.
+  stale source      a ``source_incomplete`` (migration 0060) whose
+                    ``evidence.source_incompleteness_id`` is no longer the
+                    latest 0054 record for the document's observation, or no
+                    longer says ``no_complete_copy_acquired``. Its evidence
+                    points at a SOURCE record keyed on the observation, which a
+                    replay does not regenerate, so it is carried while that
+                    record stands -- and the 0060 trigger re-checks it on write.
 
 and what it reports as FINISHED rather than lost: an orphan whose label the
 replay resolved. The work is not re-attachable because there is no gap left.
@@ -401,6 +408,17 @@ def plan(orphans: list[dict], entries: list[dict],
                 "it; re-derive this decision rather than carrying it"))
             continue
 
+        if resolution == "source_incomplete" and not orphan.get(
+                "incompleteness_current"):
+            refused.append(_refuse(
+                orphan, "stale_source_record",
+                "evidence.source_incompleteness_id is no longer the latest "
+                "migration-0054 record for this document's observation, or it "
+                "no longer says no_complete_copy_acquired; re-read the pages "
+                "against the current record and re-record with "
+                "tools/adjudicate_toc_from_source.py"))
+            continue
+
         if resolution == "found_elsewhere":
             new_provision = orphan.get("reresolved_provision_id")
             if not new_provision:
@@ -555,7 +573,15 @@ SELECT o.id, o.document_id, o.instrument_id AS old_instrument_id,
                AND regexp_replace(lower(p.label), '[^a-z0-9]', '', 'g')
                  = regexp_replace(lower(op.label), '[^a-z0-9]', '', 'g')
             HAVING count(*) = 1) b
-          WHERE a.pid = b.pid) END AS reresolved_provision_id
+          WHERE a.pid = b.pid) END AS reresolved_provision_id,
+       -- A source_incomplete names an observation-keyed 0054 record, which a
+       -- replay keeps; it is carried only while that record still stands.
+       CASE WHEN o.resolution = 'source_incomplete' THEN EXISTS (
+         SELECT 1 FROM v_source_incompleteness_latest l
+          WHERE l.id::text = o.evidence->>'source_incompleteness_id'
+            AND l.document_id = o.document_id
+            AND l.resolution = 'no_complete_copy_acquired') END
+                                                   AS incompleteness_current
   FROM orphan o
   LEFT JOIN instrument_toc_entry e ON e.id = o.toc_entry_id
   LEFT JOIN provision op ON op.id::text = (o.evidence->>'found_provision_id')
@@ -700,7 +726,9 @@ def main() -> int:
                                      "checks 4 and 5 re-fired"),
                 ("found_elsewhere", "a PROVISION uuid a replay regenerates "
                                     "-- re-resolved or refused"),
-                ("other_instrument", "an INSTRUMENT uuid -- always refused")):
+                ("other_instrument", "an INSTRUMENT uuid -- always refused"),
+                ("source_incomplete", "a SOURCE record (0054) a replay keeps "
+                                      "-- carried while it is the latest")):
             took = sum(1 for r in result["rebind"] if r["resolution"] == name)
             left = sum(1 for r in result["refused"] if r["resolution"] == name)
             done = sum(1 for r in result["finished"] if r["resolution"] == name)

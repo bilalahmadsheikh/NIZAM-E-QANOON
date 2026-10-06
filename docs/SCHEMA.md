@@ -44,7 +44,7 @@ Evidence tables sit beside the ladder and record what happened rather than only
 the current result: `acquisition_attempt`, `extraction_attempt`,
 `extraction_verification`, `extraction_assertion`, `page_ocr_candidate`,
 `segmentation_run`, `instrument_toc_entry`, `segmentation_curation_patch`,
-`segmentation_structural_candidate`, `segmentation_structural_adjudication`,
+`segmentation_profile_pin`, `segmentation_structural_candidate`, `segmentation_structural_adjudication`,
 `segmentation_boundary_candidate`, `segmentation_boundary_adjudication`, and
 `instrument_expression_manifest`.
 Neither source observations nor these ledgers are silently pruned — C7 in
@@ -198,6 +198,27 @@ retired predecessor manifests.
 Identity is *structural* — instrument plus position — so re-chunking for retrieval
 can never invalidate a stored citation. That is the whole point of INV-4.
 
+**Unnumbered provisions** (owner decision 6 Oct 2026, doc 128). Some instruments
+print an operative provision with no number, such as doc 128's Act-level
+"Repeal: ... are hereby repealed." after its Schedule. It is stored with no new
+column and no new kind. It is a `section` (an Act-level operative unit, so it
+stays in the operative views), its `label` is the printed lead word (`Repeal`),
+and its `heading` is the same word. A label with no numeral in a numbered kind
+(`section`, `article`, `subsection`) **is** the marker. Every active section,
+article and subsection carried a numeral in some script when this was decided,
+and `nizam.shared.corpus_types.is_unnumbered_provision(kind, label)` is the one
+predicate for it. A citation renderer must ask that predicate before writing "section N". An
+unnumbered provision is cited by its printed word, as the instrument's unnumbered
+"Repeal" provision, never as "section Repeal". No number is invented (INV-1).
+Only a reviewed opener under segmentation profile rule
+`unnumbered_tail_provision` or `unnumbered_root_provision`
+(docs/SEGMENTATION-PROFILES.md) produces one. Its ltree key is `…s_Repeal`.
+Path segments are internal keys, not citations. One exception is not an
+unnumbered provision: a paragraph printed without a number but numbered by
+the owner's recorded decision (doc 268's 1998 Order para 1) is stored as
+label `1`. Its opener cites the decision-review export, document and question
+in the curation patch evidence.
+
 ### `provision_ancestor` — disposable subtree acceleration
 
 One row maps a descendant `provision_id` to itself or to one real ancestor
@@ -301,6 +322,36 @@ back to the verbatim block, geometry and reading order and forward to the parsed
 tree; `v_toc_gap` is the unresolved-entry worklist. Audit A9 rejects a missing or
 cross-document/page source anchor.
 
+### `toc_gap_adjudication` — page-evidenced decisions on contents gaps
+
+Migrations 0042, 0043, 0050, 0060. An append-only, supersedable decision for one
+unresolved printed contents entry (`toc_entry_id`; NULL only for 0043's legacy
+run-only gaps). `v_toc_gap_pending` holds every gap whose latest decision is
+missing or `parser_defect`, and the release views block an instrument with any
+such row. The resolutions, and what each must carry:
+
+| resolution | means | evidence required |
+|---|---|---|
+| `parser_defect` | the law is in the PDF and the tree misses it; classifies, closes nothing | `defect_class` |
+| `found_elsewhere` | the unit is a live provision of this instrument the linker did not pick | `found_provision_id` |
+| `other_instrument` | the unit belongs to another instrument | `other_instrument_id` |
+| `absent_in_source` | the official source does not print the unit (the Act lacks it) | human page review + render, or assistant page review + render + `render_sha256` + `observed` |
+| `source_incomplete` | the Act has the unit; this landed copy does not print it | an exact `toc_entry_id`, `source_incompleteness_id`, and the same page-review evidence as `absent_in_source` |
+
+`source_incomplete` (0060) is the "release with the gap recorded" path. Its
+trigger admits it only while the named `source_incompleteness` row (0054) is
+the latest for the instrument's own source observation, is about the same
+document, and says `no_complete_copy_acquired`; where a complete copy is held
+the truncated tree is retired instead (`tools/apply_source_incompleteness.py`).
+No provision is created. `v_toc_gap_source_incomplete` lists the entries so
+released, with the record they rest on and whether it is still current — render
+them as "not available in this copy", never as repealed or absent. Record with
+`tools/adjudicate_toc_from_source.py`, after the dated refetch
+(`tools/record_source_refetch.py`, which writes `acquisition_attempt` with
+`unchanged_copy` per 0055) and the 0054 row (a reviewed file in
+`tools/evidence/`). `./nz toc-reattach` carries the decision across a replay
+while its 0054 record stands.
+
 ### `segmentation_curation_patch` — auditable source corrections
 
 An append-only, fail-closed correction to parser input, never an edit to
@@ -309,6 +360,19 @@ An append-only, fail-closed correction to parser input, never an edit to
 once. `evidence`, `review_state`, `created_by`, and timestamps preserve the
 decision trail. Only `source_verified` and `human_verified` patches are active,
 and audit S8 compares their count with the active segmentation run.
+
+### `segmentation_profile_pin` — which parser rules an observation is built with
+
+Migrations 0056-0059. An append-only pin naming the segmentation profile one
+source observation is parsed with (`default`, `unreleased-v1`, `unreleased-v2`,
+`unreleased-v3` or `unreleased-v4`, a closed list); absent
+means `default`, today's parser. `v_segmentation_profile_latest` is the head per
+observation, and `nizam.workers.segment.build()` reads it on every build, so a
+pinned document replays under the same rules it was released with. The trigger
+refuses UPDATE, DELETE, a supersede across observations, and any non-default
+pin on an observation that has a released instrument. A tree built under a
+profile records its writer as `nizam.corpus.segment/N+<profile>`. Contract:
+[SEGMENTATION-PROFILES](SEGMENTATION-PROFILES.md).
 
 ### Structural candidates and adjudications — item-level S7 evidence
 
@@ -375,6 +439,7 @@ required before superseded derived rows may be pruned.
 | `v_active_boundary_candidate`, `v_boundary_adjudication_latest`, `v_boundary_adjudication_pending` | exact source anchors and review state for possible internal legal-instrument boundaries |
 | `v_release_instrument`, `v_release_provision`, `v_release_provision_version` | legal release boundary: quality-passed canonical active revisions with complete printed contents and no pending S7 or multi-instrument boundary |
 | `v_toc`, `v_toc_gap` | printed contents with exact source anchors; unresolved entries form a worklist |
+| `v_toc_gap_pending`, `v_toc_gap_source_incomplete` | contents gaps still blocking release; and those released as "not available in this copy" under a standing source-incompleteness record |
 | `v_corpus_health`, `v_segmentation_health` | the dashboard rollups |
 
 ---

@@ -1,0 +1,4898 @@
+{
+"2019": {
+"why": "Karachi Water and Sewerage Board Act 1996: appendices A and B as tables with column numbers and row-level cells (p14), decoded quotes in s.2, chapters after the enacting formula and after s.4(5)'s missing full stop, contents overrun (p2)",
+"profile": "unreleased-v2",
+"structural_overrides": {
+"source_body_start_block": 149062
+},
+"blocks": [
+{
+"id": 149046,
+"page_no": 1,
+"text": "SIND ACT NO. X OF 1996 \n",
+"x0": 218.57,
+"x1": 362.11,
+"y0": 36.168,
+"page_height": 841.92
+},
+{
+"id": 149047,
+"page_no": 1,
+"text": "THE KARACHI WATER AND SEWERAGE BOARD ACT, 1996 \n",
+"x0": 117.14,
+"x1": 462.431,
+"y0": 57.042,
+"page_height": 841.92
+},
+{
+"id": 149048,
+"page_no": 1,
+"text": "C O N T E N T S \n \nPreamble \n \nSections \n \n01. \nShort title and commencement.  \n",
+"x0": 72.024,
+"x1": 356.23,
+"y0": 87.392,
+"page_height": 841.92
+},
+{
+"id": 149049,
+"page_no": 1,
+"text": "02. \nDefinitions \n",
+"x0": 72.024,
+"x1": 204.261,
+"y0": 211.256,
+"page_height": 841.92
+},
+{
+"id": 149050,
+"page_no": 1,
+"text": "03. \nEstablishment of Board \n",
+"x0": 72.024,
+"x1": 288.281,
+"y0": 245.576,
+"page_height": 841.92
+},
+{
+"id": 149051,
+"page_no": 1,
+"text": "04. \nConstitution of the Board \n",
+"x0": 72.024,
+"x1": 301.121,
+"y0": 279.926,
+"page_height": 841.92
+},
+{
+"id": 149052,
+"page_no": 1,
+"text": "05. \nManaging Director \n",
+"x0": 72.024,
+"x1": 262.221,
+"y0": 314.246,
+"page_height": 841.92
+},
+{
+"id": 149053,
+"page_no": 1,
+"text": "12. \nMeeting of the Board \n",
+"x0": 72.024,
+"x1": 277.341,
+"y0": 348.566,
+"page_height": 841.92
+},
+{
+"id": 149054,
+"page_no": 1,
+"text": "13. \nAppeal \n",
+"x0": 72.024,
+"x1": 185.781,
+"y0": 382.886,
+"page_height": 841.92
+},
+{
+"id": 149055,
+"page_no": 1,
+"text": "14. \nPenalty. \n",
+"x0": 72.024,
+"x1": 189.381,
+"y0": 417.326,
+"page_height": 841.92
+},
+{
+"id": 149056,
+"page_no": 1,
+"text": "15. \nRules \n",
+"x0": 72.024,
+"x1": 170.421,
+"y0": 451.666,
+"page_height": 841.92
+},
+{
+"id": 149057,
+"page_no": 1,
+"text": "16. \nRegulations \n",
+"x0": 72.024,
+"x1": 213.741,
+"y0": 485.986,
+"page_height": 841.92
+},
+{
+"id": 149058,
+"page_no": 1,
+"text": "17. \nIndemnity \n",
+"x0": 72.024,
+"x1": 203.181,
+"y0": 520.306,
+"page_height": 841.92
+},
+{
+"id": 149059,
+"page_no": 1,
+"text": "18. \nRemoval of difficulties \n",
+"x0": 72.024,
+"x1": 283.001,
+"y0": 554.626,
+"page_height": 841.92
+},
+{
+"id": 149060,
+"page_no": 1,
+"text": "20. \nRepeal \n",
+"x0": 72.024,
+"x1": 183.261,
+"y0": 588.946,
+"page_height": 841.92
+},
+{
+"id": 149061,
+"page_no": 1,
+"text": " \n1 \n",
+"x0": 72.024,
+"x1": 508.44,
+"y0": 792.348,
+"page_height": 841.92
+},
+{
+"id": 149062,
+"page_no": 2,
+"text": "SIND ACT NO. X OF 1996 \n",
+"x0": 218.57,
+"x1": 362.11,
+"y0": 36.168,
+"page_height": 841.92
+},
+{
+"id": 149063,
+"page_no": 2,
+"text": "THE KARACHI WATER AND SEWERAGE BOARD ACT, 1996 \n",
+"x0": 117.14,
+"x1": 462.431,
+"y0": 57.042,
+"page_height": 841.92
+},
+{
+"id": 149064,
+"page_no": 2,
+"text": " \n[24th April, 1996]\n \n \n \n \n",
+"x0": 72.024,
+"x1": 521.09,
+"y0": 87.115,
+"page_height": 841.92
+},
+{
+"id": 149065,
+"page_no": 2,
+"text": " \n \nAn Act to provide for the establishment of a Board for \nsupply of water and disposal of sewerage in the Karachi Division. \n",
+"x0": 63.024,
+"x1": 470.402,
+"y0": 130.508,
+"page_height": 841.92
+},
+{
+"id": 149066,
+"page_no": 2,
+"text": " \nPreamble. \n",
+"x0": 477.94,
+"x1": 530.189,
+"y0": 167.576,
+"page_height": 841.92
+},
+{
+"id": 149067,
+"page_no": 2,
+"text": " \n \n \nWHEREAS it is expedient to provide for the establishment \nof a Board for supply of water and disposal of sewerage in the \nKarachi Division; \n \n",
+"x0": 63.024,
+"x1": 470.482,
+"y0": 167.588,
+"page_height": 841.92
+},
+{
+"id": 149068,
+"page_no": 2,
+"text": " \nIt is hereby enacted as follows :— \n \n",
+"x0": 63.024,
+"x1": 295.594,
+"y0": 241.148,
+"page_height": 841.92
+},
+{
+"id": 149069,
+"page_no": 2,
+"text": "CHAPTER – I \n",
+"x0": 225.77,
+"x1": 308.441,
+"y0": 270.566,
+"page_height": 841.92
+},
+{
+"id": 149070,
+"page_no": 2,
+"text": " \nPRELIMNARY \n",
+"x0": 223.37,
+"x1": 310.721,
+"y0": 287.564,
+"page_height": 841.92
+},
+{
+"id": 149071,
+"page_no": 2,
+"text": "Short title and \ncommencement.  \n",
+"x0": 477.94,
+"x1": 567.989,
+"y0": 320.87,
+"page_height": 841.92
+},
+{
+"id": 149072,
+"page_no": 2,
+"text": "1. \n(1) This Act may be called the Karachi Water and \nSewerage Board Act, 1996. \n",
+"x0": 63.024,
+"x1": 470.47,
+"y0": 320.858,
+"page_height": 841.92
+},
+{
+"id": 149073,
+"page_no": 2,
+"text": "(2) It shall come into force at once. \n \n",
+"x0": 63.024,
+"x1": 342.394,
+"y0": 356.378,
+"page_height": 841.92
+},
+{
+"id": 149074,
+"page_no": 2,
+"text": "Definitions \n",
+"x0": 477.94,
+"x1": 529.949,
+"y0": 385.79,
+"page_height": 841.92
+},
+{
+"id": 149075,
+"page_no": 2,
+"text": "2. \nIn this Act unless there is anything repugnant in the \nsubject or context. \n",
+"x0": 63.024,
+"x1": 470.3,
+"y0": 385.778,
+"page_height": 841.92
+},
+{
+"id": 149076,
+"page_no": 2,
+"text": "(a) ―Authority‖ \nmeans \nthe \nKarachi \nDevelopment \nAuthority established under President‘s Order No. V of \n1957; \n \n(b) ―Board‖ means the Karachi Water and Sewerage \n",
+"x0": 135.02,
+"x1": 470.402,
+"y0": 421.418,
+"page_height": 841.92
+},
+{
+"id": 149077,
+"page_no": 2,
+"text": "Board established under Section 3; \n \n",
+"x0": 63.024,
+"x1": 357.634,
+"y0": 490.078,
+"page_height": 841.92
+},
+{
+"id": 149078,
+"page_no": 2,
+"text": "(c) ―Chairman‖ means the Chairman of the Board; \n \n",
+"x0": 99.024,
+"x1": 431.704,
+"y0": 514.558,
+"page_height": 841.92
+},
+{
+"id": 149079,
+"page_no": 2,
+"text": "(d) ―Corporation‖ \nmeans \nthe \nKarachi \nMetropolitan \nCorporation; \n \n",
+"x0": 99.024,
+"x1": 470.324,
+"y0": 539.038,
+"page_height": 841.92
+},
+{
+"id": 149080,
+"page_no": 2,
+"text": "(e) ―Government‖ means the Government of Sindh; \n \n",
+"x0": 99.024,
+"x1": 437.824,
+"y0": 578.278,
+"page_height": 841.92
+},
+{
+"id": 149081,
+"page_no": 2,
+"text": "(f) ―Managing Director‖ means the Managing Director \n",
+"x0": 135.02,
+"x1": 470.506,
+"y0": 602.908,
+"page_height": 841.92
+},
+{
+"id": 149082,
+"page_no": 2,
+"text": "of the Board and includes any persons discharging \nthe duties of the Managing Director for the time \nbeing; \n \n",
+"x0": 99.024,
+"x1": 470.336,
+"y0": 617.548,
+"page_height": 841.92
+},
+{
+"id": 149083,
+"page_no": 2,
+"text": "(g) ―Member‖ means the member of the Board and \n",
+"x0": 135.02,
+"x1": 470.312,
+"y0": 671.548,
+"page_height": 841.92
+},
+{
+"id": 149084,
+"page_no": 2,
+"text": "includes its Chairman and Vice-Chairman; and \n \n",
+"x0": 99.024,
+"x1": 429.304,
+"y0": 686.188,
+"page_height": 841.92
+},
+{
+"id": 149085,
+"page_no": 2,
+"text": "(h) ―prescribed‖ means prescribed by rules or regulations \n",
+"x0": 135.02,
+"x1": 470.56,
+"y0": 710.788,
+"page_height": 841.92
+},
+{
+"id": 149086,
+"page_no": 2,
+"text": "made under this Act. \n \n",
+"x0": 153.02,
+"x1": 278.534,
+"y0": 725.428,
+"page_height": 841.92
+},
+{
+"id": 149087,
+"page_no": 2,
+"text": " \n2 \n",
+"x0": 72.024,
+"x1": 508.44,
+"y0": 792.348,
+"page_height": 841.92
+},
+{
+"id": 149088,
+"page_no": 3,
+"text": "SIND ACT NO. X OF 1996 \n",
+"x0": 218.57,
+"x1": 362.11,
+"y0": 36.168,
+"page_height": 841.92
+},
+{
+"id": 149089,
+"page_no": 3,
+"text": "THE KARACHI WATER AND SEWERAGE BOARD ACT, 1996 \n",
+"x0": 117.14,
+"x1": 462.431,
+"y0": 57.042,
+"page_height": 841.92
+},
+{
+"id": 149090,
+"page_no": 3,
+"text": "CHAPTER—II \n",
+"x0": 227.09,
+"x1": 306.699,
+"y0": 87.662,
+"page_height": 841.92
+},
+{
+"id": 149091,
+"page_no": 3,
+"text": " \nCONSTITUTION OF THE BOARD \n \n",
+"x0": 63.024,
+"x1": 360.699,
+"y0": 103.454,
+"page_height": 841.92
+},
+{
+"id": 149092,
+"page_no": 3,
+"text": "Establishment of \nBoard \n",
+"x0": 477.94,
+"x1": 558.437,
+"y0": 133.04,
+"page_height": 841.92
+},
+{
+"id": 149093,
+"page_no": 3,
+"text": "3. \n(1) There shall be established a Board called the Karachi \nWater and Sewerage Board for carrying out the purposes of \nthis Act. \n",
+"x0": 99.024,
+"x1": 470.28,
+"y0": 133.028,
+"page_height": 841.92
+},
+{
+"id": 149094,
+"page_no": 3,
+"text": "(2) The Board shall be a body corporate, having \nperpetual succession and common seal with power subject to \nthe provisions of this Act to acquire and hold property, both \nmovable and immovable, and may be the said name sue and \nbe sued. \n",
+"x0": 99.024,
+"x1": 470.56,
+"y0": 191.948,
+"page_height": 841.92
+},
+{
+"id": 149095,
+"page_no": 3,
+"text": "(3) The Jurisdiction of the board shall extend to the limits \nof the corporation and such areas outside the limits as may be \nnotified by the Government. \n",
+"x0": 99.024,
+"x1": 470.252,
+"y0": 280.178,
+"page_height": 841.92
+},
+{
+"id": 149096,
+"page_no": 3,
+"text": "Constitution of the \nBoard \n",
+"x0": 477.94,
+"x1": 567.57,
+"y0": 339.11,
+"page_height": 841.92
+},
+{
+"id": 149097,
+"page_no": 3,
+"text": "4. \n(1) The Board shall consist of a Chairman and a Vice \nchairman appointed by government and the following \nmembers:- \n",
+"x0": 99.024,
+"x1": 470.292,
+"y0": 339.098,
+"page_height": 841.92
+},
+{
+"id": 149098,
+"page_no": 3,
+"text": "1. Additional Chief Secretary (Development) \n2. Secretary, Local Government Department \n3. Secretary, Industries Department \n4. Secretary, Finance Department \n5. Secretary, Housing Town Planning Department \n6. Mayors of the Karachi Metropolitan Corporation and \nDistrict Municipal Corporations \n7. Chairman, District Council Karachi. \n8. Chairman, Karachi Port Trust \n9. Chairman, Karachi Electric Supply Corporation \n10. President, Karachi Chamber of Commerce and \nIndustries  \n11. Managing Director, KW&SB. \n12. Deputy Director, Military Lands & Cantonment, \nKarachi \n13. Chairman, Defence Housing Authority, Karachi \n14. Divisional Superintendent, Pakistan Railways, Karachi \n15. Any other person nominated by Government. \n \n",
+"x0": 63.024,
+"x1": 470.36,
+"y0": 389.378,
+"page_height": 841.92
+},
+{
+"id": 149099,
+"page_no": 3,
+"text": "(2) Government may at any time by notification change the \n",
+"x0": 99.024,
+"x1": 470.244,
+"y0": 661.588,
+"page_height": 841.92
+},
+{
+"id": 149100,
+"page_no": 3,
+"text": "Constitution of the Board. \n \n",
+"x0": 63.024,
+"x1": 272.894,
+"y0": 676.228,
+"page_height": 841.92
+},
+{
+"id": 149101,
+"page_no": 3,
+"text": "(3) A non-official member appointed by Government shall hold \noffice at pleasure of Government unless he is removed or has resigned \nearlier by addressing a letter to Government \n \n \n(4) There shall be a Secretary of the Board, who shall be \n",
+"x0": 63.024,
+"x1": 475.936,
+"y0": 705.748,
+"page_height": 841.92
+},
+{
+"id": 149102,
+"page_no": 3,
+"text": " \n3 \n",
+"x0": 72.024,
+"x1": 508.44,
+"y0": 792.348,
+"page_height": 841.92
+},
+{
+"id": 149103,
+"page_no": 4,
+"text": "SIND ACT NO. X OF 1996 \n",
+"x0": 218.57,
+"x1": 362.11,
+"y0": 36.168,
+"page_height": 841.92
+},
+{
+"id": 149104,
+"page_no": 4,
+"text": "THE KARACHI WATER AND SEWERAGE BOARD ACT, 1996 \n",
+"x0": 117.14,
+"x1": 462.431,
+"y0": 57.042,
+"page_height": 841.92
+},
+{
+"id": 149105,
+"page_no": 4,
+"text": "appointed by Government on such terms and conditions as it may \ndetermine. \n \n \n(5) Subject to the general control of the Managing Director the \nSecretary shall exercise such powers and perform such functions as \nmay be prescribed by regulations or assigned by the Board \n",
+"x0": 63.024,
+"x1": 470.268,
+"y0": 87.668,
+"page_height": 841.92
+},
+{
+"id": 149106,
+"page_no": 4,
+"text": "CHAPTER—III \n",
+"x0": 225.29,
+"x1": 308.499,
+"y0": 179.582,
+"page_height": 841.92
+},
+{
+"id": 149107,
+"page_no": 4,
+"text": " \nAPPOINTMENT POWERS AND FUNCTIONS OF THE MANAGING \n",
+"x0": 78.624,
+"x1": 455.102,
+"y0": 195.476,
+"page_height": 841.92
+},
+{
+"id": 149108,
+"page_no": 4,
+"text": "DIRECTOR \n",
+"x0": 234.53,
+"x1": 299.259,
+"y0": 216.422,
+"page_height": 841.92
+},
+{
+"id": 149109,
+"page_no": 4,
+"text": "Managing \nDirector \n",
+"x0": 477.94,
+"x1": 530.459,
+"y0": 242.24,
+"page_height": 841.92
+},
+{
+"id": 149110,
+"page_no": 4,
+"text": "5. \n(1) The Managing Director shall be appointed by \nGovernment on such terms and conditions as it may determine. \n",
+"x0": 63.024,
+"x1": 470.3,
+"y0": 242.228,
+"page_height": 841.92
+},
+{
+"id": 149111,
+"page_no": 4,
+"text": " \n \n \n(2) The Managing Director shall be the Chief Executive of \nthe Board. \n",
+"x0": 63.024,
+"x1": 470.252,
+"y0": 271.58,
+"page_height": 841.92
+},
+{
+"id": 149112,
+"page_no": 4,
+"text": " \n \n \n(3) Subject to the general control of the Chairman the \nManaging Director shall- \n \n",
+"x0": 63.024,
+"x1": 470.458,
+"y0": 307.1,
+"page_height": 841.92
+},
+{
+"id": 149113,
+"page_no": 4,
+"text": "(a) exercise the financial powers mentioned in Appendix \n",
+"x0": 135.02,
+"x1": 471.176,
+"y0": 350.138,
+"page_height": 841.92
+},
+{
+"id": 149114,
+"page_no": 4,
+"text": "‗A‘ \n \n(b) prepare and submit, with the approval of the Board, \n",
+"x0": 135.02,
+"x1": 470.24,
+"y0": 364.778,
+"page_height": 841.92
+},
+{
+"id": 149115,
+"page_no": 4,
+"text": "annual budget or revised budget to Government; \n \n",
+"x0": 63.024,
+"x1": 446.344,
+"y0": 401.618,
+"page_height": 841.92
+},
+{
+"id": 149116,
+"page_no": 4,
+"text": "(c) submit audit reports to Government and take prompt \n",
+"x0": 135.02,
+"x1": 470.228,
+"y0": 423.698,
+"page_height": 841.92
+},
+{
+"id": 149117,
+"page_no": 4,
+"text": "steps to remove any irregularity pointed out by the \nauditor; \n \n",
+"x0": 99.024,
+"x1": 470.276,
+"y0": 438.358,
+"page_height": 841.92
+},
+{
+"id": 149118,
+"page_no": 4,
+"text": "(d) supervise and control the acts and proceedings of \n",
+"x0": 135.02,
+"x1": 470.3,
+"y0": 475.198,
+"page_height": 841.92
+},
+{
+"id": 149119,
+"page_no": 4,
+"text": "the employees of the Board under this Act; \n \n",
+"x0": 99.024,
+"x1": 405.424,
+"y0": 489.838,
+"page_height": 841.92
+},
+{
+"id": 149120,
+"page_no": 4,
+"text": "(e) furnish to Government or such other officer as \n",
+"x0": 135.02,
+"x1": 470.288,
+"y0": 511.918,
+"page_height": 841.92
+},
+{
+"id": 149121,
+"page_no": 4,
+"text": "Government may, from time to time, nominate in this \nbehalf, a copy of every resolution passed at a \nmeeting of the Board; \n \n",
+"x0": 99.024,
+"x1": 470.288,
+"y0": 526.678,
+"page_height": 841.92
+},
+{
+"id": 149122,
+"page_no": 4,
+"text": "(f) supply any return, statement, account or report or a \n",
+"x0": 135.02,
+"x1": 470.252,
+"y0": 578.158,
+"page_height": 841.92
+},
+{
+"id": 149123,
+"page_no": 4,
+"text": "copy of any document in his charge, called by a \ncommittee or sub-committee set up by the Board \nand shall comply with any orders passed by the \nBoard \nor \ncommittee \nor \nsub-committee \nin \naccordance with the provisions of this Act. \n",
+"x0": 153.02,
+"x1": 470.548,
+"y0": 592.918,
+"page_height": 841.92
+},
+{
+"id": 149124,
+"page_no": 4,
+"text": "(g) Report to Government, Chairman and the Board all \n",
+"x0": 135.02,
+"x1": 470.288,
+"y0": 672.628,
+"page_height": 841.92
+},
+{
+"id": 149125,
+"page_no": 4,
+"text": "cases of fraud embezzlement, theft, or loss of money \nor property; \n",
+"x0": 153.02,
+"x1": 470.422,
+"y0": 687.268,
+"page_height": 841.92
+},
+{
+"id": 149126,
+"page_no": 4,
+"text": "(h) Perform such other functions and exercise such other \n",
+"x0": 135.02,
+"x1": 470.56,
+"y0": 722.908,
+"page_height": 841.92
+},
+{
+"id": 149127,
+"page_no": 4,
+"text": "powers as may, from time to time be assigned by the \nBoard. \n \n",
+"x0": 99.024,
+"x1": 470.276,
+"y0": 737.544,
+"page_height": 841.92
+},
+{
+"id": 149128,
+"page_no": 4,
+"text": " \n4 \n",
+"x0": 72.024,
+"x1": 508.44,
+"y0": 792.348,
+"page_height": 841.92
+},
+{
+"id": 149129,
+"page_no": 5,
+"text": "SIND ACT NO. X OF 1996 \n",
+"x0": 218.57,
+"x1": 362.11,
+"y0": 36.168,
+"page_height": 841.92
+},
+{
+"id": 149130,
+"page_no": 5,
+"text": "THE KARACHI WATER AND SEWERAGE BOARD ACT, 1996 \n",
+"x0": 117.14,
+"x1": 462.431,
+"y0": 57.042,
+"page_height": 841.92
+},
+{
+"id": 149131,
+"page_no": 5,
+"text": " \n \n(4) Subject to such limitations as may be laid down by the \nBoard, the Managing Director may delegate any of his powers to \nany officer or employee of the Board. \n \n",
+"x0": 63.024,
+"x1": 470.22,
+"y0": 87.668,
+"page_height": 841.92
+},
+{
+"id": 149132,
+"page_no": 5,
+"text": "CHAPTER—IV \n",
+"x0": 224.45,
+"x1": 309.459,
+"y0": 161.222,
+"page_height": 841.92
+},
+{
+"id": 149133,
+"page_no": 5,
+"text": " \nPOWERS AND FUNCTIONS OF THE CHAIRMAN OF THE BOARD \n \n",
+"x0": 63.024,
+"x1": 454.209,
+"y0": 177.014,
+"page_height": 841.92
+},
+{
+"id": 149134,
+"page_no": 5,
+"text": "6. (1) Subject to sub-section (2), the Chairman shall exercise \nthe following powers; \n \n(a) unless prevented by reasonable cause, preside at all \n",
+"x0": 99.024,
+"x1": 452.378,
+"y0": 205.748,
+"page_height": 841.92
+},
+{
+"id": 149135,
+"page_no": 5,
+"text": "meetings of the Board; \n \n(b) watch over the financial and executive administration of \n",
+"x0": 117.02,
+"x1": 470.482,
+"y0": 257.378,
+"page_height": 841.92
+},
+{
+"id": 149136,
+"page_no": 5,
+"text": "the Board and perform such executive functions as area \nassigned to him by or under this Act. \n \n",
+"x0": 99.024,
+"x1": 470.276,
+"y0": 294.098,
+"page_height": 841.92
+},
+{
+"id": 149137,
+"page_no": 5,
+"text": "(c) act on behalf of the Board in any emergency subject to \n",
+"x0": 117.02,
+"x1": 470.252,
+"y0": 330.938,
+"page_height": 841.92
+},
+{
+"id": 149138,
+"page_no": 5,
+"text": "obligation to report such action to the Board at its next \nmeeting and to seek the Board‘s ratification of the \naction so taken; \n \n",
+"x0": 99.024,
+"x1": 470.47,
+"y0": 345.578,
+"page_height": 841.92
+},
+{
+"id": 149139,
+"page_no": 5,
+"text": "(2) when the Chairman by reasons of absence from \n",
+"x0": 135.02,
+"x1": 470.324,
+"y0": 397.058,
+"page_height": 841.92
+},
+{
+"id": 149140,
+"page_no": 5,
+"text": "Pakistan or any other cause, is unable to exercise his \npowers and perform his functions, the Vice Chairman \nshall unless, Government may be notification entrust \nthe duties of the Chairman to some other person, \nexercise powers and perform functions of the \nChairman. \n \n(3) The Chairman shall exercise the financial powers \n",
+"x0": 135.02,
+"x1": 470.348,
+"y0": 411.818,
+"page_height": 841.92
+},
+{
+"id": 149141,
+"page_no": 5,
+"text": "mentioned in appendix ‗B‘. \n \n",
+"x0": 135.02,
+"x1": 319.474,
+"y0": 522.238,
+"page_height": 841.92
+},
+{
+"id": 149142,
+"page_no": 5,
+"text": "CHAPTER—V \n",
+"x0": 226.25,
+"x1": 307.659,
+"y0": 549.232,
+"page_height": 841.92
+},
+{
+"id": 149143,
+"page_no": 5,
+"text": "POWERS AND FUNCTIONS OF THE BOARD \n",
+"x0": 139.46,
+"x1": 395.169,
+"y0": 570.214,
+"page_height": 841.92
+},
+{
+"id": 149144,
+"page_no": 5,
+"text": "7. The Board shall – \n \n",
+"x0": 99.024,
+"x1": 216.374,
+"y0": 596.998,
+"page_height": 841.92
+},
+{
+"id": 149145,
+"page_no": 5,
+"text": "(i) Sanction in the manner and on payment of fees as \n",
+"x0": 135.02,
+"x1": 470.39,
+"y0": 619.108,
+"page_height": 841.92
+},
+{
+"id": 149146,
+"page_no": 5,
+"text": "may be prescribed by regulations— \n \n(a) Water connections, \n \n(b) Water supply to tankers; and \n \n",
+"x0": 63.024,
+"x1": 364.114,
+"y0": 633.748,
+"page_height": 841.92
+},
+{
+"id": 149147,
+"page_no": 5,
+"text": "(c) Sewerage connection. \n \n",
+"x0": 63.024,
+"x1": 307.834,
+"y0": 702.388,
+"page_height": 841.92
+},
+{
+"id": 149148,
+"page_no": 5,
+"text": "(ii) Levy, collect or recover rates, charges of fees for \n",
+"x0": 135.02,
+"x1": 470.276,
+"y0": 731.904,
+"page_height": 841.92
+},
+{
+"id": 149149,
+"page_no": 5,
+"text": "water supply and sewerage service, including arrears \nthereof; \n \n \n",
+"x0": 63.024,
+"x1": 470.3,
+"y0": 746.544,
+"page_height": 841.92
+},
+{
+"id": 149150,
+"page_no": 5,
+"text": " \n5 \n",
+"x0": 72.024,
+"x1": 508.44,
+"y0": 792.348,
+"page_height": 841.92
+},
+{
+"id": 149151,
+"page_no": 6,
+"text": "SIND ACT NO. X OF 1996 \n",
+"x0": 218.57,
+"x1": 362.11,
+"y0": 36.168,
+"page_height": 841.92
+},
+{
+"id": 149152,
+"page_no": 6,
+"text": "THE KARACHI WATER AND SEWERAGE BOARD ACT, 1996 \n",
+"x0": 117.14,
+"x1": 462.431,
+"y0": 57.042,
+"page_height": 841.92
+},
+{
+"id": 149153,
+"page_no": 6,
+"text": "(iii) have the power to reduce, suspend or disconnect \n",
+"x0": 135.02,
+"x1": 470.264,
+"y0": 102.428,
+"page_height": 841.92
+},
+{
+"id": 149154,
+"page_no": 6,
+"text": "the water supply in the event of contravention of the \nprovisions of this Act or regulations; \n \n(iv) have the power to impose surcharge, not exceeding \n",
+"x0": 135.02,
+"x1": 470.3,
+"y0": 117.068,
+"page_height": 841.92
+},
+{
+"id": 149155,
+"page_no": 6,
+"text": "double the amount due, if rates, charges or fees for \nwater supply or sewerage service or the arrears \nthereof are not paid within the time fixed by the \nBoard; \n \n(v) have full financial powers within the budget grant; \n \n(vi) make regulations with \nthe \napproval of \nthe \nGovernment; \n \n(vii) undertake construction, improvement, maintenance \n",
+"x0": 135.02,
+"x1": 470.536,
+"y0": 168.668,
+"page_height": 841.92
+},
+{
+"id": 149156,
+"page_no": 6,
+"text": "and operation of— \n \n",
+"x0": 135.02,
+"x1": 272.294,
+"y0": 308.378,
+"page_height": 841.92
+},
+{
+"id": 149157,
+"page_no": 6,
+"text": "(a) water works including wells and recharge facilities \n",
+"x0": 157.58,
+"x1": 470.318,
+"y0": 330.458,
+"page_height": 841.92
+},
+{
+"id": 149158,
+"page_no": 6,
+"text": "for collecting purifying, pumping, storing and \ndistributing water to all __ of consumers; \n \n(b) sewerage works for collecting, pumping, treating \n",
+"x0": 157.58,
+"x1": 470.354,
+"y0": 345.218,
+"page_height": 841.92
+},
+{
+"id": 149159,
+"page_no": 6,
+"text": "and disposing of sewerage and industrial waste; \n \n",
+"x0": 63.024,
+"x1": 458.344,
+"y0": 396.698,
+"page_height": 841.92
+},
+{
+"id": 149160,
+"page_no": 6,
+"text": "(viii) assess the position of water supply from time to time \n",
+"x0": 135.02,
+"x1": 470.192,
+"y0": 418.778,
+"page_height": 841.92
+},
+{
+"id": 149161,
+"page_no": 6,
+"text": "and regulate water supply; \n \n",
+"x0": 63.024,
+"x1": 322.474,
+"y0": 433.438,
+"page_height": 841.92
+},
+{
+"id": 149162,
+"page_no": 6,
+"text": "(ix) review the existing schemes or prepare new schemes \n",
+"x0": 135.02,
+"x1": 470.288,
+"y0": 455.518,
+"page_height": 841.92
+},
+{
+"id": 149163,
+"page_no": 6,
+"text": "relating to water works and sewerage work and \nundertake execution thereof with the approval of \nthe Government; \n \n",
+"x0": 63.024,
+"x1": 470.47,
+"y0": 470.278,
+"page_height": 841.92
+},
+{
+"id": 149164,
+"page_no": 6,
+"text": "(x) regulate, control or inspect, water connections, sewer \n",
+"x0": 135.02,
+"x1": 470.264,
+"y0": 521.758,
+"page_height": 841.92
+},
+{
+"id": 149165,
+"page_no": 6,
+"text": "lines and service lines including internal fittings; \n \n(xi) maintain account and records of the Board; \n \n(xii) prepare and submit to Government schedule of \n",
+"x0": 135.02,
+"x1": 470.288,
+"y0": 536.518,
+"page_height": 841.92
+},
+{
+"id": 149166,
+"page_no": 6,
+"text": "water and sewerage tariff, rates, charges or fees to \nbe levied by it; \n \n(xiii) prepare and revise schedule of posts for the Board \n",
+"x0": 135.02,
+"x1": 470.354,
+"y0": 595.318,
+"page_height": 841.92
+},
+{
+"id": 149167,
+"page_no": 6,
+"text": "and submit it to the Government for approval; \n \n(xiv) produce and supply potable water; \n \n(xv) place, maintain aqueducts, conduits, sewers etc. \n \n",
+"x0": 63.024,
+"x1": 449.704,
+"y0": 646.828,
+"page_height": 841.92
+},
+{
+"id": 149168,
+"page_no": 6,
+"text": " \n6 \n",
+"x0": 72.024,
+"x1": 508.44,
+"y0": 792.348,
+"page_height": 841.92
+},
+{
+"id": 149169,
+"page_no": 7,
+"text": "SIND ACT NO. X OF 1996 \n",
+"x0": 218.57,
+"x1": 362.11,
+"y0": 36.168,
+"page_height": 841.92
+},
+{
+"id": 149170,
+"page_no": 7,
+"text": "THE KARACHI WATER AND SEWERAGE BOARD ACT, 1996 \n",
+"x0": 117.14,
+"x1": 462.431,
+"y0": 57.042,
+"page_height": 841.92
+},
+{
+"id": 149171,
+"page_no": 7,
+"text": " \nCHAPTER—VI \n",
+"x0": 224.45,
+"x1": 309.459,
+"y0": 87.656,
+"page_height": 841.92
+},
+{
+"id": 149172,
+"page_no": 7,
+"text": " \nPOWERS OF THE GOVERNMENT \n \n",
+"x0": 63.024,
+"x1": 362.979,
+"y0": 120.71,
+"page_height": 841.92
+},
+{
+"id": 149173,
+"page_no": 7,
+"text": "8. \n(1) The budget of the Board, annual or revised shall be \n",
+"x0": 99.024,
+"x1": 454.142,
+"y0": 155.108,
+"page_height": 841.92
+},
+{
+"id": 149174,
+"page_no": 7,
+"text": "sanctioned by Government. \n \n",
+"x0": 117.02,
+"x1": 320.674,
+"y0": 169.868,
+"page_height": 841.92
+},
+{
+"id": 149175,
+"page_no": 7,
+"text": "(2) \nThe \nannual \nbudget \nshall \nbe \nsubmitted \nto \nGovernment, at least sixty days before the \ncommencement of the financial year. \n \n",
+"x0": 117.02,
+"x1": 470.354,
+"y0": 199.268,
+"page_height": 841.92
+},
+{
+"id": 149176,
+"page_no": 7,
+"text": "(3) Government shall, within thirty days of the receipt of \n",
+"x0": 135.02,
+"x1": 470.228,
+"y0": 258.098,
+"page_height": 841.92
+},
+{
+"id": 149177,
+"page_no": 7,
+"text": "the budget, approve it with or without modifications \nand convey the approval to the Board and if no \napproval is conveyed as aforesaid, the budget so \nsubmitted shall be deemed to have been approved \nby Government without any modification. \n \n(4) \nGovernment \nshall, \nsanction \nwith \nor \nwithout \nmodification schedule of water and sewerage \ntariff, rates, charges or fees to be levied for the \nsupply of water and maintenance sewerage \nservice, within ninety days of its submission. \n \n(5) Government may approve any scheme submitted to \n",
+"x0": 135.02,
+"x1": 470.572,
+"y0": 272.858,
+"page_height": 841.92
+},
+{
+"id": 149178,
+"page_no": 7,
+"text": "it in respect of water supply and sewerage with or \nwithout modification or reject it. \n \n(6) Government may raise long or short term loans \n",
+"x0": 135.02,
+"x1": 470.288,
+"y0": 464.158,
+"page_height": 841.92
+},
+{
+"id": 149179,
+"page_no": 7,
+"text": "including foreign exchange loans for the Board. \n \n(7) Government may give aid or make grant to the \n",
+"x0": 135.02,
+"x1": 470.276,
+"y0": 522.958,
+"page_height": 841.92
+},
+{
+"id": 149180,
+"page_no": 7,
+"text": "Board. \n \n(8) Government may approve schedule of advisors, \n",
+"x0": 135.02,
+"x1": 470.312,
+"y0": 567.118,
+"page_height": 841.92
+},
+{
+"id": 149181,
+"page_no": 7,
+"text": "officers and other staff for the Board. \n \n",
+"x0": 135.02,
+"x1": 373.954,
+"y0": 611.308,
+"page_height": 841.92
+},
+{
+"id": 149182,
+"page_no": 7,
+"text": "CHAPTER—VII \n",
+"x0": 222.53,
+"x1": 311.259,
+"y0": 640.702,
+"page_height": 841.92
+},
+{
+"id": 149183,
+"page_no": 7,
+"text": " \nSUPPLY OF WATER AND EXECUTION OF SCHEMES. \n",
+"x0": 114.74,
+"x1": 419.169,
+"y0": 656.59,
+"page_height": 841.92
+},
+{
+"id": 149184,
+"page_no": 7,
+"text": "9. \n(1) The Board shall be responsible for bulk production of \n",
+"x0": 99.024,
+"x1": 470.482,
+"y0": 690.988,
+"page_height": 841.92
+},
+{
+"id": 149185,
+"page_no": 7,
+"text": "potable water and its distribution in accordance with \nthe provisions of this Act. \n \n",
+"x0": 117.02,
+"x1": 470.264,
+"y0": 705.748,
+"page_height": 841.92
+},
+{
+"id": 149186,
+"page_no": 7,
+"text": "(2) The Board shall ensure that the water supplied by it is \n",
+"x0": 135.02,
+"x1": 470.204,
+"y0": 742.464,
+"page_height": 841.92
+},
+{
+"id": 149187,
+"page_no": 7,
+"text": "duly filtered, treated and tested and is fit for human \nconsumption. \n",
+"x0": 157.58,
+"x1": 470.24,
+"y0": 757.224,
+"page_height": 841.92
+},
+{
+"id": 149188,
+"page_no": 7,
+"text": " \n7 \n",
+"x0": 72.024,
+"x1": 508.44,
+"y0": 792.348,
+"page_height": 841.92
+},
+{
+"id": 149189,
+"page_no": 8,
+"text": "SIND ACT NO. X OF 1996 \n",
+"x0": 218.57,
+"x1": 362.11,
+"y0": 36.168,
+"page_height": 841.92
+},
+{
+"id": 149190,
+"page_no": 8,
+"text": "THE KARACHI WATER AND SEWERAGE BOARD ACT, 1996 \n",
+"x0": 117.14,
+"x1": 462.431,
+"y0": 57.042,
+"page_height": 841.92
+},
+{
+"id": 149191,
+"page_no": 8,
+"text": "(3) The Board shall arrange retail distribution of water \n",
+"x0": 135.02,
+"x1": 470.398,
+"y0": 87.668,
+"page_height": 841.92
+},
+{
+"id": 149192,
+"page_no": 8,
+"text": "within its jurisdiction excluding the areas receiving \nwater supply through constituent Bodies. \n \n(4) The Board may, subject to availability, supply water to \n",
+"x0": 135.02,
+"x1": 470.506,
+"y0": 102.428,
+"page_height": 841.92
+},
+{
+"id": 149193,
+"page_no": 8,
+"text": "any person or authority in the area or areas notified \nunder this Act. \n \n(5) The Board shall continue to make bulk supply to the \n",
+"x0": 135.02,
+"x1": 470.276,
+"y0": 153.908,
+"page_height": 841.92
+},
+{
+"id": 149194,
+"page_no": 8,
+"text": "constituent bodies at such rates and subject to such \nterms and conditions as may be determined by the \nBoard. \n \n(6) A Standing committee consisting of the Chairman or \n",
+"x0": 135.02,
+"x1": 470.264,
+"y0": 205.388,
+"page_height": 841.92
+},
+{
+"id": 149195,
+"page_no": 8,
+"text": "his nominee, Commissioner Karachi Division and the \nManaging Director shall allocate and determine \nquantity of water to be supplied to each constituent \nbody; \n     Provided that until such terms or conditions or quantity \n",
+"x0": 135.02,
+"x1": 470.494,
+"y0": 271.658,
+"page_height": 841.92
+},
+{
+"id": 149196,
+"page_no": 8,
+"text": "of water is determined, the Board shall continue the \nbulk water supply according to the arrangements \nexisting immediately before the commencement of \nthis Act. \n \n(7) If the Board does not accept the decision of the \n",
+"x0": 135.02,
+"x1": 470.482,
+"y0": 345.218,
+"page_height": 841.92
+},
+{
+"id": 149197,
+"page_no": 8,
+"text": "Standing committee, the Managing Director shall \nreport the matter to Government for appropriate \norders and the orders issued by Government shall be \ncomplied with by the Board. \n \n     Explanation – The term ―Constituent Bodies‖ shall \n",
+"x0": 135.02,
+"x1": 470.41,
+"y0": 426.118,
+"page_height": 841.92
+},
+{
+"id": 149198,
+"page_no": 8,
+"text": "mean and include the Authority, Karachi Port Trust, \ncantonment Board of Karachi, Sindh Industrial & \nTrading \nEstate, \nKarachi, \nPakistan \nSteel \nMills \nCorporation, Defence Services or any other body or \norganization notified by Government. \n \n(8) Until otherwise notified by Government, the Authority \n",
+"x0": 135.02,
+"x1": 470.56,
+"y0": 506.998,
+"page_height": 841.92
+},
+{
+"id": 149199,
+"page_no": 8,
+"text": "shall continue to executive the Hab Dam Water \nSupply Stage I and phase IV of the Greater Karachi \nBulk Water supply Stage I and Sewerage Disposal \nProjects. \n \n(9) The Board or any person authorised by it shall have \n",
+"x0": 135.02,
+"x1": 470.366,
+"y0": 602.668,
+"page_height": 841.92
+},
+{
+"id": 149200,
+"page_no": 8,
+"text": "right to place and maintain aqueducts, conduits \nand lines of mains, drains, sewers or pipes, over, \nunder, along or across any immovable property \nwithout acquiring such property, and to enter on \nsuch property for the purpose of examining, \nrepairing, altering or removing any aqueducts, \nconduits or lines of mains, sewers or pipes; \n",
+"x0": 157.58,
+"x1": 470.372,
+"y0": 683.668,
+"page_height": 841.92
+},
+{
+"id": 149201,
+"page_no": 8,
+"text": " \n8 \n",
+"x0": 72.024,
+"x1": 508.44,
+"y0": 792.348,
+"page_height": 841.92
+},
+{
+"id": 149202,
+"page_no": 9,
+"text": "SIND ACT NO. X OF 1996 \n",
+"x0": 218.57,
+"x1": 362.11,
+"y0": 36.168,
+"page_height": 841.92
+},
+{
+"id": 149203,
+"page_no": 9,
+"text": "THE KARACHI WATER AND SEWERAGE BOARD ACT, 1996 \n",
+"x0": 117.14,
+"x1": 462.431,
+"y0": 57.042,
+"page_height": 841.92
+},
+{
+"id": 149204,
+"page_no": 9,
+"text": "Provided that the Board shall not, except as \notherwise required under this Act acquire any right \nother than the right as aforesaid. \n \n(10) The right conferred by sub-section (1) shall not be \n",
+"x0": 135.02,
+"x1": 470.47,
+"y0": 102.428,
+"page_height": 841.92
+},
+{
+"id": 149205,
+"page_no": 9,
+"text": "exercisable in respect of any property vested in or \nunder the control or management of the Federal \nGovernment or any Provincial Government or any \nlocal authority or Railway Administration save with \nthe prior permission of such Government or local \nauthority or Railway Administration; \nProvided that such permission shall not be necessary \nif any repair, replacement, removal or improvement \nin connection with water and sanitation works is \nrequired to be made urgently in order to maintain \nthe service without interruption or for averting \ndanger to human life or property. \n \n(11) The Board or any person authorised by it shall, while \n",
+"x0": 135.02,
+"x1": 470.548,
+"y0": 168.668,
+"page_height": 841.92
+},
+{
+"id": 149206,
+"page_no": 9,
+"text": "exercising the right under this section, cause as little \ndamage and inconvenience as possible; and if any \ndamage or inconvenience is actually caused, a \nreasonable compensation as may be determined \nby the Board or by a person appointed by it in this \nbehalf shall be paid for such damages or \ninconveniences. \n \n",
+"x0": 63.024,
+"x1": 470.482,
+"y0": 367.298,
+"page_height": 841.92
+},
+{
+"id": 149207,
+"page_no": 9,
+"text": "CHAPTER—VIII \n",
+"x0": 220.73,
+"x1": 313.059,
+"y0": 482.632,
+"page_height": 841.92
+},
+{
+"id": 149208,
+"page_no": 9,
+"text": "FINANCES \n",
+"x0": 233.93,
+"x1": 300.281,
+"y0": 505.426,
+"page_height": 841.92
+},
+{
+"id": 149209,
+"page_no": 9,
+"text": "10. \n(1) There shall be established, by Government, a \n",
+"x0": 99.024,
+"x1": 470.312,
+"y0": 530.398,
+"page_height": 841.92
+},
+{
+"id": 149210,
+"page_no": 9,
+"text": "separate fund for the Board known as the Karachi \nWater and Sewerage Fund. \n \n",
+"x0": 117.02,
+"x1": 470.288,
+"y0": 545.038,
+"page_height": 841.92
+},
+{
+"id": 149211,
+"page_no": 9,
+"text": "(2) The Karachi Metropolitan Corporation shall contribute \n",
+"x0": 135.02,
+"x1": 470.228,
+"y0": 581.878,
+"page_height": 841.92
+},
+{
+"id": 149212,
+"page_no": 9,
+"text": "to the fund an amount as Government may fix but \nsuch amount shall not be more than ten percent of \nthe total annual revenue income of the Corporation; \nprovided that Government may be notification \nchange the amount payable by the corporation. \n \n",
+"x0": 117.02,
+"x1": 470.536,
+"y0": 596.518,
+"page_height": 841.92
+},
+{
+"id": 149213,
+"page_no": 9,
+"text": "(3) The fund shall include— \n \n",
+"x0": 117.02,
+"x1": 294.154,
+"y0": 677.548,
+"page_height": 841.92
+},
+{
+"id": 149214,
+"page_no": 9,
+"text": "(a) collection of water and sewerage charges, rates or \n",
+"x0": 140.3,
+"x1": 470.306,
+"y0": 699.628,
+"page_height": 841.92
+},
+{
+"id": 149215,
+"page_no": 9,
+"text": "fees payable to the Board; \n(b) grants made and aids given to the Board; \n(c) loans raised or obtained for the Board. \n(d) all other sums that may be received by the Board. \n \n",
+"x0": 63.024,
+"x1": 452.584,
+"y0": 714.268,
+"page_height": 841.92
+},
+{
+"id": 149216,
+"page_no": 9,
+"text": " \n9 \n",
+"x0": 72.024,
+"x1": 508.44,
+"y0": 792.348,
+"page_height": 841.92
+},
+{
+"id": 149217,
+"page_no": 10,
+"text": "SIND ACT NO. X OF 1996 \n",
+"x0": 218.57,
+"x1": 362.11,
+"y0": 36.168,
+"page_height": 841.92
+},
+{
+"id": 149218,
+"page_no": 10,
+"text": "THE KARACHI WATER AND SEWERAGE BOARD ACT, 1996 \n",
+"x0": 117.14,
+"x1": 462.431,
+"y0": 57.042,
+"page_height": 841.92
+},
+{
+"id": 149219,
+"page_no": 10,
+"text": " \n \n(4) The fund shall be operated by the Board \n \n \n \n(5) The sums credited to the fund shall be deposited in \n",
+"x0": 63.024,
+"x1": 470.228,
+"y0": 87.668,
+"page_height": 841.92
+},
+{
+"id": 149220,
+"page_no": 10,
+"text": "such banks as may be approved by Government. \n \n(6) The fund may be invested by the Board in any \n",
+"x0": 135.02,
+"x1": 470.288,
+"y0": 124.508,
+"page_height": 841.92
+},
+{
+"id": 149221,
+"page_no": 10,
+"text": "security of the Federal Government or the Provincial \nGovernment or in any other security approved by \nGovernment. \n \n(7) Account and record of the Board shall be \n",
+"x0": 135.02,
+"x1": 470.336,
+"y0": 161.228,
+"page_height": 841.92
+},
+{
+"id": 149222,
+"page_no": 10,
+"text": "maintained in the manner as may be prescribed by \nregulations. \n \n(8) Accounts of the Board shall be audited annually \n",
+"x0": 135.02,
+"x1": 470.288,
+"y0": 227.468,
+"page_height": 841.92
+},
+{
+"id": 149223,
+"page_no": 10,
+"text": "within six months of the expiry of financial year by \nthe Auditor General of Pakistan or his nominee. \n \n(9) The pre-audit of income and expenditure of the \n",
+"x0": 135.02,
+"x1": 470.33,
+"y0": 278.978,
+"page_height": 841.92
+},
+{
+"id": 149224,
+"page_no": 10,
+"text": "Board shall be done by the Auditors of Local Fund \nAudit Department under Municipal Fund (Audit \nRules), 1964. \n \n(10) A statement of the audited accounts, together with \n",
+"x0": 135.02,
+"x1": 470.3,
+"y0": 330.458,
+"page_height": 841.92
+},
+{
+"id": 149225,
+"page_no": 10,
+"text": "audit report shall be submitted to Government by \nthe Managing Director, and if any orders are made \nin respect thereto, the Board shall comply with such \norders. \n \n",
+"x0": 117.02,
+"x1": 470.434,
+"y0": 396.698,
+"page_height": 841.92
+},
+{
+"id": 149226,
+"page_no": 10,
+"text": "CHAPTER—IX \n",
+"x0": 224.57,
+"x1": 309.339,
+"y0": 467.872,
+"page_height": 841.92
+},
+{
+"id": 149227,
+"page_no": 10,
+"text": " \nEMPLOYEES OF THE BOARD \n \n",
+"x0": 63.024,
+"x1": 351.099,
+"y0": 483.544,
+"page_height": 841.92
+},
+{
+"id": 149228,
+"page_no": 10,
+"text": "11. \n (1) Appointments of the posts in the approved schedule \n",
+"x0": 99.024,
+"x1": 470.24,
+"y0": 515.638,
+"page_height": 841.92
+},
+{
+"id": 149229,
+"page_no": 10,
+"text": "may be made in the manner and on the terms and \nconditions as may be prescribed. \n \n",
+"x0": 63.024,
+"x1": 470.446,
+"y0": 530.398,
+"page_height": 841.92
+},
+{
+"id": 149230,
+"page_no": 10,
+"text": "(2) Employees of the existing Karachi Water and \n",
+"x0": 135.02,
+"x1": 470.324,
+"y0": 567.118,
+"page_height": 841.92
+},
+{
+"id": 149231,
+"page_no": 10,
+"text": "Sewerage Board including the employees of the \nDevelopment Authority and Karachi Metropolitan \nCorporation and the Karachi Water Management \nBoard absorbed and working in the Board may be \ntransferred to serve under the newly created Board \nas Government may direct and on such terms and \nconditions as may be determined by Government: \n        Provided that such terms and conditions shall not be \n",
+"x0": 135.02,
+"x1": 470.366,
+"y0": 581.878,
+"page_height": 841.92
+},
+{
+"id": 149232,
+"page_no": 10,
+"text": "less favourable than those admissible to such \nemployees immediately before such transfer: \n \n        Provided further that the employees so transferred \n",
+"x0": 135.02,
+"x1": 470.39,
+"y0": 699.628,
+"page_height": 841.92
+},
+{
+"id": 149233,
+"page_no": 10,
+"text": "shall, until the terms and conditions of service are \ndetermined \nunder \nthis \nAct, \ncontinue \nto \nbe \n",
+"x0": 162.02,
+"x1": 470.572,
+"y0": 758.424,
+"page_height": 841.92
+},
+{
+"id": 149234,
+"page_no": 10,
+"text": " \n10 \n",
+"x0": 72.024,
+"x1": 508.44,
+"y0": 792.348,
+"page_height": 841.92
+},
+{
+"id": 149235,
+"page_no": 11,
+"text": "SIND ACT NO. X OF 1996 \n",
+"x0": 218.57,
+"x1": 362.11,
+"y0": 36.168,
+"page_height": 841.92
+},
+{
+"id": 149236,
+"page_no": 11,
+"text": "THE KARACHI WATER AND SEWERAGE BOARD ACT, 1996 \n",
+"x0": 117.14,
+"x1": 462.431,
+"y0": 57.042,
+"page_height": 841.92
+},
+{
+"id": 149237,
+"page_no": 11,
+"text": "governed by the same terms and conditions as \nwere admissible to them immediately before such \ntransfer. \n",
+"x0": 162.02,
+"x1": 470.47,
+"y0": 87.668,
+"page_height": 841.92
+},
+{
+"id": 149238,
+"page_no": 11,
+"text": " \n(3) Pension, gratuity and other service benefits admissible \n",
+"x0": 135.02,
+"x1": 470.288,
+"y0": 131.75,
+"page_height": 841.92
+},
+{
+"id": 149239,
+"page_no": 11,
+"text": "to the employees referred to in sub-section (2) who \nretired or died before the commencement of this Act \nshall be the responsibility of the new Board. \n \n",
+"x0": 63.024,
+"x1": 470.482,
+"y0": 152.708,
+"page_height": 841.92
+},
+{
+"id": 149240,
+"page_no": 11,
+"text": "CHAPTER—X \n",
+"x0": 226.37,
+"x1": 307.539,
+"y0": 209.222,
+"page_height": 841.92
+},
+{
+"id": 149241,
+"page_no": 11,
+"text": "MISCELLANEOUS \n",
+"x0": 213.89,
+"x1": 320.321,
+"y0": 232.016,
+"page_height": 841.92
+},
+{
+"id": 149242,
+"page_no": 11,
+"text": "12. \n(1) All decisions of the Board shall be taken in its \n",
+"x0": 99.024,
+"x1": 470.24,
+"y0": 256.898,
+"page_height": 841.92
+},
+{
+"id": 149243,
+"page_no": 11,
+"text": "Meeting of the \nBoard \n",
+"x0": 477.94,
+"x1": 550.648,
+"y0": 256.91,
+"page_height": 841.92
+},
+{
+"id": 149244,
+"page_no": 11,
+"text": "meetings by majority. \n \n(2) Meeting of the Board shall be held in such manner \n",
+"x0": 135.02,
+"x1": 470.276,
+"y0": 271.658,
+"page_height": 841.92
+},
+{
+"id": 149245,
+"page_no": 11,
+"text": "and at such time and place as may be prescribed \nby regulations, provided that until the regulations are \nframed, the meetings shall be held as directed by \nthe Chairman. \n \n(3) No acts or proceedings of the Board shall be invalid \n",
+"x0": 135.02,
+"x1": 470.342,
+"y0": 307.178,
+"page_height": 841.92
+},
+{
+"id": 149246,
+"page_no": 11,
+"text": "merely by reason of any vacancy in or any defect in \nthe constitution of the Board. \n \n(4) The Board may, by general or special order and \n",
+"x0": 135.02,
+"x1": 470.354,
+"y0": 386.858,
+"page_height": 841.92
+},
+{
+"id": 149247,
+"page_no": 11,
+"text": "subject to such conditions as the board may impose, \ndelegate to the Chairman, Managing Director or its \nofficers or employees its powers or functions. \n \n \n \n",
+"x0": 63.024,
+"x1": 470.324,
+"y0": 437.158,
+"page_height": 841.92
+},
+{
+"id": 149248,
+"page_no": 11,
+"text": "Appeal \n",
+"x0": 477.94,
+"x1": 516.749,
+"y0": 493.57,
+"page_height": 841.92
+},
+{
+"id": 149249,
+"page_no": 11,
+"text": "13. \n(1) An appeal shall lie to— \n",
+"x0": 99.024,
+"x1": 291.154,
+"y0": 493.558,
+"page_height": 841.92
+},
+{
+"id": 149250,
+"page_no": 11,
+"text": "(a) Government from a decision of the Board or \n",
+"x0": 135.02,
+"x1": 470.39,
+"y0": 514.438,
+"page_height": 841.92
+},
+{
+"id": 149251,
+"page_no": 11,
+"text": "Chairman; \n(b) the Chairman from a decision of the Managing \n",
+"x0": 135.02,
+"x1": 470.312,
+"y0": 529.078,
+"page_height": 841.92
+},
+{
+"id": 149252,
+"page_no": 11,
+"text": "Director or any other officer subordinate to the \nChairman. \n",
+"x0": 153.02,
+"x1": 470.3,
+"y0": 558.598,
+"page_height": 841.92
+},
+{
+"id": 149253,
+"page_no": 11,
+"text": " \n(2) The appeal or review petition shall be heard and \n",
+"x0": 135.02,
+"x1": 470.434,
+"y0": 587.92,
+"page_height": 841.92
+},
+{
+"id": 149254,
+"page_no": 11,
+"text": "disposed in such manner as may be prescribed. \n \n",
+"x0": 63.024,
+"x1": 438.784,
+"y0": 608.908,
+"page_height": 841.92
+},
+{
+"id": 149255,
+"page_no": 11,
+"text": "Penalty. \n",
+"x0": 477.94,
+"x1": 519.389,
+"y0": 635.8,
+"page_height": 841.92
+},
+{
+"id": 149256,
+"page_no": 11,
+"text": "14. \nWhere any person— \n",
+"x0": 99.024,
+"x1": 256.454,
+"y0": 635.788,
+"page_height": 841.92
+},
+{
+"id": 149257,
+"page_no": 11,
+"text": "(a) willfully obstructs the setting out of any line or any \n",
+"x0": 135.02,
+"x1": 470.536,
+"y0": 656.668,
+"page_height": 841.92
+},
+{
+"id": 149258,
+"page_no": 11,
+"text": "works, or pulls up or removes any pillar, post or stake \nfixed in the ground for the purpose of setting out the \nline of such works or defaces or destroys any works \nmade for that purpose; or \n \n(b) willfully or negligently breaks, injures or opens any \n",
+"x0": 135.02,
+"x1": 470.434,
+"y0": 671.428,
+"page_height": 841.92
+},
+{
+"id": 149259,
+"page_no": 11,
+"text": "lock, dock value, pipe or water or sewerage works \nbelonging of Government; or \n",
+"x0": 153.02,
+"x1": 470.276,
+"y0": 752.304,
+"page_height": 841.92
+},
+{
+"id": 149260,
+"page_no": 11,
+"text": " \n11 \n",
+"x0": 72.024,
+"x1": 508.44,
+"y0": 792.348,
+"page_height": 841.92
+},
+{
+"id": 149261,
+"page_no": 12,
+"text": "SIND ACT NO. X OF 1996 \n",
+"x0": 218.57,
+"x1": 362.11,
+"y0": 36.168,
+"page_height": 841.92
+},
+{
+"id": 149262,
+"page_no": 12,
+"text": "THE KARACHI WATER AND SEWERAGE BOARD ACT, 1996 \n",
+"x0": 117.14,
+"x1": 462.431,
+"y0": 57.042,
+"page_height": 841.92
+},
+{
+"id": 149263,
+"page_no": 12,
+"text": "(c) willfully obstructs the flow of, draws off diverts or takes \n",
+"x0": 135.02,
+"x1": 470.228,
+"y0": 87.668,
+"page_height": 841.92
+},
+{
+"id": 149264,
+"page_no": 12,
+"text": "water from any Water works belonging to the \nGovernment or any sources of water which feeds \nsuch water works; or \n",
+"x0": 153.02,
+"x1": 470.378,
+"y0": 102.428,
+"page_height": 841.92
+},
+{
+"id": 149265,
+"page_no": 12,
+"text": " \n(d) unlawfully \nbreaks \nor \ndamages \nany \nelectrical \ntransmission on lines for water and sewerage works \nmaintained by Government; or \n",
+"x0": 135.02,
+"x1": 470.518,
+"y0": 146.51,
+"page_height": 841.92
+},
+{
+"id": 149266,
+"page_no": 12,
+"text": "(e) obstructs any officer or servant of the Board in the \n",
+"x0": 135.02,
+"x1": 470.312,
+"y0": 202.988,
+"page_height": 841.92
+},
+{
+"id": 149267,
+"page_no": 12,
+"text": "discharge of his duties under this Act or refuses or \nwillfully neglects to furnish him, upon his request, \nnecessary access for making any entry, inspection, \nexamination or inquiry in relation to any water or \nsewerage works; or \n \n",
+"x0": 63.024,
+"x1": 470.5,
+"y0": 217.628,
+"page_height": 841.92
+},
+{
+"id": 149268,
+"page_no": 12,
+"text": "(f) bathes in, at or upon any water works or washes, \n",
+"x0": 135.02,
+"x1": 470.276,
+"y0": 297.338,
+"page_height": 841.92
+},
+{
+"id": 149269,
+"page_no": 12,
+"text": "throws or causes enter therein any animals or throws \nany rubbish or other offensive matter into any water \nworks or washes or cleans therein any cloth, woll, \nleather or skin or any animal or causes the water of \nany sink, sewer or drain or any steam engine, boiler or \nany other dirty water to return or be brought in to any \nwater works or does any other act whereby the water \nin any water works is fouled or likely to be fouled, he \nshall be punished with imprisonment of either \ndescription for a term which may extend to six months \nof with fine which may extend to ten thousand rupees \nor with both. \n \n",
+"x0": 63.024,
+"x1": 470.572,
+"y0": 312.098,
+"page_height": 841.92
+},
+{
+"id": 149270,
+"page_no": 12,
+"text": "Rules \n",
+"x0": 477.94,
+"x1": 505.709,
+"y0": 503.41,
+"page_height": 841.92
+},
+{
+"id": 149271,
+"page_no": 12,
+"text": "15. \nGovernment may make rules for carrying out the \npurposes of this Act. \n",
+"x0": 99.024,
+"x1": 470.324,
+"y0": 503.398,
+"page_height": 841.92
+},
+{
+"id": 149272,
+"page_no": 12,
+"text": "Regulations \n",
+"x0": 477.94,
+"x1": 536.789,
+"y0": 547.93,
+"page_height": 841.92
+},
+{
+"id": 149273,
+"page_no": 12,
+"text": "16. \n(1) Subject to the provisions of this act and the rules the \n",
+"x0": 99.024,
+"x1": 470.252,
+"y0": 547.918,
+"page_height": 841.92
+},
+{
+"id": 149274,
+"page_no": 12,
+"text": "Board may, with the approval of Government, make \nregulations for carrying out the purposes of this Act. \n",
+"x0": 157.58,
+"x1": 470.458,
+"y0": 562.678,
+"page_height": 841.92
+},
+{
+"id": 149275,
+"page_no": 12,
+"text": " \n(2) In particular and without prejudice to the generality \n",
+"x0": 135.02,
+"x1": 470.264,
+"y0": 592.0,
+"page_height": 841.92
+},
+{
+"id": 149276,
+"page_no": 12,
+"text": "of the foregoing powers, such regulations may \nprovide for— \n \n \n \n",
+"x0": 63.024,
+"x1": 470.312,
+"y0": 612.988,
+"page_height": 841.92
+},
+{
+"id": 149277,
+"page_no": 12,
+"text": "(i) the meetings of the Board and conduct of \n",
+"x0": 159.74,
+"x1": 470.306,
+"y0": 648.508,
+"page_height": 841.92
+},
+{
+"id": 149278,
+"page_no": 12,
+"text": "business in such meetings; \n \n(ii) procedure for applying for water and sewerage \n",
+"x0": 157.34,
+"x1": 470.414,
+"y0": 663.268,
+"page_height": 841.92
+},
+{
+"id": 149279,
+"page_no": 12,
+"text": "connections including payment of fee for \nmaking application in this behalf; \n",
+"x0": 180.05,
+"x1": 470.354,
+"y0": 698.788,
+"page_height": 841.92
+},
+{
+"id": 149280,
+"page_no": 12,
+"text": " \n(iii) regulation, control or inspection of private \n",
+"x0": 154.94,
+"x1": 470.354,
+"y0": 728.11,
+"page_height": 841.92
+},
+{
+"id": 149281,
+"page_no": 12,
+"text": "sewers, water connections, service lines including \ninternal fittings; \n",
+"x0": 180.05,
+"x1": 470.354,
+"y0": 749.064,
+"page_height": 841.92
+},
+{
+"id": 149282,
+"page_no": 12,
+"text": " \n12 \n",
+"x0": 72.024,
+"x1": 508.44,
+"y0": 792.348,
+"page_height": 841.92
+},
+{
+"id": 149283,
+"page_no": 13,
+"text": "SIND ACT NO. X OF 1996 \n",
+"x0": 218.57,
+"x1": 362.11,
+"y0": 36.168,
+"page_height": 841.92
+},
+{
+"id": 149284,
+"page_no": 13,
+"text": "THE KARACHI WATER AND SEWERAGE BOARD ACT, 1996 \n",
+"x0": 117.14,
+"x1": 462.431,
+"y0": 57.042,
+"page_height": 841.92
+},
+{
+"id": 149285,
+"page_no": 13,
+"text": "(iv) procedure for levying collecting rates, fees or \n",
+"x0": 153.14,
+"x1": 470.494,
+"y0": 87.668,
+"page_height": 841.92
+},
+{
+"id": 149286,
+"page_no": 13,
+"text": "charges for water supply and sewerage service \nand imposing surcharge in case of any default \nmade in payment thereof; \n",
+"x0": 180.05,
+"x1": 470.354,
+"y0": 102.428,
+"page_height": 841.92
+},
+{
+"id": 149287,
+"page_no": 13,
+"text": " \n(v) grant of licences and permissions under this Act. \n",
+"x0": 155.54,
+"x1": 462.784,
+"y0": 146.51,
+"page_height": 841.92
+},
+{
+"id": 149288,
+"page_no": 13,
+"text": " \n(vi) any other matter required to be prescribed by \n",
+"x0": 153.14,
+"x1": 470.584,
+"y0": 167.27,
+"page_height": 841.92
+},
+{
+"id": 149289,
+"page_no": 13,
+"text": "regulations under this Act. \n \n",
+"x0": 63.024,
+"x1": 333.754,
+"y0": 188.228,
+"page_height": 841.92
+},
+{
+"id": 149290,
+"page_no": 13,
+"text": "Indemnity \n",
+"x0": 477.94,
+"x1": 529.109,
+"y0": 215.24,
+"page_height": 841.92
+},
+{
+"id": 149291,
+"page_no": 13,
+"text": "17. \nNo \nsuit \nor \nlegal \nproceedings \nshall \nlie \nagainst \nGovernment, Board or any member, officer or employee \nof the Board in respect of anything done or intended to \nbe done in good faith, under this Act or rules regulations \nframed thereunder; \n",
+"x0": 99.024,
+"x1": 470.572,
+"y0": 215.228,
+"page_height": 841.92
+},
+{
+"id": 149292,
+"page_no": 13,
+"text": "Removal of \ndifficulties \n",
+"x0": 477.94,
+"x1": 535.18,
+"y0": 301.07,
+"page_height": 841.92
+},
+{
+"id": 149293,
+"page_no": 13,
+"text": "18. \nWhere any difficulty arises within twelve months of the \ncoming into force of this Act, as to the implementation \nof any of the provisions of this Act, Government may \ngive appropriate directions for removal of such difficulty. \n",
+"x0": 99.024,
+"x1": 470.312,
+"y0": 301.058,
+"page_height": 841.92
+},
+{
+"id": 149294,
+"page_no": 13,
+"text": "19. \nThe \nprovisions \nof \nthis \nAct \nshall \nhave \neffect \nnotwithstanding anything to the contrary contained in \nthis Sindh Local Government Ordinance or any other law \nfor the time being in force. \n",
+"x0": 99.024,
+"x1": 470.36,
+"y0": 372.218,
+"page_height": 841.92
+},
+{
+"id": 149295,
+"page_no": 13,
+"text": "Repeal \n",
+"x0": 477.94,
+"x1": 514.949,
+"y0": 443.29,
+"page_height": 841.92
+},
+{
+"id": 149296,
+"page_no": 13,
+"text": "20. \n(1) Sections 121 to 147 contained in Chapter XVI of the \n",
+"x0": 99.024,
+"x1": 470.488,
+"y0": 443.278,
+"page_height": 841.92
+},
+{
+"id": 149297,
+"page_no": 13,
+"text": "Sindh Local Government Ordinance 1979 are hereby \nrepealed. \n",
+"x0": 157.58,
+"x1": 470.336,
+"y0": 458.038,
+"page_height": 841.92
+},
+{
+"id": 149298,
+"page_no": 13,
+"text": " \n \n(2) Notwithstanding the aforesaid repeal:- \n \n \n",
+"x0": 99.024,
+"x1": 381.274,
+"y0": 487.36,
+"page_height": 841.92
+},
+{
+"id": 149299,
+"page_no": 13,
+"text": "(i) all \nproperties, \nmovable \nand \nimmovable, \nincluding all water works and installations held by \nthe existing Karachi Water and Sewerage Board \n(hereinafter referred to as the old Board) shall \nvest in the new Board; \n",
+"x0": 159.74,
+"x1": 470.584,
+"y0": 514.438,
+"page_height": 841.92
+},
+{
+"id": 149300,
+"page_no": 13,
+"text": " \n(ii) all sums due to the old Board shall be paid to \n",
+"x0": 157.34,
+"x1": 470.306,
+"y0": 587.92,
+"page_height": 841.92
+},
+{
+"id": 149301,
+"page_no": 13,
+"text": "and recoverable by the new Board; \n \n(iii) all debts and liabilities incurred by the old Board \n",
+"x0": 154.94,
+"x1": 470.27,
+"y0": 608.908,
+"page_height": 841.92
+},
+{
+"id": 149302,
+"page_no": 13,
+"text": "shall be the liability of the new Board; \n \n(iv) all contracts entered into or rights acquired by \n",
+"x0": 153.14,
+"x1": 470.342,
+"y0": 644.428,
+"page_height": 841.92
+},
+{
+"id": 149303,
+"page_no": 13,
+"text": "the old Board shall be deemed to have been \nentered into, acquired by the new Board; \n \n(v) everything \ndone, \norders \nissued, \npowers \ndelegated, \napproval \naccorded, \npersons \nappointed, water charges and surcharge levied, \nactions taken by the old Board shall, if not \ninconsistent with the provisions of this Act, \n",
+"x0": 155.54,
+"x1": 470.39,
+"y0": 679.948,
+"page_height": 841.92
+},
+{
+"id": 149304,
+"page_no": 13,
+"text": " \n13 \n",
+"x0": 72.024,
+"x1": 508.44,
+"y0": 792.348,
+"page_height": 841.92
+},
+{
+"id": 149305,
+"page_no": 14,
+"text": "SIND ACT NO. X OF 1996 \n",
+"x0": 218.57,
+"x1": 362.11,
+"y0": 36.168,
+"page_height": 841.92
+},
+{
+"id": 149306,
+"page_no": 14,
+"text": "THE KARACHI WATER AND SEWERAGE BOARD ACT, 1996 \n",
+"x0": 117.14,
+"x1": 462.431,
+"y0": 57.042,
+"page_height": 841.92
+},
+{
+"id": 149307,
+"page_no": 14,
+"text": "continue to be in force and be deemed to have \nbeen \ndone, \nissued, \ndelegated, \naccorded, \nappointed, levied, taken, conferred or made \nunder this Act; \n",
+"x0": 180.05,
+"x1": 470.354,
+"y0": 87.668,
+"page_height": 841.92
+},
+{
+"id": 149308,
+"page_no": 14,
+"text": "(vi) all suits and other legal proceedings instituted by \n",
+"x0": 153.14,
+"x1": 470.512,
+"y0": 152.708,
+"page_height": 841.92
+},
+{
+"id": 149309,
+"page_no": 14,
+"text": "or against the old Board before the coming into \nforce of this Act may be continued by or against \nthe new Board; \n",
+"x0": 180.05,
+"x1": 470.33,
+"y0": 167.348,
+"page_height": 841.92
+},
+{
+"id": 149310,
+"page_no": 14,
+"text": " \nAPPENDIX ―A‖ \n",
+"x0": 221.21,
+"x1": 312.699,
+"y0": 211.31,
+"page_height": 841.92
+},
+{
+"id": 149311,
+"page_no": 14,
+"text": "(See section 5) \n",
+"x0": 218.45,
+"x1": 315.154,
+"y0": 244.742,
+"page_height": 841.92
+},
+{
+"id": 149312,
+"page_no": 14,
+"text": " \n \nFinancial powers of the Managing Director of the Board. \n \n",
+"x0": 63.024,
+"x1": 465.304,
+"y0": 268.538,
+"page_height": 841.92
+},
+{
+"id": 149313,
+"page_no": 14,
+"text": "S.No. \n",
+"x0": 68.304,
+"x1": 101.184,
+"y0": 297.938,
+"page_height": 841.92
+},
+{
+"id": 149314,
+"page_no": 14,
+"text": "Nature of Power \n",
+"x0": 190.61,
+"x1": 286.39,
+"y0": 297.938,
+"page_height": 841.92
+},
+{
+"id": 149315,
+"page_no": 14,
+"text": "Extent of Power \n",
+"x0": 374.59,
+"x1": 466.3,
+"y0": 297.938,
+"page_height": 841.92
+},
+{
+"id": 149316,
+"page_no": 14,
+"text": "(1) \n",
+"x0": 75.144,
+"x1": 94.344,
+"y0": 312.698,
+"page_height": 841.92
+},
+{
+"id": 149317,
+"page_no": 14,
+"text": "(2) \n",
+"x0": 228.89,
+"x1": 248.09,
+"y0": 312.698,
+"page_height": 841.92
+},
+{
+"id": 149318,
+"page_no": 14,
+"text": "(3) \n",
+"x0": 410.86,
+"x1": 430.06,
+"y0": 312.698,
+"page_height": 841.92
+},
+{
+"id": 149319,
+"page_no": 14,
+"text": "1. \nTechnical Sanction in respect of works. \nFull powers. \n \n",
+"x0": 78.144,
+"x1": 480.729,
+"y0": 334.778,
+"page_height": 841.92
+},
+{
+"id": 149320,
+"page_no": 14,
+"text": "2. \nSanction and acceptance of Tenders for \nworks by contract. \n",
+"x0": 78.144,
+"x1": 362.78,
+"y0": 356.618,
+"page_height": 841.92
+},
+{
+"id": 149321,
+"page_no": 14,
+"text": "Upto \nRs. \n25.0 \nlacs \n",
+"x0": 370.51,
+"x1": 470.35,
+"y0": 356.618,
+"page_height": 841.92
+},
+{
+"id": 149322,
+"page_no": 14,
+"text": "Upto 5%  \n \n",
+"x0": 370.51,
+"x1": 480.729,
+"y0": 387.578,
+"page_height": 841.92
+},
+{
+"id": 149323,
+"page_no": 14,
+"text": "3. \nSanction of amount in excess of the \nsanctioned estimates. \n",
+"x0": 78.144,
+"x1": 362.84,
+"y0": 387.578,
+"page_height": 841.92
+},
+{
+"id": 149324,
+"page_no": 14,
+"text": "4. \nPurchasing Powers \nUpto Rs. 2.5 Lacs   \n",
+"x0": 78.144,
+"x1": 480.729,
+"y0": 418.418,
+"page_height": 841.92
+},
+{
+"id": 149325,
+"page_no": 14,
+"text": "5. \nContingency \nFull powers \n \n",
+"x0": 78.144,
+"x1": 480.729,
+"y0": 435.838,
+"page_height": 841.92
+},
+{
+"id": 149326,
+"page_no": 14,
+"text": "6. \nEmergency Works \nAs provided in \npara 58 of the \nCPWD Code \n",
+"x0": 78.144,
+"x1": 470.386,
+"y0": 453.238,
+"page_height": 841.92
+},
+{
+"id": 149327,
+"page_no": 14,
+"text": " \nAPPENDIX ―B‖ \n",
+"x0": 218.93,
+"x1": 315.281,
+"y0": 497.41,
+"page_height": 841.92
+},
+{
+"id": 149328,
+"page_no": 14,
+"text": "(See section 6) \n \n",
+"x0": 63.024,
+"x1": 319.361,
+"y0": 535.426,
+"page_height": 841.92
+},
+{
+"id": 149329,
+"page_no": 14,
+"text": "Financial powers of the Chairman of the Board. \n \n",
+"x0": 63.024,
+"x1": 480.729,
+"y0": 564.838,
+"page_height": 841.92
+},
+{
+"id": 149330,
+"page_no": 14,
+"text": "S.No. \n",
+"x0": 78.624,
+"x1": 111.5,
+"y0": 586.798,
+"page_height": 841.92
+},
+{
+"id": 149331,
+"page_no": 14,
+"text": "Nature of Power \n",
+"x0": 198.53,
+"x1": 294.31,
+"y0": 586.798,
+"page_height": 841.92
+},
+{
+"id": 149332,
+"page_no": 14,
+"text": "Extent of Power \n",
+"x0": 372.43,
+"x1": 464.14,
+"y0": 586.798,
+"page_height": 841.92
+},
+{
+"id": 149333,
+"page_no": 14,
+"text": "(1) \n",
+"x0": 85.464,
+"x1": 104.66,
+"y0": 601.468,
+"page_height": 841.92
+},
+{
+"id": 149334,
+"page_no": 14,
+"text": "(2) \n",
+"x0": 236.81,
+"x1": 256.01,
+"y0": 601.468,
+"page_height": 841.92
+},
+{
+"id": 149335,
+"page_no": 14,
+"text": "(3) \n",
+"x0": 408.7,
+"x1": 427.9,
+"y0": 601.468,
+"page_height": 841.92
+},
+{
+"id": 149336,
+"page_no": 14,
+"text": "1. \nSanction and acceptance of Tenders \nfor works by contract. \n",
+"x0": 88.344,
+"x1": 358.256,
+"y0": 622.588,
+"page_height": 841.92
+},
+{
+"id": 149337,
+"page_no": 14,
+"text": "upto Rs. 50.00 \nLacs \n",
+"x0": 366.07,
+"x1": 448.624,
+"y0": 622.588,
+"page_height": 841.92
+},
+{
+"id": 149338,
+"page_no": 14,
+"text": "upto 10% \n \n",
+"x0": 366.07,
+"x1": 480.729,
+"y0": 652.108,
+"page_height": 841.92
+},
+{
+"id": 149339,
+"page_no": 14,
+"text": "2. \nSanction of amount in Excess of the \nsanctioned estimates \n",
+"x0": 88.344,
+"x1": 358.268,
+"y0": 652.108,
+"page_height": 841.92
+},
+{
+"id": 149340,
+"page_no": 14,
+"text": "3. \nPurchasing Powers \nupto Rs 5.0 lacs \n \n4. \nContingency \nFull powers \n \n5. \nEmergency Works. \nSection 6(1)(c) \n \n",
+"x0": 88.344,
+"x1": 480.729,
+"y0": 681.508,
+"page_height": 841.92
+},
+{
+"id": 149341,
+"page_no": 14,
+"text": " \n14 \n",
+"x0": 72.024,
+"x1": 508.44,
+"y0": 792.348,
+"page_height": 841.92
+}
+]
+},
+"1521": {
+"why": "Sindh Breast-Feeding and Child Nutrition Act 2013: membership table with designation cells and closing words (p7), '10.(1)' (p12), wrapped 'sub-section / (1)' (p14), margin note 'Definitions.' emitted after s.2(d) (p3)",
+"profile": "unreleased-v3",
+"structural_overrides": {
+"source_body_start_block": 91464
+},
+"blocks": [
+{
+"id": 91429,
+"page_no": 1,
+"text": "SINDH ACT NO.XVII OF 2013 \n",
+"x0": 215.93,
+"x1": 382.63,
+"y0": 36.348,
+"page_height": 864.0
+},
+{
+"id": 91430,
+"page_no": 1,
+"text": " \nTHE SINDH PROTECTION AND PROMOTION OF BREAST-FEEDING AND \n",
+"x0": 89.184,
+"x1": 509.194,
+"y0": 49.782,
+"page_height": 864.0
+},
+{
+"id": 91431,
+"page_no": 1,
+"text": "CHILD NUTRITION ACT, 2013 \n",
+"x0": 212.69,
+"x1": 385.75,
+"y0": 66.228,
+"page_height": 864.0
+},
+{
+"id": 91432,
+"page_no": 1,
+"text": " \nC O N T E N T S \nPreamble \n \nSections \n \n",
+"x0": 72.024,
+"x1": 350.201,
+"y0": 83.336,
+"page_height": 864.0
+},
+{
+"id": 91433,
+"page_no": 1,
+"text": "1. \nShort title, extent and commencement. \n",
+"x0": 99.864,
+"x1": 375.07,
+"y0": 186.308,
+"page_height": 864.0
+},
+{
+"id": 91434,
+"page_no": 1,
+"text": "2. \nDefinitions. \n",
+"x0": 99.864,
+"x1": 210.65,
+"y0": 208.388,
+"page_height": 864.0
+},
+{
+"id": 91435,
+"page_no": 1,
+"text": " \nCHAPTER-II \n",
+"x0": 99.864,
+"x1": 369.07,
+"y0": 230.468,
+"page_height": 864.0
+},
+{
+"id": 91436,
+"page_no": 1,
+"text": "ADMINISTRATION \n",
+"x0": 285.05,
+"x1": 386.59,
+"y0": 252.578,
+"page_height": 864.0
+},
+{
+"id": 91437,
+"page_no": 1,
+"text": "3. \nInfant Feeding Board. \n",
+"x0": 99.864,
+"x1": 272.33,
+"y0": 274.658,
+"page_height": 864.0
+},
+{
+"id": 91438,
+"page_no": 1,
+"text": "4. \nPowers and functions of the Board. \n",
+"x0": 99.864,
+"x1": 348.19,
+"y0": 296.738,
+"page_height": 864.0
+},
+{
+"id": 91439,
+"page_no": 1,
+"text": "5. \nMeetings of the Board. \n",
+"x0": 99.864,
+"x1": 278.57,
+"y0": 318.818,
+"page_height": 864.0
+},
+{
+"id": 91440,
+"page_no": 1,
+"text": "6. \nImplementation and monitoring. \n",
+"x0": 99.864,
+"x1": 335.71,
+"y0": 340.898,
+"page_height": 864.0
+},
+{
+"id": 91441,
+"page_no": 1,
+"text": "CHAPTER-III \nPROHIBITIONS \n7. \nProhibited practices. \n",
+"x0": 99.864,
+"x1": 377.11,
+"y0": 374.858,
+"page_height": 864.0
+},
+{
+"id": 91442,
+"page_no": 1,
+"text": "8. \nProhibitions and guidance relating to labels of designated \n",
+"x0": 99.864,
+"x1": 483.74,
+"y0": 426.478,
+"page_height": 864.0
+},
+{
+"id": 91443,
+"page_no": 1,
+"text": "products. \n",
+"x0": 144.86,
+"x1": 202.73,
+"y0": 448.438,
+"page_height": 864.0
+},
+{
+"id": 91444,
+"page_no": 1,
+"text": " \nCHAPTER-IV \nINFORMATIONAL AND EDUCATIONAL MATERIALS \n",
+"x0": 99.864,
+"x1": 475.66,
+"y0": 470.518,
+"page_height": 864.0
+},
+{
+"id": 91445,
+"page_no": 1,
+"text": " \n9. \nInformational and Educational Materials. \n",
+"x0": 99.864,
+"x1": 383.47,
+"y0": 513.784,
+"page_height": 864.0
+},
+{
+"id": 91446,
+"page_no": 1,
+"text": "10. \nHealth workers and Health care Facilities. \n",
+"x0": 99.864,
+"x1": 387.79,
+"y0": 537.238,
+"page_height": 864.0
+},
+{
+"id": 91447,
+"page_no": 1,
+"text": " \nCHAPTER-V \nREGISTRATION OF DESIGNATED PRODUCTS AND QUALITY \n",
+"x0": 99.864,
+"x1": 497.42,
+"y0": 559.318,
+"page_height": 864.0
+},
+{
+"id": 91448,
+"page_no": 1,
+"text": "ASSURANCE \n11. \nQuality Assurance. \n",
+"x0": 99.864,
+"x1": 372.19,
+"y0": 588.868,
+"page_height": 864.0
+},
+{
+"id": 91449,
+"page_no": 1,
+"text": "12. \nInvestigation and inspection. \n",
+"x0": 99.864,
+"x1": 315.274,
+"y0": 625.588,
+"page_height": 864.0
+},
+{
+"id": 91450,
+"page_no": 1,
+"text": "13. \nInvestigation and filing a case. \n",
+"x0": 99.864,
+"x1": 325.63,
+"y0": 647.668,
+"page_height": 864.0
+},
+{
+"id": 91451,
+"page_no": 1,
+"text": "14. \nAppeal. \n",
+"x0": 99.864,
+"x1": 194.81,
+"y0": 669.748,
+"page_height": 864.0
+},
+{
+"id": 91452,
+"page_no": 1,
+"text": "15. \nPublic enforcement. \n",
+"x0": 99.864,
+"x1": 265.13,
+"y0": 691.828,
+"page_height": 864.0
+},
+{
+"id": 91453,
+"page_no": 1,
+"text": " \nCHAPTER-VI \nPENALTIES AND PROCEDURES \n16. \nRevocation or suspension of license, etc. \n",
+"x0": 99.864,
+"x1": 419.83,
+"y0": 713.908,
+"page_height": 864.0
+},
+{
+"id": 91454,
+"page_no": 1,
+"text": "17. \nPenalties. \n",
+"x0": 99.864,
+"x1": 203.45,
+"y0": 765.408,
+"page_height": 864.0
+},
+{
+"id": 91455,
+"page_no": 1,
+"text": "1 \n \n",
+"x0": 72.024,
+"x1": 526.54,
+"y0": 799.533,
+"page_height": 864.0
+},
+{
+"id": 91456,
+"page_no": 2,
+"text": "SINDH ACT NO.XVII OF 2013 \n",
+"x0": 215.93,
+"x1": 382.63,
+"y0": 36.348,
+"page_height": 864.0
+},
+{
+"id": 91457,
+"page_no": 2,
+"text": " \nTHE SINDH PROTECTION AND PROMOTION OF BREAST-FEEDING AND \n",
+"x0": 89.184,
+"x1": 509.194,
+"y0": 49.782,
+"page_height": 864.0
+},
+{
+"id": 91458,
+"page_no": 2,
+"text": "CHILD NUTRITION ACT, 2013 \n",
+"x0": 212.69,
+"x1": 385.75,
+"y0": 66.228,
+"page_height": 864.0
+},
+{
+"id": 91459,
+"page_no": 2,
+"text": "18. \nResponsibility of an individual for the act of a company, \n",
+"x0": 99.864,
+"x1": 526.7,
+"y0": 83.348,
+"page_height": 864.0
+},
+{
+"id": 91460,
+"page_no": 2,
+"text": "corporation, partnership, or an institution. \n",
+"x0": 144.86,
+"x1": 385.63,
+"y0": 105.428,
+"page_height": 864.0
+},
+{
+"id": 91461,
+"page_no": 2,
+"text": "19. \nPower to make rules. \n",
+"x0": 99.864,
+"x1": 269.174,
+"y0": 127.508,
+"page_height": 864.0
+},
+{
+"id": 91462,
+"page_no": 2,
+"text": "20. \nOverriding effect. \n",
+"x0": 99.864,
+"x1": 249.29,
+"y0": 153.068,
+"page_height": 864.0
+},
+{
+"id": 91463,
+"page_no": 2,
+"text": "2 \n \n",
+"x0": 72.024,
+"x1": 526.54,
+"y0": 799.533,
+"page_height": 864.0
+},
+{
+"id": 91464,
+"page_no": 3,
+"text": "SINDH ACT NO.XVII OF 2013 \n",
+"x0": 215.93,
+"x1": 382.63,
+"y0": 36.348,
+"page_height": 864.0
+},
+{
+"id": 91465,
+"page_no": 3,
+"text": " \nTHE SINDH PROTECTION AND PROMOTION OF BREAST-FEEDING AND \n",
+"x0": 89.184,
+"x1": 509.194,
+"y0": 49.782,
+"page_height": 864.0
+},
+{
+"id": 91466,
+"page_no": 3,
+"text": "CHILD NUTRITION ACT, 2013 \n",
+"x0": 212.69,
+"x1": 385.75,
+"y0": 66.228,
+"page_height": 864.0
+},
+{
+"id": 91467,
+"page_no": 3,
+"text": "[19th March, 2013] \n",
+"x0": 437.14,
+"x1": 526.299,
+"y0": 100.52,
+"page_height": 864.0
+},
+{
+"id": 91468,
+"page_no": 3,
+"text": " \n            An Act to provide for protection of breast-feeding \nand nutrition for infants and young children. \n",
+"x0": 72.024,
+"x1": 526.864,
+"y0": 112.748,
+"page_height": 864.0
+},
+{
+"id": 91469,
+"page_no": 3,
+"text": "Preamble. \n",
+"x0": 432.94,
+"x1": 495.58,
+"y0": 176.108,
+"page_height": 864.0
+},
+{
+"id": 91470,
+"page_no": 3,
+"text": "            WHEREAS it is expedient to ensure safe and \nadequate nutrition for infants and young children by \npromoting \nand \nprotecting \nbreast-feeding, \nand \nby \nregulating the marketing and promotion of designated \nproducts including breast milk substitutes, and of feeding \nbottles, valves for feeding bottles, nipple shields, teats and \npacifier and to provide for matters connected therewith or \nancillary thereto; \n",
+"x0": 72.024,
+"x1": 425.482,
+"y0": 176.108,
+"page_height": 864.0
+},
+{
+"id": 91471,
+"page_no": 3,
+"text": "              It is hereby enacted as follows:- \n",
+"x0": 72.024,
+"x1": 303.734,
+"y0": 307.778,
+"page_height": 864.0
+},
+{
+"id": 91472,
+"page_no": 3,
+"text": "CHAPTER-I \nINTRODUCTORY \n \n",
+"x0": 72.024,
+"x1": 295.13,
+"y0": 337.778,
+"page_height": 864.0
+},
+{
+"id": 91473,
+"page_no": 3,
+"text": "Short title, \nextent and \ncommencement. \n",
+"x0": 432.94,
+"x1": 520.624,
+"y0": 381.95,
+"page_height": 864.0
+},
+{
+"id": 91474,
+"page_no": 3,
+"text": "1.  (1) This Act may be called the Sindh Protection and \nPromotion of Breast-Feeding and Child Nutrition Act, \n2013. \n \n",
+"x0": 72.024,
+"x1": 425.554,
+"y0": 381.938,
+"page_height": 864.0
+},
+{
+"id": 91475,
+"page_no": 3,
+"text": "(2) It shall extend to the whole of the Province of Sindh. \n",
+"x0": 90.024,
+"x1": 415.834,
+"y0": 440.758,
+"page_height": 864.0
+},
+{
+"id": 91476,
+"page_no": 3,
+"text": " \n(3) It shall come into force at once.     \n                                        \n",
+"x0": 72.024,
+"x1": 314.434,
+"y0": 455.518,
+"page_height": 864.0
+},
+{
+"id": 91477,
+"page_no": 3,
+"text": "2.      In this Act, unless there is anything repugnant in the \nsubject or context - \n \n",
+"x0": 72.024,
+"x1": 425.324,
+"y0": 499.558,
+"page_height": 864.0
+},
+{
+"id": 91478,
+"page_no": 3,
+"text": "(a) “infant” means a child upto the age of twelve   \n",
+"x0": 121.58,
+"x1": 432.146,
+"y0": 543.718,
+"page_height": 864.0
+},
+{
+"id": 91479,
+"page_no": 3,
+"text": "months; \n \n(b) “young child” means a child from the age of \n",
+"x0": 121.58,
+"x1": 425.264,
+"y0": 558.478,
+"page_height": 864.0
+},
+{
+"id": 91480,
+"page_no": 3,
+"text": "twelve months upto the age of two years;  \n \n",
+"x0": 108.02,
+"x1": 393.394,
+"y0": 602.668,
+"page_height": 864.0
+},
+{
+"id": 91481,
+"page_no": 3,
+"text": "(c) “advertise” or “advertising” means to make \n",
+"x0": 121.58,
+"x1": 425.336,
+"y0": 632.068,
+"page_height": 864.0
+},
+{
+"id": 91482,
+"page_no": 3,
+"text": "any representation by any means whatsoever \nfor the purpose of promoting sale or use of a \ndesignated product;  \n \n",
+"x0": 108.02,
+"x1": 425.336,
+"y0": 646.708,
+"page_height": 864.0
+},
+{
+"id": 91483,
+"page_no": 3,
+"text": "(d) “Board” means the Infant Feeding Board \n",
+"x0": 121.58,
+"x1": 425.336,
+"y0": 705.628,
+"page_height": 864.0
+},
+{
+"id": 91484,
+"page_no": 3,
+"text": "constituted under section 3; \n \n",
+"x0": 108.02,
+"x1": 309.014,
+"y0": 720.388,
+"page_height": 864.0
+},
+{
+"id": 91485,
+"page_no": 3,
+"text": "Definitions. \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n",
+"x0": 432.94,
+"x1": 487.689,
+"y0": 499.57,
+"page_height": 864.0
+},
+{
+"id": 91486,
+"page_no": 3,
+"text": "(e) “container” means any form of packaging of a \n",
+"x0": 121.58,
+"x1": 425.336,
+"y0": 749.808,
+"page_height": 864.0
+},
+{
+"id": 91487,
+"page_no": 3,
+"text": "designated product for sale as a retail unit; \n \n",
+"x0": 108.02,
+"x1": 396.634,
+"y0": 764.448,
+"page_height": 864.0
+},
+{
+"id": 91488,
+"page_no": 3,
+"text": "3 \n \n",
+"x0": 72.024,
+"x1": 526.54,
+"y0": 799.533,
+"page_height": 864.0
+},
+{
+"id": 91489,
+"page_no": 4,
+"text": "SINDH ACT NO.XVII OF 2013 \n",
+"x0": 215.93,
+"x1": 382.63,
+"y0": 36.348,
+"page_height": 864.0
+},
+{
+"id": 91490,
+"page_no": 4,
+"text": " \nTHE SINDH PROTECTION AND PROMOTION OF BREAST-FEEDING AND \n",
+"x0": 89.184,
+"x1": 509.194,
+"y0": 49.782,
+"page_height": 864.0
+},
+{
+"id": 91491,
+"page_no": 4,
+"text": "CHILD NUTRITION ACT, 2013 \n",
+"x0": 212.69,
+"x1": 385.75,
+"y0": 66.228,
+"page_height": 864.0
+},
+{
+"id": 91492,
+"page_no": 4,
+"text": "(f) “designated product” means-  \n \n",
+"x0": 108.02,
+"x1": 326.194,
+"y0": 83.348,
+"page_height": 864.0
+},
+{
+"id": 91493,
+"page_no": 4,
+"text": "(i) \nany milk manufactured, marketed and \npromoted for the use of an infant or \notherwise represented as a partial or \ntotal replacement for mother’s milk, \nwhether or not it is suitable for such \nreplacement; \n \n(ii) \nany products manufactured, marketed, \npromoted or otherwise represented as a \ncomplement to mother’s milk to meet \nthe growing nutritional needs of an \ninfant; \n \n",
+"x0": 108.02,
+"x1": 425.494,
+"y0": 112.748,
+"page_height": 864.0
+},
+{
+"id": 91494,
+"page_no": 4,
+"text": "(iii) \nany feeding bottle, teat, valve for \nfeeding bottle, pacifier or nipple shield; \nand  \n \n",
+"x0": 108.02,
+"x1": 425.372,
+"y0": 304.058,
+"page_height": 864.0
+},
+{
+"id": 91495,
+"page_no": 4,
+"text": "(iv) \nsuch other product as Government may, \nby notification in the official Gazette, \ndeclare to be a designated product for \nthe purposes of this Act; \n \n",
+"x0": 108.02,
+"x1": 425.53,
+"y0": 362.858,
+"page_height": 864.0
+},
+{
+"id": 91496,
+"page_no": 4,
+"text": "(g) “complementary \nfood” \nmeans \nany \nfood \nsuitable as an addition to breast milk or to a \nbreast milk substitute when either becomes \ninsufficient to satisfy the nutritional requirements \nof an infant, also commonly called “weaning \nfood” \nor \n“breast \nmilk \nand \nyoung \nchild \nsupplement”; \n \n(h) “distributor” means any person engaged in the \n",
+"x0": 121.58,
+"x1": 425.36,
+"y0": 436.438,
+"page_height": 864.0
+},
+{
+"id": 91497,
+"page_no": 4,
+"text": "business of marketing, whether wholesale or \nretail, and includes a person providing product \npublic relations and information services; \n \n",
+"x0": 108.02,
+"x1": 425.348,
+"y0": 568.918,
+"page_height": 864.0
+},
+{
+"id": 91498,
+"page_no": 4,
+"text": "(i) “feeding \nbottle” \nmeans \nany \nbottle \nor \nreceptacle marketed for the purpose of \nfeeding an infant or a young child; \n \n",
+"x0": 108.02,
+"x1": 425.482,
+"y0": 627.748,
+"page_height": 864.0
+},
+{
+"id": 91499,
+"page_no": 4,
+"text": "(j) “follow-up formula” means an animal or \n",
+"x0": 121.58,
+"x1": 425.438,
+"y0": 686.668,
+"page_height": 864.0
+},
+{
+"id": 91500,
+"page_no": 4,
+"text": "vegetable based milk product marketed for \ninfants older than six months or young child and \nformulated industrially in accordance with the \nstandards \nof \nthe \nCodex \nAlimentarius \nCommission and the Codex Code of Hygienic \nPractice for Foods for Infants and Children; \n",
+"x0": 144.02,
+"x1": 425.506,
+"y0": 701.308,
+"page_height": 864.0
+},
+{
+"id": 91501,
+"page_no": 4,
+"text": "4 \n \n",
+"x0": 72.024,
+"x1": 526.54,
+"y0": 799.533,
+"page_height": 864.0
+},
+{
+"id": 91502,
+"page_no": 5,
+"text": "SINDH ACT NO.XVII OF 2013 \n",
+"x0": 215.93,
+"x1": 382.63,
+"y0": 36.348,
+"page_height": 864.0
+},
+{
+"id": 91503,
+"page_no": 5,
+"text": " \nTHE SINDH PROTECTION AND PROMOTION OF BREAST-FEEDING AND \n",
+"x0": 89.184,
+"x1": 509.194,
+"y0": 49.782,
+"page_height": 864.0
+},
+{
+"id": 91504,
+"page_no": 5,
+"text": "CHILD NUTRITION ACT, 2013 \n",
+"x0": 212.69,
+"x1": 385.75,
+"y0": 66.228,
+"page_height": 864.0
+},
+{
+"id": 91505,
+"page_no": 5,
+"text": "(k) “Government” means the Government of \n",
+"x0": 121.58,
+"x1": 425.36,
+"y0": 132.428,
+"page_height": 864.0
+},
+{
+"id": 91506,
+"page_no": 5,
+"text": "Sindh; \n \n",
+"x0": 72.024,
+"x1": 181.904,
+"y0": 147.068,
+"page_height": 864.0
+},
+{
+"id": 91507,
+"page_no": 5,
+"text": "(l) “health care facility” means a Government, \n",
+"x0": 121.58,
+"x1": 425.324,
+"y0": 176.468,
+"page_height": 864.0
+},
+{
+"id": 91508,
+"page_no": 5,
+"text": "non-Government, semi-Government or private \ninstitution or organization, or private medical \npractitioner engaged, directly or indirectly, in \nthe provision of health care to infants, young \nchildren, pregnant women or mothers, and \nincludes a day-care center, nursery and any \nother child-care institution; \n \n",
+"x0": 108.02,
+"x1": 425.506,
+"y0": 191.228,
+"page_height": 864.0
+},
+{
+"id": 91509,
+"page_no": 5,
+"text": "(m) “health \nprofessional” \nmeans \na \nmedical \npractitioner, nurse, nutritionist or such other \npersons as Government may, by notification in \nthe official Gazette, specify; \n \n",
+"x0": 108.02,
+"x1": 425.39,
+"y0": 308.978,
+"page_height": 864.0
+},
+{
+"id": 91510,
+"page_no": 5,
+"text": "(n) “health worker” means any person providing \n",
+"x0": 121.58,
+"x1": 425.36,
+"y0": 382.538,
+"page_height": 864.0
+},
+{
+"id": 91511,
+"page_no": 5,
+"text": "services to infants, young children, pregnant \nwomen or mothers as a medical practitioner, \nand includes a health professional, homeopath \npractitioner, hakim, nurse, midwife, traditional \nbirth \nattendant, \npharmacist, \ndispensing \nchemist, nutritionist, hospital administrator or \nemployee, whether professional or not, whether \npaid or not, and any other person providing \nsuch \nservices \nas \nGovernment \nmay, \nby \nnotification in the official Gazette, specify; \n \n",
+"x0": 108.02,
+"x1": 425.53,
+"y0": 397.298,
+"page_height": 864.0
+},
+{
+"id": 91512,
+"page_no": 5,
+"text": "(o) “infant-formula” means an animal or vegetable \n",
+"x0": 121.58,
+"x1": 425.366,
+"y0": 559.078,
+"page_height": 864.0
+},
+{
+"id": 91513,
+"page_no": 5,
+"text": "based \nmilk \nproduct \nmanufactured \nin \naccordance with the standards recommended \nby the Codex Alimentarius Commission and the \nCodex Code of Hygienic Practice for Foods for \nInfants and Children to approximate the normal \nnutritional requirements of an infant upto the \nage of six months;  \n \n",
+"x0": 72.024,
+"x1": 425.414,
+"y0": 573.868,
+"page_height": 864.0
+},
+{
+"id": 91514,
+"page_no": 5,
+"text": "(p) “Inspector” means any person designated as \n",
+"x0": 121.58,
+"x1": 425.45,
+"y0": 691.588,
+"page_height": 864.0
+},
+{
+"id": 91515,
+"page_no": 5,
+"text": "Inspector under section 12; \n \n",
+"x0": 108.02,
+"x1": 304.094,
+"y0": 706.228,
+"page_height": 864.0
+},
+{
+"id": 91516,
+"page_no": 5,
+"text": "(q) “label” means any tag, mark, pictorial or other \n",
+"x0": 121.58,
+"x1": 425.3,
+"y0": 735.628,
+"page_height": 864.0
+},
+{
+"id": 91517,
+"page_no": 5,
+"text": "descriptive matter which is written, printed, \nstenciled, marked, embossed, attached or \notherwise appearing on a container; \n",
+"x0": 144.02,
+"x1": 425.39,
+"y0": 750.408,
+"page_height": 864.0
+},
+{
+"id": 91518,
+"page_no": 5,
+"text": "5 \n \n",
+"x0": 72.024,
+"x1": 526.54,
+"y0": 799.533,
+"page_height": 864.0
+},
+{
+"id": 91519,
+"page_no": 6,
+"text": "SINDH ACT NO.XVII OF 2013 \n",
+"x0": 215.93,
+"x1": 382.63,
+"y0": 36.348,
+"page_height": 864.0
+},
+{
+"id": 91520,
+"page_no": 6,
+"text": " \nTHE SINDH PROTECTION AND PROMOTION OF BREAST-FEEDING AND \n",
+"x0": 89.184,
+"x1": 509.194,
+"y0": 49.782,
+"page_height": 864.0
+},
+{
+"id": 91521,
+"page_no": 6,
+"text": "CHILD NUTRITION ACT, 2013 \n",
+"x0": 212.69,
+"x1": 385.75,
+"y0": 66.228,
+"page_height": 864.0
+},
+{
+"id": 91522,
+"page_no": 6,
+"text": "(r) “manufacturer” means a person, corporation \n",
+"x0": 121.58,
+"x1": 425.506,
+"y0": 127.508,
+"page_height": 864.0
+},
+{
+"id": 91523,
+"page_no": 6,
+"text": "or other entity engaged or involved in the \nbusiness \nof \nproducing, \nprocessing, \ncompounding, formulating, filling, packing, \nrepacking, altering, ornamenting, finishing and \nlabeling \na \ndesignated \nproduct, \nwhether \ndirectly, through an agent, or through a person \ncontrolled by or under an agreement; \n \n",
+"x0": 108.02,
+"x1": 425.518,
+"y0": 142.148,
+"page_height": 864.0
+},
+{
+"id": 91524,
+"page_no": 6,
+"text": "(s) “market” means any method of introducing or \n",
+"x0": 121.58,
+"x1": 425.3,
+"y0": 259.898,
+"page_height": 864.0
+},
+{
+"id": 91525,
+"page_no": 6,
+"text": "selling a designated  product, and includes, but \nnot  limited to, promotion,  distribution,  \nadvertising,  distribution of samples, product \npublic \nrelations \nand \nproduct \ninformation \nservices; \n \n",
+"x0": 108.02,
+"x1": 428.914,
+"y0": 274.658,
+"page_height": 864.0
+},
+{
+"id": 91526,
+"page_no": 6,
+"text": "(t) “nipple shield” means an appliance with a teat \n",
+"x0": 121.58,
+"x1": 425.312,
+"y0": 362.858,
+"page_height": 864.0
+},
+{
+"id": 91527,
+"page_no": 6,
+"text": "for a baby to suck from the breast; \n \n",
+"x0": 108.02,
+"x1": 348.274,
+"y0": 377.618,
+"page_height": 864.0
+},
+{
+"id": 91528,
+"page_no": 6,
+"text": "(u) “pacifier” means an artificial teat for babies to \n",
+"x0": 121.58,
+"x1": 425.288,
+"y0": 407.038,
+"page_height": 864.0
+},
+{
+"id": 91529,
+"page_no": 6,
+"text": "suck, also called “dummy”; \n \n",
+"x0": 108.02,
+"x1": 305.894,
+"y0": 421.798,
+"page_height": 864.0
+},
+{
+"id": 91530,
+"page_no": 6,
+"text": "(v) “person” means any individual, partnership, \n",
+"x0": 121.58,
+"x1": 425.36,
+"y0": 451.198,
+"page_height": 864.0
+},
+{
+"id": 91531,
+"page_no": 6,
+"text": "association, \nunincorporated \norganization, \ncompany, co-operative, corporation, trustee, \nagent or any group of persons; \n \n",
+"x0": 108.02,
+"x1": 425.414,
+"y0": 465.958,
+"page_height": 864.0
+},
+{
+"id": 91532,
+"page_no": 6,
+"text": "(w) “prescribed” means prescribed by rules; \n \n",
+"x0": 108.02,
+"x1": 379.954,
+"y0": 524.758,
+"page_height": 864.0
+},
+{
+"id": 91533,
+"page_no": 6,
+"text": "(x) “promote” or “promotion” means any method \n",
+"x0": 121.58,
+"x1": 425.288,
+"y0": 554.158,
+"page_height": 864.0
+},
+{
+"id": 91534,
+"page_no": 6,
+"text": "of introducing a person to, or familiarizing a \nperson with, a designated product or inducing \na person to buy or use a designated product, \nand includes, but not limited to, advertising, \noffer of samples or gifts, distribution of literature, \npublic \nrelations \nand \ninformation \nservices \nrelated to a designated product, but does not \ninclude any prescription issued by a medical \npractitioner based on health grounds; \n \n",
+"x0": 108.02,
+"x1": 425.458,
+"y0": 568.918,
+"page_height": 864.0
+},
+{
+"id": 91535,
+"page_no": 6,
+"text": "(y) “rules” means rules made under this Act; and  \n \n",
+"x0": 108.02,
+"x1": 412.474,
+"y0": 716.068,
+"page_height": 864.0
+},
+{
+"id": 91536,
+"page_no": 6,
+"text": "(z) “sample” means any quantity of a designated \n",
+"x0": 121.58,
+"x1": 425.324,
+"y0": 745.488,
+"page_height": 864.0
+},
+{
+"id": 91537,
+"page_no": 6,
+"text": "product provided free of cost. \n \n",
+"x0": 72.024,
+"x1": 322.954,
+"y0": 760.248,
+"page_height": 864.0
+},
+{
+"id": 91538,
+"page_no": 6,
+"text": "6 \n \n",
+"x0": 72.024,
+"x1": 526.54,
+"y0": 799.533,
+"page_height": 864.0
+},
+{
+"id": 91539,
+"page_no": 7,
+"text": "SINDH ACT NO.XVII OF 2013 \n",
+"x0": 215.93,
+"x1": 382.63,
+"y0": 36.348,
+"page_height": 864.0
+},
+{
+"id": 91540,
+"page_no": 7,
+"text": " \nTHE SINDH PROTECTION AND PROMOTION OF BREAST-FEEDING AND \n",
+"x0": 89.184,
+"x1": 509.194,
+"y0": 49.782,
+"page_height": 864.0
+},
+{
+"id": 91541,
+"page_no": 7,
+"text": "CHILD NUTRITION ACT, 2013 \n",
+"x0": 212.69,
+"x1": 385.75,
+"y0": 66.228,
+"page_height": 864.0
+},
+{
+"id": 91542,
+"page_no": 7,
+"text": "CHAPTER-II \nADMINISTRATION \n",
+"x0": 198.05,
+"x1": 299.57,
+"y0": 127.508,
+"page_height": 864.0
+},
+{
+"id": 91543,
+"page_no": 7,
+"text": "Infant Feeding \nBoard. \n",
+"x0": 432.94,
+"x1": 504.801,
+"y0": 159.92,
+"page_height": 864.0
+},
+{
+"id": 91544,
+"page_no": 7,
+"text": "3. (1) Government shall, by notification in the official \nGazette, constitute an Infant Feeding Board. \n",
+"x0": 72.024,
+"x1": 425.244,
+"y0": 159.908,
+"page_height": 864.0
+},
+{
+"id": 91545,
+"page_no": 7,
+"text": " \n \n(2) The Infant Feeding Board shall consist of- \n \n",
+"x0": 72.024,
+"x1": 436.3,
+"y0": 192.308,
+"page_height": 864.0
+},
+{
+"id": 91546,
+"page_no": 7,
+"text": "Chairperson \n",
+"x0": 333.07,
+"x1": 407.23,
+"y0": 248.978,
+"page_height": 864.0
+},
+{
+"id": 91547,
+"page_no": 7,
+"text": "1. \nChairman, Standing Committee \non Health. \n",
+"x0": 84.864,
+"x1": 308.06,
+"y0": 248.978,
+"page_height": 864.0
+},
+{
+"id": 91548,
+"page_no": 7,
+"text": "Members \n",
+"x0": 341.23,
+"x1": 399.07,
+"y0": 278.498,
+"page_height": 864.0
+},
+{
+"id": 91549,
+"page_no": 7,
+"text": "2. \nTwo \nMembers \nof \nProvincial \nAssembly \nnominated \nby \nthe \nSpeaker, Provincial Assembly of \nSindh. \n",
+"x0": 84.864,
+"x1": 308.084,
+"y0": 278.498,
+"page_height": 864.0
+},
+{
+"id": 91550,
+"page_no": 7,
+"text": "Secretary \n",
+"x0": 340.75,
+"x1": 399.55,
+"y0": 337.298,
+"page_height": 864.0
+},
+{
+"id": 91551,
+"page_no": 7,
+"text": "3. \nSecretary, Health Department, \nGovernment of Sindh. \n",
+"x0": 84.864,
+"x1": 308.012,
+"y0": 337.298,
+"page_height": 864.0
+},
+{
+"id": 91552,
+"page_no": 7,
+"text": "Member \n",
+"x0": 343.87,
+"x1": 396.43,
+"y0": 366.698,
+"page_height": 864.0
+},
+{
+"id": 91553,
+"page_no": 7,
+"text": "4. \nOne \nMember \nfrom \nthe \nPharmaceutical \nIndustry \nnominated by their Association.  \n",
+"x0": 84.864,
+"x1": 308.072,
+"y0": 366.698,
+"page_height": 864.0
+},
+{
+"id": 91554,
+"page_no": 7,
+"text": "Member \n",
+"x0": 343.87,
+"x1": 396.43,
+"y0": 410.878,
+"page_height": 864.0
+},
+{
+"id": 91555,
+"page_no": 7,
+"text": "5. \nOne Member from Civil Society \nnominated \nby \nHealth \nDepartment, \nGovernment \nof \nSindh. \n",
+"x0": 84.864,
+"x1": 308.06,
+"y0": 410.878,
+"page_height": 864.0
+},
+{
+"id": 91556,
+"page_no": 7,
+"text": "Members \n",
+"x0": 341.23,
+"x1": 399.07,
+"y0": 469.678,
+"page_height": 864.0
+},
+{
+"id": 91557,
+"page_no": 7,
+"text": "6. \nTwo Paedriaticians nominated \nby \nHealth \nDepartment, \nGovernment of Sindh. \n",
+"x0": 84.864,
+"x1": 308.036,
+"y0": 469.678,
+"page_height": 864.0
+},
+{
+"id": 91558,
+"page_no": 7,
+"text": "Members \n",
+"x0": 341.23,
+"x1": 399.07,
+"y0": 513.838,
+"page_height": 864.0
+},
+{
+"id": 91559,
+"page_no": 7,
+"text": "7. \nTwo Obstetrician/ Gynecologists \nnominated \nby \nHealth \nDepartment, \nGovernment \nof \nSindh. \n",
+"x0": 84.864,
+"x1": 308.06,
+"y0": 513.838,
+"page_height": 864.0
+},
+{
+"id": 91560,
+"page_no": 7,
+"text": "Member \n",
+"x0": 343.87,
+"x1": 396.43,
+"y0": 572.758,
+"page_height": 864.0
+},
+{
+"id": 91561,
+"page_no": 7,
+"text": "8. \nProgramme Manager, Nutrition \nSupport \nProgramme, \nHealth \nDepartment, \nGovernment \nof \nSindh. \n",
+"x0": 84.864,
+"x1": 308.048,
+"y0": 572.758,
+"page_height": 864.0
+},
+{
+"id": 91562,
+"page_no": 7,
+"text": "In the absence of Chairman, Standing Committee on \nHealth, Minister for Health, Sindh shall act as the Chairperson \nof the Board. \n",
+"x0": 72.024,
+"x1": 425.316,
+"y0": 668.188,
+"page_height": 864.0
+},
+{
+"id": 91563,
+"page_no": 7,
+"text": " \n \n \n \n \nProvided that not less than half of the total number of \nmembers of the Board shall comprise of such persons who \nare professionally qualified with respect to infant and young \nchild nutrition and at least one member of the Board shall \n",
+"x0": 72.024,
+"x1": 436.3,
+"y0": 668.188,
+"page_height": 864.0
+},
+{
+"id": 91564,
+"page_no": 7,
+"text": "7 \n \n",
+"x0": 72.024,
+"x1": 526.54,
+"y0": 799.533,
+"page_height": 864.0
+},
+{
+"id": 91565,
+"page_no": 8,
+"text": "SINDH ACT NO.XVII OF 2013 \n",
+"x0": 215.93,
+"x1": 382.63,
+"y0": 36.348,
+"page_height": 864.0
+},
+{
+"id": 91566,
+"page_no": 8,
+"text": " \nTHE SINDH PROTECTION AND PROMOTION OF BREAST-FEEDING AND \n",
+"x0": 89.184,
+"x1": 509.194,
+"y0": 49.782,
+"page_height": 864.0
+},
+{
+"id": 91567,
+"page_no": 8,
+"text": "CHILD NUTRITION ACT, 2013 \n",
+"x0": 212.69,
+"x1": 385.75,
+"y0": 66.228,
+"page_height": 864.0
+},
+{
+"id": 91568,
+"page_no": 8,
+"text": "be selected from the industry involved in the manufacturing \nand marketing of designated products. \n",
+"x0": 72.024,
+"x1": 425.426,
+"y0": 83.348,
+"page_height": 864.0
+},
+{
+"id": 91569,
+"page_no": 8,
+"text": " \n \n    (3)  Government shall nominate the members of the \nBoard, who shall hold office for such term as Government \nmay determine or as may be prescribed. \n",
+"x0": 72.024,
+"x1": 436.3,
+"y0": 115.748,
+"page_height": 864.0
+},
+{
+"id": 91570,
+"page_no": 8,
+"text": "Powers and \nfunctions of the \nBoard. \n",
+"x0": 432.94,
+"x1": 509.254,
+"y0": 194.36,
+"page_height": 864.0
+},
+{
+"id": 91571,
+"page_no": 8,
+"text": "4.      The following shall be the powers and functions of the \nBoard, namely:- \n \n",
+"x0": 72.024,
+"x1": 425.414,
+"y0": 194.348,
+"page_height": 864.0
+},
+{
+"id": 91572,
+"page_no": 8,
+"text": "(a) \nto receive reports of violations of the provisions \nof this Act or the rules; \n \n(b) \nto recommend investigation of cases against \nmanufacturers, distributors or health workers \nfound to be violating the provisions of this Act \nor the rules;  \n \n",
+"x0": 72.024,
+"x1": 425.542,
+"y0": 238.388,
+"page_height": 864.0
+},
+{
+"id": 91573,
+"page_no": 8,
+"text": "(c) \nto plan for and co-ordinate the dissemination \nof informational and educational materials on \nthe topic of infant feeding and recommend \ncontinuing educational courses for health \nworkers for the purposes of this Act; \n \n",
+"x0": 108.02,
+"x1": 425.53,
+"y0": 356.138,
+"page_height": 864.0
+},
+{
+"id": 91574,
+"page_no": 8,
+"text": "(d) \nto advise Government on policies for the \npromotion and protection of breast-feeding, \nand matters relating to designated products \nespecially infant and young child nutrition, \nparticularly through education campaigns, and \nto organize health education on the same for \nhealth workers and general public; and \n \n",
+"x0": 108.02,
+"x1": 425.494,
+"y0": 444.478,
+"page_height": 864.0
+},
+{
+"id": 91575,
+"page_no": 8,
+"text": "(e) \nto propose guidelines to Government in respect \nof matters specified in clause (d). \n \n",
+"x0": 72.024,
+"x1": 425.36,
+"y0": 562.198,
+"page_height": 864.0
+},
+{
+"id": 91576,
+"page_no": 8,
+"text": "Meetings  \nof the Board. \n \n",
+"x0": 432.94,
+"x1": 497.289,
+"y0": 606.4,
+"page_height": 864.0
+},
+{
+"id": 91577,
+"page_no": 8,
+"text": "5.       The Secretary of the Board shall call meetings of the \nBoard, at the direction of the Chairperson, and maintain \nminutes of such meetings. \n",
+"x0": 72.024,
+"x1": 425.47,
+"y0": 606.388,
+"page_height": 864.0
+},
+{
+"id": 91578,
+"page_no": 8,
+"text": "Implementation \nand monitoring. \n",
+"x0": 432.94,
+"x1": 512.86,
+"y0": 676.72,
+"page_height": 864.0
+},
+{
+"id": 91579,
+"page_no": 8,
+"text": "6.          Government may give such directions  as may \nappear to it to be necessary for carrying into effect in any \nof the provisions of this Act or of the rules, or any order or \ndirection \nmade \nthereunder, \nor \nfor \nachievement \nof \nuniformity in respect of any matter related thereto in \ndifferent parts of Sindh. \n",
+"x0": 72.024,
+"x1": 425.402,
+"y0": 676.708,
+"page_height": 864.0
+},
+{
+"id": 91580,
+"page_no": 8,
+"text": "8 \n \n",
+"x0": 72.024,
+"x1": 526.54,
+"y0": 799.533,
+"page_height": 864.0
+},
+{
+"id": 91581,
+"page_no": 9,
+"text": "SINDH ACT NO.XVII OF 2013 \n",
+"x0": 215.93,
+"x1": 382.63,
+"y0": 36.348,
+"page_height": 864.0
+},
+{
+"id": 91582,
+"page_no": 9,
+"text": " \nTHE SINDH PROTECTION AND PROMOTION OF BREAST-FEEDING AND \n",
+"x0": 89.184,
+"x1": 509.194,
+"y0": 49.782,
+"page_height": 864.0
+},
+{
+"id": 91583,
+"page_no": 9,
+"text": "CHILD NUTRITION ACT, 2013 \n",
+"x0": 212.69,
+"x1": 385.75,
+"y0": 66.228,
+"page_height": 864.0
+},
+{
+"id": 91584,
+"page_no": 9,
+"text": "CHAPTER-III \nPROHIBITIONS \n",
+"x0": 207.53,
+"x1": 290.09,
+"y0": 152.348,
+"page_height": 864.0
+},
+{
+"id": 91585,
+"page_no": 9,
+"text": "Prohibited \npractices. \n",
+"x0": 432.94,
+"x1": 484.42,
+"y0": 196.4,
+"page_height": 864.0
+},
+{
+"id": 91586,
+"page_no": 9,
+"text": " \n7. (1) No person shall, in any form whatsoever, promote any \ndesignated products except as provided for under this Act. \n",
+"x0": 72.024,
+"x1": 425.244,
+"y0": 181.748,
+"page_height": 864.0
+},
+{
+"id": 91587,
+"page_no": 9,
+"text": "     (2) No person shall in any manner assert that any \ndesignated product is a substitute for mother’s milk, or that it \nis equivalent to or comparable with or superior to mother’s \nmilk. \n",
+"x0": 72.024,
+"x1": 425.292,
+"y0": 239.858,
+"page_height": 864.0
+},
+{
+"id": 91588,
+"page_no": 9,
+"text": "     (3) No manufacturer or distributor shall offer, or make gift \nor contributions of any kind, or pay to any extent for any \nreason whatsoever, or give any kind of benefit, to a health \nworker or his family, or any personnel employed, directly or \nindirectly, in a health care facility, or any member of the \nBoard, or the employees thereof. \n",
+"x0": 72.024,
+"x1": 425.402,
+"y0": 312.698,
+"page_height": 864.0
+},
+{
+"id": 91589,
+"page_no": 9,
+"text": "     (4) No manufacturer or distributor shall donate any \ndesignated product and equipment or services related to a \ndesignated product free of charge or at low cost to a \nhealth care facility, or offer or give any benefit to a \nprofessional association of medical practitioners for this \npurpose. \n",
+"x0": 72.024,
+"x1": 425.39,
+"y0": 415.078,
+"page_height": 864.0
+},
+{
+"id": 91590,
+"page_no": 9,
+"text": "     (5)  No person other than a health worker who is not \nengaged by a manufacturer or distributor shall instruct any \nuser on the need and proper preparation and use of any \ndesignated product: \n",
+"x0": 72.024,
+"x1": 425.47,
+"y0": 517.318,
+"page_height": 864.0
+},
+{
+"id": 91591,
+"page_no": 9,
+"text": "            Provided that a manufacturer or distributor may \ninstruct any user on the need and proper preparation and \nuse of any designated product in accordance with the \nprovisions of section 8. \n",
+"x0": 72.024,
+"x1": 425.288,
+"y0": 590.188,
+"page_height": 864.0
+},
+{
+"id": 91592,
+"page_no": 9,
+"text": "     (6) No distributor or manufacturer shall in furtherance of \nor for the purposes of its business have contact, directly or \nindirectly, with general public within a health care facility. \n",
+"x0": 72.024,
+"x1": 425.402,
+"y0": 663.028,
+"page_height": 864.0
+},
+{
+"id": 91593,
+"page_no": 9,
+"text": "     (7) No manufacturer, distributor or any person engaged \nby them shall produce or distribute any educational or \ninformational material relating to infant and young child \nfeeding: \n",
+"x0": 72.024,
+"x1": 425.45,
+"y0": 721.228,
+"page_height": 864.0
+},
+{
+"id": 91594,
+"page_no": 9,
+"text": "9 \n \n",
+"x0": 72.024,
+"x1": 526.54,
+"y0": 799.533,
+"page_height": 864.0
+},
+{
+"id": 91595,
+"page_no": 10,
+"text": "SINDH ACT NO.XVII OF 2013 \n",
+"x0": 215.93,
+"x1": 382.63,
+"y0": 36.348,
+"page_height": 864.0
+},
+{
+"id": 91596,
+"page_no": 10,
+"text": " \nTHE SINDH PROTECTION AND PROMOTION OF BREAST-FEEDING AND \n",
+"x0": 89.184,
+"x1": 509.194,
+"y0": 49.782,
+"page_height": 864.0
+},
+{
+"id": 91597,
+"page_no": 10,
+"text": "CHILD NUTRITION ACT, 2013 \n",
+"x0": 212.69,
+"x1": 385.75,
+"y0": 66.228,
+"page_height": 864.0
+},
+{
+"id": 91598,
+"page_no": 10,
+"text": "            Provided that any educational or informational \nmaterial relating to a designated product may be provided \nby a manufacturer or distributor to a health professional \nsubject to the prescribed conditions, and that the same \nshall be restricted to scientific and factual matters, and shall \nnot imply or create a belief that bottle-feeding is equivalent \nor superior to breast-feeding. \n",
+"x0": 72.024,
+"x1": 425.542,
+"y0": 83.348,
+"page_height": 864.0
+},
+{
+"id": 91599,
+"page_no": 10,
+"text": " \n8.  (1) No designated product shall be marketed or sold in \nSindh unless its label is in accordance with the provisions of \nthis Act and the rules, and approved in the manner as may \nbe prescribed by Government: \n",
+"x0": 72.024,
+"x1": 425.312,
+"y0": 200.348,
+"page_height": 864.0
+},
+{
+"id": 91600,
+"page_no": 10,
+"text": "Prohibitions and \nguidance \nrelating to \nlabels of \ndesignated \nproducts. \n",
+"x0": 432.94,
+"x1": 512.361,
+"y0": 215.0,
+"page_height": 864.0
+},
+{
+"id": 91601,
+"page_no": 10,
+"text": "          Provided that for any designated product already \nbeing sold in Sindh, a manufacturer or distributor shall \nprovide for the label of such product within one hundred \nand eighty days of its approval in the manner as may be \nprescribed. \n",
+"x0": 72.024,
+"x1": 425.554,
+"y0": 287.978,
+"page_height": 864.0
+},
+{
+"id": 91602,
+"page_no": 10,
+"text": "(2) Label of a designated product shall be designed so \nas not to discourage breast-feeding and shall provide the \nnecessary information in Urdu about the appropriate use of \nsuch product and the age before which a designated \nproduct should not be used. \n",
+"x0": 72.024,
+"x1": 425.39,
+"y0": 375.458,
+"page_height": 864.0
+},
+{
+"id": 91603,
+"page_no": 10,
+"text": " \n(3) Every container shall have a clear, conspicuous and \neasily understood message printed on it, or on a label that \ncannot become separated from it, which shall be written in \nSindhi and Urdu, and if so desired by the manufacturers, in \nEnglish as well. \n",
+"x0": 72.024,
+"x1": 425.366,
+"y0": 463.078,
+"page_height": 864.0
+},
+{
+"id": 91604,
+"page_no": 10,
+"text": " \n(4) The label shall – \n",
+"x0": 90.024,
+"x1": 201.494,
+"y0": 551.398,
+"page_height": 864.0
+},
+{
+"id": 91605,
+"page_no": 10,
+"text": " \n(a) \nnot contain anything that may discourage \nbreast-feeding; \n",
+"x0": 108.02,
+"x1": 425.312,
+"y0": 580.744,
+"page_height": 864.0
+},
+{
+"id": 91606,
+"page_no": 10,
+"text": "(b) \ncontain \na \nconspicuous \nnotice \nin \nbold \ncharacters in the prescribed height stating the \nfollowing, namely:- \n",
+"x0": 108.02,
+"x1": 425.414,
+"y0": 632.908,
+"page_height": 864.0
+},
+{
+"id": 91607,
+"page_no": 10,
+"text": "“MOTHER’S MILK IS BEST FOR YOUR BABY AND \nHELPS IN PREVENTING DIARRHOEA AND OTHER \nILLNESSES”; \n",
+"x0": 144.02,
+"x1": 425.312,
+"y0": 690.988,
+"page_height": 864.0
+},
+{
+"id": 91608,
+"page_no": 10,
+"text": "(c) \ninstead of or in addition to the notice specified \nin clause (b), contain any other message as \nmay be prescribed with respect to any \n",
+"x0": 108.02,
+"x1": 425.45,
+"y0": 749.088,
+"page_height": 864.0
+},
+{
+"id": 91609,
+"page_no": 10,
+"text": "10 \n \n",
+"x0": 72.024,
+"x1": 526.54,
+"y0": 799.533,
+"page_height": 864.0
+},
+{
+"id": 91610,
+"page_no": 11,
+"text": "SINDH ACT NO.XVII OF 2013 \n",
+"x0": 215.93,
+"x1": 382.63,
+"y0": 36.348,
+"page_height": 864.0
+},
+{
+"id": 91611,
+"page_no": 11,
+"text": " \nTHE SINDH PROTECTION AND PROMOTION OF BREAST-FEEDING AND \n",
+"x0": 89.184,
+"x1": 509.194,
+"y0": 49.782,
+"page_height": 864.0
+},
+{
+"id": 91612,
+"page_no": 11,
+"text": "CHILD NUTRITION ACT, 2013 \n",
+"x0": 212.69,
+"x1": 385.75,
+"y0": 66.228,
+"page_height": 864.0
+},
+{
+"id": 91613,
+"page_no": 11,
+"text": "designated product;  \n",
+"x0": 144.02,
+"x1": 271.094,
+"y0": 83.348,
+"page_height": 864.0
+},
+{
+"id": 91614,
+"page_no": 11,
+"text": "(d) \nneither uses expression such as “maternalized” \nor “humanized” or equivalent nor contains any \ncomparison with mother’s milk. \n(e) \nnot show photographs, drawings or graphics, \nexcept that graphics may be used to illustrate \nthe correct method of preparation; \n(f) \ncontain \nthe \nname \nand \naddress \nof \nmanufacturer and of wholesale distributor if a \ndesignated product is an imported item; and \n(g) \nexcept for bottles, teats, pacifiers and nipple \nshields, contain appropriate instructions in \nSindhi and Urdu for the correct preparation in \nwords and easily understood graphics, and \nindicate the ingredients, composition and \nanalysis of a designated product, required \nstorage conditions, batch number and expiry \ndate, and contain any warning as may be \nprescribed for the implementation of this Act in \ncharacters of the prescribed height in Sindhi \nand Urdu. \n \n",
+"x0": 72.024,
+"x1": 425.554,
+"y0": 140.828,
+"page_height": 864.0
+},
+{
+"id": 91615,
+"page_no": 11,
+"text": "CHAPTER-IV \nINFORMATIONAL AND EDUCATIONAL MATERIALS \n",
+"x0": 108.98,
+"x1": 388.63,
+"y0": 449.758,
+"page_height": 864.0
+},
+{
+"id": 91616,
+"page_no": 11,
+"text": "Informational \nand \nEducational \nMaterials. \n",
+"x0": 432.94,
+"x1": 499.662,
+"y0": 507.97,
+"page_height": 864.0
+},
+{
+"id": 91617,
+"page_no": 11,
+"text": "9. (1)   Any person who produces or distributes any \ninformational and educational materials referred in this \nsection shall submit copies thereof to the Board as may be \nprescribed. \n \n     (2)  Informational and educational materials, whether \nwritten, audio or visual, which refer to infant feeding shall \ncontain only correct information and shall not use any \npictures, graphics or text that encourage bottle-feeding or \ndiscourage breast-feeding. \n \n     (3)   Government shall, in consultation with the Board, \narrange for and approve the dissemination of objective \nand consistent informational and educational materials on \ninfant and young child feeding, excluding medical \nliterature and may, by notification in the official Gazette, \npublish such instructions, guidelines or policies as it deems \nnecessary or appropriate, for the purposes of producing \nand distributing informational and educational materials. \n",
+"x0": 72.024,
+"x1": 425.554,
+"y0": 507.958,
+"page_height": 864.0
+},
+{
+"id": 91618,
+"page_no": 11,
+"text": "11 \n \n",
+"x0": 72.024,
+"x1": 526.54,
+"y0": 799.533,
+"page_height": 864.0
+},
+{
+"id": 91619,
+"page_no": 12,
+"text": "SINDH ACT NO.XVII OF 2013 \n",
+"x0": 215.93,
+"x1": 382.63,
+"y0": 36.348,
+"page_height": 864.0
+},
+{
+"id": 91620,
+"page_no": 12,
+"text": " \nTHE SINDH PROTECTION AND PROMOTION OF BREAST-FEEDING AND \n",
+"x0": 89.184,
+"x1": 509.194,
+"y0": 49.782,
+"page_height": 864.0
+},
+{
+"id": 91621,
+"page_no": 12,
+"text": "CHILD NUTRITION ACT, 2013 \n",
+"x0": 212.69,
+"x1": 385.75,
+"y0": 66.228,
+"page_height": 864.0
+},
+{
+"id": 91622,
+"page_no": 12,
+"text": "Health workers \nand Health care \nFacilities. \n",
+"x0": 432.94,
+"x1": 514.189,
+"y0": 317.39,
+"page_height": 864.0
+},
+{
+"id": 91623,
+"page_no": 12,
+"text": "10.(1) Health workers shall encourage, support and protect \nbreast-feeding. They shall be expected to know the \nprovisions of this Act, in particular, any instructions, \nguidelines or policies published under section 9, and to \nimplement the same whenever possible. \n",
+"x0": 72.024,
+"x1": 425.53,
+"y0": 317.378,
+"page_height": 864.0
+},
+{
+"id": 91624,
+"page_no": 12,
+"text": "      (2) Health workers shall not accept or give samples of \nany designated product to any person, particularly \npregnant women, mothers of infants and young children, or \nmembers of their families. \n",
+"x0": 72.024,
+"x1": 425.506,
+"y0": 404.978,
+"page_height": 864.0
+},
+{
+"id": 91625,
+"page_no": 12,
+"text": "      (3) Health workers and their Associations shall not \npromote in any way whatsoever, any designated product. \n",
+"x0": 72.024,
+"x1": 425.256,
+"y0": 477.838,
+"page_height": 864.0
+},
+{
+"id": 91626,
+"page_no": 12,
+"text": "      (4) Health workers falling within the jurisdiction of \nGovernment shall make in writing a report to the Board, any \noffer of a gift or other financial benefit made by a \nmanufacturer or distributor or any other contravention of \nthe provisions of this Act or the rules, noticed by them. \n",
+"x0": 72.024,
+"x1": 425.53,
+"y0": 521.278,
+"page_height": 864.0
+},
+{
+"id": 91627,
+"page_no": 12,
+"text": "      (5)   There shall be kept posted in every health care \nfacility in Sindhi, Urdu and English, as may be deemed \nappropriate by the health care facility, such abstracts of this \nAct as may be prescribed by the Government, for this \npurpose. \n",
+"x0": 72.024,
+"x1": 425.494,
+"y0": 608.788,
+"page_height": 864.0
+},
+{
+"id": 91628,
+"page_no": 12,
+"text": " \nCHAPTER-V \nREGISTRATION OF DESIGNATED PRODUCTS                                 \n",
+"x0": 127.46,
+"x1": 477.619,
+"y0": 682.27,
+"page_height": 864.0
+},
+{
+"id": 91629,
+"page_no": 12,
+"text": "AND QUALITY ASSURANCE \n",
+"x0": 172.1,
+"x1": 325.51,
+"y0": 717.988,
+"page_height": 864.0
+},
+{
+"id": 91630,
+"page_no": 12,
+"text": "Quality \nAssurance. \n",
+"x0": 432.94,
+"x1": 489.94,
+"y0": 747.9,
+"page_height": 864.0
+},
+{
+"id": 91631,
+"page_no": 12,
+"text": "11. (1) No designated product shall be manufactured, sold \nor otherwise distributed in Sindh unless it is formulated \nindustrially \nin \naccordance \nwith \nthe \nstandards \n",
+"x0": 72.024,
+"x1": 425.402,
+"y0": 747.888,
+"page_height": 864.0
+},
+{
+"id": 91632,
+"page_no": 12,
+"text": "12 \n \n",
+"x0": 72.024,
+"x1": 526.54,
+"y0": 799.533,
+"page_height": 864.0
+},
+{
+"id": 91633,
+"page_no": 13,
+"text": "SINDH ACT NO.XVII OF 2013 \n",
+"x0": 215.93,
+"x1": 382.63,
+"y0": 36.348,
+"page_height": 864.0
+},
+{
+"id": 91634,
+"page_no": 13,
+"text": " \nTHE SINDH PROTECTION AND PROMOTION OF BREAST-FEEDING AND \n",
+"x0": 89.184,
+"x1": 509.194,
+"y0": 49.782,
+"page_height": 864.0
+},
+{
+"id": 91635,
+"page_no": 13,
+"text": "CHILD NUTRITION ACT, 2013 \n",
+"x0": 212.69,
+"x1": 385.75,
+"y0": 66.228,
+"page_height": 864.0
+},
+{
+"id": 91636,
+"page_no": 13,
+"text": "recommended by the Codex Alimentarius Commission and \nthe Codex Code of Hygienic Practice for Foods for Infants \nand Children, and in addition, shall meet such applicable \nstandards specified in this Act and the rules. \n",
+"x0": 72.024,
+"x1": 425.328,
+"y0": 83.348,
+"page_height": 864.0
+},
+{
+"id": 91637,
+"page_no": 13,
+"text": "      (2) The Board may require an Inspector or any other \nperson invested with powers under this Act to test any \ndesignated product sold in Sindh in order to determine \nwhether it is fit for human consumption. \n",
+"x0": 72.024,
+"x1": 425.482,
+"y0": 156.188,
+"page_height": 864.0
+},
+{
+"id": 91638,
+"page_no": 13,
+"text": "      (3) A designated product that does not meet the \nstandards for use in the country of manufacture shall not be \nsold in Sindh. \n",
+"x0": 72.024,
+"x1": 425.276,
+"y0": 229.028,
+"page_height": 864.0
+},
+{
+"id": 91639,
+"page_no": 13,
+"text": "     (4) A designated product that has reached the expiry \ndate shall not be marketed, sold or distributed. \n",
+"x0": 72.024,
+"x1": 425.22,
+"y0": 287.258,
+"page_height": 864.0
+},
+{
+"id": 91640,
+"page_no": 13,
+"text": "Investigation \nand inspection. \n \n",
+"x0": 432.94,
+"x1": 510.459,
+"y0": 389.51,
+"page_height": 864.0
+},
+{
+"id": 91641,
+"page_no": 13,
+"text": "     (5) A designated product shall be sold only in the original \ncontainer \nin \norder \nto \nprevent \nquality \ndeterioration, \nadulteration or contamination thereof. \n \n12. (1) Government may designate any number of persons \nprofessionally qualified with respect to infant and young \nchild nutrition as Inspector to conduct inspection and \ninvestigation and prosecution for the purposes of this Act, \nand to monitor compliance with the provisions of this Act. \n",
+"x0": 72.024,
+"x1": 425.542,
+"y0": 330.698,
+"page_height": 864.0
+},
+{
+"id": 91642,
+"page_no": 13,
+"text": "      (2) After an inspection for purpose of this Act, an \nInspector shall refer the case, and if so required, provide \none portion of the sample of a designated product, or the \nwhole of a designated product if it is such that it cannot be \ndivided, to the Board. \n",
+"x0": 72.024,
+"x1": 425.348,
+"y0": 477.118,
+"page_height": 864.0
+},
+{
+"id": 91643,
+"page_no": 13,
+"text": "Investigation \nand filing a \ncase. \n \n",
+"x0": 432.94,
+"x1": 497.252,
+"y0": 565.93,
+"page_height": 864.0
+},
+{
+"id": 91644,
+"page_no": 13,
+"text": "13. (1) Upon completion of an investigation and receipt of a \ncomplete report, and after giving the concerned party an \nopportunity of being heard, the Board shall recommend to \nGovernment whether or not to institute prosecution under \nthis Act. \n",
+"x0": 72.024,
+"x1": 425.438,
+"y0": 565.918,
+"page_height": 864.0
+},
+{
+"id": 91645,
+"page_no": 13,
+"text": "      (2) No court shall take cognizance of any offence \npunishable under this Act except on a report in writing by \nan officer authorized by Government, or any other person \nas Government may, by notification in the official Gazette, \nauthorize in this behalf. \n",
+"x0": 72.024,
+"x1": 425.53,
+"y0": 653.428,
+"page_height": 864.0
+},
+{
+"id": 91646,
+"page_no": 13,
+"text": "     (3) An offence punishable under this Act shall be                \nnon-cognizable. \n",
+"x0": 72.024,
+"x1": 475.306,
+"y0": 741.048,
+"page_height": 864.0
+},
+{
+"id": 91647,
+"page_no": 13,
+"text": "13 \n \n",
+"x0": 72.024,
+"x1": 526.54,
+"y0": 799.533,
+"page_height": 864.0
+},
+{
+"id": 91648,
+"page_no": 14,
+"text": "SINDH ACT NO.XVII OF 2013 \n",
+"x0": 215.93,
+"x1": 382.63,
+"y0": 36.348,
+"page_height": 864.0
+},
+{
+"id": 91649,
+"page_no": 14,
+"text": " \nTHE SINDH PROTECTION AND PROMOTION OF BREAST-FEEDING AND \n",
+"x0": 89.184,
+"x1": 509.194,
+"y0": 49.782,
+"page_height": 864.0
+},
+{
+"id": 91650,
+"page_no": 14,
+"text": "CHILD NUTRITION ACT, 2013 \n",
+"x0": 212.69,
+"x1": 385.75,
+"y0": 66.228,
+"page_height": 864.0
+},
+{
+"id": 91651,
+"page_no": 14,
+"text": "Appeal. \n \n \n",
+"x0": 432.94,
+"x1": 474.489,
+"y0": 83.36,
+"page_height": 864.0
+},
+{
+"id": 91652,
+"page_no": 14,
+"text": "14. (1) Any person sentenced by a Court under this Act may \nprefer an appeal to the High Court within thirty days of the \njudgment. \n",
+"x0": 72.024,
+"x1": 425.518,
+"y0": 83.348,
+"page_height": 864.0
+},
+{
+"id": 91653,
+"page_no": 14,
+"text": "     (2)  The provisions of sections 5 and 12 of the Limitation \nAct, 1908 (IX of 1908), shall be applicable to an appeal \npreferred under sub-section (1). \n",
+"x0": 72.024,
+"x1": 425.494,
+"y0": 141.428,
+"page_height": 864.0
+},
+{
+"id": 91654,
+"page_no": 14,
+"text": "15. (1) Any person whomsoever may make an application \nin writing to the Board concerning contravention of any of \nthe provisions of this Act or the rules. \n",
+"x0": 72.024,
+"x1": 425.324,
+"y0": 200.828,
+"page_height": 864.0
+},
+{
+"id": 91655,
+"page_no": 14,
+"text": "Public \nenforcement. \n \n \n \n \n \n",
+"x0": 432.94,
+"x1": 500.889,
+"y0": 200.84,
+"page_height": 864.0
+},
+{
+"id": 91656,
+"page_no": 14,
+"text": "        (2) In the event an investigation reveals an offence, the \nBoard shall follow the procedure specified in section 13 for \nrecommending prosecution. \n",
+"x0": 72.024,
+"x1": 425.53,
+"y0": 259.058,
+"page_height": 864.0
+},
+{
+"id": 91657,
+"page_no": 14,
+"text": "CHAPTER-VI \nPENALTIES AND PROCEDURES \n",
+"x0": 164.78,
+"x1": 332.83,
+"y0": 332.378,
+"page_height": 864.0
+},
+{
+"id": 91658,
+"page_no": 14,
+"text": "Revocation or \nsuspension of \nlicense, etc. \n",
+"x0": 432.94,
+"x1": 503.019,
+"y0": 361.79,
+"page_height": 864.0
+},
+{
+"id": 91659,
+"page_no": 14,
+"text": "16. (1) Where any person, except a medical practitioner, \nhas been found to have contravened any of the provisions \nof this Act or the rules, the concerned authority upon written \nrecommendation of the Board, and after giving such \nperson an opportunity of being heard, may recommend to \nGovernment to suspend or cancel, his license for the \npractice of his profession or occupation or for the pursuit of \nhis business. \n",
+"x0": 72.024,
+"x1": 425.378,
+"y0": 361.778,
+"page_height": 864.0
+},
+{
+"id": 91660,
+"page_no": 14,
+"text": "       (2) In the case of a contravention involving a medical \npractitioner registered under the Medical and Dental \nCouncil Ordinance, 1962 (XXXII of 1962), the matter shall be \nreferred to the Pakistan Medical and Dental Council for \nfurther action. \n",
+"x0": 72.024,
+"x1": 425.3,
+"y0": 493.558,
+"page_height": 864.0
+},
+{
+"id": 91661,
+"page_no": 14,
+"text": "Penalties. \n \n",
+"x0": 432.94,
+"x1": 481.689,
+"y0": 586.0,
+"page_height": 864.0
+},
+{
+"id": 91662,
+"page_no": 14,
+"text": "17. (1) Any manufacturer or distributor who contravenes the \nprovisions of sub-sections (1) to (7) of section 7, sub-section \n(1) of section 8, sub-sections (1) (3), (4) or (5) of section 11, \nshall be punishable with imprisonment for a term which may \nextend to two years, or with fine which shall not be less than \nfifty thousand rupees or more than five hundred thousand \nrupees, or both. \n",
+"x0": 72.024,
+"x1": 425.518,
+"y0": 585.988,
+"page_height": 864.0
+},
+{
+"id": 91663,
+"page_no": 14,
+"text": "       (2) Any person, who contravenes any other provision of \nthis Act, or the rules, shall be punishable with a fine, which \nmay extend to five hundred thousand rupees. \n",
+"x0": 72.024,
+"x1": 425.506,
+"y0": 702.988,
+"page_height": 864.0
+},
+{
+"id": 91664,
+"page_no": 14,
+"text": "14 \n \n",
+"x0": 72.024,
+"x1": 526.54,
+"y0": 799.533,
+"page_height": 864.0
+},
+{
+"id": 91665,
+"page_no": 15,
+"text": "SINDH ACT NO.XVII OF 2013 \n",
+"x0": 215.93,
+"x1": 382.63,
+"y0": 36.348,
+"page_height": 864.0
+},
+{
+"id": 91666,
+"page_no": 15,
+"text": " \nTHE SINDH PROTECTION AND PROMOTION OF BREAST-FEEDING AND \n",
+"x0": 89.184,
+"x1": 509.194,
+"y0": 49.782,
+"page_height": 864.0
+},
+{
+"id": 91667,
+"page_no": 15,
+"text": "CHILD NUTRITION ACT, 2013 \n",
+"x0": 212.69,
+"x1": 385.75,
+"y0": 66.228,
+"page_height": 864.0
+},
+{
+"id": 91668,
+"page_no": 15,
+"text": "Responsibility of \nan individual for \nthe act of a \ncompany, \ncorporation, \npartnership, or \nan institution. \n \n",
+"x0": 432.94,
+"x1": 513.188,
+"y0": 83.36,
+"page_height": 864.0
+},
+{
+"id": 91669,
+"page_no": 15,
+"text": "18.    Where the offence is found to have been committed \nby a company, corporation, partnership or an institution, as \na result of an institutional or operational instructions issued \nby it or implemented by it, the company, corporation, \npartnership or the institution may be found guilty in addition \nto the individuals directly responsible for the commission of \nsuch offence.  \n",
+"x0": 72.024,
+"x1": 425.53,
+"y0": 83.348,
+"page_height": 864.0
+},
+{
+"id": 91670,
+"page_no": 15,
+"text": "Power to make \nrules. \n \n",
+"x0": 432.94,
+"x1": 508.427,
+"y0": 202.76,
+"page_height": 864.0
+},
+{
+"id": 91671,
+"page_no": 15,
+"text": "19.     Government may, by notification in the official \nGazette, make rules for carrying out the purposes of this \nAct. \n",
+"x0": 72.024,
+"x1": 425.336,
+"y0": 202.748,
+"page_height": 864.0
+},
+{
+"id": 91672,
+"page_no": 15,
+"text": "Overriding \neffect. \n",
+"x0": 432.94,
+"x1": 486.405,
+"y0": 264.59,
+"page_height": 864.0
+},
+{
+"id": 91673,
+"page_no": 15,
+"text": "20.      The provisions of this Act shall have effect \nnotwithstanding anything to the contrary contained in any \nother law for the time being in force. \n",
+"x0": 72.024,
+"x1": 425.494,
+"y0": 264.578,
+"page_height": 864.0
+},
+{
+"id": 91674,
+"page_no": 15,
+"text": "15 \n \n",
+"x0": 72.024,
+"x1": 526.54,
+"y0": 799.533,
+"page_height": 864.0
+}
+]
+}
+}

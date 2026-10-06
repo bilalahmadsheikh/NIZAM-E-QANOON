@@ -115,15 +115,31 @@ def segmentation_patches_for(source_observation_id: int) -> list[dict]:
     """Approved, rebuild-stable parser-input corrections for one observation."""
     with connect() as conn, conn.cursor() as cur:
         cur.execute("""
-            SELECT id::text,page_no,match_text,before_text,after_text
+            SELECT id::text,page_no,match_text,before_text,after_text,evidence
               FROM segmentation_curation_patch
              WHERE source_observation_id=%s
                AND review_state IN ('source_verified','human_verified')
                AND retired_at IS NULL
              ORDER BY page_no,created_at,id
         """, (source_observation_id,))
-        keys = ("id", "page_no", "match_text", "before_text", "after_text")
+        keys = ("id", "page_no", "match_text", "before_text", "after_text",
+                "evidence")
         return [dict(zip(keys, row)) for row in cur.fetchall()]
+
+
+def segmentation_profile_for(source_observation_id: int) -> str:
+    """The segmentation profile pinned to one observation; 'default' when none.
+
+    Read by every build of the observation, so a document released under a
+    profile is replayed under the same profile (docs/SEGMENTATION-PROFILES.md).
+    """
+    with connect() as conn, conn.cursor() as cur:
+        cur.execute("""
+            SELECT profile FROM v_segmentation_profile_latest
+             WHERE source_observation_id=%s
+        """, (source_observation_id,))
+        row = cur.fetchone()
+        return row[0] if row else "default"
 
 
 def toc_dispositions_for(source_observation_id: int,
@@ -158,7 +174,8 @@ _STRUCTURAL_RESOLUTIONS_SQL = """
         SELECT c.source_block_id,
                c.printed_label,
                lower(regexp_replace(c.printed_label,'\\s+','','g')) AS label_key,
-               a.resolution, a.review_basis, a.id, a.decided_at, a.decided_by
+               a.resolution, a.review_basis, a.id, a.decided_at, a.decided_by,
+               a.evidence
           FROM v_structural_adjudication_latest a
           JOIN segmentation_structural_candidate c ON c.id = a.candidate_id
          WHERE c.document_id = %s
@@ -174,18 +191,21 @@ _STRUCTURAL_RESOLUTIONS_SQL = """
          ORDER BY source_block_id, label_key, decided_at DESC, id DESC
     )
     SELECT l.source_block_id, l.printed_label, l.label_key, l.resolution,
-           l.review_basis, l.id::text, l.decided_at, l.decided_by
+           l.review_basis, l.id::text, l.decided_at, l.decided_by,l.evidence
       FROM latest l
       JOIN settled s
         ON s.source_block_id = l.source_block_id
        AND s.label_key = l.label_key
      WHERE l.resolution IN ('restore_citable','reject_candidate')
+        OR (l.resolution = 'reparent'
+            AND jsonb_typeof(l.evidence #>
+                '{structural_overrides,source_reparent_blocks}') = 'array')
      ORDER BY l.source_block_id, l.label_key
 """
 
 _STRUCTURAL_RESOLUTION_KEYS = (
     "source_block_id", "printed_label", "label_key", "resolution",
-    "review_basis", "adjudication_id", "decided_at", "decided_by")
+    "review_basis", "adjudication_id", "decided_at", "decided_by", "evidence")
 
 
 def structural_resolutions_for(document_id: int) -> list[dict]:
@@ -211,10 +231,10 @@ def structural_resolutions_for(document_id: int) -> list[dict]:
     excluded: a program approving its own output is not a review, and 11,212
     of the 14,308 decisions in this corpus are machine. Only the two
     resolutions the segmenter can carry out are returned -- `restore_citable`,
-    which says the parser kept the wrong print, and `reject_candidate`, which
-    says the collision is not genuine. `reparent` and `split_instrument` name
-    work this function cannot express: no reparent decision in this corpus
-    records a target parent, and a split is a document-level operation.
+    which says the parser kept the wrong print; `reparent`, when its evidence
+    names exact source and parent blocks; and `reject_candidate`, which says
+    the collision is not genuine. `split_instrument` remains a document-level
+    operation handled by the multi-expression materializer.
 
     A KEY TWO READINGS DISAGREE ABOUT IS NOT RETURNED. Twelve keys across five
     documents carry two different source-verified resolutions recorded against
@@ -226,6 +246,78 @@ def structural_resolutions_for(document_id: int) -> list[dict]:
         cur.execute(_STRUCTURAL_RESOLUTIONS_SQL, (document_id,))
         return [dict(zip(_STRUCTURAL_RESOLUTION_KEYS, row))
                 for row in cur.fetchall()]
+
+
+def _subtree_revision_signature(cur, root_id) -> list:
+    """Exact legal-node/text/source-footprint identity for an S7 decision.
+
+    A matching printed label is not enough to carry a non-citable judgement
+    across a replay. Both sides of the collision must have the same complete
+    provision subtrees and source-block ownership as the reviewed revision.
+    Sibling ordinal is intentionally excluded: inserting an unrelated earlier
+    provision changes its number without changing this candidate's law.
+    """
+    cur.execute("""
+        SELECT coalesce(jsonb_agg(jsonb_build_array(
+                   p.path::text,p.kind::text,p.label,p.heading,p.marginal_note,
+                   p.first_page,p.last_page,p.first_block,
+                   v.text_en,v.operation,
+                   (SELECT coalesce(jsonb_agg(jsonb_build_array(
+                               pb.block_id,pb.role::text,pb.chars)
+                               ORDER BY pb.block_id),'[]'::jsonb)
+                      FROM provision_block pb WHERE pb.provision_id=p.id))
+                   ORDER BY p.path::text),'[]'::jsonb)
+          FROM provision root
+          JOIN provision p ON p.instrument_id=root.instrument_id
+                          AND p.path <@ root.path
+          LEFT JOIN LATERAL (
+              SELECT text_en,operation FROM provision_version
+               WHERE provision_id=p.id ORDER BY id DESC LIMIT 1
+          ) v ON true
+         WHERE root.id=%s
+    """, (root_id,))
+    return cur.fetchone()[0]
+
+
+def _matching_prior_acceptance(cur, previous_id, new_candidate_id) -> dict | None:
+    """Carry only a uniquely identical accepted S7 judgement, without upgrade."""
+    cur.execute("""
+        SELECT old.id,a.id,a.resolution,a.review_basis,a.rationale,a.evidence,
+               old.candidate_provision_id,old.canonical_provision_id,
+               new.candidate_provision_id,new.canonical_provision_id
+          FROM segmentation_structural_candidate old
+          JOIN v_structural_adjudication_latest a ON a.candidate_id=old.id
+          JOIN segmentation_structural_candidate new ON new.id=%s
+          JOIN provision oldp ON oldp.id=old.candidate_provision_id
+          JOIN provision oldk ON oldk.id=old.canonical_provision_id
+          JOIN provision newp ON newp.id=new.candidate_provision_id
+          JOIN provision newk ON newk.id=new.canonical_provision_id
+         WHERE old.instrument_id=%s
+           AND a.resolution='accept_non_citable'
+           AND old.source_observation_id=new.source_observation_id
+           AND old.source_block_id=new.source_block_id
+           AND old.source_page=new.source_page
+           AND old.canonical_source_block_id=new.canonical_source_block_id
+           AND old.canonical_source_page=new.canonical_source_page
+           AND old.printed_label=new.printed_label
+           AND old.original_kind=new.original_kind
+           AND old.decision_kind=new.decision_kind
+           AND old.proposed_resolution=new.proposed_resolution
+           AND old.evidence=new.evidence
+           AND oldp.path=newp.path AND oldk.path=newk.path
+    """, (new_candidate_id, previous_id))
+    matches = cur.fetchall()
+    if len(matches) != 1:
+        return None
+    row = matches[0]
+    if (_subtree_revision_signature(cur, row[6])
+            != _subtree_revision_signature(cur, row[8])
+            or _subtree_revision_signature(cur, row[7])
+            != _subtree_revision_signature(cur, row[9])):
+        return None
+    return {"candidate_id": str(row[0]), "id": str(row[1]),
+            "resolution": row[2], "review_basis": row[3],
+            "rationale": row[4], "evidence": row[5]}
 
 
 def save(inst: SegmentedInstrument, segmenter: str = "nizam.corpus.segment/52") -> str:
@@ -247,6 +339,11 @@ def save(inst: SegmentedInstrument, segmenter: str = "nizam.corpus.segment/52") 
                 "observation has multiple active legal expressions; use the "
                 "source-reviewed multi-expression materializer")
         previous_id = previous_rows[0][0] if previous_rows else None
+        previously_released = False
+        if previous_id is not None:
+            cur.execute("SELECT EXISTS(SELECT 1 FROM v_release_instrument WHERE id=%s)",
+                        (previous_id,))
+            previously_released = bool(cur.fetchone()[0])
         if previous_id is not None:
             cur.execute("""UPDATE instrument SET is_active=false,retired_at=now()
                             WHERE id=%s""", (previous_id,))
@@ -444,11 +541,16 @@ def save(inst: SegmentedInstrument, segmenter: str = "nizam.corpus.segment/52") 
             ))
             new_candidate_id = cur.fetchone()[0]
             carried = decision.get("carried_adjudication")
+            exact_whole_tree = carried is not None
+            if carried is None and previous_id is not None:
+                carried = _matching_prior_acceptance(
+                    cur, previous_id, new_candidate_id)
             if carried is not None:
                 carried_evidence = dict(carried["evidence"] or {})
                 carried_evidence["carried_from_candidate_id"] = carried["candidate_id"]
                 carried_evidence["carried_from_adjudication_id"] = carried["id"]
-                carried_evidence["exact_tree_revision"] = True
+                carried_evidence[("exact_tree_revision" if exact_whole_tree
+                                  else "exact_candidate_subtree_replay")] = True
                 cur.execute("""
                     INSERT INTO segmentation_structural_adjudication
                         (candidate_id,resolution,review_basis,method,rationale,
@@ -456,10 +558,48 @@ def save(inst: SegmentedInstrument, segmenter: str = "nizam.corpus.segment/52") 
                     VALUES (%s,%s,%s,%s,%s,%s,%s)
                 """, (
                     new_candidate_id,carried["resolution"],carried["review_basis"],
-                    "carried_by_exact_tree_revision/1",carried["rationale"],
+                    ("carried_by_exact_tree_revision/1" if exact_whole_tree
+                     else "carried_by_exact_candidate_subtree/1"),
+                    carried["rationale"],
                     json.dumps(carried_evidence,ensure_ascii=False),
-                    "nizam.exact_tree_revision/1",
+                    ("nizam.exact_tree_revision/1" if exact_whole_tree
+                     else "nizam.exact_candidate_subtree/1"),
                 ))
+        if previously_released:
+            # record_run() follows save() in the worker. Check every other
+            # release predicate here, inside the replacement transaction; the
+            # new run row cannot exist until this transaction has committed.
+            cur.execute("""
+                SELECT EXISTS(
+                    SELECT 1 FROM instrument i
+                    JOIN v_document_quality_status q ON q.document_id=i.document_id
+                   WHERE i.id=%s AND i.is_active AND i.duplicate_of IS NULL
+                     AND q.overall_outcome='passed'
+                     AND NOT EXISTS (SELECT 1 FROM v_toc_gap_pending t
+                                      WHERE t.instrument_id=i.id)
+                     AND NOT EXISTS (SELECT 1 FROM v_structural_adjudication_pending s
+                                      WHERE s.instrument_id=i.id)
+                     AND NOT EXISTS (SELECT 1 FROM v_boundary_adjudication_pending b
+                                      WHERE b.instrument_id=i.id))
+            """, (instrument_id,))
+            if not cur.fetchone()[0]:
+                cur.execute("""
+                    SELECT (SELECT count(*) FROM v_toc_gap_pending
+                             WHERE instrument_id=%s),
+                           (SELECT count(*) FROM v_structural_adjudication_pending
+                             WHERE instrument_id=%s),
+                           (SELECT count(*) FROM v_boundary_adjudication_pending
+                             WHERE instrument_id=%s),
+                           (SELECT overall_outcome FROM v_document_quality_status
+                             WHERE document_id=%s)
+                """, (instrument_id, instrument_id, instrument_id,
+                      inst.document_id))
+                toc_pending, s7_pending, boundary_pending, quality = cur.fetchone()
+                raise ValueError(
+                    "released instrument replay would fail the release gate; "
+                    "rolling back the entire tree replacement "
+                    f"(TOC={toc_pending}, S7={s7_pending}, "
+                    f"boundary={boundary_pending}, quality={quality})")
         return instrument_id
 
 

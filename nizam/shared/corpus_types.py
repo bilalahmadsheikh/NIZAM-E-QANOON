@@ -13,7 +13,33 @@ for audit".
 """
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass, field
+
+# ── Unnumbered provisions (INV-1, INV-4; docs/SCHEMA.md `provision`) ────────
+# A provision the instrument prints with no number -- doc 128's Act-level
+# "Repeal:" paragraph after its Schedule -- is stored as an ordinary `section`
+# whose label is its printed lead word.  The absence of a numeral in a
+# numbered kind's label IS the marker; no flag column carries it.  Every
+# renderer asks this predicate before writing "section N": an unnumbered
+# provision is cited by its printed word ('the unnumbered "Repeal" provision'),
+# never as "section Repeal", and no number is ever invented for it.
+NUMBERED_PROVISION_KINDS = frozenset({"section", "article", "subsection"})
+_ROMAN = re.compile(r"[ivxlcdm]+", re.I)
+
+
+def is_unnumbered_label(label: str | None) -> bool:
+    """A printed word, not a number: no digit in any script (``\\d`` matches
+    Urdu and Arabic-Indic digits too), not a roman numeral, at least two letters."""
+    value = (label or "").strip()
+    return (sum(ch.isalpha() for ch in value) >= 2
+            and not re.search(r"\d", value)
+            and not _ROMAN.fullmatch(value))
+
+
+def is_unnumbered_provision(kind: str, label: str | None) -> bool:
+    """Is this stored provision one the instrument prints without a number?"""
+    return kind in NUMBERED_PROVISION_KINDS and is_unnumbered_label(label)
 
 
 @dataclass(frozen=True, slots=True)

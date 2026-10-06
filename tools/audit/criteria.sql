@@ -359,6 +359,25 @@ m AS (
          ON e.ancestor_path=a.ancestor_path AND e.provision_id=a.provision_id
         AND e.distance=a.distance
       WHERE e.provision_id IS NULL)                                                AS ancestor_extra
+    -- C9. C1 asks whether every acquired FILE became a blob, and it does not
+    -- ask whether the file is the whole statute. Three landed files are known
+    -- partial copies (migration 0054): documents 33, 127 and 2205, each
+    -- stopping mid-clause below what its own contents prints. Where a complete
+    -- official copy exists, the partial tree must not be what the corpus
+    -- publishes as the Act -- and because instrument.duplicate_of lives on a
+    -- row that re-segmentation replaces, that flag has to be re-derived after
+    -- every replay. This is the check that it was.
+    ,(SELECT count(*) FROM v_source_incompleteness_latest s
+       WHERE s.resolution='superseded_by_complete_copy'
+         AND NOT EXISTS (
+           SELECT 1 FROM instrument t
+             JOIN instrument c ON c.id=t.duplicate_of
+            WHERE t.document_id=s.document_id AND t.is_active
+              AND c.document_id=s.complete_document_id))                          AS incomplete_unflagged
+    -- Reported, never failed: a partial copy nobody can replace is a fact
+    -- about the portal, and failing the release on an unreachable server would
+    -- be a tripwire rather than a test.
+    ,(SELECT count(*) FROM v_source_incompleteness_open)                           AS incomplete_open
 )
 SELECT * FROM (
   SELECT 'C1' AS id, 'every acquired file becomes a blob'      AS criterion,
@@ -396,12 +415,35 @@ SELECT * FROM (
   UNION ALL SELECT 'A10','contents entries resolve to law, not apparatus',
          toc_links_apparatus::text,'0',
          CASE WHEN toc_links_apparatus=0 THEN 'PASS' ELSE 'FAIL' END FROM m
-  UNION ALL SELECT 'A11','provision headings match their printed opener (reported)',
-         CASE WHEN heading_census_stale THEN 'census missing or stale'
+  -- A11 asserts the rule and reports the number, and the number comes from the
+  -- census, never from here. Three states, three answers, because a cached
+  -- measurement can be wrong in two different ways before it is wrong about
+  -- the corpus:
+  --   no census        -- nothing has been measured. Not a pass.
+  --   stale census     -- measured, but for a provision population that has
+  --                      since changed. The count is still printed, with the
+  --                      date it was taken, because hiding it helps nobody --
+  --                      but it is labelled and it does not pass.
+  --   fresh census     -- the census read exactly this population. Threshold 0:
+  --                      a non-zero threshold here would have to mean "this
+  --                      many citations may name the wrong provision", and
+  --                      there is no number of those that is correct.
+  -- The status word says which. 'FAIL (stale)' is deliberately not 'FAIL':
+  -- a reader must be able to tell a corpus defect from an unmeasured corpus,
+  -- and the release check below fails on anything that is not 'PASS'.
+  UNION ALL SELECT 'A11','provision headings are the name the source prints',
+         CASE WHEN heading_census_absent THEN 'no census recorded'
+              WHEN heading_census_stale THEN
+                   heading_not_own||' in '||heading_not_own_docs||
+                   ' docs, measured '||coalesce(heading_census_at,'?')||
+                   ' against a corpus that has since changed'
               ELSE heading_not_own||' in '||heading_not_own_docs||
                    ' docs; '||heading_variants||' spelling variants' END,
-         'fresh census; count reported (0 before promotion)',
-         CASE WHEN heading_census_stale THEN 'FAIL' ELSE 'PASS' END FROM m
+         '0; census fresh',
+         CASE WHEN heading_census_absent THEN 'FAIL (no census)'
+              WHEN heading_census_stale  THEN 'FAIL (stale)'
+              WHEN heading_not_own = 0   THEN 'PASS'
+              ELSE 'FAIL' END FROM m
   UNION ALL SELECT 'A7','as-at query returns the corpus',
          (versions - not_operative)||' / '||versions, 'all',
          CASE WHEN not_operative=0 THEN 'PASS' ELSE 'FAIL' END FROM m
@@ -456,6 +498,11 @@ SELECT * FROM (
          boundary_candidates||' pending boundaries in '||boundary_observations||' observations',
          '0 pending',
          CASE WHEN boundary_candidates=0 THEN 'PASS' ELSE 'FAIL' END FROM m
+  UNION ALL SELECT 'C9','a partial copy is never published as the Act',
+         incomplete_unflagged||' unflagged; '||incomplete_open||
+         ' with no complete copy (reported)',
+         '0 unflagged; open queue reported',
+         CASE WHEN incomplete_unflagged=0 THEN 'PASS' ELSE 'FAIL' END FROM m
   UNION ALL SELECT 'A6','no overlapping law (enforced, not tested)',
          CASE WHEN excl_present=1 THEN 'EXCLUDE constraint present'
               ELSE 'CONSTRAINT MISSING' END, 'enforced',
@@ -518,7 +565,14 @@ SELECT lr.toc_found AS has_contents, count(*) AS documents,
 
 -- A release audit must be executable policy, not only a report. Preserve all
 -- detail above, then make CI/callers fail closed when any row failed.
-SELECT EXISTS (SELECT 1 FROM audit_result WHERE result='FAIL') AS audit_failed \gset
+--
+-- `result <> 'PASS'`, not `result = 'FAIL'`. A11 answers 'FAIL (stale)' and
+-- 'FAIL (no census)' as well as 'FAIL', because a reader has to be able to
+-- tell a corpus defect from an unmeasured corpus -- and a check that matched
+-- only the bare word would have let both of those through as a silent pass,
+-- which is the exact failure a cached measurement invites. Anything that is
+-- not a pass fails the release; no criterion can invent a passing word.
+SELECT EXISTS (SELECT 1 FROM audit_result WHERE result <> 'PASS') AS audit_failed \gset
 \if :audit_failed
   DO $$ BEGIN RAISE EXCEPTION 'corpus release audit has failing criteria'; END $$;
 \endif

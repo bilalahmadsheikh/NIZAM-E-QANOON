@@ -4,13 +4,12 @@ Pakistan's first intelligent legal infrastructure — a bilingual, offline-capab
 statutory corpus and judicial precedent of the federation and four provinces. Final Year Project,
 GIKI FCSE, four developers.
 
-**Current state: L1 extraction and L2 base segmentation are built and measured; L2 production qualification remains open, and L3 upward has not started.** Sixteen documents
+**Current state: L1 extraction and L2 base segmentation are built and measured; L2 production qualification remains open, and L3 upward has not started.** The live release continuation point is `docs/RELEASE-ALL-HANDOFF-2026-09-23.md`; read it before any corpus mutation. Its signed baseline has 4,687 canonical expressions, 4,084 released, and 603 blocked. Sixteen documents
 in `docs/` fix the architecture, and where implementation has diverged the docs carry an "as built"
-correction rather than a quiet edit. The corpus lives in Postgres: 4,596 documents, 63,878 pages,
-128,654,015 characters, 4,695 active expressions and 517,171 active provisions. `./nz audit`
-runs 30 criteria; 29 pass. Only S7 structural adjudication remains red, and the
-remaining 1,531 units need source review of documents that print no contents
-list — no aggregate can settle them. Acquisition is fully accounted: every
+correction rather than a quiet edit. The corpus lives in Postgres. At the signed
+23 September checkpoint it has 4,687 canonical expressions: 4,084 released and
+603 fail-closed, with 1,111 pending TOC rows and 727 pending S7 units. `./nz audit`
+runs 33 criteria; 32 pass, with only S7 red. Acquisition is fully accounted: every
 catalogued item either landed or carries a declared, evidence-backed exception. There is no
 `chunk`, `embedding`, `legal_edge`, facet or judgment table yet — those are the next layers.
 
@@ -92,10 +91,11 @@ Agents: `legal-source-scout`, `vendor-verifier`, `grounding-reviewer`, `schema-r
 
 ---
 
-## Measured facts — do not re-derive
+## Historical measured facts — do not use as the live release checkpoint
 
 From the built corpus (`nizam_clean`), measured 11 Sep 2026. These supersede the 28 Aug estimates,
-which were scaled from a 144-PDF sample:
+which were scaled from a 144-PDF sample. Release counts in this subsection are historical;
+`docs/RELEASE-ALL-HANDOFF-2026-09-23.md` is authoritative for current release work:
 
 - **4,757 effective catalogue items · 4,596 distinct blobs · 0 unresolved.** Acquisition is
   closed, not merely measured: of the items that first failed, **14 were recovered by refetch**
@@ -113,13 +113,11 @@ which were scaled from a 144-PDF sample:
   append-only revisions — see 03a §2A. **Supabase's 500 MB free tier no longer holds it**
 - **~96% carry a clean text layer** — OCR evidence covers 106 documents and remains a fallback, not a pillar
 - Character evidence against an independent extractor: **minimum recall 0.9991600; minimum precision 0.9976800 under the accepted evidence policy**
-- Contents agreement: **median 1.0000**, with **1,988 canonical gaps across 607 expressions**
-  (**2,120** when redundant provenance trees are included);
-  all active printed entries retain their exact source block/page
-- **3,992 expressions / 358,365 provisions** are in the fail-closed legal release;
-  **1,533 S7 units across 252 observations** and **1,443 contents gaps** remain blocked.
-  `docs/RELEASING-THE-BLOCKED-INSTRUMENTS.md` maps every blocked expression to the repair that
-  frees it; `tools/audit/blocked-release-worklist.sql` re-derives it
+- Current contents agreement remains measured by the audit; the live release
+  queue is **1,111 TOC rows and 727 S7 units across 603 expressions**.
+- **4,084 of 4,687 canonical expressions** are in the fail-closed legal release.
+  `docs/RELEASE-ALL-HANDOFF-2026-09-23.md` defines the continuation order and
+  regression gates; `tools/audit/blocked-release-worklist.sql` re-derives yield.
 - Production needs **~14 GB RAM**, well under one core at 50k MAU. RAM buys latency, not correctness
 - A single €21–40 VPS carries **50,000–100,000 MAU**; at scale infrastructure is ~3% of the bill
 

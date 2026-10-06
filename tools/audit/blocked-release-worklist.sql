@@ -109,14 +109,14 @@ SELECT count(*) AS blocked_instruments, sum(gaps) AS toc_units, sum(s7) AS s7_un
 \echo '=== RELEASE YIELD — instruments freed when a repair set is applied ==='
 \echo '(an instrument releases only when EVERY unit blocking it is covered)'
 SELECT step, instruments, units FROM (
- SELECT 1 AS ord, 'R6  adjudicate probably-correct S7 (decision only)' AS step,
+ SELECT 1 AS ord, 'R6  probably-correct S7 candidates (writer/source guard decides)' AS step,
         count(*) AS instruments, sum(s_ok) AS units FROM _blocked
    WHERE gaps=0 AND s7=s_ok AND s_ok>0
  UNION ALL
- SELECT 2, 'R1  relink class-a gaps (exact-tree overlay, no replay)',
+ SELECT 2, 'R1  class-a relink candidates (exact writer may refuse)',
         count(*), sum(ga) FROM _blocked WHERE s7=0 AND gaps=ga AND ga>0
  UNION ALL
- SELECT 3, 'R2  + found_elsewhere class-b gaps',
+ SELECT 3, 'R2  found_elsewhere candidates (exact writer may refuse)',
         count(*), sum(ga+gb) FROM _blocked WHERE s7=0 AND gaps=ga+gb AND gb>0
  UNION ALL
  SELECT 4, 'R5  reparent nesting S7',
@@ -129,7 +129,7 @@ SELECT step, instruments, units FROM (
         count(*), sum(gd+s_inv) FROM _blocked
    WHERE gaps=gd AND s7=s_inv AND gd+s_inv>0
  UNION ALL
- SELECT 7, '--- CUMULATIVE: every mechanisable repair (R1-R6) ---',
+ SELECT 7, '--- CUMULATIVE: mechanisable candidate classification ---',
         count(*), sum(gaps+s7) FROM _blocked
    WHERE gc=0 AND ge=0 AND s_unc=0
  UNION ALL
@@ -291,7 +291,7 @@ SELECT b.instrument_id, b.document_id, b.gaps, b.s7,
   FROM _blocked b;
 ANALYZE _resid;
 SELECT 'blocked instruments now' AS bucket, count(*)::text AS instruments FROM _resid
-UNION ALL SELECT 'released by layout-aware repair + relink + S7 mechanisable',
+UNION ALL SELECT 'potentially closable by layout/relink/S7 candidate classes',
    count(*)::text FROM _resid WHERE gaps_left=0 AND s7_left_unclear=0
 UNION ALL SELECT '   ... still blocked, needing a person',
    count(*)::text FROM _resid WHERE gaps_left>0 OR s7_left_unclear>0
@@ -302,3 +302,32 @@ UNION ALL SELECT 'contents gaps still needing a page after the repair',
 UNION ALL SELECT 'distinct documents behind those gaps',
    (SELECT count(DISTINCT g.document_id)::text FROM v_toc_gap_pending g
       WHERE NOT EXISTS (SELECT 1 FROM _closable z WHERE z.toc_entry_id=g.toc_entry_id));
+
+\echo ''
+\echo '=== NEXT 100 EXPRESSIONS — release yield first, then least review ==='
+\echo '(candidate lane is routing, not approval; source/tool guards still apply)'
+SELECT CASE
+         WHEN b.gaps=0 AND b.s7=b.s_ok AND b.s_ok>0
+           THEN '1 S7 decision candidate'
+         WHEN b.s7=0 AND b.gaps=b.ga AND b.ga>0
+           THEN '2 TOC relink candidate'
+         WHEN b.s7=0 AND b.gaps=b.ga+b.gb AND b.gb>0
+           THEN '3 found_elsewhere candidate'
+         WHEN r.gaps_left=0 AND r.s7_left_unclear=0
+           THEN '4 parser/mechanisable'
+         WHEN r.gaps_left+r.s7_left_unclear=1 AND b.gaps+b.s7=1
+           THEN '5 one-unit source review'
+         ELSE '6 multi-unit source review'
+       END AS lane,
+       b.document_id, b.instrument_id, left(i.short_title,72) AS title,
+       b.gaps AS toc, b.s7,
+       b.ga AS toc_relink, b.gb AS toc_found_elsewhere,
+       b.gc+b.ge AS toc_source_review,
+       b.s_ok AS s7_decision_candidate,
+       b.s_inv+b.s_nest+b.s_comp AS s7_tree_repair,
+       b.s_unc AS s7_source_review
+  FROM _blocked b
+  JOIN _resid r USING (instrument_id,document_id)
+  JOIN instrument i ON i.id=b.instrument_id
+ ORDER BY 1, (b.gaps+b.s7), b.document_id, b.instrument_id
+ LIMIT 100;

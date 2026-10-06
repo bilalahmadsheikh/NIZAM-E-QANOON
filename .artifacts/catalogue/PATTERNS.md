@@ -1650,3 +1650,195 @@ The replay was 30% through when this surfaced. Letting it finish would have
 written the regression across 4,638 documents and required a third pass;
 stopping cost 30 minutes. The advisory lock is released when the connection
 drops, by design, so a killed segmentation run leaves nothing to clean up.
+
+## The weighted 200-decision rendered-source audit, complete
+
+*21 Sep 2026. 200 of 200 verdicts, each recorded against a hash-checked PNG of
+the printed page: 184 distinct rendered pages across 102 documents.*
+
+| verdict | n | share | 95% CI |
+|---|---|---|---|
+| `correct` | 77 | 38.5% | 32.0-45.4% |
+| `wrong` | 36 | 18.0% | 13.3-23.9% |
+| `not_s7` | 87 | 43.5% | 36.8-50.4% |
+
+**Error rate among genuine S7 rows: 36 of 113 = 31.9%, Wilson 95% CI
+24.0-40.9%.** About one demotion in three that really was a repeated-label
+collision took a real section out of citation.
+
+### Read the denominator before quoting the rate
+
+Two numbers, two meanings, and conflating them is how this gets misreported:
+**18.0% of sampled decisions are wrong; 31.9% of genuine ones are.** The second
+is a statement about the adjudicator. The first is a statement about the corpus.
+
+And the frame matters more than either. The sample was drawn from the 4,498
+`accept_non_citable` decisions of `nizam.structural_adjudicator/1`. The standing
+accepts now break down like this:
+
+| decider | accepts | on an instrument active now |
+|---|---|---|
+| `claude.s7-citation-review/1` | 6,441 | **1,200** |
+| `nizam.structural_adjudicator/1` | 4,498 | **20** |
+| `claude.s7-source-review/1` | 1,308 | 384 |
+| `nizam.exact_tree_revision/1` | 273 | 0 |
+
+**Only 20 of the 4,498 audited still sit on an active instrument.** The replay
+retired the rest. So the measured population is almost entirely historical, and
+the INV-4 exposure in the corpus *as served today* comes overwhelmingly from
+deciders this audit never touched. **The 31.9% is a verdict on a rule, not a
+measurement of the released corpus**, and it must not be quoted as one. Before
+the 4,002 released instruments can be called released on evidence, the same
+instrument has to be pointed at `claude.s7-citation-review/1`.
+
+### `not_s7` at 43.5% is not a sampler defect -- it is an extraction defect
+
+On every page read, both blocks genuinely carried the same printed integer. The
+sampler is faithful. The failure is one layer up: **the segmenter promotes
+apparatus to `section` kind**, so more than half the collision table is
+footnote-vs-footnote, table-row-vs-table-row, contents-line-vs-contents-line.
+Band-reweighted, about **56% of the frame**.
+
+Three consequences:
+
+1. **The S7 backlog is roughly twice the legal problem it appears to be.**
+2. **The adjudicator cannot be "right" on an apparatus row in any useful sense.**
+   Demoting one footnote in favour of another leaves a footnote standing as a
+   citable section: an extraction defect wearing an S7 disposition.
+3. Fixing this removes that share of the queue **as a class**, not as a queue.
+
+### The error is concentrated where the sample is thinnest
+
+Error falls sharply as sibling-group size rises: band 1 (<4 siblings) **40.6%**
+(26/64), band 2 (4-9) **28.6%** (8/28), band 3 (10-49) **9.5%** (2/21), band 4
+(>=50) no genuine rows at all. Median group size is 2 for `wrong` and 10 for
+`not_s7`.
+
+**The weighting premise was backwards.** `s7_audit_sample.py` weights toward
+large sibling groups because "large groups are where an error costs most". They
+are not: large groups are compendia and tables where neither side is law. The
+harm lives in the small groups.
+
+**And the realised draw inverted the documented design.** The 8-rows-per-document
+cap strips band 4 almost entirely -- it holds 1,196 decisions (26.6% of the
+frame) and contributed **8 rows (4.0%)**, a 0.67% sampling fraction against
+5.3-6.5% for bands 1-3. So the sample over-represents band 1, which is where
+error is highest, and the unweighted 31.9% probably *overstates* the frame-wide
+rate. Fixing it means raising the cap for band 4 or drawing that band separately.
+
+### The shapes -- 28 of 36 errors are mechanical
+
+Worth far more than the rate, because a shape seen five times is a parser fix
+that retires five wrong decisions and prevents the next hundred.
+
+**C. A multi-digit label truncated to its trailing digit (8).** `_repair_label`
+strips a section number down until something matches the contents, so doc 3868's
+`92. Approval of transfer of mining permit` is stored as label `2` and doc 4594's
+`143. Children born in prison` as `3`, each then colliding with the real short
+section. Also doc 4369 (ss. 99 and 109 against 89), doc 1705, doc 3701, doc 3751.
+
+**D. A list, table or schedule entry kept as the section (8).** doc 4434 is the
+sharpest: a First Schedule line naming an exempted Order kept, while **Second
+Schedule paragraph 8 of the Constitution**, the presidential-poll provision, was
+demoted. Also doc 2019, 2491, 4368, 2211, 3644, 2839.
+
+**A. A contents/index line kept as the section (5).** doc 2092, 2546, 2552, 2875,
+3611. Most likely to recur: almost every Pakistan Code PDF opens with a contents
+page whose lines parse exactly like sections.
+
+**B. Footnote or amendment-note apparatus kept as the section (5).** doc 4451 --
+Customs Act 1969, a "LEGAL REFERENCE" note *"Omitted by Finance Act, 2005"* kept
+while real s.39 *When no drawback allowed* was demoted. Also doc 1927, 4453,
+3251, 3254.
+
+**E. A bare-number subsection kept as the section (2).** doc 4221 reproduces the
+document-16 defect exactly: `3. It shall come into force at once` kept as
+section 3 while the real s.3, *Establishment of the Authority*, was demoted.
+
+**F (3), H (2), G (1).** Two instruments in one PDF (`split_instrument`, not
+demotion); the printed source genuinely repeating a number (needs a
+disambiguated label, not a demotion); a sentence crossing a page break.
+
+### The verdict asked for, given plainly
+
+**Re-review. Not trusted, and not partially trusted on the strength of the
+decider having "reviewed" it.** A rule wrong a third of the time on the cases it
+exists to decide has no wholesale credit. Only 20 of those decisions are live,
+so acting on it is cheap: retire those 20 and re-decide them by reading.
+
+**Order of work, and the order matters:** fix the parsers first. Re-deciding
+4,498 rows against a parser that still manufactures these collisions buys one
+clean pass and then regenerates the problem.
+
+## A released instrument that is a different Act entirely
+
+*21 Sep 2026. Found by an agent reading acquisition records, not by any gate.*
+
+Document 4587 is released as **"SINDH PUBLIC CONVEYANCES (AMENDMENT) ACT,
+1996"**. Its own first page prints:
+
+    NO.PAS/Legis-PB-13/2014 -- The Altaf Hussain University at Karachi
+    Bill, 2014 having been passed ...
+    THE ALTAF HUSSAIN UNIVERSITY AT KARACHI ACT, 2014.
+    SINDH ACT NO. I OF 2015.
+
+The catalogued URL served a different statute. Someone citing the Public
+Conveyances Act is handed a university charter.
+
+**This is worse than a missing law, because a gap is visible and this is not.**
+The title is carried from the CATALOGUE while the text comes from the PDF, and
+until now nothing compared them. Note which gates cannot see it, and why:
+
+- **C1** ("every acquired file becomes a blob") never asks what is IN the file.
+- **C9** ("a partial copy is never published as the Act") -- this copy is
+  complete, just of another Act.
+- **A1/A2** (character recall and precision against an independent extractor)
+  are perfect here: we extracted the wrong document faithfully.
+
+A sibling defect from the same class, same session: document 127 published
+**"section 3: Application of the Act and overriding effect" whose text is the
+single word "Murder."** -- the segmenter had bound contents headings to a
+Schedule's numbered offences.
+
+### Building the detector took three attempts, and the failures are the lesson
+
+`tools/audit/title-disagrees-with-document.sql`.
+
+**Attempt 1 -- what fraction of the title's words appear in the document's first
+three pages.** Reported 15 zero-overlap rows, *every one of them document 4497*:
+ESTACODE, a compendium whose expressions are separate rules beginning hundreds
+of pages in. Its first three pages are a cover sheet. The query was measuring
+its own blind spot. Fixed by reading each expression's own span
+(`source_start_block_id` .. `source_end_block_id`) rather than the document's.
+
+**Attempt 2 -- the same fraction, over the right text.** Zero-overlap fell to 0,
+which looked like good news and was not: **the one document known to be wrong
+scored 67%.** "Sindh" appears in 42 blocks of the Altaf Hussain University Act
+and "public" in 3; only "conveyances" is absent. **Averaging over title words
+lets common words vouch for a statute they do not identify.**
+
+**Attempt 3 -- the title's RAREST word.** Rank a title's words by how many other
+released titles use them, take the least common, and ask whether that one word
+appears. This catches 4587 on "conveyances", and flags 101 of 3,791 released
+instruments.
+
+### The discriminator, found by accident in the display order
+
+Sorting the 101 by rarity put catalogue typos at the top, which exposed the real
+signal:
+
+| `shared_by` | meaning | count |
+|---|---|---|
+| **1** | no other title uses the word -- a MISSPELLING in the catalogue (`genral`, `eeucation`, `emplyees`, `lndemnity`, `requistioned`) | **74** |
+| **>= 2** | other Acts use the word correctly and THIS text lacks it -- the mis-served shape | **27** |
+
+The remaining 27 still need reading and most are explainable -- `baln` is
+Balochistan abbreviated (57 titles), `codified` is an annotation appended to a
+title rather than part of the Act's name (40), `usher` against a text printing
+"Ushr". **It is a reporting query and must stay one**: a low score can mean an
+English title over an Urdu gazette, or an Act known by two names. Every row
+needs a page before it is called a defect.
+
+**The corpus is sound on identity** -- 3,584 of 3,791 released instruments have
+every distinctive title word present in their own text, and zero have none. The
+gap in the criteria was real; the damage was one document.

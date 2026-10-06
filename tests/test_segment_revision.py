@@ -13,6 +13,7 @@ def test_build_keeps_official_observation_identity_and_url():
     inst, _ = build(
         77, "a" * 64, 123, "pk-punjab", "The Example Act, 2020", "2020",
         "https://punjabcode.punjab.gov.pk/example.pdf", blocks, "2026-08-28",
+        profile="default",
     )
 
     assert inst.source_observation_id == 123
@@ -26,9 +27,11 @@ def test_byte_identical_observations_get_distinct_stable_paths():
     blocks = [{"id": 1, "text": "1. Short title. Example text.", "page_no": 1,
                "y0": 100.0, "page_height": 792.0}]
     first, _ = build(77, "b" * 64, 201, "pk-federal", "Example Act, 2020", "2020",
-                     "https://pakistancode.gov.pk/a.pdf", blocks, "2026-08-28")
+                     "https://pakistancode.gov.pk/a.pdf", blocks, "2026-08-28",
+                     profile="default")
     second, _ = build(77, "b" * 64, 202, "pk-punjab", "Example Act, 2020", "2020",
-                      "https://punjabcode.punjab.gov.pk/a.pdf", blocks, "2026-08-28")
+                      "https://punjabcode.punjab.gov.pk/a.pdf", blocks, "2026-08-28",
+                      profile="default")
 
     assert first.provisions[0]["path"] != second.provisions[0]["path"]
     assert "o201" in first.provisions[0]["path"]
@@ -47,6 +50,7 @@ def test_build_exposes_item_level_repeated_label_evidence():
     inst, seg = build(
         77, "c" * 64, 203, "pk-punjab", "Example Rules, 2020", "2020",
         "https://punjabcode.punjab.gov.pk/example.pdf", blocks, "2026-08-28",
+        profile="default",
     )
     assert seg.repeated_labels_demoted == 1
     assert len(inst.structural_decisions) == 1
@@ -71,7 +75,7 @@ def test_catalogue_title_line_breaks_do_not_reach_the_instrument_title():
     inst, _ = build(
         77, "a" * 64, 123, "pk-punjab",
         "AGRICULTURAL INCOME TAX (AMENDMENT)\r\n          ACT, 2001",
-        "2001", None, blocks, "2026-08-28",
+        "2001", None, blocks, "2026-08-28", profile="default",
     )
 
     assert inst.short_title == "AGRICULTURAL INCOME TAX (AMENDMENT) ACT, 2001"
@@ -85,5 +89,5 @@ def test_untitled_observation_still_gets_its_document_placeholder():
          "y0": 100.0, "page_height": 792.0},
     ]
     inst, _ = build(77, "a" * 64, 123, "pk-punjab", None, None, None,
-                    blocks, "2026-08-28")
+                    blocks, "2026-08-28", profile="default")
     assert inst.short_title == "document 77"

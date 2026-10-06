@@ -334,6 +334,229 @@ def test_bracketed_starred_omission_without_full_stop_is_a_section():
     assert "Operative text." in "".join(thirty.text_parts)
 
 
+def test_starred_amendment_fragment_is_not_the_promised_section():
+    from nizam.corpus.segment import _classify_body
+
+    toc = {"3": "Requisitioning of property.",
+           "4": "Release from requisition."}
+    # Source-verified Document 527, PDF page 3, block 20184. The raised 4
+    # is an amendment marker inside the still-running sentence of 3(1).
+    assert _classify_body(
+        "4*****] of the Central Government, the Provincial Government or "
+        "any corporate body established by or under their authority]",
+        toc, seen={"3"},
+    ) is None
+    # The real Section 4 starts on page 4 at block 20195.
+    assert _classify_body(
+        "4. (1) Where any building requisitioned under section 3 is to be "
+        "released from requisition", toc, seen={"3"},
+    )[0:2] == ("section", "4")
+
+
+def test_source_title_year_is_not_a_contents_or_body_section():
+    from nizam.corpus.segment import _section_numbers
+
+    # Documents 523 and 559: these lines sit in the enacted title/preamble,
+    # yet their years became spurious unresolved TOC section promises.
+    source = blocks(
+        "1972.\nAn Act to amend the Sind Wildlife Protection Ordinance,",
+        "1987. North-West Frontier Province Regulation No.1 of 1987.",
+        "1. Short title and commencement. This Act may be called the Act.",
+    )
+    assert [label for _, _, label, _ in _section_numbers(source)] == ["1"]
+
+
+def test_footnoted_ordinance_title_year_is_not_section():
+    from nizam.corpus.segment import _section_numbers
+
+    # Documents 2373 and 1079, both PDF page 2: 1980 is the ordinance
+    # title's year, followed by a footnoted province name.
+    source = blocks(
+        "1980.  2[KHYBER PAKHTUNKHWA] ORDINANCE No. IX OF 1980.  "
+        "30th June, 1980. AN ORDINANCE",
+        "1980. 2[KHYBER PAKHTUNKHWA] ORDINANCE No. VIII OF 1980",
+        "1. (1) This Ordinance may be called the Finance Ordinance, 1980.",
+    )
+    assert [label for _, _, label, _ in _section_numbers(source)] == ["1"]
+
+
+def test_assent_note_after_title_year_is_not_section():
+    from nizam.corpus.segment import _section_numbers
+
+    # Document 1051, PDF page 2, source block 49757. The year is part of
+    # the title and the following bracketed text records assent.
+    source = blocks(
+        "1901. 1[Received the assent of the Governor-General on the "
+        "25th October, 1901, published in the Gazette of India].",
+        "1. (1) This Regulation may be called the Hazara Settlement Rules "
+        "Repeal Regulation, 1901.",
+        "2. So much of the Punjab Frontier Regulation, 1872 as has not "
+        "been repealed is hereby repealed.",
+    )
+    assert [label for _, _, label, _ in _section_numbers(source)] == ["1", "2"]
+
+
+def test_fused_preamble_and_printed_section_one_open_separately():
+    from nizam.corpus.segment import subdivide_spans, classify
+
+    # Document 362, PDF page 3, source block 15798. The preamble heading is
+    # in the same extracted block as a genuinely numbered Section 1.
+    text = ("Preamble.\n1. a. Defence Housing Authority Quetta, belonging "
+            "to everyone, will provide quality and secure living.")
+    pieces = subdivide_spans(text)
+    assert [classify(piece)[0:2] if classify(piece) else None
+            for _, piece in pieces] == [None, ("section", "1")]
+
+    source = blocks(
+        "CONTENTS", "1. Preamble.", "2. Short Title and Commencement.",
+        "3. Definitions.", "An Act to establish the Authority.",
+        text,
+        "b. Defence Housing Authority Quetta will also serve for schemes.",
+        "c. Affording ample opportunities for the people of Balochistan.",
+        "2. a. This Act may be called the Defence Housing Authority Quetta Act.",
+        "3. In this Act the Authority means the Defence Housing Authority.",
+    )
+    for index, block in enumerate(source):
+        block["page_no"] = 1 if index <= 3 else 2
+    parsed = segment(source)
+    sections = [node for node in parsed.root.children if node.kind == "section"]
+    assert [node.label for node in sections] == ["1", "2", "3"]
+    def subtree_text(node):
+        return " ".join(node.text_parts) + " " + " ".join(
+            subtree_text(child) for child in node.children)
+    assert all(letter in subtree_text(sections[0])
+               for letter in ("a.", "b.", "c.")), subtree_text(sections[0])
+
+
+def test_split_quetta_publication_note_is_apparatus_only_at_source_blocks():
+    from nizam.corpus.segment import _is_enactment_history_footnote
+
+    parts = (
+        (15811, "1 This Act was passed by the Provincial Assembly of "
+         "Balochistan on 1st October 2015; assented to by the Governor of "
+         "Balochistan on 2nd"),
+        (15812, "October, 2015, and published in the Balochistan Gazette "
+         "(Extraordinary) No. 175, dated 2nd October, 2015."),
+    )
+    for block_id, source_text in parts:
+        block = {"id": block_id, "page_no": 3, "y0": 746,
+                 "page_height": 842}
+        assert _is_enactment_history_footnote(source_text, block)
+        assert not _is_enactment_history_footnote(source_text + " shall", block)
+        assert not _is_enactment_history_footnote(source_text,
+                                                  {**block, "id": block_id + 100})
+
+
+def test_doc17_enactment_history_is_footnote_only_at_verified_source_block():
+    from nizam.corpus.segment import _is_enactment_history_footnote
+
+    source_text = (
+        "1 This Act was passed by the Provincial Assembly of Balochistan "
+        "on 27th June, 1989; assented to by the Governor of Balochistan;\n"
+        "and published in the Balochistan Gazette (Extraordinary) "
+        "No. 127, dated 30th July, 1989."
+    )
+    block = {"id": 279, "page_no": 2, "y0": 696.376,
+             "page_height": 792.0}
+    assert _is_enactment_history_footnote(source_text, block)
+    assert not _is_enactment_history_footnote(source_text + " This Act applies.", block)
+    assert not _is_enactment_history_footnote(source_text, {**block, "id": 280})
+    assert not _is_enactment_history_footnote(source_text, {**block, "y0": 400})
+
+
+def test_source_verified_page_separators_are_not_operative_text():
+    from nizam.corpus.segment import _is_source_editorial_separator
+
+    assert _is_source_editorial_separator("____\n", {"id": 278, "page_no": 2})
+    assert _is_source_editorial_separator("____________\n", {"id": 5529, "page_no": 2})
+    assert _is_source_editorial_separator("______\n", {"id": 309, "page_no": 2})
+    assert _is_source_editorial_separator("_______\n", {"id": 28228, "page_no": 14})
+    assert not _is_source_editorial_separator("____", {"id": 279, "page_no": 2})
+    assert not _is_source_editorial_separator("____ and this section", {"id": 278, "page_no": 2})
+
+
+def test_source_digest_footnote_continuation_fails_closed(monkeypatch):
+    import hashlib
+    from nizam.corpus import segment as module
+
+    source_text = "January, 1973; and published in the Gazette."
+    digest = hashlib.sha256(source_text.encode("utf-8")).hexdigest()
+    monkeypatch.setattr(module, "_SOURCE_HISTORY_BLOCK_SHA256",
+                        {(28230, 14): digest})
+    block = {"id": 28230, "page_no": 14, "y0": 672.4,
+             "page_height": 842.0}
+    assert module._is_enactment_history_footnote(source_text, block)
+    assert not module._is_enactment_history_footnote(
+        source_text + " This Act applies.", block)
+    assert not module._is_enactment_history_footnote(
+        source_text, {**block, "id": 28231})
+    assert not module._is_enactment_history_footnote(
+        source_text, {**block, "y0": 300.0})
+
+
+def test_doc671_page9_footer_notes_are_not_clauses(monkeypatch):
+    import hashlib
+    from nizam.corpus import segment as module
+
+    source = ("1 Section 5-B inserted by Balochistan Act I of 1992.\n"
+              "2 Section 5-B substituted by Balochistan Act XIII of 2014.")
+    digest = hashlib.sha256(" ".join(source.split()).encode("utf-8")).hexdigest()
+    monkeypatch.setattr(module, "_SOURCE_HISTORY_BLOCK_SHA256",
+                        {(28176, 9): digest})
+    block = {"id": 28176, "page_no": 9, "y0": 640.476,
+             "page_height": 792.0, "text": source}
+    assert module._is_source_history_digest_block(block)
+    assert not module._is_source_history_digest_block(
+        {**block, "text": source + " New enacted text."})
+    assert not module._is_source_history_digest_block(
+        {**block, "id": 28177})
+
+
+def test_doc220_bracketed_subsection_and_editorial_footnote():
+    from nizam.corpus.segment import (
+        _is_enactment_history_footnote, _is_source_marginal_heading,
+    )
+
+    source = (
+        "1. (1) This ordinance may be called the West Pakistan Agricultural "
+        "Bank Ordinance, 1959.\n\n1[(2) It shall extend to the whole of Pakistan.]"
+    )
+    pieces = subdivide(source)
+    assert len(pieces) == 3
+    assert classify(pieces[-1])[:2] == ("subsection", "2")
+    note = "1.  Sub-section 2, subs. by P. O. 4 of 1975"
+    block = {"id": 9075, "page_no": 2, "y0": 669.649,
+             "page_height": 792.0}
+    assert _is_enactment_history_footnote(note, block)
+    assert not _is_enactment_history_footnote(note, {**block, "id": 9076})
+    heading = {"id": 9067, "page_no": 2, "x0": 522.82,
+               "text": "Preamble. "}
+    assert _is_source_marginal_heading(heading)
+    assert not _is_source_marginal_heading({**heading, "x0": 108.02})
+    assert not _is_source_marginal_heading({**heading, "text": "Preamble. Operative law"})
+
+
+def test_doc3_exact_nonoperative_blocks_fail_closed(monkeypatch):
+    import hashlib
+    from nizam.corpus import segment as module
+
+    source = "BY ORDER OF THE SPEAKER PROVINCIAL ASSEMBLY OF SINDH"
+    digest = hashlib.sha256(source.encode("utf-8")).hexdigest()
+    monkeypatch.setattr(module, "_SOURCE_NON_OPERATIVE_BLOCK_ROLES",
+                        {(25, 1): ("preface", digest)})
+    block = {"id": 25, "page_no": 1, "text": source}
+    assert module._source_nonoperative_role(block) == "preface"
+    assert module._source_nonoperative_role({**block, "id": 26}) is None
+    assert module._source_nonoperative_role({**block, "text": source + " Act"}) is None
+    intro = "AN ACT to amend the Act. WHEREAS it is expedient."
+    monkeypatch.setattr(module, "_SOURCE_PREAMBLE_INTRO_SHA256",
+                        {(22, 1): hashlib.sha256(intro.encode("utf-8")).hexdigest()})
+    assert module._is_source_preamble_intro_block(
+        {"id": 22, "page_no": 1, "text": intro})
+    assert not module._is_source_preamble_intro_block(
+        {"id": 22, "page_no": 1, "text": intro + " 1. Duty."})
+
+
 def test_fused_amendment_marker_does_not_hide_omitted_heading():
     from nizam.corpus.segment import _heading_supports
 
@@ -480,6 +703,34 @@ def test_a_running_header_is_classified_not_dropped():
         "Page 90 of 179",
     ))
     assert seg.block_roles[1][0] == "running_header"
+
+
+def test_a_fused_act_number_and_page_counter_is_running_furniture():
+    seg = segment(blocks(
+        "1. Short title. This Act may be called the Example Act, 2020.",
+        "(KHYBER PAKHTUNKHWA ACT NO. XXVIII OF 2013)\n38 | P a g e",
+        "2. Definitions. In this Act, unless the context otherwise requires.",
+    ))
+    assert seg.block_roles[1][0] == "running_header"
+
+
+def test_a_repeated_top_title_is_not_appended_to_a_provision():
+    rows = blocks(
+        "1. Short title. This Act may be called the Example Act, 2020.",
+        "THE EXAMPLE ACT, 2020",
+        "2. Definitions. In this Act, unless the context otherwise requires.",
+        "THE EXAMPLE ACT, 2020",
+        "3. Application. This Act applies throughout the Province.",
+        "THE EXAMPLE ACT, 2020",
+        "4. Power to make rules. Government may make rules.",
+    )
+    for index, row in enumerate(rows):
+        row["page_no"] = index // 2 + 1
+        row["y0"] = 18.0 if "THE EXAMPLE" in row["text"] else 120.0
+    seg = segment(rows)
+    assert all("THE EXAMPLE ACT" not in node.text for node in seg.flatten())
+    assert all(seg.block_roles[index][0] == "running_header"
+               for index in (1, 3, 5))
 
 
 # ------------------------------------------------------------- no invention
@@ -1495,6 +1746,28 @@ def test_toc_proves_unpunctuated_section_in_marginal_layout():
     assert [n.label for n in seg.root.children if n.kind == "section"] == [
         "1", "2", "3", "4", "5",
     ]
+
+
+def test_detached_heading_reaches_bare_section_after_same_block_subsection():
+    bs = blocks(
+        "CONTENTS",
+        *[f"{n}. Heading {n}." for n in range(1, 11)],
+        "It is hereby enacted as follows:",
+        *[f"{n}. Heading {n}. Operative text." for n in range(1, 9)],
+        "Heading 9.",
+        "(2) Continuation of section eight.\n9\nThe ninth provision applies.",
+        "Heading 10.",
+        "10. The tenth provision applies.",
+    )
+    for index, block in enumerate(bs):
+        block["page_no"] = 1 if index <= 10 else 2
+    seg = segment(bs)
+    sections = [node for node in seg.root.children if node.kind == "section"]
+    assert [node.label for node in sections] == [str(n) for n in range(1, 11)]
+    ninth = next(node for node in sections if node.label == "9")
+    assert ninth.heading == "Heading 9."
+    assert "ninth provision" in ninth.text.lower()
+    assert seg.missing == []
 
 
 def test_fused_margin_recovery_only_touches_an_unresolved_toc_label():

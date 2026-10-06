@@ -1,7 +1,14 @@
--- PROPOSED A11 -- provisions whose heading is not the name their own printed block gives them.
+-- A11 -- provisions whose heading is not the name their own printed block gives them.
 --
--- NOT wired into criteria.sql. See "WHY NOT YET" at the foot: the detector is not certifiably free
--- of false positives, and a gate that cannot honestly reach 0 is worse than no gate.
+-- WIRED, 21 September 2026, gated at threshold 0. The value is read from the census recorded by
+-- `tools/census_heading_mislabel.py` into `heading_mislabel_census` (migration 0053), never
+-- recomputed here -- this file's SQL shadow is for INSPECTION ONLY and over-reports 4.7x, for the
+-- reason set out under "THE A11 FRAGMENT" below. The "WHY NOT YET" section at the foot is kept as
+-- the record of what had to be true first, with what actually happened noted against each point.
+--
+-- A11 is RED as it stands: 5 provisions in 3 documents (4043 x3, 4139, 1683), down from 101 in 30.
+-- `.patch_schedule_row_name.py` is the measured repair for all five and is handed over, not
+-- applied. See "WHERE IT STANDS" at the foot.
 --
 -- WHAT IT CATCHES.  A citation that resolves to the right text under the WRONG NAME. Nothing flags
 -- it today. The contents-gap queue cannot see it by construction: a contents list running at an
@@ -119,28 +126,53 @@ SELECT doc, label, page,
  ORDER BY doc, page, label LIMIT 80;
 
 -- ---------------------------------------------------------------------------------------------
--- THE A11 FRAGMENT, in the form criteria.sql uses.  Add to the `m` CTE:
+-- THE A11 FRAGMENT, as criteria.sql now carries it.  In the `m` CTE:
 --
---     -- A11: a provision whose heading is not the name its own printed block
---     -- gives it.  A citation that resolves to the right text under the wrong
---     -- name is worse than a gap: A5, A10 and the gap queue are all silent on
---     -- it.  See tools/audit/heading-not-the-provisions-own.sql for the four
---     -- guards and why each exists, and for why the value is read from a
---     -- recorded census rather than recomputed here.
---     (SELECT count(*) FROM heading_mislabel_census WHERE is_current)      AS heading_not_own,
+--     ,(SELECT mislabelled           FROM v_heading_mislabel_census_current) AS heading_not_own
+--     ,(SELECT mislabelled_documents FROM v_heading_mislabel_census_current) AS heading_not_own_docs
+--     ,(SELECT variant_spellings     FROM v_heading_mislabel_census_current) AS heading_variants
+--     ,(SELECT never_measured        FROM v_heading_mislabel_census_current) AS heading_census_absent
+--     ,(SELECT is_stale              FROM v_heading_mislabel_census_current) AS heading_census_stale
+--     ,(SELECT to_char(measured_at,'YYYY-MM-DD HH24:MI')
+--         FROM v_heading_mislabel_census_current)                            AS heading_census_at
 --
--- and to the assembly:
+-- and in the assembly:
 --
 --     UNION ALL SELECT 'A11','provision headings are the name the source prints',
---            heading_not_own::text,'0',
---            CASE WHEN heading_not_own=0 THEN 'PASS' ELSE 'FAIL' END FROM m
+--            CASE WHEN heading_census_absent THEN 'no census recorded'
+--                 WHEN heading_census_stale THEN
+--                      heading_not_own||' in '||heading_not_own_docs||
+--                      ' docs, measured '||coalesce(heading_census_at,'?')||
+--                      ' against a corpus that has since changed'
+--                 ELSE heading_not_own||' in '||heading_not_own_docs||
+--                      ' docs; '||heading_variants||' spelling variants' END,
+--            '0; census fresh',
+--            CASE WHEN heading_census_absent THEN 'FAIL (no census)'
+--                 WHEN heading_census_stale  THEN 'FAIL (stale)'
+--                 WHEN heading_not_own = 0   THEN 'PASS'
+--                 ELSE 'FAIL' END FROM m
 --
--- `heading_mislabel_census` does not exist. Creating it is a migration, and it is the only way to
--- put a TRUE number on the audit: guard 4 needs per-token fuzzy matching and initialism detection,
--- and the SQL above over-reports 4.7x without it. The alternative -- a plpgsql similarity function
--- called from criteria.sql -- is also a migration, and would run token comparison over 83,000
--- provisions on every `./nz audit`. Either is a decision to take deliberately, not a side effect of
--- adding a criterion.
+-- Three states, three answers. A cached measurement can be wrong in two ways before it is wrong
+-- about the corpus -- never taken, or taken for a corpus that has since moved -- and only the third
+-- state may report a pass. The release check at the foot of criteria.sql was widened from
+-- `result='FAIL'` to `result <> 'PASS'` so that both stale answers fail closed; matching only the
+-- bare word would have let a stale census through as a silent pass, which is the exact failure a
+-- stored number invites.
+--
+-- Staleness is decided by `v_heading_mislabel_corpus_state`: an md5 over the census population
+-- itself -- (id, kind, label, heading, first_block) for every active provision of an active,
+-- non-duplicate instrument, of a citable kind, with a heading and a block. 83,184 rows, 212 ms
+-- warm. Two cheaper watermarks were measured and REJECTED, and not on cost:
+--
+--   * the count of active instruments (4,692 rows, 7 ms) cannot see a re-segmentation at all --
+--     appending a revision retires one instrument and adds its replacement, so the count is
+--     identical. 751 documents were re-segmented in one day without moving it once;
+--   * max(instrument.created_at) (8 ms) advances on a run but is a clock, not an identity: blind to
+--     a duplicate_of resolution, to a retirement with no replacement, and to a restore that moves
+--     the corpus BACKWARDS, after which the census would read fresh while describing a tree that is
+--     no longer there.
+--
+-- The digest is the population, so it moves in both directions.
 -- ---------------------------------------------------------------------------------------------
 -- WHY NOT YET.
 --

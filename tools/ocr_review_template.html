@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OCR source review</title>
+  <style>
+    :root { color-scheme: light; font: 15px/1.45 system-ui, sans-serif; color:#17222e; background:#f1f4f6; }
+    * { box-sizing: border-box; }
+    body { margin:0; }
+    header { background:#14283d; color:white; padding:14px 20px; }
+    h1 { font-size:1.25rem; margin:0 0 4px; }
+    h2 { font-size:1rem; margin:0 0 10px; }
+    p { margin:6px 0; }
+    small, .muted { color:#586b7c; }
+    header small { color:#c9d9e6; }
+    button, input, textarea { font:inherit; }
+    button { border:1px solid #96aabb; background:white; border-radius:6px; padding:8px 11px; cursor:pointer; }
+    button:hover { background:#e8f2fa; }
+    button.active { background:#146190; color:white; border-color:#146190; }
+    button:focus-visible, input:focus-visible, textarea:focus-visible { outline:3px solid #e9aa36; }
+    .layout { display:grid; grid-template-columns:240px minmax(0,1fr); min-height:calc(100vh - 95px); }
+    nav { background:white; border-right:1px solid #d4dce2; padding:15px; }
+    .nav-pages { display:grid; grid-template-columns:repeat(4,1fr); gap:6px; margin-top:15px; }
+    .nav-pages button { padding:7px 3px; }
+    .nav-pages button.done { border-color:#268257; box-shadow:inset 0 0 0 2px #268257; }
+    .nav-pages button.reject { border-color:#b34343; box-shadow:inset 0 0 0 2px #b34343; }
+    main { min-width:0; padding:16px; }
+    .meta, .decision, .pane { background:white; border:1px solid #d4dce2; border-radius:8px; padding:14px; }
+    .meta { margin-bottom:12px; }
+    .meta code { overflow-wrap:anywhere; }
+    .warning { color:#843500; background:#fff2dc; border:1px solid #edca8d; padding:8px; border-radius:5px; }
+    .columns { display:grid; grid-template-columns:minmax(340px,1.15fr) minmax(320px,1fr); gap:12px; align-items:start; }
+    .page-image { display:block; width:100%; height:auto; border:1px solid #c3cdd4; background:#fafafa; }
+    .text-stack { display:grid; gap:12px; }
+    pre { white-space:pre-wrap; overflow-wrap:anywhere; max-height:390px; overflow:auto; margin:0; font:14px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace; }
+    .decision { margin-top:12px; }
+    .review-confirm { display:block; padding:10px; background:#e9f4fb; border-radius:5px; }
+    .decision-options { display:flex; gap:18px; margin:12px 0; flex-wrap:wrap; }
+    .decision-options label { padding:8px 12px; border:1px solid #c8d2da; border-radius:5px; }
+    textarea { display:block; width:100%; min-height:65px; padding:8px; border:1px solid #a9bac6; border-radius:5px; }
+    .footer-actions { display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-top:12px; }
+    .footer-actions input { padding:8px; border:1px solid #a9bac6; border-radius:5px; }
+    #message { color:#a23423; font-weight:600; }
+    details { margin-top:12px; }
+    .block { border-top:1px solid #d9e1e6; padding:8px 0; }
+    .block pre { max-height:150px; }
+    @media(max-width:1000px) { .layout { grid-template-columns:1fr; } nav { border-right:0; border-bottom:1px solid #d4dce2; } .nav-pages { grid-template-columns:repeat(10,1fr); } .columns { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 id="title">OCR source review</h1>
+    <small>Local, read-only comparison. Exported JSON is a proposed human decision—not database adjudication or release.</small>
+  </header>
+  <div class="layout">
+    <nav>
+      <a href="../index.html">All documents</a>
+      <p id="coverage"></p>
+      <p id="progress"></p>
+      <div class="nav-pages" id="nav-pages" aria-label="Pages"></div>
+    </nav>
+    <main>
+      <section class="meta">
+        <h2 id="page-title"></h2>
+        <p id="page-meta"></p>
+        <p>Source SHA-256: <code id="source-hash"></code><br>OCR result SHA-256: <code id="result-hash"></code></p>
+        <p id="page-warning" class="warning" hidden></p>
+      </section>
+      <div class="columns">
+        <section class="pane">
+          <h2>Original PDF page</h2>
+          <p class="muted">Click the image for full-size inspection. Compare numbering, punctuation, tables, reading order, and missing lines.</p>
+          <a id="image-link" target="_blank" rel="noopener"><img id="page-image" class="page-image" alt="Original source PDF page"></a>
+        </section>
+        <div class="text-stack">
+          <section class="pane"><h2>Proposed Surya OCR</h2><pre id="candidate-text"></pre></section>
+          <section class="pane"><h2>Currently stored text</h2><pre id="stored-text"></pre></section>
+          <section class="pane"><h2>OCR blocks and coordinates</h2><details><summary>Show every OCR block</summary><div id="blocks"></div></details></section>
+        </div>
+      </div>
+      <section class="decision">
+        <h2>Your decision for this page</h2>
+        <label class="review-confirm"><input id="reviewed" type="checkbox"> I checked this source image against the OCR text above.</label>
+        <div class="decision-options">
+          <label><input type="radio" name="decision" value="accepted"> Accept this OCR page</label>
+          <label><input type="radio" name="decision" value="rejected"> Reject this OCR page</label>
+          <label><input type="radio" name="decision" value="needs_review"> Leave unresolved</label>
+        </div>
+        <label for="reason">Notes / error location (required if rejected)</label>
+        <textarea id="reason" placeholder="Example: printed section 12 is missing; row 4 amount reads 500, not 50."></textarea>
+        <div class="footer-actions">
+          <button id="previous" type="button">← Previous</button>
+          <button id="next" type="button">Next →</button>
+          <label>Reviewer name <input id="reviewer" placeholder="Your name" autocomplete="name"></label>
+          <button id="export" type="button">Export checked decisions JSON</button>
+          <label>Resume from JSON <input id="resume" type="file" accept="application/json,.json"></label>
+          <span id="message" role="status"></span>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script>
+    "use strict";
+    const PACK = /*__OCR_REVIEW_DATA__*/;
+    const storageKey = `nizam-ocr-review:${PACK.document_id}:${PACK.source_sha256}:${PACK.result_sha256}`;
+    let saved = {};
+    try { saved = JSON.parse(localStorage.getItem(storageKey) || "{}"); } catch (_) { saved = {}; }
+    const state = { reviewer: saved.reviewer || "", pages: saved.pages || {} };
+    let current = 0;
+    const $ = id => document.getElementById(id);
+    const pageKey = page => String(page.page_no);
+    function persist() {
+      try { localStorage.setItem(storageKey, JSON.stringify(state)); } catch (_) { /* Export remains available. */ }
+    }
+    function updateNav() {
+      const nav = $("nav-pages");
+      nav.replaceChildren();
+      let decided = 0;
+      PACK.pages.forEach((page, index) => {
+        const s = state.pages[pageKey(page)] || {};
+        const complete = s.reviewed && (s.decision === "accepted" || s.decision === "rejected") &&
+          (s.decision !== "rejected" || (s.reason || "").trim());
+        if (complete) decided++;
+        const button = document.createElement("button");
+        button.type = "button";
+        button.textContent = String(page.page_no);
+        button.title = `Page ${page.page_no}: ${complete ? s.decision : "not decided"}`;
+        button.className = `${index === current ? "active " : ""}${complete ? (s.decision === "rejected" ? "reject" : "done") : ""}`;
+        button.addEventListener("click", () => show(index));
+        nav.append(button);
+      });
+      $("progress").textContent = `${decided} / ${PACK.pages.length} pages checked and decided`;
+    }
+    function show(index) {
+      current = index;
+      const page = PACK.pages[index];
+      const s = state.pages[pageKey(page)] || {};
+      $("page-title").textContent = `Document ${PACK.document_id} — page ${page.page_no}`;
+      $("page-meta").textContent = `Candidate ID: ${page.candidate_id ?? "not imported yet"} · Database state: ${page.database_decision} · OCR blocks: ${page.blocks.length}`;
+      $("source-hash").textContent = PACK.source_sha256;
+      $("result-hash").textContent = PACK.result_sha256;
+      const image = $("page-image");
+      image.src = page.image;
+      image.alt = `Original PDF for document ${PACK.document_id}, page ${page.page_no}`;
+      $("image-link").href = page.image;
+      $("candidate-text").textContent = page.candidate_text || "[OCR returned no text]";
+      $("stored-text").textContent = page.stored_text || "[No stored text for this page]";
+      $("reviewed").checked = Boolean(s.reviewed);
+      document.querySelectorAll('input[name="decision"]').forEach(radio => { radio.checked = radio.value === s.decision; });
+      $("reason").value = s.reason || "";
+      const warning = [];
+      if (!page.candidate_text) warning.push("OCR returned no text on this page.");
+      if (!page.stored_text) warning.push("The database has no stored text on this page.");
+      if (page.database_decision !== "not_imported" && page.database_decision !== "review")
+        warning.push(`Database already marks this candidate ${page.database_decision}; check before forwarding another decision.`);
+      $("page-warning").textContent = warning.join(" ");
+      $("page-warning").hidden = !warning.length;
+      const blocks = $("blocks");
+      blocks.replaceChildren();
+      page.blocks.forEach((block, n) => {
+        const box = document.createElement("div"); box.className = "block";
+        const label = document.createElement("small");
+        label.textContent = `#${n + 1} · ${block.label || "Text"} · confidence ${block.confidence == null ? "?" : Number(block.confidence).toFixed(3)} · box ${JSON.stringify(block.bbox)}`;
+        const text = document.createElement("pre"); text.textContent = block.text;
+        box.append(label, text); blocks.append(box);
+      });
+      $("previous").disabled = index === 0;
+      $("next").disabled = index === PACK.pages.length - 1;
+      $("message").textContent = "";
+      updateNav();
+    }
+    function saveCurrent() {
+      const page = PACK.pages[current];
+      state.pages[pageKey(page)] = {
+        reviewed: $("reviewed").checked,
+        decision: document.querySelector('input[name="decision"]:checked')?.value || null,
+        reason: $("reason").value,
+      };
+      state.reviewer = $("reviewer").value.trim();
+      persist(); updateNav();
+    }
+    function exportJson() {
+      saveCurrent();
+      if (!state.reviewer) { $("message").textContent = "Enter your reviewer name first."; return; }
+      const decisions = [];
+      const reviewedUnresolved = [];
+      for (const page of PACK.pages) {
+        const s = state.pages[pageKey(page)] || {};
+        if (!s.reviewed) continue;
+        if (s.decision === "needs_review" || !s.decision) {
+          reviewedUnresolved.push({document_id:PACK.document_id, page_no:page.page_no,
+            candidate_text_sha256:page.candidate_text_sha256,
+            reviewed_source_image:true, note:(s.reason || "").trim()});
+          continue;
+        }
+        if (s.decision === "rejected" && !(s.reason || "").trim()) {
+          $("message").textContent = `Page ${page.page_no}: explain what is wrong before exporting.`;
+          return;
+        }
+        decisions.push({
+          document_id: PACK.document_id, page_no: page.page_no,
+          candidate_id: page.candidate_id,
+          candidate_text_sha256: page.candidate_text_sha256,
+          reviewed_source_image: true,
+          decision: s.decision,
+          reason: (s.reason || "").trim(),
+          source_image: page.image,
+        });
+      }
+      if (!decisions.length && !reviewedUnresolved.length) {
+        $("message").textContent = "Tick at least one page after reviewing it."; return;
+      }
+      const payload = {
+        schema: PACK.schema, reviewer_name: state.reviewer,
+        exported_at: new Date().toISOString(),
+        document_id: PACK.document_id, source_sha256: PACK.source_sha256,
+        result_sha256: PACK.result_sha256, candidate_engine: PACK.candidate_engine,
+        source_page_count: PACK.source_page_count,
+        candidate_page_count: PACK.candidate_page_count,
+        decisions, reviewed_unresolved: reviewedUnresolved,
+        undecided_candidate_pages: PACK.pages.map(p => p.page_no).filter(n => !decisions.some(d => d.page_no === n)),
+      };
+      const blob = new Blob([JSON.stringify(payload, null, 2) + "\n"], {type:"application/json"});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url; a.download = `ocr-review-doc-${PACK.document_id}.json`;
+      document.body.append(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 30000);
+      $("message").textContent = `Exported ${decisions.length} decisions and ${reviewedUnresolved.length} unresolved reviews. No database change.`;
+    }
+    async function resumeJson(file) {
+      if (!file) return;
+      try {
+        const previous = JSON.parse(await file.text());
+        if (previous.schema !== PACK.schema || previous.document_id !== PACK.document_id ||
+            previous.source_sha256 !== PACK.source_sha256 || previous.result_sha256 !== PACK.result_sha256)
+          throw Error("This JSON belongs to a different source or OCR result.");
+        const byPage = new Map(PACK.pages.map(p => [p.page_no, p]));
+        for (const item of previous.decisions || []) {
+          const page = byPage.get(item.page_no);
+          if (!page || item.candidate_text_sha256 !== page.candidate_text_sha256 ||
+              !["accepted", "rejected"].includes(item.decision))
+            throw Error(`Decision for page ${item.page_no} does not match this OCR result.`);
+          state.pages[pageKey(page)] = {reviewed:true, decision:item.decision, reason:item.reason || ""};
+        }
+        for (const item of previous.reviewed_unresolved || []) {
+          const page = byPage.get(item.page_no);
+          if (!page || item.candidate_text_sha256 !== page.candidate_text_sha256)
+            throw Error(`Unresolved page ${item.page_no} does not match this OCR result.`);
+          state.pages[pageKey(page)] = {reviewed:true, decision:"needs_review", reason:item.note || ""};
+        }
+        state.reviewer = previous.reviewer_name || state.reviewer;
+        $("reviewer").value = state.reviewer;
+        persist(); show(current);
+        $("message").textContent = "Previous checked decisions loaded; no database change.";
+      } catch (error) { $("message").textContent = error.message; }
+    }
+    $("title").textContent = `OCR source review · Document ${PACK.document_id}`;
+    $("coverage").textContent = `OCR coverage: ${PACK.candidate_page_count} / ${PACK.source_page_count} source pages`;
+    $("reviewer").value = state.reviewer;
+    ["reviewed", "reason", "reviewer"].forEach(id => $(id).addEventListener("input", saveCurrent));
+    document.querySelectorAll('input[name="decision"]').forEach(r => r.addEventListener("change", saveCurrent));
+    $("previous").addEventListener("click", () => show(current - 1));
+    $("next").addEventListener("click", () => show(current + 1));
+    $("export").addEventListener("click", exportJson);
+    $("resume").addEventListener("change", event => resumeJson(event.target.files[0]));
+    show(0);
+  </script>
+</body>
+</html>
