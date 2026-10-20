@@ -31,11 +31,28 @@ an unchanged copy points at the blob already stored.
 
     python tools/record_source_refetch.py --observation 3151            dry run
     python tools/record_source_refetch.py --observation 3151 --apply    record
+
+An observation that landed with NO canonical_url (doc 3533, observation 370:
+the landing matched no manifest row because the zip entry prints '_' where the
+row's local_path prints an apostrophe) takes its URL from the scraper manifest
+that catalogued the held file, never from a guess:
+
+    python tools/record_source_refetch.py --observation 370 \\
+        --manifest-archive "data/Federal Laws-20260817T002958Z-1-001.zip" \\
+        --manifest "Federal Laws/output/manifest.csv"
+
+The manifest's rows whose sha256 is the held blob's must name exactly one
+pdf_url; the attempt's ledger text says which manifest (and its SHA-256) the URL
+came from. An observation that has a canonical_url refuses the manifest options.
 """
 from __future__ import annotations
 
 import argparse
+import csv
 import hashlib
+import io
+import zipfile
+from pathlib import Path
 
 from nizam.storage.db import connect
 from nizam.workers.recover_acquisition import (
@@ -72,6 +89,31 @@ def classify(status: int | None, digest: str | None, held_sha256: str,
     return "unchanged_copy", None
 
 
+def manifest_url(rows: list[dict], held_sha256: str) -> tuple[str, dict]:
+    """The one pdf_url a scraper manifest gives for the held blob: (url, row).
+
+    Pure, so the rule can be tested without a portal or an archive. Only rows
+    whose sha256 is the held blob's count; they must name exactly one non-empty
+    pdf_url (a page scraped twice, 'success' then 'skipped', names it twice)."""
+    hits = [r for r in rows if (r.get("sha256") or "").strip().lower() == held_sha256.lower()]
+    urls = sorted({(r.get("pdf_url") or "").strip() for r in hits} - {""})
+    if len(urls) != 1:
+        raise ValueError(f"the manifest names {len(urls)} pdf_url(s) for the held blob "
+                         f"{held_sha256} ({len(hits)} matching rows); need exactly one")
+    return urls[0], next(r for r in hits if (r.get("pdf_url") or "").strip() == urls[0])
+
+
+def read_manifest(manifest: str, archive: str | None) -> tuple[list[dict], str]:
+    """The manifest's rows and its SHA-256, from a CSV file or a CSV entry of a zip."""
+    if archive:
+        with zipfile.ZipFile(archive) as zf:
+            data = zf.read(manifest)
+    else:
+        data = Path(manifest).read_bytes()
+    rows = list(csv.DictReader(io.StringIO(data.decode("utf-8-sig"))))
+    return rows, hashlib.sha256(data).hexdigest()
+
+
 def attempt_note(outcome: str, byte_length: int, digest: str | None,
                  note: str | None) -> str | None:
     """The `error` text the ledger carries for this attempt."""
@@ -92,7 +134,14 @@ def main() -> int:
     ap.add_argument("--timeout", type=int, default=60)
     ap.add_argument("--apply", action="store_true",
                     help="record the attempt (default: fetch and report only)")
+    ap.add_argument("--manifest", help="for an observation with no canonical_url: the "
+                                       "scraper manifest CSV (a path, or an entry of "
+                                       "--manifest-archive) whose row for the held blob "
+                                       "names the URL")
+    ap.add_argument("--manifest-archive", help="zip holding --manifest")
     a = ap.parse_args()
+    if a.manifest_archive and not a.manifest:
+        raise SystemExit("--manifest-archive needs --manifest")
 
     with connect() as conn, conn.cursor() as cur:
         cur.execute(OBSERVATION, (a.observation,))
@@ -106,6 +155,22 @@ def main() -> int:
             f"observation {obs_id} did not land ({outcome_then}); retry it with "
             "nizam/workers/recover_acquisition.py --observation, not this tool")
 
+    url_source = None
+    if a.manifest:
+        if (raw_url or "").strip():
+            raise SystemExit(f"observation {obs_id} has canonical_url {raw_url!r}; the "
+                             "manifest options are only for one landed without a URL")
+        rows, manifest_sha256 = read_manifest(a.manifest, a.manifest_archive)
+        try:
+            raw_url, manifest_row = manifest_url(rows, held_sha256)
+        except ValueError as exc:
+            raise SystemExit(str(exc))
+        where = f"{a.manifest_archive}::{a.manifest}" if a.manifest_archive else a.manifest
+        url_source = (f"URL from manifest {where} (SHA-256 {manifest_sha256}), row "
+                      f"local_path {manifest_row.get('local_path')!r}")
+    elif not (raw_url or "").strip():
+        raise SystemExit(f"observation {obs_id} has no canonical_url; pass --manifest "
+                         "(and --manifest-archive) naming the manifest that catalogued it")
     url = safe_official_url(raw_url)
     status, final_url, media_type, data, fetch_error = fetch(
         url, attempts=a.attempts, timeout=a.timeout)
@@ -116,6 +181,8 @@ def main() -> int:
 
     print(f"observation : {obs_id} {source_id} {title or ''}")
     print(f"url         : {url}")
+    if url_source:
+        print(f"url source  : {url_source}")
     print(f"held        : {held_sha256}")
     print(f"returned    : HTTP {status} {media_type} {len(data)} bytes "
           f"{digest or '-'}")
@@ -131,6 +198,8 @@ def main() -> int:
     text = attempt_note(outcome, len(data), digest, a.note)
     if outcome != "unchanged_copy":
         text = "; ".join(x for x in (error, text) if x) or None
+    if url_source:
+        text = "; ".join(x for x in (text, url_source) if x)
 
     if not a.apply:
         print("\ndry run -- pass --apply to record this attempt "

@@ -113,11 +113,17 @@ def render_page(pdf: Path, page_no: int, output: Path, dpi: int) -> None:
         raise RuntimeError(f"source image not rendered: {output}")
 
 
-def build_one(document_id: int, input_dir: Path, result_dir: Path,
+def first_file(candidates) -> Path | None:
+    return next((path for path in candidates if path.is_file()), None)
+
+
+def build_one(document_id: int, input_dirs: list[Path], result_dirs: list[Path],
               output_dir: Path, dpi: int) -> dict:
-    pdf = input_dir / f"{document_id}.pdf"
-    result_file = result_dir / str(document_id) / "results.json"
-    if not pdf.is_file() or not result_file.is_file():
+    # A document's PDF and results may sit in any staged run (r5, r6, a hold
+    # directory for re-runs); the hash check below still ties them to the source.
+    pdf = first_file(d / f"{document_id}.pdf" for d in input_dirs)
+    result_file = first_file(d / str(document_id) / "results.json" for d in result_dirs)
+    if pdf is None or result_file is None:
         raise FileNotFoundError(f"document {document_id}: PDF or completed results.json missing")
     source, stored, candidates = stored_evidence(document_id)
     pdf_sha = sha256_file(pdf)
@@ -165,18 +171,22 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--document", type=int, action="append",
                         help="repeat to build only specified completed OCR documents")
-    parser.add_argument("--input", type=Path, default=DEFAULT_INPUT)
-    parser.add_argument("--results", type=Path, default=DEFAULT_RESULTS)
+    parser.add_argument("--input", type=Path, action="append",
+                        help=f"staged PDF directory; repeat for several runs (default {DEFAULT_INPUT})")
+    parser.add_argument("--results", type=Path, action="append",
+                        help=f"Surya output directory; repeat for several runs (default {DEFAULT_RESULTS})")
     parser.add_argument("--out", type=Path, default=DEFAULT_OUTPUT)
     parser.add_argument("--dpi", type=int, default=120)
     args = parser.parse_args()
     if not 72 <= args.dpi <= 220:
         parser.error("--dpi must be 72..220")
-    docs = args.document or sorted(int(path.parent.name) for path in
-        args.results.glob("[0-9]*/results.json") if path.parent.name.isdigit())
+    inputs = args.input or [DEFAULT_INPUT]
+    results = args.results or [DEFAULT_RESULTS]
+    docs = args.document or sorted(int(path.parent.name) for d in results for path in
+        d.glob("[0-9]*/results.json") if path.parent.name.isdigit())
     if not docs:
         parser.error("no completed OCR results found")
-    built = [build_one(doc, args.input, args.results, args.out, args.dpi)
+    built = [build_one(doc, inputs, results, args.out, args.dpi)
              for doc in sorted(set(docs))]
     links = "\n".join(
         f'<li><a href="{row["path"]}">Document {row["document_id"]}</a> '

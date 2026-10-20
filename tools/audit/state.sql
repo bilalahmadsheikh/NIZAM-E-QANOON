@@ -138,9 +138,11 @@ SELECT overall_outcome,count(*) AS documents,
 \echo '-- citation-label ambiguity after segmentation'
 WITH ambiguous AS (
   SELECT DISTINCT instrument_id FROM (
-    SELECT p.instrument_id,p.parent_id,p.kind,p.label FROM audit_provision p
+    -- the print-order occurrence of an owner-kept label (`__oN`, docs/SCHEMA.md) is part of the citation
+    SELECT p.instrument_id,p.parent_id,p.kind,p.label,substring(p.path::text from '__o([0-9]+)$')
+      FROM audit_provision p
      WHERE p.kind IN ('section','article')
-     GROUP BY p.instrument_id,p.parent_id,p.kind,p.label HAVING count(*)>1) x)
+     GROUP BY 1,2,3,4,5 HAVING count(*)>1) x)
 SELECT (SELECT count(*) FROM audit_instrument) AS instruments,
        count(*) AS ambiguous,
        (SELECT count(*) FROM audit_instrument)-count(*) AS unambiguous,
@@ -210,7 +212,8 @@ SELECT kind::text AS instrument_kind, count(*) AS instruments,
 
 \echo ''
 \echo '════════ 9. THE TEN LARGEST INSTRUMENTS'
-SELECT left(i.short_title, 46) AS instrument, i.jurisdiction::text AS jur, i.year,
+SELECT left(i.short_title, 46) AS instrument, i.jurisdiction::text AS jur,
+       coalesce(i.year::text, 'undated') AS year,
        count(p.id) AS provisions,
        count(p.id) FILTER (WHERE p.kind = 'section') AS sections,
        (SELECT round(toc_agreement, 3) FROM segmentation_run s

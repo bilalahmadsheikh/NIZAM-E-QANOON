@@ -1,0 +1,149 @@
+{
+  "schema": "nizam.multi_expression_plan/1",
+  "document_id": 2404,
+  "source_observation_id": 2503,
+  "review_basis": "source_verified",
+  "reviewed_on": "2026-10-13",
+  "reviewed_by": "assistant page review (agent JA) on the owner's decision",
+  "owner_decision": {
+    "export": ".artifacts/decision-review/exports/decision-review-2026-10-12-j.json",
+    "q1": "split: the 2007 Rules (p1), the 2010 Rules (p2), the 16 Feb 2012 amendment of the 2010 Rules' Schedule (pp3-5) and the 17 Aug 2012 amendment of the 2007 Rules' Schedule (pp6-8) each become their own instrument; distribution lists and signatures are apparatus",
+    "q2": "release-with-gap: both sets of Rules are released with rules 1-3; each missing Schedule is recorded as source incompleteness (migration 0054; tools/evidence/declare-source-incompleteness-2404-DRAFT.sql); the 2012 amendments are released as printed"
+  },
+  "reviewed_pages": [
+    {
+      "page": 1,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc2404-p1.png",
+      "render_sha256": "f71923b814df45340e8e2693f57499bd6fbd8ec762542089ce15bb414841be04"
+    },
+    {
+      "page": 2,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc2404-p2.png",
+      "render_sha256": "da6256fe3fcfa9d8187518b9bc8ae3f9eef4cf15a95154508cf350d3bf4bd098"
+    },
+    {
+      "page": 3,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc2404-p3.png",
+      "render_sha256": "26851785e8f9d6e92a5bea5ff51be0e05d75e9f8d440f9f7b21fae2ca68c4745"
+    },
+    {
+      "page": 4,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc2404-p4.png",
+      "render_sha256": "1dd0d22c20f2cafa735a4758a5ccc4e61de2fb56e0ee5c96d321b7c19e2d8fb5"
+    },
+    {
+      "page": 5,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc2404-p5.png",
+      "render_sha256": "36de1e80b1a4f494a5a378ec98951bf368e65730fe9807d5fe0f3ada280e4587"
+    },
+    {
+      "page": 6,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc2404-p6.png",
+      "render_sha256": "d44a66f63f90345bbe812b7a9c848fbd4385b19c101215366da4b2d118a88349"
+    },
+    {
+      "page": 7,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc2404-p7.png",
+      "render_sha256": "7b1aa0e654219c7470292b8aa524181badc7ce9b954484f37595ccad899fc94d"
+    },
+    {
+      "page": 8,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc2404-p8.png",
+      "render_sha256": "5eda60674b9a848480f4e5097a4b07fdf6ac2010402dd5589fffc54cd3199bba"
+    }
+  ],
+  "expressions": [
+    {
+      "ordinal": 0,
+      "role": "primary",
+      "title": "The Punjab Institute of Management and Professional Department (PIMPD)/Management and Professional Development Department, Recruitment Rules, 2007",
+      "kind": "rules",
+      "year": 2007,
+      "number": null,
+      "spans": [
+        {
+          "start_block_id": 196931,
+          "end_block_id": 196946,
+          "pages": "1"
+        }
+      ],
+      "expected_tree": "preface (S&GAD notification of 1 Nov 2007 No.SOR-III(S&GAD) 1-21/2002 and its enabling formula), rules 1-3; signature, endorsement and distribution list set aside; no Schedule printed (source incompleteness)"
+    },
+    {
+      "ordinal": 1,
+      "role": "embedded",
+      "title": "The Punjab Management and Professional Development Department (Miscellaneous Posts) Service Rules, 2010",
+      "kind": "rules",
+      "year": 2010,
+      "number": null,
+      "spans": [
+        {
+          "start_block_id": 196947,
+          "end_block_id": 196960,
+          "pages": "2"
+        }
+      ],
+      "expected_tree": "preface (S&GAD notification of 12 Aug 2010 No.SOR-III(S&GAD) 1-15/2010), rules 1-3; signature, endorsement and distribution list set aside; no Schedule printed (source incompleteness)"
+    },
+    {
+      "ordinal": 2,
+      "role": "embedded",
+      "title": "Notification No. SOR-III(S&GAD) 1-15/2010 dated 16-02-2012 (amending the Punjab Management and Professional Development Department (Miscellaneous Posts) Service Rules, 2010)",
+      "kind": "notification",
+      "year": 2012,
+      "number": "SOR-III(S&GAD) 1-15/2010",
+      "spans": [
+        {
+          "start_block_id": 196961,
+          "end_block_id": 197031,
+          "pages": "3-5"
+        }
+      ],
+      "relations": [
+        {
+          "type": "amends",
+          "target_ordinal": 1,
+          "effect": "inserts, after the existing entries of the 2010 Rules' Schedule, the entries for Research Officer (BS-17) and Research Assistant (BS-14) in columns 1-10",
+          "source_block_id": 196969,
+          "source_page": 3,
+          "basis": "p3 prints 'AMENDMENTS / In the said rules, in the Schedule, after the existing entries, the following entries in columns No. 1 to 10 shall be inserted:'; owner decision q1 'split'"
+        }
+      ],
+      "source_anomalies": [
+        {
+          "source_block_id": 197027,
+          "printed": "NO.SOR-III(S&GAD)1-15/2010 / Dated Lahore, the 18th August, 2010",
+          "note": "p4 prints, under this 16 Feb 2012 notification's signature, the endorsement number and date of the 2010 Rules (p2); kept as printed and set aside with the endorsement as apparatus, not corrected"
+        }
+      ],
+      "expected_tree": "preface (notification head of 16 Feb 2012), the unnumbered amending clause with the two inserted Schedule entries (table rows, cells in column order); signature, endorsement and distribution list set aside"
+    },
+    {
+      "ordinal": 3,
+      "role": "embedded",
+      "title": "Notification No. SOR-III(S&GAD) 1-15/2010 dated 17-08-2012 (amending the Punjab Institute of Management and Professional Department (PIMPD)/Management and Professional Development Department, Recruitment Rules, 2007)",
+      "kind": "notification",
+      "year": 2012,
+      "number": "SOR-III(S&GAD) 1-15/2010",
+      "spans": [
+        {
+          "start_block_id": 197032,
+          "end_block_id": 197103,
+          "pages": "6-8"
+        }
+      ],
+      "relations": [
+        {
+          "type": "amends",
+          "target_ordinal": 0,
+          "effect": "inserts, after the existing entries of the 2007 Rules' Schedule, the entries for Director Academic/Additional Chief Instructor (BS-19), Deputy Director (Administration) (BS-18) and Accounts Officer (BS-17) in columns 1-10",
+          "source_block_id": 197038,
+          "source_page": 6,
+          "basis": "p6 prints 'AMENDMENTS / In the said rules, in the Schedule, after the existing entries, the following entries in Columns No. 1 to 10 shall be inserted:'; owner decision q1 'split'"
+        }
+      ],
+      "expected_tree": "preface (notification head of 17 Aug 2012), the unnumbered amending clause with the three inserted Schedule entries (table rows, cells in column order); signature, endorsement (3 Sep 2012) and distribution list set aside"
+    }
+  ],
+  "apparatus": "signatures, endorsements and distribution lists on pp1-8 stay inside their expression spans and are set aside by the reviewed curation readings (source_apparatus_blocks; claude/agJA/patch-2404.json)"
+}

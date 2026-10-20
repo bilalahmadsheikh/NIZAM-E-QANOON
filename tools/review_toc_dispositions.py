@@ -126,6 +126,16 @@ def _render(entry: dict, output: Path, dpi: int) -> dict:
     }
 
 
+def same_blob_observations(observation_id: int, rows: list[tuple[int, str | None]]) -> list[int]:
+    """Every observation behind an active instrument of the document (exact duplicates included) that carries the
+    same blob as the reviewed one: a disposition read on one copy of the pages is recorded on each (docs 4501,
+    2605, 12 Oct: an assertion on one observation only left two released, different trees). rows: (observation,
+    blob sha256). The reviewed observation is always included."""
+    blob = dict(rows).get(observation_id)
+    same = {obs for obs, sha in rows if blob is not None and sha == blob}
+    return sorted(same | {observation_id})
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--render", action="store_true")
@@ -233,7 +243,13 @@ def main() -> int:
         # a reviewer has looked at every rendered source block in this manifest.
         # The actor and reviewer type remain honest; this is not labelled human.
         with connect() as conn, conn.cursor() as cur:
-            refused = 0
+            refused = withdrawn = 0
+            per_observation: list[tuple] = []
+            # Migration 0061: an entry whose governing assertion was withdrawn
+            # on an owner decision is not re-asserted by a bulk run (the
+            # database refuses it unless it supersedes the withdrawn row).
+            cur.execute("SELECT to_regclass('toc_disposition_withdrawal') IS NOT NULL")
+            withdrawals_exist = cur.fetchone()[0]
             for entry in entries:
                 artifact = entry.get("render_artifact")
                 if not artifact:
@@ -258,54 +274,105 @@ def main() -> int:
                     entry["printed_heading"], re.I,
                 )
                 citation = citation_match.group(1).strip(" .") if citation_match else None
-                cur.execute("""
-                    SELECT id,printed_heading,source_block_id,source_page,render_sha256
-                      FROM v_toc_disposition_assertion_latest
-                     WHERE source_observation_id=%s AND expression_ordinal=0
-                       AND source_block_id=%s AND printed_label=%s
-                """, (entry["source_observation_id"],entry["source_block_id"],
-                      entry["printed_label"]))
-                previous = cur.fetchone()
-                if (previous is not None
-                        and previous[1] == entry["printed_heading"]
-                        and previous[2] == entry["source_block_id"]
-                        and previous[3] == entry["source_page"]
-                        and previous[4] == artifact["sha256"]):
-                    unchanged += 1
-                    continue
-                evidence = {
-                    "visual_review": True,
-                    "reviewer_type": "ai_assistant",
-                    "detector": "direct-past-participle/1",
-                    "source_heading_verbatim": entry["printed_heading"],
-                    "render_artifact": artifact["path"],
-                    "render_sha256": artifact["sha256"],
-                    "body_section_hits": entry["body_section_hits"],
-                    "schedule_label_collisions": entry["schedule_label_collisions"],
-                }
-                cur.execute("""
-                    INSERT INTO toc_disposition_assertion
-                        (source_observation_id,expression_ordinal,toc_entry_ordinal,
-                         reviewed_toc_entry_id,printed_label,printed_heading,
-                         disposition,source_block_id,source_page,render_artifact,
-                         render_sha256,amending_instrument_citation,evidence,
-                         reviewed_by,supersedes_id)
-                    VALUES (%s,0,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
-                """, (
-                    entry["source_observation_id"],entry["ordinal"],
-                    entry["toc_entry_id"],entry["printed_label"],
-                    entry["printed_heading"],entry["classification"],
-                    entry["source_block_id"],entry["source_page"],
-                    artifact["path"],artifact["sha256"],citation,
-                    json.dumps(evidence,ensure_ascii=False),args.reviewed_by,
-                    previous[0] if previous is not None else None,
-                ))
-                inserted += 1
+                cur.execute("""SELECT DISTINCT i.source_observation_id, o.sha256 FROM instrument i
+                                 JOIN source_observation o ON o.id=i.source_observation_id
+                                WHERE i.document_id=%s AND i.is_active""", (entry["document_id"],))
+                targets = same_blob_observations(entry["source_observation_id"],
+                                                 [tuple(row) for row in cur.fetchall()])
+                for observation_id in targets:
+                    outcome = _record_on(cur, entry, observation_id, artifact, citation,
+                                         withdrawals_exist, args.reviewed_by)
+                    if outcome == "inserted":
+                        inserted += 1
+                    elif outcome == "unchanged":
+                        unchanged += 1
+                    elif outcome == "withdrawn":
+                        withdrawn += 1
+                    per_observation.append((entry["document_id"], entry["printed_label"], observation_id, outcome))
+        for document_id, label, observation_id, outcome in per_observation:
+            if len({o for d, lb, o, _x in per_observation if d == document_id and lb == label}) > 1:
+                print(f"  document {document_id} label {label}: observation {observation_id} {outcome}")
         print(f"assertions: {inserted} inserted, {unchanged} unchanged, "
-              f"{refused} refused because the body has text under that label")
+              f"{refused} refused because the body has text under that label, "
+              f"{withdrawn} skipped because the owner withdrew that disposition")
     print(json.dumps(manifest["counts"], indent=2))
     print(f"manifest: {manifest_path}")
     return 0
+
+
+def _record_on(cur, entry: dict, observation_id: int, artifact: dict, citation: str | None,
+               withdrawals_exist: bool, reviewed_by: str) -> str:
+    """Record one reviewed disposition on one observation; idempotent per observation.
+    Returns 'inserted', 'unchanged', 'withdrawn' or 'no_canonical_entry' (printed per observation)."""
+    if withdrawals_exist:
+        cur.execute("""
+            SELECT EXISTS (
+                SELECT 1 FROM toc_disposition_withdrawal w
+                 WHERE w.assertion_id = (
+                     SELECT g.id FROM toc_disposition_assertion g
+                      WHERE g.source_observation_id=%s
+                        AND g.expression_ordinal=0
+                        AND g.source_block_id=%s AND g.printed_label=%s
+                      ORDER BY g.reviewed_at DESC, g.id DESC LIMIT 1))
+        """, (observation_id,entry["source_block_id"],
+              entry["printed_label"]))
+        if cur.fetchone()[0]:
+            return "withdrawn"
+    cur.execute("""
+        SELECT id,printed_heading,source_block_id,source_page,render_sha256
+          FROM v_toc_disposition_assertion_latest
+         WHERE source_observation_id=%s AND expression_ordinal=0
+           AND source_block_id=%s AND printed_label=%s
+    """, (observation_id,entry["source_block_id"],
+          entry["printed_label"]))
+    previous = cur.fetchone()
+    if (previous is not None
+            and previous[1] == entry["printed_heading"]
+            and previous[2] == entry["source_block_id"]
+            and previous[3] == entry["source_page"]
+            and previous[4] == artifact["sha256"]):
+        return "unchanged"
+    # The 0045 trigger demands the observation's OWN contents entry on its active canonical instrument: a sibling
+    # observation has its own entry id; an observation whose instrument is an exact duplicate has none and is
+    # reported, not written (tools/copy_toc_disposition.py once it is canonical again).
+    cur.execute("""SELECT e.id FROM instrument_toc_entry e JOIN instrument i ON i.id=e.instrument_id
+                    WHERE i.source_observation_id=%s AND i.expression_ordinal=0
+                      AND i.is_active AND i.duplicate_of IS NULL
+                      AND e.ordinal=%s AND e.printed_label=%s AND e.printed_heading=%s
+                      AND e.source_block_id=%s AND e.source_page=%s""",
+                (observation_id, entry["ordinal"], entry["printed_label"], entry["printed_heading"],
+                 entry["source_block_id"], entry["source_page"]))
+    own = [row[0] for row in cur.fetchall()]
+    if len(own) != 1:
+        return "no_canonical_entry"
+    evidence = {
+        "visual_review": True,
+        "reviewer_type": "ai_assistant",
+        "detector": "direct-past-participle/1",
+        "source_heading_verbatim": entry["printed_heading"],
+        "render_artifact": artifact["path"],
+        "render_sha256": artifact["sha256"],
+        "body_section_hits": entry["body_section_hits"],
+        "schedule_label_collisions": entry["schedule_label_collisions"],
+    }
+    cur.execute("""
+        INSERT INTO toc_disposition_assertion
+            (source_observation_id,expression_ordinal,toc_entry_ordinal,
+             reviewed_toc_entry_id,printed_label,printed_heading,
+             disposition,source_block_id,source_page,render_artifact,
+             render_sha256,amending_instrument_citation,evidence,
+             reviewed_by,supersedes_id)
+        VALUES (%s,0,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+    """, (
+        observation_id,entry["ordinal"],
+        own[0],entry["printed_label"],
+        entry["printed_heading"],entry["classification"],
+        entry["source_block_id"],entry["source_page"],
+        artifact["path"],artifact["sha256"],citation,
+        json.dumps(evidence,ensure_ascii=False),reviewed_by,
+        previous[0] if previous is not None else None,
+    ))
+    return "inserted"
 
 
 if __name__ == "__main__":

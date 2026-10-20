@@ -1,0 +1,685 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 4434,
+ "source_observation_id": 2810,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-12",
+ "reviewed_by": "assistant page review (agent JE, 12 Oct 2026) on the owner's export j q2; DRAFT",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/decision-review-2026-10-12-j.json",
+  "q2": "split: the Thirteenth Amendment ends before p248's title; the Constitution (Fourteenth Amendment) Act, 1997 becomes its own expression",
+  "q1": "duplicate -- NOT carried out: 4434 e0 (as amended to the 22nd Amendment 2016) and 4419 (to the 27th Amendment 2025) are different versions; see claude/agJE/card-4434-q1.json"
+ },
+ "reviewed_pages": [
+  {
+   "page": 247,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4434-p247.png",
+   "render_sha256": "c85ee9287c7274d8191b18ea76d8f84f1dbd81cd2861eb4510d82796d1f3f7b4"
+  },
+  {
+   "page": 248,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4434-p248.png",
+   "render_sha256": "6c4633cf1e3cfa8d5fa9a15538c658085ae262a2372cb81b56a623bd3a44911a"
+  },
+  {
+   "page": 249,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4434-p249.png",
+   "render_sha256": "879c3a5e7909f329df96dbd453677dbc354e8085c5fb68c297f9e9b7f0289839"
+  },
+  {
+   "page": 250,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4434-p250.png",
+   "render_sha256": "afbc68fd98c5ee307c212959213203c9db0bd62027f16652214878778a7eb080"
+  },
+  {
+   "page": 251,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4434-p251.png",
+   "render_sha256": "bb7df14a2cf40071b103dbd2b011b4fa9654b3f0d5caac313acf5211d83d6d17"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "CONSTITUTION OF PAKISTAN",
+   "kind": "constitution",
+   "year": 1973,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 789886,
+     "end_block_id": 792605
+    }
+   ]
+  },
+  {
+   "ordinal": 1,
+   "role": "embedded",
+   "title": "The Constitution (First Amendment) Act, 1974",
+   "kind": "act",
+   "year": 1974,
+   "number": "XXXIII",
+   "spans": [
+    {
+     "start_block_id": 792606,
+     "end_block_id": 792675
+    }
+   ]
+  },
+  {
+   "ordinal": 2,
+   "role": "embedded",
+   "title": "The Constitution (Second Amendment) Act, 1974",
+   "kind": "act",
+   "year": 1974,
+   "number": "XLIX",
+   "spans": [
+    {
+     "start_block_id": 792676,
+     "end_block_id": 792688
+    }
+   ]
+  },
+  {
+   "ordinal": 3,
+   "role": "embedded",
+   "title": "Constitution (Third Amendment) Act, 1975",
+   "kind": "act",
+   "year": 1975,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 792689,
+     "end_block_id": 792703
+    }
+   ]
+  },
+  {
+   "ordinal": 4,
+   "role": "embedded",
+   "title": "The Constitution (Fourth Amendment) Act, 1975",
+   "kind": "act",
+   "year": 1975,
+   "number": "LXXI",
+   "spans": [
+    {
+     "start_block_id": 792704,
+     "end_block_id": 792865
+    }
+   ]
+  },
+  {
+   "ordinal": 5,
+   "role": "embedded",
+   "title": "The Constitution (Fifth Amendment) Act, 1976",
+   "kind": "act",
+   "year": 1976,
+   "number": "LXII",
+   "spans": [
+    {
+     "start_block_id": 792866,
+     "end_block_id": 792962
+    }
+   ]
+  },
+  {
+   "ordinal": 6,
+   "role": "embedded",
+   "title": "The Constitution (Sixth Amendment) Act, 1976",
+   "kind": "act",
+   "year": 1976,
+   "number": "LXXXIV",
+   "spans": [
+    {
+     "start_block_id": 792963,
+     "end_block_id": 792987
+    }
+   ]
+  },
+  {
+   "ordinal": 7,
+   "role": "embedded",
+   "title": "The Constitution (Seventh Amendment) Act, 1977",
+   "kind": "act",
+   "year": 1977,
+   "number": "XXIII",
+   "spans": [
+    {
+     "start_block_id": 792988,
+     "end_block_id": 793013
+    }
+   ]
+  },
+  {
+   "ordinal": 8,
+   "role": "embedded",
+   "title": "The Constitution (Eighth Amendment) Act, 1985",
+   "kind": "act",
+   "year": 1985,
+   "number": "XVIII",
+   "spans": [
+    {
+     "start_block_id": 793014,
+     "end_block_id": 793181
+    }
+   ]
+  },
+  {
+   "ordinal": 9,
+   "role": "embedded",
+   "title": "The Constitution (Tenth Amendment) Act, 1987",
+   "kind": "act",
+   "year": 1987,
+   "number": "1",
+   "spans": [
+    {
+     "start_block_id": 793182,
+     "end_block_id": 793191
+    }
+   ]
+  },
+  {
+   "ordinal": 10,
+   "role": "embedded",
+   "title": "(Twelfth Amendment) Act, 1991",
+   "kind": "act",
+   "year": 1991,
+   "number": "XIV",
+   "spans": [
+    {
+     "start_block_id": 793192,
+     "end_block_id": 793248
+    }
+   ]
+  },
+  {
+   "ordinal": 11,
+   "role": "embedded",
+   "title": "The Constitution (Thirteenth Amendment) Act, 1997",
+   "kind": "act",
+   "year": 1997,
+   "number": "I",
+   "spans": [
+    {
+     "start_block_id": 793249,
+     "end_block_id": 793263,
+     "pages": "247-248"
+    }
+   ],
+   "expected_tree": "preamble, ss.1-5 (p247); the Fourteenth and Sixteenth Amendment Acts printed after it are their own expressions 43, 44"
+  },
+  {
+   "ordinal": 12,
+   "role": "embedded",
+   "title": "The Constitution (Seventeenth Amendment) Act, 2003",
+   "kind": "act",
+   "year": 2003,
+   "number": "III",
+   "spans": [
+    {
+     "start_block_id": 793306,
+     "end_block_id": 793352
+    }
+   ]
+  },
+  {
+   "ordinal": 13,
+   "role": "embedded",
+   "title": "The Constitution (Eighteenth Amendment) Act, 2010",
+   "kind": "act",
+   "year": 2010,
+   "number": "X",
+   "spans": [
+    {
+     "start_block_id": 793353,
+     "end_block_id": 794160
+    }
+   ]
+  },
+  {
+   "ordinal": 14,
+   "role": "embedded",
+   "title": "The Constitution (Nineteenth Amendment) Act, 2010",
+   "kind": "act",
+   "year": 2010,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 794161,
+     "end_block_id": 794232
+    }
+   ]
+  },
+  {
+   "ordinal": 15,
+   "role": "embedded",
+   "title": "The Constitution (Twentieth Amendment) Act, 2012",
+   "kind": "act",
+   "year": 2012,
+   "number": "V",
+   "spans": [
+    {
+     "start_block_id": 794233,
+     "end_block_id": 794310
+    }
+   ]
+  },
+  {
+   "ordinal": 16,
+   "role": "embedded",
+   "title": "The Constitution (Twenty-First Amendment) Act, 2015",
+   "kind": "act",
+   "year": 2015,
+   "number": "I",
+   "spans": [
+    {
+     "start_block_id": 794311,
+     "end_block_id": 794334
+    }
+   ]
+  },
+  {
+   "ordinal": 17,
+   "role": "embedded",
+   "title": "The Constitution (Twenty-second Amendment) Act, 2016",
+   "kind": "act",
+   "year": 2016,
+   "number": "XXV",
+   "spans": [
+    {
+     "start_block_id": 794335,
+     "end_block_id": 794393
+    }
+   ]
+  },
+  {
+   "ordinal": 18,
+   "role": "embedded",
+   "title": "The Constitution (Amendment) Order, 1979",
+   "kind": "order",
+   "year": 1979,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 794394,
+     "end_block_id": 794439
+    }
+   ]
+  },
+  {
+   "ordinal": 19,
+   "role": "embedded",
+   "title": "The Constitution (Second Amendment) Order, 1979",
+   "kind": "order",
+   "year": 1979,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 794440,
+     "end_block_id": 794458
+    }
+   ]
+  },
+  {
+   "ordinal": 20,
+   "role": "embedded",
+   "title": "Constitution (Amendment) Order, 1980",
+   "kind": "order",
+   "year": 1980,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 794459,
+     "end_block_id": 794524
+    }
+   ]
+  },
+  {
+   "ordinal": 21,
+   "role": "embedded",
+   "title": "The Constitution (Second Amendment) Order, 1980",
+   "kind": "order",
+   "year": 1980,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 794525,
+     "end_block_id": 794551
+    }
+   ]
+  },
+  {
+   "ordinal": 22,
+   "role": "embedded",
+   "title": "The Constitution (Third Amendment) Order, 1980",
+   "kind": "order",
+   "year": 1980,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 794552,
+     "end_block_id": 794560
+    }
+   ]
+  },
+  {
+   "ordinal": 23,
+   "role": "embedded",
+   "title": "The Constitution (Fourth Amendment) Order, 1980",
+   "kind": "order",
+   "year": 1980,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 794561,
+     "end_block_id": 794571
+    }
+   ]
+  },
+  {
+   "ordinal": 24,
+   "role": "embedded",
+   "title": "The Constitution (Amendment) Order, 1981",
+   "kind": "order",
+   "year": 1981,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 794572,
+     "end_block_id": 794584
+    }
+   ]
+  },
+  {
+   "ordinal": 25,
+   "role": "embedded",
+   "title": "The Constitution (Second Amendment) Order, 1981",
+   "kind": "order",
+   "year": 1981,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 794585,
+     "end_block_id": 794595
+    }
+   ]
+  },
+  {
+   "ordinal": 26,
+   "role": "embedded",
+   "title": "The Constitution (Third Amendment) Order, 1981",
+   "kind": "order",
+   "year": 1981,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 794596,
+     "end_block_id": 794603
+    }
+   ]
+  },
+  {
+   "ordinal": 27,
+   "role": "embedded",
+   "title": "The Constitution (Fourth Amendment) Order, 1981",
+   "kind": "order",
+   "year": 1981,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 794604,
+     "end_block_id": 794615
+    }
+   ]
+  },
+  {
+   "ordinal": 28,
+   "role": "embedded",
+   "title": "The Constitution (Fifth Amendment) Order, 1981",
+   "kind": "order",
+   "year": 1981,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 794616,
+     "end_block_id": 794624
+    }
+   ]
+  },
+  {
+   "ordinal": 29,
+   "role": "embedded",
+   "title": "The Constitution (Amendment) Order, 1982",
+   "kind": "order",
+   "year": 1982,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 794625,
+     "end_block_id": 794634
+    }
+   ]
+  },
+  {
+   "ordinal": 30,
+   "role": "embedded",
+   "title": "The Constitution (Second Amendment) Order, 1982",
+   "kind": "order",
+   "year": 1982,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 794635,
+     "end_block_id": 794667
+    }
+   ]
+  },
+  {
+   "ordinal": 31,
+   "role": "embedded",
+   "title": "The Constitution (Third Amendment) Order, 1982",
+   "kind": "order",
+   "year": 1982,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 794668,
+     "end_block_id": 794679
+    }
+   ]
+  },
+  {
+   "ordinal": 32,
+   "role": "embedded",
+   "title": "The Constitution (Fourth Amendment) Order, 1982",
+   "kind": "order",
+   "year": 1982,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 794680,
+     "end_block_id": 794688
+    }
+   ]
+  },
+  {
+   "ordinal": 33,
+   "role": "embedded",
+   "title": "The Constitution (Amendment) Order, 1983",
+   "kind": "order",
+   "year": 1983,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 794689,
+     "end_block_id": 794701
+    }
+   ]
+  },
+  {
+   "ordinal": 34,
+   "role": "embedded",
+   "title": "The Constitution (Second Amendment) Order, 1983",
+   "kind": "order",
+   "year": 1983,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 794702,
+     "end_block_id": 794710
+    }
+   ]
+  },
+  {
+   "ordinal": 35,
+   "role": "embedded",
+   "title": "The Constitution (Third Amendment) Order, 1983",
+   "kind": "order",
+   "year": 1983,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 794711,
+     "end_block_id": 794720
+    }
+   ]
+  },
+  {
+   "ordinal": 36,
+   "role": "embedded",
+   "title": "The Constitution (Amendment) Order, 1984",
+   "kind": "order",
+   "year": 1984,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 794721,
+     "end_block_id": 794734
+    }
+   ]
+  },
+  {
+   "ordinal": 37,
+   "role": "embedded",
+   "title": "The Constitution (Second Amendment) Order, 1984",
+   "kind": "order",
+   "year": 1984,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 794735,
+     "end_block_id": 794743
+    }
+   ]
+  },
+  {
+   "ordinal": 38,
+   "role": "embedded",
+   "title": "The Constitution (Amendment) Order, 1985",
+   "kind": "order",
+   "year": 1985,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 794744,
+     "end_block_id": 794783
+    }
+   ]
+  },
+  {
+   "ordinal": 39,
+   "role": "embedded",
+   "title": "Revival of the Constitution of 1973 Order, 1985",
+   "kind": "order",
+   "year": 1985,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 794784,
+     "end_block_id": 794867
+    }
+   ]
+  },
+  {
+   "ordinal": 40,
+   "role": "embedded",
+   "title": "THE CONSTITUTION (SECOND AMENDMENT) ORDER, 1985",
+   "kind": "order",
+   "year": 1985,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 794868,
+     "end_block_id": 794884
+    }
+   ]
+  },
+  {
+   "ordinal": 41,
+   "role": "embedded",
+   "title": "The Constitution (Third Amendment) Order, 1985",
+   "kind": "order",
+   "year": 1985,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 794885,
+     "end_block_id": 794909
+    }
+   ]
+  },
+  {
+   "ordinal": 42,
+   "role": "embedded",
+   "title": "The Constitution (Amendment) Order, 2007",
+   "kind": "order",
+   "year": 2007,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 794910,
+     "end_block_id": 794938
+    }
+   ]
+  },
+  {
+   "ordinal": 43,
+   "role": "embedded",
+   "title": "The Constitution (Fourteenth Amendment) Act, 1997",
+   "kind": "act",
+   "year": 1997,
+   "number": "XXIV",
+   "spans": [
+    {
+     "start_block_id": 793264,
+     "end_block_id": 793293,
+     "pages": "248-250"
+    }
+   ],
+   "expected_tree": "preamble, s.1 (1)-(2), s.2 holding the quoted new Article 63A (Explanation, clauses (1)-(6)) as text",
+   "owner_decision": {
+    "export": ".artifacts/decision-review/exports/decision-review-2026-10-12-j.json",
+    "document_id": 4434,
+    "question_id": "q2"
+   }
+  },
+  {
+   "ordinal": 44,
+   "role": "embedded",
+   "title": "The Constitution (Sixteenth Amendment) Act, 1999",
+   "kind": "act",
+   "year": 1999,
+   "number": "VII",
+   "spans": [
+    {
+     "start_block_id": 793294,
+     "end_block_id": 793305,
+     "pages": "250-251"
+    }
+   ],
+   "expected_tree": "preamble, s.1 (1)-(2), s.2 (amendment of Article 27)",
+   "note": "NOT named by the owner's q2 card (which saw only the Fourteenth): p250 prints the Constitution (Sixteenth Amendment) Act, 1999 (VII of 1999) inside the same span; split on q2's principle -- lead to confirm"
+  }
+ ],
+ "migration_note": "4434 is materialised by the legacy PRIMARY_DOCUMENTS path from its active manifest; a plan requires removing 4434 from PRIMARY_DOCUMENTS (tools/materialize_multi_instrument.py) -- prepare() refuses a document with both. Ordinals 0-42 keep their spans, titles, kind, year and number exactly as the active manifest/instruments; 43 and 44 are new."
+}

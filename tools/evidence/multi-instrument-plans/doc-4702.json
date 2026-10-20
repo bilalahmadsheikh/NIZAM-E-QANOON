@@ -1,0 +1,88 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 4702,
+ "source_observation_id": 4664,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-19",
+ "reviewed_by": "assistant page review (agent K6) of the owner-accepted OCR (ocr-review-doc-4479-v2.json, candidates 672-692) on the owner's decision",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/decision-review-2026-10-19-4702.json",
+  "document_id": 4702,
+  "question_id": "q2",
+  "choice": "split",
+  "effect": "The Employees Service Rules (PDF pp1-19, to the last Schedule-II table on p19) are this document's primary instrument; the SE&LD notification of 28 March 2022 making the Employees Gratuity Rules 2021 (PDF p19 lower half - p21) is a separate instrument with its printed title and date."
+ },
+ "reviewed_pages": [
+  {
+   "page": 2,
+   "render": ".artifacts/ocr-review-pack-owner-2026-10-17/doc-4479/images/page-002.png",
+   "render_sha256": "8b110232b6e65ed04d9589ecf948c499592cf9353646043c7feb4bc669ec49ad"
+  },
+  {
+   "page": 15,
+   "render": ".artifacts/ocr-review-pack-owner-2026-10-17/doc-4479/images/page-015.png",
+   "render_sha256": "5baa9f40be3f59b3e34b40406766ea04c07dad4509b7d4b279eef61a39db34cb"
+  },
+  {
+   "page": 19,
+   "render": ".artifacts/ocr-review-pack-owner-2026-10-17/doc-4479/images/page-019.png",
+   "render_sha256": "888f44473c8f24c5663f585a15bdd3f3da84e2f569ffb2a0e4faa61489828150"
+  },
+  {
+   "page": 21,
+   "render": ".artifacts/ocr-review-pack-owner-2026-10-17/doc-4479/images/page-021.png",
+   "render_sha256": "424c4df1eaeb179f7a5f44023123cb78a4df897589bcae36f1d9cb4dcdc356af"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Sindh Education Foundation (Employees Service) Rules, 2021",
+   "kind": "rules",
+   "year": 2021,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 983530,
+     "end_block_id": 983795,
+     "pages": "1-19"
+    }
+   ],
+   "source_anomalies": [
+    {
+     "page": 5,
+     "source_block_id": 983584,
+     "printed": "for a period not more than 1?0 days",
+     "note": "RECONSTRUCTED: rule 12's middle digit is hidden by a vertical scan stripe (the OCR read '190'); released as '180 days' on the owner's decision q3 'reconstruct-180' (.artifacts/decision-review/exports/decision-review-2026-10-19-4702.json; first recorded for 4479 in .artifacts/decision-review/exports/decision-review-2026-10-19-4479.json, sha256 ccce286f), definition (xvii) giving an officiating period of six (06) months; not read from the print"
+    }
+   ],
+   "expected_tree": "the Gazette masthead, CONTENTS and p1's leave notification (contents region); preface (the SE&LD notification of 28 March 2022); the preliminary rules 1) and 2); Parts I-X holding rules (1)-(77) with their margin headings (owner export m q1 'part-scoped'); the signature; Schedule I and Schedule II (Schedule of Posts, pp16-19)"
+  },
+  {
+   "ordinal": 1,
+   "role": "embedded",
+   "title": "The Sindh Education Foundation (Employees Gratuity Rules) 2021",
+   "kind": "rules",
+   "year": 2021,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 983796,
+     "end_block_id": 983834,
+     "pages": "19-21"
+    }
+   ],
+   "source_anomalies": [
+    {
+     "page": 19,
+     "source_block_id": 983799,
+     "printed": "\"Sindh Education Foundation (Employees Gratuity Rules) 2021\"",
+     "note": "the title as printed (the year without a comma); the notification is dated 28 March 2022"
+    }
+   ],
+   "expected_tree": "preface (SCHOOL EDUCATION AND LITERACY DEPARTMENT, 'Karachi, dated 28th March, 2022', the notification No. SO (G-III)SE&LD/Rules/SEF/3-1290/2021); rules 1-13 with their printed headings; the signature and the imprint set aside by the readings"
+  }
+ ],
+ "apparatus": "none outside the spans (E0 pp1-19 to the Schedule-II table, E1 p19's notification to p21 cover every block); the folios, the bleed-through, the signatures and the imprint are set aside by the reviewed readings (claude/agK6/work/agK6-mk_4479.py)"
+}

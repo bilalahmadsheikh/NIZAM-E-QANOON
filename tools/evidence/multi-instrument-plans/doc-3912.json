@@ -1,0 +1,36 @@
+{
+  "schema": "nizam.multi_expression_plan/1",
+  "document_id": 3912,
+  "source_observation_id": 2841,
+  "review_basis": "source_verified",
+  "reviewed_on": "2026-10-19",
+  "reviewed_by": "assistant source-page review; agent JF draft and Codex independent review",
+  "owner_decision": {
+    "export": ".artifacts/decision-review/exports/decision-review-2026-10-16-m.json",
+    "q1": "body: captions 1-15 are numbered groups; rules retain decimal numbers; contents 1-15 link to groups and 16-22 to named auxiliary divisions",
+    "release_approval": "Owner conversation instruction 2026-10-19: okay release 3912, following explicit explanation that released E1 must narrow to pp21-24 atomically while E0 gains the Rules material on pp25-72",
+    "condition": "Both expressions must pass release gates in the same write (--require-all-released); otherwise roll back. No other document is in scope."
+  },
+  "reviewed_pages": [
+    {"page": 1, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3912-p1.png", "render_sha256": "848b1f8f754ea3508a9868c71a3c32238037c01713653eb15971aacd750e7743", "observed": "Contents: groups 1-15; Appendices I-V, Forms, Ancillary Instructions."},
+    {"page": 2, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3912-p2.png", "render_sha256": "e2253506df1db53892a9af13efc82947bed836f9d01f601f4708493dc3e6f7f9", "observed": "Notification; group 1 General above decimal rules 2.1, 2.2."},
+    {"page": 20, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3912-p20.png", "render_sha256": "a08823a070ac45b29c8c14a2ea39daad7b198cb30acca7fe3dc142fa4400a9df", "observed": "Group 15 Procedure; rules 2.31-2.33."},
+    {"page": 21, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3912-p21.png", "render_sha256": "6570aa0d30aef4927cb96ab236331df943ceace291bfe645dcf95f6c77a979c5", "observed": "Appendix I heading; then separate Provident Funds Act 1925 title, preamble, sections 1-2."},
+    {"page": 24, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3912-p24.png", "render_sha256": "04db5d997855da5cabc5308064747d269a307104584aaf39a91cd9d5b7a02c9e", "observed": "Act concludes at section 10."},
+    {"page": 25, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3912-p25.png", "render_sha256": "0c30c4327c4d3828affaeb1d4538e28637d70ae828dac73ef0d35b84eea4bcb2", "observed": "Appendix II resumes the Rules auxiliary material."},
+    {"page": 30, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3912-p30.png", "render_sha256": "1be762b76ef774cc0e550069a05f7a1b5bd299da41b8292c058429bc1da52a63", "observed": "FORMS: table indexing the forms."},
+    {"page": 72, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3912-p72.png", "render_sha256": "34e9aaa7a4d553528785964294fa57db0fca5f3b97f7004716118bc100f05794", "observed": "Last page of Rules ancillary material."}
+  ],
+  "expressions": [
+    {
+      "ordinal": 0, "role": "primary", "title": "PUNJAB CONTRIBUTORY PROVIDENT FUND RULES 1978", "kind": "rules", "year": 1978, "number": null,
+      "spans": [{"start_block_id": 518152, "end_block_id": 518527, "pages": "1-21"}, {"start_block_id": 518587, "end_block_id": 519219, "pages": "25-72"}],
+      "expected_tree": "Groups 1-15 with decimal rules; Appendix I heading; Appendices II-V, forms, ancillary instructions and annexure; Act content belongs only to E1."
+    },
+    {
+      "ordinal": 1, "role": "embedded", "title": "THE PROVIDENT FUNDS ACT, 1925", "kind": "act", "year": 1925, "number": "XIX",
+      "spans": [{"start_block_id": 518528, "end_block_id": 518586, "pages": "21-24"}],
+      "expected_tree": "49 retained Act provisions and preamble with unchanged text, paths and source provenance. Rules material pp25-72 moves to E0."
+    }
+  ]
+}

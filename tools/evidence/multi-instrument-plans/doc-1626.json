@@ -1,0 +1,188 @@
+{
+  "schema": "nizam.multi_expression_plan/1",
+  "document_id": 1626,
+  "source_observation_id": 2055,
+  "review_basis": "source_verified",
+  "reviewed_on": "2026-10-08",
+  "reviewed_by": "assistant page review (agent CJ) on the owner's decision",
+  "owner_decision": {
+    "export": ".artifacts/decision-review/exports/decision-review-2026-10-08-h.json",
+    "card_sha256": "bd61e221fc02bdeac2e16660c9ec011bb359d6bf5147663ab5696bcf579b7897",
+    "q1": "split: the file is a compilation -- the Punjab Food Department (Executive and Ministerial Posts) Recruitment Rules 1993 with their Schedule (pp2-11) are the principal instrument; the 1994 amendment (p14), the 1994 corrigendum (p17), the 1998 amendments (pp15-16), the 2001 amendment (p18) and the 2009 amendments (pp19-21) are separate amending instruments linked to the 1993 Rules; pp12-13 (THE PUNJAB WEEKLY GAZETTE MAY 26, 1993: transfers and cinema relaxations) are unrelated Gazette material and make no instrument; p1 is a compiler's index / front matter, not the Rules' contents",
+    "q2": "rows-by-group: each post is a separately citable Schedule row under its functional unit ('Food Directorate', 'Divisional/District Estt') and printed serial, cited unit + Sr No. as the amending notifications cite them; serials that restart within the second unit are never globalised or renumbered",
+    "q3": "keep-both: rule 4's two items lettered 'c)' are both kept as printed, distinguished as first r.4(c) and second r.4(c); the second is not renumbered (e); the duplicate lettering is a source anomaly"
+  },
+  "reviewed_pages": [
+    {"page": 1, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1626-p1.png", "render_sha256": "35c92d7090d91fce494317d1bd4edad875f9385032744a7d159de306d1a8da45"},
+    {"page": 2, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1626-p2.png", "render_sha256": "c51a1111d1f14d7428d4095b5ce3b34b5900fda535f24847ee9176af4de6d999"},
+    {"page": 3, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1626-p3.png", "render_sha256": "704c93e8cc13cf29753f35eb8ba1f3d0055f41e3e2aca4763747a7caa574e372"},
+    {"page": 4, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1626-p4.png", "render_sha256": "88e7787153a35bf9872986f742cb3e1d6e0f46b76e460b7c58f8933c86a8e609"},
+    {"page": 5, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1626-p5.png", "render_sha256": "f3363e0b29fad87fb4415f62bd50d709aed315d86869f4b2a92ec1a7fefa356c"},
+    {"page": 6, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1626-p6.png", "render_sha256": "b3f9958b4bb245b9219a5964ea6982a67f73af88b26a50d0f1bda7e98be1da9c"},
+    {"page": 7, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1626-p7.png", "render_sha256": "cc65c44a0bf26f62c80e1216c461da5270a85e8eace5971379d314ff4cb3b4b2"},
+    {"page": 8, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1626-p8.png", "render_sha256": "01493c027d882c397b3e8af51ce542a52aea67e01165e9f0bcb9ca07afdfb06e"},
+    {"page": 9, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1626-p9.png", "render_sha256": "e07989892bacbad51cb89ff99d0a53e55d8e0b415456026f843f54246745e558"},
+    {"page": 10, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1626-p10.png", "render_sha256": "ad55adb5c2b47eaac83b6f5e4c277180539983e8bb7e16aec4a60a3c20224224"},
+    {"page": 11, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1626-p11.png", "render_sha256": "0f5a1b4bdfad00abbcf0f87b0ca2971e8b5c1ceb86b6eef2ec0609a2dbd5cc79"},
+    {"page": 12, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1626-p12.png", "render_sha256": "ccdbc4c527c8b29f17d8ed6c1dd597882c19f65d3aa2e5d96ce1d1b0359ac3aa"},
+    {"page": 13, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1626-p13.png", "render_sha256": "24d5a040fd8f6fe3895663e2a4708800a59a14260d56f915c3800595a03bdae2"},
+    {"page": 14, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1626-p14.png", "render_sha256": "0aee79581aa15f4e6cabf1542ef6da77511adfdf6f7a4def5de6ea7099df28c0"},
+    {"page": 15, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1626-p15.png", "render_sha256": "58246130c4a5fda23201f5c17c23862de6948f7101308117187f6effb6b1340b"},
+    {"page": 16, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1626-p16.png", "render_sha256": "1e9cdbda9cc7a52ce969ba2cde88240226987904d43aba7c7b2f980bf91d1c2d"},
+    {"page": 17, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1626-p17.png", "render_sha256": "46cc5f0169efdbcade196beabaa98f40ad224f5a4c12f42696ca8a8a65e1587d"},
+    {"page": 18, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1626-p18.png", "render_sha256": "4f96d914cd7d5c632f756bbb0cc532e87c4139631a4cfe0d18c649df96f3268c"},
+    {"page": 19, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1626-p19.png", "render_sha256": "71ceccb6962213da8b114ac61f4973df649157d3a0836439ca8eac8d2a35a19a"},
+    {"page": 20, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1626-p20.png", "render_sha256": "7efa5dbac10de0dc35d617ebf611a0647da6757df7f194811127b76e74d8678e"},
+    {"page": 21, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1626-p21.png", "render_sha256": "9a7f34ca5f8643763d61e444b943d146396f20ff267c597c07c1c27c9d13bc26"}
+  ],
+  "expressions": [
+    {
+      "ordinal": 0,
+      "role": "primary",
+      "title": "Punjab Food Department (Executive and Ministerial Posts) Recruitment Rules 1993",
+      "kind": "rules",
+      "year": 1993,
+      "number": null,
+      "spans": [
+        {"start_block_id": 101078, "end_block_id": 101254, "pages": "2-11"}
+      ],
+      "title_correction": {
+        "from_title": "PUNJAB FOOD DEPARTMENT (EXECUTIVE AND MINISTERIAL POSTS) RECRUITMENT RULES 1993",
+        "from_year": 1993,
+        "to_year": 1993,
+        "basis": "owner decision q1 names the principal instrument; p2 block 101081 prints rule 1 '1. These rules shall be called the Punjab Food Department (Executive and Ministerial Posts) Recruitment Rules 1993.' (the short title used here); the stored catalogue title is the same name in capitals"
+      },
+      "source_anomalies": [
+        {"page": 2, "source_block_id": 101081, "printed": "are hereby \nrepeated:-", "note": "sic: rule 4 prints 'hereby repeated' for 'repealed'; kept as printed."},
+        {"page": 2, "source_block_id": 101082, "printed": "a) ... b) ... c) ... d) ... c)", "note": "sic: rule 4's fifth item ('The West Pakistan Food Department Subordinate Executive Establishment Recruitment Rules, 1962.') is lettered 'c)' a second time. Both items keep the printed label and are cited by order, first r.4(c) and second r.4(c); the second is not renumbered (e) (owner q3 keep-both)."},
+        {"page": 3, "source_block_id": 101083, "printed": "14th April, 1993\nNo.SOR-III-2-9/85.  In exercise of the powers conferred on him under Section 23 of the Punjab Civil Servants Act, 1974 (VIII of 1974) the Governor of the Punjab is pleased \nto make the following rules, namely:-", "note": "the Schedule page repeats, above 'SCHEDULE', the notification's date, number and enabling formula printed on p2 (block 101080); the repeat is set aside by the reviewed reading (the p2 print is the preface)."},
+        {"page": 8, "source_block_id": 101195, "printed": "Divisional/\nDistrict \nEstt", "note": "the Schedule's serials restart at 1 under the second functional unit 'Divisional/District Estt' (rows 1-20, pp8-11) after rows 1-29 of 'Food Directorate' (pp3-8); each row is cited by its functional unit and printed serial and nothing is renumbered (owner q2 rows-by-group)."}
+      ],
+      "expected_tree": "preface (title, '[14th April, 1993]', NOTIFICATION, No.SOR-III-2-9/85 and the enabling formula); rules 1-4, rule 4 holding clauses a), b), c), d), c) (the second c) cited by order 'second r.4(c)', path __o2 -- owner q3); SCHEDULE (its text = the p3 column heads) with two functional-unit captions (kind part, __gc): 'Food Directorate' (rows 1-29) and 'Divisional/District Estt' (text = the column heads repeated on p8; rows 1-20) -- every row a clause labelled by its printed serial, its cells in printed column order (owner q2). The compiler's p1 index and p2 'TEXT' box are outside every expression; the p3 repeat of the enabling formula and every column-number row '1 ... 10' are set aside"
+    },
+    {
+      "ordinal": 1,
+      "role": "embedded",
+      "title": "S&GA&I Department Notification No. SOR-III-2-9/85 dated 25 February 1994 (amending the Punjab Food Department (Executive and Ministerial Posts) Recruitment Rules 1993)",
+      "kind": "notification",
+      "year": 1994,
+      "number": "SOR-III-2-9/85",
+      "spans": [
+        {"start_block_id": 101287, "end_block_id": 101296, "pages": "14"}
+      ],
+      "relations": [
+        {
+          "type": "amends",
+          "target_ordinal": 0,
+          "effect": "in the Schedule of the 1993 Rules substitutes the entries at Sr No.5 in columns 3, 5 and 7 to 9 against the Food Directorate functional unit ('Assistant Controller of Inspection | M.Sc (Agri) and 2nd Division at least, with Entomology as a special subject | By initial recruitment | 21 | 30')",
+          "source_block_id": 101293,
+          "source_page": 14,
+          "basis": "p14 prints 'In the Punjab Food Department (Executive and Ministerial Posts) Recruitment Rules 1993, in the schedule for entries at Sr No.5 in columns No.3, 5 and 7 to 9 against the Food Directorate, functional unit, the following shall be substituted:-'; owner decision q1"
+        }
+      ],
+      "expected_tree": "preface (heading, NOTIFICATION, 'Dated 25th February, 1994.', No.SOR-III-2-9/85 and the enabling formula); unnumbered provision 'AMENDMENT' (its printed caption 'A M E N D M E N T.', block 101292) with the amending paragraph and the substituted entry read in printed column order; the authentication and signature are apparatus"
+    },
+    {
+      "ordinal": 2,
+      "role": "embedded",
+      "title": "S&GA&I Department Notification dated 8 September 1998 (amending the Punjab Food Department (Executive and Ministerial Posts) Recruitment Rules 1993)",
+      "kind": "notification",
+      "year": 1998,
+      "number": null,
+      "spans": [
+        {"start_block_id": 101297, "end_block_id": 101337, "pages": "15-16"}
+      ],
+      "relations": [
+        {
+          "type": "amends",
+          "target_ordinal": 0,
+          "effect": "in the Schedule of the 1993 Rules adds, after serial No.20, new entries 21 Plant Operator/Foreman (BS-11), 22 Electrician, 23 Welder, 24 Fitter and 25 Weigh Bridge Operator under the Divisional/District Establishment functional unit",
+          "source_block_id": 101300,
+          "source_page": 15,
+          "basis": "p15 prints 'In the schedule after serial No.20, the following now entries shell be added:-' and the rows 21-25 print 'Divisional /District Establishment' as their functional unit (pp15-16); owner decision q1"
+        }
+      ],
+      "source_anomalies": [
+        {"page": 15, "source_block_id": 101300, "printed": "---------1994 In experience of the powers", "note": "sic: the notification number is printed as a blank '---------1994' (no number) under the date 'Dated Lahore, the 08th September, 1998'; 'In experience of' for 'In exercise of' and 'now entries shell be added' for 'new entries shall be added' are kept as printed."}
+      ],
+      "expected_tree": "preface (heading, N O T I F I C A T I O N, the date and enabling formula); unnumbered provision 'AMENDMENTS' (its printed caption) with 'In the schedule after serial No.20, the following now entries shell be added:-', the quoted column heads and the five quoted rows 21-25 read in printed column order (kept whole: quoted_table_row_text); the authentication, 'NO & DATE EVEN.', the distribution list 1-6 and the signature are apparatus"
+    },
+    {
+      "ordinal": 3,
+      "role": "embedded",
+      "title": "S&GA&I Department Corrigendum, Endst No. SOR-2-9/85 dated 25 January 1994 (to the Schedule of the Punjab Food Department (Executive and Ministerial Posts) Recruitment Rules 1993)",
+      "kind": "notification",
+      "year": 1994,
+      "number": "SOR-2-9/85",
+      "spans": [
+        {"start_block_id": 101338, "end_block_id": 101347, "pages": "17"}
+      ],
+      "relations": [
+        {
+          "type": "amends",
+          "target_ordinal": 0,
+          "effect": "corrects the Schedule of the 1993 Rules: under the functional unit 'Divisional/District Establishment', against Serial No.15 in column 3, for the words 'Assistant Controller' the words 'Assistant Food Controller' shall be read",
+          "source_block_id": 101342,
+          "source_page": 17,
+          "basis": "p17 prints 'CORRIGENDUM ... In the schedule attached with the above Notification under the functional unit “Divisional/District Establishment” against Serial No.15 in column 3 for the words “ Assistant Controller” the words. “Assistant Food Controller” shall be read.'; owner decision q1 ('1994 corrigendum' a separate amending instrument)"
+        }
+      ],
+      "source_anomalies": [
+        {"page": 17, "source_block_id": 101343, "printed": "Endst No.SOR-2-9/85,\nDated 25th January, 1994", "note": "the corrigendum prints no number or date of its own: its only number and date are the endorsement's, used here as its identity. It is a corrigendum, held under the instrument kind 'notification' (no corrigendum kind exists)."}
+      ],
+      "expected_tree": "preface (heading, CORRIGENDUM); its two unnumbered paragraphs ('In the schedule attached with the Punjab Food Department ... the following correction shall be made:-' and 'In the schedule attached with the above Notification under the functional unit ... shall be read.') held as one unnumbered provision labelled by its printed caption 'CORRIGENDUM'; the endorsement line 'Endst No.SOR-2-9/85, Dated 25th January, 1994', 'A copy is forwarded to:-', the distribution list 1-4 and the signature are apparatus"
+    },
+    {
+      "ordinal": 4,
+      "role": "embedded",
+      "title": "S&GA&I Department Notification No. SOR-III-1-9/94 dated 23 January 2001 (amending the Punjab Food Department (Executive and Ministerial Posts) Recruitment Rules 1993)",
+      "kind": "notification",
+      "year": 2001,
+      "number": "SOR-III-1-9/94",
+      "spans": [
+        {"start_block_id": 101348, "end_block_id": 101361, "pages": "18"}
+      ],
+      "relations": [
+        {
+          "type": "amends",
+          "target_ordinal": 0,
+          "effect": "in the Schedule of the 1993 Rules substitutes the existing entry in column 7 against Sr No.12 (the notification names no functional unit) with items i)-iv)",
+          "source_block_id": 101353,
+          "source_page": 18,
+          "basis": "p18 prints 'In the schedule against Sr No.12 for the existing entry in column 7 the following shall be substituted:-' and items i)-iv); owner decision q1"
+        }
+      ],
+      "source_anomalies": [
+        {"page": 18, "source_block_id": 101354, "printed": "10 by initial recruitment", "note": "sic: item i) prints '10' with no '%' sign; kept as printed."}
+      ],
+      "expected_tree": "preface (heading, NOTIFICATION, 'Dated 23rd January, 2001.', No.SOR-III-1-9/94 and the enabling formula); unnumbered provision 'AMENDMENT' (caption 'A M E N D M E N T.', block 101352) with 'In the schedule against Sr No.12 for the existing entry in column 7 the following shall be substituted:-' and the substituted items i)-iv); the authentication, signature, the endorsement of 25 January 2001, the distribution list 1-6 and the Section Officer's signature are apparatus"
+    },
+    {
+      "ordinal": 5,
+      "role": "embedded",
+      "title": "S&GAD Notification No. SOR-III(S&GAD)1-17/2001 dated 8 April 2009 (amending the Punjab Food Department (Executive and Ministerial Posts) Recruitment Rules 1993)",
+      "kind": "notification",
+      "year": 2009,
+      "number": "SOR-III(S&GAD)1-17/2001",
+      "spans": [
+        {"start_block_id": 101362, "end_block_id": 101400, "pages": "19-21"}
+      ],
+      "relations": [
+        {
+          "type": "amends",
+          "target_ordinal": 0,
+          "effect": "in the Schedule of the 1993 Rules: (1) substitutes the entries in columns 7 to 10 against the posts at Sr No.2, 4 and 12 (Food Directorate); (2) substitutes the entries in columns 3, 5, 7 and 9 against the post at Sr No.25 (Food Directorate, Daftri)",
+          "source_block_id": 101365,
+          "source_page": 19,
+          "basis": "p19 prints 'In the said rules, in the schedule, 1. For the existing entries against the post at Sr No.2, 4 & 12, in column No.7 to 10 the following new entries shall be substituted.'; p21 '2 for the existing entries against the post at Sr No.25 in column No.3, 5, 7 & 9 the following new entries shall be substituted'; the quoted rows print 'Food Directorate'; owner decision q1"
+        }
+      ],
+      "source_anomalies": [
+        {"page": 19, "source_block_id": 101365, "printed": "In experience of the powers", "note": "sic: 'In experience of' for 'In exercise of'; kept as printed."},
+        {"page": 20, "source_block_id": 101381, "printed": "cum fitness basis from amongst the Statistical Officers /Establishment Officer & Assistant Accounts Officer with 7 year experience as such in the Department in BS-16", "note": "p20 prints these words of Sr No.4's column 7 in green underline (a marked insertion in the copy); the words are read as printed, the colour is not carried."}
+      ],
+      "expected_tree": "preface (heading, N O T I F I C A T I O N, the date and enabling formula); unnumbered provision 'AMENDMENTS' (its printed caption) with 'In the said rules, in the schedule,' and paragraphs 1 (the quoted column heads and rows 2, 4, 12) and 2 (row 25), each quoted row kept whole (quoted_table_row_text); the authentication, the endorsement of 14 April 2009, the distribution list 1-9 and the signature are apparatus"
+    }
+  ],
+  "apparatus": "outside every expression: the compiler's index page p1 (blocks 101073-101076), the p2 'TEXT' box (101077) and the unrelated Gazette pages 12-13 (101255-101286, owner q1). Inside the spans, set aside by the reviewed curation readings (claude/agCJ/patch-1626.json): the p3 repeat of the enabling formula, the column-number rows '1 ... 10', authentications, endorsements, distribution lists and signatures; every emptied table-cell block is set aside after its words are read into its row's line"
+}

@@ -1,0 +1,208 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 3696,
+ "source_observation_id": 4624,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-16",
+ "reviewed_by": "assistant page review (agent K4) on the owner's decisions; DRAFT -- the lead renames it and drops 3696 from PRIMARY_DOCUMENTS",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/decision-review-2026-10-12-j.json",
+  "document_id": 3696,
+  "question_id": "q1",
+  "choice": "split",
+  "effect": "p26 becomes a separate instrument, 'Sindu Poultry Vaccine Centre (Conduct) Rules, 1996'; the Group Insurance Regulations end before it.",
+  "also": [
+   {
+    "export": ".artifacts/decision-review/exports/decision-review-2026-10-15-delegated.json",
+    "question_id": "q2",
+    "choice": "split-and-realign",
+    "effect": "the Pension Regulation 1997 (pp17-18) is split out of E2 as its own expression and E1/E2 start at their printed titles (a released change: nothing may drop out; every path move is listed in claude/agK4/3696-path-moves.json)"
+   },
+   {
+    "export": ".artifacts/decision-review/exports/decision-review-2026-10-15-delegated.json",
+    "question_id": "q3",
+    "choice": "keep-both"
+   }
+  ]
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3696-p1.png",
+   "render_sha256": "e78039ed63f9f036de401f1a865c3de349f5b86f6c152928b71adec67bf05192"
+  },
+  {
+   "page": 5,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3696-p5.png",
+   "render_sha256": "5209fd71141ef881a16f07e8c844127758d19f3547c4bc780287d621fc1d0a5b"
+  },
+  {
+   "page": 6,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3696-p6.png",
+   "render_sha256": "627a26edda063a7f5ce5964006542d0b26dc2913096921d0c0336c77a06b2442"
+  },
+  {
+   "page": 12,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3696-p12.png",
+   "render_sha256": "ff9164b0b9f6ca1c6ddf28cbb8a8f55de5911e324440c8edd573c0713d49a621"
+  },
+  {
+   "page": 13,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3696-p13.png",
+   "render_sha256": "da4ada6801b7cb8c1b665d6853b289b482083d119f73f42a62da2efae7de6bcd"
+  },
+  {
+   "page": 16,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3696-p16.png",
+   "render_sha256": "90be0e2aec1b07b67c01219a59d78dc1993873fe08e7177a96cbeeac25f78982"
+  },
+  {
+   "page": 17,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3696-p17.png",
+   "render_sha256": "1587f5a967db1565cec5f3e78a7263ad29e20c71152ccb36ca5996d2cdae32a8"
+  },
+  {
+   "page": 18,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3696-p18.png",
+   "render_sha256": "0b27646c4f78308d77a020ddf766bc8f576ffd96c73a3b818100575d78e5424f"
+  },
+  {
+   "page": 19,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3696-p19.png",
+   "render_sha256": "ac7263f9ebe0926e2017b3ed1b4b89b020263faae1c5c2aae6e836bbfb53ae54"
+  },
+  {
+   "page": 23,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3696-p23.png",
+   "render_sha256": "87b7aa4b7ece32959910e1c2b464cebd03b82e3bcc95c24b5001cfd610509e4f"
+  },
+  {
+   "page": 24,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3696-p24.png",
+   "render_sha256": "1e57838a23b9dc03eb93468f10a41b19259749b134b9e01be2ed6f476869cb15"
+  },
+  {
+   "page": 25,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3696-p25.png",
+   "render_sha256": "3ab03b191b5acc3e0350f69b57ac0159ddd82aa98227716d4820938742ebd60f"
+  },
+  {
+   "page": 26,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3696-p26.png",
+   "render_sha256": "2b924a846e3895a84d7fca6bc7d738c53e43226bfb89eb81c04151c99f44a1e7"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "SINDH POULTRY VACCINE CENTRE (APPOINTMENT, PROMOTION AND TRANSFER) REGULATION 1997.",
+   "kind": "regulation",
+   "year": 1997,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 448201,
+     "end_block_id": 448226,
+     "pages": "1-5"
+    }
+   ],
+   "expected_tree": "Parts I-VI, regulations 1-18 as released; ends at regulation 18 (p5); the page heads 'NNN THE SINDH GOVT. GAZETTE EXT, SEPTEMBER 22, 1998 PART-I' set aside"
+  },
+  {
+   "ordinal": 1,
+   "role": "embedded",
+   "title": "Sindh Poultry Vaccine Centre (Efficiency and Discipline) Regulations, 1997",
+   "kind": "regulation",
+   "year": 1997,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 448227,
+     "end_block_id": 448236,
+     "pages": "6-13"
+    }
+   ],
+   "expected_tree": "starts at its printed title 'SINDH POULTRY VACCINE CENTRE (EFFICIENCY AND DISCIPLINARY) REGULATION 1997' (p6); regulations as released; ends with p13's page head"
+  },
+  {
+   "ordinal": 2,
+   "role": "embedded",
+   "title": "Sindh Poultry Vaccine Centre Employees (Probation, Confirmation and Seniority) Regulation 1997",
+   "kind": "regulation",
+   "year": 1997,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 448237,
+     "end_block_id": 448250,
+     "pages": "13-16"
+    }
+   ],
+   "expected_tree": "starts at its printed title (p13); Parts I-IV, regulations 1-12 as released; ends at its signature (p16)"
+  },
+  {
+   "ordinal": 3,
+   "role": "embedded",
+   "title": "Sindu Poultry Vaccine Centre (Pension) Regulation 1997",
+   "kind": "regulation",
+   "year": 1997,
+   "number": "SO(ADMN)L&F/9-3/9",
+   "spans": [
+    {
+     "start_block_id": 448251,
+     "end_block_id": 448257,
+     "pages": "17-19"
+    }
+   ],
+   "source_anomalies": [
+    {
+     "source_block_id": 448252,
+     "printed": "SINDU POULTRY VACCINE CENTRE",
+     "note": "the title prints 'SINDU' (for Sindh), kept as printed; the copy holds no gazette pages 306-311: E2 ends on gazette page 305 (p16) and this regulation opens on gazette page 312 (p17)"
+    }
+   ],
+   "expected_tree": "preface (title, 'Karachi dated the 6th December.1997', No. SO(ADMN)L&F/9-3/9 and the enacting words); regulations 1-5 (pp17-18); released today INSIDE E2 as its second 'Part I'"
+  },
+  {
+   "ordinal": 4,
+   "role": "embedded",
+   "title": "Sindh Poultry Vaccine Centre Group Insurance Regulations, 1998",
+   "kind": "regulation",
+   "year": 1998,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 448258,
+     "end_block_id": 448277,
+     "pages": "19-26"
+    }
+   ],
+   "expected_tree": "starts at its printed title (p19); regulations 1-17 (two printed 17, owner q3 'keep-both') with Annexures 'A'-'C' and the signature (p25); ends with p26's page head"
+  },
+  {
+   "ordinal": 5,
+   "role": "embedded",
+   "title": "Sindu Poultry Vaccine Centre (Conduct) Rules, 1996",
+   "kind": "rules",
+   "year": 1996,
+   "number": "SO(ADMN)/L&F/9-3/97",
+   "spans": [
+    {
+     "start_block_id": 448278,
+     "end_block_id": 448281,
+     "pages": "26"
+    }
+   ],
+   "source_anomalies": [
+    {
+     "source_block_id": 448278,
+     "printed": "SINDU POULTRY VACCINE CENTRE",
+     "note": "the title prints 'SINDU' (for Sindh), kept as printed"
+    }
+   ],
+   "expected_tree": "the notification of 14 January 1997 applying the Sindh Government Servants (Conduct) Rules, 1996 with modifications (1)-(5), signed; then the press line"
+  }
+ ],
+ "apparatus": "none outside the spans: E0-E5 cover every block 448201-448281; the page heads are set aside by the readings claude/agK4/patch-3696.json"
+}

@@ -1,0 +1,77 @@
+{
+  "schema": "nizam.multi_expression_plan/1",
+  "document_id": 2985,
+  "source_observation_id": 4599,
+  "review_basis": "source_verified",
+  "reviewed_on": "2026-10-13",
+  "reviewed_by": "assistant page review (agent JB) on the owner's decision; DRAFT",
+  "owner_decision": {
+    "export": ".artifacts/decision-review/exports/decision-review-2026-10-12-j.json",
+    "q1": "release-with-gap: only pp1-4 (rules 1-5) are released as the Local Fund Budget Rules; rule 6 onward and Forms B-1 to B-14 are recorded as missing from this copy (source incompleteness); the council meeting rules fragment (rule 4(i) to 39, pp4-13) is part of another instrument and is not released here",
+    "q2": "other-copy: the definitions rule is rule 2, the number printed in document 3389's copy of the same notification, with a note that this copy prints '1.'"
+  },
+  "reviewed_pages": [
+    {
+      "page": 1,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc2985-p1.png",
+      "render_sha256": "e11a885f8b01d48b75c75ab3445a0b4037e6ff3e977987070c8c82be84dde13b"
+    },
+    {
+      "page": 2,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc2985-p2.png",
+      "render_sha256": "c3ee50c2b5f8e3cf846a88d93acb2928be7be03a816a05a61f7cca0127787d1f"
+    },
+    {
+      "page": 3,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc2985-p3.png",
+      "render_sha256": "c7443397e1b58f17851f794b339856b1c69e58b38a25d10a89f6f9b127c0ec69"
+    },
+    {
+      "page": 4,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc2985-p4.png",
+      "render_sha256": "8d870e51f099db391c7b18cb2b5bf6d680d85090746ac988485a752f6698dda1"
+    },
+    {
+      "page": 5,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc2985-p5.png",
+      "render_sha256": "d1a8f51a2153290bb4fd869281fdca74d23833cb6f8b26689fd54b82737c8b2d"
+    },
+    {
+      "page": 13,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc2985-p13.png",
+      "render_sha256": "69ed455d2be179d2ba5f997fedf048190b93a53eacb7da218ac3d625994aced1"
+    }
+  ],
+  "expressions": [
+    {
+      "ordinal": 0,
+      "role": "primary",
+      "title": "Sindh Local Government (Local Fund Budget) Rules, 2001",
+      "kind": "rules",
+      "year": 2001,
+      "number": null,
+      "spans": [
+        {
+          "start_block_id": 286898,
+          "end_block_id": 286965,
+          "pages": "1-4"
+        }
+      ],
+      "source_anomalies": [
+        {
+          "page": 1,
+          "source_block_id": 286911,
+          "printed": "1. In these rules the context otherwise requires, the following expressions shall have the meanings ...",
+          "note": "the definitions rule is printed '1.' (after rule 1's own sub-rules '1.' and '2.'); cited as rule 2 (owner q2 'other-copy': document 3389's copy of the same notification prints '2.')"
+        },
+        {
+          "page": 4,
+          "source_block_id": 286965,
+          "printed": "While explaining the provisions in the Schedule of Development Expenditure, ... Section 119 of SLGO 2001.",
+          "note": "the Budget Rules break off after rule 5's Explanatory Memorandum item f.; from block 286966 (p4, 'i. Male members shall sit ...') to the end (p13) the copy prints, with no heading, the Sindh Councils (Conduct of Business) Rules from rule 4(i) to rule 39 -- another instrument (document 3389 E0), left outside every expression and not released here (owner q1). Rule 6 onward and Forms B-1 to B-14 are not in the copy: source incompleteness (tools/evidence/declare-source-incompleteness-2985-DRAFT.sql)."
+        }
+      ],
+      "expected_tree": "preface (gazette head, notification NO: SLGB/CAO/2001/7483 ... following Rules); rule 1 'Short title and commencement' with sub-rules (1)-(2) (label reading), rule 2 definitions (cited 2, printed 1: __p1) with a)-j), rule 3 Volume of the budget, rule 4 Volume-I, rule 5 Volume II and the Explanatory Memorandum a.-f."
+    }
+  ]
+}

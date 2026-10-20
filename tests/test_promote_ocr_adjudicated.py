@@ -80,3 +80,28 @@ def test_urdu_words_are_counted():
     mean, words = weighted_confidence([("قانون نظام", 0.95)])
     assert words == 2
     assert mean == pytest.approx(0.95)
+
+
+# Whole-document admission (lead, 17 Oct 2026): a text layer -- E2 born-digital, or E3 mixed -- is replaced only when
+# EVERY page has an accepted reading; never partially, whatever --allow-partial says. E4 stays partial-capable.
+admission = promote.admission
+
+
+@pytest.mark.parametrize("lane", ["E2", "E3"])
+def test_a_text_layer_is_admitted_only_whole(lane):
+    assert admission(lane, 8, 8, allow_partial=False) is None
+    for allow_partial in (False, True):
+        refusal = admission(lane, 8, 7, allow_partial=allow_partial)
+        assert refusal and "every page must be accepted" in refusal and "7/8" in refusal
+
+
+def test_a_full_ocr_document_may_be_partial_only_when_asked():
+    assert admission("E4", 8, 8, allow_partial=False) is None
+    assert "use --allow-partial" in admission("E4", 8, 5, allow_partial=False)
+    assert admission("E4", 8, 5, allow_partial=True) is None
+
+
+def test_e3_is_selected_only_with_its_own_flag():
+    sql = promote.ELIGIBLE
+    assert "(%s AND d.lane = 'E2')" in sql and "(%s AND d.lane = 'E3')" in sql
+    assert sql.count("%s") == 4                        # allow_text_layer, allow_mixed, the id filter twice

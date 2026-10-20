@@ -1,0 +1,247 @@
+{
+  "schema": "nizam.multi_expression_plan/1",
+  "document_id": 3423,
+  "source_observation_id": 2733,
+  "review_basis": "source_verified",
+  "reviewed_on": "2026-10-15",
+  "reviewed_by": "assistant page review (agent K3) on the owner's decision",
+  "owner_decision": {
+    "export_j": ".artifacts/decision-review/exports/decision-review-2026-10-12-j.json",
+    "q1": "main-plus-notifications: the 2015 notification and Guidebook released as one instrument with Annexes I-XV as its annexes (forms and letters as non-citable annex text); Annexes V and VI in addition released as separate instruments; the document's title corrected to the 2015 notification's own words",
+    "export_delegated": ".artifacts/decision-review/exports/decision-review-2026-10-15-delegated.json",
+    "q2": "split-annexes-v-vi (card claude/agK3/card-3423-q2.json; the store cannot hold one page in two instruments): E0 is a multi-span expression over pp1-17 and pp20-33 (the Guidebook with Annexes I-IV and VII-XV), and Annexes V (p18) and VI (p19) are their own instruments; no page is stored twice"
+  },
+  "reviewed_pages": [
+    {
+      "page": 1,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3423-p1.png",
+      "render_sha256": "4ec6336888adbd932144e3759ebe98ae224b8c6f3e416bae34566dccccd18917"
+    },
+    {
+      "page": 2,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3423-p2.png",
+      "render_sha256": "fb9ffaa8afada49d02e32884fe171af533633b3c1945634a021209dcb3173a4e"
+    },
+    {
+      "page": 3,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3423-p3.png",
+      "render_sha256": "02c5ea5cc2f1cb9c879b753e33ce71c2b0758fd576f909d00c7040795db324a5"
+    },
+    {
+      "page": 4,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3423-p4.png",
+      "render_sha256": "dad35f1629b159f68dee3a69c15fd97f63c7d891d0b75c2a968a39680c3535a1"
+    },
+    {
+      "page": 5,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3423-p5.png",
+      "render_sha256": "fc70f2ea2178224d3190e7fa6b68be056c61866eb95c39424ba5f84be90e821e"
+    },
+    {
+      "page": 6,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3423-p6.png",
+      "render_sha256": "c423fd3772c945c8493aef6dfa73952955d9ffa487c240977b6d636cbbc947ba"
+    },
+    {
+      "page": 7,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3423-p7.png",
+      "render_sha256": "b54cb926c3df6ed07f9e170e9c9acc2835195203024b4618b67ba0de82715242"
+    },
+    {
+      "page": 8,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3423-p8.png",
+      "render_sha256": "d0026307f26fad3b7e8247795e108f02f36b047c563cfa1e96554cd5cc53b79c"
+    },
+    {
+      "page": 9,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3423-p9.png",
+      "render_sha256": "45818b17138b666187f5af0c59ae8a3ed672b54d5766ca93c2ae6fe38646b909"
+    },
+    {
+      "page": 10,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3423-p10.png",
+      "render_sha256": "e61c242a44809d88ab1fad16ac0ab2f486153bdc5ca039e6193f362b309e558a"
+    },
+    {
+      "page": 11,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3423-p11.png",
+      "render_sha256": "1bac17431c3ff02b9e16fde5c48a12a66664b190cb25085a00038b5e194c89b4"
+    },
+    {
+      "page": 12,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3423-p12.png",
+      "render_sha256": "8db154f75a38d02f43a609a43397a2e09a10e2554ad6c2602a94e3b54bb2ca63"
+    },
+    {
+      "page": 13,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3423-p13.png",
+      "render_sha256": "a70374c054de374d0b52d4afa58270e129b389f37cb19db00b69d3adc5857a85"
+    },
+    {
+      "page": 14,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3423-p14.png",
+      "render_sha256": "8375d3f971786c8658e432862fba1049aa9b6723f6ace4133ced0d622c5503c1"
+    },
+    {
+      "page": 15,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3423-p15.png",
+      "render_sha256": "d973a8699ea1c9c009054c34d82015e8ef92830c4688ce7c74032bde64211e7d"
+    },
+    {
+      "page": 16,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3423-p16.png",
+      "render_sha256": "e3ecccef959330f343c6af14f7e4342cac747e35f4cd3a677a328f16628ff34c"
+    },
+    {
+      "page": 17,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3423-p17.png",
+      "render_sha256": "e3be50e2888bba08e71afa81c16b1177bf4bf3ef95e8cca5a93c27945f44bfe1"
+    },
+    {
+      "page": 18,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3423-p18.png",
+      "render_sha256": "2da44c455df168487f9931ea6b94ca7d53e58bf176ff7380ebba0b0f5130326d"
+    },
+    {
+      "page": 19,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3423-p19.png",
+      "render_sha256": "d2d95d25532c490bc5557eb84c441b3486b9d50bf7183bfba878223899775a0e"
+    },
+    {
+      "page": 20,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3423-p20.png",
+      "render_sha256": "ea48c9d9b8dca84b4285be20b84317bcb3876809d78fe19017e4268d0698fc32"
+    },
+    {
+      "page": 21,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3423-p21.png",
+      "render_sha256": "e4016b4439c266ddc81fd4e1ad0bb46847ca533b13a56619a5373fb6abd97a4f"
+    },
+    {
+      "page": 22,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3423-p22.png",
+      "render_sha256": "46a0351a323b01c7197c95df6398f2fbb1b0b59b9bf40b79b3d549dd75f67ed4"
+    },
+    {
+      "page": 23,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3423-p23.png",
+      "render_sha256": "15ac2ff1126176802e863aa5a15f6e5e9f65bdb0fbdf9c0926366c30fb00a0eb"
+    },
+    {
+      "page": 24,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3423-p24.png",
+      "render_sha256": "58a3a0a7b92a45614e283380fbc205a2949a74d96fd559f43b4b92ee78bdc061"
+    },
+    {
+      "page": 25,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3423-p25.png",
+      "render_sha256": "62de89186410ac53532cd0e5591d5d58783bd3990603c01bfe828a04775323d4"
+    },
+    {
+      "page": 26,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3423-p26.png",
+      "render_sha256": "8f75f34f442840cba7e6f3c6a2f20dda4e6f4d75c0dc73c3c25a09bf65eb069a"
+    },
+    {
+      "page": 27,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3423-p27.png",
+      "render_sha256": "3b731a773e9ed4701057c641381a539c843efec7dbb6081fcb37b6530e69ad7d"
+    },
+    {
+      "page": 28,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3423-p28.png",
+      "render_sha256": "c070d4f18e1c7f93105dab1aca82eb7a68f8af948227e8fd1e4b90f32ad552de"
+    },
+    {
+      "page": 29,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3423-p29.png",
+      "render_sha256": "6ee0b78b2f7c37c02175912beb1bd89dd1722bf64d6121658332188d1aed4738"
+    },
+    {
+      "page": 30,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3423-p30.png",
+      "render_sha256": "0172ce97abd51d987d590adf1c2f5d39395637e227b8bc73aecb9bc6bddf6192"
+    },
+    {
+      "page": 31,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3423-p31.png",
+      "render_sha256": "bee89272fc2427bc4773d84878bd8ca0391d68a04cea2d27174ae8783d02fd31"
+    },
+    {
+      "page": 32,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3423-p32.png",
+      "render_sha256": "73091b47f2134d7d269abc147f510fd1d69eefd6f0ce106a15fe19b425bff69a"
+    },
+    {
+      "page": 33,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3423-p33.png",
+      "render_sha256": "44acad848ac52b5601c64e383b134a8d4b68ed5752a457ad4f8cd136f36f86b0"
+    }
+  ],
+  "expressions": [
+    {
+      "ordinal": 0,
+      "role": "primary",
+      "title": "Guidebook for conducting inquiry under the Punjab Employees Efficiency, Discipline and Accountability Act 2006 (Notification No. SORI(S&GAD)1-30/2003(P-II), 17 August 2015)",
+      "kind": "notification",
+      "year": 2015,
+      "number": "SORI(S&GAD)1-30/2003(P-II)",
+      "jurisdiction": "punjab",
+      "jurisdiction_basis": "page 1 prints 'GOVERNMENT OF THE PUNJAB SERVICES & GENERAL ADMINISTRATION DEPARTMENT (REGULATIONS WING) Dated Lahore, 17th August, 2015 NOTIFICATION NO.SORI(S&GAD)1-30/2003(P-II).'",
+      "title_correction": {
+        "from_title": "Subject: THE PUNJAB EMPLOYEES EFFICIENCY, DISCIPLINE AND ACCOUNTABILITY (AMENDMENT) ACT, 2014 (ACT XV OF 2014)",
+        "to_year": 2015,
+        "basis": "owner q1 (export j): 'The document's title is corrected to the 2015 notification's own words'; page 1 prints 'NOTIFICATION NO.SORI(S&GAD)1-30/2003(P-II). The Competent Authority is pleased to approve the following Guidebook for conducting inquiry under the Punjab Employees Efficiency, Discipline and Accountability Act 2006', dated 17th August, 2015; the 2014 amending Act of the catalogue title is only quoted inside Annex XI (pp27-28)"
+      },
+      "spans": [
+        {
+          "start_block_id": 374457,
+          "end_block_id": 374705,
+          "pages": "1-17"
+        },
+        {
+          "start_block_id": 374740,
+          "end_block_id": 374874,
+          "pages": "20-33"
+        }
+      ],
+      "expected_tree": "preface: the S&GAD letterhead, 'Dated Lahore, 17th August, 2015', 'NOTIFICATION', 'NO.SORI(S&GAD)1-30/2003(P-II). The Competent Authority is pleased to approve the following Guidebook ...'; the Guidebook paragraphs (1)-(4) with their items as printed (pp1-13, signed 'SECRETARY (REGULATIONS)'); Annexes I-IV (pp14-17, model draft orders and notices) and VII-XV (pp20-33, circular letters) kept in the expression as non-citable annex text (set aside as apparatus by page-read readings, so their members and distribution lists open no units); the Guidebook's printed references '(Annex-V)' and '(Annex-VI)' stay in its text"
+    },
+    {
+      "ordinal": 1,
+      "role": "embedded",
+      "title": "Notification No. SORI(S&GAD)1-30/2003, 13 February 2013 (competent authorities under section 2(f)(ii) of the Punjab Employees Efficiency, Discipline and Accountability Act, 2006)",
+      "kind": "notification",
+      "year": 2013,
+      "number": "SORI(S&GAD)1-30/2003",
+      "jurisdiction": "punjab",
+      "jurisdiction_basis": "page 18 prints 'GOVERNMENT OF THE PUNJAB SERVICES & GEN. ADMN. DEPARTMENT (REGUALTIONS WING) Dated Lahore, the 13th February, 2013 NOTIFICATION NO.SORI(S&GAD)1-30/2003.- In exercise of the powers conferred on him under sub-clause (ii) of clause (f) of Section 2 ... the Chief Minister is pleased to authorize ...'",
+      "spans": [
+        {
+          "start_block_id": 374706,
+          "end_block_id": 374722,
+          "pages": "18"
+        }
+      ],
+      "expected_tree": "preface: letterhead, date, 'NOTIFICATION'; the enacting paragraph 'NO.SORI(S&GAD)1-30/2003.- In exercise of the powers conferred on him under sub-clause (ii) of clause (f) of Section 2 ... Column No. 2 of the Table:-' (in supersession of the notification of 24-12-2010); the Table (Sr. No. 1-3 with their posts and authorities); the Explanation on 'BS'; signed SHAHNAZ NAWAZ, Secretary (Regulations) S&GAD. Annex V of the Guidebook (p3 cites it 'vide notification No.SORI(S&GAD)1-30/03 dated 13-02-2013 (Annex-V)')"
+    },
+    {
+      "ordinal": 2,
+      "role": "embedded",
+      "title": "Notification No. SORI(S&GAD)1-30/2003, 6 February 2007 (competent authorities for employees in the Surplus Pool and retired employees under section 2(f)(ii) of the Punjab Employees Efficiency, Discipline and Accountability Act, 2006)",
+      "kind": "notification",
+      "year": 2007,
+      "number": "SORI(S&GAD)1-30/2003",
+      "jurisdiction": "punjab",
+      "jurisdiction_basis": "page 19 prints 'GOVERNMENT OF THE PUNJAB SERVICES & GEN. ADMN. DEPARTMENT (REGUALTIONS WING) Dated Lahore, the 6th February, 2007 NOTIFICATION NO.SORI(S&GAD)1-30/2003.- In exercise of the powers conferred on him under sub-clause (ii) of clause (f) of Section 2 ... the Chief Minister is pleased to authorize ...'",
+      "spans": [
+        {
+          "start_block_id": 374723,
+          "end_block_id": 374739,
+          "pages": "19"
+        }
+      ],
+      "expected_tree": "preface: letterhead, date, 'NOTIFICATION'; the enacting paragraph; the Table (Sr. No. 1 Surplus Pool with (i)-(iv), 2 retired Government employees, 3 retired corporation employees); the Explanation; 'BY ORDER OF THE CHIEF MINISTER PUNJAB ADDITIONAL CHIEF SECRETARY'. Annex VI of the Guidebook (p3: 'vide notification No.SORI(S&GAD)1-30/2003 dated 06-02-2007 (Annex-VI)')"
+    }
+  ]
+}

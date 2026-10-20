@@ -79,7 +79,7 @@ fi
 # appendices) and COMPILATION_DOCUMENTS (editorial compilations, not themselves
 # legal instruments). Keep them in step with that file.
 say "2. re-materialise the source-reviewed multi-expression documents"
-MULTI_DOCS="977 1106 3389 3553 3696 3912 4434 4452 3423 3949 4440 4497 268"
+MULTI_DOCS="977 1106 3389 3553 3696 3912 4434 4452 3423 3949 4440 4497 268 691 1822 1626 1839 1970 2063 2146 1973 4428 4347 4367 4378 3464 3392 2985 2404"
 for d in $MULTI_DOCS; do
     if [ "$APPLY" = "1" ]; then
         uv run python tools/materialize_multi_instrument.py --document "$d" --apply --summary-only \
@@ -101,6 +101,41 @@ if [ "$APPLY" = "1" ]; then
 else
     uv run python tools/apply_source_incompleteness.py
 fi
+
+# --------------------------------------------------------------- step 2b
+# Same shape for a same-text copy (migration 0062): a second file of an
+# instrument that differs from the canonical document only in page furniture.
+# The record is durable at observation level; the duplicate_of flag that keeps
+# the copy out of release lives on the regenerated instrument. Runs after step
+# 1, whose lineage pass advances a link when the canonical was replayed. Reports
+# and exits cleanly while 0062 is not applied.
+say "2b. re-link declared same-text copies to their canonical documents"
+if [ "$APPLY" = "1" ]; then
+    uv run python tools/apply_source_same_text_copy.py --apply
+else
+    uv run python tools/apply_source_same_text_copy.py
+fi
+
+# --------------------------------------------------------------- step 2b2
+# Same shape for a non-authoritative file (migration 0065): an unofficial
+# translation, or a Bill whose enacted text is held, kept out of release in
+# favour of the authoritative document. Reports and exits cleanly while 0065 is
+# not applied.
+say "2b2. re-link declared non-authoritative files to their authoritative documents"
+if [ "$APPLY" = "1" ]; then
+    uv run python tools/apply_source_non_authoritative_copy.py --apply
+else
+    uv run python tools/apply_source_non_authoritative_copy.py
+fi
+
+# --------------------------------------------------------------- step 2c
+# After every re-link above (duplicates, splits, partial and same-text copies), no document may hold MORE released
+# expressions than at the signed baseline unless the rise was declared: a reviewed split plan, or an approval
+# reason saying "new released expression". Doc 4419 (12 Oct): a duplicate observation rebuilt without its
+# canonical's readings stopped being a duplicate and a second, uncorrected Constitution entered the release; no
+# withdrawal check could see it. Read-only; STOPS the sequence (set -e) on an undeclared rise.
+say "2c. no undeclared rise in released expressions per document"
+uv run python tools/released_count_guard.py
 
 # ---------------------------------------------------------------- step 3
 # Only `source_verified` readings are re-attached, and only those carrying an

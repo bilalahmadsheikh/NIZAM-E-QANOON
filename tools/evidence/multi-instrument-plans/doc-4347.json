@@ -1,0 +1,649 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 4347,
+ "source_observation_id": 4378,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-12",
+ "reviewed_by": "assistant page review (agent DF, 12 Oct 2026) on the owner's decisions; FINAL for builder BZ (inert name until BZ materializes) -- see claude/agDF-log.md",
+ "owner_decision": {
+  "source": ".artifacts/release-work-2026-09-24/CLAUDE-CLAIMS.md, OWNER (12 Oct, relayed by the coordinator); and the owner's chat answers, .artifacts/decision-review/exports/decision-review-2026-10-12-chat.json",
+  "split": "SPLIT 4347 into its instruments after the decimal-numbering correction (owner 12 Oct)",
+  "misprint_3_1": "4347 '31.' (p4) is read as 3.1; the evidence records that the page prints '31.'",
+  "q1": "E4 (Purchase Procedure) 'undated' -- .artifacts/decision-review/exports/decision-review-2026-10-12-chat.json",
+  "q2": "E1 p34 second '8.1' '8.2-by-sequence' -- .artifacts/decision-review/exports/decision-review-2026-10-12-chat.json",
+  "release": "owner chat 12 Oct: 'for these implement the recommended fix and these must be released'"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p1.png",
+   "render_sha256": "0e86548b7283a8c2f5d5fa7077eefe2c2edb7bf8493fabcd07f3136aa69ff182"
+  },
+  {
+   "page": 2,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p2.png",
+   "render_sha256": "f082c89d67bf656d8664960ae373b7086d181d6d7305a7bd626921a255236ed4"
+  },
+  {
+   "page": 3,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p3.png",
+   "render_sha256": "85590f408c7b968745d5c612a293ffdbef94752acddb6fdee327b56b5421ff48"
+  },
+  {
+   "page": 4,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p4.png",
+   "render_sha256": "afbb0f29ea6f6671f14865248c0086c371f26931d5d2ea9f0322858728913b36"
+  },
+  {
+   "page": 5,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p5.png",
+   "render_sha256": "bc866f93d36ea72c06da6573730b353c1756d2b291496171b77c9f8e972860ec"
+  },
+  {
+   "page": 6,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p6.png",
+   "render_sha256": "72f2587590fbe6ee7c6e92001d2bf810a00378b497b5ed1aec73b717fda5c186"
+  },
+  {
+   "page": 7,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p7.png",
+   "render_sha256": "f74864d637f3dd125788f278d27ab10bc2f3732dcebcde40503bb9d9f33bbe6d"
+  },
+  {
+   "page": 8,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p8.png",
+   "render_sha256": "109cea29d1c928343298c198cd32b024a83057f7a9f903c352408f8c1135288e"
+  },
+  {
+   "page": 9,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p9.png",
+   "render_sha256": "83393053e641a89846a856ca75f1f130d65daf78f1622392e0ad2347d1d86fe0"
+  },
+  {
+   "page": 10,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p10.png",
+   "render_sha256": "01bf8bbd0220b728e0ad30d67220cd1c94370fbf57960bebc657b5fefbf3a306"
+  },
+  {
+   "page": 11,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p11.png",
+   "render_sha256": "e9d6f8075c4d363e87d34ea90c588c314f5679a37af005eda436f36074f98045"
+  },
+  {
+   "page": 12,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p12.png",
+   "render_sha256": "6b008722f9c42aea77ef741036873355dc971297c0c79fb996d16e7ba2095f2f"
+  },
+  {
+   "page": 13,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p13.png",
+   "render_sha256": "31f608ba898b790c536b75b9acb6a073825ada25b10b21f06fccb44db5d7613d"
+  },
+  {
+   "page": 14,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p14.png",
+   "render_sha256": "b2fa408c3ef03071be82f56428b1a49d142d91292b13f997224317ad8151c386"
+  },
+  {
+   "page": 15,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p15.png",
+   "render_sha256": "b4c26b70e00268b9f3fb2ec6e1a9835d6b33125963ba3790c97353ddd195fcce"
+  },
+  {
+   "page": 16,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p16.png",
+   "render_sha256": "55af218f6ed7464befdc00a9e03ff528ad285813042da72dc226f79979ece320"
+  },
+  {
+   "page": 17,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p17.png",
+   "render_sha256": "46263f8f2ac80f769f9d3605b543b581972dacba0a5bdbcbef86148eef34e286"
+  },
+  {
+   "page": 18,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p18.png",
+   "render_sha256": "313c415b5e72ac89a6dad1e91b64d423817daec7a6565ba610400211369b9fdc"
+  },
+  {
+   "page": 19,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p19.png",
+   "render_sha256": "edbe082e9012abc2e2b398604afab162347eea9d54213b5daf010319fc3dfaac"
+  },
+  {
+   "page": 20,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p20.png",
+   "render_sha256": "2419fb54cf9276fec2f1c7a868e624e0903cb3ba481e6e12e514f29d16ba7a8f"
+  },
+  {
+   "page": 21,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p21.png",
+   "render_sha256": "3200528b6ca98f9ba4df173680a335616dd45fa8daff7ab5d14ad507d3a8691e"
+  },
+  {
+   "page": 22,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p22.png",
+   "render_sha256": "924448184f462ccf78bbfbc2e57771c2937616fb61b9832072804903975e1f17"
+  },
+  {
+   "page": 23,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p23.png",
+   "render_sha256": "a9d5f6fcec6370e322774bad952ffefb18a0cdbb9b5e421b3d747920651120f1"
+  },
+  {
+   "page": 24,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p24.png",
+   "render_sha256": "7ed26b93483dca8a08c2b6b11e22b91c1449731f5734ccab7eb467ecaab9dad7"
+  },
+  {
+   "page": 25,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p25.png",
+   "render_sha256": "7a5f611680590b36a0372d4cf6c9ac327bfcf23638c1b262b675f569903652e6"
+  },
+  {
+   "page": 26,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p26.png",
+   "render_sha256": "8b22a364231a9c0ae03587741baf1af3e0656f7b1cc531dfc605b89fc3185878"
+  },
+  {
+   "page": 27,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p27.png",
+   "render_sha256": "11069f0653270b0f09d5fa9025b36de2d6ed11f1f29d73054769337faa29fdfe"
+  },
+  {
+   "page": 28,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p28.png",
+   "render_sha256": "8de9b9dfac5bf550550d3922959055d4c7030ee399c61593f569fd7595ccf3d9"
+  },
+  {
+   "page": 29,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p29.png",
+   "render_sha256": "4c87fdcfab8f63b4a1789f3225f58c79e5b777ebf326f31ac6b228558973ee0c"
+  },
+  {
+   "page": 30,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p30.png",
+   "render_sha256": "5916b97044545cf10136db47a26b396f8a5c737ced4dbd84eee08f531f7fee1f"
+  },
+  {
+   "page": 31,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p31.png",
+   "render_sha256": "13d8c18fa9498072d59a78a17ed2a7d7e04c52dc29580c1f9ddb00d6979b9fe1"
+  },
+  {
+   "page": 32,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p32.png",
+   "render_sha256": "38f1c25b2ffb88d5bf1643609c3ee576c580280a5ce5fc641978b9507d3174a2"
+  },
+  {
+   "page": 33,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p33.png",
+   "render_sha256": "a02ac57017accc7f297ee428f1eace6db13d9c7739023cb37a706881b2e75993"
+  },
+  {
+   "page": 34,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p34.png",
+   "render_sha256": "8cac292bb603774557cbfe0a56b7e462723ef5e70b49df28c47b42b98bfecca8"
+  },
+  {
+   "page": 35,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p35.png",
+   "render_sha256": "363562cdaca3edf1d78941e329be3e5e6c970d1bba2d25ad8785670d0077f8ce"
+  },
+  {
+   "page": 36,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p36.png",
+   "render_sha256": "fc0a35706ad0c11777061ddca606fe7986bdc99fb4c4d844b9097f2912e6b6b6"
+  },
+  {
+   "page": 37,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p37.png",
+   "render_sha256": "6d08e6f778a784b431153bea4a12eb39f31c4996e4d66244b14a15e420263d02"
+  },
+  {
+   "page": 38,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p38.png",
+   "render_sha256": "4b695d66e39aaf13fc6e3db4dd932c37ebec078026e5431e2382a354fd9e1b36"
+  },
+  {
+   "page": 39,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p39.png",
+   "render_sha256": "593ae7f9c00bc613ad54a782181efef1d98a713f83f3e2eea4b32c56626040ef"
+  },
+  {
+   "page": 40,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p40.png",
+   "render_sha256": "6fbf7810e0a1714478afd5fb755a0712bca5ee6aa6bba859ea874cd8184a8e87"
+  },
+  {
+   "page": 41,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p41.png",
+   "render_sha256": "6c5a1689d1ecc1aa4de02cd542f7b974a121fc5595477dcfe2e9eba0435369b8"
+  },
+  {
+   "page": 42,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p42.png",
+   "render_sha256": "94a1c8c91adc355198ce42632ea13b9c2891f973ca28f47a705ee10bc1515ac6"
+  },
+  {
+   "page": 43,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p43.png",
+   "render_sha256": "9af52e2a2c40e8cf311b3bc1622a297857056ce7726c34183538a65582ff0abc"
+  },
+  {
+   "page": 44,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p44.png",
+   "render_sha256": "bcff3250a1992949da31aeb9355f8149e019643942b555a65a1e183e1a2a2ea2"
+  },
+  {
+   "page": 45,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p45.png",
+   "render_sha256": "fbaeaf9ff218733c3fb007b8cb84ee0f470f417616a86914b8372fe0587f61de"
+  },
+  {
+   "page": 46,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p46.png",
+   "render_sha256": "cfa8f3aeaf2f937c002c64bbb1638d9193334482f098e29a6f88a5fbf65a440b"
+  },
+  {
+   "page": 47,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p47.png",
+   "render_sha256": "8f4cf8a1687701e91a5bb6264854a1c4371597c3b99b3607e248b0a1d322ff9a"
+  },
+  {
+   "page": 48,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p48.png",
+   "render_sha256": "67620589633aaf3215eeb6bc2d28db6303bcf55cd9b0a4b320bff49637066a9a"
+  },
+  {
+   "page": 49,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p49.png",
+   "render_sha256": "4f6bcdbe2142183d2b2a20e310f48c1f1c5d2dc42d2ff31c58a3e14f6364de92"
+  },
+  {
+   "page": 50,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p50.png",
+   "render_sha256": "ce77a570907b3d498937141441dcbeed1d8b58a55d4914746a37da6e4f3b2f26"
+  },
+  {
+   "page": 51,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p51.png",
+   "render_sha256": "ae8f183f4708941e55ed829ee55e2a7c6596b7e688f0afd3be680c3f36762c4a"
+  },
+  {
+   "page": 52,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p52.png",
+   "render_sha256": "affcd98c4f90d5af0b65bac785651453c2bcdc39e538fe1825c34e2302271a8b"
+  },
+  {
+   "page": 53,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p53.png",
+   "render_sha256": "fa86c702a7496837e3a9cd66dbbb65482ec10deb2859f517e88dd7e0b63082a8"
+  },
+  {
+   "page": 54,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p54.png",
+   "render_sha256": "79d76c57a4e2d933ed45b32d4ffa311071bbab1413123f3b1d6a8f67d944037e"
+  },
+  {
+   "page": 55,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p55.png",
+   "render_sha256": "86fc368085a642df3f5574390d6514ea43908ba1b64d749b95e7535d2c35f247"
+  },
+  {
+   "page": 56,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p56.png",
+   "render_sha256": "f1a2ebd47020e884543f7f9c7721a6b86ef7653e0e1760a9057be2713c428b08"
+  },
+  {
+   "page": 57,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p57.png",
+   "render_sha256": "7607856fb14bc6baa3abf358757718a7f8e410572669a8c04261fcd3b6326c3d"
+  },
+  {
+   "page": 58,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p58.png",
+   "render_sha256": "801909e1fde92c87a834c8fa340325cb4f7094eed8ae21a06ca02b51a18dfc08"
+  },
+  {
+   "page": 59,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p59.png",
+   "render_sha256": "494a96dec2b39786f23f1cf78665e41b1acd03c6ccfe2eac0a24c237308c13c5"
+  },
+  {
+   "page": 60,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p60.png",
+   "render_sha256": "786390c9151bd1d3f87c326edbd0d13e8d7910ccbbc5b0d9f6a96d0766faa301"
+  },
+  {
+   "page": 61,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p61.png",
+   "render_sha256": "86771af8c75a4d3a42e11fced525695945e66ae066f07acd6318105b8b78fb11"
+  },
+  {
+   "page": 62,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p62.png",
+   "render_sha256": "c1e8a26a323b1af51742fba30bc68e7758e05cb50fa9485b1b54703365ab4599"
+  },
+  {
+   "page": 63,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p63.png",
+   "render_sha256": "edb856bbec1b34c9794d14c1a8316ffb208bce1d8928a20854142987fe9cb9ec"
+  },
+  {
+   "page": 64,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p64.png",
+   "render_sha256": "946eb1f45a4799f9ba205b21b228acf28047646224eb9fd4c48e33e1951d9eac"
+  },
+  {
+   "page": 65,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p65.png",
+   "render_sha256": "9a03eb7647464aab340cd7c704eb60c5c2ccee55accd28353d9cea91380d16d0"
+  },
+  {
+   "page": 66,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p66.png",
+   "render_sha256": "72cd834e640b6bd20770b2f638379d5e1056a64aa573fa6c7bea5036f3e12ddb"
+  },
+  {
+   "page": 67,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p67.png",
+   "render_sha256": "851d1ac5c0ee1c444d7335ae7239149a4e66ef4991f1a1c4b3b780b9dabd371a"
+  },
+  {
+   "page": 68,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p68.png",
+   "render_sha256": "5ff52b3c287b367670506dce40b202bb89ac5175984dff34e0f847245397cb39"
+  },
+  {
+   "page": 69,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p69.png",
+   "render_sha256": "e1267fbbdea1cb69c9110ce42865bf009e8d27ef0c5c922a0d9ebd5d0e070a6d"
+  },
+  {
+   "page": 70,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p70.png",
+   "render_sha256": "61806f5d075e67944eb1a17a5d9b0c690553eba4750b1a74985eddcfffc25d52"
+  },
+  {
+   "page": 71,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p71.png",
+   "render_sha256": "bf70261f593868f9954106e70f36881a0db0578a16b8d9962087ac5afd6fa33c"
+  },
+  {
+   "page": 72,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p72.png",
+   "render_sha256": "f9067f6f9bad1057e7403d33f1e75264411c95fe6084f2f06d43c7c0e490a734"
+  },
+  {
+   "page": 73,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p73.png",
+   "render_sha256": "d5ec92d001f0c7c1dc3e4ad0be12a1cc1880a8fd294503aaa1bfcfafef6c1d3a"
+  },
+  {
+   "page": 74,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p74.png",
+   "render_sha256": "e170e2e210c58f02b49eebc39d62c25bc0f88ec93534ee83a44da0a3bffcc1ba"
+  },
+  {
+   "page": 75,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p75.png",
+   "render_sha256": "23a6404382425058d410c738085b652b459800de9aff94cd2c77cb12d08ac943"
+  },
+  {
+   "page": 76,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p76.png",
+   "render_sha256": "bb530f950771e20a84d3ff476d4e42d9c77c67583ac6d369156a225969dea981"
+  },
+  {
+   "page": 77,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4347-p77.png",
+   "render_sha256": "636fded3f4d8ac7bb4beed4bb6623dfbae50a7ecfcbfdc114dde7b4da5cb5863"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "Service Regulations of the Sindh Seed Corporation, 1976",
+   "kind": "regulation",
+   "year": 1976,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 693438,
+     "end_block_id": 693815,
+     "pages": "1-29"
+    }
+   ],
+   "source_anomalies": [
+    {
+     "page": 4,
+     "source_block_id": 693449,
+     "printed": "31.",
+     "note": "regulation 3's first sub-regulation is printed '31.' (3.2 follows on the page); read as 3.1 -- owner 12 Oct ('31.' is read as 3.1; the evidence records that the page prints '31.')"
+    },
+    {
+     "page": 9,
+     "source_block_id": 693510,
+     "printed": "17.7 LEAVE EX-PAKISTAN:",
+     "note": "printed '17.7' inside regulation 14 (14.6.1 before, 14.7.1 after); read as 14.7 by a flagged misprint reading (same class as '31.')"
+    },
+    {
+     "page": 13,
+     "source_block_id": 693549,
+     "printed": "2.1 The Corporation may require",
+     "note": "regulation 21's first sub-regulation is printed '2.1'; 21.1.1 cites 'defined in 21.1'; read as 21.1 by a flagged misprint reading"
+    },
+    {
+     "page": 26,
+     "source_block_id": 693757,
+     "printed": "29. APPROVED BY SINDH SEED CORPORATION BOARD IN 7TH MEETING HELD ON 10TH OCTOBER, 1979 VIDE ITEM NO.OG.",
+     "note": "regulation 29 is the Board's adoption of a Government of Sindh Finance Department letter (FD (SR-III)4/1-76, 18 April 1979, Rest and Recreation Allowance) printed in full; its paragraphs 2-5 are clauses of regulation 29"
+    }
+   ],
+   "expected_tree": "preface (booklet title p1, 'SERVICE REGULATIONS OF THE SINDH SEED CORPORATION, 1976', the enacting formula 'In exercise of the powers conferred by Section 22 of the Sindh Seed Act ...' p2); no contents list and no Preamble; regulations 1-31 as sections with their printed headings and their decimal sub-regulations as flat sibling sections (corpus convention, e.g. s_2, s_2_1 ... s_2_22; s_14, s_14_2, s_14_2_1 ... s_14_2_5); regulation 3.1's classification table as clauses s_3_1.cl_1-4; the tour, accommodation and daily-allowance tables of regulation 21 as clauses of 21.5.1, 21.6.1, 21.7.1 (21.3.1's table stays its text: the rows print '01'..'04' with no stop); regulation 29's letter paragraphs 2-5 as its clauses; page numbers set aside -- 359 provisions, no SCHEDULE",
+   "relations": [
+    {
+     "type": "empowers",
+     "target_ordinal": 6,
+     "source_block_id": 693546,
+     "source_page": 12,
+     "source_provision_path": "sindh.regulation.y1976_o4378.s_19_1",
+     "effect": "regulation 19.1 ('Provident fund Trust shall be created and rules will be framed separately for the purpose') is the provision under which the Corporation's Provident Fund deed of trust and Provident Fund Rules were made",
+     "basis": "docs/03b `empowers` -- a provision authorises rules made under it; lead decision 12 Oct 2026: keep. Reg 19.1 (p12, block 693546) directs that a PF trust be created and rules framed separately; the deed of trust (p61, 1 July 1981) institutes 'a Provident Fund ... according to the rules attached'."
+    }
+   ]
+  },
+  {
+   "ordinal": 1,
+   "role": "embedded",
+   "title": "Sindh Seed Corporation Recruitment Rules, 1976",
+   "kind": "rules",
+   "year": 1976,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 693816,
+     "end_block_id": 693999,
+     "pages": "30-44"
+    }
+   ],
+   "source_anomalies": [
+    {
+     "page": 30,
+     "source_block_id": 693817,
+     "printed": "REQUIREMENT RULES OF SINDH SEED CORPORATION",
+     "note": "the title page prints 'REQUIREMENT' for 'RECRUITMENT'; p31 prints 'RECRUITMENT RULES' and rule 1.1 names the 'Sindh Seed Corporation Recruitment Rules 1976'"
+    },
+    {
+     "page": 34,
+     "source_block_id": 693861,
+     "printed": "8.1 The Corporation shall cause a seniority list",
+     "note": "rule 8 prints '8.1' twice (rule 9 follows); the second is read as 8.2 by sequence -- owner decision 4347 q2 '8.2-by-sequence' (decision-review-2026-10-12-chat.json); flagged misprint reading claude/agDF/patch-4347-split-8.2.json records that the page prints '8.1'"
+    }
+   ],
+   "expected_tree": "title page p30 and 'RECRUITMENT RULES / NOTIFICATION' with the enacting formula ('In exercise of the powers conferred by Section 21 of the Sindh Seed Corporation Act XXIX. 1976, Government of Sindh ...') as preface; rules 1-13 as sections with their decimal sub-rules (1.1-1.3.4, 2.1-2.13, 4.1-4.12, 5.1-5.3, 6.1-6.2, 7.1-7.5, 8.1-8.2, 9.1, 10.1, 11.1-11.3, 12.1, 13.1); ANNEXURE 'A' (Selection Committee, members 1-4) and ANNEXURE 'B' (Selection Board, members 1-3, note); APPENDIX 'A' (qualifications table, posts 01-60) -- 136 provisions. Appendix A is part of these Rules (rules 3 and 6.1 cite 'Appendix A')."
+  },
+  {
+   "ordinal": 2,
+   "role": "embedded",
+   "title": "Delegation of Administrative and Financial Powers to the Managing Director, Sindh Seed Corporation, 1978",
+   "kind": "order",
+   "year": 1978,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 694000,
+     "end_block_id": 694024,
+     "pages": "45-46"
+    }
+   ],
+   "source_anomalies": [
+    {
+     "page": 45,
+     "source_block_id": 694000,
+     "printed": "THE DELEGATION OF ADMINISTRATIVE AND FINANCIAL POWERS TO THE MANAGING DIRECTOR, SINDH SEED CORPORATION, BY THE SSC BOARD IN ITS THIRD MEETING HELD ON 04.04.1978.",
+     "note": "a decision of the Corporation's Board (lead decision 12 Oct 2026: kind 'order'), not a gazette notification"
+    }
+   ],
+   "expected_tree": "heading and the Board's approval sentence ('... on the pattern of Punjab Seed Corporation. (copy of Punjab Government Notification Attached)') as preface; groups as parts: 1 ADMINISTRATIVE POWERS (items 1-5), 2 FINANCIAL POWERS (items 6-9, item 9's conditions a)-b) in its text), 3 WRITING OF LOSSES (items 10-22, 20-22 'Full Powers subject to Govt. Policy') -- items are sections numbered on through the groups; 25 provisions"
+  },
+  {
+   "ordinal": 3,
+   "role": "embedded",
+   "title": "Government of the Punjab, Agriculture Department, Notification No. S.O. (A-II)/8-47/75, 1977 (delegation of powers to the Managing Director, Punjab Seed Corporation)",
+   "kind": "notification",
+   "year": 1977,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 694025,
+     "end_block_id": 694035,
+     "pages": "47-48"
+    }
+   ],
+   "source_anomalies": [
+    {
+     "page": 47,
+     "source_block_id": 694025,
+     "printed": "GOVERNMENT OF THE PUNJAB, AGRICULTURE DEPARTMENT. NOTIFICATION. No. S.O. (A-II)/8-47/75",
+     "note": "a Punjab instrument printed as the copy the Sindh Board attached to its delegation (p45); its own expression with jurisdiction 'punjab' (lead decision 12 Oct 2026; per-expression plan jurisdiction field, materializer port). Number kept null (the printed number contains '/' and '()'); dated Lahore, 18 January 1977 (p48)"
+    },
+    {
+     "page": 48,
+     "source_block_id": 694030,
+     "printed": "xviii. Hiring of the buildings ... xix. Sanction of residential telephones.",
+     "note": "items 18-19 are printed with Roman numerals after item 17; they stay in item 17's text (no Roman item sections in an Arabic series)"
+    }
+   ],
+   "expected_tree": "heading and the delegation formula as preface; parts I (Administrative Powers, items 1-5) and II (Financial Powers, items 6-17, 'WRITING OFF LOSSES:-' kept in item 9's text); the signature in item 17's text; the forwarding endorsement and its list (p48) set aside as apparatus; 19 provisions",
+   "jurisdiction": "punjab",
+   "jurisdiction_basis": "page 47 prints 'GOVERNMENT OF THE PUNJAB, AGRICULTURE DEPARTMENT. NOTIFICATION. No. S.O. (A-II)/8-47/75- The Governor of the Punjab has been pleased to delegate ... to the managing Director, Punjab Seed Corporation'; page 48 'Dated Lahore, the 18th January, 1977 ... Secretary to Government of the Punjab, Agriculture Department' (lead decision 12 Oct 2026: separate expression, jurisdiction punjab, not the booklet's sindh)"
+  },
+  {
+   "ordinal": 4,
+   "role": "embedded",
+   "title": "Sindh Seed Corporation Purchase Procedure",
+   "kind": "order",
+   "year": null,
+   "year_status": "undated",
+   "owner_decision": {
+    "export": ".artifacts/decision-review/exports/decision-review-2026-10-12-chat.json",
+    "document_id": 4347,
+    "question_id": "q1"
+   },
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 694036,
+     "end_block_id": 694067,
+     "pages": "49-55"
+    }
+   ],
+   "source_anomalies": [
+    {
+     "page": 49,
+     "source_block_id": 694038,
+     "printed": "SINDH SEED CORPORATION HYDERABAD PURCHASE PROCEDURE.",
+     "note": "the procedure prints no date, number or authority; year_status 'undated' cites owner decision 4347 q1 'undated' (decision-review-2026-10-12-chat.json; migration 0063). Kind 'order': the instrument_kind vocabulary (constitution, act, ordinance, order, regulation, rules, sro, notification) has nothing closer for an administrative procedure (lead decision 12 Oct)"
+    },
+    {
+     "page": 52,
+     "source_block_id": 694056,
+     "printed": "3.2 After finalization of the over-all Budget",
+     "note": "paragraph 3 prints '3.2' twice and 3.4 follows; the second is read as 3.3 by sequence (lead decision 12 Oct: the following label confirms the sequence); flagged misprint reading"
+    }
+   ],
+   "expected_tree": "heading as preface; paragraphs 1-7 as sections (3.1-3.4 as decimal sections), purchase categories I)-XII), sub-items i.-viii. kept in their paragraph's text; 11 provisions"
+  },
+  {
+   "ordinal": 5,
+   "role": "embedded",
+   "title": "Sindh Seed Corporation Employees Leave Rules, 1980",
+   "kind": "rules",
+   "year": 1980,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 694068,
+     "end_block_id": 694127,
+     "pages": "56-60"
+    }
+   ],
+   "source_anomalies": [
+    {
+     "page": 56,
+     "source_block_id": 694069,
+     "printed": "Annexure-12",
+     "note": "the booklet's annexure number over the Leave Rules (kept as preface text); the rules are not rows of an annexure"
+    },
+    {
+     "page": 60,
+     "source_block_id": 694127,
+     "printed": "26. The existing Rules and orders on the subject shall be deemed to have been modified to the extent indicated in the preceding paragraphs.",
+     "note": "a general deeming clause naming no instrument; no 'amends' relation to the Service Regulations is recorded (docs/03b: amends closes one version and opens another -- this names none)"
+    }
+   ],
+   "expected_tree": "'Annexure-12' and the title as preface; rules 1-26 as sections (rule 4's clause a) and romanettes i-iii, rule 11's i.-, rules 13-14's a)-, in their rule's text as the default parser reads them); 26 provisions"
+  },
+  {
+   "ordinal": 6,
+   "role": "embedded",
+   "title": "Sindh Seed Corporation Employees Provident Fund Rules, 1979",
+   "kind": "rules",
+   "year": 1979,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 694128,
+     "end_block_id": 694325,
+     "pages": "61-77"
+    }
+   ],
+   "source_anomalies": [
+    {
+     "page": 61,
+     "source_block_id": 694131,
+     "printed": "SINDH SEED CORPORATION EMPLOYEES PROVIDENT FUND. DEED OF TRUST ... This INDENTURE MADE the 1st day of July-1981",
+     "note": "the expression is the deed of trust (1981) with the rules attached to it (titled 'provident Fund Rules, 1979', p64); the year is the Rules' printed year, the deed's date is 1 July 1981 -- owner's grouping (12 Oct)"
+    },
+    {
+     "page": 66,
+     "source_block_id": 694190,
+     "printed": "rules 5-30 printed in two columns: margin notes ('TRUSTEES', 'SECRETARY', 'CESSATION, DISQUALIFICATION ...') beside the rule numbers and the text",
+     "note": "the text layer reads pp64-75 out of reading order (margin notes, rule numbers, stops and text in separate interleaved blocks); claude/agDF/patch-4347-split-e6.json + patch-4347-split-optional-19.json rebuild each page in printed order from the PDF's line boxes (words moved, none added or dropped, except the flagged stop after '19', which the page does not print -- lead decision 12 Oct); rule reviewed_half_paren_items opens the a)/i. sub-rules. Accepted by the lead 12 Oct"
+    }
+   ],
+   "expected_tree": "deed of trust (WHEREAS recital, operative words, seal and signatures pp61-63) and the Rules' title (p64) as the Preamble; rules 1-31 as sections in printed order, their margin notes as the first words of the text (as headings where the note ends in a stop: 7, 10-12, 19, 22, 30, 31; 'Effective Date Rules' for 2); sub-rules a)-n) and i.-v. as clauses (romanettes siblings of the letters, the corpus default), provisos under the clause they qualify; the First Schedule (enrolment forms pp76-77); 117 provisions"
+  }
+ ],
+ "apparatus": "none outside the spans: E0-E6 together cover every block 693438-694325. Inside the spans, set aside by the reviewed readings: page-number blocks (pp3-7, correction pack; pp9-36 and 56-60, split pack; pp64-75, E6 packs), the fused page numbers of pp8, 36, 45, 47 (text readings), the stray mark on p46, the Punjab notification's forwarding endorsement and list on p48, and on pp64-75 the text blocks whose words the E6 reading-order readings carry",
+ "readings": [
+  "claude/agDF/patch-4347.json (15; decimal-numbering correction, owner 11 Oct; RECORDED 12 Oct 01:01)",
+  "claude/agDF/patch-4347-split.json (76)",
+  "claude/agDF/patch-4347-split-e6.json (12; pp64-69, 71-75 reading order)",
+  "claude/agDF/patch-4347-split-optional-19.json (1; THE p70 reading, with the flagged stop after 19)",
+  "claude/agDF/patch-4347-split-8.2.json (1; p34 second '8.1' -> 8.2, owner q2)"
+ ],
+ "rules": "agDF data-gated rules, every profile, inert without a reading: ported -- reviewed_decimal_cut, reviewed_table_row_blocks, reviewed_division_continues, reviewed_marked_label_cut; TO PORT -- $S/agDF-rule.py (reviewed_inline_table_blocks, reviewed_group_heading_blocks, integer-only table rows), $S/agDF-rule-hp.py (reviewed_half_paren_items), and the plan's per-expression 'jurisdiction' field ($S/agDF-matport.py: materializer + worker.build; E3 is 'punjab')"
+}

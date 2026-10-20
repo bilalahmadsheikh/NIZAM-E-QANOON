@@ -1,0 +1,117 @@
+{
+  "schema": "nizam.multi_expression_plan/1",
+  "document_id": 691,
+  "source_observation_id": 2036,
+  "review_basis": "source_verified",
+  "reviewed_on": "2026-10-06",
+  "reviewed_by": "assistant page review (agent AY) on the owner's decision",
+  "owner_decision": {
+    "export": ".artifacts/decision-review/exports/decision-review-2026-10-06-c.json",
+    "card_sha256": "ec5c427081054d1b64d4cd0b91160abe1e2df56a9a99114cd304fca44b4a550a",
+    "q3": "split-four: four instruments -- the Environment Protection Department Service Rules, 1997 (pp8-14, principal) and the amending notifications of 13-09-2007, 28-10-2009 and 24-05-2011, each linked as amending the 1997 Rules and keeping its own substituted/inserted Schedule rows; the notifications are law, not front matter; the repeated Sr. No. 36 (2007: Director (EIA); 2011: Senior Inspector) is preserved at instrument level, its operative relationship resolved only in a consolidated version",
+    "q2": "rows-by-serial: the recruitment table is the Schedule to the Rules; each post entry is a separately citable Schedule row identified by its printed serial (not a rule or section), all its cells kept as that row"
+  },
+  "reviewed_pages": [
+    {"page": 1, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc691-p1.png", "render_sha256": "52518e408c7c41a8bf1f215387fb85825bb55c7adc03a1b03af79c07e509096f"},
+    {"page": 2, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc691-p2.png", "render_sha256": "4be15a13aa7c2e2919bb4d51ec63c95cc12497458129a32095e16cc06a8d3417"},
+    {"page": 3, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc691-p3.png", "render_sha256": "cc6b9762b25e4770d4de752c12f0aa57720ffc8a3440bd353771a49a21c765ee"},
+    {"page": 4, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc691-p4.png", "render_sha256": "60c0d2c82e147e7cb2b3ed8a1602bc34da258604688ee249717619ad8db03d97"},
+    {"page": 5, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc691-p5.png", "render_sha256": "2bc039bb4698f2767b054351ecfc16a324701c0f770a65098cd20a09a49ad534"},
+    {"page": 6, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc691-p6.png", "render_sha256": "78d0623e80dd10566fdbe5966b63ae1cee99d37332d25b4a423ee0b6b009cc19"},
+    {"page": 7, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc691-p7.png", "render_sha256": "e8b7913345232d457f09e90ab9fde16c91cfe4b9b1dca230c1fccfb4c5d212c9"},
+    {"page": 8, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc691-p8.png", "render_sha256": "c73cdf12b812ebdc07131524d24a275e7b2262893f1711a0cff8b91f140de43b"},
+    {"page": 9, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc691-p9.png", "render_sha256": "b8d459ac261d1e38d1b7e87a8eb3777c34991427cc84aea82f0be84337974ab1"},
+    {"page": 10, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc691-p10.png", "render_sha256": "df0b2ec2711bcf31e47155e99b4020698ba5ae1a01a1aade54809fb2591f666a"},
+    {"page": 11, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc691-p11.png", "render_sha256": "ce60f97dc07f0ad43262788d79c460bf4e4806b9f050714f71338d4e099be28d"},
+    {"page": 12, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc691-p12.png", "render_sha256": "ced3d6d1bd266745d23681265a16d01cf81043f225c89929bf1af5c17bf7e172"},
+    {"page": 13, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc691-p13.png", "render_sha256": "8fc1f513f10e40339f389cb4cd2050fb9f826b7e4cf8e7c3bdd977b8d1ed8f8d"},
+    {"page": 14, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc691-p14.png", "render_sha256": "87559805d56660f84abdc4c9724d654fdf334ea8fe4f7699b97f3c9d9e57023e"}
+  ],
+  "expressions": [
+    {
+      "ordinal": 0,
+      "role": "primary",
+      "title": "The Environment Protection Department Service Rules, 1997",
+      "kind": "rules",
+      "year": 1997,
+      "number": null,
+      "spans": [
+        {"start_block_id": 29847, "end_block_id": 30066, "pages": "8-14"}
+      ],
+      "title_correction": {
+        "from_title": "SERVICE RULES",
+        "from_year": 2011,
+        "to_year": 1997,
+        "basis": "pp8-9 print the S&GAD & Information Department notification No. SOR-III.1-26/87 dated 28 November 1997 by which 'the Governor of the Punjab is pleased to make the following rules, namely:-' (blocks 29847-29852); the Rules print no title of their own, and each of the three amending notifications names them 'the Environment Protection Department Service Rules, 1997' (p1 block 29630, p5 block 29739, p6 block 29771); the stored year 2011 is the first notification's (owner decision q3)"
+      },
+      "expected_tree": "preface (heading, date, NOTIFICATION, No. SOR-III.1-26/87 and the enabling formula '... pleased to make the following rules, namely:-'); SCHEDULE (the ten-column recruitment table, printed with no heading -- owner q2; its text is the column heads) with rows 1-35 under their printed serials, each row's cells in column order; the signature is apparatus"
+    },
+    {
+      "ordinal": 1,
+      "role": "embedded",
+      "title": "S&GAD (Regulations Wing) Notification No. SO(R-III) (S&GAD)/1-24/2007 dated 24 May 2011 (amending the Environment Protection Department Service Rules, 1997)",
+      "kind": "notification",
+      "year": 2011,
+      "number": "SO(R-III) (S&GAD)/1-24/2007",
+      "spans": [
+        {"start_block_id": 29625, "end_block_id": 29734, "pages": "1-4"}
+      ],
+      "relations": [
+        {
+          "type": "amends",
+          "target_ordinal": 0,
+          "effect": "in the Schedule of the 1997 Rules: (a) substitutes the entries against the posts at Sr. No. 1-A, 1, 2, 6, 7, 13, 15, 22, 24 and 26; (b) inserts after Sr. No. 35 a new entry at Sr. No. 36 'Senior Inspector (BS-16)' (the 2007 notification had already inserted an entry 36 'Director (EIA) (BS-19)'; both are kept as printed, each in its own notification -- owner q3)",
+          "source_block_id": 29632,
+          "source_page": 1,
+          "basis": "p1 prints 'In the said Rules, in the Schedule (a) for the existing entries against the posts at Sr. No. 1-A, 1, 2, 6, 7, 13, 15, 22, 24 and 26 the following shall be substituted:'; p4 'b) after the existing entry at Sr. No. 35, the following new entry at Sr. No. 36 shall be inserted:-'; owner decision q3"
+        }
+      ],
+      "expected_tree": "preface (heading, date, NOTIFICATION, No. and enabling formula); unnumbered provision 'AMENDMENTS' (its printed caption, block 29631) with text 'In the said Rules, in the Schedule', clause (a) holding the substituted entries' column heads and rows 1-A, 1, 2, 6, 7, 13, 15, 22, 24, 26 (each a line in column order), clause (b) holding row 36; the signature is apparatus"
+    },
+    {
+      "ordinal": 2,
+      "role": "embedded",
+      "title": "S&GAD (Regulations Wing) Notification No. SO(R-III) (S&GAD)/1-24/2007 dated 28 October 2009 (amending the Environment Protection Department Service Rules, 1997)",
+      "kind": "notification",
+      "year": 2009,
+      "number": "SO(R-III) (S&GAD)/1-24/2007",
+      "spans": [
+        {"start_block_id": 29735, "end_block_id": 29767, "pages": "5-6"}
+      ],
+      "relations": [
+        {
+          "type": "amends",
+          "target_ordinal": 0,
+          "effect": "in the Schedule of the 1997 Rules adds the entries in columns 1 to 10 against the newly inserted Sr. No. 1-B 'Director (Admn, Legal & Coordination) (BS-19)'",
+          "source_block_id": 29741,
+          "source_page": 5,
+          "basis": "p5 prints 'In the said Rules, in the Schedule, the following new entries in Columns 1 to 10 against the newly inserted entry of Sr. No. 1-B shall be added:-'; owner decision q3"
+        }
+      ],
+      "expected_tree": "preface; unnumbered provision 'AMENDMENTS' (block 29740) holding the amending sentence, the column heads and row 1-B; 'BY ORDER OF THE GOVERNOR OF THE PUNJAB' and the signature are apparatus"
+    },
+    {
+      "ordinal": 3,
+      "role": "embedded",
+      "title": "S&GAD (Regulations Wing) Notification No. SOR-III (S&GAD)/1-9/2000 dated 13 September 2007 (amending the Environment Protection Department Service Rules, 1997)",
+      "kind": "notification",
+      "year": 2007,
+      "number": "SOR-III (S&GAD)/1-9/2000",
+      "spans": [
+        {"start_block_id": 29768, "end_block_id": 29846, "pages": "6-8"}
+      ],
+      "relations": [
+        {
+          "type": "amends",
+          "target_ordinal": 0,
+          "effect": "in the Schedule of the 1997 Rules: (1) substitutes columns 5 and 7 of Sr. Nos 1-A and 2; (2) substitutes columns 3, 5 and 7 of Sr. No. 5, 7 and 9; (3) inserts after Sr. No. 35 new entries 36 'Director (EIA) (BS-19)' and 37 'Prosecutor /Law Officer (BS-18)' (a later entry 36 is inserted by the 2011 notification; both are kept as printed -- owner q3)",
+          "source_block_id": 29773,
+          "source_page": 6,
+          "basis": "p6 prints 'In the said rules, in the schedule; (1) for the existing entries against the posts at Sr. Nos 1-A and 2 in column No. 5 and 7 ...'; p7 '(2) for the existing entries against the posts at Sr. No. 5, 7 and 9 in column No. 3, 5 and 7 ...'; p8 '(3) After the existing entries against the post at Sr. No. 35, the following new entries in column No. 1 to 10 shall be inserted:-'; owner decision q3"
+        }
+      ],
+      "expected_tree": "preface; unnumbered provision 'AMENDMENTS' (caption 'AMENDMENTS:', block 29772) with text 'In the said rules, in the schedule;', sub-paragraphs (1) (column heads, rows 1-A and 2), (2) (rows 5, 7, 9), (3) (rows 36, 37); 'BY THE ORDERS OF THE GOVERNOR OF THE PUNJAB' and the signature are apparatus"
+    }
+  ],
+  "apparatus": "signatures and the column-number rows '1 2 ... 10' printed under each table's column heads are set aside by the reviewed curation readings (claude/agAY/patch-691.json); every emptied table-cell block is set aside after its words are read into its row's line"
+}

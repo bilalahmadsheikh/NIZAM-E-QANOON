@@ -42,7 +42,9 @@ WITH RECURSIVE live_document AS (SELECT * FROM audit_document),
        SELECT DISTINCT ON (v.document_id) v.*
          FROM extraction_verification v
          JOIN live_document d ON d.id=v.document_id
-        WHERE v.reference_extractor='poppler-pdftotext'
+        -- the repaired-reference fallback (doc 4608; verify_extraction) is Poppler on a MuPDF xref-rebuilt copy
+        -- of the same bytes, taken only for a blob with an active decode_damage assertion
+        WHERE v.reference_extractor IN ('poppler-pdftotext', 'poppler-pdftotext+mupdf-xref-rebuild')
         ORDER BY v.document_id,v.verified_at DESC,v.id DESC),
      latest_ocr AS (
        SELECT DISTINCT ON (v.document_id) v.*
@@ -132,15 +134,21 @@ m AS (
                            AND r.reason IS NOT NULL))
                                                                                 AS unstructured_unexplained,
     -- S6. Labels need only be unique among siblings. The same label under two
-    -- separately printed containers is addressable; two under one parent is not.
-    (SELECT count(*) FROM (SELECT instrument_id,parent_id,kind,label
+    -- separately printed containers is addressable; two under one parent is not
+    -- -- unless the owner kept both prints and each carries its print-order
+    -- occurrence in the path (`s_2`, `s_2__o2`; profile rule
+    -- `order_suffix_label`, doc 999, cited "s.2" and "s.2 (second)"). The
+    -- occurrence is part of the citation, so it is part of the key.
+    (SELECT count(*) FROM (SELECT instrument_id,parent_id,kind,label,
+                                  substring(path::text from '__o([0-9]+)$')
                             FROM live_provision
                            WHERE kind IN ('section','article')
-                           GROUP BY 1,2,3,4 HAVING count(*) > 1) x)             AS dup_labels,
+                           GROUP BY 1,2,3,4,5 HAVING count(*) > 1) x)           AS dup_labels,
     (SELECT count(DISTINCT instrument_id) FROM (
-        SELECT instrument_id,parent_id,kind,label FROM live_provision
+        SELECT instrument_id,parent_id,kind,label,
+               substring(path::text from '__o([0-9]+)$') FROM live_provision
          WHERE kind IN ('section','article')
-         GROUP BY 1,2,3,4 HAVING count(*) > 1) y)                               AS dup_instruments,
+         GROUP BY 1,2,3,4,5 HAVING count(*) > 1) y)                             AS dup_instruments,
     (SELECT count(DISTINCT source_observation_id)
        FROM v_structural_adjudication_pending)                                   AS demoted_instruments,
     (SELECT count(*) FROM v_structural_adjudication_pending)                     AS demoted_labels,
@@ -248,9 +256,22 @@ m AS (
         || '|For\s+rules\s+see\b|See\s+[Nn]otification\b'
         || ')')
     )                                                                           AS toc_links_apparatus,
-    (SELECT count(*) FROM live_version v WHERE NOT (v.validity @> current_date))
-                                                                                AS not_operative,
-    (SELECT count(*) FROM live_version)                                         AS versions,
+    -- >>> A7 measures (tests/test_historical_expression.py runs this block)
+    -- A7 is about current consolidated text. An owner-declared historical
+    -- expression (0064, v_instrument_historical) is bounded on purpose and
+    -- never @> current_date; it is judged by A13 instead, and counted here
+    -- only as the number set aside.
+    (SELECT count(*) FROM live_version v JOIN live_provision p ON p.id=v.provision_id
+      WHERE NOT (v.validity @> current_date)
+        AND NOT EXISTS (SELECT 1 FROM v_instrument_historical h
+                         WHERE h.instrument_id=p.instrument_id))                AS not_operative,
+    (SELECT count(*) FROM live_version v JOIN live_provision p ON p.id=v.provision_id
+      WHERE NOT EXISTS (SELECT 1 FROM v_instrument_historical h
+                         WHERE h.instrument_id=p.instrument_id))                AS versions,
+    (SELECT count(*) FROM live_version v JOIN live_provision p ON p.id=v.provision_id
+      WHERE EXISTS (SELECT 1 FROM v_instrument_historical h
+                     WHERE h.instrument_id=p.instrument_id))                    AS historical_versions,
+    -- <<< A7 measures
     (SELECT count(*) FROM audit_block b JOIN audit_document d ON d.id=b.document_id
        JOIN page pg ON pg.document_id=b.document_id AND pg.page_no=b.page_no
       WHERE (d.lane='E4' OR pg.lane='E4') AND b.confidence IS NULL)             AS ocr_no_conf,
@@ -378,6 +399,101 @@ m AS (
     -- about the portal, and failing the release on an unreachable server would
     -- be a tripwire rather than a test.
     ,(SELECT count(*) FROM v_source_incompleteness_open)                           AS incomplete_open
+    -- C9, second half (migration 0062). A landed file that prints the same text
+    -- as a canonical document, differing only in page furniture, is recorded
+    -- in source_same_text_copy; its instrument's duplicate_of is re-derived
+    -- after every replay (post_replay_sequence.sh step 2b). The rule: every
+    -- active instrument of a recorded copy points at an ACTIVE instrument of
+    -- its canonical document.
+    ,(SELECT count(*) FROM source_same_text_copy s
+       WHERE EXISTS (
+           SELECT 1 FROM instrument t
+            WHERE t.document_id=s.document_id AND t.is_active
+              AND NOT EXISTS (
+                  SELECT 1 FROM instrument c
+                   WHERE c.id=t.duplicate_of AND c.is_active
+                     AND c.document_id=s.canonical_document_id)))                 AS same_text_unflagged
+    -- C9, third part (migration 0065). An unofficial translation, or a Bill
+    -- whose enacted text is held, is recorded in source_non_authoritative_copy;
+    -- the same rule: every active instrument of the recorded file points at an
+    -- ACTIVE instrument of its authoritative document.
+    ,(SELECT count(*) FROM source_non_authoritative_copy s
+       WHERE EXISTS (
+           SELECT 1 FROM instrument t
+            WHERE t.document_id=s.document_id AND t.is_active
+              AND NOT EXISTS (
+                  SELECT 1 FROM instrument c
+                   WHERE c.id=t.duplicate_of AND c.is_active
+                     AND c.document_id=s.authoritative_document_id)))             AS non_authoritative_unflagged
+    -- Tripwire for every route that sets duplicate_of (0036, 0054, 0062): a
+    -- duplicate points at a canonical instrument, never at another duplicate.
+    -- A chain would publish nothing, or the wrong copy, once a link moves.
+    ,(SELECT count(*) FROM instrument d
+        JOIN instrument c ON c.id=d.duplicate_of
+       WHERE d.is_active AND c.duplicate_of IS NOT NULL)                           AS duplicate_chains
+    -- A12 (migration 0063). An instrument may have no year only on the owner's
+    -- 'undated': an active manifest for its observation and expression with
+    -- detected_year NULL and the owner's answer cited. The deferred triggers
+    -- enforce it at commit; this reports how many there are and asserts that
+    -- no undated instrument lacks the owner's answer -- the count is reported,
+    -- never a threshold.
+    ,(SELECT count(*) FROM instrument i WHERE i.is_active AND i.year IS NULL)       AS undated
+    ,(SELECT count(*) FROM instrument i
+       WHERE i.is_active AND i.year IS NULL
+         AND NOT EXISTS (
+             SELECT 1 FROM instrument_expression_manifest e
+              WHERE e.source_observation_id=i.source_observation_id
+                AND e.expression_ordinal=i.expression_ordinal
+                AND e.is_active AND e.detected_year IS NULL
+                AND e.evidence->>'year_status'='undated'
+                AND e.evidence->'year_owner_decision'->>'choice'='undated'))       AS undated_unowned
+    -- >>> A13 measures (tests/test_historical_expression.py runs this block)
+    -- A13 (migration 0064). A historical expression -- the owner's
+    -- 'historical-expression', a dated text never shown as current law -- is
+    -- sound only if: every bounded version belongs to an instrument an active
+    -- manifest declares historical; every such version lies inside the window
+    -- (the deferred trigger enforces it at commit; this re-proves it); the
+    -- window has closed (upper <= today); the current-expression key resolves
+    -- to exactly one active, released, non-historical instrument whose earliest
+    -- version opens at or after the window closes; and no two historical
+    -- windows of one work (one current expression) overlap. The number of
+    -- historical instruments is reported, never a threshold.
+    ,(SELECT count(*) FROM v_instrument_historical)                                AS historical
+    ,(SELECT count(*) FROM provision_version v
+        JOIN provision p ON p.id=v.provision_id
+        JOIN instrument i ON i.id=p.instrument_id AND i.is_active
+       WHERE NOT upper_inf(v.validity)
+         AND NOT EXISTS (SELECT 1 FROM v_instrument_historical h
+                          WHERE h.instrument_id=i.id))                             AS bounded_unowned
+    ,(SELECT count(*) FROM v_instrument_historical h
+        JOIN provision p ON p.instrument_id=h.instrument_id
+        JOIN provision_version v ON v.provision_id=p.id
+       WHERE NOT (v.validity <@ h.historical_validity))                            AS historical_outside
+    ,(SELECT count(*) FROM instrument_expression_manifest m
+       WHERE m.is_active AND m.historical_validity IS NOT NULL
+         AND NOT (upper(m.historical_validity) <= current_date))                   AS historical_open
+    ,(SELECT count(*) FROM instrument_expression_manifest m
+       WHERE m.is_active AND m.historical_validity IS NOT NULL
+         AND 1 <> (SELECT count(*) FROM v_release_instrument c
+                    WHERE c.source_observation_id=m.current_source_observation_id
+                      AND c.expression_ordinal=m.current_expression_ordinal
+                      AND NOT EXISTS (SELECT 1 FROM v_instrument_historical ch
+                                       WHERE ch.instrument_id=c.id)
+                      AND NOT EXISTS (
+                          SELECT 1 FROM provision cp
+                            JOIN provision_version cv ON cv.provision_id=cp.id
+                           WHERE cp.instrument_id=c.id
+                             AND lower(cv.validity) < upper(m.historical_validity))))
+                                                                                 AS historical_target_unresolved
+    ,(SELECT count(*) FROM instrument_expression_manifest a
+        JOIN instrument_expression_manifest b
+          ON b.current_source_observation_id=a.current_source_observation_id
+         AND b.current_expression_ordinal=a.current_expression_ordinal
+         AND a.id < b.id
+       WHERE a.is_active AND b.is_active
+         AND a.historical_validity IS NOT NULL AND b.historical_validity IS NOT NULL
+         AND a.historical_validity && b.historical_validity)                      AS historical_overlaps
+    -- <<< A13 measures
 )
 SELECT * FROM (
   SELECT 'C1' AS id, 'every acquired file becomes a blob'      AS criterion,
@@ -445,7 +561,8 @@ SELECT * FROM (
               WHEN heading_not_own = 0   THEN 'PASS'
               ELSE 'FAIL' END FROM m
   UNION ALL SELECT 'A7','as-at query returns the corpus',
-         (versions - not_operative)||' / '||versions, 'all',
+         (versions - not_operative)||' / '||versions||'; '||historical_versions||
+         ' historical (A13)', 'all current',
          CASE WHEN not_operative=0 THEN 'PASS' ELSE 'FAIL' END FROM m
   UNION ALL SELECT 'A8','OCR blocks carry a confidence', ocr_no_conf::text,'0',
          CASE WHEN ocr_no_conf=0 THEN 'PASS' ELSE 'FAIL' END FROM m
@@ -498,11 +615,27 @@ SELECT * FROM (
          boundary_candidates||' pending boundaries in '||boundary_observations||' observations',
          '0 pending',
          CASE WHEN boundary_candidates=0 THEN 'PASS' ELSE 'FAIL' END FROM m
-  UNION ALL SELECT 'C9','a partial copy is never published as the Act',
-         incomplete_unflagged||' unflagged; '||incomplete_open||
-         ' with no complete copy (reported)',
-         '0 unflagged; open queue reported',
-         CASE WHEN incomplete_unflagged=0 THEN 'PASS' ELSE 'FAIL' END FROM m
+  UNION ALL SELECT 'C9','a partial, same-text or non-authoritative copy is never published beside its canonical',
+         incomplete_unflagged||' partial unflagged; '||same_text_unflagged||
+         ' same-text unflagged; '||non_authoritative_unflagged||
+         ' non-authoritative unflagged; '||duplicate_chains||' duplicate chains; '||
+         incomplete_open||' with no complete copy (reported)',
+         '0 / 0 / 0 / 0; open queue reported',
+         CASE WHEN incomplete_unflagged=0 AND same_text_unflagged=0
+                   AND non_authoritative_unflagged=0 AND duplicate_chains=0
+              THEN 'PASS' ELSE 'FAIL' END FROM m
+  UNION ALL SELECT 'A12','every undated instrument carries the owner''s undated answer',
+         undated||' undated (reported); '||undated_unowned||' without the owner''s answer',
+         '0 without; count reported',
+         CASE WHEN undated_unowned=0 THEN 'PASS' ELSE 'FAIL' END FROM m
+  UNION ALL SELECT 'A13','a historical text is bounded, closed, owned and points at current law',
+         historical||' historical (reported); '||bounded_unowned||' bounded unowned; '||
+         historical_outside||' outside window; '||historical_open||' open; '||
+         historical_target_unresolved||' unresolved; '||historical_overlaps||' overlapping',
+         '0 / 0 / 0 / 0 / 0; count reported',
+         CASE WHEN bounded_unowned=0 AND historical_outside=0 AND historical_open=0
+                   AND historical_target_unresolved=0 AND historical_overlaps=0
+              THEN 'PASS' ELSE 'FAIL' END FROM m
   UNION ALL SELECT 'A6','no overlapping law (enforced, not tested)',
          CASE WHEN excl_present=1 THEN 'EXCLUDE constraint present'
               ELSE 'CONSTRAINT MISSING' END, 'enforced',

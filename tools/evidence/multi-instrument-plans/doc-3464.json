@@ -1,0 +1,107 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 3464,
+ "source_observation_id": 521,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-12",
+ "reviewed_by": "assistant page review (agent JC) on the owner's decision; relation evidence quoted verbatim by builder BZ (13 Oct 2026, lead decision)",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/decision-review-2026-10-12-j.json",
+  "document_id": 3464,
+  "question_id": "q1",
+  "choice": "split",
+  "effect": "The Ordinance (p4 on) is released as this document's instrument; P.O. No. 19 of 1972 (p3, Articles 1-2) becomes a separate instrument with its printed title and date, linked to the Ordinance by its printed note."
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3464-p1.png",
+   "render_sha256": "79ab5d954d2cf6e12acbf739bf4386f8514cc06cd793cb18c33fa307c6c14a7c"
+  },
+  {
+   "page": 2,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3464-p2.png",
+   "render_sha256": "719d7f8c3fc6cc6627f00514fb2f91100186acb328a27d722fd0d15db0ab8a2e"
+  },
+  {
+   "page": 3,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3464-p3.png",
+   "render_sha256": "b746fde06e8ec32b359204c58fe557fa481d1dda919548584a839d43e0ccb72a"
+  },
+  {
+   "page": 4,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3464-p4.png",
+   "render_sha256": "39d3e6dd37c1bf9864712d8217f0fcee08451d9d586da434303813520a4b1984"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Pakistan Rangers Ordinance, 1959",
+   "kind": "ordinance",
+   "year": 1959,
+   "number": "W.P. Ordinance XIV of 1959",
+   "spans": [
+    {
+     "start_block_id": 385460,
+     "end_block_id": 385490,
+     "pages": "1-2"
+    },
+    {
+     "start_block_id": 385500,
+     "end_block_id": 385680,
+     "pages": "4-15"
+    }
+   ],
+   "expected_tree": "contents (pp1-2, rows 1-22, 15A, 15B, 20A and the two Schedules); preface (title '1THE 2[PAKISTAN RANGERS] ORDINANCE, 1959 (W.P. Ordinance XIV of 1959) [1st April, 1959]', long title); preamble ('WHEREAS ...', 'Now, THEREFORE ...'); sections 1-22 with 15A, 15B, 20A; FIRST SCHEDULE and SECOND SCHEDULE (conditions of service)"
+  },
+  {
+   "ordinal": 1,
+   "role": "embedded",
+   "title": "The West Pakistan Rangers (Administration and Control) Order, 1972 (President's Order No. 19 of 1972)",
+   "kind": "order",
+   "year": 1972,
+   "number": "President's Order No. 19 of 1972",
+   "spans": [
+    {
+     "start_block_id": 385491,
+     "end_block_id": 385499,
+     "pages": "3"
+    }
+   ],
+   "relations": [
+    {
+     "type": "amends",
+     "target_ordinal": 0,
+     "source_block_id": 385496,
+     "source_page": 3,
+     "effect": "Article 2 vests the superintendence, control and administration of the West Pakistan Rangers constituted under the Ordinance in the Federal Government: (a) the Provincial Government's powers under it are exercisable by the Federal Government, (b) references in it to the 'Provincial Government' and to the 'Governor of the Punjab' or 'of Sind' are construed as references to the Federal Government",
+     "basis": "p3 prints the note '[This order may be read as an integral part of The Pakistan Rangers Ordinance, 1959 (W.P. Ordinance XIV of 1959).]' above the Order's title, and Article 2(a)-(b) (blocks 385496-385497) modifies how the Ordinance's references are read (owner decision j q1: 'linked to the Ordinance by its printed note'); docs/03b `amends` is the nearest edge -- the note itself is kept as the Order's preface",
+     "printed_note": {
+      "source_block_ids": [
+       385491,
+       385492
+      ],
+      "source_page": 3,
+      "text": "[This order may be read as an integral part of The Pakistan Rangers Ordinance, 1959 (W.P. Ordinance XIV of 1959).]"
+     },
+     "article_2": {
+      "source_block_ids": [
+       385496,
+       385497
+      ],
+      "source_page": 3,
+      "text": "2. Vesting of superintendence, etc., of the West Pakistan Rangers in the Federal Government. Notwithstanding anything contained in the West Pakistan Rangers (Reconstitution) Order, 1971, or the West Pakistan Rangers Ordinance, 1959, or any other law for the time being in force, the superintendence, control and administration of the West Pakistan Rangers constituted under the said Ordinance shall vest in the 1[Federal Government] and,― (a) all powers of the Provincial Government in relation to the West Pakistan Rangers shall be exercisable by the 1[Federal Government]; and (b) references in the said Ordinance to the “Provincial Government”, howsoever worded, and to the “Governor of the Punjab” or the “Governor of Sind” shall be construed as references to the 1[Federal Government]."
+     },
+     "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3464-p3.png",
+     "render_sha256": "b746fde06e8ec32b359204c58fe557fa481d1dda919548584a839d43e0ccb72a",
+     "edge_definition": "docs/03b §1.1 'amends': Instrument closes one version and opens another",
+     "lead_decision": "lead 13 Oct 2026 (CLAUDE-CLAIMS): record E1 'amends' E0 -- the Ordinance is to be read with the Order as integral, and Art. 2(a)-(b) changes how its references are construed, so the Ordinance as adapted is a new version; no other docs/03b kind fits"
+    }
+   ],
+   "expected_tree": "preface (the note '[This order may be read as an integral part of The Pakistan Rangers Ordinance, 1959 (W.P. Ordinance XIV of 1959).]', title 'THE WEST PAKISTAN RANGERS (ADMINISTRATION AND CONTROL) ORDER, 1972', 'PRESIDENT'S ORDER No. 19 OF 1972', '[20th April, 1972]' and the enacting formula); Article 1 'Short title and commencement.' (1)-(2); Article 2 'Vesting of superintendence, etc., of the West Pakistan Rangers in the Federal Government.' with (a)-(b); footnote 1 (block 385498) and the page footer apparatus"
+  }
+ ],
+ "apparatus": "the page footers 'Page N of 15' and the compiler's footnotes are set aside by the reviewed readings (claude/agJC/patch-3464.json) or dropped by the parser's footnote/running-header filters"
+}

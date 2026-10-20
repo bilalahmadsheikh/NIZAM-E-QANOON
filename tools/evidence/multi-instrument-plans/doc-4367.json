@@ -1,0 +1,35 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 4367,
+ "source_observation_id": 2301,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-13",
+ "reviewed_by": "assistant page review (builder BZ, 13 Oct 2026) on agent JE's export-j reading: a ONE-expression plan, used only to carry the printed title (the catalogue observation carries none, so the instrument was 'document 4367') and the printed kind 'regulation'; the tree is otherwise the worker's build",
+ "owner_decision": {
+  "source": ".artifacts/decision-review/exports/decision-review-2026-10-12-j.json (q1 printed, q2 forms-in-appendix) and -k.json; lead 12 Oct: correct the title 'document 4367' to the printed title"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4367-p1.png",
+   "render_sha256": "088826685d5365887da24878ea6dbd251982ac94d19797a97151375a395fc433"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "Provincial Employees’ Social Security Institution Servants’ (Medical Attendance) Regulations, 1967",
+   "kind": "regulation",
+   "year": 1967,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 704271,
+     "end_block_id": 704744
+    }
+   ],
+   "title_basis": "p1 blocks 704272-704273 print THE PROVINCIAL EMPLOYEES' SOCIAL SECURITY INSTITUTION SERVANTS' (MEDICAL ATTENDANCE) REGULATIONS, 1967; the catalogue carries no title"
+  }
+ ]
+}

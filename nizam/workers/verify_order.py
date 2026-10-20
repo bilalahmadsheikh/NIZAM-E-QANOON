@@ -183,7 +183,8 @@ def pdftotext(path: Path, *, layout: bool = False) -> str:
     return r.stdout.decode("utf-8", "replace")
 
 
-def _score_reference(by_page: dict[int, list[str]], reference_pages: list[str]) -> dict:
+def _score_reference(by_page: dict[int, list[str]], reference_pages: list[str], *,
+                     force_characters: bool = False) -> dict:
     # Choose the comparison unit from the script, not from preference. See
     # connected_script_share: in Nastaliq the two decoders disagree on where
     # words begin, so words are not a stable unit and characters are.
@@ -191,6 +192,9 @@ def _score_reference(by_page: dict[int, list[str]], reference_pages: list[str]) 
         b for blocks in by_page.values() for b in blocks)
     connected = connected_script_share(sample)
     use_characters = connected >= MIN_CONNECTED_SCRIPT_SHARE
+    # Repaired-reference fallback (agent JE, doc 4608): the damaged font's word boundaries ('a m end', 'Sind h') are
+    # not evidence, so a repaired reference is compared in characters, as connected scripts already are.
+    use_characters = use_characters or force_characters
 
     stored_grams = collections.Counter()
     reference_grams = collections.Counter()
@@ -287,6 +291,29 @@ def check(cur, doc_id: int, object_key: str, title: str | None,
             reference_pages.pop()
         references.append((mode, theirs_raw, reference_pages))
     best_words = max(len(lexical_words(raw)) for _, raw, _ in references)
+    # Repaired-reference fallback (agent JE, doc 4608; lead 15 Oct 2026): when Poppler reads nothing from a blob
+    # that carries an ACTIVE decode_damage assertion, compare against Poppler's text of a MuPDF xref-rebuilt copy of
+    # the same bytes (nizam.workers.verify_extraction.rebuilt_reference). Any other blob is untouched.
+    repair = None
+    if best_words == 0:
+        from nizam.workers.verify_extraction import (REPAIRED_REFERENCE_EXTRACTOR, active_decode_damage,
+                                                     rebuilt_reference)
+        cur.execute("SELECT sha256 FROM document WHERE id=%s", (doc_id,))
+        row = cur.fetchone()
+        damage_id = active_decode_damage(cur, row[0]) if row else None
+        if damage_id is not None:
+            rebuilt_refs = []
+            for mode, layout in (("reading", False), ("physical-layout", True)):
+                theirs_raw = rebuilt_reference(path, layout=layout)
+                pages = theirs_raw.split("\f")
+                if pages and not pages[-1].strip():
+                    pages.pop()
+                rebuilt_refs.append((mode, theirs_raw, pages))
+            if max(len(lexical_words(raw)) for _, raw, _ in rebuilt_refs) > 0:
+                references = rebuilt_refs
+                best_words = max(len(lexical_words(raw)) for _, raw, _ in references)
+                repair = {"reference_extractor": REPAIRED_REFERENCE_EXTRACTOR + "-sequence",
+                          "decode_assertion_id": damage_id}
     if best_words < MIN_REFERENCE_LEXICAL_WORDS:
         stored_short = [lexical_words(" ".join(by_page.get(page_no, [])))
                         for page_no in range(1, max(by_page, default=0) + 1)]
@@ -312,7 +339,7 @@ def check(cur, doc_id: int, object_key: str, title: str | None,
                     f"pdftotext produced fewer than {MIN_REFERENCE_LEXICAL_WORDS} "
                     "lexical words; too little independent sequence evidence"}
 
-    scored = [(mode, _score_reference(by_page, pages))
+    scored = [(mode, _score_reference(by_page, pages, force_characters=repair is not None))
               for mode, _, pages in references]
     mode, res = max(scored, key=lambda item: (
         item[1]["ordered_trigram_precision"],
@@ -321,6 +348,8 @@ def check(cur, doc_id: int, object_key: str, title: str | None,
     res.update(document_id=doc_id, title=title, reference_mode=mode,
                alternate_modes={m: s["ordered_trigram_precision"]
                                 for m, s in scored})
+    if repair is not None:
+        res["reference_repair"] = repair
     if include_page_scores:
         chosen_pages = next(pages for m, _, pages in references if m == mode)
         res["page_scores"] = _page_scores(by_page, chosen_pages)
@@ -422,8 +451,10 @@ def main() -> int:
                     """INSERT INTO extraction_verification
                     (document_id,verifier,reference_extractor,outcome,
                      token_recall,problems,detail)
-                    VALUES (%s,%s,'poppler-pdftotext-sequence',%s,%s,%s::jsonb,%s::jsonb)""",
-                     (doc_id, VERIFIER, outcome, r["ordered_trigram_precision"],
+                    VALUES (%s,%s,%s,%s,%s,%s::jsonb,%s::jsonb)""",
+                     (doc_id, VERIFIER,
+                      (r.get("reference_repair") or {}).get("reference_extractor", "poppler-pdftotext-sequence"),
+                      outcome, r["ordered_trigram_precision"],
                       json.dumps(r["problems"], ensure_ascii=False),
                       json.dumps({k: v for k, v in r.items()
                                   if k not in ("document_id", "title", "problems",

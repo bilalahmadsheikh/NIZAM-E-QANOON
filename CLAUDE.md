@@ -9,7 +9,7 @@ in `docs/` fix the architecture, and where implementation has diverged the docs 
 correction rather than a quiet edit. The corpus lives in Postgres. At the signed
 23 September checkpoint it has 4,687 canonical expressions: 4,084 released and
 603 fail-closed, with 1,111 pending TOC rows and 727 pending S7 units. `./nz audit`
-runs 33 criteria; 32 pass, with only S7 red. Acquisition is fully accounted: every
+runs 35 criteria (33 at the signed checkpoint, when 32 passed with only S7 red; A12 added 10 Oct, A13 13 Oct). Acquisition is fully accounted: every
 catalogued item either landed or carries a declared, evidence-backed exception. There is no
 `chunk`, `embedding`, `legal_edge`, facet or judgment table yet — those are the next layers.
 

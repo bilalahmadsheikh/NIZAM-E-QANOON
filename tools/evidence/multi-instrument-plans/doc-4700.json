@@ -1,0 +1,100 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 4700,
+ "source_observation_id": 4747,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-19",
+ "reviewed_by": "assistant page review (agent K6) of the owner-accepted OCR (ocr-review-doc-4602.json, candidates 903-973) on the owner's decision",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/decision-review-2026-10-19-4700.json",
+  "document_id": 4700,
+  "question_id": "q1",
+  "choice": "split",
+  "effect": "The Rules (PDF pp1-70, Gazette Extraordinary of 18 June 2021) are this document's instrument, released as printed; the Law Department's corrigendum of 1 July 2021 (PDF p71, its own Gazette issue of 13 July 2021) becomes a separate instrument with its printed date, related to the Rules; the corrigendum's reading of Appendix-2 is not applied to the Rules' text."
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/ocr-review-pack-owner-2026-10-17/doc-4602/images/page-001.png",
+   "render_sha256": "2806472266a54b8e939b481812f55655042ec1472f69fc8edc60beaa6418f1fa"
+  },
+  {
+   "page": 58,
+   "render": ".artifacts/ocr-review-pack-owner-2026-10-17/doc-4602/images/page-058.png",
+   "render_sha256": "c1ae3b51606ea6adc5428905db9ccbdcdb71cb22895ca6610ba15f939713d213"
+  },
+  {
+   "page": 70,
+   "render": ".artifacts/ocr-review-pack-owner-2026-10-17/doc-4602/images/page-070.png",
+   "render_sha256": "4973bcd493bfc4cacdca460c547eefb2372f9c0908c306ff91019c7c51ea78f3"
+  },
+  {
+   "page": 71,
+   "render": ".artifacts/ocr-review-pack-owner-2026-10-17/doc-4602/images/page-071.png",
+   "render_sha256": "20a5da9a2dda4fdd4e4dac4bb15353aaec68e6e86e9fd66aa7965b78e827e188"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Sindh Workers Welfare Board Employees (Service) Rules, 2021",
+   "kind": "rules",
+   "year": 2021,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 981393,
+     "end_block_id": 982489,
+     "pages": "1-70"
+    }
+   ],
+   "source_anomalies": [
+    {
+     "page": 1,
+     "source_block_id": 981402,
+     "printed": "on regular bass",
+     "note": "sic 'bass' (for 'basis'), as printed (owner); preserved"
+    }
+   ],
+   "expected_tree": "preface (the Gazette masthead of Friday June 18, 2021, LABOUR & HUMAN RESOURCES DEPARTMENT, the notification No.L-II-2-39/2020 and its enacting words); Chapters I-19 holding rules 1-213; Appendices 1-6 (Appendix 5: Forms I-VIII); the folios, the page foot of p1, the signature, p70's pen mark and imprint set aside by the readings"
+  },
+  {
+   "ordinal": 1,
+   "role": "embedded",
+   "title": "Law, Parliamentary Affairs & Criminal Prosecution Service Department Corrigendum No.S.REG:4(47)/2020/165(A) dated 1 July 2021 (to the Sindh Workers Welfare Board Employees (Service) Rules, 2021)",
+   "kind": "notification",
+   "year": 2021,
+   "number": "No.S.REG:4(47)/2020/165(A)",
+   "spans": [
+    {
+     "start_block_id": 982490,
+     "end_block_id": 982502,
+     "pages": "71"
+    }
+   ],
+   "relations": [
+    {
+     "type": "amends",
+     "target_ordinal": 0,
+     "source_block_id": 982499,
+     "source_page": 71,
+     "effect": "CORRECTS (corrigendum; the plan schema admits only 'amends'): in Appendix-2, (Part-III) \"APPOINTMENT BY PROMOTION\", in the Table, in column (1), the Deputy Director (Works) (BPS-18) and the entries against it in columns (2) and (3) be read as 'Deputy Director (Works/Estate) (BPS-18). | Assistant Director/ Assistant Secretary (Works/Welfare/ Finance & Admn (BPS-17) | Atleast five years service in BPS-17 in relevant cadre, on seniority-cum-fitness.'. Not applied to the Rules' text (owner 4602 q1: the Rules stay as printed)",
+     "basis": "p71 prints 'CORRIGENDUM / No.S.REG:4(47)/2020/165(A):- In the Sindh Government Gazette Extraordinary issue, Registered No.M324, Part-I, published on 18th June, 2021, in the titled Rules \"The Sindh Workers Welfare Board Employees (Service) Rules, 2021, in Appendix-2, in (Part-III) ... be read as follows:-', the TABLE; owner decision 4602 q1 'split'",
+     "render": ".artifacts/ocr-review-pack-owner-2026-10-17/doc-4602/images/page-071.png",
+     "render_sha256": "20a5da9a2dda4fdd4e4dac4bb15353aaec68e6e86e9fd66aa7965b78e827e188"
+    }
+   ],
+   "source_anomalies": [
+    {
+     "page": 71,
+     "source_block_id": 982499,
+     "printed": "Rules \"The Sindh Workers Welfare Board Employees (Service) Rules, 2021, in Appendix-2",
+     "note": "sic: the opening quotation mark before the Rules' title is never closed; preserved as printed"
+    }
+   ],
+   "expected_tree": "preface (the Gazette masthead of Tuesday July 13, 2021, GOVERNMENT OF SINDH / LAW, PARLIAMENTARY AFFAIRS & CRIMINAL PROSECUTION SERVICE DEPARTMENT, 'Karachi, dated the 1st July,2021.'); the unnumbered provision 'CORRIGENDUM' holding the paragraph No.S.REG:4(47)/2020/165(A) and the TABLE as printed; the masthead's PART-I and the signature set aside by the readings"
+  }
+ ],
+ "apparatus": "none outside the spans (E0 pp1-70, E1 p71 cover every block); the folios, p1's page foot, the Rules' signature (p50), p70's pen mark and imprint, the corrigendum's masthead PART-I and signature (p71) are set aside by the reviewed readings (claude/agK6/work/agK6-mk_4602.py)"
+}

@@ -1,0 +1,55 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 4431,
+ "source_observation_id": 2734,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-13",
+ "reviewed_by": "assistant page review (agent JE, 13 Oct 2026) on the owner's export k q3; DRAFT",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/decision-review-2026-10-12-k.json",
+  "q3": "split: the 2004 auction notification (with Annex A) and the 2003 amending notification each become a separate instrument from this copy; the Rules end at p98"
+ },
+ "reviewed_pages": [
+  {"page": 1, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4431-p1.png", "render_sha256": "3b8a9ce9c888186228f1352408a659748aceedecade409be93c7db57cdeafbd5"},
+  {"page": 2, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4431-p2.png", "render_sha256": "09c8e928a94f65eeb48e183af5d295a11c4c6618bd622a94586723256b77046f"},
+  {"page": 98, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4431-p98.png", "render_sha256": "00073cdb9fad47d808d018e2ac98bf81e7c60568f3c996e2380debe3edaddb8e"},
+  {"page": 99, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4431-p99.png", "render_sha256": "313033ae197e1b139dd350385d7d80f58ddf8bf3164440062dd7058d2b0d9b97"},
+  {"page": 103, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4431-p103.png", "render_sha256": "4aa25eb10b3a701c260932492531f4185e511569b9d0aeb11c4266034d094c62"},
+  {"page": 108, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4431-p108.png", "render_sha256": "98cecc10aac47fccfc2ed7382f1e8abd2622fcdc8c4eef64c160f660fe39dcfe"},
+  {"page": 112, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4431-p112.png", "render_sha256": "0c24e36905c908d25a3fa98466d928b4070603cc3641a6a6b92a9d69a11b5f31"},
+  {"page": 114, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4431-p114.png", "render_sha256": "19818da2614028ed7510531b997b8bbd38f4a5895811eb40b2ac110904e4ac9b"}
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Punjab Mining Concession Rules, 2002",
+   "kind": "rules",
+   "year": 2002,
+   "number": null,
+   "spans": [{"start_block_id": 786313, "end_block_id": 787334, "pages": "1-98"}],
+   "expected_tree": "rules 1-238 and 185-A (claude/agJE/patch-4431.json: rules 38, 95, 108, 145, 148, 149, 178, 182, 190, 203-205, 210, 215 opened; rule 2 one unit, its definitions as text; sub-rules of 12, 13, 25, 92, 94 placed), Parts 2-5 (Part 3 opens once the p64 stray preamble is set aside), Schedules 1-3 ending with Schedule 3's NOTE (p98)"
+  },
+  {
+   "ordinal": 1,
+   "role": "embedded",
+   "title": "Notification No. SOT (M&MD) 8-15/90(Voll) of 27 October 2004 (financial qualifications and terms for six rock-salt mining leases by open auction under rule 187)",
+   "kind": "notification",
+   "year": 2004,
+   "number": "SOT (M&MD) 8-15/90(Voll)",
+   "spans": [{"start_block_id": 787335, "end_block_id": 787365, "pages": "99-103"}],
+   "expected_tree": "the notification's terms for registration (I.-III.), terms and conditions for grant/auction and of concession, and Annex-\"A\" DETAILS OF MACHINERY & EQUIPMENT (pp102-103)"
+  },
+  {
+   "ordinal": 2,
+   "role": "embedded",
+   "title": "Notification No. V(I&MD)3-21/95 Vol-III of 30 April 2003 amending the Punjab Mining Concession Rules, 2002 (Punjab Gazette, 6 May 2003)",
+   "kind": "notification",
+   "year": 2003,
+   "number": "V(I&MD)3-21/95 Vol-III",
+   "spans": [{"start_block_id": 787366, "end_block_id": 787458, "pages": "103-114"}],
+   "expected_tree": "the Gazette masthead and the notification's amendments 1-31 (quoted rules 73-A, 185, 185-A) to p108 and its signature; pp108-114 the covering letters (17 March and 2003 letters of the Directorate General) and the 9 May 2003 fee notification No. V(IM&M)6-1/96 with its fee table -- held here as bound material PENDING card claude/agJE/card-4431-q5.json, which asks whether the 9 May 2003 notification becomes its own instrument",
+   "note": "amends expression 0 (the plan's relation vocabulary has no 'amends' type; recorded here until docs/03b's legal_edge exists)"
+  }
+ ]
+}

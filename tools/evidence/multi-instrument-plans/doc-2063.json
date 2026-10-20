@@ -1,0 +1,68 @@
+{
+  "schema": "nizam.multi_expression_plan/1",
+  "document_id": 2063,
+  "source_observation_id": 4667,
+  "review_basis": "source_verified",
+  "reviewed_on": "2026-10-10",
+  "reviewed_by": "assistant page review (agent CQ) on the owner's decision",
+  "owner_decision": {
+    "export": ".artifacts/decision-review/exports/decision-review-2026-10-10-i.json",
+    "q1": "split: the 28 June 2010 Excise & Taxation Department notification NO.SO(TAXES)E&T/2(83)03 (pp5-6) is its own amending instrument whose text is the substituted rule 14(2); the Rules are released as printed, rule 14(2) in its 2001 wording",
+    "q2": "release-with-gap: rule 12 is recorded as a number the copy prints with no text (source incompleteness, migration 0054; tools/evidence/declare-source-incompleteness-2063.sql); rule 12(A) is released as printed"
+  },
+  "reviewed_pages": [
+    {"page": 1, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc2063-p1.png", "render_sha256": "619eaa1a11f0c1d4a94558c65395cb3711b244436e933244bd1643fa4ee6b3b6"},
+    {"page": 2, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc2063-p2.png", "render_sha256": "bb09b3db277e115283890da37b54e27f4565f47812149a932e56b40a79ed3bf4"},
+    {"page": 3, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc2063-p3.png", "render_sha256": "6699f8cde9503be2dd5f5db492edec956feb993f8bca3dc4fb761e20d562f50a"},
+    {"page": 4, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc2063-p4.png", "render_sha256": "a63ce49a891b7e08a62f63bd03469c932dc4ba87fa632e9f66494c62f1c5b255"},
+    {"page": 5, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc2063-p5.png", "render_sha256": "e8b0e5e84c163ae9bfd0e482d5a324b2a705938e5fbcf7b1e816b1a7e0a85be7"},
+    {"page": 6, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc2063-p6.png", "render_sha256": "98322ffc9079bce3b16e19e3c941e702514b2cf1084c7a827b990f732dc7dfaf"}
+  ],
+  "expressions": [
+    {
+      "ordinal": 0,
+      "role": "primary",
+      "title": "Sindh Development and Maintenance of Infrastructure [Cess] Rules, 1994",
+      "kind": "rules",
+      "year": 1994,
+      "number": null,
+      "spans": [
+        {"start_block_id": 153766, "end_block_id": 153843, "pages": "1-4"}
+      ],
+      "source_anomalies": [
+        {"page": 1, "source_block_id": 153787, "printed": "1[(i) “port” means and included air-port, sea-port and] dry port;   1[omitted.]", "note": "clause (i) prints both its words and '[omitted.]' while footnote 2 says 'The clauses (i) and (k)omitted by SO( Taxes)/E&T)/2(41)/94-NC Dated 3.7.2001.'; clause (j) ends 'Government; omitted.' with no footnote. Kept as printed."},
+        {"page": 2, "source_block_id": 153797, "printed": "(ii)  where the custom duty is paid in the Province;         2[0-5%]3 on C&F value.", "note": "sic: rule 3(a)(ii) prints the same condition as (i) ('where the custom duty is paid in the Province'). Kept as printed."},
+        {"page": 2, "source_block_id": 153804, "printed": "(2-a)", "note": "rule 4's sub-rules print as '(²-a)' and '(²-b)' with the 2 raised; the text layer reads '(2-a)', '(2-b)', between (1) and (3). Cited as sub-rules (2-a), (2-b)."},
+        {"page": 3, "source_block_id": 153833, "printed": "12.", "note": "rule 12 prints its number alone, with no words, before the inserted '1[12 (A) Refund of Excess Assessment ...]' (footnote 1 'Rule 12 (a) added by Notification No.SO(Taxes) E&T/2(41)/94 Dt. 3.7.2001.'). Held as rule 12 with no text and recorded as source incompleteness (owner q2 'release-with-gap')."}
+      ],
+      "expected_tree": "preface (GOVERNMENT OF SINDH / EXCISE AND TAXATION DEPARTMENT, 'Karachi, dated 22nd August, 1994.', NOTIFICATION, 'NO:SO(TAXES) E&T/2(41)94. In exercise of the powers conferred by section 10 read with section 9 of the Sindh Finance Act, 1994 ... following rules:-'); rule 1 'Short title and commencement' (1)-(2); rule 2 'Definitions' 'In these rules unless the context otherwise requires.' with clauses (a)-(k) as printed; rule 3 (substituted) with (a) [(i), (ii)], (b) and sub-rule (2); rule 4 (1), (2-a), (2-b), (3); rules 5-11 with their headings; rule 12 with no text (owner q2); rule 12(A) 'Refund of Excess Assessment'; rule 13 'Recovery of dues'; rule 14 (1)-(2) as substituted in 2001 (owner q1: not the 2010 wording). The signature, page numbers, footnote blocks and the p4 forwarding/distribution page are apparatus"
+    },
+    {
+      "ordinal": 1,
+      "role": "embedded",
+      "title": "Excise and Taxation Department Notification No. SO(TAXES)E&T/2(83)03 dated 28 June 2010 (amending rule 14 of the Sindh Development and Maintenance of Infrastructure Cess Rules, 1994)",
+      "kind": "notification",
+      "year": 2010,
+      "number": "SO(TAXES)E&T/2(83)03",
+      "spans": [
+        {"start_block_id": 153844, "end_block_id": 153863, "pages": "5-6"}
+      ],
+      "relations": [
+        {
+          "type": "amends",
+          "target_ordinal": 0,
+          "effect": "substitutes sub-rule (2) of rule 14: in a consolidated reading of the 1994 Rules the sub-rule printed on p5 (exemption by notification for items a.-e.) replaces rule 14(2) as printed on p3 (its 2001 wording)",
+          "source_block_id": 153852,
+          "source_page": 5,
+          "basis": "p5 prints 'AMENDMENT / In rule 14:- / For sub-rule (2), the following shall be substituted:-'; owner decision q1 'split'"
+        }
+      ],
+      "source_anomalies": [
+        {"page": 5, "source_block_id": 153844, "printed": "EXCISE & TAXATION DEPATRTMENT", "note": "sic ('DEPATRTMENT'). Kept as printed."},
+        {"page": 5, "source_block_id": 153853, "printed": "2.", "note": "the substituted sub-rule prints as '2.' (not '(2)'), with items 'a.'-'e.'; held as sub-rule '2' of the AMENDMENT provision, items in its text as printed."}
+      ],
+      "expected_tree": "preface (GOVERNMENT OF SINDH / EXCISE & TAXATION DEPATRTMENT, 'Karachi, dated 28th June, 2010', NOTIFICATION, 'NO.SO(TAXES)E&T/2(83)03. In exercise of the powers conferred by section 10 of the Sindh Finance Act, 1994, the Government of Sindh is pleased to make the following amendment in the Sindh Development and Maintenance of Infrastructure Cess Rules, 1994:-'); one root provision 'AMENDMENT' (unnumbered_root_provision, word label = printed caption) with text 'In rule 14:- For sub-rule (2), the following shall be substituted:-' and its sub-rule '2' 'Government may by Notification, for the reasons to be recorded exempt from payment of Cess to:- a. ... e. ... three months.' The signature 'SECRETARY TO GOVERNMENT OF SINDH', 'Contd....P/2....' and the p6 forwarding/distribution are apparatus"
+    }
+  ],
+  "apparatus": "page numbers ('....2....' to '....4....'), footnote blocks, the signatures, 'Contd....P/2....' and both forwarding/distribution pages (p4 for the Rules, p6 for the notification) stay inside their expression spans and are set aside by the reviewed curation readings (claude/agCQ/patch-2063.json)"
+}

@@ -1,0 +1,118 @@
+{
+  "schema": "nizam.multi_expression_plan/1",
+  "document_id": 1970,
+  "source_observation_id": 2415,
+  "review_basis": "source_verified",
+  "reviewed_on": "2026-10-08",
+  "reviewed_by": "assistant page review (agent CL) on the owner's decision",
+  "owner_decision": {
+    "export": ".artifacts/decision-review/exports/decision-review-2026-10-08-h.json",
+    "card_sha256": "90faf0dff9a32bfe5bdc6d3783047636100b6a9695cf82cb329eb80586d6c750",
+    "q1": "split: the Education Department notifications of 18 January 1998 (p5, re-constituting the Board of Governors) and 23 September 1990 (p6, constituting it) each become a separate instrument; contents row 8 'Notifications' is recorded as pointing to them",
+    "q2": "as-text: the unnumbered paragraph 'Application of Civil Service Rules. If there arises a situation ...' (p4, between rules 6 and 7) is the closing, non-separately-citable text of rule 6"
+  },
+  "reviewed_pages": [
+    {
+      "page": 1,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1970-p1.png",
+      "render_sha256": "5019901e7c57f778d75bc0538bf4ac55b8ea61b57fb3720cef4af18e48ccef30"
+    },
+    {
+      "page": 2,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1970-p2.png",
+      "render_sha256": "e5df9202a05d98699013614f7e69f18f4aa52261411fdef0cc0e6c8ed2d1baa2"
+    },
+    {
+      "page": 3,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1970-p3.png",
+      "render_sha256": "f8d6aa48379f9c06e9f9ad9fcb9a4e6d8f7b6fc68425d8899398ab989b452fb8"
+    },
+    {
+      "page": 4,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1970-p4.png",
+      "render_sha256": "ebc3a27976998c246485b618375f58b5028a799707cd910700bed3956b2d54bd"
+    },
+    {
+      "page": 5,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1970-p5.png",
+      "render_sha256": "f761e4ab5bd2fb0fd5001f49923439f7f49a6d220b1ba12fd24c49728a85e0de"
+    },
+    {
+      "page": 6,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1970-p6.png",
+      "render_sha256": "2193ee507f9148029c2c76e0fb7cefc58c441143c387c4010e6b5381ff59fad0"
+    },
+    {
+      "page": 7,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1970-p7.png",
+      "render_sha256": "089873c6aef7b6ce19bdb0b008d035a0f856dbd27ac07659861ebeb4d8e6f98a"
+    }
+  ],
+  "expressions": [
+    {
+      "ordinal": 0,
+      "role": "primary",
+      "title": "Children Library Complex, Lahore Recruitment Rules, 1991",
+      "kind": "rules",
+      "year": 1991,
+      "number": null,
+      "spans": [
+        {
+          "start_block_id": 141169,
+          "end_block_id": 141231,
+          "pages": "1-4"
+        }
+      ],
+      "expected_tree": "contents (p1, rows 1-8; row 8 'Notifications' names no unit of the Rules: recorded as pointing to the notifications, claude/agCL/toc-1970-DRAFT.json); preface (title line 'THE CHILDREN LIBRARY COMPLEX, LAHORE, RULES, 1991', GOVERNMENT OF THE PUNJAB / EDUCATION DEPARTMENT, NOTIFICATION, No.86(PIMP.)12-60/89 and the enabling formula); rules 1 (items i.-ii. as text), 2 (1)-(22) ((4) and (5) separate: agCL rule X, ported 9 Oct as numeric_quote_definition_cut), 2-A (items I.-IV. as text; not in the contents), 3, 4, 5 (no heading: contents row 5 prints a blank '________'; agCL rule V, ported 9 Oct as blank_rule_heading_none), 6 (its text closes with the unnumbered paragraph 'Application of Civil Service Rules. If8 there arises ...', owner q2 'as-text'), 7 (ends '... binding on all concerned.'); the banner 'TEXT', 'BY ORDER OF THE BOARD OF GOVERNORS', the date/signatory line and the compiler's footnotes 1-8 are apparatus"
+    },
+    {
+      "ordinal": 1,
+      "role": "embedded",
+      "title": "Education Department Notification No. SO(PI)12-83/89(P) dated 18 January 1998 (re-constituting the Board of Governors of the Children Library Complex, Lahore)",
+      "kind": "notification",
+      "year": 1998,
+      "number": "SO(PI)12-83/89(P)",
+      "spans": [
+        {
+          "start_block_id": 141232,
+          "end_block_id": 141241,
+          "pages": "5"
+        }
+      ],
+      "expected_tree": "preface (GOVERNMENT OF THE PUNJAB / EDUCATION DEPARTMENT); unnumbered provision 'NOTIFICATION' (its printed caption, block 141234) with text 'No.SO(PI)12-83/89(P).- In exercise of power ... pleased to re-constitute9 the following Board of Governor of Children Library Complex, Lahore, with immediate effect.' and clauses 1-13, the members, each 'member cell + capacity cell' in column order (printed serials '1)' ... '13)' read as '1.' ... '13.', labels unchanged; agCL rule W, ported 9 Oct as root_provision_member_list); signature, date line and footnotes 9-11 are apparatus"
+    },
+    {
+      "ordinal": 2,
+      "role": "embedded",
+      "title": "Education Department Notification No. SO(P.IMP)12-38/89 dated 23 September 1990 (constituting the Board of Governors for the Children Library Complex, Lahore)",
+      "kind": "notification",
+      "year": 1990,
+      "number": "SO(P.IMP)12-38/89",
+      "spans": [
+        {
+          "start_block_id": 141242,
+          "end_block_id": 141250,
+          "pages": "6"
+        }
+      ],
+      "expected_tree": "preface (GOVERNMENT OF THE PUNJAB / EDUCATION DEPARTMENT); unnumbered provision 'NOTIFICATION' (block 141244) with text 'No.SO(P.IMP)12-38/89.- In exercise of the power ... with immediate effect:' and clauses 1-12, the members, each 'member cell + capacity cell' ('=' ditto marks as printed against 3 and 5-10; none against 11) (bare serials 10, 11, 12 read with a stop, labels unchanged; agCL rule W, ported 9 Oct as root_provision_member_list); 'BY ORDER OF THE GOVERNOR OF THE PUNJAB.' and the date line are apparatus"
+    },
+    {
+      "ordinal": 3,
+      "role": "embedded",
+      "title": "Education Department Notification No. So(P.IMP)12-83/89 dated 22 September 1990 (notifying the Children Library Complex, Lahore as an institution under the Punjab Educational and Training Institutions Ordinance, 1960)",
+      "kind": "notification",
+      "year": 1990,
+      "number": "So(P.IMP)12-83/89",
+      "spans": [
+        {
+          "start_block_id": 141251,
+          "end_block_id": 141259,
+          "pages": "7"
+        }
+      ],
+      "expected_tree": "OWNER CONFIRMED 8 Oct 2026 (chat, logged in CLAUDE-CLAIMS.md: the p7 notification of 22 Sep 1990 is its own instrument too; the export -h question named pp5-6 only): the unnumbered provision 'NOTIFICATION' (its printed caption, block 141253) holding the single operative paragraph 'No.So(P.IMP)12-83/89.- In exercise of the power ... with immediate effect.'; the date line, 'BY ORDER OF THE GOVERNOR OF THE PUNJAB.' and 'SECRETARY TO GOVERNOR OF THE PUNJAB, EDUCATION DEPARTMENT' are apparatus"
+    }
+  ],
+  "apparatus": "signatures, 'BY ORDER ...' lines, date lines printed under the signatures and the compiler's footnotes are set aside by the reviewed curation readings (claude/agCL/patch-1970.json)"
+}

@@ -1,0 +1,251 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 3782,
+ "source_observation_id": 3929,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-15",
+ "reviewed_by": "assistant page review (agent K4) on the owner's decisions; DRAFT -- the lead renames it",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/decision-review-2026-10-12-j.json",
+  "document_id": 3782,
+  "question_id": "q1",
+  "choice": "split",
+  "effect": "The 1971 Rules release with rules 1-13 and Appendices A-F (pp1-18); each amending notification from p19 on (with its own Appendix 'G' and new rules) becomes a separate instrument; contents rows 24-25 point to the notification that carries them.",
+  "also": [
+   {
+    "export": ".artifacts/decision-review/exports/decision-review-2026-10-12-j.json",
+    "question_id": "q2",
+    "choice": "rule-label"
+   },
+   {
+    "export": ".artifacts/decision-review/exports/decision-review-2026-10-14-l.json",
+    "question_id": "q3",
+    "choice": "separate"
+   }
+  ]
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3782-p1.png",
+   "render_sha256": "2e6e9ad1205371a9cf9b30895c3e6f861b8e6f5daf725ff6b2e077fc5fec6346"
+  },
+  {
+   "page": 2,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3782-p2.png",
+   "render_sha256": "4b7f981a494aa6daaa85e5f8fbd9fa8d21d083c502599778da2cd4c6c6d26656"
+  },
+  {
+   "page": 8,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3782-p8.png",
+   "render_sha256": "3939984dc182e720e70ada2610baae0af632b499550b5aef4876f0dfeb2ca43f"
+  },
+  {
+   "page": 17,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3782-p17.png",
+   "render_sha256": "07691e62659ecd25e48344158fdbadbe801e1dd05f8355618378981a9e383bc7"
+  },
+  {
+   "page": 18,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3782-p18.png",
+   "render_sha256": "d40cac02917f2354e44b6ee9e2222ff3ad1d4647443cf8caa2c9a90f56e7c95d"
+  },
+  {
+   "page": 19,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3782-p19.png",
+   "render_sha256": "7ff7206349e8588ba0781d082bae860562da46dce48efdaca9fb8254d6e4076e"
+  },
+  {
+   "page": 20,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3782-p20.png",
+   "render_sha256": "b9cb82ec36b7fc870a1dd125f5695d9a1b4d30c5ce9a804a77f197d4e50929ea"
+  },
+  {
+   "page": 21,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3782-p21.png",
+   "render_sha256": "7164ee2da6901b124c1812b7cafd4b310d5973ea78cb0b4489a78a8c604b5caa"
+  },
+  {
+   "page": 22,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3782-p22.png",
+   "render_sha256": "9d97fdba2b35c451fd0d6c30e0d14ec7b45be5509f71e5b99d2fb7289c01c38a"
+  },
+  {
+   "page": 23,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3782-p23.png",
+   "render_sha256": "a5c4f0a3f46263f9c2d485de9e0b08089a4190cdaec6da30d887e996ab9a8a7b"
+  },
+  {
+   "page": 24,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3782-p24.png",
+   "render_sha256": "e1aaeafbd45c69ca809669cc1693df64b61dc73d433f3e56b7b820a2a54fcb47"
+  },
+  {
+   "page": 25,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3782-p25.png",
+   "render_sha256": "4cb433e8c393a6e79d2a5df9f37a15540ef1b78747d84db2544a379df05eff1c"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The K.D.A. (Disposal of Land) Rules, 1971",
+   "kind": "rules",
+   "year": 1971,
+   "number": "SO(KDA)-10/2-70",
+   "spans": [
+    {
+     "start_block_id": 474952,
+     "end_block_id": 475161,
+     "pages": "1-18"
+    }
+   ],
+   "expected_tree": "contents (p1, rows 1-25); preface (PART I-A, GOVERNMENT OF SIND, EXCISE, TAXATION AND LOCAL GOVERNMENT DEPARTMENT, 'Karachi, the 19th July 1971', NOTIFICATION No. SO(KDA)-10/2-70 and the enacting formula); rules 1-13; Appendices A, A-1, B, C, C (1), D, E, F-I, F-II (printed 'F-III', owner q2), F-III; contents rows 14-23 found_elsewhere to the appendices, rows 24-25 other_instrument to E1"
+  },
+  {
+   "ordinal": 1,
+   "role": "embedded",
+   "title": "Notification No. SO(KDA)-10/2-70 amending the K.D.A. (Disposal of Land) Rules, 1971 (rule 11-A, rule 12, Appendix 'G')",
+   "kind": "notification",
+   "year": null,
+   "year_status": "undated",
+   "owner_decision": {
+    "export": ".artifacts/decision-review/exports/decision-review-2026-10-15-delegated.json",
+    "document_id": 3782,
+    "question_id": "q4"
+   },
+   "number": "SO(KDA)-10/2-70",
+   "spans": [
+    {
+     "start_block_id": 475162,
+     "end_block_id": 475196,
+     "pages": "19-21"
+    }
+   ],
+   "relations": [
+    {
+     "type": "amends",
+     "target_ordinal": 0,
+     "source_block_id": 475164,
+     "source_page": 19,
+     "effect": "inserts rule 11-A, amends rule 12 and adds Appendix 'G' to the 1971 Rules",
+     "basis": "p19 'NO. SO(KDA)-10/2-70-- ... the Governor of Sind is pleased to make the following amendments to the K.D.A. (Disposal of Land)Rules, 1971:-'"
+    }
+   ],
+   "expected_tree": "preface (NOTIFICATION, No. SO(KDA)-10/2-70 and its enacting words); AMENDMENTS 1 (rule 11-A (1)-(8) quoted; (2)(i)-(ii), (4)(1)-(2), (5)1-4, (6)1-6 under their sub-rules), 2 (rule 12), 3 (Appendix 'G' added), APPENDIX G form items 1-10; the signature M.J.R. KHAN set aside"
+  },
+  {
+   "ordinal": 2,
+   "role": "embedded",
+   "title": "Notification No. SOI(KDA)-10-2/70 of 26 July 1973 amending the K.D.A. (Disposal of Land) Rules, 1971 (rule 14)",
+   "kind": "notification",
+   "year": 1973,
+   "number": "SOI(KDA)-10-2/70",
+   "spans": [
+    {
+     "start_block_id": 475197,
+     "end_block_id": 475202,
+     "pages": "22"
+    }
+   ],
+   "relations": [
+    {
+     "type": "amends",
+     "target_ordinal": 0,
+     "source_block_id": 475200,
+     "source_page": 22,
+     "effect": "adds rule 14 after rule 13",
+     "basis": "p22 'Karachi, 26-7- 1973. NO. SOI(KDA)-10-2/70-- ... the following amendments to the KDA (Disposal of Land)Rules, 1971.'"
+    }
+   ],
+   "expected_tree": "preface; AMENDMENTS 1 (rule 14 quoted); 'BY ORDER OF GOVERNOR OF SIND' removed from its text"
+  },
+  {
+   "ordinal": 3,
+   "role": "embedded",
+   "title": "Notification No. SO(KDA)-10-2/70 of 14 November 1973 amending the K.D.A. (Disposal of Land) Rules, 1971 (rules 2 and 15)",
+   "kind": "notification",
+   "year": 1973,
+   "number": "SO(KDA)-10-2/70",
+   "spans": [
+    {
+     "start_block_id": 475203,
+     "end_block_id": 475216,
+     "pages": "22-23"
+    }
+   ],
+   "relations": [
+    {
+     "type": "amends",
+     "target_ordinal": 0,
+     "source_block_id": 475205,
+     "source_page": 22,
+     "effect": "amends rule 2 and adds rule 15",
+     "basis": "p22 'Karachi, 14th November, 1973. NO. SO(KDA)-10-2/70-- ... further amendments shall be made in Karachi Development Authority (Disposal of Land)Rules, 1971'"
+    }
+   ],
+   "expected_tree": "preface; AMENDMENTS 2 (In rule 2: (a) with (i)-(ii), (b)), 3 (rule 15 added); the signature MAZHAR RAFI removed from its text"
+  },
+  {
+   "ordinal": 4,
+   "role": "embedded",
+   "title": "Notification No. SO(KDA)-10-2/70 dated 26 July 1973 (Part IV-A) amending the K.D.A. (Disposal of Land) Rules, 1971 (rules 2 and 15)",
+   "kind": "notification",
+   "year": 1973,
+   "number": "SO(KDA)-10-2/70",
+   "spans": [
+    {
+     "start_block_id": 475217,
+     "end_block_id": 475230,
+     "pages": "23-24"
+    }
+   ],
+   "relations": [
+    {
+     "type": "amends",
+     "target_ordinal": 0,
+     "source_block_id": 475219,
+     "source_page": 23,
+     "effect": "amends rule 2 and adds rule 15 (the same words as E3, numbered on)",
+     "basis": "p23 'PART IV-A ... NOTIFICATION Karachi, dated 26-7-1973 NO. SO(KDA)-10-2/70-- ... amendments to the K.D.A. (Disposal of Land) Rules, 1971'; owner export l q3 'separate'"
+    }
+   ],
+   "source_anomalies": [
+    {
+     "source_block_id": 475217,
+     "printed": "PART IV-A ... Karachi, dated 26-7-1973",
+     "note": "owner export l q3 'separate': its own notification with its printed date and number although its amendments repeat E3's word for word, numbered on (4, 5, (c), (d), (iii), (iv), (5), (6)); it prints no signature"
+    }
+   ],
+   "expected_tree": "preface; AMENDMENTS 4 (In rule 2: (c) with (iii)-(iv), (d)), 5 (rule 15 added)"
+  },
+  {
+   "ordinal": 5,
+   "role": "embedded",
+   "title": "Notification No. SO(KDA)-10-60/71 of 27 December 1973 amending the K.D.A. (Disposal of Land) Rules, 1971 (rule 12)",
+   "kind": "notification",
+   "year": 1973,
+   "number": "SO(KDA)-10-60/71",
+   "spans": [
+    {
+     "start_block_id": 475231,
+     "end_block_id": 475240,
+     "pages": "24-25"
+    }
+   ],
+   "relations": [
+    {
+     "type": "amends",
+     "target_ordinal": 0,
+     "source_block_id": 475235,
+     "source_page": 24,
+     "effect": "substitutes rule 12",
+     "basis": "p24-25 'Karachi, the 27th Dec ember, 1973. NOTIFICATION NO. SO(KDA)-10-60/71-- ... amendment in the KDA (Disposal of Land) Rules, 1971:-- ... For Rule 12, the following shall be substituted'"
+    }
+   ],
+   "expected_tree": "preface (PART IV-A caption, department, date, NOTIFICATION and the enacting words); one unnumbered provision 'AMENDMENTS' (rule 12 substituted, quoted); the signature M.SALMAN FARUQUI set aside"
+  }
+ ],
+ "apparatus": "none outside the spans: E0-E5 cover every block 474952-475240; the running heads 'THE SINDH GOVERNMENT GAZETTE KARACHI, THURSDAY, JULY 22, 1971.' on every page are page furniture"
+}

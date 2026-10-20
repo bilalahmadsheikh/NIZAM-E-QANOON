@@ -1,0 +1,1019 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 4434,
+ "source_observation_id": 2810,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-15",
+ "reviewed_by": "assistant page review (agent JE, 12 Oct 2026) on the owner's export j q2; boundary corrections and e0 historical window by agent K5 (15 Oct 2026, prepare mode); DRAFT",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/decision-review-2026-10-12-j.json",
+  "q2": "split: the Thirteenth Amendment ends before p248's title; the Constitution (Fourteenth Amendment) Act, 1997 becomes its own expression",
+  "q1": "duplicate -- NOT carried out: 4434 e0 (as amended to the 22nd Amendment 2016) and 4419 (to the 27th Amendment 2025) are different versions; see claude/agJE/card-4434-q1.json",
+  "boundary_corrections": "lead decision 15 Oct 2026 under the owner's chat delegation of 15 Oct ('none already released should be blocked'): 4434 e3/e10/e20/e39 start at their printed titles (CLAUDE-CLAIMS 'OWNER (15 Oct, chat)' / LEAD DECISIONS); found by builder BZ's title check 13 Oct; e20's printed title starts at b794453 (p323 foot), three blocks before BZ's b794456",
+  "q3": "historical-expression (export k): e0 is the 2016 text, valid 2016-06-08 to 2017-01-07 (lead 15 Oct: the Twenty-third Amendment's deeming date)"
+ },
+ "reviewed_pages": [
+  {
+   "page": 170,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4434-p170.png",
+   "render_sha256": "a9375585edc3c23c6a73f9069f63242b8b9d37a3eadd62ef2d7632751245bb1b"
+  },
+  {
+   "page": 175,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4434-p175.png",
+   "render_sha256": "ca43339d7481ed3ed1a594fbd3a5083a4eedb7d7601e3376a2b8061353f5cac3"
+  },
+  {
+   "page": 207,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4434-p207.png",
+   "render_sha256": "5c8f41198cc09eb6cd4e818036a27210d3d6861c42243c1cd2a361aaae0e3a56"
+  },
+  {
+   "page": 212,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4434-p212.png",
+   "render_sha256": "67d889efd2b4be612063f7cf2f8ecf1dfb281bb4a0384c75728f963a3f8024c0"
+  },
+  {
+   "page": 213,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4434-p213.png",
+   "render_sha256": "e5b8e3d81cd0378486849132999715a7aa209b24ed90404e2c050bad67ea05e3"
+  },
+  {
+   "page": 214,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4434-p214.png",
+   "render_sha256": "a069d6d8fe35b2de2534b6206ea3a6a39a323c1c387a88643198bbfb822202d4"
+  },
+  {
+   "page": 222,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4434-p222.png",
+   "render_sha256": "b12a67f2ace8129e5cf67dce1097970ee4b2fc09115bce043839866e9a019a53"
+  },
+  {
+   "page": 228,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4434-p228.png",
+   "render_sha256": "e65d0efc73c8e9b497e84890fb02c6698f9ee757e1e9436b5d05defffaf497bb"
+  },
+  {
+   "page": 230,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4434-p230.png",
+   "render_sha256": "84c3d5be05022d0a3f8134c8f4c151518b5fa4ecb651bf6ac3491cac4b341a84"
+  },
+  {
+   "page": 232,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4434-p232.png",
+   "render_sha256": "40580d0eb42781c98c02dffbb8b30e5c3670003db1735d26ff1b5ef9fcc90f96"
+  },
+  {
+   "page": 242,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4434-p242.png",
+   "render_sha256": "08b29466f7ae2f6698dbd8d961ad15c9cb036062e321043bb8f91193ec267fc6"
+  },
+  {
+   "page": 243,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4434-p243.png",
+   "render_sha256": "e133c1c8bd5f6ffc2173cfbdf6abd5108be7553ee55870972be5fae26ceffb9a"
+  },
+  {
+   "page": 247,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4434-p247.png",
+   "render_sha256": "c85ee9287c7274d8191b18ea76d8f84f1dbd81cd2861eb4510d82796d1f3f7b4"
+  },
+  {
+   "page": 248,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4434-p248.png",
+   "render_sha256": "6c4633cf1e3cfa8d5fa9a15538c658085ae262a2372cb81b56a623bd3a44911a"
+  },
+  {
+   "page": 249,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4434-p249.png",
+   "render_sha256": "879c3a5e7909f329df96dbd453677dbc354e8085c5fb68c297f9e9b7f0289839"
+  },
+  {
+   "page": 250,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4434-p250.png",
+   "render_sha256": "afbc68fd98c5ee307c212959213203c9db0bd62027f16652214878778a7eb080"
+  },
+  {
+   "page": 251,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4434-p251.png",
+   "render_sha256": "bb7df14a2cf40071b103dbd2b011b4fa9654b3f0d5caac313acf5211d83d6d17"
+  },
+  {
+   "page": 256,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4434-p256.png",
+   "render_sha256": "6b1a3e90f6310ca87183d593d80902720872704c25b4d853dc9487493d85e4d7"
+  },
+  {
+   "page": 304,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4434-p304.png",
+   "render_sha256": "c68e1c4d885fa98ea49679468880cf2410430a99f34258f50de6330e68d50ad9"
+  },
+  {
+   "page": 308,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4434-p308.png",
+   "render_sha256": "5d8bf9e9c8e95e92d55569fcafef13b18f57c5fe358aa5c9bb1daf4e249ef03d"
+  },
+  {
+   "page": 312,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4434-p312.png",
+   "render_sha256": "043dfda412c2d322a7c09cf8fc233d76c38744600f44449ab11d106732c90606"
+  },
+  {
+   "page": 314,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4434-p314.png",
+   "render_sha256": "37a0aa91b035457ca828d42cbffff4d938ab2f8a571004821f7c49a529f44289"
+  },
+  {
+   "page": 318,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4434-p318.png",
+   "render_sha256": "310c52f90846601c58421b261d1335e66479f1e6e59c9253c358b2f9aa35033b"
+  },
+  {
+   "page": 322,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4434-p322.png",
+   "render_sha256": "609003f8b86dd73a8ddcfd8779fa7d138042c0eb52f89759a6c08e9b0b7838a7"
+  },
+  {
+   "page": 323,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4434-p323.png",
+   "render_sha256": "f19afcc762082aa116b5856ed1a1f061cd360dfa647e8e446ec5d7703cc33e11"
+  },
+  {
+   "page": 324,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4434-p324.png",
+   "render_sha256": "3d6bdc1d568dfec479595cba318ce19f1385d64d609ba288f9e626b14f11697a"
+  },
+  {
+   "page": 329,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4434-p329.png",
+   "render_sha256": "00a55f4f14ecd1ff9912484400d21802add3fb752aad5c981314ab6a3fda3bef"
+  },
+  {
+   "page": 331,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4434-p331.png",
+   "render_sha256": "3cf36d234a87fa213d72d89b7c63989dcdcba2ca2848a91a3339c6208d7d2a06"
+  },
+  {
+   "page": 332,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4434-p332.png",
+   "render_sha256": "c2cb7bbad437f72c18ae577cdd2b7ae652d1faf5aabb31bcf97ca6a8434d4c5b"
+  },
+  {
+   "page": 334,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4434-p334.png",
+   "render_sha256": "b64659085a08599dbfdfa572d73e95fb2b7b7875faee955d72ab31b48f7fcf7d"
+  },
+  {
+   "page": 335,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4434-p335.png",
+   "render_sha256": "95e43dc0ca4233564b7d85bde20be90bdf12f91746d95c0caa4f84675ee8fcd5"
+  },
+  {
+   "page": 336,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4434-p336.png",
+   "render_sha256": "6721f6261c9f512734bb2cab06c51b92ef3466783e3675e9f7da762ec4cb6d95"
+  },
+  {
+   "page": 337,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4434-p337.png",
+   "render_sha256": "4be4fe5bb5ef6fa4348b9a27915054a72bf6176280f2c56c1ffeac70c77ea172"
+  },
+  {
+   "page": 338,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4434-p338.png",
+   "render_sha256": "2289cf7e84e5a75368a70daef3a8524128c7d0c8f800ee3a4a57e82a89d4d7a7"
+  },
+  {
+   "page": 339,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4434-p339.png",
+   "render_sha256": "4dbaca8b1120c374c79c7e029a84abec5001a42ebb02cab6fbb2292fe266e5ec"
+  },
+  {
+   "page": 340,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4434-p340.png",
+   "render_sha256": "32bc8e9285935db6f528ac325316596fe7a49ac554352174b91890b6833a4aa9"
+  },
+  {
+   "page": 343,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4434-p343.png",
+   "render_sha256": "31d32605e83fe27d2556a4d642bd8f92838f87903feb3a1f0524eb9a6085a55f"
+  },
+  {
+   "page": 344,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4434-p344.png",
+   "render_sha256": "165c829fb79b4990085d5e036deed81035bbc0c1bf6ff4659053557c00ebc846"
+  },
+  {
+   "page": 345,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4434-p345.png",
+   "render_sha256": "11d2b935a872955a5ac19ed85ecb565710349203b626510f175de50264667184"
+  },
+  {
+   "page": 346,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4434-p346.png",
+   "render_sha256": "3159cb4a2b3193c15b96ae1ebcbe6531c061e8a89496df6dbf9c205fabe73090"
+  },
+  {
+   "page": 347,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4434-p347.png",
+   "render_sha256": "cc01e20a938b480607a50e00342686c02026cdfe9f29a98f6fcaf42127d22ea3"
+  },
+  {
+   "page": 348,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4434-p348.png",
+   "render_sha256": "12a221fdec2dd4e26f5b4cd6e085a8a72d64e5a5ff788709ddeb993cfaa27bde"
+  },
+  {
+   "page": 349,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4434-p349.png",
+   "render_sha256": "a29eeffe2afcdaedf63ca3e8934857ffcc8a06ceec7dbe2d30912c932cf61c7a"
+  },
+  {
+   "page": 350,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4434-p350.png",
+   "render_sha256": "3c05390f770ee901324022b4b29ad5ba846f21b9108cb7bce2008376edfdf8f5"
+  },
+  {
+   "page": 351,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4434-p351.png",
+   "render_sha256": "a429ec4ef6d4bb73134e5724eb1703b85fd495eb4aec5691cb3486da830b643f"
+  },
+  {
+   "page": 352,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4434-p352.png",
+   "render_sha256": "f0feaf2fd5bbdc5280af57c3e389c444765a1764842409b1d6bcfe58def44660"
+  },
+  {
+   "page": 353,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4434-p353.png",
+   "render_sha256": "13ff5b071380e5a88442b79f42f99784b0377a1dd8b880acd4880eebae6f659f"
+  },
+  {
+   "page": 360,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4434-p360.png",
+   "render_sha256": "b40734ab913991ff69901aa7aed16f0298d7cdd504800b7cc559b8d319e4e982"
+  },
+  {
+   "page": 362,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4434-p362.png",
+   "render_sha256": "e9a896586019833d6e6948e7c4bd460978f7649c90069d7a0cab7eec77677aa3"
+  },
+  {
+   "page": 364,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4434-p364.png",
+   "render_sha256": "ecfe62bf203e8e4beafcfb2d429fe40470ae1dd8a8319e3a85b29cb545faaa92"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "THE CONSTITUTION OF THE ISLAMIC REPUBLIC OF PAKISTAN",
+   "kind": "constitution",
+   "year": 1973,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 789886,
+     "end_block_id": 792605
+    }
+   ],
+   "version_validity": {
+    "from": "2016-06-08",
+    "to": "2017-01-07",
+    "owner_decision": {
+     "export": ".artifacts/decision-review/exports/decision-review-2026-10-12-k.json",
+     "document_id": 4434,
+     "question_id": "q3"
+    },
+    "historical_basis": {
+     "from": {
+      "date": "2016-06-08",
+      "event": "Constitution (Twenty-second Amendment) Act, 2016 (XXV of 2016): assent 8 June 2016; s.1(2) 'It shall come into force at once.'",
+      "sources": [
+       "Gazette of Pakistan (Extraordinary), 10 June 2016, pp. 389-392",
+       "senate.gov.pk/uploads/documents/1485495334_440.pdf"
+      ],
+      "copy_evidence": "the latest amendment this copy incorporates: 4434 p314 (blocks 794340, 794348) and the p42 footnote",
+      "verified_by": "legal-source-scout, 13 Oct 2026, from Gazette page images"
+     },
+     "to": {
+      "deeming_date": "2017-01-07",
+      "enactment_date": "2017-03-30",
+      "event": "Constitution (Twenty-third Amendment) Act, 2017 (XII of 2017): assent 30 March 2017; s.1(2) 'It shall come into force at once and shall be deemed to have taken effect on and from 7th January, 2017.'",
+      "sources": [
+       "Gazette of Pakistan (Extraordinary), 3 April 2017, pp. 115-116",
+       "na.gov.pk/uploads/documents/1491460727_515.pdf",
+       "senate.gov.pk/uploads/documents/23rdamendment.pdf"
+      ],
+      "copy_evidence": "this copy does not carry the Twenty-third Amendment (the corpus cites it only in 4419 footnotes, p80 b773022 and p147 b774078) and still prints the Twenty-first Amendment's temporary provisions, which stood repealed on 6 January 2017 (the Twenty-third Act's preamble); the Senate's list shows no amendment between the Twenty-second and the Twenty-third",
+      "verified_by": "legal-source-scout, 13 Oct 2026, from Gazette page images",
+      "rule": "deeming_date",
+      "reviewer_recommendation": "deeming date (schema review 4434 q3): legal effect; 2017-01-07 to 2017-03-30 then abstains on both expressions, which is correct under INV-2",
+      "decision": "lead decision 15 Oct 2026 under the owner's chat delegation of 15 Oct ('rest of the qs that ask my permission do whatever is best none should be blocked'): 4434 e0 historical end date = 2017-01-07, the Twenty-third Amendment's deeming date; both dates kept here (.artifacts/release-work-2026-09-24/CLAUDE-CLAIMS.md, 'OWNER (15 Oct, chat)' / LEAD DECISIONS)"
+     }
+    }
+   },
+   "current_expression": {
+    "document_id": 4419,
+    "expression_ordinal": 0
+   },
+   "jurisdiction": "fed",
+   "jurisdiction_basis": "page 1 (render) prints 'THE CONSTITUTION OF THE ISLAMIC REPUBLIC OF PAKISTAN' (b789886); the catalogue's 'punjab' comes only from the archive path (punjab_code/Laws/1973/...); the current expression 4419 is fed.constitution. lead decision 15 Oct 2026 under the owner's chat delegation ('do whatever is best'), relayed to agent K5 (CLAUDE-CLAIMS 15 Oct). Unreleased: no citation moves (prefix punjab.constitution.y1973_o2810 -> fed.constitution.y1973_o2810)",
+   "title_correction_printed": {
+    "from_title": "CONSTITUTION OF PAKISTAN",
+    "printed_block": 789886,
+    "page": 1
+   }
+  },
+  {
+   "ordinal": 1,
+   "role": "embedded",
+   "title": "The Constitution (First Amendment) Act, 1974",
+   "kind": "act",
+   "year": 1974,
+   "number": "XXXIII",
+   "spans": [
+    {
+     "start_block_id": 792606,
+     "end_block_id": 792675
+    }
+   ]
+  },
+  {
+   "ordinal": 2,
+   "role": "embedded",
+   "title": "The Constitution (Second Amendment) Act, 1974",
+   "kind": "act",
+   "year": 1974,
+   "number": "XLIX",
+   "spans": [
+    {
+     "start_block_id": 792676,
+     "end_block_id": 792686
+    }
+   ],
+   "boundary_correction": "ends at b792686 (p213 running header); b792687-8, e3's printed title, leave its s.3 text"
+  },
+  {
+   "ordinal": 3,
+   "role": "embedded",
+   "title": "The Constitution (Third Amendment) Act, 1974",
+   "kind": "act",
+   "year": 1975,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 792687,
+     "end_block_id": 792703
+    }
+   ],
+   "title_correction_printed": {
+    "from_title": "Constitution (Third Amendment) Act, 1975",
+    "printed_block": 792687,
+    "page": 213,
+    "basis": "lead decision 15 Oct 2026 under the owner's chat delegation ('do whatever is best'), relayed to agent K5 (CLAUDE-CLAIMS 15 Oct): the title as page 213 prints it"
+   },
+   "source_anomalies": [
+    {
+     "source_block_id": 792687,
+     "printed": "The Constitution (Third Amendment) Act, 1974",
+     "note": "the heading prints 1974; the Act is (XXII of 1975) [18 February 1975] and its s.1(1) names it 'the Constitution (Third Amendment) Act, 1975'. Title as printed; year 1975 and number null kept as stored (setting number XXII would move every released e3 path)"
+    }
+   ],
+   "boundary_correction": "starts at its printed title b792687 '2The Constitution (Third Amendment) Act, 1974' / b792688 '(XXII of 1975)' (p213), not at '[18 February 1975] An Act' b792689"
+  },
+  {
+   "ordinal": 4,
+   "role": "embedded",
+   "title": "The Constitution (Fourth Amendment) Act, 1975",
+   "kind": "act",
+   "year": 1975,
+   "number": "LXXI",
+   "spans": [
+    {
+     "start_block_id": 792704,
+     "end_block_id": 792865
+    }
+   ]
+  },
+  {
+   "ordinal": 5,
+   "role": "embedded",
+   "title": "The Constitution (Fifth Amendment) Act, 1976",
+   "kind": "act",
+   "year": 1976,
+   "number": "LXII",
+   "spans": [
+    {
+     "start_block_id": 792866,
+     "end_block_id": 792962
+    }
+   ]
+  },
+  {
+   "ordinal": 6,
+   "role": "embedded",
+   "title": "The Constitution (Sixth Amendment) Act, 1976",
+   "kind": "act",
+   "year": 1976,
+   "number": "LXXXIV",
+   "spans": [
+    {
+     "start_block_id": 792963,
+     "end_block_id": 792987
+    }
+   ]
+  },
+  {
+   "ordinal": 7,
+   "role": "embedded",
+   "title": "The Constitution (Seventh Amendment) Act, 1977",
+   "kind": "act",
+   "year": 1977,
+   "number": "XXIII",
+   "spans": [
+    {
+     "start_block_id": 792988,
+     "end_block_id": 793013
+    }
+   ]
+  },
+  {
+   "ordinal": 8,
+   "role": "embedded",
+   "title": "The Constitution (Eighth Amendment) Act, 1985",
+   "kind": "act",
+   "year": 1985,
+   "number": "XVIII",
+   "spans": [
+    {
+     "start_block_id": 793014,
+     "end_block_id": 793181
+    }
+   ]
+  },
+  {
+   "ordinal": 9,
+   "role": "embedded",
+   "title": "The Constitution (Tenth Amendment) Act, 1987",
+   "kind": "act",
+   "year": 1987,
+   "number": "1",
+   "spans": [
+    {
+     "start_block_id": 793182,
+     "end_block_id": 793188
+    },
+    {
+     "start_block_id": 793190,
+     "end_block_id": 793191
+    }
+   ],
+   "boundary_correction": "two spans: b793182-793188 and b793190-793191 (its own assent footnote 1 and the p243 running header stay with it); b793189 is e10's title"
+  },
+  {
+   "ordinal": 10,
+   "role": "embedded",
+   "title": "The Constitution (Twelfth Amendment) Act, 1991",
+   "kind": "act",
+   "year": 1991,
+   "number": "XIV",
+   "spans": [
+    {
+     "start_block_id": 793189,
+     "end_block_id": 793189
+    },
+    {
+     "start_block_id": 793192,
+     "end_block_id": 793248
+    }
+   ],
+   "title_correction_printed": {
+    "from_title": "(Twelfth Amendment) Act, 1991",
+    "printed_blocks": [
+     793189,
+     793192
+    ],
+    "pages": "242-243",
+    "basis": "lead decision 15 Oct 2026 under the owner's chat delegation ('do whatever is best'), relayed to agent K5 (CLAUDE-CLAIMS 15 Oct): the stored short title was truncated by the wrong span start"
+   },
+   "boundary_correction": "two spans: its printed title's first line b793189 '2The Constitution' (p242 foot) and b793192-793248 ('(Twelfth Amendment) Act, 1991', p243 on)"
+  },
+  {
+   "ordinal": 11,
+   "role": "embedded",
+   "title": "The Constitution (Thirteenth Amendment) Act, 1997",
+   "kind": "act",
+   "year": 1997,
+   "number": "I",
+   "spans": [
+    {
+     "start_block_id": 793249,
+     "end_block_id": 793263,
+     "pages": "247-248"
+    }
+   ],
+   "expected_tree": "preamble, ss.1-5 (p247); the Fourteenth and Sixteenth Amendment Acts printed after it are their own expressions 43, 44"
+  },
+  {
+   "ordinal": 12,
+   "role": "embedded",
+   "title": "The Constitution (Seventeenth Amendment) Act, 2003",
+   "kind": "act",
+   "year": 2003,
+   "number": "III",
+   "spans": [
+    {
+     "start_block_id": 793306,
+     "end_block_id": 793352
+    }
+   ]
+  },
+  {
+   "ordinal": 13,
+   "role": "embedded",
+   "title": "The Constitution (Eighteenth Amendment) Act, 2010",
+   "kind": "act",
+   "year": 2010,
+   "number": "X",
+   "spans": [
+    {
+     "start_block_id": 793353,
+     "end_block_id": 794160
+    }
+   ]
+  },
+  {
+   "ordinal": 14,
+   "role": "embedded",
+   "title": "The Constitution (Nineteenth Amendment) Act, 2010",
+   "kind": "act",
+   "year": 2010,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 794161,
+     "end_block_id": 794232
+    }
+   ]
+  },
+  {
+   "ordinal": 15,
+   "role": "embedded",
+   "title": "The Constitution (Twentieth Amendment) Act, 2012",
+   "kind": "act",
+   "year": 2012,
+   "number": "V",
+   "spans": [
+    {
+     "start_block_id": 794233,
+     "end_block_id": 794310
+    }
+   ]
+  },
+  {
+   "ordinal": 16,
+   "role": "embedded",
+   "title": "The Constitution (Twenty-First Amendment) Act, 2015",
+   "kind": "act",
+   "year": 2015,
+   "number": "I",
+   "spans": [
+    {
+     "start_block_id": 794311,
+     "end_block_id": 794334
+    }
+   ]
+  },
+  {
+   "ordinal": 17,
+   "role": "embedded",
+   "title": "The Constitution (Twenty-second Amendment) Act, 2016",
+   "kind": "act",
+   "year": 2016,
+   "number": "XXV",
+   "spans": [
+    {
+     "start_block_id": 794335,
+     "end_block_id": 794393
+    }
+   ]
+  },
+  {
+   "ordinal": 18,
+   "role": "embedded",
+   "title": "The Constitution (Amendment) Order, 1979",
+   "kind": "order",
+   "year": 1979,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 794394,
+     "end_block_id": 794439
+    }
+   ]
+  },
+  {
+   "ordinal": 19,
+   "role": "embedded",
+   "title": "The Constitution (Second Amendment) Order, 1979",
+   "kind": "order",
+   "year": 1979,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 794440,
+     "end_block_id": 794452
+    }
+   ],
+   "boundary_correction": "ends at b794452 (p323 'proceedings ... shall abate.\"'); e20's title, footnote and the p324 header leave its s.2(3) text"
+  },
+  {
+   "ordinal": 20,
+   "role": "embedded",
+   "title": "Constitution (Amendment) Order, 1980",
+   "kind": "order",
+   "year": 1980,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 794453,
+     "end_block_id": 794524
+    }
+   ],
+   "boundary_correction": "starts at its printed title b794453 '1The Constitution' (p323 foot), with its own footnote 1 b794454 ('Issued by the President on 26 May 1980'), the p324 header and '(Amendment) Order, 1980' / P.O. No. 1 of 1980 / [26 May 1980] (b794455-8)"
+  },
+  {
+   "ordinal": 21,
+   "role": "embedded",
+   "title": "The Constitution (Second Amendment) Order, 1980",
+   "kind": "order",
+   "year": 1980,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 794525,
+     "end_block_id": 794551
+    }
+   ]
+  },
+  {
+   "ordinal": 22,
+   "role": "embedded",
+   "title": "The Constitution (Third Amendment) Order, 1980",
+   "kind": "order",
+   "year": 1980,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 794552,
+     "end_block_id": 794560
+    }
+   ]
+  },
+  {
+   "ordinal": 23,
+   "role": "embedded",
+   "title": "The Constitution (Fourth Amendment) Order, 1980",
+   "kind": "order",
+   "year": 1980,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 794561,
+     "end_block_id": 794571
+    }
+   ]
+  },
+  {
+   "ordinal": 24,
+   "role": "embedded",
+   "title": "The Constitution (Amendment) Order, 1981",
+   "kind": "order",
+   "year": 1981,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 794572,
+     "end_block_id": 794584
+    }
+   ]
+  },
+  {
+   "ordinal": 25,
+   "role": "embedded",
+   "title": "The Constitution (Second Amendment) Order, 1981",
+   "kind": "order",
+   "year": 1981,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 794585,
+     "end_block_id": 794595
+    }
+   ]
+  },
+  {
+   "ordinal": 26,
+   "role": "embedded",
+   "title": "The Constitution (Third Amendment) Order, 1981",
+   "kind": "order",
+   "year": 1981,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 794596,
+     "end_block_id": 794603
+    }
+   ]
+  },
+  {
+   "ordinal": 27,
+   "role": "embedded",
+   "title": "The Constitution (Fourth Amendment) Order, 1981",
+   "kind": "order",
+   "year": 1981,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 794604,
+     "end_block_id": 794615
+    }
+   ]
+  },
+  {
+   "ordinal": 28,
+   "role": "embedded",
+   "title": "The Constitution (Fifth Amendment) Order, 1981",
+   "kind": "order",
+   "year": 1981,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 794616,
+     "end_block_id": 794624
+    }
+   ]
+  },
+  {
+   "ordinal": 29,
+   "role": "embedded",
+   "title": "The Constitution (Amendment) Order, 1982",
+   "kind": "order",
+   "year": 1982,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 794625,
+     "end_block_id": 794634
+    }
+   ]
+  },
+  {
+   "ordinal": 30,
+   "role": "embedded",
+   "title": "The Constitution (Second Amendment) Order, 1982",
+   "kind": "order",
+   "year": 1982,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 794635,
+     "end_block_id": 794667
+    }
+   ]
+  },
+  {
+   "ordinal": 31,
+   "role": "embedded",
+   "title": "The Constitution (Third Amendment) Order, 1982",
+   "kind": "order",
+   "year": 1982,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 794668,
+     "end_block_id": 794679
+    }
+   ]
+  },
+  {
+   "ordinal": 32,
+   "role": "embedded",
+   "title": "The Constitution (Fourth Amendment) Order, 1982",
+   "kind": "order",
+   "year": 1982,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 794680,
+     "end_block_id": 794688
+    }
+   ]
+  },
+  {
+   "ordinal": 33,
+   "role": "embedded",
+   "title": "The Constitution (Amendment) Order, 1983",
+   "kind": "order",
+   "year": 1983,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 794689,
+     "end_block_id": 794701
+    }
+   ]
+  },
+  {
+   "ordinal": 34,
+   "role": "embedded",
+   "title": "The Constitution (Second Amendment) Order, 1983",
+   "kind": "order",
+   "year": 1983,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 794702,
+     "end_block_id": 794710
+    }
+   ]
+  },
+  {
+   "ordinal": 35,
+   "role": "embedded",
+   "title": "The Constitution (Third Amendment) Order, 1983",
+   "kind": "order",
+   "year": 1983,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 794711,
+     "end_block_id": 794720
+    }
+   ]
+  },
+  {
+   "ordinal": 36,
+   "role": "embedded",
+   "title": "The Constitution (Amendment) Order, 1984",
+   "kind": "order",
+   "year": 1984,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 794721,
+     "end_block_id": 794734
+    }
+   ]
+  },
+  {
+   "ordinal": 37,
+   "role": "embedded",
+   "title": "The Constitution (Second Amendment) Order, 1984",
+   "kind": "order",
+   "year": 1984,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 794735,
+     "end_block_id": 794743
+    }
+   ]
+  },
+  {
+   "ordinal": 38,
+   "role": "embedded",
+   "title": "The Constitution (Amendment) Order, 1985",
+   "kind": "order",
+   "year": 1985,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 794744,
+     "end_block_id": 794776
+    }
+   ],
+   "boundary_correction": "ends at b794786: takes back its quoted Article 165A (b794784), its footnote 1 (b794785) and the p353 header"
+  },
+  {
+   "ordinal": 39,
+   "role": "embedded",
+   "title": "Revival of the Constitution of 1973 Order, 1985",
+   "kind": "order",
+   "year": 1985,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 794787,
+     "end_block_id": 794867
+    }
+   ],
+   "boundary_correction": "starts at its printed title b794787 '1The Revival of the Constitution of 1973 Order, 1985' (p353), not at the quoted Article 165A b794784 inside e38's s.2 (p352)"
+  },
+  {
+   "ordinal": 40,
+   "role": "embedded",
+   "title": "THE CONSTITUTION (SECOND AMENDMENT) ORDER, 1985",
+   "kind": "order",
+   "year": 1985,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 794868,
+     "end_block_id": 794884
+    }
+   ]
+  },
+  {
+   "ordinal": 41,
+   "role": "embedded",
+   "title": "The Constitution (Third Amendment) Order, 1985",
+   "kind": "order",
+   "year": 1985,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 794885,
+     "end_block_id": 794909
+    }
+   ]
+  },
+  {
+   "ordinal": 42,
+   "role": "embedded",
+   "title": "The Constitution (Amendment) Order, 2007",
+   "kind": "order",
+   "year": 2007,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 794910,
+     "end_block_id": 794938
+    }
+   ]
+  },
+  {
+   "ordinal": 43,
+   "role": "embedded",
+   "title": "The Constitution (Fourteenth Amendment) Act, 1997",
+   "kind": "act",
+   "year": 1997,
+   "number": "XXIV",
+   "spans": [
+    {
+     "start_block_id": 793264,
+     "end_block_id": 793293,
+     "pages": "248-250"
+    }
+   ],
+   "expected_tree": "preamble, s.1 (1)-(2), s.2 holding the quoted new Article 63A (Explanation, clauses (1)-(6)) as text",
+   "owner_decision": {
+    "export": ".artifacts/decision-review/exports/decision-review-2026-10-12-j.json",
+    "document_id": 4434,
+    "question_id": "q2"
+   }
+  },
+  {
+   "ordinal": 44,
+   "role": "embedded",
+   "title": "The Constitution (Sixteenth Amendment) Act, 1999",
+   "kind": "act",
+   "year": 1999,
+   "number": "VII",
+   "spans": [
+    {
+     "start_block_id": 793294,
+     "end_block_id": 793305,
+     "pages": "250-251"
+    }
+   ],
+   "expected_tree": "preamble, s.1 (1)-(2), s.2 (amendment of Article 27)",
+   "note": "NOT named by the owner's q2 card (which saw only the Fourteenth): p250 prints the Constitution (Sixteenth Amendment) Act, 1999 (VII of 1999) inside the same span; split on q2's principle -- lead to confirm"
+  },
+  {
+   "ordinal": 45,
+   "role": "embedded",
+   "title": "The Constitution (Amendment) Order, 1985",
+   "kind": "order",
+   "year": 1985,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 794777,
+     "end_block_id": 794786,
+     "pages": "352"
+    }
+   ],
+   "expected_tree": "preamble (enacting formula), s.1 (1)-(2), s.2 adding Article 165A (quoted (1)-(3))",
+   "split_basis": "page 352 (render f0feaf2f) prints its own title '1The Constitution (Amendment) Order, 1985' (b794777), '(President's Order No. 11 of 1985)' (b794778), '[24 February 1985]' (b794779), its own enacting formula and ss.1-2, and its own footnote 1 'Published in the Gazette ... 24 February 1985, pp.83-84' (b794785); page 350 (render) prints the other Order of the same short title, P.O. No. 6 of 1985, [17 January 1985] (b794744-6). lead decision 15 Oct 2026 under the owner's chat delegation ('do whatever is best'), relayed to agent K5 (CLAUDE-CLAIMS 15 Oct): split e38 where two titles are printed",
+   "owner_decision": {
+    "export": ".artifacts/decision-review/exports/decision-review-2026-10-12-j.json",
+    "document_id": 4434,
+    "question_id": "q2"
+   }
+  }
+ ],
+ "migration_note": "4434 leaves PRIMARY_DOCUMENTS (tools/materialize_multi_instrument.py) when this plan is adopted as doc-4434.json. Every span start of ordinals 1-45 opens on its printed title (page images; claude/agK5/montage-1..8.png, p352 for e45). Lead decisions 15 Oct (owner delegation): e3, e10, e20, e39 start at their printed titles; e3 and e10 take their printed titles (kind, year, number unchanged, so no path prefix moves); e38 is split, e45 = P.O. No. 11 of 1985; e0 is federal law (fed) with its printed title and the 0064 historical window. Span changes against the active manifests: e2, e3, e9, e10, e19, e20, e38, e39 (boundary_correction); e11 cut; e43, e44, e45 new."
+}

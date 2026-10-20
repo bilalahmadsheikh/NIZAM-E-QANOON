@@ -1,0 +1,77 @@
+{
+  "schema": "nizam.multi_expression_plan/1",
+  "document_id": 1822,
+  "source_observation_id": 2196,
+  "review_basis": "source_verified",
+  "reviewed_on": "2026-10-08",
+  "reviewed_by": "assistant page review (agent CK) on the owner's decision",
+  "owner_decision": {
+    "export": ".artifacts/decision-review/exports/decision-review-2026-10-08-h.json",
+    "q1": "other: three instruments -- the Environmental Tribunal Rules, 1999 (pp1-5); the 2 June 1999 notification establishing the Environmental Protection Tribunals (pp5-6); the separate 2 June 1999 notification appointing the Chairpersons (p6); the 18-item 'Copy to' distribution list (pp6-7) is administrative apparatus and part of no instrument",
+    "q2": "release-with-gap: Schedules II and III are kept under their printed headings and cross-references; their substantive contents are recorded as unavailable in this source copy (source incompleteness, migration 0054); not reconstructed from another source"
+  },
+  "reviewed_pages": [
+    {"page": 1, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1822-p1.png", "render_sha256": "c72b33c3094b6115b3c062ace516adc5a1eba7fee60e2c8002433eb3957e97d5"},
+    {"page": 2, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1822-p2.png", "render_sha256": "b77fba4ecc6bcd108469158b01f373ebd9060ac094df3c10fa09e374fb40db0e"},
+    {"page": 3, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1822-p3.png", "render_sha256": "3992bfc99d1e25ebaa8a3bba31a436bbe1f9de159addaa8757b8f52802464b94"},
+    {"page": 4, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1822-p4.png", "render_sha256": "d484fbf870e214d0472025afe0c74a0ed5773da19004c96824b9b0808818ceec"},
+    {"page": 5, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1822-p5.png", "render_sha256": "c79db00cd72a2007e75105bf4693cba3ad0de2bb500fd535512adf332a35bd05"},
+    {"page": 6, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1822-p6.png", "render_sha256": "efc63c2489a817abc52a2929e0dcd190baf6ed1293fdf4ed6cff94d9fa978487"},
+    {"page": 7, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1822-p7.png", "render_sha256": "ef9e17c57eb6f27c56acf75bcadd1d653132d8ff9c9a9f6ed0a206d1a0743195"}
+  ],
+  "expressions": [
+    {
+      "ordinal": 0,
+      "role": "primary",
+      "title": "Environmental Tribunal Rules, 1999",
+      "kind": "rules",
+      "year": 1999,
+      "number": null,
+      "spans": [
+        {"start_block_id": 122459, "end_block_id": 122542, "pages": "1-5"}
+      ],
+      "title_correction": {
+        "from_title": "ENVIRONMENTAL TRIBUNAL RULES, 1999",
+        "from_year": 1999,
+        "to_year": 1999,
+        "basis": "owner decision q1 (one instrument: the Environmental Tribunal Rules, 1999); p2 block 122483 prints rule 1(1) 'These rules may be called the Environmental Tribunal Rules, 1999.'; the stored catalogue title is the same name in capitals"
+      },
+      "source_anomalies": [
+        {"page": 2, "source_block_id": 122483, "printed": "S.R.O.(1)/2001.- ... is pleased to make the following regulations namely:-", "note": "sic: the enabling notification is numbered S.R.O.(1)/2001 and speaks of 'regulations' while rule 1 names the 'Environmental Tribunal Rules, 1999' and the date line reads '[10th March, 2000]' (block 122480). Kept as printed."},
+        {"page": 4, "source_block_id": 122516, "printed": "(3) Every notice issued on behalf of the tribunal ...", "note": "rule 10 prints sub-rules (1) and (3) with no (2) (p4). Kept as printed; no (2) is supplied."},
+        {"page": 4, "source_block_id": 122518, "printed": "12..", "note": "rule 12's number is printed with a double full stop. Cited as rule 12."},
+        {"page": 5, "source_block_id": 122541, "printed": "[See Rule 16(2)(iii)]", "note": "sic: Schedule III's cross-reference names rule 16(2)(iii); the fees provision is rule 17(2)(iii) ('fees, as prescribed in Schedule III', p4 block 122530). Kept as printed."},
+        {"page": 5, "source_block_id": 122537, "printed": "SCHEDULE II", "note": "Schedules II ('[See Rule 9(1)] STAFF OF THE TRIBUNAL') and III ('[See Rule 16(2)(iii)] FEES FOR APPEALS') print their headings only; their contents are not in this copy. Kept under the printed headings and recorded as source incompleteness (owner q2 'release-with-gap'; tools/evidence/declare-source-incompleteness-1822-DRAFT.sql)."}
+      ],
+      "expected_tree": "preface (title line 'ENVIRONMENTAL TRIBUNAL RULES, 1999', date '[10th March, 2000]', GOVERNMENT OF PAKISTAN / MINISTRY OF ENVIRONMENT, LOCAL GOVERNMENT AND RURAL DEVELOPMENT, NOTIFICATION, S.R.O.(1)/2001 enabling formula); rules 1-18 (the body starts at the TEXT page, block 122478; contents rows 1-18 on p1 link to rules 1-18); SCHEDULE 1 '(See Rule 6) OATH OF CHAIRPERSON AND MEMBERS' with the oath; SCHEDULE II '[See Rule 9(1)] STAFF OF THE TRIBUNAL' and SCHEDULE III '[See Rule 16(2)(iii)] FEES FOR APPEALS', headings only (owner q2)"
+    },
+    {
+      "ordinal": 1,
+      "role": "embedded",
+      "title": "Ministry of Law, Justice and Human Rights Notification S.R.O.(1)/89 dated 2 June 1999 (establishing the Environmental Protection Tribunals)",
+      "kind": "notification",
+      "year": 1999,
+      "number": "S.R.O.(1)/89",
+      "spans": [
+        {"start_block_id": 122543, "end_block_id": 122557, "pages": "5-6"}
+      ],
+      "source_anomalies": [
+        {"page": 5, "source_block_id": 122546, "printed": "S.R.O.(1)/89:- In exercise of the powers conferred by Section 20(1) of the Pakistan Environmental Protection act, 1997, the Provincial Government is pleased to establish Environmental Protection Tribunal in the country", "note": "sic: a 2 June 1999 notification of the federal Ministry of Law, Justice and Human Rights numbered S.R.O.(1)/89 in which 'the Provincial Government' establishes the Tribunals. Kept as printed."}
+      ],
+      "expected_tree": "preface (GOVERNMENT OF PAKISTAN / MINISTRY OF LAW, JUSTICE AND HUMAN RIGHTS, '[2nd June, 1999]', NOTIFICATION); the establishing paragraph 'S.R.O.(1)/89:- In exercise of the powers conferred by Section 20(1) ... as set-out in the table:-' with the table (column heads 'S. No. / Name of Tribunal / Tribunal Limit / Place of Sitting') and its two rows: 1 Environmental Protection Tribunal, Lahore -- The Provinces of the Punjab and N.W.F.P. & Islamabad Capital -- Lahore; 2 Environmental Protection Tribunal, Karachi -- The Provinces of Sindh and Balochistan -- Karachi. The column-number row '(1) (2) (3) (4)', the file number 'No.F.22(1)/97-A.III' and the forwarding 'The Manager, Printing Corporation of Pakistan Press ...' (p6) are apparatus"
+    },
+    {
+      "ordinal": 2,
+      "role": "embedded",
+      "title": "Ministry of Law, Justice and Human Rights Notification No. F.22(1)/97-A,III(A) dated 2 June 1999 (appointing the Chairpersons of the Environmental Protection Tribunals)",
+      "kind": "notification",
+      "year": 1999,
+      "number": "F.22(1)/97-A,III(A)",
+      "spans": [
+        {"start_block_id": 122558, "end_block_id": 122571, "pages": "6-7"}
+      ],
+      "expected_tree": "preface (GOVERNMENT OF PAKISTAN / MINISTRY OF LAW, JUSTICE AND HUMAN RIGHTS, '[2nd June, 1999]', NOTIFICATION); the appointing paragraph 'No.F.22(1)/97-A,III(A) The Federal Government is pleased to appoint the following to be the Chairperson's Environmental Protection Tribunals ...' with the table (column heads 'S.NO. / NAME OF THE CHAIR PERSON / NAME OF TRIBUNAL') and its two rows: 1 Justice Sh. Amjad Ali, Judge, Lahore High Court, Lahore -- Environmental Protection Tribunal, Lahore; 2 Justice (R) Abdul Rehman, Presiding Officer, Special Court, (Offences in Banks), Karachi -- Environmental Protection Tribunal, Karachi. The column-number row, the forwarding 'The Manager ... No. F.22(1)/97-A. 1 1 1 (A) Islamabad, the 2nd June, 1999.', 'Copy to:-' and the distribution list 1-18 (pp6-7) are apparatus, part of no instrument (owner q1)"
+    }
+  ],
+  "apparatus": "the forwarding lines to the Manager, Printing Corporation of Pakistan Press (p6, twice), the file numbers under them, the column-number rows of the two tables, 'Copy to:-' and the 18-item distribution list (pp6-7) stay inside their expression spans and are set aside by the reviewed curation readings (claude/agCK/patch-1822.json)"
+}

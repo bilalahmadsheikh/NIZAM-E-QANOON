@@ -129,12 +129,167 @@ def _unexplained_extra(stored: str, reference: str, outside_crop: str,
             - _chars(ocr_text))
 
 
-def pdftotext(path: Path) -> str:
+def pdftotext(path: Path, *, layout: bool = False) -> str:
+    cmd = ["pdftotext", "-q"]
+    if layout:
+        cmd.append("-layout")
     out = subprocess.run(
-        ["pdftotext", "-q", "-enc", "UTF-8", str(path), "-"],
+        cmd + ["-enc", "UTF-8", str(path), "-"],
         capture_output=True, timeout=300,
     )
     return out.stdout.decode("utf-8", "replace")
+
+
+# ---------------------------------------------------------------------------
+# Repaired-reference fallback (agent JE, doc 4608; owner export l q1/q2, lead
+# decision 15 Oct 2026).
+#
+# Poppler cannot open a blob whose cross-reference table is broken ("Couldn't
+# find trailer dictionary"), so the independent check has nothing to compare
+# and the document stays `unverifiable` for ever, however its text was
+# reviewed.  MuPDF rebuilds the xref of the SAME bytes on open; Poppler can
+# then read the rebuilt copy.  The rebuilt copy is a temporary file: it is
+# never stored, never becomes the corpus text, and the comparison still runs
+# Poppler -- a different library from the one that produced the stored text.
+#
+# The fallback is narrow on purpose:
+#   * only when Poppler reads NO text from the blob, and
+#   * only when the blob carries an ACTIVE `decode_damage` assertion -- a
+#     reviewed, human statement that the file itself is damaged.
+# A blob Poppler reads normally never takes this path; nor does an undamaged
+# blob Poppler fails on for some other reason.  The result records which
+# reference was used (`reference_extractor`, `detail.reference_repair`).
+#
+# A rebuilt reference of a damaged file is not perfect evidence: Poppler reads
+# broken glyphs as stray characters ('μ', combining marks), and the stored
+# layer may lack characters the damaged font hides from it.  Those page-local
+# differences are accepted ONLY through page-scoped `source_content_confirmed`
+# assertions with detail.purpose = 'repaired-reference-difference', each
+# listing the exact strings: `missing_strings` (printed in the reference page,
+# absent from the stored page) and `extra_strings` (in the stored page, absent
+# from the reference page), bound to the reference page's text by
+# `reference_page_sha256`.  Every listed string must occur in that page; a
+# stale or wrong assertion credits nothing and the gate fails as before.
+# Nothing else is waived: an unlisted difference still fails the gate.
+REPAIRED_REFERENCE_EXTRACTOR = "poppler-pdftotext+mupdf-xref-rebuild"
+REPAIRED_REFERENCE_PURPOSE = "repaired-reference-difference"
+
+
+def active_decode_damage(cur, sha256: str) -> int | None:
+    """The newest active `decode_damage` assertion on this blob, if any."""
+    cur.execute(
+        """SELECT id FROM extraction_assertion
+            WHERE sha256=%s AND kind='decode_damage' AND is_active
+            ORDER BY asserted_at DESC, id DESC LIMIT 1""",
+        (sha256,),
+    )
+    row = cur.fetchone()
+    return row[0] if row else None
+
+
+def rebuilt_reference(path: Path, *, layout: bool = False) -> str:
+    """Poppler's text of a MuPDF xref-rebuilt copy of the same bytes ('' when MuPDF cannot open it).
+
+    The copy lives in a temporary directory for the length of one pdftotext
+    run.  Its bytes are not deterministic (MuPDF writes a fresh /ID), its text
+    is, so evidence binds to the text (`reference_page_sha256`)."""
+    import tempfile
+    try:
+        import pymupdf
+    except ImportError:  # pragma: no cover - the extractor dependency
+        return ""
+    pymupdf.TOOLS.mupdf_display_errors(False)
+    with tempfile.TemporaryDirectory() as tmp:
+        rebuilt = Path(tmp) / "rebuilt.pdf"
+        try:
+            doc = pymupdf.open(str(path))
+            try:
+                doc.save(str(rebuilt))
+            finally:
+                doc.close()
+        except Exception:
+            return ""
+        return pdftotext(rebuilt, layout=layout)
+
+
+def reference_pages(text: str) -> list[str]:
+    pages = text.split("\f")
+    if pages and not pages[-1].strip():
+        pages.pop()
+    return pages
+
+
+def page_text_sha256(text: str) -> str:
+    import hashlib
+    return hashlib.sha256(text.encode("utf-8")).hexdigest()
+
+
+def _chars_of_strings(strings) -> collections.Counter:
+    total = collections.Counter()
+    for s in strings:
+        total += _chars(s)
+    return total
+
+
+def _occurs(needle: str, haystack: str) -> bool:
+    """`needle` printed in `haystack`, compared in the verifier's own character view (whitespace, hyphens and
+    format characters do not count), so a string listed from a page is found however the page wraps it."""
+    n = "".join(_chars_sequence(needle))
+    return bool(n) and n in "".join(_chars_sequence(haystack))
+
+
+def _chars_sequence(text: str) -> list[str]:
+    """`_chars` as a sequence: the same normalisation, order kept."""
+    text = unicodedata.normalize("NFKC", text).casefold()
+    text = _WS.sub("", text).translate(_HYPHENS)
+    non_content = {"Cf", "Cc", "Cs", "Co", "Cn"}
+    return [c for c in text if unicodedata.category(c) not in non_content]
+
+
+def credited_page_differences(stored_by_page: dict[int, str], ref_pages: list[str],
+                              assertions: list[tuple[int, int, dict]]) -> dict:
+    """Validate page-scoped repaired-reference assertions and return what they credit.
+
+    `assertions` are (id, page_no, detail).  An assertion credits only if its
+    page exists, `reference_page_sha256` equals that page's reference text,
+    and every missing string occurs in the reference page and every extra
+    string in the stored page.  Returns {'missing': Counter, 'extra': Counter,
+    'used': [ids], 'rejected': [(id, reason)]}."""
+    missing, extra = collections.Counter(), collections.Counter()
+    used, rejected = [], []
+    for aid, page_no, detail in assertions:
+        if not isinstance(detail, dict) or detail.get("purpose") != REPAIRED_REFERENCE_PURPOSE:
+            continue
+        if page_no is None or not (1 <= page_no <= len(ref_pages)):
+            rejected.append((aid, "page outside the reference")); continue
+        ref = ref_pages[page_no - 1]
+        stored = stored_by_page.get(page_no, "")
+        if detail.get("reference_page_sha256") != page_text_sha256(ref):
+            rejected.append((aid, "reference page text changed")); continue
+        miss = detail.get("missing_strings") or []
+        ext = detail.get("extra_strings") or []
+        if not (isinstance(miss, list) and isinstance(ext, list) and (miss or ext)
+                and all(isinstance(s, str) and s.strip() for s in miss + ext)):
+            rejected.append((aid, "malformed string lists")); continue
+        if not all(_occurs(s, ref) for s in miss):
+            rejected.append((aid, "a missing string is not printed in the reference page")); continue
+        if not all(_occurs(s, stored) for s in ext):
+            rejected.append((aid, "an extra string is not in the stored page")); continue
+        missing += _chars_of_strings(miss)
+        extra += _chars_of_strings(ext)
+        used.append(aid)
+    return {"missing": missing, "extra": extra, "used": used, "rejected": rejected}
+
+
+def repaired_reference_assertions(cur, sha256: str) -> list[tuple[int, int, dict]]:
+    cur.execute(
+        """SELECT id,page_no,detail FROM extraction_assertion
+            WHERE sha256=%s AND kind='source_content_confirmed' AND is_active
+              AND page_no IS NOT NULL AND detail->>'purpose'=%s
+            ORDER BY page_no, id""",
+        (sha256, REPAIRED_REFERENCE_PURPOSE),
+    )
+    return [(r[0], r[1], r[2] if isinstance(r[2], dict) else json.loads(r[2])) for r in cur.fetchall()]
 
 
 def stored_text(cur, document_id: int) -> tuple[str, str, str]:
@@ -193,6 +348,22 @@ def check(cur, document_id: int, sha256: str, object_key: str,
     ref = pdftotext(path)
     attach_decode_evidence(cur, result, document_id, sha256)
 
+    # Repaired-reference fallback: see the note above `REPAIRED_REFERENCE_EXTRACTOR`.
+    repaired = False
+    if not _chars(ref):
+        damage_id = active_decode_damage(cur, sha256)
+        if damage_id is not None:
+            rebuilt = rebuilt_reference(path)
+            if _chars(rebuilt):
+                ref, repaired = rebuilt, True
+                result["reference_extractor"] = REPAIRED_REFERENCE_EXTRACTOR
+                result["reference_repair"] = {
+                    "method": "mupdf-xref-rebuild", "decode_assertion_id": damage_id,
+                    "reference_page_sha256": [page_text_sha256(p) for p in reference_pages(rebuilt)]}
+                result["hints"].append(
+                    "Poppler cannot open the blob (decode damage asserted, #%d); compared against Poppler's text "
+                    "of a MuPDF xref-rebuilt copy of the same bytes" % damage_id)
+
     ours_c, theirs_c = _chars(mine), _chars(ref)
     if not theirs_c:
         # pdftotext found nothing but we stored text: not necessarily wrong
@@ -220,13 +391,60 @@ def check(cur, document_id: int, sha256: str, object_key: str,
     shared_t = _multiset_overlap(ours_t, theirs_t)
     result["token_recall"] = round(shared_t / max(sum(theirs_t.values()), 1), 4)
 
+    credit = None
+    if repaired and (recall < MIN_CHAR_RECALL or precision < MIN_CHAR_PRECISION):
+        stored_by_page: dict[int, str] = {}
+        cur.execute("SELECT page_no,text FROM text_block WHERE document_id=%s ORDER BY reading_order",
+                    (document_id,))
+        for page_no, text in cur.fetchall():
+            stored_by_page[page_no] = stored_by_page.get(page_no, "") + text + "\n"
+        credit = credited_page_differences(stored_by_page, reference_pages(ref),
+                                           repaired_reference_assertions(cur, sha256))
+        result["repaired_reference_assertion_ids"] = credit["used"]
+        if credit["rejected"]:
+            result["hints"].append("repaired-reference assertions not applied: " + "; ".join(
+                f"#{aid} {why}" for aid, why in credit["rejected"]))
+
     if recall < MIN_CHAR_RECALL:
         missing = theirs_c - ours_c
-        sample = ", ".join(repr(c) for c, _ in missing.most_common(6))
-        result["problems"].append(
-            f"loss: character recall {recall:.5f} < {MIN_CHAR_RECALL} "
-            f"({sum(missing.values())} characters missing, e.g. {sample})")
-    if precision < MIN_CHAR_PRECISION:
+        credited_recall = None
+        if credit is not None:
+            # Only the exact strings page-scoped assertions list are credited, never more than is missing.
+            left = missing - credit["missing"]
+            credited_recall = (sum(theirs_c.values()) - sum(left.values())) / sum(theirs_c.values())
+            result["credited_recall"] = round(credited_recall, 5)
+        if credited_recall is not None and credited_recall >= MIN_CHAR_RECALL:
+            # As `char_precision` already stores the gate value (crop/OCR provenance removed) beside
+            # `raw_char_precision`, `char_recall` stores the gate value and the raw measure goes to the detail.
+            result["raw_recall"] = round(recall, 5)
+            result["recall"] = round(credited_recall, 5)
+            result["hints"].append(
+                f"raw character recall {recall:.5f}; the {sum(missing.values())} missing characters are the "
+                f"reviewed repaired-reference differences of assertion(s) {credit['used']}")
+        else:
+            left = missing if credit is None else missing - credit["missing"]
+            sample = ", ".join(repr(c) for c, _ in left.most_common(6))
+            result["problems"].append(
+                f"loss: character recall {recall:.5f} < {MIN_CHAR_RECALL} "
+                f"({sum(left.values())} characters missing, e.g. {sample})")
+    if precision < MIN_CHAR_PRECISION and credit is not None:
+        # The generic page-agnostic `source_content_confirmed` waiver below is NOT used against a repaired
+        # reference: only the exact extra strings the page-scoped assertions list are credited.
+        left = unexplained_extra - credit["extra"]
+        credited_precision = ((sum(ours_c.values()) - sum(left.values())) / sum(ours_c.values())
+                              if sum(ours_c.values()) else 0.0)
+        result["credited_precision"] = round(credited_precision, 5)
+        if credited_precision >= MIN_CHAR_PRECISION:
+            result["precision"] = round(credited_precision, 5)
+            result["hints"].append(
+                f"character precision {precision:.5f}; the unexplained characters are the reviewed "
+                f"repaired-reference differences of assertion(s) {credit['used']}")
+        else:
+            sample = ", ".join(repr(c) for c, _ in left.most_common(6))
+            result["problems"].append(
+                f"fabrication: character precision {precision:.5f} < {MIN_CHAR_PRECISION} "
+                f"({sum(left.values())} unexplained characters, e.g. {sample})")
+    elif precision < MIN_CHAR_PRECISION:
         extra = unexplained_extra
         sample = ", ".join(repr(c) for c, _ in extra.most_common(6))
         cur.execute(
@@ -333,8 +551,9 @@ def main() -> int:
                 """INSERT INTO extraction_verification
                     (document_id,verifier,reference_extractor,outcome,char_recall,
                      char_precision,raw_char_precision,token_recall,problems,hints,detail)
-                    VALUES (%s,%s,'poppler-pdftotext',%s,%s,%s,%s,%s,%s::jsonb,%s::jsonb,%s::jsonb)""",
-                (doc_id, VERIFIER, outcome, r.get("recall"), r.get("precision"),
+                    VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s::jsonb,%s::jsonb,%s::jsonb)""",
+                (doc_id, VERIFIER, r.get("reference_extractor", "poppler-pdftotext"), outcome,
+                 r.get("recall"), r.get("precision"),
                  r.get("raw_precision"), r.get("token_recall"),
                  json.dumps(r.get("problems", []), ensure_ascii=False),
                  json.dumps(r.get("hints", []), ensure_ascii=False),
@@ -342,7 +561,14 @@ def main() -> int:
                              "ocr_chars": r.get("ocr_chars", 0),
                              "assertion_id": r.get("assertion_id"),
                              "decode_assertion_id": r.get("decode_assertion_id"),
-                             "ocr_candidate_id": r.get("ocr_candidate_id")},
+                             "ocr_candidate_id": r.get("ocr_candidate_id"),
+                             # repaired-reference fallback (agent JE, doc 4608): present only when used
+                             **({"reference_repair": r["reference_repair"],
+                                 "repaired_reference_assertion_ids": r.get("repaired_reference_assertion_ids", []),
+                                 "raw_char_recall": r.get("raw_recall"),
+                                 "credited_recall": r.get("credited_recall"),
+                                 "credited_precision": r.get("credited_precision")}
+                                if r.get("reference_repair") else {})},
                             ensure_ascii=False)),
             )
             cur.execute("UPDATE document SET verification_state=%s WHERE id=%s",

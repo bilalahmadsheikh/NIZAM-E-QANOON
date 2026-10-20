@@ -91,7 +91,7 @@ SELECT d.id, d.lane,
           ) latest ON true
          WHERE latest.decision = 'accepted'
   ) acc ON acc.document_id = d.id AND acc.page_no = p.page_no
- WHERE d.is_active AND (d.lane = 'E4' OR (%s AND d.lane = 'E2'))
+ WHERE d.is_active AND (d.lane = 'E4' OR (%s AND d.lane = 'E2') OR (%s AND d.lane = 'E3'))
    AND (%s::bigint[] IS NULL OR d.id = ANY(%s::bigint[]))
  GROUP BY d.id, d.lane
 HAVING count(DISTINCT acc.page_no) > 0
@@ -115,6 +115,23 @@ SELECT c.page_no, c.id, c.engine, c.mean_confidence, c.word_count, c.blocks,
 """
 
 
+def admission(lane: str, pages: int, accepted_pages: int, allow_partial: bool) -> str | None:
+    """Why a document may NOT be promoted, or None when it may.
+
+    A text layer -- born-digital (E2), or mixed (E3: a real text layer with some
+    pages OCR-filled by `promote_mixed_ocr.py`) -- is replaced only as a WHOLE:
+    the reviewer judged the layer wrong, so no page keeps it beside promoted OCR,
+    and --allow-partial never applies to it. An E4 (full-OCR) document may be
+    promoted partially only with --allow-partial."""
+    partial = accepted_pages < pages
+    if lane in ("E2", "E3") and partial:
+        kind = "E2 text layer" if lane == "E2" else "E3 mixed text layer"
+        return f"{kind}, {accepted_pages}/{pages} pages accepted; every page must be accepted"
+    if partial and not allow_partial:
+        return f"{accepted_pages}/{pages} pages accepted (use --allow-partial to promote anyway)"
+    return None
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(
         description="Promote accepted OCR candidates into a new E4 revision")
@@ -126,13 +143,18 @@ def main() -> int:
                     help="also promote a born-digital (E2) document whose text "
                          "layer a reviewer replaced page by page; only when "
                          "every page has an accepted reading, never partially")
+    ap.add_argument("--allow-mixed", action="store_true",
+                    help="also promote a mixed (E3) document -- a text layer with "
+                         "OCR-filled pages -- whose pages a reviewer replaced; only "
+                         "when every page has an accepted reading, never partially "
+                         "(the --allow-text-layer rule)")
     ap.add_argument("--allow-partial", action="store_true",
                     help="promote a document where only some pages were "
                          "accepted, keeping the stored text for the rest")
     args = ap.parse_args()
 
     with connect() as conn, conn.cursor() as cur:
-        cur.execute(ELIGIBLE, (args.allow_text_layer, args.document_id, args.document_id))
+        cur.execute(ELIGIBLE, (args.allow_text_layer, args.allow_mixed, args.document_id, args.document_id))
         eligible = cur.fetchall()
 
     if not eligible:
@@ -144,17 +166,12 @@ def main() -> int:
 
     promoted = skipped = 0
     for old_id, lane, pages, accepted_pages in eligible:
+        # A text layer (E2 born-digital, E3 mixed) is replaced only as a whole: the
+        # reviewer judged the layer wrong, so no page keeps it beside promoted OCR.
         partial = accepted_pages < pages
-        # A born-digital text layer is replaced only as a whole: the reviewer
-        # judged the layer wrong, so no page keeps it beside promoted OCR.
-        if lane == "E2" and partial:
-            print(f"  {old_id}: SKIP -- E2 text layer, {accepted_pages}/{pages} "
-                  f"pages accepted; every page must be accepted")
-            skipped += 1
-            continue
-        if partial and not args.allow_partial:
-            print(f"  {old_id}: SKIP -- {accepted_pages}/{pages} pages accepted "
-                  f"(use --allow-partial to promote anyway)")
+        refusal = admission(lane, pages, accepted_pages, args.allow_partial)
+        if refusal:
+            print(f"  {old_id}: SKIP -- {refusal}")
             skipped += 1
             continue
 

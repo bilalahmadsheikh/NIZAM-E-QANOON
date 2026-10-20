@@ -216,3 +216,95 @@ def test_rows_in_one_block_are_ordered_by_the_page_not_by_the_reader():
     assert len(set(offsets)) == 9
     for entry in entries:
         assert contents[entry["source_char_offset"]:].startswith(entry["label"])
+
+
+# -- Contents anchors in VERBATIM text (fix K; owner-approved correction of 2205 and 4330, 11 Oct) ---------------------
+# Migration 0051 defines source_char_offset as an index into the anchoring block's verbatim text. A curation patch
+# that changes a contents block's length (4330: '22-B' -> '22-B.') or moves a row into another block (2205 rows 11,
+# 15) had shifted the anchor, or left it pointing at a block that does not print the row.
+
+_verbatim_toc_anchors = segment_module._verbatim_toc_anchors
+
+
+def _entry(label, block_id, offset, page=1):
+    return {"label": label, "source_block_id": block_id, "source_char_offset": offset, "source_page": page}
+
+
+def test_verbatim_anchors_leave_unchanged_text_alone():
+    raw = [{"id": 1, "page_no": 1, "text": "1. \nShort title. \n2. \nDefinitions. \n"}]
+    entries = [_entry("1", 1, 0), _entry("2", 1, 18)]
+    assert _verbatim_toc_anchors(entries, [dict(b) for b in raw], raw) == entries
+
+
+def test_verbatim_anchors_map_offsets_across_a_length_change():
+    # doc 4330 block 679901: a reading turns '22-B' into '22-B.'; every later row was one character late
+    raw_text = "22-B ***** \n23. \n***** \n24. \n***** \n"
+    patched_text = raw_text.replace("22-B ", "22-B. ", 1)
+    raw = [{"id": 7, "page_no": 1, "text": raw_text}]
+    patched = [{"id": 7, "page_no": 1, "text": patched_text}]
+    entries = [_entry("22-B", 7, 0), _entry("23", 7, patched_text.index("23.")),
+               _entry("24", 7, patched_text.index("24."))]
+    out = _verbatim_toc_anchors(entries, patched, raw)
+    assert [e["source_char_offset"] for e in out] == [0, raw_text.index("23."), raw_text.index("24.")]
+    assert all(raw_text[e["source_char_offset"]:].startswith(e["label"]) for e in out)
+
+
+def test_verbatim_anchors_start_of_a_rewritten_stretch_maps_to_its_verbatim_start():
+    # doc 3884's shape: '23.A' read as '23-A'; the row anchored on the rewritten label keeps the verbatim start
+    raw_text = "22. \nFees. \n23.A \nAppeals. \n"
+    patched_text = raw_text.replace("23.A", "23-A", 1)
+    out = _verbatim_toc_anchors([_entry("23-A", 3, patched_text.index("23-A"))],
+                                [{"id": 3, "page_no": 1, "text": patched_text}],
+                                [{"id": 3, "page_no": 1, "text": raw_text}])
+    assert out[0]["source_char_offset"] == raw_text.index("23.A")
+
+
+def test_verbatim_anchors_relocate_a_moved_row_to_the_block_that_prints_it():
+    # doc 2205 rows 11 and 15: a reading moved the row into the next block; the verbatim anchor is where it is printed
+    raw = [{"id": 10, "page_no": 1, "text": "10. \nFitness. \n11. \nDriver to be licensed. \n"},
+           {"id": 20, "page_no": 1, "text": "12. \nGrounds of refusal. \n"}]
+    patched = [{"id": 10, "page_no": 1, "text": "10. \nFitness. \n"},
+               {"id": 20, "page_no": 1, "text": "11. \nDriver to be licensed. \n12. \nGrounds of refusal. \n"}]
+    entries = [_entry("10", 10, 0), _entry("11", 20, 0), _entry("12", 20, patched[1]["text"].index("12."))]
+    out = _verbatim_toc_anchors(entries, patched, raw)
+    assert (out[1]["source_block_id"], out[1]["source_char_offset"]) == (10, raw[0]["text"].index("11."))
+    assert (out[2]["source_block_id"], out[2]["source_char_offset"]) == (20, 0)
+    assert out[0] == entries[0]
+
+
+def test_verbatim_anchors_record_none_rather_than_guess():
+    # the moved row's printed start occurs twice on its page: no anchor is chosen
+    raw = [{"id": 10, "page_no": 1, "text": "11. \nDriver to be licensed. \n"},
+           {"id": 11, "page_no": 1, "text": "11. \nDriver to be licensed. \n"},
+           {"id": 20, "page_no": 1, "text": "12. \nGrounds. \n"}]
+    patched = [dict(raw[0], text=""), dict(raw[1]),
+               {"id": 20, "page_no": 1, "text": "11. \nDriver to be licensed. \n12. \nGrounds. \n"}]
+    out = _verbatim_toc_anchors([_entry("11", 20, 0)], patched, raw)
+    assert out[0]["source_block_id"] == 20 and out[0]["source_char_offset"] is None
+    # nor on another page
+    out = _verbatim_toc_anchors([_entry("11", 20, 0, page=2)], patched, raw)
+    assert out[0]["source_char_offset"] is None
+
+
+def test_segment_anchors_contents_rows_in_verbatim_text_after_a_patch(monkeypatch):
+    contents = "CONTENTS \n1. \nShort title. \n2-A \nDefinitions. \n3. \nPowers. \n"
+    stream = blocks(contents,
+                    "1. Short title. This Act may be called the Test Act.",
+                    "2-A. Definitions. In this Act, unless the context otherwise requires.",
+                    "3. Powers. Government may appoint officers.")
+    patch = {"id": 1, "page_no": 1, "match_text": "CONTENTS", "before_text": "2-A \n", "after_text": "2-A. \n"}
+    seg = segment(stream, curation_patches=[patch])
+    rows = [(e["label"], e["source_block_id"], e["source_char_offset"]) for e in seg.toc_entries]
+    assert [label for label, _, _ in rows] == ["1", "2-A", "3"]
+    for label, block_id, offset in rows:
+        assert block_id == 0 and contents[offset:].startswith(label)
+    # without the mapping, row 3 was measured in the patched text: one character late in the verbatim block
+    monkeypatch.setattr(segment_module, "_verbatim_toc_anchors", lambda entries, _p, _v: entries)
+    unmapped = segment(stream, curation_patches=[patch])
+    late = {e["label"]: e["source_char_offset"] for e in unmapped.toc_entries}
+    assert late["3"] == contents.index("3.") + 1
+    # the anchors are the only difference: provisions and links are the same
+    assert [(n.kind, n.label, n.heading, n.text) for n in seg.flatten()] == \
+        [(n.kind, n.label, n.heading, n.text) for n in unmapped.flatten()]
+    assert [(e["label"], e["node"] is None) for e in seg.toc_entries] == \
+        [(e["label"], e["node"] is None) for e in unmapped.toc_entries]

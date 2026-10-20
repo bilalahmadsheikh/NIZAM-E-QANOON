@@ -1,0 +1,206 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 4690,
+ "source_observation_id": 4548,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-18",
+ "reviewed_by": "assistant page review (agent K6) of the owner-accepted OCR (ocr-review-doc-4626.json, candidates 1473-1484) on the owner's decisions",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/decision-review-2026-10-16-m.json",
+  "document_id": 4626,
+  "question_id": "q1",
+  "choice": "split",
+  "card_sha256": "4dc324002b742b658caa6f13c6c5d5e7d76e1953031529bf2baefbb5ce2009e2",
+  "q2": {
+   "export": ".artifacts/decision-review/exports/decision-review-2026-10-18-4598-4626.json",
+   "question_id": "q2",
+   "choice": "release-with-gap"
+  },
+  "q3_q5": {
+   "export": ".artifacts/decision-review/exports/decision-review-2026-10-18-4626b.json",
+   "q3": "rows-by-group",
+   "q4": "reconstruct",
+   "q5": "restore-11-flag-rest"
+  },
+  "effect": "The SCUG (Service) Rules 2020 (from the Local Government Department notification on p2 to the signature on p12) are this document's instrument; the S&GAD notification of 3 March 2020 amending the Sindh Civil Servants (APT) Rules 1974 (p1) is a separate instrument, released with gazette pp.299-301 recorded as source incompleteness; the officers' list (top of p2) and the Sindh Revenue Board notification (foot of p12) are other gazette content, outside every span."
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/ocr-review-pack-owner-2026-10-17/doc-4626/images/page-001.png",
+   "render_sha256": "d4f32ae9c9abef3dc6373b106cba000e822af5ca35e6556713b0ea4144e2973b"
+  },
+  {
+   "page": 2,
+   "render": ".artifacts/ocr-review-pack-owner-2026-10-17/doc-4626/images/page-002.png",
+   "render_sha256": "3a32ab874861a3fe105c30b3121aabaf82d37b74296b19b23978431c07103f0f"
+  },
+  {
+   "page": 3,
+   "render": ".artifacts/ocr-review-pack-owner-2026-10-17/doc-4626/images/page-003.png",
+   "render_sha256": "3d36f734da0a65c51d3c84c8ffe5b2caca36ae5e7bdcf0c7ba1c7ad0d23d30b0"
+  },
+  {
+   "page": 4,
+   "render": ".artifacts/ocr-review-pack-owner-2026-10-17/doc-4626/images/page-004.png",
+   "render_sha256": "05dddcc15b97f25fb2ded919c826d0ec2ae99659ed7a56bdcdc5a9edf37cda24"
+  },
+  {
+   "page": 5,
+   "render": ".artifacts/ocr-review-pack-owner-2026-10-17/doc-4626/images/page-005.png",
+   "render_sha256": "a1e5b8003cd08b61dfe07966de4d0ffe688401dc597e205a2119bd44df586c5d"
+  },
+  {
+   "page": 6,
+   "render": ".artifacts/ocr-review-pack-owner-2026-10-17/doc-4626/images/page-006.png",
+   "render_sha256": "a5e31c45f1bb0c20bf96314f677d9fd4257876e9d75a6e6265607f5f994ae9dc"
+  },
+  {
+   "page": 7,
+   "render": ".artifacts/ocr-review-pack-owner-2026-10-17/doc-4626/images/page-007.png",
+   "render_sha256": "915a825d4c2e55f04735ad33cc1eebc92a6a532ef78251d4ecb97c42858a8c34"
+  },
+  {
+   "page": 8,
+   "render": ".artifacts/ocr-review-pack-owner-2026-10-17/doc-4626/images/page-008.png",
+   "render_sha256": "6ec44cecb5f4962fa1efb7f90fa9d374576c1e20593cd047655c0b1756fead77"
+  },
+  {
+   "page": 9,
+   "render": ".artifacts/ocr-review-pack-owner-2026-10-17/doc-4626/images/page-009.png",
+   "render_sha256": "0538bbf4be6dbc1a6ac3ca7d694857fcb4050a13dd9fdbd921de874e48853b6a"
+  },
+  {
+   "page": 10,
+   "render": ".artifacts/ocr-review-pack-owner-2026-10-17/doc-4626/images/page-010.png",
+   "render_sha256": "937c7378aa6dd6f658c2ee58a2e6143375b6e287899baa4ec02b5fc0b5786ad5"
+  },
+  {
+   "page": 11,
+   "render": ".artifacts/ocr-review-pack-owner-2026-10-17/doc-4626/images/page-011.png",
+   "render_sha256": "6742684331622dbf03e213f04a8990a396e8928e58f4761b3ca558f50962dafe"
+  },
+  {
+   "page": 12,
+   "render": ".artifacts/ocr-review-pack-owner-2026-10-17/doc-4626/images/page-012.png",
+   "render_sha256": "bbabe8ae3577b5c996819340c3bcc1b30026336d4292fca3debe362f9bbe4100"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Constitution and Regulation of the Sindh Councils Unified Grades (Service) Rules, 2020",
+   "kind": "rules",
+   "year": 2020,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 974011,
+     "end_block_id": 974155,
+     "pages": "2-12"
+    }
+   ],
+   "source_anomalies": [
+    {
+     "page": 2,
+     "source_block_id": 974018,
+     "printed": "(g) ... [a badly faded line] ... (i) \"member of service\"",
+     "note": "RECONSTRUCTION (owner 4626 q4 'reconstruct', decision-review-2026-10-18-4626b.json): rule 2(1)(h) is released as '\"initial recruitment\" means appointment made otherwise than by promotion or transfer;', reconstructed from a faded print -- visible fragments '\"initial recruitment\" means ... appointment made ... [o]therwise ...', no label visible; NOT the printed text as read. The OCR's '\"Indef. reportment\" means a commission made by the Sindh Local Government Board;' is not printed and is not used. The labels (i)-(l) are as printed"
+    },
+    {
+     "page": 4,
+     "source_block_id": 974048,
+     "printed": "(d) in the case of posts in Basic [Pay] Scale[s] 1[?], by the Secretary ...",
+     "note": "FADED (owner q5 'restore-11-flag-rest'): 8(1)(d)'s pay scale is faded; the accepted OCR words 'Basic Pay Scale 18' are kept"
+    },
+    {
+     "page": 4,
+     "source_block_id": 974052,
+     "printed": "... the medical examination, certifies that [the defect] shall [not] interfere with his duties",
+     "note": "FADED (q5): 10(1)'s proviso is partly faded; the accepted OCR words are kept"
+    },
+    {
+     "page": 4,
+     "source_block_id": 974053,
+     "printed": "[11.] No person ...",
+     "note": "FADED (q5): rule 11's number is faded out and RESTORED as '11.' (position and sequence); its text keeps the accepted OCR words ('cismissed', margin 'demissed'), flagged"
+    },
+    {
+     "page": 5,
+     "source_block_id": 974070,
+     "printed": "(b), the extended period of probation.",
+     "note": "sic: item (b) of 16(2)'s proviso is printed '(b),' with a comma after its label and is read in (a)'s text"
+    },
+    {
+     "page": 9,
+     "source_block_id": 974132,
+     "printed": "By promotion from a[mongst the] members of the service [holding the] post of Senior Consulta[nt]",
+     "note": "FADED (q5): Medical (a) row 1 is partly faded; the accepted OCR words are kept"
+    },
+    {
+     "page": 10,
+     "source_block_id": 974140,
+     "printed": "rows 2-4, e.g. 'Executive Engineer (Civil) (BPS-[?])', '(ii) Twenty percent ...'",
+     "note": "FADED (q5): Civil rows 2-4 and 4(ii) are partly faded; the accepted OCR words are kept"
+    },
+    {
+     "page": 10,
+     "source_block_id": 974138,
+     "printed": "V -ENGINEERING BRANCH",
+     "note": "sic: the branch captions run I, II, III, V; no IV is printed"
+    },
+    {
+     "page": 11,
+     "source_block_id": 974143,
+     "printed": "(iv) Fifteen percent by promotion [fr]om amongst ...",
+     "note": "FADED (q5): Civil row 4(iv) is partly faded; the accepted OCR words are kept"
+    },
+    {
+     "page": 12,
+     "source_block_id": 974148,
+     "printed": "(d) Fifteen percent by promotion from amongst the Diploma Hold[ers] ...",
+     "note": "FADED (q5): E&M row 04(d) is partly faded; the accepted OCR words are kept"
+    },
+    {
+     "page": 12,
+     "source_block_id": 974151,
+     "printed": "(a) Thirty percent by initial recruitment through Sindh Public Se[rvice] Commission ...",
+     "note": "FADED (q5): E&M row 05(a) is partly faded; the accepted OCR words are kept"
+    },
+    {
+     "page": 12,
+     "source_block_id": 974152,
+     "printed": "(b) Seventy percent by promotion ... [largely faded]",
+     "note": "FADED (q5): E&M row 05(b) is largely faded; the accepted OCR words are kept (e.g. 'Basic Pay Scale 1 of', 'who have years service', 'seniority-oum-finess'), flagged"
+    }
+   ],
+   "expected_tree": "preface (LOCAL GOVERNMENT AND HOUSING TOWN PLANNING DEPARTMENT, 'Karachi dated the 20th February 2020', No.RO(LG)/MISC/4(21)/2019 and the enacting words); PART-I PRELIMINARY rules 1-2; PART-II rule 3; CHAPTER-III rules 4-15; CHAPTER-IV rules 16-18; CHAPTER-V rules 19-25; PART-VI rules 26-29; the APPENDIX (See rule 5(2)) with its rows under the printed branch captions; margin notes as marginal notes; the running heads, folios and the signature set aside"
+  },
+  {
+   "ordinal": 1,
+   "role": "embedded",
+   "title": "Services, General Administration & Coordination Department (Regulation Wing) Notification No. SORI(SGA&CD)3-76/2019 dated 3 March 2020 (amendments in the Sindh Civil Servants (Appointment, Promotion & Transfer) Rules, 1974)",
+   "kind": "notification",
+   "year": 2020,
+   "number": "No. SORI(SGA&CD)3-76/2019",
+   "spans": [
+    {
+     "start_block_id": 973984,
+     "end_block_id": 974004,
+     "pages": "1"
+    }
+   ],
+   "source_anomalies": [
+    {
+     "page": 1,
+     "source_block_id": 974004,
+     "printed": "(298)",
+     "note": "the notification continues on gazette pp.299-301, which are not in this copy (source incompleteness, owner 4626 q2 'release-with-gap'); released as far as printed, to the substituted clause (e)"
+    }
+   ],
+   "expected_tree": "preface (the Gazette cover of Thursday March 12, 2020 No. 12 with its CONTENTS, PART-I, NOTIFICATIONS BY THE GOVERNMENT OF SINDH, the department, 'Karachi, dated the 3rd March, 2020', No. SORI(SGA&CD)3-76/2019 and the enacting words, AMENDMENTS); item 1 'In rule 2-' with i. and the substituted clauses \"(d)\" and (e) as quoted text; the foot line set aside"
+  }
+ ],
+ "apparatus": "outside every span: the end of an officers' list notification at the top of p2 (gazette p.302 head, the list 1-12, its para 2 and the signature LAEEQ AHMED) and, after the Rules' signature on p12, the start of a Sindh Revenue Board notification (SRB-3-4/5/2018); inside the spans the running heads, folios, the Rules' signature, the cover's handwritten title and foot line are set aside by the reviewed readings (claude/agK6/work/agK6-mk_4626.py)"
+}

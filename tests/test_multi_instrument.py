@@ -192,6 +192,7 @@ def test_outer_title_ocr_spelling_variants_are_not_split():
 
 # --------------------------------------------------- reviewed expression plans
 import copy
+import json
 
 import pytest
 
@@ -262,6 +263,20 @@ def test_plan_refuses_what_it_does_not_state_exactly(mutate, message):
     mutate(plan)
     with pytest.raises(ValueError, match=message):
         materializer.validate_plan(plan, _plan_blocks(), 7, 70)
+
+
+def test_plan_source_anomalies_are_validated():
+    # lead decision 8 Oct (doc 1106): printed oddities kept as printed reach the manifest
+    plan = copy.deepcopy(_plan())
+    anomaly = {"page": 2, "source_block_id": 106, "printed": "LORICULTURE", "note": "sic, kept as printed"}
+    plan["expressions"][0]["source_anomalies"] = [anomaly]
+    specs = materializer.validate_plan(plan, _plan_blocks(), 7, 70)
+    assert specs[0]["source_anomalies"] == [anomaly] and specs[1]["source_anomalies"] == []
+    for bad in (dict(anomaly, source_block_id=102),          # in another expression's span
+                dict(anomaly, printed=" "), {k: v for k, v in anomaly.items() if k != "note"}):
+        plan["expressions"][0]["source_anomalies"] = [bad]
+        with pytest.raises(ValueError, match="source anomaly"):
+            materializer.validate_plan(plan, _plan_blocks(), 7, 70)
 
 
 def _patch(pid, page, match, before, after, apparatus=None):
@@ -373,3 +388,246 @@ def test_document_268_plan_partitions_its_blocks():
         ("embedded", "order", 1998)]
     assert specs[1]["relations"][0]["target_ordinal"] == 0
     assert specs[0]["title_correction"]["from_year"] == 1981
+
+
+# -- Undated expressions (migration 0063; doc 1973 q3 'undated', export -i) ------------------------------------------
+
+def _undated_export(tmp_path, choice="undated", document_id=7):
+    export = tmp_path / "decision-review-undated.json"
+    export.write_text(json.dumps({"answers": [
+        {"document_id": document_id, "question_id": "q3", "choice": choice},
+        {"document_id": document_id, "question_id": "q4", "choice": "number-1"}]}), encoding="utf-8")
+    return str(export)
+
+
+def _undated_plan(tmp_path, **changes):
+    plan = copy.deepcopy(_plan())
+    value = plan["expressions"][2]
+    value.update({"year": None, "year_status": "undated",
+                  "owner_decision": {"export": _undated_export(tmp_path), "document_id": 7,
+                                     "question_id": "q3"}})
+    value.update(changes)
+    return plan
+
+
+def test_reviewed_identity_without_a_year_infers_none_and_reads_yundated():
+    # Doc 1973 E4's title names 'the Opium Act, 1878' and its text '1956': neither is the notification's year.
+    blocks = [{"id": 9201, "page_no": 8, "text": "1. In exercise of the power conferred by section 5 of the Opium Act "
+               "1878 read with rule 2 (g) of the Rules published with notification dated the 23rd November 1956.",
+               "y0": 10.0, "page_height": 792.0, "x0": 10.0, "x1": 500.0}]
+    title = "West Pakistan notification under section 5 of the Opium Act, 1878"
+    inst, _ = build(1973, "a" * 64, 2341, "pk-punjab", title, None, None, blocks, "2026-10-10",
+                    expression_ordinal=4, expression_role="embedded", profile="default",
+                    reviewed_identity={"kind": "notification", "year": None, "number": None})
+    assert (inst.kind, inst.year, inst.number) == ("notification", None, None)
+    assert inst.provisions
+    assert all(row["path"].startswith("punjab.notification.yundated_o2341_e4.") for row in inst.provisions)
+    # the same title without a reviewed identity infers 1878: why the identity is taken whole
+    inferred, _ = build(1973, "a" * 64, 2341, "pk-punjab", title, None, None, blocks, "2026-10-10",
+                        expression_ordinal=4, expression_role="embedded", profile="default")
+    assert inferred.year == 1878
+
+
+def test_plan_admits_no_year_only_on_the_owners_undated(tmp_path):
+    specs = materializer.validate_plan(_undated_plan(tmp_path), _plan_blocks(), 7, 70)
+    assert specs[2]["year"] is None
+    assert specs[2]["year_owner_decision"] == {
+        "export": _undated_export(tmp_path), "document_id": 7, "question_id": "q3", "choice": "undated"}
+    assert specs[0]["year_owner_decision"] is None and specs[1]["year_owner_decision"] is None
+
+
+@pytest.mark.parametrize("changes, message", [
+    ({"year_status": None}, "year_status 'undated'"),
+    ({"year_status": "unknown"}, "year_status 'undated'"),
+    ({"owner_decision": None}, "owner_decision must name"),
+    ({"owner_decision": {"export": "missing.json", "document_id": 7, "question_id": "q3"}}, "does not exist"),
+    ({"owner_decision": {"export": "E", "document_id": 8, "question_id": "q3"}}, "cites document 8"),
+    ({"owner_decision": {"export": "E", "document_id": 7, "question_id": "q4"}},
+     r"choice 'number-1', not one of \['undated'\]"),
+    ({"owner_decision": {"export": "E", "document_id": 7, "question_id": "q9"}}, "holds 0 answers"),
+    ({"title_correction": {"from_title": "ORDER", "to_year": None, "basis": "p2"}}, "title_correction"),
+])
+def test_plan_refuses_an_undated_expression_without_the_owners_undated(tmp_path, changes, message):
+    export = _undated_export(tmp_path)
+    changes = {k: (dict(v, export=export) if isinstance(v, dict) and v.get("export") == "E" else v)
+               for k, v in changes.items()}
+    plan = _undated_plan(tmp_path, **changes)
+    with pytest.raises(ValueError, match=message):
+        materializer.validate_plan(plan, _plan_blocks(), 7, 70)
+
+
+def test_plan_refuses_year_status_on_a_dated_expression():
+    plan = copy.deepcopy(_plan())
+    plan["expressions"][2]["year_status"] = "undated"
+    with pytest.raises(ValueError, match="year_status is only for an undated"):
+        materializer.validate_plan(plan, _plan_blocks(), 7, 70)
+
+
+def _stub_storage(monkeypatch, blocks, outer):
+    monkeypatch.setattr(materializer.legal_write, "blocks_for", lambda _d: blocks)
+    monkeypatch.setattr(materializer.legal_write, "segmentation_patches_for", lambda _o: [])
+    monkeypatch.setattr(materializer.legal_write, "structural_resolutions_for", lambda _d: [])
+    monkeypatch.setattr(materializer.legal_write, "observed_on", lambda _o: "2026-10-10")
+    monkeypatch.setattr(materializer.legal_write, "toc_dispositions_for", lambda _o, _n: [])
+    monkeypatch.setattr(materializer, "_outer", lambda _d, _o: outer)
+    # migration 0064: no active manifest of the stub observation declares a historical window
+    monkeypatch.setattr(materializer, "active_historical_manifests", lambda _o: {})
+
+
+def _laid(i, page, text):
+    return {"id": i, "page_no": page, "text": text, "y0": 10.0 + i % 50, "page_height": 792.0,
+            "x0": 10.0, "x1": 500.0}
+
+
+def test_the_manifest_of_an_undated_expression_carries_the_owners_undated(tmp_path, monkeypatch):
+    blocks = [_laid(101 + i, 1 + i // 4, f"{i + 1}. Rule {i + 1} of these rules applies to the Collector.")
+              for i in range(12)]
+    outer = {"source_observation_id": 70, "sha256": "a" * 64, "source_id": "pk-punjab", "source_url": None}
+    _stub_storage(monkeypatch, blocks, outer)
+    monkeypatch.setattr(materializer, "_boundary_rows", lambda _o: [])
+    monkeypatch.setattr(materializer, "plan_boundaries", lambda specs, _b, _r: {s["ordinal"]: None for s in specs})
+    plan = _undated_plan(tmp_path)
+    plan["expressions"][0].pop("title_correction")
+    insts, _segs, manifests, _ = materializer.prepare_from_plan(7, plan, profile="default", allow_empty=True)
+    assert [i.year for i in insts] == [1996, 2003, None]
+    assert all(r["path"].startswith("punjab.order.yundated_O1_o70_e2.") for r in insts[2].provisions)
+    assert manifests[2]["detected_year"] is None
+    assert manifests[2]["evidence"]["year_status"] == "undated"
+    assert manifests[2]["evidence"]["year_owner_decision"] == {
+        "export": _undated_export(tmp_path), "document_id": 7, "question_id": "q3", "choice": "undated"}
+    assert "year_status" not in manifests[0]["evidence"] and "year_owner_decision" not in manifests[1]["evidence"]
+
+
+def test_a_listed_document_never_fills_a_missing_year_from_the_catalogue(monkeypatch):
+    # The legacy listing (PRIMARY/COMPILATION) builds from stored years; one missing is refused, not
+    # filled from the catalogue's meta_year (INV-1).
+    blocks = [_laid(201 + i, 1, f"{i + 1}. Section {i + 1} of this Act applies.") for i in range(6)]
+    outer = {"instrument_id": "x", "source_observation_id": 77, "document_id": 977, "sha256": "a" * 64,
+             "jurisdiction": "fed", "kind": "act", "number": None, "year": 1990,
+             "short_title": "The Example Act, 1990", "source_url": None, "source_id": "pk-fed",
+             "meta_year": "1990"}
+    boundary = {"candidate_id": "c", "start_block_id": 204, "source_page": 1, "title": "The Schedule Rules",
+                "kind": "rules", "year": None, "number": None, "confidence": 1.0, "detector": "plan",
+                "evidence": {}}
+    _stub_storage(monkeypatch, blocks, outer)
+    monkeypatch.setattr(materializer, "_load", lambda _d, _o=None: (outer, [boundary]))
+    with pytest.raises(ValueError, match="has no year; an undated expression is built only from a reviewed plan"):
+        materializer.prepare(977)
+
+
+def test_plan_admits_the_empowers_relation():
+    # docs/03b edge `empowers` (lead decision 11 Oct 2026, doc 4428: the Act's s.26 empowers the 2010 Rules)
+    assert materializer.PLAN_RELATIONS == {"amends", "empowers"}
+    plan = copy.deepcopy(_plan())
+    plan["expressions"][0]["title_correction"] = None
+    plan["expressions"][0]["relations"] = [{"type": "empowers", "target_ordinal": 1, "source_block_id": 106,
+                                            "source_provision_path": "x.s_26", "effect": "s.26 empowers the rules",
+                                            "basis": "p2 prints s.26"}]
+    specs = materializer.validate_plan(plan, _plan_blocks(), 7, 70)
+    assert specs[0]["relations"][0]["type"] == "empowers"
+    plan["expressions"][0]["relations"][0]["type"] = "made_under"
+    with pytest.raises(ValueError, match="is not one of"):
+        materializer.validate_plan(plan, _plan_blocks(), 7, 70)
+
+
+def test_a_plan_expression_may_state_its_own_jurisdiction():
+    # doc 4347 E3, a Punjab notification printed inside a Sindh booklet (lead decision 12 Oct 2026; agent DF)
+    plan = copy.deepcopy(_plan())
+    plan["expressions"][0]["title_correction"] = None
+    specs = materializer.validate_plan(plan, _plan_blocks(), 7, 70)
+    assert specs[0]["jurisdiction"] is None                         # absent: the observation's source jurisdiction
+    plan["expressions"][0]["jurisdiction"] = "punjab"
+    with pytest.raises(ValueError, match="jurisdiction_basis"):
+        materializer.validate_plan(plan, _plan_blocks(), 7, 70)
+    plan["expressions"][0]["jurisdiction_basis"] = "the page prints 'Government of the Punjab'"
+    specs = materializer.validate_plan(plan, _plan_blocks(), 7, 70)
+    assert specs[0]["jurisdiction"] == "punjab"
+    plan["expressions"][0]["jurisdiction"] = "Punjab"
+    with pytest.raises(ValueError, match="must be one of"):
+        materializer.validate_plan(plan, _plan_blocks(), 7, 70)
+
+
+def test_document_4434_is_materialised_from_its_plan():
+    # owner export j q2 (12 Oct 2026): expression 11 split into the 13th, 14th and 16th Amendment Acts; agent K5's plan
+    # (lead 15-16 Oct): e3/e10/e20/e39 at their printed titles, e38 split (e45 = P.O. 11 of 1985), e0 'fed' and the
+    # 2016 historical window -- 46 expressions
+    plan = materializer.load_plan(4434)
+    assert plan is not None and 4434 in materializer.REVIEWED_DOCUMENTS
+    assert 4434 not in materializer.PRIMARY_DOCUMENTS | materializer.COMPILATION_DOCUMENTS
+    assert len(plan["expressions"]) == 46
+    e0 = next(e for e in plan["expressions"] if e["ordinal"] == 0)
+    vv = e0["version_validity"]
+    assert (vv["from"], vv["to"]) == ("2016-06-08", "2017-01-07") and vv["owner_decision"]["question_id"] == "q3"
+
+
+def test_documents_4431_and_3782_are_materialised_from_their_plans():
+    # 4431 (agent K2; export l q5 'split-fee-notification'): the Rules + three notifications; 3782 (agent K4; delegated
+    # q4 'undated' for E1): the Rules + five amending notifications
+    for doc, n in ((4431, 4), (3782, 6)):
+        plan = materializer.load_plan(doc)
+        assert plan is not None and doc in materializer.REVIEWED_DOCUMENTS
+        assert doc not in materializer.PRIMARY_DOCUMENTS | materializer.COMPILATION_DOCUMENTS
+        assert len(plan["expressions"]) == n
+        assert not (materializer.PLAN_DIRECTORY / f"doc-{doc}-DRAFT.json").exists()
+
+
+def test_documents_3730_and_3696_are_materialised_from_their_plans():
+    # 3730 (agent K4; owner export j q1 'split', delegated q2 'rows-by-group'): the Rules, the completion notification
+    # and the rates notification with Annexures A-E; 3696 (agent K4; delegated q2 'split-and-realign', q3 'keep-both';
+    # lead 16 Oct: a released change, the 128 path moves approved): six instruments of the 1998 gazette
+    for doc, n in ((3730, 3), (3696, 6)):
+        plan = materializer.load_plan(doc)
+        assert plan is not None and doc in materializer.REVIEWED_DOCUMENTS
+        assert doc not in materializer.PRIMARY_DOCUMENTS | materializer.COMPILATION_DOCUMENTS
+        assert len(plan["expressions"]) == n
+        assert not (materializer.PLAN_DIRECTORY / f"doc-{doc}-DRAFT.json").exists()
+
+
+def test_document_3949_is_materialised_from_its_plan():
+    # agent JF (owner export m q1 keep-both, q2 keep-printed; owner 17 Oct q3 rows-by-post, q4 release-with-gap): the
+    # Punjab Education Foundation compilation's five instruments, on the DEFAULT profile (its E1/E2 are released)
+    plan = materializer.load_plan(3949)
+    assert plan is not None and 3949 in materializer.REVIEWED_DOCUMENTS
+    assert 3949 not in materializer.PRIMARY_DOCUMENTS | materializer.COMPILATION_DOCUMENTS
+    assert len(plan["expressions"]) == 5
+    assert not (materializer.PLAN_DIRECTORY / "doc-3949-DRAFT.json").exists()
+
+
+def test_materializer_refuses_unknown_patch_keys_rather_than_dropping_them():
+    # lead 13 Oct (agent JE, doc 4431): a key the materializer does not know is refused and named, never dropped
+    from tools.record_curation_patch import READING_KEYS, STRUCTURAL_KEYS
+    assert set(materializer.STRUCTURAL_PATCH_KEYS) == set(STRUCTURAL_KEYS)
+    assert materializer.NON_STRUCTURAL_READING_KEYS == set(READING_KEYS) - set(STRUCTURAL_KEYS)
+    for key in ("source_figure_subsections", "source_margin_note_pieces"):
+        assert key in materializer.STRUCTURAL_PATCH_KEYS
+    known = {"id": 1, "evidence": {"structural_overrides": {"source_apparatus_blocks": [5]}}}
+    bogus = {"id": 2, "evidence": {"structural_overrides": {"source_bogus_blocks": [5]}}}
+    assert materializer.unknown_patch_key_problem([known]) is None
+    problem = materializer.unknown_patch_key_problem([known, bogus])
+    assert problem and "source_bogus_blocks" in problem and "patch 2" in problem
+    # the legacy route applies none: any structural override is refused there
+    assert "legacy route" in materializer.unknown_patch_key_problem([known], structural_allowed=False)
+    assert materializer.unknown_patch_key_problem([{"id": 3, "evidence": {}}], structural_allowed=False) is None
+    reading = {"document_id": 7, "page_no": 1, "match_text": "m", "before_text": "b", "after_text": "b",
+               "source_bogus_blocks": [5]}
+    with pytest.raises(ValueError, match=r"reading 0 carries key\(s\) \['source_bogus_blocks'\]"):
+        materializer.unrecorded_readings([reading], [], 7)
+
+
+def test_document_3423_is_materialised_from_its_plan():
+    # agent K3 (owner export j q1 'main-plus-notifications'; delegated q2 'split-annexes-v-vi'; 16 Oct 2026): 3423 left
+    # COMPILATION_DOCUMENTS for its reviewed three-expression plan -- the 2015 Guidebook notification (two spans, its
+    # annex pages around the embedded notifications) and the embedded 2013 and 2007 notifications
+    plan = materializer.load_plan(3423)
+    assert plan is not None and 3423 in materializer.REVIEWED_DOCUMENTS
+    assert 3423 not in materializer.PRIMARY_DOCUMENTS | materializer.COMPILATION_DOCUMENTS
+    assert [e["ordinal"] for e in plan["expressions"]] == [0, 1, 2]
+    assert not (materializer.PLAN_DIRECTORY / "doc-3423-DRAFT.json").exists()
+
+
+def test_document_3389_is_materialised_from_its_plan():
+    # agent JB (owner export j; 14 Oct 2026): 3389 left PRIMARY_DOCUMENTS for its reviewed two-expression plan
+    plan = materializer.load_plan(3389)
+    assert plan is not None and 3389 in materializer.REVIEWED_DOCUMENTS
+    assert 3389 not in materializer.PRIMARY_DOCUMENTS | materializer.COMPILATION_DOCUMENTS
+    assert [e["ordinal"] for e in plan["expressions"]] == [0, 1]

@@ -1,0 +1,426 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 4640,
+ "source_observation_id": 4555,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-18",
+ "reviewed_by": "assistant page review (agent K6) of the owner-accepted OCR (ocr-review-doc-4442-rereview.json) on the owner's decisions",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/decision-review-2026-10-16-m.json",
+  "document_id": 4640,
+  "question_id": "q1",
+  "choice": "split",
+  "q3": {
+   "export": ".artifacts/decision-review/exports/decision-review-2026-10-18-4640.json",
+   "question_id": "q3",
+   "choice": "gap-multiword-reconstruct-single"
+  },
+  "q4": {
+   "export": ".artifacts/decision-review/exports/decision-review-2026-10-18-4640.json",
+   "question_id": "q4",
+   "choice": "reviewed-block-order"
+  },
+  "q5": {
+   "export": ".artifacts/decision-review/exports/decision-review-2026-10-18-4640.json",
+   "question_id": "q5",
+   "choice": "section-group-captions"
+  },
+  "q6": {
+   "export": ".artifacts/decision-review/exports/decision-review-2026-10-18-4640.json",
+   "question_id": "q6",
+   "choice": "illegible-marker"
+  },
+  "effect": "The Service Rules (pp1-8) and the Conduct of Business Rules (pp9-40) are separate instruments, each under its own notification; faint print as flagged gaps or single-word reconstructions; the misbound p33 read after p30; rule 38's divisions as section group captions."
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/ocr-review-pack-r5/doc-4442/images/page-001.png",
+   "render_sha256": "a321ca1dbde05ad24f25893b5847fc207b859b757ae66052840300535856d400"
+  },
+  {
+   "page": 2,
+   "render": ".artifacts/ocr-review-pack-r5/doc-4442/images/page-002.png",
+   "render_sha256": "6520b8fbce48979889c4a366d65d7e2b0406706323800e73042e440bc3d4c3b8"
+  },
+  {
+   "page": 3,
+   "render": ".artifacts/ocr-review-pack-r5/doc-4442/images/page-003.png",
+   "render_sha256": "46669a492d895e0952ed03b4baeabd7d5c89476f81900963768351cae67c2a84"
+  },
+  {
+   "page": 4,
+   "render": ".artifacts/ocr-review-pack-r5/doc-4442/images/page-004.png",
+   "render_sha256": "e7528917047a0349b3a272f9358d27fb2b624870214148a600d6c6645c4ce78b"
+  },
+  {
+   "page": 5,
+   "render": ".artifacts/ocr-review-pack-r5/doc-4442/images/page-005.png",
+   "render_sha256": "87f6238f4bfb327cfb9b311ec0b3b06660cbc1a51da2d516288a8967ac3341d3"
+  },
+  {
+   "page": 6,
+   "render": ".artifacts/ocr-review-pack-r5/doc-4442/images/page-006.png",
+   "render_sha256": "6602fce71f6f54d544c0080405a3b95b13aec2bea7f3ddaeb0f2759600421c56"
+  },
+  {
+   "page": 7,
+   "render": ".artifacts/ocr-review-pack-r5/doc-4442/images/page-007.png",
+   "render_sha256": "e2745355772b7d670ba0ee80544c6e1267decea65d1852ae49f8787813263ed7"
+  },
+  {
+   "page": 8,
+   "render": ".artifacts/ocr-review-pack-r5/doc-4442/images/page-008.png",
+   "render_sha256": "f7554f383dda3ba95743ce262c781c5cd6240eec3859000c7a904d033ba319a4"
+  },
+  {
+   "page": 9,
+   "render": ".artifacts/ocr-review-pack-r5/doc-4442/images/page-009.png",
+   "render_sha256": "ad32b85feaf467876fab70e4b9c0ec133d24caef8db1d1610c1b2a63ccce47a9"
+  },
+  {
+   "page": 10,
+   "render": ".artifacts/ocr-review-pack-r5/doc-4442/images/page-010.png",
+   "render_sha256": "4b082e6d38fa7981e227c263b7eb54e99f76e0d846767b14233517c259335465"
+  },
+  {
+   "page": 11,
+   "render": ".artifacts/ocr-review-pack-r5/doc-4442/images/page-011.png",
+   "render_sha256": "a8343231c52bc09e4ab3c950d8ff7683511e7401d053b450367fa29e4c49a3c4"
+  },
+  {
+   "page": 12,
+   "render": ".artifacts/ocr-review-pack-r5/doc-4442/images/page-012.png",
+   "render_sha256": "ab7628113256ebd48e3b53583fafe632de46846af4d3d162bfe4be493f60750f"
+  },
+  {
+   "page": 13,
+   "render": ".artifacts/ocr-review-pack-r5/doc-4442/images/page-013.png",
+   "render_sha256": "1bd5c4c62bd61248e009d8c667d596599b0fee4d6ac99245e6e42754b1ffe73d"
+  },
+  {
+   "page": 14,
+   "render": ".artifacts/ocr-review-pack-r5/doc-4442/images/page-014.png",
+   "render_sha256": "8d03a7db21ef34d2dda8d64cfea361447e5dea46f48cc10afb4ab4456d3206f6"
+  },
+  {
+   "page": 15,
+   "render": ".artifacts/ocr-review-pack-r5/doc-4442/images/page-015.png",
+   "render_sha256": "4003085e7121e3010f65e9b178e424273a9e737fbd37452220a587db12e48846"
+  },
+  {
+   "page": 16,
+   "render": ".artifacts/ocr-review-pack-r5/doc-4442/images/page-016.png",
+   "render_sha256": "b05727ceda1bba88b1669349441acafd25453751c24fbe51b275e6b3c21e9998"
+  },
+  {
+   "page": 17,
+   "render": ".artifacts/ocr-review-pack-r5/doc-4442/images/page-017.png",
+   "render_sha256": "33fa3b3f3ae2048983d09c616bd63e3ffda47f3f79067c0f54fd05b9d3207996"
+  },
+  {
+   "page": 18,
+   "render": ".artifacts/ocr-review-pack-r5/doc-4442/images/page-018.png",
+   "render_sha256": "bad7ab9b8a71a0c0641e2d3b49248f7538facb7383ab81b33838df4fcfbb4f71"
+  },
+  {
+   "page": 19,
+   "render": ".artifacts/ocr-review-pack-r5/doc-4442/images/page-019.png",
+   "render_sha256": "6246f3b676c206ed4737e7c0d24f5e86fe4c3029dba10c792a8d3e08de63b706"
+  },
+  {
+   "page": 20,
+   "render": ".artifacts/ocr-review-pack-r5/doc-4442/images/page-020.png",
+   "render_sha256": "093c012c3753292e9626f79ca187d2ee9ffd343a950f6f26b4057586d6a65b0e"
+  },
+  {
+   "page": 21,
+   "render": ".artifacts/ocr-review-pack-r5/doc-4442/images/page-021.png",
+   "render_sha256": "d64bc8efdaed844ee6a67c49ebef4ccb9dfb436d4c2866bfa313af8a9b291bee"
+  },
+  {
+   "page": 22,
+   "render": ".artifacts/ocr-review-pack-r5/doc-4442/images/page-022.png",
+   "render_sha256": "ef5ea123bbe4bf12f6ee7d7c327e0a2d6b940e1f0045cd458c49863dedc9cb4b"
+  },
+  {
+   "page": 23,
+   "render": ".artifacts/ocr-review-pack-r5/doc-4442/images/page-023.png",
+   "render_sha256": "c408dcf2bd2f11c55e562d95b3b7d30e695504f0ee09a607fcbbe5e04a4ba980"
+  },
+  {
+   "page": 24,
+   "render": ".artifacts/ocr-review-pack-r5/doc-4442/images/page-024.png",
+   "render_sha256": "70e0c00380d2e390db24fd6bbd5efd0055869b35f2e7ccd5d2b2a0d9aa76ce69"
+  },
+  {
+   "page": 25,
+   "render": ".artifacts/ocr-review-pack-r5/doc-4442/images/page-025.png",
+   "render_sha256": "b785fd577f256c20ff6a9df1bc0ef7fedca1a90034b77684233637ce4bfa574a"
+  },
+  {
+   "page": 26,
+   "render": ".artifacts/ocr-review-pack-r5/doc-4442/images/page-026.png",
+   "render_sha256": "95f74066b0017f01d49ae24ac48f32cea5da4999989440dc53130be09e79b527"
+  },
+  {
+   "page": 27,
+   "render": ".artifacts/ocr-review-pack-r5/doc-4442/images/page-027.png",
+   "render_sha256": "e8331529bdd5956a90bc12b4ad7afc0fba2b12f5a5ef49ec7210d18ffe1a22d8"
+  },
+  {
+   "page": 28,
+   "render": ".artifacts/ocr-review-pack-r5/doc-4442/images/page-028.png",
+   "render_sha256": "ed8ac6ededd13d05a9a6bf503fdaf525a2bbccb54007fcbd10991f399ca9a501"
+  },
+  {
+   "page": 29,
+   "render": ".artifacts/ocr-review-pack-r5/doc-4442/images/page-029.png",
+   "render_sha256": "f63df66066bf4a1840f9607095c12fd1c91f404692b1719b2fc4e62a09d05c66"
+  },
+  {
+   "page": 30,
+   "render": ".artifacts/ocr-review-pack-r5/doc-4442/images/page-030.png",
+   "render_sha256": "a7a911ac0d6f54aebee010b59da933862ec1ea161906650791ca8d8c6b43fb0a"
+  },
+  {
+   "page": 31,
+   "render": ".artifacts/ocr-review-pack-r5/doc-4442/images/page-031.png",
+   "render_sha256": "619b7f01e9a56eee8e9f9478e50da6fef7f9b28a9bbe8e6ca732422f1062e035"
+  },
+  {
+   "page": 32,
+   "render": ".artifacts/ocr-review-pack-r5/doc-4442/images/page-032.png",
+   "render_sha256": "8d25a0c9d0519ee9daa160c4b1f5c06edee9519af9a7017294ec22af86526775"
+  },
+  {
+   "page": 33,
+   "render": ".artifacts/ocr-review-pack-r5/doc-4442/images/page-033.png",
+   "render_sha256": "707eec58fc8ccd01af0cbe700bc0ae9d23486612853736c9f47ae7249893c15a"
+  },
+  {
+   "page": 34,
+   "render": ".artifacts/ocr-review-pack-r5/doc-4442/images/page-034.png",
+   "render_sha256": "bdd6b23d9e983227018c61ffed16bdb90175fbc258ff79c82ef61b7f6bc844fa"
+  },
+  {
+   "page": 35,
+   "render": ".artifacts/ocr-review-pack-r5/doc-4442/images/page-035.png",
+   "render_sha256": "ee873f7364f02ce4ff10a4eacb6c9959dbbc28b9a7e2c3e16afa7162ff97f654"
+  },
+  {
+   "page": 36,
+   "render": ".artifacts/ocr-review-pack-r5/doc-4442/images/page-036.png",
+   "render_sha256": "f1e1bd2f69aa0870aaa5e9779ea5a42f0accca968cd93ec8ac6acbe9a9ab2c10"
+  },
+  {
+   "page": 37,
+   "render": ".artifacts/ocr-review-pack-r5/doc-4442/images/page-037.png",
+   "render_sha256": "cfd04fc739d4402e916618f656be2c49a5ed91f5c5546d3093c3c7545ee8ac83"
+  },
+  {
+   "page": 38,
+   "render": ".artifacts/ocr-review-pack-r5/doc-4442/images/page-038.png",
+   "render_sha256": "ce63858ef0c798e9182adce47fd2a7f05b584098345c145ab5df1ff8c53a7274"
+  },
+  {
+   "page": 39,
+   "render": ".artifacts/ocr-review-pack-r5/doc-4442/images/page-039.png",
+   "render_sha256": "8dc2d1e4c83b3c7a2132155b7a30cb220202adb9fa322b2c6e7271a12fadeddc"
+  },
+  {
+   "page": 40,
+   "render": ".artifacts/ocr-review-pack-r5/doc-4442/images/page-040.png",
+   "render_sha256": "cbe8baea28d4128271f082b3bf36787272b9700e05e45ed1173cc2fdd5a886f8"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "Provincial Disaster Management Authority Sindh Service Rules 2016",
+   "kind": "rules",
+   "year": 2016,
+   "number": "NO:PDMA(S)/11(2)/2014",
+   "spans": [
+    {
+     "start_block_id": 969952,
+     "end_block_id": 970060,
+     "pages": "1-8"
+    }
+   ],
+   "source_anomalies": [
+    {
+     "page": 1,
+     "source_block_id": 969959,
+     "printed": "Karachi dated the 25th December,2016.",
+     "note": "the day is handwritten in the printed date line; read '25th' (the owner asked for a check by hand: the render shows '25', agreeing with the OCR)"
+    },
+    {
+     "page": 1,
+     "source_block_id": 969960,
+     "printed": "NO:PDMA(S)/11(2)/2014",
+     "note": "E0 and E1 print the same notification number 'NO:PDMA(S)/11(2)/2014'; E1's notification (p9) prints no date line"
+    },
+    {
+     "page": 4,
+     "source_block_id": 970000,
+     "printed": "(1) Notwithst[...] his lien on a post shall not be terminated until he acq[...] post in the Authority.",
+     "note": "GAP '[illegible]' where the print is too faint to read, owner 4640 q3 'gap-multiword-reconstruct-single' (.artifacts/decision-review/exports/decision-review-2026-10-18-4640.json); marker per owner 4640 q6 'illegible-marker': rule 6(ii)(1) released as '(1) Notwithstanding [illegible] his lien on a post shall not be terminated until he acquires a lien on [illegible] post in the Authority.'"
+    },
+    {
+     "page": 4,
+     "source_block_id": 970001,
+     "printed": "reduced in rank [...] post as a consequence",
+     "note": "GAP '[illegible]' where the print is too faint to read, owner 4640 q3 'gap-multiword-reconstruct-single' (.artifacts/decision-review/exports/decision-review-2026-10-18-4640.json); marker per owner 4640 q6 'illegible-marker': rule 6(ii)(2) released as 'who is reduced in rank [illegible] post as a consequence' (the owner's 'reverted to a lower post' unconfirmed)"
+    },
+    {
+     "page": 6,
+     "source_block_id": 970029,
+     "printed": "as m?tually agreed",
+     "note": "RECONSTRUCTED single faint word, owner 4640 q3 'gap-multiword-reconstruct-single' (.artifacts/decision-review/exports/decision-review-2026-10-18-4640.json): rule 15(2) 'mutually' (read 'maturally')"
+    },
+    {
+     "page": 6,
+     "source_block_id": 970033,
+     "printed": "may [s]anction compensation",
+     "note": "RECONSTRUCTED single faint word, owner 4640 q3 'gap-multiword-reconstruct-single' (.artifacts/decision-review/exports/decision-review-2026-10-18-4640.json): rule 17(3) 'sanction' (read 'action')"
+    },
+    {
+     "page": 8,
+     "source_block_id": 970051,
+     "printed": "employee of Authority [...] / shall discontinue such work if so directed by Authority.",
+     "note": "GAP '[illegible]' where the print is too faint to read, owner 4640 q3 'gap-multiword-reconstruct-single' (.artifacts/decision-review/exports/decision-review-2026-10-18-4640.json); marker per owner 4640 q6 'illegible-marker': rule 21(1) proviso, '... employee of Authority [illegible] shall discontinue such work if so directed by Authority.'"
+    },
+    {
+     "page": 8,
+     "source_block_id": 970052,
+     "printed": "may, [...] undertake ... and where [...] shall file details of the enterprise along with the declaration of assets.",
+     "note": "GAP '[illegible]' where the print is too faint to read, owner 4640 q3 'gap-multiword-reconstruct-single' (.artifacts/decision-review/exports/decision-review-2026-10-18-4640.json); marker per owner 4640 q6 'illegible-marker': rule 21(1) second proviso (the OCR repeated the line before)"
+    },
+    {
+     "page": 8,
+     "source_block_id": 970054,
+     "printed": "memberships of recreation[al] Clubs",
+     "note": "RECONSTRUCTED single faint word, owner 4640 q3 'gap-multiword-reconstruct-single' (.artifacts/decision-review/exports/decision-review-2026-10-18-4640.json): rule 21(3) 'recreational' (the owner: 'recreation[al]'; read 'interest to')"
+    }
+   ],
+   "expected_tree": "preface (the Gazette cover, Rehabilitation Department / PDMA Sindh, the date line and the notification); rules 1-2 at the root; the unnumbered part 'SERVICE MATTERS' holding rules 3-23; the signature set aside"
+  },
+  {
+   "ordinal": 1,
+   "role": "embedded",
+   "title": "Provincial Disaster Management Authority Sindh (Conduct of Business) Rules, 2016",
+   "kind": "rules",
+   "year": 2016,
+   "number": "NO:PDMA(S)/11(2)/2014",
+   "spans": [
+    {
+     "start_block_id": 970064,
+     "end_block_id": 970450,
+     "pages": "9-40"
+    }
+   ],
+   "source_anomalies": [
+    {
+     "page": 9,
+     "source_block_id": 970064,
+     "printed": "NO:PDMA(S)/11(2)/2014:- In, exercise of the powers conferred under section 47 of the National Disaster Management Act-2010",
+     "note": "a separate notification under the same section 47 of the National Disaster Management Act 2010, making separate rules; it neither amends nor is empowered by the Service Rules, so no plan relation (amends/empowers) is recorded"
+    },
+    {
+     "page": 33,
+     "source_block_id": 970362,
+     "printed": "folio 106",
+     "note": "MISBOUND COPY: the copy binds PDF p33 (printed folio 106: rule 38 IV c(8)-(16) and 'd. MAINTENANCE OF ACCOUNT' (1)) after p32 (folio 105), while its text continues p30 (folio 103) and p31 (folio 104) opens with d(2). Owner 4640 q4 'reviewed-block-order' (.artifacts/decision-review/exports/decision-review-2026-10-18-4640.json): read after p30 in the parser input (rule reviewed_block_order); the extracted blocks keep their order"
+    },
+    {
+     "page": 36,
+     "source_block_id": 970388,
+     "printed": "folios 10[9], 113, 112, 110, 111 (pp36-40)",
+     "note": "pp36-40 print the folios out of sequence (10[9], 113, 112, 110, 111) while their text runs in the copy's order (d. SAFE CUSTODY, e.-h., i. PURCHASES and Chapter VIII, rules 45-47, 47-48): released in the copy's order, the folios as printed"
+    },
+    {
+     "page": 38,
+     "source_block_id": 970416,
+     "printed": "CHAPTER- VIII",
+     "note": "NUMBERING GAP as printed: Chapter VI is followed by 'CHAPTER- VIII' (no Chapter VII is printed)"
+    },
+    {
+     "page": 38,
+     "source_block_id": 970421,
+     "printed": "42. ASSETS TO BE DISCLOSED:",
+     "note": "NUMBERING GAP as printed: rule 40 is followed by rule 42 (no rule 41 is printed)"
+    },
+    {
+     "page": 39,
+     "source_block_id": 970431,
+     "printed": "45. STOCK CHECKING:",
+     "note": "the owner's correction: rule 45 (read '46', which repeated the following rule 46)"
+    },
+    {
+     "page": 9,
+     "source_block_id": 970068,
+     "printed": "(Act No. XXIV 0of 2010)",
+     "note": "MISPRINT kept as printed"
+    },
+    {
+     "page": 10,
+     "source_block_id": 970089,
+     "printed": "exercises",
+     "note": "MISPRINT kept as printed (the owner)"
+    },
+    {
+     "page": 22,
+     "source_block_id": 970256,
+     "printed": "district and [...] agencies",
+     "note": "GAP '[illegible]' where the print is too faint to read, owner 4640 q3 'gap-multiword-reconstruct-single' (.artifacts/decision-review/exports/decision-review-2026-10-18-4640.json); marker per owner 4640 q6 'illegible-marker': rule 34(1)(c)(v)"
+    },
+    {
+     "page": 22,
+     "source_block_id": 970257,
+     "printed": "system [...] disaster damage, loss and needs assessment [...] action ... including a tra[...] damage and loss assessment",
+     "note": "GAP '[illegible]' where the print is too faint to read, owner 4640 q3 'gap-multiword-reconstruct-single' (.artifacts/decision-review/exports/decision-review-2026-10-18-4640.json); marker per owner 4640 q6 'illegible-marker': rule 34(1)(c)(vi)"
+    },
+    {
+     "page": 30,
+     "source_block_id": 970345,
+     "printed": "counterfoil and [...] in drawer's possession",
+     "note": "GAP '[illegible]' where the print is too faint to read, owner 4640 q3 'gap-multiword-reconstruct-single' (.artifacts/decision-review/exports/decision-review-2026-10-18-4640.json); marker per owner 4640 q6 'illegible-marker': rule 38 IV c(7)"
+    },
+    {
+     "page": 38,
+     "source_block_id": 970427,
+     "printed": "these rules [...] notified ... civ[il ...] instructions ... Government in [...]",
+     "note": "GAP '[illegible]' where the print is too faint to read, owner 4640 q3 'gap-multiword-reconstruct-single' (.artifacts/decision-review/exports/decision-review-2026-10-18-4640.json); marker per owner 4640 q6 'illegible-marker': rule 44 (the owner: too faint to verify)"
+    },
+    {
+     "page": 39,
+     "source_block_id": 970437,
+     "printed": "(ii) In case the report indicates [...] then the Director General [...]",
+     "note": "GAP '[illegible]' where the print is too faint to read, owner 4640 q3 'gap-multiword-reconstruct-single' (.artifacts/decision-review/exports/decision-review-2026-10-18-4640.json); marker per owner 4640 q6 'illegible-marker': rule 46(ii) (the owner: needs manual re-key)"
+    },
+    {
+     "page": 39,
+     "source_block_id": 970439,
+     "printed": "The Authority [...] plan in consultation ... make [...] effective implementation",
+     "note": "GAP '[illegible]' where the print is too faint to read, owner 4640 q3 'gap-multiword-reconstruct-single' (.artifacts/decision-review/exports/decision-review-2026-10-18-4640.json); marker per owner 4640 q6 'illegible-marker': rule 47(1)"
+    },
+    {
+     "page": 39,
+     "source_block_id": 970440,
+     "printed": "In case a [...] the Authority shall mobilize its resources immediately [...] for instructions",
+     "note": "GAP '[illegible]' where the print is too faint to read, owner 4640 q3 'gap-multiword-reconstruct-single' (.artifacts/decision-review/exports/decision-review-2026-10-18-4640.json); marker per owner 4640 q6 'illegible-marker': rule 47(2)"
+    },
+    {
+     "page": 39,
+     "source_block_id": 970441,
+     "printed": "(3) [...]",
+     "note": "GAP '[illegible]' where the print is too faint to read, owner 4640 q3 'gap-multiword-reconstruct-single' (.artifacts/decision-review/exports/decision-review-2026-10-18-4640.json); marker per owner 4640 q6 'illegible-marker': rule 47(3) (the owner: needs manual re-key)"
+    }
+   ],
+   "expected_tree": "preface (the notification); rules 1-2; Chapters II-VI and VIII as printed; rule 38 with its section group captions I-V and a-k (q5); p33 read after p30 (q4); the signature and the OCR's invented imprint set aside"
+  }
+ ],
+ "apparatus": "outside every span: p9's head furniture ('82', the running head, 'PART I'); inside the spans the page furniture, the signatures and the OCR's invented p40 imprint are set aside by the readings (claude/agK6/work/agK6-mk_4640.py)"
+}

@@ -1,0 +1,138 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 4689,
+ "source_observation_id": 4686,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-18",
+ "reviewed_by": "assistant page review (agent K6) of the owner-accepted OCR (ocr-review-doc-4598.json, candidates 895-902) on the owner's decision",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/decision-review-2026-10-18-4598-4626.json",
+  "document_id": 4598,
+  "question_id": "q1",
+  "choice": "split",
+  "effect": "The Rules (PDF pp1-7, Gazette of 7 June 2021) are this document's instrument, released as printed; the Law Department's corrigendum of 18 June 2021 (PDF p8, its own Gazette issue) becomes a separate instrument with its printed date, related to the Rules; the corrigendum's effect is not applied to the Rules' text."
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/ocr-review-pack-owner-2026-10-17/doc-4598/images/page-001.png",
+   "render_sha256": "bf26bf990b92785ba208ce9bd66749e9196275ab673b790293e06be3bc667ebf"
+  },
+  {
+   "page": 2,
+   "render": ".artifacts/ocr-review-pack-owner-2026-10-17/doc-4598/images/page-002.png",
+   "render_sha256": "4174ca7f3d124e0eea902628be059d8d23c683bbc1929cb91a767c440f9f56d4"
+  },
+  {
+   "page": 3,
+   "render": ".artifacts/ocr-review-pack-owner-2026-10-17/doc-4598/images/page-003.png",
+   "render_sha256": "45cdcd700065c0591c4221b89c986d4e54c95d962aa49282a566f764987de790"
+  },
+  {
+   "page": 4,
+   "render": ".artifacts/ocr-review-pack-owner-2026-10-17/doc-4598/images/page-004.png",
+   "render_sha256": "edb08ca60809f77d97a813747bfd94898b8eac0c972c156bc5151aa0dc6c3cdb"
+  },
+  {
+   "page": 5,
+   "render": ".artifacts/ocr-review-pack-owner-2026-10-17/doc-4598/images/page-005.png",
+   "render_sha256": "688a3a308bd2fc091e9c3765e06545b134b66a4933ef5301d3a60afe40498d1f"
+  },
+  {
+   "page": 6,
+   "render": ".artifacts/ocr-review-pack-owner-2026-10-17/doc-4598/images/page-006.png",
+   "render_sha256": "66170f8597d3cbea500aaa8e5ae578444e45afef24e901f12204fbc8e895aca8"
+  },
+  {
+   "page": 7,
+   "render": ".artifacts/ocr-review-pack-owner-2026-10-17/doc-4598/images/page-007.png",
+   "render_sha256": "fbbf8d6b8f94d044afa74e94370d0e1ef9dabc0992c6fef4eec959c80cf4270f"
+  },
+  {
+   "page": 8,
+   "render": ".artifacts/ocr-review-pack-owner-2026-10-17/doc-4598/images/page-008.png",
+   "render_sha256": "43851bd1b7c9d7ce0228fa55cc32d07d31966fbadd336766ee9b47fb276148ca"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Sindh Letters of Administration and Succession Certificates Rules, 2020",
+   "kind": "rules",
+   "year": 2020,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 973878,
+     "end_block_id": 973967,
+     "pages": "1-7"
+    }
+   ],
+   "source_anomalies": [
+    {
+     "page": 1,
+     "source_block_id": 973888,
+     "printed": "Sindh Letters of Administration and Succession Certificates Rules, 2020",
+     "note": "as printed: rule 1(1) names the Rules '..., 2020' (made under the Act of 2021, notified 7 June 2021); the corrigendum of 18 June 2021 (E1, item (d)) reads '2020' as '2021' -- not applied here (owner 4598 q1: the Rules stay as printed)"
+    },
+    {
+     "page": 1,
+     "source_block_id": 973887,
+     "printed": "Certificates Act, 2021 ), read with sections",
+     "note": "sic: a stray ')' after 'Act, 2021'; preserved as printed"
+    },
+    {
+     "page": 4,
+     "source_block_id": 973922,
+     "printed": "the address and are of the property",
+     "note": "sic 'are' (for 'area'); preserved as printed"
+    }
+   ],
+   "expected_tree": "preface (Gazette masthead of Monday June 7, 2021, the department heading, 'Hyderabad, dated the 7th June, 2021.' -- read as 'Karachi' by the corrigendum's item (c), not applied -- NOTIFICATION, NO.S.REG:4(4)/2021/136 and the enacting words); rules 1-7 with their sub-rules and clauses; Schedule I (Letter of Authorization, items 1-3), Schedules II and III (the certificates' forms), Schedule IV (Fee and Cost, items 1-6); the folios, the signature, p6's damaged running head and the imprint set aside by the readings"
+  },
+  {
+   "ordinal": 1,
+   "role": "embedded",
+   "title": "Law, Parliamentary Affairs and Criminal Prosecution Service Department Corrigendum No.S.REG:4(4)/2021 dated 18 June 2021 (to the Sindh Letters of Administration and Succession Certificates Rules, 2020)",
+   "kind": "notification",
+   "year": 2021,
+   "number": "No.S.REG:4(4)/2021",
+   "spans": [
+    {
+     "start_block_id": 973968,
+     "end_block_id": 973983,
+     "pages": "8"
+    }
+   ],
+   "relations": [
+    {
+     "type": "amends",
+     "target_ordinal": 0,
+     "source_block_id": 973978,
+     "source_page": 8,
+     "effect": "CORRECTS (corrigendum; the plan schema admits only 'amends'): (c) under the heading 'LAW, PARLIAMENTARY AFFAIRS AND CRIMINAL PROSECUTION SERVICE DEPARTMENT' the word 'Hyderabad' is to be read as 'Karachi'; (d) in rule 1(1) the figures '2020' are to be read as '2021'. Not applied to the Rules' text (owner 4598 q1: the Rules stay as printed)",
+     "basis": "p8 prints 'CORRIGENDUM / No.S.REG:4(4)/2021:- In the Sindh Government Gazette Extraordinary issue, Registered No.M324, Part-I, published on 7th June, 2021 in the litled Rules \"The Sindh Letters of Administration and Succession Certificates Rules, 2020\" -' and items (c), (d); owner decision 4598 q1 'split'",
+     "render": ".artifacts/ocr-review-pack-owner-2026-10-17/doc-4598/images/page-008.png",
+     "render_sha256": "43851bd1b7c9d7ce0228fa55cc32d07d31966fbadd336766ee9b47fb276148ca"
+    }
+   ],
+   "source_anomalies": [
+    {
+     "page": 8,
+     "source_block_id": 973978,
+     "printed": "(c) ... (d) ...",
+     "note": "sic: the corrigendum's only items are lettered (c) and (d); no (a) or (b) is printed. Preserved as printed"
+    },
+    {
+     "page": 8,
+     "source_block_id": 973977,
+     "printed": "in the litled Rules",
+     "note": "sic 'litled' (for 'titled'); preserved as printed"
+    }
+   ],
+   "expected_tree": "preface (the Gazette masthead of Friday June 18, 2021, GOVERNMENT OF SINDH / LAW, PARLIAMENTARY AFFAIRS AND CRIMINAL PROSECUTION SERVICE DEPARTMENT, 'Karachi, dated the 18th June, 2021.', CORRIGENDUM and 'No.S.REG:4(4)/2021:- ... Rules, 2020\" -'); items (c) and (d) as printed; the signature and the issue's foot line set aside by the readings"
+  }
+ ],
+ "apparatus": "none outside the spans (E0 pp1-7, E1 p8 cover every block); the folios 421-426, the Rules' signature (p3), p6's damaged running head, the imprint (p7), the corrigendum's signature and the issue's foot line (p8) are set aside by the reviewed readings (claude/agK6/work/agK6-mk_4598.py)"
+}

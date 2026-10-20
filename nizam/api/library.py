@@ -18,7 +18,7 @@ from zoneinfo import ZoneInfo
 from fastapi import FastAPI, HTTPException, Query, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
-from pydantic import BaseModel
+from pydantic import BaseModel, computed_field
 
 from nizam.storage.library_read import LibraryRead
 
@@ -33,6 +33,24 @@ class Instrument(BaseModel):
     source_url: str | None
     document_id: int
     source_hash: str
+    # Migration 0064. True for an owner-declared historical expression, which
+    # the library returns only for an as_of inside [valid_from, valid_to);
+    # clients render it as "historical text in force <valid_from> to
+    # <valid_to>, not current law" and link current_instrument_id (resolved on
+    # single opens only). All four default to None, so a row without them --
+    # a repository predating 0064 -- still validates.
+    historical: bool | None = None
+    valid_from: str | None = None
+    valid_to: str | None = None
+    current_instrument_id: UUID | None = None
+
+    @computed_field
+    @property
+    def year_display(self) -> str:
+        """The year as a client shows it. A NULL year is an owner-declared
+        undated instrument (migration 0063 admits no other), shown 'undated';
+        a year is never inferred (INV-1)."""
+        return str(self.year) if self.year is not None else 'undated'
 
 
 class Node(BaseModel):
@@ -165,6 +183,14 @@ def create_app(repository=None):
         day = resolved(as_of)
         row = repo.instrument(instrument_id, as_of=day)
         if not row:
+            # A released historical text outside its window (0064) gets its own
+            # answer: the dates come from the manifest record, never generated.
+            window = getattr(repo, 'historical_window', lambda _id: None)(instrument_id)
+            if window:
+                raise HTTPException(404, f"This is a historical text, in force from {window['valid_from']} "
+                                         f"until it was superseded on {window['valid_to']}; it is not current "
+                                         'law. Open it with an as_of date inside that period, or return to '
+                                         'the library.')
             raise HTTPException(404, 'This revision is not available in the release view. Return to the library.')
         return dict(item=row, as_of=day)
 

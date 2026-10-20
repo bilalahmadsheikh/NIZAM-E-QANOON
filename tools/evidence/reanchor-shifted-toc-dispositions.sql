@@ -105,7 +105,11 @@ SELECT a.id                AS stale_id,
    AND t.source_page = a.source_page
  WHERE t.ordinal <> a.toc_entry_ordinal
    AND NOT EXISTS (SELECT 1 FROM toc_disposition_assertion s
-                    WHERE s.supersedes_id = a.id);
+                    WHERE s.supersedes_id = a.id)
+   -- A withdrawn disposition (migration 0061) must never be re-anchored back
+   -- into force: a supersession row citing it would pass the 0061 trigger.
+   AND NOT EXISTS (SELECT 1 FROM toc_disposition_withdrawal w
+                    WHERE w.assertion_id = a.id);
 
 \echo '-- assertions to re-anchor'
 SELECT stale_id, document_id, asserted_ordinal, actual_ordinal, label

@@ -1,0 +1,322 @@
+{
+  "schema": "nizam.multi_expression_plan/1",
+  "document_id": 1839,
+  "source_observation_id": 2060,
+  "review_basis": "source_verified",
+  "reviewed_on": "2026-10-09",
+  "reviewed_by": "assistant page review (agent CL) on the owner's decision",
+  "owner_decision": {
+    "export": ".artifacts/decision-review/exports/decision-review-2026-10-08-h.json",
+    "card_sha256": "3ae953bac4d6d7bbdd787c757fae2389901f9b1073e3808ec1ef02f36cbfde9c",
+    "q1": "split: the 2007 Rules (pp1-21) and each of the 22 Aug 2008, 11 May 2011 and 12 Feb 2012 amending notifications and the 19 Mar 2012 corrigendum are separate instruments from this file; distribution lists are set aside",
+    "q2": "rows-by-serial: each post row of the Schedule (pp2-21) is a schedule row cited by its printed serial (1-72), as the amendments cite them; no numbers are added"
+  },
+  "reviewed_pages": [
+    {
+      "page": 1,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1839-p1.png",
+      "render_sha256": "fb5a46cad039462ada9bfdfdb51590cc58b63ea8d573eea020be1c029144281a"
+    },
+    {
+      "page": 2,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1839-p2.png",
+      "render_sha256": "45976c9416064f2b151d26d5a992ad6be11c10d9db7f3e30abc46a4db77ad33c"
+    },
+    {
+      "page": 3,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1839-p3.png",
+      "render_sha256": "79250ddec462844d519e73b2a3085346e034b79aafd8afd732064514832b834d"
+    },
+    {
+      "page": 4,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1839-p4.png",
+      "render_sha256": "156775e37cc2d9bde3f51e6fb7173726b01e9865096e39287d4010527d6bb3e9"
+    },
+    {
+      "page": 5,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1839-p5.png",
+      "render_sha256": "f07081ded78390926581098a3cdbe567bee6ec4c79afdae0ccdac0dd467ffedc"
+    },
+    {
+      "page": 6,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1839-p6.png",
+      "render_sha256": "acef5514ec4a1009b2853cdf0bcb46dd0cf3736f6d780a4c34d27eab542762cf"
+    },
+    {
+      "page": 7,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1839-p7.png",
+      "render_sha256": "5f37ec71c16a076e317037859c192b1e23e2c0d05c9849270c24461d720a8ab2"
+    },
+    {
+      "page": 8,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1839-p8.png",
+      "render_sha256": "0c73344a1686419db3840744993ae32235269424f1ad45dc2a3fa2aadff6b881"
+    },
+    {
+      "page": 9,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1839-p9.png",
+      "render_sha256": "6e4e3522dc2aad70261e30c2e809a62665fb28d1e3b37afd65dc3a1e4881c684"
+    },
+    {
+      "page": 10,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1839-p10.png",
+      "render_sha256": "3ec3dcfa9003b69d47c99d38c75b7c52150b9aee8c4c2a1c6f58059aa27bbbc9"
+    },
+    {
+      "page": 11,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1839-p11.png",
+      "render_sha256": "e09793e1be0eeea850b8ecc4eca1153a665d13f8687e428676c6a93b3e560c6e"
+    },
+    {
+      "page": 12,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1839-p12.png",
+      "render_sha256": "d32416b953371cb2edf175dcf110e7d1bd2f34c383471f3dfeb7775326aab8b9"
+    },
+    {
+      "page": 13,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1839-p13.png",
+      "render_sha256": "3361be3af77cb28ee008920bb919a6bfee5a36e825a42dde3cd4f2a33508da52"
+    },
+    {
+      "page": 14,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1839-p14.png",
+      "render_sha256": "a00bc9fb6a633eda17e955404578c3b561100c1b0183eaeaa762c5b375d4e0f8"
+    },
+    {
+      "page": 15,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1839-p15.png",
+      "render_sha256": "82cad04d3ae46bf909dc409d93340cdae7f2cc16c2bffc506c7a68c9d0a9e7e7"
+    },
+    {
+      "page": 16,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1839-p16.png",
+      "render_sha256": "bff6d597732892b341cf989ca08fe890e856481ec5d0b83222a029fe2f0364dc"
+    },
+    {
+      "page": 17,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1839-p17.png",
+      "render_sha256": "e502e10ec4005b230f21474f2bb3a67995a3fca32006b3a0e8ed6f6ea6dc389e"
+    },
+    {
+      "page": 18,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1839-p18.png",
+      "render_sha256": "7713a3210684e0239acbbf97de78c1488a7c32114f9f8e4986a5195a3343de62"
+    },
+    {
+      "page": 19,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1839-p19.png",
+      "render_sha256": "70afd652cc94e31b04e21ecfec02970e6ed3ddcd44f8518aa7b027af433c208d"
+    },
+    {
+      "page": 20,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1839-p20.png",
+      "render_sha256": "e7dca25556c74c4f3750452e1755b597c41bfb1fbdf9a623e3dbc4c6ee4009fa"
+    },
+    {
+      "page": 21,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1839-p21.png",
+      "render_sha256": "746362a732091523b37f9e68585557041b7daaec30ccffe3116896df485d0291"
+    },
+    {
+      "page": 22,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1839-p22.png",
+      "render_sha256": "57be018390b8d9b8107d3151c5b5ee9f3909c49130718b545f4e32a2753eacea"
+    },
+    {
+      "page": 23,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1839-p23.png",
+      "render_sha256": "bab384fad14edb0bfd433beb569dfa264e5fbc8af3c95e70059fb13323edf1a3"
+    },
+    {
+      "page": 24,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1839-p24.png",
+      "render_sha256": "3c5d5981ac679ca6ae5d9a5145c4df0f86f2b8366d34efc70367e202b4e76b16"
+    },
+    {
+      "page": 25,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1839-p25.png",
+      "render_sha256": "61fd98ab2e1c55f53fa15b507c30abe9dfd26243eb5d265b7496b4f6e03cda37"
+    },
+    {
+      "page": 26,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1839-p26.png",
+      "render_sha256": "e32d2499985d6af60fee56e58bbb02ba4dd7e7eea2a6adfd874e6fd64063727e"
+    },
+    {
+      "page": 27,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1839-p27.png",
+      "render_sha256": "06848f6473cdf405c34f828e964940a7dd47d8282ce911157b380199aeb5729f"
+    },
+    {
+      "page": 28,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1839-p28.png",
+      "render_sha256": "7b43307a5af5fb0b9d8d6af6bd67721e0c737817279e3b2537d85481d1bc7df6"
+    },
+    {
+      "page": 29,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1839-p29.png",
+      "render_sha256": "6c8f3c1cac85406c222f55803ae7b9bcd270d406e96077a6477376d6dbac31a9"
+    },
+    {
+      "page": 30,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1839-p30.png",
+      "render_sha256": "2c3f0b7d297af98342ed446d51e8686510b4f4f80406c36b2c4684b302dbe6e1"
+    },
+    {
+      "page": 31,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1839-p31.png",
+      "render_sha256": "75d3355c18d359d76d982be9ae0b483e0f880da8218b5f54573d728b5edb61fb"
+    },
+    {
+      "page": 32,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1839-p32.png",
+      "render_sha256": "034afa61c14cd85da9e0dcc7a46d63d678a62603c4ffaed796ec2eb52e7cb64d"
+    }
+  ],
+  "expressions": [
+    {
+      "ordinal": 0,
+      "role": "primary",
+      "title": "Punjab Agriculture Department, Directorate of Agriculture Information Service Rules, 2007",
+      "kind": "rules",
+      "year": 2007,
+      "number": null,
+      "spans": [
+        {
+          "start_block_id": 124788,
+          "end_block_id": 125345,
+          "pages": "1-21"
+        }
+      ],
+      "detect_contents": false,
+      "title_correction": {
+        "from_title": "PUNJAB AGRICULTURE DEPARTMENT, DIRECTORATE OF AGRICULTURE IN",
+        "from_year": 2007,
+        "to_year": 2007,
+        "basis": "the stored catalogue title is cut off ('... DIRECTORATE OF AGRICULTURE IN'); p1 block 124793 prints rule 1(1) 'these rules may be called the Punjab Agriculture Department, Directorate of Agriculture Information Service Rules, 2007.' (owner decision q1 names the Rules so)"
+      },
+      "expected_tree": "preface (GOVERNMENT OF THE PUNJAB / SERVICE & GENERAL ADMINISTRATION / DEPARTMENT, 'Dated Lahore the 20th March, 2007', NOTIFICATION, No.SOR-III(S&GAD)1-10/99 and the formula '... the following rules shall be made:-'); rules 1 ((1), (2)), 2, 3; Schedule (heading 'Schedule', p2; text = the column heads in column order) with rows 1-54 under their printed serials, then the printed caption 'II MINISTERIAL GROUP' (p17; text = its repeated column heads) holding rows 55-72 -- each row's ten cells in printed column order, serial at the head (owner q2); the column-number rows '1. ... 10', 'BY THE ORDERS OF THE GOVERNOR OF THE PUNJAB', the signature, the dotted rule, the forwarding endorsement and distribution list 1-8, the signature and the Agriculture Department endorsement (p1) are apparatus"
+    },
+    {
+      "ordinal": 1,
+      "role": "embedded",
+      "title": "S&GAD Notification No. SOR-III(S&GAD)1-10/99 dated 22 August 2008 (amending the Punjab Agriculture Department, Directorate of Agriculture Information Service Rules, 2007)",
+      "kind": "notification",
+      "year": 2008,
+      "number": "SOR-III(S&GAD)1-10/99",
+      "spans": [
+        {
+          "start_block_id": 125346,
+          "end_block_id": 125417,
+          "pages": "22-25"
+        }
+      ],
+      "relations": [
+        {
+          "type": "amends",
+          "target_ordinal": 0,
+          "effect": "in the Schedule of the 2007 Rules: (i) substitutes, against the posts at serial Nos. 22, 25, 28, 36, 37 and 59, the entries in column 3 and column 5; (ii) inserts after serial No.59 a new entry 59(a) 'Computer Operator (BS-11)' in columns 1 to 10",
+          "source_block_id": 125354,
+          "source_page": 22,
+          "basis": "p22 prints 'In the said rules, in the schedule, (i) for the existing entries against the posts at serial Nos.22, 25, 28, 36, 37 and 59 in column No.3, in column No.5, the following shall be substituted respectively:'; p24 'ii) after the existing entry at serial No.59, in column No.3, in column No.1 to 10, the following new entries shall be inserted:'; owner decision q1"
+        }
+      ],
+      "expected_tree": "preface (heading, 'Dated Lahore, the 22nd August, 2008', NOTIFICATION, No. and the formula '... the following amendments shall be made:'); unnumbered provision 'AMENDMENTS' (its printed caption, block 125352) with text 'In the said rules, in the schedule,', clause (i) holding the substituting sentence, the column heads and rows 22, 25, 28, 36, 37, 59 (each one line in column order, as printed, '-do-' and '-' cells kept), clause (ii) ('ii)' read as '(ii)') holding row 59(a); 'BY ORDERS OF THE GOVERNOR OF THE PUNJAB', the signature (p24), the forwarding endorsement of 30 Aug 2008, distribution list 1-11 and the Agriculture Department endorsement of 15.09.2008 (p25) are apparatus"
+    },
+    {
+      "ordinal": 2,
+      "role": "embedded",
+      "title": "S&GAD (Regulations Wing) Notification No. SOR(III)(S&GAD) 1-23/2010 dated 11 May 2011 (amending the Punjab Agriculture Department, Directorate of Agriculture Information Service Rules, 2007)",
+      "kind": "notification",
+      "year": 2011,
+      "number": "SOR(III)(S&GAD) 1-23/2010",
+      "spans": [
+        {
+          "start_block_id": 125418,
+          "end_block_id": 125481,
+          "pages": "26-28"
+        }
+      ],
+      "relations": [
+        {
+          "type": "amends",
+          "target_ordinal": 0,
+          "effect": "in the Schedule of the 2007 Rules inserts after the entries at Sr.No.72 new entries 73 'Database Administrator (BS-18)' to 78 'Video Operator (BS-6)' in columns 1 to 10",
+          "source_block_id": 125422,
+          "source_page": 26,
+          "basis": "p26 prints 'In the said rules, in the Schedule, after entries at Sr.No.72, the following entries in column No.1 to 10 shall be inserted:' and rows 73-78 (pp26-27); owner decision q1"
+        }
+      ],
+      "expected_tree": "preface (heading, '(REGULATIONS WING)', 'Dated Lahore, the 11th May, 2011', NOTIFICATION, No. and the formula); unnumbered provision 'AMENDMENTS' (block 125421) holding the inserting sentence, the column heads and rows 73-78 (one line each, column order); the signature MUHAMMAD ILYAS, the forwarding endorsement of 20 May 2011, distribution list 1-8 and signature (pp27-28) and the Agriculture Department heading (p28) are apparatus"
+    },
+    {
+      "ordinal": 3,
+      "role": "embedded",
+      "title": "S&GAD (Regulations Wing) Notification No. SOR(III)(S&GAD) 1-23/2010 dated 12 February 2012 (amending the Punjab Agriculture Department, Directorate of Agriculture Information Service Rules, 2007)",
+      "kind": "notification",
+      "year": 2012,
+      "number": "SOR(III)(S&GAD) 1-23/2010",
+      "spans": [
+        {
+          "start_block_id": 125482,
+          "end_block_id": 125537,
+          "pages": "29-31"
+        }
+      ],
+      "relations": [
+        {
+          "type": "amends",
+          "target_ordinal": 0,
+          "effect": "in the Schedule of the 2007 Rules: (a) at serial No.22 'Cameraman', substitutes the entries in column 7; (b) inserts after Sr.No.59(a) new entries numbered 60) 'Producer (BS-17)', 61) 'Script Writer (BS-17)' and 62) 'Video Operator (BS-15)' (read 'Video Editor (BS-15)' by the corrigendum of 19 March 2012) -- serials the 2007 Schedule already uses for Assistant, Senior Clerk and Urdu Typist; kept as printed, each in its own instrument",
+          "source_block_id": 125487,
+          "source_page": 29,
+          "basis": "p29 prints 'In the said rules, (a) At serial No.22, against the post of “Cameraman” in Column No.7, for the existing entries the following shall be substituted: ...' and '(b) after existing entry at Sr.No.59(a), the following new entries in column No.1 to 10 shall be inserted:' with rows 60)-62) (pp29-30); owner decision q1"
+        }
+      ],
+      "source_anomalies": [
+        {
+          "page": 30,
+          "source_block_id": 125526,
+          "printed": "Dated Lahore, the 29th February, 2010",
+          "note": "sic: the forwarding endorsement of the 12 February 2012 notification is dated '29th February, 2010' (no such date). The endorsement is apparatus; the date stands as printed in that block."
+        }
+      ],
+      "expected_tree": "preface (heading, '(REGULATIONS WING)', 'Dated Lahore, the 12th February, 2012', NOTIFICATION, No. and the formula); unnumbered provision 'AMENDMENTS' (block 125485) with text 'In the said rules,', clause (a) holding the substituting sentence and the quoted column-7 entries '“i. By promotion ...' 'ii. If none ... recruitment” and', clause (b) holding the inserting sentence, the caption 'Schedule', the column heads and rows 60)-62) (one line each, column order, serials as printed); the forwarding endorsement, distribution list 1-9, signature and Agriculture Department endorsement of 06-03-2012 (pp30-31) are apparatus"
+    },
+    {
+      "ordinal": 4,
+      "role": "embedded",
+      "title": "S&GAD (Regulations Wing) Corrigendum No. SOR-III(S&GAD)1-23/2010 dated 19 March 2012 (to Notification No. SOR-III(S&GAD)1-23/2010 dated 12 February 2012)",
+      "kind": "notification",
+      "year": 2012,
+      "number": "SOR-III(S&GAD)1-23/2010",
+      "spans": [
+        {
+          "start_block_id": 125538,
+          "end_block_id": 125557,
+          "pages": "32"
+        }
+      ],
+      "relations": [
+        {
+          "type": "amends",
+          "target_ordinal": 3,
+          "effect": "CORRECTS (corrigendum; the plan schema admits only 'amends'): in the Schedule set out in the 12 February 2012 notification, against the entry at Sr.No.62, the post 'Video Operator (BS-15' in column 3 is to be read as 'Video Editor (BS-15)'",
+          "source_block_id": 125542,
+          "source_page": 32,
+          "basis": "p32 prints 'CORRIGENDUM / No.SOR-III(S&GAD)1-23/2010. In the “Schedule” reflected in the Notification bearing No.SOR-III(S&GAD)1-23/2010 dated 12-02-2012, against entry at Sr.No.62, the nomenclature of the post of Video Operator (BS-15” shown in Column No.3 shall be read as “Video Editor (BS-15)”.'; owner decision q1"
+        }
+      ],
+      "source_anomalies": [
+        {
+          "page": 32,
+          "source_block_id": 125553,
+          "printed": "Dated Lahore, the 26.03.2011",
+          "note": "sic: the Agriculture Department's forwarding of the 19 March 2012 corrigendum is dated 26.03.2011. Apparatus; preserved as printed."
+        }
+      ],
+      "expected_tree": "preface (heading, '(REGULATIONS WING)', 'Dated Lahore, the 19th March, 2012'); unnumbered provision 'CORRIGENDUM' (its printed caption, block 125541) holding the paragraph 'No.SOR-III(S&GAD)1-23/2010. In the “Schedule” ... shall be read as “Video Editor (BS-15)”.'; the signature, forwarding endorsement, distribution list 1-9, signatures and the Agriculture Department endorsement are apparatus"
+    }
+  ],
+  "apparatus": "signatures, 'BY (THE) ORDERS OF THE GOVERNOR ...' lines, forwarding endorsements, distribution lists, Agriculture Department endorsements, the dotted rule (p1) and the column-number rows '1. ... 10' under each table's heads are set aside by the reviewed curation readings (claude/agCL/patch-1839.json); every emptied table-cell block is set aside after its words are read into its row's line"
+}

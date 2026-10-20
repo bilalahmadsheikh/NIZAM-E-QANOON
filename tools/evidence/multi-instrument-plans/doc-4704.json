@@ -1,0 +1,37 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 4704,
+ "source_observation_id": 9583,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-20",
+ "reviewed_by": "lead page review (20 Oct 2026) of the owner-accepted pages: a ONE-expression plan, used only to carry the printed identity. The landed observation 9583 (alternate_of 1282) inherits the Balochistan Code catalogue title 'The Balochistan Motor Vehicles (Amendment) Act, 2020' (the Bill's), while this file is the Provincial Assembly's publication of the enacted Act No. XIV of 2021; the tree is otherwise the worker's build with the lead's readings (claude/lead-4704/mk.py)",
+ "owner_decision": {
+  "source": ".artifacts/decision-review/exports/decision-review-2026-10-20-4641-4642.json (4642 q1 keep-4703: land the enacted Act XIV of 2021 and release it in place of the Bill); owner OCR review .artifacts/ocr-review-exports/ocr-review-doc-4703.json (4/4 accepted)"
+ },
+ "reviewed_pages": [
+  {"page": 1, "render": ".artifacts/ocr-review-pack-4703/doc-4703/images/page-001.png", "render_sha256": "57099d52626e06b28e54ebb41d9cba62f27d47a69006f2e8a1c3e0bab61cfa37"}
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Balochistan Motor Vehicles (Amendment) Act, 2021",
+   "kind": "act",
+   "year": 2021,
+   "number": "XIV",
+   "spans": [{"start_block_id": 983892, "end_block_id": 983914}],
+   "title_basis": "p1 block 983896 prints 'The Balochistan Motor Vehicles (Amendment) Act 2021, Act No. XIV of 2021.'; s.1(1) (block 983901) 'This Act may be called the Balochistan Motor Vehicles (Amendment) Act, 2021.'",
+   "title_correction": {
+    "from_title": "The Balochistan Motor Vehicles (Amendment) Act, 2020",
+    "from_year": 2020,
+    "to_year": 2021,
+    "basis": "the catalogue title is the Balochistan Code portal's for the Bill (docid 892, observation 1282); this file is the Provincial Assembly notification No.PAB/Legis:V(06)/2021 of 5 May 2021 publishing Bill No.06 of 2021, passed 26 April 2021 and assented 4 May 2021, as Act No. XIV of 2021, whose s.1(1) names it the Balochistan Motor Vehicles (Amendment) Act, 2021"
+   },
+   "source_anomalies": [
+    {"source_block_id": 983903, "printed": "for THE TWELFTH SCHEDUE the following shall be substituted", "note": "sic 'SCHEDUE'; kept as printed"},
+    {"source_block_id": 983911, "printed": "Note:- Lifter charges @ of Rs.1000/- (for normal vehicle) & Rs.2000/-(for LTV vehicles) shall be charged apart from the fines.", "note": "p3's Note (s.2's text) gives Rs.2000/- for LTV vehicles; p4's set-aside Note 1 (block 983914) gives Rs.1200/- for LTV Vehicles. Both kept as printed; the difference is flagged, not resolved"},
+    {"source_block_id": 983912, "printed": "S.No. Violations Proposed Rates", "note": "the enacted Act's parking table keeps the Bill's column head 'Proposed Rates'; kept as printed"}
+   ]
+  }
+ ]
+}

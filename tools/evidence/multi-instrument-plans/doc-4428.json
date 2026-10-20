@@ -1,0 +1,564 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 4428,
+ "source_observation_id": 3150,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-11",
+ "reviewed_by": "assistant page review (agent DD) on the owner's decision; reviewed and applied by builder BZ (11 Oct 2026; relation as `empowers`, lead decision)",
+ "owner_decision": {
+  "source": ".artifacts/release-work-2026-09-24/CLAUDE-CLAIMS.md, OWNER ANSWERS 11 Oct (relayed by the lead)",
+  "q1": "split: 4428 is the Sindh Public Procurement Act, 2009 (pp1-15) and the Sindh Public Procurement Rules, 2010 (pp16-88); the current single tree stays released until the split is ready"
+ },
+ "apparatus": "none outside the spans: E0 and E1 together cover every block 783733-784665. Inside the spans, set aside by the reviewed readings ($S/agDD-readings-4428.json, 110): every page-number footer (88 blocks), the Act's margin note 'Definitions.' (783807), the Rules' contents name cells re-read into their rows (784015, 784128) and page 72's footnote block (784550); the repeated running titles 'THE SINDH PUBLIC PROCUREMENT ACT, 2009. / SINDH ACT NO:IV OF 2009.' and 'THE SINDH PUBLIC PROCUREMENT RULES, 2010' are dropped by the parser's running-header filter",
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p1.png",
+   "render_sha256": "f3e06c8f849c70bef381d26229c37f15937210a6a29b8388525162f8debc28a4"
+  },
+  {
+   "page": 2,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p2.png",
+   "render_sha256": "1495f2781a054b940df8cde3b749116b0c49f62e08d0135cb6837f43833fcb17"
+  },
+  {
+   "page": 3,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p3.png",
+   "render_sha256": "771bcd62c541263e3a54ee599b6b20454633061e35cd1acb88f8f3ae941cb40d"
+  },
+  {
+   "page": 4,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p4.png",
+   "render_sha256": "08f0152f36acdfa60bca0e07a4d05d689fe1c73a9fe94e82b9c1488424602571"
+  },
+  {
+   "page": 5,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p5.png",
+   "render_sha256": "ed453dde7a0532d8b3adbcb38bb6cb906ab9e8bee6c84581a8a7566f2f7fd743"
+  },
+  {
+   "page": 6,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p6.png",
+   "render_sha256": "d77b67e80ee07599a838fcee76c67d0effb910d7b586fecb6666bedb7efa4c71"
+  },
+  {
+   "page": 7,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p7.png",
+   "render_sha256": "27f959dec63de5a86e1457dc0b842ff99b98fb442f1f914095ec8e89347ada5c"
+  },
+  {
+   "page": 8,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p8.png",
+   "render_sha256": "2a33fcf2a44ae8c074214fdbe287c4bc5a8faf3dec2728eff611b4147099818a"
+  },
+  {
+   "page": 9,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p9.png",
+   "render_sha256": "375babb5d8c9839dcb6fb1cbee2c10bf78e6ee0eec68700e65a21f5af483ac57"
+  },
+  {
+   "page": 10,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p10.png",
+   "render_sha256": "9972671928f1906f465ac99021dc6f7ebdb1a42aaf1b817003b0818ef2f90d81"
+  },
+  {
+   "page": 11,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p11.png",
+   "render_sha256": "a0f0affde340b05b3a2759357dcc87c05f61f3d9d82d7ee1d690e0644971f9df"
+  },
+  {
+   "page": 12,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p12.png",
+   "render_sha256": "2396431e929d3dd5a09ad6d0be1fbe6e6cba5b108438e97901124c645bf600dd"
+  },
+  {
+   "page": 13,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p13.png",
+   "render_sha256": "7e5ce5a144862c735d6fc8b4e7a3bb8ef3e7428bc6324190b738026b98dd1c89"
+  },
+  {
+   "page": 14,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p14.png",
+   "render_sha256": "1f5050e6f55cbb2598efe03ad53fc44d20c05b14ebd55e998ac9bb5fef2a5aaa"
+  },
+  {
+   "page": 15,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p15.png",
+   "render_sha256": "e649c5d07571a0c810c1665126396d4e089fb9f7e53c21cbdefb8130a2f0dea0"
+  },
+  {
+   "page": 16,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p16.png",
+   "render_sha256": "ea112919d3bf526c57c5b95b839625f7928b113987b257048e50ee25780ea19f"
+  },
+  {
+   "page": 17,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p17.png",
+   "render_sha256": "16716d6bdddac9467a2cf0dd8522e138d9f9a3c62ec3f8296b3ad0351abf670c"
+  },
+  {
+   "page": 18,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p18.png",
+   "render_sha256": "42cba51ea34807dd20bc04365ef2ccac9d23e375bd8b61ca1a5a92f73aa40e3f"
+  },
+  {
+   "page": 19,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p19.png",
+   "render_sha256": "ba7f33b1370edcaf1fd1c924cb493f81b59099e6bd69e775d52b32d0ad02daed"
+  },
+  {
+   "page": 20,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p20.png",
+   "render_sha256": "549e97d9693dff4997a881a349bc373634fcd8e354d138d40e1ffb966f0f18e2"
+  },
+  {
+   "page": 21,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p21.png",
+   "render_sha256": "51d12d98b66c34cd7135576d9a24afac3cdf5a002b235755ebeaefc705d8f6a8"
+  },
+  {
+   "page": 22,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p22.png",
+   "render_sha256": "34ee1c83b91243851ab0c8f19b69e1c3a85b8e83c485d4bbb985bb909d970000"
+  },
+  {
+   "page": 23,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p23.png",
+   "render_sha256": "ba0774c52da55cb61406db56ddfed380e856e85ac2b0df54f592866f7eeafa40"
+  },
+  {
+   "page": 24,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p24.png",
+   "render_sha256": "10919381a0f293244006ba3869e1dd68beca0eb2edb3da449be95aaeac155fa5"
+  },
+  {
+   "page": 25,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p25.png",
+   "render_sha256": "0da807e9b76c65f9ccdff80680e7781187b8e5a8c9fae0fb9f685ff3e0e1d82a"
+  },
+  {
+   "page": 26,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p26.png",
+   "render_sha256": "cd9697b74a37aad1ab46d8aae1c04c41437619bb91aa9fe9af14e8c2e34da8fc"
+  },
+  {
+   "page": 27,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p27.png",
+   "render_sha256": "db84f7752737367110d535e0dfacf5898790680491c9b9919e8554340eaf94fa"
+  },
+  {
+   "page": 28,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p28.png",
+   "render_sha256": "d7a94e2e75056791eb579d3dc6966b0b1058fa24f3a590bbab12c7eaea19187b"
+  },
+  {
+   "page": 29,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p29.png",
+   "render_sha256": "06bbf16c462a6a0146e81d457affe3b5319304569dff3415557e83f14f58ac0e"
+  },
+  {
+   "page": 30,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p30.png",
+   "render_sha256": "3e4e7313681a0752a1ade24e9d5824b30aa3a4c9350550ed3ca039d5fc20d122"
+  },
+  {
+   "page": 31,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p31.png",
+   "render_sha256": "b4f690a9db230bfe28769874736cdd603e86381279cdd01d833f95b7a6537b50"
+  },
+  {
+   "page": 32,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p32.png",
+   "render_sha256": "1e13461559fff78d4d0c5b744d46e151a9bcedac14ad2140a6a8f5d178aacc6a"
+  },
+  {
+   "page": 33,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p33.png",
+   "render_sha256": "94a0bf7a4a2572f1c40b19c4fcb1ff53a97fd2f938dd55e7919a883e09ebf109"
+  },
+  {
+   "page": 34,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p34.png",
+   "render_sha256": "0163fe3d9dc12cefcb11826410a40ae4d2961fcd227fa87b56de121024b45674"
+  },
+  {
+   "page": 35,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p35.png",
+   "render_sha256": "189f36070ab3396d5a1c4bb9c7109f0e75b65dfdb0e31c79e8bca723e6349577"
+  },
+  {
+   "page": 36,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p36.png",
+   "render_sha256": "8f8e697073961ac83e5a61ce16100f7703f7c57565a343b755610ee55418f8c6"
+  },
+  {
+   "page": 37,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p37.png",
+   "render_sha256": "3b5702d7f11994042a09176118154e08de0ce846def21508dccc533a1ee9459e"
+  },
+  {
+   "page": 38,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p38.png",
+   "render_sha256": "5216559267ef06df2f5f392ffd6b7a48ba2af60e147ff61c6202b2d912cfde63"
+  },
+  {
+   "page": 39,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p39.png",
+   "render_sha256": "cf422348da96f04b812641ba75c8973a24a14c6de88bf91602c2fd21729b882a"
+  },
+  {
+   "page": 40,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p40.png",
+   "render_sha256": "68d560010cd742096d77658fb810792e36c491ff2e754f85350341adde60ba37"
+  },
+  {
+   "page": 41,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p41.png",
+   "render_sha256": "b91ab8e36c3b13fbfa0527b47859a15287c4622d16af26cc69426be668b8f5e0"
+  },
+  {
+   "page": 42,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p42.png",
+   "render_sha256": "3cbc0d9b48bf70fa0ec333898b7dee50afeafd9b1ba6f25f9af0a94c0bf8bcef"
+  },
+  {
+   "page": 43,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p43.png",
+   "render_sha256": "89881d19b3c0825637f3b04a32535010ea0c46936157e1209294ddd8fc5bd115"
+  },
+  {
+   "page": 44,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p44.png",
+   "render_sha256": "b6a06bd68482bc8f2637d6f1579a4e7ebc571787f263738ddb76deff7928b64c"
+  },
+  {
+   "page": 45,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p45.png",
+   "render_sha256": "1541d25a8a46c575728e8fea06ad881d3a443d83fbe3bedbaaca156c008e5188"
+  },
+  {
+   "page": 46,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p46.png",
+   "render_sha256": "c2bfc51c7cae8a44b28397c7eb294102f34d6a57ef844d6c495a69303a6a6876"
+  },
+  {
+   "page": 47,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p47.png",
+   "render_sha256": "9120ea707b568110431888a1e6a816d779e189bf2f82cc9185207d4e8c359e6e"
+  },
+  {
+   "page": 48,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p48.png",
+   "render_sha256": "10f12d5375a7537baecd493b554557ac7570038d77598547c980c93fff2b9a78"
+  },
+  {
+   "page": 49,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p49.png",
+   "render_sha256": "47c838aa720368dd16741692ab17c405890b4ff9619e0eb8b0a097fa09d84aea"
+  },
+  {
+   "page": 50,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p50.png",
+   "render_sha256": "76d2123472deaf97f30ff9b62d221392ee50b5426c626f38e799cba8456b03ae"
+  },
+  {
+   "page": 51,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p51.png",
+   "render_sha256": "edf7f18d43afc9a555cb97e0ab102c9b352d8156a76643edf84a00365e4e5908"
+  },
+  {
+   "page": 52,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p52.png",
+   "render_sha256": "1e1bee6e736eefb1b4e965e88ddf01ee698ce67c745a449d2af401f375ef7666"
+  },
+  {
+   "page": 53,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p53.png",
+   "render_sha256": "8dd605891ba552cc5276a00094a8d11f2552dfafe07231b528b0b732c9547aa5"
+  },
+  {
+   "page": 54,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p54.png",
+   "render_sha256": "7dd4c238f88657a8dad8fc3826a255d5be840bc00feb0a75d0fcb68142bd8819"
+  },
+  {
+   "page": 55,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p55.png",
+   "render_sha256": "2e448abd29ebd2ed6eee260d5b821991764eb6825628a09b0d2666d70e175e8f"
+  },
+  {
+   "page": 56,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p56.png",
+   "render_sha256": "9f48bdaa3018d0291b357a993a02af0d4ab82989207869beb13260891943cb39"
+  },
+  {
+   "page": 57,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p57.png",
+   "render_sha256": "824ef69897e8e752d5bb647690a6c1cf1e892f786ca052f007e08f806b7928a6"
+  },
+  {
+   "page": 58,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p58.png",
+   "render_sha256": "1be769913a329fcc5792932c3ae8a039a4f5d277147461084635ee338f48dec1"
+  },
+  {
+   "page": 59,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p59.png",
+   "render_sha256": "fb301e961589423a964a001bdc5de1c3bf6c63b9ad506ba23859471a66642f25"
+  },
+  {
+   "page": 60,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p60.png",
+   "render_sha256": "1b15df5638c2f5ff8948a8befa3c7a222be54e3006ada436e66b84364b861833"
+  },
+  {
+   "page": 61,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p61.png",
+   "render_sha256": "fb7d2cca4625706ebe73de38313ba8a5fe9b510dbd67c5d648ef34e1aba5b7f8"
+  },
+  {
+   "page": 62,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p62.png",
+   "render_sha256": "ebc4be191809a58fae8634c6ef4b1439a6436d64b677e29c8843b9f7a286a5ef"
+  },
+  {
+   "page": 63,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p63.png",
+   "render_sha256": "61633232110453b0e5cf2846097ea6616fbda248c13a0f8f32a265c8771ecf77"
+  },
+  {
+   "page": 64,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p64.png",
+   "render_sha256": "b62a75628ba4c943c2e3defc9555052a07d9c3ddfe86eee9e5cd4b6690f5ca05"
+  },
+  {
+   "page": 65,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p65.png",
+   "render_sha256": "74262ae104c923a10e8f942e95f75ad58afa3a434f669c4a1663f3c33409961e"
+  },
+  {
+   "page": 66,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p66.png",
+   "render_sha256": "6f5f758aa9ceaee5a862f1b90e98c5764cb499c061da915ceff3cc9858860840"
+  },
+  {
+   "page": 67,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p67.png",
+   "render_sha256": "bb7a6247514b3d5ff1192efbf471396a8f06a6c560c307c6816a7e85442f4f46"
+  },
+  {
+   "page": 68,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p68.png",
+   "render_sha256": "941a0d7388cd3fd7ccfb36acb41411e23d51d7ae43a55d3647399b12add2aaaa"
+  },
+  {
+   "page": 69,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p69.png",
+   "render_sha256": "e2269810db9e428b09d5ead136cbfafc898192ec9b0c162a96f8a60c33b505f9"
+  },
+  {
+   "page": 70,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p70.png",
+   "render_sha256": "30edc5e825569ac5f7f4577f67532ec175ea62acfd95f72aff13a74ec48e257b"
+  },
+  {
+   "page": 71,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p71.png",
+   "render_sha256": "d1d56206e589eddb7a530cc319ac1ca5c0155d0afaa6bef5a60dd1d0672e6209"
+  },
+  {
+   "page": 72,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p72.png",
+   "render_sha256": "2b88109c246ad08345f3d0115261c4e7c12193d53b08f66448ad281000c74ffe"
+  },
+  {
+   "page": 73,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p73.png",
+   "render_sha256": "72809bea181066cb014346b9965eee1d1db1b0f7f85630e3e3be45c91e0a25e6"
+  },
+  {
+   "page": 74,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p74.png",
+   "render_sha256": "e3bbac581eab4570a15866fc21d6f8636362e03c1fc2b934aea35ccdf2885f89"
+  },
+  {
+   "page": 75,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p75.png",
+   "render_sha256": "41fd646ed8ccd3931fcf8416f992acafeebbb4b2607b1da9c299266dfa453a91"
+  },
+  {
+   "page": 76,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p76.png",
+   "render_sha256": "d9262a39afca4754b88b03a35c12aa73f23064263851666ac94902ec8f0c7dda"
+  },
+  {
+   "page": 77,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p77.png",
+   "render_sha256": "69bdd7a6032d95c9a1bcd9fd91afc756ea247fd00cbe0896411db1bcdc34d0c0"
+  },
+  {
+   "page": 78,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p78.png",
+   "render_sha256": "efbde96e8c73217924e53343e3a135f16b8bd38157aa992b25a29773286d597a"
+  },
+  {
+   "page": 79,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p79.png",
+   "render_sha256": "eb6ec194f2ec3344ac165dd2b396776da9fa537b941cd1fda96181a83f6d4067"
+  },
+  {
+   "page": 80,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p80.png",
+   "render_sha256": "cbc7f1f80448a2d8b15a3ad2075ef744a6c0f909f26c79b87b135020aa883be7"
+  },
+  {
+   "page": 81,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p81.png",
+   "render_sha256": "f47419513a7126d65188cdaabc8d2b729dfb827747b4fed6938b953aebd474f2"
+  },
+  {
+   "page": 82,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p82.png",
+   "render_sha256": "7bbc7a5e868ed9f71a00b71ef3a58987de9c07dd7c831eb24ba655e915c9b975"
+  },
+  {
+   "page": 83,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p83.png",
+   "render_sha256": "7dd7d01e93a620129f6ea25143a77574996220c4eda1ef253c694e7ea9039366"
+  },
+  {
+   "page": 84,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p84.png",
+   "render_sha256": "4526e0a5e855e0d591ceef93213e6961bd50ba7c4671c3ed2a95e24497e98fc5"
+  },
+  {
+   "page": 85,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p85.png",
+   "render_sha256": "70b3fb0b9a70e5802bf40844ffe4e7272dacc947522da6970b56cc0608f63cbe"
+  },
+  {
+   "page": 86,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p86.png",
+   "render_sha256": "7b9402d327103742afaa317f66de7adffcb70a318adf0a17ef57700e4c2b7348"
+  },
+  {
+   "page": 87,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p87.png",
+   "render_sha256": "283c9914b24de79bf6528b5a42482819d467ec5ad650ec9779b5a4ce4cb728b8"
+  },
+  {
+   "page": 88,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4428-p88.png",
+   "render_sha256": "b3f5158f9426abb436a58d3be91cef2fb2babb7f7f4f3dae740b551232fca0c3"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "Sindh Public Procurement Act, 2009",
+   "kind": "act",
+   "year": 2009,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 783733,
+     "end_block_id": 783925,
+     "pages": "1-15"
+    }
+   ],
+   "source_anomalies": [
+    {
+     "page": 3,
+     "source_block_id": 783799,
+     "printed": "SINDH ACT NO:IV OF 2009.",
+     "note": "the Act's number IV is printed; the plan keeps number null, as the released instrument has it, so every Act citation path (sindh.act.y2009_o3150.*) is unchanged. Recording the number would move all 140 Act paths to sindh.act.y2009_IV_o3150.* -- a separate identity correction for the owner."
+    },
+    {
+     "page": 5,
+     "source_block_id": 783818,
+     "printed": "Chapter ll",
+     "note": "the text layer reads the chapter number II as two lower-case L; restored to 'II' by a reviewed reading (printed 'CHAPTER II' on the page and in the contents, p1). Moves the 19 paths ch_ll.* -> ch_II.*."
+    },
+    {
+     "page": 5,
+     "source_block_id": 783817,
+     "printed": "(p) \n2[“Services” includes",
+     "note": "s.2(p) is printed as its own clause, but the clause label is followed on the next line by the note marker '2[' and the default parser does not cut it; (p) stays inside s.2(o)'s text as released (no path for (p)). Not changed by this plan."
+    }
+   ],
+   "expected_tree": "preface (title, 'SINDH ACT NO:IV OF 2009.', '25tH May,2009', long title, Preamble, enacting formula); Chapter 1 s.1-2 (s.2 (a)-(q) with (o) holding the printed (p), see anomalies), Chapter II s.3-5, Chapter III s.6-8, Chapter IV s.9-15, Chapter V s.16-17, Chapter VI s.18-27; contents pp1-2 (27 rows) linked one to one; s.27 ends at '... for carrying out the purposes of this Act.' (p15) -- nothing of the Rules",
+   "relations": [
+    {
+     "type": "empowers",
+     "target_ordinal": 1,
+     "source_block_id": 783922,
+     "source_page": 15,
+     "source_provision_path": "sindh.act.y2009_o3150.ch_VI.s_26",
+     "effect": "s.26 ('Government may, by notification in the official Gazette make rules for carrying out the purposes of this Act') empowers the Sindh Public Procurement Rules, 2010",
+     "basis": "docs/03b edge `empowers` (a section authorises the rules made under it; lead decision 11 Oct 2026, not a new edge type). The Act's s.26 (p15, block 783922) is its only rule-making power; the Rules' rule 2(1)(a) (p23, block 784154) defines 'Act' as the Sindh Public Procurement Act, 2009. This copy prints no enabling formula, date or notification number for the Rules (p23: only 'NOTIFICATION' above rule 1). No legal_edge table exists yet: the relation lives in the plan and manifest, as 'amends' does."
+    }
+   ]
+  },
+  {
+   "ordinal": 1,
+   "role": "embedded",
+   "title": "Sindh Public Procurement Rules, 2010",
+   "kind": "rules",
+   "year": 2010,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 783926,
+     "end_block_id": 784665,
+     "pages": "16-88"
+    }
+   ],
+   "source_anomalies": [
+    {
+     "page": 34,
+     "source_block_id": 784213,
+     "printed": "2[“15(A). Unsolicited Proposal.",
+     "note": "inserted rules print their numbers as 'N(A)' in the body ('15(A).', '15(B).', '32(A).', '85(A)', '85(B)') and as '15-A.', '15-B.', '21(A)', '32(A).' in the contents; the parser reads 'N-A.' (typography of the same citation) but not 'N(A).', so reviewed readings write the label 'N-A.'. Cited rule 15-A etc. (the text itself cites 'rule 15 (A)', 'rule 85(A)', 'rule 85(B)')."
+    },
+    {
+     "page": 35,
+     "source_block_id": 784218,
+     "printed": "1[15(B). Entering into Framework Contract",
+     "note": "read as rule 15-B (see p34)."
+    },
+    {
+     "page": 53,
+     "source_block_id": 784377,
+     "printed": "2[32(A). Declaration of Mis-Procurement and Its Consequences",
+     "note": "read as rule 32-A (see p34)."
+    },
+    {
+     "page": 84,
+     "source_block_id": 784641,
+     "printed": "1[“85(A) Unsolicited proposal for Public-Private Partnership Projects.",
+     "note": "read as rule 85-A; the number is printed without a stop (supplied by the reading)."
+    },
+    {
+     "page": 87,
+     "source_block_id": 784651,
+     "printed": "85(B)  Procedures and Guidelines.",
+     "note": "read as rule 85-B; printed without a stop. Rule 85-B is not in the contents (pp17-22)."
+    },
+    {
+     "page": 82,
+     "source_block_id": 784628,
+     "printed": "82.B Fixation or Bid Security",
+     "note": "sic: the body prints '82.B' and 'Fixation or Bid Security', the contents '82-B' and 'Fixation of Bid Security'; label and heading kept as the body prints them, cited rule 82-B."
+    },
+    {
+     "page": 22,
+     "source_block_id": 784129,
+     "printed": "82.  \n 82-A \n 82-B",
+     "note": "the contents print rules 82, 82-A and 82-B in one table row; the reviewed reading joins each number to its name (the name cell, block 784128, is set aside after its words are read)."
+    }
+   ],
+   "expected_tree": "title page (p16) and contents pp17-22 (97 rows: 1-91, 15-A, 15-B, 21-A, 32-A, 82-A, 82-B; every row linked); 'NOTIFICATION' (p23) then rule 1, Part I (rules 2-10), Part II (rules 11-57 with 15-A, 15-B, 21-A, 32-A), Part III (rules 58-80), Part IV (rules 81-88 with 82-A, 82-B, 85-A, 85-B), Part V (rules 89-91), 'Appendix - A 2[XXX]' (p88) -- 99 rules, no positional rule or sub-rule suffix; nested lettered/roman lists keep the corpus convention (siblings with positional suffixes)"
+  }
+ ]
+}

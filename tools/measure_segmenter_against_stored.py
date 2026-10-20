@@ -38,6 +38,19 @@ instead of the active one -- how the 24 withdrawn instruments are measured
 against their pre-replay release.
 
     python tools/measure_segmenter_against_stored.py --summarise .scratch/stored-s*.jsonl
+
+THE GATE FOR UNGATED RULE CHANGES (owner decision 11 Oct; docs/SEGMENTATION-PROFILES.md). frozen-all covers
+pinned documents only; a change to a rule that is NOT gated by a profile reaches every default-profile tree too.
+Such a change must pass the released sweep, under the heavy lock, or come with an approved correction list:
+
+    flock /tmp/nizam-heavy.lock python tools/measure_segmenter_against_stored.py \\
+        nizam/corpus/segment.py --released-only --out .scratch/released
+    python tools/measure_segmenter_against_stored.py --summarise .scratch/released.jsonl \\
+        --gate [--approved APPROVED.txt]
+
+``--gate`` exits 1 when any RELEASED expression differs from its stored tree (or an observation fails to
+build) and is not on the approved list (one "DOC" or "DOC:EXPR" per line, '#' comments). Contents entries are
+compared with their source anchors (block, offset): an anchor change is a change.
 """
 from __future__ import annotations
 
@@ -51,7 +64,9 @@ import pathlib
 import sys
 import time
 
-MULTI_DOCS = {977, 1106, 3389, 3553, 3696, 3912, 4434, 4452, 3423, 3949, 4440, 4497, 268}
+MULTI_DOCS = {977, 1106, 3389, 3553, 3696, 3912, 4434, 4452, 3423, 3949, 4440, 4497, 268, 691, 1822, 1626, 1839, 1970, 2063, 2146, 1973, 4428, 4347, 4367, 4378, 3464, 3392, 2985, 2404,
+              # 16 Oct 2026 (builder BZ): the plan documents released since -- 4431, 3782 -- and 3730 (adopted)
+              4431, 3782, 3730}
 FIELDS = ("path", "parent", "kind", "label", "ordinal", "first_page",
           "last_page", "first_block", "text", "heading")
 
@@ -78,7 +93,7 @@ SELECT c.printed_label, c.source_block_id, c.canonical_source_block_id,
 
 TOC_SQL = """
 SELECT t.ordinal, t.printed_label, coalesce(t.printed_heading,''), t.entry_kind,
-       p.path::text, t.match_method
+       p.path::text, t.match_method, t.source_block_id, t.source_char_offset
   FROM instrument_toc_entry t LEFT JOIN provision p ON p.id=t.provision_id
  WHERE t.instrument_id=%s ORDER BY t.ordinal"""
 
@@ -131,7 +146,7 @@ def built(inst) -> dict:
                 for d in inst.structural_decisions)
     toc = [(t["ordinal"], t["label"], t["heading"] or "", t["kind"],
             path.get(t["provision_key"]) if t["provision_key"] is not None else None,
-            t["method"]) for t in inst.toc_entries]
+            t["method"], t["source_block_id"], t["source_char_offset"]) for t in inst.toc_entries]
     return {"rows": rows, "s7": s7, "toc": toc}
 
 
@@ -198,6 +213,39 @@ def compare(old: dict, new: dict) -> dict:
     return out
 
 
+def gate(paths: list[str], approved_path: pathlib.Path | None) -> int:
+    """1 unless every released expression rebuilds identically or is on the approved list."""
+    approved: set[str] = set()
+    if approved_path is not None:
+        for line in approved_path.read_text(encoding="utf-8").splitlines():
+            line = line.split("#", 1)[0].strip()
+            if line:
+                approved.add(line)
+    failures = []
+    for pattern in paths:
+        for path in sorted(glob.glob(pattern)):
+            with open(path, encoding="utf-8") as fh:
+                for line in fh:
+                    if not line.strip():
+                        continue
+                    r = json.loads(line)
+                    if r.get("error"):
+                        if str(r["document"]) not in approved:
+                            failures.append(f"doc {r['document']} obs {r['observation']}: build error")
+                        continue
+                    for e in r.get("expressions", []):
+                        if not e.get("released") or e["compare"]["same"]:
+                            continue
+                        if {str(r["document"]), f"{r['document']}:{e['expression']}"} & approved:
+                            continue
+                        failures.append(f"doc {r['document']} e{e['expression']}: released tree differs")
+    print(f"\nGATE: {'FAIL' if failures else 'PASS'} -- {len(failures)} released expression(s) differ "
+          f"without approval ({len(approved)} approved entries)")
+    for item in failures[:200]:
+        print("    " + item)
+    return 1 if failures else 0
+
+
 def summarise(paths: list[str]) -> int:
     records = []
     for pattern in paths:
@@ -246,10 +294,16 @@ def main() -> int:
     ap.add_argument("--reference-json", type=pathlib.Path,
                     help='{"doc:obs:expr": {"pre": uuid}} -- compare against these trees')
     ap.add_argument("--summarise", nargs="+", metavar="JSONL")
+    ap.add_argument("--gate", action="store_true",
+                    help="with --summarise: exit 1 if a released expression differs or a build fails "
+                         "(unless approved)")
+    ap.add_argument("--approved", type=pathlib.Path,
+                    help="with --gate: approved corrections, one DOC or DOC:EXPR per line")
     ap.add_argument("--progress-every", type=int, default=100)
     a = ap.parse_args()
     if a.summarise:
-        return summarise(a.summarise)
+        status = summarise(a.summarise)
+        return gate(a.summarise, a.approved) if a.gate else status
     if not a.segmenter or not a.out:
         ap.error("segmenter and --out are required unless --summarise")
 

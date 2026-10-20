@@ -30,6 +30,7 @@ produces a corpus nobody can audit.
 | **C6** | Every provision has text, children, or a block | leaves with no version, no children, no block and no heading | 0 |
 | **C7** | Failures are recorded, never silent | rejected extractions or segmentations with no `reason` | 0 |
 | **C8** | Text with no structure is named, not dropped | blocks with role `unstructured`, and the documents they are in | declared and queued |
+| **C9** | A partial, same-text or non-authoritative copy is never published beside its canonical | partial copies (0054), same-text copies (0062) and non-authoritative files (0065: an unofficial translation, or a Bill whose enacted text is held) with an active instrument whose `duplicate_of` does not point at an active instrument of the canonical (authoritative) document; active duplicates pointing at another duplicate (chain tripwire, every route) | 0, 0, 0 and 0; copies with no complete copy reported |
 
 C4 and C5 are the ones that make "nothing is discarded" checkable rather than
 aspirational. A block is assigned to a provision or given an explicit role; the
@@ -83,14 +84,30 @@ reachable, each with its reason recorded.
 | **A4** | Page anchors are real | provisions whose page lies outside the document | 0 |
 | **A5** | Segmentation matches the document's own contents | ToC agreement where a contents list is printed | ≥ 0.95 median |
 | **A6** | No overlapping law | overlapping `provision_version.validity` for one provision | 0, enforced by `EXCLUDE` |
-| **A7** | **The as-at query returns the corpus** | versions where `validity @> current_date` | = all current versions |
+| **A7** | **The as-at query returns the corpus** | versions where `validity @> current_date`, over instruments that no active manifest declares historical (0064); historical versions are reported and judged by A13 | = all current versions |
 | **A8** | OCR is distinguishable from clean text | E4 blocks with a null confidence | 0 |
 | **A9** | Every parsed contents entry retains its exact source block and physical PDF page | missing or cross-document/page anchors | 0 |
+| **A12** | An instrument has no year only on the owner's word | active instruments with `year` NULL and no active manifest whose evidence cites the owner's `'undated'` answer (0063); the undated count is reported | 0 without the answer; count reported, never a threshold |
+| **A13** | A historical text is bounded, closed, owned and points at current law | (a) bounded versions (`NOT upper_inf`) of active instruments no active manifest declares historical; (b) versions of a historical instrument outside its window; (c) active historical windows with `upper > current_date`; (d) historical manifests whose current-expression key does not resolve to exactly one active, released, non-historical instrument whose earliest version opens at or after the window's end; (e) overlapping windows of one work (same current expression). The number of historical instruments is reported | 0 / 0 / 0 / 0 / 0; count reported, never a threshold |
 
 A7 exists because it failed. Every version was written with a validity opening
 one day in the future — Python in WSL (UTC+5) against Postgres in UTC — so
 INV-5's central query matched nothing while every other check passed. A corpus
 that is complete, accurate and unqueryable is not a corpus.
+
+A13 exists because A7 had to narrow (migration 0064, owner decision
+decision-review-2026-10-12-k.json document 4434 q3 `historical-expression`).
+Document 4434's expression 0 is the Constitution as amended to the
+Twenty-second Amendment Act, 2016; it is released as a dated historical text
+whose versions are written `daterange(from, to, '[)')` and so are deliberately
+never `@> current_date`. A7 therefore judges only current text, and reports how
+many versions it set aside. A13 is what keeps that exemption from becoming a
+hole: a bounded version is admitted only under an owner-declared window that
+has closed, lies wholly inside it, and names a current expression of the same
+work that is itself released current law. The deferred triggers of 0064 enforce
+the window and its retention at commit; A13 re-proves the rule over the stored
+corpus and adds the checks no trigger can make (today's date, the release view,
+overlap between expressions of one work, which has no key to constrain on).
 
 Character overlap alone is not a sufficient quality claim: it can miss scrambled
 word order, a plausible-looking but wrong OCR layer, and low-confidence Urdu.
@@ -142,7 +159,7 @@ never failed has not been tested.
 The command prints every result and exits non-zero if any row is `FAIL`, so CI
 cannot mistake a complete report for permission to release.
 
-`./nz audit` prints all 30 criteria including A1, A2 and A6, which it cannot
+`./nz audit` prints all 35 criteria including A1, A2 and A6, which it cannot
 compute: A1 and A2 need an independent extractor, and A6 is enforced by an
 `EXCLUDE` constraint rather than measured. They appear in the table anyway, with
 where their answer comes from. A table that silently omits what it cannot check

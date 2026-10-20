@@ -1,0 +1,281 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 4691,
+ "source_observation_id": 4234,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-18",
+ "reviewed_by": "assistant page review (agent K6) of the owner-accepted OCR (ocr-review-doc-4538.json, candidates 1657-1668) on the owner's decisions",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/decision-review-2026-10-18-4538.json",
+  "document_id": 4538,
+  "question_id": "q2",
+  "choice": "split",
+  "q1": {
+   "export": ".artifacts/decision-review/exports/decision-review-2026-10-16-m.json",
+   "question_id": "q1",
+   "choice": "printed-only"
+  },
+  "q3": {
+   "export": ".artifacts/decision-review/exports/decision-review-2026-10-18-4538.json",
+   "question_id": "q3",
+   "choice": "reconstruct-flagged",
+   "effect": "the 18 passages the photograph cuts off are completed from the surviving letters, corroborated by the released Punjab copy 2894, each flagged (E0 source_anomalies)"
+  },
+  "effect": "The Civil Defence (Special Powers) Rules, 1951 are this document's instrument; the two delegation notifications printed after them (26 July and 29 September 1951) are each a separate instrument with its printed heading, number and date; all handwriting is set aside and the printed text released as printed."
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/ocr-review-pack-4538/doc-4538/images/page-001.png",
+   "render_sha256": "6fe82e960f965e5c0f6449f5180524805ce6b70a7d965e72d448da97f27b5f86"
+  },
+  {
+   "page": 2,
+   "render": ".artifacts/ocr-review-pack-4538/doc-4538/images/page-002.png",
+   "render_sha256": "b718916cb0f3cf5fd3205d9ed8707b58a2f208ccdda18651f71d82615ef15a33"
+  },
+  {
+   "page": 3,
+   "render": ".artifacts/ocr-review-pack-4538/doc-4538/images/page-003.png",
+   "render_sha256": "0a447bc395275019307e56b0bbd84f3aa2d2b2f9151a0a9a113d7d5d6d392066"
+  },
+  {
+   "page": 4,
+   "render": ".artifacts/ocr-review-pack-4538/doc-4538/images/page-004.png",
+   "render_sha256": "f248f50e468109fa44d14bb2319d81ec85dc2743471a9fb229d33efb256e2d71"
+  },
+  {
+   "page": 5,
+   "render": ".artifacts/ocr-review-pack-4538/doc-4538/images/page-005.png",
+   "render_sha256": "50f6468538511f1802dc78c8953d9df6273f4196dfa3b09dffeb01063941b3e0"
+  },
+  {
+   "page": 6,
+   "render": ".artifacts/ocr-review-pack-4538/doc-4538/images/page-006.png",
+   "render_sha256": "e7eb2b71bb8c3aff53c55a7e0eafac734c5cda7a3dc3c693efb2d2709f7ad5f0"
+  },
+  {
+   "page": 7,
+   "render": ".artifacts/ocr-review-pack-4538/doc-4538/images/page-007.png",
+   "render_sha256": "9ee15cca3f972c888bb04f0063d28969137e53e1977334c64f7fdc31eccfc990"
+  },
+  {
+   "page": 8,
+   "render": ".artifacts/ocr-review-pack-4538/doc-4538/images/page-008.png",
+   "render_sha256": "f76a97876de83eee9fc9a3e042f4a65347df7796fb4206ef949c22d8831eb71a"
+  },
+  {
+   "page": 9,
+   "render": ".artifacts/ocr-review-pack-4538/doc-4538/images/page-009.png",
+   "render_sha256": "2be9ea5a14836c43c7c65d2611a91f6c968610701015ee2cc260d2ce9fff1907"
+  },
+  {
+   "page": 10,
+   "render": ".artifacts/ocr-review-pack-4538/doc-4538/images/page-010.png",
+   "render_sha256": "c9f13ebd281d567f5d6fe6fed50aaa4a451fcc3454a2ac180f61722053c62c80"
+  },
+  {
+   "page": 11,
+   "render": ".artifacts/ocr-review-pack-4538/doc-4538/images/page-011.png",
+   "render_sha256": "3373820cb26a514c6e90149b2ccefec3e1b5b8df85e4cbaf4253b818439673e3"
+  },
+  {
+   "page": 12,
+   "render": ".artifacts/ocr-review-pack-4538/doc-4538/images/page-012.png",
+   "render_sha256": "806d1fa5df447abf3e1fd37244284a856a520bd53128e3ea9741ba299e5ac050"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Civil Defence (Special Powers) Rules, 1951",
+   "kind": "rules",
+   "year": 1951,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 974159,
+     "end_block_id": 974297,
+     "pages": "1-12"
+    }
+   ],
+   "source_anomalies": [
+    {
+     "page": 1,
+     "source_block_id": 974161,
+     "printed": "No. 5/1/50-C.D., dated the 26th July, 1951",
+     "note": "the printed 1951 text, released as printed (owner 4538 q1 'printed-only'): the handwritten amendments on the photographed pages ('Federal' for 'Central', struck-out clauses, 'Key points', SRO citations) are set aside; the text is UNAMENDED and does not show the law as in force"
+    },
+    {
+     "page": 6,
+     "source_block_id": 974229,
+     "printed": "'necessary in the' / '...terests of Civil Defence' (line start cut)",
+     "note": "RECONSTRUCTED (owner 4538 q3 'reconstruct-flagged', .artifacts/decision-review/exports/decision-review-2026-10-18-4538.json; card item 1, rule 13): the photograph cuts off the print; released as 'in the interests of Civil Defence' (the accepted OCR read 'in the thereafters of Civil Defence'), corroborated by the released Punjab copy 2894 (f0264ab5): 'in the interests of Civil Defence'"
+    },
+    {
+     "page": 6,
+     "source_block_id": 974229,
+     "printed": "'declare the provisions of' / '...is Rule to apply'",
+     "note": "RECONSTRUCTED (owner 4538 q3 'reconstruct-flagged', .artifacts/decision-review/exports/decision-review-2026-10-18-4538.json; card item 2, rule 13): the photograph cuts off the print; released as 'declare the provisions of this Rule' (the accepted OCR read 'declare the provisions of its Rule'), corroborated by the released Punjab copy 2894 (f0264ab5): 'declare the provisions of this Rule'"
+    },
+    {
+     "page": 6,
+     "source_block_id": 974229,
+     "printed": "'notwithstanding anything con-' / '...ined in the Companies Act'",
+     "note": "RECONSTRUCTED (owner 4538 q3 'reconstruct-flagged', .artifacts/decision-review/exports/decision-review-2026-10-18-4538.json; card item 3, rule 13): the photograph cuts off the print; released as 'anything contained in the Companies Act' (the accepted OCR read 'anything continued in the Companies Act'), corroborated by the released Punjab copy 2894 (f0264ab5): 'notwithstanding anything contained'"
+    },
+    {
+     "page": 6,
+     "source_block_id": 974231,
+     "printed": "'under this Rule' / '...ll either before such removal'",
+     "note": "RECONSTRUCTED (owner 4538 q3 'reconstruct-flagged', .artifacts/decision-review/exports/decision-review-2026-10-18-4538.json; card item 4, rule 13 proviso): the photograph cuts off the print; released as 'under this Rule shall either before' (the accepted OCR read 'under this Rule all either before'), corroborated by the released Punjab copy 2894 (f0264ab5): 'under this Rule shall either before'"
+    },
+    {
+     "page": 6,
+     "source_block_id": 974231,
+     "printed": "'give notice' / '...he removal to its members'",
+     "note": "RECONSTRUCTED (owner 4538 q3 'reconstruct-flagged', .artifacts/decision-review/exports/decision-review-2026-10-18-4538.json; card item 5, rule 13 proviso): the photograph cuts off the print; released as 'give notice of the removal' (the accepted OCR read 'give notice to the removal'), corroborated by the released Punjab copy 2894 (f0264ab5): 'give notice of the removal to its members'"
+    },
+    {
+     "page": 6,
+     "source_block_id": 974232,
+     "printed": "'precautionary measures.--(1)' / '...his Rule'",
+     "note": "RECONSTRUCTED (owner 4538 q3 'reconstruct-flagged', .artifacts/decision-review/exports/decision-review-2026-10-18-4538.json; card item 6, rule 14(1)): the photograph cuts off the print; released as 'measures.—(1) In this Rule,' (the accepted OCR read 'measures.—(1) This Rule,'), corroborated by the released Punjab copy 2894 (f0264ab5): 'In this Rule'"
+    },
+    {
+     "page": 6,
+     "source_block_id": 974233,
+     "printed": "'made thereunder shall' / '...effect notwithstanding'",
+     "note": "RECONSTRUCTED (owner 4538 q3 'reconstruct-flagged', .artifacts/decision-review/exports/decision-review-2026-10-18-4538.json; card item 7, rule 14(2)): the photograph cuts off the print; released as 'shall have effect notwithstanding' (the accepted OCR read 'shall effect notwithstanding'), corroborated by the released Punjab copy 2894 (f0264ab5): 'shall have effect notwithstanding'"
+    },
+    {
+     "page": 6,
+     "source_block_id": 974233,
+     "printed": "'require any local authority' / '..., within such period'",
+     "note": "RECONSTRUCTED (owner 4538 q3 'reconstruct-flagged', .artifacts/decision-review/exports/decision-review-2026-10-18-4538.json; card item 8, rule 14(3)): the photograph cuts off the print; released as 'require any local authority to take, within such period' (the accepted OCR read 'require any local authority within such period'), corroborated by the released Punjab copy 2894 (f0264ab5): 'require any local authority to take, within such period'"
+    },
+    {
+     "page": 6,
+     "source_block_id": 974233,
+     "printed": "'such measures as' / '...e so specified'",
+     "note": "RECONSTRUCTED (owner 4538 q3 'reconstruct-flagged', .artifacts/decision-review/exports/decision-review-2026-10-18-4538.json; card item 9, rule 14(3)): the photograph cuts off the print; released as 'such measures as may be so specified' (the accepted OCR read 'such measures as so specified'), corroborated by the released Punjab copy 2894 (f0264ab5): 'such measures as may be so specified'"
+    },
+    {
+     "page": 6,
+     "source_block_id": 974233,
+     "printed": "'in the opinion of that Government' / '...ary for the protection'",
+     "note": "RECONSTRUCTED (owner 4538 q3 'reconstruct-flagged', .artifacts/decision-review/exports/decision-review-2026-10-18-4538.json; card item 10, rule 14(3)): the photograph cuts off the print; released as 'opinion of that Government necessary for the protection' (the accepted OCR read 'opinion of that Government for the protection'), corroborated by the released Punjab copy 2894 (f0264ab5): 'in the opinion of that Government necessary'"
+    },
+    {
+     "page": 6,
+     "source_block_id": 974233,
+     "printed": "'under the control or within' / '...risdiction of such authority'",
+     "note": "RECONSTRUCTED (owner 4538 q3 'reconstruct-flagged', .artifacts/decision-review/exports/decision-review-2026-10-18-4538.json; card item 11, rule 14(3)): the photograph cuts off the print; released as 'within the jurisdiction of such authority' (the accepted OCR read 'within residuction of such authority'), corroborated by the released Punjab copy 2894 (f0264ab5): 'under the control or within the jurisdiction'"
+    },
+    {
+     "page": 6,
+     "source_block_id": 974233,
+     "printed": "'for ensuring the due' / '...nance of the vital services'",
+     "note": "RECONSTRUCTED (owner 4538 q3 'reconstruct-flagged', .artifacts/decision-review/exports/decision-review-2026-10-18-4538.json; card item 12, rule 14(3)): the photograph cuts off the print; released as 'the due maintenance of the vital services' (the accepted OCR read 'the due examination of the vital services'), corroborated by the released Punjab copy 2894 (f0264ab5): \"for ensuring the maintenance of (2894 has no 'due'; 'due' is printed here)\""
+    },
+    {
+     "page": 5,
+     "source_block_id": 974217,
+     "printed": "'whether caused by accident' / the next printed line struck through by hand, ending '...wise.;' and the hand ']'",
+     "note": "RECONSTRUCTED (owner 4538 q3 'reconstruct-flagged', .artifacts/decision-review/exports/decision-review-2026-10-18-4538.json; card item 13, rule 12(1)(a)): the photograph cuts off the print; released as 'outbreak of fire whether caused by accident or otherwise.' (the accepted OCR read 'outbreak of fire whether caused by accident.]'), corroborated by the released Punjab copy 2894 (f0264ab5): 'whether caused by accident or otherwise; (as this compilation prints it in 12(2) and 12(3)(a))'"
+    },
+    {
+     "page": 5,
+     "source_block_id": 974222,
+     "printed": "'whether the order has been co' (line end cut) / 'plied with'",
+     "note": "RECONSTRUCTED (owner 4538 q3 'reconstruct-flagged', .artifacts/decision-review/exports/decision-review-2026-10-18-4538.json; card item 14, rule 12(3)(b)): the photograph cuts off the print; released as 'has been complied with' (the accepted OCR read 'has been on plied with'), corroborated by the released Punjab copy 2894 (f0264ab5): 'has been complied with'"
+    },
+    {
+     "page": 5,
+     "source_block_id": 974223,
+     "printed": "'is unlikely to complete, the measu' (line end cut)",
+     "note": "RECONSTRUCTED (owner 4538 q3 'reconstruct-flagged', .artifacts/decision-review/exports/decision-review-2026-10-18-4538.json; card item 15a, rule 12(4)): the photograph cuts off the print; released as 'complete, the measures within' (the accepted OCR read 'complete, the measure within'), corroborated by the released Punjab copy 2894 (f0264ab5): 'complete, the measures within the period'"
+    },
+    {
+     "page": 5,
+     "source_block_id": 974223,
+     "printed": "'may cause the said m' (line end cut) / 'sures to be taken'",
+     "note": "RECONSTRUCTED (owner 4538 q3 'reconstruct-flagged', .artifacts/decision-review/exports/decision-review-2026-10-18-4538.json; card item 15b, rule 12(4)): the photograph cuts off the print; released as 'may cause the said measures to be taken' (the accepted OCR read 'may cause the said measure to be taken'), corroborated by the released Punjab copy 2894 (f0264ab5): 'may cause the said measured (sic) to be taken'"
+    },
+    {
+     "page": 5,
+     "source_block_id": 974223,
+     "printed": "'without prejudice to any o' (line end cut) / 'proceedings which may be taken'",
+     "note": "RECONSTRUCTED (owner 4538 q3 'reconstruct-flagged', .artifacts/decision-review/exports/decision-review-2026-10-18-4538.json; card item 16, rule 12(4)): the photograph cuts off the print; released as 'to any other proceedings' (the accepted OCR read 'to any of proceedings'), corroborated by the released Punjab copy 2894 (f0264ab5): 'without prejudice to any other proceeding'"
+    },
+    {
+     "page": 5,
+     "source_block_id": 974223,
+     "printed": "'the cost thereof shall be recoverable by' (line end cut) / p6 'Collector as if'",
+     "note": "RECONSTRUCTED (owner 4538 q3 'reconstruct-flagged', .artifacts/decision-review/exports/decision-review-2026-10-18-4538.json; card item 17, rule 12(4)): the photograph cuts off the print; released as 'shall be recoverable by the' (the accepted OCR read 'shall be recoverable by'), corroborated by the released Punjab copy 2894 (f0264ab5): 'recoverable by the Collector'"
+    },
+    {
+     "page": 9,
+     "source_block_id": 974266,
+     "printed": "'for the purpose of exhibiting such lights i' (line end cut) / 'to be constructed'",
+     "note": "RECONSTRUCTED (owner 4538 q3 'reconstruct-flagged', .artifacts/decision-review/exports/decision-review-2026-10-18-4538.json; card item 18, rule 19(1)(c)): the photograph cuts off the print; released as 'exhibiting such lights is to be constructed' (the accepted OCR read 'exhibiting such lights to be constructed'), corroborated by the released Punjab copy 2894 (f0264ab5): 'exhibiting such lights is to be constructed'"
+    }
+   ],
+   "expected_tree": "preface (title, the notification No. 5/1/50-C.D. of 26 July 1951 and its enacting words); rules 1-22 with their sub-rules, clauses, provisos and Explanation; the handwriting, the compilation's page heads and foot notes set aside by the readings"
+  },
+  {
+   "ordinal": 1,
+   "role": "embedded",
+   "title": "Delegation of Powers to the Provincial Governments (No. 5/1/50-C.D.I., dated 26 July 1951)",
+   "kind": "notification",
+   "year": 1951,
+   "number": "No. 5/1/50-C.D.I.",
+   "spans": [
+    {
+     "start_block_id": 974299,
+     "end_block_id": 974300,
+     "pages": "12"
+    }
+   ],
+   "relations": [
+    {
+     "type": "amends",
+     "target_ordinal": 0,
+     "source_block_id": 974300,
+     "source_page": 12,
+     "effect": "directs that all powers or duties which under the Civil Defence (Special Powers) Ordinance, 1951 or the rules made thereunder (these Rules) are conferred or imposed upon the Central Government shall be exercised or discharged by the Provincial Governments",
+     "basis": "p12 prints 'No. 5/1/50-C.D.I., dated the 26th July, 1951.--In exercise of the powers conferred by section 9 of the Civil Defence (Special Powers) Ordinance, 1951 (VI of 1951), the Central Government is pleased to direct that all powers or duties which under the provisions of the said Ordinance or rules made thereunder are conferred or imposed upon the Central Government shall be exercised or discharged by the Provincial Governments.'; docs/03b 'amends' is the nearest edge the plan schema admits (precedent 3464: an instrument changing who exercises another's powers); owner q2 'related to the Rules'",
+     "render": ".artifacts/ocr-review-pack-4538/doc-4538/images/page-012.png",
+     "render_sha256": "806d1fa5df447abf3e1fd37244284a856a520bd53128e3ea9741ba299e5ac050"
+    }
+   ],
+   "expected_tree": "the heading 'Delegation of Powers to the Provincial Governments' and the notification paragraph as printed"
+  },
+  {
+   "ordinal": 2,
+   "role": "embedded",
+   "title": "Delegation of Powers to Director-General of Railways to make Rules (No. 5/1/51-C.D., dated 29 September 1951)",
+   "kind": "notification",
+   "year": 1951,
+   "number": "No. 5/1/51-C.D.",
+   "spans": [
+    {
+     "start_block_id": 974302,
+     "end_block_id": 974303,
+     "pages": "12"
+    }
+   ],
+   "source_anomalies": [
+    {
+     "page": 12,
+     "source_block_id": 974303,
+     "printed": "No. 5/1/51-C.D., dated the 29th September, 1951",
+     "note": "related to the Rules as a delegation under the same Ordinance (owner q2): it authorizes the Director-General of Railways to make rules for Railway Air Raid Precautions Services; it neither amends nor is empowered by the Rules, so no plan relation (amends/empowers) is recorded"
+    }
+   ],
+   "expected_tree": "the heading 'Delegation of Powers to Director-General of Railways to make Rules' and the notification paragraph as printed"
+  }
+ ],
+ "apparatus": "outside every span: the compiler's three Gazette references on p12 ('[See Gaz. of P., 1951, Ext., pp. 571-582]', '... p. 582]', '... p. 665]') and p12's foot block (the printed '1See foot-note 1, on page 128, supra.' and a handwritten citation); inside E0's span the handwriting, page heads and foot notes are set aside by the reviewed readings (claude/agK6/work/agK6-mk_4538.py)"
+}

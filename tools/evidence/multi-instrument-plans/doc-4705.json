@@ -1,0 +1,38 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 4705,
+ "source_observation_id": 1254,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-20",
+ "reviewed_by": "lead page review (20 Oct 2026; renders claude/renders/doc4520-p1..p5 and the owner-accepted Surya pages): a ONE-expression plan, used only to carry the printed identity. The catalogue observation 1254 names 'Baln. Information Dept (BPS-16 & above) S. R. 2016', but the file is the Information Department's notification of February 2019 notifying the Guidelines / SOPs of the Journalist Welfare Fund; the tree is otherwise the worker's build with the lead's readings (claude/lead-4705/mk.py)",
+ "owner_decision": {
+  "source": "owner in chat, 20 Oct 2026: 'release 4520 for what it actually is'; owner OCR review .artifacts/ocr-review-exports/ocr-review-doc-4520.json (5/5 accepted)"
+ },
+ "reviewed_pages": [
+  {"page": 1, "render": ".artifacts/ocr-review-pack-4520/doc-4520/images/page-001.png", "render_sha256": "656e6926e3a4f1e64517d27da1b08c34d1fb5b029608fedd11178e59766a7bee"}
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "Guidelines / SOPs' of Journalist Welfare Fund",
+   "kind": "notification",
+   "year": 2019,
+   "number": null,
+   "spans": [{"start_block_id": 983915, "end_block_id": 983959}],
+   "title_basis": "p1 block 983919 prints, centred, 'GUIDELINES / SOPS' OF JOURNALIST WELFARE FUND' under the Government of Balochistan, Information Department NOTIFICATION dated Quetta, [day handwritten] Feb: 2019, which notifies 'the revised Policy /criteria-2018 with regard to the utilization of Journalist Welfare Fund'",
+   "title_correction": {
+    "from_title": "Baln. Information Dept (BPS-16 & above) S. R. 2016",
+    "from_year": 2016,
+    "to_year": 2019,
+    "basis": "the catalogued file is not the Information Department (BPS-16 & above) Service Rules, 2016 (no such rules are printed in it, and none was found on the S&GAD rules page, balochistan.gov.pk/about/rules or by search, 20 Oct 2026); it is the department's February 2019 notification of the Journalist Welfare Fund Guidelines / SOPs, released for what it is on the owner's instruction (20 Oct 2026)"
+   },
+   "source_anomalies": [
+    {"source_block_id": 983918, "printed": "No.SO(Inf:)4-27/2019/ 929-930", "note": "the notification number's tail and the day of the date (block 983916 'Dated Quetta, the 4/18 Feb: 2019') are handwritten; kept as the owner-accepted reading; no number or day is given to the instrument"},
+    {"source_block_id": 983920, "printed": "DEFINITION OF WELFARE FUND: a fund usually established by an employer ...", "note": "the Guidelines' opening definition, the line naming the fund '(JWF)' and 'Details of the criteria are as follows:-' stand before para 1 and are stored as the notification's preface (blocks kept), not as provisions"},
+    {"source_block_id": 983943, "printed": "in the form prescribed in Schedule-I.", "note": "para 7 prescribes an application form in Schedule-I; the file ends at p5 (the Copy-to list) and prints no Schedule-I: recorded as source incompleteness (migration 0054)"},
+    {"source_block_id": 983958, "printed": "7/ Hashim Nadeem Khan\nUnder Secretary (Inf:) 19/2/19", "note": "the page read fuses p5's two signatures ('(Hashim Nadeem Khan) Secretary Information' and the Under Secretary's endorsement of 19/2/19); apparatus, set aside"}
+   ]
+  }
+ ]
+}

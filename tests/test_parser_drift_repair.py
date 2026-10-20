@@ -40,9 +40,13 @@ import pytest
 
 from nizam.corpus import segment as S
 
+# Stage 3 (11 Oct 2026) ported only the DATA-GATED form of this repair (agent DB: `contents_marker_block`,
+# `heading_scan_section_only`, `not_running_header_blocks` in every profile -- tests/test_db_gated_rules.py), which
+# also defines `_column_word_is_set_off`; the UNGATED repair these tests pin moved 168 released expressions and is
+# not applied, so they stay skipped until a module declares it.
 pytestmark = pytest.mark.skipif(
-    not hasattr(S, "_column_word_is_set_off"),
-    reason=".patch_drift.py is not applied",
+    not getattr(S, "PARSER_DRIFT_REPAIR_UNGATED", False),
+    reason=".patch_drift.py (ungated) is not applied; only its data-gated form is",
 )
 
 FIXTURE = Path(__file__).parent / "fixtures" / "parser-drift-repair.json"

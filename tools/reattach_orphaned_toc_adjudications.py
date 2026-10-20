@@ -538,7 +538,10 @@ WITH standing AS (
      -- idempotence: a decision this tool already carried forward is done.
      AND NOT EXISTS (
        SELECT 1 FROM toc_gap_adjudication r
-        WHERE r.evidence #>> '{reattached_from,adjudication_id}' = a.id::text)
+        WHERE r.evidence #>> '{reattached_from,adjudication_id}' = a.id::text
+           -- ... or the replay itself carried onto an identical entry
+           -- (legal_write.save, evidence.carried_by_replay; 11 Oct).
+           OR r.evidence #>> '{carried_by_replay,adjudication_id}' = a.id::text)
 ), orphan AS (
   SELECT s.*
     FROM standing s

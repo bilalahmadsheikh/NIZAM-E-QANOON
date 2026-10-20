@@ -1,0 +1,244 @@
+{
+  "schema": "nizam.multi_expression_plan/1",
+  "document_id": 2146,
+  "source_observation_id": 4503,
+  "review_basis": "source_verified",
+  "reviewed_on": "2026-10-10",
+  "reviewed_by": "assistant page review (agent CQ) on the owner's decision",
+  "owner_decision": {
+    "export": ".artifacts/decision-review/exports/decision-review-2026-10-10-i.json",
+    "q1": "split (note): pages 1-7 are the Sindh Local Councils (Property) Rules, 2017, including their Schedule of registers (1)-(21); pages 8-32 are a separate instrument, the Sindh Councils (Budget) Rules, 2017, beginning with its own notification of 28 February 2017 and keeping its own rules, chapters and budget forms; the repeated rules 1 and 2 are the second instrument's own, not duplicate-number defects; page numbering and other publication furniture are not legislative structure; the Budget Rules and their forms undergo separate structural verification before release",
+    "followup": "owner answers of 10 Oct 2026 given to the lead (logged in CLAUDE-CLAIMS.md): verify the Budget Rules now so both instruments release together; record two source gaps in the Budget Rules -- no rule 4 is printed (p9 goes from 3(2)(n) to '5.'; rule 4 is not invented) and Forms B-5 to B-20 are missing (the file ends at p32 inside Form B-4)"
+  },
+  "reviewed_pages": [
+    {
+      "page": 1,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc2146-p1.png",
+      "render_sha256": "18cfde8c8b874cbf989fdcb9786cf77f3258ce84500b440445d9d6fc28304762"
+    },
+    {
+      "page": 2,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc2146-p2.png",
+      "render_sha256": "7d75a131b3f27873d5ce197e01abf11028167f72fa7f771982017b3954972ba1"
+    },
+    {
+      "page": 3,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc2146-p3.png",
+      "render_sha256": "7c2023f862988857b480dd9fbafed17548526b66e464505e60951b446e061fff"
+    },
+    {
+      "page": 4,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc2146-p4.png",
+      "render_sha256": "50382619a00c62c31fd854aee12c2f79663b93b087a43bfce5cdbc9fcaeee198"
+    },
+    {
+      "page": 5,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc2146-p5.png",
+      "render_sha256": "5ca75f67e560572b67bf346c1676ae1a2bfa012df3ff868b57cadad98644709f"
+    },
+    {
+      "page": 6,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc2146-p6.png",
+      "render_sha256": "d7a1c05048c967684a176abbc01792aa84b4e7fec1621b92a26dca1d6fce2406"
+    },
+    {
+      "page": 7,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc2146-p7.png",
+      "render_sha256": "f67125da9abceacc549652b249b4c200e962d6a7d854656d01a9c0119074e079"
+    },
+    {
+      "page": 8,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc2146-p8.png",
+      "render_sha256": "b6b356522a9d85c8fe90e4a57761ed75508ceae6adb031bb941c57da1d0a1a59"
+    },
+    {
+      "page": 9,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc2146-p9.png",
+      "render_sha256": "5cbbbc6dc392f44b832ad90a51077ea99c644a4a157d2d940349702631832868"
+    },
+    {
+      "page": 10,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc2146-p10.png",
+      "render_sha256": "a0154b20ad8583644bf4ed03da79bd651b7414d525d66bc31e09d157eeabc680"
+    },
+    {
+      "page": 11,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc2146-p11.png",
+      "render_sha256": "6242908eaa5823221774dbd607a393606b2456297919737765f3c5494490d515"
+    },
+    {
+      "page": 12,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc2146-p12.png",
+      "render_sha256": "ed64a3573e9ae6c000db817972ca1d6b7374f7b418c502b891332496c9e5f087"
+    },
+    {
+      "page": 13,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc2146-p13.png",
+      "render_sha256": "b6b61be4fdd01f4c9b75ae92e3b0d19403271140986f0022aaa719462e2df501"
+    },
+    {
+      "page": 14,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc2146-p14.png",
+      "render_sha256": "3c37e1b2bbf722cb048882ecf2ba373ff4db19d755c1881d91e5a5e736af8073"
+    },
+    {
+      "page": 15,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc2146-p15.png",
+      "render_sha256": "4d82d4183f1af1a2fdbea4db5bb98ef629f5a0922f88e2b57679e967aaaeaf2f"
+    },
+    {
+      "page": 16,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc2146-p16.png",
+      "render_sha256": "a75f80b46a8fb3c29f90b7ab1fbf45adcea8a4d5945143e45c9972b40027bfdb"
+    },
+    {
+      "page": 17,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc2146-p17.png",
+      "render_sha256": "abeca9b4bb936389d5268f0451463ec47c4d811f75eb4ec32d9c7b81aa74e455"
+    },
+    {
+      "page": 18,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc2146-p18.png",
+      "render_sha256": "692fa232576cade4d73179429887fdcb9d22b466dfe0bffcea0d3e482fafef7d"
+    },
+    {
+      "page": 19,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc2146-p19.png",
+      "render_sha256": "06590c97aa639de1b492933564500976d70d9133bb64781bea704071d9881bfe"
+    },
+    {
+      "page": 20,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc2146-p20.png",
+      "render_sha256": "0844d4d11f3a85ebbc46bcb4f947d0967ac52193d633903db55dd1261aef8a65"
+    },
+    {
+      "page": 21,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc2146-p21.png",
+      "render_sha256": "a5635df8b96ef9cd62fe7acae5a01c1ee41356a11dbfd201fe79bd8dadb36452"
+    },
+    {
+      "page": 22,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc2146-p22.png",
+      "render_sha256": "54bc85d150c4fd4a843d73c26df4d178f551c700ce6fc0646166e0f8efebfd92"
+    },
+    {
+      "page": 23,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc2146-p23.png",
+      "render_sha256": "a8c31e9b61a435a556ac5acb4e5e556930f5f024885baa2395d6d694b1888db8"
+    },
+    {
+      "page": 24,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc2146-p24.png",
+      "render_sha256": "1c3bef0385b9138afb514a6993b822d3122246406aae3aeb224b98687de92a68"
+    },
+    {
+      "page": 25,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc2146-p25.png",
+      "render_sha256": "137a8e4a7aff66a262121b3a4bd74a9db7493eb953c3a93bffa665495728c919"
+    },
+    {
+      "page": 26,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc2146-p26.png",
+      "render_sha256": "5a68cd72f4cc2f441dfa0fee218be85991a57176a6910516d8a2ca66eb1d22e1"
+    },
+    {
+      "page": 27,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc2146-p27.png",
+      "render_sha256": "80372c56583e16589c505dfb0b7b043251c18a363fe343db362ef396b50ec87d"
+    },
+    {
+      "page": 28,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc2146-p28.png",
+      "render_sha256": "022b1d7b7b7830fd530d9cc33a4e3218a206d3bff072441f48e6b8563c06dedc"
+    },
+    {
+      "page": 29,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc2146-p29.png",
+      "render_sha256": "9f651d6f764956967263629dcc9ec30fdefb4ee4858b310abc618f2acf2ec9ea"
+    },
+    {
+      "page": 30,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc2146-p30.png",
+      "render_sha256": "287c1473c9bec48388f5108c95af9f16b546c8637697c4f5111c40942f8e4dde"
+    },
+    {
+      "page": 31,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc2146-p31.png",
+      "render_sha256": "384b2f5fe6d7a1f21ae3c1c53a3cb8d00d7d02b633c8e854f086dabecb18f0b9"
+    },
+    {
+      "page": 32,
+      "render": ".artifacts/release-work-2026-09-24/claude/renders/doc2146-p32.png",
+      "render_sha256": "efd85be482538bb74dbae703d02ca308226c90c4bac0da2cc1396c6e4c069786"
+    }
+  ],
+  "expressions": [
+    {
+      "ordinal": 0,
+      "role": "primary",
+      "title": "Sindh Local Councils (Property) Rules, 2017",
+      "kind": "rules",
+      "year": 2017,
+      "number": null,
+      "spans": [
+        {
+          "start_block_id": 162547,
+          "end_block_id": 162664,
+          "pages": "1-7"
+        }
+      ],
+      "source_anomalies": [
+        {
+          "page": 5,
+          "source_block_id": 162614,
+          "printed": "CHAPTER-III\nDISPOSAL OF MOVABLE PROPERTY",
+          "note": "sic: the Rules print 'CHAPTER-III' twice -- 'UNSERVICEABLE ARTICLES AND WRITING OFF' (p3, before rule 8) and 'DISPOSAL OF MOVABLE PROPERTY' (p5, before rule 11); there is no CHAPTER-IV. Kept as printed; the second chapter carries the parser's occurrence path (ch_III_n3_1). Chapters are not citable units; rules 1-15 are unique."
+        },
+        {
+          "page": 7,
+          "source_block_id": 162641,
+          "printed": "SCHEDULE",
+          "note": "the Schedule '(see rule 5)' is printed on p7, after the signature, forwarding and distribution list on p6; owner q1 places it in the Property Rules."
+        }
+      ],
+      "expected_tree": "preface (GOVERNMENT OF SINDH / LOCAL GOVERNMENT AND HOUSING TOWN PLANNING DEPARTMENT, 'Karachi, dated the 28th February, 2017', NOTIFICATION, 'No.RO(LG)/MISC:/4(74)/2016: In exercies of the power conferred by section 138 ... following rules:-'); CHAPTER-I PRELIMINARY rules 1-2; CHAPTER-II MANAGEMENT AND MAINTENANCE OF PROPERTY rules 3-7 (r.7(c) (i)-(iv)); CHAPTER-III UNSERVICEABLE ARTICLES AND WRITING OFF rules 8-10 (r.9 (a)[(i)-(iv)], (b)[(i)-(iv)], (c)); CHAPTER-III (sic) DISPOSAL OF MOVABLE PROPERTY rules 11-15; SCHEDULE '(see rule 5)' items (1)-(21). The page numbers, the signature, the forwarding and its distribution list (p6) are apparatus"
+    },
+    {
+      "ordinal": 1,
+      "role": "embedded",
+      "title": "Sindh Councils (Budget) Rules, 2017",
+      "kind": "rules",
+      "year": 2017,
+      "number": null,
+      "spans": [
+        {
+          "start_block_id": 162665,
+          "end_block_id": 163000,
+          "pages": "8-32"
+        }
+      ],
+      "source_anomalies": [
+        {
+          "page": 9,
+          "source_block_id": 162697,
+          "printed": "5.\nEstimates of Revenue",
+          "note": "no rule 4 is printed: p9 runs from rule 3(2)(n) 'Schedule of Taxes.' straight to '5. Estimates of Revenue'; no contents, footnote or omission mark. Rule 4 is not invented; recorded as source incompleteness (owner, 10 Oct; tools/evidence/declare-source-incompleteness-2146.sql)."
+        },
+        {
+          "page": 32,
+          "source_block_id": 162999,
+          "printed": "4.\nTotal Income from\n-\n-\n-\n-\ntaxes",
+          "note": "the PDF ends at p32 (printed page 173) inside Form B-4 'FINANCIAL GRANTS' (rule 8: 'Financial Abstract ... in Form B-4') after its row 4; Forms B-5 to B-20, which rules 9-18, 69, 71, 76, 77 and 80 prescribe, are not printed. Recorded as source incompleteness (owner, 10 Oct)."
+        },
+        {
+          "page": 21,
+          "source_block_id": 162837,
+          "printed": "Communication of the sanctioned Demands. the Finance",
+          "note": "rules 60, 64 and 72 print their headings run into the text ('Copy of the Budget to be furnished to members. Copies ...', 'Budget to be public document. The ...', '... sanctioned Demands. the Finance ...'); with no contents list the heading guess refuses them, so the words stand at the head of the rule's text."
+        }
+      ],
+      "expected_tree": "preface (GOVERNMENT OF SINDH / LOCAL GOVERNMENT AND HOUSING TOWN PLANNING DEPARTMENT, 'Karachi, dated the 28th February, 2017', NOTIFICATION, 'No.RO(LG)/MISC:4(74)/2016: In exercies of the power conferred by section 138 read with sub-section (6) of section 109 ... following rules:-'); CHAPTER-I PRELIMINARY rules 1-3 and 5-34 (no rule 4: source gap; r.2(1) clauses (a)-(j) with (g) whole; rules 21-34 headed 'Explanation of ...' by agCQ rule explanation_of_heading); CHAPTER II PRINCIPLES OF BUDGETING rules 35-57; CHAPTER-III PREPARATION, AUTHENTICATION AND PUBLICATION OF THE BUDGET rules 58-67; CHAPTER-IV rules 68-80; CHAPTER-V rules 81-84; FORM B-1 (See Rule 5) ESTIMATES OF RECEIPTS, FORM B-2 (See Rule 6) ESTIMATES OF EXPENDITURE, FORM B-3 (See Rule 7) DEMANDS FOR GRANT, FORM B-4 (See Rule 8) FINANCIAL GRANTS (rows 1-4, cut off: source gap) -- each blank form one unit, its printed table (group captions, rows, '-' figure columns, Totals) as its text. Page numbers, the p24 signature and the p25 forwarding and distribution list are apparatus"
+    }
+  ],
+  "apparatus": "page numbers ('— 142 —' to '— 173 —'), the two signatures, both forwardings with their distribution lists (p6 for the Property Rules, p25 for the Budget Rules) stay inside their expression spans and are set aside by the reviewed curation readings (claude/agCQ/patch-2146.json)"
+}

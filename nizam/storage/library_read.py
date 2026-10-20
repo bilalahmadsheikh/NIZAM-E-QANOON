@@ -2,6 +2,19 @@
 
 No DDL, replay, adjudication, or corpus writes. No whole-tree queries on taps.
 The pool has an explicit connection/queue budget independent of mobile users.
+
+Historical expressions (migration 0064). An instrument an active manifest
+declares historical -- owner decision 'historical-expression', e.g. document
+4434 e0, the Constitution as amended to the 22nd Amendment -- is listed and
+opened only for an `as_of` inside its window [valid_from, valid_to); at any
+other date, today included, every read below answers as if it did not exist,
+so it is never offered as current law (INV-5). `children()` and `provision()`
+inherit the gate through `_instrument`. Without an `as_of` the API asks for
+today, so a historical text is not discoverable by default (docs/SCHEMA.md).
+The current expression of the same work is resolved at read time from its
+stable key, on single-instrument opens only. Each read has a `_name(conn, ...)`
+form over a connection, so a test can run the exact SQL inside a rolled-back
+transaction.
 """
 from contextlib import contextmanager
 from datetime import date
@@ -11,6 +24,16 @@ from psycopg.rows import dict_row
 from psycopg_pool import ConnectionPool
 
 from nizam.storage.db import dsn
+
+# The instrument-level as_of gate (0064). A plain instrument has no row in
+# v_instrument_historical and passes at every date.
+HISTORICAL_GATE = "(h.instrument_id IS NULL OR h.historical_validity @> %(as_of)s::date)"
+
+_INSTRUMENT_COLUMNS = """
+    i.id, i.short_title AS title, i.kind::text, i.year, i.jurisdiction::text,
+    i.status::text, i.source_url, i.document_id, i.source_sha256 AS source_hash,
+    h.instrument_id IS NOT NULL AS historical,
+    h.valid_from::text AS valid_from, h.valid_to::text AS valid_to"""
 
 
 class LibraryRead:
@@ -32,90 +55,129 @@ class LibraryRead:
             conn.execute("SET LOCAL statement_timeout = '12s'")
             yield conn
 
+    @staticmethod
+    def _instruments(conn, *, q: str, jurisdiction: str, kind: str,
+                     after: str | None, limit: int, as_of: date):
+        return conn.execute(f"""
+            SELECT {_INSTRUMENT_COLUMNS}, NULL::uuid AS current_instrument_id
+              FROM v_release_instrument i
+              LEFT JOIN v_instrument_historical h ON h.instrument_id = i.id
+             WHERE (%(q)s = '' OR i.short_title ILIKE %(pattern)s ESCAPE '!')
+               AND (%(jurisdiction)s = '' OR i.jurisdiction::text = %(jurisdiction)s)
+               AND (%(kind)s = '' OR i.kind::text = %(kind)s)
+               AND (%(after)s::uuid IS NULL OR i.id > %(after)s::uuid)
+               AND {HISTORICAL_GATE}
+             ORDER BY i.id LIMIT %(limit)s
+        """, dict(q=q, pattern='%' + q.replace('!', '!!').replace('%', '!%').replace('_', '!_') + '%',
+                  jurisdiction=jurisdiction, kind=kind, after=after, limit=limit,
+                  as_of=as_of)).fetchall()
+
     def instruments(self, *, q: str, jurisdiction: str, kind: str,
                     after: str | None, limit: int, as_of: date):
         with self.transaction() as conn:
-            return conn.execute("""
-                SELECT i.id, i.short_title AS title, i.kind::text, i.year,
-                       i.jurisdiction::text, i.status::text, i.source_url,
-                       i.document_id, i.source_sha256 AS source_hash
-                  FROM v_release_instrument i
-                 WHERE (%(q)s = '' OR i.short_title ILIKE %(pattern)s ESCAPE '!')
-                   AND (%(jurisdiction)s = '' OR i.jurisdiction::text = %(jurisdiction)s)
-                   AND (%(kind)s = '' OR i.kind::text = %(kind)s)
-                   AND (%(after)s::uuid IS NULL OR i.id > %(after)s::uuid)
-                 ORDER BY i.id LIMIT %(limit)s
-            """, dict(q=q, pattern='%' + q.replace('!', '!!').replace('%', '!%').replace('_', '!_') + '%',
-                      jurisdiction=jurisdiction, kind=kind, after=after, limit=limit)).fetchall()
+            return self._instruments(conn, q=q, jurisdiction=jurisdiction, kind=kind,
+                                     after=after, limit=limit, as_of=as_of)
 
     @staticmethod
-    def _instrument(conn, instrument_id: UUID):
+    def _instrument(conn, instrument_id: UUID, as_of: date, *, resolve_current: bool = False):
+        """The released instrument, if it is readable at `as_of`; the current
+        expression of its work is resolved (to the active, released revision of
+        the stable key) only when `resolve_current` -- a single-instrument open."""
+        current = ("""(SELECT c.id FROM v_release_instrument c
+                        WHERE c.source_observation_id = h.current_source_observation_id
+                          AND c.expression_ordinal = h.current_expression_ordinal)"""
+                   if resolve_current else "NULL::uuid")
+        return conn.execute(f"""
+            SELECT {_INSTRUMENT_COLUMNS}, {current} AS current_instrument_id
+              FROM v_release_instrument i
+              LEFT JOIN v_instrument_historical h ON h.instrument_id = i.id
+             WHERE i.id = %(id)s AND {HISTORICAL_GATE}
+        """, dict(id=instrument_id, as_of=as_of)).fetchone()
+
+    @staticmethod
+    def _historical_window(conn, instrument_id: UUID):
+        """The window of a released historical instrument, whatever the date --
+        so a closed-door open can say why, rather than a bare 404."""
         return conn.execute("""
-            SELECT id, short_title AS title, kind::text, year, jurisdiction::text,
-                   status::text, source_url, document_id, source_sha256 AS source_hash
-              FROM v_release_instrument WHERE id = %s
+            SELECT h.valid_from::text AS valid_from, h.valid_to::text AS valid_to
+              FROM v_instrument_historical h
+              JOIN v_release_instrument i ON i.id = h.instrument_id
+             WHERE h.instrument_id = %s
         """, (instrument_id,)).fetchone()
 
     def instrument(self, instrument_id: UUID, *, as_of: date):
         with self.transaction() as conn:
-            return self._instrument(conn, instrument_id)
+            return self._instrument(conn, instrument_id, as_of, resolve_current=True)
+
+    def historical_window(self, instrument_id: UUID):
+        with self.transaction() as conn:
+            return self._historical_window(conn, instrument_id)
+
+    def _children(self, conn, instrument_id: UUID, *, parent: UUID | None,
+                  after: tuple[int, str] | None, limit: int, as_of: date):
+        if not self._instrument(conn, instrument_id, as_of):
+            return None
+        if parent and not conn.execute(
+            "SELECT 1 FROM v_release_provision WHERE id=%s AND instrument_id=%s",
+            (parent, instrument_id)).fetchone():
+            return None
+        # Parent already passed the release boundary in this same snapshot.
+        # No recursive subtree, version text, or total count in list responses.
+        return conn.execute("""
+            SELECT p.id, p.instrument_id, p.parent_id, p.label, p.heading,
+                   p.marginal_note, p.kind::text, p.ordinal, p.first_page,
+                   EXISTS(SELECT 1 FROM provision c WHERE c.parent_id=p.id
+                          AND c.instrument_id=p.instrument_id AND c.is_active) AS has_children
+              FROM provision p
+             WHERE p.instrument_id=%(instrument)s AND p.is_active
+               AND p.parent_id IS NOT DISTINCT FROM %(parent)s::uuid
+               AND (%(ordinal)s::int IS NULL OR (p.ordinal,p.id) >
+                    (%(ordinal)s::int,%(id)s::uuid))
+             ORDER BY p.ordinal,p.id LIMIT %(limit)s
+        """, dict(instrument=instrument_id, parent=parent,
+                  ordinal=after[0] if after else None, id=after[1] if after else None,
+                  limit=limit)).fetchall()
 
     def children(self, instrument_id: UUID, *, parent: UUID | None,
                  after: tuple[int, str] | None, limit: int, as_of: date):
         with self.transaction() as conn:
-            if not self._instrument(conn, instrument_id):
-                return None
-            if parent and not conn.execute(
-                "SELECT 1 FROM v_release_provision WHERE id=%s AND instrument_id=%s",
-                (parent, instrument_id)).fetchone():
-                return None
-            # Parent already passed the release boundary in this same snapshot.
-            # No recursive subtree, version text, or total count in list responses.
-            return conn.execute("""
-                SELECT p.id, p.instrument_id, p.parent_id, p.label, p.heading,
-                       p.marginal_note, p.kind::text, p.ordinal, p.first_page,
-                       EXISTS(SELECT 1 FROM provision c WHERE c.parent_id=p.id
-                              AND c.instrument_id=p.instrument_id AND c.is_active) AS has_children
-                  FROM provision p
-                 WHERE p.instrument_id=%(instrument)s AND p.is_active
-                   AND p.parent_id IS NOT DISTINCT FROM %(parent)s::uuid
-                   AND (%(ordinal)s::int IS NULL OR (p.ordinal,p.id) >
-                        (%(ordinal)s::int,%(id)s::uuid))
-                 ORDER BY p.ordinal,p.id LIMIT %(limit)s
-            """, dict(instrument=instrument_id, parent=parent,
-                      ordinal=after[0] if after else None, id=after[1] if after else None,
-                      limit=limit)).fetchall()
+            return self._children(conn, instrument_id, parent=parent, after=after,
+                                  limit=limit, as_of=as_of)
+
+    def _provision(self, conn, provision_id: UUID, *, as_of: date):
+        row = conn.execute("""
+            SELECT p.id, p.instrument_id, p.parent_id, p.label, p.heading,
+                   p.marginal_note, p.kind::text, p.ordinal, p.first_page,
+                   EXISTS(SELECT 1 FROM provision c WHERE c.parent_id=p.id
+                          AND c.instrument_id=p.instrument_id AND c.is_active) AS has_children
+              FROM provision p
+             WHERE p.id=%(id)s AND p.is_active
+        """, dict(id=provision_id, as_of=as_of)).fetchone()
+        if not row:
+            return None
+        row['instrument'] = self._instrument(conn, row['instrument_id'], as_of,
+                                             resolve_current=True)
+        if not row['instrument']:
+            return None
+        # Same-snapshot release check above is mandatory. Separating it
+        # avoids expanding the expensive release proof twice in one join.
+        version = conn.execute("""
+            SELECT text_en, text_ur, operation::text,
+                   lower(validity)::text AS valid_from, upper(validity)::text AS valid_to
+              FROM provision_version
+             WHERE provision_id=%s AND validity @> %s::date
+        """, (provision_id, as_of)).fetchone()
+        row.update(version or dict(text_en=None,text_ur=None,operation=None,valid_from=None,valid_to=None))
+        # Ancestors are a short path, not the entire instrument tree.
+        row['ancestors'] = conn.execute("""
+            SELECT a.id, a.label, a.heading, a.kind::text
+              FROM provision a JOIN provision p ON p.id=%s
+             WHERE a.instrument_id=p.instrument_id AND a.is_active
+               AND a.path @> p.path AND a.id<>p.id
+             ORDER BY nlevel(a.path)
+        """, (provision_id,)).fetchall()
+        return row
 
     def provision(self, provision_id: UUID, *, as_of: date):
         with self.transaction() as conn:
-            row = conn.execute("""
-                SELECT p.id, p.instrument_id, p.parent_id, p.label, p.heading,
-                       p.marginal_note, p.kind::text, p.ordinal, p.first_page,
-                       EXISTS(SELECT 1 FROM provision c WHERE c.parent_id=p.id
-                              AND c.instrument_id=p.instrument_id AND c.is_active) AS has_children
-                  FROM provision p
-                 WHERE p.id=%(id)s AND p.is_active
-            """, dict(id=provision_id, as_of=as_of)).fetchone()
-            if not row:
-                return None
-            row['instrument'] = self._instrument(conn, row['instrument_id'])
-            if not row['instrument']:
-                return None
-            # Same-snapshot release check above is mandatory. Separating it
-            # avoids expanding the expensive release proof twice in one join.
-            version = conn.execute("""
-                SELECT text_en, text_ur, operation::text,
-                       lower(validity)::text AS valid_from, upper(validity)::text AS valid_to
-                  FROM provision_version
-                 WHERE provision_id=%s AND validity @> %s::date
-            """, (provision_id, as_of)).fetchone()
-            row.update(version or dict(text_en=None,text_ur=None,operation=None,valid_from=None,valid_to=None))
-            # Ancestors are a short path, not the entire instrument tree.
-            row['ancestors'] = conn.execute("""
-                SELECT a.id, a.label, a.heading, a.kind::text
-                  FROM provision a JOIN provision p ON p.id=%s
-                 WHERE a.instrument_id=p.instrument_id AND a.is_active
-                   AND a.path @> p.path AND a.id<>p.id
-                 ORDER BY nlevel(a.path)
-            """, (provision_id,)).fetchall()
-            return row
+            return self._provision(conn, provision_id, as_of=as_of)

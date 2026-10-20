@@ -1,0 +1,72 @@
+{
+  "schema": "nizam.multi_expression_plan/1",
+  "document_id": 1106,
+  "source_observation_id": 2050,
+  "review_basis": "source_verified",
+  "reviewed_on": "2026-10-08",
+  "reviewed_by": "assistant page review (agent CC) on the owner's decision",
+  "owner_decision": {
+    "export": ".artifacts/decision-review/exports/decision-review-2026-10-07-e.json",
+    "card_sha256": "26abf0eab3c04c6561787ab16aaaa30a01ab30587b36cabc7a971c0853f73b6c",
+    "q1": "split: two instruments -- the 1996 Rules (pp1-11) and the 1998 Rules (pp12-15), each with its own annexed Schedule; both forwarding/distribution lists are excluded from the legal hierarchy; the short title in rule 1 is canonical; 'LORICULTURE' (p1 title line) and the 1998 distribution date '17th April, 1996' (p12) are preserved as source anomalies; no substantive rule 4 from the bare printed '4.'",
+    "q2": "artefact: the bare '4.' (p12) is a non-citable printing artefact with a note; the 1998 Rules have rules 1-3",
+    "q3": "rows-by-group: each recruitment entry is a Schedule row under its printed group caption, identified by caption + printed serial ('Research Group, 2'), or caption + post name where no serial is printed; serials restart within groups and are never renumbered"
+  },
+  "reviewed_pages": [
+    {"page": 1, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1106-p1.png", "render_sha256": "90d726d60a702500bd8fa39f1254818509ed86608eb2e695f521922f4c0c354a"},
+    {"page": 2, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1106-p2.png", "render_sha256": "e3527894d3be282d165f0043b5cec6a1ad0e819477bab6d0e1cf7ab61cc3ab9d"},
+    {"page": 3, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1106-p3.png", "render_sha256": "528bac2637128381fac972e180d3745d96af8dd632a0239d5f1fca8cfad995d3"},
+    {"page": 4, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1106-p4.png", "render_sha256": "aaa9d30f394ec0d7d4a37fde9c2835aa7f831bbfa679b23ea7009f3f32961249"},
+    {"page": 5, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1106-p5.png", "render_sha256": "41337a3ff6b5255a8f42bb765864c20d514d674c969c5522522f50ce15dac616"},
+    {"page": 6, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1106-p6.png", "render_sha256": "5f8bc2c2acdf390e930e7fd7638fd55912ff545c6fe073a4e42866effb12770d"},
+    {"page": 7, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1106-p7.png", "render_sha256": "ff5d1ac266f8284dc69c0cc8b61a4f184d1cc512e140847ec37f249029068992"},
+    {"page": 8, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1106-p8.png", "render_sha256": "87014a7519aee243464430d3a2f412a19090e95986677451c0b4bbbdb216af65"},
+    {"page": 9, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1106-p9.png", "render_sha256": "d26eb51c30d1e73f45d8caa84b815c23ce69a82ff9fe28ae47128a6310be654e"},
+    {"page": 10, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1106-p10.png", "render_sha256": "fa420f833c4622a196fb82b086aaf7cf2299da02488473437999be559e216055"},
+    {"page": 11, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1106-p11.png", "render_sha256": "e403ad716c6b338ff542e7b2bec0693795be0967443db5588b44a70c5ab1bb29"},
+    {"page": 12, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1106-p12.png", "render_sha256": "b10423e420a47acc5fcc285deebb7ce55b4a4e280a517f4db54d09dbc321f840"},
+    {"page": 13, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1106-p13.png", "render_sha256": "c6cbd3d0b2fe2aa301873c6de392d8f20e5a3e57c53905f9c21655a6cc3e7e16"},
+    {"page": 14, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1106-p14.png", "render_sha256": "2ac579e3740c1b3f039a67fd6ffa7122e4d53cf7633692e41c3406884fae2b06"},
+    {"page": 15, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1106-p15.png", "render_sha256": "a2ace0c6a4d1fc65101c90475560cab720994837815e782e3815580267dca299"}
+  ],
+  "expressions": [
+    {
+      "ordinal": 0,
+      "role": "primary",
+      "title": "Directorate of Floriculture (Training & Research), Punjab, Lahore Services Rules, 1996",
+      "kind": "rules",
+      "year": 1996,
+      "number": null,
+      "spans": [
+        {"start_block_id": 52922, "end_block_id": 53116, "pages": "1-11"}
+      ],
+      "title_correction": {
+        "from_title": "DIRECTORATE OF FLORICULTURE (TRAINING & RESEARCH), PUNJAB, LAHORE SERVICES RULES, 1996",
+        "from_year": 1996,
+        "to_year": 1996,
+        "basis": "owner decision q1: 'Use the short title in rule 1 as canonical' -- p1 block 52927 prints '1. These Rules may be called the Directorate of Floriculture (Training & Research), Punjab, Lahore Services Rules, 1996.'; the stored catalogue title is the same name in capitals. SOURCE ANOMALY preserved as printed: the title line above the rules (block 52926) reads 'THE DIRECTORATE OF LORICULTURE / (TRAINING & RESEARCH) PUNJAB, LAHORE' (sic, 'LORICULTURE'); it stays in the preface verbatim and is not the canonical title"
+      },
+      "source_anomalies": [
+        {"page": 1, "source_block_id": 52926, "printed": "THE DIRECTORATE OF LORICULTURE", "note": "sic: the heading prints 'LORICULTURE'; rule 1 names the Directorate of Floriculture. Preserved as printed (owner q1)."}
+      ],
+      "expected_tree": "preface (heading, NOTIFICATION, date 'The 13th April, 1996', No. SOR-III-1-3/96 and the enabling formula, the title line 'THE DIRECTORATE OF LORICULTURE (TRAINING & RESEARCH) PUNJAB, LAHORE' as printed); rules 1-3; SCHEDULE (text = the column heads) with: the row 'Director of Floriculture (Training & Research)' (no caption, no serial: post name); caption 'GAZETTED STAFF OF FLORICULTURE WING' holding the group captions 'FLORICULTURE AND LANDSCAPING RESEARCH GROUP' (rows 1-3), 'FLORICULTURE & LANDSCAPING TRAINING GROUP' (row 'Senior Instructor/ Assistant Horticultural Officer (Flori)', rows 1-3), 'FLORICULTURE GARDENING GROUP' (rows 1-2), 'GREEN BELT GROUP' (rows 1-3), 'TISSUCULTURE GROUP (RAPID PROPAGATION OF HORTICULTURAL PLANTS THROUGH TISSUCULTURE TECHNIQUES' (rows 'Assistant. Horticulturist', 'Asstt. Research Officer'); caption 'NON-GAZETTED (TECHNICAL) OF FLORICULTURE WING' (text = its repeated column heads) holding rows 1-33 -- every row's cells in printed column order (owner q3; captions need the PENDING rule schedule_group_caption; the post-name rows use named_schedule_row (in segment.py), nested under their caption by the PENDING extension J' and admitted by its choice gate only once 'rows-by-group' is added). The authentication, the forwarding endorsement dated 17th April, 1996, the distribution list 1-7 and the signatures (p1) and the compiler's caption 'SERVICE RULES 1996' (p2) are apparatus"
+    },
+    {
+      "ordinal": 1,
+      "role": "embedded",
+      "title": "Directorate of Floriculture (T&R) (Ministerial Posts) Services Rules, 1998",
+      "kind": "rules",
+      "year": 1998,
+      "number": null,
+      "spans": [
+        {"start_block_id": 53117, "end_block_id": 53180, "pages": "12-15"}
+      ],
+      "source_anomalies": [
+        {"page": 12, "source_block_id": 53123, "printed": "Dated Lahore, the 17th April, 1996", "note": "sic: the 1998 notification (dated 'The 30th April, 1998', block 53119) is forwarded under a line dated 17th April, 1996 (the 1996 notification's endorsement date). The forwarding list is apparatus; the date is preserved as printed in that block (owner q1)."},
+        {"page": 12, "source_block_id": 53121, "printed": "4.", "note": "a bare '4.' printed after rule 3 with no text: a non-citable printing artefact (owner q2); it is moved by the reading onto the authentication block 53122, which is set aside; the 1998 Rules have rules 1-3."}
+      ],
+      "expected_tree": "preface (heading, NOTIFICATION, date 'The 30th April, 1998', No. SOR-III-1-3/96 and the enabling formula); rules 1-3 (no rule 4: the bare '4.' is a printing artefact, owner q2); SCHEDULE (text = the column heads) with seven rows printed with no caption and no serial, each identified by its post name: 'Administrative Officer', 'Superintendent', 'Senior Scale Stenographer', 'Stenographer', 'Assistant', 'Senior Clerk', 'Junior Clerk' (named_schedule_row, in segment.py; its choice gate must admit q3 'rows-by-group'). The authentication, '4.', the forwarding endorsement (dated 17th April, 1996, sic), the distribution list 1-4 and the signatures (p12), the compiler's caption 'SERVICE RULES MINISTERIAL STAFF 1998' (p13) and the note 'BETTER COPY OF THE EXISTING SERVICE RULES (TECHNICAL & MINISTERIAL STAFF) OF FLORICULTURE WING' (p15) are apparatus"
+    }
+  ],
+  "apparatus": "authentications, forwarding endorsements, distribution lists, signatures, the column-number rows '1 ... 9', the compiler's captions 'SERVICE RULES 1996' / 'SERVICE RULES MINISTERIAL STAFF 1998' and the closing 'BETTER COPY ...' note are set aside by the reviewed curation readings (claude/agCC/patch-1106.json); every emptied table-cell block is set aside after its words are read into its row's line"
+}

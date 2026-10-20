@@ -15,8 +15,9 @@ way migration 0050 requires of an assistant's `absent_in_source` assertion. The
 rationale stored is the observation, not the conclusion.
 
 THE STUB GUARD APPLIES HERE TOO, and is not overridable. `accept_non_citable`
-is refused when the unit being demoted carries 500+ characters and the unit
-being kept carries less than half of it, whatever the reader believes: that is
+is refused when the unit being demoted carries 500+ characters of provision
+text and the unit being kept carries less than half of it, whatever the reader
+believes (measured on the provisions' text, not their blocks -- SIZES): that is
 the shape that produced 359 citations resolving to less than half their
 provision, and a person reading one page is in no better position to see it
 than the adjudicator was. Use `restore_citable` or `reparent` for those; they
@@ -78,13 +79,36 @@ SELECT c.id::text, c.instrument_id::text, c.candidate_provision_id,
  WHERE c.id = %s
 """
 
+# The stub guard measures a unit by the TEXT its provisions carry: the length of
+# each active provision's latest version (`provision_version.text_en`) summed over
+# the subtree. It used to sum `provision_block.chars`, which charges a whole block
+# to one provision: doc 4474 page 145 prints rule 382's original, then 'Punjab
+# Amendment:', then one block holding the repeated heading AND the amended
+# 'Rule382. (i) ...'. The block's 311 characters were charged to the original,
+# so the guard read 547 demoted against 247 kept and refused, while the texts
+# are 249 against 493 (257 + 236) -- the amended print is the larger one. Lead,
+# 16 Oct 2026 (CLAUDE-CLAIMS): measure by text. The threshold is unchanged.
 SIZES = """
-SELECT (SELECT coalesce(sum(pb.chars), 0) FROM provision x
-          JOIN provision_block pb ON pb.provision_id = x.id
+SELECT (SELECT coalesce(sum(length(v.text_en)), 0) FROM provision x
+          JOIN LATERAL (SELECT pv.text_en FROM provision_version pv
+                         WHERE pv.provision_id = x.id
+                         ORDER BY upper_inf(pv.validity) DESC,
+                                  lower(pv.validity) DESC NULLS LAST,
+                                  pv.created_at DESC
+                         LIMIT 1) v ON true
          WHERE x.instrument_id = p.instrument_id AND x.is_active
            AND x.path <@ p.path)
   FROM provision p WHERE p.id = %s AND p.is_active
 """
+
+
+def stub_guard_refusal(demoted: int, kept: int) -> str | None:
+    """The refusal an `accept_non_citable` gets, or None: the demoted unit
+    carries 500+ characters and the kept one less than half of it."""
+    if demoted >= 500 and kept < demoted * 0.5:
+        return (f"stub guard: the demoted unit carries {demoted} chars and "
+                f"the kept one {kept}. Use restore_citable or reparent.")
+    return None
 
 
 def main() -> int:
@@ -228,11 +252,9 @@ def main() -> int:
                 cand = (cur.fetchone() or [0])[0]
                 cur.execute(SIZES, (canon_pid,))
                 canon = (cur.fetchone() or [0])[0]
-                if cand >= 500 and canon < cand * 0.5:
-                    refused.append((
-                        where,
-                        f"stub guard: the demoted unit carries {cand} chars and "
-                        f"the kept one {canon}. Use restore_citable or reparent."))
+                refusal = stub_guard_refusal(cand, canon)
+                if refusal:
+                    refused.append((where, refusal))
                     continue
 
             # Provenance of a re-attached reading, when the reading carries it.

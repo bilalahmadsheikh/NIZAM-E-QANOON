@@ -1,0 +1,76 @@
+{
+  "schema": "nizam.multi_expression_plan/1",
+  "document_id": 3392,
+  "source_observation_id": 2224,
+  "review_basis": "source_verified",
+  "reviewed_on": "2026-10-13",
+  "reviewed_by": "assistant page review (agent JB) on the owner's decision",
+  "owner_decision": {
+    "export": ".artifacts/decision-review/exports/decision-review-2026-10-12-j.json",
+    "q1": "split: each item becomes its own instrument -- the s.13 extract with the Fifth/Sixth Schedules (W.P. Finance Act 1964), the Balochistan Amendment Act VII of 1974 (ss.1-2 and its schedules) and the Electricity Duty Rules 1964; the Punjab and Sindh substituted schedules and the 1978 Punjab amendment are set aside as compiler's notes"
+  },
+  "reviewed_pages": [
+    {"page": 1, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3392-p1.png", "render_sha256": "0b79f0d39e423da31358eac7767496373334739a9ec23edeb85e89c05a148a37"},
+    {"page": 2, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3392-p2.png", "render_sha256": "d7e720cfae3d4e377de1b77544a7b2fd2c74d4d01377f03015ff1804076f5335"},
+    {"page": 3, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3392-p3.png", "render_sha256": "58b467cae67807bf3e40f649bf43d84f71a82998167d668b780605cf37b3eceb"},
+    {"page": 4, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3392-p4.png", "render_sha256": "76bd2f0f4887c9273a1f3d5c0ba313bb6ec2897437b67c00af1489e7b98fbd4a"},
+    {"page": 5, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3392-p5.png", "render_sha256": "6572a0f75a6e737fa04bb6f3a1194234c7d40b9fa419ca76b679bc9f2855ce2f"},
+    {"page": 6, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3392-p6.png", "render_sha256": "95d198433bfee37df29f91699cf88d7f762ebe91c8556feea665f1429ccacc76"},
+    {"page": 7, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3392-p7.png", "render_sha256": "4815c8e074ad82742bd980a64f852ee01b086894d71c4910baf95936946248f0"},
+    {"page": 8, "render": ".artifacts/release-work-2026-09-24/claude/renders/doc3392-p8.png", "render_sha256": "717081f5019733163d70b6c744f8685c7abaa9204ad2fbcf949efccd747753f7"}
+  ],
+  "expressions": [
+    {
+      "ordinal": 0,
+      "role": "primary",
+      "title": "West Pakistan Electricity Duty Rules, 1964",
+      "kind": "rules",
+      "year": 1964,
+      "number": null,
+      "spans": [
+        {"start_block_id": 367876, "end_block_id": 367924, "pages": "6-9"}
+      ],
+      "expected_tree": "preface (title 'THE WEST PAKISTAN ELECTRICITY DUTY RULES, 1964' with note marker 4, and 'Notification No. S.O.PP-3/5-64' with the enabling formula under s.17(1)(iii) and (vi) of the West Pakistan Finance Act, 1964); rules 1-12 as printed; Forms 'A' and 'B' after the rules. The catalogue title of the file ('ELECTRICITY DUTY RULE 1964') names this instrument; rule 1(1) gives its short title. Number kept null: the notification number 'S.O.PP-3/5-64' is not an instrument number"
+    },
+    {
+      "ordinal": 1,
+      "role": "embedded",
+      "title": "West Pakistan Finance Act, 1964 (section 13 and the Fifth and Sixth Schedules, as reproduced)",
+      "kind": "act",
+      "year": 1964,
+      "number": "XXXIV",
+      "spans": [
+        {"start_block_id": 367790, "end_block_id": 367813, "pages": "2-3"}
+      ],
+      "expected_tree": "preface (the printed title 'THE WEST PAKISTAN FINANCE ACT, 1964 [ACT XXXIV OF 1964]' with note 1, the compiler's date '[22nd March, 2006]', 'As Amended By West Pakistan Finance Ordinance of 1969 [Provisions About Levy Of Electricity Duty' and the compiler's sentence 'Section 13 of the West Pakistan Finance Act, 1964 ... is, reproduced below'); section 13 'Electricity Duty' with sub-sections (1)-(4), its provisos and Explanation (a)-(c); the FIFTH SCHEDULE (Rates of Electricity Duty, items 1-2) and the SIXTH SCHEDULE (Exemptions, items 1-7). An extract: the copy reproduces only s.13 and the two Schedules of the Act. Notes 2-3 (the Schedules 'in the form as subs. by West Pakistan Finance Ordinance, 1969') are printed at the foot of p3 but the text layer fuses them into block 367819, the Punjab rates, outside every span",
+      "source_anomalies": [
+        {"page": 2, "source_block_id": 367792, "printed": "[22nd March, 2006]", "note": "the compiler's date of the collection (also on p1), printed under the Act's title; not the Act's date"}
+      ]
+    },
+    {
+      "ordinal": 2,
+      "role": "embedded",
+      "title": "West Pakistan Finance Act (Balochistan Amendment) Act, 1974",
+      "kind": "act",
+      "year": 1974,
+      "number": "VII",
+      "jurisdiction": "balochistan",
+      "jurisdiction_basis": "page 5 prints 'WEST PAKISTAN FINANCE ACT (BALOCHISTAN AMENDMENT ACT) ACT [VII OF 1974] (Balochistan Gazette, Extra.) [10th July, 1974] AN ACT To amend the West Pakistan Finance Act, 1964, in its application to the Province of Balochistan'; s.1(3): 'It shall extend to the whole of the Province of Balochistan except Tribal Areas'",
+      "spans": [
+        {"start_block_id": 367858, "end_block_id": 367875, "pages": "5-6"}
+      ],
+      "relations": [
+        {
+          "type": "amends",
+          "target_ordinal": 1,
+          "source_block_id": 367863,
+          "source_page": 5,
+          "effect": "s.2 ('Enhanced Electricity Duty') substitutes the Fifth and Sixth Schedules of the West Pakistan Finance Act, 1964 (as substituted by s.6 of the West Pakistan Finance Ordinance, 1969) by the Fifth and Sixth Schedules it sets forth, in the Act's application to Balochistan",
+          "basis": "page 5, block 367863: '2. Enhanced Electricity Duty.- The Fifth and Sixth Schedules to the [West Pakistan Finance Act, 1964 (West Pakistan Act XXXIV of 1964) as substituted by section 6 of the West Pakistan Finance Ordinance, 1969 ... shall be respectively substituted by the Fifth and Sixth Schedules set forth hereunder'"
+        }
+      ],
+      "expected_tree": "preface (title, '(Balochistan Gazette, Extra.)', '[10th July, 1974]', 'AN ACT To amend ...', the Preamble); s.1 (1)-(3); s.2 'Enhanced Electricity Duty'; its FIFTH SCHEDULE ((See Section 13) RATES OF ELECTRICITY DUTY, item 1 (a)-(e) with the Explanation) and SIXTH SCHEDULE ((See Section 13) EXEMPTIONS FROM ELECTRICITY DUTY, items 1-7)"
+    }
+  ],
+  "apparatus": "outside every span (compiler's material, owner q1): p1 the compiler's heading 'IMPOSITION OF ELECTRICITY DUTY / THE WEST PAKISTAN FINANCE ACT, 1964 [ACT XXXIV OF 1964] [22nd March, 2006]' and its contents rows 1-20 (blocks 367774-367788); p2 the compiler's caption 'IMPOSITION OF ELECTRICITY DUTY' (367789); pp3-5 'RATES OF ELECTRICITY IN PUNJAB PROVINCE' (the Punjab Fifth and Sixth Schedules substituted by the Punjab Finance Ordinance (XI of 1971)), 'RATES OF ELECTRICITY DUTY IN SINDH PROVINCE' (the Sindh substituted schedules) and 'ENHANCEMENT OF ELECTRICITY DUTY PUNJAB FINANCE ORDINANCE, 1978' (blocks 367814-367857)"
+}

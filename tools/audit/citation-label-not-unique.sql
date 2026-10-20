@@ -55,7 +55,11 @@ SET work_mem = '256MB';
 
 CREATE TEMP TABLE citable AS
 SELECT p.id, p.instrument_id, i.document_id, p.parent_id, p.kind::text AS kind,
-       btrim(p.label) AS label, p.first_page, p.path::text AS path,
+       -- an owner-kept label's later print is cited with its print-order
+       -- suffix ("s.2 (second)", path `__o2`; docs/SCHEMA.md), so it is a
+       -- different citation
+       btrim(p.label) || coalesce(' __o' || substring(p.path::text from '__o([0-9]+)$'), '') AS label,
+       p.first_page, p.path::text AS path,
        (r.id IS NOT NULL) AS released
   FROM provision p
   JOIN instrument i ON i.id = p.instrument_id AND i.is_active AND i.duplicate_of IS NULL

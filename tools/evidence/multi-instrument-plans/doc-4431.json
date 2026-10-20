@@ -1,0 +1,205 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 4431,
+ "source_observation_id": 2734,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-14",
+ "reviewed_by": "assistant page review (agent JE, 13 Oct 2026; agent K2, 14 Oct 2026: expressions 1-3 page-read pp99-114, owner q5 'split-fee-notification' (export l)); DRAFT",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/decision-review-2026-10-14-l.json",
+  "q3": "split: the 2004 auction notification (with Annex A) and the 2003 amending notification each become a separate instrument from this copy; the Rules end at p98",
+  "q5": "split-fee-notification: the 9 May 2003 fee notification (pp112-114) becomes its own expression (note: 'Consistent with your q3 split answer.')"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4431-p1.png",
+   "render_sha256": "3b8a9ce9c888186228f1352408a659748aceedecade409be93c7db57cdeafbd5"
+  },
+  {
+   "page": 2,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4431-p2.png",
+   "render_sha256": "09c8e928a94f65eeb48e183af5d295a11c4c6618bd622a94586723256b77046f"
+  },
+  {
+   "page": 98,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4431-p98.png",
+   "render_sha256": "00073cdb9fad47d808d018e2ac98bf81e7c60568f3c996e2380debe3edaddb8e"
+  },
+  {
+   "page": 99,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4431-p99.png",
+   "render_sha256": "313033ae197e1b139dd350385d7d80f58ddf8bf3164440062dd7058d2b0d9b97"
+  },
+  {
+   "page": 100,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4431-p100.png",
+   "render_sha256": "0bef04e8970134aa4a538890f89c30010cb89c2a24ef0c63c2a5e2b07763c78a"
+  },
+  {
+   "page": 101,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4431-p101.png",
+   "render_sha256": "e9f90db44affc9712165fc7e64404437dcc10dcfaa0a777365b4f5c588eb1646"
+  },
+  {
+   "page": 102,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4431-p102.png",
+   "render_sha256": "01e3947cd023ccb721678ad890503196baba765f667a59fdcbe5f7d694b48cda"
+  },
+  {
+   "page": 103,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4431-p103.png",
+   "render_sha256": "4aa25eb10b3a701c260932492531f4185e511569b9d0aeb11c4266034d094c62"
+  },
+  {
+   "page": 104,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4431-p104.png",
+   "render_sha256": "7dbf373bf2abd3dab1d364496befd1296f64b49b34997aabf6866389e934796d"
+  },
+  {
+   "page": 105,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4431-p105.png",
+   "render_sha256": "e1f26cfbf0651225667649ab1a21bbb5018b8161f869dcc9f18e8db72182b452"
+  },
+  {
+   "page": 106,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4431-p106.png",
+   "render_sha256": "34d7466ddf67163148d1eed5568bbc7be7b86518a113eddd897e1f778e88fd65"
+  },
+  {
+   "page": 107,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4431-p107.png",
+   "render_sha256": "40b833a57f511d3b49d685805db19e5014d29f2b276c9e677269705a9871522f"
+  },
+  {
+   "page": 108,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4431-p108.png",
+   "render_sha256": "98cecc10aac47fccfc2ed7382f1e8abd2622fcdc8c4eef64c160f660fe39dcfe"
+  },
+  {
+   "page": 109,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4431-p109.png",
+   "render_sha256": "9933134c90c9b1499beb9adf760da0401d35b0ae88dbdf66850e176f15f56a26"
+  },
+  {
+   "page": 110,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4431-p110.png",
+   "render_sha256": "1e7fabbe3f30e8afabde9b68e12bcdbeacabd634216e9847b69aeeb55ab821e3"
+  },
+  {
+   "page": 111,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4431-p111.png",
+   "render_sha256": "f945ce22a279a6c4229b9f0dd464ab4714bf5e5c67d7172350159743bdfa976c"
+  },
+  {
+   "page": 112,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4431-p112.png",
+   "render_sha256": "0c24e36905c908d25a3fa98466d928b4070603cc3641a6a6b92a9d69a11b5f31"
+  },
+  {
+   "page": 113,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4431-p113.png",
+   "render_sha256": "d122b2bc2b80a180f3805cac4d841f0162e3651c6f09f89376cb6fe664e2d57f"
+  },
+  {
+   "page": 114,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4431-p114.png",
+   "render_sha256": "19818da2614028ed7510531b997b8bbd38f4a5895811eb40b2ac110904e4ac9b"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Punjab Mining Concession Rules, 2002",
+   "kind": "rules",
+   "year": 2002,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 786313,
+     "end_block_id": 787334,
+     "pages": "1-98"
+    }
+   ],
+   "expected_tree": "rules 1-238 and 185-A (claude/agJE/patch-4431.json: rules 38, 95, 108, 145, 148, 149, 178, 182, 190, 203-205, 210, 215 opened; rule 2 one unit, its definitions as text; sub-rules of 12, 13, 25, 92, 94 placed), Parts 2-5 (Part 3 opens once the p64 stray preamble is set aside), Schedules 1-3 ending with Schedule 3's NOTE (p98)"
+  },
+  {
+   "ordinal": 1,
+   "role": "embedded",
+   "title": "Notification No. SOT (M&MD) 8-15/90(Voll) of 27 October 2004 (financial qualifications and terms for six rock-salt mining leases by open auction under rule 187)",
+   "kind": "notification",
+   "year": 2004,
+   "number": "SOT (M&MD) 8-15/90(Voll)",
+   "spans": [
+    {
+     "start_block_id": 787335,
+     "end_block_id": 787365,
+     "pages": "99-103"
+    }
+   ],
+   "expected_tree": "front matter (title, date, 'Notification. No. SOT (M&MD) 8-15/90(Voll). The Government of the Punjab is pleased to lay down ...'); paragraphs as printed 'I.' (Terms and conditions for registration), '2.' (Terms and conditions for grant/auction: committee table i)-iv) as text, clauses b)-i)), '1.' (Terms and conditions of concession: clauses a)-f), f)'s items i)-iii)); Annexure 'A' (DETAILS OF MACHINERY & EQUIPMENT, pp102-103). Readings claude/agK2/patch-4431-e12.json",
+   "source_anomalies": [
+    {
+     "source_block_id": 787337,
+     "printed": "I.",
+     "note": "the first paragraph is printed 'I.', the second '2.', the third '1.'; held as printed (labels distinct)"
+    }
+   ]
+  },
+  {
+   "ordinal": 2,
+   "role": "embedded",
+   "title": "Notification No. V(I&MD)3-21/95 Vol-III of 30 April 2003 amending the Punjab Mining Concession Rules, 2002 (Punjab Gazette, 6 May 2003)",
+   "kind": "notification",
+   "year": 2003,
+   "number": "V(I&MD)3-21/95 Vol-III",
+   "spans": [
+    {
+     "start_block_id": 787366,
+     "end_block_id": 787434,
+     "pages": "103-112"
+    }
+   ],
+   "expected_tree": "front matter (Gazette masthead, 'NOTIFICATION No.V(I&MD)3-21/95Vol-III. In exercise of the powers ... the following amendments shall be made:-'); the unnumbered first amendment under its caption 'AMENDMENTS' ('In rule 2 - (i) ... (ii) ...'), amendments 2-31 (quoted new and substituted rules 73-A, 185, 185-A held in their amendment's text); the Secretary's signature and the Directorate's covering letters pp108-112 are bound material (apparatus)",
+   "relations": [
+    {
+     "type": "amends",
+     "target_ordinal": 0,
+     "effect": "makes amendments 1-31 to the Punjab Mining Concession Rules, 2002: rule 2 clauses (xxiv) and (xxix-a); rules 7, 12, 16, 17, 18, 27, 34, 56; new rule 73-A; rules 78, 94, 105, 109, 111, 120, 122, 123, 125, 133, 134, 138, 143, 158, 159; rules 185 and 185-A substituted; rules 191, 210, 234, 237",
+     "source_block_id": 787371,
+     "source_page": 104,
+     "basis": "p103-104 print 'the Governor of the Punjab is pleased to direct that in the Punjab Mining Concession Rules, 2002 the following amendments shall be made:-'; owner decision export k q3 'split'"
+    }
+   ]
+  },
+  {
+   "ordinal": 3,
+   "role": "embedded",
+   "title": "Notification No. V(IM&M)6-1/96 of 9 May 2003 (rates of fee/rent under the Punjab Mining Concession Rules, 2002)",
+   "kind": "notification",
+   "year": 2003,
+   "number": "V(IM&M)6-1/96",
+   "spans": [
+    {
+     "start_block_id": 787435,
+     "end_block_id": 787458,
+     "pages": "112-114"
+    }
+   ],
+   "expected_tree": "front matter ('GOVERNMENT OF THE PUNJAB / INDUSTRIES, MINES & MINERALS / DEPARTMENT / DATED Lahore, the 9th May, 2003. / NOTIFICATION / No. V(IM&M)6-1/96 In exercise of the powers ...'), the fee table (p113) read row by row; signature and endorsements (p114) apparatus",
+   "owner_decision": {
+    "export": ".artifacts/decision-review/exports/decision-review-2026-10-14-l.json",
+    "document_id": 4431,
+    "question_id": "q5"
+   },
+   "source_anomalies": [
+    {
+     "source_block_id": 787435,
+     "printed": "PUNJAB.",
+     "note": "the text layer emits 'PUNJAB.', the last line of the 17 March 2003 letter's second signature (p112), at the head of the block that begins the notification's title 'GOVERNMENT OF THE PUNJAB'; the preceding block (787434) prints the same words as 787431, so no reading can locate it to take the line back"
+    }
+   ]
+  }
+ ]
+}

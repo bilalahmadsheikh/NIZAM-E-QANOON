@@ -1,0 +1,99 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 4378,
+ "source_observation_id": 1898,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-12",
+ "reviewed_by": "assistant page review (agent JE, 12 Oct 2026) on the owner's export j q1; DRAFT",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/decision-review-2026-10-12-j.json",
+  "q1": "split: the Khyber Pakhtunkhwa Public Financial Management Act, 2022 becomes a separate, embedded instrument with its own ss.1-48 and chapters; the Finance Act keeps ss.1-10, and s.10 holds the enacting words and points to the embedded Act"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4378-p1.png",
+   "render_sha256": "0de778dcbb8fe6db4314e47b8b4abb7a46b149face89f1df16685f0e46d63866"
+  },
+  {
+   "page": 2,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4378-p2.png",
+   "render_sha256": "da1becb46246ec0646f516a44e16577162280784f32c9eb1f41ddddc81232bbe"
+  },
+  {
+   "page": 3,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4378-p3.png",
+   "render_sha256": "e8b582369ec9a91d112e80aabd5c739417496197416ee6056b44858ddfcb7439"
+  },
+  {
+   "page": 10,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4378-p10.png",
+   "render_sha256": "30a8413ae12df5079a0444cd0cceaca0d8529c17eae07d1b14a1578c5127db54"
+  },
+  {
+   "page": 11,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4378-p11.png",
+   "render_sha256": "6c67d5697555777bcf798db979e4b1541b757bcf747a1d533fec990944aa4328"
+  },
+  {
+   "page": 29,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4378-p29.png",
+   "render_sha256": "3fd11f99a46d86ba0e7763d227fbbf90218ceffa0ec6d4596eb6dfa895ae8298"
+  },
+  {
+   "page": 30,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4378-p30.png",
+   "render_sha256": "0ecb0360ce66f18a99b30616317a76d0002de8fa2f887901e22743ac2b794a92"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Khyber Pakhtunkhwa Finance Act, 2022",
+   "kind": "act",
+   "year": 2022,
+   "number": "XXIX",
+   "spans": [
+    {
+     "start_block_id": 710628,
+     "end_block_id": 710642,
+     "pages": "1"
+    },
+    {
+     "start_block_id": 710700,
+     "end_block_id": 710756,
+     "pages": "3-10"
+    },
+    {
+     "start_block_id": 710860,
+     "end_block_id": 710929,
+     "pages": "30-32"
+    }
+   ],
+   "expected_tree": "preamble, ss.1-10 (s.10 'Enactment of the Khyber Pakhtunkhwa Public Financial Management Act, 2022.' holding the enacting words 'It is hereby enacted as ... in the manner as follows:'), Appendix-I (Schedule-I, s.3) and Appendix-II (Fifth Schedule, s.4); contents rows 1-10 and the two appendix rows"
+  },
+  {
+   "ordinal": 1,
+   "role": "embedded",
+   "title": "The Khyber Pakhtunkhwa Public Financial Management Act, 2022",
+   "kind": "act",
+   "year": 2022,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 710643,
+     "end_block_id": 710699,
+     "pages": "1-3"
+    },
+    {
+     "start_block_id": 710757,
+     "end_block_id": 710859,
+     "pages": "10-29"
+    }
+   ],
+   "expected_tree": "long title, preamble, Chapters I-VIII, ss.1-48; its contents rows (AN ACT, Chapters I-VIII, 1-48)",
+   "note": "enacted by s.10 of expression 0 (the plan's relation vocabulary has no 'enacts' type; recorded here until docs/03b's legal_edge exists)"
+  }
+ ]
+}

@@ -83,6 +83,7 @@ def test_unreleased_provision_never_reads_version_text():
     @contextmanager
     def transaction(): yield Connection()
     repo.transaction=transaction
-    repo._instrument=lambda conn,id:None
+    # _instrument(conn, id, as_of, *, resolve_current) since migration 0064's as_of gate.
+    repo._instrument=lambda conn,id,*args,**kwargs:None
     assert repo.provision(ID,as_of=date(2026,9,14)) is None
     assert not any('provision_version' in q for q in queries)
