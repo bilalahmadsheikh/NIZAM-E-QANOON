@@ -793,7 +793,54 @@ withheld.
 A wrong file has no authoritative document to point at. An example is 4520,
 catalogued as service rules but in fact the Journalist Welfare Fund notice.
 Such a file is not recorded here, and it stays counted as blocked until the
-right file is landed.
+right file is landed. (4520 was later released for what it is, as the 2019
+Journalist Welfare Fund notification.)
+
+### `statutory_repeal` — a statute repealed by an Act the corpus holds
+
+Migration 0066. This is the corpus's only source of lifecycle status, and it
+records one thing: a released **Act** we hold prints a whole-enactment repeal,
+"<Title>, <year> … is (hereby) repealed" or "shall stand repealed". docs/03b
+draws the line this record keeps. Statute text can show "repealed by another
+statute". It cannot show whether a law ever came into force (commencement is
+in Gazette notifications), or whether a court struck it down.
+
+A clause is recorded only when all of the following hold:
+
+- it names one released instrument of the **same jurisdiction**, by an exact
+  title and year (folded for case, punctuation, footnote markers and the old
+  spelling "Sind");
+- no partial or qualifying words stand before or after it, such as "in its
+  application to", "so far as", "to the extent", "except" or "section N of";
+- no released provision speaks of **reviving** that enactment;
+- the repealing instrument is an Act. An Ordinance's repeal can lapse with the
+  Ordinance, and that is a legal question the recorder does not settle.
+
+The record names both sides by source observation and expression ordinal. The
+repealing provision is named by its first block and its path below the three
+identity labels, and the clause is kept verbatim.
+
+`repealed_on` is set only where the repealing Act prints a single bracketed
+date under its title **and** says it "shall come into force at once". The
+`repealed_on_basis` field says so. instrument's `ck_repeal` (0004) allows status
+`repealed` only with a date. So, after every replay,
+`tools/apply_statutory_repeals.py` (post-replay step 2b3) gives:
+
+- a **dated** repeal: status `repealed`, `repealed_on` and `repealed_by_id`;
+- an **undated** repeal: `repealed_by_id` only, status `unknown`;
+- anything else: unchanged.
+
+Audit A14 checks the derivation both ways. Release views do not read status: a
+repealed law stays released and queryable ("repeal with savings"). Withdrawal
+is a later row with `assertion` set to `withdrawn` (append-only; latest wins).
+
+`tools/record_statutory_repeals.py` finds and records rows (dry run by
+default, `--all` to list them all).
+
+First run, 20 Oct 2026: 571 whole-enactment clauses. Of these, 283 name a law
+we do not hold, 151 are in Ordinances, 108 are qualified, 4 are revived and 1
+names its own Act. That left 50 instruments, 24 of them dated. Every other
+instrument's status is `unknown`, a declared limitation and not "in force".
 
 ### `segmentation_curation_patch` — auditable source corrections
 

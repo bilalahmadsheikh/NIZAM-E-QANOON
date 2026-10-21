@@ -1,0 +1,34 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 2947,
+ "source_observation_id": 3401,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-20",
+ "reviewed_by": "lead (20 Oct 2026): a ONE-expression plan used only to carry the printed identity (was 'SINDH CRIMINAL PROSECUTION SERVICE (CONSTITUTION, FUNCTIONS AND POWERS) ACT, 2009 (codified)', constitution, 2009, number None); the tree is otherwise the worker's build (claude/lead-identity/mkplans.py)",
+ "owner_decision": {
+  "source": "owner in chat, 20 Oct 2026: 'fix ... labelling errors reliably and accurately'"
+ },
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "Sindh Criminal Prosecution Service (Constitution, Functions and Powers) Act, 2009",
+   "kind": "act",
+   "year": 2009,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 277857,
+     "end_block_id": 278009
+    }
+   ],
+   "title_basis": "the document's own opening text prints the title (every title word found in its first page text); catalogue title lost: archive path prints '_' for the apostrophe; kind was 'constitution', inferred from the word in the title",
+   "title_correction": {
+    "from_title": "SINDH CRIMINAL PROSECUTION SERVICE (CONSTITUTION, FUNCTIONS AND POWERS) ACT, 2009 (codified)",
+    "from_year": 2009,
+    "to_year": 2009,
+    "basis": "printed identity replaces the placeholder catalogue identity (kind was 'constitution', inferred from the word in the title)"
+   }
+  }
+ ]
+}

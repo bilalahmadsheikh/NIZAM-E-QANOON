@@ -1,0 +1,34 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 2442,
+ "source_observation_id": 2921,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-20",
+ "reviewed_by": "lead (20 Oct 2026): a ONE-expression plan used only to carry the printed identity (was 'document 2442', act, 2021, number X); the tree is otherwise the worker's build (claude/lead-identity/mkplans.py)",
+ "owner_decision": {
+  "source": "owner in chat, 20 Oct 2026: 'fix ... labelling errors reliably and accurately'"
+ },
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "Punjab Enforcement of Women’s Property Rights Act 2021",
+   "kind": "act",
+   "year": 2021,
+   "number": "X",
+   "spans": [
+    {
+     "start_block_id": 200501,
+     "end_block_id": 200561
+    }
+   ],
+   "title_basis": "the document's own opening text prints the title (every title word found in its first page text); catalogue title lost: archive path prints '_' for the apostrophe",
+   "title_correction": {
+    "from_title": "document 2442",
+    "from_year": 2021,
+    "to_year": 2021,
+    "basis": "printed identity replaces the placeholder catalogue identity"
+   }
+  }
+ ]
+}

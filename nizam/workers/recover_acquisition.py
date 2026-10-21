@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import http.client
 import json
 import os
 import shutil
@@ -36,6 +37,13 @@ ALLOWED_HOSTS = {
     "balochistan.gov.pk",
     "health.balochistan.gov.pk",
     "pabalochistan.gov.pk",
+    # Ministry of Law and Justice, Document Retrieval System: the federal Rules, Regulations and President's Orders
+    # Pakistan Code does not carry (recrawl, 20 Oct 2026)
+    "drs.molaw.gov.pk",
+    # Provincial Assembly of Sindh: Acts published there before the Sindh Code lists them
+    "pas.gov.pk",
+    # Government of Balochistan's Services & General Administration Department: provincial service rules
+    "sngad.balochistan.gov.pk",
 }
 USER_AGENT = "Nizam-e-Qanoon corpus recovery/1 (+official legal research)"
 
@@ -104,7 +112,8 @@ def fetch(url: str, attempts: int = 3,
         except HTTPError as exc:
             body = exc.read()
             return exc.code, exc.geturl(), exc.headers.get_content_type(), body, f"HTTP {exc.code}"
-        except (URLError, TimeoutError, OSError) as exc:
+        # http.client.HTTPException covers IncompleteRead: slow portals drop large PDFs mid-body (recrawl, 20 Oct 2026)
+        except (URLError, TimeoutError, OSError, http.client.HTTPException) as exc:
             last_error = f"{type(exc).__name__}: {exc}"
             if n + 1 < attempts:
                 time.sleep(2 ** n)

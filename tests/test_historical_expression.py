@@ -90,7 +90,7 @@ def test_the_audit_restricts_a7_and_adds_a13():
                  "historical_target_unresolved", "historical_overlaps"):
         assert re.search(rf"AS {name}\b", a13), name
     assert "UNION ALL SELECT 'A13'" in sql
-    assert len(re.findall(r"SELECT '([A-Z][0-9]+)'", sql)) == 35
+    assert len(re.findall(r"SELECT '([A-Z][0-9]+)'", sql)) == 36   # A14 added 20 Oct 2026 (0066)
 
 
 # --- pure: the writer --------------------------------------------------------------

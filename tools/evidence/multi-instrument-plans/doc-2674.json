@@ -1,0 +1,34 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 2674,
+ "source_observation_id": 73,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-20",
+ "reviewed_by": "lead (20 Oct 2026): a ONE-expression plan used only to carry the printed identity (was 'document 2674', act, 1879, number None); the tree is otherwise the worker's build (claude/lead-identity/mkplans.py)",
+ "owner_decision": {
+  "source": "owner in chat, 20 Oct 2026: 'fix ... labelling errors reliably and accurately'"
+ },
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "Elephants’ Preservation Act, 1879",
+   "kind": "act",
+   "year": 1879,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 232053,
+     "end_block_id": 232101
+    }
+   ],
+   "title_basis": "the document's own opening text prints the title (every title word found in its first page text); catalogue title lost: archive path prints '_' for the apostrophe",
+   "title_correction": {
+    "from_title": "document 2674",
+    "from_year": 1879,
+    "to_year": 1879,
+    "basis": "printed identity replaces the placeholder catalogue identity"
+   }
+  }
+ ]
+}

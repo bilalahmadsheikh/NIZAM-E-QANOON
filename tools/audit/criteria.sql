@@ -493,7 +493,25 @@ m AS (
        WHERE a.is_active AND b.is_active
          AND a.historical_validity IS NOT NULL AND b.historical_validity IS NOT NULL
          AND a.historical_validity && b.historical_validity)                      AS historical_overlaps
-    -- <<< A13 measures
+-- <<< A13 measures
+    -- >>> A14 measures
+    -- A14 (migration 0066). instrument.status 'repealed' is derived from a standing statutory repeal, both ways:
+    -- every standing repeal is reflected on its active canonical instrument with its repealing instrument, and no
+    -- instrument is 'repealed' without one. The count of repealed instruments is reported, never a threshold.
+    ,(SELECT count(DISTINCT repealed_instrument_id) FROM v_statutory_repeal_current)   AS repeal_standing
+    -- (dated: status 'repealed' with that date; undated: repealed_by only, status 'unknown' -- ck_repeal)
+    ,(SELECT count(DISTINCT i.id) FROM v_statutory_repeal_current c JOIN instrument i ON i.id=c.repealed_instrument_id
+       WHERE NOT EXISTS (SELECT 1 FROM v_statutory_repeal_current d
+                          WHERE d.repealed_instrument_id=i.id AND d.repealing_instrument_id=i.repealed_by_id
+                            AND d.repealed_on IS NOT DISTINCT FROM i.repealed_on
+                            AND i.status = CASE WHEN d.repealed_on IS NULL THEN 'unknown'::lifecycle_state
+                                                ELSE 'repealed' END))                    AS repeal_unreflected
+    ,(SELECT count(*) FROM instrument i WHERE i.is_active AND (i.status='repealed' OR i.repealed_by_id IS NOT NULL)
+       AND NOT EXISTS (SELECT 1 FROM v_statutory_repeal_current c
+                        WHERE c.repealed_instrument_id=i.id))                           AS repeal_unevidenced
+    ,(SELECT count(DISTINCT c.repealed_instrument_id) FROM v_statutory_repeal_current c
+       WHERE c.repealed_on IS NOT NULL)                                                 AS repeal_dated
+-- <<< A14 measures
 )
 SELECT * FROM (
   SELECT 'C1' AS id, 'every acquired file becomes a blob'      AS criterion,
@@ -636,6 +654,11 @@ SELECT * FROM (
          CASE WHEN bounded_unowned=0 AND historical_outside=0 AND historical_open=0
                    AND historical_target_unresolved=0 AND historical_overlaps=0
               THEN 'PASS' ELSE 'FAIL' END FROM m
+  UNION ALL SELECT 'A14','a repealed status is a statutory repeal the corpus prints, and every one is reflected',
+         repeal_standing||' repealed by a held Act, '||repeal_dated||' dated (reported); '||repeal_unreflected||' unreflected; '||
+         repeal_unevidenced||' without evidence',
+         '0 / 0; count reported',
+         CASE WHEN repeal_unreflected=0 AND repeal_unevidenced=0 THEN 'PASS' ELSE 'FAIL' END FROM m
   UNION ALL SELECT 'A6','no overlapping law (enforced, not tested)',
          CASE WHEN excl_present=1 THEN 'EXCLUDE constraint present'
               ELSE 'CONSTRAINT MISSING' END, 'enforced',

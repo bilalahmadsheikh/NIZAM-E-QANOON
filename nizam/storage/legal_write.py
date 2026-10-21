@@ -331,10 +331,12 @@ def _matching_prior_acceptance(cur, previous_id, new_candidate_id) -> dict | Non
            AND old.decision_kind=new.decision_kind
            AND old.proposed_resolution=new.proposed_resolution
            AND old.evidence=new.evidence
-           AND regexp_replace(oldp.path::text,'_n[0-9]+_[0-9]+','','g')
-             = regexp_replace(newp.path::text,'_n[0-9]+_[0-9]+','','g')
-           AND regexp_replace(oldk.path::text,'_n[0-9]+_[0-9]+','','g')
-             = regexp_replace(newk.path::text,'_n[0-9]+_[0-9]+','','g')
+           -- compared below the three identity labels, which a reviewed identity correction rewrites
+           AND nlevel(oldp.path) > 3 AND nlevel(newp.path) > 3 AND nlevel(oldk.path) > 3 AND nlevel(newk.path) > 3
+           AND regexp_replace(subpath(oldp.path,3)::text,'_n[0-9]+_[0-9]+','','g')
+             = regexp_replace(subpath(newp.path,3)::text,'_n[0-9]+_[0-9]+','','g')
+           AND regexp_replace(subpath(oldk.path,3)::text,'_n[0-9]+_[0-9]+','','g')
+             = regexp_replace(subpath(newk.path,3)::text,'_n[0-9]+_[0-9]+','','g')
     """, (new_candidate_id, previous_id))
     matches = cur.fetchall()
     if len(matches) != 1:
@@ -533,10 +535,14 @@ def _carried_gap_target(cur, row: dict, previous_id, instrument_id,
                     (str(evidence.get("other_instrument_id")), previous_id, instrument_id))
         return bool(cur.fetchone()[0]), {}
     if resolution == "found_elsewhere":
-        # The retired provision's exact counterpart: same path, kind, label and first block, exactly once.
+        # The retired provision's exact counterpart: same path, kind, label and first block, exactly once. The path
+        # is compared below its three identity labels (jurisdiction.kind.year_number_observation), which a reviewed
+        # identity correction rewrites without moving any provision (doc 2479, 20 Oct 2026).
         cur.execute("""
             SELECT n.id::text FROM provision o
-              JOIN provision n ON n.instrument_id=%s AND n.path=o.path AND n.kind=o.kind
+              JOIN provision n ON n.instrument_id=%s AND n.kind=o.kind
+                              AND nlevel(o.path) > 3 AND nlevel(n.path) = nlevel(o.path)
+                              AND subpath(n.path, 3) = subpath(o.path, 3)
                               AND n.label IS NOT DISTINCT FROM o.label
                               AND n.first_block IS NOT DISTINCT FROM o.first_block
              WHERE o.id::text=%s AND o.instrument_id=%s""",

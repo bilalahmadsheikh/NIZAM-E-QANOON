@@ -1,0 +1,34 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 3323,
+ "source_observation_id": 607,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-20",
+ "reviewed_by": "lead (20 Oct 2026): a ONE-expression plan used only to carry the printed identity (was 'document 3323', act, 1985, number None); the tree is otherwise the worker's build (claude/lead-identity/mkplans.py)",
+ "owner_decision": {
+  "source": "owner in chat, 20 Oct 2026: 'fix ... labelling errors reliably and accurately'"
+ },
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "Women’s University Ordinance, 1985",
+   "kind": "ordinance",
+   "year": 1985,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 351186,
+     "end_block_id": 351706
+    }
+   ],
+   "title_basis": "the document's own opening text prints the title (every title word found in its first page text); catalogue title lost: archive path prints '_' for the apostrophe",
+   "title_correction": {
+    "from_title": "document 3323",
+    "from_year": 1985,
+    "to_year": 1985,
+    "basis": "printed identity replaces the placeholder catalogue identity"
+   }
+  }
+ ]
+}

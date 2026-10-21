@@ -128,6 +128,17 @@ else
     uv run python tools/apply_source_non_authoritative_copy.py
 fi
 
+# --------------------------------------------------------------- step 2b3
+# Statutory repeals (migration 0066): instrument.status 'repealed' and repealed_by_id are derived from the
+# source-level record after every replay (a replay recreates instruments with status 'unknown'). Reports and exits
+# cleanly while 0066 is not applied.
+say "2b3. re-derive statutory repeal status"
+if [ "$APPLY" = "1" ]; then
+    uv run python tools/apply_statutory_repeals.py --apply
+else
+    uv run python tools/apply_statutory_repeals.py
+fi
+
 # --------------------------------------------------------------- step 2c
 # After every re-link above (duplicates, splits, partial and same-text copies), no document may hold MORE released
 # expressions than at the signed baseline unless the rise was declared: a reviewed split plan, or an approval

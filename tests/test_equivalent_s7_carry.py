@@ -104,6 +104,7 @@ def test_a_changed_canonical_root_or_a_stub_does_not_carry(monkeypatch):
 
 def test_the_match_compares_paths_without_positional_suffixes():
     src = open(LW.__file__, encoding="utf-8").read()
-    assert src.count("regexp_replace(oldp.path::text,'_n[0-9]+_[0-9]+','','g')") == 1
-    assert src.count("regexp_replace(oldk.path::text,'_n[0-9]+_[0-9]+','','g')") == 1
+    # below the three identity labels, which a reviewed identity correction rewrites (20 Oct 2026)
+    assert src.count("regexp_replace(subpath(oldp.path,3)::text,'_n[0-9]+_[0-9]+','','g')") == 1
+    assert src.count("regexp_replace(subpath(oldk.path,3)::text,'_n[0-9]+_[0-9]+','','g')") == 1
     assert "AND oldp.path=newp.path AND oldk.path=newk.path" not in src
