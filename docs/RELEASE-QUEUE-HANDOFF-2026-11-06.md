@@ -323,7 +323,7 @@ Intermediate and Secondary Education, Peshawar, Ord. 1961), **9595** (the Lahore
     the schedule clause — documented lane; do not alter the printed text to force the match.
 16. Twin Ordinances (Peshawar 9592 / Lahore 9595) share layout and phrasing; the second took about a third of the effort.
 
-### Addendum 4 — **9281 is released with a wrong structure (fix first)**
+### Addendum 4 — **9281 is released with a wrong structure (fix first)** — *fixed, see Addendum 5*
 
 `9281` (Probate and Administration Act 1881) was released on the owner's proofread (count 8,716) but its tree is wrong: the Act prints no
 CONTENTS banner, so the contents list (sections 1–156) is parsed as 156 'sections' on pp1–3 and the real sections 4–156 are clauses. The
@@ -335,3 +335,21 @@ a contents list on the same pages as 'sections' is the sign. (18) A block can be
 unique locators ('no fresh unique locator in the block') and the replay then rolls back to the previous tree. Plan one batch per document; test
 structural overrides on a single-page patch first. (19) A page that holds contents and the long title in one OCR block cannot take
 `source_body_start_block`; use `source_contents_marker_blocks` on a block that holds only the contents head.
+
+### Addendum 5 — 9281 fixed and released (6 Nov, later)
+
+`9281` is now released with a correct tree: 156 sections on pp4–16, none on the contents pages, 0 duplicates, text gate 97.8%,
+leakscan clean, verify_ocr run last. Release count **8,716**. How:
+
+- The contents list is fenced with a reviewed `source_contents_region` (first 2431957 on p1, last 2432065 on p3, body start 2432067 on
+  p4, rows `sections`). The long title and the preamble's first line, which sit at the foot of p3 in the same OCR block as rows 104–156,
+  were re-read into the body's first block 2432067 (with page 3's reading trimmed to match), so the region can end at row 156.
+- Retiring the old 2432067 record also dropped page 4's 33 apparatus blocks, which gave a duplicate section 4. They were re-added on an
+  identity record.
+- The region still left 8 synthetic contents gaps ('51.52', '67.68.69', …). Raw OCR contents blocks that the page readings set aside
+  were still parsed as rows, because the contents parse runs before apparatus is removed. Fix: a new optional field
+  **`skip_apparatus: true`** on `source_contents_region` (`nizam/corpus/segment.py`, rule `reviewed_contents_region`) reads the region's
+  rows without the reviewed `source_apparatus_blocks`. The field is opt-in, so the 36 released specs without it are read exactly as before
+  and no new profile is needed. Tests are in `tests/test_contents_region_skip_apparatus.py`.
+
+Lesson (20): when a contents region carries set-aside raw OCR blocks, record it with `skip_apparatus: true` from the start.

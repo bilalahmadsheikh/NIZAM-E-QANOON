@@ -9812,8 +9812,14 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
     _rc_spec = overrides.get("source_contents_region")
     _rc_contents_ids: set = set()
     if _rc_spec is not None:
+        # Optional `skip_apparatus: true` (doc 9281, 6 Nov 2026): the region's rows are read without the blocks a reviewed
+        # source_apparatus_blocks entry sets aside. The contents parse runs before apparatus is removed, so a set-aside raw
+        # OCR contents block inside the region ('Sactions, 1, Short title, ...', '51. 52.') otherwise adds rows the page
+        # reading does not print. Specs without the field are read exactly as before (36 released documents carry one).
+        _rc_base = {"first_block_id", "last_block_id", "body_start_block_id", "rows"}
         if not (isinstance(_rc_spec, dict)
-                and set(_rc_spec) == {"first_block_id", "last_block_id", "body_start_block_id", "rows"}
+                and (set(_rc_spec) == _rc_base
+                     or (set(_rc_spec) == _rc_base | {"skip_apparatus"} and _rc_spec["skip_apparatus"] is True))
                 and all(type(_rc_spec[k]) is int and _rc_spec[k] > 0
                         for k in ("first_block_id", "last_block_id", "body_start_block_id"))
                 and _rc_spec["rows"] in ("sections", "none")):
@@ -9825,9 +9831,13 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
             raise ValueError(f"source contents region {_rc_spec!r} does not name blocks in reading order")
         _rc_region = blocks[_rc_first:_rc_last + 1]
         _rc_contents_ids = {block.get("id") for block in _rc_region}
+        _rc_rows_from = _rc_region
+        if _rc_spec.get("skip_apparatus"):
+            _rc_aside = {int(v) for v in (overrides.get("source_apparatus_blocks") or [])}
+            _rc_rows_from = [block for block in _rc_region if block.get("id") not in _rc_aside]
         if _rc_spec["rows"] == "sections":
             _rc_toc: dict = {}
-            for _rc_b, _rc_o, _rc_label, _rc_heading in _section_numbers(_rc_region):
+            for _rc_b, _rc_o, _rc_label, _rc_heading in _section_numbers(_rc_rows_from):
                 if _rc_label:
                     _rc_toc.setdefault(_rc_label, _rc_heading or "")
             if not _rc_toc:
