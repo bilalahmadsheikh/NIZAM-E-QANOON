@@ -1,0 +1,55 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 8712,
+ "source_observation_id": 10382,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 8712,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc8712-p1.png",
+   "render_sha256": "0121910ba59b4986f8b62d98c6cba28813a666b55e7489d86b6b54495156c568"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Sind Civil Courts Act, 1869 (Repeal) Act, 1953",
+   "kind": "act",
+   "year": 1953,
+   "number": "IV",
+   "spans": [
+    {
+     "start_block_id": 2340584,
+     "end_block_id": 2340590,
+     "pages": "1-1"
+    }
+   ],
+   "title_basis": "p1 block 2340584 prints 'ACT No. IV OF 1953 An Act to repeal the Sind Civil Courts, 1869'; s.1 names it; ss.1-2 complete. The margin notes printed beside it (blocks 2340568-2340569) and the page number are apparatus."
+  },
+  {
+   "ordinal": 1,
+   "role": "embedded",
+   "title": "The Bar Councils (Amendment) Act, 1953",
+   "kind": "act",
+   "year": 1953,
+   "number": "III",
+   "spans": [
+    {
+     "start_block_id": 2340570,
+     "end_block_id": 2340583,
+     "pages": "1-1"
+    }
+   ],
+   "title_basis": "p1 blocks 2340571-2340575 print 'ACT No. III OF 1953 An Act further to amend the Bar Councils Act, 1926' and s.1 'This Act may be called the Bar Councils (Amendment) Act, 1953'; complete ss.1-2; not held elsewhere in the corpus. (The catalogue OCR shows 'ACT No. II'; the page prints III.)"
+  }
+ ]
+}

@@ -1,0 +1,60 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 8176,
+ "source_observation_id": 13214,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 8176,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc8176-p1.png",
+   "render_sha256": "97bfaf340c3afbdeba2b4397bf0b6a7c93cc0be206264d38de0ff49002095d5c"
+  },
+  {
+   "page": 3,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc8176-p3.png",
+   "render_sha256": "1267f5dd29e4d9406a773ecc7100c639d863109ee872bf173cd4c4a99a2fe705"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Pay-As-You-Earn Scheme Ordinance, 1972",
+   "kind": "ordinance",
+   "year": 1972,
+   "number": "LIX",
+   "spans": [
+    {
+     "start_block_id": 2016353,
+     "end_block_id": 2016386,
+     "pages": "1-3"
+    }
+   ],
+   "title_basis": "p1 block 2016353 prints the title and Ordinance No. LIX of 1972; s.1 names it; ss.1-4 complete. this PDF is three pages cut from a bound annual volume of the 1972 Ordinances (running heads '1972 : Ord. ...'); the National Development Finance Corporation Ordinance's tail on p1 is a fragment (held as document 7163) and is set aside as apparatus."
+  },
+  {
+   "ordinal": 1,
+   "role": "embedded",
+   "title": "The Agricultural Development Bank of Pakistan (Amendment) Ordinance, 1972",
+   "kind": "ordinance",
+   "year": 1972,
+   "number": "LX",
+   "spans": [
+    {
+     "start_block_id": 2016387,
+     "end_block_id": 2016409,
+     "pages": "3-3"
+    }
+   ],
+   "title_basis": "p3 blocks 2016387-2016390 print the title and Ordinance No. LX of 1972; s.1 names it; ss.1-2 complete; not held elsewhere in the corpus."
+  }
+ ]
+}

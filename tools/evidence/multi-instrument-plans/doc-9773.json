@@ -1,0 +1,112 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 9773,
+ "source_observation_id": 10261,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-28",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'; carried onto the Surya re-read 9773 (28 Oct 2026), spans by page",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 5017,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9773-p1.png",
+   "render_sha256": "c8fc16bef8eaeed12c29ae93be68cbb8b51fe246c950b51a72b9fd4ef5377ca6"
+  },
+  {
+   "page": 8,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9773-p8.png",
+   "render_sha256": "41eec7141084d820c46a1fb48346cf8cf6b906e60652967e9fecd552fe0df16a"
+  },
+  {
+   "page": 10,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9773-p10.png",
+   "render_sha256": "fb4f6e84c8c80abd88756834adf38344ccfe50c16e37ccdf619d8f8ab7a51363"
+  },
+  {
+   "page": 11,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9773-p11.png",
+   "render_sha256": "88def233db8fde0366176e809905fed083dcfe15f19e09747a79fcd2097b50cf"
+  },
+  {
+   "page": 24,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9773-p24.png",
+   "render_sha256": "3487c88b0058f0510156cac2bedc71a15eb8ca1730fcb100adbd2e471ee3c2e6"
+  },
+  {
+   "page": 25,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9773-p25.png",
+   "render_sha256": "7a46e34edf7ad5884539651b4e3a68c0c34e36b96cba5731211186127f4aa525"
+  },
+  {
+   "page": 26,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9773-p26.png",
+   "render_sha256": "c4731141ab344e78a77fb8f54898dcb42d20d46177072799c0be9bb064e0df34"
+  },
+  {
+   "page": 30,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9773-p30.png",
+   "render_sha256": "206ca8e70b3c2f33fe8660407698ae50d5c4111d96e53a420e3e00de189b611d"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Balochistan Assembly Members (Salaries and Allowances) Act, 1975",
+   "kind": "act",
+   "year": 1975,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 2649263,
+     "end_block_id": 2649346,
+     "pages": "1-8"
+    }
+   ],
+   "title_basis": "p1 blocks 1016301-1016303 print 'THE BALOCHISTAN ASSEMBLY MEMBERS (SALARIES AND ALLOWANCES) ACT, 1975. (Amended upto 16th August, 2004)' -- the Provincial Assembly Secretariat's consolidation of the Act as amended to 16 Aug 2004, complete on pp1-8 (ss.1-10)",
+   "title_correction": {
+    "from_title": "The Balochistan Assembly Members (Salaries, Allowances and Privileges) (Amendment) Act No. I of 2004",
+    "from_year": 2004,
+    "to_year": 1975,
+    "basis": "the catalogued file is the Assembly Secretariat's compilation: the Members Act 1975 consolidated to 16 Aug 2004 (pp1-8), the Speaker's and Deputy Speaker's Act 1975 consolidated (pp10-24) and the Members Act consolidated to 2007 (pp25-30); no amending Act of 2004 is printed in it"
+   }
+  },
+  {
+   "ordinal": 1,
+   "role": "embedded",
+   "title": "The Balochistan Speaker's and Deputy Speaker's (Salaries, Allowances and Privileges) Act, 1975",
+   "kind": "act",
+   "year": 1975,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 2649349,
+     "end_block_id": 2649477,
+     "pages": "10-24"
+    }
+   ],
+   "title_basis": "p11 block 1016367 prints s.1(1) 'This Act may be called the Balochistan Speaker's and Deputy Speaker's (Salaries, Allowances and Privileges) Act, 1975'; its preamble cites Article 250(1) for the Speaker and Deputy Speaker; complete on pp10-24 to the note 'Section 15-A amended vide Notification ...' (p24). The p10 heading and the p11 long title repeat the Members Act's (a compiler's error in the source)."
+  },
+  {
+   "ordinal": 2,
+   "role": "embedded",
+   "title": "The Balochistan Assembly Members (Salaries and Allowances) Act, 1975",
+   "kind": "act",
+   "year": 1975,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 2649478,
+     "end_block_id": 2649533,
+     "pages": "25-30"
+    }
+   ],
+   "title_basis": "p26 prints s.1(1) 'This Act may be called the Balochistan Assembly Members (Salaries and Allowances) Act, 1975.(Amended up to 2007..' -- a later consolidation of the same Act, complete on pp25-30 (ss.1-9, signed MUHAMMAD ATHAR, Secretary, Provincial Assembly of Balochistan)"
+  }
+ ]
+}

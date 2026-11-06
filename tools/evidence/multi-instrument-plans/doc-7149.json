@@ -1,0 +1,44 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 7149,
+ "source_observation_id": 12503,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 7149,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc7149-p1.png",
+   "render_sha256": "41055cb6d06209dbbf3ce494e076f2ba7904295c78a6e8b572f9bf1a381b4602"
+  },
+  {
+   "page": 6,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc7149-p6.png",
+   "render_sha256": "0219e348b4ab5dc008f4bf1a3a5a21f350c95085a32fc6d5e07700549c9cfb10"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Civil Laws (Reforms) Ordinance, 1994",
+   "kind": "ordinance",
+   "year": 1994,
+   "number": "XXX",
+   "spans": [
+    {
+     "start_block_id": 1662143,
+     "end_block_id": 1662243,
+     "pages": "1-6"
+    }
+   ],
+   "title_basis": "p1 blocks 1662143-1662144 print the notification and 'ORDINANCE No. XXX OF 1994'; s.1 names it; ss.1-12 complete. The p1 head (a fragment of an earlier Ordinance) and Ordinance No. XXXI of 1994 (amending the Dangerous Drugs Act, 1930), cut off after its preamble at the end of p6, are set aside as apparatus (owner policy q1 'split')."
+  }
+ ]
+}

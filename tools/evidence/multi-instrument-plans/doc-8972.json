@@ -1,0 +1,60 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 8972,
+ "source_observation_id": 12620,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 8972,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc8972-p1.png",
+   "render_sha256": "f2d31d74995cbd398d2d9a8347c8627ae40493e4af2584b465d990045ee25a8d"
+  },
+  {
+   "page": 2,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc8972-p2.png",
+   "render_sha256": "89d7c448d719d43b24fe230820cb073f834ccb31b4f42574806e9de7c4d08e9a"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Salaries and Allowances of Ministers of State Act, 1951",
+   "kind": "act",
+   "year": 1951,
+   "number": "XIV",
+   "spans": [
+    {
+     "start_block_id": 2357642,
+     "end_block_id": 2357656,
+     "pages": "1-2"
+    }
+   ],
+   "title_basis": "p1 block 2357642 prints 'ACT No. XIV OF 1951'; s.1 names it; ss.1-4 complete. ACT No. XV OF 1951 (the Tariff (Amendment) Act, 1951) on p2 runs into a table that continues past the end of this copy, so it is set aside as apparatus."
+  },
+  {
+   "ordinal": 1,
+   "role": "embedded",
+   "title": "The Court-fees (Amendment) Act, 1951",
+   "kind": "act",
+   "year": 1951,
+   "number": "XIII",
+   "spans": [
+    {
+     "start_block_id": 2357629,
+     "end_block_id": 2357641,
+     "pages": "1-1"
+    }
+   ],
+   "title_basis": "p1 blocks 2357629-2357634 print 'ACT No. XIII OF 1951 An Act further to amend the Court-fees Act, 1870' and s.1 naming the Court-fees (Amendment) Act, 1951; complete ss.1-2; not held elsewhere in the corpus."
+  }
+ ]
+}

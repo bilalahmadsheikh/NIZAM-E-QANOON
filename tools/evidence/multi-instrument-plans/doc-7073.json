@@ -1,0 +1,44 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 7073,
+ "source_observation_id": 10757,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 7073,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc7073-p1.png",
+   "render_sha256": "6fb25b0e6ca200904ea29c7757eef2ff90655a56dab619717ced401116082bb0"
+  },
+  {
+   "page": 4,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc7073-p4.png",
+   "render_sha256": "31165b328c1414dd34b99bb6289652c9d5f708b9e41f25d3147a78d2878aa87a"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Anti-Narcotics Task Force Ordinance, 1994",
+   "kind": "ordinance",
+   "year": 1994,
+   "number": "LXXVI",
+   "spans": [
+    {
+     "start_block_id": 1648987,
+     "end_block_id": 1649055,
+     "pages": "1-4"
+    }
+   ],
+   "title_basis": "p1 blocks 1648987-1648989 print the date line, notification and 'ORDINANCE No. LXXVI OF 1994'; s.1 names it; ss.1-10 complete. The p1 head (s.3 of an earlier Ordinance) is a fragment, set aside as apparatus (owner policy q1 'split')."
+  }
+ ]
+}

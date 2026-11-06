@@ -1,0 +1,44 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 8814,
+ "source_observation_id": 13054,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 8814,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc8814-p1.png",
+   "render_sha256": "c8e3f046147af15cf7fc4786a6a94bd031100a71fcf83d3eb05833840b3416e9"
+  },
+  {
+   "page": 4,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc8814-p4.png",
+   "render_sha256": "8d7987f048c9a28d465d5320bf4a2ec2c507b47852e3d69dc484f52dbff46aeb"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Distribution of Property (Chitral) Order, 1980",
+   "kind": "order",
+   "year": 1980,
+   "number": "11",
+   "spans": [
+    {
+     "start_block_id": 2345884,
+     "end_block_id": 2345941,
+     "pages": "1-4"
+    }
+   ],
+   "title_basis": "p1 (book p.406) prints 'THE DISTRIBUTION OF PROPERTY (CHITRAL) ORDER, 1980. PRESIDENT'S ORDER No. 11 OF 1980' and its Articles, continued on pp2-4 to Articles 10-12 and the signature 'GENERAL M. ZIA-UL-HAQ, President' (block 2345941). The Settlement of Disputes of Immovable Property (Chitral) Order, 1980 (P.O. 12 of 1980) begins after it on p4 and is cut off after Article 1 at the end of this copy (it is catalogued separately as document 8926): set aside as apparatus here (owner policy q1 'split')."
+  }
+ ]
+}

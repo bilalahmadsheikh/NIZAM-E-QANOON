@@ -1,0 +1,45 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 5188,
+ "source_observation_id": 10454,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 5188,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc5188-p1.png",
+   "render_sha256": "40d74cf0c3335676e88aa57223caf2d2e1852d2ec6c6933db1d9b3dc182230f5"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Control of Shipping (Amendment) Act, 1949",
+   "kind": "act",
+   "year": 1949,
+   "number": "XIV",
+   "spans": [
+    {
+     "start_block_id": 1046431,
+     "end_block_id": 1046441,
+     "pages": "1-1"
+    }
+   ],
+   "title_basis": "p1 block 1046431 is the Gazette running head (page 202, March 22, 1949); block 1046432 prints 'ACT No. XIV OF 1949 An Act to amend the Control of Shipping Act, 1947'; s.1 (block 1046435) names it the Control of Shipping (Amendment) Act, 1949; it ends at s.2 (block 1046441, the substituted sub-section (3)). Blocks 1046442-1046457 print ACT No. XV OF 1949, the Salaries and Allowances of Ministers Act, 1949, which is the catalogued law of document 8112 (the same Gazette page, split there as its primary) -- set aside as apparatus here so the law is not duplicated (owner policy q1 'split').",
+   "title_correction": {
+    "from_title": "NA- The Control of Shipping Act, 1947",
+    "from_year": 1947,
+    "to_year": 1949,
+    "basis": "printed identity replaces the placeholder catalogue identity: p1 block 1046432 prints 'ACT No. XIV OF 1949 / An Act to amend the Control of Shipping Act, 1947' and s.1 (block 1046435) 'This Act may be called the Control of Shipping (Amendment) Act, 1949'; the 1947 Act itself is not printed in this PDF"
+   }
+  }
+ ]
+}

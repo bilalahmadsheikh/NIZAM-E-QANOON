@@ -1,0 +1,44 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 6576,
+ "source_observation_id": 12499,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 6576,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc6576-p1.png",
+   "render_sha256": "32ab258c03d71b5cafcfda5043d4fcc2a63bcb421fa76052582f0b75bc2944cd"
+  },
+  {
+   "page": 2,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc6576-p2.png",
+   "render_sha256": "14d0a59dd3baed95f22d974798f2658ad82aa638072fe700f9a4d29d99934555"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Salary of Judges of Superior Courts Order, 1998",
+   "kind": "order",
+   "year": 1998,
+   "number": "1",
+   "spans": [
+    {
+     "start_block_id": 1565102,
+     "end_block_id": 1565136,
+     "pages": "1-2"
+    }
+   ],
+   "title_basis": "p1 (Gazette of Pakistan Extraordinary, Islamabad, October 3, 1998, p.129) prints the masthead, F. No. 2(2)/97-Pub. ('The following Orders made by the President on the 2nd October, 1998') and 'PRESIDENT'S ORDER No. 1 OF 1998 AN ORDER' with its preamble; p2 (p.130) Article 1 'This Order may be called the Salary of Judges of Superior Courts Order, 1998' and Article 2 'Salary' (1)-(2) (block 1565136). President's Order No. 2 of 1998 (amending the Supreme Court Judges (Leave, Pension and Privileges) Order, 1997) follows and is cut off in its Article 3 at the end of this copy: set aside as apparatus (owner policy q1 'split')."
+  }
+ ]
+}

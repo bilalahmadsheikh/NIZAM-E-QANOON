@@ -1,0 +1,44 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 9418,
+ "source_observation_id": 13522,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 9418,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9418-p1.png",
+   "render_sha256": "71ed03c40931db800b878f9caea6690939a3e4491d083d490672d44e372d8860"
+  },
+  {
+   "page": 3,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9418-p3.png",
+   "render_sha256": "5f0622bad40eb2ed31aac34a0ffad63f106f50379f686bc0f288aabf0555fe06"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Sind Frontier Regulations (Repeal) Act, 1952",
+   "kind": "act",
+   "year": 1952,
+   "number": "XXXII",
+   "spans": [
+    {
+     "start_block_id": 2515261,
+     "end_block_id": 2515285,
+     "pages": "1-2"
+    }
+   ],
+   "title_basis": "p1 (book p.165) prints 'SIND ACT No. XXXII OF 1952. [THE SIND FRONTIER REGULATIONS (REPEAL) ACT, 1952.] [21st March, 1952]', ss.1-3; p2 (p.166) ss.4-5 (block 2515285). A handwritten note on p1 reads 'Repealed by the West Pakistan Repealing Ordinance, 1970 (W.P. Ordinance XVIII of 1970)'; the printed text is struck through by hand on pp1-2 and is kept as printed. Sind Act No. VIII of 1953 (the Forest (Sind Amendment) Act, 1953) printed on p3 is fused by the text layer into one block (2515286) and is set aside as apparatus (owner policy q1 'split'), to be added from a cleaner copy."
+  }
+ ]
+}

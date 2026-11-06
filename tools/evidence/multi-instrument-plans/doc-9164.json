@@ -1,0 +1,72 @@
+{
+  "schema": "nizam.multi_expression_plan/1",
+  "document_id": 9164,
+  "source_observation_id": 12424,
+  "review_basis": "source_verified",
+  "reviewed_on": "2026-10-30",
+  "reviewed_by": "codex.source-page-review/1",
+  "reviewed_pages": [
+    {
+      "page": 1,
+      "render": ".artifacts/release-work-2026-09-24/codex-2026-10-30-b09/doc9164-p1.png",
+      "render_sha256": "4cea027b4b241bfb184b4492d2f4850559223cf4dc9c2cbbebec7ee48e069c9c"
+    },
+    {
+      "page": 2,
+      "render": ".artifacts/release-work-2026-09-24/codex-2026-10-30-b09/doc9164-p2.png",
+      "render_sha256": "c50bcecf7c23c6aa0cc1dd0722aea56281f3e02d638205fc84da52ea3ce18df6"
+    },
+    {
+      "page": 3,
+      "render": ".artifacts/release-work-2026-09-24/codex-2026-10-30-b09/doc9164-p3.png",
+      "render_sha256": "64962807d59d7e5a3db80dfbea2916e6930132ef48a3909d50339ad921502d8e"
+    },
+    {
+      "page": 4,
+      "render": ".artifacts/release-work-2026-09-24/codex-2026-10-30-b09/doc9164-p4.png",
+      "render_sha256": "3034c7e3b43f3228f14279f8049a52dc00a9db96980f753aab662695e60488a0"
+    },
+    {
+      "page": 5,
+      "render": ".artifacts/release-work-2026-09-24/codex-2026-10-30-b09/doc9164-p5.png",
+      "render_sha256": "bb1418864d3819a9cf488ed969e0f9f085bd68a39c1953372faa0d041eef49da"
+    }
+  ],
+  "owner_decision": {
+    "source": "User chat30October2026 go on release further, CODEX-RELEASE-GUIDE and25October delegated source review."
+  },
+  "expressions": [
+    {
+      "ordinal": 0,
+      "role": "primary",
+      "title": "The North-West Border Military Police Act, 1904",
+      "kind": "act",
+      "year": 1904,
+      "number": "IV",
+      "spans": [
+        {
+          "start_block_id": 2385094,
+          "end_block_id": 2385320
+        }
+      ],
+      "title_basis": "Gazette5March1904 prints ActNo.IV1904 assented4March1904. Display retains BILL but section1 explicitly names the North-West Border Military Police Act1904; identity follows that enacted short title. All19sections plus Schedule in one Act.",
+      "source_anomalies": [
+        {
+          "source_block_id": 2385112,
+          "printed": "THE NORTH-WEST BORDER MILITARY POLICE BILL,1904",
+          "note": "Display says BILL despite ActNo.IV, assent notice and section1 saying Act. Retain display in evidence, do not misclassify the enacted instrument."
+        },
+        {
+          "source_block_id": 2385158,
+          "printed": "8.(1) Every Military Police-officer who—",
+          "note": "Right binding edge on page2 obscures word ends and occasional short words in8. Visible prefixes/endings retained with explicit loss markers; no reconstructed statutory text or inferred missing numerals."
+        },
+        {
+          "source_block_id": 2385261,
+          "printed": "15.(3) All suits and proceedings ...",
+          "note": "Page4 right binding edge damages15(3),16–19 and Schedule opening. Mark unreadable spans, retain printed numbers and legible monetary/time limits. Schedule continues on page5 and retains both provisos and actual form signature fields."
+        }
+      ]
+    }
+  ]
+}

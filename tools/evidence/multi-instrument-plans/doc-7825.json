@@ -1,0 +1,44 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 7825,
+ "source_observation_id": 12117,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 7825,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc7825-p1.png",
+   "render_sha256": "a8591f3b026a2f60403b6a04465c60760cdf16e3b9d54c7eeaa426fd4e23594b"
+  },
+  {
+   "page": 17,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc7825-p17.png",
+   "render_sha256": "9f04cfb2ea815b87d75e67b90d2462393b53ac9ba1c21205db78b8b24a124c66"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The House Building Finance Corporation Act, 1952",
+   "kind": "act",
+   "year": 1952,
+   "number": "XVIII",
+   "spans": [
+    {
+     "start_block_id": 1945063,
+     "end_block_id": 1945365,
+     "pages": "1-17"
+    }
+   ],
+   "title_basis": "p1 block 1945063 prints 'ACT No. XVIII OF 1952'; complete to its forms on p17. ACT No. XIX OF 1952 at the foot of p17 is a fragment (the Employment (Record of Services) Act is held released as documents 2167 and 3688): set aside as apparatus (owner policy q1 'split')."
+  }
+ ]
+}

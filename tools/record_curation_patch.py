@@ -60,7 +60,7 @@ CREATED_BY = "claude.ocr-digit-review/3"
 # a patch without it, and the replay would build a different tree from the
 # one the reading was checked against (doc 691's prototype keys, 6 Oct 2026).
 STRUCTURAL_KEYS = frozenset({
-    "source_unit_moves", "source_reviewed_grid_rows",
+    "source_unit_moves", "source_reviewed_grid_rows", "source_reviewed_table_blocks",
     # rule `reviewed_hyphen_rule_numbers` (agent JE, doc 4498)
     "source_hyphen_rule_numbers",
     # rule `reviewed_printed_rule_opener` (agent JE, doc 4431)
@@ -213,7 +213,7 @@ READING_KEYS = STRUCTURAL_KEYS | {
 # checks only that every block id the entry names is a block of the document (keys ported 13 Oct 2026; each key here
 # must ALSO be in STRUCTURAL_KEYS). A structural key with no recording branch is refused (see `dropped` below).
 GENERIC_STRUCTURAL_KEYS = frozenset({
-    "source_unit_moves", "source_reviewed_grid_rows",
+    "source_unit_moves", "source_reviewed_grid_rows", "source_reviewed_table_blocks",
     # rule `reviewed_hyphen_rule_numbers` (agent JE, doc 4498)
     "source_hyphen_rule_numbers",
     # rule `reviewed_printed_rule_opener` (agent JE, doc 4431)
@@ -563,6 +563,34 @@ def observations_still_missing(observations: list[int], carrying: set[int]) -> t
     return [obs for obs in observations if obs not in carrying], sorted(carrying & set(observations)), None
 
 
+def observation_rows_for_patch(cur, doc: int) -> list[tuple]:
+    """Use a promoted same-file revision before its first materialization.
+
+    A failed segmenter may leave the held expression on the superseded
+    extraction. Do not create an intermediate unreviewed tree just to record
+    its corrections. Never fall back across files or through a released
+    predecessor; the ordinary active-instrument path is unchanged.
+    """
+    cur.execute("""SELECT DISTINCT i.source_observation_id, o.sha256 FROM instrument i
+                     JOIN source_observation o ON o.id=i.source_observation_id
+                    WHERE i.document_id=%s AND i.is_active""", (doc,))
+    rows = [tuple(row) for row in cur.fetchall()]
+    if rows:
+        return rows
+    cur.execute("""SELECT DISTINCT i.source_observation_id, o.sha256
+                     FROM document n
+                     JOIN document previous ON previous.id=n.supersedes_document_id
+                     JOIN instrument i ON i.document_id=previous.id AND i.is_active
+                     JOIN source_observation o ON o.id=i.source_observation_id
+                    WHERE n.id=%s AND n.is_active AND NOT previous.is_active
+                      AND n.sha256=previous.sha256 AND i.source_sha256=n.sha256
+                      AND o.sha256=n.sha256
+                      AND NOT EXISTS (SELECT 1 FROM v_release_instrument r
+                                       WHERE r.document_id=previous.id
+                                          OR r.source_observation_id=i.source_observation_id)""", (doc,))
+    return [tuple(row) for row in cur.fetchall()]
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--readings", required=True)
@@ -899,13 +927,9 @@ def main() -> int:
                     refused.append((where, bad))
                     continue
                 additional_digest = digests if many else digests[0]
-            cur.execute("""SELECT DISTINCT i.source_observation_id, o.sha256 FROM instrument i
-                             JOIN source_observation o ON o.id=i.source_observation_id
-                            WHERE i.document_id=%s AND i.is_active""",
-                        (doc,))
             # Every observation behind an active instrument, exact duplicates included; one blob -> each of them
             # (patch_observations).
-            observations, why = patch_observations([tuple(row) for row in cur.fetchall()],
+            observations, why = patch_observations(observation_rows_for_patch(cur, doc),
                                                    bool(r.get("all_observations")))
             if why:
                 refused.append((where, why))
@@ -1323,6 +1347,20 @@ def main() -> int:
                 continue
             generic = {k: r.get(k) for k in sorted(GENERIC_STRUCTURAL_KEYS) if r.get(k) is not None}
             if generic:
+                if "source_reviewed_table_blocks" in generic:
+                    from nizam.corpus.segment import reviewed_table_block_shape_ok
+                    table = generic["source_reviewed_table_blocks"]
+                    db = {b['id']: b for b in legal_write.blocks_for(doc)}
+                    try:
+                        if not (isinstance(table, list) and table and all(reviewed_table_block_shape_ok(v) for v in table)
+                                and all(v['source_block_id'] in db and db[v['source_block_id']]['page_no'] == page for v in table)):
+                            raise ValueError('reviewed table needs source blocks on the rendered page')
+                        for v in table:
+                            if owner_decision_answer(v['owner_decision'], doc).get('choice') != 'source-reviewed-tariff-rows':
+                                raise ValueError('reviewed table needs the delegated tariff-row decision')
+                    except ValueError as error:
+                        refused.append((where, str(error)))
+                        continue
                 if "source_reviewed_grid_rows" in generic:
                     from nizam.corpus.segment import reviewed_grid_row_shape_ok
                     grid = generic["source_reviewed_grid_rows"]

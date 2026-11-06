@@ -1,0 +1,44 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 7945,
+ "source_observation_id": 12905,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 7945,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc7945-p1.png",
+   "render_sha256": "6dbf320713c1a5176489f3e61f8a0a1ebb2f1f8c27dc5bc001d639b1142bfa1b"
+  },
+  {
+   "page": 2,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc7945-p2.png",
+   "render_sha256": "a7a68f6f9a30601c5a457346c8a60af5feac7a3124ba7be38254bd5e24dcb50c"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Special Tribunals (Abolition) Ordinance, 1977",
+   "kind": "ordinance",
+   "year": 1977,
+   "number": "XXVI",
+   "spans": [
+    {
+     "start_block_id": 1986145,
+     "end_block_id": 1986169,
+     "pages": "1-2"
+    }
+   ],
+   "title_basis": "p1 block 1986145 prints 'ORDINANCE No. XXVI OF 1977'; s.1 names it; ss.1-7 complete to the signatures on p2. The p1 head (s.2 of an earlier law) is a fragment; the High Courts (Appointment of Acting Chief Justice) Order, 1977 on p2 is cut off after Article 4 and is held complete as document 8707: both are set aside as apparatus (owner policy q1 'split')."
+  }
+ ]
+}

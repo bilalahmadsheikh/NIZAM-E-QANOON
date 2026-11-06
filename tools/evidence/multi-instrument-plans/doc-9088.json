@@ -1,0 +1,67 @@
+{
+  "schema": "nizam.multi_expression_plan/1",
+  "document_id": 9088,
+  "source_observation_id": 12096,
+  "review_basis": "source_verified",
+  "reviewed_on": "2026-10-30",
+  "reviewed_by": "codex.source-page-review/1",
+  "reviewed_pages": [
+    {
+      "page": 1,
+      "render": ".artifacts/release-work-2026-09-24/codex-2026-10-30-b05/doc9088-p1.png",
+      "render_sha256": "399ce949551a01074926be13652aa8a91210e4ec8f3bd49ce37dfc217d0cdf57"
+    },
+    {
+      "page": 2,
+      "render": ".artifacts/release-work-2026-09-24/codex-2026-10-30-b05/doc9088-p2.png",
+      "render_sha256": "3f532512233633d0c7605345fe7281b716bc589986d16091d7365f2b4af15d11"
+    },
+    {
+      "page": 3,
+      "render": ".artifacts/release-work-2026-09-24/codex-2026-10-30-b05/doc9088-p3.png",
+      "render_sha256": "e76ff502052460f9acc427415954bd34252d064fec9a23f63c815edf9a431713"
+    },
+    {
+      "page": 4,
+      "render": ".artifacts/release-work-2026-09-24/codex-2026-10-30-b05/doc9088-p4.png",
+      "render_sha256": "91498c66cea4fe0670de7a26ae19b737e1a31d1c4e313cc4eb8207f28aec63ff"
+    }
+  ],
+  "owner_decision": {
+    "source": "User chat2026-10-30: go on release further using CODEX-RELEASE-GUIDE.md."
+  },
+  "expressions": [
+    {
+      "ordinal": 0,
+      "role": "primary",
+      "title": "The Portuguese Convention Act, 1881",
+      "kind": "act",
+      "year": 1881,
+      "number": "XVII",
+      "spans": [
+        {
+          "start_block_id": 2369479,
+          "end_block_id": 2369608
+        }
+      ],
+      "title_basis": "Page1 prints ActNo.XVII of1881 and section1 prints The Portuguese Convention Act,1881. Three sections enact the attached Convention, which remains the Act Schedule with15 clauses, not a separate instrument.",
+      "source_anomalies": [
+        {
+          "source_block_id": 2369538,
+          "printed": "Remedy in weight. | Remedy in fineness.",
+          "note": "Braces group rupee and half-rupee at five thousandths weight/two thousandths fineness; quarter and eighth share three thousandths fineness. The row-preserving reading expands shared cells explicitly."
+        },
+        {
+          "source_block_id": 2369573,
+          "printed": "eighty- / three",
+          "note": "Source indemnity commences1November1883. Both source lines visually checked; retain eighty-three, not the unreadable OCR by."
+        },
+        {
+          "source_block_id": 2369606,
+          "printed": "Done at Pangim ... twelfth day of April ... eighty; Done at Calcutta ... eighteenth day of March ... eighty.",
+          "note": "Page4 execution apparatus dates12April1880 and18March1880 retained here and in page-review notes; officials signatures are provenance, not continuation of clause15. Schedule clause4(b) refers to the date of this Convention. Full source image and hash preserve this evidence."
+        }
+      ]
+    }
+  ]
+}

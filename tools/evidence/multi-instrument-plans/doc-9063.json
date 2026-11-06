@@ -1,0 +1,44 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 9063,
+ "source_observation_id": 10389,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 9063,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9063-p1.png",
+   "render_sha256": "22b4f9ef46b4da230c89afca1a5a2f5ec6baa20f11f25b0b7157b6d451f83a27"
+  },
+  {
+   "page": 3,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9063-p3.png",
+   "render_sha256": "6e2ff5e50a85d049001fc76d9041270ecd98c8831076a3c3284bdaf9454f988a"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Delimitation of Constituencies (Adult Franchise) Act, 1951",
+   "kind": "act",
+   "year": 1951,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 2366688,
+     "end_block_id": 2366725,
+     "pages": "1-3"
+    }
+   ],
+   "title_basis": "p1 (Gazette of Pakistan Extraordinary, Karachi, April 21, 1951, p.223) prints the masthead, 'CONSTITUENT ASSEMBLY OF PAKISTAN Karachi, the 21st April, 1951', 'An Act to provide for the delimitation of territorial constituencies in certain Provinces of Pakistan' and ss.1-2; p2 (p.224) ss.2(2)-7; p3 (p.225) ss.7-9 and the signature 'M. B. AHMAD, Secretary' (block 2366725). The Sales Tax Act, 1951 (Act No. III of 1951) that follows on p3 is cut off after its s.1(2) at the end of this copy: set aside as apparatus (owner policy q1 'split')."
+  }
+ ]
+}

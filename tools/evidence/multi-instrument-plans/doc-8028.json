@@ -1,0 +1,39 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 8028,
+ "source_observation_id": 13062,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 8028,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc8028-p1.png",
+   "render_sha256": "e62caf70fddc55f7617c2c9481308eb970f32704ae503ef3064e0acafbfe957c"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Air Force Validation of Discharges Act, 1952",
+   "kind": "act",
+   "year": 1952,
+   "number": "XLV",
+   "spans": [
+    {
+     "start_block_id": 1997056,
+     "end_block_id": 1997073,
+     "pages": "1-1"
+    }
+   ],
+   "title_basis": "p1 (Gazette of Pakistan Extra., December 13, 1952, p.1278; block 1997056 the running head) block 1997057 prints 'ACT No. XLV OF 1952 / An Act to validate certain discharges of airmen from the Royal Pakistan Air Force'; s.1(1) (block 1997062) 'This Act may be called the Air Force Validation of Discharges Act, 1952'; it ends at s.3 Indemnity '...so far as concerns the validity of the same.' (block 1997073, a block the extractor merged with the next heading 'ACT No. XLVI OF 1952 An'). Blocks 1997074-1997088 are the head of ACT No. XLVI of 1952 (Royal Pakistan Air Force (Extension of Service) Act, 1952: long title, s.1, s.2 and its first proviso), cut off at the end of this one-page PDF -- a fragment, set aside as apparatus; that Act is printed complete in document 8856 (owner policy q1 'split')."
+  }
+ ]
+}

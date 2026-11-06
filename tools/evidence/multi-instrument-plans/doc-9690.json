@@ -1,0 +1,55 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 9690,
+ "source_observation_id": 12435,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 9690,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9690-p1.png",
+   "render_sha256": "616200dd18816d57418bb5daa9ff13de78805d9b8015e1ec224f991044fbebf1"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Federal Investigation Agency (Appointment, Promotion and Transfer) Rules, 1975",
+   "kind": "rules",
+   "year": 1975,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 2621370,
+     "end_block_id": 2621488,
+     "pages": "1-10"
+    }
+   ],
+   "title_basis": "p1 blocks 2621373-2621375 print 'S. R. O. 340 (I)/75.--In exercise of the powers conferred by section 9 of the Federal Investigation Agency Act, 1974 (VIII of 1975), the Federal Government is pleased to make the following rules' and rule 1(1) 'These rules may be called the Federal Investigation Agency (Appointment, Promotion and Transfer) Rules, 1975'; complete on pp.1-10 (rules 1-31, Schedules I-III, signed GHULAM MUSTAFA, Section Officer)"
+  },
+  {
+   "ordinal": 1,
+   "role": "embedded",
+   "title": "Central Board of Revenue Notification S.R.O. 339 (I)/75 (approval of Markaz-e-Kadiria, Karachi, under section 15D of the Income Tax Act, 1922)",
+   "kind": "notification",
+   "year": 1975,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 2621361,
+     "end_block_id": 2621369,
+     "pages": "1-1"
+    }
+   ],
+   "title_basis": "p1 blocks 2621361-2621366 print 'GOVERNMENT OF PAKISTAN', 'CENTRAL BOARD OF REVENUE', 'NOTIFICATIONS', 'Islamabad, the 19th March, 1975', 'INCOME TAX' and 'S. R. O. 339 (I)/75.--In exercise of the powers conferred by sub-section (1) of section 15D of the Income Tax Act, 1922 (XI of 1922), the Central Board of Revenue is pleased to approve MARKAZ-E-KADIRIA (EL MARKAZ EL KADIRI), KARACHI for purposes of that section.'; the notification prints no short title -- the title names the issuing Board, the S.R.O. number and what it does"
+  }
+ ]
+}

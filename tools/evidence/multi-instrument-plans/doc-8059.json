@@ -1,0 +1,44 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 8059,
+ "source_observation_id": 13445,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 8059,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc8059-p1.png",
+   "render_sha256": "cd97cbcc52efbd893c6caad8e12c080653dc8234804c03b896e5ae128e55884b"
+  },
+  {
+   "page": 2,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc8059-p2.png",
+   "render_sha256": "9eec52dfe17e5b2f95496a6e4c43fbe450c3164f9b1152002b003eb7c0eeb7c5"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Judges (Leave, Pension and Privileges) Order, 1995",
+   "kind": "order",
+   "year": 1995,
+   "number": "5",
+   "spans": [
+    {
+     "start_block_id": 2001167,
+     "end_block_id": 2001192,
+     "pages": "1-2"
+    }
+   ],
+   "title_basis": "p1 blocks 2001167-2001170 print the notification and the Order's title with P.O. No. 5 of 1995; Article 1 names it; Articles 1-3 complete. the head of page 1 prints the end of an earlier law (its last sections and the signatures), whose title is on a page not in this copy: a fragment, set aside as apparatus (owner policy q1 'split')."
+  }
+ ]
+}

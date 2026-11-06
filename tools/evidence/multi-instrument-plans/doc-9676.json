@@ -1,0 +1,70 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 9676,
+ "source_observation_id": 12002,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 9676,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9676-p1.png",
+   "render_sha256": "383a612ff5ed46a738ce413a4f3c44823a0215938a7b237c38b3ba76fe79bc93"
+  },
+  {
+   "page": 5,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9676-p5.png",
+   "render_sha256": "ed81f5e3b642d6b21e2b4f374851a9d14b9cae211b5e35fd2ffb9206f47d79ee"
+  },
+  {
+   "page": 6,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9676-p6.png",
+   "render_sha256": "3202e5674861932fb0f311b59e22afca8c343e1344bb69ee68daa459eb5e39ef"
+  },
+  {
+   "page": 8,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9676-p8.png",
+   "render_sha256": "ac7dbe80cf4103fc71ccb11608ef6d701c31f033b796a32734474ae13b35adec"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Balochistan Finance and Accounts Group Service Rules, 2001",
+   "kind": "rules",
+   "year": 2001,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 2620294,
+     "end_block_id": 2620347,
+     "pages": "1-5"
+    }
+   ],
+   "title_basis": "rule 1 on p1 names the rules; complete on pp.1-5."
+  },
+  {
+   "ordinal": 1,
+   "role": "embedded",
+   "title": "The Balochistan Finance and Accounts Group Service (Amendment) Rules, 2005",
+   "kind": "notification",
+   "year": 2005,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 2620348,
+     "end_block_id": 2620387,
+     "pages": "6-8"
+    }
+   ],
+   "title_basis": "the notification prints no short title; the title names the rules it amends and its year (26 Nov 2005), as for other amending notifications held in the corpus."
+  }
+ ]
+}

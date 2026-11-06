@@ -1,0 +1,50 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 9124,
+ "source_observation_id": 12411,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 9124,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9124-p1.png",
+   "render_sha256": "7781a3d7dfd4e64cda7216001a57771266bbb64f95961032faa6256c50b77e30"
+  },
+  {
+   "page": 5,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9124-p5.png",
+   "render_sha256": "9ad68321696a824832d6e3a3206422573be52802200182978ba5f648269cc329"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The War Risks (Factories) Insurance (Amendment) Ordinance, 1943",
+   "kind": "ordinance",
+   "year": 1943,
+   "number": "IX",
+   "spans": [
+    {
+     "start_block_id": 2374864,
+     "end_block_id": 2374987,
+     "pages": "1-5"
+    }
+   ],
+   "title_basis": "p1 block 2374864 prints 'ORDINANCE No. IX OF 1943'; s.1 names it; complete to the signature on p5. The p1 head is a fragment of an earlier Ordinance: set aside as apparatus (owner policy q1 'split').",
+   "title_correction": {
+    "from_title": "NA- The War Risks (Factories) Insurance Ordinance, 1942",
+    "from_year": 1942,
+    "to_year": 1943,
+    "basis": "printed identity replaces the placeholder catalogue identity: p1 block 2374864 prints 'ORDINANCE No. IX OF 1943. AN ORDINANCE further to amend the War Risks (Factories) Insurance Ordinance, 1942' and s.1 (block 2374869) 'This Ordinance may be called the War Risks (Factories) Insurance (Amendment) Ordinance, 1943'; the 1942 Ordinance itself is not printed in this PDF"
+   }
+  }
+ ]
+}

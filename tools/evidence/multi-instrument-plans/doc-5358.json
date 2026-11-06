@@ -1,0 +1,60 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 5358,
+ "source_observation_id": 10038,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 5358,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc5358-p1.png",
+   "render_sha256": "1ea578ea9e7089086d5f20e418c6c39d67fb42267e906df48599b11b28f11fd0"
+  },
+  {
+   "page": 12,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc5358-p12.png",
+   "render_sha256": "dfe8b898cd14880834d9b079243cc71a58dea44f04d7eac506ac5e2b54f79af6"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Pakistan Telecommunication Corporation Act, 1991",
+   "kind": "act",
+   "year": 1991,
+   "number": "XVIII",
+   "spans": [
+    {
+     "start_block_id": 1092647,
+     "end_block_id": 1092801,
+     "pages": "1-12"
+    }
+   ],
+   "title_basis": "p1 block 1092647 prints 'ACT No. XVIII OF 1991'; s.1 names it the Pakistan Telecommunication Corporation Act, 1991. The p1 head prints the last sections and signatures of an earlier law whose title is on a page not in this copy: a fragment, set aside as apparatus (owner policy q1 'split'). ACT No. XIX OF 1991 (the Pakistan Maritime Shipping (Regulation and Control) (Repeal) Act, 1991) on p12 is held released as document 4923 and is set aside as apparatus."
+  },
+  {
+   "ordinal": 1,
+   "role": "embedded",
+   "title": "The Companies (Amendment) Act, 1991",
+   "kind": "act",
+   "year": 1991,
+   "number": "XVII",
+   "spans": [
+    {
+     "start_block_id": 1092635,
+     "end_block_id": 1092646,
+     "pages": "1-1"
+    }
+   ],
+   "title_basis": "p1 blocks 1092635-1092636 print 'ACT No. XVII OF 1991 An Act further to amend the Companies Ordinance, 1984' and s.1 names it; ss.1-2 complete; not held elsewhere in the corpus."
+  }
+ ]
+}

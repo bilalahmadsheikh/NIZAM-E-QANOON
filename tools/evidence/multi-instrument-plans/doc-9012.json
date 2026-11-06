@@ -1,0 +1,78 @@
+{
+  "schema": "nizam.multi_expression_plan/1",
+  "document_id": 9012,
+  "source_observation_id": 10928,
+  "review_basis": "source_verified",
+  "reviewed_on": "2026-10-30",
+  "reviewed_by": "codex.source-page-review/1",
+  "reviewed_pages": [
+    {
+      "page": 1,
+      "render": ".artifacts/release-work-2026-09-24/codex-2026-10-30-b08/doc9012-p1.png",
+      "render_sha256": "0a683806a00b596c658533a80472df79d1af90882cc29f2414c996a935891a46"
+    },
+    {
+      "page": 2,
+      "render": ".artifacts/release-work-2026-09-24/codex-2026-10-30-b08/doc9012-p2.png",
+      "render_sha256": "af498ca814d4866616613b9e2b30303264a0bbd056a86cffb4133696cecb575c"
+    },
+    {
+      "page": 3,
+      "render": ".artifacts/release-work-2026-09-24/codex-2026-10-30-b08/doc9012-p3.png",
+      "render_sha256": "1a7de31002aca1a73196d2aea0f62e4142c7dfb1309bc09fa6d75d579d6882ae"
+    },
+    {
+      "page": 4,
+      "render": ".artifacts/release-work-2026-09-24/codex-2026-10-30-b08/doc9012-p4.png",
+      "render_sha256": "621e0bd3f25b462e983d3dc3e5920464b3bff77413d0195d47453ac0b8c61021"
+    }
+  ],
+  "owner_decision": {
+    "source": "User chat2026-10-30: go on release further using CODEX-RELEASE-GUIDE.md."
+  },
+  "expressions": [
+    {
+      "ordinal": 0,
+      "role": "primary",
+      "title": "Ministry of Finance Notification No. F. 7(14)-CDNS|57, dated 23 May 1959 (amending the Post Office Annuities Rules, 1957)",
+      "kind": "notification",
+      "year": 1959,
+      "number": "F. 7(14)-CDNS|57",
+      "spans": [
+        {
+          "start_block_id": 2361044,
+          "end_block_id": 2361119
+        }
+      ],
+      "title_correction": {
+        "from_title": "PNA- Amenmdnets in the Post Office Annuities Rules, 1957",
+        "from_year": 1957,
+        "to_year": 1959,
+        "basis": "The 1957 Rules are the amended parent, not the date of this instrument. Gazette27May1959 prints Ministry of Finance NOTIFICATION, Karachi23May1959, No.F.7(14)-CDNS|57, with six amendments and three attached premium tables. Descriptive title identifies this notification rather than falsely relabelling it as the1957principal Rules."
+      },
+      "title_basis": "Printed Ministry of Finance, NOTIFICATION, number and dateline identify the amending notification. The six amendments and TablesI–III are one instrument. No separate principal Rules or inserted Rule13-A expression is created.",
+      "source_anomalies": [
+        {
+          "source_block_id": 2361053,
+          "printed": "Tables I to II and III",
+          "note": "Amendment1 visibly prints to between I and II. Keep the source wording, even though amendment6 lists Tables I,IIandIII."
+        },
+        {
+          "source_block_id": 2361052,
+          "printed": "No. F. 7(14)-CDNS|57.",
+          "note": "The separator before57 appears as a vertical stroke in the print; retained as | rather than silently modernizing the identifier."
+        },
+        {
+          "source_block_id": 2361094,
+          "printed": "Single Premium on deferred annuity of Rs. 300 per annum of period of deferment is",
+          "note": "TableII header grammar retained as printed. The fifteen year columns and75premium amounts are source data, not generated financial calculations."
+        },
+        {
+          "source_block_id": 2361108,
+          "printed": "A H Q",
+          "note": "TableIII six deferment groups each have Annually/Half-yearly/Quarterly columns. Retain72premium amounts and18ellipsis cells; empty cells do not mean zero and are not interpolated."
+        }
+      ]
+    }
+  ]
+}

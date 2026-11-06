@@ -1,0 +1,73 @@
+{
+  "schema": "nizam.multi_expression_plan/1",
+  "document_id": 9076,
+  "source_observation_id": 12847,
+  "review_basis": "source_verified",
+  "reviewed_on": "2026-10-30",
+  "reviewed_by": "codex.source-page-review/1",
+  "reviewed_pages": [
+    {
+      "page": 1,
+      "render": ".artifacts/release-work-2026-09-24/codex-2026-10-30-b04/doc9076-p1.png",
+      "render_sha256": "762befc98ebb80b3fac9110b182fc367be0d29e3963d820314bbf8547e0d01b2"
+    },
+    {
+      "page": 2,
+      "render": ".artifacts/release-work-2026-09-24/codex-2026-10-30-b04/doc9076-p2.png",
+      "render_sha256": "4f8e1fadc011c832f7d0e90f9d1af86a50f663fb43775afe2d66a3dd5d4c15d2"
+    },
+    {
+      "page": 3,
+      "render": ".artifacts/release-work-2026-09-24/codex-2026-10-30-b04/doc9076-p3.png",
+      "render_sha256": "2dcde89c01dbbbedf129a71258b44fdac8ea7b1b860a9b10a91b3cfa4fb36b9c"
+    },
+    {
+      "page": 4,
+      "render": ".artifacts/release-work-2026-09-24/codex-2026-10-30-b04/doc9076-p4.png",
+      "render_sha256": "6cc0b73b97fa98850dbf8c24f68b9f37614045c241edbbae11b7e744bb9ae3aa"
+    }
+  ],
+  "owner_decision": {
+    "source": "User chat2026-10-30: go on release further using CODEX-RELEASE-GUIDE.md."
+  },
+  "expressions": [
+    {
+      "ordinal": 0,
+      "role": "primary",
+      "title": "The Burma District Cesses and Rural Police Act, 1880",
+      "kind": "act",
+      "year": 1880,
+      "number": "II",
+      "spans": [
+        {
+          "start_block_id": 2368095,
+          "end_block_id": 2368277
+        }
+      ],
+      "title_basis": "Page7 prints ActNo.II of1880 and the exact display title; section1 repeats the1880 short title. The catalogue ActV1835 identity does not describe this source.",
+      "title_correction": {
+        "from_title": "NA- Act V of 1835",
+        "from_year": 1835,
+        "to_year": 1880,
+        "basis": "Four-page Gazette source prints a distinct1880 ActII identity, corroborated by section1; preserve that actual source identity."
+      },
+      "source_anomalies": [
+        {
+          "source_block_id": 2368195,
+          "printed": "Subject to the rules made under this Act",
+          "note": "Body label13 is binding-obscured. Its identity is restored from the clearly printed contents13 Appointment of Rural Police and its corresponding body paragraph between printed12 and14. The transcription stays unnumbered; the owner-cited label is carried by the delegated contents decision.",
+          "owner_decision": {
+            "export": ".artifacts/decision-review/exports/decision-review-2026-10-25-delegated.json",
+            "document_id": 9076,
+            "question_id": "q1"
+          }
+        },
+        {
+          "source_block_id": 2368204,
+          "printed": "14. Every headman shall perform the following duties",
+          "note": "Page9 left binding hides paragraph starts and some enumerators in sections12–15. Keep all visible text and loss markers; do not invent lettered citation labels for unreadable enumerators."
+        }
+      ]
+    }
+  ]
+}

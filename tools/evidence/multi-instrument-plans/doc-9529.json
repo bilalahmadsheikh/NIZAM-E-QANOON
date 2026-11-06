@@ -1,0 +1,63 @@
+{
+  "schema": "nizam.multi_expression_plan/1",
+  "document_id": 9529,
+  "source_observation_id": 12857,
+  "review_basis": "source_verified",
+  "reviewed_on": "2026-10-30",
+  "reviewed_by": "codex.source-page-review/1",
+  "reviewed_pages": [
+    {
+      "page": 1,
+      "render": ".artifacts/release-work-2026-09-24/codex-2026-10-30-b03/doc9529-p1.png",
+      "render_sha256": "6bd2a3e59c1c08bc553cd1094c19dae75f747f7726a603642f5dce12f4ffe100"
+    },
+    {
+      "page": 2,
+      "render": ".artifacts/release-work-2026-09-24/codex-2026-10-30-b03/doc9529-p2.png",
+      "render_sha256": "d6fafb97ed7d2bb882d8551829cff4ee7c84303e3374a718f54d589a5ada6e4a"
+    },
+    {
+      "page": 3,
+      "render": ".artifacts/release-work-2026-09-24/codex-2026-10-30-b03/doc9529-p3.png",
+      "render_sha256": "d9f139a4544a35add515c6081732532da4a46b97c85e9342d6bb714b657526e7"
+    }
+  ],
+  "owner_decision": {
+    "source": "User chat2026-10-30: go on release further using CODEX-RELEASE-GUIDE.md."
+  },
+  "expressions": [
+    {
+      "ordinal": 0,
+      "role": "primary",
+      "title": "The Burma Ferries Act, 1873",
+      "kind": "act",
+      "year": 1873,
+      "number": "II",
+      "spans": [
+        {
+          "start_block_id": 2542084,
+          "end_block_id": 2542227
+        }
+      ],
+      "title_basis": "Printed Gazette page13 names ACT NO.II OF1873 and THE BURMA FERRIES ACT1873; section1 prints that short title with an extra apostrophe after Ferries. All16 sections are present.",
+      "title_correction": {
+        "from_title": "The Ferries Act, 1873",
+        "from_year": 1873,
+        "to_year": 1873,
+        "basis": "Restore the printed Burma designation and ActII identity, omitted from the catalogue title."
+      },
+      "source_anomalies": [
+        {
+          "source_block_id": 2542119,
+          "printed": "The Burma Ferries’ Act",
+          "note": "The short-title sentence prints an apostrophe after Ferries, unlike the display title; preserve it in the body."
+        },
+        {
+          "source_block_id": 2542179,
+          "printed": "11. Every lessee or other person",
+          "note": "Page14 right column is binding-obscured across sections8–14. Preserve visible words and all printed section labels; mark unreadable words/amounts [illegible], never reconstruct them from statutory memory."
+        }
+      ]
+    }
+  ]
+}

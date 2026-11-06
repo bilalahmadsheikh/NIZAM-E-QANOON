@@ -1,0 +1,44 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 8800,
+ "source_observation_id": 12197,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 8800,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc8800-p1.png",
+   "render_sha256": "4e3be49a8613a54a5881229e8d245a5b3ebf5fa78ca299f9bbfefbf96318954d"
+  },
+  {
+   "page": 2,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc8800-p2.png",
+   "render_sha256": "439676e4f900109ebcc9bdfa7b4927b051dff11e509d0a5cc0b9267743ff1193"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Port Hajj Committees Act (Repeal) Ordinance, 1961",
+   "kind": "ordinance",
+   "year": 1961,
+   "number": "XXXVIII",
+   "spans": [
+    {
+     "start_block_id": 2345283,
+     "end_block_id": 2345303,
+     "pages": "1-2"
+    }
+   ],
+   "title_basis": "p1 (Gazette of Pakistan Extraordinary, Karachi, September 29, 1961, p.1495) prints the Ministry of Railways and Communications notification, 'ORDINANCE No. XXXVIII OF 1961 AN ORDINANCE to repeal the Port Hajj Committee Act, 1932', ss.1-2; p2 (p.1496) s.3 and the signatures ending 'H. S. M. ISHAQUE, Secretary' (block 2345303). Ordinance No. XXXIX of 1961 (the Minimum Wages Ordinance, 1961) follows and is held released as document 2766: set aside as apparatus (owner policy q1 'split')."
+  }
+ ]
+}

@@ -1,0 +1,44 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 8213,
+ "source_observation_id": 13267,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 8213,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc8213-p1.png",
+   "render_sha256": "a65181443dea74351bd5fa3a117123288384544cad684415b7ca52c869f0eb57"
+  },
+  {
+   "page": 3,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc8213-p3.png",
+   "render_sha256": "73f0ed330bd943c6b61fbbcd0faf150a2821bbdc4855ef0dda9adcf147075538"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Special Courts for Speedy Trials (Repeal) Ordinance, 1994",
+   "kind": "ordinance",
+   "year": 1994,
+   "number": "LXXIX",
+   "spans": [
+    {
+     "start_block_id": 2020163,
+     "end_block_id": 2020206,
+     "pages": "1-3"
+    }
+   ],
+   "title_basis": "p1 (Gazette of Pakistan Extraordinary, Islamabad, November 10, 1994, p.851) prints the masthead, No. F. 2(1)/94-Pub., 'ORDINANCE No. LXXIX OF 1994 AN ORDINANCE to repeal the Special Courts for Speedy Trials Act, 1992', the preamble and s.1; p2 (p.852) s.2 'Repeal and savings' (1)-(3); p3 (p.853) the end of its proviso and the signatures 'FAROOQ AHMAD KHAN LEGHARI, President' and 'MR. JUSTICE SH. RIAZ AHMAD, Secretary' (block 2020206). Ordinance No. LXXX of 1994 (the Code of Criminal Procedure (Fifth Amendment) Ordinance, 1994) begins after it on p3 and is cut off in its s.2 at the end of this copy: set aside as apparatus (owner policy q1 'split')."
+  }
+ ]
+}

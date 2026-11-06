@@ -1,0 +1,60 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 8905,
+ "source_observation_id": 12285,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 8905,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc8905-p1.png",
+   "render_sha256": "85e6a6ebb6ec20a30d86ff35b951201c878ef8b079b30fb6d638a06de4424042"
+  },
+  {
+   "page": 2,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc8905-p2.png",
+   "render_sha256": "dadbf53fb10d8ab6b6f0717fada8b04e040ca34259a4660ee2f4e5f11b3305d6"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Protective Duties Continuation Act, 1944",
+   "kind": "act",
+   "year": 1944,
+   "number": "XIII",
+   "spans": [
+    {
+     "start_block_id": 2352567,
+     "end_block_id": 2352583,
+     "pages": "1-2"
+    }
+   ],
+   "title_basis": "p1 block 2352567 prints 'ACT No. XIII OF 1944'; ss.1-3 complete on pp.1-2."
+  },
+  {
+   "ordinal": 1,
+   "role": "embedded",
+   "title": "The Factories (Amendment) Act, 1944",
+   "kind": "act",
+   "year": 1944,
+   "number": "XIV",
+   "spans": [
+    {
+     "start_block_id": 2352584,
+     "end_block_id": 2352597,
+     "pages": "2-2"
+    }
+   ],
+   "title_basis": "p2 block 2352584 prints 'ACT No. XIV OF 1944'; s.1 names it; ss.1-5 and the signature complete; not held elsewhere in the corpus."
+  }
+ ]
+}

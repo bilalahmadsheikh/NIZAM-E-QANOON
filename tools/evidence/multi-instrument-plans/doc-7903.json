@@ -1,0 +1,44 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 7903,
+ "source_observation_id": 13447,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 7903,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc7903-p1.png",
+   "render_sha256": "874b2c777aea864838457a25f4bd760f8ef573bdb49c6af799c46ba6806d0c32"
+  },
+  {
+   "page": 2,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc7903-p2.png",
+   "render_sha256": "5a62fb820f68a1549702b32617cac074ac8bf0c3ae9d5bb47c116aff4b341db6"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The High Court Judges (Scrutiny of Appointments) Order, 1977",
+   "kind": "order",
+   "year": 1977,
+   "number": "13",
+   "spans": [
+    {
+     "start_block_id": 1979314,
+     "end_block_id": 1979340,
+     "pages": "1-2"
+    }
+   ],
+   "title_basis": "p1 blocks 1979314-1979318 print the date line, the notification and the Order's title with P.P.O. No. 13 of 1977; Article 1 names it; Articles 1-8 complete. The p1 head (s.2 of an earlier Ordinance amending the Code of Criminal Procedure, without its title or s.1) is a fragment and is set aside as apparatus (owner policy q1 'split')."
+  }
+ ]
+}

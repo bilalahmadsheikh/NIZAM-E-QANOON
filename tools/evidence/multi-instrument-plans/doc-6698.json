@@ -1,0 +1,70 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 6698,
+ "source_observation_id": 12092,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 6698,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc6698-p1.png",
+   "render_sha256": "866802aa567543cd03ce384cd3bf8e43176ab9af5ec7ef169068eb5d1d4f56a5"
+  },
+  {
+   "page": 2,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc6698-p2.png",
+   "render_sha256": "c280a8baf81323ae03e69335428853a4a97700f8e11d645e3c13586e5e21f5c0"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The National Book Foundation Ordinance, 1972",
+   "kind": "ordinance",
+   "year": 1972,
+   "number": "XXVI",
+   "spans": [
+    {
+     "start_block_id": 1583432,
+     "end_block_id": 1583435,
+     "pages": "1-1"
+    },
+    {
+     "start_block_id": 1583437,
+     "end_block_id": 1583458,
+     "pages": "1-2"
+    }
+   ],
+   "title_basis": "p1 blocks 1583432-1583435 print 'THE NATIONAL BOOK FOUNDATION ORDINANCE, 1972. / ORDINANCE No. XXVI OF 1972 / [4th July 1972] An Ordinance to establish an organization ...'; s.1(1) (p2 block 1583443) 'This Ordinance may be called the National Book Foundation Ordinance, 1972'; complete in ss.1-5 (block 1583458). The catalogue's number XXV is the preceding Ordinance's. The later National Book Foundation Act, 1972 (XIX of 1972) is a different law (document 2093)."
+  },
+  {
+   "ordinal": 1,
+   "role": "embedded",
+   "title": "The Pakistan Citizenship (Amendment) Ordinance, 1972",
+   "kind": "ordinance",
+   "year": 1972,
+   "number": "XXV",
+   "spans": [
+    {
+     "start_block_id": 1583409,
+     "end_block_id": 1583431,
+     "pages": "1-1"
+    },
+    {
+     "start_block_id": 1583436,
+     "end_block_id": 1583436,
+     "pages": "1-1"
+    }
+   ],
+   "title_basis": "p1 blocks 1583412-1583415 print 'THE PAKISTAN CITIZENSHIP (AMENDMENT) ORDINANCE, 1972. / ORDINANCE No. XXV OF 1972 / [30th June, 1972] / An Ordinance further to amend the Pakistan Citizenship Act, 1951.'; s.1(1) (block 1583420) 'This Ordinance may be called the Pakistan Citizenship (Amendment) Ordinance, 1972'; complete in ss.1-2 (to block 1583431, clause (c) of the substituted sub-section (2) of section 14). Its first span opens at the page's running head (blocks 1583409-1583411); its footnote 1 'Since repealed by the Pakistan Citizenship (Amendment) Act, 1972 (17 of 1972), s. 4.' (block 1583436) is its second span. Not held elsewhere (title search 'citizenship')."
+  }
+ ]
+}

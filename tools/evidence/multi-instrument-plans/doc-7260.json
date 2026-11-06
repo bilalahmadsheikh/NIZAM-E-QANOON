@@ -1,0 +1,44 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 7260,
+ "source_observation_id": 11634,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 7260,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc7260-p1.png",
+   "render_sha256": "ad1168e74b2f8d98d4209942b1c21cc97fd7224b46c257ec700a00df1a3d34d5"
+  },
+  {
+   "page": 6,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc7260-p6.png",
+   "render_sha256": "4027c74941cb28d4c134aef5f6781b4f6a36a51ba7e871bcbd0e31b10eb6835f"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Banking Companies (Control) Act, 1948",
+   "kind": "act",
+   "year": 1948,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 1686438,
+     "end_block_id": 1686588,
+     "pages": "1-6"
+    }
+   ],
+   "title_basis": "pp1-6 print the Banking Companies (Control) Act, 1948 (s.1 'This Act may be called the Banking Companies (Control) Act, 1948') through its last section amending the Banking Companies (Inspection) Ordinance, 1946, ending '... and conditions as it thinks fit to impose.' (block 1686588). ACT No. XXIII OF 1948 (the Indian Income-tax (Second Amendment) Act, 1948) begins after it on p6 and is cut off in its section 4 at the end of this copy: set aside as apparatus (owner policy q1 'split'). The Act number is not printed on the pages read (null)."
+  }
+ ]
+}

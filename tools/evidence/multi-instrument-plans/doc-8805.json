@@ -1,0 +1,50 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 8805,
+ "source_observation_id": 11643,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 8805,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc8805-p1.png",
+   "render_sha256": "8519d208ef3ae4d1ea4623b2f54c032ca04266c745f4253faa4a17b33db16309"
+  },
+  {
+   "page": 2,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc8805-p2.png",
+   "render_sha256": "2436932a77b071fba3cff8e2db3ee91f61801de16806989dc49e406f777459b5"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Sind Opium Smoking (Federal Capital Amendment) Act, 1952",
+   "kind": "act",
+   "year": 1952,
+   "number": "XLI",
+   "spans": [
+    {
+     "start_block_id": 2345513,
+     "end_block_id": 2345526,
+     "pages": "1-2"
+    }
+   ],
+   "title_basis": "p1 block 2345513 prints 'ACT No. XLI OF 1952'; s.1 names it; ss.1-2 complete. ACT No. XL OF 1952 on p1 is held released as document 8696, and ACT No. XLII OF 1952 (the Merchant Shipping (Amendment) Act, 1952) on p2 breaks off in s.4 at the foot of the last page in this copy: both set aside as apparatus (owner policy q1 'split').",
+   "title_correction": {
+    "from_title": "NA-The Sind Opium Smoking Act, 1940",
+    "from_year": 1940,
+    "to_year": 1952,
+    "basis": "printed identity replaces the placeholder catalogue identity: p1 block 2345513 prints 'ACT No. XLI OF 1952 / An Act further to amend the Sind Opium Smoking Act, 1940' and s.1 (block 2345518) 'This Act may be called the Sind Opium Smoking (Federal Capital Amendment) Act, 1952'; the 1940 Act itself is not printed in this PDF"
+   }
+  }
+ ]
+}

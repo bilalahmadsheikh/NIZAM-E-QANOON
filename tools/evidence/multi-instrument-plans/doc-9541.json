@@ -1,0 +1,44 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 9541,
+ "source_observation_id": 12638,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 9541,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9541-p1.png",
+   "render_sha256": "c43ca6c7a2e12cc656dd1f6ceb68e562c49a36be623b4324e8e3749266752af8"
+  },
+  {
+   "page": 6,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9541-p6.png",
+   "render_sha256": "a8f38b5f8b99c45bf54c70b539301a88d514747691bf245745431dda22b4a948"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Karachi Secondary Education Act, 1950",
+   "kind": "act",
+   "year": 1950,
+   "number": "XVI",
+   "spans": [
+    {
+     "start_block_id": 2543862,
+     "end_block_id": 2544010,
+     "pages": "1-6"
+    }
+   ],
+   "title_basis": "p1 block 2543862 prints 'ACT No. XVI OF 1950'; s.1 names it the Karachi Secondary Education Act, 1950; ss.1-21 complete. ACT No. XVII OF 1950 (the Essential Supplies (Temporary Powers) (Amendment) Act, 1950) at the foot of p6 prints ss.1-2 with no signature and may continue on a page not in this copy; its text layer is unreadable: set aside as apparatus (owner policy q1 'split')."
+  }
+ ]
+}

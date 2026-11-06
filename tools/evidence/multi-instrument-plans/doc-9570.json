@@ -1,0 +1,44 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 9570,
+ "source_observation_id": 10239,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 9570,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9570-p1.png",
+   "render_sha256": "cefb8df3a9e88c35e6c033373caed702beffd45a3acb2af184781047459640e3"
+  },
+  {
+   "page": 12,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9570-p12.png",
+   "render_sha256": "c475d50e8de48d628de682894b0b86d63eb39a8aa13685579ba200bf7df186a2"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Pakistan Rehabilitation Act, 1956",
+   "kind": "act",
+   "year": 1956,
+   "number": "XLII",
+   "spans": [
+    {
+     "start_block_id": 2551820,
+     "end_block_id": 2552031,
+     "pages": "1-12"
+    }
+   ],
+   "title_basis": "p1 blocks 2551820-2551821 print the Act's title and 'ACT No. XLII OF 1956'; s.1 names it; ss.1-24 complete. The p1 head is a fragment of an earlier law and the p12 foot prints only the heading and preamble of the Finance (Amendment) Act, 1956: both set aside as apparatus (owner policy q1 'split')."
+  }
+ ]
+}

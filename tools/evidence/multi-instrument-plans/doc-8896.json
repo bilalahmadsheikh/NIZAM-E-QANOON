@@ -1,0 +1,44 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 8896,
+ "source_observation_id": 11604,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 8896,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc8896-p1.png",
+   "render_sha256": "0286dee830ef66413263d11d9c2a7bb5812a759e2b3a14bee387bcf4819bf423"
+  },
+  {
+   "page": 2,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc8896-p2.png",
+   "render_sha256": "f026b516b86dd44fc19143abefe4256d709cbc92d65146172a1c7cbae3f78095"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Appellate Jurisdiction (High Courts and Supreme Court) Ordinance, 1962",
+   "kind": "ordinance",
+   "year": 1962,
+   "number": "L",
+   "spans": [
+    {
+     "start_block_id": 2352107,
+     "end_block_id": 2352137,
+     "pages": "1-2"
+    }
+   ],
+   "title_basis": "p1 block 2352107 onward prints the notification and 'ORDINANCE No. L OF 1962'; s.1 on p2 names it; ss.1-3 complete. The p1 head (the end of an earlier Ordinance) is a fragment, and Ordinance No. LI of 1962 (the Provincial Small Cause Courts (Amendment) Ordinance, 1962) that follows on p2 is cut off after s.2(1) at the end of this copy: both are set aside as apparatus (owner policy q1 'split')."
+  }
+ ]
+}

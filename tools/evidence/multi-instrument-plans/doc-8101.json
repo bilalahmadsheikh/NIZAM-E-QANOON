@@ -1,0 +1,81 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 8101,
+ "source_observation_id": 12981,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 8101,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc8101-p1.png",
+   "render_sha256": "dfc13374fa0b693ac9fe7b059ac106a1331bdb90b185b2f926c00c79145e5c0d"
+  },
+  {
+   "page": 2,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc8101-p2.png",
+   "render_sha256": "3ad39eb648a4e92bdeb9fc0ea893e2fef269321de2ff5544c868b49bf91ce738"
+  },
+  {
+   "page": 3,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc8101-p3.png",
+   "render_sha256": "1e7d1066940472913c6bebc77f1a7469eb2ff8bee7acbbb17b612b8d44781272"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Salary of Judges of Superior Courts Order, 1991",
+   "kind": "order",
+   "year": 1991,
+   "number": "9",
+   "spans": [
+    {
+     "start_block_id": 2008429,
+     "end_block_id": 2008458,
+     "pages": "1-2"
+    }
+   ],
+   "title_basis": "p1 (Gazette of Pakistan Extraordinary, Islamabad, November 25, 1991, p.475) prints the masthead, No. F. 2(2)/91-Pub. ('The following Orders made by the President are hereby published'), 'THE SALARY OF JUDGES OF SUPERIOR COURTS ORDER, 1991, PRESIDENT'S ORDER No. 9 OF 1991' and Article 1; p2 (p.476) Articles 1(2) and 2 'Salary' (1)-(2) ending 'Rs. 12,575.' (block 2008458). The three Orders of the issue share the signatures printed after the third (p3). The corrigendum on p4 is apparatus."
+  },
+  {
+   "ordinal": 1,
+   "role": "embedded",
+   "title": "The Transfer of High Court Judges (Allowances and Privileges) (Amendment) Order, 1991",
+   "kind": "order",
+   "year": 1991,
+   "number": "10",
+   "spans": [
+    {
+     "start_block_id": 2008459,
+     "end_block_id": 2008469,
+     "pages": "2-2"
+    }
+   ],
+   "title_basis": "p2 blocks 2008459-2008461 print the title and P.O. No. 10 of 1991; Article 1 names it; Articles 1-2 complete; not held elsewhere in the corpus."
+  },
+  {
+   "ordinal": 2,
+   "role": "embedded",
+   "title": "The Judges (Leave, Pension and Privileges) (Third Amendment) Order, 1991",
+   "kind": "order",
+   "year": 1991,
+   "number": "11",
+   "spans": [
+    {
+     "start_block_id": 2008470,
+     "end_block_id": 2008494,
+     "pages": "2-3"
+    }
+   ],
+   "title_basis": "p2 blocks 2008470-2008472 print the title and P.O. No. 11 of 1991; Article 1 names it; Articles 1-3 complete with signatures; not held elsewhere in the corpus."
+  }
+ ]
+}

@@ -1,0 +1,44 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 9043,
+ "source_observation_id": 12347,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 9043,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9043-p1.png",
+   "render_sha256": "c374e43c07d8984e252ea4b09afec4e3b9c3e5428fbdfc3b4a9e9b8b62c9069a"
+  },
+  {
+   "page": 3,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9043-p3.png",
+   "render_sha256": "ca0de2059b979f9889ac1d2a4944e7c90eb1c999fb0a150e4bac4029861d4d31"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Karachi Indecent Advertisement Prohibition Act, 1951",
+   "kind": "act",
+   "year": 1951,
+   "number": "XXXVI",
+   "spans": [
+    {
+     "start_block_id": 2363897,
+     "end_block_id": 2363951,
+     "pages": "1-3"
+    }
+   ],
+   "title_basis": "p1 block 2363897 prints 'ACT No. XXXVI OF 1951'; s.1 names it; ss.1-10 complete. The p1 head (an earlier Act's s.3) is a fragment. ACT No. XXXVII (Control of Shipping (Amendment) Act, 1951) and ACT No. XXXVIII (Indian Tolls (Army and Air Force) (Amendment) Act, 1951) on p3: the second is cut off after s.1 at the end of the copy; the first's sections are fused by the text layer into one block with OCR loss. Both are set aside as apparatus (owner policy q1 'split'), to be added from a better copy."
+  }
+ ]
+}

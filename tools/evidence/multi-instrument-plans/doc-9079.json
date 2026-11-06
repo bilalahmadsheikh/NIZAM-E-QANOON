@@ -1,0 +1,44 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 9079,
+ "source_observation_id": 11619,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 9079,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9079-p1.png",
+   "render_sha256": "f7dc652f6463451e993823ed584992a28cd3bf661bfe607985a87753ef18eac1"
+  },
+  {
+   "page": 12,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9079-p12.png",
+   "render_sha256": "92cca09a24f9a09bf30fea3fa8f86967069ceebdac9b2b7cae8f189185f44372"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Pakistan Defence Officers Housing Authority Order, 1980",
+   "kind": "order",
+   "year": 1980,
+   "number": "7",
+   "spans": [
+    {
+     "start_block_id": 2368460,
+     "end_block_id": 2368624,
+     "pages": "1-12"
+    }
+   ],
+   "title_basis": "p1 blocks 2368460-2368461 print the Order's title and P.O. No. 7 of 1980. The P.O. 24 of 1979 printed before it on p1 is held released as document 8614 and is set aside as apparatus (owner policy q1 'split'; not duplicated)."
+  }
+ ]
+}

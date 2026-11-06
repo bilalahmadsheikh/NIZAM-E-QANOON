@@ -1,0 +1,44 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 5247,
+ "source_observation_id": 10029,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 5247,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc5247-p1.png",
+   "render_sha256": "a57d33da137183fd4a0ccf2f173130effe983948f22f869327573ddcbee630d4"
+  },
+  {
+   "page": 4,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc5247-p4.png",
+   "render_sha256": "60a71bd3eab08766f6c708b9359bb72525977f573cef06ca18a4e93b66eed580"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Women in Distress and Detention Fund Act, 1996",
+   "kind": "act",
+   "year": 1996,
+   "number": "XV",
+   "spans": [
+    {
+     "start_block_id": 1058405,
+     "end_block_id": 1058464,
+     "pages": "1-4"
+    }
+   ],
+   "title_basis": "p1 block 1058405 prints 'ACT No. XV OF 1996'; s.1 names it; ss.1-11 complete. The p1 head prints the last sections and signatures of an earlier law whose title is on a page not in this copy: a fragment, set aside as apparatus (owner policy q1 'split')."
+  }
+ ]
+}

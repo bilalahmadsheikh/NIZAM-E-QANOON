@@ -1,0 +1,67 @@
+{
+  "schema": "nizam.multi_expression_plan/1",
+  "document_id": 8743,
+  "source_observation_id": 12229,
+  "review_basis": "source_verified",
+  "reviewed_on": "2026-10-30",
+  "reviewed_by": "codex.source-page-review/1",
+  "reviewed_pages": [
+    {
+      "page": 1,
+      "render": ".artifacts/release-work-2026-09-24/codex-2026-10-30-b06/doc8743-p1.png",
+      "render_sha256": "295f9eecd23c9d0094669475d6ca5a2a9976c0169899db8fcc37034206699c6a"
+    },
+    {
+      "page": 2,
+      "render": ".artifacts/release-work-2026-09-24/codex-2026-10-30-b06/doc8743-p2.png",
+      "render_sha256": "3ef92291a02846098060cb01ba0e3677d322e53cce33c2648eaa482f52cacdcb"
+    },
+    {
+      "page": 3,
+      "render": ".artifacts/release-work-2026-09-24/codex-2026-10-30-b06/doc8743-p3.png",
+      "render_sha256": "7758befe2c5029d3320854f192b48f98f37903028763bfe8e810e4db35d6582a"
+    },
+    {
+      "page": 4,
+      "render": ".artifacts/release-work-2026-09-24/codex-2026-10-30-b06/doc8743-p4.png",
+      "render_sha256": "7f5376ae82b6807b7495ae693fbb517abb86f261d6152dac287cbf68fb87e64c"
+    }
+  ],
+  "owner_decision": {
+    "source": "User chat2026-10-30: go on release further using CODEX-RELEASE-GUIDE.md."
+  },
+  "expressions": [
+    {
+      "ordinal": 0,
+      "role": "primary",
+      "title": "The Privy Council Appeals Act, 1874",
+      "kind": "act",
+      "year": 1874,
+      "number": "VI",
+      "spans": [
+        {
+          "start_block_id": 2342183,
+          "end_block_id": 2342350
+        }
+      ],
+      "title_basis": "Page1 display ActNo.VI1874 and title, corroborated by body section1. Pages1–2 contents1–25; actual body starts at page2 long title and includes all25sections and repeal Schedule.",
+      "source_anomalies": [
+        {
+          "source_block_id": 2342231,
+          "printed": "Her Majesty in Council must be ... upwards",
+          "note": "Binding-edge sum in section5 is unreadable. Do not copy the ten-thousand-rupee figure from the preceding Court-of-first-instance requirement. Source loss marker retained."
+        },
+        {
+          "source_block_id": 2342235,
+          "printed": "6. Notwithstanding ...",
+          "note": "Right-column warp damages words and citation portions in sections5–11. All visible words retained; unreadable spans marked. Body section numbers are visible; no owner-inferred labels."
+        },
+        {
+          "source_block_id": 2342348,
+          "printed": "SCHEDULE (See section2.) ENACTMENTS REPEALED",
+          "note": "Nine table rows in ARegulations/BActs/CStatutes. Keep cited enactment identity/title/repeal extent in the same row, and unreadable extent fragments marked. Section[illegible] retains only the visible prefix; the marker may include its damaged word ending and following extent. Neither plural endings nor guessed numerals are supplied. Internal numeric identifiers remain table text, not fabricated numbered clauses."
+        }
+      ]
+    }
+  ]
+}

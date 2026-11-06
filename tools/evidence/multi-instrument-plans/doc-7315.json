@@ -1,0 +1,44 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 7315,
+ "source_observation_id": 12643,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 7315,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc7315-p1.png",
+   "render_sha256": "f495a53fc531392e5873d657a6c33294e88968affa948016c5262c89ee314496"
+  },
+  {
+   "page": 13,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc7315-p13.png",
+   "render_sha256": "6f0f3751b1f391b39585f74b8c164b29b46bde297e07724fcbca08f575e8f047"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Finance Act, 1958",
+   "kind": "act",
+   "year": 1958,
+   "number": "XXII",
+   "spans": [
+    {
+     "start_block_id": 1701252,
+     "end_block_id": 1701572,
+     "pages": "1-13"
+    }
+   ],
+   "title_basis": "p1 (Gazette of Pakistan Extra., March 28, 1958, p.565) prints 'Act No. XXII of 1958 THE FINANCE ACT, 1958. An Act to give effect to the financial proposals of the Central Government ...' and its sections, running through p13 to the substituted Schedule II of the sales-tax amendment (block 1701572). The Appropriation Act, 1958 (Act No. XXIII of 1958) printed after it on p13 is held released as document 5318 and is set aside as apparatus here (owner policy q1 'split'; not duplicated)."
+  }
+ ]
+}

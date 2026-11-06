@@ -1,0 +1,60 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 9139,
+ "source_observation_id": 11975,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 9139,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9139-p1.png",
+   "render_sha256": "d2f43bb75acf052ae4a9ab7a672ea33699025e6c159ec7c1a75d3941bf4c2e58"
+  },
+  {
+   "page": 5,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9139-p5.png",
+   "render_sha256": "a4a30ed8e0c6eaf51d5a5659027e5858465058dbd6316cf1cd52b17171e5509e"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Iqbal Academy Act, 1951",
+   "kind": "act",
+   "year": 1951,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 2379307,
+     "end_block_id": 2379392,
+     "pages": "1-5"
+    }
+   ],
+   "title_basis": "p1 block 2379314 names the Act; complete on pp.1-5."
+  },
+  {
+   "ordinal": 1,
+   "role": "embedded",
+   "title": "The University of Karachi (Amendment) Act, 1951",
+   "kind": "act",
+   "year": 1951,
+   "number": "V",
+   "spans": [
+    {
+     "start_block_id": 2379393,
+     "end_block_id": 2379413,
+     "pages": "5-5"
+    }
+   ],
+   "title_basis": "p5 block 2379393 prints 'ACT No. V OF 1951'; s.1 names it; not held elsewhere in the corpus."
+  }
+ ]
+}

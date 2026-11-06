@@ -1,0 +1,44 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 9652,
+ "source_observation_id": 11997,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-28",
+ "reviewed_by": "lead page review (28 Oct 2026) under the owner's chat delegation of 25 Oct 2026",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/decision-review-2026-10-25-delegated.json",
+  "document_id": 9652,
+  "question_id": "q1"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9652-p1.png",
+   "render_sha256": "feadd1c1a9540eaeea2860424e1f349240c82b6a586776ca54906f85fef65cd0"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Balochistan Public Service Commission (Function) (Amendment) Rules, 2000",
+   "kind": "notification",
+   "year": 2000,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 2612757,
+     "end_block_id": 2612762,
+     "pages": "1-1"
+    }
+   ],
+   "title_basis": "p1 blocks 2612761-2612762 print 'NOTIFICATION.' and 'NO. SOR-II(17)1/SGA&ID/2000/2391-2490/. In exercise of the powers conferred by Section-10 of the Balochistan Public Service Commission Act of 1989 (IX-1989), the Government of Balochistan is pleased to delete the rule 5 of the Balochistan Public Service Commission (Function) Rules, 1995.' dated Quetta the 4th Oct: 2000; the notification prints no short title -- the title names the rules it amends and its year, as for other amending notifications held in the corpus (doc 9676); the Gazette direction, department, date and 'NOTIFICATION.' heading (blocks 2612757-2612761) stand before paragraph 1 as the notification's preface",
+   "title_correction": {
+    "from_title": "The Balochistan Public Service Commission (Function) Rules, 1995, 1995",
+    "from_year": 1995,
+    "to_year": 2000,
+    "basis": "the catalogued file is not the BPSC (Function) Rules, 1995 (no rules are printed in it); it is the S&GAD notification of 4 Oct 2000 deleting rule 5 of those Rules, released for what it is under the owner's chat delegation (25 Oct 2026; delegated decision 9652 q1)"
+   }
+  }
+ ]
+}

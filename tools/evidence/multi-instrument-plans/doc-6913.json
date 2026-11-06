@@ -1,0 +1,65 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 6913,
+ "source_observation_id": 11169,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 6913,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc6913-p1.png",
+   "render_sha256": "a68097586661597b726ed812c27948b0515bb41b98a62e7e0b200df37e27e3dd"
+  },
+  {
+   "page": 3,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc6913-p3.png",
+   "render_sha256": "7dddeaf7b407f1e9f8ad8b404fd1f226e1d703d1c4a0f4986ebdbd41b7159934"
+  },
+  {
+   "page": 4,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc6913-p4.png",
+   "render_sha256": "08233b30e48102fe9b4b462af13723c912fca2dfd3b9f955f6186c865a2b636b"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Privatisation Commission (Confidentiality and Secrecy of Documents) Regulations, 2003",
+   "kind": "regulation",
+   "year": 2003,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 1620780,
+     "end_block_id": 1620825,
+     "pages": "1-3"
+    }
+   ],
+   "title_basis": "p1 block 1620793 names the regulations; regulations 1-3 complete on pp.1-3, closed by the file reference before the next notification (block 1620826)."
+  },
+  {
+   "ordinal": 1,
+   "role": "embedded",
+   "title": "The Privatisation Commission (Declaration of Fidelity and Secrecy) Rules, 2003",
+   "kind": "rules",
+   "year": 2003,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 1620826,
+     "end_block_id": 1620857,
+     "pages": "3-4"
+    }
+   ],
+   "title_basis": "p3 blocks 1620830-1620831 print the rules' title; rule 1 names them; rules 1-4 and the Schedule complete; not held elsewhere in the corpus."
+  }
+ ]
+}

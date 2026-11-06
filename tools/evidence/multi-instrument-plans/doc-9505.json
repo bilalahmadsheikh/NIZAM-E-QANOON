@@ -1,0 +1,60 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 9505,
+ "source_observation_id": 13308,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 9505,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9505-p1.png",
+   "render_sha256": "418d351ce2f715d1cc818a6c9e5d1e98e203e003c0ae621e7a88e6a006213dc0"
+  },
+  {
+   "page": 5,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9505-p5.png",
+   "render_sha256": "c327bed7657fb712b2f600d0b8f8d383aec4221d72f061c398881490765174d6"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Bahawalpur (Extension of Laws) Order, 1952",
+   "kind": "order",
+   "year": 1952,
+   "number": "2",
+   "spans": [
+    {
+     "start_block_id": 2539313,
+     "end_block_id": 2539406,
+     "pages": "1-4"
+    }
+   ],
+   "title_basis": "p1 block 2539320 prints 'G. G. ORDER No. 2 OF 1952'; clause 1 names it; complete to its Schedules on p5."
+  },
+  {
+   "ordinal": 1,
+   "role": "embedded",
+   "title": "The Bahawalpur (Exercise of Executive Authority) Order, 1952",
+   "kind": "order",
+   "year": 1952,
+   "number": "3",
+   "spans": [
+    {
+     "start_block_id": 2539411,
+     "end_block_id": 2539422,
+     "pages": "5-5"
+    }
+   ],
+   "title_basis": "p5 block 2539411 prints 'G. G. ORDER No. 3 OF 1952'; clause 1 names it; clauses 1-2 and the signatures complete; not held elsewhere in the corpus."
+  }
+ ]
+}

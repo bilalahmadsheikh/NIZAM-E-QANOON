@@ -1,0 +1,44 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 7219,
+ "source_observation_id": 12618,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 7219,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc7219-p1.png",
+   "render_sha256": "fd74feb467bd07079ec3453af30b3ff857ebb519e6995d3b54be051128a66a8c"
+  },
+  {
+   "page": 16,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc7219-p16.png",
+   "render_sha256": "52a615b506a6c2251032291c3f8107a150b3fc82280f56e73d5b7199b4ddd261"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The National University of Sciences and Technology Ordinance, 1997",
+   "kind": "ordinance",
+   "year": 1997,
+   "number": "XXXII",
+   "spans": [
+    {
+     "start_block_id": 1674923,
+     "end_block_id": 1675379,
+     "pages": "1-16"
+    }
+   ],
+   "title_basis": "p1 blocks 1674923-1674925 print the date line, notification and 'ORDINANCE No. XXXII OF 1997'; s.1 names it. The p1 head prints the last sections and signatures of an earlier law whose title is on a page not in this copy: a fragment, set aside as apparatus (owner policy q1 'split'). Ordinance No. XXXIII of 1997 (amending the Capital Development Authority Ordinance, 1960) begins on p16 and is cut off in its s.2 at the end of this copy; set aside as apparatus."
+  }
+ ]
+}

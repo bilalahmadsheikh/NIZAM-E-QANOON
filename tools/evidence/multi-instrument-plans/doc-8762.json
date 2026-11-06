@@ -1,0 +1,44 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 8762,
+ "source_observation_id": 13175,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 8762,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc8762-p1.png",
+   "render_sha256": "a415733346f5b7a5a829525ba295f9dcbfe7bc9ff1313c62b3c2973dec8e9d97"
+  },
+  {
+   "page": 3,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc8762-p3.png",
+   "render_sha256": "39cabf1936c6bba0d7d02c6ab07fe2c82b85a60d1830de5a58d2fc5ca6a82900"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Distribution of Revenues and Consolidation and Repayment of Loans Order, 1962",
+   "kind": "order",
+   "year": 1962,
+   "number": "23",
+   "spans": [
+    {
+     "start_block_id": 2343129,
+     "end_block_id": 2343167,
+     "pages": "1-3"
+    }
+   ],
+   "title_basis": "p1 (book p.118) prints 'THE DISTRIBUTION OF REVENUES AND CONSOLIDATION AND REPAYMENT OF LOANS ORDER, 1962. PRESIDENT'S ORDER No. 23 OF 1962 [5th June, 1962]' and its Articles, continued on pp2-3 to the signature 'MOHAMMAD AYUB KHAN, N.Pk., H.J., FIELD-MARSHAL, President' (block 2343167). The Transfer of Railways Order, 1962 (P.O. 33 of 1962) that follows on p3 is held released as document 8434 and is set aside as apparatus (owner policy q1 'split')."
+  }
+ ]
+}

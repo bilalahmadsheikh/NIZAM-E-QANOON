@@ -1,0 +1,61 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 6764,
+ "source_observation_id": 12351,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 6764,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc6764-p1.png",
+   "render_sha256": "724b4546ace96482186f8adc9d95fb271be487fc3cf41469bc36bda869f40242"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Sind Electricity Control (Amendment) Act, 1949",
+   "kind": "act",
+   "year": 1949,
+   "number": "IV",
+   "spans": [
+    {
+     "start_block_id": 1599256,
+     "end_block_id": 1599260,
+     "pages": "1-1"
+    }
+   ],
+   "title_basis": "p1 block 1599256 prints 'ACT No. IV OF 1949 An Act to amend the Sind Electricity Control Act, 1947'; s.1(1) names it the Sind Electricity Control (Amendment) Act, 1949; ss.1-2 end the page (block 1599260). Blocks 1599241-1599247 (running head and the last rows 21-22 of a schedule table of an earlier law that began before this PDF) are a fragment and set aside as apparatus; block 1599255 is the margin note 'Sind Act III of 1947'.",
+   "title_correction": {
+    "from_title": "NA-The Sind Electricity Control Act, 1947",
+    "from_year": 1947,
+    "to_year": 1949,
+    "basis": "printed identity replaces the placeholder catalogue identity: p1 block 1599256 prints 'ACT No. IV OF 1949 An Act to amend the Sind Electricity Control Act, 1947' and s.1(1) (block 1599258) 'This Act may be called the Sind Electricity Control (Amendment) Act, 1949'; the 1947 Act itself is not printed in this PDF"
+   }
+  },
+  {
+   "ordinal": 1,
+   "role": "embedded",
+   "title": "The Diplomatic and Consular Officers (Oaths and Fees) Amendment Act, 1949",
+   "kind": "act",
+   "year": 1949,
+   "number": "III",
+   "spans": [
+    {
+     "start_block_id": 1599248,
+     "end_block_id": 1599254,
+     "pages": "1-1"
+    }
+   ],
+   "title_basis": "p1 blocks 1599248-1599249 print 'ACT No. III OF 1949 / An Act to amend the Diplomatic and Consular Officers (Oaths and Fees) Act, 1948'; s.1(1) (block 1599252) prints 'This Act may be called the Diplomatic and Consular Officers (Oaths and Fees) Amendment Act, 1949'; complete in ss.1-2 (block 1599254). Not held elsewhere (title search: only the 1948 principal Act, doc 1964)."
+  }
+ ]
+}

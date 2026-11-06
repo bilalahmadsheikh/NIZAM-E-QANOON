@@ -1,0 +1,44 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 8173,
+ "source_observation_id": 13097,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 8173,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc8173-p1.png",
+   "render_sha256": "5e36907b74cfe37b8e44474c180d368fb5aaeb400a07161967ed62832d36df18"
+  },
+  {
+   "page": 7,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc8173-p7.png",
+   "render_sha256": "4931dec29fe7dc4f464b34676b6a213a7888756416c5acc4e2afccf65e83b0b2"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The National Development Finance Corporation Act, 1973",
+   "kind": "act",
+   "year": 1973,
+   "number": "XIII",
+   "spans": [
+    {
+     "start_block_id": 2016081,
+     "end_block_id": 2016207,
+     "pages": "1-7"
+    }
+   ],
+   "title_basis": "p1 block 2016081 prints 'ACT No. XIII OF 1973'; s.1 names it the National Development Finance Corporation Act, 1973; it runs to the signature on p7. The p1 head (ss.9-10 of an earlier Act) is a fragment, set aside as apparatus (owner policy q1 'split')."
+  }
+ ]
+}

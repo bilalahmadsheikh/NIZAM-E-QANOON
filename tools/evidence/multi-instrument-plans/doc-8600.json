@@ -1,0 +1,39 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 8600,
+ "source_observation_id": 13095,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 8600,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc8600-p1.png",
+   "render_sha256": "ace3cbe41c58717243b11cbb3507bbc5e4ea8b4f7cc493047045b07bb5887c3e"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Withdrawal of Remission of Sentences Act, 1976",
+   "kind": "act",
+   "year": 1976,
+   "number": "XX",
+   "spans": [
+    {
+     "start_block_id": 2330271,
+     "end_block_id": 2330279,
+     "pages": "1-1"
+    }
+   ],
+   "title_basis": "p1 (Gazette of Pakistan Extra., April 26, 1976, p.254) blocks 2330272-2330276 print 'ACT No. XX OF 1976 An Act to withdraw the remission of sentences ...' and s.1 'This Act may be called the Withdrawal of Remission of Sentences Act, 1976'; it ends at s.3 'Repeal' (block 2330279). Blocks 2330280-2330286 print ACT No. XXI OF 1976 (the Law Reforms (Amendment) Act, 1976), ss.1-3, whose s.2 amends 'to the extent and in the manner specified in the Schedule' -- the Schedule is not printed in this copy, so that law is incomplete here and is set aside as apparatus, not created from a fragment (owner policy q1 'split')."
+  }
+ ]
+}

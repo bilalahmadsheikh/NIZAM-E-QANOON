@@ -1,0 +1,65 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 9132,
+ "source_observation_id": 13441,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-11-03",
+ "reviewed_by": "claude.source-page-review/1",
+ "owner_decision": {
+  "source": "Owner delegation 25 Oct 2026 (renewed 30 Oct, 3 Nov): release held documents; the printed identity is read from the page."
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/z9132-1.png",
+   "render_sha256": "2ffdeed2fd5be7a62e7e94b9bd6e8920c1f16ec0a88442d0a48a2e4f4666fe32"
+  },
+  {
+   "page": 2,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/z9132-2.png",
+   "render_sha256": "a60ca5c01023b7eb0201823b8dbaa2291fe6ec287f31fa4e71cbc9a0e86e8da1"
+  },
+  {
+   "page": 3,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/z9132-3.png",
+   "render_sha256": "5c79cf59477affb8759879b59cee3757fae0b6356ca1efb1985e3ed9090be901"
+  },
+  {
+   "page": 4,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/z9132-4.png",
+   "render_sha256": "dd2281c9bff746e691ea3053ed1213b7a21d6ab7e904e38afc2c4c2e94ade702"
+  },
+  {
+   "page": 5,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/z9132-5.png",
+   "render_sha256": "fd8123428390d82e1317a35f3c6e790a8c974f278963a01dfc80da49af78505d"
+  },
+  {
+   "page": 6,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/z9132-6.png",
+   "render_sha256": "b7c39ba6d93b80ea51d472dffe36b87ab780bc50a73e4c999d4c5537f2a1cb32"
+  },
+  {
+   "page": 7,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/z9132-7.png",
+   "render_sha256": "b6be02b63c851f5df18ea1fe6d1939aff3adb82cc767958a3364c9267024bb3c"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Cotton Ordinance, 1956",
+   "kind": "ordinance",
+   "year": 1956,
+   "number": "XXIII",
+   "spans": [
+    {
+     "start_block_id": 2375902,
+     "end_block_id": 2376026
+    }
+   ],
+   "title_basis": "Page 1 (Gazette of Pakistan, Extra., 18 November 1956, p.2068) prints 'MINISTRY OF COMMERCE ... ORDINANCE No. XXIII OF 1956' above the Ordinance; section 1(1) prints 'This Ordinance may be called the Cotton Ordinance, 1956.' The '(XV of 1956)' at the top of page 1 is the Jute Ordinance's own number, in the tail of that preceding instrument (set aside). Section 21(1) repeals the earlier Cotton Ordinance, 1956 (XVI of 1956)."
+  }
+ ]
+}

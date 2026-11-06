@@ -1,0 +1,44 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 8629,
+ "source_observation_id": 12962,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 8629,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc8629-p1.png",
+   "render_sha256": "c5b9294d537cd5571b650a1aa43fa916075087f337335f66c9f7c330eea9d692"
+  },
+  {
+   "page": 15,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc8629-p15.png",
+   "render_sha256": "7414c6eefe8563c6583ecb97fd956efc7cecea0601c82604c6e30e89bcbb57c5"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Co-operative Farming Ordinance, 1976",
+   "kind": "ordinance",
+   "year": 1976,
+   "number": "XXII",
+   "spans": [
+    {
+     "start_block_id": 2332694,
+     "end_block_id": 2332941,
+     "pages": "1-15"
+    }
+   ],
+   "title_basis": "p1 block 2332694 prints 'ORDINANCE No. XXII OF 1976'; it runs to the end of the copy. The p1 head (the end of an earlier Ordinance) is a fragment, set aside as apparatus (owner policy q1 'split')."
+  }
+ ]
+}

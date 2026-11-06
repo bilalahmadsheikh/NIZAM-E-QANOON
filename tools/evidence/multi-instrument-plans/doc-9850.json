@@ -1,0 +1,93 @@
+{
+  "schema": "nizam.multi_expression_plan/1",
+  "document_id": 9850,
+  "source_observation_id": 11737,
+  "review_basis": "source_verified",
+  "reviewed_on": "2026-10-30",
+  "reviewed_by": "codex.source-page-review/1",
+  "reviewed_pages": [
+    {
+      "page": 1,
+      "render": ".artifacts/release-work-2026-09-24/codex-2026-10-30-b01/doc9551-p1.png",
+      "render_sha256": "2a8aeed71f065cdf7cf9a9c260ae1e301d284f5c0364259161ae964bb0e3f901"
+    },
+    {
+      "page": 2,
+      "render": ".artifacts/release-work-2026-09-24/codex-2026-10-30-b01/doc9551-p2.png",
+      "render_sha256": "528096340c80fb3ddf9d019b3b118dad0267043250608cfa864889b70a4f6b5b"
+    },
+    {
+      "page": 3,
+      "render": ".artifacts/release-work-2026-09-24/codex-2026-10-30-b01/doc9551-p3.png",
+      "render_sha256": "7603f01b8a7218a7436ef1e2bd6b29727b0fe0f6532573c5c6f8c53dfb79bfc2"
+    },
+    {
+      "page": 4,
+      "render": ".artifacts/release-work-2026-09-24/codex-2026-10-30-b01/doc9551-p4.png",
+      "render_sha256": "39f6a8a41a7162d65ab8285a6e2d4490314f6078eedf97ff5855c9ddd55f6231"
+    },
+    {
+      "page": 5,
+      "render": ".artifacts/release-work-2026-09-24/codex-2026-10-30-b01/doc9551-p5.png",
+      "render_sha256": "63a5f047f3b0d05788f3922411dd2d51575ac65adb6e6971302a68d2e0ec3ad0"
+    }
+  ],
+  "source_sha256": "f8a859b69fa87ebbaf3e94066744aecdb171256a0d6668d035af688c3d012700",
+  "owner_decision": {
+    "source": "User chat 2026-10-30: continue release work using CODEX-RELEASE-GUIDE.md; guide requires complete documents, source-backed corrections and separation of independently printed instruments."
+  },
+  "expressions": [
+    {
+      "ordinal": 0,
+      "role": "primary",
+      "title": "The Karachi Union Councils (Secretary) Rules, 1960",
+      "kind": "rules",
+      "year": 1960,
+      "number": null,
+      "spans": [
+        {
+          "start_block_id": 2672958,
+          "end_block_id": 2672994
+        }
+      ],
+      "title_basis": "Rule1(1), page1699, names the Secretary Rules; SRO1514(K) supplies the enabling notification. Rule12 ends above the departmental reference on page1701."
+    },
+    {
+      "ordinal": 1,
+      "role": "embedded",
+      "title": "The Karachi Local Councils (Registration and Removal of Members) Rules, 1960",
+      "kind": "rules",
+      "year": 1960,
+      "number": null,
+      "spans": [
+        {
+          "start_block_id": 2672995,
+          "end_block_id": 2673040
+        }
+      ],
+      "title_basis": "Separate SRO1515(K) below the first rules on page1701, and its rule1(1), print this short title. Its rules1–7 end on page1703; rule3(3)(a)/(b) crosses pages1701–1702.",
+      "source_anomalies": [
+        {
+          "source_block_id": 2672996,
+          "printed": "Registration and Removal of Members",
+          "note": "Rule1(1) prints Registration; rule2 heading is Resignation. Retain both."
+        },
+        {
+          "source_block_id": 2672997,
+          "printed": "force of once",
+          "note": "Rule1(2) prints of once, retained from the page."
+        },
+        {
+          "source_block_id": 2672999,
+          "printed": "is or opinion",
+          "note": "Rule2(2) prints or, retained from the page."
+        },
+        {
+          "source_block_id": 2673038,
+          "printed": "suo moto",
+          "note": "Rule6(g) prints moto, retained from the page."
+        }
+      ]
+    }
+  ]
+}

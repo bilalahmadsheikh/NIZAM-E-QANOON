@@ -1,0 +1,68 @@
+{
+  "schema": "nizam.multi_expression_plan/1",
+  "document_id": 9152,
+  "source_observation_id": 10697,
+  "review_basis": "source_verified",
+  "reviewed_on": "2026-10-30",
+  "reviewed_by": "codex.source-page-review/1",
+  "reviewed_pages": [
+    {
+      "page": 1,
+      "render": ".artifacts/release-work-2026-09-24/codex-2026-10-30-b02/doc9152-p1.png",
+      "render_sha256": "5c394078e979e6a19281624f347cbdff1d21b40145593c745441be63b92e0554"
+    },
+    {
+      "page": 2,
+      "render": ".artifacts/release-work-2026-09-24/codex-2026-10-30-b02/doc9152-p2.png",
+      "render_sha256": "023cadb80437ee61806d8c8cecae2d1751e601ece60331ebb50f627a23543e4e"
+    },
+    {
+      "page": 3,
+      "render": ".artifacts/release-work-2026-09-24/codex-2026-10-30-b02/doc9152-p3.png",
+      "render_sha256": "bb14405cb29c5efbb423273dc6d3da61ed247b3a3acaf18193c599f049923e58"
+    },
+    {
+      "page": 4,
+      "render": ".artifacts/release-work-2026-09-24/codex-2026-10-30-b02/doc9152-p4.png",
+      "render_sha256": "5f345b02cbff88baf30f16d28371d47d9f768257355a6904cae78a0f7773dc22"
+    }
+  ],
+  "owner_decision": {
+    "source": "User chat 2026-10-30: go on release further, using the provided CODEX-RELEASE-GUIDE.md."
+  },
+  "expressions": [
+    {
+      "ordinal": 0,
+      "role": "primary",
+      "title": "The Panjáb Municipal Act, 1873",
+      "kind": "act",
+      "year": 1873,
+      "number": "IV",
+      "spans": [
+        {
+          "start_block_id": 2382539,
+          "end_block_id": 2382697
+        }
+      ],
+      "title_basis": "Page20 prints ACT NO.IV OF1873 and THE PANJAB MUNICIPAL ACT1873; body section1 on page21 prints the short title with Panjáb. All23 sections follow.",
+      "title_correction": {
+        "from_title": "The Punjab Municipal Act, 1873",
+        "from_year": 1873,
+        "to_year": 1873,
+        "basis": "Retain the exact printed Panjáb spelling and ActIV identity rather than the catalogue spelling or an inferred number."
+      },
+      "source_anomalies": [
+        {
+          "source_block_id": 2382656,
+          "printed": "Every contract made on behalf of any Committee",
+          "note": "Right binding edge of page22 is crushed through words and monetary amounts in sections14–18. Mark unreadable spans [illegible], preserve all printed sections and visible text; no reconstruction from legal memory."
+        },
+        {
+          "source_block_id": 2382667,
+          "printed": "19. No suit shall be brought",
+          "note": "Left binding edge of page23 clips words; [illegible] marks only source loss. The original scan and extracted blocks remain evidence."
+        }
+      ]
+    }
+  ]
+}

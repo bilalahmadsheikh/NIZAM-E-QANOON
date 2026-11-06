@@ -1,0 +1,44 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 7313,
+ "source_observation_id": 12637,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 7313,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc7313-p1.png",
+   "render_sha256": "eaf51f28dd1c47eea3f202d0146b27e77ef8de48f6e76b7cf7449b53ebeedf62"
+  },
+  {
+   "page": 11,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc7313-p11.png",
+   "render_sha256": "cf5a8a97d78ef86b7a8eaae7b1c03aac815b6046224951be92f6f62175083e47"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The National Mass Transit Authority Ordinance, 1995",
+   "kind": "ordinance",
+   "year": 1995,
+   "number": "CXXIX",
+   "spans": [
+    {
+     "start_block_id": 1700953,
+     "end_block_id": 1701155,
+     "pages": "1-11"
+    }
+   ],
+   "title_basis": "p1 blocks 1700953-1700955 print the date line, notification and 'ORDINANCE No. CXXIX OF 1995'; it runs to its signatures on p11. The p1 head (s.4 and signatures of an earlier Ordinance) is a fragment, set aside as apparatus (owner policy q1 'split')."
+  }
+ ]
+}

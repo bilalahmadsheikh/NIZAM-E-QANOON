@@ -23,13 +23,17 @@ def get(u, timeout=90, attempts=4):
 
 def main():
   for u in sys.argv[1:]:
-    try:
-        st, body = get(u)
-    except Exception as e:
-        print("ERR", u, type(e).__name__, str(e)[:80]); continue
-    links = re.findall(r'<a[^>]+href=["\']([^"\']+)["\'][^>]*>(.*?)</a>', body, re.S | re.I)
-    pats = collections.Counter(re.sub(r"\d+", "N", re.sub(r"[?#].*", "?", h.rsplit("/", 2)[-2] + "/" + h.rsplit("/", 1)[-1] if h.count("/") >= 1 else h))[:70] for h, _ in links)
-    print("==", st, len(body), u)
-    for p, n in pats.most_common(10): print("   ", n, p)
-    m = re.findall(r"Total Records Found\s*:?\s*(?:<[^>]+>)*\s*(\d+)", body)
-    if m: print("    total records:", m[:2])
+      try:
+          st, body = get(u)
+      except Exception as e:
+          print("ERR", u, type(e).__name__, str(e)[:80]); continue
+      links = re.findall(r'<a[^>]+href=["\']([^"\']+)["\'][^>]*>(.*?)</a>', body, re.S | re.I)
+      pats = collections.Counter(re.sub(r"\d+", "N", re.sub(r"[?#].*", "?", h.rsplit("/", 2)[-2] + "/" + h.rsplit("/", 1)[-1] if h.count("/") >= 1 else h))[:70] for h, _ in links)
+      print("==", st, len(body), u)
+      for p, n in pats.most_common(10): print("   ", n, p)
+      m = re.findall(r"Total Records Found\s*:?\s*(?:<[^>]+>)*\s*(\d+)", body)
+      if m: print("    total records:", m[:2])
+
+
+if __name__ == '__main__':
+    main()

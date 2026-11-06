@@ -1,0 +1,44 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 6462,
+ "source_observation_id": 10805,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 6462,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc6462-p1.png",
+   "render_sha256": "d54821680f978d85874f858366ea320ba424339433fb5585abe61f5c4cbc41f2"
+  },
+  {
+   "page": 2,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc6462-p2.png",
+   "render_sha256": "2da6600e73740c5e9a1444367662e54e4a4cee55fc17831291859ee51267c4a7"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Civil Courts (Suspension of Powers) Ordinance, 1977",
+   "kind": "ordinance",
+   "year": 1977,
+   "number": "XXI",
+   "spans": [
+    {
+     "start_block_id": 1546843,
+     "end_block_id": 1546872,
+     "pages": "1-2"
+    }
+   ],
+   "title_basis": "p1 blocks 1546843-1546844 print the notification and 'ORDINANCE No. XXI OF 1977'; s.1 names it; ss.1-2 complete. the head of page 1 prints the end of an earlier law (its last sections and the signatures), whose title is on a page not in this copy: a fragment, set aside as apparatus (owner policy q1 'split')."
+  }
+ ]
+}

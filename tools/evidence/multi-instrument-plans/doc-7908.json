@@ -1,0 +1,44 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 7908,
+ "source_observation_id": 13336,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 7908,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 4,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc7908-p4.png",
+   "render_sha256": "e4d46ba6ba95ff4ae2f554a5c5d4847d75368d206e12a545571a65acf48f87df"
+  },
+  {
+   "page": 5,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc7908-p5.png",
+   "render_sha256": "d8ebc8f1fc15c198723580a896ae2d0dbdb3d9d9bb48155c3756e293376c3ded"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Capital Development Authority (Imposition of Taxes) Rules, 1981",
+   "kind": "rules",
+   "year": 1981,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 1980175,
+     "end_block_id": 1980232,
+     "pages": "1-4"
+    }
+   ],
+   "title_basis": "p2 block 1980189 names the rules; rules 1-5 on pp.1-4. Page 5 onward prints rules 3 ff. of another instrument whose title page is missing from this copy: a fragment, set aside as apparatus (owner policy q1 'split')."
+  }
+ ]
+}

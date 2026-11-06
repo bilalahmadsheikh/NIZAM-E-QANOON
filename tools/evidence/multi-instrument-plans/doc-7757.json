@@ -1,0 +1,49 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 7757,
+ "source_observation_id": 11605,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 7757,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc7757-p1.png",
+   "render_sha256": "49488406306e6b1bf7ea0566e0019de773b77104f9ef9aa03187f4138e2cb133"
+  },
+  {
+   "page": 2,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc7757-p2.png",
+   "render_sha256": "162668864bcbe090fd03e6a3f586889bdc538c18c99d641749961bd1b4186799"
+  },
+  {
+   "page": 10,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc7757-p10.png",
+   "render_sha256": "429d93d1dbed0abe7815f657f5dd5939a31b076870f4782975f69b48065a6cc6"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Rice Milling Control and Development Act, 1976",
+   "kind": "act",
+   "year": 1976,
+   "number": "LVIII",
+   "spans": [
+    {
+     "start_block_id": 1928147,
+     "end_block_id": 1928285,
+     "pages": "1-10"
+    }
+   ],
+   "title_basis": "p1 block 1928147 prints 'ACT No. LVIII OF 1976'; s.1 names it. The p1 head is a fragment of an earlier law, and ACT No. LIX OF 1976 (the Cotton Ginning Control and Development Act, 1976) from p10 is held released as document 5761: both set aside as apparatus (owner policy q1 'split')."
+  }
+ ]
+}

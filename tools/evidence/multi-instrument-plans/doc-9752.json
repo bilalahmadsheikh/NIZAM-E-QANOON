@@ -1,0 +1,67 @@
+{
+  "schema": "nizam.multi_expression_plan/1",
+  "document_id": 9752,
+  "source_observation_id": 12859,
+  "review_basis": "source_verified",
+  "reviewed_on": "2026-10-30",
+  "reviewed_by": "codex.source-page-review/1",
+  "reviewed_pages": [
+    {
+      "page": 1,
+      "render": ".artifacts/release-work-2026-09-24/codex-2026-10-30-b10/doc9534-p1.png",
+      "render_sha256": "1a1a8727f2eb6ec3cace87c3cf40455a0009f1191f302f04f5a21c2e3a0c32d0"
+    },
+    {
+      "page": 2,
+      "render": ".artifacts/release-work-2026-09-24/codex-2026-10-30-b10/doc9534-p2.png",
+      "render_sha256": "250117ae1ae42c52fbc1a298fd4267d6d3bfbd0970a4332c3dcc596d3e25263b"
+    },
+    {
+      "page": 3,
+      "render": ".artifacts/release-work-2026-09-24/codex-2026-10-30-b10/doc9534-p3.png",
+      "render_sha256": "09b71ba51ac0c8025cd1bd251d1e538ef2fd56e713319c8c79d15175b5a767f1"
+    },
+    {
+      "page": 4,
+      "render": ".artifacts/release-work-2026-09-24/codex-2026-10-30-b10/doc9534-p4.png",
+      "render_sha256": "d574601ba51437fbd57216a8cc6aea4ef23d347475973c243830e23e878540fc"
+    },
+    {
+      "page": 5,
+      "render": ".artifacts/release-work-2026-09-24/codex-2026-10-30-b10/doc9534-p5.png",
+      "render_sha256": "3d675f891da3a29bfc3ad8847eae5229db9395a142b2c7e478d0a675726997e4"
+    }
+  ],
+  "owner_decision": {
+    "source": "Owner30October2026 go on release further, guide and delegated25October source review."
+  },
+  "expressions": [
+    {
+      "ordinal": 0,
+      "role": "primary",
+      "title": "The Indian Paper Currency Act, 1871",
+      "kind": "act",
+      "year": 1871,
+      "number": "III",
+      "spans": [
+        {
+          "start_block_id": 2641800,
+          "end_block_id": 2641939
+        }
+      ],
+      "title_correction": {
+        "to_year": 1871,
+        "from_title": "The Paper Currency Act, 1871",
+        "to_title": "The Indian Paper Currency Act, 1871",
+        "basis": "Printed display and section1 both give Indian Paper Currency Act1871; ActIII assented20January1871."
+      },
+      "source_anomalies": [
+        {
+          "source_block_id": 2641800,
+          "printed": "THE INDIAN PAPER CURRENCY ACT, 1871.",
+          "note": "Document9752 is active same-SHA revision of9534. Render images named9534 depict the identical PDF, recorded with exact SHA. Old two patches target9534 block identities and are replaced append-only after independent audit."
+        }
+      ]
+    }
+  ]
+}

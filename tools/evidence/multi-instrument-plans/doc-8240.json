@@ -1,0 +1,44 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 8240,
+ "source_observation_id": 12744,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 8240,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc8240-p1.png",
+   "render_sha256": "0bc8f916dfb3abf46a38e04b079c67da80925d97447c2e0d27a6d2dfa39cf4de"
+  },
+  {
+   "page": 4,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc8240-p4.png",
+   "render_sha256": "95eba8e93f21e0ade73eeea9ec4b7b0330b28ddafc4e54b4ac2ecc6e10e6f2a3"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Privatisation (Modes and Procedure) Rules, 2001",
+   "kind": "rules",
+   "year": 2001,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 2022604,
+     "end_block_id": 2022681,
+     "pages": "1-4"
+    }
+   ],
+   "title_basis": "p1 prints the rules' title and rule 1 names them; complete on pp.1-4. The regulations from p4 (blocks 2022683-2022721) are held released as document 6187: set aside as apparatus (owner policy q1 'split')."
+  }
+ ]
+}

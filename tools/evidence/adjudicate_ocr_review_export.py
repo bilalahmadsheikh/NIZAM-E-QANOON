@@ -38,8 +38,31 @@ def sha(text: str) -> str:
 
 
 def corrected_blocks(blocks: list[dict], spec: dict, page_height: float) -> list[dict]:
-    """Surya blocks plus the reviewer's lines (above or below), or a replacement."""
+    """Surya blocks plus the reviewer's lines (above or below), or a replacement, or a whole-page transcription."""
     out = [dict(b) for b in blocks]
+    # The reviewer's lines are Latin unless the spec says otherwise: an Urdu page (doc 7742 p31) is "arabic", the
+    # value the engine writes for Urdu blocks.
+    script = spec.get("script", "latin")
+    if script not in ("latin", "arabic"):
+        raise ValueError(f"unsupported script {script!r}")
+    if spec.get("transcription"):
+        # The engine's reading is too broken to patch (doc 7550 pp2-4: a ruled money schedule, a sideways page): the
+        # reviewed transcription replaces it, one block per line, spaced over the region the engine read.
+        lines = [line for line in spec["transcription"] if line.strip()]
+        x0 = min(b["bbox"][0] for b in blocks); x1 = max(b["bbox"][2] for b in blocks)
+        top = min(b["bbox"][1] for b in blocks); bottom = max(b["bbox"][3] for b in blocks)
+        step = (bottom - top) / len(lines)
+        out = [{
+            "bbox": [x0, top + i * step, x1, top + (i + 1) * step],
+            "html": "", "text": line, "error": False, "label": "Text",
+            "script": script, "skipped": False, "raw_label": "OwnerCorrection",
+            "confidence": 1.0, "owner_supplied": True,
+            "geometry": "approximate: a reviewed transcription spaced evenly over the region the engine read",
+        } for i, line in enumerate(lines)]
+        for number, block in enumerate(out):
+            block["block_no"] = number
+            block["reading_order"] = number
+        return out
     for old, new in spec.get("replace", []):
         hits = [b for b in out if old in b["text"]]
         if len(hits) != 1:
@@ -48,6 +71,19 @@ def corrected_blocks(blocks: list[dict], spec: dict, page_height: float) -> list
         hits[0]["html"] = hits[0].get("html", "").replace(old, new, 1)
         hits[0]["owner_corrected"] = True
     lines = [line for line in spec.get("lines", []) if line.strip()]
+    if lines and not blocks:
+        # The engine read nothing on the page (doc 5785 p2, 5819 pp15/23): the reviewer's transcription is the whole
+        # page, spaced over its height at the usual text column.
+        x0, x1 = 36.0, 36.0 + page_height * 0.65
+        step = (page_height - 4.0) / len(lines)
+        out = [{
+            "bbox": [x0, 2.0 + i * step, x1, 2.0 + (i + 1) * step],
+            "html": "", "text": line, "error": False, "label": "Text",
+            "script": script, "skipped": False, "raw_label": "OwnerCorrection",
+            "confidence": 1.0, "owner_supplied": True,
+            "geometry": "approximate: the engine read nothing; lines spaced evenly over the page",
+        } for i, line in enumerate(lines)]
+        lines = []
     if lines:
         x0 = min(b["bbox"][0] for b in blocks)
         x1 = max(b["bbox"][2] for b in blocks)
@@ -60,7 +96,7 @@ def corrected_blocks(blocks: list[dict], spec: dict, page_height: float) -> list
         added = [{
             "bbox": [x0, top + i * step, x1, top + (i + 1) * step],
             "html": "", "text": line, "error": False, "label": "Text",
-            "script": "latin", "skipped": False, "raw_label": "OwnerCorrection",
+            "script": script, "skipped": False, "raw_label": "OwnerCorrection",
             "confidence": 1.0, "owner_supplied": True,
             "geometry": "approximate: spaced evenly over the region the reviewer placed it in",
         } for i, line in enumerate(lines)]

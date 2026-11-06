@@ -1,0 +1,39 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 8696,
+ "source_observation_id": 10442,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 8696,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc8696-p1.png",
+   "render_sha256": "8519d208ef3ae4d1ea4623b2f54c032ca04266c745f4253faa4a17b33db16309"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Opium (Extension to the North-West Frontier Province) Act, 1952",
+   "kind": "act",
+   "year": 1952,
+   "number": "XL",
+   "spans": [
+    {
+     "start_block_id": 2340180,
+     "end_block_id": 2340196,
+     "pages": "1-1"
+    }
+   ],
+   "title_basis": "p1 (Gazette of Pakistan Extraordinary, Karachi, 13 December 1952, p.1275) prints the masthead, the Constituent Assembly notification of 13 December 1952, 'ACT No. XL OF 1952 An Act to extend the Opium Act, 1857, to the North-West Frontier Province' (block 2340189), s.1 'This Act may be called the Opium (Extension to the North-West Frontier Province) Act, 1952' and s.2 (block 2340196). ACT No. XLI OF 1952 (Sind Opium Smoking (Federal Capital Amendment) Act, 1952; blocks 2340197-2340205) prints only its s.1 on this page before the price line -- the rest is not in this copy -- so it is set aside as apparatus, not created from a fragment (owner policy q1 'split')."
+  }
+ ]
+}

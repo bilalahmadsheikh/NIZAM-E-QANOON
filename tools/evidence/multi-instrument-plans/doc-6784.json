@@ -1,0 +1,44 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 6784,
+ "source_observation_id": 12459,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 6784,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc6784-p1.png",
+   "render_sha256": "015e730c837f5ce26e5f7b466cfb8b25284fe9952c89c3c301219fffbf5027d1"
+  },
+  {
+   "page": 4,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc6784-p4.png",
+   "render_sha256": "1f0dd0d1568172ab4f8872e9d30f15f1a2b96c020a742506babc6719f5cd0a42"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Distribution of Revenues and Grants-in-Aid Order, 1997",
+   "kind": "order",
+   "year": 1997,
+   "number": "1",
+   "spans": [
+    {
+     "start_block_id": 1602137,
+     "end_block_id": 1602216,
+     "pages": "1-4"
+    }
+   ],
+   "title_basis": "p1 (Gazette of Pakistan Extraordinary, Islamabad, February 12, 1997, p.171) prints the masthead, No. F. 2(2)/97-Pub. and 'PRESIDENT'S ORDER No. 1 OF 1997' with its preamble; pp2-4 its Articles to Article 9 'Repeal' and the signatures ending 'JUSTICE (RETD.) AKHTAR HASSAN, Secretary' (p4). President's Order No. 2 of 1997 that follows on p4 (the Supreme Court Judges (Leave, Pension and Privileges) Order, 1997) is held released as document 7137 and is set aside as apparatus (owner policy q1 'split')."
+  }
+ ]
+}

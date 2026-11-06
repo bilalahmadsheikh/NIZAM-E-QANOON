@@ -1,0 +1,60 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 8678,
+ "source_observation_id": 11005,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 8678,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc8678-p1.png",
+   "render_sha256": "79f7360e237e05910381eff4d22cfa9d9af5f03545ba49b07ec802a48a5cc544"
+  },
+  {
+   "page": 2,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc8678-p2.png",
+   "render_sha256": "48d709a95f9f03c086ce40d86131d1c69ef3f89432b91f555777fea1e0887705"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Supreme Court Judges (Oath of Office) Order, 1977",
+   "kind": "order",
+   "year": 1977,
+   "number": "9",
+   "spans": [
+    {
+     "start_block_id": 2339605,
+     "end_block_id": 2339623,
+     "pages": "1-2"
+    }
+   ],
+   "title_basis": "p1 (Gazette of Pakistan Extraordinary, Islamabad, September 22, 1977, p.517) prints No. F. 24(2)/77-Pub. and 'THE SUPREME COURT JUDGES (OATH OF OFFICE) ORDER, 1977, President's (Post-Proclamation) Order No. 9 of 1977', Articles 1-2 and the Schedule (oath), continued on p2 (p.518) to the signatures of the President, the Chief Martial Law Administrator and 'MIR MOHAMMAD ALI, Draftsman and Additional Secretary' (block 2339623)."
+  },
+  {
+   "ordinal": 1,
+   "role": "embedded",
+   "title": "The High Court Judges (Oath of Office) (Amendment) Order, 1977",
+   "kind": "order",
+   "year": 1977,
+   "number": "10",
+   "spans": [
+    {
+     "start_block_id": 2339624,
+     "end_block_id": 2339637,
+     "pages": "2-2"
+    }
+   ],
+   "title_basis": "p2 blocks 2339624-2339627 print the notification and 'THE HIGH COURT JUDGES (OATH OF OFFICE) (AMENDMENT) ORDER, 1977', P.P.O. No. 10 of 1977; Article 1 names it; complete; not held elsewhere in the corpus."
+  }
+ ]
+}

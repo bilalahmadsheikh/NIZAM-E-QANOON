@@ -1,0 +1,44 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 7687,
+ "source_observation_id": 12570,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 7687,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc7687-p1.png",
+   "render_sha256": "39d133aed7ab882cdc0c0645e7fc88adc1f7f41faeba1de2381e9d118391f4cc"
+  },
+  {
+   "page": 2,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc7687-p2.png",
+   "render_sha256": "29ee60d6e1271067c6708be5c03a229aa4ad879a4f13c6a87881f169b557b76b"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Dealerships (Cancellation of Agreements and Contracts) Order, 1979",
+   "kind": "order",
+   "year": 1979,
+   "number": "1",
+   "spans": [
+    {
+     "start_block_id": 1918754,
+     "end_block_id": 1918785,
+     "pages": "1-2"
+    }
+   ],
+   "title_basis": "p1 (Gazette of Pakistan Extraordinary, Islamabad, January 22, 1979, p.13) prints the masthead, No. F. 17(2)/79-Pub. and 'THE DEALERSHIPS (CANCELLATION OF AGREEMENTS AND CONTRACTS) ORDER, 1979, President's Order No. 1 of 1979', Articles 1-2; p2 (p.14) Articles 2(2)-5 and the signatures 'General M. ZIA-UL-HAQ, President' and 'K. M. A. SAMDANI, Secretary' (block 1918785). Ordinance No. III of 1979 (the National Institute of Electronics Ordinance, 1979) begins after it and is cut off after its section 1 at the end of this copy; it is held as document 4005. It is set aside as apparatus (owner policy q1 'split')."
+  }
+ ]
+}

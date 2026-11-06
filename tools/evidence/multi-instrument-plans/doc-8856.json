@@ -1,0 +1,65 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 8856,
+ "source_observation_id": 12275,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 8856,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc8856-p1.png",
+   "render_sha256": "e62caf70fddc55f7617c2c9481308eb970f32704ae503ef3064e0acafbfe957c"
+  },
+  {
+   "page": 2,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc8856-p2.png",
+   "render_sha256": "f85eba0045b78f403e1567bd283cafa187a580ac1c07fbc55a0db01a09611541"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Royal Pakistan Air Force (Extension of Service) Act, 1952",
+   "kind": "act",
+   "year": 1952,
+   "number": "XLVI",
+   "spans": [
+    {
+     "start_block_id": 2349488,
+     "end_block_id": 2349493,
+     "pages": "1-1"
+    },
+    {
+     "start_block_id": 2349504,
+     "end_block_id": 2349522,
+     "pages": "1-2"
+    }
+   ],
+   "title_basis": "p1 blocks 2349504-2349505 print 'ACT No. XLVI OF 1952 / An Act to provide for the retention in service of certain persons enrolled for service in the Royal Pakistan Air Force'; s.1(1) (block 2349508) names it the Royal Pakistan Air Force (Extension of Service) Act, 1952; it ends on p2 at s.3 (blocks 2349521-2349522). Its first span (blocks 2349488-2349493) holds its own long-title line, margin notes and proviso sliver that the extractor read before ACT No. XLV's body. ACT No. XLV OF 1952 (blocks 2349477-2349487, 2349494-2349503: the Air Force Validation of Discharges Act, 1952) is the law of document 8028, released there from the same Gazette page -- set aside as apparatus here (owner policy q1 'split')."
+  },
+  {
+   "ordinal": 1,
+   "role": "embedded",
+   "title": "The Banking Companies (Control) (Amendment) Act, 1952",
+   "kind": "act",
+   "year": 1952,
+   "number": "XLVII",
+   "spans": [
+    {
+     "start_block_id": 2349523,
+     "end_block_id": 2349542,
+     "pages": "2-2"
+    }
+   ],
+   "title_basis": "p2 blocks 2349523-2349524 print 'ACT No. XLVII OF 1952 / An Act further to amend the Banking Companies (Control) Act, 1948'; s.1 (block 2349527) names it the Banking Companies (Control) (Amendment) Act, 1952; complete in ss.1-2 to the end of p2 (block 2349542). Not held elsewhere (title search 'banking compan')."
+  }
+ ]
+}

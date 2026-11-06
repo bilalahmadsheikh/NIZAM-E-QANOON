@@ -1,0 +1,44 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 5702,
+ "source_observation_id": 10738,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 5702,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc5702-p1.png",
+   "render_sha256": "4dd6d6a7d30e507883dbca8e7b327b7a345a0927bab352e34779385e72041c8c"
+  },
+  {
+   "page": 2,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc5702-p2.png",
+   "render_sha256": "6b9d8fa4682a0a953b778978d89ba102da328af8d73257f9051323bf7db35b04"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Military Court Sentences (Supplementary Provisions) Ordinance, 1962",
+   "kind": "ordinance",
+   "year": 1962,
+   "number": "LXXVIII",
+   "spans": [
+    {
+     "start_block_id": 1383339,
+     "end_block_id": 1383363,
+     "pages": "1-2"
+    }
+   ],
+   "title_basis": "p1 blocks 1383339-1383341 print 'No. F. 32 (1)/62-Pub. ... ORDINANCE No. LXXVIII OF 1962 AN ORDINANCE to make certain provisions relating to sentences passed by the Military Courts constituted under Martial Law Regulations'; s.1(1) (block 1383348) names it the Military Court Sentences (Supplementary Provisions) Ordinance, 1962; complete to the signatures on p2 (blocks 1383359-1383360) and the imprint (block 1383363). Blocks 1383330-1383338 (p1) are the tail of ORDINANCE No. LXXVII of 1962 (ss.2-3 and signatures; the Deputy Attorney-General and Standing Counsel (Amendment) Ordinance, 1962), which began before this PDF -- a fragment, set aside as apparatus; that Ordinance is printed complete in document 8116 (owner policy q1 'split')."
+  }
+ ]
+}

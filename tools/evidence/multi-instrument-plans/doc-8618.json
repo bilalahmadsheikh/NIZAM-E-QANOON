@@ -1,0 +1,44 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 8618,
+ "source_observation_id": 12989,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 8618,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc8618-p1.png",
+   "render_sha256": "7c8fb3fce162aea9b8b3e08a951d91079a0e31e5c5fc210c6f48579528bad262"
+  },
+  {
+   "page": 3,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc8618-p3.png",
+   "render_sha256": "e0bdc8cbb670dc2dd7d69ab466adba28cfcff2795aa36332a6ffd98699cbbf52"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The National Sports Trust Act, 1972",
+   "kind": "act",
+   "year": 1972,
+   "number": "XVIII",
+   "spans": [
+    {
+     "start_block_id": 2331191,
+     "end_block_id": 2331245,
+     "pages": "1-3"
+    }
+   ],
+   "title_basis": "p1 (book p.50, '1972 : Act XVIII') prints 'Act No. XVIII of 1972 [25th September 1972] An Act to provide for the establishment of a Trust for the promotion of sports', the preamble and ss.1-4; p2 (p.51) s.4 continued; p3 (p.52) ss.5-7 ('7. The National Sports Trust Ordinance, 1972 is hereby repealed.', block 2331245). The National Book Foundation Act, 1972 (Act XIX of 1972) that follows from p3 is held released as document 2093 and is set aside as apparatus (owner policy q1 'split')."
+  }
+ ]
+}

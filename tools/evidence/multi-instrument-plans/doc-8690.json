@@ -1,0 +1,49 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 8690,
+ "source_observation_id": 13145,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 8690,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc8690-p1.png",
+   "render_sha256": "07aedca78d520901ac6873d9f945bfcb53a26ddd70d127cce7043fd48ab73010"
+  },
+  {
+   "page": 2,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc8690-p2.png",
+   "render_sha256": "77f7e8f4ee7842e76736bb80ea224f166393640efaff2f68e34ded69e5ec70c4"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Judges (Compulsory Leave) Order, 1970",
+   "kind": "order",
+   "year": 1970,
+   "number": "27",
+   "spans": [
+    {
+     "start_block_id": 2340056,
+     "end_block_id": 2340058,
+     "pages": "1-1"
+    },
+    {
+     "start_block_id": 2340064,
+     "end_block_id": 2340078,
+     "pages": "1-2"
+    }
+   ],
+   "title_basis": "p1 (book p.192) prints the end of the Second Schedule of the High Court Judges (Leave, Pension and Privileges) Order and its signature, then '*THE JUDGES (COMPULSORY LEAVE) ORDER, 1970 PRESIDENT'S ORDER No. 27 OF 1970 [19th December, 1970]' (block 2340064) and Articles 1-2, continued on p2 (p.193) to the signature 'A. M. YAHYA KHAN ... President and Chief Martial Law Administrator' (block 2340078); its margin notes on p1 (blocks 2340056-2340058) belong to it. The preceding Order's tail is a fragment, and the Dissolution of West Pakistan Province (Rights, Properties, Assets and Liabilities) Order, 1971 that follows on p2 is held released as document 7267: both are set aside as apparatus (owner policy q1 'split')."
+  }
+ ]
+}

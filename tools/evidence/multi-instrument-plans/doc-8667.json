@@ -1,0 +1,60 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 8667,
+ "source_observation_id": 13171,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 8667,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc8667-p1.png",
+   "render_sha256": "1d691f7c6bc779bbd361d4942ab85aabcddc24ba22bd3bf576f65c603d40fdf4"
+  },
+  {
+   "page": 2,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc8667-p2.png",
+   "render_sha256": "486e864be3860600a3e07133c1a1ffe9c258d7d5a0d7788ef7e763aa0b15fdd5"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The High Court Judges (Oath of Office) Order, 1977",
+   "kind": "order",
+   "year": 1977,
+   "number": "1",
+   "spans": [
+    {
+     "start_block_id": 2339046,
+     "end_block_id": 2339071,
+     "pages": "1-2"
+    }
+   ],
+   "title_basis": "p1 (Gazette of Pakistan Extraordinary, Islamabad, July 7, 1977, p.417) prints the masthead, No. F. 24(1)/77-Pub. and 'THE HIGH COURT JUDGES (OATH OF OFFICE) ORDER, 1977 PRESIDENT'S ORDER (POST PROCLAMATION) No. 1 OF 1977', Articles 1-2 and the Schedule (oath), continued on p2 (p.418) to the signatures 'FAZAL ELAHI CHAUDHRY, President' and 'ABDUL HAYEE KURESHI, Secretary' (block 2339071, which the extractor fused with the next Order's caption 'CHIEF MARTIAL LAW ADMINISTRATOR')."
+  },
+  {
+   "ordinal": 1,
+   "role": "embedded",
+   "title": "The Laws (Continuance in Force) (Amendment) Order, 1977",
+   "kind": "order",
+   "year": 1977,
+   "number": "C.M.L.A. Order No. 2 of 1977",
+   "spans": [
+    {
+     "start_block_id": 2339072,
+     "end_block_id": 2339088,
+     "pages": "2-2"
+    }
+   ],
+   "title_basis": "p2 block 2339072 prints 'THE LAWS (CONTINUANCE IN FORCE) (AMENDMENT) ORDER, 1977', C.M.L.A. Order No. 2 of 1977; Article 1 names it; complete Articles 1-2 and signature; not held elsewhere in the corpus."
+  }
+ ]
+}

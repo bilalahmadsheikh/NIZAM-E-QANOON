@@ -1,0 +1,44 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 9108,
+ "source_observation_id": 11862,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 9108,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9108-p1.png",
+   "render_sha256": "1de11857e60b6b04a0a8f4236adc5b00c252fec13ee95d395a664dad5595ff1a"
+  },
+  {
+   "page": 7,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9108-p7.png",
+   "render_sha256": "0b6464f3332f64d0ca25e40665ce62da84de479090a2f6a1791545dc1e34c0af"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Baluchistan Protection of Evacuees Property Regulation, 1948",
+   "kind": "regulation",
+   "year": 1948,
+   "number": "I",
+   "spans": [
+    {
+     "start_block_id": 2372361,
+     "end_block_id": 2372505,
+     "pages": "1-7"
+    }
+   ],
+   "title_basis": "p1 (Gazette of Pakistan Extraordinary, Karachi, March 3, 1948, p.109) prints the masthead, the Ministry of Foreign Affairs and Commonwealth Relations notification and 'REGULATION No. I OF 1948 A REGULATION to provide for the protection and care of the property of evacuees from Baluchistan', regulations 1-20 through p7 (p.115) to the signature 'M. A. JINNAH, Governor-General' (block 2372505). Regulation No. II of 1948 (the Baluchistan Economic Rehabilitation Regulation, 1948) that follows on p7 is held released as document 8243 and is set aside as apparatus (owner policy q1 'split')."
+  }
+ ]
+}

@@ -1,0 +1,60 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 8610,
+ "source_observation_id": 13260,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 8610,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc8610-p1.png",
+   "render_sha256": "531efb173d02b8596e303da3738866f1017131fe859740d6c28daeabcacacae4"
+  },
+  {
+   "page": 2,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc8610-p2.png",
+   "render_sha256": "1baba584868dbb82487fb12217e28dbbe308eb99ea8ba611cc5dc62bf2bd6b8d"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Army Validation of Proceedings Act, 1952",
+   "kind": "act",
+   "year": 1952,
+   "number": "XXI",
+   "spans": [
+    {
+     "start_block_id": 2330749,
+     "end_block_id": 2330762,
+     "pages": "1-2"
+    }
+   ],
+   "title_basis": "p1 block 2330749 prints 'ACT No. XXI OF 1952. An Act to validate certain acts and proceedings'; s.1 names it the Army Validation of Proceedings Act, 1952; it runs to s.4 on p2. The p1 head (the tail of an earlier rule list (c)-(h)) is a fragment and ACT No. XX OF 1952 is held released as document 5637: both are set aside as apparatus (owner policy q1 'split')."
+  },
+  {
+   "ordinal": 1,
+   "role": "embedded",
+   "title": "The Cantonments (Amendment) Act, 1952",
+   "kind": "act",
+   "year": 1952,
+   "number": "XXII",
+   "spans": [
+    {
+     "start_block_id": 2330763,
+     "end_block_id": 2330771,
+     "pages": "2-2"
+    }
+   ],
+   "title_basis": "p2 blocks 2330763-2330767 print 'ACT No. XXII OF 1952. An Act further to amend the Cantonments Act, 1924' and s.1 'This Act may be called the Cantonments (Amendment) Act, 1952'; complete ss.1-2 and signature; not held elsewhere in the corpus."
+  }
+ ]
+}

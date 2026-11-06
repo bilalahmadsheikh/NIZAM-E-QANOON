@@ -1,0 +1,44 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 6580,
+ "source_observation_id": 12662,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 6580,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc6580-p1.png",
+   "render_sha256": "0bd827eaadd9c551b0b678cfe858dc3d0d7e01780bdf0a67352b1b8f17b27ce7"
+  },
+  {
+   "page": 2,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc6580-p2.png",
+   "render_sha256": "8ed74f341ce6784088710ae1fe20a78e53cd198323ad9a4915a94241985d4519"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Prohibition of Division of Residential Plots Ordinance, 1997",
+   "kind": "ordinance",
+   "year": 1997,
+   "number": "XXII",
+   "spans": [
+    {
+     "start_block_id": 1565517,
+     "end_block_id": 1565554,
+     "pages": "1-2"
+    }
+   ],
+   "title_basis": "p1 block 1565517 onward prints the notification and 'ORDINANCE No. XXII OF 1997'; s.1 on p2 names it; ss.1-4 complete. The p1 head (ss.1-2 of the Representation of the People (Second Amendment) Ordinance, 1997, without its title and preamble, which are not in this copy) is a fragment and is set aside as apparatus (owner policy q1 'split')."
+  }
+ ]
+}

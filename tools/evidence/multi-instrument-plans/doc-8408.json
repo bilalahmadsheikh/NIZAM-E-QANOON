@@ -1,0 +1,44 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 8408,
+ "source_observation_id": 13174,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 8408,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc8408-p1.png",
+   "render_sha256": "87fc3145baa947655564dae3066be36b0107cf1c52a889a1dd8737cd9910590b"
+  },
+  {
+   "page": 9,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc8408-p9.png",
+   "render_sha256": "64c32fe7fa1d35a205df7f4252505881d971dd301fd9acccf07960b7955f32b1"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Pakistan Nursing Council Act, 1952",
+   "kind": "act",
+   "year": 1952,
+   "number": "LIX",
+   "spans": [
+    {
+     "start_block_id": 2067305,
+     "end_block_id": 2067531,
+     "pages": "1-9"
+    }
+   ],
+   "title_basis": "p1 block 2067305 prints 'ACT No. LIX OF 1952 An Act to constitute a Central Nursing Council'; s.1 names it; it runs to its Schedule on p9. The p1 head (ss.13-15 of the Prevention of Smuggling Act, 1952) is a fragment, set aside as apparatus (owner policy q1 'split')."
+  }
+ ]
+}

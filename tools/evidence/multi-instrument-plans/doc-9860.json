@@ -1,0 +1,123 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 9860,
+ "source_observation_id": 10276,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-11-05",
+ "reviewed_by": "lead page review (5 Nov 2026) on the owner's corpus policy q1 'split' (delegated answer 5 Nov)",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 9860,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9860-p1.png",
+   "render_sha256": "24fa986f4f70df392d156995baa1f908de18098c607194c3ab9b89c29c578ad1"
+  },
+  {
+   "page": 2,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9860-p2.png",
+   "render_sha256": "b12276862a7b70f959b4e4845c8065de10738423d33e87b9eeebd3abc0babc0f"
+  },
+  {
+   "page": 16,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9860-p16.png",
+   "render_sha256": "a277624509f02902c658d57791638a2712c4e4578de2697864590d627980f3db"
+  },
+  {
+   "page": 17,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9860-p17.png",
+   "render_sha256": "ad311a9b928e50a4dbf038eee779531965cb1b8bcd91e76946d31846d894588a"
+  },
+  {
+   "page": 18,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9860-p18.png",
+   "render_sha256": "5ae5bbbf94686d37cab3c69ea4487a8c5619e0793f063b835003af924586ae72"
+  },
+  {
+   "page": 19,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9860-p19.png",
+   "render_sha256": "999c63205ec44d84c9a060200dea97629bdb6d5ba83f5f44309ad32e7cc35b0b"
+  },
+  {
+   "page": 22,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9860-p22.png",
+   "render_sha256": "97f249731a48a255348220a3f6bb961d60af1bda417a5b614f989c99b7d67a34"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Khyber Pakhtunkhwa Provincial Planning Service Rules, 2018",
+   "kind": "rules",
+   "year": 2018,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 2679621,
+     "end_block_id": 2679995,
+     "pages": "1-16"
+    }
+   ],
+   "title_basis": "p2 prints 'THE KHYBER PAKHTUNKHWA PROVINCIAL PLANNING SERVICE RULES, 2018.' after the notification of 22 Feb 2018; rules 1-9 and Schedules I-V end on p15 with the Secretary's signature and the p16 endorsement list",
+   "expected_tree": "rules 1-9, Schedules I-V"
+  },
+  {
+   "ordinal": 1,
+   "role": "embedded",
+   "title": "Notification No. SO(ESTT):P&D/6-1/SR/PPS/2019 dated 7 September 2020 (amending the Khyber Pakhtunkhwa Provincial Planning Service Rules, 2018)",
+   "kind": "notification",
+   "year": 2020,
+   "number": "SO(ESTT):P&D/6-1/SR/PPS/2019",
+   "spans": [
+    {
+     "start_block_id": 2679996,
+     "end_block_id": 2680031,
+     "pages": "17-18"
+    }
+   ],
+   "relations": [
+    {
+     "type": "amends",
+     "target_ordinal": 0,
+     "effect": "amends the 2018 Rules as its paragraphs state",
+     "source_block_id": 2680007,
+     "source_page": 17,
+     "basis": "p17 prints the notification dated Peshawar, September 07, 2020, made under section 26 of the KP Civil Servants Act 1973, amending the said rules"
+    }
+   ],
+   "expected_tree": "the notification's amendment paragraphs"
+  },
+  {
+   "ordinal": 2,
+   "role": "embedded",
+   "title": "Notification No. SO(ESTT:)P&D/6-1/SR/PPS/2019 dated 20 December 2021 (amending the Khyber Pakhtunkhwa Provincial Planning Service Rules, 2018)",
+   "kind": "notification",
+   "year": 2021,
+   "number": "SO(ESTT:)P&D/6-1/SR/PPS/2019",
+   "spans": [
+    {
+     "start_block_id": 2680032,
+     "end_block_id": 2680118,
+     "pages": "19-22"
+    }
+   ],
+   "relations": [
+    {
+     "type": "amends",
+     "target_ordinal": 0,
+     "effect": "amends Schedule-II of the 2018 Rules as its paragraphs state",
+     "source_block_id": 2680043,
+     "source_page": 19,
+     "basis": "p19 prints the notification dated Peshawar December 20, 2021 (Gazette 17 Feb 2022) with its AMENDMENTS, para 1 'In Schedule-II ...'"
+    }
+   ],
+   "expected_tree": "the AMENDMENTS paragraphs"
+  }
+ ],
+ "apparatus": "running heads, page numbers, signatures and endorsement lists stay inside their expression spans and are set aside by the reviewed readings"
+}

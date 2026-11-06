@@ -1,0 +1,60 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 9149,
+ "source_observation_id": 11662,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 9149,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9149-p1.png",
+   "render_sha256": "17cd681b56c9a45907335ee9c0f0323ba83dd4a9f7a1baa34f869b557d44449e"
+  },
+  {
+   "page": 7,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9149-p7.png",
+   "render_sha256": "6de215d3184a0af63a65d440af55183f8e368e65bd1704c15ef1f4369051f065"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Taxation Tribunal (Undisclosed Wealth) Act, 1953",
+   "kind": "act",
+   "year": 1953,
+   "number": "XVI",
+   "spans": [
+    {
+     "start_block_id": 2382060,
+     "end_block_id": 2382190,
+     "pages": "1-7"
+    }
+   ],
+   "title_basis": "p1 block 2382060 prints 'ACT No. XVI OF 1953'; s.1 names it the Taxation Tribunal (Undisclosed Wealth) Act, 1953; ss.1-17 complete. The p1 head is a fragment of an earlier law and the p7 foot prints only s.1 of ACT No. XVIII OF 1953 (the Pakistan Red Cross Society (Amendment) Act, 1953, continued on a page not in this copy): both set aside as apparatus (owner policy q1 'split')."
+  },
+  {
+   "ordinal": 1,
+   "role": "embedded",
+   "title": "The Prisoners (Amendment) Act, 1953",
+   "kind": "act",
+   "year": 1953,
+   "number": "XVII",
+   "spans": [
+    {
+     "start_block_id": 2382191,
+     "end_block_id": 2382205,
+     "pages": "7-7"
+    }
+   ],
+   "title_basis": "p7 block 2382191 prints 'ACT No. XVII OF 1953'; s.1 names it; ss.1-2 complete; not held elsewhere in the corpus."
+  }
+ ]
+}

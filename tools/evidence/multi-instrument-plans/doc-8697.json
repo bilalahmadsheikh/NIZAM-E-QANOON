@@ -1,0 +1,44 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 8697,
+ "source_observation_id": 13018,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 8697,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc8697-p1.png",
+   "render_sha256": "9bd26b26b2691bfe74ed5416540c13c1dd545824eb674a81c9b168ef404f2496"
+  },
+  {
+   "page": 2,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc8697-p2.png",
+   "render_sha256": "57b0a43e51a5e138169dfd784a9b5e21805f6c0da8e2e9114a04e09c3ececdb5"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Protection of Rights in Industrial Property Order, 1979",
+   "kind": "order",
+   "year": 1979,
+   "number": "5",
+   "spans": [
+    {
+     "start_block_id": 2340206,
+     "end_block_id": 2340225,
+     "pages": "1-2"
+    }
+   ],
+   "title_basis": "p1 (book p.390) prints 'THE PROTECTION OF RIGHTS IN INDUSTRIAL PROPERTY ORDER, 1979, PRESIDENT'S ORDER No. 5 OF 1979 [9th February, 1979]' and Articles 1-4; p2 (p.391) Articles 4(3)-5 and the signature 'GENERAL M. ZIA-UL-HAQ, President' (block 2340225). The Cantonments (Urban Immovable Property Tax and Entertainments Duty) Order, 1979 (P.O. 13 of 1979) that follows on p2 is held released as document 7698 and is set aside as apparatus (owner policy q1 'split')."
+  }
+ ]
+}

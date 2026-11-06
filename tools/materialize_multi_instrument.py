@@ -412,6 +412,15 @@ def assign_patches(blocks: list[dict], patches: list[dict],
         matches = [block for block in derived
                    if block.get("page_no") == patch["page_no"]
                    and patch["match_text"].casefold() in block["text"].casefold()]
+        evidence = patch.get("evidence") or {}
+        if "exact_block_locator" in evidence:
+            # Match the segmenter's extraction-bound locator before assigning
+            # ownership. Recorded patches with the same created_at sort by
+            # UUID, so a relocated clean string may already occur elsewhere.
+            if evidence["exact_block_locator"] is not True or type(evidence.get("source_block_id")) is not int:
+                raise ValueError("malformed exact-block curation locator")
+            matches = [b for b in matches if b.get("id") == evidence["source_block_id"]
+                       and b["text"] == patch["before_text"] and patch["match_text"] == patch["before_text"]]
         if len(matches) != 1:
             raise ValueError(f"curation patch {patch.get('id')} matched {len(matches)} "
                              "blocks in the document; expected 1")
@@ -515,7 +524,7 @@ STRUCTURAL_PATCH_KEYS = (
     "source_inline_margin_notes",
     # group 27 (agent JF D)
     "source_schedule_row_cells",
-    "source_unit_moves", "source_reviewed_grid_rows",
+    "source_unit_moves", "source_reviewed_grid_rows", "source_reviewed_table_blocks",
     # group 26 (agent JF A)
     "source_long_romanette_cut_blocks",
     # group 24 (agent K6 F)
@@ -695,6 +704,10 @@ def plan_boundaries(specs: list[dict], blocks: list[dict],
     starts = {blocks[first]["id"] for spec in specs for first, _ in spec["ranges"]}
     anchors = {blocks[spec["ranges"][0][0]]["id"]: spec["ordinal"] for spec in specs}
     confirmed: dict[int, dict | None] = {spec["ordinal"]: None for spec in specs}
+    # Candidates are recorded per observation; after an OCR promotion they carry the replaced text layer's block ids
+    # (doc 5017's confirmed splits on its 9773 re-read): only those on the blocks being materialized speak to the plan.
+    present = {block["id"] for block in blocks}
+    rows = [row for row in rows if row["start_block_id"] in present]
     for row in rows:
         block = row["start_block_id"]
         resolution = row["resolution"]
@@ -918,6 +931,25 @@ def _outer(document_id: int,observation_id: int | None) -> dict:
              ORDER BY (i.expression_role='primary') DESC,i.expression_ordinal
         """, (document_id,observation_id,observation_id))
         row = cur.fetchone()
+        if row is None:
+            # A promoted OCR revision of a split document (doc 5017 -> 9773, 28 Oct): the ordinary segmenter refuses
+            # an observation with several active expressions, so the revision has none yet and its expressions still
+            # stand on the revision it supersedes -- the same file and observation, whose identity is what this
+            # returns (the instruments are written to `document_id`).
+            cur.execute("""
+                SELECT i.source_observation_id,i.document_id,i.source_sha256,
+                       i.short_title,i.year,i.source_url,o.source_id,
+                       coalesce(o.source_metadata->>'year',o.source_metadata->>'year_or_dept')
+                  FROM document n
+                  JOIN instrument i ON i.document_id=n.supersedes_document_id AND i.is_active
+                       AND i.source_sha256=n.sha256
+                  JOIN source_observation o ON o.id=i.source_observation_id
+                 WHERE n.id=%s
+                   AND (%s::bigint IS NULL AND i.duplicate_of IS NULL
+                        OR i.source_observation_id=%s)
+                 ORDER BY (i.expression_role='primary') DESC,i.expression_ordinal
+            """, (document_id,observation_id,observation_id))
+            row = cur.fetchone()
     if row is None:
         raise ValueError(f"document {document_id} has no active canonical expression")
     names = ("source_observation_id","document_id","sha256","short_title","year",

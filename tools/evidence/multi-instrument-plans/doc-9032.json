@@ -1,0 +1,67 @@
+{
+  "schema": "nizam.multi_expression_plan/1",
+  "document_id": 9032,
+  "source_observation_id": 10572,
+  "review_basis": "source_verified",
+  "reviewed_on": "2026-10-30",
+  "reviewed_by": "codex.source-page-review/1",
+  "reviewed_pages": [
+    {
+      "page": 1,
+      "render": ".artifacts/release-work-2026-09-24/codex-2026-10-30-b07/doc9032-p1.png",
+      "render_sha256": "9c7d098fb8d7ea992c7c03186267113466d10072d6022a60d0ccb8b49df16d85"
+    },
+    {
+      "page": 2,
+      "render": ".artifacts/release-work-2026-09-24/codex-2026-10-30-b07/doc9032-p2.png",
+      "render_sha256": "d17b0ff043880f7792901c4d34b1517cff14b67243fae7a38613429d7925e7b2"
+    },
+    {
+      "page": 3,
+      "render": ".artifacts/release-work-2026-09-24/codex-2026-10-30-b07/doc9032-p3.png",
+      "render_sha256": "d78dd243a3722bc578a76a2c7ff08d0471e01051650210cfcfaba7ccd78b49ca"
+    },
+    {
+      "page": 4,
+      "render": ".artifacts/release-work-2026-09-24/codex-2026-10-30-b07/doc9032-p4.png",
+      "render_sha256": "21bc21775cdbd32bb43935e03061597c4842ea1dbf1449357a2315e2f0a06fb1"
+    }
+  ],
+  "owner_decision": {
+    "source": "User chat2026-10-30: go on release further using CODEX-RELEASE-GUIDE.md."
+  },
+  "expressions": [
+    {
+      "ordinal": 0,
+      "role": "primary",
+      "title": "The Indian Coinage Act, 1870",
+      "kind": "act",
+      "year": 1870,
+      "number": "XXIII",
+      "spans": [
+        {
+          "start_block_id": 2362883,
+          "end_block_id": 2363065
+        }
+      ],
+      "title_basis": "Page1 display and section1 print The Indian Coinage Act1870, ActXXIII. All28 sections and the six-row repeal Schedule belong to the same Act; catalogue short title omitted Indian.",
+      "source_anomalies": [
+        {
+          "source_block_id": 2362945,
+          "printed": "English filled by the word “India,”",
+          "note": "Source visually enlarged and re-read. Preserve filled, rather than the earlier editorial correction followed."
+        },
+        {
+          "source_block_id": 2362928,
+          "printed": "Remedy in weight. Remedy in fineness.",
+          "note": "Printed brace/shared cells: rupee and half-rupee share five thousandths weight and two thousandths fineness; quarter seven and three, eighth ten and three. Explicit row expansion preserves each association."
+        },
+        {
+          "source_block_id": 2363058,
+          "printed": "SCHEDULE. Number and year. Title or subject.",
+          "note": "All six rows restored, including Bengal Regulations II1812, XIV1817, XIV1818,V1819 and ActsXVII1835,XIII1862. No partial Schedule or guessed references."
+        }
+      ]
+    }
+  ]
+}

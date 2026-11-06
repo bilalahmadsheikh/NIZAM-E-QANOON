@@ -38,7 +38,7 @@ def main() -> int:
             raise SystemExit("page outside document")
 
     with pymupdf.open(root / object_key) as pdf:
-        tsv, dpi = _ocr_page(pdf[args.page - 1], args.lang)
+        tsv, _supplemental, dpi = _ocr_page(pdf[args.page - 1], args.lang)
     blocks, _, confidence_sum, word_count = _blocks_from_tsv(
         tsv, args.page, 0, dpi / 72.0,
     )

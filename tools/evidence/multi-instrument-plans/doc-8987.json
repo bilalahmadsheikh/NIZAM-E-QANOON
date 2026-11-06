@@ -1,0 +1,44 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 8987,
+ "source_observation_id": 10383,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 8987,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc8987-p1.png",
+   "render_sha256": "a0e8b8823bc3d550a22c2c3eda3cff54228ef48963bd133690d0266d48148b48"
+  },
+  {
+   "page": 2,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc8987-p2.png",
+   "render_sha256": "f2ebc85aab34fd888030d284f07e58afa9601776d56fc1fac799fe11ac8c3598"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The East Bengal Disturbed Areas (Special Powers of Armed Forces) Act, 1951",
+   "kind": "act",
+   "year": 1951,
+   "number": "IX",
+   "spans": [
+    {
+     "start_block_id": 2359119,
+     "end_block_id": 2359142,
+     "pages": "1-2"
+    }
+   ],
+   "title_basis": "p1 block 2359119 prints 'ACT No. IX OF 1951'; ss.1-4 complete. The p2 foot prints the preamble and s.1 of ACT No. X OF 1951, the Punjab Disturbed Areas (Special Powers of Armed Forces) Act, 1951, which continues on a page not in this copy and is held released as document 9003: set aside as apparatus (owner policy q1 'split')."
+  }
+ ]
+}

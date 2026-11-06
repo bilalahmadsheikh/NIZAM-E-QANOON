@@ -1,0 +1,65 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 8463,
+ "source_observation_id": 13501,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 8463,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc8463-p1.png",
+   "render_sha256": "afdd81f3eebea01afa12297e895946d1f495b2c3acb54937453669c5a2f2c2dc"
+  },
+  {
+   "page": 13,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc8463-p13.png",
+   "render_sha256": "ddac3a0bdc865314f530727238909f12112e787b1a81c53350eb51cc7aea896c"
+  },
+  {
+   "page": 17,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc8463-p17.png",
+   "render_sha256": "a1c54aa384980baf401d2e2a9668e40727dc9073a0ba605674af37fed6f897a2"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Audit Oversight Board (Conduct of Business) Regulations, 2017",
+   "kind": "regulation",
+   "year": 2017,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 2086822,
+     "end_block_id": 2087034,
+     "pages": "1-13"
+    }
+   ],
+   "title_basis": "p1 blocks 2086831-2086833 print 'AUDIT OVERSIGHT BOARD (CONDUCT OF BUSINESS) REGULATIONS, 2017' and regulation 1 '... may be called Audit Oversight Board (Conduct of Business) Regulations, 2017' (S.R.O. 706(I)/2017); complete on pp.1-13 with Schedule I (Code of Conduct) and Appendix A"
+  },
+  {
+   "ordinal": 1,
+   "role": "embedded",
+   "title": "The Audit Oversight Board Financial and Investment Regulations, 2017",
+   "kind": "regulation",
+   "year": 2017,
+   "number": null,
+   "spans": [
+    {
+     "start_block_id": 2087035,
+     "end_block_id": 2087099,
+     "pages": "13-17"
+    }
+   ],
+   "title_basis": "p13 blocks 2087035-2087038 print 'S.R.O. 707(I)/2017.--In exercise of the powers conferred by section 36Z read with section 36P ...', 'AUDIT OVERSIGHT BOARD FINANCIAL AND INVESTMENT REGULATIONS, 2017' and regulation 1 '... may be called Audit Oversight Board Financial and Investment Regulations, 2017'; complete on pp.13-17 (regulations 1-15, signed FALAK RAJA, Secretary)"
+  }
+ ]
+}

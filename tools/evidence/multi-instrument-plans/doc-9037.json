@@ -1,0 +1,44 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 9037,
+ "source_observation_id": 11009,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-10-22",
+ "reviewed_by": "lead page review (22 Oct 2026) on the owner's corpus policy q1 'split'",
+ "owner_decision": {
+  "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+  "document_id": 9037,
+  "question_id": "q1",
+  "policy": ".artifacts/decision-review/exports/decision-review-2026-10-22-q22.json q1 split"
+ },
+ "reviewed_pages": [
+  {
+   "page": 2,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9037-p2.png",
+   "render_sha256": "c11d4b17088df5877cde0865b36161172d9f02dadfe22c1746fa737e7e81f874"
+  },
+  {
+   "page": 9,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9037-p9.png",
+   "render_sha256": "a1de6c1536a68d10a0b8177ca9b2325680bd50ba5e7bc3010240b4658d3a748b"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Pakistan (Audit and Accounts) Order, 1973",
+   "kind": "order",
+   "year": 1973,
+   "number": "21",
+   "spans": [
+    {
+     "start_block_id": 2363437,
+     "end_block_id": 2363546,
+     "pages": "1-9"
+    }
+   ],
+   "title_basis": "p3 prints 'PRESIDENT'S ORDER NO. 21 OF 1973' and Article 1 names the Order; complete to its signatures on p9. The Governor's Pension Order, 1974 begun at the foot of p9 is a fragment (Articles 1-2 only in this copy): set aside as apparatus (owner policy q1 'split')."
+  }
+ ]
+}
