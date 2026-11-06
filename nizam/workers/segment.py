@@ -1018,11 +1018,12 @@ def _bz_lettered_head_ok(item) -> bool:
 
 
 def _bz_bracketed_rule_ok(item) -> bool:
-    """Agent K6's `reviewed_bracketed_rule` (group 38, doc 4479): {source_block_id, label (1-3 digits), heading (the
-    printed margin words, >= 3 characters) or null}; the segmenter checks the rest."""
+    """Agent K6's `reviewed_bracketed_rule` (group 38, doc 4479): {source_block_id, label (1-3 digits, or with one
+    capital letter after them for a lettered insertion '9A', doc 8311), heading (the printed margin words, >= 3
+    characters) or null}; the segmenter checks the rest."""
     return (isinstance(item, dict) and set(item) == {"source_block_id", "label", "heading"}
             and type(item["source_block_id"]) is int and item["source_block_id"] > 0
-            and isinstance(item["label"], str) and item["label"].isdigit() and 1 <= len(item["label"]) <= 3
+            and isinstance(item["label"], str) and re.fullmatch(r"[0-9]{1,3}[A-Z]?", item["label"]) is not None
             and (item["heading"] is None or (isinstance(item["heading"], str) and len(item["heading"].strip()) >= 3)))
 
 
@@ -1233,6 +1234,18 @@ def reviewed_structural_overrides(resolutions: list[dict] | None,
                         for item in value)):
                     raise ValueError(f"unsupported curation structural override {key}")
                 merged[key] = list(merged.get(key) or []) + [v for v in value if v not in (merged.get(key) or [])]
+                continue
+            if key == "source_reviewed_table_blocks":
+                from nizam.corpus.segment import reviewed_table_block_shape_ok
+                if not (isinstance(value, list) and value and all(reviewed_table_block_shape_ok(v) for v in value)):
+                    raise ValueError("unsupported source-reviewed table blocks")
+                prior = {v['source_block_id']: v for v in merged.get(key, [])}
+                for spec in value:
+                    bid = spec['source_block_id']
+                    if bid in prior and prior[bid] != spec:
+                        raise ValueError('conflicting reviewed table block')
+                    prior[bid] = spec
+                merged[key] = list(prior.values())
                 continue
             if key == "source_reviewed_grid_rows":
                 if not (isinstance(value, list) and value and all(reviewed_grid_row_shape_ok(v) for v in value)):

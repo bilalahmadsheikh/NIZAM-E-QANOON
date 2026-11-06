@@ -319,6 +319,47 @@ def test_patch_assignment_follows_earlier_rewrites_in_order():
     assert [p["id"] for p in assigned[0]] == ["1", "2"]
 
 
+@pytest.mark.parametrize('reverse', [False, True])
+def test_exact_patch_assignment_is_stable_when_another_patch_relocates_its_text(reverse):
+    from nizam.corpus.segment import _apply_curation_patches as apply_curation_patches
+    blocks=[dict(id=1,page_no=1,text='(b) the amount of coin and bullion reserved,'),
+            dict(id=2,page_no=1,text='(c) the amount of Government Securities,')]
+    exact=_patch('exact',1,blocks[0]['text'],blocks[0]['text'],'(a) the whole amount of notes,')
+    exact['evidence'].update(exact_block_locator=True,source_block_id=1)
+    move=_patch('move',1,blocks[1]['text'],blocks[1]['text'],blocks[0]['text']+'\n'+blocks[1]['text'])
+    patches=[move,exact] if reverse else [exact,move]
+    assigned,outside=materializer.assign_patches(blocks,patches,{1:0,2:1})
+    assert assigned=={0:[exact],1:[move]} and outside==[]
+    derived,count=apply_curation_patches(blocks,patches)
+    assert count==2 and derived[0]['text']==exact['after_text'] and derived[1]['text']==move['after_text']
+    assert blocks[0]['text'].startswith('(b)')
+
+
+@pytest.mark.parametrize('change', [
+    {'source_block_id':99}, {'source_block_id':'1'}, {'exact_block_locator':False},
+    {'before_text':'short fragment'}, {'match_text':'amount of coin'},
+])
+def test_exact_patch_assignment_rejects_stale_or_malformed_locator(change):
+    blocks=[dict(id=1,page_no=1,text='(b) the amount of coin and bullion reserved,')]
+    patch=_patch('exact',1,blocks[0]['text'],blocks[0]['text'],'corrected')
+    patch['evidence'].update(exact_block_locator=True,source_block_id=1)
+    for key,value in change.items():
+        if key in {'source_block_id','exact_block_locator'}:patch['evidence'][key]=value
+        else:patch[key]=value
+    with pytest.raises(ValueError):materializer.assign_patches(blocks,[patch],{1:0})
+
+
+def test_ordinary_ambiguous_patch_still_refuses_and_exact_override_cannot_cross_expression():
+    blocks=[dict(id=i,page_no=1,text='Identical statutory table cell') for i in [1,2]]
+    patch=_patch('duplicate',1,blocks[0]['text'],blocks[0]['text'],'corrected')
+    with pytest.raises(ValueError,match='matched 2 blocks'):
+        materializer.assign_patches(blocks,[patch],{1:0,2:1})
+    patch['evidence'].update(exact_block_locator=True,source_block_id=1,
+                             structural_overrides={'source_apparatus_blocks':[2]})
+    with pytest.raises(ValueError,match='structural overrides name'):
+        materializer.assign_patches(blocks,[patch],{1:0,2:1})
+
+
 def test_unrecorded_readings_carry_structural_overrides_and_skip_recorded():
     stored = [{"page_no": 1, "match_text": "m1", "before_text": "b1"}]
     readings = [

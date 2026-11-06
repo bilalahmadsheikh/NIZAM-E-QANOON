@@ -868,3 +868,101 @@ Evidence, actual test results, rollback rehearsal and committed release ledger:
 `.artifacts/release-work-2026-09-24/codex-4058/`. The review does not certify
 full-instrument source completeness, current statutory force, or unreviewed
 pages. Previously released instruments were not replayed.
+
+## `unreleased-v5` (24 Oct 2026, migration 0068)
+
+`unreleased-v4` froze once documents were released under it, so the next rule opens a new profile.
+
+| Rule | Behaviour | Evidence |
+|---|---|---|
+| `toc_promised_next_section` | A dotted number the contents promises, not yet seen, exactly one past the open section stays a **section** even when its printed heading "disagrees" with the contents row (the text layer lost the margin note) and the line is indented. It is still a clause when it continues a numbered list one below it (the open unit is clause N-1). Nothing else in v4 changes. | Doc 9127 (Opium Act 1878) p3 '15. Any officer of any of the said departments may', contents '15. Power to seize opium in open places' -- was a clause of s.14(4). tests/test_k4_rules_rsuv.py |
+
+As built (24 Oct 2026), also in v4 and data-gated: rule `reviewed_division_unit_opener` accepts an ordinal schedule
+heading ('THE FIRST SCHEDULE' / 'FIRST SCHEDULE', OCR slash tolerated) with label '<ORDINAL> SCHEDULE', and a reviewed
+ordinal entry printed mid-block is cut out of its block. Existing entries (keyword-first lines) behave as before.
+
+As built (24 Oct 2026, round 9), both data-gated -- they act only where a reviewed patch names the block, and every
+earlier patch they could touch had failed segmentation, so no existing tree changes:
+
+- `reviewed_division_opener` (whole block, every profile) reads a note marker glued on as printed superscript before
+  the division word, '3APPENDIX' (doc 6029 p8), as rule V already reads '1SCHEDULE III'. The word is still required.
+- `unlabelled_schedule_opener` (v4, v5): a later unit of the opener's own block is read inside the opened schedule or
+  appendix (doc 4807 p9 prints the form heading, its note and items 1-7 in one block); and the first unit is matched
+  by the whole block's text, which is what the recorder holds `source_text` to. tests/test_k4_rules_rsuv.py.
+
+### As built 28 Oct 2026 -- rule `reviewed_series_regulation` (data-gated, any profile)
+
+Owner chat, 28 Oct 2026: "release 6 with 1 numbering rule". The SBP prudential regulations (docs 6545, 6590, 7004,
+7956, 7976, 8062) number their regulations in lettered series -- 'Regulation R-1', 'Regulation R – 1:', 'Regulation
+SME R-1:', 'Regulation HF 1:', 'REGULATION O-3', 'IPF.1 --', 'IPF.1.4.1' -- that no grammar rule reads.
+
+- A reviewed `source_printed_rule_openers` entry of kind `section` may carry a series label (`_SERIES_LABEL`: capital
+  letters, an optional second word, a separator '-', '.', or space, then 1-2 digits and up to three '.n' levels). Its
+  match allows an optional 'Regulation' (any case) before the label, '-'/'–'/'.'/space between the parts, and never lets
+  'IPF.1' match the start of 'IPF.1.1'. The unit's text starts after the label and its ':' / '--'.
+- The label may instead be an unnumbered all-caps group heading printed over a numbered list ('PRE-OPERATIONS',
+  'OPERATIONS', 'DISCLOSURE/ETHICS', doc 6545 Part B): at least five capital letters, so never a roman numeral; matched
+  exactly, followed by ':' or the line's end.
+- A block holding a series opener is one unit (subdividing cut 'Regulation R – 1:' at '1:', doc 7004).
+- Inside a section opened with a series label, a printed '1.', '2.' opens that regulation's sub-section (doc 7976
+  'REGULATION R-1 / 1. Single Obligor/Group Limit'), not a section colliding with the numbered definitions.
+- Inert without a series-labelled entry. A/B over the 20 released documents carrying printed openers: 18 identical;
+  4431 and 4702 differ identically with the rule disabled (planned multi-expression documents). Tests:
+  tests/test_series_regulation.py. Tools: tools/recrawl/series_openers.py, series_trial.sh, series_patch.py,
+  series_extra.py, series_apply.sh. Each document also needed a reviewed contents region (rows 'none'): its contents
+  list had been read on into the body.
+
+### Source-reviewed tariff blocks (4 November 2026, document 9851)
+
+`source_reviewed_table_blocks` is an explicit source-reading override for OCR
+blocks that fuse many tariff rows. It does not infer table structure. Each
+block carries its normalized text SHA256, the delegated owner decision, and
+an ordered event ledger. The complete concatenated event text must equal the
+whole corrected block. Each row/caption names an already opened parent; a
+numeric label must match its printed first cell, while a named row must use
+words actually present in its article-name cell. Duplicate citations, absent
+parents, changed hashes, uncovered words and unapplied blocks are refused.
+Raw `text_block` evidence is unchanged (docs/02 section5; INV-1 and INV-4).
+
+For 9851, delegated q2 selects source-checked rows and printed caption groups.
+The incomplete source's hidden serials remain `[illegible]`; actual article
+names identify those rows. No number is recovered from sequence. Missing
+printed folios148–149 have a source-incompleteness declaration; transport
+rows resume under the First Schedule without inventing a SectionXVII caption
+or placing them in the preceding machinery group. A shared-cell event lists
+distinct direct child rows explicitly: the rotated firearms alternative is
+applied only to80(2)(a)–(e), never(f)/(g). Each copied occurrence retains its
+source block. Tests: `tests/test_reviewed_tariff_blocks.py`; evidence and
+independent audits: `.artifacts/release-work-2026-09-24/codex-2026-11-04-d9851`.
+# Source review addendum — 5 November 2026
+
+Document 9624, page 6: the exact reviewed Central Provinces Tenancy Act, 1898
+long title (block 2579916, normalized text SHA-256
+`abb626e5c4c116c9981e9b9582cbceb2c1ed621be0329db94e4efc0a9ae26038`)
+is retained in the preamble before its separately extracted WHEREAS recital.
+Different source block, page or reading cannot activate the exception.
+
+### Source review addendum — 6 November 2026, document 9320
+
+The Merchant Shipping Act page 7 long title is retained before its separate
+WHEREAS recital only at block 2472596, page 7, normalized text SHA-256
+`0748c1c282bd64ab4ffddefd04399ecf07bf325d43098e8f5a5d6f70484a1aa0`.
+Different identity or text cannot activate the exception.
+
+The explicit `source_reviewed_table_blocks` ledger also accepts the printed
+caption order `SCHEDULE <label>.`, as on the repeal table's `SCHEDULE V.`
+(pages 55–56). The existing `THE <label> SCHEDULE.` form remains accepted.
+Both orders require the exact declared label; the block hash, complete text
+coverage, owner decision, parent and citation checks are unchanged. This does
+not add an inferred schedule opener. Tests: `tests/test_reviewed_tariff_blocks.py`.
+
+The same document's Schedule IV prints seven `ARTICLE I.`–`ARTICLE VII.`
+captions. Explicit `source_printed_rule_openers` now admits `kind: article`
+for these Roman labels only, with the literal uppercase `ARTICLE` keyword,
+space and exact stopped label. The reviewed prefix must occur at its named
+source block. A matched explicit article opener retains article kind inside
+the schedule, including through the final schedule retyping pass; the exact
+source block and label must match an applied opener. Ordinary classification
+and retyping of inferred schedule rows are unchanged. No reparent schema
+extension is used. Tests: `tests/test_reviewed_roman_article_openers.py`.
+

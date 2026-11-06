@@ -125,6 +125,32 @@ are deliberately strict: a `review` is not silently converted into a pass.
 verifier family and reports `missing_evidence`, `review`, or `passed` per active
 document. It never treats an absent verifier result as success.
 
+*As built, 29 Oct 2026 (`nizam.verify_ocr/5`).* A Q1 review is resolved only by
+recorded evidence, never by a lower threshold. Two kinds exist, both
+`source_content_confirmed` assertions on the document's blob: `ocr-table-document`
+answers a low legal-token rate (migration 0029), and `ocr-page-read-document`
+answers an OCR confidence below 0.70 — document 02 §4's "human review below
+threshold". The second is valid only when it names a render digest for every
+page, and is made only after every page was read and the provisions carry that
+reading (a page-by-page transcription or line-by-line check recorded as curation
+patches). The verifier stores the assertion id in its result
+(`page_read_assertion_id`), so every such pass is traceable to its review.
+
+*30 Oct 2026 (`nizam.verify_ocr/6`), corrected-reading case.* An independently
+page-reviewed curation can replace garbled OCR while the immutable raw blocks
+still fail the legal-token check. An `ocr-page-read-document` assertion with
+method `source-page-read-current-provisions/1`, the exact document id, every
+page's render digest, and `reviewed_provisions_sha256` binds that review to the
+current canonical provision identities, parentage, headings and text. Only an
+E4 document with a matching, nonempty current tree is scored instead of the raw reading, at the
+unchanged legal-token threshold of 0.25. A stale hash, missing pages or another
+document cannot use this path. Legacy assertions keep their prior scope; yield
+checks and raw OCR blocks remain unchanged. Mixed E3 output cannot substitute
+its clean-text pages for its separate OCR-page score. The verification stores both raw
+and curated legal-token rates and the bound reading hash. This is a scored
+corrected reading, not a table-vocabulary exemption or an automatic pass from
+the existence of a page review.
+
 ---
 
 ## Structural integrity
@@ -203,3 +229,15 @@ versioned source-block span, and the S10 queue is now empty;
 `v_release_provision_version` also exclude every instrument with an unresolved
 S7 candidate. The detailed rebuild record is in
 `docs/CLEAN-REBUILD-REPORT.md`.
+
+Q1 implementation note,4November2026 (9851 tariff): the existing
+`ocr-table-document` vocabulary exception can also explicitly opt in to
+`source-page-read-current-provisions/1`. This form requires E4, every source
+render, the exact current provision/tree hash and
+`table_review=source_checked_article_names_and_duty_cells`. A stale tree,
+another document, incomplete renders or E2/E3 cannot use it. Legacy table
+assertions keep their existing semantics; the0.25 vocabulary threshold and
+yield threshold are unchanged. The companion page-read assertion describes
+the actual curated reading, never obsolete garbled OCR as clean table text.
+Tests in `tests/test_verify_ocr.py` cover stale and incomplete table review,
+other lanes and an independent low-yield failure.

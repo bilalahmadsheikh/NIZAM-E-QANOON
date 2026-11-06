@@ -51,13 +51,21 @@ def main() -> int:
     g = ap.add_mutually_exclusive_group(required=True)
     g.add_argument("--all", action="store_true", help="every scan E2 could not read")
     g.add_argument("--sha256", help="one blob by hash prefix")
+    g.add_argument("--sha256-list", type=Path, metavar="FILE",
+                   help="with --redo: full SHA-256s, one per line -- a scan whose PDF carries a poor OCR text layer "
+                        "(lane E2 read it, reading order failed) is re-read here as a new E4 revision")
     ap.add_argument("--redo", action="store_true",
                     help="explicitly create a new extraction revision even when one is active")
     ap.add_argument("--workers", type=int, default=max(1, (os.cpu_count() or 4) - 2))
     ap.add_argument("--limit", type=int)
     a = ap.parse_args()
 
-    if a.redo:
+    if a.sha256_list and not a.redo:
+        ap.error("--sha256-list re-reads documents that already exist: it needs --redo")
+    if a.redo and a.sha256_list:
+        wanted = {line.strip().lower() for line in a.sha256_list.read_text().splitlines() if line.strip()}
+        targets = [t for t in corpus_write.blobs_for_reextraction(sha_prefix=None) if t[0] in wanted]
+    elif a.redo:
         targets = corpus_write.blobs_for_reextraction(sha_prefix=a.sha256)
     else:
         targets = corpus_write.blobs_needing_extraction(retry_failed=True)

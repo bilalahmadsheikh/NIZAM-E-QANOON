@@ -627,6 +627,30 @@ _SOURCE_PREAMBLE_INTRO_SHA256 = {
     # into one extracted block. The printed marginal label is separately
     # classified as heading; the source's opening prose still is a preamble.
     (22, 1): "d9237acbf8f21ddf7c311c035501062101a6068d844ea0655fae609abd5a2399",
+    # Doc9615 p5: the page-read AN ORDER long title precedes WHEREAS in
+    # separate blocks. Preserve that exact reviewed opening with its recital;
+    # a different reading, source block or page cannot activate this entry.
+    (2571378, 5): "3f848d5222140c371cbd3d06c798367baa405242fda32b520d8b73311012f2e0",
+    # Doc5814 p1: exact page-reviewed notification enacting formula. The
+    # handwritten notification number is apparatus; printed No. and formula
+    # precede the consolidated Regulations title, not an operative section.
+    (1403354, 1): "50ae1eb71d087b39514a221511b868579cc861532c429867d535c028ace45ea0",
+    # Doc9765 p3: the reviewed long title precedes WHEREAS in its own
+    # block. Preserve this exact printed opening with the recital; no other
+    # block/page/reading can activate the source exception.
+    (2645990, 3): "d59e40329581c32f98057d2890690c87c0db33808a713301eb83a8e7ecae42ca",
+    # Doc7511 p7: exact page-reviewed Oudh Rent Act long title, before
+    # the separately extracted WHEREAS recital and Chapter I.
+    (1854328, 7): "3c55d90738cc636bdcb9eaf39f073de352effbaf45629d78f7173bff35ad6e4a",
+    # Doc9851 p1: long title's first word is physically bound away. Keep
+    # the exact reviewed [illegible] marker, never manufacture "An".
+    (2673045, 1): "357baf5a01b0980b6295ec3e3d2f224d80e7c60019b848c1394263f59e2b9cc8",
+    # Doc9624 p6: exact reviewed long title before the separate WHEREAS
+    # recital; retain the full opening without widening title detection.
+    (2579916, 6): "abb626e5c4c116c9981e9b9582cbceb2c1ed621be0329db94e4efc0a9ae26038",
+    # Doc9320 p7: exact reviewed Merchant Shipping Act long title before
+    # the separate WHEREAS recital; source identity and reading are bound.
+    (2472596, 7): "0748c1c282bd64ab4ffddefd04399ecf07bf325d43098e8f5a5d6f70484a1aa0",
 }
 
 
@@ -5330,6 +5354,38 @@ def _owner_cited_cross_chapter_ok(item) -> bool:
             and _owner_decision_citation(item["owner_decision"]))
 
 
+def reviewed_table_block_shape_ok(item) -> bool:
+    """Explicit, source-hashed tariff cells in a single OCR block (9851).
+
+    Unlike a guessed table grammar, every row, parent and shared-cell target
+    is supplied by the source reviewer. The walk checks complete coverage.
+    """
+    if not (isinstance(item, dict)
+            and set(item) == {"source_block_id", "text_sha256", "events", "owner_decision"}
+            and type(item["source_block_id"]) is int and item["source_block_id"] > 0
+            and isinstance(item["text_sha256"], str)
+            and re.fullmatch(r"[0-9a-f]{64}", item["text_sha256"])
+            and _owner_decision_citation(item["owner_decision"])
+            and isinstance(item["events"], list) and item["events"]):
+        return False
+    for e in item["events"]:
+        if not (isinstance(e, dict)
+                and set(e) == {"ref", "kind", "label", "parent_ref", "source_text", "named", "targets"}
+                and isinstance(e["ref"], str) and re.fullmatch(r"p\d+e\d+", e["ref"])
+                and e["kind"] in {"schedule", "part", "clause", "append", "shared"}
+                and isinstance(e["label"], str)
+                and (e["parent_ref"] is None or isinstance(e["parent_ref"], str))
+                and isinstance(e["source_text"], str) and e["source_text"].strip()
+                and type(e["named"]) is bool and isinstance(e["targets"], list)):
+            return False
+        if e["kind"] in {"append", "shared"}:
+            if e["label"] or e["named"] or (e["kind"] == "shared") != bool(e["targets"]):
+                return False
+        elif not e["label"] or e["targets"] or (e["named"] and e["kind"] != "clause"):
+            return False
+    return True
+
+
 def reviewed_grid_row_shape_ok(item) -> bool:
     """Exact source-read grid cells; no inferred serials, parents or rates."""
     return (isinstance(item, dict)
@@ -8688,6 +8744,27 @@ SEGMENTATION_PROFILES["unreleased-v4"] = SEGMENTATION_PROFILES["unreleased-v4"] 
 SEGMENTATION_PROFILES["unreleased-v4"] = SEGMENTATION_PROFILES["unreleased-v4"] | {
     "reviewed_bracketed_rule",
 }
+# unreleased-v5 (24 Oct 2026, lead; docs 9127 s.15 and the held old Gazette scans): v4 plus
+# `toc_promised_next_section` -- a dotted number the contents promises, not yet seen, exactly one past the open
+# section, stays a section even when the text layer lost its margin heading (so the heading 'disagrees') and the
+# line is indented; it is still a clause when it continues a numbered list one below it.
+SEGMENTATION_PROFILES["unreleased-v5"] = SEGMENTATION_PROFILES["unreleased-v4"] | {
+    "toc_promised_next_section",
+}
+
+
+# Rule `reviewed_series_regulation`: a regulation label in a lettered series -- 'R-1', 'O-1', 'SME R-1', 'HF 1',
+# 'IPF.1', 'IPF.1.4.1' (SBP prudential regulations). Always led by capital letters, so never a numeric section label.
+_SERIES_LABEL = re.compile(r"[A-Z]{1,4}(?: [A-Z]{1,3})?[- .]\d{1,2}(?:\.\d{1,2}){0,3}"
+                           # ... or an unnumbered all-caps group heading printed over a numbered list, 'PRE-OPERATIONS',
+                           # 'DISCLOSURE/ETHICS' (doc 6545 Part B): the label is the printed heading; at least five
+                           # letters, so never a roman numeral
+                           r"|(?=[A-Z/&-]*[A-Z]{5})[A-Z][A-Z/&]+(?:[- ][A-Z/&]+){0,5}")
+
+# Rule `reviewed_division_unit_opener`, ordinal variant: 'THE FIRST SCHEDULE' ... 'THE TWELFTH SCHEDULE' (OCR may
+# set a slash between the words). Only a reviewed entry of kind 'schedule' reads it.
+_K4_ORDINAL_SCHEDULE = re.compile(
+    r"(?i)\s*(?:THE\s+)?(FIRST|SECOND|THIRD|FOURTH|FIFTH|SIXTH|SEVENTH|EIGHTH|NINTH|TENTH|ELEVENTH|TWELFTH)\s*/?\s*SCHEDULE\b")
 
 
 def profile_rule(name: str) -> bool:
@@ -9479,7 +9556,8 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
         if not (profile_rule("reviewed_bracketed_rule") and isinstance(_k6p_e, dict)
                 and set(_k6p_e) == {"source_block_id", "label", "heading"}
                 and type(_k6p_e["source_block_id"]) is int and _k6p_e["source_block_id"] > 0
-                and isinstance(_k6p_e["label"], str) and re.fullmatch(r"[0-9]{1,3}", _k6p_e["label"]) is not None
+                # a lettered insertion '(9A)' (doc 8311, PM&DC regulations numbered '(1)' ... '(9A)' ...) as well
+                and isinstance(_k6p_e["label"], str) and re.fullmatch(r"[0-9]{1,3}[A-Z]?", _k6p_e["label"]) is not None
                 and (_k6p_e["heading"] is None
                      or (isinstance(_k6p_e["heading"], str) and len(_k6p_e["heading"].strip()) >= 3))
                 and (_k6p_e["source_block_id"], _k6p_e["label"]) not in _k6p_specs):
@@ -10399,6 +10477,30 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
             return True
         return block["x0"] >= body_column_x0 + 18
 
+    _rt_specs = list(overrides.get("source_reviewed_table_blocks") or [])
+    if not all(reviewed_table_block_shape_ok(s) for s in _rt_specs):
+        raise ValueError("malformed source-reviewed table block")
+    _rt_by = {s["source_block_id"]: s for s in _rt_specs}
+    if len(_rt_by) != len(_rt_specs):
+        raise ValueError("duplicate source-reviewed table block")
+    _rt_nodes, _rt_done, _rt_refs = {}, set(), set()
+    import hashlib as _rt_hashlib
+    for _rt_b in body:
+        if _rt_b.get("id") not in _rt_by:
+            continue
+        _rt_s = _rt_by[_rt_b["id"]]
+        if (_rt_hashlib.sha256(_norm(_rt_b["text"]).encode()).hexdigest() != _rt_s["text_sha256"]
+                or _norm(" ".join(e["source_text"] for e in _rt_s["events"])) != _norm(_rt_b["text"])):
+            raise ValueError("reviewed table hash/complete source coverage mismatch")
+        for _rt_e in _rt_s["events"]:
+            if (_rt_e["ref"] in _rt_refs
+                    or (_rt_e["kind"] == "schedule" and _rt_e["parent_ref"] is not None)
+                    or (_rt_e["kind"] != "schedule" and _rt_e["parent_ref"] not in _rt_refs)
+                    or any(t not in _rt_refs for t in _rt_e["targets"])):
+                raise ValueError("reviewed table needs unique forward reading order and already-open parent/targets")
+            _rt_refs.add(_rt_e["ref"])
+    if {b.get("id") for b in body} & set(_rt_by) != set(_rt_by):
+        raise ValueError("reviewed table block missing from operative body")
     uncut_row_blocks = {int(v) for v in (overrides.get("source_quoted_table_row_blocks") or [])}
     # Profile rule `half_paren_clause_label` (doc 1626 p2 r.4, owner decision 2026-10-08 export -h q3 'keep-both'):
     # reviewed blocks whose clause letters print a closing parenthesis only ('c)').
@@ -10448,6 +10550,8 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
     # Each block is cut at its internal provision starts before the grammar runs,
     # so a block holding three sections yields three units rather than one.
     units: list[tuple[dict, str]] = []
+    _series_opener_blocks = {e.get("source_block_id") for e in (overrides.get("source_printed_rule_openers") or [])
+                             if isinstance(e, dict) and _SERIES_LABEL.fullmatch(str(e.get("label", "")))}
     _left_margin_split_units: set = set()
     dotted_commencement_operative_units: set[int] = set()
     _jq_cut: set = set()   # agJD rule Q: the quoted row blocks actually cut into rows
@@ -10466,7 +10570,8 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
         # even though the block's fused superscript and amendment verb prove
         # the whole block is apparatus (CPC pages 65, 66 and 85).
         pieces = ([b["text"]] if (
-            (_FOOTNOTE.match(b["text"])
+            b.get("id") in _rt_by
+            or (_FOOTNOTE.match(b["text"])
              and not _PARENTHESIZED_CHAPTER.search(b["text"]))
             or _is_footnote_run(b["text"], require_every_item=True)
             or (_PUNCTUATED_AMENDMENT_FOOTNOTE.match(b["text"])
@@ -10483,6 +10588,9 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
             # Profile rule `named_schedule_row` (unreleased-v4): a named Schedule row is one unit; its
             # cells' enumerators ('1.', '(i)', 'a)') open nothing.
             or (profile_rule("named_schedule_row") and b.get("id") in named_rows)
+            # Rule `reviewed_series_regulation`: a block holding a reviewed series opener ('Regulation R – 1: ...',
+            # doc 7004) is one unit -- subdividing cut the heading at '1:' so the printed prefix was in no piece
+            or b.get("id") in _series_opener_blocks
         ) else subdivide(b["text"]))
         # agJD rule Q `quoted_table_rows_in_block` (doc 3998 p16): several page-read rows in one quoted row block.
         if (profile_rule("quoted_table_rows_in_block") and b.get("id") in uncut_row_blocks
@@ -10990,6 +11098,16 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
     # Rule `reviewed_printed_rule_opener` (agent JE, doc 4431): split each reviewed block at its printed rule opener.
     _ro_specs: dict = {}
     def _ro_label_rx(label, kind=None):
+        # `reviewed_series_regulation` (SBP prudential regulations, docs 6545 6590 7004 7956 7976 8062; owner chat
+        # 28 Oct 2026 'release 6 with 1 numbering rule'): a reviewed regulation numbered in a lettered series --
+        # 'Regulation R-1', 'Regulation R – 1:', 'Regulation SME R-1:', 'Regulation HF 1:', 'IPF.1 --', 'IPF.1.4.1'.
+        # The label is the printed series identifier; separators may print as '-', '–', '.' or a space; an optional
+        # 'Regulation' stands before it; 'IPF.1' never matches the start of 'IPF.1.1'.
+        if kind in (None, "section") and _SERIES_LABEL.fullmatch(label):
+            if not re.search(r"\d", label):   # a group heading: printed exactly, then ':' or the line's end
+                return r"\s*" + re.escape(label) + r"(?=[ \t]*(?::|\n|$))"
+            return (r"\s*(?:(?i:Regulation)\s+)?" + r"\s*[-–.]?\s*".join(re.escape(t) for t in re.split(r"[- .]", label))
+                    + r"(?!\d|\s*\.\s*\d)")
         # `reviewed_explanation_opener` (4331): explicit page-read Explanation
         # or Exception, optionally behind its amendment marker.
         if kind == "explanation":
@@ -11005,6 +11123,11 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
             return r"\s*\(\s*" + label + r"\s*\)"
         if kind == "part":   # agent K2 (docs 4369, 4489): 'Part-B', 'PART IV', '1[PART IX'
             return r"\s*(?:\d{1,3}\s*\[\s*)?(?i:part)\s*[-\u2013]?\s*" + re.escape(label)
+        # Doc9320 Schedule IV: seven explicitly reviewed ARTICLE I.–VII.
+        # captions. The keyword and full stopped label are required; this
+        # does not change ordinary article recognition or schedule retyping.
+        if kind == "article":
+            return r"\s*ARTICLE[ \t]+" + re.escape(label) + r"(?=\.)"
         # a lettered label is printed with its letter set off: '58A' printed '1[58-(A).' (doc 4426 q2 'same-as-42A');
         # an amendment marker '1[' may stand before the number
         # (doc 2366: '1[3].Whenever' -- the substituted number inside the marker's bracket; '12,  [Condition ...' with a
@@ -11028,13 +11151,14 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
         _ro_kind = _ro_e.get("kind", "section") if isinstance(_ro_e, dict) else None
         if not (isinstance(_ro_e, dict)
                 and set(_ro_e) - {"kind"} == {"source_block_id", "label", "source_prefix"}
-                and _ro_kind in ("section", "subsection", "clause", "part", "explanation")
+                and _ro_kind in ("section", "subsection", "clause", "part", "explanation", "article")
                 and type(_ro_e["source_block_id"]) is int and isinstance(_ro_e["label"], str)
                 and re.fullmatch(r"[a-z]{1,2}" if _ro_kind == "clause"
                                  else r"[A-Z]|[IVXL]{1,6}" if _ro_kind == "part"
                                  else r"Explanation|Exception" if _ro_kind == "explanation"
+                                 else r"I|II|III|IV|V|VI|VII" if _ro_kind == "article"
                                  else r"\d{1,3}(?:[A-Z]{0,2}|-[A-Z])|[IVX]{1,4}|[A-Z]" if _ro_kind == "subsection"
-                                 else r"\d{1,3}(?:[A-Z]{0,2}|-[A-Z])|[IVX]{1,4}", _ro_e["label"])
+                                 else r"\d{1,3}(?:[A-Z]{0,2}|-[A-Z])|[IVX]{1,4}|" + _SERIES_LABEL.pattern, _ro_e["label"])
                 and isinstance(_ro_e["source_prefix"], str)
                 and (len(_ro_e["source_prefix"].strip()) >= 8
                      # agent K2 (doc 4431 p99): a label-only block 'I.' -- the prefix is the whole block; (doc 4489
@@ -11051,6 +11175,10 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
                                               _ro_e["source_prefix"].strip()) == 1))
                                  for _ro_blk in blocks)))
                 and (re.match(_ro_label_rx(_ro_e["label"], _ro_e.get("kind")) + r"\s*(?:[.,\-\u2013]|\n)", _ro_e["source_prefix"])
+                     # `reviewed_series_regulation`: 'Regulation R \u2013 1: Minimum ...', 'Regulation R-1 Facilities ...'
+                     or (_ro_kind == "section" and _SERIES_LABEL.fullmatch(_ro_e["label"])
+                         and re.match(_ro_label_rx(_ro_e["label"]) + r"[ \t]*(?:[:\u2014]|[ \t]+(?=[A-Z]))",
+                                      _ro_e["source_prefix"]))
                      or (_ro_e.get("kind") == "subsection"
                          and re.match(r"\s*(?:\d{1,3}\s*\[\s*)?\(" + re.escape(_ro_e["label"]) + r"\)(?:,|\s+(?=[A-Z]))",
                                       _ro_e["source_prefix"]))
@@ -11068,6 +11196,12 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
                      # ... and a lettered clause '(d)' behind its note marker ('1 (d)   In case ...', E28 p861 s.8(d))
                      or (_ro_kind == "clause"
                          and re.match(_ro_label_rx(_ro_e["label"], "clause") + r"[ \t]+(?=[A-Z(])",
+                                      _ro_e["source_prefix"]))
+                     # ... and an amending paragraph of a notification, '(b) after Serial No.8, as so amended the
+                     # following new entries shall be inserted' (doc 9673 p2), printed in lower case after its letter
+                     # in a block that also holds the previous paragraph's table rows
+                     or (_ro_kind == "clause"
+                         and re.match(_ro_label_rx(_ro_e["label"], "clause") + r"[ \t]+(?=[a-z]{2,}\s)",
                                       _ro_e["source_prefix"]))
                      # `lettered_omission_stub_opener` (4331 Arts 8/54): the
                      # reviewed clause's body is a note-marked omission stub.
@@ -11094,6 +11228,9 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
         _sa_specs[(_sa_e["source_block_id"], _sa_e["source_prefix"])] = _sa_e
     _sa_applied: set = set()
     _ro_cut_specs = dict(_ro_specs); _ro_cut_specs.update(_sa_specs)
+    # rule V, ordinal variant: a reviewed 'THE FIRST SCHEDULE' printed mid-block is cut out so its unit opens there
+    _ro_cut_specs.update({k: v for k, v in _k4_du.items()
+                          if v.get("kind") == "schedule" and _K4_ORDINAL_SCHEDULE.match(k[1])})
     _ro_split: set = set()
     _ro_applied: set = set()
     if _ro_cut_specs:
@@ -11368,6 +11505,68 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
 
     for idx, (b, text) in enumerate(units):
         if idx in _jg_absorbed:
+            continue
+        if b.get("id") in _rt_by:
+            if b["id"] in _rt_done or _norm(text) != _norm(b["text"]):
+                raise ValueError("reviewed table block was split or repeated")
+            for _rt_e in _rt_by[b["id"]]["events"]:
+                _rt_k, _rt_l, _rt_t = _rt_e["kind"], _rt_e["label"], _norm(_rt_e["source_text"])
+                _rt_parent = root if _rt_k == "schedule" else _rt_nodes.get(_rt_e["parent_ref"])
+                if _rt_parent is None:
+                    raise ValueError("reviewed table parent is not a structural node")
+                if _rt_k in {"append", "shared"}:
+                    _rt_destinations = [_rt_parent] if _rt_k == "append" else [_rt_nodes.get(t) for t in _rt_e["targets"]]
+                    if (_rt_k == "shared" and (len(_rt_destinations) < 2
+                            or len(set(_rt_e["targets"])) != len(_rt_e["targets"])
+                            or any(n is None or n.parent is not _rt_parent or n.kind != "clause" for n in _rt_destinations))):
+                        raise ValueError("reviewed shared cell must name distinct direct rows of its printed owner")
+                    for _rt_n in _rt_destinations:
+                        _rt_n.text_parts.append(_rt_t)
+                        if b["id"] not in _rt_n.blocks:
+                            _rt_n.blocks.append(b["id"])
+                        _rt_n.last_page = b["page_no"]
+                    current = _rt_destinations[-1]
+                else:
+                    if (_rt_k != "schedule" and _rt_parent.kind not in {"schedule", "part", "clause"}
+                            or _rt_k == "part" and _rt_parent.kind not in {"schedule", "part"}
+                            or any(n.kind == _rt_k and n.label == _rt_l for n in _rt_parent.children)):
+                        raise ValueError("reviewed table would misplace a row or duplicate a citation")
+                    if _rt_k in {"schedule", "part"}:
+                        if ((_rt_k == 'part' and _rt_l != _rt_t)
+                                or (_rt_k == 'schedule' and not re.match(
+                                    r'^(?:THE\s+' + re.escape(_rt_l) + r'\s+SCHEDULE\.'
+                                    r'|SCHEDULE\s+' + re.escape(_rt_l) + r'\.)', _rt_t))):
+                            raise ValueError("reviewed table caption is not printed")
+                        _rt_value, _rt_heading = [], _rt_t
+                    elif _rt_e["named"]:
+                        _rt_fields = [_norm(cell) for cell in _rt_t.split('|')]
+                        _rt_name = (_rt_fields[1] if len(_rt_fields) == 7
+                                    else _rt_fields[2] if len(_rt_fields) == 4 else None)
+                        if (_rt_l != _rt_name or _rt_t.count(_rt_l) != 1
+                                or not re.search(r"[^\W\d_]{2,}", _rt_l)):
+                            raise ValueError("reviewed named tariff row lacks its exact article-name/short-title cell")
+                        _rt_value, _rt_heading = [_rt_t], None
+                    else:
+                        _rt_marker = _rt_t.split("|", 1)[0].strip()
+                        if _rt_marker not in {_rt_l, '(' + _rt_l + ')', _rt_l + '.'} or not re.fullmatch(r"\d{1,3}(?:\(\d{1,3}\))?|[a-z]{1,4}|[A-Z]", _rt_l):
+                            raise ValueError(f"reviewed tariff row {_rt_e['ref']} serial {_rt_l!r} is not printed in {_rt_marker!r}")
+                        _rt_value, _rt_heading = [_rt_t[len(_rt_marker):].lstrip(" |")], None
+                    current = Node(kind=_rt_k, label=_rt_l, heading=_rt_heading,
+                                   text_parts=_rt_value, depth=_rt_parent.depth + 1,
+                                   first_page=b["page_no"], last_page=b["page_no"], first_block=b["id"],
+                                   parent=_rt_parent, blocks=[b["id"]], named_row=_rt_e["named"],
+                                   group_caption=_rt_k == "part")
+                    _rt_parent.children.append(current)
+                    _rt_nodes[_rt_e["ref"]] = current
+                    if _rt_k == "schedule":
+                        in_schedule, schedule_node = True, current
+                _rt_chain, _rt_n = [], current
+                while _rt_n is not None:
+                    _rt_n.last_page = max(_rt_n.last_page or 0, b["page_no"])
+                    _rt_chain.append(_rt_n); _rt_n = _rt_n.parent
+                stack = list(reversed(_rt_chain))
+                mark(b, "heading" if _rt_k in {"schedule", "part"} else "schedule_row", current)
+            _rt_done.add(b["id"])
             continue
         # Rule `reviewed_table_close` (agent K2, doc 4489): the printed table has ended before this block.
         # (with a source_prefix: at the block's unit that begins with it -- a table ending inside a block)
@@ -11712,8 +11911,13 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
             continue
         if (_PREAMBLE.match(text)
                 or (b.get("id") in source_preamble_intro_blocks
-                    and re.match(r"\s*AN\s+ACT\b", text, re.I)
-                    and re.search(r"\bWHEREAS\b", text, re.I))) and not any(
+                    and (re.match(r"\s*AN\s+ORDER\b", text, re.I)
+                         or re.match(r"\s*No\.\s*—\s*In\s+exercise\b", text, re.I)
+                         # Exact-source intros may print their WHEREAS recital
+                         # in the next block (doc9765). The digest-bound source
+                         # whitelist above remains mandatory.
+                         or re.match(r"\s*AN\s+ACT\b", text, re.I)
+                         or re.match(r"\s*\[illegible\]\s+ACT\b", text, re.I)))) and not any(
                     c.kind == "preamble" for c in root.children) and not (
                 # Profile rule `preamble_not_in_auxiliary` (unreleased-v4): doc
                 # 4318's rules have no preamble, and the recital of Form B's
@@ -11877,6 +12081,16 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
         # agJA rule G `reviewed_lettered_part_blocks` (doc 2668): 'A. ADMISSION.-' opens Part A.
         if b.get("id") in _ja_lp_ids and b.get("id") not in [x[0] for x in _ja_lp_seen]:
             _ja_lm = re.match(r"\s*([A-Z])\.\s+(?=[A-Z]{3})", text)
+            # Doc7511's two reviewed Chapter IV groups print A.— / B.—
+            # and mixed-case captions. This exception additionally requires
+            # the exact original block/page and normalized reviewed text.
+            _oudh_parts = {
+                (1854614, 18): "0a8ec13d883e4312e76c0133ffd6578b6bb6c099362fca1cce6cf86a79638298",
+                (1854644, 19): "01a3acd11143aad3e9a89301e618ec8f5f2e8fb7c596698c22dda47c28cb36fb",
+            }
+            if (hashlib.sha256(_norm(text).encode("utf-8")).hexdigest()
+                    == _oudh_parts.get((b.get("id"), b.get("page_no")))):
+                _ja_lm = re.match(r"\s*([A-Z])\.—", text)
             if _ja_lm:
                 c = ("part", _ja_lm.group(1), text[_ja_lm.end():])
                 _ja_lp_seen.append((b.get("id"), _ja_lm.group(1)))
@@ -11916,7 +12130,7 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
                 _k6lh_applied.add(_k6lh_k)
         # agK6 `reviewed_bracketed_rule` (group 38) (doc 4479): the unit beginning '(N)' in a reviewed block is rule N
         if _k6p_specs:
-            _k6p_m = re.match(r"\s*\(\s*([0-9]{1,3})\s*\)[ \t]*", text)
+            _k6p_m = re.match(r"\s*\(\s*([0-9]{1,3}[A-Z]?)\s*\)[ \t]*", text)
             if _k6p_m and (b.get("id"), _k6p_m.group(1)) in _k6p_specs and (b.get("id"), _k6p_m.group(1)) not in _k6p_applied:
                 c = ("section", _k6p_m.group(1), text[_k6p_m.end():])
                 _k6p_applied.add((b.get("id"), _k6p_m.group(1)))
@@ -12389,16 +12603,25 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
             continue
         # Profile rule `unlabelled_schedule_opener` (unreleased-v4): (doc 691 p9, owner decision 2026-10-06 q2): a reviewed
         # opener for a schedule the copy prints with no heading -- see docs/SEGMENTATION-PROFILES.md.
-        if source_id in unlabelled_schedules and profile_rule("unlabelled_schedule_opener"):
+        # A later unit of the opener's own block (doc 4807 p9: the form's heading and note, then its items '1. Name of
+        # Applicant:' ... in one block) is read in the schedule as usual; before this every such block failed here,
+        # so no existing tree changes.
+        if (source_id in unlabelled_schedules and profile_rule("unlabelled_schedule_opener")
+                and not (source_id in unlabelled_schedules_applied and in_schedule and schedule_node is not None
+                         and schedule_node.first_block == source_id)):
             _ay_spec = unlabelled_schedules[source_id]
             # Profile rule `unlabelled_schedule_before_row` (unreleased-v4): (doc 2211 p2, owner decision 2026-10-10 export -i q1
             # 'release-as-is'): the reviewed block's unit is the schedule's first numbered item -- the schedule
             # opens before it, with no text, and the item is read in it.
             _cr_before = (c is not None and profile_rule("unlabelled_schedule_before_row")
                           and c[0] in ("section", "clause") and re.fullmatch(r"\d{1,3}", c[1] or "") is not None)
+            # The recorder holds source_text to the whole block; where the block prints more than its heading (4807 p9),
+            # its first unit is matched by that whole-block text.
+            _ay_whole = ((idx == 0 or units[idx - 1][0] is not b)
+                         and _norm(b.get("text") or "") == _norm(_ay_spec.get("source_text") or ""))
             if ((c is not None and not _cr_before) or source_id in unlabelled_schedules_applied or in_schedule
                     or any(child.kind in _AUXILIARY_KINDS for child in root.children)
-                    or _norm(text) != _norm(_ay_spec.get("source_text") or "")
+                    or (_norm(text) != _norm(_ay_spec.get("source_text") or "") and not _ay_whole)
                     or _ay_spec.get("label") not in (("SCHEDULE", "APPENDIX")
                                                      if profile_rule("unlabelled_appendix_opener") else ("SCHEDULE",))
                     or not _owner_decision_citation(_ay_spec.get("owner_decision"))):
@@ -12719,7 +12942,10 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
                 _do_line = _do_line.strip()[1:-1].strip()   # agK6 `reviewed_bracketed_rule` (group 38, doc 4479): '(SCHEDULE - I)'
             # `reviewed_division_opener_star_marker` (3912 p27): the star belongs
             # to the appendix's footnote, as a bracketed note number may do.
-            _do_key = lambda s: re.sub(r"[^0-9A-Za-z]", "", re.sub(r"(?i)^\s*(?:\d{1,3}\s*\[\s*|\*{1,3}\s*)?(?:FORMS?|APPENDI(?:X|CES)|ANNEX(?:URE)?|SCHEDULES?)", "", s)).casefold()  # noqa: E731
+            # a note marker glued on as printed superscript, '3APPENDIX' (doc 6029 p8, its note 3 'Appendix substituted
+            # by ... Notification ... 2014'), is the note's, as rule V reads '1SCHEDULE III'
+            # ... and 'THE SCHEDULE' (doc 5121 p14) is the schedule as 'SCHEDULE' is
+            _do_key = lambda s: re.sub(r"[^0-9A-Za-z]", "", re.sub(r"^\s*(?:\d{1,3}\s*\[\s*|\*{1,3}\s*|\d{1,2}(?=[A-Z]))?(?i:THE\s+)?(?i:FORMS?|APPENDI(?:X|CES)|ANNEX(?:URE)?|SCHEDULES?)", "", s)).casefold()  # noqa: E731
             if "contents_row_block_id" in _do_e:
                 # the contents row prints '<roman>.' and a title; the division's own block (or the next) prints that title
                 _do_row = next((blk for blk in original_blocks
@@ -12738,7 +12964,7 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
                                       "source_block_id": source_id,
                                       "contents_row_block_id": _do_e["contents_row_block_id"]})
             else:
-                if not re.match(r"(?i)\s*(?:\d{1,3}\s*\[\s*|\*{1,3}\s*)?(?:FORMS?|APPENDI(?:X|CES)|ANNEX(?:URE)?|SCHEDULES?)\b", _do_line):
+                if not re.match(r"\s*(?:\d{1,3}\s*\[\s*|\*{1,3}\s*|\d{1,2}(?=[A-Z]))?(?i:THE\s+)?(?i:FORMS?|APPENDI(?:X|CES)|ANNEX(?:URE)?|SCHEDULES?)\b", _do_line):
                     raise ValueError(f"source division opener at block {source_id} does not print FORM/APPENDIX: {_do_line!r}")
                 if _do_e["label"] is not None and _do_key(_do_e["label"]) != _do_key(_do_line):
                     raise ValueError(f"source division opener {_do_e['label']!r} is not the print {_do_line!r}")
@@ -12754,9 +12980,16 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
                 # a note marker may stand before the word: '1[SCHEDULE', or glued as printed superscript '1SCHEDULE III'
                 # (doc 4053 p38, its note 1 'Added by Act No. XI of 1899, s. 3.')
                 _k4_dkey = lambda s: re.sub(r"[^0-9A-Za-z]", "", re.sub(r"^\s*(?:\d{1,3}\s*\[\s*|\d{1,2}(?=[A-Z]))?(?i:FORMS?|APPENDI(?:X|CES)|ANNEX(?:URE)?|SCHEDULES?)", "", s)).casefold()  # noqa: E731
-                if not re.match(r"\s*(?:\d{1,3}\s*\[\s*|\d{1,2}(?=[A-Z]))?(?i:FORMS?|APPENDI(?:X|CES)|ANNEX(?:URE)?|SCHEDULES?)\b", _k4_dl):
+                # an ordinal schedule heading 'THE FIRST SCHEDULE' (doc 8637 p3, OCR 'THE FIRST/SCHEDULE'): the label is
+                # the ordinal and the word, 'FIRST SCHEDULE' (recrawl queue 23 Oct 2026)
+                _k4_om = _K4_ORDINAL_SCHEDULE.match(_k4_dl)
+                if _k4_om is not None and _k4_de["kind"] == "schedule":
+                    if (_k4_de["label"] is not None and re.sub(r"[^0-9A-Za-z]", "", _k4_de["label"]).casefold()
+                            != (_k4_om.group(1) + "schedule").casefold()):
+                        raise ValueError(f"source division unit opener {_k4_de['label']!r} is not the print {_k4_dl!r}")
+                elif not re.match(r"\s*(?:\d{1,3}\s*\[\s*|\d{1,2}(?=[A-Z]))?(?i:FORMS?|APPENDI(?:X|CES)|ANNEX(?:URE)?|SCHEDULES?)\b", _k4_dl):
                     raise ValueError(f"source division unit opener at block {source_id} does not print a division: {_k4_dl!r}")
-                if _k4_de["label"] is not None and _k4_dkey(_k4_de["label"]) != _k4_dkey(_k4_dl):
+                elif _k4_de["label"] is not None and _k4_dkey(_k4_de["label"]) != _k4_dkey(_k4_dl):
                     raise ValueError(f"source division unit opener {_k4_de['label']!r} is not the print {_k4_dl!r}")
                 _k4_du_applied.add((_k4_db, _k4_dp))
                 c = None if _k4_de["label"] is None else (_k4_de["kind"], _k4_de["label"], _k4_dr)
@@ -12771,6 +13004,7 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
             mark(b, "footnote")
             continue
         # Rule `reviewed_printed_rule_opener` (agent JE, doc 4431): the unit that begins with a reviewed opener opens it.
+        _ro_forced_unit = False
         if _ro_specs:
             for (_ro_bid, _ro_pref), _ro_e in _ro_specs.items():
                 if (_ro_bid == source_id and (_ro_bid, _ro_pref) not in _ro_applied
@@ -12784,10 +13018,23 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
                         c = (c[0], c[1], re.sub(r"^[ \t]*[-\u2013\u2014]*[ \t]*", "", c[2]))
                     if c[0] == "explanation":
                         c = (c[0], c[1], re.sub(r"^[ \t]*[.:]?[ \t]*[-\u2013\u2014]?[ \t]*", "", c[2]))
+                    if c[0] == "section" and _SERIES_LABEL.fullmatch(c[1]):   # 'R \u2013 1: ...', 'IPF.1 -- ...'
+                        c = (c[0], c[1], re.sub(r"^[ \t]*[:.]?[ \t]*[-\u2013\u2014]*[ \t]*", "", c[2]))
                     if c[0] == "part":
                         _do_forced_idx = idx   # agent K2 (doc 4489 p80)
                     _ro_applied.add((_ro_bid, _ro_pref))
+                    _ro_forced_unit = True
                     break
+        # Rule `reviewed_series_regulation`, its paragraphs: inside a regulation opened with a series label ('R-1'),
+        # the printed '1. Single Obligor/Group Limit', '2. ...' are that regulation's numbered paragraphs, not
+        # sections of the document (doc 7976 p8). Only with a series opener in the reviewed openers.
+        if (_ro_specs and c and not _ro_forced_unit and c[0] == "section" and re.fullmatch(r"\d{1,3}", str(c[1]))
+                and any(_SERIES_LABEL.fullmatch(str(_sr_e["label"])) for _sr_e in _ro_specs.values())):
+            _sr_owner = current
+            while _sr_owner is not root and _sr_owner.kind != "section":
+                _sr_owner = _sr_owner.parent
+            if _sr_owner is not root and _SERIES_LABEL.fullmatch(str(_sr_owner.label)):
+                c = ("subsection", c[1], c[2])
         # Rule `reviewed_schedule_heading`, bracket-led heads (agent K2, doc 4489 p770).
         if (_rs_heads and source_id in _rs_heads and (c is None or c[0] != "schedule")
                 and (idx == 0 or units[idx - 1][0] is not b)):
@@ -12801,7 +13048,11 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
             if _jf_ms:
                 c = ("schedule", "SCHEDULE", text[_jf_ms.end():])
         # Rule `reviewed_text_unit` (agent JE): a page-read cross-reference unit is the open unit's text.
-        if _tu_units and c and (source_id, c[0], str(c[1]).strip()) in _tu_units:
+        # A unit a reviewed printed opener has just opened is never also a text unit: in doc 9673 p2 the block prints a
+        # table row's '(b) 50% by initial recruitment.' (a text unit) and the amending paragraph '(b) after Serial
+        # No.8 ...' (a reviewed opener) -- the same key, two different reviewed readings. Before this the pair failed
+        # as 'printed twice', so no existing tree changes.
+        if _tu_units and c and not _ro_forced_unit and (source_id, c[0], str(c[1]).strip()) in _tu_units:
             _tu_key = (source_id, c[0], str(c[1]).strip())
             if _tu_key in _tu_applied:
                 raise ValueError(f"source text unit {_tu_key!r} printed twice")
@@ -13872,7 +14123,19 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
             )
             _prev_item_block = (source_block_by_id.get(current.first_block)
                                 if current is not root and current.kind == "clause" else None)
-            if (owner is not root and candidate_key in toc and heading_disagrees
+            # Profile rule `toc_promised_next_section` (unreleased-v5): the contents promises this number, it is not yet
+            # seen, it is exactly one past the open section and it does not continue a numbered list one below it --
+            # the heading only 'disagrees' because the text layer lost the margin note (doc 9127 p3 '15. Any officer
+            # of any of the said departments may', contents '15. Power to seize opium in open places').
+            _v5_next_section = bool(
+                profile_rule("toc_promised_next_section") and candidate_number is not None
+                and candidate_key in toc and candidate_key not in seen and owner is not root
+                and re.fullmatch(r"\d{1,3}", str(owner.label or ""))
+                and int(owner.label) + 1 == candidate_number
+                and not (current.kind == "clause" and str(current.label) == str(candidate_number - 1)))
+            if _v5_next_section:
+                pass
+            elif (owner is not root and candidate_key in toc and heading_disagrees
                     and ((candidate_key in seen and has_next_item)
                          or (indented
                              and _continues_previous(previous_content(idx))))):
@@ -14286,7 +14549,9 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
                 # many provisions labelled "1" under one schedule. It is content
                 # of the schedule, so it is stored as a clause of it.
                 detached_heading = detached_heading_for_body.get(b.get("id"))
-                row_kind = "clause"
+                # An explicit, source-validated ARTICLE caption is an article
+                # of this schedule (doc9320 IV), not an inferred table serial.
+                row_kind = "article" if _ro_forced_unit and kind == "article" else "clause"
                 if (overrides.get("corroborate_schedule_exit")
                         and _names_a_printed_entry(_norm(rest), toc)):
                     row_kind = "section"
@@ -14939,7 +15204,11 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
     all_nodes = list(walk_nodes(root))
     for node in all_nodes:
         if (node.kind in {"section", "article"} and beneath_schedule(node)
-                and id(node) not in contents_proved_rows):
+                and id(node) not in contents_proved_rows
+                and not (node.kind == "article" and any(
+                    e.get("kind") == "article" and e["source_block_id"] == node.first_block
+                    and e["label"] == node.label and k in _ro_applied
+                    for k, e in _ro_specs.items()))):
             node.kind = "clause"
             schedule_sections_retyped += 1
             for bid in node.blocks:
@@ -15503,6 +15772,8 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
     if set(unnumbered_parts) != unnumbered_parts_applied:
         raise ValueError("source unnumbered part override not reached: "
                          f"{sorted(set(unnumbered_parts) - unnumbered_parts_applied)}")
+    if set(_rt_by) != _rt_done:
+        raise ValueError("a source-reviewed table block was not applied")
     if set(named_rows) != named_rows_applied and profile_rule("named_schedule_row"):
         raise ValueError("source named schedule row override not reached: "
                          f"{sorted(set(named_rows) - named_rows_applied)}")

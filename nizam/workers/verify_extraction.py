@@ -292,6 +292,41 @@ def repaired_reference_assertions(cur, sha256: str) -> list[tuple[int, int, dict
     return [(r[0], r[1], r[2] if isinstance(r[2], dict) else json.loads(r[2])) for r in cur.fetchall()]
 
 
+# A reviewed text repair (tools/promote_reviewed_text_repair.py --strip-replacement) removes U+FFFD that the source
+# font itself prints as an empty box -- Poppler reads the same boxes, so the stripped revision loses exactly those
+# characters against the reference (doc 4994 -> 9862, 5 Nov 2026: 29 boxes after '➢' bullets on p13, recall 0.99834).
+# Only U+FFFD is credited, never more than the repair removed, and only while its assertion is active and the repair
+# dropped or replaced no block.
+REPLACEMENT_GLYPH = chr(0xFFFD)
+
+
+def reviewed_replacement_strip(cur, document_id: int, sha256: str) -> tuple[int | None, int]:
+    """(assertion id, U+FFFD count) a reviewed replacement-glyph strip removed from this revision, or (None, 0)."""
+    cur.execute("SELECT extractor_config->'reviewed_text_repair' FROM document WHERE id=%s", (document_id,))
+    row = cur.fetchone()
+    repair = row[0] if row else None
+    if isinstance(repair, str):
+        repair = json.loads(repair)
+    if not (isinstance(repair, dict) and repair.get("strip_replacement") is True
+            and not repair.get("dropped_blocks") and not repair.get("replaced_blocks")
+            and type(repair.get("assertion_id")) is int and type(repair.get("removed_chars")) is int):
+        return None, 0
+    cur.execute("""SELECT 1 FROM extraction_assertion
+                    WHERE id=%s AND sha256=%s AND kind='source_content_confirmed' AND is_active""",
+                (repair["assertion_id"], sha256))
+    if cur.fetchone() is None:
+        return None, 0
+    return repair["assertion_id"], repair["removed_chars"]
+
+
+def credit_stripped_replacement(missing: collections.Counter, total: int, stripped: int) -> float:
+    """Recall once at most `stripped` missing U+FFFD are credited; other missing characters still count."""
+    left = missing.copy()
+    left[REPLACEMENT_GLYPH] -= min(left[REPLACEMENT_GLYPH], stripped)
+    left = +left
+    return (total - sum(left.values())) / total if total else 0.0
+
+
 def stored_text(cur, document_id: int) -> tuple[str, str, str]:
     cur.execute(
         "SELECT text,inside_cropbox,confidence FROM text_block "
@@ -413,7 +448,18 @@ def check(cur, document_id: int, sha256: str, object_key: str,
             left = missing - credit["missing"]
             credited_recall = (sum(theirs_c.values()) - sum(left.values())) / sum(theirs_c.values())
             result["credited_recall"] = round(credited_recall, 5)
-        if credited_recall is not None and credited_recall >= MIN_CHAR_RECALL:
+        strip_id, stripped = (reviewed_replacement_strip(cur, document_id, sha256) if credit is None
+                              and missing[REPLACEMENT_GLYPH] else (None, 0))
+        strip_recall = (credit_stripped_replacement(missing, sum(theirs_c.values()), stripped)
+                        if strip_id is not None else None)
+        if strip_recall is not None and strip_recall >= MIN_CHAR_RECALL:
+            result["raw_recall"] = round(recall, 5)
+            result["recall"] = round(strip_recall, 5)
+            result["replacement_strip_assertion_id"] = strip_id
+            result["hints"].append(
+                f"raw character recall {recall:.5f}; {min(missing[REPLACEMENT_GLYPH], stripped)} missing U+FFFD are "
+                f"the source font's empty boxes stripped by the reviewed text repair of assertion #{strip_id}")
+        elif credited_recall is not None and credited_recall >= MIN_CHAR_RECALL:
             # As `char_precision` already stores the gate value (crop/OCR provenance removed) beside
             # `raw_char_precision`, `char_recall` stores the gate value and the raw measure goes to the detail.
             result["raw_recall"] = round(recall, 5)

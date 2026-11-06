@@ -25,6 +25,7 @@ are the same.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import re
 import statistics
@@ -35,7 +36,8 @@ from nizam.storage.db import connect
 MIN_CONFIDENCE = 0.70
 MIN_LEGAL_RATE = 0.25
 MIN_WORDS_PER_PAGE = 40
-VERIFIER = "nizam.verify_ocr/4"
+VERIFIER = "nizam.verify_ocr/6"
+REVIEWED_PROVISIONS_METHOD = "source-page-read-current-provisions/1"
 
 # The same small vocabulary used to score the corpus: function words and
 # statutory furniture that appear in essentially every English-language Act.
@@ -57,6 +59,75 @@ def _words_per_page(recorded_words: object, pages: int) -> float:
     except (TypeError, ValueError):
         count = 0
     return count / pages if pages else 0.0
+
+
+def _page_read_covers(detail: object, pages: int) -> bool:
+    """A page-read assertion reviews the document only when it names a render digest for every page."""
+    digests = detail.get("render_sha256") if isinstance(detail, dict) else None
+    return (isinstance(digests, list) and all(isinstance(d, str) and len(d) == 64 for d in digests)
+            and len(digests) >= max(int(pages or 0), 1))
+
+
+def _provision_reading_sha256(rows: list) -> str:
+    """Bind a source review to the exact current provision tree and reading."""
+    return hashlib.sha256(json.dumps(rows, ensure_ascii=False, separators=(",", ":"),
+                                     default=str).encode("utf-8")).hexdigest()
+
+
+def _current_provision_reading(cur, document_id: int) -> list:
+    # This is quality evidence for the current served reading, not a rewrite
+    # of the immutable OCR blocks. Parentage, identity and headings are bound
+    # as well as text, so a later replay cannot silently reuse this review.
+    cur.execute("""SELECT i.id::text,i.source_observation_id,p.path::text,
+                          parent.path::text,p.kind::text,p.label,p.heading,
+                          p.first_page,p.last_page,p.first_block,v.text_en
+                     FROM instrument i JOIN provision p ON p.instrument_id=i.id AND p.is_active
+                     LEFT JOIN provision parent ON parent.id=p.parent_id
+                     LEFT JOIN LATERAL (
+                       SELECT text_en FROM provision_version pv
+                        WHERE pv.provision_id=p.id AND pv.validity @> current_date
+                        ORDER BY lower(pv.validity) DESC LIMIT 1
+                     ) v ON true
+                    WHERE i.document_id=%s AND i.is_active AND i.duplicate_of IS NULL
+                    ORDER BY i.id,p.ordinal,p.path""", (document_id,))
+    return cur.fetchall()
+
+
+def _reviewed_legal_rate(detail: object, pages: int, document_id: int,
+                         rows: list) -> float | None:
+    """Score an exact, fully page-reviewed current reading at the same threshold.
+
+    Legacy page-read assertions do not opt in. Missing pages, another document,
+    an empty tree, or any tree/text drift leave the raw OCR rate in force.
+    """
+    if (not isinstance(detail, dict) or not _page_read_covers(detail, pages)
+            or pages < 1 or len(detail["render_sha256"]) != pages
+            or any(re.fullmatch(r"[0-9a-f]{64}", d) is None for d in detail["render_sha256"])
+            or detail.get("method") != REVIEWED_PROVISIONS_METHOD
+            or type(detail.get("document_id")) is not int
+            or detail["document_id"] != document_id or not rows
+            or detail.get("reviewed_provisions_sha256") != _provision_reading_sha256(rows)):
+        return None
+    tokens = WORD.findall(" ".join(row[-1] or "" for row in rows).lower())
+    return sum(t in LEGAL for t in tokens) / len(tokens) if tokens else None
+
+
+def _reviewed_table_allowed(detail: object, pages: int, document_id: int,
+                            rows: list, lane: str) -> bool:
+    """Keep the existing table-vocabulary exception bound to an opted-in tree.
+
+    A curated tariff can still contain few dictionary words: article names,
+    fractions and duty cells are the source. Its explicit table review must
+    be as fresh and complete as the companion current-provision page read.
+    Legacy table assertions retain their existing semantics.
+    """
+    if not isinstance(detail, dict):
+        return False
+    if detail.get('method') != REVIEWED_PROVISIONS_METHOD:
+        return True
+    return (lane == 'E4' and detail.get('purpose') == 'ocr-table-document'
+            and detail.get('table_review') == 'source_checked_article_names_and_duty_cells'
+            and _reviewed_legal_rate(detail, pages, document_id, rows) is not None)
 
 
 def main() -> int:
@@ -137,6 +208,7 @@ def main() -> int:
             text = cur.fetchone()[0].lower()
             toks = WORD.findall(text)
             rate = (sum(1 for t in toks if t in LEGAL) / len(toks)) if toks else 0.0
+            raw_rate = rate
             # `WORD` deliberately measures English legal vocabulary, so it
             # cannot also measure yield for Urdu/Sindhi. The OCR worker already
             # records Tesseract's script-independent accepted word count.
@@ -144,14 +216,45 @@ def main() -> int:
             conf = float(conf or 0)
 
             problems = []
-            if conf < MIN_CONFIDENCE:
-                problems.append(f"confidence {conf:.3f}")
-            # Urdu output is not scored against an English vocabulary.
+            page_read_id: int | None = None
+            curated_legal_rate: float | None = None
+            reviewed_provisions_sha256: str | None = None
             english_only = (ocr_language in ("eng", "en")
                             or (not ocr_language and lang == "en"))
+            if conf < MIN_CONFIDENCE or (english_only and rate < MIN_LEGAL_RATE):
+                # §4's "human review below threshold", recorded: a reader rendered EVERY page and the document's
+                # provisions are that reading (a page-by-page transcription, or text checked line by line against the
+                # page). The engine's confidence then describes a reading the release no longer carries. The
+                # assertion names each page's render digest; fewer digests than pages is no review of the document.
+                cur.execute(
+                    """SELECT id, detail FROM extraction_assertion
+                        WHERE sha256=%s AND page_no IS NULL AND is_active
+                          AND kind='source_content_confirmed'
+                          AND detail->>'purpose'='ocr-page-read-document'
+                        ORDER BY asserted_at DESC,id DESC LIMIT 1""",
+                    (sha,),
+                )
+                reviewed = cur.fetchone()
+                if reviewed and _page_read_covers(reviewed[1], pages):
+                    detail = reviewed[1]
+                    if detail.get("method") == REVIEWED_PROVISIONS_METHOD:
+                        # Mixed E3 output must not score its clean-text pages
+                        # as a substitute for its separate OCR-page reading.
+                        if lane == "E4":
+                            reading = _current_provision_reading(cur, doc_id)
+                            curated_legal_rate = _reviewed_legal_rate(detail, pages, doc_id, reading)
+                            if curated_legal_rate is not None:
+                                page_read_id = reviewed[0]
+                                reviewed_provisions_sha256 = _provision_reading_sha256(reading)
+                                rate = curated_legal_rate
+                    else:
+                        page_read_id = reviewed[0]
+            if conf < MIN_CONFIDENCE and page_read_id is None:
+                problems.append(f"confidence {conf:.3f}")
+            # Urdu output is not scored against an English vocabulary.
             if english_only and rate < MIN_LEGAL_RATE:
                 cur.execute(
-                    """SELECT id FROM extraction_assertion
+                    """SELECT id, detail FROM extraction_assertion
                         WHERE sha256=%s AND page_no IS NULL AND is_active
                           AND kind='source_content_confirmed'
                           AND detail->>'purpose'='ocr-table-document'
@@ -159,7 +262,11 @@ def main() -> int:
                     (sha,),
                 )
                 reviewed = cur.fetchone()
-                table_source_review_id = reviewed[0] if reviewed else None
+                if reviewed:
+                    table_reading = (_current_provision_reading(cur, doc_id)
+                                     if isinstance(reviewed[1], dict) and reviewed[1].get('method') == REVIEWED_PROVISIONS_METHOD else [])
+                    table_source_review_id = (reviewed[0] if _reviewed_table_allowed(
+                        reviewed[1], pages, doc_id, table_reading, lane) else None)
             if (english_only and rate < MIN_LEGAL_RATE
                     and table_source_review_id is None):
                 problems.append(f"legal-token rate {rate:.3f}")
@@ -191,6 +298,9 @@ def main() -> int:
                      json.dumps(problems, ensure_ascii=False),
                      json.dumps({"mean_confidence": conf,
                                  "legal_token_rate": round(rate, 6),
+                                 "raw_legal_token_rate": round(raw_rate, 6),
+                                 "curated_legal_token_rate": curated_legal_rate,
+                                 "reviewed_provisions_sha256": reviewed_provisions_sha256,
                                  "words_per_page": round(per_page, 3),
                                  "ocr_pages": pages,
                                  "ocr_words": int(words or 0),
@@ -200,7 +310,8 @@ def main() -> int:
                                  "source_confirmed_sparse_page_nos":
                                      confirmed_sparse_page_nos,
                                  "table_source_review_assertion_id":
-                                     table_source_review_id},
+                                     table_source_review_id,
+                                 "page_read_assertion_id": page_read_id},
                                 ensure_ascii=False)),
                 )
                 cur.execute("UPDATE document SET verification_state=%s WHERE id=%s",
