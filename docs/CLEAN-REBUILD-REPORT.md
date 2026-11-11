@@ -333,3 +333,46 @@ row. The complete Python suite passes under segmenter `/38`.
 4. Only after those L2 tasks are closed should the complete corpus move to the
    retrieval-segmentation stage. Release views remain the sole safe application
    boundary in the meantime.
+
+## Compaction — 2026-11-11
+
+Superseded derived trees were pruned with the restore-proof workflow
+(`tools/test_prune_retired.sh` then `tools/prune_retired_live.sh`).
+
+**Selection change (as built).** Since the September prunes, new evidence tables
+reference instrument revisions. The prune now retains whole any retired tree that
+evidence still names, and the transitive `duplicate_of`/`repealed_by` targets of
+anything retained: identity resolutions, TOC gap adjudications (instrument or
+contents row), TOC disposition assertions, heading census findings (no FK),
+an active expression manifest, `amended_by` references, and retired expressions
+with no active successor at their ordinal (withdrawn, not superseded).
+1,519 retired revisions are kept on those grounds; 35,845 were archived and
+removed. The rehearsal now also fingerprints those evidence tables, the TOC
+queue and the text of every released provision version, checks census findings
+for dangling ids, compares manifest breaks with the restored baseline instead
+of requiring zero, and runs the full corpus audit on the pruned copy.
+
+**Result.** 5,583,408 provisions, 5,301,289 versions, 10,981,173 + 687,266
+block links, 61,081 TOC rows and related candidate rows removed; source
+observations, blobs, documents, pages, text blocks, OCR, assertions,
+adjudications, curation patches and every active/released row untouched. The
+live before/after signature (22 counts plus a hash of released provision text)
+is identical; the audit passes 36/36; `./nz test` 33/33. After `VACUUM FULL`
+on the affected tables the database went from 15 GB to 4.4 GB.
+
+| Purpose | File | Bytes | SHA-256 |
+|---|---|---:|---|
+| pre-prune archive (restore proof) | `/snapshots/nizam_clean-20261111T080128Z.dump`; permanent copy `E:\nizam-data\archives\prune-2026-11-11\` | 1,718,740,542 | `37c93bd6f4f0505db3b7477ad12ba550ee7d2c4a6a2f5b76270678b9fcd3d42c` |
+| post-prune state | `/snapshots/nizam_clean-20261111T101426Z.dump` | 618,331,955 | — |
+
+The `/snapshots` copy will rotate out under the 8-file retention; the
+`archives/` copy does not. The two 9 Sep batch archives
+(`nizam_clean-20260909T075441Z.dump`, `nizam_clean-20260909T192458Z.dump`) have
+already rotated out of `/snapshots`, so those batches' restore copies no longer
+exist on disk.
+
+**Found, not changed.** The active expression manifest `4dabfd19…` (document
+9164) still names instrument `70917c82…`, retired four hours after the manifest
+was written; that tree is retained so the link stays valid. Instrument
+`16f6e7b7…` (9361 e0) has two `segmented` runs, so `v_release_instrument`
+returns 8,852 rows for 8,851 instruments.

@@ -4,6 +4,61 @@
 \set ON_ERROR_STOP on
 BEGIN;
 
+-- Retired trees that evidence still points at are retained whole, never
+-- rewritten.  Each reason is an append-only record over that exact revision.
+CREATE TEMP TABLE keep_seed ON COMMIT DROP AS
+SELECT old.id,
+       array_remove(ARRAY[
+         -- Identity resolutions are proof over two exact tree revisions.
+         CASE WHEN EXISTS (SELECT 1 FROM instrument_identity_resolution x
+                            WHERE old.id IN (x.duplicate_instrument_id,x.canonical_instrument_id))
+              THEN 'identity_resolution' END,
+         -- TOC gap and disposition decisions name the instrument or one of its contents rows.
+         CASE WHEN EXISTS (SELECT 1 FROM toc_gap_adjudication a WHERE a.instrument_id=old.id)
+                OR EXISTS (SELECT 1 FROM toc_gap_adjudication a
+                             JOIN instrument_toc_entry e ON e.id=a.toc_entry_id
+                            WHERE e.instrument_id=old.id)
+              THEN 'toc_gap_adjudication' END,
+         CASE WHEN EXISTS (SELECT 1 FROM toc_disposition_assertion d WHERE d.amending_instrument_id=old.id)
+                OR EXISTS (SELECT 1 FROM toc_disposition_assertion d
+                             JOIN instrument_toc_entry e ON e.id=d.reviewed_toc_entry_id
+                            WHERE e.instrument_id=old.id)
+              THEN 'toc_disposition_assertion' END,
+         -- Heading census findings carry instrument/provision ids without a foreign key.
+         CASE WHEN EXISTS (SELECT 1 FROM heading_mislabel_finding h WHERE h.instrument_id=old.id)
+                OR EXISTS (SELECT 1 FROM heading_mislabel_finding h
+                             JOIN provision p ON p.id=h.provision_id
+                            WHERE p.instrument_id=old.id)
+              THEN 'heading_mislabel_finding' END,
+         -- An active expression manifest still names this materialization.
+         CASE WHEN EXISTS (SELECT 1 FROM instrument_expression_manifest m
+                            WHERE m.is_active AND m.materialized_instrument_id=old.id)
+              THEN 'active_expression_manifest' END,
+         -- Withdrawn, not superseded: no active expression at this ordinal.
+         CASE WHEN NOT EXISTS (SELECT 1 FROM instrument cur
+                                WHERE cur.is_active
+                                  AND cur.source_observation_id=old.source_observation_id
+                                  AND cur.expression_ordinal=old.expression_ordinal)
+              THEN 'no_active_successor' END,
+         CASE WHEN EXISTS (SELECT 1 FROM provision_version v WHERE v.amended_by_id=old.id)
+              THEN 'amended_by_reference' END
+       ], NULL) reasons
+  FROM instrument old
+ WHERE NOT old.is_active;
+DELETE FROM keep_seed WHERE cardinality(reasons)=0;
+
+-- A retained row must not lose the rows it points at (duplicate_of, repealed_by).
+CREATE TEMP TABLE keep_instrument ON COMMIT DROP AS
+WITH RECURSIVE k(id) AS (
+  SELECT id FROM keep_seed
+  UNION
+  SELECT t.id FROM k
+    JOIN instrument src ON src.id=k.id
+    JOIN instrument t ON t.id IN (src.duplicate_of,src.repealed_by_id)
+   WHERE NOT t.is_active
+)
+SELECT DISTINCT id FROM k;
+
 CREATE TEMP TABLE prune_instrument ON COMMIT DROP AS
 SELECT old.id archived_id,cur.id retained_id,old.source_observation_id
   FROM instrument old
@@ -16,11 +71,7 @@ SELECT old.id archived_id,cur.id retained_id,old.source_observation_id
                      -- old Act with an unrelated embedded Rules expression.
                      AND cur.expression_ordinal=old.expression_ordinal
  WHERE NOT old.is_active
-   -- Identity resolutions are append-only proof over two exact tree revisions.
-   -- Retain either endpoint rather than rewriting or weakening that proof.
-   AND NOT EXISTS (
-       SELECT 1 FROM instrument_identity_resolution x
-        WHERE x.duplicate_instrument_id=old.id OR x.canonical_instrument_id=old.id);
+   AND NOT EXISTS (SELECT 1 FROM keep_instrument k WHERE k.id=old.id);
 
 DO $$
 BEGIN
@@ -28,11 +79,17 @@ BEGIN
     SELECT 1 FROM instrument old
      WHERE NOT old.is_active
        AND NOT EXISTS (SELECT 1 FROM prune_instrument p WHERE p.archived_id=old.id)
-       AND NOT EXISTS (
-           SELECT 1 FROM instrument_identity_resolution x
-            WHERE x.duplicate_instrument_id=old.id OR x.canonical_instrument_id=old.id)
+       AND NOT EXISTS (SELECT 1 FROM keep_instrument k WHERE k.id=old.id)
   ) THEN
     RAISE EXCEPTION 'retired instrument without exactly selected active successor';
+  END IF;
+  IF (SELECT count(*) FROM prune_instrument) <> (SELECT count(DISTINCT archived_id) FROM prune_instrument) THEN
+    RAISE EXCEPTION 'retired instrument matched more than one active successor';
+  END IF;
+  -- Rows that stay must not reference rows that go.
+  IF EXISTS (SELECT 1 FROM instrument i JOIN prune_instrument p ON p.archived_id IN (i.duplicate_of,i.repealed_by_id)
+              WHERE NOT EXISTS (SELECT 1 FROM prune_instrument q WHERE q.archived_id=i.id)) THEN
+    RAISE EXCEPTION 'retained instrument references a prune target';
   END IF;
 END $$;
 
@@ -189,6 +246,9 @@ UPDATE revision_archive_batch b
    SET pruned_at=now(),
        detail=detail || jsonb_build_object(
          'instrument_revisions_archived',(SELECT count(*) FROM prune_instrument),
+         'retired_revisions_retained',(SELECT count(*) FROM keep_instrument),
+         'retained_by_reason',(SELECT jsonb_object_agg(r,n) FROM (
+             SELECT unnest(reasons) r,count(*) n FROM keep_seed GROUP BY 1) x),
          'active_documents_retained',(SELECT count(*) FROM document WHERE is_active),
          'retired_documents_retained',(SELECT count(*) FROM document WHERE NOT is_active),
          'active_instruments_retained',(SELECT count(*) FROM instrument WHERE is_active))

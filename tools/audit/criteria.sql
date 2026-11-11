@@ -63,6 +63,10 @@ WITH RECURSIVE live_document AS (SELECT * FROM audit_document),
          FROM extraction_verification v
          JOIN live_document d ON d.id=v.document_id
         WHERE v.verifier LIKE 'nizam.verify_text_quality/%'
+          -- Q3 expects this evidence for the non-E4 population only (text_verify_expected); a row on an E4
+          -- document (a release hold and its lift, 11 Nov 2026) is about a document the verifier does not
+          -- apply to and must not push the recorded count past the expected one.
+          AND d.lane<>'E4'
         ORDER BY v.document_id,v.verified_at DESC,v.id DESC),
      latest_segmentation AS (
        SELECT DISTINCT ON (r.instrument_id) r.*
