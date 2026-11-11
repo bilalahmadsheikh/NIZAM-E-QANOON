@@ -145,6 +145,10 @@ def main() -> int:
     ap.add_argument("--apply", action="store_true")
     ap.add_argument("--show", type=int, default=25, help="print this many recorded samples")
     ap.add_argument("--dump", help="write every recorded (instrument_id, number, quote) to this JSON file")
+    ap.add_argument("--correct-stored", action="store_true",
+                    help="instead: check numbers the SEGMENTER stored against the title region; where exactly one "
+                         "printed number disagrees, record it with basis printed_number_corrects_stored (the only "
+                         "basis tools/apply_instrument_metadata.py lets overwrite a stored number)")
     args = ap.parse_args()
     dumped = []
     from nizam.storage.db import connect
@@ -152,22 +156,31 @@ def main() -> int:
     samples, ambiguous = [], []
     with connect() as conn, conn.cursor() as cur:
         cur.execute("SET LOCAL statement_timeout = 0")
+        correcting = args.correct_stored
+        basis = "printed_number_corrects_stored" if correcting else "printed_in_title_region"
         cur.execute("""SELECT i.id::text, i.source_observation_id, i.expression_ordinal, i.document_id, i.kind::text,
-                              i.year, i.source_start_block_id, i.source_end_block_id
+                              i.year, i.source_start_block_id, i.source_end_block_id, i.number
                          FROM v_release_instrument i
                         WHERE i.year IS NOT NULL
                           AND i.kind::text IN ('act', 'ordinance', 'order', 'regulation')
-                          -- no number yet, or a number THIS tool asserted (re-checked under the current rules)
-                          AND (i.number IS NULL OR EXISTS (
-                               SELECT 1 FROM v_instrument_metadata_current c
-                                WHERE c.instrument_id = i.id AND c.field = 'number' AND c.method = %s))""",
-                    (METHOD,))
+                          AND CASE WHEN %s
+                              -- a stored number with no standing assertion, or one this mode asserted
+                              THEN i.number IS NOT NULL AND NOT EXISTS (
+                                   SELECT 1 FROM v_instrument_metadata_current c
+                                    WHERE c.instrument_id = i.id AND c.field = 'number'
+                                      AND c.basis IS DISTINCT FROM 'printed_number_corrects_stored')
+                              -- no number yet, or a number THIS tool asserted (re-checked under the current rules)
+                              ELSE (i.number IS NULL OR EXISTS (
+                                   SELECT 1 FROM v_instrument_metadata_current c
+                                    WHERE c.instrument_id = i.id AND c.field = 'number' AND c.method = %s
+                                      AND c.basis = 'printed_in_title_region')) END""",
+                    (correcting, METHOD))
         todo = cur.fetchall()
         cur.execute("""SELECT source_observation_id, expression_ordinal, value FROM v_instrument_metadata_current
                         WHERE field = 'number'""")
         standing = {(r[0], r[1]): r[2] for r in cur.fetchall()}
         withdrawn = latest_withdrawn(cur, "number")
-        for iid, obs, ordinal, doc, kind, year, start, end in todo:
+        for iid, obs, ordinal, doc, kind, year, start, end, stored in todo:
             counts["considered"] += 1
             if (obs, ordinal) in withdrawn:      # a person withdrew it; the tool does not re-assert it
                 counts["withdrawn_kept"] = counts.get("withdrawn_kept", 0) + 1
@@ -191,20 +204,22 @@ def main() -> int:
             number = numbers.pop()
             if standing.get((obs, ordinal)) == number:
                 counts["unchanged"] += 1; continue
+            if correcting and stored == number:      # the segmenter's number is the printed one
+                counts["agree"] = counts.get("agree", 0) + 1; continue
             first = min(found, key=lambda f: f[1])
             quote = " ".join(region[max(0, first[1] - 20):first[2] + 5].split())
             bid, page = next(((b, p) for s, e, b, p in spans if s <= first[1] < e), (blocks[0][0], blocks[0][1]))
             evidence = dict(reviewer_type="tool", kind=kind, year=year,
                             region_cut_at=(stop.group(0)[:40] if stop else None),
-                            matches=len(found))
+                            matches=len(found), **({"stored_by_segmenter": stored} if correcting else {}))
             cur.execute("""INSERT INTO instrument_metadata_assertion
                              (source_observation_id, expression_ordinal, field, value, assertion, basis,
                               source_block_id, source_page, quote, method, evidence, recorded_by)
-                           VALUES (%s, %s, 'number', %s, 'asserted', 'printed_in_title_region', %s, %s, %s, %s,
-                                   %s::jsonb, 'claude')""",
-                        (obs, ordinal, number, bid, page, quote, METHOD, json.dumps(evidence)))
+                           VALUES (%s, %s, 'number', %s, 'asserted', %s, %s, %s, %s, %s, %s::jsonb, 'claude')""",
+                        (obs, ordinal, number, basis, bid, page, quote, METHOD, json.dumps(evidence)))
             counts["recorded"] += 1
-            dumped.append(dict(instrument_id=iid, document_id=doc, kind=kind, year=year, number=number, quote=quote))
+            dumped.append(dict(instrument_id=iid, document_id=doc, kind=kind, year=year, number=number, quote=quote,
+                               stored=stored))
             if len(samples) < args.show:
                 samples.append((doc, kind, year, number, quote))
         if not args.apply:

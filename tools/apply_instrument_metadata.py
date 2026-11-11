@@ -7,7 +7,10 @@ them, both ways, as tools/apply_statutory_repeals.py does for status:
     carries a value no standing assertion supports goes back to NULL (the segmenter never writes these);
   * number -- FILL-ONLY: written where the segmenter left it NULL. A segmenter number that disagrees with a standing
     assertion is reported, not overwritten. A number this tool wrote goes back to NULL when its assertion is
-    withdrawn and nothing stands behind it.
+    withdrawn and nothing stands behind it. ONE EXCEPTION: an assertion with basis printed_number_corrects_stored
+    (tools/record_instrument_numbers.py --correct-stored, 12 Nov 2026: the segmenter had stored a number cited in the
+    body, e.g. 1707 'LXXI' for the Service Tribunals Act, which prints 'ACT NO. LXX OF 1973') overwrites the stored
+    number; the replay writes the segmenter's value back and this step corrects it again.
 
 Run after every replay (tools/post_replay_sequence.sh step 2b4); safe to run again.
 
@@ -69,6 +72,12 @@ UPDATE instrument i SET number = NULL
    AND i.source_observation_id = l.source_observation_id AND i.expression_ordinal = l.expression_ordinal
    AND i.number = v.value"""
 
+NUMBER_CORRECT = """
+UPDATE instrument i SET number = c.value
+  FROM v_instrument_metadata_current c
+ WHERE c.field = 'number' AND i.id = c.instrument_id AND c.basis = 'printed_number_corrects_stored'
+   AND i.number IS DISTINCT FROM c.value"""
+
 NUMBER_CONFLICTS = """
 SELECT i.id, i.document_id, i.number, c.value
   FROM v_instrument_metadata_current c JOIN instrument i ON i.id = c.instrument_id
@@ -93,7 +102,8 @@ def main() -> int:
             changed[field] = (s, u)
         cur.execute(NUMBER_FILL); nf = cur.rowcount
         cur.execute(NUMBER_UNSET); nu = cur.rowcount
-        changed["number"] = (nf, nu)
+        cur.execute(NUMBER_CORRECT); nc = cur.rowcount
+        changed["number"] = (nf + nc, nu)
         cur.execute(NUMBER_CONFLICTS)
         conflicts = cur.fetchall()
         cur.execute("SELECT field, count(*) FROM v_instrument_metadata_current GROUP BY 1 ORDER BY 1")

@@ -525,7 +525,10 @@ m AS (
           OR (c.field='text_language' AND i.text_language IS DISTINCT FROM c.value)
           OR (c.field='enacted_on'    AND i.enacted_on   IS DISTINCT FROM c.value::date)
           OR (c.field='commenced_on'  AND i.commenced_on IS DISTINCT FROM c.value::date)
-          OR (c.field='number'        AND i.number IS NULL))                            AS meta_unreflected
+          -- number is fill-only, except a printed_number_corrects_stored assertion, which must be the number
+          OR (c.field='number'        AND (i.number IS NULL
+               OR (c.basis='printed_number_corrects_stored' AND i.number IS DISTINCT FROM c.value))))
+                                                                                          AS meta_unreflected
     ,(SELECT count(*) FROM instrument i
        WHERE i.is_active AND i.duplicate_of IS NULL
          AND ((i.display_title IS NOT NULL AND NOT EXISTS (SELECT 1 FROM v_instrument_metadata_current c
