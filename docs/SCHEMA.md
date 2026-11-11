@@ -156,8 +156,16 @@ and part scanned without rejecting the whole file.
 | `is_active`, `retired_at` | boolean, timestamptz | active revision selector |
 | `supersedes_instrument_id` | uuid | → prior `instrument`, append-only revision chain |
 | `verification_state` | text | unverified · passed · review · rejected |
+| `display_title` | text | the name to render (INV-1); NULL renders `short_title`. Derived from `instrument_metadata_assertion` (0070) |
+| `text_language` | text | `en` · `ur` · `sd`: the language of this expression's released text, **measured** from it (0070). Not docs/03b's authentic language |
 
 `CHECK ck_repeal`: `status = 'repealed'` **iff** `repealed_on IS NOT NULL`.
+
+`number`, `enacted_on`, `commenced_on`, `display_title` and `text_language` are
+derived after every replay from `v_instrument_metadata_current` by
+`tools/apply_instrument_metadata.py` (post-replay step 2b4; audit A15). `number`
+is fill-only: a number the segmenter read is kept, and a disagreement is reported.
+`short_title` is never changed, because replay matching and identity key on it.
 
 Active expression identity is unique on
 `(source_observation_id, expression_ordinal)`. Citation lookup remains a
@@ -842,6 +850,78 @@ we do not hold, 151 are in Ordinances, 108 are qualified, 4 are revived and 1
 names its own Act. That left 50 instruments, 24 of them dated. Every other
 instrument's status is `unknown`, a declared limitation and not "in force".
 
+Second pass, 11 Nov 2026: 16 of the 54 undated repeals were dated from the
+repealing Act's established commencement (0070): 12 by exactly the rule above,
+4 where the Act prints its own commencement date
+(`tools/evidence/date-statutory-repeals-from-commencement-2026-11-11.sql`,
+method `nizam.statutory_repeal_dated_by_commencement/1`). That gives 62 repealed
+and dated, and 38 with a certain repealer but no date.
+
+### `instrument_metadata_assertion` — names, numbers, dates and language from evidence
+
+Migration 0070. Append-only; keyed by `(source_observation_id,
+expression_ordinal, field)` so a replay does not orphan it; latest row wins, and
+a withdrawal is a row with `assertion = 'withdrawn'`. One field per row:
+
+| field | recorded by | rule |
+|---|---|---|
+| `display_title` | `tools/record_display_titles.py` | the name verified or near-matched in the instrument's own printed text (`.artifacts/instrument-names-2026-11-11/`); names needing review are not recorded |
+| `number` | `tools/record_instrument_numbers.py` | printed in the **title region** (first ≤80 blocks, cut at long title / preamble / enacting formula / section 1 in body form; first 20 blocks when no marker); year equal to the instrument's; kind word agrees; canonical numeral; exactly one candidate |
+| `enacted_on` | `tools/record_enacted_dates.py` | the bracketed date under the title (`[18th April, 1956]`) or a printed assent statement, in the title region, year equal, exactly one. The catalogue date is **not** a source (placeholders and upload dates) |
+| `commenced_on` | `tools/record_commencement.py` | only a self-executing commencement of the **whole** instrument: "at once" gives the established `enacted_on` (0066's convention), or a printed "on <date>". Notification, partial, enumerated or deemed commencement is never recorded (docs/03b: commencement lives in the Gazette) |
+| `text_language` | `tools/record_text_language.py` | Arabic-script share of all released text ≥ 0.60 gives `ur` (or `sd` with Sindhi letters), ≤ 0.10 gives `en`; anything else is left for a person |
+
+Printed facts (`number`, `enacted_on`, `commenced_on`) must carry the verbatim
+`quote` and the `source_block_id`, and the guard checks that the block belongs
+to the observation. Recorders re-check their own earlier assertions under the
+current rules, and withdraw what is no longer reproduced. They never re-assert a
+withdrawn key.
+
+### `amendment_reference` — which law amended which provision
+
+Migration 0072 (resolution refined by 0073, 0074). Append-only. One row is one
+printed amendment footnote entry of a released expression, verbatim:
+`1Subs. by the Law Reforms Ordinance, 1972 (XII of 1972), s. 2`. Each row is
+parsed into `operations`, the cited law (`cited_title` / `kind` / `number` /
+`year` / `section`) and a printed `effective_from` (w.e.f.).
+
+`target_block_id` is the one body block on the same page that carries the same
+footnote marker before `[` or `*`. It is NULL when no single block does.
+
+`v_amendment_reference_current` resolves:
+
+- the amended instrument and provision;
+- the amending instrument, only on **exactly one** match. A named citation
+  matches by title key and year. Only a bare `Act IV of 2011` matches by
+  number, never a West Pakistan citation. A citation that names a jurisdiction
+  matches only within it.
+
+This is docs/03b's `amends` relation **without version history**. The corpus
+holds only current consolidated wording, so no version is closed or opened.
+
+### `operative_provision` — the view retrieval reads (INV-5)
+
+Migration 0071, docs/03b §6.2 as built. Set the date first:
+`SET nzq.as_of = 'YYYY-MM-DD'`. A read without it raises. `nzq.territory` is
+optional and takes punjab · sindh · kp · balochistan · ict.
+
+It returns the released provisions whose version is valid at `as_of`. It drops:
+
+- instruments not yet enacted at `as_of`;
+- instruments whose established commencement is after `as_of`;
+- instruments repealed on or before `as_of`;
+- historical expressions whose window misses `as_of`;
+- instruments out of the territory, when one is set.
+
+Urdu and Sindhi text is returned in `text_ur` only. Every row carries
+`commencement_coverage` (`established` · `not_tracked`),
+`invalidation_coverage` (`not_tracked`) and `extent_coverage`
+(`jurisdiction_default`). An unknown is declared, never hidden.
+
+Consolidated text is valid from its 2026 observation date, so a question about
+an earlier date finds no text and abstains. The exception is 0064 historical
+expressions.
+
 ### `segmentation_curation_patch` — auditable source corrections
 
 An append-only, fail-closed correction to parser input, never an edit to
@@ -925,6 +1005,9 @@ required before superseded derived rows may be pruned.
 
 | view | why |
 |---|---|
+| `operative_provision` | **what retrieval reads** (0071): released provisions in force at `nzq.as_of` (required) in `nzq.territory`, with instrument citation facts and coverage flags |
+| `v_instrument_metadata_current` | the standing display title, number, dates and text language per expression, resolved to the active instrument (0070) |
+| `v_amendment_reference_current` | printed amendment footnotes resolved to the amended provision and, where exactly one matches, the amending instrument (0072–0074) |
 | `v_provision` | every provision with its **currently operative** text. **Read this, never `provision_version` directly** — that is INV-5 in practice |
 | `v_document` | extracted documents by published title; the join you keep writing by hand |
 | `v_provision_source` | the blocks a provision was built from — its trail back to the printed page |

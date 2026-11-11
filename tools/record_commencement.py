@@ -1,0 +1,158 @@
+"""Record when a released instrument came into force, where its OWN text says so for the whole (0070, commenced_on).
+
+docs/03b ('the two edges that cannot be extracted from statute text'): commencement by notification lives in the
+Gazette, not in the Act, so it is never inferred here -- such an instrument keeps commenced_on NULL and the operative
+view reports its commencement coverage as 'not_tracked'. Only two self-executing forms are recorded:
+
+  * 'This Act shall come into force at once' (also 'forthwith', 'immediately', and 'It shall ...' inside section 1):
+    commenced_on = the instrument's established printed enactment date (field enacted_on). This is the convention
+    migration 0066 already uses to date a repeal ('a printed date AND a commencement clause "shall come into force
+    at once"'). Without an established enacted_on nothing is recorded.
+  * 'This Act shall come into force on the 1st day of July, 1957' (or 'with effect from'): that printed date,
+    accepted only within [year - 3, year + 2] of the instrument's year.
+
+REFUSED -- left NULL: commencement by notification or appointment; any 'except', 'different dates', 'different
+provisions', 'section'/'clause' in the commencement sentence (partial commencement); an enumerated list ('—(a) in the
+Federal Capital ...'); 'deemed to have' (retrospective deeming); two commencement sentences that disagree; Urdu or
+Sindhi text (the English patterns do not apply).
+
+The sentence is looked for in the instrument's first 15 provisions, in order. The quote is the sentence; the
+source block is that provision's first block.
+
+    python tools/record_commencement.py            # report
+    python tools/record_commencement.py --apply    # write
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import re
+import sys
+from datetime import date
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+from record_enacted_dates import DAY_RX, MONTH_RX, to_date  # noqa: E402
+from record_instrument_numbers import latest_withdrawn, withdraw  # noqa: E402
+
+METHOD = "nizam.self_executing_commencement/1"
+SUBJECT = r"(?:This|These|The\s+said|the\s+said|The)?\s*(?:Act|Ordinance|Order|Regulations?|Rules|Regulation|It|it)"
+CLAUSE = re.compile(rf"{SUBJECT}\s+(?:shall|will)\s+(?:be\s+deemed\s+to\s+have\s+)?(?:come|came)\s+into\s+"
+                    rf"(?:force|operation)(?P<tail>[^.;]{{0,200}})", re.S)
+AT_ONCE = re.compile(r"^\s*,?\s*(?:at\s+once|forthwith|immediately)\b", re.I)
+ON_DATE = re.compile(rf"^\s*,?\s*(?:on\s+(?:and\s+from\s+)?|with\s+effect\s+from\s+|from\s+)(?:the\s+)?{DAY_RX}\s+"
+                     rf"(?:day\s+of\s+)?{MONTH_RX},?\s*(\d{{4}})", re.I)
+PARTIAL = re.compile(r"\bexcept\b|different\s+dates|different\s+provisions|\bsections?\b|\bclauses?\b|"
+                     r"notification|appoint|deemed|such\s+date|[—–-]\s*\(a\)|:\s*\(a\)|\bareas?\b|\bprovince\b",
+                     re.I)
+
+
+def classify(text: str, enacted: str | None, year: int) -> tuple[str | None, str, str]:
+    """(value or None, basis or refusal reason, quote)."""
+    results = []
+    for m in CLAUSE.finditer(text):
+        sentence = m.group(0)
+        tail = m.group("tail")
+        if PARTIAL.search(sentence):
+            results.append((None, "partial_or_notified", sentence))
+            continue
+        if AT_ONCE.search(tail):
+            results.append(("AT_ONCE", "commences_at_once_on_printed_enactment_date", sentence))
+            continue
+        d = ON_DATE.search(tail)
+        if d:
+            dt = to_date(d.group(1), d.group(2), d.group(3))
+            if dt and year - 3 <= dt.year <= year + 2 and dt <= date.today():
+                results.append((dt.isoformat(), "commences_on_printed_date", sentence))
+                continue
+        results.append((None, "unrecognised_form", sentence))
+    if not results:
+        return None, "no_commencement_sentence", ""
+    if any(r[0] is None for r in results):
+        bad = next(r for r in results if r[0] is None)
+        return None, bad[1], bad[2]
+    kinds = {r[0] for r in results}
+    if len(kinds) > 1:
+        return None, "disagreeing_sentences", results[0][2]
+    value, basis, sentence = results[0]
+    if value == "AT_ONCE":
+        if not enacted:
+            return None, "at_once_without_enacted_date", sentence
+        value = enacted
+    return value, basis, sentence
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--apply", action="store_true")
+    ap.add_argument("--dump")
+    args = ap.parse_args()
+    from nizam.storage.db import connect
+    counts: dict[str, int] = {}
+    dumped = []
+    with connect() as conn, conn.cursor() as cur:
+        cur.execute("SET LOCAL statement_timeout = 0")
+        cur.execute("""SELECT i.id, i.source_observation_id, i.expression_ordinal, i.document_id, i.year,
+                              i.enacted_on::text
+                         FROM v_release_instrument i
+                        WHERE i.year IS NOT NULL AND coalesce(i.text_language, 'en') = 'en'""")
+        todo = cur.fetchall()
+        cur.execute("""SELECT source_observation_id, expression_ordinal, value FROM v_instrument_metadata_current
+                        WHERE field = 'commenced_on'""")
+        standing = {(r[0], r[1]): r[2] for r in cur.fetchall()}
+        withdrawn = latest_withdrawn(cur, "commenced_on")
+        for iid, obs, ordinal, doc, year, enacted in todo:
+            if (obs, ordinal) in withdrawn:
+                continue
+            cur.execute("""SELECT p.first_block, p.first_page,
+                                  concat_ws(' ', p.heading, p.marginal_note, v.text_en)
+                             FROM provision p
+                             LEFT JOIN provision_version v ON v.provision_id = p.id AND upper_inf(v.validity)
+                            WHERE p.instrument_id = %s AND p.is_active
+                            ORDER BY p.ordinal, p.path LIMIT 15""", (iid,))
+            provisions = cur.fetchall()
+            text = "\n".join(r[2] or "" for r in provisions)
+            value, basis, sentence = classify(text, enacted, year)
+            counts[basis] = counts.get(basis, 0) + 1
+            if value is None:
+                if (obs, ordinal) in standing:
+                    withdraw(cur, obs, ordinal, "commenced_on", METHOD, f"not reproduced: {basis}")
+                    counts["withdrawn_on_recheck"] = counts.get("withdrawn_on_recheck", 0) + 1
+                continue
+            if standing.get((obs, ordinal)) == value:
+                counts["unchanged"] = counts.get("unchanged", 0) + 1
+                continue
+            quote = " ".join(sentence.split())[:300]
+            block, page = None, None
+            for fb, fp, t in provisions:
+                if t and sentence[:40] in " ".join(t.split()) or (t and sentence[:40] in t):
+                    block, page = fb, fp
+                    break
+            if block is None:
+                block, page = provisions[0][0], provisions[0][1]
+            if block is None:
+                counts["no_source_block"] = counts.get("no_source_block", 0) + 1
+                continue
+            evidence = dict(reviewer_type="tool", year=year, enacted_on=enacted,
+                            rule=("at once -> the printed enactment date (convention of migration 0066)"
+                                  if basis.startswith("commences_at_once") else "printed commencement date"))
+            cur.execute("""INSERT INTO instrument_metadata_assertion
+                             (source_observation_id, expression_ordinal, field, value, assertion, basis,
+                              source_block_id, source_page, quote, method, evidence, recorded_by)
+                           VALUES (%s, %s, 'commenced_on', %s, 'asserted', %s, %s, %s, %s, %s, %s::jsonb, 'claude')""",
+                        (obs, ordinal, value, basis, block, page, quote, METHOD, json.dumps(evidence)))
+            counts["recorded"] = counts.get("recorded", 0) + 1
+            dumped.append(dict(document_id=doc, year=year, enacted=enacted, value=value, basis=basis, quote=quote))
+        if not args.apply:
+            conn.rollback()
+    if args.dump:
+        Path(args.dump).write_text(json.dumps(dumped, ensure_ascii=False, indent=0), encoding="utf-8")
+    print(json.dumps(dict(sorted(counts.items())), indent=1))
+    print("applied" if args.apply else "dry run (rolled back); pass --apply to write")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

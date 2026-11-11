@@ -139,6 +139,18 @@ else
     uv run python tools/apply_statutory_repeals.py
 fi
 
+# --------------------------------------------------------------- step 2b4
+# Instrument metadata (migration 0070): display_title, number (fill-only), enacted_on, commenced_on and
+# text_language are derived from the source-level assertions after every replay, which recreates instruments without
+# them. Symptom when skipped: every name, number and date drops back to the catalogue/segmenter value and the
+# operative view loses its dates. Reports and exits cleanly while 0070 is not applied.
+say "2b4. re-derive instrument metadata"
+if [ "$APPLY" = "1" ]; then
+    uv run python tools/apply_instrument_metadata.py --apply
+else
+    uv run python tools/apply_instrument_metadata.py
+fi
+
 # --------------------------------------------------------------- step 2c
 # After every re-link above (duplicates, splits, partial and same-text copies), no document may hold MORE released
 # expressions than at the signed baseline unless the rise was declared: a reviewed split plan, or an approval

@@ -516,6 +516,29 @@ m AS (
     ,(SELECT count(DISTINCT c.repealed_instrument_id) FROM v_statutory_repeal_current c
        WHERE c.repealed_on IS NOT NULL)                                                 AS repeal_dated
 -- <<< A14 measures
+    -- >>> A15 measures
+    -- A15 (migration 0070). display_title, text_language, enacted_on and commenced_on are derived from a standing
+    -- metadata assertion, both ways; number is fill-only (a standing number is never left unwritten). The counts of
+    -- standing values are reported, never a threshold.
+    ,(SELECT count(*) FROM v_instrument_metadata_current c JOIN instrument i ON i.id=c.instrument_id
+       WHERE (c.field='display_title' AND i.display_title IS DISTINCT FROM c.value)
+          OR (c.field='text_language' AND i.text_language IS DISTINCT FROM c.value)
+          OR (c.field='enacted_on'    AND i.enacted_on   IS DISTINCT FROM c.value::date)
+          OR (c.field='commenced_on'  AND i.commenced_on IS DISTINCT FROM c.value::date)
+          OR (c.field='number'        AND i.number IS NULL))                            AS meta_unreflected
+    ,(SELECT count(*) FROM instrument i
+       WHERE i.is_active AND i.duplicate_of IS NULL
+         AND ((i.display_title IS NOT NULL AND NOT EXISTS (SELECT 1 FROM v_instrument_metadata_current c
+                                     WHERE c.instrument_id=i.id AND c.field='display_title'))
+           OR (i.text_language IS NOT NULL AND NOT EXISTS (SELECT 1 FROM v_instrument_metadata_current c
+                                     WHERE c.instrument_id=i.id AND c.field='text_language'))
+           OR (i.enacted_on IS NOT NULL AND NOT EXISTS (SELECT 1 FROM v_instrument_metadata_current c
+                                     WHERE c.instrument_id=i.id AND c.field='enacted_on'))
+           OR (i.commenced_on IS NOT NULL AND NOT EXISTS (SELECT 1 FROM v_instrument_metadata_current c
+                                     WHERE c.instrument_id=i.id AND c.field='commenced_on'))))  AS meta_unevidenced
+    ,(SELECT string_agg(field||' '||n, ', ' ORDER BY field)
+        FROM (SELECT field, count(*) n FROM v_instrument_metadata_current GROUP BY 1) s)   AS meta_standing
+-- <<< A15 measures
 )
 SELECT * FROM (
   SELECT 'C1' AS id, 'every acquired file becomes a blob'      AS criterion,
@@ -663,6 +686,11 @@ SELECT * FROM (
          repeal_unevidenced||' without evidence',
          '0 / 0; count reported',
          CASE WHEN repeal_unreflected=0 AND repeal_unevidenced=0 THEN 'PASS' ELSE 'FAIL' END FROM m
+  UNION ALL SELECT 'A15','instrument names, numbers, dates and language are recorded evidence, and every one is reflected',
+         coalesce(meta_standing,'none')||' standing (reported); '||meta_unreflected||' unreflected; '||
+         meta_unevidenced||' without evidence',
+         '0 / 0; counts reported',
+         CASE WHEN meta_unreflected=0 AND meta_unevidenced=0 THEN 'PASS' ELSE 'FAIL' END FROM m
   UNION ALL SELECT 'A6','no overlapping law (enforced, not tested)',
          CASE WHEN excl_present=1 THEN 'EXCLUDE constraint present'
               ELSE 'CONSTRAINT MISSING' END, 'enforced',

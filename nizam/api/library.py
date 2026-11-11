@@ -76,6 +76,8 @@ class Ancestor(BaseModel):
 class Provision(Node):
     text_en: str | None
     text_ur: str | None
+    # Language of the expression's released text, measured (migration 0070); 'ur'/'sd' text arrives as text_ur.
+    text_language: str | None = None
     operation: str | None
     valid_from: str | None
     valid_to: str | None

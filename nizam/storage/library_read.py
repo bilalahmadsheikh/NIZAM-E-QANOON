@@ -29,8 +29,9 @@ from nizam.storage.db import dsn
 # v_instrument_historical and passes at every date.
 HISTORICAL_GATE = "(h.instrument_id IS NULL OR h.historical_validity @> %(as_of)s::date)"
 
+# The rendered name is the reviewed display title (migration 0070) when one stands, else the catalogue short title.
 _INSTRUMENT_COLUMNS = """
-    i.id, i.short_title AS title, i.kind::text, i.year, i.jurisdiction::text,
+    i.id, coalesce(i.display_title, i.short_title) AS title, i.kind::text, i.year, i.jurisdiction::text,
     i.status::text, i.source_url, i.document_id, i.source_sha256 AS source_hash,
     h.instrument_id IS NOT NULL AS historical,
     h.valid_from::text AS valid_from, h.valid_to::text AS valid_to"""
@@ -62,7 +63,8 @@ class LibraryRead:
             SELECT {_INSTRUMENT_COLUMNS}, NULL::uuid AS current_instrument_id
               FROM v_release_instrument i
               LEFT JOIN v_instrument_historical h ON h.instrument_id = i.id
-             WHERE (%(q)s = '' OR i.short_title ILIKE %(pattern)s ESCAPE '!')
+             WHERE (%(q)s = '' OR i.short_title ILIKE %(pattern)s ESCAPE '!'
+                    OR i.display_title ILIKE %(pattern)s ESCAPE '!')
                AND (%(jurisdiction)s = '' OR i.jurisdiction::text = %(jurisdiction)s)
                AND (%(kind)s = '' OR i.kind::text = %(kind)s)
                AND (%(after)s::uuid IS NULL OR i.id > %(after)s::uuid)
@@ -161,13 +163,22 @@ class LibraryRead:
             return None
         # Same-snapshot release check above is mandatory. Separating it
         # avoids expanding the expensive release proof twice in one join.
+        # The segmenter writes every expression's text to text_en; an Urdu or Sindhi expression (instrument
+        # text_language, measured, migration 0070) is served as text_ur and never as English.
         version = conn.execute("""
-            SELECT text_en, text_ur, operation::text,
-                   lower(validity)::text AS valid_from, upper(validity)::text AS valid_to
-              FROM provision_version
-             WHERE provision_id=%s AND validity @> %s::date
+            SELECT CASE WHEN i.text_language IN ('ur', 'sd') THEN NULL ELSE v.text_en END AS text_en,
+                   CASE WHEN i.text_language IN ('ur', 'sd') THEN coalesce(v.text_ur, v.text_en)
+                        ELSE v.text_ur END AS text_ur,
+                   i.text_language,
+                   v.operation::text,
+                   lower(v.validity)::text AS valid_from, upper(v.validity)::text AS valid_to
+              FROM provision_version v
+              JOIN provision p ON p.id = v.provision_id
+              JOIN instrument i ON i.id = p.instrument_id
+             WHERE v.provision_id=%s AND v.validity @> %s::date
         """, (provision_id, as_of)).fetchone()
-        row.update(version or dict(text_en=None,text_ur=None,operation=None,valid_from=None,valid_to=None))
+        row.update(version or dict(text_en=None,text_ur=None,text_language=None,operation=None,
+                                   valid_from=None,valid_to=None))
         # Ancestors are a short path, not the entire instrument tree.
         row['ancestors'] = conn.execute("""
             SELECT a.id, a.label, a.heading, a.kind::text
