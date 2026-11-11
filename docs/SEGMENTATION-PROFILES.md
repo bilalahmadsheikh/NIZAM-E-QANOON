@@ -966,3 +966,124 @@ source block and label must match an applied opener. Ordinary classification
 and retyping of inferred schedule rows are unchanged. No reparent schema
 extension is used. Tests: `tests/test_reviewed_roman_article_openers.py`.
 
+### Source review addendum — 6 November 2026, document 7968
+
+The Special Economic Zones Rules source page 5 prints an enabling paragraph
+starting `In exercise of powers conferred by Section 40...`, without a
+notification number. Its full paragraph becomes the preamble only for exact
+block 1989746, page 5, normalized SHA-256
+`e40c7fb143b2ec9bf4e6c1138fbaf7e93ffc90382d89fad906f97b5c27151b0e`.
+The additional opener is inside the existing digest-bound branch; unreviewed
+lookalikes, a different block/page, or changed text remain inert. Chapter I
+and Rules 1–2 remain separate. The preceding notification date line contains
+literal `_dd_, Month, year` placeholders; no actual date is inferred or filled.
+Tests: `tests/test_reviewed_sez_rules_intro.py`.
+
+### Exact prefix continuation ownership — 6 November 2026, document 7968
+
+`source_continuation_parent_blocks` retains its two-key whole-block form.
+It additionally admits an optional `source_prefix` of at least 12 characters
+for a common unnumbered continuation printed after other units in one OCR
+block. The exact prefix must occur once in that source block. It only cuts
+the reviewed unit boundary; it supplies no words, label or inferred parent.
+Only that unnumbered unit can select the already open ancestor identified by
+`parent_block_id`. Classified units, missing/ambiguous prefixes, conflicting
+entries, non-open/self parents and unconsumed overrides fail closed.
+
+For7968 Annex3, page46's `I/We hereby declare...` follows Part Four fields
+inside block1990033; its declaration belongs to the whole application at
+1990030, not Part Four. Page47's continuing declaration can use the existing
+whole-block form. Worker, recorder and parser share the same structural shape
+validator; recorded source-page/render checks remain mandatory. Tests:
+`tests/test_reviewed_prefix_continuations.py` plus legacy continuation tests
+in `tests/test_patch_apparatus_override.py`.
+
+Where an ancestor and its last child share `first_block`, the prefix variant
+may additionally name **both** `parent_kind` and `parent_label`. The selector
+must identify exactly one currently open ancestor. Only this fully specified
+variant may use the same numeric source/parent block ID; that ID can represent
+different nodes in one OCR block. Prefix entries without selectors refuse
+ambiguous ancestors. Legacy whole-block entries retain their existing lookup.
+This supports Annex9's common `Additional factors...` paragraphs after its
+lettered factors without placing the common qualification in the last factor.
+
+### Reviewed body-heading suffix and intersecting dotted rows (doc 7968)
+
+An existing owner-cited `source_printed_headings` entry with `use: heading`
+may supply its complete heading before the contents splitter runs only when
+the current section's label and source block match, the section body begins
+that exact heading, and the contents heading ends inside a word of that
+heading. This keeps Rule 15's printed `Applications` intact against the
+contents spelling `Application`, without leaving `s` in operative text.
+Separate margin evidence and full-word heading-line overrides retain their
+existing behavior; the usual final exact-source/owner checks still run.
+
+When a block is explicitly reviewed under both
+`source_half_paren_clause_blocks` and `source_dotted_letter_item_blocks`, its
+half-parenthesis precut pieces also receive the existing dotted-row line
+cuts. Doc 7968's book list `a.` through `l.` precedes a distinct `b)` clause
+inside block 1990013; all twelve book rows must survive that earlier cut.
+Neither source key alone enables this intersecting path. Ordinary dotted
+classification and recursive matching are unchanged.
+
+### Source-bound ADFC enabling paragraph (9361/e2, 7 November 2026)
+
+The exact page-read enabling paragraph at original56, reflowed onto block2511403,
+may open a Preamble with the prefix `In exercise of the powers`. Admission
+requires both that immutable block/page address and the complete whitespace-
+normalized SHA256 of the reviewed text, including its five source-gap markers.
+Other prose with this prefix, a different address, or reconstructed gap words
+does not qualify. This adds no general notification or preamble heuristic.
+The same source page's numbered amendment remains under its printed1, with
+the unfinished quoted(ii) inside1(b); no closing quotation is supplied.
+The printed title stays in exact long-title metadata. Source reading, gap
+declaration and publication approval are separately required; recognizing the
+Preamble is not a release gate or a completeness assertion.
+
+### Source-bound notification preamble: document9852 (8November2026)
+
+The page2 enabling paragraph of the NEPRA (Uniform System of Accounts) Regulations,2022 starts `S.R.O.631/2022 In exercise...`; a body-start pin alone previously discarded it. The existing source-preamble allowlist now admits only block2673355/page2 with normalized-text SHA256 `ea8483045a1449232ae4efcd977ed0bf5019891c24ec2c297590dabf176fc967`. The SRO alternative is inside that digest guard; it is not a general notification matcher. Source images, the exact reading, independent review and the frozen43-node candidate are in `.artifacts/release-work-2026-09-24/codex-fast-2026-11-07`. `tests/test_9852_accounts_intro.py` checks preservation and rejection after changing block,page,notification number or enabling words. Existing caption/form/no-cut/unit-move rules handle the blank accounting templates; no new template heuristic or quality threshold was added. The separate seal-obscured label remains `[illegible]`; commencement remains unknown under regulation1(2).
+Source-bound recital recovery (10 Nov2026): recovered8364/revision9889, original13, block2717793, resolution2887. The exact individually read recital beginning `In the exercise of the power conferred` is registered in `_SOURCE_PREAMBLE_INTRO_SHA256` (digest301eeb95...52eb219d). It opens a preamble before the32numbered rules. Block, page and complete normalized source text must match; nearby blocks, altered wording and other pages gain no new inference. This extends the existing exact-source preamble route; thresholds, profiles and unrelated documents are unchanged. Evidence: `.artifacts/release-work-2026-09-24/codex-8364-2026-11-09`, `tests/test_9889_source_preamble.py`.
+
+The same9889 source review also binds IncomeTaxActVIII1872's enacted-purpose paragraph at2716562/page2/digestb33a2008...cf7a5bb to the existing `AN ACT` preamble route. In addition, when an existing `source_contents_named_divisions` entry and an existing `source_owner_cited_labels` partial opener share the same block, the reviewed contents division is established before the partial opener's early return. This preserves the contents-cited ChapterVIII scope for the acquired126continuation after missingfolio692. Both override validations and source-gap bindings remain mandatory; neither missingbodyprovisions nor bodyheadingwording is synthesized. `tests/test_9889_partial_division.py` verifies correct scope, unchanged behavior without the division review and rejection of a false caption.
+
+### As built, 10 Nov 2026 -- `reviewed_quote_span_end` also stops the forward extension of a quoted "new sections" span
+
+A quoted insertion that introduces new sections ("the following new sections shall be inserted ... \u201c25A. ...") is extended
+forward to the last unit that ends in a closing quotation mark before the next numbered amending opener ("N. In ..."). Where the
+Act's own next sections follow the quotation (doc 5494, Finance Act 1995: sections 5-8 on scans 9-12) that extension swallowed
+them into one 7,895-character sub-section of section 4. A block named in `source_quote_span_end_blocks` (profile rule
+`reviewed_quote_span_end`, already data-gated) now also ends that extension. Inert without the key. Doc 5494 records the block
+that opens section 5 (1230990); its items printed 1.-30. under section 9 are written (1)-(30) in the page readings, and the
+three amendment items that still collided with section labels are moved by one reviewed `source_reparent_blocks` list carried
+identically by each of the three S7 decisions (a reparent list that differs between decisions is refused as conflicting).
+
+### As built, 10 Nov 2026 — reviewed atomic amendments (9305)
+
+`source_quote_span_end_blocks` also recognizes a reviewed next opener immediately
+after an atomic introductory unit. The entire quotation can already be inside that
+unit; no empty or inverted continuation span is created, and the next opener is
+processed normally. Without the reviewed key, quotation inference is unchanged.
+An exact `source_text_units` entry can identify a `proviso` or `explanation` as
+literal continuation text, as well as the previously supported kinds. After that
+classification is suppressed, a co-located `source_continuation_parent_blocks`
+entry can attach it to its reviewed open parent. Exact block/kind/label matching,
+open-parent validation and reached-once checks remain mandatory.
+
+The individually read purposes of 9305's twelve Ordinances and one Regulation
+are registered by original block, page and complete normalized-text SHA256 in
+the existing source-preamble allowlist. Their `AN ORDINANCE`/`A REGULATION`
+captions and purposes remain in the served preamble before the separate WHEREAS
+recitals. This does not infer long titles for other sources; the worker's separate
+`long_title` field remains unset. Same-page quotation merges retain the full
+printed text under its actual amending host. Evidence and original-block ledgers:
+`.artifacts/release-work-2026-09-24/codex-9305-2026-11-10`.
+`tests/test_9305_atomic_source.py` covers immediate next openers, continuation
+composition, immutable input and rejection of altered source identity/text.
+
+### As built, 11 Nov 2026 -- OCR retry thresholding, audit scoping, census and stub-guard waiver
+
+- `nizam/corpus/ocr.py`: a page for which both Tesseract readings returned no words is re-read with `thresholding_method=1` (Leptonica Otsu). Tesseract 5.3's default method returned nothing on four clean bitonal/photographed Gazette scans (blobs 0858a8a1, ad858805, 8241d101, f7c09017: documents 9892, 9891, 9890, 9893); pages that read are untouched.
+- `tools/audit/criteria.sql` Q3: the recorded count is scoped to non-E4 documents, the same population as its expected count (a hold/lift row on an E4 document is evidence about a document the verifier does not apply to).
+- `tools/census_heading_mislabel.py`: the census reads RAW first blocks; a hit is skipped when the provision's own tree text no longer carries the raw printed name, i.e. a reviewed page reading replaced that block (doc 9308 s.140).
+- `tools/adjudicate_s7_from_source.py`: `stub_guard_waiver` (see the 10 Nov entry) is also used for table rows / list items of quoted material.

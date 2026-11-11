@@ -54,3 +54,25 @@ def test_T_refuses_a_listed_block_without_a_lettered_line():
 def test_T_needs_its_profile_rule():
     with pytest.raises(ValueError):
         S.segment(_blocks(), profile="unreleased-v3", structural_overrides={"source_dotted_letter_item_blocks": [2]})
+
+
+def test_reviewed_dotted_rows_survive_recursive_tail_before_half_paren_clause():
+    labels='abcdefghijkl'
+    rows='\n'.join(f'{c}. Book record {c}.'for c in labels)
+    blocks=[_b(1,'62. Financial Rules.',40),
+            _b(2,'(6) Accounting.\n'+rows+'\nb) Reconciliation.\nThe accounts shall be reconciled.',100)]
+    seg=S.segment(blocks,profile='unreleased-v5',detect_contents=False,
+                  structural_overrides={'source_dotted_letter_item_blocks':[2],
+                                        'source_half_paren_clause_blocks':[2]})
+    dotted=[n for n in seg.flatten()if n.kind=='clause'and(n.text or'').startswith('Book record')]
+    assert [n.label for n in dotted]==list(labels)
+    assert [n.text for n in dotted]==[f'Book record {c}.'for c in labels]
+    assert any(n.kind=='clause'and n.label=='b'and'Reconciliation'in(n.text or'')for n in seg.flatten())
+
+
+def test_recursive_dotted_cut_still_requires_reviewed_block_data():
+    blocks=[_b(1,'62. Financial Rules.',40),
+            _b(2,'(6) Accounting.\na. Cash book.\nb. Bank book.\nc. Ledger book.\nb) Reconciliation.',100)]
+    seg=S.segment(blocks,profile='unreleased-v5',detect_contents=False,
+                  structural_overrides={'source_half_paren_clause_blocks':[2]})
+    assert not any(n.kind=='clause'and(n.text or'').startswith('Bank book')for n in seg.flatten())

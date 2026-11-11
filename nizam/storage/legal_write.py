@@ -1213,6 +1213,17 @@ def save_many(insts: list[SegmentedInstrument], full_blocks: list[dict],
                     (observation_id,))
         if cur.fetchone() is None:
             raise ValueError(f"unknown source observation {observation_id}")
+        # A print-variant disposition is neither exact-tree equality nor legal
+        # version history. Until an atomic variant-aware replay is supplied,
+        # refuse ordinary replacement before any write rather than briefly
+        # publishing copies or silently dropping their standing source proof.
+        cur.execute("""SELECT expression_ordinal FROM instrument_expression_manifest
+                         WHERE source_observation_id=%s AND is_active
+                           AND evidence ? 'source_variant_disposition'""", (observation_id,))
+        source_variants = [row[0] for row in cur.fetchall()]
+        if source_variants:
+            raise ValueError(f"observation {observation_id} has standing source-variant "
+                             f"dispositions {source_variants}; ordinary replay refused")
         cur.execute("""SELECT id,expression_ordinal FROM instrument
                         WHERE source_observation_id=%s AND is_active FOR UPDATE""",
                     (observation_id,))

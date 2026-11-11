@@ -71,17 +71,33 @@ _OCR_ENV = {**os.environ, "OMP_THREAD_LIMIT": "1", "OMP_NUM_THREADS": "1"}
 
 
 def _tesseract(png: bytes, lang: str, dpi: int = RENDER_DPI,
-               psm: int | None = None) -> str:
+               psm: int | None = None, thresholding: int | None = None) -> str:
     """Run tesseract over one rendered page, returning its TSV output."""
     cmd = ["tesseract", "stdin", "stdout", "--dpi", str(dpi)]
     if psm is not None:
         cmd += ["--psm", str(psm)]
+    if thresholding is not None:
+        cmd += ["-c", f"thresholding_method={thresholding}"]
     cmd += ["-l", lang, "tsv"]
     out = subprocess.run(cmd, input=png, capture_output=True,
                          timeout=OCR_TIMEOUT, env=_OCR_ENV)
     if out.returncode != 0:
         raise ExtractionRejected(f"tesseract failed: {out.stderr.decode()[:200]}")
     return out.stdout.decode("utf-8", "replace")
+
+
+def _tsv_word_count(tsv: str | None) -> int:
+    """Words in a tesseract TSV (rows with a text cell and a non-negative confidence)."""
+    count = 0
+    for line in (tsv or "").splitlines()[1:]:
+        cells = line.split("	")
+        if len(cells) >= 12 and cells[11].strip():
+            try:
+                if float(cells[10]) >= 0:
+                    count += 1
+            except ValueError:
+                pass
+    return count
 
 
 def _ocr_page(page, lang: str) -> tuple[str, str | None, int]:
@@ -106,6 +122,18 @@ def _ocr_page(page, lang: str) -> tuple[str, str | None, int]:
                     supplemental = _tesseract(png, lang, dpi, psm=6)
                 except subprocess.TimeoutExpired:
                     pass
+            # Tesseract 5.3's default Otsu thresholding returns NO words at all on some clean bitonal and
+            # photographed Gazette scans (KP/Balochistan/federal blobs rejected 20 Oct - 10 Nov 2026) that
+            # the Leptonica Otsu method (thresholding_method=1) reads. Only a page that read nothing is retried,
+            # so every page that already read keeps exactly the reading it had.
+            if _tsv_word_count(primary) == 0 and _tsv_word_count(supplemental) == 0:
+                primary = _tesseract(png, lang, dpi, thresholding=1)
+                supplemental = None
+                if lang == "eng":
+                    try:
+                        supplemental = _tesseract(png, lang, dpi, psm=6, thresholding=1)
+                    except subprocess.TimeoutExpired:
+                        pass
             return primary, supplemental, dpi
         except subprocess.TimeoutExpired:
             if dpi == FALLBACK_DPI:
@@ -210,6 +238,8 @@ def _prefer_supplemental(primary: list[ExtractedBlock],
     mode. The alternate reading must recover at least one additional
     section-shaped line while retaining at least 85% of the primary words.
     """
+    if primary_words == 0 and supplemental_words > 0:
+        return True
     return (supplemental_words >= primary_words * 0.85
             and _legal_anchor_count(supplemental) > _legal_anchor_count(primary))
 

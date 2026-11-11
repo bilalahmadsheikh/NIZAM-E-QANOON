@@ -651,6 +651,43 @@ _SOURCE_PREAMBLE_INTRO_SHA256 = {
     # Doc9320 p7: exact reviewed Merchant Shipping Act long title before
     # the separate WHEREAS recital; source identity and reading are bound.
     (2472596, 7): "0748c1c282bd64ab4ffddefd04399ecf07bf325d43098e8f5a5d6f70484a1aa0",
+    # Doc7968 p5: exact reviewed enabling formula, without a notification
+    # number. Its separate date line prints placeholders, not an actual date.
+    (1989746, 5): "e40c7fb143b2ec9bf4e6c1138fbaf7e93ffc90382d89fad906f97b5c27151b0e",
+    # Doc9361/e2 original56: exact page-read ADFC enabling paragraph,
+    # reflowed onto the first of its two raw anchors; clipped words stay gaps.
+    (2511403, 56): "afa32d95949f21811dc7d9400943f6a9755a52069ae90f24fc50711903a8d5eb",
+    # Doc9852 p2: the source-read NEPRA enabling paragraph, including its
+    # printed notification prefix; it precedes regulation 1, not a footnote.
+    (2673355, 2): "ea8483045a1449232ae4efcd977ed0bf5019891c24ec2c297590dabf176fc967",
+    # Doc9617 p3: exact page-read SRO763(K)/61 enabling paragraph.
+    (2573347, 3): "0846159772e9fb86bccfb5a270d5c7c1ceacbca9e867a39b50155f09552d535a",
+    # Recovered7064/revision9868: separately read enabling notifications of
+    # the main Rules and appended Electronic Filing Rules. The former really
+    # prints '1n'; neither notification is an amendment-history footnote.
+    (2689371, 7): "4fb904c1396882cdca126b239b63c1e07a42a55270b7593593256bdcaefc2eb0",
+    (2691166, 94): "1c76b02a6f805c5fbb64069cd33a4cea7336350ca22e8700188c8a388b66ba97",
+    # Recovered8364/revision9889 p13: source-read resolution2887 enabling
+    # recital. Its printed singular "power" precedes32numbered rules; it is
+    # a preamble, not a word-labelled rule owning rules1/2 as member clauses.
+    (2717793, 13): "301eeb95dd4d138b4d7c7a1295d6484ea71937234606d11598ee2aaf52eb219d",
+    # Same source, IncomeTaxActVIII1872 p2: full enacted purpose/intro.
+    (2716562, 2): "b33a200862608274126077d9b052b9fc44d4113e58173b71bafa9b080cf7a5bb",
+    # Doc9305: exact page-read enacted purposes before separate WHEREAS
+    # recitals. Bind caption plus full purpose, not a generic title matcher.
+    (2450252, 1): "a7d05c6039a9630119111ff72350fedc93cfa726c38d9f773ce93c1d3981e1e8",
+    (2450641, 31): "0927964a481ac8b71fc866ee5fa45253a4a1992b2a2c782df2443074290969fb",
+    (2450676, 33): "1b0cc396248a13176792ff7b6eb0917c57b44caaa46e228c7897e3d7bbc31994",
+    (2450704, 35): "11a41c82117c8d0e090900b4537969bd8651c9f3ae96ff61140d52c686372758",
+    (2450730, 37): "7f15f088648304ab5194af81a386bdfab3b811ea34348f8c477c9f404007cc57",
+    (2450755, 39): "7f15f088648304ab5194af81a386bdfab3b811ea34348f8c477c9f404007cc57",
+    (2450807, 43): "510d354ce3b8dcda9cd9583b5ccae6e26a7f0aeaeeafd49b12b5acb606020709",
+    (2450836, 45): "b05b08a41aaa2f1c7d27305b831427899507a6974ba931f7b3fde8776663e3f6",
+    (2450882, 49): "e72d900040bebad3ea35648e0e1b7808c3715f7264e4f3c0bf941b96a2fb131a",
+    (2450956, 55): "7a55adb78033d8df498e1f1393522b18c606c1a5bac2bec08808f9da68237ebb",
+    (2450988, 57): "ab56f4626d6c1ff74234257b4be9fe3804e12b8b59d4465675cb4d33e34f70a6",
+    (2451019, 59): "7f15f088648304ab5194af81a386bdfab3b811ea34348f8c477c9f404007cc57",
+    (2451243, 75): "295ff794afeb19241a3f0bf9898c7308a95821b1a592f3a62ffb639d6412d71e",
 }
 
 
@@ -5354,6 +5391,24 @@ def _owner_cited_cross_chapter_ok(item) -> bool:
             and _owner_decision_citation(item["owner_decision"]))
 
 
+def continuation_parent_shape_ok(item) -> bool:
+    """A whole unnumbered block, or its exact source-read suffix, has an owner."""
+    return (isinstance(item, dict)
+            and set(item) in ({"source_block_id", "parent_block_id"},
+                              {"source_block_id", "parent_block_id", "source_prefix"},
+                              {"source_block_id", "parent_block_id", "source_prefix", "parent_kind", "parent_label"})
+            and type(item["source_block_id"]) is int and item["source_block_id"] > 0
+            and type(item["parent_block_id"]) is int and item["parent_block_id"] > 0
+            and (item["source_block_id"] != item["parent_block_id"] or "parent_kind" in item)
+            and ("source_prefix" not in item or
+                 (isinstance(item["source_prefix"], str)
+                  and len(item["source_prefix"].strip()) >= 12))
+            and ("parent_kind" not in item or
+                 (item["parent_kind"] in {"preamble", "chapter", "part", "section", "article", "subsection",
+                                          "clause", "explanation", "proviso", "schedule", "form", "appendix", "annexure"}
+                  and isinstance(item["parent_label"], str) and bool(item["parent_label"].strip()))))
+
+
 def reviewed_table_block_shape_ok(item) -> bool:
     """Explicit, source-hashed tariff cells in a single OCR block (9851).
 
@@ -5880,7 +5935,7 @@ def _quoted_insertion_spans(texts: list[str], pages: list[int],
                 break
             # agK4 rule C `reviewed_quote_span_end` (doc 3528): a page-read block opening the next amending item ends
             # the open quotation at the unit before it.
-            if (j > start and _K4_QSE_TEXTS.get()
+            if (j >= start and _K4_QSE_TEXTS.get()
                     and any(t.startswith((texts[j] or "").strip()[:60]) and (texts[j] or "").strip()
                             for t in _K4_QSE_TEXTS.get())):
                 _K4_QSE_SEEN.get().add((texts[j] or "").strip()[:60])
@@ -5898,10 +5953,25 @@ def _quoted_insertion_spans(texts: list[str], pages: list[int],
                 closed = True
                 break
             j += 1
+        # An atomic page reading can hold the entire inserted quotation in
+        # its introductory unit. If its reviewed NEXT opener is the very
+        # next unit, there is no intervening quote span to record (9305).
+        # Never swallow that opener or manufacture an inverted/empty span.
+        if closed and j < start:
+            i = j + 1
+            continue
         if (closed and _whole_section_quote
                 and re.search(r"\bnew\s+sections\b", flat, re.I)):
             _k = j + 1
             while _k < n and pages[_k] - pages[start] <= 60 and not opener.match(texts[_k] or ""):
+                # agK4 rule C `reviewed_quote_span_end`: a reviewed block opening the next amending item also stops this
+                # forward extension (doc 5494: sections 5-8 of the Finance Act 1995 follow the quoted new sections of
+                # section 4 and were swallowed up to the next 'N. In ...' opener). Data-gated: inert without the key.
+                if (_K4_QSE_TEXTS.get()
+                        and any(t.startswith((texts[_k] or "").strip()[:60]) and (texts[_k] or "").strip()
+                                for t in _K4_QSE_TEXTS.get())):
+                    _K4_QSE_SEEN.get().add((texts[_k] or "").strip()[:60])
+                    break
                 if re.search(r"[”\"]\s*\.?\s*$", texts[_k] or ""):
                     j = _k
                 _k += 1
@@ -10106,13 +10176,20 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
     }
     # Exact, source-reviewed ownership for an unnumbered continuation.  This
     # does not infer a parent from typography and is inert without an override.
+    continuation_specs = list(overrides.get("source_continuation_parent_blocks") or [])
+    if not all(continuation_parent_shape_ok(item) for item in continuation_specs):
+        raise ValueError("malformed source continuation ownership override")
     continuation_parents = {
         item["source_block_id"]: item["parent_block_id"]
-        for item in (overrides.get("source_continuation_parent_blocks") or [])
+        for item in continuation_specs
     }
     if len(continuation_parents) != len(
             overrides.get("source_continuation_parent_blocks") or []):
         raise ValueError("duplicate source continuation ownership override")
+    continuation_prefixes = {item["source_block_id"]: item["source_prefix"]
+                             for item in continuation_specs if "source_prefix" in item}
+    continuation_selectors = {item["source_block_id"]: (item["parent_kind"], item["parent_label"])
+                              for item in continuation_specs if "parent_kind" in item}
     # Rule `reviewed_list_item_text` (agent JE; docs 4408/4409/4416 Chapter 9): page-read decimal regulations whose
     # bare numbered list items are their text. See the hook before the continuation ownership below.
     _lt_sections: dict = {}
@@ -10148,7 +10225,12 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
                 and set(_tu_e) in ({"source_block_id", "kind", "label"}, {"source_block_id", "kind", "label", "as_kind"})
                 and _tu_e.get("as_kind", "clause") in ("clause", "subsection")
                 and type(_tu_e["source_block_id"]) is int and _tu_e["source_block_id"] > 0
-                and _tu_e["kind"] in ("section", "subsection", "clause", "article") and isinstance(_tu_e["label"], str)
+                # A reviewed quoted amendment can continue on a new page at
+                # its own proviso/Explanation (9305). These exact source units
+                # remain text of the cited amending parent, never a new outer
+                # proviso. The existing exact-id/kind/label and reached-once
+                # guards still apply; unreviewed classification is unchanged.
+                and _tu_e["kind"] in ("section", "subsection", "clause", "article", "proviso", "explanation") and isinstance(_tu_e["label"], str)
                 and _tu_e["label"].strip()):
             raise ValueError(f"source text unit {_tu_e!r} is malformed")
         _tu_key = (_tu_e["source_block_id"], _tu_e["kind"], _tu_e["label"].strip())
@@ -10660,6 +10742,12 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
         if profile_rule("half_paren_clause_label") and b.get("id") in half_paren_blocks:
             pieces = [piece for piece in re.split(r"(?m)^(?=[ \t]*[a-z]\)[ \t]*(?:\n|\S))", b["text"])
                       if piece.strip()]
+            # Doc7968: the dotted book list precedes b) in this same block.
+            # The half-paren cut made it only a prefix of the reviewed text,
+            # so the later exact-whole-text DLI hook could no longer cut it.
+            if (profile_rule("reviewed_dotted_letter_item")
+                    and b.get("id") in (overrides.get("source_dotted_letter_item_blocks") or [])):
+                pieces = [part for piece in pieces for part in _JD_DLI_LINE.split(piece) if part.strip()]
         # Profile rule `left_column_margin_heading` shapes (B)/(B'): heading lines before 'N.' in one block.
         if (profile_rule("left_column_margin_heading") and not toc and len(pieces) > 1
                 and _left_margin_level_pairs):
@@ -11142,18 +11230,18 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
         # an amendment marker '1[' may stand before the number
         # (doc 2366: '1[3].Whenever' -- the substituted number inside the marker's bracket; '12,  [Condition ...' with a
         # comma for the stop)
-        if re.fullmatch(r"[a-z]{1,2}", label):
+        if re.fullmatch(r"[a-z]{1,2}", label) or (kind == "clause" and re.fullmatch(r"[A-Z]", label)):
             # a clause '(f)' (doc 2366 s.2(f): '(f) / 8[* *] the expression ...', its text opening behind a note marker)
             # agJG: optional note marker before; or the substituted label closed in its own bracket, '7[(c)]' (E28
             # p871 s.18(c)), whose ']' is part of the printed label, not of the clause's text
             return (r"\s*(?:\d{1,3}\s*\[\s*\(\s*" + label + r"\s*\)\s*\](?=\s)|(?:\d{1,3}\s*\[?\s*)?\(\s*"
                     + label + r"\s*\))")
         if re.fullmatch(r"\d{1,3}(?:[A-Z]{2}|-[A-Z])", label):
-            return r"\s*(?:\d{1,3}\s*\[\s*)?\(?" + label + r"\)?"   # agent K2 (doc 4489 '4[(4AB)')
+            return r"\s*(?:(?:\d{1,3}\s*)?\[\s*)?\(?" + label + r"\)?"   # reviewed bare bracket after pointer removal, too
         if re.fullmatch(r"[IVX]{1,4}", label):
             return r"\s*\(?" + label + r"\)?"   # agent K2 (doc 4431 p99 'I.')
         _m = re.fullmatch(r"(\d{1,3})([A-Z]?)", label)
-        return (r"\s*(?:\d{1,3}\s*\[\s*)?\(?" + _m.group(1) + r"\)?\]?"
+        return (r"\s*(?:(?:\d{1,3}\s*)?\[\s*)?\(?" + _m.group(1) + r"\)?\]?"
                 + (r"\s*[-\u2013.]?\s*\(?" + _m.group(2) + r"\)?" if _m.group(2) else ""))
     for _ro_e in (overrides.get("source_printed_rule_openers") or []):
         # optional "kind": "subsection" -- a sub-rule printed '2)' on its own line ('2)  / The decision of ...', 4431
@@ -11163,7 +11251,7 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
                 and set(_ro_e) - {"kind"} == {"source_block_id", "label", "source_prefix"}
                 and _ro_kind in ("section", "subsection", "clause", "part", "explanation", "article")
                 and type(_ro_e["source_block_id"]) is int and isinstance(_ro_e["label"], str)
-                and re.fullmatch(r"[a-z]{1,2}" if _ro_kind == "clause"
+                and re.fullmatch(r"[a-z]{1,2}|[A-Z]" if _ro_kind == "clause"
                                  else r"[A-Z]|[IVXL]{1,6}" if _ro_kind == "part"
                                  else r"Explanation|Exception" if _ro_kind == "explanation"
                                  else r"I|II|III|IV|V|VI|VII" if _ro_kind == "article"
@@ -11238,6 +11326,15 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
         _sa_specs[(_sa_e["source_block_id"], _sa_e["source_prefix"])] = _sa_e
     _sa_applied: set = set()
     _ro_cut_specs = dict(_ro_specs); _ro_cut_specs.update(_sa_specs)
+    # Doc7968 Annex3: an unnumbered declaration shares a block with form
+    # Parts/fields. Cut only its exact reviewed prefix; this opens no unit.
+    for _co_bid, _co_pref in continuation_prefixes.items():
+        if sum(t.count(_co_pref) for b, t in units if b.get("id") == _co_bid) != 1:
+            raise ValueError(f"source continuation prefix {_co_bid} must occur once in its block")
+        _co_key = (_co_bid, _co_pref)
+        if _co_key in _ro_cut_specs:
+            raise ValueError(f"source continuation prefix {_co_bid} conflicts with an opener or set-aside")
+        _ro_cut_specs[_co_key] = {}
     # rule V, ordinal variant: a reviewed 'THE FIRST SCHEDULE' printed mid-block is cut out so its unit opens there
     _ro_cut_specs.update({k: v for k, v in _k4_du.items()
                           if v.get("kind") == "schedule" and _K4_ORDINAL_SCHEDULE.match(k[1])})
@@ -11712,6 +11809,23 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
             _cd_s = _cd_open[_op_hit]
             if in_schedule or _cd_s["cited_label"] in seen:
                 raise ValueError(f"owner cited opener {b.get('id')} cannot open at the root")
+            # Two source-reviewed overrides can share the first acquired
+            # partial unit after a missing page (9889/126). Establish its
+            # contents-cited division before this opener's early continue;
+            # the ordinary later division handler remains unchanged.
+            _op_div = _jv_specs.get(b.get("id"))
+            if _op_div and b.get("id") not in _jv_applied:
+                _op_dn = Node(kind=_op_div["kind"], label=str(_op_div["label"]),
+                              heading=_norm(_op_div["heading"]) if _op_div.get("heading") else None,
+                              depth=DEPTH[_op_div["kind"]], first_page=b["page_no"], last_page=b["page_no"],
+                              first_block=b.get("id"), parent=root)
+                root.children.append(_op_dn)
+                stack = [root, _op_dn]
+                current = _op_dn
+                _jv_applied.add(b.get("id"))
+                _jv_events.append({"resolution": "contents_named_division", "kind": _op_div["kind"],
+                                  "label": str(_op_div["label"]), "first_block_id": b.get("id"),
+                                  "contents_block_ids": list(_op_div.get("contents_block_ids") or [])})
             # Profile rule `owner_cited_label` (doc 1463 p5, owner decision 2026-10-08 export -g q1): an opener read
             # while a top-level Part or Chapter is open is that division's unit ('PART-HI' then '2[1-(i) ...' =
             # s.11 of Part III), as a numbered section read there would be; otherwise it hangs on the root.
@@ -11860,7 +11974,15 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
         if (re.fullmatch(r"(?:THE\s+)?TABLE\s*[.:-]?", _norm(text), re.I)
                 or _is_numbered_table_header(text)
                 or (profile_rule("referenced_table_heading")
-                    and _REFERENCED_TABLE_HEADING.fullmatch(_norm(text)))):
+                    and _REFERENCED_TABLE_HEADING.fullmatch(_norm(text)))) and not (
+                # A reviewed rule can introduce its table in the same source
+                # block (9868/48K). Its own label must open before the data;
+                # the exact block/prefix review and all-applied guard remain
+                # mandatory. Ordinary unreviewed table detection is unchanged.
+                _ro_specs and any(_ro_bid == b.get("id")
+                                  and (_ro_bid, _ro_pref) not in _ro_applied
+                                  and text.lstrip().startswith(_ro_pref.lstrip())
+                                  for _ro_bid, _ro_pref in _ro_specs)):
             if current is not root:
                 owner = current
                 while owner is not root and owner.kind in (
@@ -11923,10 +12045,25 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
                 or (b.get("id") in source_preamble_intro_blocks
                     and (re.match(r"\s*AN\s+ORDER\b", text, re.I)
                          or re.match(r"\s*No\.\s*—\s*In\s+exercise\b", text, re.I)
+                         # Doc7968: only the exact source-bound formula may
+                         # open here; ordinary unreviewed prose stays inert.
+                         or re.match(r"\s*In\s+exercise\s+of\s+powers\b", text, re.I)
+                         or re.match(r"\s*In\s+exercise\s+of\s+the\s+powers\b", text, re.I)
+                         # Exact digest/page/block above is mandatory; no
+                         # general singular-power preamble inference added.
+                         or (b.get("id") == 2717793
+                             and re.match(r"\s*In the exercise of the power conferred\b", text))
+                         or re.match(r"\s*S\.R\.O\.\s+631\s*/2022\s+In\s+exercise\b", text)
+                         or re.match(r"\s*S\.\s*R\.\s*O\.\s+763\s*\(K\)/61\.—In\s+exercise\b", text)
+                         # Revision9868's two enabling notifications are
+                         # separately digest/page/block bound above. Preserve
+                         # the main source's literal '1n', never normalize it.
+                         or re.match(r"\s*Notification No\. S\.R\.O\. (?:534|1185)\(1\)/2005, dated [^\n]+?\.-{1,2}(?:1n|In) exercise\b", text)
                          # Exact-source intros may print their WHEREAS recital
                          # in the next block (doc9765). The digest-bound source
                          # whitelist above remains mandatory.
                          or re.match(r"\s*AN\s+ACT\b", text, re.I)
+                         or re.match(r"\s*(?:AN\s+ORDINANCE|A\s+REGULATION)\b", text, re.I)
                          or re.match(r"\s*\[illegible\]\s+ACT\b", text, re.I)))) and not any(
                     c.kind == "preamble" for c in root.children) and not (
                 # Profile rule `preamble_not_in_auxiliary` (unreleased-v4): doc
@@ -11974,6 +12111,12 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
             _k5_m = re.match(r"\s*\d{1,3}\s*\[\s*Chapter[ \t]+(\d{1,2}[A-Z]?)[ \t]*\n(.*)$", text, re.S)
             if _k5_m:
                 c = ("chapter", _k5_m.group(1), _k5_m.group(2))
+            else:
+                # A page-reviewed chapter opener may retain the amendment's
+                # bare '[' after its superscript pointer was set aside.
+                _k5_m = re.fullmatch(r"\s*\[\s*Chapter[ \t]+([IVXLC]{1,6})(?:[ \t]*\n(.*))?\s*", text, re.S)
+                if _k5_m:
+                    c = ("chapter", _k5_m.group(1), _k5_m.group(2) or "")
         # Rule `reviewed_marked_rule_label` (agent K1, doc 4474 '225[Rule 939. (i) ...'): a 'Rule N.' print behind an amendment
         # bracket in a page-read block, the block's first unit, is that rule; the bracket stays at the head of its text.
         if c is None and b.get("id") in _k1_marked_rules and (idx == 0 or units[idx - 1][0] is not b):
@@ -12919,7 +13062,8 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
         # parent block is that section's continuing text (no unit is opened); the block's other units are read as
         # usual. Inert without a reviewed entry; fail-closed through the 'not reached' check below.
         _co_skip = False
-        if profile_rule("stray_label_continuation") and source_id in continuation_parents and c:
+        if (profile_rule("stray_label_continuation") and source_id in continuation_parents
+                and source_id not in continuation_prefixes and c):
             _co_owner = current
             while _co_owner is not root and _co_owner.first_block != continuation_parents[source_id]:
                 _co_owner = _co_owner.parent
@@ -12955,7 +13099,7 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
             # a note marker glued on as printed superscript, '3APPENDIX' (doc 6029 p8, its note 3 'Appendix substituted
             # by ... Notification ... 2014'), is the note's, as rule V reads '1SCHEDULE III'
             # ... and 'THE SCHEDULE' (doc 5121 p14) is the schedule as 'SCHEDULE' is
-            _do_key = lambda s: re.sub(r"[^0-9A-Za-z]", "", re.sub(r"^\s*(?:\d{1,3}\s*\[\s*|\*{1,3}\s*|\d{1,2}(?=[A-Z]))?(?i:THE\s+)?(?i:FORMS?|APPENDI(?:X|CES)|ANNEX(?:URE)?|SCHEDULES?)", "", s)).casefold()  # noqa: E731
+            _do_key = lambda s: re.sub(r"[^0-9A-Za-z]", "", re.sub(r"^\s*(?:(?:\d{1,3}\s*)?\[\s*|\*{1,3}\s*|\d{1,2}(?=[A-Z]))?(?i:THE\s+)?(?i:FORMS?|APPENDI(?:X|CES)|ANNEX(?:URE)?|SCHEDULES?)", "", s)).casefold()  # noqa: E731
             if "contents_row_block_id" in _do_e:
                 # the contents row prints '<roman>.' and a title; the division's own block (or the next) prints that title
                 _do_row = next((blk for blk in original_blocks
@@ -12974,7 +13118,7 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
                                       "source_block_id": source_id,
                                       "contents_row_block_id": _do_e["contents_row_block_id"]})
             else:
-                if not re.match(r"\s*(?:\d{1,3}\s*\[\s*|\*{1,3}\s*|\d{1,2}(?=[A-Z]))?(?i:THE\s+)?(?i:FORMS?|APPENDI(?:X|CES)|ANNEX(?:URE)?|SCHEDULES?)\b", _do_line):
+                if not re.match(r"\s*(?:(?:\d{1,3}\s*)?\[\s*|\*{1,3}\s*|\d{1,2}(?=[A-Z]))?(?i:THE\s+)?(?i:FORMS?|APPENDI(?:X|CES)|ANNEX(?:URE)?|SCHEDULES?)\b", _do_line):
                     raise ValueError(f"source division opener at block {source_id} does not print FORM/APPENDIX: {_do_line!r}")
                 if _do_e["label"] is not None and _do_key(_do_e["label"]) != _do_key(_do_line):
                     raise ValueError(f"source division opener {_do_e['label']!r} is not the print {_do_line!r}")
@@ -13068,6 +13212,13 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
                 raise ValueError(f"source text unit {_tu_key!r} printed twice")
             _tu_applied.add(_tu_key)
             c = None if "as_kind" not in _tu_units[_tu_key] else (_tu_units[_tu_key]["as_kind"], c[1], c[2])
+            # Compose two explicit source reviews (9305): an otherwise
+            # numbered continuation is text of its named amending parent.
+            # The earlier stray-label guard saw its original classifier;
+            # after this exact text-unit review, continuation ownership may
+            # run. No unreviewed unit or as_kind reclassification opts in.
+            if c is None and source_id in continuation_parents:
+                _co_skip = False
         # A reviewed 'Preamble' entry (owner q1 'as-text', the same three documents): the Preamble's unnumbered short
         # title and commencement prints its items '(i)', '(ii)'; they are the Preamble's text, not clauses of the root.
         if _lt_sections and c:
@@ -13086,13 +13237,28 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
                         and not (toc and str(c[1]).strip() in toc))):
                 _lt_count[_lt_owner.first_block] = _lt_count.get(_lt_owner.first_block, 0) + 1
                 c = None
-        if source_id in continuation_parents and not _co_skip:
+        if (source_id in continuation_parents and not _co_skip
+                and (source_id not in continuation_prefixes
+                     or text.lstrip().startswith(continuation_prefixes[source_id]))):
             parent_block = continuation_parents[source_id]
-            if c or source_id in continuation_applied:
+            if (c or source_id in continuation_applied
+                    or (source_id in continuation_prefixes and classify(text))):
                 raise ValueError(f"source continuation {source_id} is not one unnumbered unit")
             owner = current
-            while owner is not root and owner.first_block != parent_block:
-                owner = owner.parent
+            if source_id in continuation_prefixes:
+                matches = []
+                while owner is not root:
+                    if (owner.first_block == parent_block
+                            and (source_id not in continuation_selectors
+                                 or (owner.kind, owner.label) == continuation_selectors[source_id])):
+                        matches.append(owner)
+                    owner = owner.parent
+                if len(matches) != 1:
+                    raise ValueError(f"source continuation {source_id} requires one open parent block {parent_block}; found {len(matches)}")
+                owner = matches[0]
+            else:
+                while owner is not root and owner.first_block != parent_block:
+                    owner = owner.parent
             if owner is root:
                 raise ValueError(f"source continuation {source_id} has no open parent block {parent_block}")
             current = owner
@@ -14851,6 +15017,27 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
             # Keep those evidence streams independent: infer the local heading
             # from body text and let reconciliation prove (or reject) the link.
             toc_heading = None if roman_section_division_seen else toc.get(key)
+            # Doc 7968 rule 15: the contents says "Application" but the
+            # page-read, owner-cited body heading says "Applications".  The
+            # ordinary contents-prefix splitter would leave a stray "s" in
+            # the law.  Only this explicit same-block heading evidence may
+            # extend a contents name that ends inside a printed word.  Other
+            # heading-line/margin mechanisms and unreviewed parsing stay as
+            # before; the full source-heading validation below still runs.
+            for _body_head_spec in (overrides.get("source_printed_headings") or []):
+                if (isinstance(_body_head_spec, dict)
+                        and _body_head_spec.get("use") == "heading"
+                        and _body_head_spec.get("label") == label
+                        and _body_head_spec.get("source_block_id") == b.get("id")
+                        and _owner_decision_citation(_body_head_spec.get("owner_decision"))):
+                    _body_head = _norm(_body_head_spec.get("heading") or "")
+                    _contents_head = _norm(toc_heading or "")
+                    _body_rest = _norm(rest.lstrip(" .—-\t\n"))
+                    if (_contents_head and len(_body_head) > len(_contents_head)
+                            and _body_head.casefold().startswith(_contents_head.casefold())
+                            and _body_head[len(_contents_head)].isalnum()
+                            and (_body_rest == _body_head or _body_rest.startswith(_body_head + " "))):
+                        toc_heading = _body_head
             heading, body_text = _split_heading(rest, toc_heading)
             # agJA rule H `reviewed_unheaded_section_blocks` (doc 2668 Part A reg. 4): a page-read section that prints no
             # heading -- 'Candidates holding an FA/F. Sc. Certificate/ ...' -- is not named by a first-sentence guess cut at

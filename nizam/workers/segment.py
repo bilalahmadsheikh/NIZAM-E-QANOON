@@ -19,7 +19,7 @@ import re
 import sys
 import time
 
-from nizam.corpus.segment import _owner_cited_label_shape_ok, assign_paths, segment, reviewed_unit_move_shape_ok, reviewed_grid_row_shape_ok
+from nizam.corpus.segment import _owner_cited_label_shape_ok, assign_paths, segment, reviewed_unit_move_shape_ok, reviewed_grid_row_shape_ok, continuation_parent_shape_ok
 from nizam.shared.corpus_types import SegmentedInstrument
 from nizam.storage import legal_write
 from nizam.storage.db import connect
@@ -1505,21 +1505,26 @@ def reviewed_structural_overrides(resolutions: list[dict] | None,
                                   # printing it. Only annexure -> appendix.
                                   or (item.get("kind") == "annexure"
                                       and item.get("source_kind") == "annexure"
-                                      and item.get("parent_kind") == "appendix"))
+                                      and item.get("parent_kind") == "appendix")
+                                  # Doc9617's eight individually read syllabus
+                                  # captions are divisions of printed Chapter VIII.
+                                  # Bound to these exact source anchors; no new
+                                  # general part/chapter inference is enabled.
+                                  or (item.get("kind") == "part"
+                                      and item.get("source_kind") == "part"
+                                      and item.get("parent_kind") == "chapter"
+                                      and item.get("parent_label") == "VIII"
+                                      and item.get("parent_block_id") == 2573737
+                                      and item.get("source_block_id") in {
+                                          2573742, 2573833, 2573923, 2574025,
+                                          2574064, 2574114, 2574134, 2574155}))
                              for item in value))
                 if valid:
                     patch_reparents.extend(value)
                     continue
             elif key == "source_continuation_parent_blocks":
                 valid = (isinstance(value, list) and bool(value)
-                         and all(isinstance(item, dict)
-                                 and set(item) == {"source_block_id", "parent_block_id"}
-                                 and type(item["source_block_id"]) is int
-                                 and type(item["parent_block_id"]) is int
-                                 and item["source_block_id"] > 0
-                                 and item["parent_block_id"] > 0
-                                 and item["source_block_id"] != item["parent_block_id"]
-                                 for item in value))
+                         and all(continuation_parent_shape_ok(item) for item in value))
                 if valid:
                     patch_continuations.extend(value)
                     continue
