@@ -1,0 +1,506 @@
+{
+  "schema": "nizam.multi_expression_plan/1",
+  "document_id": 9889,
+  "source_observation_id": 13202,
+  "review_basis": "source_verified",
+  "reviewed_on": "2026-11-10",
+  "reviewed_by": "Independent source auditors individually read all59images and supplied source proposals, identity/record/tree checks and corrections. Root completed their final checker refresh after audit-agent quota interruption; no claim of independent fresh final approval or sole-root image reading. Exact source-word conservation, ownership and focused tests passed. Quality gates remain pending; all8source-reviewedtrees must stay held until scoped final verification.",
+  "qualified_expression_ordinals": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "owner_decision": {
+    "export": ".artifacts/decision-review/exports/decision-review-2026-10-25-delegated.json",
+    "document_id": 9889,
+    "question_id": "q1"
+  },
+  "expressions": [
+    {
+      "ordinal": 0,
+      "role": "primary",
+      "title": "The Indian Income Tax Act, 1872",
+      "kind": "act",
+      "year": 1872,
+      "number": "VIII",
+      "spans": [
+        {
+          "start_block_id": 2716445,
+          "end_block_id": 2717597
+        }
+      ],
+      "title_basis": "Printed title,ActVIII1872 and19April assent statement on1;46sections andSchedule through10;9repeat excluded.",
+      "detect_contents": true,
+      "source_metadata": {
+        "current_legal_status": "unknown",
+        "title_is_descriptive": false
+      },
+      "release_review_state": "full-acquired-source-reviewed-with-explicit-source-gaps; quality pending"
+    },
+    {
+      "ordinal": 1,
+      "role": "embedded",
+      "title": "Home Department notification No. 1370, 18 April 1872",
+      "kind": "notification",
+      "year": 1872,
+      "number": "1370",
+      "spans": [
+        {
+          "start_block_id": 2717598,
+          "end_block_id": 2717700
+        }
+      ],
+      "title_basis": "Descriptive title from source Home Department heading/date and1370 on10; named Tahsildar invested with statutory criminal/civil powers.",
+      "detect_contents": false,
+      "source_metadata": {
+        "current_legal_status": "unknown",
+        "title_is_descriptive": true
+      },
+      "release_review_state": "full-acquired-source-reviewed-with-explicit-source-gaps; quality pending"
+    },
+    {
+      "ordinal": 2,
+      "role": "embedded",
+      "title": "Financial Department, Leave and Allowances notification No. 2846, 18 April 1872",
+      "kind": "notification",
+      "year": 1872,
+      "number": "2846",
+      "spans": [
+        {
+          "start_block_id": 2717701,
+          "end_block_id": 2717706
+        }
+      ],
+      "title_basis": "Descriptive source header/number/date12; general re-employment service-counting rule.",
+      "detect_contents": false,
+      "source_metadata": {
+        "current_legal_status": "unknown",
+        "title_is_descriptive": true
+      },
+      "release_review_state": "full-acquired-source-reviewed-with-explicit-source-gaps; quality pending"
+    },
+    {
+      "ordinal": 3,
+      "role": "embedded",
+      "title": "Separate Revenue (Stamps) notification No. 2945, 19 April 1872",
+      "kind": "notification",
+      "year": 1872,
+      "number": "2945",
+      "spans": [
+        {
+          "start_block_id": 2717707,
+          "end_block_id": 2717715
+        }
+      ],
+      "title_basis": "Descriptive source header/number/date12; extension of1750powers to named authorities.",
+      "detect_contents": false,
+      "source_metadata": {
+        "current_legal_status": "unknown",
+        "title_is_descriptive": true
+      },
+      "release_review_state": "full-acquired-source-reviewed-with-explicit-source-gaps; quality pending"
+    },
+    {
+      "ordinal": 4,
+      "role": "embedded",
+      "title": "Financial Department notification No. 1750, 8 March 1872",
+      "kind": "notification",
+      "year": 1872,
+      "number": "1750",
+      "spans": [
+        {
+          "start_block_id": 2717716,
+          "end_block_id": 2717785
+        }
+      ],
+      "title_basis": "Separate expressly reprinted Government of India notification12;5rules under Court FeesAct1870.",
+      "detect_contents": false,
+      "source_metadata": {
+        "current_legal_status": "unknown",
+        "title_is_descriptive": true,
+        "header_printed": "No. 1750, dated 8th March, 1872."
+      },
+      "release_review_state": "full-acquired-source-reviewed-with-explicit-source-gaps; quality pending"
+    },
+    {
+      "ordinal": 5,
+      "role": "embedded",
+      "title": "Rules for the Enforcement of the Indian Income Tax Act, 1872",
+      "kind": "rules",
+      "year": 1872,
+      "number": "2887",
+      "spans": [
+        {
+          "start_block_id": 2717786,
+          "end_block_id": 2718415
+        }
+      ],
+      "title_basis": "Source title/date/resolution13;32rules followed byFormsA-G,Registers1-5andReturnsI-V;closes ORDERED22.",
+      "detect_contents": false,
+      "source_metadata": {
+        "current_legal_status": "unknown",
+        "title_is_descriptive": false,
+        "publication_instruction": "ORDERED, that the foregoing Resolution be published in the Gazette of India for general information."
+      },
+      "release_review_state": "full-acquired-source-reviewed-with-explicit-source-gaps; quality pending"
+    },
+    {
+      "ordinal": 6,
+      "role": "embedded",
+      "title": "Police Department order No. 1088, 20 April 1872",
+      "kind": "order",
+      "year": 1872,
+      "number": "1088",
+      "spans": [
+        {
+          "start_block_id": 2718416,
+          "end_block_id": 2718492
+        }
+      ],
+      "title_basis": "Descriptive source caption/date22;additionalpolice costs under s15ActV1861.1068is unrelatedpersonnelleave.",
+      "detect_contents": false,
+      "source_metadata": {
+        "current_legal_status": "unknown",
+        "title_is_descriptive": true
+      },
+      "release_review_state": "full-acquired-source-reviewed-with-explicit-source-gaps; quality pending"
+    },
+    {
+      "ordinal": 7,
+      "role": "embedded",
+      "title": "The Indian Contract Act, 1872",
+      "kind": "act",
+      "year": 1872,
+      "number": "IX",
+      "spans": [
+        {
+          "start_block_id": 2718493,
+          "end_block_id": 2723733
+        }
+      ],
+      "title_basis": "Separate title/ActIX/25Aprilassent statement23;contents23-28;body29-59through266andSchedule, with missingfolio692 explicitlydeclared. Distinct observedsourcewording from4337/4351, no legalvalidityinterval inferred.",
+      "detect_contents": true,
+      "source_metadata": {
+        "current_legal_status": "unknown",
+        "title_is_descriptive": false
+      },
+      "release_review_state": "full-acquired-source-reviewed-with-explicit-source-gaps; quality pending",
+      "source_relationship": {
+        "counterpart_documents": [
+          4337,
+          4351
+        ],
+        "decision": {
+          "export": ".artifacts/decision-review/exports/decision-review-2026-10-25-delegated.json",
+          "document_id": 9889,
+          "question_id": "q2"
+        },
+        "scope": "Same ActIX1872work, different acquiredsourcewording; no exactduplicate/current-version/validityinterval assertion."
+      }
+    }
+  ],
+  "reviewed_pages": [
+    {
+      "page": 1,
+      "render": ".artifacts/release-work-2026-09-24/codex-8364-2026-11-09/doc9889-p1.png",
+      "render_sha256": "4102559bf97be1d06a968a114bcefef4c6586a1f0853485d3a72c868a572e42f"
+    },
+    {
+      "page": 2,
+      "render": ".artifacts/release-work-2026-09-24/codex-8364-2026-11-09/doc9889-p2.png",
+      "render_sha256": "877f882602d1c126cab1cad1074fe80c010cb4e186ce2f0bfd7b595ca75a4bac"
+    },
+    {
+      "page": 3,
+      "render": ".artifacts/release-work-2026-09-24/codex-8364-2026-11-09/doc9889-p3.png",
+      "render_sha256": "8af0fce7c46561ca592f10baec014d1240b3abda583d6076f1ed334386477732"
+    },
+    {
+      "page": 4,
+      "render": ".artifacts/release-work-2026-09-24/codex-8364-2026-11-09/doc9889-p4.png",
+      "render_sha256": "a38a140fb572e207ee1f9e235f88f5d9816a38078123b81b15da4d40393c02d7"
+    },
+    {
+      "page": 5,
+      "render": ".artifacts/release-work-2026-09-24/codex-8364-2026-11-09/doc9889-p5.png",
+      "render_sha256": "0cc8c6bca030febcf261813b5d9133249d6444ce4f1fa95b68996131ade2a922"
+    },
+    {
+      "page": 6,
+      "render": ".artifacts/release-work-2026-09-24/codex-8364-2026-11-09/doc9889-p6.png",
+      "render_sha256": "6b82c1903eb3603be197171328aecc7169db59a2c6bdbbdb76ff2ef739b1efda"
+    },
+    {
+      "page": 7,
+      "render": ".artifacts/release-work-2026-09-24/codex-8364-2026-11-09/doc9889-p7.png",
+      "render_sha256": "253c0e61520d7c93bdd1e59175488b48a9c9962534a7c07adad63018006793a3"
+    },
+    {
+      "page": 8,
+      "render": ".artifacts/release-work-2026-09-24/codex-8364-2026-11-09/doc9889-p8.png",
+      "render_sha256": "4dde2860434c9551848140b506bd3cdf792623f2c351cfd9c9d3a8b832716431"
+    },
+    {
+      "page": 9,
+      "render": ".artifacts/release-work-2026-09-24/codex-8364-2026-11-09/doc9889-p9.png",
+      "render_sha256": "f254dc90a671fbcc001e295b7b5c3344ca612678476f40cf284935baa16181c9"
+    },
+    {
+      "page": 10,
+      "render": ".artifacts/release-work-2026-09-24/codex-8364-2026-11-09/doc9889-p10.png",
+      "render_sha256": "065024126b236651ecca01a2527e5092f6513c6c143ce16c24fe13f8a539888e"
+    },
+    {
+      "page": 11,
+      "render": ".artifacts/release-work-2026-09-24/codex-8364-2026-11-09/doc9889-p11.png",
+      "render_sha256": "778079ed7e5c5c0546a6366bfa3b275901a286584e17a2324c7e3acb842d09a6"
+    },
+    {
+      "page": 12,
+      "render": ".artifacts/release-work-2026-09-24/codex-8364-2026-11-09/doc9889-p12.png",
+      "render_sha256": "496c6648f7e09d1e25c3251351b7ed488fa528f9d0935211d841277660887b53"
+    },
+    {
+      "page": 13,
+      "render": ".artifacts/release-work-2026-09-24/codex-8364-2026-11-09/doc9889-p13.png",
+      "render_sha256": "6fe65785ffb9de8680f9ec269f8e8d7fc58cf9847dcc538d2371ce081249db9f"
+    },
+    {
+      "page": 14,
+      "render": ".artifacts/release-work-2026-09-24/codex-8364-2026-11-09/doc9889-p14.png",
+      "render_sha256": "0f0bf03ccd8cc02598c1c8668fb041d068d9d73d4fa7c5504dab8924f04c1834"
+    },
+    {
+      "page": 15,
+      "render": ".artifacts/release-work-2026-09-24/codex-8364-2026-11-09/doc9889-p15.png",
+      "render_sha256": "39b84700205771952b3291a26d566326f908988da5bad09c575a0e1a9f876335"
+    },
+    {
+      "page": 16,
+      "render": ".artifacts/release-work-2026-09-24/codex-8364-2026-11-09/doc9889-p16.png",
+      "render_sha256": "d18a833185e45b638f07bd9c2a9f7b8531c88716e6e59bd33549ac03408fd225"
+    },
+    {
+      "page": 17,
+      "render": ".artifacts/release-work-2026-09-24/codex-8364-2026-11-09/doc9889-p17.png",
+      "render_sha256": "3e4bd832c7d8ee34f2172237ef477f0adbf2781e4adeb621de496c7c5c27d6db"
+    },
+    {
+      "page": 18,
+      "render": ".artifacts/release-work-2026-09-24/codex-8364-2026-11-09/doc9889-p18.png",
+      "render_sha256": "4c286cb7894032ff2834d5acaab21e7a32b1fe7c0c41d99122fabd7ceb035d41"
+    },
+    {
+      "page": 19,
+      "render": ".artifacts/release-work-2026-09-24/codex-8364-2026-11-09/doc9889-p19.png",
+      "render_sha256": "e3c645bb20460937b35d5b4670606a82cccf7652cf0ad2e6be4ded66fb9ec07f"
+    },
+    {
+      "page": 20,
+      "render": ".artifacts/release-work-2026-09-24/codex-8364-2026-11-09/doc9889-p20.png",
+      "render_sha256": "f91f44eefcad46c41c96d91438a9bcc24c68fa032958780ee0f47648eb207746"
+    },
+    {
+      "page": 21,
+      "render": ".artifacts/release-work-2026-09-24/codex-8364-2026-11-09/doc9889-p21.png",
+      "render_sha256": "63864a998499330005b321f86baecc76cb48b93de4e43d005f394139c2a55aad"
+    },
+    {
+      "page": 22,
+      "render": ".artifacts/release-work-2026-09-24/codex-8364-2026-11-09/doc9889-p22.png",
+      "render_sha256": "d432229c91b5240ee5cbd2a718441f9bdb24f7c7ea9e66520ecec6ac03a2b687"
+    },
+    {
+      "page": 23,
+      "render": ".artifacts/release-work-2026-09-24/codex-8364-2026-11-09/doc9889-p23.png",
+      "render_sha256": "c12b8466b4df9adf4345adfa8373edf3b5f50348471829f0ceed846c6e1393c8"
+    },
+    {
+      "page": 24,
+      "render": ".artifacts/release-work-2026-09-24/codex-8364-2026-11-09/doc9889-p24.png",
+      "render_sha256": "a5e2c9ce372ce9a56e10d5d2e3e2f6a1824b579d579d560d523e713a44675278"
+    },
+    {
+      "page": 25,
+      "render": ".artifacts/release-work-2026-09-24/codex-8364-2026-11-09/doc9889-p25.png",
+      "render_sha256": "b85b4cc825f56ba9885af10623a48e2fa70384237ab3e588a65a6aba5666f94e"
+    },
+    {
+      "page": 26,
+      "render": ".artifacts/release-work-2026-09-24/codex-8364-2026-11-09/doc9889-p26.png",
+      "render_sha256": "5be3d663df2510a8c6edf2e5063588f74835ca959dc5f8addbdc01c946606e70"
+    },
+    {
+      "page": 27,
+      "render": ".artifacts/release-work-2026-09-24/codex-8364-2026-11-09/doc9889-p27.png",
+      "render_sha256": "2d137c3733daced0c1b6607a04ecafc7ae01b1eb107e0b4bed20c8a2ff6a15ba"
+    },
+    {
+      "page": 28,
+      "render": ".artifacts/release-work-2026-09-24/codex-8364-2026-11-09/doc9889-p28.png",
+      "render_sha256": "7c3d832fd5967279c0027e83bbcedc5490900fa1b750a2ead4d9d889fa7fe95d"
+    },
+    {
+      "page": 29,
+      "render": ".artifacts/release-work-2026-09-24/codex-8364-2026-11-09/doc9889-p29.png",
+      "render_sha256": "919f309bcdd225330a12f908a3b8a74a4e282f494d0ddcab978a1e03584da5bf"
+    },
+    {
+      "page": 30,
+      "render": ".artifacts/release-work-2026-09-24/codex-8364-2026-11-09/doc9889-p30.png",
+      "render_sha256": "806a38a5e3949b0204a300433009667b96cc30351f498ffa977ce53dae33d26b"
+    },
+    {
+      "page": 31,
+      "render": ".artifacts/release-work-2026-09-24/codex-8364-2026-11-09/doc9889-p31.png",
+      "render_sha256": "ebe20349604e58a1242dcdd73faa14ce7cde6d35a013ee835a8159a4c8862e58"
+    },
+    {
+      "page": 32,
+      "render": ".artifacts/release-work-2026-09-24/codex-8364-2026-11-09/doc9889-p32.png",
+      "render_sha256": "edad6867b9793e93c7d2c55fae7d89d02d260ebd73ce9140ff6014f94d5fa2ca"
+    },
+    {
+      "page": 33,
+      "render": ".artifacts/release-work-2026-09-24/codex-8364-2026-11-09/doc9889-p33.png",
+      "render_sha256": "b1c1438233935e1dc19a87226e5cffa07f60207a2362ec11eb2793733f21b924"
+    },
+    {
+      "page": 34,
+      "render": ".artifacts/release-work-2026-09-24/codex-8364-2026-11-09/doc9889-p34.png",
+      "render_sha256": "4c629cac1dff83a5460b146192e8487f277e1be557ffb6c63bbfb1f1ce910cd6"
+    },
+    {
+      "page": 35,
+      "render": ".artifacts/release-work-2026-09-24/codex-8364-2026-11-09/doc9889-p35.png",
+      "render_sha256": "47038af44376cc1763851f1910abd520e1b26bee3bf8ae8d4e34ec0c84eb7251"
+    },
+    {
+      "page": 36,
+      "render": ".artifacts/release-work-2026-09-24/codex-8364-2026-11-09/doc9889-p36.png",
+      "render_sha256": "b37148773a3814ff33f8cfa24c0a5fee4cce5a71a965804acee114be585f3874"
+    },
+    {
+      "page": 37,
+      "render": ".artifacts/release-work-2026-09-24/codex-8364-2026-11-09/doc9889-p37.png",
+      "render_sha256": "fca5f4bd72f74a9ca66cc9d3e8b83f8db9b12290fc2dcb65c093e5c560f3caf5"
+    },
+    {
+      "page": 38,
+      "render": ".artifacts/release-work-2026-09-24/codex-8364-2026-11-09/doc9889-p38.png",
+      "render_sha256": "1d17c91e8d85f38bbc793932f49607adcbf1ad3157bd8967148dfe2cdc245dc3"
+    },
+    {
+      "page": 39,
+      "render": ".artifacts/release-work-2026-09-24/codex-8364-2026-11-09/doc9889-p39.png",
+      "render_sha256": "91f016aa7a20bb33a1f64bb5d0fabc30808c3f8d0c89b5bae69531da2c8d7283"
+    },
+    {
+      "page": 40,
+      "render": ".artifacts/release-work-2026-09-24/codex-8364-2026-11-09/doc9889-p40.png",
+      "render_sha256": "ddccdb7de68f0fa50ce361a0ce706d26f20c70841846ddb34f163e9a32a067f3"
+    },
+    {
+      "page": 41,
+      "render": ".artifacts/release-work-2026-09-24/codex-8364-2026-11-09/doc9889-p41.png",
+      "render_sha256": "c9be4a41f3806b731f9ddb71b5b5b6f9f730bb2e469c48a5e797e1fc71216a0b"
+    },
+    {
+      "page": 42,
+      "render": ".artifacts/release-work-2026-09-24/codex-8364-2026-11-09/doc9889-p42.png",
+      "render_sha256": "189a72f4dc968e2ef9883dae693e404a423fc580b41eaaeb8382039da2e553c3"
+    },
+    {
+      "page": 43,
+      "render": ".artifacts/release-work-2026-09-24/codex-8364-2026-11-09/doc9889-p43.png",
+      "render_sha256": "f397cb355fa1b0a44f71c1d81d3e534a9369911660b4ee88ee09c285939461f5"
+    },
+    {
+      "page": 44,
+      "render": ".artifacts/release-work-2026-09-24/codex-8364-2026-11-09/doc9889-p44.png",
+      "render_sha256": "c8e4923193de986b77f67463678eb3f7cbbafb65e548fbdf6d52bad86a6d9e0a"
+    },
+    {
+      "page": 45,
+      "render": ".artifacts/release-work-2026-09-24/codex-8364-2026-11-09/doc9889-p45.png",
+      "render_sha256": "f49088eb9b12091b231bde40c4ee335ec9d84f89ae1598c7f573d70d786263df"
+    },
+    {
+      "page": 46,
+      "render": ".artifacts/release-work-2026-09-24/codex-8364-2026-11-09/doc9889-p46.png",
+      "render_sha256": "6a24f8dc2b8af24e86a2b06edbc9681254eb41aefcfdb39ac775cf2146932f21"
+    },
+    {
+      "page": 47,
+      "render": ".artifacts/release-work-2026-09-24/codex-8364-2026-11-09/doc9889-p47.png",
+      "render_sha256": "50ec0c59d0ab30ac9d276a54b1594ff9cff464d8b1d4aceeba89f3dda7e1cad1"
+    },
+    {
+      "page": 48,
+      "render": ".artifacts/release-work-2026-09-24/codex-8364-2026-11-09/doc9889-p48.png",
+      "render_sha256": "403cbd189df1e2f5a9fa1fe4d0a30c9201267a8bf53b10285d25783145468b8c"
+    },
+    {
+      "page": 49,
+      "render": ".artifacts/release-work-2026-09-24/codex-8364-2026-11-09/doc9889-p49.png",
+      "render_sha256": "4982952cc5329d0b364d7c7082bae1e37e2a703834eaea96124bdc51f4219ce1"
+    },
+    {
+      "page": 50,
+      "render": ".artifacts/release-work-2026-09-24/codex-8364-2026-11-09/doc9889-p50.png",
+      "render_sha256": "3b0145329321348d02e9c696e6f4414959186e31e6919828ea74b885ed711aae"
+    },
+    {
+      "page": 51,
+      "render": ".artifacts/release-work-2026-09-24/codex-8364-2026-11-09/doc9889-p51.png",
+      "render_sha256": "90b64f4a507f431f77caab256a6416710adf2f6e890c44947b7e95a0f9530acd"
+    },
+    {
+      "page": 52,
+      "render": ".artifacts/release-work-2026-09-24/codex-8364-2026-11-09/doc9889-p52.png",
+      "render_sha256": "de4f7738dd01a0ebfe03ba161970c1074d73753751a146b737330bdb56ad5ac4"
+    },
+    {
+      "page": 53,
+      "render": ".artifacts/release-work-2026-09-24/codex-8364-2026-11-09/doc9889-p53.png",
+      "render_sha256": "bcf273de1a9e00f87d7e15b28e4bc3fc263d72fa159d09ee361083e0acd75b5b"
+    },
+    {
+      "page": 54,
+      "render": ".artifacts/release-work-2026-09-24/codex-8364-2026-11-09/doc9889-p54.png",
+      "render_sha256": "70da46932f1ca37bfd1135bedda57c5b677e66bd8f275e0df4d33daa678616af"
+    },
+    {
+      "page": 55,
+      "render": ".artifacts/release-work-2026-09-24/codex-8364-2026-11-09/doc9889-p55.png",
+      "render_sha256": "d6323aa052202ecdd53635b22e114662bba52179e0e134a8fcaeeca77710732f"
+    },
+    {
+      "page": 56,
+      "render": ".artifacts/release-work-2026-09-24/codex-8364-2026-11-09/doc9889-p56.png",
+      "render_sha256": "4f113953a21174933b3233514da5764ad2f7d132cf6662ec8ce844f419228a5a"
+    },
+    {
+      "page": 57,
+      "render": ".artifacts/release-work-2026-09-24/codex-8364-2026-11-09/doc9889-p57.png",
+      "render_sha256": "a60c92b91afd7836f9c464c5cb7ab49f6f2682a90e7468835622f8f6095a6607"
+    },
+    {
+      "page": 58,
+      "render": ".artifacts/release-work-2026-09-24/codex-8364-2026-11-09/doc9889-p58.png",
+      "render_sha256": "cd6481b5fd3e17c0565f72968620f2f13e96de7cff0259fc8d11f1f2e0c4907f"
+    },
+    {
+      "page": 59,
+      "render": ".artifacts/release-work-2026-09-24/codex-8364-2026-11-09/doc9889-p59.png",
+      "render_sha256": "a2d6b3c255a1f84bd598b0efe6bca1e2d8cd8ff40e341269f95d6fc2c7d02f5b"
+    }
+  ],
+  "recording_constraint": "All8operative source expressions source-qualified. Persist only while documentOCRgate remains missing/review; check all8held and8803baseline. Publish together only after8declared missingTOCrows settled and allscopedchecks; preserveold8364raw,9889raw,4337/4351andallreleasedfingerprints.",
+  "reviewed_source_proof": ".artifacts/release-work-2026-09-24/codex-8364-2026-11-09/root-final-source-review.json"
+}

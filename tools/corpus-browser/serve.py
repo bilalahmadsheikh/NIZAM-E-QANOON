@@ -50,6 +50,7 @@ import psycopg.sql          # relied on for identifier quoting; do not import im
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import sqlcheck             # noqa: E402  the same lint the MCP server applies
+from source_access_notice import source_access_html, plain_source_access
 
 CORPUS_ROOT = Path(os.environ.get("CORPUS_ROOT", "/mnt/e/nizam-data"))
 
@@ -244,6 +245,12 @@ def document(did: int) -> bytes:
     if not meta:
         return page("Not found", "<div class=wrap><p>No such document.</p></div>")
     title, pages, chars, lane, ratio, sha, src, url, langu = meta[0]
+    notices = q("""SELECT evidence->'source_access_release'
+                     FROM instrument_expression_manifest
+                    WHERE document_id=%s AND is_active
+                      AND evidence ? 'source_access_release'
+                    ORDER BY expression_ordinal""", (did,))
+    notice_html = ''.join(source_access_html(row[0]) for row in notices)
     blocks = q("""SELECT page_no, reading_order, text, confidence, script
                     FROM text_block WHERE document_id = %s ORDER BY reading_order""", (did,))
 
@@ -265,7 +272,7 @@ def document(did: int) -> bytes:
                      f'{float(ratio or 0):.3f} — compare every line against the scan')
     src_link = f' &middot; <a href="{html.escape(url)}" target=_blank>official source</a>' if url else ""
 
-    body = f"""<div class=wrap>
+    body = f"""<div class=wrap>{notice_html}
       <p class=hint><b style="font-size:16px;color:var(--ink)">{html.escape(title)}</b><br>
       document {did} &middot; {src} &middot; {pages} pages &middot; {chars:,} characters
       &middot; lane {lane}{conf_note}{src_link}<br>
@@ -291,7 +298,13 @@ def plain(did: int) -> bytes:
     meta = q("SELECT coalesce(title,'(untitled)'), page_count FROM v_document WHERE document_id=%s",
              (did,))
     title, pages = meta[0] if meta else ("(unknown)", 0)
-    out, seen = [f"{title}\ndocument {did} - {pages} pages\n{'='*72}\n"], None
+    notices = q("""SELECT evidence->'source_access_release'
+                     FROM instrument_expression_manifest
+                    WHERE document_id=%s AND is_active
+                      AND evidence ? 'source_access_release'
+                    ORDER BY expression_ordinal""", (did,))
+    out, seen = [plain_source_access(row[0]) + '\n' for row in notices], None
+    out.append(f"{title}\ndocument {did} - {pages} pages\n{'='*72}\n")
     for pno, text in rows:
         if pno != seen:
             out.append(f"\n\n{'-'*72}\n[page {pno}]\n{'-'*72}\n")

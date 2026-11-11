@@ -1,0 +1,38 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 8751,
+ "source_observation_id": 10525,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-11-11",
+ "reviewed_by": "lead page review (11 Nov 2026): the one scan, read against its 100 dpi render and a 250 dpi crop of the right column",
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc8751-p1.png",
+   "render_sha256": "64d434bd27c417079781743eeced7460684d8d7807986d486c9011e5682be345"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Indian Arbitration (Amendment) Act, 1933",
+   "kind": "act",
+   "year": 1933,
+   "number": "XXI",
+   "spans": [
+    {
+     "start_block_id": 2342778,
+     "end_block_id": 2342783,
+     "pages": "1"
+    }
+   ],
+   "title_correction": {
+    "from_title": "NA- The Indian Arbitration Act, 1899",
+    "to_year": 1933,
+    "basis": "The scan prints 'ACT No. XXI OF 1933', 'An Act further to amend the Indian Arbitration Act, 1899, for a certain purpose' and section 1 'This Act may be called the Indian Arbitration (Amendment) Act, 1933.' (Gazette of India, 23 September 1933); the catalogue title names the Act it amends."
+   },
+   "title_basis": "p1 prints the Act's number, long title and short title (section 1); sections 1 and 2 are complete to the signature of L. Graham"
+  }
+ ]
+}

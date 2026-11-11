@@ -1,0 +1,64 @@
+{
+    "schema":  "nizam.multi_expression_plan/1",
+    "document_id":  9632,
+    "source_observation_id":  10587,
+    "review_basis":  "source_verified",
+    "reviewed_on":  "2026-11-09",
+    "reviewed_by":  "claude.source-page-review/1",
+    "owner_decision":  {
+                           "source":  "Owner 9 Nov 2026 supplied the page-by-page proofread reading of all 74 scans (desk-9632-74of74-FULL-PROOFREAD.json), asked for release and stated that the document holds two Acts: the Karachi Improvement Trust Act, 1950 (Act XLVIII of 1950, scans 1-74) and, on the last scan after the closing section 11 of the Schedule, a separate Act XLIX of 1950 amending the Karachi Secondary Education Act, 1950. Delegated decision (recommended option, owner policy q1 \u0027split\u0027): one expression per Act."
+                       },
+    "reviewed_pages":  [
+                           {
+                               "page":  1,
+                               "render":  ".artifacts/release-work-2026-09-24/claude/renders/doc9632-p1.png",
+                               "render_sha256":  "6090787b042e8041c10a3cfc5b8a07145bf89ef843880a096b78f5dbaf6dab0d"
+                           },
+                           {
+                               "page":  73,
+                               "render":  ".artifacts/release-work-2026-09-24/claude/renders/doc9632-p73.png",
+                               "render_sha256":  "3d69aef7dde45297b31bf3abe48d3569db89245b260473f13cd5aa895d37c2fb"
+                           },
+                           {
+                               "page":  74,
+                               "render":  ".artifacts/release-work-2026-09-24/claude/renders/doc9632-p74.png",
+                               "render_sha256":  "ab402786e4717c054a6e60b10a44931ccd8c94aefb022cab6bab521ed2791d5b"
+                           }
+                       ],
+    "expressions":  [
+                        {
+                            "ordinal":  0,
+                            "role":  "primary",
+                            "title":  "The Karachi Improvement Trust Act, 1950",
+                            "kind":  "act",
+                            "year":  1950,
+                            "number":  "XLVIII",
+                            "spans":  [
+                                          {
+                                              "start_block_id":  2582872,
+                                              "end_block_id":  2584561,
+                                              "pages":  "1-74"
+                                          }
+                                      ],
+                            "title_basis":  "p1 prints \u0027ACT No. XLVIII OF 1950\u0027 and its long title; sections 1-? and the Schedule (amendments of the Land Acquisition Act) follow to the closing paragraph 11 on p74 (block 2584561).",
+                            "expected_tree":  "preamble, sections of the Karachi Improvement Trust Act and its Schedule"
+                        },
+                        {
+                            "ordinal":  1,
+                            "role":  "embedded",
+                            "title":  "The Karachi Secondary Education (Amendment) Act, 1950",
+                            "kind":  "act",
+                            "year":  1950,
+                            "number":  "XLIX",
+                            "spans":  [
+                                          {
+                                              "start_block_id":  2584562,
+                                              "end_block_id":  2584573,
+                                              "pages":  "74"
+                                          }
+                                      ],
+                            "title_basis":  "p74 prints, below the Schedule\u0027s closing paragraph 11 and a printer\u0027s rule, \u0027ACT No. XLIX OF 1950.\u0027, \u0027An Act to amend the Karachi Secondary Education Act, 1950.\u0027, a preamble, section 1 (\u0027This Act may be called the Karachi Secondary Education (Amendment) Act, 1950.\u0027) and section 2, signed M. B. Ahmed, Secretary.",
+                            "expected_tree":  "preamble, sections 1-2"
+                        }
+                    ]
+}

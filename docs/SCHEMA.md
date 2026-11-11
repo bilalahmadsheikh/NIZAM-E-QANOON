@@ -148,7 +148,7 @@ and part scanned without rejecting the whole file.
 | `enacted_on`, `commenced_on`, `repealed_on` | date | |
 | `status` | `lifecycle_state` | in_force · repealed · spent · lapsed · not_yet_commenced |
 | `repealed_by_id` | uuid | → `instrument` |
-| `duplicate_of` | uuid | → `instrument`; NULL means *not yet assessed*, **not** "not a duplicate". Set by exact-tree identity (0036), partial-copy supersession (0054) and same-text copies (0062), the last two re-derived after every replay |
+| `duplicate_of` | uuid | → `instrument`; NULL means *not yet assessed*, **not** "not a duplicate". Set by exact-tree identity (0036), partial-copy supersession (0054), same-text copies (0062), or reviewed expression source variants (manifest method `nizam.expression_source_variant/1`). The latter means issued identity only, not text equality; ordinary replay is refused. See `docs/EXPRESSION-SOURCE-VARIANTS.md`. |
 | `gazette_ref`, `source_url`, `source_sha256`, `scope`, `extraction_conf`, `published` | | |
 | `source_observation_id` | bigint | → the official portal observation interpreted by this revision |
 | `expression_ordinal`, `expression_role` | smallint, text | stable expression number; `primary` or `embedded` |
@@ -891,6 +891,15 @@ requires the same source-blob hash, then compares relative paths, kinds, labels,
 headings, ordering, pages, source blocks and every provision text/version field.
 It sets `instrument.duplicate_of` only after an exact match. Distinct source
 observations and all of their evidence remain queryable.
+
+Expression source variants use a separate, explicitly narrower contract:
+`nizam.expression_source_variant/1` in the append-only expression manifest's
+`evidence.source_variant_disposition`. This links two reviewed reproductions of
+the same issued instrument while retaining known print differences and any
+unreadable loci. It does **not** create an0036 equality proof, qualify the copy's
+operative text, assert current/historical version equivalence, or substitute
+target provision citations. The bounded initial scope is9361 ordinals3–9;
+`docs/EXPRESSION-SOURCE-VARIANTS.md` defines the evidence and transaction guards.
 
 `segmentation_boundary_candidate` stores a title/formula/section-reset proposal
 when one official PDF appears to contain another independently citable legal

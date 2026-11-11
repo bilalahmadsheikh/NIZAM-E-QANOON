@@ -129,7 +129,9 @@ def _same_name(printed: str, heading: str) -> bool:
 SQL = """
 SELECT i.document_id, left(i.short_title,46), p.id::text, p.label, p.first_page,
        i.id::text, p.kind::text, p.heading, tb.text,
-       (SELECT count(*) FROM instrument_toc_entry e WHERE e.provision_id=p.id)
+       (SELECT count(*) FROM instrument_toc_entry e WHERE e.provision_id=p.id),
+       (SELECT v.text_en FROM provision_version v WHERE v.provision_id=p.id
+         ORDER BY v.id DESC LIMIT 1)
   FROM provision p
   JOIN instrument i ON i.id=p.instrument_id AND i.is_active AND i.duplicate_of IS NULL
   JOIN text_block tb ON tb.id=p.first_block
@@ -144,8 +146,10 @@ def nk(s: str) -> str:
 
 def find_hits(rows) -> list[dict]:
     hits = []
-    for (doc, title, pid, label, page, instrument_id, kind, heading,
-         text, linked) in rows:
+    for row in rows:
+        (doc, title, pid, label, page, instrument_id, kind, heading,
+         text, linked) = row[:10]
+        tree_text = row[10] if len(row) > 10 else None     # older callers/tests pass ten columns
         flat = " ".join((text or "").split())
         m = OPENER.match(flat)
         if not m:
@@ -165,6 +169,12 @@ def find_hits(rows) -> list[dict]:
             continue
         pk, hk = nk(printed), nk(heading)
         if len(pk) < 10 or len(hk) < 10:
+            continue
+        # The first block is the RAW extraction. A reviewed page reading (a curation patch) replaces such a block
+        # before the tree is built; when the tree's own text no longer carries the raw printed name, the raw OCR
+        # is what disagrees, not the citation (doc 9308 s.140: 'The Collector of the District, Asis.' is OCR of the
+        # margin note interleaved with the text, corrected by the 7 Nov page reading).
+        if tree_text is not None and pk not in nk(tree_text[:len(printed) * 3 + 80]):
             continue
         if pk.startswith(hk) or hk.startswith(pk):
             continue          # same name, differently truncated

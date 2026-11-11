@@ -32,7 +32,7 @@ import pathlib
 import re
 import sys
 
-from nizam.corpus.segment import _norm
+from nizam.corpus.segment import _norm, continuation_parent_shape_ok
 from nizam.storage import legal_write
 from nizam.storage.db import connect
 from nizam.workers.segment import (SECTION_GROUP_CAPTION_CHOICES, _bz_block_order_move_ok,  # group 33 (agent K6)
@@ -754,7 +754,17 @@ def main() -> int:
                                      and v.get("parent_kind") in ("chapter", "part"))
                                  # rule `reviewed_annexure_appendix_reparent` (agent JE, doc 4400)
                                  or (v.get("kind") == "annexure" and v.get("source_kind") == "annexure"
-                                     and v.get("parent_kind") == "appendix"))
+                                     and v.get("parent_kind") == "appendix")
+                                 # Exact source-reviewed9617 syllabus captions
+                                 # under their own printed ChapterVIII only.
+                                 or (doc == 9617 and v.get("kind") == "part"
+                                     and v.get("source_kind") == "part"
+                                     and v.get("parent_kind") == "chapter"
+                                     and v.get("parent_label") == "VIII"
+                                     and v.get("parent_block_id") == 2573737
+                                     and v.get("source_block_id") in {
+                                         2573742, 2573833, 2573923, 2574025,
+                                         2574064, 2574114, 2574134, 2574155}))
                             and (v["source_block_id"] != v["parent_block_id"]
                                  or (v.get("source_label") is not None
                                      and v.get("parent_label") is not None))
@@ -767,16 +777,11 @@ def main() -> int:
                 continue
             if continuations is not None and not (
                     isinstance(continuations, list) and continuations
-                    and all(isinstance(v, dict)
-                            and set(v) == {"source_block_id", "parent_block_id"}
-                            and type(v["source_block_id"]) is int
-                            and type(v["parent_block_id"]) is int
-                            and v["source_block_id"] != v["parent_block_id"]
-                            for v in continuations)
+                    and all(continuation_parent_shape_ok(v) for v in continuations)
                     and len({v["source_block_id"] for v in continuations})
                     == len(continuations)):
                 refused.append((where, "source_continuation_parent_blocks must "
-                                       "name distinct source and parent block ids"))
+                                       "name valid source/parent addresses, optionally an exact prefix and paired parent kind/label"))
                 continue
             if unnumbered_openers is not None and not (
                     isinstance(unnumbered_openers, list) and unnumbered_openers

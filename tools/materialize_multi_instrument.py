@@ -65,6 +65,32 @@ def load_plan(document_id: int,
     return plan
 
 
+def require_whole_plan_review(plan: dict | None) -> None:
+    """The whole-plan CLI cannot qualify bodies a staged plan marks unread.
+
+    A source-identity split can precede operative page review (9361). Its
+    separately audited slice writer must keep the other expressions held;
+    a later ordinary replay must not silently publish their raw parser draft.
+    Existing full-review plans without this staging field are unchanged.
+    """
+    if plan is not None and any(entry.get('source_variant_disposition')
+                                for entry in plan.get('expressions', [])):
+        raise ValueError('source-variant disposition: ordinary whole-plan --apply refused; '
+                         'variant-aware atomic replay needs separate review')
+    if plan is None or 'qualified_expression_ordinals' not in plan:
+        return
+    qualified = plan['qualified_expression_ordinals']
+    all_ordinals = {entry['ordinal'] for entry in plan.get('expressions', [])}
+    if (not isinstance(qualified, list)
+            or any(type(value) is not int for value in qualified)
+            or len(set(qualified)) != len(qualified)
+            or not set(qualified) <= all_ordinals):
+        raise ValueError('invalid qualified_expression_ordinals in staged source plan')
+    if set(qualified) != all_ordinals:
+        raise ValueError('partially reviewed source plan: whole-plan --apply refused; '
+                         'use the audited slice writer, leaving unread expressions held')
+
+
 # These have an independently citable outer instrument followed by appendices.
 # 1106 left this list on 8 Oct 2026: it is materialised from its reviewed plan
 # (tools/evidence/multi-instrument-plans/doc-1106.json; owner export -e q1 split).
@@ -1441,6 +1467,8 @@ def main() -> int:
     report = []
     for document_id in args.document:
         started = time.time()
+        if args.apply:
+            require_whole_plan_review(load_plan(document_id))
         # Fail closed BEFORE building: same-blob observations must carry the same readings and profile (doc 4419).
         same_blob = same_blob_observation_problem(document_id)
         if same_blob:

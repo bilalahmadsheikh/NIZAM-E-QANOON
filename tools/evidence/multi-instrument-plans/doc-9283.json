@@ -1,0 +1,184 @@
+{
+ "schema": "nizam.multi_expression_plan/1",
+ "document_id": 9283,
+ "source_observation_id": 13040,
+ "review_basis": "source_verified",
+ "reviewed_on": "2026-11-07",
+ "reviewed_by": "claude.source-page-review/1",
+ "owner_decision": {
+  "source": "Owner 7 Nov 2026 supplied the page-by-page proofread reading of all 27 scans (desk-9283-27of27.json) and asked for release; delegated decision (recommended option): the document holds two Acts -- Act XXI of 1958 (the Abatement of Election Petitions Act, p1 only) and the Finance Act 1958, Act XXII of 1958 (p1 to p27); scans 4 and 5 are duplicate scans of images 2 and 3 and are set aside whole."
+ },
+ "reviewed_pages": [
+  {
+   "page": 1,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9283-p1.png",
+   "render_sha256": "abcfdcd13fd483654d2be1fd264b65ef29abfe6c93322b5270c0a5154c5e2e4c"
+  },
+  {
+   "page": 2,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9283-p2.png",
+   "render_sha256": "1275890f89617288041ba0b14568feb29a7a05ff5398fc1daac0430cf768d43f"
+  },
+  {
+   "page": 3,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9283-p3.png",
+   "render_sha256": "b15d950733ffc4d4573cf9c4c0994bc2f36d6eb0ee2600e1f68016eac7d2f0c5"
+  },
+  {
+   "page": 4,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9283-p4.png",
+   "render_sha256": "99425824e8a34ebef4018265eaabbb87788db12498b30b9b42ef60574c5f9714"
+  },
+  {
+   "page": 5,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9283-p5.png",
+   "render_sha256": "85255113d8e1065fe363eb02a7067d44f517d3784f7db2a5e356388b12c22ce0"
+  },
+  {
+   "page": 6,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9283-p6.png",
+   "render_sha256": "a4d6d21a0375e3dfb9bbeb52f9feae7c8128b68746890f5b4a2872a5ada85ed1"
+  },
+  {
+   "page": 7,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9283-p7.png",
+   "render_sha256": "57a07692445f1b24319757404d5be44c0cc662c02f0d710095f7d444c49beae9"
+  },
+  {
+   "page": 8,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9283-p8.png",
+   "render_sha256": "ccbb9cb7ea748bac2ed557d0a82995f9b43f48c210c4fe203d621d7cbd0b1b10"
+  },
+  {
+   "page": 9,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9283-p9.png",
+   "render_sha256": "f34a021bdcb0d0486af1ad9e59effb5fd85b82ebc1570c134282974b129ebbd9"
+  },
+  {
+   "page": 10,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9283-p10.png",
+   "render_sha256": "0ad3d0974bfa0572a874bc977dbf10d526665698688b5ab61b5f00e27016cc1c"
+  },
+  {
+   "page": 11,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9283-p11.png",
+   "render_sha256": "b4ed982f3734045065763ff30e3569619d98c24854c6e1c71c6c000b8509c9b6"
+  },
+  {
+   "page": 12,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9283-p12.png",
+   "render_sha256": "a24535e8b052a4b96350c0b0ae0b2d242befea4db63c7230af69f0a05357f913"
+  },
+  {
+   "page": 13,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9283-p13.png",
+   "render_sha256": "0eb4bd3faa290a2a599686e043dd56559b22f938c509bd0f00e9a727f2475f8e"
+  },
+  {
+   "page": 14,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9283-p14.png",
+   "render_sha256": "0be74e6acd5b997c34fc06efb0e1cc322e4722413cb1801bf4c2d436920f2c77"
+  },
+  {
+   "page": 15,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9283-p15.png",
+   "render_sha256": "21f0840d85d9b5a85b243c2b2c5f15b9d7b77ca35e59400521572ba4e3147704"
+  },
+  {
+   "page": 16,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9283-p16.png",
+   "render_sha256": "b5cc016788fa8c997e9d58097fde338a691b93e5a653843d2c6a9acabae3a53c"
+  },
+  {
+   "page": 17,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9283-p17.png",
+   "render_sha256": "9c538705325c497cc446b87429ada01f49bafb92b7f5ad6cd7133502174dc9da"
+  },
+  {
+   "page": 18,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9283-p18.png",
+   "render_sha256": "042c19493a00b52a8601e13028dbed7991ee4c405f66fdff0a21be15a66c07ce"
+  },
+  {
+   "page": 19,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9283-p19.png",
+   "render_sha256": "f9fa282c713a8908fd795b83a758b2cb5b52c3e0f7eece7821ffe7fb8248ea73"
+  },
+  {
+   "page": 20,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9283-p20.png",
+   "render_sha256": "8051db104a586f76e698971ae3beb5c29fe9b8728df953d57318c5f4cc886329"
+  },
+  {
+   "page": 21,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9283-p21.png",
+   "render_sha256": "bce774fa42cb500da66b4186a90de3604fcf7ac6fcbcdd2e17be958644ad998e"
+  },
+  {
+   "page": 22,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9283-p22.png",
+   "render_sha256": "1cce7253a186363e531a17a42171349c549a5cc1ca578bc38951110b744e08e8"
+  },
+  {
+   "page": 23,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9283-p23.png",
+   "render_sha256": "acf2284d613c007af613ca347e4ddf2baa5473be77bfdae9b4698a82410a7801"
+  },
+  {
+   "page": 24,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9283-p24.png",
+   "render_sha256": "a7217bcf6dfcd83fb1417506674049855250a73830adcf1c4994e0c331d15b27"
+  },
+  {
+   "page": 25,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9283-p25.png",
+   "render_sha256": "74b7121fa73642b77aafbe25efa62fb58ee6a489b9e348adf8fed4510b1f0688"
+  },
+  {
+   "page": 26,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9283-p26.png",
+   "render_sha256": "491be0b7206fac1f374814eb8a659a6ead3ae829258abe05a6a5ac3f009a8c80"
+  },
+  {
+   "page": 27,
+   "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9283-p27.png",
+   "render_sha256": "cceae9d8d8f41a7b9c63ebcca4d2d2979f1e692a12979f45fc61c5d31091d455"
+  }
+ ],
+ "expressions": [
+  {
+   "ordinal": 0,
+   "role": "primary",
+   "title": "The Sind Legislative Assembly (Abatement of Election Petitions) Act, 1958",
+   "kind": "act",
+   "year": 1958,
+   "number": "XXI",
+   "spans": [
+    {
+     "start_block_id": 2433402,
+     "end_block_id": 2433413,
+     "pages": "1"
+    }
+   ],
+   "title_basis": "p1 prints 'THE SIND LEGISLATIVE ASSEMBLY (ABATEMENT OF ELECTION PETITIONS) ACT, 1958. ACT No. XXI OF 1958 [12th March, 1958]', two sections, signed A. R. Kazi, Deputy Secretary.",
+   "expected_tree": "preamble (four recitals), sections 1-2"
+  },
+  {
+   "ordinal": 1,
+   "role": "embedded",
+   "title": "The Finance Act, 1958",
+   "kind": "act",
+   "year": 1958,
+   "number": "XXII",
+   "spans": [
+    {
+     "start_block_id": 2433414,
+     "end_block_id": 2434101,
+     "pages": "1-27"
+    }
+   ],
+   "title_basis": "p1 prints the Ministry of Law publication note of 31 December 1958 then 'THE FINANCE ACT, 1958 ACT No. XXII OF 1958 [26th March, 1958]'; sections 1-? and the First to Fourth Schedules follow to p27.",
+   "expected_tree": "publication note, preamble, sections and the schedules"
+  }
+ ]
+}

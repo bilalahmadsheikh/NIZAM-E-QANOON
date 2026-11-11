@@ -109,6 +109,23 @@ def locator(p, old, page_texts, news):
             continue
         if sum(f(t).count(f(m)) for t in page_texts) == 1 and not any(f(m) in f(n) for n in news):
             return m
+    # no fresh prefix is left (a re-record, docs 9604 and 9596): any single-line window of 12+ characters will do
+    for ln in old.split("\n"):
+        for k in range(len(ln) - 11):
+            for e in range(len(ln), k + 11, -1):
+                m = ln[k:e]
+                if m.strip() != m or len(m) < 12 or (p, m, old) in used_triples:
+                    continue
+                if sum(f(t).count(f(m)) for t in page_texts) == 1 and not any(f(m) in f(n) for n in news):
+                    return m
+    # ... and a window that spans a line break
+    for k in range(len(old) - 11):
+        for e in range(len(old), k + 11, -1):
+            m = old[k:e]
+            if "\n" not in m or m.strip() != m or (p, m, old) in used_triples:
+                continue
+            if sum(f(t).count(f(m)) for t in page_texts) == 1 and not any(f(m) in f(n) for n in news):
+                return m
     return None
 for p, pg in sorted(spec["pages"].items(), key=lambda kv: int(kv[0])):
     p = int(p)
@@ -177,10 +194,15 @@ for p, pg in sorted(spec["pages"].items(), key=lambda kv: int(kv[0])):
                     ks.append(c); last = c
                 bounds = [0] + ks + [len(text)]
                 return [text[a:b] for a, b in zip(bounds, bounds[1:])]
-            for n in range(2, 16):
-                op, np_ = _split(old, ocuts_f, n), _split(new, ncuts, n)
-                if op and np_ and all(2 * len(o.encode()) + len(x.encode()) <= 2500 for o, x in zip(op, np_)):
-                    break
+            _ocut_sets = [ocuts_f, [k for k, ch in enumerate(old) if ch in "\n " and 12 <= k <= len(old) - 12]]
+            for _oc in _ocut_sets:   # a block with too few line breaks may be cut at spaces too (doc 9849 p6, 7 Nov)
+                for n in range(2, 16):
+                    op, np_ = _split(old, _oc, n), _split(new, ncuts, n)
+                    if op and np_ and all(2 * len(o.encode()) + len(x.encode()) <= 2500 for o, x in zip(op, np_)):
+                        break
+                else:
+                    continue
+                break
             else:
                 raise AssertionError((i, "block cannot be cut into pieces small enough"))
             for a, o in enumerate(op):

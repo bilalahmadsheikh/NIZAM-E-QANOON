@@ -1,0 +1,618 @@
+{
+  "schema": "nizam.multi_expression_plan/1",
+  "document_id": 9868,
+  "source_observation_id": 10798,
+  "review_basis": "source_verified",
+  "reviewed_on": "2026-11-08",
+  "reviewed_by": "Codex: all96 original source images individually read; three independent final source-slice audits passed; recorded648curations exactly replay539+30provisions; extraction/order/text-quality/OCR gates passed; separate6829 wording comparison retained",
+  "owner_decision": {
+    "export": ".artifacts/decision-review/exports/decision-review-2026-10-25-delegated.json",
+    "document_id": 9868,
+    "question_id": "q1"
+  },
+  "qualified_expression_ordinals": [
+    0,
+    1
+  ],
+  "reviewed_pages": [
+    {
+      "page": 1,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p1.png",
+      "render_sha256": "cef43f5e1d23577625a261550817c6f079c85836dba896206ac0babf4a57234e"
+    },
+    {
+      "page": 2,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p2.png",
+      "render_sha256": "06a2e9b1f8556e7bb3dc6866a030abe2c9be38aa4844923f41990ec1b84243c0"
+    },
+    {
+      "page": 3,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p3.png",
+      "render_sha256": "a8081c37771a9072abcc985ee07fdd13dcd7411ad3f0928c919f457897eebdb2"
+    },
+    {
+      "page": 4,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p4.png",
+      "render_sha256": "6a4710d0d1321589346b025a8e4b96ceb9c5ce209adfc61254c13d05384370e7"
+    },
+    {
+      "page": 5,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p5.png",
+      "render_sha256": "c9cfcab809e78c70458c60ab8bf439bfca01029df9395d2790bdb3f7ed2781b1"
+    },
+    {
+      "page": 6,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p6.png",
+      "render_sha256": "9d79b8a22573978d37a4c22abf8c33eb65cc5a11f0a8fe26cb96e56bc7ab0441"
+    },
+    {
+      "page": 7,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p7.png",
+      "render_sha256": "30e3882a037dda8e620d579ca79794595c18a6255c840e209c01c1be7b198860"
+    },
+    {
+      "page": 8,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p8.png",
+      "render_sha256": "28b4d9ebdb2cc38d3b76fe0c84436c87802dec699e3e3a86bd0935fbe97067c4"
+    },
+    {
+      "page": 9,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p9.png",
+      "render_sha256": "210fee991c2b7d4fbc31b27b27708f0e7460b8327c51ecf463affc894ca34868"
+    },
+    {
+      "page": 10,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p10.png",
+      "render_sha256": "afb86cc1afdaf69f1b7eeb92f105bd5708a9ae0892e46d8d77873b7f7d911d4e"
+    },
+    {
+      "page": 11,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p11.png",
+      "render_sha256": "a53215cdceca7652838a5b6180d153b8da6afbf55d117bcf07c16287ce3db347"
+    },
+    {
+      "page": 12,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p12.png",
+      "render_sha256": "12779bce358174710bd1016b302cd8f88f2faae7588120d482c21e5790382b7a"
+    },
+    {
+      "page": 13,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p13.png",
+      "render_sha256": "8ef556a8bc1db61048de6dfaacaf26ef542f8e13b7d94bdc4e36818878d73778"
+    },
+    {
+      "page": 14,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p14.png",
+      "render_sha256": "7dd25908d74ce8abf8a88045a06bb65c1037a6d3d8641e2051ae94f0da5511c1"
+    },
+    {
+      "page": 15,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p15.png",
+      "render_sha256": "04ca1437967dfd1f753d3f5b795c05153cfa3d3080277a82b4ccc398fed791d3"
+    },
+    {
+      "page": 16,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p16.png",
+      "render_sha256": "1404a670f4748d0403e6f3b7150065f3de4426eca7b75ee677091779a422f9b6"
+    },
+    {
+      "page": 17,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p17.png",
+      "render_sha256": "9a74a93585468a601333ffdbcf7c5530d59323e9012b6f9e1f7eee7a503c5d35"
+    },
+    {
+      "page": 18,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p18.png",
+      "render_sha256": "fb186e98b0f3dbe72f1b9aee133499134c1a5d933fd3d081fb3d4b590ad06199"
+    },
+    {
+      "page": 19,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p19.png",
+      "render_sha256": "cb60e5bb385ca97e90082971e1bb1fc0467aa067ed950d738cb0b4356235086e"
+    },
+    {
+      "page": 20,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p20.png",
+      "render_sha256": "eb5f44443f50df4e74368df1b0c37a9b517d06bd86c5d72ed4bd30272e749130"
+    },
+    {
+      "page": 21,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p21.png",
+      "render_sha256": "0c3f78b000a6aab23d2c0000cacdba3c3ee4fbf0b3b85da2134e0c6cacdc3464"
+    },
+    {
+      "page": 22,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p22.png",
+      "render_sha256": "f0032501e1baf2f87ba9d9664aaffffc2989dafe448277cc7514847cd30b7dd7"
+    },
+    {
+      "page": 23,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p23.png",
+      "render_sha256": "012f7852b1027f3e012d5d118094017f10194f53ab4433857e73ea0dc5ff5f78"
+    },
+    {
+      "page": 24,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p24.png",
+      "render_sha256": "a730316d09b66e3cee99fe440b710ac982062360d28ab12262ec711d07edd7cf"
+    },
+    {
+      "page": 25,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p25.png",
+      "render_sha256": "69c54e90176fc569453d0092ecc24398b53182ee7ad5932a67efb9ace3ee3a5d"
+    },
+    {
+      "page": 26,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p26.png",
+      "render_sha256": "e79bddfcb5711a43a900742be14645df0642abb2780efebd8dc6f4f36ebdd5f0"
+    },
+    {
+      "page": 27,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p27.png",
+      "render_sha256": "3b77fd2238a3d1fd0b00a01aebf4926f0d34194efc520ac7e494eb7f46b13e4f"
+    },
+    {
+      "page": 28,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p28.png",
+      "render_sha256": "973179b557d25baea4a53697a4ef470580d97f9a0fbe0cf2660e5ffe56a33177"
+    },
+    {
+      "page": 29,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p29.png",
+      "render_sha256": "510d6204d4e67fa858005313684db782ac2678f8146ef5910379fa2c789a277e"
+    },
+    {
+      "page": 30,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p30.png",
+      "render_sha256": "7a190861231701d71ada9bfff1a6f1aacaa8833c03488a8aead21bad007eab67"
+    },
+    {
+      "page": 31,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p31.png",
+      "render_sha256": "b7054b9cd1315981c15782da382586d6b86faacf55dae79db259add5a975ab70"
+    },
+    {
+      "page": 32,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p32.png",
+      "render_sha256": "6d384dc21dbd56411cd0e81b7265ac5acd714514b6aad3d348f5ba941f79eb9e"
+    },
+    {
+      "page": 33,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p33.png",
+      "render_sha256": "e65ec071c2dfff5a67ac0042b6968fe2775bf02444688025e22b969a65129ae0"
+    },
+    {
+      "page": 34,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p34.png",
+      "render_sha256": "3e544759c5fcfff52c60ca39be21aaad9c11755361e794b923f97ff97076f71d"
+    },
+    {
+      "page": 35,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p35.png",
+      "render_sha256": "0d5b4cb705984eff41034c22323748dc0915d970b6e4b9e94c6dc16a8a0e8a68"
+    },
+    {
+      "page": 36,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p36.png",
+      "render_sha256": "6471f1c41b586a10f188d765168cd42be5bc4131b1c8de53c97f121ad4274675"
+    },
+    {
+      "page": 37,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p37.png",
+      "render_sha256": "34a64fb14f9913d346e68905ecf36da416ba9cad509d51743b230c312fdb9f48"
+    },
+    {
+      "page": 38,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p38.png",
+      "render_sha256": "7557a77d5d355fa077109f0752facc39d60cd884f7516dc9920a4213d4463584"
+    },
+    {
+      "page": 39,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p39.png",
+      "render_sha256": "59ec2ebe3d62a08d9d7aea64cade1557e4fa1a4d13272c649197e9a65c6c19b7"
+    },
+    {
+      "page": 40,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p40.png",
+      "render_sha256": "81c927da9e9d965a904d08d974c0f1c9385ae67ff787f3c6f49607f0a8eb30ed"
+    },
+    {
+      "page": 41,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p41.png",
+      "render_sha256": "72184749c76be9f2ed54a083d568b062ba0be95d6871e34f500b59832657b0a3"
+    },
+    {
+      "page": 42,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p42.png",
+      "render_sha256": "94e18c1323768a49bef0aed70b08d3d1a922878ec53478e2b1ccdf7bc148fd4f"
+    },
+    {
+      "page": 43,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p43.png",
+      "render_sha256": "de15e7698a735f12352c9d0d9578bbb3673d3dbe4b9bfdc7542cbc01c9760805"
+    },
+    {
+      "page": 44,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p44.png",
+      "render_sha256": "bed383bfa265078c2b0d9e018288ff457a2d7fa15150fab1e4f9c0d617914f27"
+    },
+    {
+      "page": 45,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p45.png",
+      "render_sha256": "00f3e3e70dfe4601cddca4b26f9d584bbce11671ae2e4954e608aa5715ccbd1a"
+    },
+    {
+      "page": 46,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p46.png",
+      "render_sha256": "8b385ca5e7a816bac6aecaef05fd9d8638e8c7c9661c38a7895452f48feac4a1"
+    },
+    {
+      "page": 47,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p47.png",
+      "render_sha256": "dc4044367254a368baf071bd9c300f50d9cbc59e43ad741a6424d4f43fd90b83"
+    },
+    {
+      "page": 48,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p48.png",
+      "render_sha256": "e0d7a8a8bc322f15243f12c32c7b3641e263371f163f6b8be1e1fb47f18123bb"
+    },
+    {
+      "page": 49,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p49.png",
+      "render_sha256": "c47443fc8b0b58603255b9c9907a80747b000c9c38243aec64973b468bb9d336"
+    },
+    {
+      "page": 50,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p50.png",
+      "render_sha256": "903a14718ba6a7cf304a5367636fc09a3165083e84e0d2d057610441b946c705"
+    },
+    {
+      "page": 51,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p51.png",
+      "render_sha256": "f04bbd735270192fabf81141d8d722256c18822d4e9dbbabe829a571d29364a4"
+    },
+    {
+      "page": 52,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p52.png",
+      "render_sha256": "1009db40185218a045aa1e29cf60ef3ec9f93e8a8ef1139f0a2eb2b159cce476"
+    },
+    {
+      "page": 53,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p53.png",
+      "render_sha256": "7c8693865d4beca1f7c8ba4308fd7c8ee4969bef40091fbba5121a0b20ccb699"
+    },
+    {
+      "page": 54,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p54.png",
+      "render_sha256": "27e52cfc96dc2cdb8942eaa77502e4b9bf3ed11dfeeddebac21c8c6ce9a43591"
+    },
+    {
+      "page": 55,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p55.png",
+      "render_sha256": "0ffb892fadb4a47997a4f8ad87404bc6afd54c2e5c6d6e0aed5d791af1080c65"
+    },
+    {
+      "page": 56,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p56.png",
+      "render_sha256": "c33d6b212c8a4f81cddcd4eaae8863cacc6572b7bff65c6f577438c846803df8"
+    },
+    {
+      "page": 57,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p57.png",
+      "render_sha256": "971982f875cfffcacd322b8db74e87f97364f3b2854c2ea34edcc334f9b9bfb8"
+    },
+    {
+      "page": 58,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p58.png",
+      "render_sha256": "2e632751270c3f32515ec953a92d59056506e14637d4eae932bbc32a551dcfff"
+    },
+    {
+      "page": 59,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p59.png",
+      "render_sha256": "b4055bd0855cac05b046081f0631fc27737e5373ab306df193f75629fa395cd9"
+    },
+    {
+      "page": 60,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p60.png",
+      "render_sha256": "61536fced74add8e5242eb1075dfc738ac9669cf5b15369dc844cfbcba781ba3"
+    },
+    {
+      "page": 61,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p61.png",
+      "render_sha256": "105e78e02b2685c30d20f36b25832a61caac2e38838fe1bbec54d7847df55973"
+    },
+    {
+      "page": 62,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p62.png",
+      "render_sha256": "2c76278b716b1c807709d8f6536c4e06cd4a42673b425d2ab12b64a2b9efebc5"
+    },
+    {
+      "page": 63,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p63.png",
+      "render_sha256": "ca8aa8763930882b3af329a9c36ad384508c11fdb0826ed0ed433b4ad69a3dba"
+    },
+    {
+      "page": 64,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p64.png",
+      "render_sha256": "e7645bdf4a8d44c9f46269e4b1131b038e437b18c2920b9170c000b850ca5cbd"
+    },
+    {
+      "page": 65,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p65.png",
+      "render_sha256": "d975b780ce3c6b76d51e7a515186bfd6754e2a0bcfff79326649ad8e4883d469"
+    },
+    {
+      "page": 66,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p66.png",
+      "render_sha256": "c5561e3108c3b91beabc3b25f4a321a1477a107b384e713a1813c7cdf00e6ec1"
+    },
+    {
+      "page": 67,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p67.png",
+      "render_sha256": "e2a96ff41059a224d2a34f8f939debb11c8b6125975ae6cbc08825da34cda221"
+    },
+    {
+      "page": 68,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p68.png",
+      "render_sha256": "26f187b07f1e7ad01720255fbea2a9cb1a4d69c95ab93ee8a88b5e0ce6e0cdb7"
+    },
+    {
+      "page": 69,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p69.png",
+      "render_sha256": "f8869c3e238accf8a68769fdc5ebc05188003783de34b69dace0424ffe320109"
+    },
+    {
+      "page": 70,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p70.png",
+      "render_sha256": "c8fc5dee29d0fa5f564d77b44a8639161f1cd80240184312e85393e87ef68fec"
+    },
+    {
+      "page": 71,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p71.png",
+      "render_sha256": "8abbddee4ba8518609e34a63816f68e94c3573c4c373f4defae8bc5d4b711a19"
+    },
+    {
+      "page": 72,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p72.png",
+      "render_sha256": "5589b5c2ccd481d3137eb0601bf04dc977237212d02fa83b79944580e09db176"
+    },
+    {
+      "page": 73,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p73.png",
+      "render_sha256": "9e68412ec84022e0a512aebe40bd7f752ce1d6465c5afc7b6f400469f25850e0"
+    },
+    {
+      "page": 74,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p74.png",
+      "render_sha256": "68ee503e5c97c4593dd81087c8718776a9e896cbeffc5c93dd13401dd1cbe706"
+    },
+    {
+      "page": 75,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p75.png",
+      "render_sha256": "388d3b9eabcea4e829de966a9482c53ea56c6352915d3b13990c8b5c482cde6a"
+    },
+    {
+      "page": 76,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p76.png",
+      "render_sha256": "19f46fd0f896f1a23764ee8b00c48b92830f172b7796f06af1a3b1dbac19c5dd"
+    },
+    {
+      "page": 77,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p77.png",
+      "render_sha256": "de4c97ec4084fad67117c682465a775fd756bcc0ff4222e0f6f38cbfa41362dd"
+    },
+    {
+      "page": 78,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p78.png",
+      "render_sha256": "c50bccc52afc1e109b7097fcc99af307cbe7e9128c5a260d81e2f5325e0d2ff1"
+    },
+    {
+      "page": 79,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p79.png",
+      "render_sha256": "f7f997bba2db6a730e8af0a486747dc760612994bc8a660783e55cbb8f1a434e"
+    },
+    {
+      "page": 80,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p80.png",
+      "render_sha256": "565c9ce0d22b2d5cf87555536bb3b022bebf2d7459ef6a0a698d50c226f66148"
+    },
+    {
+      "page": 81,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p81.png",
+      "render_sha256": "ce3bdd1fb141736967505ca6eb003d846930468cc1dad42941ad101ce624104a"
+    },
+    {
+      "page": 82,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p82.png",
+      "render_sha256": "d8360268081f92f275065fbbd26d6292b8314d63c7492617bbc8625220032b81"
+    },
+    {
+      "page": 83,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p83.png",
+      "render_sha256": "191521b44ed209b36da990c433269b583f1dc23c94a7056c0a5fa7d8788085dd"
+    },
+    {
+      "page": 84,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p84.png",
+      "render_sha256": "1cf764325084e4a19c653ddf29307ede089bbe29bd264a0d91cc2d621eb38098"
+    },
+    {
+      "page": 85,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p85.png",
+      "render_sha256": "f544bd465f28ae282dcfdd12b8c1fc104d6a225dc5d476c453e750f509240bf2"
+    },
+    {
+      "page": 86,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p86.png",
+      "render_sha256": "37d438216853b8dcdeda094d36c7cf95b53da6a36380f5600e6e5fe32954ebb0"
+    },
+    {
+      "page": 87,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p87.png",
+      "render_sha256": "7a3eaf0caac4708e0a194b356eddf4d4f2906a4ac6e71b7868667dbb63662f62"
+    },
+    {
+      "page": 88,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p88.png",
+      "render_sha256": "1a92502114c186d6537e0d56992409fa798fee45e15c1548edfe4f774f02f489"
+    },
+    {
+      "page": 89,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p89.png",
+      "render_sha256": "27f4c495d416198fb3a42f9b013b9b66909e9ebb6f043aff0dedef6220af10b8"
+    },
+    {
+      "page": 90,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p90.png",
+      "render_sha256": "67a359726c3ce0a3858dca7d404c641dc5264cfd7fd74f928363b7bfadac37d8"
+    },
+    {
+      "page": 91,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p91.png",
+      "render_sha256": "d5b410ff0a966ab61ca76ffe0e414e058e876676b82d53cc3719c07243e78acd"
+    },
+    {
+      "page": 92,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p92.png",
+      "render_sha256": "607f0a0f84242588765fbe23d8cafb00d7599881450e16d92f655ece357b284d"
+    },
+    {
+      "page": 93,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p93.png",
+      "render_sha256": "62043635f3ecafdd6db48856ed05b7757be086c601ab1e9eb859e5ce9278a370"
+    },
+    {
+      "page": 94,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p94.png",
+      "render_sha256": "ef72b2268b93024c569368e2c8358924b965b900437db506682e627642f5e046"
+    },
+    {
+      "page": 95,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p95.png",
+      "render_sha256": "59f900908c0a9ebe7d469d65db41a6bacb6f701b4a8b007a62d6c2ee138c916e"
+    },
+    {
+      "page": 96,
+      "render": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/doc9868-p96.png",
+      "render_sha256": "4202c2a5fb6e04bfa53e31f11992afc43aed73bfcf56ed257f735c836fabadc0"
+    }
+  ],
+  "expressions": [
+    {
+      "ordinal": 0,
+      "role": "primary",
+      "title": "Federal Excise Rules, 2005",
+      "kind": "rules",
+      "year": 2005,
+      "number": null,
+      "jurisdiction": "fed",
+      "jurisdiction_basis": "Original1 federal Ministry/FBR cover; original7 opening states Federal Board of Revenue under Federal Excise Act2005.",
+      "spans": [
+        {
+          "start_block_id": 2689302,
+          "end_block_id": 2691154
+        }
+      ],
+      "title_basis": "Original1/2 title, original7 separate main Rules title and enabling notification; original93 is ANNEX-II [See rule85] tobacco register followed by closing stars. The independent Electronic Filing Rules start only on original94.",
+      "identity_review_pages": [
+        1,
+        2,
+        6,
+        7,
+        93
+      ],
+      "source_metadata": {
+        "notification_number_cover": "S.R.O. 534 (I)/2005",
+        "notification_number_opening_literal": "S.R.O. 534(1)/2005",
+        "notification_date_printed": "6th June, 2005",
+        "update_statement": "Updated up to 31.10.2023",
+        "update_statement_scope": "Publisher edition statement; not a legal-status or validity assertion."
+      },
+      "detect_contents": true,
+      "release_review_state": "full-source-reviewed-and-stored-replay-verified",
+      "front_index_disposition": "Main126 printed rule promises reconciled from original3–6. Only appended index title/rows on original6 are retained as non-operative package metadata. All4 annexes remain independent root divisions; no form fields promoted to rules."
+    },
+    {
+      "ordinal": 1,
+      "role": "embedded",
+      "title": "Electronic Filing of Federal Excise Return Rules, 2005",
+      "kind": "rules",
+      "year": 2005,
+      "number": null,
+      "jurisdiction": "fed",
+      "jurisdiction_basis": "Original94 Federal Board of Revenue enabling paragraph under s4(6) of Federal Excise Act2005.",
+      "spans": [
+        {
+          "start_block_id": 2691155,
+          "end_block_id": 2691231
+        }
+      ],
+      "title_basis": "Original94 independently prints the Electronic Filing title twice, its own CONTENTS1–5, and Notification No.S.R.O.1185(1)/2005 dated1stDecember2005, followed by a new rule1. Rules continue through original96 rule5 and closing stars.",
+      "identity_review_pages": [
+        6,
+        94,
+        95,
+        96
+      ],
+      "source_metadata": {
+        "notification_number_opening_literal": "S.R.O. 1185(1)/2005",
+        "notification_date_printed": "1st December, 2005",
+        "current_legal_status": "unknown"
+      },
+      "detect_contents": true,
+      "release_review_state": "full-source-reviewed-and-stored-replay-verified",
+      "candidate_counterpart": {
+        "document_id": 6829,
+        "status": "Same issued identity;11 independently read source-wording differences retained in this compilation expression. No exact-text duplicate or temporal/current equivalence asserted. Existing released6829 preserved.",
+        "audit": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08/audit-counterpart-6829.json",
+        "owner_decision": {
+          "export": ".artifacts/decision-review/exports/decision-review-2026-10-25-delegated.json",
+          "document_id": 9868,
+          "question_id": "q2",
+          "choice": "keep-both"
+        }
+      },
+      "source_anomalies": [
+        {
+          "source_block_id": 2691166,
+          "printed": "Notification No. S.R.O. 1185(1)/2005, dated 1st December, 2005.",
+          "note": "Same issued identity as released6829, with11 retained print differences detailed in .artifacts/release-work-2026-09-24/codex-7064-2026-11-08/audit-counterpart-6829.json. Institutional wording differs in the preamble and4(1); not an exact-text duplicate. No current-version equivalence or distinct temporal-version interval established. Existing6829 remains unchanged."
+        }
+      ]
+    }
+  ],
+  "recording_constraint": "Full96page source review complete;648append-only recorded curations must replay under pinned unreleased-v5. Publish only via atomic multi-expression materializer requiring both expressions released. Preserve original7064rawsource, recovered9868rawsource, and existing6829released expression.",
+  "front_index_policy": "Primary span includes package cover/index1–6 for source accounting, but main TOC reconciliation must exclude only the appended heading/rows evidenced on original6, not silently discard the main promised rules.",
+  "anchor_revision": {
+    "previous_document_id": 7064,
+    "source_sha256": "b259df7ddb12e74a8db45c2e989d2990f4fd3599bc7a1f17575f8b7bfa8c0ae0",
+    "recovery_report": "/mnt/e/Nizam_e_Qanoon/.artifacts/release-work-2026-09-24/codex-2026-11-07-d7064/hybrid-applied.json",
+    "independent_audit": "/mnt/e/Nizam_e_Qanoon/.artifacts/release-work-2026-09-24/codex-2026-11-07-d7064/audit-hybrid-recovery.json",
+    "old_to_new_mapping": "/mnt/e/Nizam_e_Qanoon/.artifacts/release-work-2026-09-24/codex-2026-11-07-d7064/native-anchor-remap.json",
+    "qualified": true,
+    "note": "Original source identities unchanged; all six previously image-only pages recovered append-only and individually read. Current9868span IDs/source blocks are used. Both complete operative candidates passed three independent page-slice audits and exact stored replay."
+  },
+  "qualification_evidence": {
+    "directory": ".artifacts/release-work-2026-09-24/codex-7064-2026-11-08",
+    "source_pages": 96,
+    "recorded_curations": 648,
+    "provisions": [
+      539,
+      30
+    ],
+    "toc_entries": [
+      126,
+      5
+    ],
+    "quality": {
+      "document_id": 9868,
+      "sha256": "b259df7ddb12e74a8db45c2e989d2990f4fd3599bc7a1f17575f8b7bfa8c0ae0",
+      "lane": "E3",
+      "character_outcome": "passed",
+      "ocr_outcome": "passed",
+      "order_outcome": "passed",
+      "text_quality_outcome": "passed",
+      "overall_outcome": "passed"
+    },
+    "local_source_gap": "Physical60 status-heading ending altere[illegible]; dated officialrefetch unchanged; declaration recorded under observation10798."
+  }
+}

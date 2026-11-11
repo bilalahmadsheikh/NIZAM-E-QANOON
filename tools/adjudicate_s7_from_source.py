@@ -14,7 +14,7 @@ WHAT A READING HAS TO SAY. Not "accept" but what the page shows, in words, the
 way migration 0050 requires of an assistant's `absent_in_source` assertion. The
 rationale stored is the observation, not the conclusion.
 
-THE STUB GUARD APPLIES HERE TOO, and is not overridable. `accept_non_citable`
+THE STUB GUARD APPLIES HERE TOO. It is overridable only by a reading that carries `stub_guard_waiver: {"owner_decision": "..."}` (80+ characters naming the owner's decision; first used 10 Nov 2026 for doc 7318, a compilation), and the waiver is stored in the decision's evidence with the sizes it overrode. Nothing else waives it. `accept_non_citable`
 is refused when the unit being demoted carries 500+ characters of provision
 text and the unit being kept carries less than half of it, whatever the reader
 believes (measured on the provisions' text, not their blocks -- SIZES): that is
@@ -247,12 +247,27 @@ def main() -> int:
                                     + ", ".join(map(str, missing))))
                     continue
 
+            stub_waived = None
             if resolution == "accept_non_citable":
                 cur.execute(SIZES, (cand_pid,))
                 cand = (cur.fetchone() or [0])[0]
                 cur.execute(SIZES, (canon_pid,))
                 canon = (cur.fetchone() or [0])[0]
                 refusal = stub_guard_refusal(cand, canon)
+                waiver = r.get("stub_guard_waiver")
+                if refusal and waiver is not None:
+                    # Owner-decided exception (10 Nov 2026, doc 7318 Estacode): a compilation prints the numbered paragraphs
+                    # of many separate memoranda and embedded rule sets under one manual, so which peer 'keeps' a label
+                    # is arbitrary and the larger peer may be the one demoted. The waiver is explicit, names the owner's
+                    # decision in words, and is stored in the evidence with the sizes it overrode. Nothing else waives it.
+                    if (isinstance(waiver, dict) and set(waiver) == {"owner_decision"}
+                            and isinstance(waiver["owner_decision"], str) and len(waiver["owner_decision"].strip()) >= 80):
+                        stub_waived = {"owner_decision": waiver["owner_decision"].strip(), "demoted_chars": cand,
+                                       "kept_chars": canon, "refusal_overridden": refusal}
+                        refusal = None
+                    else:
+                        refused.append((where, "stub_guard_waiver must be {'owner_decision': <at least 80 characters>}"))
+                        continue
                 if refusal:
                     refused.append((where, refusal))
                     continue
@@ -283,6 +298,7 @@ def main() -> int:
                 "supersedes": current, "page": page,
                 "reattachment": reattachment,
                 "structural_overrides": structural_overrides,
+                "stub_waived": stub_waived,
             })
 
         print(f"readings          : {len(readings)}")
@@ -310,6 +326,8 @@ def main() -> int:
                 evidence["reattachment"] = p["reattachment"]
             if p["structural_overrides"]:
                 evidence["structural_overrides"] = p["structural_overrides"]
+            if p["stub_waived"]:
+                evidence["stub_guard_waived"] = p["stub_waived"]
             cur.execute("""
                 INSERT INTO segmentation_structural_adjudication
                     (candidate_id, resolution, review_basis, method, rationale,

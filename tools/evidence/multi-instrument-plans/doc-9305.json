@@ -1,0 +1,957 @@
+{
+  "schema": "nizam.multi_expression_plan/1",
+  "document_id": 9305,
+  "source_observation_id": 12283,
+  "review_basis": "source_verified",
+  "reviewed_on": "2026-11-10",
+  "reviewed_by": "Codex root: all76original page images read; independent source audits1-22,23-46,47-76; independent final front-tree audit; root final middle/tail mechanical and lexical refresh. Source auditors middle/tail could not provide fresh final-tree refresh after quota exhaustion; not represented as new independent approval.",
+  "owner_decision": {
+    "export": ".artifacts/decision-review/exports/decision-review-2026-10-25-delegated.json",
+    "document_id": 9305,
+    "question_id": "q1",
+    "choice": "split",
+    "source": "Standing owner delegation25October renewed30October and explicit release9305instruction"
+  },
+  "qualified_expression_ordinals": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21
+  ],
+  "recording_constraint": "Qualified only after194recorded source readings reproduced all22audited trees exactly;52olderlayoutrecords retired; sourceincompleteness121; protected8819releasedfingerprints. Publish atomically with require-all-released; no aggregate replay.",
+  "expressions": [
+    {
+      "ordinal": 0,
+      "role": "primary",
+      "title": "Finance (Revised) Ordinance, 1988",
+      "kind": "ordinance",
+      "year": 1988,
+      "number": "XXII",
+      "spans": [
+        {
+          "start_block_id": 2450242,
+          "end_block_id": 2450630
+        }
+      ],
+      "title_basis": "Original physical1-30 individually read. Printed short title and issued number, not catalogue inference.",
+      "detect_contents": false,
+      "release_review_state": "source-read-stored-tree-verified",
+      "source_metadata": {
+        "original_physical_pages": [
+          1,
+          30
+        ],
+        "body_start_block": 2450252,
+        "legal_currency": "unknown; no current/historical-validity interval inferred",
+        "reference_tariff_contents": {
+          "page": 30,
+          "text": "TABLE OF CONTENTS\nSECTION I\nLIVE ANIMALS; ANIMAL PRODUCTS\nSection Notes.\n1. | Live animals | 1026\n2. | Meat and edible meat offal | 1028\n3. | Fish and crustaceans, molluscs and other aquatic invertebrates | 1033\n4. | Dairy produce; birds’ eggs; natural honey; edible products of animal origin, not elsewhere specific or included | 1042\n5. | Products of animal origin, not elsewhere specified or included | 1042\nSECTION II\nVEGETABLE PRODUCTS\nSection Notes\n6. | Live trees and other plants; bulbs, roots and the like; cut flowers and ornamental foliage | 1050\n7. | Edible vegetables and certain roots and tubers | 1052\n8. | Edible fruit and nuts; peel of citrus fruit or melons | 1058\n9. | Coffee, tea, mate and spices | 1064\n10. | Cereals | 1068\n11. | Products of the milling industry; malt; starches; inulin; wheat gluten | 1069\n12. | Oil seeds and oleaginous fruits; miscellaneous grains, seeds and fruit; industrial or medicinal plants; straw and fodder | 1074\n13. | Lac; gums, resins and other vegetable saps and extracts | 1080\n14. | Vegetable plaiting materials; vegetable products not elsewhere specified of included | 1082\nSECTION III\nANIMAL OR VEGETABLE FATS AND OILS AND THEIR CLEAVAGE PRODUCTS; PREPARED EDIBLE FATS; ANIMAL OR VEGETABLE WAXES\n15. | Animal or vegetable fats and oils and their cleavage products; prepared edible fats; animal or vegetable waxes\nSECTION IV\nPREPARED FOODSTUFFS; BEVERAGES, SPIRITS AND VINEGAR; TOBACCO AND MANUFACTURED TOBACCO SUBSTITUTES\nSection Note.\n16. | Preparations of meat, of fish or of crustaceans, molluscs or other aquatic invertebrates | 1093",
+          "status": "Reference contents to FirstSchedule; acquiredcopy lacks the actual tariff chapter bodies/pages1026onward. Not Ordinance sections1-16; no tariff entries fabricated.",
+          "source_incompleteness_id": 121
+        },
+        "referenced_tariff_caption": {
+          "page": 29,
+          "text": "LIST OF SECTION AND CHAPTER TITLES TO THE FIRST SCHEDULE\n(See the Gazette of Pakistan, Extraordinary, Part—I, dated 26.10.1988)."
+        },
+        "printed_purpose_block": 2450253,
+        "source_incompleteness_id": 121
+      }
+    },
+    {
+      "ordinal": 1,
+      "role": "embedded",
+      "title": "Tax Laws (Repeal) Ordinance, 1988",
+      "kind": "ordinance",
+      "year": 1988,
+      "number": "XXIII",
+      "spans": [
+        {
+          "start_block_id": 2450631,
+          "end_block_id": 2450657
+        }
+      ],
+      "title_basis": "Original physical31-32 individually read. Printed short title and issued number, not catalogue inference.",
+      "detect_contents": false,
+      "release_review_state": "source-read-stored-tree-verified",
+      "source_metadata": {
+        "original_physical_pages": [
+          31,
+          32
+        ],
+        "body_start_block": 2450641,
+        "legal_currency": "unknown; no current/historical-validity interval inferred",
+        "printed_purpose_block": 2450642,
+        "source_incompleteness_id": 121
+      }
+    },
+    {
+      "ordinal": 2,
+      "role": "embedded",
+      "title": "Corrigendum to Ordinances XVI, XVII and XXI of 1988",
+      "kind": "notification",
+      "year": 1988,
+      "number": null,
+      "spans": [
+        {
+          "start_block_id": 2450658,
+          "end_block_id": 2450666
+        }
+      ],
+      "title_basis": "Descriptive source identity: original printed caption, publication context/date and operative words; no official short title or instrument number invented.",
+      "detect_contents": false,
+      "release_review_state": "source-read-stored-tree-verified",
+      "source_metadata": {
+        "original_physical_pages": [
+          32,
+          32
+        ],
+        "body_start_block": 2450658,
+        "legal_currency": "unknown; no current/historical-validity interval inferred",
+        "source_incompleteness_id": 121
+      }
+    },
+    {
+      "ordinal": 3,
+      "role": "embedded",
+      "title": "Islamabad Real Estate Agents and Motor Vehicles Dealers (Regulation of Business) (Amendment) Ordinance, 1988",
+      "kind": "ordinance",
+      "year": 1988,
+      "number": "XXIV",
+      "spans": [
+        {
+          "start_block_id": 2450667,
+          "end_block_id": 2450692
+        }
+      ],
+      "title_basis": "Original physical33-34 individually read. Printed short title and issued number, not catalogue inference.",
+      "detect_contents": false,
+      "release_review_state": "source-read-stored-tree-verified",
+      "source_metadata": {
+        "original_physical_pages": [
+          33,
+          34
+        ],
+        "body_start_block": 2450676,
+        "legal_currency": "unknown; no current/historical-validity interval inferred",
+        "printed_purpose_block": 2450677,
+        "source_incompleteness_id": 121
+      }
+    },
+    {
+      "ordinal": 4,
+      "role": "embedded",
+      "title": "Suppression of Terrorist Activities (Special Courts) (Second Amendment) Ordinance, 1988",
+      "kind": "ordinance",
+      "year": 1988,
+      "number": "XXV",
+      "spans": [
+        {
+          "start_block_id": 2450693,
+          "end_block_id": 2450719
+        }
+      ],
+      "title_basis": "Original physical35-36 individually read. Printed short title and issued number, not catalogue inference.",
+      "detect_contents": false,
+      "release_review_state": "source-read-stored-tree-verified",
+      "source_metadata": {
+        "original_physical_pages": [
+          35,
+          36
+        ],
+        "body_start_block": 2450704,
+        "legal_currency": "unknown; no current/historical-validity interval inferred",
+        "printed_purpose_block": 2450705,
+        "source_incompleteness_id": 121
+      }
+    },
+    {
+      "ordinal": 5,
+      "role": "embedded",
+      "title": "Representation of the People (Second Amendment) Ordinance, 1988",
+      "kind": "ordinance",
+      "year": 1988,
+      "number": "XXVI",
+      "spans": [
+        {
+          "start_block_id": 2450720,
+          "end_block_id": 2450743
+        }
+      ],
+      "title_basis": "Original physical37-38 individually read. Printed short title and issued number, not catalogue inference.",
+      "detect_contents": false,
+      "release_review_state": "source-read-stored-tree-verified",
+      "source_metadata": {
+        "original_physical_pages": [
+          37,
+          38
+        ],
+        "body_start_block": 2450730,
+        "legal_currency": "unknown; no current/historical-validity interval inferred",
+        "printed_purpose_block": 2450730,
+        "source_incompleteness_id": 121
+      }
+    },
+    {
+      "ordinal": 6,
+      "role": "embedded",
+      "title": "Representation of the People (Third Amendment) Ordinance, 1988",
+      "kind": "ordinance",
+      "year": 1988,
+      "number": "XXVII",
+      "spans": [
+        {
+          "start_block_id": 2450744,
+          "end_block_id": 2450779
+        }
+      ],
+      "title_basis": "Original physical39-40 individually read. Printed short title and issued number, not catalogue inference.",
+      "detect_contents": false,
+      "release_review_state": "source-read-stored-tree-verified",
+      "source_metadata": {
+        "original_physical_pages": [
+          39,
+          40
+        ],
+        "body_start_block": 2450755,
+        "legal_currency": "unknown; no current/historical-validity interval inferred",
+        "handwritten_correction": {
+          "page": 40,
+          "observation": "Printed and at end of quoted(c) is crossed and handwrittenor added; candidate retains printedand. Separate issuedcorrigendum explicitly changesand toor."
+        },
+        "printed_purpose_block": 2450756,
+        "source_incompleteness_id": 121
+      }
+    },
+    {
+      "ordinal": 7,
+      "role": "embedded",
+      "title": "Corrigendum to Ordinance XXVII of 1988, 8 November 1988",
+      "kind": "notification",
+      "year": 1988,
+      "number": null,
+      "spans": [
+        {
+          "start_block_id": 2450780,
+          "end_block_id": 2450793
+        }
+      ],
+      "title_basis": "Descriptive source identity: original printed caption, publication context/date and operative words; no official short title or instrument number invented.",
+      "detect_contents": false,
+      "release_review_state": "source-read-stored-tree-verified",
+      "source_metadata": {
+        "original_physical_pages": [
+          41,
+          42
+        ],
+        "body_start_block": 2450788,
+        "legal_currency": "unknown; no current/historical-validity interval inferred",
+        "source_incompleteness_id": 121
+      },
+      "relations": [
+        {
+          "type": "amends",
+          "target_ordinal": 6,
+          "source_block_id": 2450790,
+          "effect": "for and read or on printed0002line16",
+          "basis": "The separate original8Novembercorrigendum expressly names OrdinanceXXVII. Original printedand and handwrittenmargin retained in source context; no silent rewritten version."
+        }
+      ]
+    },
+    {
+      "ordinal": 8,
+      "role": "embedded",
+      "title": "National Registration (Amendment) Ordinance, 1988",
+      "kind": "ordinance",
+      "year": 1988,
+      "number": "XXVIII",
+      "spans": [
+        {
+          "start_block_id": 2450794,
+          "end_block_id": 2450823
+        }
+      ],
+      "title_basis": "Original physical43-44 individually read. Printed short title and issued number, not catalogue inference.",
+      "detect_contents": false,
+      "release_review_state": "source-read-stored-tree-verified",
+      "source_metadata": {
+        "original_physical_pages": [
+          43,
+          44
+        ],
+        "body_start_block": 2450807,
+        "legal_currency": "unknown; no current/historical-validity interval inferred",
+        "printed_purpose_block": 2450808,
+        "source_incompleteness_id": 121
+      }
+    },
+    {
+      "ordinal": 9,
+      "role": "embedded",
+      "title": "Delimitation of Constituencies (Third Amendment) Ordinance, 1988",
+      "kind": "ordinance",
+      "year": 1988,
+      "number": "XXIX",
+      "spans": [
+        {
+          "start_block_id": 2450824,
+          "end_block_id": 2450867
+        }
+      ],
+      "title_basis": "Original physical45-48 individually read. Printed short title and issued number, not catalogue inference.",
+      "detect_contents": false,
+      "release_review_state": "source-read-stored-tree-verified",
+      "source_metadata": {
+        "original_physical_pages": [
+          45,
+          48
+        ],
+        "body_start_block": 2450836,
+        "legal_currency": "unknown; no current/historical-validity interval inferred",
+        "printed_purpose_block": 2450836,
+        "source_incompleteness_id": 121
+      }
+    },
+    {
+      "ordinal": 10,
+      "role": "embedded",
+      "title": "National Tariff Commission Ordinance, 1988",
+      "kind": "ordinance",
+      "year": 1988,
+      "number": "XXX",
+      "spans": [
+        {
+          "start_block_id": 2450868,
+          "end_block_id": 2450943
+        }
+      ],
+      "title_basis": "Original physical49-54 individually read. Printed short title and issued number, not catalogue inference.",
+      "detect_contents": false,
+      "release_review_state": "source-read-stored-tree-verified",
+      "source_metadata": {
+        "original_physical_pages": [
+          49,
+          54
+        ],
+        "body_start_block": 2450882,
+        "legal_currency": "unknown; no current/historical-validity interval inferred",
+        "printed_purpose_block": 2450883,
+        "source_incompleteness_id": 121
+      }
+    },
+    {
+      "ordinal": 11,
+      "role": "embedded",
+      "title": "Civil Servants (Amendment) Ordinance, 1988",
+      "kind": "ordinance",
+      "year": 1988,
+      "number": "XXXI",
+      "spans": [
+        {
+          "start_block_id": 2450944,
+          "end_block_id": 2450974
+        }
+      ],
+      "title_basis": "Original physical55-56 individually read. Printed short title and issued number, not catalogue inference.",
+      "detect_contents": false,
+      "release_review_state": "source-read-stored-tree-verified",
+      "source_metadata": {
+        "original_physical_pages": [
+          55,
+          56
+        ],
+        "body_start_block": 2450956,
+        "legal_currency": "unknown; no current/historical-validity interval inferred",
+        "printed_purpose_block": 2450956,
+        "source_incompleteness_id": 121
+      }
+    },
+    {
+      "ordinal": 12,
+      "role": "embedded",
+      "title": "Transfer of Managed Establishments (Amendment) Ordinance, 1988",
+      "kind": "ordinance",
+      "year": 1988,
+      "number": "XXXII",
+      "spans": [
+        {
+          "start_block_id": 2450975,
+          "end_block_id": 2451005
+        }
+      ],
+      "title_basis": "Original physical57-58 individually read. Printed short title and issued number, not catalogue inference.",
+      "detect_contents": false,
+      "release_review_state": "source-read-stored-tree-verified",
+      "source_metadata": {
+        "original_physical_pages": [
+          57,
+          58
+        ],
+        "body_start_block": 2450988,
+        "legal_currency": "unknown; no current/historical-validity interval inferred",
+        "publication_header_anomaly": "Physical57 Gazette header prints December30; notification prints30November1988 and made29November1988. Preserved as source discrepancy; no date invented.",
+        "printed_purpose_block": 2450989,
+        "source_incompleteness_id": 121
+      }
+    },
+    {
+      "ordinal": 13,
+      "role": "embedded",
+      "title": "Representation of the People (Fourth Amendment) Ordinance, 1988",
+      "kind": "ordinance",
+      "year": 1988,
+      "number": "XXXIII",
+      "spans": [
+        {
+          "start_block_id": 2451006,
+          "end_block_id": 2451032
+        }
+      ],
+      "title_basis": "Original physical59-60 individually read. Printed short title and issued number, not catalogue inference.",
+      "detect_contents": false,
+      "release_review_state": "source-read-stored-tree-verified",
+      "source_metadata": {
+        "original_physical_pages": [
+          59,
+          60
+        ],
+        "body_start_block": 2451019,
+        "legal_currency": "unknown; no current/historical-validity interval inferred",
+        "printed_purpose_block": 2451019,
+        "source_incompleteness_id": 121
+      }
+    },
+    {
+      "ordinal": 14,
+      "role": "embedded",
+      "title": "High Court Judges (Travelling Allowance) (Amendment) Order, 1988",
+      "kind": "order",
+      "year": 1988,
+      "number": "1",
+      "spans": [
+        {
+          "start_block_id": 2451033,
+          "end_block_id": 2451067
+        }
+      ],
+      "title_basis": "Original physical61-62 individually read. Printed short title and issued number, not catalogue inference.",
+      "detect_contents": false,
+      "release_review_state": "source-read-stored-tree-verified",
+      "source_metadata": {
+        "original_physical_pages": [
+          61,
+          62
+        ],
+        "body_start_block": 2451045,
+        "legal_currency": "unknown; no current/historical-validity interval inferred",
+        "source_incompleteness_id": 121
+      }
+    },
+    {
+      "ordinal": 15,
+      "role": "embedded",
+      "title": "Senate (Election of Members from the Federal Capital) Order, 1988",
+      "kind": "order",
+      "year": 1988,
+      "number": "3",
+      "spans": [
+        {
+          "start_block_id": 2451068,
+          "end_block_id": 2451092
+        }
+      ],
+      "title_basis": "Original physical63-64 individually read. Printed short title and issued number, not catalogue inference.",
+      "detect_contents": false,
+      "release_review_state": "source-read-stored-tree-verified",
+      "source_metadata": {
+        "original_physical_pages": [
+          63,
+          64
+        ],
+        "body_start_block": 2451077,
+        "legal_currency": "unknown; no current/historical-validity interval inferred",
+        "source_incompleteness_id": 121
+      }
+    },
+    {
+      "ordinal": 16,
+      "role": "embedded",
+      "title": "Preparation of Electoral Rolls (Federally Administered Tribal Areas) (Amendment) Order, 1988",
+      "kind": "order",
+      "year": 1988,
+      "number": "4",
+      "spans": [
+        {
+          "start_block_id": 2451093,
+          "end_block_id": 2451119
+        }
+      ],
+      "title_basis": "Original physical65-66 individually read. Printed short title and issued number, not catalogue inference.",
+      "detect_contents": false,
+      "release_review_state": "source-read-stored-tree-verified",
+      "source_metadata": {
+        "original_physical_pages": [
+          65,
+          66
+        ],
+        "body_start_block": 2451103,
+        "legal_currency": "unknown; no current/historical-validity interval inferred",
+        "source_incompleteness_id": 121
+      }
+    },
+    {
+      "ordinal": 17,
+      "role": "embedded",
+      "title": "Judges (Leave, Pension and Privileges) (Amendment) Order, 1988",
+      "kind": "order",
+      "year": 1988,
+      "number": "5",
+      "spans": [
+        {
+          "start_block_id": 2451120,
+          "end_block_id": 2451156
+        }
+      ],
+      "title_basis": "Original physical67-68 individually read. Printed short title and issued number, not catalogue inference.",
+      "detect_contents": false,
+      "release_review_state": "source-read-stored-tree-verified",
+      "source_metadata": {
+        "original_physical_pages": [
+          67,
+          68
+        ],
+        "body_start_block": 2451137,
+        "legal_currency": "unknown; no current/historical-validity interval inferred",
+        "source_incompleteness_id": 121
+      }
+    },
+    {
+      "ordinal": 18,
+      "role": "embedded",
+      "title": "Governor’s Pension (Amendment) Order, 1988",
+      "kind": "order",
+      "year": 1988,
+      "number": "6",
+      "spans": [
+        {
+          "start_block_id": 2451157,
+          "end_block_id": 2451177
+        }
+      ],
+      "title_basis": "Original physical69-70 individually read. Printed short title and issued number, not catalogue inference.",
+      "detect_contents": false,
+      "release_review_state": "source-read-stored-tree-verified",
+      "source_metadata": {
+        "original_physical_pages": [
+          69,
+          70
+        ],
+        "body_start_block": 2451166,
+        "legal_currency": "unknown; no current/historical-validity interval inferred",
+        "source_incompleteness_id": 121
+      }
+    },
+    {
+      "ordinal": 19,
+      "role": "embedded",
+      "title": "Governor’s Pension (Amendment) Order, 1988",
+      "kind": "order",
+      "year": 1988,
+      "number": "7",
+      "spans": [
+        {
+          "start_block_id": 2451178,
+          "end_block_id": 2451215
+        }
+      ],
+      "title_basis": "Original physical71-72 individually read. Printed short title and issued number, not catalogue inference.",
+      "detect_contents": false,
+      "release_review_state": "source-read-stored-tree-verified",
+      "source_metadata": {
+        "original_physical_pages": [
+          71,
+          72
+        ],
+        "body_start_block": 2451192,
+        "legal_currency": "unknown; no current/historical-validity interval inferred",
+        "source_incompleteness_id": 121
+      }
+    },
+    {
+      "ordinal": 20,
+      "role": "embedded",
+      "title": "Order dissolving the National Assembly, 29 May 1988",
+      "kind": "order",
+      "year": 1988,
+      "number": null,
+      "spans": [
+        {
+          "start_block_id": 2451216,
+          "end_block_id": 2451232
+        }
+      ],
+      "title_basis": "Descriptive source identity: original printed caption, publication context/date and operative words; no official short title or instrument number invented.",
+      "detect_contents": false,
+      "release_review_state": "source-read-stored-tree-verified",
+      "source_metadata": {
+        "original_physical_pages": [
+          73,
+          74
+        ],
+        "body_start_block": 2451223,
+        "legal_currency": "unknown; no current/historical-validity interval inferred",
+        "source_incompleteness_id": 121
+      }
+    },
+    {
+      "ordinal": 21,
+      "role": "embedded",
+      "title": "Federally Administered Tribal Areas (Determination of Last Preceding Census) Regulation 1988",
+      "kind": "regulation",
+      "year": 1988,
+      "number": "I",
+      "spans": [
+        {
+          "start_block_id": 2451233,
+          "end_block_id": 2451262
+        }
+      ],
+      "title_basis": "Original physical75-76 individually read. Printed short title and issued number, not catalogue inference.",
+      "detect_contents": false,
+      "release_review_state": "source-read-stored-tree-verified",
+      "source_metadata": {
+        "original_physical_pages": [
+          75,
+          76
+        ],
+        "body_start_block": 2451243,
+        "legal_currency": "unknown; no current/historical-validity interval inferred",
+        "printed_purpose_block": 2451244,
+        "source_incompleteness_id": 121
+      }
+    }
+  ],
+  "reviewed_pages": [
+    {
+      "page": 1,
+      "render_sha256": "71f20530117672c0623f6fe6b215d8cbebdd83d002d41d6f1716d32b1efe0259"
+    },
+    {
+      "page": 2,
+      "render_sha256": "f1e72038cb7f308cc7a392f53a13275daf2a3914a09ee2d3ab3141246133c394"
+    },
+    {
+      "page": 3,
+      "render_sha256": "a2fcfc3e996e4af7fc9d0bb6a55ea7ce5fbd5f5d8d339ab86372a9c5e0dc4427"
+    },
+    {
+      "page": 4,
+      "render_sha256": "bf1d155450e65473d3d934806c7f16b2d93e9280c56bcccf554897b92f50cfbd"
+    },
+    {
+      "page": 5,
+      "render_sha256": "f6809579becb732d5b17e2c1ada42611d55b01365e2e5764329036b113e0d18b"
+    },
+    {
+      "page": 6,
+      "render_sha256": "5fe71da262d05f773c9177423b74df3c3f6fa45b31084a7b22774354826e1d72"
+    },
+    {
+      "page": 7,
+      "render_sha256": "fc7461fa064f9addf3846ddb81ff1c870ac92b813d15f28ade775b620b14f8ea"
+    },
+    {
+      "page": 8,
+      "render_sha256": "9b50fda3dcf073c0d9f4639a841fe0b37bdac21271d70fb303f7cf08fbfc16ac"
+    },
+    {
+      "page": 9,
+      "render_sha256": "4582908f9e6b763d506d5b10f99c414aa4051d934efdb7173d4b89159dffcca2"
+    },
+    {
+      "page": 10,
+      "render_sha256": "bffdddc7d2185c1bf062cacb5906bee4037b8f741c2365f395a7fde9e078f6ce"
+    },
+    {
+      "page": 11,
+      "render_sha256": "0227e01173d99c7a8c5fe5f9d65edf8917f65dcfd10bd809991edd9295066936"
+    },
+    {
+      "page": 12,
+      "render_sha256": "cc083813bc446715d89173e169362c1c91bea8ba2a56b49487a24c7700e62b75"
+    },
+    {
+      "page": 13,
+      "render_sha256": "fa473c231f7275fdbc1e6b0fe0d2c97feb10ca3be2e54e8aa453d2f7b03012a4"
+    },
+    {
+      "page": 14,
+      "render_sha256": "26a9465ee47ff5d95dc574c50ee24e7846f3d58916f0210eff41f7286030e179"
+    },
+    {
+      "page": 15,
+      "render_sha256": "ee307028a1179dbbf38a3206eb26ae699bade507886909e1efcad8120dd7dceb"
+    },
+    {
+      "page": 16,
+      "render_sha256": "c8f66e7ed41a4f5ca8b0c7e7087ea8cbe03b1b86d397ad805c3b1dd52a5bab52"
+    },
+    {
+      "page": 17,
+      "render_sha256": "cd8eba2296a5f8273e2224bf7b1bc12f210ca7cb3cda0ea2c1d78a32c09b0d2b"
+    },
+    {
+      "page": 18,
+      "render_sha256": "05c415226c39f7dfacf771a069ef76f939db756493b807cb020da2494a28f960"
+    },
+    {
+      "page": 19,
+      "render_sha256": "5e8065f3b0d5f8fce8c9c84b61d0e7805d7616272f111172b92a46ee383f34e9"
+    },
+    {
+      "page": 20,
+      "render_sha256": "e80aeb00915c92a867eda26a6ac993b5b434e94cc55227c22d9f838f1146b3e6"
+    },
+    {
+      "page": 21,
+      "render_sha256": "007149c3df4044f2fb87d0d9dfb8dcb94b0df1df3de999cf2f7c0327cb289648"
+    },
+    {
+      "page": 22,
+      "render_sha256": "5f6c7a09862b884327e39038bd2e5f94fb601b39ec3404f43fca1176b8059492"
+    },
+    {
+      "page": 23,
+      "render_sha256": "fe78e4eef41925943ad7816f6649db72e05f42878c5e52602a9745f8736ed0c2"
+    },
+    {
+      "page": 24,
+      "render_sha256": "e15e433aa631cb3dd8eb55a2109e02e7367923e94c3ffd4cb421f98db4225673"
+    },
+    {
+      "page": 25,
+      "render_sha256": "58ff6dbb7b1907ac834256d51b65e069f46bf16edbe4848002cb5be3197c0226"
+    },
+    {
+      "page": 26,
+      "render_sha256": "9dfa069cfd06daf9a96edddeac2234150744d162798310b56c9090e1c97494e9"
+    },
+    {
+      "page": 27,
+      "render_sha256": "76b5baa3e1d511bb1de0889f852d6244963f50656052c08b69b86db4e6e6d94f"
+    },
+    {
+      "page": 28,
+      "render_sha256": "2b691daef7cc85a7b5f33ceb5c6ff35b6aae73541015d4d239378560b7db7ed8"
+    },
+    {
+      "page": 29,
+      "render_sha256": "21ee73ce637b876455f11eaab6b597d39d8b9ec97e26c48857a40315095145e1"
+    },
+    {
+      "page": 30,
+      "render_sha256": "ee3c1824f712123c9fe4959bba433e98521bb1f18e91a33b3f646de58d1b171b"
+    },
+    {
+      "page": 31,
+      "render_sha256": "63a50416698bb6aedcd23a49201af69b145574358cca28f67b28401153e1f3d8"
+    },
+    {
+      "page": 32,
+      "render_sha256": "c2c3582cd1e32a91948723ad8ba5c3aa51f915e825d47e5c251097cf6da21a9b"
+    },
+    {
+      "page": 33,
+      "render_sha256": "461a7a2fd8db143683450db5f601486c7b9596fe982bfc2fda448d0205dedf53"
+    },
+    {
+      "page": 34,
+      "render_sha256": "e38a1791ee21c462b21d77c97e2f1ff34147c17750457270bf915234f96cf597"
+    },
+    {
+      "page": 35,
+      "render_sha256": "0f879ed96cd3389226a511c786216972d64e33aabc0e4efbbf2fa2226aa060c5"
+    },
+    {
+      "page": 36,
+      "render_sha256": "5f9595ce0dcdc677d4b53f8dc6dc830d0b2dcdc3654b0552f261be7290d68ce1"
+    },
+    {
+      "page": 37,
+      "render_sha256": "8ce5946d99a25f9d0c6bd76d47590633b50b0df3d8ea88ab227d4fd2e6365d9e"
+    },
+    {
+      "page": 38,
+      "render_sha256": "c03cb03b262d27ce7fdf511cd50a59c0d15429329ec4cd164aba599e99afbe92"
+    },
+    {
+      "page": 39,
+      "render_sha256": "35b9581e427c03fda60a2328fa05aee17044ae7e687d80980cb9249adef7cb6f"
+    },
+    {
+      "page": 40,
+      "render_sha256": "b8569e1735b3cdc413f283b1965c13dde4d4aca32e916cc6442cec76c80db5f9"
+    },
+    {
+      "page": 41,
+      "render_sha256": "f2b319a8bbdc7c329ad52f27658eec4c17ff8970b7bb3631bb2117960c65669a"
+    },
+    {
+      "page": 42,
+      "render_sha256": "cd3855ef16d10182ee4bf8a8a1a8b15b43b4b8f2b94bc6cc20281b0584d26f5b"
+    },
+    {
+      "page": 43,
+      "render_sha256": "51b038488b680786d7d7ca47dfa4f8ad7c6d5faeee45434c88c9f1fabde4dbd2"
+    },
+    {
+      "page": 44,
+      "render_sha256": "71ad8321e46092697a1eddeb3270bea4db327b36b1916c940ed52466d36f328f"
+    },
+    {
+      "page": 45,
+      "render_sha256": "d4876d88167c986ba4b9d0cd5c56959f42a66c1d4f8970b68678ddc0e7cf7725"
+    },
+    {
+      "page": 46,
+      "render_sha256": "f32243ac58137fbfebfa153118be6568796d46fd10f351c5abe49578798da371"
+    },
+    {
+      "page": 47,
+      "render_sha256": "215657a23c244bfe52069be32a40ff1d6ba457fcd8f417de99fcdebbbd7bc4fa"
+    },
+    {
+      "page": 48,
+      "render_sha256": "939ee23e6420752e3dfc3fb9ff78b3ace1083078800140641d580b368e8197f3"
+    },
+    {
+      "page": 49,
+      "render_sha256": "548b907b2bc8f8a382ff6fea41eb3692831a03e0ab8c089c41172493d79c8a5c"
+    },
+    {
+      "page": 50,
+      "render_sha256": "7b13b6cf342053baeeeefd946c5f4399298a771fc5c0c07923a1cbbbb5ab19f7"
+    },
+    {
+      "page": 51,
+      "render_sha256": "536bf6225130304cddcbed0f48b87ef392e4d06a5817e17c164dab75ee5cb526"
+    },
+    {
+      "page": 52,
+      "render_sha256": "8a3921986db6fdfb97827773c5f3e8f8359d5c34deedf615e915cb8ece583597"
+    },
+    {
+      "page": 53,
+      "render_sha256": "721668ee101b4c21f455d9f3cd49544e0c06ab3412ec25d7556d07ef61184574"
+    },
+    {
+      "page": 54,
+      "render_sha256": "7f0f657bd1a29ff5d9bf54c007cd9498d8808bc725531cc1c31f54702bd8dc82"
+    },
+    {
+      "page": 55,
+      "render_sha256": "58d6177646b405940dc1da49d51fda40be4ad97980b0e77148b99bc6e07b53ab"
+    },
+    {
+      "page": 56,
+      "render_sha256": "08e7b3831858894c199985fbc13f34b1a94d99c68a86c1e047f6eca6343bb6a2"
+    },
+    {
+      "page": 57,
+      "render_sha256": "e59cef5118a646ade77c924e324c448208edeeb81389c1cf1fccc70d8f82ab6f"
+    },
+    {
+      "page": 58,
+      "render_sha256": "f4b395ce2e1fc6393c7d84be2b7a7c80a591691a128efb227eafd53f13d3980f"
+    },
+    {
+      "page": 59,
+      "render_sha256": "5c258e68c0033308f5949925e828d235d395eba5497f125a273a8191ea63c8a5"
+    },
+    {
+      "page": 60,
+      "render_sha256": "7f000b486985e4c34c3c4443f62592741162d2419a2b75f6a2b56e22df8e33a7"
+    },
+    {
+      "page": 61,
+      "render_sha256": "f7f828c3e4e6879fed55091928b90b0ac4778d9b6cff38341b3da96e226c89ad"
+    },
+    {
+      "page": 62,
+      "render_sha256": "0b136eefc8131f9ae102d66a6ba248808a8fbeb84bdb39d42e359e5ae27290be"
+    },
+    {
+      "page": 63,
+      "render_sha256": "4464b79da99f99b7d2edff56700f1959080e58f93225d4571f634b132ea68f46"
+    },
+    {
+      "page": 64,
+      "render_sha256": "5875ec9660e9f603d6ebaa9f895299127b3a08720f1b2c2d43c6e2c8e43ef69f"
+    },
+    {
+      "page": 65,
+      "render_sha256": "129868a97e04a3b82e06dde76a7750784aef8be0ee700b1836a7d307b1b2e9c7"
+    },
+    {
+      "page": 66,
+      "render_sha256": "2a7ee6f196262cdfd5e58cb832ddde8a22520b1dc4499e6b652462e80a6d3590"
+    },
+    {
+      "page": 67,
+      "render_sha256": "f678c9d070f7b9b9ffc506c56823b64b6809408b92729e28fd4323e532fceec2"
+    },
+    {
+      "page": 68,
+      "render_sha256": "238cfa68318fd73f27404c8d413f5cee523e31f8d8e1fed1a2a3e42967e60774"
+    },
+    {
+      "page": 69,
+      "render_sha256": "551d49b3fc6fea369fae039d0062ecd91ddce69a28077ba552fc72c5c58371f1"
+    },
+    {
+      "page": 70,
+      "render_sha256": "efe81089fe0eaf1c846e50c3cb784572948c8d181d079e140256d4022d3e9f2b"
+    },
+    {
+      "page": 71,
+      "render_sha256": "70ca8a582a8d017b6498b5f3ce6b31da6802db5ffdc594b858bde1d8fb988445"
+    },
+    {
+      "page": 72,
+      "render_sha256": "dc1f473c311534a03281db740ae49daaa76837e3728eef5a122cf65a6879b643"
+    },
+    {
+      "page": 73,
+      "render_sha256": "f7d65a264cb82af0bdbbb3fd2a22f0dd21ffb60474be5ba533b16a112c20c9a5"
+    },
+    {
+      "page": 74,
+      "render_sha256": "8e0226a5234cd9eb1ddb153bdd81a0c190cb0f60758de1f31f8af936d6dcf066"
+    },
+    {
+      "page": 75,
+      "render_sha256": "30fbb2b716effa0904d4b28dd4fdad96371043152af8dac7f8c924f99915f891"
+    },
+    {
+      "page": 76,
+      "render_sha256": "d5b27a5d1a313ff94ff730397533ed1243e877055941c9beb622d6d8f0b3354c"
+    }
+  ]
+}
