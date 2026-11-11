@@ -899,9 +899,38 @@ footnote marker before `[` or `*`. It is NULL when no single block does.
 This is docs/03b's `amends` relation **without version history**. The corpus
 holds only current consolidated wording, so no version is closed or opened.
 
+### `consolidated_twin` — a law's text as made, linked to its consolidated text
+
+Migration 0075 (basis widened by 0076). About 40 laws are released twice: the
+original Gazette issue as made (Ministry of Law DRS, `drs.molaw.gov.pk`) and the
+Pakistan Code consolidated text (as amended). These are two versions of one law,
+not copies, so 0036, 0054, 0062 and the expression-source-variant route all
+refuse them. Owner decision, 12 Nov 2026: keep both released and citable, link
+each reviewed pair, and serve only the consolidated text as operative.
+
+A row links the as-made expression (observation, ordinal) to its consolidated
+twin. It is append-only and keyed by source; the latest row wins, and a
+withdrawal is a row with `assertion = 'withdrawn'`. The trigger requires both
+sides to resolve to active canonical instruments of the same jurisdiction, kind
+and year, and refuses chains. `v_consolidated_twin_current` resolves the
+instruments.
+
+`tools/record_consolidated_twins.py` proposes pairs on identity evidence (same
+title, or same number with title words overlapping at least 75%). Numbers that
+disagree always refuse, and so does an as-made text with more than one match.
+It prints near misses for a person to read. Two pairs whose titles differ in
+words were reviewed by hand (basis `same_number_year_title_reviewed`, 0076).
+First run, 12 Nov 2026: 34 links.
+
+`operative_provision` leaves out the as-made side of every standing link
+(0075). It also treats a repeal recorded on either text as the law's repeal
+(0077): six links had the repeal recorded on the as-made text only. The stored
+`status` is not copied across, because audit A14 requires each `repealed` to
+rest on its own statutory repeal row.
+
 ### `operative_provision` — the view retrieval reads (INV-5)
 
-Migration 0071, docs/03b §6.2 as built. Set the date first:
+Migration 0071 (redefined by 0075 and 0077), docs/03b §6.2 as built. Set the date first:
 `SET nzq.as_of = 'YYYY-MM-DD'`. A read without it raises. `nzq.territory` is
 optional and takes punjab · sindh · kp · balochistan · ict.
 
@@ -1007,6 +1036,7 @@ required before superseded derived rows may be pruned.
 |---|---|
 | `operative_provision` | **what retrieval reads** (0071): released provisions in force at `nzq.as_of` (required) in `nzq.territory`, with instrument citation facts and coverage flags |
 | `v_instrument_metadata_current` | the standing display title, number, dates and text language per expression, resolved to the active instrument (0070) |
+| `v_consolidated_twin_current` | as-made Gazette texts linked to the consolidated text of the same law (0075); `operative_provision` serves only the consolidated one |
 | `v_amendment_reference_current` | printed amendment footnotes resolved to the amended provision and, where exactly one matches, the amending instrument (0072–0074) |
 | `v_provision` | every provision with its **currently operative** text. **Read this, never `provision_version` directly** — that is INV-5 in practice |
 | `v_document` | extracted documents by published title; the join you keep writing by hand |
