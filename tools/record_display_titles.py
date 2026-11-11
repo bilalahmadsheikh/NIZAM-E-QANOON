@@ -10,6 +10,11 @@ artefact ('NA-', 'Baln', 'official website', 'under review', '.docx', '.pdf'); a
 
 Idempotent: an expression whose standing display title already equals the name is skipped.
 
+--reviewed FILE (12 Nov 2026): a person's decision on needs_review rows (.artifacts/instrument-names-2026-11-11/
+reviewed-2026-11-12.json, built by reviewed-2026-11-12.py beside it): 'accept' records the cleaned name (basis
+reviewed_printed_name), 'fix' records the corrected name given in full (basis reviewed_corrected_name), 'reject'
+records nothing. An Urdu-script name is recorded only for an instrument whose text_language is 'ur'.
+
     python tools/record_display_titles.py            # report
     python tools/record_display_titles.py --apply    # write
 """
@@ -34,7 +39,9 @@ ARTEFACT = re.compile(r"^\s*NA\s*-|\bBaln\b|official website|under review|\.docx
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--apply", action="store_true")
+    ap.add_argument("--reviewed", help="JSON of reviewer decisions on needs_review rows (see above)")
     args = ap.parse_args()
+    decisions = json.loads(Path(args.reviewed).read_text(encoding="utf-8")) if args.reviewed else {}
     with CSV.open(encoding="utf-8-sig", newline="") as fh:
         rows = list(csv.DictReader(fh))
     from nizam.storage.db import connect
@@ -47,13 +54,23 @@ def main() -> int:
         cur.execute("""SELECT source_observation_id, expression_ordinal, value FROM v_instrument_metadata_current
                         WHERE field = 'display_title'""")
         standing = {(r[0], r[1]): r[2] for r in cur.fetchall()}
+        cur.execute("SELECT id::text, text_language FROM instrument WHERE is_active AND duplicate_of IS NULL")
+        language = dict(cur.fetchall())
         seen: set = set()
         for row in rows:
+            basis, reviewer, decision = row["name_check"], "tool", None
             if row["needs_review"].strip().lower() != "no":
-                counts["review"] += 1; continue
+                decision = decisions.get(f"{row['document_id']}:{row['expression_ordinal']}")
+                if decision is None or decision["action"] == "reject"                         or decision.get("instrument_id") != row["instrument_id"]:
+                    counts["review"] += 1; continue
+                if decision.get("urdu_only_if_text_is_urdu") and language.get(row["instrument_id"]) != "ur":
+                    counts["urdu_name_on_non_urdu_text"] = counts.get("urdu_name_on_non_urdu_text", 0) + 1
+                    continue
+                basis = "reviewed_printed_name" if decision["action"] == "accept" else "reviewed_corrected_name"
+                reviewer = "claude"
             if row["name_check"] not in ACCEPT:
                 counts["not_verified"] += 1; continue
-            name = row["actual_name"].strip()
+            name = (decision["name"] if decision else row["actual_name"]).strip()
             if not name or ARTEFACT.search(name) or not re.search(r"[A-Za-z؀-ۿ]", name):
                 counts["artefact"] += 1; refused.append(f"{row['instrument_id']}: {name!r}"); continue
             key = active.get(row["instrument_id"])
@@ -65,7 +82,11 @@ def main() -> int:
             if standing.get(key) == name:
                 counts["unchanged"] += 1; continue
             evidence = {
-                "reviewer_type": "tool",
+                "reviewer_type": reviewer,
+                **({"review_decision": decision["action"], "review_flags": row["review_flags"],
+                    "reviewed_file": str(Path(args.reviewed).as_posix()),
+                    **({"corrected_from": decision["was"]} if decision["action"] == "fix" else {})}
+                   if decision else {}),
                 "names_table": str(CSV.relative_to(ROOT)).replace("\\", "/"),
                 "name_check": row["name_check"],
                 "basis_detail": row["basis"],
@@ -78,7 +99,7 @@ def main() -> int:
                              (source_observation_id, expression_ordinal, field, value, assertion, basis, method,
                               evidence, recorded_by)
                            VALUES (%s, %s, 'display_title', %s, 'asserted', %s, %s, %s::jsonb, 'claude')""",
-                        (key[0], key[1], name, row["name_check"], METHOD, json.dumps(evidence, ensure_ascii=False)))
+                        (key[0], key[1], name, basis, METHOD, json.dumps(evidence, ensure_ascii=False)))
             counts["recorded"] += 1
         if not args.apply:
             conn.rollback()
