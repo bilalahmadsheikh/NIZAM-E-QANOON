@@ -20,7 +20,9 @@ therefore identifies one fetch, not one document; identity across fetches is the
 
 First run, 12 Nov 2026: 1,819 listing rows (ACT 68 years, ORDINANCE 47, RULE 57); Urdu 1,058, Sindhi 1,056 (Acts and
 Ordinances; Rules almost never); 925 of the 1,061 rows with either pair with a released corpus instrument by PubID;
-583 listed PubIDs are not in the corpus at all (an English acquisition gap to check separately).
+583 listed PubIDs are not in the corpus at all (an English acquisition gap to check separately). Download: 2,035
+landed (Urdu 1,015, Sindhi 1,020; 583 MB); 79 listed links (Urdu 43, Sindhi 36) answer 200 with the text "PDF file
+not found: <id>-U.pdf" -- the portal links a file it does not hold, so a retry cannot land them.
 
 TEXT LAYER (measured 12 Nov 2026, PUB-NEW-23-000005): the Urdu PDF (Jameel Noori Nastaleeq) has a text layer with
 letters in reversed visual order and remapped digits ('0299' for 2019); the Sindhi PDF (MB Bhitai Sattar) maps to
@@ -194,7 +196,10 @@ def download(session, out: Path, rows, langs, limit, log) -> dict:
                 if resp.status_code != 200:
                     row["error"] = f"HTTP {resp.status_code}"
                 elif body[:5] != b"%PDF-" or len(body) < MIN_PDF_BYTES:
-                    row["error"] = "not a PDF"
+                    # the portal answers a listed-but-missing file with 200 and a short
+                    # text body ("PDF file not found: <id>-U.pdf"); keep its words as evidence
+                    note = body[:120].decode("utf-8", "replace").strip() if len(body) < 512 else ""
+                    row["error"] = f"not a PDF: {note}" if note else "not a PDF"
                 else:
                     dest.parent.mkdir(parents=True, exist_ok=True)
                     tmp = dest.with_suffix(".pdf.part")
