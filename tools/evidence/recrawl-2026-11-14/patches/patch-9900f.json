@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 9900,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2726732
+  ],
+  "defect": "the page's footnote (an editorial note on the law's passage, assent or source) was read into the provision text",
+  "fixes": "rule reviewed_apparatus_block: the footnote block is set aside",
+  "observed": "Page 2 prints below a rule at its foot the numbered note(s) beginning 'This Act was passed' / 'This Ordinance was promulgated' / 'These rules have been issued', in smaller type; they are the code's notes, not the law's words",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9900-p2.png",
+  "render_sha256": "03b669cbefdb33cad399e3c8227fdc167a110c79290a8e7ae3de263c44d03d84",
+  "match_text": "1This Act was passed by the Punjab Assembly on 30 May 2003; assented to by the Governor of the Punjab on 5 June 2003;",
+  "before_text": "1This Act was passed by the Punjab Assembly on 30 May 2003; assented to by the Governor of the Punjab on 5 June 2003;",
+  "after_text": "1This Act was passed by the Punjab Assembly on 30 May 2003; assented to by the Governor of the Punjab on 5 June 2003;"
+ }
+]

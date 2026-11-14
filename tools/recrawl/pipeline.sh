@@ -1,22 +1,29 @@
 #!/bin/bash
-# Lead, 20 Oct 2026: take every observation landed by the recrawl (scraper_version 'recrawl-2026-10-20/1') through
+# Lead, 20 Oct 2026: take every observation landed by a recrawl (default scraper_version 'recrawl-2026-10-20/1') through
 # extraction, verification, segmentation and the post-replay steps. Release only through the ordinary gates; the
 # release count may rise, never fall.
+#   tools/recrawl/pipeline.sh [recrawl-YYYY-MM-DD/N]     OCR=1 also OCRs the scans E2 rejects (off by default)
+# 14 Nov 2026: extraction is scoped to the blobs THIS version landed. 'extract --all' would also extract every other
+# unextracted blob -- the 2,035 Urdu/Sindhi files, whose text layer is reversed and must never be extracted as-is.
 set -uo pipefail
 cd /mnt/e/Nizam_e_Qanoon; export PYTHONPATH=. PYTHONIOENCODING=utf-8
-O=/mnt/e/nizam-data/recrawl-2026-10-20
-REASON="recrawl 2026-10-20: newly landed official text (portal listing diff, tools/recrawl) -- new released expression"
+V="${1:-recrawl-2026-10-20/1}"
+[[ "$V" =~ ^recrawl-[0-9]{4}-[0-9]{2}-[0-9]{2}/[0-9]+$ ]] || { echo "bad version: $V"; exit 2; }
+REASON="${V%/*}: newly landed official text (portal listing diff, tools/recrawl) -- new released expression"
 q() { ./nz psql -tAc "$1" | tr -d '[:space:]'; }
 REL0=$(q "SELECT count(*) FROM v_release_instrument"); echo "released before: $REL0"
-echo "== 1. extract (text layer), then OCR the scans E2 rejected"
-.venv/bin/python -m nizam.workers.extract --all --quiet 2>&1 | tail -3
-.venv/bin/python -m nizam.workers.ocr --all --workers 6 2>&1 | tail -3
+echo "== 1. extract (text layer) the blobs this version landed"
+for sha in $(./nz psql -tAc "SELECT DISTINCT o.sha256 FROM source_observation o WHERE o.scraper_version='$V'
+                              AND NOT EXISTS (SELECT 1 FROM document d WHERE d.sha256=o.sha256 AND d.is_active)"); do
+  .venv/bin/python -m nizam.workers.extract --sha256 "$sha" --quiet 2>&1 | tail -1
+done
+if [ "${OCR:-0}" = 1 ]; then .venv/bin/python -m nizam.workers.ocr --all --workers 6 2>&1 | tail -3; fi
 # only documents still missing verification evidence, and only observations not yet segmented (a re-run is incremental)
 DOCS=$(./nz psql -tAc "SELECT string_agg(DISTINCT d.id::text, ' ') FROM document d JOIN source_observation o ON o.sha256=d.sha256
                         JOIN v_document_quality_status q ON q.document_id=d.id
-                        WHERE d.is_active AND o.scraper_version='recrawl-2026-10-20/1' AND q.overall_outcome='missing_evidence'")
+                        WHERE d.is_active AND o.scraper_version='$V' AND q.overall_outcome='missing_evidence'")
 OBS=$(./nz psql -tAc "SELECT string_agg(o.id::text, ',') FROM source_observation o JOIN document d ON d.sha256=o.sha256 AND d.is_active
-                       WHERE o.scraper_version='recrawl-2026-10-20/1'
+                       WHERE o.scraper_version='$V'
                          AND NOT EXISTS (SELECT 1 FROM block_assignment_set a WHERE a.source_observation_id=o.id AND a.is_active)
                          AND NOT EXISTS (SELECT 1 FROM instrument i WHERE i.source_observation_id=o.id AND i.is_active)" | tr -d '[:space:]')
 echo "new documents: $(wc -w <<< "$DOCS")"
@@ -44,5 +51,5 @@ REL1=$(q "SELECT count(*) FROM v_release_instrument"); echo "released: $REL0 -> 
 [ "$REL1" -ge "$REL0" ] || echo "STOP: the release count FELL"
 ./nz psql -c "SELECT o.source_id, count(DISTINCT i.id) instruments, count(DISTINCT r.id) released
                 FROM source_observation o JOIN instrument i ON i.source_observation_id=o.id AND i.is_active AND i.duplicate_of IS NULL
-                LEFT JOIN v_release_instrument r ON r.id=i.id WHERE o.scraper_version='recrawl-2026-10-20/1' GROUP BY 1"
+                LEFT JOIN v_release_instrument r ON r.id=i.id WHERE o.scraper_version='$V' GROUP BY 1"
 .venv/bin/python tools/released_count_guard.py 2>&1 | tail -2

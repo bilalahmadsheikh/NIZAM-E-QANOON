@@ -1,0 +1,19 @@
+[
+ {
+  "document_id": 9905,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2727714,
+   2727715,
+   2727716
+  ],
+  "defect": "the page's running head (page number, title and Act/Ordinance number) was read into the provision text",
+  "fixes": "rule reviewed_apparatus_block: the running-head blocks are set aside",
+  "observed": "Page 3 prints at its top the page number 3 and the instrument's title and number as a running head, above the law text continuing from the previous page",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9905-p3.png",
+  "render_sha256": "2b2d4b2713043852ac466f79ba1499ffbf015bc9ed0d7a9ac1ed672cfc3cba7b",
+  "match_text": "THE BARRETT HODGSON INTERNATIONAL UNIVERSITY AT",
+  "before_text": "THE BARRETT HODGSON INTERNATIONAL UNIVERSITY AT",
+  "after_text": "THE BARRETT HODGSON INTERNATIONAL UNIVERSITY AT"
+ }
+]

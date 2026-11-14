@@ -1,0 +1,31 @@
+[
+ {
+  "document_id": 9910,
+  "page_no": 12,
+  "source_order_suffix_labels": [
+   {
+    "kind": "section",
+    "label": "7-D",
+    "source_block_ids": [
+     2727990,
+     2727996
+    ],
+    "owner_decision": {
+     "export": ".artifacts/decision-review/exports/policy-application-2026-10-22.json",
+     "document_id": 9910,
+     "question_id": "q2"
+    }
+   }
+  ],
+  "defect": "the Ordinance prints section number 7-D twice ('7-D. Execution of Site Development Scheme.' p11 and '7-D. Erection and re-erection of buildings.' p12); the second print was demoted under the first",
+  "fixes": "rule order_suffix_label (owner policy q2 keep-both, 22 Oct, applied 14 Nov): both prints keep the printed number 7-D; the second is cited '7-D (second)'",
+  "observed": "Page 11 prints '7-C. (1) Where a master plan ...' and '7-D. (1) The execution of a site development scheme shall be subject to the inspection of the Authority ...' with margin note 'Execution of Site Development Scheme.'; page 12 continues 7-D (2)-(3) and prints '7-D. (1) No person shall erect or re-erect a building ...' with margin note 'Erection and re-erection of buildings.', then (2)-(6). The Ordinance's own contents (p1) also list '7-D. Execution of Site Development Scheme. 7-D. Erection and re-erection of buildings. 7-E. Completion of buildings, etc.' Both prints read '7-D.'",
+  "match_text": "(3) If an area for which a site development scheme has been",
+  "before_text": "(3) If an area for which a site development scheme has been",
+  "after_text": "(3) If an area for which a site development scheme has been",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9910-p12.png",
+  "render_sha256": "0cc78a185f46013ed1adfa75a4284ee314e8cd698d83e4d8b4dd587405092413",
+  "additional_render": ".artifacts/release-work-2026-09-24/claude/renders/doc9910-p11.png",
+  "additional_render_sha256": "04f0844f70dd3d6dfd614bad6b91c630851f1a8973c3fa576fff9108d92cd8ff"
+ }
+]

@@ -1,0 +1,18 @@
+[
+ {
+  "document_id": 9905,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2727707,
+   2727712
+  ],
+  "defect": "a margin side note printed as a block of its own was read into the provision text (leakscan 'side', 14 Nov 2026)",
+  "fixes": "rule reviewed_apparatus_block: the side-note block is set aside (the contents give the section its heading)",
+  "observed": "Page 2 prints the side notes 'Short title and commencement'; 'Board of Governors' in the margin; the same words are the note listed in the contents, not law text",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9905-p2.png",
+  "render_sha256": "e504506c81d0299b62d9908e272ac5617a287e36a228bde89885a1b4dd6847ba",
+  "match_text": "commencement.",
+  "before_text": "commencement.",
+  "after_text": "commencement."
+ }
+]

@@ -11,7 +11,7 @@ from pathlib import Path
 
 import pytest
 
-from nizam.corpus.extract import extract_pdf
+from nizam.corpus.extract import clean_pdf_metadata, extract_pdf
 from nizam.shared.corpus_types import ExtractionRejected
 
 CORPUS_ROOT = Path(os.environ.get("CORPUS_ROOT", "/mnt/e/nizam-data"))
@@ -226,3 +226,18 @@ def test_media_box_text_survives_a_bad_crop_box_with_visibility_flag():
     assert by_text["visible legal text"].inside_cropbox
     assert not by_text["cropped source text"].inside_cropbox
     assert result.pages[0].crop_box != result.pages[0].media_box
+
+
+def test_pdf_metadata_nul_characters_are_removed():
+    # Sindh Code downloads re-written by PDFsharp (14 Nov 2026): raw UTF-16 inside the producer string
+    meta = {"producer": "PDFsharp 1.32.3057-g (www.pdfsharp.net) (Original: \xfe\xff\x00M\x00i\x00c)",
+            "title": "", "author": None, "format": "PDF 1.4"}
+    out = clean_pdf_metadata(meta)
+    assert "\x00" not in out["producer"] and out["producer"].endswith("Mic)")
+    assert out["format"] == "PDF 1.4"
+    assert "title" not in out and "author" not in out
+
+
+def test_pdf_metadata_none_is_empty():
+    assert clean_pdf_metadata(None) == {}
+    assert clean_pdf_metadata({"producer": "\x00\x00"}) == {}

@@ -21,6 +21,10 @@ instrument's own short-title clause or its page render, so the printed-text chec
 "evidence" line is recorded. Such a row is matched to the active instrument of the same document and ordinal when the
 table's instrument id was retired by a later repair replay (6548, 7585, 8607 on 12 Nov).
 
+New instruments (14 Nov 2026, reviewed-2026-11-14-new-laws.json): a decision with "not_in_names_table": true names an
+instrument landed after the table was built; it carries instrument_id, page_read, action and name, and is recorded
+directly (same refusals).
+
     python tools/record_display_titles.py            # report
     python tools/record_display_titles.py --apply    # write
 """
@@ -124,6 +128,37 @@ def main() -> int:
                            VALUES (%s, %s, 'display_title', %s, 'asserted', %s, %s, %s::jsonb, 'claude')""",
                         (key[0], key[1], name, basis, METHOD, json.dumps(evidence, ensure_ascii=False)))
             counts["recorded"] += 1
+        # Instruments landed after the names table was built (recrawl of 14 Nov 2026) have no row in it. A page-read
+        # decision marked "not_in_names_table" names one directly: it is recorded only if that instrument is active
+        # and canonical, the decision is 'accept' or 'fix', and the name passes the same artefact refusal.
+        listed = {f"{r['document_id']}:{r['expression_ordinal']}" for r in rows}
+        for k, decision in sorted(decisions.items()):
+            if not decision.get("not_in_names_table"):
+                continue
+            assert k not in listed, f"{k} is in the names table; decide it there"
+            assert decision.get("page_read") and decision["action"] in ("accept", "fix"), k
+            iid, name = decision["instrument_id"], decision["name"].strip()
+            key = active.get(iid)
+            if key is None or by_doc.get(k) != iid:
+                counts["inactive"] += 1; continue
+            if not name or ARTEFACT.search(name) or not re.search(r"[A-Za-z]", name):
+                counts["artefact"] += 1; refused.append(f"{iid}: {name!r}"); continue
+            if standing.get(key) == name:
+                counts["unchanged"] += 1; continue
+            cur.execute("SELECT short_title FROM instrument WHERE id = %s", (iid,))
+            evidence = {"reviewer_type": "claude", "review_decision": decision["action"], "page_read": True,
+                        "review_evidence": decision["evidence"], "reviewed_file": source[k],
+                        "not_in_names_table": True, "short_title_at_recording": cur.fetchone()[0],
+                        **({"corrected_from": decision["was"]} if decision["action"] == "fix" else {})}
+            cur.execute("""INSERT INTO instrument_metadata_assertion
+                             (source_observation_id, expression_ordinal, field, value, assertion, basis, method,
+                              evidence, recorded_by)
+                           VALUES (%s, %s, 'display_title', %s, 'asserted', %s, %s, %s::jsonb, 'claude')""",
+                        (key[0], key[1], name,
+                         "reviewed_printed_name" if decision["action"] == "accept" else "reviewed_corrected_name",
+                         METHOD, json.dumps(evidence, ensure_ascii=False)))
+            counts["recorded"] += 1
+            counts["not_in_names_table"] = counts.get("not_in_names_table", 0) + 1
         if not args.apply:
             conn.rollback()
     print(json.dumps(counts, indent=1))

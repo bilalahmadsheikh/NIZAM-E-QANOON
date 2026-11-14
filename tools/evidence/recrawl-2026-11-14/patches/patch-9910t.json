@@ -1,0 +1,44 @@
+[
+ {
+  "document_id": 9910,
+  "page_no": 18,
+  "match_text": "Delegation \nof \npowers.  \n \n4[18-A. (1) Government shall",
+  "before_text": "Delegation \nof \npowers.  \n \n4[18-A. (1) Government shall",
+  "after_text": "4[18-A. (1) Government shall",
+  "defect": "the margin side note 'Delegation of powers.' was read into the law text (the block opens with it, ahead of the section number, so it closed the previous section's text)",
+  "fixes": "parser-input correction: the side note is taken out of the block; the section keeps it as heading",
+  "observed": "Page 18 prints 'Delegation of powers.' in the margin beside the section; the contents list it as the section's heading, which the section already carries",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9910-p18.png",
+  "render_sha256": "d2a3e0f860ceeef1353e331f18d4dff9c610ca0451f3de0158ccdbd89d9a8442"
+ },
+ {
+  "document_id": 9910,
+  "page_no": 19,
+  "source_apparatus_blocks": [
+   2728064
+  ],
+  "defect": "a margin side note printed as a block of its own was read into the provision text (leakscan 'side', 14 Nov 2026)",
+  "fixes": "rule reviewed_apparatus_block: the side-note block is set aside (the contents give the section its heading)",
+  "observed": "Page 19 prints 'Conferment of powers upon officers and officials.' in the margin beside the section; the contents list it as the section's heading, which the section already carries",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9910-p19.png",
+  "render_sha256": "cd45d2f7d2de2d9e4e162dac5ca3ca0e23ba1acc40e407ef0f3695243610a32b",
+  "match_text": "(5) In respect of cases transferred to a Special Court by virture of",
+  "before_text": "(5) In respect of cases transferred to a Special Court by virture of",
+  "after_text": "(5) In respect of cases transferred to a Special Court by virture of"
+ },
+ {
+  "document_id": 9910,
+  "page_no": 20,
+  "source_apparatus_blocks": [
+   2728077
+  ],
+  "defect": "a margin side note printed as a block of its own was read into the provision text (leakscan 'side', 14 Nov 2026)",
+  "fixes": "rule reviewed_apparatus_block: the side-note block is set aside (the contents give the section its heading)",
+  "observed": "Page 20 prints 'Provision of utility services.' in the margin beside the section; the contents list it as the section's heading, which the section already carries",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9910-p20.png",
+  "render_sha256": "5c9f0aba9fb0c587cfb64b999575abe3dfacfd55a976919530fee127ebccbea2",
+  "match_text": "Provision of utility",
+  "before_text": "Provision of utility",
+  "after_text": "Provision of utility"
+ }
+]

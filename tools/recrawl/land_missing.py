@@ -1,6 +1,7 @@
 """Land the items tools/recrawl/diff_listing.py found missing. Lead, 20 Oct 2026.
 
     python tools/recrawl/land_missing.py MISSING.jsonl REPORT.json [--apply] [--limit N]
+                                         [--scraper-version recrawl-YYYY-MM-DD/N]   (default the 20 Oct run)
 
 For each item: the PDF URL (from the listing, or read off the official detail page), one fetch through the recovery
 worker's allow-listed fetch(), a PDF validity check, the bytes stored content-addressed (raw/{source}/{sha256}),
@@ -36,6 +37,7 @@ BASES = {"pk-federal": "https://pakistancode.gov.pk/english/", "pk-kp": "https:/
          "pk-balochistan": "http://balochistancode.gob.pk/", "pk-sindh": "https://sindhlaws.gov.pk/"}
 
 
+SCRAPER_VERSION = "recrawl-2026-10-20/1"
 DRS_PDF = re.compile(r'''data-pdf-url=["'](/pdf/[^"']+\.pdf)["']''', re.I)
 
 
@@ -62,7 +64,11 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("missing"); ap.add_argument("report")
     ap.add_argument("--apply", action="store_true"); ap.add_argument("--limit", type=int)
+    # a later recrawl lands under its own version, so its pipeline run selects only what it landed (14 Nov 2026)
+    ap.add_argument("--scraper-version", default=SCRAPER_VERSION)
     a = ap.parse_args()
+    if not re.fullmatch(r"recrawl-\d{4}-\d{2}-\d{2}/\d+", a.scraper_version):
+        ap.error("--scraper-version must read recrawl-YYYY-MM-DD/N")
     items = [json.loads(l) for l in open(a.missing, encoding="utf-8") if l.strip()][: a.limit]
     report = {"landed": [], "refused": [], "already_held_bytes": []}
     if not a.apply:
@@ -70,13 +76,13 @@ def main() -> int:
     with connect() as conn, conn.cursor() as cur:
         # resumable: an item already landed by an earlier run (same detail page, or same PDF URL) is skipped
         cur.execute("""SELECT referring_url, canonical_url, source_metadata->>'detail_url' FROM source_observation
-                        WHERE scraper_version='recrawl-2026-10-20/1'""")
+                        WHERE scraper_version=%s""", (a.scraper_version,))
         done = {u for row in cur.fetchall() for u in row if u}
         for n, it in enumerate(items, 1):
             if it.get("detail_url") in done or it.get("pdf_url") in done:
                 report.setdefault("already_landed", []).append(it.get("detail_url") or it.get("pdf_url")); continue
             try:
-                land_one(it, cur, conn, report)
+                land_one(it, cur, conn, report, a.scraper_version)
             except Exception as exc:                            # noqa: BLE001 -- one bad download is never fatal
                 conn.rollback()
                 report["refused"].append({**it, "why": f"{type(exc).__name__}: {str(exc)[:200]}"})
@@ -90,8 +96,10 @@ def main() -> int:
     return 0
 
 
-def land_one(it: dict, cur, conn, report: dict) -> None:
+def land_one(it: dict, cur, conn, report: dict, scraper_version: str = None) -> None:
     """Fetch, validate, store and record one item; every refusal is reported, never raised."""
+    scraper_version = scraper_version or SCRAPER_VERSION
+    recrawl_day = scraper_version.split("-", 1)[1].split("/")[0]
     sid = it["source_id"]
     url, why = pdf_url_for(it)
     if not url:
@@ -110,16 +118,16 @@ def land_one(it: dict, cur, conn, report: dict) -> None:
     meta = {k: v for k, v in {"title": it.get("title"), "year": str(it["year"]) if it.get("year") else None,
                               "type": it.get("kind"), "listing": it.get("listing"),
                               "detail_url": it.get("detail_url"), "number": it.get("number"),
-                              "date": it.get("date"), "recrawl": "2026-10-20"}.items() if v}
+                              "date": it.get("date"), "recrawl": recrawl_day}.items() if v}
     cur.execute("""INSERT INTO blob (sha256,source_id,object_key,byte_length,media_type,first_seen)
                    VALUES (%s,%s,%s,%s,'application/pdf',now()) ON CONFLICT (sha256) DO NOTHING""",
                 (digest, sid, key, len(data)))
     cur.execute("""INSERT INTO source_observation
                      (source_id,canonical_url,referring_url,discovered_at,fetched_at,http_status,media_type,
                       byte_length,sha256,object_key,scraper_version,source_metadata,outcome)
-                   VALUES (%s,%s,%s,now(),now(),%s,'application/pdf',%s,%s,%s,'recrawl-2026-10-20/1',%s,'landed')
+                   VALUES (%s,%s,%s,now(),now(),%s,'application/pdf',%s,%s,%s,%s,%s,'landed')
                    ON CONFLICT DO NOTHING RETURNING id""",
-                (sid, final, it.get("detail_url"), status, len(data), digest, key,
+                (sid, final, it.get("detail_url"), status, len(data), digest, key, scraper_version,
                  json.dumps(meta, ensure_ascii=False)))
     row = cur.fetchone()
     conn.commit()

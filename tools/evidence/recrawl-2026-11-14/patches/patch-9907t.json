@@ -1,0 +1,14 @@
+[
+ {
+  "document_id": 9907,
+  "page_no": 6,
+  "match_text": "Amendment \nof \nsection \n120 \nof \nSindh \nAct \nNo. \nXLII of \n2013. \n13. \nIn the said Act, in section 127",
+  "before_text": "Amendment \nof \nsection \n120 \nof \nSindh \nAct \nNo. \nXLII of \n2013. \n13. \nIn the said Act, in section 127",
+  "after_text": "13. \nIn the said Act, in section 127",
+  "defect": "the margin side note 'Amendment of section 120 of Sindh Act No. XLII of 2013.' was read into the law text (the block opens with it, ahead of the section number, so it closed the previous section's text)",
+  "fixes": "parser-input correction: the side note is taken out of the block; the section keeps it as heading",
+  "observed": "Page 6 prints 'Amendment of section 120 of Sindh Act No. XLII of 2013.' in the margin beside the section; the contents list it as the section's heading, which the section already carries",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9907-p6.png",
+  "render_sha256": "a0f46f3b8da6397289e4fa858a2d2e8dce891ed3d0f90e5804cee0006b941e83"
+ }
+]

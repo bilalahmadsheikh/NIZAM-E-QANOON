@@ -216,6 +216,22 @@ def _is_repeated_sparse_overlay(page_texts: list[str]) -> bool:
     return dominant / len(page_texts) >= SPARSE_OVERLAY_DOMINANCE
 
 
+def clean_pdf_metadata(metadata: dict | None) -> dict:
+    """The PDF's Info dictionary as stored: empty values dropped, NUL characters removed.
+
+    Found 14 Nov 2026: the Sindh Code portal now re-writes its downloads with PDFsharp, whose producer string embeds the
+    original producer as raw UTF-16 ('PDFsharp ... (Original: \\xfe\\xff\\x00M\\x00i...'). Postgres refuses U+0000 in
+    text and jsonb, so the whole document failed to save. Only the NULs go; the metadata is provenance, never law text.
+    """
+    out = {}
+    for k, v in (metadata or {}).items():
+        if isinstance(v, str):
+            v = v.replace("\x00", "")
+        if v:
+            out[k] = v
+    return out
+
+
 def extract_pdf(
     data: bytes,
     sha256: str,
@@ -342,7 +358,7 @@ def extract_pdf(
         # loses real law to keep a tidy rule.
         lane = "E3" if empty_pages else "E2"
 
-        meta = {k: v for k, v in (doc.metadata or {}).items() if v}
+        meta = clean_pdf_metadata(doc.metadata)
 
         return ExtractedDocument(
             sha256=sha256,

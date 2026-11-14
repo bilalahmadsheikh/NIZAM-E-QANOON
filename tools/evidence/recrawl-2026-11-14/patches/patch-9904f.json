@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 9904,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2727327
+  ],
+  "defect": "the page's footnote (an editorial note on the law's passage, assent or source) was read into the provision text",
+  "fixes": "rule reviewed_apparatus_block: the footnote block is set aside",
+  "observed": "Page 3 prints below a rule at its foot the numbered note(s) beginning 'This Act was passed' / 'This Ordinance was promulgated' / 'These rules have been issued', in smaller type; they are the code's notes, not the law's words",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9904-p3.png",
+  "render_sha256": "d9d9b65421163b62840048073630f5a72469155d805a23a04c5fb3666264041a",
+  "match_text": "Punjab on 08 January 2026; and was published in the Punjab Gazette (Extraordinary), dated: 08 January 2026, pp. 3743-3756.",
+  "before_text": "Punjab on 08 January 2026; and was published in the Punjab Gazette (Extraordinary), dated: 08 January 2026, pp. 3743-3756.",
+  "after_text": "Punjab on 08 January 2026; and was published in the Punjab Gazette (Extraordinary), dated: 08 January 2026, pp. 3743-3756."
+ }
+]

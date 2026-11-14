@@ -1,0 +1,81 @@
+[
+ {
+  "document_id": 9907,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2727770
+  ],
+  "defect": "a margin side note printed as a block of its own was read into the provision text (leakscan 'side', 14 Nov 2026)",
+  "fixes": "rule reviewed_apparatus_block: the side-note block is set aside (the contents give the section its heading)",
+  "observed": "Page 2 prints the side notes 'Short title and commencement'; 'Amendment of section 3 of Sindh Act No.XLII of 2013'; 'Amendment of section 21 of Sindh Act No.XLII of 2013' in the margin; the same words are the note listed in the contents, not law text",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9907-p2.png",
+  "render_sha256": "9c35e7e21d91f40be7e573626d97bbef92f63076ca74d39495dbbb8feeab54ed",
+  "match_text": "section 3 of Sindh",
+  "before_text": "section 3 of Sindh",
+  "after_text": "section 3 of Sindh"
+ },
+ {
+  "document_id": 9907,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2727780,
+   2727785
+  ],
+  "defect": "a margin side note printed as a block of its own was read into the provision text (leakscan 'side', 14 Nov 2026)",
+  "fixes": "rule reviewed_apparatus_block: the side-note block is set aside (the contents give the section its heading)",
+  "observed": "Page 3 prints the side notes 'Amendment of section 31 of Sindh Act No.XLII of 2013'; 'Amendment of section 78 of Sindh Act No. XLII of 2013'; 'Amendment of section 80 of Sindh Act No.XLII of 2013' in the margin; the same words are the note listed in the contents, not law text",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9907-p3.png",
+  "render_sha256": "f5fd2085d096faba6abc4be168baa1f63d9d0161b39d7510e5cc9d94bed1d0a7",
+  "match_text": "section 78 of Sindh",
+  "before_text": "section 78 of Sindh",
+  "after_text": "section 78 of Sindh"
+ },
+ {
+  "document_id": 9907,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2727792,
+   2727797,
+   2727801
+  ],
+  "defect": "a margin side note printed as a block of its own was read into the provision text (leakscan 'side', 14 Nov 2026)",
+  "fixes": "rule reviewed_apparatus_block: the side-note block is set aside (the contents give the section its heading)",
+  "observed": "Page 4 prints the side notes 'Amendment of section 82 of Sindh Act No. XLII of 2013'; 'Amendment of section 83 of Sindh Act No.XLII of 2013'; 'Insertion of new Chapter VII-A in Sindh Act No. XLII of 2013' in the margin; the same words are the note listed in the contents, not law text",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9907-p4.png",
+  "render_sha256": "a69be98a32d420e49eec5a066a9492a8494a57c432fa4ab3a1ce8d100edf71b8",
+  "match_text": "section 82 of Sindh",
+  "before_text": "section 82 of Sindh",
+  "after_text": "section 82 of Sindh"
+ },
+ {
+  "document_id": 9907,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   2727810,
+   2727815
+  ],
+  "defect": "a margin side note printed as a block of its own was read into the provision text (leakscan 'side', 14 Nov 2026)",
+  "fixes": "rule reviewed_apparatus_block: the side-note block is set aside (the contents give the section its heading)",
+  "observed": "Page 6 prints the side notes 'Amendment of section 90 of Sindh Act No. XLII of 2013'; 'Amendment of section 127 of Sindh Act No. XLII of 2013' in the margin; the same words are the note listed in the contents, not law text",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9907-p6.png",
+  "render_sha256": "a0f46f3b8da6397289e4fa858a2d2e8dce891ed3d0f90e5804cee0006b941e83",
+  "match_text": "section 90 of Sindh",
+  "before_text": "section 90 of Sindh",
+  "after_text": "section 90 of Sindh"
+ },
+ {
+  "document_id": 9907,
+  "page_no": 7,
+  "source_apparatus_blocks": [
+   2727826
+  ],
+  "defect": "a margin side note printed as a block of its own was read into the provision text (leakscan 'side', 14 Nov 2026)",
+  "fixes": "rule reviewed_apparatus_block: the side-note block is set aside (the contents give the section its heading)",
+  "observed": "Page 7 prints the side notes 'Amendment of section 141 of Sindh Act No. XLII of 2013'; 'Amendment of Schedule-IX of Sindh Act No. XLII of 2013' in the margin; the same words are the note listed in the contents, not law text",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9907-p7.png",
+  "render_sha256": "a57ab78d85bd9fe0dea5a1c7405864b9231afbe57498abadc31d1e30dbbc5aae",
+  "match_text": "XLII of 2013.",
+  "before_text": "XLII of 2013.",
+  "after_text": "XLII of 2013."
+ }
+]

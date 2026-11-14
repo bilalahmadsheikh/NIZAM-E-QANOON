@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 9906,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2727734
+  ],
+  "defect": "a margin side note printed as a block of its own was read into the provision text (leakscan 'side', 14 Nov 2026)",
+  "fixes": "rule reviewed_apparatus_block: the side-note block is set aside (the contents give the section its heading)",
+  "observed": "Page 2 prints the side notes 'Short title and commencement' in the margin; the same words are the note listed in the contents, not law text",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9906-p2.png",
+  "render_sha256": "477198458da954e2503c1758d9fc84cab0e99478e7720e6f11b196251347aee7",
+  "match_text": "commencement.",
+  "before_text": "commencement.",
+  "after_text": "commencement."
+ }
+]

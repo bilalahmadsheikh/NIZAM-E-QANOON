@@ -894,7 +894,19 @@ footnote marker before `[` or `*`. It is NULL when no single block does.
 - the amending instrument, only on **exactly one** match. A named citation
   matches by title key and year. Only a bare `Act IV of 2011` matches by
   number, never a West Pakistan citation. A citation that names a jurisdiction
-  matches only within it.
+  matches only within it. An abbreviated citation with no parsed title
+  (`F.A.O., 1975`) matches through a reviewed `citation_abbreviation` row
+  (0078), then by that row's title and year.
+
+`citation_abbreviation` (0078) is append-only; the latest row per abbreviation,
+year and jurisdiction wins. A row gives the printed abbreviation, a pattern
+anchored at the start of the cited text, the title it stands for, and the
+corpus print that shows it (`evidence.printed`). The texts print no key to
+their abbreviations, so a row needs a footnote that glosses the abbreviation
+or prints the same amendment in full. Recorded 14 Nov 2026: `F.A.O., 1975` →
+Federal Adaptation of Laws Order (305 footnotes). Not recorded: `A.O., 1937`,
+`1961` and `1964` (Orders not held), `A.O., 1949` (no corpus gloss), and
+`Baln. A.O. of 1975` (Order not held).
 
 This is docs/03b's `amends` relation **without version history**. The corpus
 holds only current consolidated wording, so no version is closed or opened.
@@ -1037,7 +1049,7 @@ required before superseded derived rows may be pruned.
 | `operative_provision` | **what retrieval reads** (0071): released provisions in force at `nzq.as_of` (required) in `nzq.territory`, with instrument citation facts and coverage flags |
 | `v_instrument_metadata_current` | the standing display title, number, dates and text language per expression, resolved to the active instrument (0070) |
 | `v_consolidated_twin_current` | as-made Gazette texts linked to the consolidated text of the same law (0075); `operative_provision` serves only the consolidated one |
-| `v_amendment_reference_current` | printed amendment footnotes resolved to the amended provision and, where exactly one matches, the amending instrument (0072–0074) |
+| `v_amendment_reference_current` | printed amendment footnotes resolved to the amended provision and, where exactly one matches, the amending instrument (0072–0074, abbreviations 0078) |
 | `v_provision` | every provision with its **currently operative** text. **Read this, never `provision_version` directly** — that is INV-5 in practice |
 | `v_document` | extracted documents by published title; the join you keep writing by hand |
 | `v_provision_source` | the blocks a provision was built from — its trail back to the printed page |
