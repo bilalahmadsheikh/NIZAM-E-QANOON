@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 9894,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2724719
+  ],
+  "defect": "the page's footnote (an editorial note on the law's passage, assent or source) was read into the provision text",
+  "fixes": "rule reviewed_apparatus_block: the footnote block is set aside",
+  "observed": "Page 3 prints below a rule at its foot the numbered note(s) beginning 'This Act was passed' / 'This Ordinance was promulgated' / 'These rules have been issued', in smaller type; they are the code's notes, not the law's words",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9894-p3.png",
+  "render_sha256": "df08bc21fb941f44d22df43f4d1dc003b7b3ffb8c0d06e24c2856916f989a9aa",
+  "match_text": "Punjab for reconsideration, the Bill was passed again on 30 December 2025 and assented to by Governor of the Punjab on 05",
+  "before_text": "Punjab for reconsideration, the Bill was passed again on 30 December 2025 and assented to by Governor of the Punjab on 05",
+  "after_text": "Punjab for reconsideration, the Bill was passed again on 30 December 2025 and assented to by Governor of the Punjab on 05"
+ }
+]

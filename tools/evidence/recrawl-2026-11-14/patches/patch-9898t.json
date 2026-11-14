@@ -1,0 +1,29 @@
+[
+ {
+  "document_id": 9898,
+  "page_no": 13,
+  "source_apparatus_blocks": [
+   2726555
+  ],
+  "defect": "a margin side note printed as a block of its own was read into the provision text (leakscan 'side', 14 Nov 2026)",
+  "fixes": "rule reviewed_apparatus_block: the side-note block is set aside (the contents give the section its heading)",
+  "observed": "Page 13 prints 'Establishment of the District Water Supply and Sanitation Group (DWSSG).' in the margin beside the section; the contents list it as the section's heading, which the section already carries",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9898-p13.png",
+  "render_sha256": "a486f350ec22fdd8b1498f5c5516ee13e3120da467b786217425aa45c0c4a1e2",
+  "match_text": "the District Water",
+  "before_text": "the District Water",
+  "after_text": "the District Water"
+ },
+ {
+  "document_id": 9898,
+  "page_no": 20,
+  "match_text": "Overriding effect. \n27. \nNotwithstanding ",
+  "before_text": "Overriding effect. \n27. \nNotwithstanding ",
+  "after_text": "27. \nNotwithstanding ",
+  "defect": "the margin side note 'Overriding effect.' was read into the law text (the block opens with it, ahead of the section number, so it closed the previous section's text)",
+  "fixes": "parser-input correction: the side note is taken out of the block; the section keeps it as heading",
+  "observed": "Page 20 prints 'Overriding effect.' in the margin beside the section; the contents list it as the section's heading, which the section already carries",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9898-p20.png",
+  "render_sha256": "d69441c52e3533b6fe7d1c27dbec34a63cb6b9a34f340798d33e42b9bdb2015f"
+ }
+]

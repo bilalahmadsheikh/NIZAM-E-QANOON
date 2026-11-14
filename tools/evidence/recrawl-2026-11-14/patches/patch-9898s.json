@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 9898,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2726405
+  ],
+  "defect": "a margin side note printed as a block of its own was read into the provision text (leakscan 'side', 14 Nov 2026)",
+  "fixes": "rule reviewed_apparatus_block: the side-note block is set aside (the contents give the section its heading)",
+  "observed": "Page 4 prints the side notes 'Short title, extent and Commencement' in the margin; the same words are the note listed in the contents, not law text",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9898-p4.png",
+  "render_sha256": "a10b153371923eeab75d9ab0a31992c672a2a409d3ea3da5ac3f2f0ff066b53f",
+  "match_text": "Short title, extent",
+  "before_text": "Short title, extent",
+  "after_text": "Short title, extent"
+ }
+]

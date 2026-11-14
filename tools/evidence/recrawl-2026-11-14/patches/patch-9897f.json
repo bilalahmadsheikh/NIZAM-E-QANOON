@@ -1,0 +1,33 @@
+[
+ {
+  "document_id": 9897,
+  "page_no": 7,
+  "source_apparatus_blocks": [
+   2725507
+  ],
+  "defect": "the page's footnote (an editorial note on the law's passage, assent or source) was read into the provision text",
+  "fixes": "rule reviewed_apparatus_block: the footnote block is set aside",
+  "observed": "Page 7 prints below a rule at its foot the numbered note(s) beginning 'This Act was passed' / 'This Ordinance was promulgated' / 'These rules have been issued', in smaller type; they are the code's notes, not the law's words",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9897-p7.png",
+  "render_sha256": "8f5664e82eb2248586ee78653947df579e544285adc8af864180b10b9990c546",
+  "match_text": "1 This Act was passed by the Provincial Assembly of Balochistan on 14th May 2026, and assented to by the Governor",
+  "before_text": "1 This Act was passed by the Provincial Assembly of Balochistan on 14th May 2026, and assented to by the Governor",
+  "after_text": "1 This Act was passed by the Provincial Assembly of Balochistan on 14th May 2026, and assented to by the Governor"
+ },
+ {
+  "document_id": 9897,
+  "page_no": 72,
+  "source_apparatus_blocks": [
+   2726338,
+   2726339
+  ],
+  "defect": "the page's footnote (an editorial note on the law's passage, assent or source) was read into the provision text",
+  "fixes": "rule reviewed_apparatus_block: the footnote block is set aside",
+  "observed": "Page 72 prints below a rule at its foot the numbered note(s) beginning 'This Act was passed' / 'This Ordinance was promulgated' / 'These rules have been issued', in smaller type; they are the code's notes, not the law's words",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9897-p72.png",
+  "render_sha256": "bffb581f1a771262560ffc944436deb0fd4f3ee300e72e4b1b0bc920b5f867ae",
+  "match_text": "Gazette (Extraordinary) No. 20, dated 22nd March, 1978. Saved and validated by Article 270-A of the Constitution",
+  "before_text": "Gazette (Extraordinary) No. 20, dated 22nd March, 1978. Saved and validated by Article 270-A of the Constitution",
+  "after_text": "Gazette (Extraordinary) No. 20, dated 22nd March, 1978. Saved and validated by Article 270-A of the Constitution"
+ }
+]

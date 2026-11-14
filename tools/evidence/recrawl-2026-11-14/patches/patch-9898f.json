@@ -1,0 +1,48 @@
+[
+ {
+  "document_id": 9898,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2726414
+  ],
+  "defect": "the page's footnote (an editorial note on the law's passage, assent or source) was read into the provision text",
+  "fixes": "rule reviewed_apparatus_block: the footnote block is set aside",
+  "observed": "Page 4 prints below a rule at its foot the numbered note(s) beginning 'This Act was passed' / 'This Ordinance was promulgated' / 'These rules have been issued', in smaller type; they are the code's notes, not the law's words",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9898-p4.png",
+  "render_sha256": "a10b153371923eeab75d9ab0a31992c672a2a409d3ea3da5ac3f2f0ff066b53f",
+  "match_text": "1 This Act was passed by the Provincial Assembly of Balochistan on 12th October 2026, and assented to by the",
+  "before_text": "1 This Act was passed by the Provincial Assembly of Balochistan on 12th October 2026, and assented to by the",
+  "after_text": "1 This Act was passed by the Provincial Assembly of Balochistan on 12th October 2026, and assented to by the"
+ },
+ {
+  "document_id": 9898,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2726436,
+   2726437
+  ],
+  "defect": "the page's footnote (an editorial note on the law's passage, assent or source) was read into the provision text",
+  "fixes": "rule reviewed_apparatus_block: the footnote block is set aside",
+  "observed": "Page 5 prints below a rule at its foot the numbered note(s) beginning 'This Act was passed' / 'This Ordinance was promulgated' / 'These rules have been issued', in smaller type; they are the code's notes, not the law's words",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9898-p5.png",
+  "render_sha256": "95e409a96c49ec770021459c0c11b879e7e7aec343cf6f1cc2ab679aef2cd50d",
+  "match_text": "1  This Act was passed by the Balochistan Assembly on 10th May 2010, assented to by the Governor of Balochistan",
+  "before_text": "1  This Act was passed by the Balochistan Assembly on 10th May 2010, assented to by the Governor of Balochistan",
+  "after_text": "1  This Act was passed by the Balochistan Assembly on 10th May 2010, assented to by the Governor of Balochistan"
+ },
+ {
+  "document_id": 9898,
+  "page_no": 17,
+  "source_apparatus_blocks": [
+   2726622
+  ],
+  "defect": "the page's footnote (an editorial note on the law's passage, assent or source) was read into the provision text",
+  "fixes": "rule reviewed_apparatus_block: the footnote block is set aside",
+  "observed": "Page 17 prints below a rule at its foot the numbered note(s) beginning 'This Act was passed' / 'This Ordinance was promulgated' / 'These rules have been issued', in smaller type; they are the code's notes, not the law's words",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9898-p17.png",
+  "render_sha256": "0ba30f36456e563a44bfda8d3f21efd4c406b803d18dbc75c7f6ae39078c0aef",
+  "match_text": "Balochistan Gazette (Extraordinary) No. 20, dated 22nd March 1978. Saved and validated by Article 270-A of the",
+  "before_text": "Balochistan Gazette (Extraordinary) No. 20, dated 22nd March 1978. Saved and validated by Article 270-A of the",
+  "after_text": "Balochistan Gazette (Extraordinary) No. 20, dated 22nd March 1978. Saved and validated by Article 270-A of the"
+ }
+]
