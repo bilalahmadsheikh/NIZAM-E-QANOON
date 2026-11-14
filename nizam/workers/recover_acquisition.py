@@ -44,6 +44,9 @@ ALLOWED_HOSTS = {
     "pas.gov.pk",
     # Government of Balochistan's Services & General Administration Department: provincial service rules
     "sngad.balochistan.gov.pk",
+    # territories taken into scope 14 Nov 2026 (docs/02 §2.2): AJK Law, Justice & Parliamentary Affairs Department;
+    # the Capital Development Authority (ICT); the Government of Gilgit-Baltistan and the GB Assembly
+    "law.gok.pk", "www.cda.gov.pk", "gilgitbaltistan.gov.pk", "gbassembly.gbit.gov.pk",
 }
 USER_AGENT = "Nizam-e-Qanoon corpus recovery/1 (+official legal research)"
 

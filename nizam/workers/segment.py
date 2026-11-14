@@ -86,9 +86,20 @@ def only_one_run():
         finally:
             cur.execute("SELECT pg_advisory_unlock(%s)", (_LOCK_KEY,))
 
-# source_id -> the jurisdiction enum of doc 03 §1.1
+# source_id -> the jurisdiction enum of doc 03 §1.1. ICT, AJK and GB were taken into scope on 14 Nov 2026 (docs/02
+# §2.2 lists the GB and AJK assemblies: "ingestion must not mislabel it as federal").
 JURISDICTION = {"pk-federal": "fed", "pk-punjab": "punjab", "pk-sindh": "sindh",
-                "pk-kp": "kp", "pk-balochistan": "balochistan"}
+                "pk-kp": "kp", "pk-balochistan": "balochistan",
+                "pk-ict": "ict", "pk-ajk": "ajk", "pk-gb": "gb"}
+
+
+def jurisdiction_of(source_id: str) -> str:
+    """The jurisdiction a source's instruments belong to. An unknown source is refused: until 14 Nov 2026 it fell back
+    to 'fed', which would have filed a new territory's laws as federal law."""
+    try:
+        return JURISDICTION[source_id]
+    except KeyError:
+        raise ValueError(f"source {source_id!r} has no jurisdiction; add it to JURISDICTION") from None
 
 # Instrument kind, decided from the title. Order matters: "Amendment Ordinance"
 # is an ordinance, and "Rules" beats "Act" because a title like "Rules made under
@@ -290,7 +301,7 @@ def build(document_id: int, sha256: str, source_observation_id: int,
     # with every other's. Where the act number is unknown (23.6% of the corpus)
     # the document id stands in, which is stable across re-runs because
     # re-segmentation replaces an instrument rather than creating a new one.
-    jur = JURISDICTION.get(source_id, "fed")
+    jur = jurisdiction_of(source_id)
     # A reviewed multi-expression plan may state an expression's own jurisdiction (doc 4347 E3, a Punjab
     # notification printed inside a Sindh booklet; lead decision 12 Oct 2026). Absent, nothing changes.
     if reviewed_identity and reviewed_identity.get("jurisdiction"):

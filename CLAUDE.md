@@ -1,8 +1,9 @@
 # Nizam-e-Qanoon
 
 Pakistan's first intelligent legal infrastructure — a bilingual, offline-capable platform over the
-statutory corpus and judicial precedent of the federation and four provinces. Final Year Project,
-GIKI FCSE, four developers.
+statutory corpus and judicial precedent of the federation and four provinces, and (owner decision,
+14 Nov 2026) Islamabad Capital Territory, Azad Jammu & Kashmir and Gilgit-Baltistan — docs/02 §2.2
+already listed the AJK and GB assemblies as P1 sources. Final Year Project, GIKI FCSE, four developers.
 
 **Current state: L1 extraction and L2 base segmentation are built and measured; L2 production qualification remains open, and L3 upward has not started.** The live release continuation point is `docs/RELEASE-ALL-HANDOFF-2026-09-23.md`; read it before any corpus mutation. Its signed baseline has 4,687 canonical expressions, 4,084 released, and 603 blocked. Sixteen documents
 in `docs/` fix the architecture, and where implementation has diverged the docs carry an "as built"
@@ -11,7 +12,8 @@ correction rather than a quiet edit. The corpus lives in Postgres. At the signed
 603 fail-closed, with 1,111 pending TOC rows and 727 pending S7 units. `./nz audit`
 runs 37 criteria (33 at the signed checkpoint, when 32 passed with only S7 red; A12 added 10 Oct, A13 13 Oct, A14 20 Oct, A15 11 Nov). Acquisition is fully accounted: every
 catalogued item either landed or carries a declared, evidence-backed exception. There is no
-`chunk`, `embedding`, `legal_edge`, facet or judgment table yet — those are the next layers.
+`chunk`, `embedding`, facet or judgment table yet — those are the next layers. `legal_edge` exists
+as a view (0079, `amends` and `repeals` resolved from source-keyed records; docs/SCHEMA.md).
 
 ---
 

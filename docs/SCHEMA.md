@@ -911,6 +911,32 @@ Federal Adaptation of Laws Order (305 footnotes). Not recorded: `A.O., 1937`,
 This is docs/03b's `amends` relation **without version history**. The corpus
 holds only current consolidated wording, so no version is closed or opened.
 
+### `legal_edge` — docs/03b §6's edge relation, as a view
+
+Migration 0079. docs/03b designs a table of provision and instrument uuids with
+`ON DELETE CASCADE`. Here a replay retires a tree and mints new ids, so stored
+edges would cascade away or go stale on the next repair. The decision (lead, 14
+Nov 2026, standing delegation) was therefore to make `legal_edge` a **view**
+over the source-keyed records, in docs/03b's columns (`kind edge_kind`, one
+`src_*`, one `dst_*`, `validity`, `raw_text`, `confidence`, `method`,
+`verified_by`). Two columns are added: `source_relation` and `source_id` name
+the record behind each edge.
+
+- **`amends`.** Built from `v_amendment_reference_current`. The source is the
+  amending instrument. The destination is the provision carrying the footnote
+  marker, or else the amended instrument. Validity runs from the printed
+  w.e.f. date.
+- **`repeals`.** Built from `v_statutory_repeal_current`. The source is the
+  repealing clause's provision, resolved from `repealing_relative_path`, and
+  the destination is the repealed instrument. Validity runs from the repeal
+  date.
+
+An edge appears only when both ends resolve. First measured, 14 Nov 2026: 4,620
+`amends` edges (3,242 to a provision) and 129 `repeals` edges, all from a
+clause. `contains` is the ltree. Supersession and consolidated twins relate
+versions of one law, so they are not edges. The other ten kinds have no
+recorded relation yet.
+
 ### `consolidated_twin` — a law's text as made, linked to its consolidated text
 
 Migration 0075 (basis widened by 0076). About 40 laws are released twice: the
@@ -958,6 +984,21 @@ Urdu and Sindhi text is returned in `text_ur` only. Every row carries
 `commencement_coverage` (`established` · `not_tracked`),
 `invalidation_coverage` (`not_tracked`) and `extent_coverage`
 (`jurisdiction_default`). An unknown is declared, never hidden.
+
+**Territories (owner decision, 14 Nov 2026).** ICT, AJK and GB are in scope.
+Their sources are `pk-ict`, `pk-ajk` and `pk-gb`, and the segment worker files
+them under `ict`, `ajk` and `gb`. It now refuses a source it does not know: it
+used to fall back to `fed`, the mislabel docs/02 §2.2 forbids. An
+Islamabad-only Act of Parliament stays `fed`, its enacting legislature's number
+series. `ict` holds instruments made by ICT authorities (CDA, ICT
+Administration). **Precondition before any retrieval reads AJK or GB law.**
+The `jurisdiction_default` rule ("federal law plus the territory's own") is
+wrong there: a federal Act runs in AJK only as adapted by AJK law, and in GB
+only as extended by notification. `nzq_territory()` therefore still refuses
+`ajk` and `gb`. With no territory set, the view returns every jurisdiction,
+territories included. docs/04 requires a territory or an explicit comparison,
+never a guess. The docs/03b §6 `extent` relation must be built before these
+territories are served.
 
 Consolidated text is valid from its 2026 observation date, so a question about
 an earlier date finds no text and abstains. The exception is 0064 historical
@@ -1050,6 +1091,7 @@ required before superseded derived rows may be pruned.
 | `v_instrument_metadata_current` | the standing display title, number, dates and text language per expression, resolved to the active instrument (0070) |
 | `v_consolidated_twin_current` | as-made Gazette texts linked to the consolidated text of the same law (0075); `operative_provision` serves only the consolidated one |
 | `v_amendment_reference_current` | printed amendment footnotes resolved to the amended provision and, where exactly one matches, the amending instrument (0072–0074, abbreviations 0078) |
+| `legal_edge` | docs/03b edges as built (0079): `amends` and `repeals` resolved from the source-keyed records to current ids |
 | `v_provision` | every provision with its **currently operative** text. **Read this, never `provision_version` directly** — that is INV-5 in practice |
 | `v_document` | extracted documents by published title; the join you keep writing by hand |
 | `v_provision_source` | the blocks a provision was built from — its trail back to the printed page |
