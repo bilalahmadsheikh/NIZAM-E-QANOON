@@ -13,8 +13,9 @@ nizam.workers.verify_text_quality.score -- and is reported with what would block
   leak_head    body blocks that repeat, digits aside, at the top of 3+ pages (running heads read as law)
   leak_note    body blocks opening like a page footnote ('1 This Act was passed ...', '2 Subs. by ...')
                (margin side notes are NOT predicted: tools/recrawl/leakscan.py finds them after landing)
-               (margin side notes are NOT predicted: tools/recrawl/leakscan.py finds them after landing)
   sections     top-level numbered units the tree holds (0 = no structure found)
+  evidence     verify_extraction's character recall/precision and page count, and verify_order's ordered-trigram
+               precision, against Poppler, with no reviewed credit ('passed', else what fails -- a failure blocks)
   verdict      clean      no blocker, no leak, at least one section -- land it
                leaky      no blocker but leak signals -- land it and run the leak repairs
                blocked    a blocker or no structure -- do NOT land (it would sit held)
@@ -36,7 +37,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 FOOTNOTE = re.compile(r"^\s*\d{1,2}\s*(?:This\s+(?:Act|Ordinance|Ordnance|Regulation)|These\s+rules|Subs?\.|Ins\.|"
                       r"Added|Omitted|Inserted|Substituted|Renumbered|Rep\.|The\s+words|Vide)", re.I)
 FIELDS = ["sha256", "title", "pages", "verdict", "s7", "toc_found", "toc_pending", "quality", "legal_rate",
-          "leak_head", "leak_note", "sections", "lane", "error"]
+          "leak_head", "leak_note", "sections", "evidence", "char_recall", "char_precision", "order", "lane", "error"]
 
 
 def _signature(text: str) -> str:
@@ -90,11 +91,67 @@ def preflight(args: tuple[str, str, str]) -> dict:
     leak_note = sum(1 for b in blocks if b["id"] in body and FOOTNOTE.match(b["text"]))
     sections = sum(1 for n in getattr(seg.root, "children", []) or []
                    for x in [n, *getattr(n, "children", [])] if getattr(x, "kind", None) in ("section", "article", "rule", "regulation"))
-    blocker = s7 > 0 or toc_pending > 0 or q.get("outcome") == "review" or sections == 0
+    evidence = independent_evidence(Path(path), doc)
+    blocker = (s7 > 0 or toc_pending > 0 or q.get("outcome") == "review" or sections == 0
+               or evidence["evidence"] != "passed")
     verdict = "blocked" if blocker else ("leaky" if leak_head or leak_note else "clean")
     return {**out, "pages": doc.page_count, "lane": doc.lane, "verdict": verdict, "s7": s7,
             "toc_found": seg.toc_found, "toc_pending": toc_pending, "quality": q.get("outcome"),
-            "legal_rate": q.get("legal_rate"), "leak_head": leak_head, "leak_note": leak_note, "sections": sections}
+            "legal_rate": q.get("legal_rate"), "leak_head": leak_head, "leak_note": leak_note, "sections": sections,
+            **evidence}
+
+
+def independent_evidence(path: Path, doc) -> dict:
+    """The two Poppler gates the extraction lane runs after landing (nizam.workers.verify_extraction, verify_order),
+    with their own functions and thresholds and WITHOUT any reviewed credit (no source_content_confirmed, decode-damage
+    or repaired-reference assertion exists for a file not yet landed) -- so a pass here cannot fail there, while a
+    file the gates would pass only with a reviewed credit is predicted blocked."""
+    import subprocess
+    from nizam.workers import verify_extraction as ve
+    from nizam.workers import verify_order as vo
+    text_blocks = [b for b in sorted(doc.blocks, key=lambda b: b.reading_order) if b.confidence is None]
+    mine = "\n".join(b.text for b in text_blocks)
+    outside = "\n".join(b.text for b in text_blocks if not b.inside_cropbox)
+    raw = ve.pdftotext(path)
+    ours, theirs = ve._chars(mine), ve._chars(raw)
+    problems = []
+    recall = precision = order = None
+    if not theirs:
+        problems.append("pdftotext found no text")
+    else:
+        shared = ve._multiset_overlap(ours, theirs)
+        recall = shared / sum(theirs.values())
+        extra = ve._unexplained_extra(mine, raw, outside, "")
+        precision = (sum(ours.values()) - sum(extra.values())) / sum(ours.values()) if ours else 0.0
+        if recall < ve.MIN_CHAR_RECALL:
+            problems.append(f"char recall {recall:.5f}")
+        if precision < ve.MIN_CHAR_PRECISION:
+            problems.append(f"char precision {precision:.5f}")
+    info = subprocess.run(["pdfinfo", str(path)], capture_output=True, timeout=60)
+    m = re.search(rb"Pages:\s+(\d+)", info.stdout)
+    if m and int(m.group(1)) != doc.page_count:
+        problems.append(f"page count {m.group(1).decode()} != {doc.page_count}")
+    by_page: dict[int, list[str]] = {}
+    for b in text_blocks:
+        by_page.setdefault(b.page_no, []).append(b.text)
+    refs = []
+    for layout in (False, True):
+        pages = vo.pdftotext(path, layout=layout).split("\f")
+        if pages and not pages[-1].strip():
+            pages.pop()
+        refs.append(pages)
+    if max(len(vo.lexical_words(" ".join(p))) for p in refs) < vo.MIN_REFERENCE_LEXICAL_WORDS:
+        stored = [vo.lexical_words(" ".join(by_page.get(n, []))) for n in range(1, max(by_page, default=0) + 1)]
+        if not any(stored == [vo.lexical_words(p) for p in pages] and any(stored) for pages in refs):
+            problems.append("order unverifiable: too few reference words")
+    else:
+        order = max(vo._score_reference(by_page, pages)["ordered_trigram_precision"] for pages in refs)
+        if order < vo.MIN_ORDERED_TRIGRAM_PRECISION:
+            problems.append(f"ordered-trigram precision {order:.3f}")
+    return {"evidence": "passed" if not problems else "; ".join(problems),
+            "char_recall": None if recall is None else round(recall, 5),
+            "char_precision": None if precision is None else round(precision, 5),
+            "order": None if order is None else round(order, 4)}
 
 
 def main() -> int:

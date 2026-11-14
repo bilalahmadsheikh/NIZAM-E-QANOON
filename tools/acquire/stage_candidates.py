@@ -95,7 +95,9 @@ def main() -> int:
         if not r.get("pdf_url"):
             row.update(status="no_file", grade="no_file"); out.append(row); continue
         try:
-            resp = s.get(r["pdf_url"], timeout=120, verify=not r["pdf_url"].startswith("https://sindhlaws"))
+            # TLS is always verified (14 Nov 2026: an earlier revision skipped verification for sindhlaws.gov.pk; a
+            # certificate failure is now recorded as this row's error, never bypassed)
+            resp = s.get(r["pdf_url"], timeout=120)
             body = resp.content
             row.update(http_status=resp.status_code, content_type=resp.headers.get("content-type", ""),
                        bytes=len(body))

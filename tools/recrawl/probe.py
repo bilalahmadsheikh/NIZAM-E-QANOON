@@ -1,6 +1,8 @@
 """Probe official listing pages (read-only, stdlib only): status, size and the link patterns they carry."""
 import collections, html, re, ssl, sys, urllib.error, urllib.request
-CTX = ssl.create_default_context(); CTX.check_hostname = False; CTX.verify_mode = ssl.CERT_NONE
+# TLS is verified (14 Nov 2026: this probe used to switch verification off; a portal whose certificate fails is now
+# reported as an error, never read through)
+CTX = ssl.create_default_context()
 UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/124.0 Safari/537.36"
 
 
