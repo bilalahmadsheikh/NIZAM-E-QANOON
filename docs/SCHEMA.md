@@ -990,8 +990,12 @@ Their sources are `pk-ict`, `pk-ajk` and `pk-gb`, and the segment worker files
 them under `ict`, `ajk` and `gb`. It now refuses a source it does not know: it
 used to fall back to `fed`, the mislabel docs/02 §2.2 forbids. An
 Islamabad-only Act of Parliament stays `fed`, its enacting legislature's number
-series. `ict` holds instruments made by ICT authorities (CDA, ICT
-Administration). **Precondition before any retrieval reads AJK or GB law.**
+series. So do the instruments of federal bodies made for Islamabad, such as
+CDA regulations and Cabinet Division S.R.O.s: the corpus already held about 25
+of these as `fed` (Pakistan Code, DRS), and CDA files land under `pk-federal`.
+`ict` is reserved for Islamabad's own local-government instruments; no source
+for those has been found yet. **Precondition before any retrieval reads AJK or
+GB law.**
 The `jurisdiction_default` rule ("federal law plus the territory's own") is
 wrong there: a federal Act runs in AJK only as adapted by AJK law, and in GB
 only as extended by notification. `nzq_territory()` therefore still refuses

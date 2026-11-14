@@ -8,7 +8,8 @@ kind, year_or_dept, title, detail_url, pdf_url), which downloads and grades each
   ajk  law.gok.pk (Law, Justice & Parliamentary Affairs Department, Government of AJK): /acts/, /ordinance/,
        /revised-volume/, /adopted-laws-in-ajk/, /publications/. Compiled code volumes on /publications/ ('Volume II
        (1963-1970)') are left out: they bundle hundreds of laws, each of which is listed on its own.
-  ict  www.cda.gov.pk (Capital Development Authority): /public/lawsAndRegulations, /public/cdaOrdinance.
+  ict  www.cda.gov.pk (Capital Development Authority): /public/lawsAndRegulations, /public/cdaOrdinance. CDA is a
+       federal body: its instruments are filed 'fed' and land under source pk-federal (docs/SCHEMA.md, Territories).
   gb   gilgitbaltistan.gov.pk /pages/acts and gbassembly.gbit.gov.pk /pages/acts.
 Islamabad's Acts of Parliament are not listed here: they are federal Acts, held from Pakistan Code under 'fed'.
 
@@ -69,7 +70,7 @@ def rows_for(portal: str) -> list[dict]:
                 continue
             title = " ".join(a.get_text(" ", strip=True).split())
             # a bare 'Download' / 'View PDF' link: the row's own text is the title
-            if len(re.findall(r"[A-Za-z]", title)) < 8 or re.fullmatch(r"(?i)(download|view( pdf)?|read more|pdf)", title):
+            if len(re.findall(r"[A-Za-z]", title)) < 8 or re.fullmatch(r"(?i)(download|(click (here )?to )?view( pdf)?|read more|pdf)", title):
                 row = a.find_parent(["tr", "li", "p", "div"])
                 title = " ".join((row.get_text(" ", strip=True) if row else title).split())
             if portal == "ajk" and kind == "publication" and VOLUME.search(title + " " + href):
