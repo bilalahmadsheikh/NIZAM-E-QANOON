@@ -1,0 +1,34 @@
+[
+ {
+  "document_id": 10063,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2748753,
+   2748754,
+   2748755
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 5 prints a footnote rule at y=526 of 792; below it 3 block(s) set smaller than the law's 9.9pt, 3 read as body, the first '(e) Added new section 8- A vide Section 3 of Act III of 2004'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10063-p5.png",
+  "render_sha256": "37029f09114272d756a747b3c8df7d2f17d6086bd8a10c84c2aad79784ca8b05",
+  "match_text": "Added new section 8- A vide Section 3 of Act III of",
+  "before_text": "Added new section 8- A vide Section 3 of Act III of",
+  "after_text": "Added new section 8- A vide Section 3 of Act III of"
+ },
+ {
+  "document_id": 10063,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   2748772
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 6 prints a footnote rule at y=632 of 792; below it 1 block(s) set smaller than the law's 9.9pt, 1 read as body, the first '(b) substituted vide Section 7 of Act X of 2007, original are as three'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10063-p6.png",
+  "render_sha256": "f72329409cdf046d6a952225b04df5fddbc700b363a1fc09b0b85539094d6005",
+  "match_text": "substituted vide Section 7 of Act X of 2007, original are",
+  "before_text": "substituted vide Section 7 of Act X of 2007, original are",
+  "after_text": "substituted vide Section 7 of Act X of 2007, original are"
+ }
+]

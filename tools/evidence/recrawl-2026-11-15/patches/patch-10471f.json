@@ -1,0 +1,83 @@
+[
+ {
+  "document_id": 10471,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2776184,
+   2776185,
+   2776186,
+   2776187,
+   2776188,
+   2776189,
+   2776190
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 1 prints a footnote rule at y=508 of 792; below it 7 block(s) set smaller than the law's 11.0pt, 7 read as body, the first '1 This section has been substituted/ amended four times.'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10471-p1.png",
+  "render_sha256": "b6ab3f73556c1346eae5ec7f8f97150639e625b9d5a5da4a7af968ff4b6f9a6c",
+  "match_text": "This section has been substituted/ amended four times.",
+  "before_text": "This section has been substituted/ amended four times.",
+  "after_text": "This section has been substituted/ amended four times."
+ },
+ {
+  "document_id": 10471,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2776204,
+   2776205,
+   2776206,
+   2776207,
+   2776208,
+   2776209,
+   2776210,
+   2776211,
+   2776212,
+   2776213,
+   2776214,
+   2776215,
+   2776216,
+   2776217,
+   2776218,
+   2776219,
+   2776220,
+   2776221,
+   2776222,
+   2776223,
+   2776224,
+   2776225,
+   2776226,
+   2776227
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 2 prints a footnote rule at y=284 of 792; below it 24 block(s) set smaller than the law's 11.0pt, 24 read as body, the first '(i) Urine Test Rs. Three.'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10471-p2.png",
+  "render_sha256": "74e63ad4d4fc22a5081e42c4a85657011633b29c415c28a839d70dc829038f8c",
+  "match_text": "(iii)  Special investigation",
+  "before_text": "(iii)  Special investigation",
+  "after_text": "(iii)  Special investigation"
+ },
+ {
+  "document_id": 10471,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2776238,
+   2776239,
+   2776240,
+   2776241,
+   2776242,
+   2776243,
+   2776244,
+   2776245
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 3 prints a footnote rule at y=521 of 792; below it 8 block(s) set smaller than the law's 11.0pt, 8 read as body, the first '(g) Bed Fee Paisa fifty per day.'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10471-p3.png",
+  "render_sha256": "ed86ed76260f37d52848deebad97be8ace2046bf9627555692022f33e7e915c3",
+  "match_text": "Paisa fifty per day.",
+  "before_text": "Paisa fifty per day.",
+  "after_text": "Paisa fifty per day."
+ }
+]

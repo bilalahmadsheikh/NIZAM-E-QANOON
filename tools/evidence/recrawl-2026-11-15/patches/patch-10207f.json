@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 10207,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2758452
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 1 prints a footnote rule at y=514 of 792; below it 2 block(s) set smaller than the law's 12.0pt, 1 read as body, the first '“(3) It shall come into force at once.”'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10207-p1.png",
+  "render_sha256": "9965593f7f5ee029f564a1cbfd7f0c152dd7fb073f84c90b99597ac6f94d14e1",
+  "match_text": "“(3) It shall come into force at once.”",
+  "before_text": "“(3) It shall come into force at once.”",
+  "after_text": "“(3) It shall come into force at once.”"
+ }
+]

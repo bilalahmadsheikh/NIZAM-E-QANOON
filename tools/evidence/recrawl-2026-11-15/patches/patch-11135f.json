@@ -1,0 +1,29 @@
+[
+ {
+  "document_id": 11135,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2833912,
+   2833913,
+   2833914,
+   2833915,
+   2833916,
+   2833917,
+   2833918,
+   2833919,
+   2833920,
+   2833921,
+   2833922,
+   2833923,
+   2833924
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 2 prints a footnote rule at y=332 of 792; below it 13 block(s) set smaller than the law's 11.0pt, 13 read as body, the first '1 Sec. 4 subs. /amended two times.The original extract of sec. 4 is reproduced as under:-'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc11135-p2.png",
+  "render_sha256": "f2a69fbcc97260d0464e60a47cd508a0fedb9efbdadf49a6995ee8a7eae6f767",
+  "match_text": "Sec. 4 subs. /amended two times.The original extract of sec. 4 is",
+  "before_text": "Sec. 4 subs. /amended two times.The original extract of sec. 4 is",
+  "after_text": "Sec. 4 subs. /amended two times.The original extract of sec. 4 is"
+ }
+]

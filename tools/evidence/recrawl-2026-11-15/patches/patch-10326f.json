@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 10326,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2765743
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 3 prints a footnote rule at y=627 of 792; below it 1 block(s) set smaller than the law's 11.0pt, 1 read as body, the first '1 For the words “stand forfeited to Government” the words “be refunded to the depositor” Substituted by the Upper Chatta'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10326-p3.png",
+  "render_sha256": "35cb1d202e0692f873996d85e83b49d454f2a123f35b0992461e68a1e96a9e14",
+  "match_text": "depositor”  Substituted by the Upper Chattar Housing Scheme (Amendment) Act, 1993",
+  "before_text": "depositor”  Substituted by the Upper Chattar Housing Scheme (Amendment) Act, 1993",
+  "after_text": "depositor”  Substituted by the Upper Chattar Housing Scheme (Amendment) Act, 1993"
+ }
+]

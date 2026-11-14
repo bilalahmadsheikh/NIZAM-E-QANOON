@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 11066,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2829333
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 1 prints a footnote rule at y=550 of 792; below it 2 block(s) set smaller than the law's 11.0pt, 1 read as body, the first '“a) “Accountant General” means the Accountant General of Azad Jammu and Kashmir;”'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc11066-p1.png",
+  "render_sha256": "3b903430f765d50dee3598cb26d948e5a77d1fff6eb0e287d32106c40e732380",
+  "match_text": "“Accountant General” means the Accountant General of Azad",
+  "before_text": "“Accountant General” means the Accountant General of Azad",
+  "after_text": "“Accountant General” means the Accountant General of Azad"
+ },
+ {
+  "document_id": 11066,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2829388
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 5 prints a footnote rule at y=520 of 792; below it 2 block(s) set smaller than the law's 11.0pt, 1 read as body, the first '“(2) The cases of officers and staff already serving in the Cell shall be referred to the Selection Board or Selection C'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc11066-p5.png",
+  "render_sha256": "bf5d8e2ff2ec76f99912ea412a06a4e71128cfba2228f63d6b4759ee39f5767e",
+  "match_text": "be, for the purpose of determining their suitability and retention in the",
+  "before_text": "be, for the purpose of determining their suitability and retention in the",
+  "after_text": "be, for the purpose of determining their suitability and retention in the"
+ },
+ {
+  "document_id": 11066,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   2829399
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 6 prints a footnote rule at y=588 of 792; below it 1 block(s) set smaller than the law's 11.0pt, 1 read as body, the first '1 In Sec. 12 for the words “Accountant General” the words “Auditor General” subs. By Ibid'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc11066-p6.png",
+  "render_sha256": "637e2f84ef6904153a3b9356034a73e88ce88385d3d3347d749c7dd6cd543cf1",
+  "match_text": "In Sec. 12 for the words “Accountant General” the words “Auditor",
+  "before_text": "In Sec. 12 for the words “Accountant General” the words “Auditor",
+  "after_text": "In Sec. 12 for the words “Accountant General” the words “Auditor"
+ }
+]

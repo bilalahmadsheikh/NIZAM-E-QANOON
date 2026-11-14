@@ -1,0 +1,34 @@
+[
+ {
+  "document_id": 10545,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2784046,
+   2784047,
+   2784049
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 3 prints a footnote rule at y=553 of 792; below it 4 block(s) set smaller than the law's 11.0pt, 3 read as body, the first '1 Re-numbered by the Prohibition Enforcement of Hadd (Amendment) Act, 1987 (IV of 1987) dt. 14-01-1987.'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10545-p3.png",
+  "render_sha256": "62acf9291b5a20aaa6d36adbd4e0a1903af800f92bddca397071f4d4959ad3ae",
+  "match_text": "Re-numbered by the Prohibition Enforcement of Hadd (Amendment) Act, 1987 (IV of 1987)",
+  "before_text": "Re-numbered by the Prohibition Enforcement of Hadd (Amendment) Act, 1987 (IV of 1987)",
+  "after_text": "Re-numbered by the Prohibition Enforcement of Hadd (Amendment) Act, 1987 (IV of 1987)"
+ },
+ {
+  "document_id": 10545,
+  "page_no": 10,
+  "source_apparatus_blocks": [
+   2784131
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 10 prints a footnote rule at y=611 of 792; below it 1 block(s) set smaller than the law's 11.0pt, 1 read as body, the first '1 In Sec. 27, in Sub-Sec. (2), for the words “ High Court of Azad Jammu and Kashmir” the words “Shariat Appellate Bench '",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10545-p10.png",
+  "render_sha256": "dc14dd8b227a28208ee560d5e8f9417696f5058e548350e471d57e9eda491cbb",
+  "match_text": "In Sec. 27, in Sub-Sec. (2), for the words “ High Court of Azad Jammu and Kashmir” the",
+  "before_text": "In Sec. 27, in Sub-Sec. (2), for the words “ High Court of Azad Jammu and Kashmir” the",
+  "after_text": "In Sec. 27, in Sub-Sec. (2), for the words “ High Court of Azad Jammu and Kashmir” the"
+ }
+]

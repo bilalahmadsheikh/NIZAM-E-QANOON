@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 11025,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2825571
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 2 prints a footnote rule at y=626 of 792; below it 1 block(s) set smaller than the law's 11.0pt, 1 read as body, the first '1 The existing Section 2 re-numbered as (1) and thereafter a new sub-section (2) added by the Excise and Salt (Adaptatio'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc11025-p2.png",
+  "render_sha256": "f60413ef4befb4269d672c78c014e1e726012f61f5139022c7a188b58680331d",
+  "match_text": "1 The existing Section 2 re-numbered as (1) and thereafter a new sub-section (2)",
+  "before_text": "1 The existing Section 2 re-numbered as (1) and thereafter a new sub-section (2)",
+  "after_text": "1 The existing Section 2 re-numbered as (1) and thereafter a new sub-section (2)"
+ }
+]

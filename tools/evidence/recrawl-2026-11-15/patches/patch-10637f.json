@@ -1,0 +1,82 @@
+[
+ {
+  "document_id": 10637,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2791213,
+   2791214
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 5 prints a footnote rule at y=437 of 792; below it 2 block(s) set smaller than the law's 11.0pt, 2 read as body, the first '1 Sub-section (2) of Section 9 omitted by the Peral Development Authority (Amdt) Act, 2001 (XIX of 2001) dt. 26.12.2001.'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10637-p5.png",
+  "render_sha256": "f6f63e4d5129dcf79dd8bb7593fcff61d1c5b8e9e55443715d0081e81dfc794b",
+  "match_text": "Authority (Amdt) Act, 2001 (XIX of 2001) dt. 26.12.2001. The extract",
+  "before_text": "Authority (Amdt) Act, 2001 (XIX of 2001) dt. 26.12.2001. The extract",
+  "after_text": "Authority (Amdt) Act, 2001 (XIX of 2001) dt. 26.12.2001. The extract"
+ },
+ {
+  "document_id": 10637,
+  "page_no": 9,
+  "source_apparatus_blocks": [
+   2791253,
+   2791254,
+   2791255,
+   2791256,
+   2791257
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 9 prints a footnote rule at y=393 of 792; below it 5 block(s) set smaller than the law's 11.0pt, 5 read as body, the first '1 For the words and figures “BPS-19”, the words and figures “BPS-16” subs. by the Pearl Development Authority (Amdt.) Ac'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10637-p9.png",
+  "render_sha256": "9b7a0a11ed0fb31e63aa3e7b55fdfdaf16059241c145f118b09ebefc0de59dc6",
+  "match_text": "subs. by the Pearl Development Authority (Amdt.) Act, 2001 (XIX of",
+  "before_text": "subs. by the Pearl Development Authority (Amdt.) Act, 2001 (XIX of",
+  "after_text": "subs. by the Pearl Development Authority (Amdt.) Act, 2001 (XIX of"
+ },
+ {
+  "document_id": 10637,
+  "page_no": 11,
+  "source_apparatus_blocks": [
+   2791280
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 11 prints a footnote rule at y=577 of 792; below it 1 block(s) set smaller than the law's 11.0pt, 1 read as body, the first '1 Between the words “submit” and “to”, the words “within the 1st quarter of every Financial Year” inserted by the Pearl '",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10637-p11.png",
+  "render_sha256": "3ff57c50dd4fec262a7eba1716dcb4a5c93ab1c10797a6b0ade6918366a2da56",
+  "match_text": "Between the words “submit” and “to”, the words “within the 1st quarter",
+  "before_text": "Between the words “submit” and “to”, the words “within the 1st quarter",
+  "after_text": "Between the words “submit” and “to”, the words “within the 1st quarter"
+ },
+ {
+  "document_id": 10637,
+  "page_no": 14,
+  "source_apparatus_blocks": [
+   2791308
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 14 prints a footnote rule at y=577 of 792; below it 1 block(s) set smaller than the law's 11.0pt, 1 read as body, the first '1 For the words “fifteen days” the words “ten days” substituted by the Pearl Development Authority (Amendment) Act, 2001'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10637-p14.png",
+  "render_sha256": "92693c6905ef71afc4945af12237e49d661add6097554f91c2fe80b224366a98",
+  "match_text": "For the words “fifteen days” the words “ten days” substituted by the Pearl",
+  "before_text": "For the words “fifteen days” the words “ten days” substituted by the Pearl",
+  "after_text": "For the words “fifteen days” the words “ten days” substituted by the Pearl"
+ },
+ {
+  "document_id": 10637,
+  "page_no": 15,
+  "source_apparatus_blocks": [
+   2791316
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 15 prints a footnote rule at y=477 of 792; below it 1 block(s) set smaller than the law's 11.0pt, 1 read as body, the first '1 For the words “reasonable opportunity of being heard” the words “ten days notice”, substituted by the Pearl Developmen'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10637-p15.png",
+  "render_sha256": "518a737c2284ba3a067b5be057f570ec4a6c892014648ac83c156f24262f4f04",
+  "match_text": "For the words “reasonable opportunity of being heard” the words “ten",
+  "before_text": "For the words “reasonable opportunity of being heard” the words “ten",
+  "after_text": "For the words “reasonable opportunity of being heard” the words “ten"
+ }
+]

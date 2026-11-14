@@ -1,0 +1,33 @@
+[
+ {
+  "document_id": 10524,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2780097,
+   2780098
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 4 prints a footnote rule at y=412 of 792; below it 2 block(s) set smaller than the law's 11.0pt, 2 read as body, the first '1 Sub-section (2) of Section 9 omitted by the Development Authority Muzaffarabad (Amdt.) Act, 2001 (XX of 2001) dt.12.12'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10524-p4.png",
+  "render_sha256": "4a38dcb83ac18a8e4cda941e49cfc6e7cd0cec5f847b5d358bb1978124ca7be3",
+  "match_text": "extract of sub-section (2) of original Act II of 1989 is reproduced as",
+  "before_text": "extract of sub-section (2) of original Act II of 1989 is reproduced as",
+  "after_text": "extract of sub-section (2) of original Act II of 1989 is reproduced as"
+ },
+ {
+  "document_id": 10524,
+  "page_no": 11,
+  "source_apparatus_blocks": [
+   2780147
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 11 prints a footnote rule at y=591 of 792; below it 1 block(s) set smaller than the law's 11.0pt, 1 read as body, the first '1 For the words “fifteen days”, the words “ten days” subs. by the Development Authority Muzaffarabad (Amendment) Act, 20'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10524-p11.png",
+  "render_sha256": "b6d45a05082b99a6edd1e1404217c94bfdfaa7642c579508b8360213a3ce2ca2",
+  "match_text": "For the words “reasonable opportunity of being heard”, the words “ten",
+  "before_text": "For the words “reasonable opportunity of being heard”, the words “ten",
+  "after_text": "For the words “reasonable opportunity of being heard”, the words “ten"
+ }
+]

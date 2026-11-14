@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 11279,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2843790,
+   2843791,
+   2843792,
+   2843793,
+   2843794,
+   2843795,
+   2843796,
+   2843797,
+   2843798,
+   2843799,
+   2843800,
+   2843801,
+   2843802,
+   2843803,
+   2843804,
+   2843805
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 3 prints a footnote rule at y=326 of 792; below it 16 block(s) set smaller than the law's 11.0pt, 16 read as body, the first '“(1)The Board shall consist of, a Chairman, appointed by the Government, and following other members:--'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc11279-p3.png",
+  "render_sha256": "d0c6044343b7077568052986fb259fcb6b8cf8424975611820e6b6e31412f051",
+  "match_text": "“(1)The Board shall consist of, a Chairman, appointed by the",
+  "before_text": "“(1)The Board shall consist of, a Chairman, appointed by the",
+  "after_text": "“(1)The Board shall consist of, a Chairman, appointed by the"
+ },
+ {
+  "document_id": 11279,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2843822
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 4 prints a footnote rule at y=550 of 792; below it 2 block(s) set smaller than the law's 11.0pt, 1 read as body, the first '“(5) The Chairman and members, other than the ex-officio members, shall cease to hold office on expiry of term of Chairm'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc11279-p4.png",
+  "render_sha256": "53fac8b514f05b341791b87e0df511338031bb23c31757a31ce7189564da3f58",
+  "match_text": "members, shall cease to hold office on expiry of term of Chairman as",
+  "before_text": "members, shall cease to hold office on expiry of term of Chairman as",
+  "after_text": "members, shall cease to hold office on expiry of term of Chairman as"
+ }
+]

@@ -1,0 +1,25 @@
+[
+ {
+  "document_id": 10924,
+  "page_no": 88,
+  "source_apparatus_blocks": [
+   2813272,
+   2813273,
+   2813274,
+   2813275,
+   2813276,
+   2813277,
+   2813278,
+   2813279,
+   2813280
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 88 prints a footnote rule at y=352 of 792; below it 9 block(s) set smaller than the law's 11.0pt, 9 read as body, the first '1 Schedule one of the Act is subs. by The Azad Jammu and Kashmir Elections (Amendment) Act, 2020 (Act XXVII of 2020 dt. '",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10924-p88.png",
+  "render_sha256": "479a1ee76c9c94586379a9f50e1c89dfe6c1e654f0394a885bb6c3e979b90f03",
+  "match_text": "Elections (Amendment) Act, 2020 (Act XXVII of 2020 dt. 3-12-2020. The",
+  "before_text": "Elections (Amendment) Act, 2020 (Act XXVII of 2020 dt. 3-12-2020. The",
+  "after_text": "Elections (Amendment) Act, 2020 (Act XXVII of 2020 dt. 3-12-2020. The"
+ }
+]

@@ -1,0 +1,35 @@
+[
+ {
+  "document_id": 10478,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2776838,
+   2776839,
+   2776840,
+   2776841,
+   2776842,
+   2776843,
+   2776844,
+   2776845,
+   2776846,
+   2776847,
+   2776848,
+   2776849,
+   2776850,
+   2776851,
+   2776852,
+   2776853,
+   2776854,
+   2776855,
+   2776856
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 4 prints a footnote rule at y=207 of 792; below it 20 block(s) set smaller than the law's 11.0pt, 19 read as body, the first '\"(1) The Foundation shall be administered by a Board of Governors,'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10478-p4.png",
+  "render_sha256": "e626f26ec64b81fe6506b5572eaa5bd14273936122e248884a655278142461dd",
+  "match_text": "\"(1) The Foundation shall be administered by a Board of Governors,",
+  "before_text": "\"(1) The Foundation shall be administered by a Board of Governors,",
+  "after_text": "\"(1) The Foundation shall be administered by a Board of Governors,"
+ }
+]

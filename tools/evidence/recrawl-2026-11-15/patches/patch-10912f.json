@@ -1,0 +1,24 @@
+[
+ {
+  "document_id": 10912,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2811262,
+   2811263,
+   2811264,
+   2811265,
+   2811266,
+   2811267,
+   2811268,
+   2811270
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 2 prints a footnote rule at y=312 of 792; below it 10 block(s) set smaller than the law's 12.0pt, 8 read as body, the first '1 subsection (1) of Sec. 3 amended four time. the original extract of subsection (1) of Act XXIV of 2001 is reproduced a'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10912-p2.png",
+  "render_sha256": "bddd1aa3969845bec59427bb705f216e6eff7575e2e6557395c18d0cff1715a6",
+  "match_text": "subsection (1) of Sec. 3 amended four time. the original extract of",
+  "before_text": "subsection (1) of Sec. 3 amended four time. the original extract of",
+  "after_text": "subsection (1) of Sec. 3 amended four time. the original extract of"
+ }
+]

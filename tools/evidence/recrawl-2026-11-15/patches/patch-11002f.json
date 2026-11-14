@@ -1,0 +1,58 @@
+[
+ {
+  "document_id": 11002,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2823733,
+   2823734,
+   2823735,
+   2823736
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 4 prints a footnote rule at y=605 of 792; below it 4 block(s) set smaller than the law's 9.3pt, 4 read as body, the first '1 The full stop at the end of subsec. (1) of sec. 08 subs. by colon and thereafter following proviso add. by The Azad'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc11002-p4.png",
+  "render_sha256": "e091736938dd5a247fc0e35dfe51997cf9b87cd294bff41dff3eaa739b28a7ba",
+  "match_text": "1 The full stop at the end of subsec. (1) of sec. 08 subs. by colon and thereafter following proviso add. by The Azad",
+  "before_text": "1 The full stop at the end of subsec. (1) of sec. 08 subs. by colon and thereafter following proviso add. by The Azad",
+  "after_text": "1 The full stop at the end of subsec. (1) of sec. 08 subs. by colon and thereafter following proviso add. by The Azad"
+ },
+ {
+  "document_id": 11002,
+  "page_no": 8,
+  "source_apparatus_blocks": [
+   2823787,
+   2823788,
+   2823789,
+   2823790
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 8 prints a footnote rule at y=584 of 792; below it 5 block(s) set smaller than the law's 9.3pt, 4 read as body, the first 'original extract of subsec.(3) of sec.17 of The Azad Jammu And Kashmir Conciliation Courts, Act 1962 (Act II of 1962)'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc11002-p8.png",
+  "render_sha256": "54d39e3916944ad6761312ce543de83dd8574311c208ebe9eb2c54323aea3546",
+  "match_text": "original extract of  subsec.(3) of sec.17 of  The Azad Jammu And Kashmir Conciliation Courts, Act 1962 (Act II of 1962)",
+  "before_text": "original extract of  subsec.(3) of sec.17 of  The Azad Jammu And Kashmir Conciliation Courts, Act 1962 (Act II of 1962)",
+  "after_text": "original extract of  subsec.(3) of sec.17 of  The Azad Jammu And Kashmir Conciliation Courts, Act 1962 (Act II of 1962)"
+ },
+ {
+  "document_id": 11002,
+  "page_no": 11,
+  "source_apparatus_blocks": [
+   2823841,
+   2823842,
+   2823843,
+   2823844,
+   2823845,
+   2823846
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 11 prints a footnote rule at y=574 of 792; below it 6 block(s) set smaller than the law's 9.3pt, 6 read as body, the first \"1 For the words 'five hundred' and 'one thousand' subs. for the words, 'two hundred' and 'five hundred' respectively by\"",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc11002-p11.png",
+  "render_sha256": "e6a2b369ee8783eca530eda8bbb55bb388622b59b842ab4cd54ddd1043b77c9a",
+  "match_text": "1 For the  words 'five hundred' and 'one thousand'  subs. for the words, 'two hundred' and 'five hundred' respectively by",
+  "before_text": "1 For the  words 'five hundred' and 'one thousand'  subs. for the words, 'two hundred' and 'five hundred' respectively by",
+  "after_text": "1 For the  words 'five hundred' and 'one thousand'  subs. for the words, 'two hundred' and 'five hundred' respectively by"
+ }
+]

@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 10095,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2750813
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 2 prints a footnote rule at y=536 of 792; below it 2 block(s) set smaller than the law's 9.9pt, 1 read as body, the first '1 ***Senior Member/Member was substituted vide Sec 2 (a) & (b) Act VIII of 1975.'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10095-p2.png",
+  "render_sha256": "67a94cfd75c485751218681dbd330def7f92a7edc2794884a6479a14a4a76b8e",
+  "match_text": "1 ***Senior Member/Member was substituted vide Sec 2 (a) & (b) Act VIII",
+  "before_text": "1 ***Senior Member/Member was substituted vide Sec 2 (a) & (b) Act VIII",
+  "after_text": "1 ***Senior Member/Member was substituted vide Sec 2 (a) & (b) Act VIII"
+ },
+ {
+  "document_id": 10095,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2750824
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 3 prints a footnote rule at y=563 of 792; below it 1 block(s) set smaller than the law's 9.9pt, 1 read as body, the first 'the Judicial Board.'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10095-p3.png",
+  "render_sha256": "963c74a88a2e82875d5455b1d944b18178b9f942762593b31c31ae55392cf59c",
+  "match_text": "imprisonment for a period of ten years or above; or",
+  "before_text": "imprisonment for a period of ten years or above; or",
+  "after_text": "imprisonment for a period of ten years or above; or"
+ }
+]

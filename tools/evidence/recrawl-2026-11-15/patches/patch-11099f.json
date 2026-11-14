@@ -1,0 +1,64 @@
+[
+ {
+  "document_id": 11099,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2832021
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 5 prints a footnote rule at y=412 of 792; below it 2 block(s) set smaller than the law's 11.0pt, 1 read as body, the first '“(2) Until the Board is duly constituted, the Chairman shall, subject to such directions as the Government may from time'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc11099-p5.png",
+  "render_sha256": "d0a00a2f18f850db70ee5a72da09ba071494f744a2beeae704338a4a399f0c2a",
+  "match_text": "subject to such directions as the Government may from time to time",
+  "before_text": "subject to such directions as the Government may from time to time",
+  "after_text": "subject to such directions as the Government may from time to time"
+ },
+ {
+  "document_id": 11099,
+  "page_no": 9,
+  "source_apparatus_blocks": [
+   2832058,
+   2832060,
+   2832061
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 9 prints a footnote rule at y=426 of 792; below it 5 block(s) set smaller than the law's 11.0pt, 3 read as body, the first '1 In subsection (1) of Sec. 16 for the words and figures “BPS-19” the words and figure “BPS-16” subs. by Ibid.'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc11099-p9.png",
+  "render_sha256": "a4a8ac852f6d806d805bb8675cd9e75f1bc1fa861c518241b3206694d3b7a13a",
+  "match_text": "In subsection (1) of Sec. 16 for the words and figures “BPS-19” the",
+  "before_text": "In subsection (1) of Sec. 16 for the words and figures “BPS-19” the",
+  "after_text": "In subsection (1) of Sec. 16 for the words and figures “BPS-19” the"
+ },
+ {
+  "document_id": 11099,
+  "page_no": 13,
+  "source_apparatus_blocks": [
+   2832106
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 13 prints a footnote rule at y=489 of 792; below it 1 block(s) set smaller than the law's 11.0pt, 1 read as body, the first '1 For the words “fifteen days” the words “ten days” subs. by Ibid.'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc11099-p13.png",
+  "render_sha256": "97d1f2e8a983f0f12067fdebaaa4286438e2d86eeefcae231cdf795ef8ec8bad",
+  "match_text": "For the words “fifteen days” the words “ten days” subs. by Ibid.",
+  "before_text": "For the words “fifteen days” the words “ten days” subs. by Ibid.",
+  "after_text": "For the words “fifteen days” the words “ten days” subs. by Ibid."
+ },
+ {
+  "document_id": 11099,
+  "page_no": 14,
+  "source_apparatus_blocks": [
+   2832112
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 14 prints a footnote rule at y=588 of 792; below it 1 block(s) set smaller than the law's 11.0pt, 1 read as body, the first '1 For the words “reasonable opportunity of being heard” the words “ten days notice” subs. by Ibid.'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc11099-p14.png",
+  "render_sha256": "e5b6cbd14d95a2713567067f41ae3a84f0a98261a63288d9a3100d619c8540e6",
+  "match_text": "For the words “reasonable opportunity of being heard” the words “ten",
+  "before_text": "For the words “reasonable opportunity of being heard” the words “ten",
+  "after_text": "For the words “reasonable opportunity of being heard” the words “ten"
+ }
+]

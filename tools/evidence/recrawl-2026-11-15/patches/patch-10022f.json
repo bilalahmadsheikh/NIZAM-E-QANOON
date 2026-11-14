@@ -1,0 +1,36 @@
+[
+ {
+  "document_id": 10022,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2745350,
+   2745351,
+   2745352,
+   2745353,
+   2745354
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 4 prints a footnote rule at y=431 of 792; below it 6 block(s) set smaller than the law's 11.0pt, 5 read as body, the first '“(a) Two members from each district;'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10022-p4.png",
+  "render_sha256": "da8a2a310dffd3710d5b603512e4db0507963fb5172e2f672f26e207291f673b",
+  "match_text": "“(a) Two members from each district;",
+  "before_text": "“(a) Two members from each district;",
+  "after_text": "“(a) Two members from each district;"
+ },
+ {
+  "document_id": 10022,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2745367
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 5 prints a footnote rule at y=571 of 792; below it 2 block(s) set smaller than the law's 11.0pt, 1 read as body, the first '2 For the words “sevn years” the words “ten years as an advocate of the High Court” shall be subs. by Ibid.'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10022-p5.png",
+  "render_sha256": "9b69fe688095e1aa2313014eae3f27e35cd95313c84ae9fcff6d3aab4a1826fb",
+  "match_text": "For the words “sevn years” the words “ten years as an advocate of the",
+  "before_text": "For the words “sevn years” the words “ten years as an advocate of the",
+  "after_text": "For the words “sevn years” the words “ten years as an advocate of the"
+ }
+]

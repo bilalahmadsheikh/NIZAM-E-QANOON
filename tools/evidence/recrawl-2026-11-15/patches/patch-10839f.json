@@ -1,0 +1,21 @@
+[
+ {
+  "document_id": 10839,
+  "page_no": 8,
+  "source_apparatus_blocks": [
+   2806830,
+   2806831,
+   2806832,
+   2806833,
+   2806834
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 8 prints a footnote rule at y=566 of 792; below it 6 block(s) set smaller than the law's 11.0pt, 5 read as body, the first 'original extractis reproduced as under:-'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10839-p8.png",
+  "render_sha256": "e7bb238440e8f09b71ea27dfc726046c34a4971cb3b0b5da31e1df9b0a02c445",
+  "match_text": "original extractis reproduced as under:-",
+  "before_text": "original extractis reproduced as under:-",
+  "after_text": "original extractis reproduced as under:-"
+ }
+]

@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 10540,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2783787
+  ],
+  "defect": "the AJK code volume's running head, printed at the top of the page, was read into a provision's text (released 14 Nov 2026; found by the volume-head census)",
+  "fixes": "rule reviewed_apparatus_block: the running-head block is set aside; no law text changes",
+  "observed": "Page 2 prints the running head 'VOLUME IV: 1974-1977' at its head (block 2783787, the block's whole text; top 0.03 of the page)",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10540-p2.png",
+  "render_sha256": "cc7b57a01b12d608a91717bda22be47b03e60dc9d94b607713bd1d75adfe0d0b",
+  "match_text": "VOLUME IV: 1974-1977",
+  "before_text": "VOLUME IV: 1974-1977",
+  "after_text": "VOLUME IV: 1974-1977"
+ }
+]

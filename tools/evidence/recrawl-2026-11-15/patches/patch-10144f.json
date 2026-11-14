@@ -1,0 +1,67 @@
+[
+ {
+  "document_id": 10144,
+  "page_no": 14,
+  "source_apparatus_blocks": [
+   2754399,
+   2754400,
+   2754401,
+   2754402
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 14 prints a footnote rule at y=430 of 792; below it 5 block(s) set smaller than the law's 11.0pt, 4 read as body, the first '“12. Proscription.- (1) For the purposes of this Act, an organization is proscribed if,'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10144-p14.png",
+  "render_sha256": "b83369cbd3052ef824429e8fc699ff46f47edaa624f7d67f23528f61ce34315e",
+  "match_text": "Proscription.- (1) For the purposes of this Act, an organization is",
+  "before_text": "Proscription.- (1) For the purposes of this Act, an organization is",
+  "after_text": "Proscription.- (1) For the purposes of this Act, an organization is"
+ },
+ {
+  "document_id": 10144,
+  "page_no": 15,
+  "source_apparatus_blocks": [
+   2754412,
+   2754413
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 15 prints a footnote rule at y=476 of 792; below it 2 block(s) set smaller than the law's 11.0pt, 2 read as body, the first 'Provided that if any or all office bearers activists or associates of a proscribed organization form a new organization '",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10144-p15.png",
+  "render_sha256": "f6f5905454bce7bf73db9161dda8f31eb83035f61b1c97dda2bad3ee0e521b14",
+  "match_text": "their involvement in similar activities, the said organization",
+  "before_text": "their involvement in similar activities, the said organization",
+  "after_text": "their involvement in similar activities, the said organization"
+ },
+ {
+  "document_id": 10144,
+  "page_no": 18,
+  "source_apparatus_blocks": [
+   2754444,
+   2754446
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 18 prints a footnote rule at y=460 of 792; below it 3 block(s) set smaller than the law's 11.0pt, 2 read as body, the first '1 In Sec. 16, for the title, “Security for Good Behaviour”, the title “Proscription of Person” subs. by the Azad Jammu a'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10144-p18.png",
+  "render_sha256": "7d9a9f6131937927159330b92ae3781d564505b9d68a7a03ca05ddb9b6ba002b",
+  "match_text": "In Sec. 16, for the title, “Security for Good Behaviour”, the title",
+  "before_text": "In Sec. 16, for the title, “Security for Good Behaviour”, the title",
+  "after_text": "In Sec. 16, for the title, “Security for Good Behaviour”, the title"
+ },
+ {
+  "document_id": 10144,
+  "page_no": 21,
+  "source_apparatus_blocks": [
+   2754476
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 21 prints a footnote rule at y=497 of 792; below it 2 block(s) set smaller than the law's 11.0pt, 1 read as body, the first '“(3) Any person whose name has been notified in the list entered in the Fourth Schedule under sub-section (1) or is aggr'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10144-p21.png",
+  "render_sha256": "44267b977d30d315777f3a00bc4d58f4f781a4a5f867a68f46f8d3a64b40ebc7",
+  "match_text": "an opportunity of being heard to such person, decide the appeal within",
+  "before_text": "an opportunity of being heard to such person, decide the appeal within",
+  "after_text": "an opportunity of being heard to such person, decide the appeal within"
+ }
+]

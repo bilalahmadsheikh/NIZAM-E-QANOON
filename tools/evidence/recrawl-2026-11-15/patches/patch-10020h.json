@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 10020,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2745261
+  ],
+  "defect": "the AJK code volume's running head, printed at the top of the page, was read into a provision's text (released 14 Nov 2026; found by the volume-head census)",
+  "fixes": "rule reviewed_apparatus_block: the running-head block is set aside; no law text changes",
+  "observed": "Page 2 prints the running head 'AJ&K Revised Volume' at its head (block 2745261, the block's whole text; top 0.04 of the page)",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10020-p2.png",
+  "render_sha256": "adb147b9935a8459dd025432106afd927a418d850ef8f682094d257bca62238b",
+  "match_text": "AJ&K Revised Volume",
+  "before_text": "AJ&K Revised Volume",
+  "after_text": "AJ&K Revised Volume"
+ }
+]

@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 10864,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2808071
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 2 prints a footnote rule at y=577 of 792; below it 1 block(s) set smaller than the law's 11.0pt, 1 read as body, the first '1 In Section 4 for the words “Sixty five” the words “Sixty six” has been subs. by the AJ&K Members of Election Commissio'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10864-p2.png",
+  "render_sha256": "d45de11248a49209bc760a16a3db4962ad4e6d069202fe96ee203e5e48776aa0",
+  "match_text": "1 In Section 4 for the words “Sixty five” the words “Sixty six” has been subs.",
+  "before_text": "1 In Section 4 for the words “Sixty five” the words “Sixty six” has been subs.",
+  "after_text": "1 In Section 4 for the words “Sixty five” the words “Sixty six” has been subs."
+ }
+]

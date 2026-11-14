@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 11112,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2832562
+  ],
+  "defect": "the AJK code volume's running head, printed at the top of the page, was read into a provision's text (released 14 Nov 2026; found by the volume-head census)",
+  "fixes": "rule reviewed_apparatus_block: the running-head block is set aside; no law text changes",
+  "observed": "Page 2 prints the running head 'VOLUME III: 1971-1973' at its head (block 2832562, the block's whole text; top 0.04 of the page)",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc11112-p2.png",
+  "render_sha256": "7ffb0c2b660371f1fa5a2f168a8b8626a5b74b07951da77e90a33b293fb26f57",
+  "match_text": "VOLUME III: 1971-1973",
+  "before_text": "VOLUME III: 1971-1973",
+  "after_text": "VOLUME III: 1971-1973"
+ }
+]

@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 10141,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2753988
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 1 prints a footnote rule at y=623 of 792; below it 1 block(s) set smaller than the law's 9.9pt, 1 read as body, the first '1 Omiitted vide section 2 of XI of 2003 original are as where in1 [ten] or more persons are employed or were employed on'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10141-p1.png",
+  "render_sha256": "1fc783365e748ed27efb50f8e33640b7fce5135694e712a4836955d189afecce",
+  "match_text": "1 Omiitted vide section 2 of XI of 2003 original are as where in1 [ten] or",
+  "before_text": "1 Omiitted vide section 2 of XI of 2003 original are as where in1 [ten] or",
+  "after_text": "1 Omiitted vide section 2 of XI of 2003 original are as where in1 [ten] or"
+ }
+]

@@ -1,0 +1,24 @@
+[
+ {
+  "document_id": 10510,
+  "page_no": 11,
+  "source_apparatus_blocks": [
+   2778947,
+   2778948,
+   2778949,
+   2778950,
+   2778951,
+   2778952,
+   2778953,
+   2778954
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 11 prints a footnote rule at y=448 of 792; below it 9 block(s) set smaller than the law's 12.0pt, 8 read as body, the first 'Chairman'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10510-p11.png",
+  "render_sha256": "a1945fb341906c2d58f2e9021dc6808ddddc6c5343e13b58e4bedf69d89a97f1",
+  "match_text": "Joint Commissioner Mangla Dam",
+  "before_text": "Joint Commissioner Mangla Dam",
+  "after_text": "Joint Commissioner Mangla Dam"
+ }
+]

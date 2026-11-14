@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 10466,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2775878
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 2 prints a footnote rule at y=577 of 792; below it 1 block(s) set smaller than the law's 11.0pt, 1 read as body, the first '1 In proviso to sub-sec. (1) of Sec. 3, for the word “two”, the word “three” subs. by the Azad Jammu and Kashmir Board o'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10466-p2.png",
+  "render_sha256": "4c54ae0e15eb0eb9232f516a66782ea81c957e2f31707002cc252deec6f337ad",
+  "match_text": "In proviso to sub-sec. (1) of Sec. 3, for the word “two”, the word",
+  "before_text": "In proviso to sub-sec. (1) of Sec. 3, for the word “two”, the word",
+  "after_text": "In proviso to sub-sec. (1) of Sec. 3, for the word “two”, the word"
+ }
+]

@@ -1,0 +1,26 @@
+[
+ {
+  "document_id": 10679,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2794696,
+   2794697,
+   2794698,
+   2794699,
+   2794700,
+   2794701,
+   2794702,
+   2794703,
+   2794704,
+   2794705
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 2 prints a footnote rule at y=450 of 792; below it 10 block(s) set smaller than the law's 11.0pt, 10 read as body, the first '1 Re-numbered as sub-section (1) by the Notaries (Amendment) Act, 1992 (IV of 1992) dt. 29-06-1992.'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10679-p2.png",
+  "render_sha256": "1cd85a65a00ff85aaadaaabd3ef42ff02f2715e5092021cc727645b1d38d9f9c",
+  "match_text": "Re-numbered as sub-section (1) by the Notaries (Amendment) Act, 1992 (IV of 1992)",
+  "before_text": "Re-numbered as sub-section (1) by the Notaries (Amendment) Act, 1992 (IV of 1992)",
+  "after_text": "Re-numbered as sub-section (1) by the Notaries (Amendment) Act, 1992 (IV of 1992)"
+ }
+]

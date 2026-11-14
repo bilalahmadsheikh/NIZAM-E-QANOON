@@ -1,0 +1,40 @@
+[
+ {
+  "document_id": 9986,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2743086,
+   2743087,
+   2743088,
+   2743089,
+   2743090,
+   2743091,
+   2743092,
+   2743093
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 5 prints a footnote rule at y=532 of 792; below it 9 block(s) set smaller than the law's 9.3pt, 8 read as body, the first 'sec. 10 of the azad jammu and kashmir protection of evacuee property Act 1950 is reproduced as under:-'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9986-p5.png",
+  "render_sha256": "fba6e1eddd4680dd870d4342acfef0282b41c047897e385d441bb1c32345d5f5",
+  "match_text": "sec. 10 of the azad jammu and kashmir protection of evacuee property Act 1950 is reproduced as under:-",
+  "before_text": "sec. 10 of the azad jammu and kashmir protection of evacuee property Act 1950 is reproduced as under:-",
+  "after_text": "sec. 10 of the azad jammu and kashmir protection of evacuee property Act 1950 is reproduced as under:-"
+ },
+ {
+  "document_id": 9986,
+  "page_no": 7,
+  "source_apparatus_blocks": [
+   2743117,
+   2743118
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 7 prints a footnote rule at y=625 of 792; below it 2 block(s) set smaller than the law's 9.3pt, 2 read as body, the first '1 The “full stop” at the end subsec.(1) clause (d) of sec.13Subs.by the “semicolon” by The Azad Jammu'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9986-p7.png",
+  "render_sha256": "efab27209e7c9416f4fd5ef8c43eddac6e27449100b5c0eb04e16943950bc36b",
+  "match_text": "1 The “full stop” at the end subsec.(1) clause (d) of sec.13Subs.by the “semicolon” by The Azad Jammu",
+  "before_text": "1 The “full stop” at the end subsec.(1) clause (d) of sec.13Subs.by the “semicolon” by The Azad Jammu",
+  "after_text": "1 The “full stop” at the end subsec.(1) clause (d) of sec.13Subs.by the “semicolon” by The Azad Jammu"
+ }
+]

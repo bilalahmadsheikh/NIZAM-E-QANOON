@@ -1,0 +1,97 @@
+[
+ {
+  "document_id": 11044,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2826512,
+   2826513,
+   2826514,
+   2826515,
+   2826516
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 2 prints a footnote rule at y=605 of 792; below it 5 block(s) set smaller than the law's 9.3pt, 5 read as body, the first \"1 In sub-section (2) of sec. 6 s for the words 'with the previous consent' the words 'after obtaining the advice'\"",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc11044-p2.png",
+  "render_sha256": "a5c5145fe989e29002adb5d61fcf9649d9cd2c63bfe0456528acbc7eb444dcd1",
+  "match_text": "1 In sub-section (2) of sec. 6 s for the words 'with the previous consent' the words 'after obtaining the advice'",
+  "before_text": "1 In sub-section (2) of sec. 6 s for the words 'with the previous consent' the words 'after obtaining the advice'",
+  "after_text": "1 In sub-section (2) of sec. 6 s for the words 'with the previous consent' the words 'after obtaining the advice'"
+ },
+ {
+  "document_id": 11044,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2826572,
+   2826573,
+   2826574,
+   2826575,
+   2826576,
+   2826577,
+   2826578,
+   2826579,
+   2826580,
+   2826581,
+   2826582,
+   2826583,
+   2826584,
+   2826585,
+   2826586,
+   2826588,
+   2826589,
+   2826590,
+   2826591
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 5 prints a footnote rule at y=438 of 792; below it 21 block(s) set smaller than the law's 9.3pt, 19 read as body, the first 'extract of sec. 15 of the Azad Jammu and Kashmir Government Act,1968 is reproduced as under:'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc11044-p5.png",
+  "render_sha256": "f052a6a8f26ded2cc992477e7c7e27f01f8e906684799380fd1c236deefb1187",
+  "match_text": "extract of sec. 15 of the Azad Jammu and Kashmir Government Act,1968 is reproduced as under:",
+  "before_text": "extract of sec. 15 of the Azad Jammu and Kashmir Government Act,1968 is reproduced as under:",
+  "after_text": "extract of sec. 15 of the Azad Jammu and Kashmir Government Act,1968 is reproduced as under:"
+ },
+ {
+  "document_id": 11044,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   2826608,
+   2826609,
+   2826610,
+   2826611,
+   2826612,
+   2826613,
+   2826614,
+   2826615
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 6 prints a footnote rule at y=567 of 792; below it 9 block(s) set smaller than the law's 9.3pt, 8 read as body, the first '(2) A meeting convened under sub-section (1) shall not be presided over by the Chairman but by a member of the State'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc11044-p6.png",
+  "render_sha256": "e37e1f61378e4ce57091061444912e195267a57cdef8ca620d95b89bfad39aa7",
+  "match_text": "(2) A meeting convened under sub-section (1) shall not be presided over by the Chairman but by a member of the State",
+  "before_text": "(2) A meeting convened under sub-section (1) shall not be presided over by the Chairman but by a member of the State",
+  "after_text": "(2) A meeting convened under sub-section (1) shall not be presided over by the Chairman but by a member of the State"
+ },
+ {
+  "document_id": 11044,
+  "page_no": 7,
+  "source_apparatus_blocks": [
+   2826628,
+   2826629,
+   2826630,
+   2826631,
+   2826632,
+   2826633,
+   2826634
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 7 prints a footnote rule at y=565 of 792; below it 9 block(s) set smaller than the law's 9.3pt, 7 read as body, the first 'reproduced as under'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc11044-p7.png",
+  "render_sha256": "bcb02ab1588a7d632cb594657978b609629011d6e7c9fae518fbef5e32111e51",
+  "match_text": "reproduced as under",
+  "before_text": "reproduced as under",
+  "after_text": "reproduced as under"
+ }
+]

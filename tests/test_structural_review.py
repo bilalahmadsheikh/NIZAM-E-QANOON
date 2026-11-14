@@ -92,9 +92,9 @@ def test_reject_candidate_stops_the_candidate_being_raised():
     back pending after every replay, forever.
     """
     plain = blocks(*COLLIDING)
-    before, _ = build(1, "s" * 64, 1, "fed", "An Act", "1960", None,
+    before, _ = build(1, "s" * 64, 1, "pk-federal", "An Act", "1960", None,
                       plain, "2026-01-01", profile="default")
-    after, seg = build(1, "s" * 64, 1, "fed", "An Act", "1960", None,
+    after, seg = build(1, "s" * 64, 1, "pk-federal", "An Act", "1960", None,
                        plain, "2026-01-01", profile="default",
                        structural_resolutions=[
                            reading(3, "1", "reject_candidate")])

@@ -1,0 +1,69 @@
+[
+ {
+  "document_id": 10114,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2751767
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 1 prints a footnote rule at y=534 of 792; below it 1 block(s) set smaller than the law's 12.0pt, 1 read as body, the first '(i) “Government” means Azad Government of the State of Jammu & Kashmir;'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10114-p1.png",
+  "render_sha256": "ff5a8148d69461a751f99acfa892293bbc91df8153edea310500a3235997ca34",
+  "match_text": "“Government” means Azad Government of the",
+  "before_text": "“Government” means Azad Government of the",
+  "after_text": "“Government” means Azad Government of the"
+ },
+ {
+  "document_id": 10114,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2751777,
+   2751778,
+   2751779
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 2 prints a footnote rule at y=377 of 792; below it 3 block(s) set smaller than the law's 12.0pt, 3 read as body, the first '(2) The Authority shall be body corporate having perpetual succession and be competent to hold property and to enter int'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10114-p2.png",
+  "render_sha256": "605e9fea895c64038d59d24d0d23fc5de968195ddd0653026e6f7081d8120b84",
+  "match_text": "perpetual succession and be competent to hold property",
+  "before_text": "perpetual succession and be competent to hold property",
+  "after_text": "perpetual succession and be competent to hold property"
+ },
+ {
+  "document_id": 10114,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2751790,
+   2751791,
+   2751792,
+   2751793,
+   2751794,
+   2751795
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 3 prints a footnote rule at y=398 of 792; below it 8 block(s) set smaller than the law's 12.0pt, 6 read as body, the first '“(4) The Authority shall consist of not more than seven members excluding the Chairman. Three of the members shall be ap'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10114-p3.png",
+  "render_sha256": "4c18b43f2d9ba1f8fa39b53242287e24faccb44c1a1daedd2446835657557958",
+  "match_text": "appointed by the Government from private sector and four of",
+  "before_text": "appointed by the Government from private sector and four of",
+  "after_text": "appointed by the Government from private sector and four of"
+ },
+ {
+  "document_id": 10114,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2751806
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 4 prints a footnote rule at y=560 of 792; below it 1 block(s) set smaller than the law's 12.0pt, 1 read as body, the first '“(5) The term of office of the Chairman and the members except ex-officio members, shall be for three years.”'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10114-p4.png",
+  "render_sha256": "d1939dc5a8cdb79cd891dc968a4afe9362dc1fa0b626056a6be17859733d9cbf",
+  "match_text": "The term of office of the Chairman and the members except",
+  "before_text": "The term of office of the Chairman and the members except",
+  "after_text": "The term of office of the Chairman and the members except"
+ }
+]

@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 11312,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2845942
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 3 prints a footnote rule at y=539 of 792; below it 2 block(s) set smaller than the law's 11.0pt, 1 read as body, the first '1 In Sec. 2 in cl. (l), for the full stop at the end a semi colon shall be substituted and thereafter new clauses (m) an'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc11312-p3.png",
+  "render_sha256": "52d748110e2ee09af458e171eb4bb04d25b06cb4f721b9b61676046418c781af",
+  "match_text": "In Sec. 2 in cl. (l), for the full stop at the end a semi colon shall be",
+  "before_text": "In Sec. 2 in cl. (l), for the full stop at the end a semi colon shall be",
+  "after_text": "In Sec. 2 in cl. (l), for the full stop at the end a semi colon shall be"
+ },
+ {
+  "document_id": 11312,
+  "page_no": 15,
+  "source_apparatus_blocks": [
+   2846096
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 15 prints a footnote rule at y=540 of 792; below it 2 block(s) set smaller than the law's 11.0pt, 1 read as body, the first '1 Inst. by the Azad Jammu and Kashmir Text Book Baord (Amendment) Act, 2019 (Act X of 2020) dt. 10.01.2020'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc11312-p15.png",
+  "render_sha256": "25cf2ef32306918e64c2a161b85e6211123638243b8df647af013f8fb7e0eb95",
+  "match_text": "1 Inst. by the Azad Jammu and Kashmir Text Book Baord (Amendment) Act,",
+  "before_text": "1 Inst. by the Azad Jammu and Kashmir Text Book Baord (Amendment) Act,",
+  "after_text": "1 Inst. by the Azad Jammu and Kashmir Text Book Baord (Amendment) Act,"
+ },
+ {
+  "document_id": 11312,
+  "page_no": 16,
+  "source_apparatus_blocks": [
+   2846105
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 16 prints a footnote rule at y=571 of 792; below it 1 block(s) set smaller than the law's 11.0pt, 1 read as body, the first '“25. Power of the Board to make Rules.- The Board may, consistent with this Actand the Regulations made thereunder, make'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc11312-p16.png",
+  "render_sha256": "a2f9e1bf9a7a4d821cae9dbd33862338fdda25f55991c6492216dc53a5d38148",
+  "match_text": "with this Actand the Regulations made thereunder, make Rules to",
+  "before_text": "with this Actand the Regulations made thereunder, make Rules to",
+  "after_text": "with this Actand the Regulations made thereunder, make Rules to"
+ }
+]

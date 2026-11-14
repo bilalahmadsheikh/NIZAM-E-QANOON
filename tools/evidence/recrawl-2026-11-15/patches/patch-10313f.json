@@ -1,0 +1,42 @@
+[
+ {
+  "document_id": 10313,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2765186,
+   2765187,
+   2765188,
+   2765189,
+   2765190
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 3 prints a footnote rule at y=581 of 792; below it 6 block(s) set smaller than the law's 9.3pt, 5 read as body, the first 'subsec.4 of sec.5 of Azad Jammu & Kashmir Prevention of Corruption Act, 1950 is reproduced as under:-'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10313-p3.png",
+  "render_sha256": "93c9bf97102e15903438c913ea28525f7e2e79105e236a1063ba0ffa2e96ae4a",
+  "match_text": "subsec.4 of sec.5  of Azad Jammu & Kashmir Prevention of Corruption Act, 1950  is reproduced as under:-",
+  "before_text": "subsec.4 of sec.5  of Azad Jammu & Kashmir Prevention of Corruption Act, 1950  is reproduced as under:-",
+  "after_text": "subsec.4 of sec.5  of Azad Jammu & Kashmir Prevention of Corruption Act, 1950  is reproduced as under:-"
+ },
+ {
+  "document_id": 10313,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2765200,
+   2765201,
+   2765202,
+   2765203,
+   2765204,
+   2765205,
+   2765206
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 4 prints a footnote rule at y=555 of 792; below it 8 block(s) set smaller than the law's 9.3pt, 7 read as body, the first 'sec. 6 of Azad Jammu & Kashmir Prevention of Corruption Act, 1950 is reproduced as under:-'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10313-p4.png",
+  "render_sha256": "6085719fd60126ff97ce8a23622deaa05c0d2f9289c982fd783dd14c9e3c6485",
+  "match_text": "sec. 6 of Azad Jammu & Kashmir Prevention of Corruption Act, 1950  is reproduced as under:-",
+  "before_text": "sec. 6 of Azad Jammu & Kashmir Prevention of Corruption Act, 1950  is reproduced as under:-",
+  "after_text": "sec. 6 of Azad Jammu & Kashmir Prevention of Corruption Act, 1950  is reproduced as under:-"
+ }
+]

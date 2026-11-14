@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 10009,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2744373
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 4 prints a footnote rule at y=506 of 792; below it 2 block(s) set smaller than the law's 9.9pt, 1 read as body, the first '(11) 1[****]'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10009-p4.png",
+  "render_sha256": "66c1cfc22ea728457f5316c08abfc758f81fb19079fdb7a5653086b1d1387f54",
+  "match_text": "(11) 1[****]",
+  "before_text": "(11) 1[****]",
+  "after_text": "(11) 1[****]"
+ }
+]

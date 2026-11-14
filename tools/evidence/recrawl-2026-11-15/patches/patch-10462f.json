@@ -1,0 +1,51 @@
+[
+ {
+  "document_id": 10462,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2775439,
+   2775440
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 1 prints a footnote rule at y=489 of 792; below it 2 block(s) set smaller than the law's 12.0pt, 2 read as body, the first '(a) “Auditor General” means the Auditor General of Azad Jammu & Kashmir ;'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10462-p1.png",
+  "render_sha256": "0583652b124d2ab48bba148cdda17e72fc77ee673d596c237c2a7731e8858a80",
+  "match_text": "“Auditor General” means the Auditor General of",
+  "before_text": "“Auditor General” means the Auditor General of",
+  "after_text": "“Auditor General” means the Auditor General of"
+ },
+ {
+  "document_id": 10462,
+  "page_no": 8,
+  "source_apparatus_blocks": [
+   2775531,
+   2775532,
+   2775533,
+   2775534
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 8 prints a footnote rule at y=388 of 792; below it 4 block(s) set smaller than the law's 12.0pt, 4 read as body, the first '(a) to consider and approve proposals, schemes and projects not exceeding thirty million rupees and to consider and reco'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10462-p8.png",
+  "render_sha256": "062b1115d6c67c0cfadb63e6a31ef717894aecfb812eed8255e4d19d7768c9d9",
+  "match_text": "projects not exceeding  thirty million rupees and",
+  "before_text": "projects not exceeding  thirty million rupees and",
+  "after_text": "projects not exceeding  thirty million rupees and"
+ },
+ {
+  "document_id": 10462,
+  "page_no": 9,
+  "source_apparatus_blocks": [
+   2775543
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 9 prints a footnote rule at y=468 of 792; below it 1 block(s) set smaller than the law's 12.0pt, 1 read as body, the first '(2) Notwithstanding anything contained in sub- section (1), any rule made, or order or instruction issued by the Authori'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10462-p9.png",
+  "render_sha256": "746f02f109c0fb7594ff21bd7b0e1c429fea2c3e3e2c5672208f23c9a6e7cee9",
+  "match_text": "section (1), any rule made, or order or instruction issued",
+  "before_text": "section (1), any rule made, or order or instruction issued",
+  "after_text": "section (1), any rule made, or order or instruction issued"
+ }
+]

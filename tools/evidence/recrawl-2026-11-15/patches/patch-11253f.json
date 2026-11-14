@@ -1,0 +1,18 @@
+[
+ {
+  "document_id": 11253,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2842374,
+   2842375
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 1 prints a footnote rule at y=486 of 792; below it 2 block(s) set smaller than the law's 12.0pt, 2 read as body, the first '(a) \"affected area\" means an area or part of the Azad Jammu &Kashmir affected by a disaster;'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc11253-p1.png",
+  "render_sha256": "0ada14a32a02eaa43907494c321452947f604fd6844742e0f12c7aa193dedc8f",
+  "match_text": "\"affected area\" means an area or part of the Azad",
+  "before_text": "\"affected area\" means an area or part of the Azad",
+  "after_text": "\"affected area\" means an area or part of the Azad"
+ }
+]

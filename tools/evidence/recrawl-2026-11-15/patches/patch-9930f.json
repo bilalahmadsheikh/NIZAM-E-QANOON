@@ -1,0 +1,79 @@
+[
+ {
+  "document_id": 9930,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2738807,
+   2738808,
+   2738809,
+   2738810,
+   2738811,
+   2738812,
+   2738813
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 2 prints a footnote rule at y=336 of 792; below it 8 block(s) set smaller than the law's 12.0pt, 7 read as body, the first '“4. Chairman:- (1) The Chairman shall be appointed by the Government on such terms and conditions as may be prescribed b'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9930-p2.png",
+  "render_sha256": "64a4784b2b087ea06ab19866c8f94c59f611da19dcfbffd0f5ca7f827866755b",
+  "match_text": "“4. Chairman:- (1) The Chairman shall be appointed by the Government",
+  "before_text": "“4. Chairman:- (1) The Chairman shall be appointed by the Government",
+  "after_text": "“4. Chairman:- (1) The Chairman shall be appointed by the Government"
+ },
+ {
+  "document_id": 9930,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2738825
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 3 prints a footnote rule at y=533 of 792; below it 1 block(s) set smaller than the law's 12.0pt, 1 read as body, the first 'd) to submit all important reports to the Prime Minister for his orders.”'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9930-p3.png",
+  "render_sha256": "9a56239e2be011cbffc74088be8776bb7bd542d4f2733e39b83792d4cdbb274a",
+  "match_text": "to submit all important reports to the Prime Minister for his",
+  "before_text": "to submit all important reports to the Prime Minister for his",
+  "after_text": "to submit all important reports to the Prime Minister for his"
+ },
+ {
+  "document_id": 9930,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2738834,
+   2738835,
+   2738837,
+   2738839
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 4 prints a footnote rule at y=340 of 792; below it 7 block(s) set smaller than the law's 12.0pt, 4 read as body, the first '“(3) The administration of the commission shall vest in Senior Member subject to overall control of the Chairman.'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9930-p4.png",
+  "render_sha256": "83f4d1ef9e74a182f8b33ac4e139ca72eaa5efb91c7c7ebff2b59a9960f09a6c",
+  "match_text": "The administration of the commission shall vest in Senior",
+  "before_text": "The administration of the commission shall vest in Senior",
+  "after_text": "The administration of the commission shall vest in Senior"
+ },
+ {
+  "document_id": 9930,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2738843,
+   2738844,
+   2738845,
+   2738846,
+   2738847,
+   2738848,
+   2738849,
+   2738850,
+   2738851
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 5 prints a footnote rule at y=339 of 792; below it 9 block(s) set smaller than the law's 12.0pt, 9 read as body, the first 'a) to inspect all developmental projects of Government Departments, Autonomous, Semi Autonomous and Local Bodies and put'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9930-p5.png",
+  "render_sha256": "ebbab14825fe987760474e93e8aa3de74d6b58ee282f504f0115ea26e504f172",
+  "match_text": "to inspect all developmental projects of Government Departments,",
+  "before_text": "to inspect all developmental projects of Government Departments,",
+  "after_text": "to inspect all developmental projects of Government Departments,"
+ }
+]

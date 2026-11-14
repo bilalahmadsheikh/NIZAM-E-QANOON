@@ -1,0 +1,82 @@
+[
+ {
+  "document_id": 10596,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2788130,
+   2788131
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 5 prints a footnote rule at y=518 of 792; below it 2 block(s) set smaller than the law's 12.0pt, 2 read as body, the first '1 Sub-section (2) of Section 9omitted by the Kotli Development Authority (Amendment) Act, 2001 (XXI of 2001) dt. 26.12.2'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10596-p5.png",
+  "render_sha256": "4ca8d5570bd017fee62b04749c10ec49002a06d3146a2cedcfeb6f093153fb76",
+  "match_text": "Authority (Amendment) Act, 2001 (XXI of 2001) dt. 26.12.2001. The",
+  "before_text": "Authority (Amendment) Act, 2001 (XXI of 2001) dt. 26.12.2001. The",
+  "after_text": "Authority (Amendment) Act, 2001 (XXI of 2001) dt. 26.12.2001. The"
+ },
+ {
+  "document_id": 10596,
+  "page_no": 10,
+  "source_apparatus_blocks": [
+   2788174,
+   2788175,
+   2788176,
+   2788177,
+   2788178
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 10 prints a footnote rule at y=437 of 792; below it 5 block(s) set smaller than the law's 12.0pt, 5 read as body, the first '1 For the words and figures “BPS-19”, the words and figures “BPS-16” substituted by the Kotli Development Authority (Ame'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10596-p10.png",
+  "render_sha256": "247a7d5dfbb31a6deb74d7fdc124da2aae7831496180200e972fd7afd0390695",
+  "match_text": "For the words and figures “BPS-19”, the words and figures “BPS-16”",
+  "before_text": "For the words and figures “BPS-19”, the words and figures “BPS-16”",
+  "after_text": "For the words and figures “BPS-19”, the words and figures “BPS-16”"
+ },
+ {
+  "document_id": 10596,
+  "page_no": 12,
+  "source_apparatus_blocks": [
+   2788200
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 12 prints a footnote rule at y=561 of 792; below it 1 block(s) set smaller than the law's 12.0pt, 1 read as body, the first '1 Between the words “submit” and “to” the words “within the first quarter of every financialyear” ins. by the Kotli Deve'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10596-p12.png",
+  "render_sha256": "b2289c5f1a6690e1800321347626d2db26a1b906bc4afe0f5fe2111de09ad76e",
+  "match_text": "quarter of every financialyear” ins. by the Kotli Development Authority",
+  "before_text": "quarter of every financialyear” ins. by the Kotli Development Authority",
+  "after_text": "quarter of every financialyear” ins. by the Kotli Development Authority"
+ },
+ {
+  "document_id": 10596,
+  "page_no": 16,
+  "source_apparatus_blocks": [
+   2788235
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 16 prints a footnote rule at y=577 of 792; below it 1 block(s) set smaller than the law's 12.0pt, 1 read as body, the first '1 For the words “fifteen days”, the words “ten days” subs. by the Kotli Development Authority (Amendment) Act, 2001 (XXI'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10596-p16.png",
+  "render_sha256": "db0e94546dfd2a55c03f19ec709364157fd8e7c1bd6e7c3adc21d6b6a27fbc7c",
+  "match_text": "For the words “fifteen days”, the words “ten days” subs. by the Kotli",
+  "before_text": "For the words “fifteen days”, the words “ten days” subs. by the Kotli",
+  "after_text": "For the words “fifteen days”, the words “ten days” subs. by the Kotli"
+ },
+ {
+  "document_id": 10596,
+  "page_no": 17,
+  "source_apparatus_blocks": [
+   2788242
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 17 prints a footnote rule at y=588 of 792; below it 1 block(s) set smaller than the law's 12.0pt, 1 read as body, the first '1 For the words “opportunity of being heard”, the words “ten days notice” is subs. Ibid.'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10596-p17.png",
+  "render_sha256": "12c5405da919085797852a5b68823809a81f451f4378bdfc6e9c6741f5ff0bfe",
+  "match_text": "For the words “opportunity of being heard”, the words “ten days",
+  "before_text": "For the words “opportunity of being heard”, the words “ten days",
+  "after_text": "For the words “opportunity of being heard”, the words “ten days"
+ }
+]

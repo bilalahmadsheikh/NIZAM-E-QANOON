@@ -122,11 +122,25 @@ ACT_NUMBER = [
 YEAR = re.compile(r"\b(1[89]\d{2}|20[0-4]\d)\b")
 
 
+# A citation printed after the title is not the title's last word (AJK, 14 Nov 2026): "The Azad Jammu and Kashmir
+# Interim Constitution (Fifteenth Amendment) Act, 2023 (ACT IV of 2023)", "The Azad Kashmir Old Liabilities Abeyance Act
+# Of 1950 (Cabinet Order No 249)", "... (Amendment) Act, 1952 Government Order No 185". Left on, it hid the terminal
+# 'Act' and the first keyword anywhere won: 32 AJK Acts and Ordinances became 'constitution', 9 Acts 'order'.
+_TRAILING_CITATION = re.compile(
+    r"\s*(?:\(\s*(?:(?:act|ordinance|regulation|president'?s\s+order|p\.?\s*o\.?)\b[^()]*?\d{4}"
+    r"|(?:passed\s+under\s+)?(?:cabinet|council|government)\s+order\b[^()]*)\)?"
+    r"|,?\s*(?:government|cabinet|council)\s+order\s+no\b.*)\s*$", re.I)
+
+
 def infer_kind(title: str) -> str:
+    text = re.sub(r"\s+", " ", title or "").strip()
+    stripped = text
+    while (shorter := _TRAILING_CITATION.sub("", stripped)) != stripped:
+        stripped = shorter
     terminal = re.search(
         r"\b(Act|Ordinance|Rules?|Regulations?|Order|Notification)\b"
-        r"\s*,?\s*(?:1[89]\d{2}|20[0-4]\d)?\s*[.)\]]*\s*$",
-        re.sub(r"\s+", " ", title or "").strip(), re.I)
+        r"\s*,?\s*(?:of\s+)?(?:1[89]\d{2}|20[0-4]\d)?\s*[.)\]]*\s*$",
+        stripped, re.I)
     if terminal:
         value = terminal.group(1).lower()
         return {"rule": "rules", "rules": "rules",

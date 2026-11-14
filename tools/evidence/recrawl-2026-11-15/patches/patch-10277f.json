@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 10277,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2763040
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 3 prints a footnote rule at y=550 of 792; below it 2 block(s) set smaller than the law's 11.0pt, 1 read as body, the first '“(iv) Vice Chancellor University of Azad Jammu and Kashmir Member”'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10277-p3.png",
+  "render_sha256": "aed792bb8f92687eb4966693b0c912cecf14abf5798fe3bd1f616c2804c77308",
+  "match_text": "Vice Chancellor University of Azad Jammu and Kashmir",
+  "before_text": "Vice Chancellor University of Azad Jammu and Kashmir",
+  "after_text": "Vice Chancellor University of Azad Jammu and Kashmir"
+ }
+]

@@ -1,0 +1,39 @@
+[
+ {
+  "document_id": 10148,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2755025,
+   2755026,
+   2755027,
+   2755028,
+   2755029,
+   2755030,
+   2755031,
+   2755032
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 2 prints a footnote rule at y=230 of 792; below it 8 block(s) set smaller than the law's 9.9pt, 8 read as body, the first '1 Section 2,3,4,5 & 6 substituted vide Sec 2 of Act XXI of 2121. Original are as:\" In this ordinance unless there is any'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10148-p2.png",
+  "render_sha256": "4698c780ceb071a4e87766996ea284caddd9068c2d377398659df95c9c77d9f9",
+  "match_text": "1 Section 2,3,4,5 & 6 substituted vide Sec 2 of Act XXI of 2121. Original are as:\" In this",
+  "before_text": "1 Section 2,3,4,5 & 6 substituted vide Sec 2 of Act XXI of 2121. Original are as:\" In this",
+  "after_text": "1 Section 2,3,4,5 & 6 substituted vide Sec 2 of Act XXI of 2121. Original are as:\" In this"
+ },
+ {
+  "document_id": 10148,
+  "page_no": 8,
+  "source_apparatus_blocks": [
+   2755078
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 8 prints a footnote rule at y=555 of 792; below it 1 block(s) set smaller than the law's 9.9pt, 1 read as body, the first '1 Substitued vide Sec 2 of Act XXXIX of 1994. Original Words : Punjab Land Revenue Act 1887 2 Added vide Sec 2 of Act XX'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10148-p8.png",
+  "render_sha256": "7e6e43cca3c8f9b27e2c5e237ed8b5ff505ec56a3cdac367abe242364cdf4181",
+  "match_text": "1 Substitued vide Sec 2 of Act XXXIX of 1994. Original Words : Punjab Land Revenue Act",
+  "before_text": "1 Substitued vide Sec 2 of Act XXXIX of 1994. Original Words : Punjab Land Revenue Act",
+  "after_text": "1 Substitued vide Sec 2 of Act XXXIX of 1994. Original Words : Punjab Land Revenue Act"
+ }
+]

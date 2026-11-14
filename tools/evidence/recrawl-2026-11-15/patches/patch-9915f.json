@@ -1,0 +1,79 @@
+[
+ {
+  "document_id": 9915,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2737643
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 1 prints a footnote rule at y=588 of 792; below it 1 block(s) set smaller than the law's 11.0pt, 1 read as body, the first '1 Cl. (iii) subsection (1) of Sec. 2 is amended/sub. two times. The original extract of cl. (iii) is reproduced as under'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9915-p1.png",
+  "render_sha256": "da837ce8f10226116721e8509f1fc8b1e3192433b995414e9b027f2929c20f92",
+  "match_text": "Cl. (iii) subsection (1) of Sec. 2 is amended/sub. two times. The original",
+  "before_text": "Cl. (iii) subsection (1) of Sec. 2 is amended/sub. two times. The original",
+  "after_text": "Cl. (iii) subsection (1) of Sec. 2 is amended/sub. two times. The original"
+ },
+ {
+  "document_id": 9915,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2737648,
+   2737649,
+   2737650,
+   2737651,
+   2737652,
+   2737653,
+   2737654,
+   2737655,
+   2737656,
+   2737657,
+   2737658,
+   2737659,
+   2737660,
+   2737661,
+   2737662
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 2 prints a footnote rule at y=258 of 792; below it 15 block(s) set smaller than the law's 11.0pt, 15 read as body, the first '“(iii) Not less than Rs. 5000/- or more than Rs. 8000/- per mensem, depending on the length of tenure as President w.e.f'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9915-p2.png",
+  "render_sha256": "d680c3f6e74b41b37243e51678ac6803dc103c0921731c29779a772ab1e65a97",
+  "match_text": "“(iii) Not less than Rs. 5000/- or more than Rs. 8000/- per mensem,",
+  "before_text": "“(iii) Not less than Rs. 5000/- or more than Rs. 8000/- per mensem,",
+  "after_text": "“(iii) Not less than Rs. 5000/- or more than Rs. 8000/- per mensem,"
+ },
+ {
+  "document_id": 9915,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2737675
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 3 prints a footnote rule at y=577 of 792; below it 1 block(s) set smaller than the law's 11.0pt, 1 read as body, the first 'B. For the words “two hundred and fifty” the words “one thousand” subs. by the President’s Pension (Amdt.) Act, 2019 (Ac'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9915-p3.png",
+  "render_sha256": "4cc72058f1f2ee161fa6d4437ac5a20e96ea681b5d972bb960901a5b577d2721",
+  "match_text": "subs. by the President’s Pension (Amdt.) Act, 2019 (Act VII of 2019)",
+  "before_text": "subs. by the President’s Pension (Amdt.) Act, 2019 (Act VII of 2019)",
+  "after_text": "subs. by the President’s Pension (Amdt.) Act, 2019 (Act VII of 2019)"
+ },
+ {
+  "document_id": 9915,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2737683,
+   2737685,
+   2737686,
+   2737687
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 4 prints a footnote rule at y=475 of 792; below it 5 block(s) set smaller than the law's 11.0pt, 4 read as body, the first '1 For the words “one thousand” the words “five thousand” subs. by the President’s Pension (Amdt.) Act, 2003 (Act II of 2'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9915-p4.png",
+  "render_sha256": "5d4541d60ae8d2cace8d0f95ca1ea8a8e5e1533a9fed421e333794bc74234097",
+  "match_text": "President’s Pension (Amdt.) Act, 2003 (Act II of 2003) dt. 05.03.2003,",
+  "before_text": "President’s Pension (Amdt.) Act, 2003 (Act II of 2003) dt. 05.03.2003,",
+  "after_text": "President’s Pension (Amdt.) Act, 2003 (Act II of 2003) dt. 05.03.2003,"
+ }
+]

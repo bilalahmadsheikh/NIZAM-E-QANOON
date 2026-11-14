@@ -1,0 +1,68 @@
+[
+ {
+  "document_id": 10602,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2788704
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 1 prints a footnote rule at y=565 of 792; below it 1 block(s) set smaller than the law's 9.9pt, 1 read as body, the first '1 This Ordinance was passed by the Legislative Assembly on 2nd September 1974 as an Act and retained its name as an Ordi'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10602-p1.png",
+  "render_sha256": "4e4a55974a53b091357c31cb3badae7bc221ff7edbe308c23a855a1959a7db9e",
+  "match_text": "1 This Ordinance was passed by the Legislative Assembly on 2nd September 1974 as an Act and",
+  "before_text": "1 This Ordinance was passed by the Legislative Assembly on 2nd September 1974 as an Act and",
+  "after_text": "1 This Ordinance was passed by the Legislative Assembly on 2nd September 1974 as an Act and"
+ },
+ {
+  "document_id": 10602,
+  "page_no": 17,
+  "source_apparatus_blocks": [
+   2788880
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 17 prints a footnote rule at y=572 of 792; below it 1 block(s) set smaller than the law's 9.9pt, 1 read as body, the first '1 word substituted vide Section 8, Act VIII of 1987 orgiginal was \"five\"'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10602-p17.png",
+  "render_sha256": "10bdebe051db5edee4ffc5410cf0a27ce3fd454b26fff9024e241209894d2628",
+  "match_text": "1  word substituted vide Section 8, Act VIII of 1987 orgiginal was \"five\"",
+  "before_text": "1  word substituted vide Section 8, Act VIII of 1987 orgiginal was \"five\"",
+  "after_text": "1  word substituted vide Section 8, Act VIII of 1987 orgiginal was \"five\""
+ },
+ {
+  "document_id": 10602,
+  "page_no": 24,
+  "source_apparatus_blocks": [
+   2788939,
+   2788940,
+   2788941,
+   2788942,
+   2788943,
+   2788944,
+   2788945
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 24 prints a footnote rule at y=288 of 792; below it 7 block(s) set smaller than the law's 9.9pt, 7 read as body, the first 'to as the said Act, and rules and orders made thereunder by the Government, are hereby repealed'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10602-p24.png",
+  "render_sha256": "fc330a089e2de6c5a48a9a4d107b1eda4d6613292391ff400cb860621bf8cc65",
+  "match_text": "to as the said Act, and rules and orders made thereunder by the Government, are hereby",
+  "before_text": "to as the said Act, and rules and orders made thereunder by the Government, are hereby",
+  "after_text": "to as the said Act, and rules and orders made thereunder by the Government, are hereby"
+ },
+ {
+  "document_id": 10602,
+  "page_no": 27,
+  "source_apparatus_blocks": [
+   2788968
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 27 prints a footnote rule at y=516 of 792; below it 1 block(s) set smaller than the law's 9.9pt, 1 read as body, the first '1 Savings sec was added vide Sec 13 of Act VIII of 1987. \"13. Savings.- Notwithstanding any judgment, decree or Order of'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10602-p27.png",
+  "render_sha256": "e741879e8e6bd103eb0e414072ed7cf74df16422a5967ca42b0de30f0c7ded02",
+  "match_text": "proceedings initiated, jurisdiction or powers exercised under the provisions of the Mirpur",
+  "before_text": "proceedings initiated, jurisdiction or powers exercised under the provisions of the Mirpur",
+  "after_text": "proceedings initiated, jurisdiction or powers exercised under the provisions of the Mirpur"
+ }
+]

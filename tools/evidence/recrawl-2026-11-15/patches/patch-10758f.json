@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 10758,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2799315
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 1 prints a footnote rule at y=588 of 792; below it 1 block(s) set smaller than the law's 12.0pt, 1 read as body, the first '1 In Sec. 2, existing cl. (a) and (b) are re-numbered as cl. (b) and (c) respectively and before those renumbered cl. a '",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10758-p1.png",
+  "render_sha256": "30d221daef725eee744599fc6fddddd549871e454e4f77b79eb31ba4f5dde840",
+  "match_text": "In Sec. 2, existing cl. (a) and (b) are re-numbered as cl. (b) and (c)",
+  "before_text": "In Sec. 2, existing cl. (a) and (b) are re-numbered as cl. (b) and (c)",
+  "after_text": "In Sec. 2, existing cl. (a) and (b) are re-numbered as cl. (b) and (c)"
+ },
+ {
+  "document_id": 10758,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2799325
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 2 prints a footnote rule at y=473 of 792; below it 3 block(s) set smaller than the law's 12.0pt, 1 read as body, the first 'added by the AJ&K Prohibition of Wall Chalking and Affixing Hoarding (Amdt.) Act, 2016 (Act VII of 2016) dt. 09.02.2016.'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10758-p2.png",
+  "render_sha256": "23905202d13752f942701ba1eef59d167e9f97825f74950c795184ab01f4e53a",
+  "match_text": "added by the AJ&K Prohibition of Wall Chalking and Affixing Hoarding",
+  "before_text": "added by the AJ&K Prohibition of Wall Chalking and Affixing Hoarding",
+  "after_text": "added by the AJ&K Prohibition of Wall Chalking and Affixing Hoarding"
+ },
+ {
+  "document_id": 10758,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2799340
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 3 prints a footnote rule at y=453 of 792; below it 5 block(s) set smaller than the law's 12.0pt, 1 read as body, the first '“5.Cognizance of Offences.-Offences under Section 3 and 4 shall be cognizable and the relevant provisions of the Cr. P.C'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10758-p3.png",
+  "render_sha256": "f7dcf37474d0696178878c1758bdaed828ca5393498d1f572dcbb2f7f9e3abce",
+  "match_text": "cognizable and the relevant provisions of the Cr. P.C shall apply mutatis",
+  "before_text": "cognizable and the relevant provisions of the Cr. P.C shall apply mutatis",
+  "after_text": "cognizable and the relevant provisions of the Cr. P.C shall apply mutatis"
+ }
+]

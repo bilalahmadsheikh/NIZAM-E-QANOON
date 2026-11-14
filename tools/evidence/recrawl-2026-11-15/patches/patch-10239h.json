@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 10239,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2759789
+  ],
+  "defect": "the AJK code volume's running head, printed at the top of the page, was read into a provision's text (released 14 Nov 2026; found by the volume-head census)",
+  "fixes": "rule reviewed_apparatus_block: the running-head block is set aside; no law text changes",
+  "observed": "Page 2 prints the running head 'Volume IX: 1989-1993' at its head (block 2759789, the block's whole text; top 0.09 of the page)",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10239-p2.png",
+  "render_sha256": "1c7bd9cfd4bef1a3e4da8d44ba2bce85a730f48c0122f6fa640919031f3ecc7e",
+  "match_text": "Volume IX: 1989-1993",
+  "before_text": "Volume IX: 1989-1993",
+  "after_text": "Volume IX: 1989-1993"
+ }
+]

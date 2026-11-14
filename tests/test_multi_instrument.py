@@ -97,6 +97,29 @@ def test_instrument_kind_uses_terminal_legal_form():
     assert infer_kind("CONSTITUTION OF PAKISTAN") == "constitution"
 
 
+def test_infer_kind_reads_past_a_printed_citation():
+    """AJK listing titles (law.gok.pk, 14 Nov 2026) end with the law's own citation; the kind is the title's."""
+    cases = {
+        "The Azad Jammu and Kashmir Interim Constitution (Fifteenth Amendment) Act, 2023 (ACT IV of 2023)": "act",
+        "The Council of Islamic Ideology (Constitution) Ordinance, 1978 (Ordinance LXXV Of 1978)": "ordinance",
+        "The Constitution of Review Boards Ordinance, 1979(Ordinance XLIX of 1979)": "ordinance",
+        "The Azad Jammu and Kashmir Constitution of Shariat Appellate Bench of the High Court Act, 2017 (Act XL Of 2017":
+            "act",
+        "The Azad Jammu and Kashmir Maintenance of Public Order Act, 1985 (ACT XXIV OF 1985)": "act",
+        "The Azad Kashmir Old Liabilities Abeyance Act Of 1950 (Cabinet Order No 249)": "act",
+        "The Azad Kashmir Stamp (Amendment) Act, 1952 (Passed under Council Order No 483 dated 25-10-1952)": "act",
+        "The Azad Kashmir Courts And Laws Code (Amendment) Act, 1952 Government Order No 185": "act",
+        # orders and notifications that ARE orders and notifications stay so
+        "Azad Jammu and Kashmir Government Government Order No. 199 62 Dated 23-4-1962": "order",
+        "The Azad Kashmir Foreigners Order Of 1952": "order",
+        "The Azad Jammu & Kashmir Imported Goods Control Order, 1962": "order",
+        "The Emergency Administration Order, 1948 Notification": "notification",
+        "Azad Jammu and Kashmir Interim Constitution": "constitution",
+    }
+    for title, kind in cases.items():
+        assert infer_kind(title) == kind, title
+
+
 def test_instrument_year_uses_terminal_legal_form_year():
     from nizam.workers.segment import infer_year
     assert infer_year("Revival of the Constitution of 1973 Order, 1985",None,"") == 1985
@@ -545,7 +568,7 @@ def test_a_listed_document_never_fills_a_missing_year_from_the_catalogue(monkeyp
     blocks = [_laid(201 + i, 1, f"{i + 1}. Section {i + 1} of this Act applies.") for i in range(6)]
     outer = {"instrument_id": "x", "source_observation_id": 77, "document_id": 977, "sha256": "a" * 64,
              "jurisdiction": "fed", "kind": "act", "number": None, "year": 1990,
-             "short_title": "The Example Act, 1990", "source_url": None, "source_id": "pk-fed",
+             "short_title": "The Example Act, 1990", "source_url": None, "source_id": "pk-federal",
              "meta_year": "1990"}
     boundary = {"candidate_id": "c", "start_block_id": 204, "source_page": 1, "title": "The Schedule Rules",
                 "kind": "rules", "year": None, "number": None, "confidence": 1.0, "detector": "plan",

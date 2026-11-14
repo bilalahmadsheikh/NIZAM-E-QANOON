@@ -1,0 +1,63 @@
+[
+ {
+  "document_id": 10164,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2755842
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 1 prints a footnote rule at y=588 of 792; below it 1 block(s) set smaller than the law's 12.0pt, 1 read as body, the first '1 Act XXV of 2001dt. 28-12-2001 (with all amendments) repealed through Act III of 2020 dt. 8-1-2020.'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10164-p1.png",
+  "render_sha256": "5b4d30100e83e7af6e7f141e938b2d91d9b424b0d34913eba7618460c48c66b6",
+  "match_text": "Act XXV of 2001dt. 28-12-2001 (with all amendments) repealed through",
+  "before_text": "Act XXV of 2001dt. 28-12-2001 (with all amendments) repealed through",
+  "after_text": "Act XXV of 2001dt. 28-12-2001 (with all amendments) repealed through"
+ },
+ {
+  "document_id": 10164,
+  "page_no": 7,
+  "source_apparatus_blocks": [
+   2755889,
+   2755890
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 7 prints a footnote rule at y=495 of 792; below it 2 block(s) set smaller than the law's 12.0pt, 2 read as body, the first '1 In subsection (3) of Sec.5 for the words “twenty five” the word “sixty” has been subs. by the AJ&K Removal from Servic'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10164-p7.png",
+  "render_sha256": "be9d15a53e9e8d58a9fe4852d4db5658c05af7feac466ecf1d87a97f41b162a5",
+  "match_text": "In subsection (3) of Sec.5 for the words “twenty five” the word “sixty” has",
+  "before_text": "In subsection (3) of Sec.5 for the words “twenty five” the word “sixty” has",
+  "after_text": "In subsection (3) of Sec.5 for the words “twenty five” the word “sixty” has"
+ },
+ {
+  "document_id": 10164,
+  "page_no": 9,
+  "source_apparatus_blocks": [
+   2755906
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 9 prints a footnote rule at y=509 of 792; below it 1 block(s) set smaller than the law's 12.0pt, 1 read as body, the first '1 In subsection (2) of Sec.9 the full stop at the end shall be subs. by a colon and thereafter proviso added by the AJ&K'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10164-p9.png",
+  "render_sha256": "abb4ca589462b24b6234a34e27f342698aa48a5556a40d5c53d68d4c6e02b9a4",
+  "match_text": "In subsection (2) of Sec.9 the full stop at the end shall be subs. by a",
+  "before_text": "In subsection (2) of Sec.9 the full stop at the end shall be subs. by a",
+  "after_text": "In subsection (2) of Sec.9 the full stop at the end shall be subs. by a"
+ },
+ {
+  "document_id": 10164,
+  "page_no": 10,
+  "source_apparatus_blocks": [
+   2755912
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 10 prints a footnote rule at y=483 of 792; below it 1 block(s) set smaller than the law's 12.0pt, 1 read as body, the first '1 In Sec. 12 full stop at the end shall be subs. by a colon and thereafter proviso added by the AJ&K Removal from Servic'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10164-p10.png",
+  "render_sha256": "addf420e69202f939c00781e35ffbf13e73f39e99342d3a870e761e25531c5ea",
+  "match_text": "In Sec. 12 full stop at the end shall be subs. by a colon and thereafter",
+  "before_text": "In Sec. 12 full stop at the end shall be subs. by a colon and thereafter",
+  "after_text": "In Sec. 12 full stop at the end shall be subs. by a colon and thereafter"
+ }
+]

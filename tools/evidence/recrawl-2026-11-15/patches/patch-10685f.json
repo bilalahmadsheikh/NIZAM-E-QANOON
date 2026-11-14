@@ -1,0 +1,65 @@
+[
+ {
+  "document_id": 10685,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2795008,
+   2795009,
+   2795010,
+   2795011
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 2 prints a footnote rule at y=414 of 792; below it 4 block(s) set smaller than the law's 11.0pt, 4 read as body, the first '1 Section 3 has been amended/substituted four times. A: (i) Sub-sections (8) and (9) is subs. by the AJ&K Shariat Court '",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10685-p2.png",
+  "render_sha256": "ff63250dda812de26ee41fafd1c9ec05bd02fb85702f70bfdf8693408bbafdc6",
+  "match_text": "Act, 1994 (XXX of 1994) dt. 31.10.1994. The extract of sub-section (8)",
+  "before_text": "Act, 1994 (XXX of 1994) dt. 31.10.1994. The extract of sub-section (8)",
+  "after_text": "Act, 1994 (XXX of 1994) dt. 31.10.1994. The extract of sub-section (8)"
+ },
+ {
+  "document_id": 10685,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   2795064
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 6 prints a footnote rule at y=482 of 792; below it 1 block(s) set smaller than the law's 11.0pt, 1 read as body, the first '1 Sub-section (4) substituted by the AJ&K Shariat Court (Amendment) Act, 2016 (Act XXIII of 2016) dt. 09.02.2016. The ex'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10685-p6.png",
+  "render_sha256": "127af066037b3e4d497217372f1e8facfd8280994c6069486257ae3bafc81d08",
+  "match_text": "2016 (Act XXIII of 2016) dt. 09.02.2016. The extract of sub-section (4) of",
+  "before_text": "2016 (Act XXIII of 2016) dt. 09.02.2016. The extract of sub-section (4) of",
+  "after_text": "2016 (Act XXIII of 2016) dt. 09.02.2016. The extract of sub-section (4) of"
+ },
+ {
+  "document_id": 10685,
+  "page_no": 7,
+  "source_apparatus_blocks": [
+   2795070
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 7 prints a footnote rule at y=637 of 792; below it 1 block(s) set smaller than the law's 11.0pt, 1 read as body, the first '1 After sub-section (5), a new sub-section (5-A) is added by the AJ&K Shariat Court (Amdt) Act, 2016 (Act XXIII of 2016)'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10685-p7.png",
+  "render_sha256": "48ee48926ebbe848a269093759ffc4c93cc0eda7d02322c5bea7f07d66e1c431",
+  "match_text": "After sub-section (5), a new sub-section (5-A) is added by the AJ&K",
+  "before_text": "After sub-section (5), a new sub-section (5-A) is added by the AJ&K",
+  "after_text": "After sub-section (5), a new sub-section (5-A) is added by the AJ&K"
+ },
+ {
+  "document_id": 10685,
+  "page_no": 9,
+  "source_apparatus_blocks": [
+   2795096
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 9 prints a footnote rule at y=626 of 792; below it 1 block(s) set smaller than the law's 11.0pt, 1 read as body, the first '1 In sub-section (5) of Section 7, the words “for a period of not less than five years” omitted by the AJ&K Shariat Cour'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10685-p9.png",
+  "render_sha256": "b24515bee118b87ceb6a6cc5f1530439dbe5a845a8d3ba28841bd47f0d5b39ab",
+  "match_text": "In sub-section (5) of Section 7, the words “for a period of not less than five",
+  "before_text": "In sub-section (5) of Section 7, the words “for a period of not less than five",
+  "after_text": "In sub-section (5) of Section 7, the words “for a period of not less than five"
+ }
+]

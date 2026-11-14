@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 11248,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2842147
+  ],
+  "defect": "the AJK code volume's running head, printed at the top of the page, was read into a provision's text (released 14 Nov 2026; found by the volume-head census)",
+  "fixes": "rule reviewed_apparatus_block: the running-head block is set aside; no law text changes",
+  "observed": "Page 2 prints the running head 'Volume XI (2001-2010)' at its head (block 2842147, the block's whole text; top 0.08 of the page)",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc11248-p2.png",
+  "render_sha256": "25c6ff295f99ef03a87afc38baf8932f39d1a2bbebf055772afa3fb16e93054d",
+  "match_text": "Volume XI (2001-2010)",
+  "before_text": "Volume XI (2001-2010)",
+  "after_text": "Volume XI (2001-2010)"
+ }
+]

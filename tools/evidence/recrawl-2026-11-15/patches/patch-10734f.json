@@ -1,0 +1,65 @@
+[
+ {
+  "document_id": 10734,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2797764,
+   2797765,
+   2797766,
+   2797768,
+   2797769,
+   2797770,
+   2797771
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 1 prints a footnote rule at y=565 of 792; below it 9 block(s) set smaller than the law's 9.3pt, 7 read as body, the first 'of subsec. (b) of sec. 2 of The Azad Jammu and Kashmir Government Act, 1964 is reproduced as under:'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10734-p1.png",
+  "render_sha256": "a65e4201c7b2e3e62c76a961ac0c927136df64c2fc5d0ef6fc23781660afe17e",
+  "match_text": "of subsec. (b) of sec. 2  of The Azad Jammu and Kashmir Government Act, 1964 is reproduced as under:",
+  "before_text": "of subsec. (b) of sec. 2  of The Azad Jammu and Kashmir Government Act, 1964 is reproduced as under:",
+  "after_text": "of subsec. (b) of sec. 2  of The Azad Jammu and Kashmir Government Act, 1964 is reproduced as under:"
+ },
+ {
+  "document_id": 10734,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2797783,
+   2797784,
+   2797785,
+   2797786,
+   2797787,
+   2797789,
+   2797790,
+   2797791
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 2 prints a footnote rule at y=556 of 792; below it 10 block(s) set smaller than the law's 9.3pt, 8 read as body, the first 'subsec. (1) of sec. 4 of The Azad Jammu and Kashmir Government Act, 1964 is reproduced as under:'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10734-p2.png",
+  "render_sha256": "a6a021a181265dbaa5014191c4f9c98bc186282ec538e8ad069853632e58b6d8",
+  "match_text": "subsec. (1) of sec. 4 of The Azad Jammu and Kashmir Government Act, 1964 is reproduced as under:",
+  "before_text": "subsec. (1) of sec. 4 of The Azad Jammu and Kashmir Government Act, 1964 is reproduced as under:",
+  "after_text": "subsec. (1) of sec. 4 of The Azad Jammu and Kashmir Government Act, 1964 is reproduced as under:"
+ },
+ {
+  "document_id": 10734,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2797806,
+   2797807,
+   2797809,
+   2797810,
+   2797811,
+   2797812
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 3 prints a footnote rule at y=573 of 792; below it 8 block(s) set smaller than the law's 9.3pt, 6 read as body, the first 'original extract of sec.8 of the Azad Jammu and Kashmir Government Act, 1964 is reproduced as under:'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10734-p3.png",
+  "render_sha256": "2c9ab1831d17af6c9097e23b61607e41bb1917c9c69dd372c22c8df66832923b",
+  "match_text": "original extract of sec.8 of the Azad Jammu and Kashmir Government Act, 1964 is reproduced as under:",
+  "before_text": "original extract of sec.8 of the Azad Jammu and Kashmir Government Act, 1964 is reproduced as under:",
+  "after_text": "original extract of sec.8 of the Azad Jammu and Kashmir Government Act, 1964 is reproduced as under:"
+ }
+]

@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 10701,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2796559
+  ],
+  "defect": "the AJK code volume's running head, printed at the top of the page, was read into a provision's text (released 14 Nov 2026; found by the volume-head census)",
+  "fixes": "rule reviewed_apparatus_block: the running-head block is set aside; no law text changes",
+  "observed": "Page 2 prints the running head 'VOLUME V (1978-1979)' at its head (block 2796559, the block's whole text; top 0.05 of the page)",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10701-p2.png",
+  "render_sha256": "da2eff7011966419122a28ac6fe0ffc6efd7083d16cb75f85b031398203a30e9",
+  "match_text": "VOLUME V (1978-1979)",
+  "before_text": "VOLUME V (1978-1979)",
+  "after_text": "VOLUME V (1978-1979)"
+ }
+]

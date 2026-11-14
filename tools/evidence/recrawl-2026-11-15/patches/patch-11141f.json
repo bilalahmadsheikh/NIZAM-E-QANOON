@@ -1,0 +1,22 @@
+[
+ {
+  "document_id": 11141,
+  "page_no": 11,
+  "source_apparatus_blocks": [
+   2834432,
+   2834433,
+   2834434,
+   2834435,
+   2834436,
+   2834437
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 11 prints a footnote rule at y=578 of 792; below it 6 block(s) set smaller than the law's 9.3pt, 6 read as body, the first '1 Sub. By the Azad Kashmir Civil Defence (Amdt.) Act, 1958 dt. 3-1-1958 .The original extract of subsec. (2) of sec.'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc11141-p11.png",
+  "render_sha256": "93cb59321e2c5340eaedbce81065b3fc89b32c09065f2544de324c65861c2bc1",
+  "match_text": "1 Sub. By the Azad Kashmir Civil Defence (Amdt.) Act, 1958 dt. 3-1-1958 .The original extract of subsec. (2) of sec.",
+  "before_text": "1 Sub. By the Azad Kashmir Civil Defence (Amdt.) Act, 1958 dt. 3-1-1958 .The original extract of subsec. (2) of sec.",
+  "after_text": "1 Sub. By the Azad Kashmir Civil Defence (Amdt.) Act, 1958 dt. 3-1-1958 .The original extract of subsec. (2) of sec."
+ }
+]

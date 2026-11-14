@@ -1,0 +1,58 @@
+[
+ {
+  "document_id": 10554,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2784564,
+   2784565,
+   2784566,
+   2784567
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 2 prints a footnote rule at y=517 of 792; below it 4 block(s) set smaller than the law's 11.0pt, 4 read as body, the first '1 Sections 5, 6 and 7 deleted by the Azad Jammu and Kashmir Political Parties (Amendment) Act, 1991 (II of 1991) 19-01-1'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10554-p2.png",
+  "render_sha256": "65dcdb3258bb55f02f514014e3678f0271cbf81262b88ad81fe8cb3043ecc2a9",
+  "match_text": "Sections 5, 6 and 7 deleted by the Azad Jammu and Kashmir Political Parties (Amendment)",
+  "before_text": "Sections 5, 6 and 7 deleted by the Azad Jammu and Kashmir Political Parties (Amendment)",
+  "after_text": "Sections 5, 6 and 7 deleted by the Azad Jammu and Kashmir Political Parties (Amendment)"
+ },
+ {
+  "document_id": 10554,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2784581,
+   2784582,
+   2784583,
+   2784584
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 3 prints a footnote rule at y=528 of 792; below it 4 block(s) set smaller than the law's 11.0pt, 4 read as body, the first '6. Criteria political parties to be eligible to participate in forthcoming elections- (1) Save as expressly provided her'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10554-p3.png",
+  "render_sha256": "490fa65f65c477c3905e4faab73b05a653f88b77026e0967523eaeff384d46b4",
+  "match_text": "mutandis where a political party seeks or has obtained declaration under sub-section (4).",
+  "before_text": "mutandis where a political party seeks or has obtained declaration under sub-section (4).",
+  "after_text": "mutandis where a political party seeks or has obtained declaration under sub-section (4)."
+ },
+ {
+  "document_id": 10554,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2784592,
+   2784593,
+   2784594,
+   2784595,
+   2784596,
+   2784597
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 4 prints a footnote rule at y=446 of 792; below it 6 block(s) set smaller than the law's 11.0pt, 6 read as body, the first 'Commissioner is satisfied that the party, has fulfilled the requirements of sub-section (3) of Section 5, the Commission'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10554-p4.png",
+  "render_sha256": "79aecd5c294f8fd5fc240fe7e23597974a8f6f34fc9cdebee6663b8d352de828",
+  "match_text": "Commissioner is satisfied that the party, has fulfilled the requirements of sub-section (3)",
+  "before_text": "Commissioner is satisfied that the party, has fulfilled the requirements of sub-section (3)",
+  "after_text": "Commissioner is satisfied that the party, has fulfilled the requirements of sub-section (3)"
+ }
+]

@@ -1,0 +1,89 @@
+[
+ {
+  "document_id": 11167,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2836388,
+   2836389,
+   2836390,
+   2836391,
+   2836392,
+   2836393,
+   2836394,
+   2836395,
+   2836396,
+   2836397,
+   2836398
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 4 prints a footnote rule at y=434 of 792; below it 11 block(s) set smaller than the law's 11.0pt, 11 read as body, the first '1 Sec. 4 subsection (2) amended/Subs. three times. The original extract of sub-section (2) is reproduces as under:-'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc11167-p4.png",
+  "render_sha256": "bc47020cf8459501806950d6b3d465608031bcb0e2cbb306e979b1e935b7dce6",
+  "match_text": "Sec. 4 subsection (2) amended/Subs. three times. The original",
+  "before_text": "Sec. 4 subsection (2) amended/Subs. three times. The original",
+  "after_text": "Sec. 4 subsection (2) amended/Subs. three times. The original"
+ },
+ {
+  "document_id": 11167,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   2836441,
+   2836442,
+   2836443,
+   2836444,
+   2836445,
+   2836446,
+   2836447,
+   2836448,
+   2836449,
+   2836450,
+   2836451,
+   2836452
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 6 prints a footnote rule at y=406 of 792; below it 12 block(s) set smaller than the law's 11.0pt, 12 read as body, the first '(v) Secretary ED/PDO Member'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc11167-p6.png",
+  "render_sha256": "7ab4dd67550c3fb6df8ec33f0a54563e26c96c7c8b9c429aecbfaac52d8113dc",
+  "match_text": "Secretary ED/PDO",
+  "before_text": "Secretary ED/PDO",
+  "after_text": "Secretary ED/PDO"
+ },
+ {
+  "document_id": 11167,
+  "page_no": 9,
+  "source_apparatus_blocks": [
+   2836486,
+   2836487,
+   2836488,
+   2836489,
+   2836490,
+   2836491,
+   2836492
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 9 prints a footnote rule at y=306 of 792; below it 7 block(s) set smaller than the law's 11.0pt, 7 read as body, the first '1 Sub-Sec (2) of Sec. 9 was amended/subs. two times. The original extract of subsection (2) of Sec. 9 is reproduced as u'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc11167-p9.png",
+  "render_sha256": "dd5a863adad6cfcad4f6fc8c9672ed784afb57fa6cdf049c82fbf4337bbc0631",
+  "match_text": "Sub-Sec (2) of Sec. 9 was amended/subs. two times. The original",
+  "before_text": "Sub-Sec (2) of Sec. 9 was amended/subs. two times. The original",
+  "after_text": "Sub-Sec (2) of Sec. 9 was amended/subs. two times. The original"
+ },
+ {
+  "document_id": 11167,
+  "page_no": 12,
+  "source_apparatus_blocks": [
+   2836521
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 12 prints a footnote rule at y=577 of 792; below it 1 block(s) set smaller than the law's 11.0pt, 1 read as body, the first '1 In Sec.15, in sub-sec. (1), for the word “Ordinance”, the word “Act” subs. by the Power Development Organization (Amdt'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc11167-p12.png",
+  "render_sha256": "3695785e29b26f48650077aeba50ceac032f6b3e6c6523d2045022e16ad8854a",
+  "match_text": "1 In Sec.15, in sub-sec. (1), for the word “Ordinance”, the word “Act” subs.",
+  "before_text": "1 In Sec.15, in sub-sec. (1), for the word “Ordinance”, the word “Act” subs.",
+  "after_text": "1 In Sec.15, in sub-sec. (1), for the word “Ordinance”, the word “Act” subs."
+ }
+]

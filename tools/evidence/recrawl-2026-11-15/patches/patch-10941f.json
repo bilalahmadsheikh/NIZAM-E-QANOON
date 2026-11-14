@@ -1,0 +1,34 @@
+[
+ {
+  "document_id": 10941,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2815376
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 1 prints a footnote rule at y=636 of 792; below it 2 block(s) set smaller than the law's 9.3pt, 1 read as body, the first 'subsec.(3) of sec.2 of the Pallandri Disturbances Special Tribunal Act, 1955 is reproduced as under:-'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10941-p1.png",
+  "render_sha256": "e117132b1461fe3b4765a669974dae59ffc180c0326327af1bec9fdf1801e095",
+  "match_text": "subsec.(3) of sec.2 of the Pallandri Disturbances Special Tribunal Act, 1955 is reproduced as under:-",
+  "before_text": "subsec.(3) of sec.2 of the Pallandri Disturbances Special Tribunal Act, 1955 is reproduced as under:-",
+  "after_text": "subsec.(3) of sec.2 of the Pallandri Disturbances Special Tribunal Act, 1955 is reproduced as under:-"
+ },
+ {
+  "document_id": 10941,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2815386,
+   2815387,
+   2815388
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 2 prints a footnote rule at y=626 of 792; below it 3 block(s) set smaller than the law's 9.3pt, 3 read as body, the first '“(b) Where the members are so divided that the order or judgment cannot be expressed in terms of the view'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10941-p2.png",
+  "render_sha256": "b5465f25be239da15aa601ba92bf3b921e51132150b44fffe76fb0a9160b5110",
+  "match_text": "Where the members are so divided that the order or judgment cannot be expressed in terms of the view",
+  "before_text": "Where the members are so divided that the order or judgment cannot be expressed in terms of the view",
+  "after_text": "Where the members are so divided that the order or judgment cannot be expressed in terms of the view"
+ }
+]

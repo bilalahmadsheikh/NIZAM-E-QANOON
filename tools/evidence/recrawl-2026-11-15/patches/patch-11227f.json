@@ -1,0 +1,48 @@
+[
+ {
+  "document_id": 11227,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2840216
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 2 prints a footnote rule at y=566 of 792; below it 1 block(s) set smaller than the law's 11.0pt, 1 read as body, the first '1 Section 3 has been amended/substituted four times.'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc11227-p2.png",
+  "render_sha256": "104860e8e9556dd1b7eee3748618fca3c631454323a2cd2b4ac78be722125df4",
+  "match_text": "Section 3 has been amended/substituted four times.",
+  "before_text": "Section 3 has been amended/substituted four times.",
+  "after_text": "Section 3 has been amended/substituted four times."
+ },
+ {
+  "document_id": 11227,
+  "page_no": 8,
+  "source_apparatus_blocks": [
+   2840284,
+   2840285
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 8 prints a footnote rule at y=550 of 792; below it 2 block(s) set smaller than the law's 11.0pt, 2 read as body, the first '1 After sub-section (4), a new sub-section (4-A) is added by the Azad Jammu and Kashmir Shariat Court (Amendment) Act, 2'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc11227-p8.png",
+  "render_sha256": "81fdaea3ab7dc574187185b3717646950d9f723b5848d80b016e70a6a2db0786",
+  "match_text": "After sub-section (4), a new sub-section (4-A) is added by the Azad",
+  "before_text": "After sub-section (4), a new sub-section (4-A) is added by the Azad",
+  "after_text": "After sub-section (4), a new sub-section (4-A) is added by the Azad"
+ },
+ {
+  "document_id": 11227,
+  "page_no": 11,
+  "source_apparatus_blocks": [
+   2840313
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 11 prints a footnote rule at y=577 of 792; below it 1 block(s) set smaller than the law's 11.0pt, 1 read as body, the first '1 In sub-section (5) of Section 7, the words “for a period of not less than five years”omitted by the AJ&K Shariat Court'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc11227-p11.png",
+  "render_sha256": "680ea585b2006ac992f6e8c5451aecdd6d3f7af221cb64caeac449bc181129f5",
+  "match_text": "In sub-section (5) of Section 7, the words “for a period of not less",
+  "before_text": "In sub-section (5) of Section 7, the words “for a period of not less",
+  "after_text": "In sub-section (5) of Section 7, the words “for a period of not less"
+ }
+]

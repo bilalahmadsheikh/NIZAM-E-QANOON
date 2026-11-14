@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 10705,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2796803
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 1 prints a footnote rule at y=514 of 792; below it 2 block(s) set smaller than the law's 12.0pt, 1 read as body, the first '“2. Extension of Jurisdiction, Scope and Functions of the Pakistan Red Crescent Society.- The Jurisdiction, Scope and Fu'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10705-p1.png",
+  "render_sha256": "c03632c80d9130faf2146dc6742eb7c0f039a7afa3cdbcaa86c0932d07ce400c",
+  "match_text": "“2. Extension of Jurisdiction, Scope and Functions of the Pakistan Red",
+  "before_text": "“2. Extension of Jurisdiction, Scope and Functions of the Pakistan Red",
+  "after_text": "“2. Extension of Jurisdiction, Scope and Functions of the Pakistan Red"
+ },
+ {
+  "document_id": 10705,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2796810
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 2 prints a footnote rule at y=509 of 792; below it 1 block(s) set smaller than the law's 12.0pt, 1 read as body, the first 'Pakistan Red Crescent Society, hereinafter referred to as the said Society, established under the Pakistan Red Crescent '",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10705-p2.png",
+  "render_sha256": "559b560e27e6e8a014433a91e377ee9982eda8774112971f72d5bba215234538",
+  "match_text": "wherever occurring, shall be construed to refer to “territory of the Azad",
+  "before_text": "wherever occurring, shall be construed to refer to “territory of the Azad",
+  "after_text": "wherever occurring, shall be construed to refer to “territory of the Azad"
+ },
+ {
+  "document_id": 10705,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2796819
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 3 prints a footnote rule at y=451 of 792; below it 1 block(s) set smaller than the law's 12.0pt, 1 read as body, the first 'the President is satisfied, upon an information or otherwise, that the Branch Committee is being mismanaged by the Chair'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10705-p3.png",
+  "render_sha256": "f2d0845c96d37657a52b164db676b46e668b378d479ee1e5fab02fe8b735f14c",
+  "match_text": "an administrator to regulate the affairs of",
+  "before_text": "an administrator to regulate the affairs of",
+  "after_text": "an administrator to regulate the affairs of"
+ }
+]

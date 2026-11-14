@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 10455,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2775073
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 2 prints a footnote rule at y=499 of 792; below it 1 block(s) set smaller than the law's 11.0pt, 1 read as body, the first '1 After the word “property”, the new words “or sabotage activities” inserted by the Azad Jammu and Kashmir Cease Fire Li'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10455-p2.png",
+  "render_sha256": "ba1d885167870fd3dded068531658842a0c3260d4d5a783c3b8970a98db8cb24",
+  "match_text": "extract of sub-cl.(ii) of Cl. (g) of Section 2 Act XXIV of 1992 dt. 20-8-",
+  "before_text": "extract of sub-cl.(ii) of Cl. (g) of Section 2 Act XXIV of 1992 dt. 20-8-",
+  "after_text": "extract of sub-cl.(ii) of Cl. (g) of Section 2 Act XXIV of 1992 dt. 20-8-"
+ }
+]

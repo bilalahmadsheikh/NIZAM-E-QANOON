@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 10875,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2809439
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 1 prints a footnote rule at y=620 of 792; below it 1 block(s) set smaller than the law's 11.0pt, 1 read as body, the first '1 Act XXII of 1992 repealed by the Azad Jammu and Kashmir Civil Servants (Regularization of Ad-hoc appointments) Repeal '",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10875-p1.png",
+  "render_sha256": "eec163b4b50c4083a4af7013310ec9fa89da5f40d13984c55e82acee37830acf",
+  "match_text": "(Regularization of Ad-hoc appointments) Repeal Act, 1994 (XIII of 1994)",
+  "before_text": "(Regularization of Ad-hoc appointments) Repeal Act, 1994 (XIII of 1994)",
+  "after_text": "(Regularization of Ad-hoc appointments) Repeal Act, 1994 (XIII of 1994)"
+ }
+]

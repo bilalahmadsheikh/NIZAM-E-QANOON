@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 10230,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2759442
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 2 prints a footnote rule at y=636 of 792; below it 1 block(s) set smaller than the law's 11.0pt, 1 read as body, the first '1 For original and up to date provision please see Section 3 of the Azad Jammu and Kashmir Finance Act,1986 (XLof 1986) '",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10230-p2.png",
+  "render_sha256": "24d2a681b0e50e8d74c4c117744d8fe6cb0cbe359357124f4e701d4747aa8eb3",
+  "match_text": "For original and up to date provision please see Section 3 of the Azad Jammu and Kashmir",
+  "before_text": "For original and up to date provision please see Section 3 of the Azad Jammu and Kashmir",
+  "after_text": "For original and up to date provision please see Section 3 of the Azad Jammu and Kashmir"
+ }
+]

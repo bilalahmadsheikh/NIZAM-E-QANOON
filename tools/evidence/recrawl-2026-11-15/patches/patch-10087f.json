@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 10087,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2750117
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 3 prints a footnote rule at y=627 of 792; below it 1 block(s) set smaller than the law's 11.0pt, 1 read as body, the first '1 For the words “stand forfeited to Government” the words “be refunded to the depositor” Substituted by the Housing Sche'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10087-p3.png",
+  "render_sha256": "4671d8a247887c912441470fd3bce8988b4cd34b5d60a0d2000a43833fdbd21f",
+  "match_text": "For the words “stand forfeited to Government” the words “be refunded to the depositor”",
+  "before_text": "For the words “stand forfeited to Government” the words “be refunded to the depositor”",
+  "after_text": "For the words “stand forfeited to Government” the words “be refunded to the depositor”"
+ }
+]

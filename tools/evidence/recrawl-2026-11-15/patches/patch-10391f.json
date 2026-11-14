@@ -1,0 +1,18 @@
+[
+ {
+  "document_id": 10391,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2770496,
+   2770497
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 1 prints a footnote rule at y=601 of 792; below it 2 block(s) set smaller than the law's 9.3pt, 2 read as body, the first '1 for the words “a Muslim individual or family” the words “any other family or individual”subs. by the'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10391-p1.png",
+  "render_sha256": "a3def0af2b7d48bf27ed2e399474282e2decbf20e9a402683dae621ce5679cfb",
+  "match_text": "1 for the words “a Muslim individual or family” the words “any other family or individual”subs. by the",
+  "before_text": "1 for the words “a Muslim individual or family” the words “any other family or individual”subs. by the",
+  "after_text": "1 for the words “a Muslim individual or family” the words “any other family or individual”subs. by the"
+ }
+]

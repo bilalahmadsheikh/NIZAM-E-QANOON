@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 10186,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2757014
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 1 prints a footnote rule at y=649 of 792; below it 1 block(s) set smaller than the law's 11.0pt, 1 read as body, the first '1 Act III of 2008 repealed and merged in Act Vi of 2014 dt. 24-03-2014.'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10186-p1.png",
+  "render_sha256": "7e0ddc388817c7e8af9685d97dca9acc5c8fb1c8f19328f4545fc9ec1dc05c55",
+  "match_text": "Act III of 2008 repealed and merged in Act Vi of 2014 dt. 24-03-2014.",
+  "before_text": "Act III of 2008 repealed and merged in Act Vi of 2014 dt. 24-03-2014.",
+  "after_text": "Act III of 2008 repealed and merged in Act Vi of 2014 dt. 24-03-2014."
+ }
+]

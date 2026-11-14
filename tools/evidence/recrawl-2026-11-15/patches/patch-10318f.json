@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 10318,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2765457
+  ],
+  "defect": "page footnotes printed below the footnote rule (amendment notes, and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the blocks below the printed footnote rule are set aside as footnotes; no law text changes",
+  "observed": "Page 5 prints a footnote rule at y=577 of 792; below it 1 block(s) set smaller than the law's 11.0pt, 1 read as body, the first '1 In item (c) of schedule for the figures “1947” the figures “1950” subs. by the AJ&K Anti-Corruption (Amdt.) Act, 1998 '",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10318-p5.png",
+  "render_sha256": "dade6e91c563398fc4dcc335b1c1171e93f4562d7fcc01fbdbf953026b940da5",
+  "match_text": "In item (c) of schedule for the figures “1947” the figures “1950” subs. by",
+  "before_text": "In item (c) of schedule for the figures “1947” the figures “1950” subs. by",
+  "after_text": "In item (c) of schedule for the figures “1947” the figures “1950” subs. by"
+ }
+]
