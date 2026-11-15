@@ -31,6 +31,23 @@ def test_titles_fold_case_punctuation_footnotes_and_sind():
     assert title_key("SINDH JUDICIAL ACADEMY ACT, 1993") == "sindh judicial academy act"
 
 
+def test_an_ajk_title_matches_past_its_printed_citation_and_ampersand():
+    assert title_key("The Azad Jammu & Kashmir Land Reforms Act, 1960 (Act No V of 1960)") == \
+        norm("Azad Jammu and Kashmir Land Reforms Act")
+    assert title_key("The Azad Jammu and Kashmir Land Reforms (Amendment) Act, 1972 (Act VI of 1972) "
+                     "(Act No. VI Of 1972)") == "azad jammu and kashmir land reforms amendment act"
+    assert norm("AJ&K Board of Revenue Act") == norm("Azad Jammu and Kashmir Board of Revenue Act")
+    # a bracket that is part of the name stays
+    assert title_key("Civil Courts (Sind Amendment) Ordinance, 1970") == "civil courts sindh amendment ordinance"
+    rows, _ = plan([("A", "ajk", "act", "The Azad Jammu and Kashmir Board of Revenue Act, 1993 (ACT III of 1993)",
+                     1993, 1, 0),
+                    ("B", "ajk", "ordinance", "The Azad Jammu and Kashmir Board of Revenue Ordinance, 1992 "
+                     "(ORDINANCE XCVII of 1992)", 1992, 2, 0)],
+                   [("A", "s_12", 10, "The Azad Jammu & Kashmir Board of Revenue Ordinance, 1992 (Ordinance XCVII "
+                                      "of 1992) is hereby repealed.")], [])
+    assert [(r["repealed_instrument_id"], r["repealing_instrument_id"]) for r in rows] == [("B", "A")]
+
+
 def test_a_whole_repeal_is_found_and_a_partial_one_is_qualified():
     whole = repeal_clauses("18. Repeal.- The Sindh Judicial Academy Ordinance, 1993, is hereby repealed.")
     assert [(c["title"], c["year"], c["qualified"]) for c in whole] == [

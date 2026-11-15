@@ -66,18 +66,27 @@ def printed_commencement(head: str, comes_into_force_at_once: bool):
 
 
 def norm(title: str | None) -> str:
-    """A title folded for matching: case, punctuation, footnote markers, a leading 'the', 'Sind' -> 'Sindh'."""
+    """A title folded for matching: case, punctuation, footnote markers, a leading 'the', 'Sind' -> 'Sindh',
+    'AJ&K' -> 'Azad Jammu and Kashmir', '&' -> 'and' (AJK titles print both forms; 15 Nov 2026)."""
     t = re.sub(r"\d{1,2}\[", "", title or "").replace("’", "'").replace("‘", "'").lower()
     t = re.sub(r"\b\d{1,2}(?=[a-z])", "", t)
     t = re.sub(r"[\[\]]", "", t)
     t = re.sub(r"^the\s+", "", t.strip())
     t = re.sub(r"\bsind\b", "sindh", t)
+    t = re.sub(r"\baj\s*&\s*k\b", "azad jammu and kashmir", t)
+    t = t.replace("&", " and ")
     return re.sub(r"[^a-z0-9]+", " ", t.replace("'", "")).strip()
 
 
+# the law's own citation printed after its title in AJK short titles: '... Act, 1960 (Act No V of 1960)'
+PRINTED_CITATION = re.compile(r"(?:\s*\(\s*(?:act|ordinance|ord|regulation|order|p\.\s*o|president'?s\s+order)\.?\s*"
+                              r"(?:no\.?\s*)?[ivxlc0-9]+\s+of\s+\d{4}\s*\)\s*\.?)+\s*$", re.I)
+
+
 def title_key(short_title: str | None) -> str:
-    """An instrument's stored title without its trailing year."""
-    return norm(re.sub(r",?\s*(1[89]\d\d|20\d\d)\s*\.?\s*$", "", short_title or ""))
+    """An instrument's stored title without its trailing printed citation and year."""
+    t = PRINTED_CITATION.sub("", short_title or "")
+    return norm(re.sub(r",?\s*(1[89]\d\d|20\d\d)\s*\.?\s*$", "", t))
 
 
 def repeal_clauses(text: str) -> list[dict]:
