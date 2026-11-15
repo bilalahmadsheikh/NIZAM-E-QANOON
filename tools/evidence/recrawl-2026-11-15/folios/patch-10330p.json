@@ -1,0 +1,77 @@
+[
+ {
+  "document_id": 10330,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2766016
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '689' alone at its foot (block 2766016, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10330-p1.png",
+  "render_sha256": "f65c817896505cf124f90b534f2eae9995054b764074049f1bf952a005e1a5b2",
+  "match_text": "to provide for law relating to the appointment of Commission of inquiry",
+  "before_text": "to provide for law relating to the appointment of Commission of inquiry",
+  "after_text": "to provide for law relating to the appointment of Commission of inquiry"
+ },
+ {
+  "document_id": 10330,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2766032
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '690' alone at its foot (block 2766032, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10330-p2.png",
+  "render_sha256": "5ca932fb9872d3c991163da0f22c3951f1ddf97f6653e63235c348983c813687",
+  "match_text": "such of the said provisions as may be specified in the order shall",
+  "before_text": "such of the said provisions as may be specified in the order shall",
+  "after_text": "such of the said provisions as may be specified in the order shall"
+ },
+ {
+  "document_id": 10330,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2766041
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '691' alone at its foot (block 2766041, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10330-p3.png",
+  "render_sha256": "0e2ad87b6c0fb71323149c81b1dc162dfada04e5ccc56716e750774c0acbe7bc",
+  "match_text": "below the rank of a Gazetted Officer, specially authorised in this",
+  "before_text": "below the rank of a Gazetted Officer, specially authorised in this",
+  "after_text": "below the rank of a Gazetted Officer, specially authorised in this"
+ },
+ {
+  "document_id": 10330,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2766051
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '692' alone at its foot (block 2766051, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10330-p4.png",
+  "render_sha256": "af8276fbc1d13b057b988f35d43188effd0c117e519a30a18fad8593fe71c723",
+  "match_text": "the fixing of places and times of its sittings and deciding whether",
+  "before_text": "the fixing of places and times of its sittings and deciding whether",
+  "after_text": "the fixing of places and times of its sittings and deciding whether"
+ },
+ {
+  "document_id": 10330,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2766064
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '693' alone at its foot (block 2766064, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10330-p5.png",
+  "render_sha256": "f8943c5b51c661775ccf0252784f7b09980e4125f6868f560e4c09c309157086",
+  "match_text": "initiated, jurisdiction or powers exercised under the provisions of",
+  "before_text": "initiated, jurisdiction or powers exercised under the provisions of",
+  "after_text": "initiated, jurisdiction or powers exercised under the provisions of"
+ }
+]

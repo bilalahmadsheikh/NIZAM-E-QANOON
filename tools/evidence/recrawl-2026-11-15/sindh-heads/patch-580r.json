@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 580,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   23580
+  ],
+  "defect": "the Sindh Code's running head (the law's citation printed at the head of every page) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the running-head block is set aside; no law text changes",
+  "observed": "Page 2 prints the running head 'SIND ORDINANCE NO.VI OF 1981' alone at its head (block 23580, the page's first block); the same line heads the document's other pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc580-p2.png",
+  "render_sha256": "d587d5ea3ab6a1878cd165cd6e9ef0c569cf0ef107904def792d0d1520371628",
+  "match_text": "5. The Sind Courts Act, 1926, as applicable to Karachi and",
+  "before_text": "5. The Sind Courts Act, 1926, as applicable to Karachi and",
+  "after_text": "5. The Sind Courts Act, 1926, as applicable to Karachi and"
+ }
+]

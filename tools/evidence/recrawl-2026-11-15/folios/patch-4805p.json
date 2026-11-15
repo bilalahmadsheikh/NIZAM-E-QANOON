@@ -1,0 +1,92 @@
+[
+ {
+  "document_id": 4805,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   988014
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1' alone at its foot (block 988014, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc4805-p1.png",
+  "render_sha256": "ab4e608148422dcbf0eaf599b8ec63244a24ab71c2acb443a8e46d481979225c",
+  "match_text": "Income (Amendment) Bill, 2024 (Bill No. 08 of 2024), having been passed by the Provincial Assembly",
+  "before_text": "Income (Amendment) Bill, 2024 (Bill No. 08 of 2024), having been passed by the Provincial Assembly",
+  "after_text": "Income (Amendment) Bill, 2024 (Bill No. 08 of 2024), having been passed by the Provincial Assembly"
+ },
+ {
+  "document_id": 4805,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   988035
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 988035, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc4805-p2.png",
+  "render_sha256": "640c05beaa7d5f9f82a8c297cfb37e1c5c9a4c2cf4685d8196eac5dd70d2244d",
+  "match_text": "In the said Ordinance, in section 5-A in clause (f) and clause (g), for the",
+  "before_text": "In the said Ordinance, in section 5-A in clause (f) and clause (g), for the",
+  "after_text": "In the said Ordinance, in section 5-A in clause (f) and clause (g), for the"
+ },
+ {
+  "document_id": 4805,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   988047
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 988047, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc4805-p3.png",
+  "render_sha256": "59274a06874cb8c5f53e5a7ea85c88c97795c9e67d56bb9b88a80fb931b304aa",
+  "match_text": "situated in the Balochistan Province or agricultural income of every person",
+  "before_text": "situated in the Balochistan Province or agricultural income of every person",
+  "after_text": "situated in the Balochistan Province or agricultural income of every person"
+ },
+ {
+  "document_id": 4805,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   988088
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 988088, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc4805-p4.png",
+  "render_sha256": "ba4a41a07a4e14abc84095feee938191306fad82ff84c34c845e57e0f9c2523e",
+  "match_text": "In the said Ordinance, for the first Schedule, the following shall be",
+  "before_text": "In the said Ordinance, for the first Schedule, the following shall be",
+  "after_text": "In the said Ordinance, for the first Schedule, the following shall be"
+ },
+ {
+  "document_id": 4805,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   988127
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '5' alone at its foot (block 988127, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc4805-p5.png",
+  "render_sha256": "df300ddf33cc26b4b19486ced4680831391e93cf67aa52220f46330c2b868ec8",
+  "match_text": "The rate of tax on total agricultural income for small farmers shall be as",
+  "before_text": "The rate of tax on total agricultural income for small farmers shall be as",
+  "after_text": "The rate of tax on total agricultural income for small farmers shall be as"
+ },
+ {
+  "document_id": 4805,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   988134
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 6 prints its page number '6' alone at its foot (block 988134, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc4805-p6.png",
+  "render_sha256": "3a06d2bb77171bde0d9777b45be46e6a5946d2396e6ff0dbc2507f4537719b5b",
+  "match_text": "The Secretary, Government of Balochistan Law & Parliamentary Affairs Department, Quetta.",
+  "before_text": "The Secretary, Government of Balochistan Law & Parliamentary Affairs Department, Quetta.",
+  "after_text": "The Secretary, Government of Balochistan Law & Parliamentary Affairs Department, Quetta."
+ }
+]

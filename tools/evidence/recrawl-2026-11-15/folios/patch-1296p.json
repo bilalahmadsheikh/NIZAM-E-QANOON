@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 1296,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   70763
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1' alone at its foot (block 70763, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1296-p1.png",
+  "render_sha256": "7ea8aac2684b6c663d5fda771bd201e9a5c1d196c42137a345d354917667f124",
+  "match_text": "PUNJAB MINISTER (REQUISITIONED RESIDENCE) RULES, 2007",
+  "before_text": "PUNJAB MINISTER (REQUISITIONED RESIDENCE) RULES, 2007",
+  "after_text": "PUNJAB MINISTER (REQUISITIONED RESIDENCE) RULES, 2007"
+ },
+ {
+  "document_id": 1296,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   70780
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 70780, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1296-p2.png",
+  "render_sha256": "8030937ef5d0850844a91a92cd86ba46096239c5c3fe2307fd35872ec40be22d",
+  "match_text": "residence, if an official residence for the Minister is available or the Minister owns a house in",
+  "before_text": "residence, if an official residence for the Minister is available or the Minister owns a house in",
+  "after_text": "residence, if an official residence for the Minister is available or the Minister owns a house in"
+ }
+]

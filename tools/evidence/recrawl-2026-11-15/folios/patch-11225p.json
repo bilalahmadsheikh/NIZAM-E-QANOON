@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 11225,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2840121
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '631' alone at its foot (block 2840121, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11225-p1.png",
+  "render_sha256": "65f67678b9fe4fe68743eddf0071cbdfb8998b8f1a22541452676cd1b437e060",
+  "match_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "before_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "after_text": "Constitution Act, 1974, the President is pleased to make and promulgate"
+ },
+ {
+  "document_id": 11225,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2840132
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '632' alone at its foot (block 2840132, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11225-p2.png",
+  "render_sha256": "40e126d901718f37388b3d2a9c6704ebe25f3a0dd6cdcd17e16de1611005839a",
+  "match_text": "giving effect to the provisions of the said Ordinance or in regard",
+  "before_text": "giving effect to the provisions of the said Ordinance or in regard",
+  "after_text": "giving effect to the provisions of the said Ordinance or in regard"
+ }
+]

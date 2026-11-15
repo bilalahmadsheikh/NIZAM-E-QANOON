@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 11212,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2839640
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '229' alone at its foot (block 2839640, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11212-p1.png",
+  "render_sha256": "b87e6fb1adc648aa616b47d7e4260518ce6f905a2c871d25e6997966a768ae6a",
+  "match_text": "to provide for law relating to cancellation of irregular and unauthorised",
+  "before_text": "to provide for law relating to cancellation of irregular and unauthorised",
+  "after_text": "to provide for law relating to cancellation of irregular and unauthorised"
+ },
+ {
+  "document_id": 11212,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2839649
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '230' alone at its foot (block 2839649, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11212-p2.png",
+  "render_sha256": "8111cfcabadda9935675fe6837acfd583c105b802bb80e9c4d67fe254b9aeea7",
+  "match_text": "land or building, as the case may be, initially vested shall resume",
+  "before_text": "land or building, as the case may be, initially vested shall resume",
+  "after_text": "land or building, as the case may be, initially vested shall resume"
+ },
+ {
+  "document_id": 11212,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2839661
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '231' alone at its foot (block 2839661, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11212-p3.png",
+  "render_sha256": "24d38bcf908326507a851f1caf5ef90c4bbd58d7574f98f899adfe3fba2ff09e",
+  "match_text": "Revision:- Where the allottee is aggrieved by the decision of the",
+  "before_text": "Revision:- Where the allottee is aggrieved by the decision of the",
+  "after_text": "Revision:- Where the allottee is aggrieved by the decision of the"
+ }
+]

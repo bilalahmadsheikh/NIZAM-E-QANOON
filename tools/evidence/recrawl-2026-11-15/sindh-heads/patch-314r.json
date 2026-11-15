@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 314,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   14834
+  ],
+  "defect": "the Sindh Code's running head (the law's citation printed at the head of every page) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the running-head block is set aside; no law text changes",
+  "observed": "Page 2 prints the running head 'SIND ORDINANCE NO. XV OF 1970.' alone at its head (block 14834, the page's first block); the same line heads the document's other pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc314-p2.png",
+  "render_sha256": "e0e46dc33c0531e0d09b960b0a79533ae215d2df3f63bf72139c3ef197485079",
+  "match_text": "(2-e)   The Director-General, Excise and Taxation, may at any time",
+  "before_text": "(2-e)   The Director-General, Excise and Taxation, may at any time",
+  "after_text": "(2-e)   The Director-General, Excise and Taxation, may at any time"
+ }
+]

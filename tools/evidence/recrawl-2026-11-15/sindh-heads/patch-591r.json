@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 591,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   23992
+  ],
+  "defect": "the Sindh Code's running head (the law's citation printed at the head of every page) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the running-head block is set aside; no law text changes",
+  "observed": "Page 3 prints the running head 'SINDH ORDINANCE NO.VI OF 2011' alone at its head (block 23992, the page's first block); the same line heads the document's other pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc591-p3.png",
+  "render_sha256": "3edacd4ae518bcc483db1b4140bc5d538be6b8acd54ac5689deb1dd6c06d9111",
+  "match_text": "If any difficulty arises in giving effect to the provisions",
+  "before_text": "If any difficulty arises in giving effect to the provisions",
+  "after_text": "If any difficulty arises in giving effect to the provisions"
+ }
+]

@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 10212,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2758722
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '89' alone at its foot (block 2758722, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10212-p1.png",
+  "render_sha256": "9f204de8d4af5d4bb143b429eb170b35b374ac5419b639a0141ce723de6a1776",
+  "match_text": "on 11th day of May, 1978, is hereby published for general information:-",
+  "before_text": "on 11th day of May, 1978, is hereby published for general information:-",
+  "after_text": "on 11th day of May, 1978, is hereby published for general information:-"
+ },
+ {
+  "document_id": 10212,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2758730
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '90' alone at its foot (block 2758730, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10212-p2.png",
+  "render_sha256": "baac8cc4f9ebef6fa100f2d3eacdf484b3b913d405a7afde0655348cac3141b5",
+  "match_text": "in the notice issued under sub-section (1) shall, without",
+  "before_text": "in the notice issued under sub-section (1) shall, without",
+  "after_text": "in the notice issued under sub-section (1) shall, without"
+ }
+]

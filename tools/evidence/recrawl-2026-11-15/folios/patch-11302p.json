@@ -1,0 +1,77 @@
+[
+ {
+  "document_id": 11302,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2845473
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '298' alone at its foot (block 2845473, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11302-p1.png",
+  "render_sha256": "f2a65ee65e4a39105c232e6b51f707dccb4709fbb064a6ab1f50d74b36bb5d28",
+  "match_text": "and Kashmir for giving effect to the provisions of Section 31 (5)",
+  "before_text": "and Kashmir for giving effect to the provisions of Section 31 (5)",
+  "after_text": "and Kashmir for giving effect to the provisions of Section 31 (5)"
+ },
+ {
+  "document_id": 11302,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2845485
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '299' alone at its foot (block 2845485, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11302-p2.png",
+  "render_sha256": "23344007d2054269c05dc92e6bd11f19c060cba886a1c04a7c0561a6948a7bdd",
+  "match_text": "addressed to the President, resign his office or may be",
+  "before_text": "addressed to the President, resign his office or may be",
+  "after_text": "addressed to the President, resign his office or may be"
+ },
+ {
+  "document_id": 11302,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2845495
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '300' alone at its foot (block 2845495, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11302-p3.png",
+  "render_sha256": "417df377cc44871367e1507fb966422eae1ea281f3954148007998713150027a",
+  "match_text": "President of the period within which the Islamic Council",
+  "before_text": "President of the period within which the Islamic Council",
+  "after_text": "President of the period within which the Islamic Council"
+ },
+ {
+  "document_id": 11302,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2845504
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '301' alone at its foot (block 2845504, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11302-p4.png",
+  "render_sha256": "c6e2bccbe8fffcd5db5f7e0ad65fdcb07b3403d7ab2845869e42890de9912029",
+  "match_text": "Provided that, where a law is referred for advice to the",
+  "before_text": "Provided that, where a law is referred for advice to the",
+  "after_text": "Provided that, where a law is referred for advice to the"
+ },
+ {
+  "document_id": 11302,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2845507
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '302' alone at its foot (block 2845507, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11302-p5.png",
+  "render_sha256": "92fc65cdecd6a1cac68ad22b45f6b19a6b7086027712a3ed4e93c34dad269f1b",
+  "match_text": "(Ifthikar Hussain Butt)",
+  "before_text": "(Ifthikar Hussain Butt)",
+  "after_text": "(Ifthikar Hussain Butt)"
+ }
+]

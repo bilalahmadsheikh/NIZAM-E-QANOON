@@ -1,0 +1,92 @@
+[
+ {
+  "document_id": 4824,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   990496
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 990496, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc4824-p2.png",
+  "render_sha256": "8e315b8154c16e838494e417b1b15073177f9ac93e74148d5e951bbebcd611e6",
+  "match_text": "is under a direct obligation to prevent, protect against, control and provide a public health",
+  "before_text": "is under a direct obligation to prevent, protect against, control and provide a public health",
+  "after_text": "is under a direct obligation to prevent, protect against, control and provide a public health"
+ },
+ {
+  "document_id": 4824,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   990510
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 990510, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc4824-p3.png",
+  "render_sha256": "5e714e20cdef85ca4a70663840d441120f31edb20822893ea9dc78e9ca530453",
+  "match_text": "recording in writing the grounds of his suspicion, enter and search, without any warrant,",
+  "before_text": "recording in writing the grounds of his suspicion, enter and search, without any warrant,",
+  "after_text": "recording in writing the grounds of his suspicion, enter and search, without any warrant,"
+ },
+ {
+  "document_id": 4824,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   990523
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 990523, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc4824-p4.png",
+  "render_sha256": "a1c134d3ce468e2ec097bb0430c479f262beee45f1c07e8075e44d788dd9ed01",
+  "match_text": "contained in any other law for the time being in force and in addition to the prosecution",
+  "before_text": "contained in any other law for the time being in force and in addition to the prosecution",
+  "after_text": "contained in any other law for the time being in force and in addition to the prosecution"
+ },
+ {
+  "document_id": 4824,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   990536
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '5' alone at its foot (block 990536, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc4824-p5.png",
+  "render_sha256": "f2f78e556543701270c00f60d2c388174683417eca913b43bb9b6ddd8b09444d",
+  "match_text": "the quantity of stock, its value, date of purchase, copies of procurement invoices in any",
+  "before_text": "the quantity of stock, its value, date of purchase, copies of procurement invoices in any",
+  "after_text": "the quantity of stock, its value, date of purchase, copies of procurement invoices in any"
+ },
+ {
+  "document_id": 4824,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   990544
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 6 prints its page number '6' alone at its foot (block 990544, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc4824-p6.png",
+  "render_sha256": "bc772c84c6e4bcaf4e3db1bb08e5d437d1f683d5b4780a2ee0d186d178d23c61",
+  "match_text": "law for the time being in force, the provisions of this Act, to the extent of hoarding of the",
+  "before_text": "law for the time being in force, the provisions of this Act, to the extent of hoarding of the",
+  "after_text": "law for the time being in force, the provisions of this Act, to the extent of hoarding of the"
+ },
+ {
+  "document_id": 4824,
+  "page_no": 7,
+  "source_apparatus_blocks": [
+   990564
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 7 prints its page number '7' alone at its foot (block 990564, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc4824-p7.png",
+  "render_sha256": "f9cb1b40bace5b158f56725e89932e2286cdad5b763f553ccebd6c43896d5766",
+  "match_text": "Spices, Condiments and Vegetables",
+  "before_text": "Spices, Condiments and Vegetables",
+  "after_text": "Spices, Condiments and Vegetables"
+ }
+]

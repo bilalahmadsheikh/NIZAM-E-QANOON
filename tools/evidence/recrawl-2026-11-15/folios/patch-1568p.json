@@ -1,0 +1,77 @@
+[
+ {
+  "document_id": 1568,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   94926
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 94926, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1568-p2.png",
+  "render_sha256": "617ed8b031ab665212f54195ca184d3332d828f32d375800c7a2da747a4cfda7",
+  "match_text": "allotment orders unless otherwise allowed by the Vice Chancellor. If he fails to do so, his allotment",
+  "before_text": "allotment orders unless otherwise allowed by the Vice Chancellor. If he fails to do so, his allotment",
+  "after_text": "allotment orders unless otherwise allowed by the Vice Chancellor. If he fails to do so, his allotment"
+ },
+ {
+  "document_id": 1568,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   94940
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 94940, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1568-p3.png",
+  "render_sha256": "e47e1c1a56298039c5aafa4f9e2c0c33f2393828f184295e430e573c467e2637",
+  "match_text": "under his charge. At the time of termination of the allotment the allottee shall have to hand over all",
+  "before_text": "under his charge. At the time of termination of the allotment the allottee shall have to hand over all",
+  "after_text": "under his charge. At the time of termination of the allotment the allottee shall have to hand over all"
+ },
+ {
+  "document_id": 1568,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   94964
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 94964, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1568-p4.png",
+  "render_sha256": "e62ed743bd5540e1f649500c4265e8ff589c3196e4796ef715b3085c90fd9f8e",
+  "match_text": "repairs would be available with the University Engineer. In case of any complaint the matter will",
+  "before_text": "repairs would be available with the University Engineer. In case of any complaint the matter will",
+  "after_text": "repairs would be available with the University Engineer. In case of any complaint the matter will"
+ },
+ {
+  "document_id": 1568,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   94970
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '5' alone at its foot (block 94970, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1568-p5.png",
+  "render_sha256": "96af5ea3f615a60e9eaf0e623d9a606077bd61e2f474b7b7a2a213c2d1175cbe",
+  "match_text": "1975 as in force provisionally shall cease to be operative from the date of notification of these",
+  "before_text": "1975 as in force provisionally shall cease to be operative from the date of notification of these",
+  "after_text": "1975 as in force provisionally shall cease to be operative from the date of notification of these"
+ },
+ {
+  "document_id": 1568,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   94983
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 6 prints its page number '6' alone at its foot (block 94983, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1568-p6.png",
+  "render_sha256": "681e7e4dc599b8aca8b9ffeaa4197c29ab2b2cf067d55ff907eeb31d1d7cfbae",
+  "match_text": "1-1980, and to state in order to discourage unauthorized occupation of Government residential",
+  "before_text": "1-1980, and to state in order to discourage unauthorized occupation of Government residential",
+  "after_text": "1-1980, and to state in order to discourage unauthorized occupation of Government residential"
+ }
+]

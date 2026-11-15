@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 1618,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   100728
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1' alone at its foot (block 100728, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1618-p1.png",
+  "render_sha256": "010e320c71bb3684e6591bed73828ac6bbbc1f08a0389cb99ae20cfc3a641629",
+  "match_text": "Allowances and Privileges) Act, 1974, hereinafter referred to as the",
+  "before_text": "Allowances and Privileges) Act, 1974, hereinafter referred to as the",
+  "after_text": "Allowances and Privileges) Act, 1974, hereinafter referred to as the"
+ },
+ {
+  "document_id": 1618,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   100737
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 100737, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1618-p2.png",
+  "render_sha256": "861a19cf05e1eddb4a73274f5b8277a607d5c6850878ea26a77319962a491d1f",
+  "match_text": "4.      The Sind Parliamentary Secretaries (Salaries, Allowances",
+  "before_text": "4.      The Sind Parliamentary Secretaries (Salaries, Allowances",
+  "after_text": "4.      The Sind Parliamentary Secretaries (Salaries, Allowances"
+ }
+]

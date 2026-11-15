@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 165,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   5937
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 5937, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc165-p2.png",
+  "render_sha256": "a95b5b8f94080a5756a8ac27a1bb601906eda4f13c7a85c235e9671fb0a8e62f",
+  "match_text": "Council, where, after the conclusion of the trail there is an equality of",
+  "before_text": "Council, where, after the conclusion of the trail there is an equality of",
+  "after_text": "Council, where, after the conclusion of the trail there is an equality of"
+ },
+ {
+  "document_id": 165,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   5960
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 5960, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc165-p3.png",
+  "render_sha256": "d8bcb1db3b8e8d50e7b0af423fc5234e8ed0e7cf466c955fccfd1efa8c36b39e",
+  "match_text": "(ii) inflicts or threatens to inflict any injury, damage, harm or loss;",
+  "before_text": "(ii) inflicts or threatens to inflict any injury, damage, harm or loss;",
+  "after_text": "(ii) inflicts or threatens to inflict any injury, damage, harm or loss;"
+ },
+ {
+  "document_id": 165,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   5983
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 5983, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc165-p4.png",
+  "render_sha256": "8b31d2084a41e2b1c5eb35b9a79a2378f6c296a5b818f558d3dc4531ba7829c3",
+  "match_text": "(2) The offences under sub-section (1) shall be tried in accordance with the",
+  "before_text": "(2) The offences under sub-section (1) shall be tried in accordance with the",
+  "after_text": "(2) The offences under sub-section (1) shall be tried in accordance with the"
+ },
+ {
+  "document_id": 165,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   5992
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '5' alone at its foot (block 5992, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc165-p5.png",
+  "render_sha256": "38829c0c317f6cee8e8b293d17511746ee73a535fb463213d240ee76989d9f02",
+  "match_text": "of the offence under sub-section (1) shall be punishable with imprisonment for",
+  "before_text": "of the offence under sub-section (1) shall be punishable with imprisonment for",
+  "after_text": "of the offence under sub-section (1) shall be punishable with imprisonment for"
+ }
+]

@@ -1,0 +1,18 @@
+[
+ {
+  "document_id": 763,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc763-p3.png",
+  "render_sha256": "406392c0cd793b612248c658383b4330310c8ddf8c93aa844d1de04e89727f23",
+  "defect": "the Sindh Code's running head (the law's citation and title at the head of every page) was read into a provision's text, in the same block as the law below it",
+  "observed": "Page 3 prints the running head 'SINDH ACT NO. VII OF 2006 / THE LIAQUAT AND DOW MEDICAL AND HEALTH SCIENCES UNIVERSITIES' at its head; the same head opens the document's other pages",
+  "source_apparatus_blocks": [
+   34243,
+   34244
+  ],
+  "match_text": "(iv)     In  Section   19,   in   sub   section   (I),   for   the   words",
+  "before_text": "(iv)     In  Section   19,   in   sub   section   (I),   for   the   words",
+  "after_text": "(iv)     In  Section   19,   in   sub   section   (I),   for   the   words",
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) are set aside; no law text changes"
+ }
+]

@@ -1,0 +1,77 @@
+[
+ {
+  "document_id": 6210,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   1490991
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 1490991, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc6210-p2.png",
+  "render_sha256": "3c45df27eb0f68778f416b6fa4957e018e06fb226d5661998061414c7769c384",
+  "match_text": "section (2) of section 42 of the Oil and Gas Regulatory Authority Ordinance, 2002",
+  "before_text": "section (2) of section 42 of the Oil and Gas Regulatory Authority Ordinance, 2002",
+  "after_text": "section (2) of section 42 of the Oil and Gas Regulatory Authority Ordinance, 2002"
+ },
+ {
+  "document_id": 6210,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   1491015
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 1491015, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc6210-p3.png",
+  "render_sha256": "c17c2f383d0f96e27274693d55f4efb7345d69c1dd969ace4528588b5c6ae2c7",
+  "match_text": "(2) All other words and expressions used, but not defined herein, shall",
+  "before_text": "(2) All other words and expressions used, but not defined herein, shall",
+  "after_text": "(2) All other words and expressions used, but not defined herein, shall"
+ },
+ {
+  "document_id": 6210,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   1491042
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 1491042, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc6210-p4.png",
+  "render_sha256": "f94d080e0ab5d7e1aec9bd5e3b36707c3881c387c8018abd637b099dc5296227",
+  "match_text": "Registrar of the Authority, for determination of well-head price for  specification",
+  "before_text": "Registrar of the Authority, for determination of well-head price for  specification",
+  "after_text": "Registrar of the Authority, for determination of well-head price for  specification"
+ },
+ {
+  "document_id": 6210,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   1491065
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '5' alone at its foot (block 1491065, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc6210-p5.png",
+  "render_sha256": "72bb6928cf3b0c923cb8c7a3df7d4b0e176d60680392a05e9aac828278815a8b",
+  "match_text": "keep in view the principle of proportionality of the fine to the gravity of the breach",
+  "before_text": "keep in view the principle of proportionality of the fine to the gravity of the breach",
+  "after_text": "keep in view the principle of proportionality of the fine to the gravity of the breach"
+ },
+ {
+  "document_id": 6210,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   1491086
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 6 prints its page number '6' alone at its foot (block 1491086, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc6210-p6.png",
+  "render_sha256": "be8d667daaff0c573f6dbff57f111eb20f12322fc91e9f1035744f64cb307648",
+  "match_text": "name) and requests OGRA to kindly determine and notify the well-head price of",
+  "before_text": "name) and requests OGRA to kindly determine and notify the well-head price of",
+  "after_text": "name) and requests OGRA to kindly determine and notify the well-head price of"
+ }
+]

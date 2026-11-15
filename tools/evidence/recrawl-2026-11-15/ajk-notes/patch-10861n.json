@@ -1,0 +1,44 @@
+[
+ {
+  "document_id": 10861,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   2807741
+  ],
+  "defect": "page notes (amendment notes and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the note blocks are set aside; no law text changes",
+  "observed": "Page 6 prints, under its note rule, 1 note block(s), the first '1 In subsection (2) of Sec.9 the full stop at the end shall be subs. by a colon and thereafter proviso added by the AJ&K Removal from Servic'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10861-p6.png",
+  "render_sha256": "a4667055a8a2ba8350614dcb53c9a22ffc697cfd8c69e9ee4ffae8afbc70625a",
+  "match_text": "In subsection (2) of Sec.9 the full stop at the end shall be subs. by a colon",
+  "before_text": "In subsection (2) of Sec.9 the full stop at the end shall be subs. by a colon",
+  "after_text": "In subsection (2) of Sec.9 the full stop at the end shall be subs. by a colon"
+ },
+ {
+  "document_id": 10861,
+  "page_no": 7,
+  "source_apparatus_blocks": [
+   2807751
+  ],
+  "defect": "page notes (amendment notes and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the note blocks are set aside; no law text changes",
+  "observed": "Page 7 prints, under its note rule, 1 note block(s), the first '1 In Sec. 12 full stop at the end shall be subs. by a colon and thereafter proviso added by the AJ&K Removal from Service (Special Powers) ('",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10861-p7.png",
+  "render_sha256": "e8a3bc6d4a34775b7cfcd8637b2307f6ce2313ef0670a9718780dac9a1b5182b",
+  "match_text": "In Sec. 12 full stop at the end shall be subs. by a colon and thereafter",
+  "before_text": "In Sec. 12 full stop at the end shall be subs. by a colon and thereafter",
+  "after_text": "In Sec. 12 full stop at the end shall be subs. by a colon and thereafter"
+ },
+ {
+  "document_id": 10861,
+  "page_no": 5,
+  "match_text": "In subsection (3) of Sec.5 for the words “twenty five” the word “sixty” has",
+  "before_text": "1  \nIn subsection (3) of Sec.5 for the words “twenty five” the word “sixty” has \nbeen subs. by the AJ&K Removal from Service (Special Powers) (Amdt.) \nAct, 2002 (Act IX of 2002) dt. 18.09.2002. \n2  \nIn subsection (3) of Sec. 5 the full stop at the end is subs. by a colon and \nthereafter the proviso has been added by Ibid",
+  "after_text": " ",
+  "defect": "the block fuses the law's last line with the page note printed under it; the note was read as law",
+  "fixes": "parser-input correction: the note is cut from the block, from its marker to the block's end; the law before it is kept as printed",
+  "observed": "Page 5 prints the law ending 'c) to receive evidence on affidavits; and', then the note rule and the note '1 In subsection (3) of Sec.5 for the words “twenty five” the word “sixty” has been subs. by the AJ&K Removal from Servic'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10861-p5.png",
+  "render_sha256": "e9c15aad377d122a7588a0be6c5be676d543942d7f10e715d49b078b6f8dae25"
+ }
+]

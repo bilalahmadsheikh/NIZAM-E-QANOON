@@ -1,0 +1,92 @@
+[
+ {
+  "document_id": 1931,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   136910
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 136910, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1931-p2.png",
+  "render_sha256": "caddcad35459d82b78e0b717d8fca9c3dc955fd464998f576306bfa9219cfb4f",
+  "match_text": "hold office if he fails to attend two consecutive meetings of the Board without formal",
+  "before_text": "hold office if he fails to attend two consecutive meetings of the Board without formal",
+  "after_text": "hold office if he fails to attend two consecutive meetings of the Board without formal"
+ },
+ {
+  "document_id": 1931,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   136938
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 136938, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1931-p3.png",
+  "render_sha256": "7cc65f21ae8e1f6382b01c6ad558389f09cfe1a7d1ee5fc6be4a7f3d050b8cb9",
+  "match_text": "for the promotion, development and conduct of agricultural research in the Punjab.",
+  "before_text": "for the promotion, development and conduct of agricultural research in the Punjab.",
+  "after_text": "for the promotion, development and conduct of agricultural research in the Punjab."
+ },
+ {
+  "document_id": 1931,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   136960
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 136960, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1931-p4.png",
+  "render_sha256": "b0da741e08bd3d8fb8a4479e18ae77a6db849ccd4344dc3f3bb9221b25525e04",
+  "match_text": "create new division or rename any existing division to fulfill any new obligation of the",
+  "before_text": "create new division or rename any existing division to fulfill any new obligation of the",
+  "after_text": "create new division or rename any existing division to fulfill any new obligation of the"
+ },
+ {
+  "document_id": 1931,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   136983
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '5' alone at its foot (block 136983, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1931-p5.png",
+  "render_sha256": "a497c23ea9de37a7ed7853d7e7c489a25f05205bc42969449926842f65372638",
+  "match_text": "national and international research institutions and with private sector;",
+  "before_text": "national and international research institutions and with private sector;",
+  "after_text": "national and international research institutions and with private sector;"
+ },
+ {
+  "document_id": 1931,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   137005
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 6 prints its page number '6' alone at its foot (block 137005, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1931-p6.png",
+  "render_sha256": "ff6d1bf1d0051c6bc16cbe5ad7240f8edc5ee83fb618af0e36adad06e47f3982",
+  "match_text": "arises, or on the written request of three or more members. Shall convene a meeting of",
+  "before_text": "arises, or on the written request of three or more members. Shall convene a meeting of",
+  "after_text": "arises, or on the written request of three or more members. Shall convene a meeting of"
+ },
+ {
+  "document_id": 1931,
+  "page_no": 7,
+  "source_apparatus_blocks": [
+   137013
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 7 prints its page number '7' alone at its foot (block 137013, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1931-p7.png",
+  "render_sha256": "01a22f6684fc99306210030c8a96946a92a8f817ef63800a6003f7047dafc635",
+  "match_text": "regulations, shall approve specifications keeping in view the approved specifications",
+  "before_text": "regulations, shall approve specifications keeping in view the approved specifications",
+  "after_text": "regulations, shall approve specifications keeping in view the approved specifications"
+ }
+]

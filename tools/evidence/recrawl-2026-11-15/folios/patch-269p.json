@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 269,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   12079
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 12079, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc269-p2.png",
+  "render_sha256": "0f6aa431efd76049fa6b6eb6b46203db34dfd91e0cb28b8953ff95c8f458f4e7",
+  "match_text": "2.      In this Act, unless there is anything repugnant in the",
+  "before_text": "2.      In this Act, unless there is anything repugnant in the",
+  "after_text": "2.      In this Act, unless there is anything repugnant in the"
+ },
+ {
+  "document_id": 269,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   12090
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 12090, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc269-p3.png",
+  "render_sha256": "54321270c26d8a572b30578711950fd9fd6e327cbcbfb83044ae0546bb2a2d33",
+  "match_text": "be subject to such restrictions, limitations and conditions, if",
+  "before_text": "be subject to such restrictions, limitations and conditions, if",
+  "after_text": "be subject to such restrictions, limitations and conditions, if"
+ }
+]

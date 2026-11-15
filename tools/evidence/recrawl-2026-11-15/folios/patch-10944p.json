@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 10944,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2815506
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '48' alone at its foot (block 2815506, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10944-p1.png",
+  "render_sha256": "866d68ed3829738dd0df617cf24d954ef86db5b2d311444c41554d12258202ab",
+  "match_text": "to provide for law relating to cancellation of irregular and unauthorised",
+  "before_text": "to provide for law relating to cancellation of irregular and unauthorised",
+  "after_text": "to provide for law relating to cancellation of irregular and unauthorised"
+ },
+ {
+  "document_id": 10944,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2815517
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '49' alone at its foot (block 2815517, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10944-p2.png",
+  "render_sha256": "4f13279cf8f34650a653abb6f3482049a78ebe48b9fc0a6ac85d83c4f199a638",
+  "match_text": "land or building, as the case may be, initially vested shall resume",
+  "before_text": "land or building, as the case may be, initially vested shall resume",
+  "after_text": "land or building, as the case may be, initially vested shall resume"
+ },
+ {
+  "document_id": 10944,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2815525
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '50' alone at its foot (block 2815525, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10944-p3.png",
+  "render_sha256": "934e044e74ce1d1dbaffa458c9789d5c9016ca94c66074e572883aa913e4143a",
+  "match_text": "Instructions:- The Government may issue such instructions as it",
+  "before_text": "Instructions:- The Government may issue such instructions as it",
+  "after_text": "Instructions:- The Government may issue such instructions as it"
+ }
+]

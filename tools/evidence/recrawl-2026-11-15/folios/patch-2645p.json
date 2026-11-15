@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 2645,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   228351
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1' alone at its foot (block 228351, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2645-p1.png",
+  "render_sha256": "09bf5797d8ddba38e5e796496f92c98c4f6f60645cf05e62f77dff945f46d1da",
+  "match_text": "198 of the Constitution of the Islamic Republic of Pakistan and in consultation with the Chief",
+  "before_text": "198 of the Constitution of the Islamic Republic of Pakistan and in consultation with the Chief",
+  "after_text": "198 of the Constitution of the Islamic Republic of Pakistan and in consultation with the Chief"
+ },
+ {
+  "document_id": 2645,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   228357
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 228357, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2645-p2.png",
+  "render_sha256": "517b45887aebe310ba94b05854fa8ca35601c726c9da7d5fc60bd0978e39b409",
+  "match_text": "Without prejudice to the generality of the foregoing rules and subject to the provisions",
+  "before_text": "Without prejudice to the generality of the foregoing rules and subject to the provisions",
+  "after_text": "Without prejudice to the generality of the foregoing rules and subject to the provisions"
+ }
+]

@@ -1,0 +1,602 @@
+[
+ {
+  "document_id": 5076,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   1029519
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 1029519, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc5076-p2.png",
+  "render_sha256": "f70d9c49ec0f353fe132a570cc1468e23c6409f6411a56bcaa209a8dd3fddee0",
+  "match_text": "In this Act, unless there is anything repugnant in the",
+  "before_text": "In this Act, unless there is anything repugnant in the",
+  "after_text": "In this Act, unless there is anything repugnant in the"
+ },
+ {
+  "document_id": 5076,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   1029531
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 1029531, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc5076-p3.png",
+  "render_sha256": "4441a9746eceef1c6945f4397a058248ab2af062088404151c157c1720b565ff",
+  "match_text": "(m) “medical practitioner” means a medical graduate",
+  "before_text": "(m) “medical practitioner” means a medical graduate",
+  "after_text": "(m) “medical practitioner” means a medical graduate"
+ },
+ {
+  "document_id": 5076,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   1029548
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 1029548, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc5076-p4.png",
+  "render_sha256": "96a66719d0406c71bcfb8cc6cb2c659da7b7bbaf0a7b43723fb8ff891c6c09fa",
+  "match_text": "clauses (i), (ii) and (iii) above shall be construed",
+  "before_text": "clauses (i), (ii) and (iii) above shall be construed",
+  "after_text": "clauses (i), (ii) and (iii) above shall be construed"
+ },
+ {
+  "document_id": 5076,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   1029566
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '5' alone at its foot (block 1029566, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc5076-p5.png",
+  "render_sha256": "128c86c9b6de11573ea5e29b4d2fe5f9e189455646227e8ce2a9f32a4475a2a8",
+  "match_text": "shall constitute, by notification in the official Gazette, the",
+  "before_text": "shall constitute, by notification in the official Gazette, the",
+  "after_text": "shall constitute, by notification in the official Gazette, the"
+ },
+ {
+  "document_id": 5076,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   1029579
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 6 prints its page number '6' alone at its foot (block 1029579, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc5076-p6.png",
+  "render_sha256": "66a2b1bcf48b1f0093b7a53f0526450ba497982ef771c863873a1b960c0ea2d5",
+  "match_text": "office, on account of mental or physical incapacity or for any",
+  "before_text": "office, on account of mental or physical incapacity or for any",
+  "after_text": "office, on account of mental or physical incapacity or for any"
+ },
+ {
+  "document_id": 5076,
+  "page_no": 7,
+  "source_apparatus_blocks": [
+   1029590
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 7 prints its page number '7' alone at its foot (block 1029590, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc5076-p7.png",
+  "render_sha256": "34c8567c5ac2a0d0fff503f246b5eb6289e5a2a932f81b572026ec32eb2217d6",
+  "match_text": "(k)     constitute   committees consisting of such",
+  "before_text": "(k)     constitute   committees consisting of such",
+  "after_text": "(k)     constitute   committees consisting of such"
+ },
+ {
+  "document_id": 5076,
+  "page_no": 8,
+  "source_apparatus_blocks": [
+   1029604
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 8 prints its page number '8' alone at its foot (block 1029604, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc5076-p8.png",
+  "render_sha256": "91af16bec2fd6b6a2b35ddaec9789b04e1569654dcbf2e76188ce92ff5a77468",
+  "match_text": "administrative head of the office and perform such functions as",
+  "before_text": "administrative head of the office and perform such functions as",
+  "after_text": "administrative head of the office and perform such functions as"
+ },
+ {
+  "document_id": 5076,
+  "page_no": 9,
+  "source_apparatus_blocks": [
+   1029617
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 9 prints its page number '9' alone at its foot (block 1029617, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc5076-p9.png",
+  "render_sha256": "f97d306d35e26e7d29cb620f1ca8606922dc39cabbf75f3558fbd99ac272781c",
+  "match_text": "duty for inspection of a psychiatric facility wherein he has a",
+  "before_text": "duty for inspection of a psychiatric facility wherein he has a",
+  "after_text": "duty for inspection of a psychiatric facility wherein he has a"
+ },
+ {
+  "document_id": 5076,
+  "page_no": 10,
+  "source_apparatus_blocks": [
+   1029630
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 10 prints its page number '10' alone at its foot (block 1029630, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc5076-p10.png",
+  "render_sha256": "f160d7febcde936178580cade6999adc6c74a06b05491796caa53219b2ba3339",
+  "match_text": "condition of a psychiatric facility and the inmates therein.",
+  "before_text": "condition of a psychiatric facility and the inmates therein.",
+  "after_text": "condition of a psychiatric facility and the inmates therein."
+ },
+ {
+  "document_id": 5076,
+  "page_no": 11,
+  "source_apparatus_blocks": [
+   1029644
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 11 prints its page number '11' alone at its foot (block 1029644, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc5076-p11.png",
+  "render_sha256": "e1f080c1596c92de123d7f17599447ce3aa6d6c79a64236d426ea719a819f534",
+  "match_text": "relative or is referred by a medical practitioner or is referred",
+  "before_text": "relative or is referred by a medical practitioner or is referred",
+  "after_text": "relative or is referred by a medical practitioner or is referred"
+ },
+ {
+  "document_id": 5076,
+  "page_no": 12,
+  "source_apparatus_blocks": [
+   1029658
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 12 prints its page number '12' alone at its foot (block 1029658, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc5076-p12.png",
+  "render_sha256": "4706693b0854d1bde971b33dfe8d98fd351ae2fd4bd6a78a233e088b4869bc98",
+  "match_text": "subsection (4) in pursuance of an application made in",
+  "before_text": "subsection (4) in pursuance of an application made in",
+  "after_text": "subsection (4) in pursuance of an application made in"
+ },
+ {
+  "document_id": 5076,
+  "page_no": 13,
+  "source_apparatus_blocks": [
+   1029668
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 13 prints its page number '13' alone at its foot (block 1029668, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc5076-p13.png",
+  "render_sha256": "28d6fd4e6d4f40ada52b95e40787c06e8daf0af473ac15ce0de0fd355b2935de",
+  "match_text": "expiration of that period unless before it has expired he has",
+  "before_text": "expiration of that period unless before it has expired he has",
+  "after_text": "expiration of that period unless before it has expired he has"
+ },
+ {
+  "document_id": 5076,
+  "page_no": 14,
+  "source_apparatus_blocks": [
+   1029678
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 14 prints its page number '14' alone at its foot (block 1029678, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc5076-p14.png",
+  "render_sha256": "2d2ca09f32d767c172b6f8637c5c72c963c310e9a9c5df980f8601d0f9caa6ec",
+  "match_text": "detained in a psychiatric facility, for a period not exceeding",
+  "before_text": "detained in a psychiatric facility, for a period not exceeding",
+  "after_text": "detained in a psychiatric facility, for a period not exceeding"
+ },
+ {
+  "document_id": 5076,
+  "page_no": 15,
+  "source_apparatus_blocks": [
+   1029690
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 15 prints its page number '15' alone at its foot (block 1029690, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc5076-p15.png",
+  "render_sha256": "d45ed87e062126c20cf7269f58366b9e23bd78f8b5456a6f894e10f632d37763",
+  "match_text": "for mental disorder as an inpatient in a psychiatric facility",
+  "before_text": "for mental disorder as an inpatient in a psychiatric facility",
+  "after_text": "for mental disorder as an inpatient in a psychiatric facility"
+ },
+ {
+  "document_id": 5076,
+  "page_no": 16,
+  "source_apparatus_blocks": [
+   1029702
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 16 prints its page number '16' alone at its foot (block 1029702, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc5076-p16.png",
+  "render_sha256": "f3d921cc09e7a76ba8b401a71d44e2c56fd96418e8555bfb0c588bdca4f9549a",
+  "match_text": "of the connection of the applicant with the patient, and the",
+  "before_text": "of the connection of the applicant with the patient, and the",
+  "after_text": "of the connection of the applicant with the patient, and the"
+ },
+ {
+  "document_id": 5076,
+  "page_no": 17,
+  "source_apparatus_blocks": [
+   1029710
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 17 prints its page number '17' alone at its foot (block 1029710, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc5076-p17.png",
+  "render_sha256": "9445901f312ec886bfec092b35ae0ffdefc6285e793485d9e36c8b7d258ea0f4",
+  "match_text": "the case may be, the application shall be sufficient authority",
+  "before_text": "the case may be, the application shall be sufficient authority",
+  "after_text": "the case may be, the application shall be sufficient authority"
+ },
+ {
+  "document_id": 5076,
+  "page_no": 18,
+  "source_apparatus_blocks": [
+   1029719
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 18 prints its page number '18' alone at its foot (block 1029719, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc5076-p18.png",
+  "render_sha256": "87faa6dbcca5eb031791ca2826709f063bf21a4349bb7f4e2b35fa5347679d81",
+  "match_text": "of which he was detained in a psychiatric facility shall cease",
+  "before_text": "of which he was detained in a psychiatric facility shall cease",
+  "after_text": "of which he was detained in a psychiatric facility shall cease"
+ },
+ {
+  "document_id": 5076,
+  "page_no": 19,
+  "source_apparatus_blocks": [
+   1029727
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 19 prints its page number '19' alone at its foot (block 1029727, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc5076-p19.png",
+  "render_sha256": "f6f9d915d3d6a4ee98bf62f936aeff9d08bb6eeca5d9b5b8bcc19d149796aa72",
+  "match_text": "the day on which application was made in respect of the",
+  "before_text": "the day on which application was made in respect of the",
+  "after_text": "the day on which application was made in respect of the"
+ },
+ {
+  "document_id": 5076,
+  "page_no": 20,
+  "source_apparatus_blocks": [
+   1029734
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 20 prints its page number '20' alone at its foot (block 1029734, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc5076-p20.png",
+  "render_sha256": "b2b27bfccf1cfa6b0700837e93d413306a72db44ecda349c823cab2aa61e04b1",
+  "match_text": "the period of 72 hours referred to in clause (iii) of section 12",
+  "before_text": "the period of 72 hours referred to in clause (iii) of section 12",
+  "after_text": "the period of 72 hours referred to in clause (iii) of section 12"
+ },
+ {
+  "document_id": 5076,
+  "page_no": 21,
+  "source_apparatus_blocks": [
+   1029744
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 21 prints its page number '21' alone at its foot (block 1029744, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc5076-p21.png",
+  "render_sha256": "76716a27f9b599da50645a8dd855021bc8636fa22faa83c4dd8e9695b4248ed7",
+  "match_text": "officer may, if he thinks it necessary to do so in the interest",
+  "before_text": "officer may, if he thinks it necessary to do so in the interest",
+  "after_text": "officer may, if he thinks it necessary to do so in the interest"
+ },
+ {
+  "document_id": 5076,
+  "page_no": 22,
+  "source_apparatus_blocks": [
+   1029753
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 22 prints its page number '22' alone at its foot (block 1029753, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc5076-p22.png",
+  "render_sha256": "d4756b44df64d5f50a812e09396229d56e0412d88b23fcc5e56dbe08651854fe",
+  "match_text": "a reception order for the admission of the mentally ill person",
+  "before_text": "a reception order for the admission of the mentally ill person",
+  "after_text": "a reception order for the admission of the mentally ill person"
+ },
+ {
+  "document_id": 5076,
+  "page_no": 23,
+  "source_apparatus_blocks": [
+   1029761
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 23 prints its page number '23' alone at its foot (block 1029761, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc5076-p23.png",
+  "render_sha256": "13f2746e7497fdde264806d8e094b593bb3519a4bbcbe59809aec05dca79e082",
+  "match_text": "it necessary to do so in the interest of the patients’ safety or",
+  "before_text": "it necessary to do so in the interest of the patients’ safety or",
+  "after_text": "it necessary to do so in the interest of the patients’ safety or"
+ },
+ {
+  "document_id": 5076,
+  "page_no": 24,
+  "source_apparatus_blocks": [
+   1029775
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 24 prints its page number '24' alone at its foot (block 1029775, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc5076-p24.png",
+  "render_sha256": "a72eda6cb177de48a03ed5a15170db9b9e0d53e47a226ff9cff1f677802bfd64",
+  "match_text": "after he has ceased to be liable to be detained for the periods",
+  "before_text": "after he has ceased to be liable to be detained for the periods",
+  "after_text": "after he has ceased to be liable to be detained for the periods"
+ },
+ {
+  "document_id": 5076,
+  "page_no": 25,
+  "source_apparatus_blocks": [
+   1029789
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 25 prints its page number '25' alone at its foot (block 1029789, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc5076-p25.png",
+  "render_sha256": "c321dc8ec6a65490e5bf477db0eaab03be59310482e94ae5d3606d317eeaee06",
+  "match_text": "of the said patient; and that information shall, if practicable,",
+  "before_text": "of the said patient; and that information shall, if practicable,",
+  "after_text": "of the said patient; and that information shall, if practicable,"
+ },
+ {
+  "document_id": 5076,
+  "page_no": 26,
+  "source_apparatus_blocks": [
+   1029803
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 26 prints its page number '26' alone at its foot (block 1029803, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc5076-p26.png",
+  "render_sha256": "ce2c0ff083a9f86d61797180dcdb32e1709afadca5a2de770304a4f2c17b1a38",
+  "match_text": "jurisdiction over the alleged mentally disordered person for",
+  "before_text": "jurisdiction over the alleged mentally disordered person for",
+  "after_text": "jurisdiction over the alleged mentally disordered person for"
+ },
+ {
+  "document_id": 5076,
+  "page_no": 27,
+  "source_apparatus_blocks": [
+   1029812
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 27 prints its page number '27' alone at its foot (block 1029812, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc5076-p27.png",
+  "render_sha256": "4fa876a59a6af06cfc0574918186e55a061b8db75b180b87ad738b08057039a6",
+  "match_text": "person is suffering from mental disorder and is incapable of",
+  "before_text": "person is suffering from mental disorder and is incapable of",
+  "after_text": "person is suffering from mental disorder and is incapable of"
+ },
+ {
+  "document_id": 5076,
+  "page_no": 28,
+  "source_apparatus_blocks": [
+   1029827
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 28 prints its page number '28' alone at its foot (block 1029827, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc5076-p28.png",
+  "render_sha256": "1b31f36ddb8ff42ace523ad0fd9c108575fb145c1cf86abde95988868f4106bf",
+  "match_text": "person  who  is  incapable  of  managing  it,  the Court shall",
+  "before_text": "person  who  is  incapable  of  managing  it,  the Court shall",
+  "after_text": "person  who  is  incapable  of  managing  it,  the Court shall"
+ },
+ {
+  "document_id": 5076,
+  "page_no": 29,
+  "source_apparatus_blocks": [
+   1029838
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 29 prints its page number '29' alone at its foot (block 1029838, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc5076-p29.png",
+  "render_sha256": "669378cf42bf0f9093db03e2688f497b04048e3b7cc38141a97be6cfaec6917a",
+  "match_text": "considering objections, if any, received from the relatives  or",
+  "before_text": "considering objections, if any, received from the relatives  or",
+  "after_text": "considering objections, if any, received from the relatives  or"
+ },
+ {
+  "document_id": 5076,
+  "page_no": 30,
+  "source_apparatus_blocks": [
+   1029847
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 30 prints its page number '30' alone at its foot (block 1029847, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc5076-p30.png",
+  "render_sha256": "c2c779d599585849b742953625fdb0871fac4d08c4ee7cc27fc093bc328dae6d",
+  "match_text": "may, if it appears to be in the best interest of such a person,",
+  "before_text": "may, if it appears to be in the best interest of such a person,",
+  "after_text": "may, if it appears to be in the best interest of such a person,"
+ },
+ {
+  "document_id": 5076,
+  "page_no": 31,
+  "source_apparatus_blocks": [
+   1029858
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 31 prints its page number '31' alone at its foot (block 1029858, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc5076-p31.png",
+  "render_sha256": "6988fa70dae318f3c37ede5b70011ff30c55f62be7fce6646c5007b461f77585",
+  "match_text": "a manager of the estate, order that in the case of cash, or in",
+  "before_text": "a manager of the estate, order that in the case of cash, or in",
+  "after_text": "a manager of the estate, order that in the case of cash, or in"
+ },
+ {
+  "document_id": 5076,
+  "page_no": 32,
+  "source_apparatus_blocks": [
+   1029868
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 32 prints its page number '32' alone at its foot (block 1029868, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc5076-p32.png",
+  "render_sha256": "cb74b152b41f311674070cd5eaacff2f497efbd2eac2de4492642b7471921e99",
+  "match_text": "securities or shares, or to received and pay over thereof the",
+  "before_text": "securities or shares, or to received and pay over thereof the",
+  "after_text": "securities or shares, or to received and pay over thereof the"
+ },
+ {
+  "document_id": 5076,
+  "page_no": 33,
+  "source_apparatus_blocks": [
+   1029882
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 33 prints its page number '33' alone at its foot (block 1029882, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc5076-p33.png",
+  "render_sha256": "f817f679ede19cb1d41947b5cbe75bbcc3c44324787ccab4b65f5d4f36d0640e",
+  "match_text": "situated shall pay to the officer in charge of such facility the",
+  "before_text": "situated shall pay to the officer in charge of such facility the",
+  "after_text": "situated shall pay to the officer in charge of such facility the"
+ },
+ {
+  "document_id": 5076,
+  "page_no": 34,
+  "source_apparatus_blocks": [
+   1029891
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 34 prints its page number '34' alone at its foot (block 1029891, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc5076-p34.png",
+  "render_sha256": "47e8fe863aa80086488b4806cbd3778730bb5f686ca3dd54b0573a33df5bbcf2",
+  "match_text": "as he thinks fit, having regard to the cost of maintenance of",
+  "before_text": "as he thinks fit, having regard to the cost of maintenance of",
+  "after_text": "as he thinks fit, having regard to the cost of maintenance of"
+ },
+ {
+  "document_id": 5076,
+  "page_no": 35,
+  "source_apparatus_blocks": [
+   1029907
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 35 prints its page number '35' alone at its foot (block 1029907, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc5076-p35.png",
+  "render_sha256": "57424a3dee955e89579cf34b6cece9467c2256b7dc93e8f01a365c2fd6809a2d",
+  "match_text": "patient or if the patient is a minor, his nearest relative or a",
+  "before_text": "patient or if the patient is a minor, his nearest relative or a",
+  "after_text": "patient or if the patient is a minor, his nearest relative or a"
+ },
+ {
+  "document_id": 5076,
+  "page_no": 36,
+  "source_apparatus_blocks": [
+   1029917
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 36 prints its page number '36' alone at its foot (block 1029917, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc5076-p36.png",
+  "render_sha256": "1bd887ce312646285741917ded37622834a42216595ca525054ebc9bf938e677",
+  "match_text": "guilty of an offence under sub-section (1), (2) or (3), shall be",
+  "before_text": "guilty of an offence under sub-section (1), (2) or (3), shall be",
+  "after_text": "guilty of an offence under sub-section (1), (2) or (3), shall be"
+ },
+ {
+  "document_id": 5076,
+  "page_no": 37,
+  "source_apparatus_blocks": [
+   1029927
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 37 prints its page number '37' alone at its foot (block 1029927, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc5076-p37.png",
+  "render_sha256": "a43ff126e7c7fd98c3241ce5183a063dd0b6925455a6ddd4180ecf90eb4be090",
+  "match_text": "in a psychiatric facility, may visit him in order to ascertain",
+  "before_text": "in a psychiatric facility, may visit him in order to ascertain",
+  "after_text": "in a psychiatric facility, may visit him in order to ascertain"
+ },
+ {
+  "document_id": 5076,
+  "page_no": 38,
+  "source_apparatus_blocks": [
+   1029944
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 38 prints its page number '38' alone at its foot (block 1029944, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc5076-p38.png",
+  "render_sha256": "6975fe0a08407c5102a8f1dff00e381e0da82895fd07979da97bc3a69e4817fa",
+  "match_text": "advised by a psychiatrist, in charge of the patient, recording",
+  "before_text": "advised by a psychiatrist, in charge of the patient, recording",
+  "after_text": "advised by a psychiatrist, in charge of the patient, recording"
+ },
+ {
+  "document_id": 5076,
+  "page_no": 39,
+  "source_apparatus_blocks": [
+   1029970
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 39 prints its page number '39' alone at its foot (block 1029970, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc5076-p39.png",
+  "render_sha256": "f8d0b0a23f662e1d350b760056c8ad64160e8954009428b0b24b1037871c907c",
+  "match_text": "(b)              (b)  Grants in aid from the Federal Government;",
+  "before_text": "(b)              (b)  Grants in aid from the Federal Government;",
+  "after_text": "(b)              (b)  Grants in aid from the Federal Government;"
+ },
+ {
+  "document_id": 5076,
+  "page_no": 40,
+  "source_apparatus_blocks": [
+   1029988
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 40 prints its page number '40' alone at its foot (block 1029988, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc5076-p40.png",
+  "render_sha256": "02a2644b06f83e79a702f5d4cd6abeaf1bec49c2097ca6c0d4ae9d8c97c8343d",
+  "match_text": "the expiry of two years from the coming into force of this Act.",
+  "before_text": "the expiry of two years from the coming into force of this Act.",
+  "after_text": "the expiry of two years from the coming into force of this Act."
+ },
+ {
+  "document_id": 5076,
+  "page_no": 41,
+  "source_apparatus_blocks": [
+   1029999
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 41 prints its page number '41' alone at its foot (block 1029999, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc5076-p41.png",
+  "render_sha256": "30fe6368901d36ac5df58796f9f5b6885e50e9b2a8692ddb7afcb506b23b8728",
+  "match_text": ".                                                      Secretary.",
+  "before_text": ".                                                      Secretary.",
+  "after_text": ".                                                      Secretary."
+ }
+]

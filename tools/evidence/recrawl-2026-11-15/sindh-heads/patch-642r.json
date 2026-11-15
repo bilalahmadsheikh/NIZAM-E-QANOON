@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 642,
+  "page_no": 2,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc642-p2.png",
+  "render_sha256": "a31a9b3c20e619fcb27bbb9a13c4917989a58abdf9850502c12b203209f5cce4",
+  "defect": "the Sindh Code's running head (the law's citation and title at the head of every page) was read into a provision's text, in the same block as the law below it",
+  "observed": "Page 2 prints the running head 'SINDH ACT NO.I OF 1990 / THE SINDH SMALL INDUSTRIES CORPORATION (AMENDMENT) ACT, 1989' at its head; the same head opens the document's other pages",
+  "source_apparatus_blocks": [
+   26700
+  ],
+  "match_text": "(ix)   One representative of All Pakistan        …",
+  "before_text": "(ix)   One representative of All Pakistan        …",
+  "after_text": "(ix)   One representative of All Pakistan        …",
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) are set aside; no law text changes"
+ }
+]

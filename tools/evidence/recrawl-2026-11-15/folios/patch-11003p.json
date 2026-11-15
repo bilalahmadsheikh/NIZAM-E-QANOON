@@ -1,0 +1,92 @@
+[
+ {
+  "document_id": 11003,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2824413
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '34' alone at its foot (block 2824413, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11003-p1.png",
+  "render_sha256": "0ad92de99cd74e60535580f383a7e5259f968239e0c1f3e39b72977e72bff29b",
+  "match_text": "to provide for law relating to the dis-qualification for membership of",
+  "before_text": "to provide for law relating to the dis-qualification for membership of",
+  "after_text": "to provide for law relating to the dis-qualification for membership of"
+ },
+ {
+  "document_id": 11003,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2824426
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '35' alone at its foot (block 2824426, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11003-p2.png",
+  "render_sha256": "3b96ceb92250b03bb2159a18ef76e8c89fe7fa4d1f0393fd205fe9252f0d41ae",
+  "match_text": "seeing that an election is not conducted honestly, justly,",
+  "before_text": "seeing that an election is not conducted honestly, justly,",
+  "after_text": "seeing that an election is not conducted honestly, justly,"
+ },
+ {
+  "document_id": 11003,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2824438
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '36' alone at its foot (block 2824438, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11003-p3.png",
+  "render_sha256": "ca42ca9f4febdded4eec3c916b96228e73bc4501bbb2473c87d8aa98582c6656",
+  "match_text": "of a representative office, the Chief Secretary or the officer, as",
+  "before_text": "of a representative office, the Chief Secretary or the officer, as",
+  "after_text": "of a representative office, the Chief Secretary or the officer, as"
+ },
+ {
+  "document_id": 11003,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2824452
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '37' alone at its foot (block 2824452, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11003-p4.png",
+  "render_sha256": "f511c1b73e20bd9e3014b7b6941c6dba41045d9da01e5d3b8bf6764f606fcea4",
+  "match_text": "the time being in force, a Disqualification Tribunal shall have the",
+  "before_text": "the time being in force, a Disqualification Tribunal shall have the",
+  "after_text": "the time being in force, a Disqualification Tribunal shall have the"
+ },
+ {
+  "document_id": 11003,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2824462
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '38' alone at its foot (block 2824462, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11003-p5.png",
+  "render_sha256": "323343456e34a8d9c7619637c987d880468960c44f0cc6dcd88e86c3701a98a2",
+  "match_text": "Bar of jurisdiction:- No Court shall have any jurisdiction of any",
+  "before_text": "Bar of jurisdiction:- No Court shall have any jurisdiction of any",
+  "after_text": "Bar of jurisdiction:- No Court shall have any jurisdiction of any"
+ },
+ {
+  "document_id": 11003,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   2824469
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 6 prints its page number '39' alone at its foot (block 2824469, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11003-p6.png",
+  "render_sha256": "e88932a5832a567c51d351b92510350466769706170cac0ce2a99c3ce538b011",
+  "match_text": "authorized by him in this behalf, may make rules for carrying out",
+  "before_text": "authorized by him in this behalf, may make rules for carrying out",
+  "after_text": "authorized by him in this behalf, may make rules for carrying out"
+ }
+]

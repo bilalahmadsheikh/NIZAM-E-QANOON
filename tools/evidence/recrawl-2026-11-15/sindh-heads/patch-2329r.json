@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 2329,
+  "page_no": 2,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc2329-p2.png",
+  "render_sha256": "abbcdd17d7051e77ad8baeb27f527dabaa7112b58a444cb20e2e55ac69efd393",
+  "defect": "the Sindh Code's running head (the law's citation and title at the head of every page) was read into a provision's text, in the same block as the law below it",
+  "observed": "Page 2 prints the running head 'SIND ORDINANCE NO. XV OF 2000. / THE STAMP (SINDH AMENDMENT) ORDINANCE, 2000.' at its head; the same head opens the document's other pages",
+  "source_apparatus_blocks": [
+   186734
+  ],
+  "match_text": "3.    In the said Act, after section 40, the following new section",
+  "before_text": "3.    In the said Act, after section 40, the following new section",
+  "after_text": "3.    In the said Act, after section 40, the following new section",
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) are set aside; no law text changes"
+ }
+]

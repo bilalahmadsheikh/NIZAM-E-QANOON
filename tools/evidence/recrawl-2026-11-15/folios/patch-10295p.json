@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 10295,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2763964
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '538' alone at its foot (block 2763964, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10295-p1.png",
+  "render_sha256": "5d21c19ea28819dca2737dacc100ac54016d42daa0ebbc82880ec81be1c6627f",
+  "match_text": "No. 3091/SL/79. The following Ordinance made by the President on",
+  "before_text": "No. 3091/SL/79. The following Ordinance made by the President on",
+  "after_text": "No. 3091/SL/79. The following Ordinance made by the President on"
+ },
+ {
+  "document_id": 10295,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2763972
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '539' alone at its foot (block 2763972, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10295-p2.png",
+  "render_sha256": "565b0893e76eda6d3fbdcd0e63a54941d83feadf155b7504b8ae4b17a3c50d1e",
+  "match_text": "in Sub-section (1) for the word ‘he’ occurring between the words",
+  "before_text": "in Sub-section (1) for the word ‘he’ occurring between the words",
+  "after_text": "in Sub-section (1) for the word ‘he’ occurring between the words"
+ }
+]

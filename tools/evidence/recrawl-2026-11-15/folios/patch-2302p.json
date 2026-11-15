@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 2302,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   183630
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 183630, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2302-p2.png",
+  "render_sha256": "4923d44339cdc96bdf6d7916e4451becf94a0362278c276a687a9993cb3d5dd0",
+  "match_text": "3) Where the civil servant has died, the appeal may be filed or pursued if it has already been",
+  "before_text": "3) Where the civil servant has died, the appeal may be filed or pursued if it has already been",
+  "after_text": "3) Where the civil servant has died, the appeal may be filed or pursued if it has already been"
+ },
+ {
+  "document_id": 2302,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   183635
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 183635, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2302-p3.png",
+  "render_sha256": "4ecbe42ac2e83a9af6b1b4cc1ac2c91f8171f59899707497fb66619f633269ca",
+  "match_text": "1) The appellate authority shall, on receipt of appeal, call for the record of the case from the",
+  "before_text": "1) The appellate authority shall, on receipt of appeal, call for the record of the case from the",
+  "after_text": "1) The appellate authority shall, on receipt of appeal, call for the record of the case from the"
+ },
+ {
+  "document_id": 2302,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   183647
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 183647, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2302-p4.png",
+  "render_sha256": "4b3c422013ee7117b8142e14552615740ac0ad994cfa19a907946fc654378680",
+  "match_text": "Head of the Attached Deptt: concerned and if there is",
+  "before_text": "Head of the Attached Deptt: concerned and if there is",
+  "after_text": "Head of the Attached Deptt: concerned and if there is"
+ }
+]

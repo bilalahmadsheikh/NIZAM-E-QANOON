@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 1014,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc1014-p3.png",
+  "render_sha256": "3068c7bd0b5e13adbc4d799219c815f56cd9f872d2fd66130f206458e1f2b269",
+  "defect": "the Sindh Code's running head (the law's citation and title at the head of every page) was read into a provision's text, in the same block as the law below it",
+  "observed": "Page 3 prints the running head 'SIND ACT NO.II OF 1972 / THE SIND (TEACHING, PROMOTION AND USE OF SINDHI LANGUAGE) ACT, 1972' at its head; the same head opens the document's other pages",
+  "source_apparatus_blocks": [
+   47699
+  ],
+  "match_text": "6.           Subject    to    the    provisions    of    the    Constitution,",
+  "before_text": "6.           Subject    to    the    provisions    of    the    Constitution,",
+  "after_text": "6.           Subject    to    the    provisions    of    the    Constitution,",
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) are set aside; no law text changes"
+ }
+]

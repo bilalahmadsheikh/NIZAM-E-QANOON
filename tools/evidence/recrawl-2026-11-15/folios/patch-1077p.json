@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 1077,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   50987
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1' alone at its foot (block 50987, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1077-p1.png",
+  "render_sha256": "b418ca495e10a7ec428bf46566479720971f6974db85578a1a7cdf9805977f63",
+  "match_text": "that behalf, the Governor of Sindh is pleased to make and promulgate the following",
+  "before_text": "that behalf, the Governor of Sindh is pleased to make and promulgate the following",
+  "after_text": "that behalf, the Governor of Sindh is pleased to make and promulgate the following"
+ },
+ {
+  "document_id": 1077,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   50991
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 50991, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1077-p2.png",
+  "render_sha256": "0fae304468d2f0e165d7f2493ab2dd32ab53144424f6d3b8004a95b488fa18cc",
+  "match_text": "In the Sindh Finance Act, 1990, section 8 and 9 shall be omitted",
+  "before_text": "In the Sindh Finance Act, 1990, section 8 and 9 shall be omitted",
+  "after_text": "In the Sindh Finance Act, 1990, section 8 and 9 shall be omitted"
+ }
+]

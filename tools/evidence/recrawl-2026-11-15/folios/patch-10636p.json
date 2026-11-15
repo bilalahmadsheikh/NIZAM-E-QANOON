@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 10636,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2791137
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '208' alone at its foot (block 2791137, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10636-p1.png",
+  "render_sha256": "f8d2034e68a2e6d72a847c09ce2867648ff120ac3a9541e31d439124380ea43e",
+  "match_text": "further to amend the Holders of Representative Offices (Disqualification)",
+  "before_text": "further to amend the Holders of Representative Offices (Disqualification)",
+  "after_text": "further to amend the Holders of Representative Offices (Disqualification)"
+ },
+ {
+  "document_id": 10636,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2791147
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '209' alone at its foot (block 2791147, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10636-p2.png",
+  "render_sha256": "16774a7c7db0306d4cd40349755dd6fdb55cf1c946d7d4ae2af053aafd9e142b",
+  "match_text": "transferred shall deal with the same as if it had been",
+  "before_text": "transferred shall deal with the same as if it had been",
+  "after_text": "transferred shall deal with the same as if it had been"
+ }
+]

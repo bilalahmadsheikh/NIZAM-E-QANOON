@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 3936,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   528186
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 528186, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3936-p2.png",
+  "render_sha256": "5b460c6ea7f6a442fdd4e7e18daac65b7177a49166148d130db4f4e192418a89",
+  "match_text": "WHEREAS it is expedient further to amend certain fiscal laws in the Province of",
+  "before_text": "WHEREAS it is expedient further to amend certain fiscal laws in the Province of",
+  "after_text": "WHEREAS it is expedient further to amend certain fiscal laws in the Province of"
+ },
+ {
+  "document_id": 3936,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   528193
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 528193, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3936-p3.png",
+  "render_sha256": "ca96f067798829372a6a7ec6f24ed2c7e509de669b983d32a1c51e0be1445ebd",
+  "match_text": "7, in the last proviso, in the table, against Serial No. 2, under the heading “Validity”, for",
+  "before_text": "7, in the last proviso, in the table, against Serial No. 2, under the heading “Validity”, for",
+  "after_text": "7, in the last proviso, in the table, against Serial No. 2, under the heading “Validity”, for"
+ },
+ {
+  "document_id": 3936,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   528197
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 528197, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3936-p4.png",
+  "render_sha256": "f8ab52cb34b7a9a3331965a79f2a683a49a86ec3fe45c99f51a5798798c96038",
+  "match_text": "XXIII of 2002), in section 4, in the last proviso, in the table, against Serial No. 2, under",
+  "before_text": "XXIII of 2002), in section 4, in the last proviso, in the table, against Serial No. 2, under",
+  "after_text": "XXIII of 2002), in section 4, in the last proviso, in the table, against Serial No. 2, under"
+ }
+]

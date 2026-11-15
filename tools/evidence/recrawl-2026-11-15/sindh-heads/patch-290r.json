@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 290,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc290-p3.png",
+  "render_sha256": "7052605211dee3a5af753bac79aae83e93e0d0e194efb9144497bb7f1d9849c6",
+  "defect": "the Sindh Code's running head (the law's citation and title at the head of every page) was read into a provision's text, in the same block as the law below it",
+  "observed": "Page 3 prints the running head 'SINDH ACT NO.III OF 2014 / THE PREVENTION OF DEFACEMENT OF PROPERTY ACT, 2013' at its head; the same head opens the document's other pages",
+  "source_apparatus_blocks": [
+   13628
+  ],
+  "match_text": "4. (1) Within a period of fifteen days of the promulgation of",
+  "before_text": "4. (1) Within a period of fifteen days of the promulgation of",
+  "after_text": "4. (1) Within a period of fifteen days of the promulgation of",
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) are set aside; no law text changes"
+ }
+]

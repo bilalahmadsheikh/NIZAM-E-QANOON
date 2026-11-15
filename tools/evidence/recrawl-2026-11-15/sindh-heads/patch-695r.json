@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 695,
+  "page_no": 2,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc695-p2.png",
+  "render_sha256": "0d5e1af05b1abb6f0e50e09f21d78546873bd84e79253a27094fb514c9179bf2",
+  "defect": "the Sindh Code's running head (the law's citation and title at the head of every page) was read into a provision's text, in the same block as the law below it",
+  "observed": "Page 2 prints the running head 'SINDH ACT NO. VII OF 2013. / THE SINDH REVENUE BOARD (AMENDMENT) ACT, 2012.' at its head; the same head opens the document's other pages",
+  "source_apparatus_blocks": [
+   30426
+  ],
+  "match_text": "(ii)      in sub-section (2), for the words “two members”",
+  "before_text": "(ii)      in sub-section (2), for the words “two members”",
+  "after_text": "(ii)      in sub-section (2), for the words “two members”",
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) are set aside; no law text changes"
+ }
+]

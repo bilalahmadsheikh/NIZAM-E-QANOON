@@ -1,0 +1,77 @@
+[
+ {
+  "document_id": 10820,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2804139
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '673' alone at its foot (block 2804139, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10820-p1.png",
+  "render_sha256": "27252427c6c1b857b48492aef91614e414f0c2bd245222e7b47b0479b343e70e",
+  "match_text": "President on the 1st day of October, 1979, is hereby published for",
+  "before_text": "President on the 1st day of October, 1979, is hereby published for",
+  "after_text": "President on the 1st day of October, 1979, is hereby published for"
+ },
+ {
+  "document_id": 10820,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2804144
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '674' alone at its foot (block 2804144, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10820-p2.png",
+  "render_sha256": "84f99e90c5420734708aad92f63aafd6884a4f3b2bd6def77a2fa5ba669d4813",
+  "match_text": "shall vest in and be under the control of the authority and",
+  "before_text": "shall vest in and be under the control of the authority and",
+  "after_text": "shall vest in and be under the control of the authority and"
+ },
+ {
+  "document_id": 10820,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2804152
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '675' alone at its foot (block 2804152, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10820-p3.png",
+  "render_sha256": "d7ff344ba8d1fd5eaedbfef52b86fb8d0b23cd384166e27e54805b0e5faac3fd",
+  "match_text": "for the time being in force a certificate of title issued by the",
+  "before_text": "for the time being in force a certificate of title issued by the",
+  "after_text": "for the time being in force a certificate of title issued by the"
+ },
+ {
+  "document_id": 10820,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2804155
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '676' alone at its foot (block 2804155, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10820-p4.png",
+  "render_sha256": "827a5206fba83fabb058dc2daec6c5ed24c359bf6eb79e340b0b6b89dc517e3d",
+  "match_text": "all interests therein and all debts, liabilities and obligations",
+  "before_text": "all interests therein and all debts, liabilities and obligations",
+  "after_text": "all interests therein and all debts, liabilities and obligations"
+ },
+ {
+  "document_id": 10820,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2804162
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '677' alone at its foot (block 2804162, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10820-p5.png",
+  "render_sha256": "f344e5f5f53d43bbfedb3b5ca84f3c7ca625aca85c9a93dcc1e5f8687c74c16e",
+  "match_text": "initiated, jurisdiction or powers exercised under the provisions of",
+  "before_text": "initiated, jurisdiction or powers exercised under the provisions of",
+  "after_text": "initiated, jurisdiction or powers exercised under the provisions of"
+ }
+]

@@ -1,0 +1,77 @@
+[
+ {
+  "document_id": 10438,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2774069
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '986' alone at its foot (block 2774069, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10438-p1.png",
+  "render_sha256": "38329b9fee07a510d8158285a4f4ab35295349ebb42782b1a02765604f57425a",
+  "match_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "before_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "after_text": "Constitution Act, 1974, the President is pleased to make and promulgate"
+ },
+ {
+  "document_id": 10438,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2774082
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '987' alone at its foot (block 2774082, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10438-p2.png",
+  "render_sha256": "7e684b674a14e7c7465445e238b0026e25e1b67ff901f9fcb18e203f0a59d113",
+  "match_text": "Ordinarily meet for the transaction of business at such place as",
+  "before_text": "Ordinarily meet for the transaction of business at such place as",
+  "after_text": "Ordinarily meet for the transaction of business at such place as"
+ },
+ {
+  "document_id": 10438,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2774094
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '988' alone at its foot (block 2774094, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10438-p3.png",
+  "render_sha256": "85113991bdeaa10144bfa521a4386692f982477dbbd773293ac7238f0685db82",
+  "match_text": "Bar of Jurisdiction.- The order of proceedings of the Appellate",
+  "before_text": "Bar of Jurisdiction.- The order of proceedings of the Appellate",
+  "after_text": "Bar of Jurisdiction.- The order of proceedings of the Appellate"
+ },
+ {
+  "document_id": 10438,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2774106
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '989' alone at its foot (block 2774106, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10438-p4.png",
+  "render_sha256": "814cee176db024e572b45d52d15563d4cc3cef442da2735148d427db6ed1374d",
+  "match_text": "initiated, jurisdiction or powers exercise under the provisions of",
+  "before_text": "initiated, jurisdiction or powers exercise under the provisions of",
+  "after_text": "initiated, jurisdiction or powers exercise under the provisions of"
+ },
+ {
+  "document_id": 10438,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2774113
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '990' alone at its foot (block 2774113, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10438-p5.png",
+  "render_sha256": "98092a2f64af1239a9b94ed83be9692c46b64804a188c64e652e8acdd89b0a29",
+  "match_text": "time shall be deemed to have been validly done, taken, issued,",
+  "before_text": "time shall be deemed to have been validly done, taken, issued,",
+  "after_text": "time shall be deemed to have been validly done, taken, issued,"
+ }
+]

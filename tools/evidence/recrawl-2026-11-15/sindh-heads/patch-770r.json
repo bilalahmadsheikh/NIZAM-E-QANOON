@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 770,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   34706
+  ],
+  "defect": "the Sindh Code's running head (the law's citation printed at the head of every page) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the running-head block is set aside; no law text changes",
+  "observed": "Page 3 prints the running head 'SIND ACT NO.V OF 1987' alone at its head (block 34706, the page's first block); the same line heads the document's other pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc770-p3.png",
+  "render_sha256": "ec1f084919f1bcceafe966476d412347b01221aa2fb9b915b99c2390fd1b3b32",
+  "match_text": "(f) institution and maintenance of and conditions for",
+  "before_text": "(f) institution and maintenance of and conditions for",
+  "after_text": "(f) institution and maintenance of and conditions for"
+ }
+]

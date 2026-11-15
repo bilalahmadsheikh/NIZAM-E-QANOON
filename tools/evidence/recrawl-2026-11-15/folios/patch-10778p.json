@@ -1,0 +1,107 @@
+[
+ {
+  "document_id": 10778,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2801274
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1219' alone at its foot (block 2801274, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10778-p1.png",
+  "render_sha256": "84abaf2306139045063ca67be0d08bf0e6b6d55d8733ef8593b30b3931f76e76",
+  "match_text": "received the assent of the President on the  6th day of January",
+  "before_text": "received the assent of the President on the  6th day of January",
+  "after_text": "received the assent of the President on the  6th day of January"
+ },
+ {
+  "document_id": 10778,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2801288
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '1220' alone at its foot (block 2801288, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10778-p2.png",
+  "render_sha256": "3709418ac6e0f5d239f4fb3ba9a1522387e29cb93f19a78d0ea7d184e645e251",
+  "match_text": "having ten years of experience as an active practitioner:",
+  "before_text": "having ten years of experience as an active practitioner:",
+  "after_text": "having ten years of experience as an active practitioner:"
+ },
+ {
+  "document_id": 10778,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2801303
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '1221' alone at its foot (block 2801303, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10778-p3.png",
+  "render_sha256": "034f78f5530419ea7f5b75daacb836ab177ecae903aa8ac065f98aa37a6bcb30",
+  "match_text": "General or Assistant Advocate General unless he is forty",
+  "before_text": "General or Assistant Advocate General unless he is forty",
+  "after_text": "General or Assistant Advocate General unless he is forty"
+ },
+ {
+  "document_id": 10778,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2801323
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '1222' alone at its foot (block 2801323, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10778-p4.png",
+  "render_sha256": "e7083c56debe9bec42de714e83a5ee859fd55d013a3d11a8169eefc8cda7fcf4",
+  "match_text": "(e) for the first two years of the appointment the Law",
+  "before_text": "(e) for the first two years of the appointment the Law",
+  "after_text": "(e) for the first two years of the appointment the Law"
+ },
+ {
+  "document_id": 10778,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2801345
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '1223' alone at its foot (block 2801345, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10778-p5.png",
+  "render_sha256": "18d98161ff9e277e67a8825c1a14272d7af68b284b78cc78427d75b45a14992e",
+  "match_text": "Non Practicing Allowance Rs. 1, 00,000/-",
+  "before_text": "Non Practicing Allowance Rs. 1, 00,000/-",
+  "after_text": "Non Practicing Allowance Rs. 1, 00,000/-"
+ },
+ {
+  "document_id": 10778,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   2801355
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 6 prints its page number '1224' alone at its foot (block 2801355, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10778-p6.png",
+  "render_sha256": "58a448226e876bd23ef52d7440ae1f8a705227a55d571d4d85f7ed66b08e552a",
+  "match_text": "07.04.2009 shall be paid on availability of funds in due",
+  "before_text": "07.04.2009 shall be paid on availability of funds in due",
+  "after_text": "07.04.2009 shall be paid on availability of funds in due"
+ },
+ {
+  "document_id": 10778,
+  "page_no": 7,
+  "source_apparatus_blocks": [
+   2801362
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 7 prints its page number '1225' alone at its foot (block 2801362, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10778-p7.png",
+  "render_sha256": "c6c3dd84e6a15750cbdcb76b897bfb713b67535250be7dca63eaadc15a9396c9",
+  "match_text": "valid and be applicable for all persons who are or have",
+  "before_text": "valid and be applicable for all persons who are or have",
+  "after_text": "valid and be applicable for all persons who are or have"
+ }
+]

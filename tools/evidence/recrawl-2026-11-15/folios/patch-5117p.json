@@ -1,0 +1,77 @@
+[
+ {
+  "document_id": 5117,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   1036146
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1' alone at its foot (block 1036146, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc5117-p1.png",
+  "render_sha256": "30f3c2a52d910a04cb8334894e63c532c936f4691cef04c30dfc002206e46710",
+  "match_text": "(Bill No.25 of 2021),  having been   passed  by  the  Provincial  Assembly  of  Balochistan on",
+  "before_text": "(Bill No.25 of 2021),  having been   passed  by  the  Provincial  Assembly  of  Balochistan on",
+  "after_text": "(Bill No.25 of 2021),  having been   passed  by  the  Provincial  Assembly  of  Balochistan on"
+ },
+ {
+  "document_id": 5117,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   1036176
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 1036176, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc5117-p2.png",
+  "render_sha256": "59e3996f3a5341821acad800c3cff3b7e588c82e8e3d562430cd4359db8a8d39",
+  "match_text": "& Industry.                                                                 Member.",
+  "before_text": "& Industry.                                                                 Member.",
+  "after_text": "& Industry.                                                                 Member."
+ },
+ {
+  "document_id": 5117,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   1036215
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 1036215, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc5117-p3.png",
+  "render_sha256": "d00ea630ed483ef4f2edc90658d90841a74cbc28846fdc5dfc842c2d653f96d3",
+  "match_text": "In the said Act, for section 12,  the following shall be substituted: -",
+  "before_text": "In the said Act, for section 12,  the following shall be substituted: -",
+  "after_text": "In the said Act, for section 12,  the following shall be substituted: -"
+ },
+ {
+  "document_id": 5117,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   1036256
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 1036256, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc5117-p4.png",
+  "render_sha256": "142d946fa0f49fd2e0f25dd0c74efa33a1298a0e4a7c18fc144c4d6c2a747813",
+  "match_text": "In the said Act, in section 31, sub-section (1), after the word” Food Safety",
+  "before_text": "In the said Act, in section 31, sub-section (1), after the word” Food Safety",
+  "after_text": "In the said Act, in section 31, sub-section (1), after the word” Food Safety"
+ },
+ {
+  "document_id": 5117,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   1036285
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '5' alone at its foot (block 1036285, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc5117-p5.png",
+  "render_sha256": "1b5f6f207cb3622c56445017da762d641341bb82004c8ae9787a6e869894b4d3",
+  "match_text": "In the said Act, in section 40, after the words “shall be” for the word “tried”",
+  "before_text": "In the said Act, in section 40, after the words “shall be” for the word “tried”",
+  "after_text": "In the said Act, in section 40, after the words “shall be” for the word “tried”"
+ }
+]

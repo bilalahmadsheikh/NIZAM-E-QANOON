@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 1040,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   49302
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 49302, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1040-p2.png",
+  "render_sha256": "8c48af456a0bacad4a55f0443be0672c17daede6cb1f5262a47e4a8e3c3d62c5",
+  "match_text": "clause (1) of Article 128 of the Constitution of the Islamic Republic of",
+  "before_text": "clause (1) of Article 128 of the Constitution of the Islamic Republic of",
+  "after_text": "clause (1) of Article 128 of the Constitution of the Islamic Republic of"
+ }
+]

@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 1674,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   106336
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 106336, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1674-p2.png",
+  "render_sha256": "3f8941376056db49093d8cefe752092548497bbde9c4fce89489b34a1c04dcaa",
+  "match_text": "of the fifth day of July, 1977 and the Provisional Constitution Order,",
+  "before_text": "of the fifth day of July, 1977 and the Provisional Constitution Order,",
+  "after_text": "of the fifth day of July, 1977 and the Provisional Constitution Order,"
+ },
+ {
+  "document_id": 1674,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   106355
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 106355, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1674-p3.png",
+  "render_sha256": "871be0539fd76610b78f64b1c431b2a95e9ab89794a5351bed7cd822142ad9ac",
+  "match_text": "(e)  in article 24, in clause (ii), in column 2, for the",
+  "before_text": "(e)  in article 24, in clause (ii), in column 2, for the",
+  "after_text": "(e)  in article 24, in clause (ii), in column 2, for the"
+ },
+ {
+  "document_id": 1674,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   106374
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 106374, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1674-p4.png",
+  "render_sha256": "9e59e7f32ab3c62cead6069f1927599cb9b0b569de7598e87653f675131e4ae0",
+  "match_text": "Schedule, for entries at serial No. 5, the following shall be",
+  "before_text": "Schedule, for entries at serial No. 5, the following shall be",
+  "after_text": "Schedule, for entries at serial No. 5, the following shall be"
+ },
+ {
+  "document_id": 1674,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   106383
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '5' alone at its foot (block 106383, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1674-p5.png",
+  "render_sha256": "f595b815c01e10d97459e50df3c02b79fc810b60a202f17228c65c67b8e9f32b",
+  "match_text": "section (1), for the words “twenty-five paisa per maund”, the",
+  "before_text": "section (1), for the words “twenty-five paisa per maund”, the",
+  "after_text": "section (1), for the words “twenty-five paisa per maund”, the"
+ }
+]

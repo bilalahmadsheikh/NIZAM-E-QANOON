@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 11343,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2847857
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '967' alone at its foot (block 2847857, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11343-p1.png",
+  "render_sha256": "904d0c3250c52b3390a9b16fae84785825c7d6cd05bf57ed4ec75e3e0584b659",
+  "match_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "before_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "after_text": "Constitution Act, 1974, the President is pleased to make and promulgate"
+ },
+ {
+  "document_id": 11343,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2847867
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '968' alone at its foot (block 2847867, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11343-p2.png",
+  "render_sha256": "8273b8b6ac9f2c7df890a6c1020a0f195961ab018028960ed04c3fbc430721a1",
+  "match_text": "initiated, jurisdiction or powers exercised under the provisions of",
+  "before_text": "initiated, jurisdiction or powers exercised under the provisions of",
+  "after_text": "initiated, jurisdiction or powers exercised under the provisions of"
+ }
+]

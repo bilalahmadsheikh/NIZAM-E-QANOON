@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 10974,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2818277
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '44' alone at its foot (block 2818277, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10974-p1.png",
+  "render_sha256": "b56d967b91fedf56f7d4811252ed04ae96e8680fa4096fc1914f722109d2d092",
+  "match_text": "on 20th day of March, 1978, is hereby published for general information:-",
+  "before_text": "on 20th day of March, 1978, is hereby published for general information:-",
+  "after_text": "on 20th day of March, 1978, is hereby published for general information:-"
+ },
+ {
+  "document_id": 10974,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2818283
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '45' alone at its foot (block 2818283, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10974-p2.png",
+  "render_sha256": "b7d0ebed82c0e6a6a94214efa2fd73a1ac9effd5b6ca4ccdb438f94a9c8bb653",
+  "match_text": "said Ordinance, after Section 10, the following new Section shall",
+  "before_text": "said Ordinance, after Section 10, the following new Section shall",
+  "after_text": "said Ordinance, after Section 10, the following new Section shall"
+ }
+]

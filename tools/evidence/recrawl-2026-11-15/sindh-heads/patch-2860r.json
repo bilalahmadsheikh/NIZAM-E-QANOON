@@ -1,0 +1,14 @@
+[
+ {
+  "document_id": 2860,
+  "page_no": 16,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc2860-p16.png",
+  "render_sha256": "3493bcc620956939c6864b031048e4d88bdd340045b443c56c4cdc1e478cdce6",
+  "defect": "the Sindh Code's running head (the law's citation and title at the head of every page) was read into a provision's text, in the same block as the law below it",
+  "observed": "Page 16 prints the running head 'SINDH ACT NO.XII OF 1995 / THE SINDH BANK ACT, 1995' at its head; the same head opens the document's other pages",
+  "match_text": "SINDH ACT NO.XII OF 1995",
+  "before_text": "SINDH ACT NO.XII OF 1995 \nTHE SINDH BANK ACT, 1995",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-head lines are cut from the block; the law after them is kept as printed"
+ }
+]

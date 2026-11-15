@@ -1,0 +1,92 @@
+[
+ {
+  "document_id": 10162,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2755653
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '75' alone at its foot (block 2755653, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10162-p1.png",
+  "render_sha256": "ec0a4ff45dbc95d8ef1e4d3c46bed2439c4f3a2cc64ddbd4c81eb302349261f7",
+  "match_text": "to provide for the law relating to the repayment and recovery of loans",
+  "before_text": "to provide for the law relating to the repayment and recovery of loans",
+  "after_text": "to provide for the law relating to the repayment and recovery of loans"
+ },
+ {
+  "document_id": 10162,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2755665
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '76' alone at its foot (block 2755665, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10162-p2.png",
+  "render_sha256": "4fbd3f2f4e07e92e0a7071fc16e9af132f8af5525d0e578e4f4f3cd5086b381d",
+  "match_text": "Explanation.- 'Benami loan' means a lean the real beneficiary or",
+  "before_text": "Explanation.- 'Benami loan' means a lean the real beneficiary or",
+  "after_text": "Explanation.- 'Benami loan' means a lean the real beneficiary or"
+ },
+ {
+  "document_id": 10162,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2755673
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '77' alone at its foot (block 2755673, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10162-p3.png",
+  "render_sha256": "a398c09647e9ba4a5b4f8a37cd92f3b139284c30aab73f8c9e2016a717f64809",
+  "match_text": "sub-section (5) of the said section, in the following manner, that",
+  "before_text": "sub-section (5) of the said section, in the following manner, that",
+  "after_text": "sub-section (5) of the said section, in the following manner, that"
+ },
+ {
+  "document_id": 10162,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2755682
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '78' alone at its foot (block 2755682, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10162-p4.png",
+  "render_sha256": "2ad2168a5868271f37f84fe2e0cb797fab98959b89180b193fe62b8a01f9af15",
+  "match_text": "to hold in the matter, that the loan has been appropriated by any director,",
+  "before_text": "to hold in the matter, that the loan has been appropriated by any director,",
+  "after_text": "to hold in the matter, that the loan has been appropriated by any director,"
+ },
+ {
+  "document_id": 10162,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2755699
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '79' alone at its foot (block 2755699, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10162-p5.png",
+  "render_sha256": "a37338b18444c84b198b96beed895ef68ae028ea1e1d663cd483f59159b683d6",
+  "match_text": "of a Court, such alienation shall not operate to transfer any right,",
+  "before_text": "of a Court, such alienation shall not operate to transfer any right,",
+  "after_text": "of a Court, such alienation shall not operate to transfer any right,"
+ },
+ {
+  "document_id": 10162,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   2755713
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 6 prints its page number '80' alone at its foot (block 2755713, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10162-p6.png",
+  "render_sha256": "8135827037279a16f13352c1c0b733daf103fb50e156a60d21407eb5dd98dd9d",
+  "match_text": "the official Gazette and this declaration shall have effect of and",
+  "before_text": "the official Gazette and this declaration shall have effect of and",
+  "after_text": "the official Gazette and this declaration shall have effect of and"
+ }
+]

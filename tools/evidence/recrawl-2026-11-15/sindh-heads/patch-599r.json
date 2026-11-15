@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 599,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   24364
+  ],
+  "defect": "the Sindh Code's running head (the law's citation printed at the head of every page) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the running-head block is set aside; no law text changes",
+  "observed": "Page 2 prints the running head 'SIND ORDINANCE NO. LIII of 1984' alone at its head (block 24364, the page's first block); the same line heads the document's other pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc599-p2.png",
+  "render_sha256": "61e998474730be248f7bf9666e48698c2cf0552e0c226369744431e20e75d9dd",
+  "match_text": "“subject to the provision of sub-section (2) of section 15,” shall",
+  "before_text": "“subject to the provision of sub-section (2) of section 15,” shall",
+  "after_text": "“subject to the provision of sub-section (2) of section 15,” shall"
+ }
+]

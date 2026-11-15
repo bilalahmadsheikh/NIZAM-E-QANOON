@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 2368,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc2368-p4.png",
+  "render_sha256": "6732f901e627ef6e632041609c2a74b147d4e270716f941b4094450f0451d5a0",
+  "defect": "the Sindh Code's running head (the law's citation and title at the head of every page) was read into a provision's text, in the same block as the law below it",
+  "observed": "Page 4 prints the running head 'SINDH ACT NO.V OF 2010 / THE SINDH PUBLIC-PRIVATE PARTNERSHIP ACT, 2010' at its head; the same head opens the document's other pages",
+  "match_text": "SINDH ACT NO.V OF 2010",
+  "before_text": "SINDH ACT NO.V OF 2010 \nTHE SINDH PUBLIC-PRIVATE PARTNERSHIP ACT, 2010",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-head lines are cut from the block; the law after them is kept as printed"
+ },
+ {
+  "document_id": 2368,
+  "page_no": 6,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc2368-p6.png",
+  "render_sha256": "aaddfee2d83ec84c9a7e6d87b0cfbfe43a9d62933d0e2514fa5f055e517ed382",
+  "defect": "the Sindh Code's running head (the law's citation and title at the head of every page) was read into a provision's text, in the same block as the law below it",
+  "observed": "Page 6 prints the running head 'SINDH ACT NO.V OF 2010 / THE SINDH PUBLIC-PRIVATE PARTNERSHIP ACT, 2010' at its head; the same head opens the document's other pages",
+  "match_text": "SINDH ACT NO.V OF 2010",
+  "before_text": "SINDH ACT NO.V OF 2010 \nTHE SINDH PUBLIC-PRIVATE PARTNERSHIP ACT, 2010",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-head lines are cut from the block; the law after them is kept as printed"
+ },
+ {
+  "document_id": 2368,
+  "page_no": 7,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc2368-p7.png",
+  "render_sha256": "2d9d0c4a63a278d23312f8fd05b10b45b8ebadc9fd98dfbb8f2ab5bfffaecd03",
+  "defect": "the Sindh Code's running head (the law's citation and title at the head of every page) was read into a provision's text, in the same block as the law below it",
+  "observed": "Page 7 prints the running head 'SINDH ACT NO.V OF 2010 / THE SINDH PUBLIC-PRIVATE PARTNERSHIP ACT, 2010' at its head; the same head opens the document's other pages",
+  "match_text": "SINDH ACT NO.V OF 2010",
+  "before_text": "SINDH ACT NO.V OF 2010 \nTHE SINDH PUBLIC-PRIVATE PARTNERSHIP ACT, 2010",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-head lines are cut from the block; the law after them is kept as printed"
+ },
+ {
+  "document_id": 2368,
+  "page_no": 16,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc2368-p16.png",
+  "render_sha256": "384355af7a8be13a4406dd33392ab8665ab20ba9275b700cba910efdbc659757",
+  "defect": "the Sindh Code's running head (the law's citation and title at the head of every page) was read into a provision's text, in the same block as the law below it",
+  "observed": "Page 16 prints the running head 'SINDH ACT NO.V OF 2010 / THE SINDH PUBLIC-PRIVATE PARTNERSHIP ACT, 2010' at its head; the same head opens the document's other pages",
+  "match_text": "SINDH ACT NO.V OF 2010",
+  "before_text": "SINDH ACT NO.V OF 2010 \nTHE SINDH PUBLIC-PRIVATE PARTNERSHIP ACT, 2010",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-head lines are cut from the block; the law after them is kept as printed"
+ },
+ {
+  "document_id": 2368,
+  "page_no": 17,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc2368-p17.png",
+  "render_sha256": "bb3073ef546d4c25d4e43412d84f4cfa1f7e492ab94fac360d788398415f1753",
+  "defect": "the Sindh Code's running head (the law's citation and title at the head of every page) was read into a provision's text, in the same block as the law below it",
+  "observed": "Page 17 prints the running head 'SINDH ACT NO.V OF 2010 / THE SINDH PUBLIC-PRIVATE PARTNERSHIP ACT, 2010' at its head; the same head opens the document's other pages",
+  "match_text": "SINDH ACT NO.V OF 2010",
+  "before_text": "SINDH ACT NO.V OF 2010 \nTHE SINDH PUBLIC-PRIVATE PARTNERSHIP ACT, 2010",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-head lines are cut from the block; the law after them is kept as printed"
+ }
+]

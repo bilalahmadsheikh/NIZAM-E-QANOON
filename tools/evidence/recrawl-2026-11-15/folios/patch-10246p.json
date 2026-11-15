@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 10246,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2760092
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '180' alone at its foot (block 2760092, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10246-p1.png",
+  "render_sha256": "fcd382bd7691cc468c747f3ac65cdb2c59675e6b5c4be1c35faa03eda79fe672",
+  "match_text": "Kashmir Public Service Commission and for matters ancillary thereto, in",
+  "before_text": "Kashmir Public Service Commission and for matters ancillary thereto, in",
+  "after_text": "Kashmir Public Service Commission and for matters ancillary thereto, in"
+ },
+ {
+  "document_id": 10246,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2760108
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '181' alone at its foot (block 2760108, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10246-p2.png",
+  "render_sha256": "04851ebc5d678f0156c7b1af3f568decd9809ff27f736e0e6fc55a26b55000d5",
+  "match_text": "(4)   The pay and other conditions of service of members shall be",
+  "before_text": "(4)   The pay and other conditions of service of members shall be",
+  "after_text": "(4)   The pay and other conditions of service of members shall be"
+ },
+ {
+  "document_id": 10246,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2760121
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '182' alone at its foot (block 2760121, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10246-p3.png",
+  "render_sha256": "48ca35ccf9f24d584fbe10929238081ab9456e1693dc25cb17c13bfa3a42b88a",
+  "match_text": "Previous appointments.- Notwithstanding anything contained",
+  "before_text": "Previous appointments.- Notwithstanding anything contained",
+  "after_text": "Previous appointments.- Notwithstanding anything contained"
+ },
+ {
+  "document_id": 10246,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2760135
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '183' alone at its foot (block 2760135, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10246-p4.png",
+  "render_sha256": "47635756219c46f8f5ba9ea03884ce94783d7e3d797872d54120d1cf68b0eb4b",
+  "match_text": "the official Gazette, make rules for carrying out the purposes of",
+  "before_text": "the official Gazette, make rules for carrying out the purposes of",
+  "after_text": "the official Gazette, make rules for carrying out the purposes of"
+ }
+]

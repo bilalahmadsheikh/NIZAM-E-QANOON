@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 10726,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2797428
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '457' alone at its foot (block 2797428, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10726-p1.png",
+  "render_sha256": "f698f442e3a4b6da6d1667e3e8bc4df73873a2ce9d7d20bd94c4a7083814b8f4",
+  "match_text": "on 15th day of June, 1979, is hereby published for general information:-",
+  "before_text": "on 15th day of June, 1979, is hereby published for general information:-",
+  "after_text": "on 15th day of June, 1979, is hereby published for general information:-"
+ },
+ {
+  "document_id": 10726,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2797436
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '458' alone at its foot (block 2797436, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10726-p2.png",
+  "render_sha256": "ffe4ae6e42e8d2c34bb4383ac38195b8b8e5b995ea63200b5ae4c8c283f325d3",
+  "match_text": "(Rasoomat) referred to in sub-section (I) except with the prior",
+  "before_text": "(Rasoomat) referred to in sub-section (I) except with the prior",
+  "after_text": "(Rasoomat) referred to in sub-section (I) except with the prior"
+ },
+ {
+  "document_id": 10726,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2797443
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '459' alone at its foot (block 2797443, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10726-p3.png",
+  "render_sha256": "6f2b16b5b67e9e7452d8353a0856045fff99a2438640e20a8956d6fbf2ef57c3",
+  "match_text": "other person, the amount of the compensation, if any, paid to the",
+  "before_text": "other person, the amount of the compensation, if any, paid to the",
+  "after_text": "other person, the amount of the compensation, if any, paid to the"
+ },
+ {
+  "document_id": 10726,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2797455
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '460' alone at its foot (block 2797455, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10726-p4.png",
+  "render_sha256": "b4ca92d72a4211d88b0b6358c2b54ec15568da247c943b5d8217c750dd29cb6e",
+  "match_text": "section 7, in subsection (1) the full stop occurring at the end shall",
+  "before_text": "section 7, in subsection (1) the full stop occurring at the end shall",
+  "after_text": "section 7, in subsection (1) the full stop occurring at the end shall"
+ }
+]

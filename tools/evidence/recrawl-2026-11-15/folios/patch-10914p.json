@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 10914,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2811706
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '706' alone at its foot (block 2811706, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10914-p1.png",
+  "render_sha256": "83f102094ec6cb87850af1bf7ee69910e33d46262cf178ece4b330c1cece0672",
+  "match_text": "(khamar) and bring the law in conformity with the basic tenants of",
+  "before_text": "(khamar) and bring the law in conformity with the basic tenants of",
+  "after_text": "(khamar) and bring the law in conformity with the basic tenants of"
+ },
+ {
+  "document_id": 10914,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2811728
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '707' alone at its foot (block 2811728, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10914-p2.png",
+  "render_sha256": "c0b5d61b051dcb4f5c9e68be29210bcf7c9f15ab5b91f4520090b77e2607782f",
+  "match_text": "purposes, will not be liable under the provisions of this Act.",
+  "before_text": "purposes, will not be liable under the provisions of this Act.",
+  "after_text": "purposes, will not be liable under the provisions of this Act."
+ },
+ {
+  "document_id": 10914,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2811732
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '708' alone at its foot (block 2811732, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10914-p3.png",
+  "render_sha256": "228f62d16044afece7336ddc9c75667c8d715d04c8c61da06bc126402f4cf270",
+  "match_text": "AJ&K Revised Volume",
+  "before_text": "AJ&K Revised Volume",
+  "after_text": "AJ&K Revised Volume"
+ }
+]

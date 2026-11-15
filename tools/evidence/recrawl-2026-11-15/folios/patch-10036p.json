@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 10036,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2746192
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '757' alone at its foot (block 2746192, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10036-p1.png",
+  "render_sha256": "5e2e99b5d7a220a75d2bb4e9f50bbdbc6a6d775f5b850de2e628e3edebb75472",
+  "match_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "before_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "after_text": "Constitution Act, 1974, the President is pleased to make and promulgate"
+ },
+ {
+  "document_id": 10036,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2746195
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '758' alone at its foot (block 2746195, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10036-p2.png",
+  "render_sha256": "ae4059cd4462fd6cc6a5838ebbd3988b343197e3c711f2aed3d15c0d8c1f3db6",
+  "match_text": "whipping.- the following provisions shall apply to the execution",
+  "before_text": "whipping.- the following provisions shall apply to the execution",
+  "after_text": "whipping.- the following provisions shall apply to the execution"
+ },
+ {
+  "document_id": 10036,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2746202
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '759' alone at its foot (block 2746202, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10036-p3.png",
+  "render_sha256": "8f53298ab90cd24f181ce7227eb889ab267e1eb868cc32b1efce8017529bfe8b",
+  "match_text": "initiated, jurisdiction or powers exercised under the provisions of",
+  "before_text": "initiated, jurisdiction or powers exercised under the provisions of",
+  "after_text": "initiated, jurisdiction or powers exercised under the provisions of"
+ }
+]

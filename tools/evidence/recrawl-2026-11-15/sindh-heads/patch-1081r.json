@@ -1,0 +1,18 @@
+[
+ {
+  "document_id": 1081,
+  "page_no": 2,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc1081-p2.png",
+  "render_sha256": "cd724c096edbf0f1d9787aebcbc88323747b42d71cd198ea4352db2c02e92526",
+  "defect": "the Sindh Code's running head (the law's citation and title at the head of every page) was read into a provision's text, in the same block as the law below it",
+  "observed": "Page 2 prints the running head 'SINDH ORDINANCE NO. VII OF 2004. / THE SINDH BOARDS OF INTERMEDIATE AND SECONDARY' at its head; the same head opens the document's other pages",
+  "source_apparatus_blocks": [
+   51190,
+   51191
+  ],
+  "match_text": "In   the   said   ordinance,   in   the   Schedule,   for   the   word",
+  "before_text": "In   the   said   ordinance,   in   the   Schedule,   for   the   word",
+  "after_text": "In   the   said   ordinance,   in   the   Schedule,   for   the   word",
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) are set aside; no law text changes"
+ }
+]

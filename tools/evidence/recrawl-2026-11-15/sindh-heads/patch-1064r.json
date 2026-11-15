@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 1064,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   50200
+  ],
+  "defect": "the Sindh Code's running head (the law's citation printed at the head of every page) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the running-head block is set aside; no law text changes",
+  "observed": "Page 3 prints the running head 'SINDH ORDINANCE NO. VIII OF 2002' alone at its head (block 50200, the page's first block); the same line heads the document's other pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc1064-p3.png",
+  "render_sha256": "2dae33444de57c92a718c981f271365e20a7f89814e1d56e9ce13b3185fc07e0",
+  "match_text": "was granted except with the approval of the authority which granted the plot on",
+  "before_text": "was granted except with the approval of the authority which granted the plot on",
+  "after_text": "was granted except with the approval of the authority which granted the plot on"
+ }
+]

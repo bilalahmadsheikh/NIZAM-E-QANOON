@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 1195,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   60622
+  ],
+  "defect": "the Sindh Code's running head (the law's citation printed at the head of every page) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the running-head block is set aside; no law text changes",
+  "observed": "Page 2 prints the running head 'SIND ORDINANCE NO. I OF 1988.' alone at its head (block 60622, the page's first block); the same line heads the document's other pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc1195-p2.png",
+  "render_sha256": "a2b4c9fb525fed6e953bdd68d8ae20302f6fa1ab0d3506595a02eb33c7bb3d9c",
+  "match_text": "pursuance of the said notification shall always be",
+  "before_text": "pursuance of the said notification shall always be",
+  "after_text": "pursuance of the said notification shall always be"
+ }
+]

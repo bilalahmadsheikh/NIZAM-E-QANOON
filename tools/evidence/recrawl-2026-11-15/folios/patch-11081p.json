@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 11081,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2830790
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '169' alone at its foot (block 2830790, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11081-p1.png",
+  "render_sha256": "7fc55e1807aab54112ecd4ba4b5e812c1317bdb2377a4a6962cdc768506aab4b",
+  "match_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "before_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "after_text": "Constitution Act, 1974, the President is pleased to make and promulgate"
+ },
+ {
+  "document_id": 11081,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2830799
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '170' alone at its foot (block 2830799, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11081-p2.png",
+  "render_sha256": "8e439f889a4a513155d0736185819855cf3a0e826556abaa18a7bd439a0191a3",
+  "match_text": "Repeal.- The Waqf Properties (Amendment) Ordinance, 1978,",
+  "before_text": "Repeal.- The Waqf Properties (Amendment) Ordinance, 1978,",
+  "after_text": "Repeal.- The Waqf Properties (Amendment) Ordinance, 1978,"
+ }
+]

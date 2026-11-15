@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 650,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   27306
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 27306, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc650-p2.png",
+  "render_sha256": "dfc58fcfd4b493d61f1a6fdf2cf6df82e5cbcc3b788f98dd56d86ea7bde861ec",
+  "match_text": "official gazette, publish such instructions, guidelines or policies as it",
+  "before_text": "official gazette, publish such instructions, guidelines or policies as it",
+  "after_text": "official gazette, publish such instructions, guidelines or policies as it"
+ },
+ {
+  "document_id": 650,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   27321
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 27321, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc650-p3.png",
+  "render_sha256": "7ec8bf1a7a9a2e4dfe2a704d4ab85a831d2d297a82fd5e725c0ec3f892535c94",
+  "match_text": "(5) The health care facility shall provide counselling facilities for",
+  "before_text": "(5) The health care facility shall provide counselling facilities for",
+  "after_text": "(5) The health care facility shall provide counselling facilities for"
+ },
+ {
+  "document_id": 650,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   27338
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 27338, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc650-p4.png",
+  "render_sha256": "3746e3b67605b6156ad26eb487cf6acdca70b753842e864a88db9cfe53ec4a79",
+  "match_text": "8. (1) In case a health care facility fails to carry out the necessary",
+  "before_text": "8. (1) In case a health care facility fails to carry out the necessary",
+  "after_text": "8. (1) In case a health care facility fails to carry out the necessary"
+ },
+ {
+  "document_id": 650,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   27355
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '5' alone at its foot (block 27355, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc650-p5.png",
+  "render_sha256": "2838b969c1cc49314f59446162c1eeb22aed2d8943f3edac752c49955ac9b9a4",
+  "match_text": "Services or District Health Officer or any other officer on his behalf",
+  "before_text": "Services or District Health Officer or any other officer on his behalf",
+  "after_text": "Services or District Health Officer or any other officer on his behalf"
+ }
+]

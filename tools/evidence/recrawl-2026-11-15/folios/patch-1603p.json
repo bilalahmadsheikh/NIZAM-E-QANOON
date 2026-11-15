@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 1603,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   99277
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1' alone at its foot (block 99277, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1603-p1.png",
+  "render_sha256": "ae41a5bda9763e2d87f5808b60ad1e226b53d47d5b1ca9cc61db6596cd46a03c",
+  "match_text": "The Hamdard University Act, 1991         1) In section 12, sub-section (1), in clause (e) and",
+  "before_text": "The Hamdard University Act, 1991         1) In section 12, sub-section (1), in clause (e) and",
+  "after_text": "The Hamdard University Act, 1991         1) In section 12, sub-section (1), in clause (e) and"
+ },
+ {
+  "document_id": 1603,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   99306
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 99306, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1603-p2.png",
+  "render_sha256": "69645015c5ae8eb5d7365e158b5faa1930e83a440c46722860ebb396f603c38f",
+  "match_text": "9.       The Iqra University Ordinance, 2000.     In section 10, in sub-section (1) – (i) for clause",
+  "before_text": "9.       The Iqra University Ordinance, 2000.     In section 10, in sub-section (1) – (i) for clause",
+  "after_text": "9.       The Iqra University Ordinance, 2000.     In section 10, in sub-section (1) – (i) for clause"
+ },
+ {
+  "document_id": 1603,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   99327
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 99327, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1603-p3.png",
+  "render_sha256": "bbba557a19d45d23d9c0b09c108455ed1ad9bc76df261e9616f744b8a6c2a019",
+  "match_text": "THE PRIVATE UNIVERSITIES AND EDUCATIONAL INSTITUTES LAWS",
+  "before_text": "THE PRIVATE UNIVERSITIES AND EDUCATIONAL INSTITUTES LAWS",
+  "after_text": "THE PRIVATE UNIVERSITIES AND EDUCATIONAL INSTITUTES LAWS"
+ },
+ {
+  "document_id": 1603,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   99338
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 99338, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1603-p4.png",
+  "render_sha256": "d900dc2cb7457997d6a9096a3bdcc4e188358b4f2754e17033f4535912f94a63",
+  "match_text": "2001.                                                             grants   Commission‖,    the   words   ―Higher",
+  "before_text": "2001.                                                             grants   Commission‖,    the   words   ―Higher",
+  "after_text": "2001.                                                             grants   Commission‖,    the   words   ―Higher"
+ }
+]

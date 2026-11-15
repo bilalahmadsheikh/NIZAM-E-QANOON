@@ -1,0 +1,77 @@
+[
+ {
+  "document_id": 1812,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   120608
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 120608, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1812-p2.png",
+  "render_sha256": "add7f4c7af94d058bb0496a4c938968ae849266b886b991aa059d89b7649f050",
+  "match_text": "2.       In this Act, unless there is anything repugnant in the",
+  "before_text": "2.       In this Act, unless there is anything repugnant in the",
+  "after_text": "2.       In this Act, unless there is anything repugnant in the"
+ },
+ {
+  "document_id": 1812,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   120627
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 120627, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1812-p3.png",
+  "render_sha256": "9d6bebcd2851c84a6623e5c3a3056eaba5fbc4f33da58d68f12074db9db1dd64",
+  "match_text": "3.  (1)   There shall be an Inspectorate of Coal Mines as",
+  "before_text": "3.  (1)   There shall be an Inspectorate of Coal Mines as",
+  "after_text": "3.  (1)   There shall be an Inspectorate of Coal Mines as"
+ },
+ {
+  "document_id": 1812,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   120645
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 120645, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1812-p4.png",
+  "render_sha256": "d21d37b6b0497de4c1f82077825275e36154f073093d4cacdade4c7d0426a2a9",
+  "match_text": "gasification, liquefaction, beneficiation, or any other use",
+  "before_text": "gasification, liquefaction, beneficiation, or any other use",
+  "after_text": "gasification, liquefaction, beneficiation, or any other use"
+ },
+ {
+  "document_id": 1812,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   120664
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '5' alone at its foot (block 120664, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1812-p5.png",
+  "render_sha256": "bc07e04d730265faca825e31fe95ea19aa19754cd7040b999d1782e701e6943a",
+  "match_text": "13.     Holders of coal titles and their sub-contractors shall",
+  "before_text": "13.     Holders of coal titles and their sub-contractors shall",
+  "after_text": "13.     Holders of coal titles and their sub-contractors shall"
+ },
+ {
+  "document_id": 1812,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   120671
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 6 prints its page number '6' alone at its foot (block 120671, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1812-p6.png",
+  "render_sha256": "8d97f1fe976058e7554069ce60a60b2b9e220c01b5228552400afe30c74e9191",
+  "match_text": "inconsistent with the express provisions of this Act, as may",
+  "before_text": "inconsistent with the express provisions of this Act, as may",
+  "after_text": "inconsistent with the express provisions of this Act, as may"
+ }
+]

@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 10758,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2799316
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '483' alone at its foot (block 2799316, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10758-p1.png",
+  "render_sha256": "b1818f7cf7a096fbc3534970dd74a2a9c2fc31bb400fc151feb5cd0b92abf5ff",
+  "match_text": "respectively and before those renumbered cl. a new cl. (a) has been",
+  "before_text": "respectively and before those renumbered cl. a new cl. (a) has been",
+  "after_text": "respectively and before those renumbered cl. a new cl. (a) has been"
+ },
+ {
+  "document_id": 10758,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2799328
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '484' alone at its foot (block 2799328, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10758-p2.png",
+  "render_sha256": "25d7584db590715062cc02e01d19f90f5c5395339c16e2b03151be680600229c",
+  "match_text": "Ins. by theAJ&K Prohibition of Wall Chalking and Affixing Hoarding",
+  "before_text": "Ins. by theAJ&K Prohibition of Wall Chalking and Affixing Hoarding",
+  "after_text": "Ins. by theAJ&K Prohibition of Wall Chalking and Affixing Hoarding"
+ },
+ {
+  "document_id": 10758,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2799341
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '485' alone at its foot (block 2799341, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10758-p3.png",
+  "render_sha256": "fd0c7e5525f1342cabcea21337be0daad13e5a8e7dc2a0b09efc0da16480c88b",
+  "match_text": "Subs. by Ibid. The original extract of Sec. 5 of Act IV of 2001  is",
+  "before_text": "Subs. by Ibid. The original extract of Sec. 5 of Act IV of 2001  is",
+  "after_text": "Subs. by Ibid. The original extract of Sec. 5 of Act IV of 2001  is"
+ },
+ {
+  "document_id": 10758,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2799347
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '486' alone at its foot (block 2799347, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10758-p4.png",
+  "render_sha256": "d103509b9c0ab093b3c38bada8d6b36461947ded4b66699054e32d0b5c49bf69",
+  "match_text": "Prohibition of Wall-Chalking and affixing hoardings",
+  "before_text": "Prohibition of Wall-Chalking and affixing hoardings",
+  "after_text": "Prohibition of Wall-Chalking and affixing hoardings"
+ }
+]

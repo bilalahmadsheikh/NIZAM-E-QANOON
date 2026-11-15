@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 4201,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   619248
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 619248, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc4201-p2.png",
+  "render_sha256": "26d394f9bafc28dda056444513a9f07322d354f396ec5069b2fe48f7377b43b7",
+  "match_text": "expressions shall have the  meanings hereby respectively assigned to them, that is to say,-",
+  "before_text": "expressions shall have the  meanings hereby respectively assigned to them, that is to say,-",
+  "after_text": "expressions shall have the  meanings hereby respectively assigned to them, that is to say,-"
+ },
+ {
+  "document_id": 4201,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   619251
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 619251, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc4201-p3.png",
+  "render_sha256": "b552df6cc62bcce4059000eaf4ada25c9196b74d28be2854327692920a1544bc",
+  "match_text": "public sector educational institutions and PSRA, in respect of private sector educational",
+  "before_text": "public sector educational institutions and PSRA, in respect of private sector educational",
+  "after_text": "public sector educational institutions and PSRA, in respect of private sector educational"
+ },
+ {
+  "document_id": 4201,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   619267
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 619267, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc4201-p4.png",
+  "render_sha256": "0b4a0181b68fa9a96f7dfb2fbae9934112d042434c97fb348240f575b518f89c",
+  "match_text": "Average Weight of School Bag",
+  "before_text": "Average Weight of School Bag",
+  "after_text": "Average Weight of School Bag"
+ }
+]

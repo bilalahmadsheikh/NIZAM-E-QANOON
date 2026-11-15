@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 10538,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2783730
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '288' alone at its foot (block 2783730, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10538-p1.png",
+  "render_sha256": "9380f9fe8ed5b9a1314eea8198ef23b271fd30c2a6b805c3e255f4ff6d2eb936",
+  "match_text": "to extend the scope and functions of the Pakistan Boys Scouts",
+  "before_text": "to extend the scope and functions of the Pakistan Boys Scouts",
+  "after_text": "to extend the scope and functions of the Pakistan Boys Scouts"
+ },
+ {
+  "document_id": 10538,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2783736
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '289' alone at its foot (block 2783736, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10538-p2.png",
+  "render_sha256": "529179c6e0f4aa624b2e55bf24a50db11703f43148b20df3c2a9dcea6f814e08",
+  "match_text": "Pakistan Boys Scouts Association as they are, or as they",
+  "before_text": "Pakistan Boys Scouts Association as they are, or as they",
+  "after_text": "Pakistan Boys Scouts Association as they are, or as they"
+ }
+]

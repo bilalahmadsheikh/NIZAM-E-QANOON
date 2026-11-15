@@ -1,0 +1,92 @@
+[
+ {
+  "document_id": 1562,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   94532
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1' alone at its foot (block 94532, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1562-p1.png",
+  "render_sha256": "05ae24749d04a6900b5cae7a262368f523ec5c4f9c0fa8247ae22dc691c3be4b",
+  "match_text": "Interim Constitution provides that no Bill to amend or to repeal the",
+  "before_text": "Interim Constitution provides that no Bill to amend or to repeal the",
+  "after_text": "Interim Constitution provides that no Bill to amend or to repeal the"
+ },
+ {
+  "document_id": 1562,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   94544
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 94544, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1562-p2.png",
+  "render_sha256": "f72a6e9f6731a4c1da14cc30bfd447b41d2cab7b2d1b025f891661e29512862e",
+  "match_text": "such a tractor or installs on his land such a tube-well, shall,",
+  "before_text": "such a tractor or installs on his land such a tube-well, shall,",
+  "after_text": "such a tractor or installs on his land such a tube-well, shall,"
+ },
+ {
+  "document_id": 1562,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   94561
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 94561, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1562-p3.png",
+  "render_sha256": "0f4229bb0d9fb17bd32e0e5411be3317d22e18c684ad6a00f5f3d23584f08195",
+  "match_text": "in clause (d), for the word “Service”, the words “civil service” shall be",
+  "before_text": "in clause (d), for the word “Service”, the words “civil service” shall be",
+  "after_text": "in clause (d), for the word “Service”, the words “civil service” shall be"
+ },
+ {
+  "document_id": 1562,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   94581
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 94581, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1562-p4.png",
+  "render_sha256": "9b0071cb32bce6580f39e3031047762bf46808af63fba064b17ceaefc8c186e6",
+  "match_text": "words and commas “of the whole or such part of, or area from, such",
+  "before_text": "words and commas “of the whole or such part of, or area from, such",
+  "after_text": "words and commas “of the whole or such part of, or area from, such"
+ },
+ {
+  "document_id": 1562,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   94599
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '5' alone at its foot (block 94599, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1562-p5.png",
+  "render_sha256": "2ee21a07de3a5d64afad2626ec37d118ec31ac09202fd4de0ef6ef48e5b1c1a8",
+  "match_text": "10. In   paragraph   23   of   the   Regulation,   the   following",
+  "before_text": "10. In   paragraph   23   of   the   Regulation,   the   following",
+  "after_text": "10. In   paragraph   23   of   the   Regulation,   the   following"
+ },
+ {
+  "document_id": 1562,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   94606
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 6 prints its page number '6' alone at its foot (block 94606, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1562-p6.png",
+  "render_sha256": "09604d66d153cb643fb30f1e9f12fe09e97fe4851af9ab10f374d9535f1e4e83",
+  "match_text": "11. The    Land    Reforms    Regulation    (Sind    Amendment)",
+  "before_text": "11. The    Land    Reforms    Regulation    (Sind    Amendment)",
+  "after_text": "11. The    Land    Reforms    Regulation    (Sind    Amendment)"
+ }
+]

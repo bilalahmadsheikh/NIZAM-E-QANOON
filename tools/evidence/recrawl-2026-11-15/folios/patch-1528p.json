@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 1528,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   92047
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1' alone at its foot (block 92047, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1528-p1.png",
+  "render_sha256": "41b2687c5db7e2db531e62664e48019f4d667f5d963ded10d25f375b97259f88",
+  "match_text": "5.       In  the  said  Act,  in  section  26,  after  clause  (i),  the",
+  "before_text": "5.       In  the  said  Act,  in  section  26,  after  clause  (i),  the",
+  "after_text": "5.       In  the  said  Act,  in  section  26,  after  clause  (i),  the"
+ },
+ {
+  "document_id": 1528,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   92055
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 92055, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1528-p2.png",
+  "render_sha256": "dbd661b7da4ea8419e96c6b98813ff9e738cfe85f4dfeb4dfbeefef4243ad216",
+  "match_text": "sub-section (1), he shall, notwithstanding anything contained in this",
+  "before_text": "sub-section (1), he shall, notwithstanding anything contained in this",
+  "after_text": "sub-section (1), he shall, notwithstanding anything contained in this"
+ }
+]

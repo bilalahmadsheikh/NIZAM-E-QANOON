@@ -1,0 +1,92 @@
+[
+ {
+  "document_id": 10868,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2808477
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1601' alone at its foot (block 2808477, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10868-p1.png",
+  "render_sha256": "0825336dc2533b1858474d248ad639ebf5a4e9d5d62d93e523f123ea9f069ff9",
+  "match_text": "Whereas it is expedient to provide for participation of workers",
+  "before_text": "Whereas it is expedient to provide for participation of workers",
+  "after_text": "Whereas it is expedient to provide for participation of workers"
+ },
+ {
+  "document_id": 10868,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2808494
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '1602' alone at its foot (block 2808494, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10868-p2.png",
+  "render_sha256": "1df9ae9850bb253879bb91c6260f0e61656163cd453c2d95258448f45416dad4",
+  "match_text": "(e) “Profit” in relation to Company means such of the",
+  "before_text": "(e) “Profit” in relation to Company means such of the",
+  "after_text": "(e) “Profit” in relation to Company means such of the"
+ },
+ {
+  "document_id": 10868,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2808506
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '1603' alone at its foot (block 2808506, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10868-p3.png",
+  "render_sha256": "e3924db0e11ac5b8edd958cf6d77ec4db871e9d30e53c46f1e50d236e52aae26",
+  "match_text": "(2) The persons holding office as trustees shall elect for",
+  "before_text": "(2) The persons holding office as trustees shall elect for",
+  "after_text": "(2) The persons holding office as trustees shall elect for"
+ },
+ {
+  "document_id": 10868,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2808517
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '1604' alone at its foot (block 2808517, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10868-p4.png",
+  "render_sha256": "f79e808e76146086e79a9c87465b4bb29c0fc6776de54f6843157a7f7fee25d2",
+  "match_text": "in the event of the trustees being equally divided in their",
+  "before_text": "in the event of the trustees being equally divided in their",
+  "after_text": "in the event of the trustees being equally divided in their"
+ },
+ {
+  "document_id": 10868,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2808526
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '1605' alone at its foot (block 2808526, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10868-p5.png",
+  "render_sha256": "1f6c21b77cf0e07add67b7161454edaeac7c046f2f03d3a0c22c21dd1e7d2cbf",
+  "match_text": "provisions of this Act so as to enable it to take over its",
+  "before_text": "provisions of this Act so as to enable it to take over its",
+  "after_text": "provisions of this Act so as to enable it to take over its"
+ },
+ {
+  "document_id": 10868,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   2808535
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 6 prints its page number '1606' alone at its foot (block 2808535, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10868-p6.png",
+  "render_sha256": "f5fb576a45e17dc7cf17070f867b03618f29f09a7c2cc5c54c62b6b172e4e5ae",
+  "match_text": "notification in the official Gazette, direct that all or any",
+  "before_text": "notification in the official Gazette, direct that all or any",
+  "after_text": "notification in the official Gazette, direct that all or any"
+ }
+]

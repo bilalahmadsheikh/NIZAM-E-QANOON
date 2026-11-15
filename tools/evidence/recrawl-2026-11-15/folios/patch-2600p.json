@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 2600,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   221960
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 221960, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2600-p2.png",
+  "render_sha256": "e702ce3a86e3e990f8ef1a487928a74bf73ce6002747e282721cb65848637df4",
+  "match_text": "2. (1)  In these rules unless the context otherwise requires, the",
+  "before_text": "2. (1)  In these rules unless the context otherwise requires, the",
+  "after_text": "2. (1)  In these rules unless the context otherwise requires, the"
+ },
+ {
+  "document_id": 2600,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   221978
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 221978, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2600-p3.png",
+  "render_sha256": "07dccc310b8a9478f98745fa9e3854f87072753a5f264586d7f9d308e1c6a34b",
+  "match_text": "include provisions regarding disciplinary action, termination of",
+  "before_text": "include provisions regarding disciplinary action, termination of",
+  "after_text": "include provisions regarding disciplinary action, termination of"
+ },
+ {
+  "document_id": 2600,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   221984
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 221984, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2600-p4.png",
+  "render_sha256": "cf392e963c6bf5f8bb453cc97ad0aa6bf5fb4d3112ff7955b738ec687f608a13",
+  "match_text": "NO.SO(AUQAF)7-29/2003                         Karachi, dated the 31ST  May,2004.",
+  "before_text": "NO.SO(AUQAF)7-29/2003                         Karachi, dated the 31ST  May,2004.",
+  "after_text": "NO.SO(AUQAF)7-29/2003                         Karachi, dated the 31ST  May,2004."
+ }
+]

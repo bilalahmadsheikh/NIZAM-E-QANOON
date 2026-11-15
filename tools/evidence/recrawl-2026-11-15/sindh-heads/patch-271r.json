@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 271,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   12130
+  ],
+  "defect": "the Sindh Code's running head (the law's citation printed at the head of every page) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the running-head block is set aside; no law text changes",
+  "observed": "Page 3 prints the running head 'SINDH ORDINANCE NO.XII OF 1973' alone at its head (block 12130, the page's first block); the same line heads the document's other pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc271-p3.png",
+  "render_sha256": "d26c6c742a9c73839c754a20d13417281c8eb30dd4f5aecba887619cb2783de4",
+  "match_text": "Baluchistan before the coming into force of this Ordinance shall",
+  "before_text": "Baluchistan before the coming into force of this Ordinance shall",
+  "after_text": "Baluchistan before the coming into force of this Ordinance shall"
+ }
+]

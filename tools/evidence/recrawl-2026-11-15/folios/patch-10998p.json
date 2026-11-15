@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 10998,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2823522
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '120' alone at its foot (block 2823522, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10998-p1.png",
+  "render_sha256": "928f4c89db7e322abb30d8045216f5ae5446e61b377e7e8825f37260386b96f0",
+  "match_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "before_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "after_text": "Constitution Act, 1974, the President is pleased to make and promulgate"
+ },
+ {
+  "document_id": 10998,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2823533
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '121' alone at its foot (block 2823533, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10998-p2.png",
+  "render_sha256": "6f3fb917c4974c0e2303e7a0833a3051d3f06bc5b638a161faf9f2255561eb4a",
+  "match_text": "behalf, by notice in writing, require such person to complete the",
+  "before_text": "behalf, by notice in writing, require such person to complete the",
+  "after_text": "behalf, by notice in writing, require such person to complete the"
+ }
+]

@@ -1,0 +1,26 @@
+[
+ {
+  "document_id": 2872,
+  "page_no": 13,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc2872-p13.png",
+  "render_sha256": "0e4ddbe97b9dca490b4e0ed2ad36aa048ecf0df218800400f9786e839e0e29e1",
+  "defect": "the Sindh Code's running head (the law's citation and title at the head of every page) was read into a provision's text, in the same block as the law below it",
+  "observed": "Page 13 prints the running head 'SINDH ACT NO. I OF 2006 / THE INDUS INSTITUTE OF HIGHER EDUCATION ACT, 2004.' at its head; the same head opens the document's other pages",
+  "match_text": "SINDH ACT NO. I OF 2006",
+  "before_text": "SINDH ACT NO. I OF 2006 \nTHE INDUS INSTITUTE OF HIGHER EDUCATION ACT, 2004.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-head lines are cut from the block; the law after them is kept as printed"
+ },
+ {
+  "document_id": 2872,
+  "page_no": 19,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc2872-p19.png",
+  "render_sha256": "60a35e3ad4110626dbc8d0a8662eb7ff8b332b38e1817c4a691a8de0eca0bdfc",
+  "defect": "the Sindh Code's running head (the law's citation and title at the head of every page) was read into a provision's text, in the same block as the law below it",
+  "observed": "Page 19 prints the running head 'SINDH ACT NO. I OF 2006 / THE INDUS INSTITUTE OF HIGHER EDUCATION ACT, 2004.' at its head; the same head opens the document's other pages",
+  "match_text": "SINDH ACT NO. I OF 2006",
+  "before_text": "SINDH ACT NO. I OF 2006 \nTHE INDUS INSTITUTE OF HIGHER EDUCATION ACT, 2004.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-head lines are cut from the block; the law after them is kept as printed"
+ }
+]

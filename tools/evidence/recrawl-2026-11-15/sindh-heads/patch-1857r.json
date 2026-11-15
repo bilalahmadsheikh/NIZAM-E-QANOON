@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 1857,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc1857-p3.png",
+  "render_sha256": "327788bb8d4de13c9e25bdec077d962d0f2d57d8f0a25f8519664d694947c414",
+  "defect": "the Sindh Code's running head (the law's citation and title at the head of every page) was read into a provision's text, in the same block as the law below it",
+  "observed": "Page 3 prints the running head 'SINDH ACT NO. III OF 2003. / THE SINDH FINANCE ACT, 2003.' at its head; the same head opens the document's other pages",
+  "source_apparatus_blocks": [
+   127988
+  ],
+  "match_text": "“(1) There shall be levied a tax on hotels to be called the hotel tax",
+  "before_text": "“(1) There shall be levied a tax on hotels to be called the hotel tax",
+  "after_text": "“(1) There shall be levied a tax on hotels to be called the hotel tax",
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) are set aside; no law text changes"
+ }
+]

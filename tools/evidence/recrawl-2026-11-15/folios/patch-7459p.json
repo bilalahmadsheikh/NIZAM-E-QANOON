@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 7459,
+  "page_no": 16,
+  "source_apparatus_blocks": [
+   1798845
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 16 prints its page number '16' alone at its foot (block 1798845, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc7459-p16.png",
+  "render_sha256": "7f809b0dcb5de5d3dbe276c81617f6385e5fd0217084bccc26f197f3eac9e9f2",
+  "match_text": "Part TV.—Acrs or tne Lizutenant-Governor or Brencan ww Couxcrz.",
+  "before_text": "Part TV.—Acrs or tne Lizutenant-Governor or Brencan ww Couxcrz.",
+  "after_text": "Part TV.—Acrs or tne Lizutenant-Governor or Brencan ww Couxcrz."
+ },
+ {
+  "document_id": 7459,
+  "page_no": 17,
+  "source_apparatus_blocks": [
+   1798883
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 17 prints its page number '17' alone at its foot (block 1798883, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc7459-p17.png",
+  "render_sha256": "05c0faf51ae50ddd491853e5ebe4c882139aaf76af178a9d53106a6a50f95c00",
+  "match_text": "Sections one, two, three, five to twelve (both",
+  "before_text": "Sections one, two, three, five to twelve (both",
+  "after_text": "Sections one, two, three, five to twelve (both"
+ },
+ {
+  "document_id": 7459,
+  "page_no": 18,
+  "source_apparatus_blocks": [
+   1798926
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 18 prints its page number '18' alone at its foot (block 1798926, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc7459-p18.png",
+  "render_sha256": "f3496baf785bf08a712e26680790394c1fa2bf7b356e7ba0d1e70f1b7ef75435",
+  "match_text": "Sections thirteen, twenty-five and thirty-four,",
+  "before_text": "Sections thirteen, twenty-five and thirty-four,",
+  "after_text": "Sections thirteen, twenty-five and thirty-four,"
+ },
+ {
+  "document_id": 7459,
+  "page_no": 19,
+  "source_apparatus_blocks": [
+   1798960
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 19 prints its page number '19' alone at its foot (block 1798960, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc7459-p19.png",
+  "render_sha256": "b2d1b2a7a1c3c2dbdb7dc43981e410fac051e01b94da768b4dd0259fcba188a0",
+  "match_text": "In section ten, the words “ every” and “ five.”",
+  "before_text": "In section ten, the words “ every” and “ five.”",
+  "after_text": "In section ten, the words “ every” and “ five.”"
+ }
+]

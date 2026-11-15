@@ -1,0 +1,18 @@
+[
+ {
+  "document_id": 785,
+  "page_no": 2,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc785-p2.png",
+  "render_sha256": "9a37b4b38eefdbbf2253f078064514ad77a07b5d8623db84e3351945fbdc89dc",
+  "defect": "the Sindh Code's running head (the law's citation and title at the head of every page) was read into a provision's text, in the same block as the law below it",
+  "observed": "Page 2 prints the running head 'SIND ORDINANCE NO. XIII OF 2000. / THE SINDH LOCAL GOVERNMENT ELECTIONS (AMENDMENT)' at its head; the same head opens the document's other pages",
+  "source_apparatus_blocks": [
+   35628,
+   35629
+  ],
+  "match_text": "(i)       for    sub-section    (2),    the    following    shall    be",
+  "before_text": "(i)       for    sub-section    (2),    the    following    shall    be",
+  "after_text": "(i)       for    sub-section    (2),    the    following    shall    be",
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) are set aside; no law text changes"
+ }
+]

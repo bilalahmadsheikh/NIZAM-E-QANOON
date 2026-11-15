@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 739,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   32846
+  ],
+  "defect": "the Sindh Code's running head (the law's citation printed at the head of every page) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the running-head block is set aside; no law text changes",
+  "observed": "Page 3 prints the running head 'SINDH ORDINANCE NO.I OF 2010' alone at its head (block 32846, the page's first block); the same line heads the document's other pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc739-p3.png",
+  "render_sha256": "be8c4df47dcbff1365f0dbf44724191de26123d7f87eff27a2afb0451d3f5eb2",
+  "match_text": "5.        If the employer of any establishment  contravenes any",
+  "before_text": "5.        If the employer of any establishment  contravenes any",
+  "after_text": "5.        If the employer of any establishment  contravenes any"
+ },
+ {
+  "document_id": 739,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   32858
+  ],
+  "defect": "the Sindh Code's running head (the law's citation printed at the head of every page) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the running-head block is set aside; no law text changes",
+  "observed": "Page 4 prints the running head 'SINDH ORDINANCE NO.I OF 2010' alone at its head (block 32858, the page's first block); the same line heads the document's other pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc739-p4.png",
+  "render_sha256": "5c10db7a8e807137180d27c475a41acb8f1ebfaef8d62f2ad8fb559ef014722e",
+  "match_text": "Class shall try an offence punishable under this Act or any rule",
+  "before_text": "Class shall try an offence punishable under this Act or any rule",
+  "after_text": "Class shall try an offence punishable under this Act or any rule"
+ }
+]

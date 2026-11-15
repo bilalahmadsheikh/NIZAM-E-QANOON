@@ -1,0 +1,92 @@
+[
+ {
+  "document_id": 10951,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2815812
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '28' alone at its foot (block 2815812, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10951-p1.png",
+  "render_sha256": "85788876726340d76105ce4abe5a0fbc4a21ddd0312112a0cc13c641c7a4f12b",
+  "match_text": "to provide for speedy trial of certain offences committed or attempted to",
+  "before_text": "to provide for speedy trial of certain offences committed or attempted to",
+  "after_text": "to provide for speedy trial of certain offences committed or attempted to"
+ },
+ {
+  "document_id": 10951,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2815827
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '29' alone at its foot (block 2815827, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10951-p2.png",
+  "render_sha256": "eaa78735a1be50c6f0966cc5b6d9fa79d8d4a0a51466435953b99317a31ce6bb",
+  "match_text": "notification in the Official Gazette, establish one or more Special",
+  "before_text": "notification in the Official Gazette, establish one or more Special",
+  "after_text": "notification in the Official Gazette, establish one or more Special"
+ },
+ {
+  "document_id": 10951,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2815838
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '30' alone at its foot (block 2815838, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10951-p3.png",
+  "render_sha256": "25a3c676c8692807f77f15d9398f4ef9b4b0440e90c250b2ef5ccf0da4fd48e5",
+  "match_text": "(Act V of 1898), or in any other law for the time being in force, a",
+  "before_text": "(Act V of 1898), or in any other law for the time being in force, a",
+  "after_text": "(Act V of 1898), or in any other law for the time being in force, a"
+ },
+ {
+  "document_id": 10951,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2815847
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '31' alone at its foot (block 2815847, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10951-p4.png",
+  "render_sha256": "42f5bed6b7d7e2ec8eea5d7241edf333d8fdedbffdfb80ac84fecb29efa258af",
+  "match_text": "tried at one trial, for any number of them, irrespective of the kind",
+  "before_text": "tried at one trial, for any number of them, irrespective of the kind",
+  "after_text": "tried at one trial, for any number of them, irrespective of the kind"
+ },
+ {
+  "document_id": 10951,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2815864
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '32' alone at its foot (block 2815864, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10951-p5.png",
+  "render_sha256": "7070cbb4dcd01697563ec95f8405a04369c629bff6021e4ec5d79ef3fc4419e0",
+  "match_text": "and as attempts, abetments and conspiracies in relation thereto or",
+  "before_text": "and as attempts, abetments and conspiracies in relation thereto or",
+  "after_text": "and as attempts, abetments and conspiracies in relation thereto or"
+ },
+ {
+  "document_id": 10951,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   2815871
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 6 prints its page number '33' alone at its foot (block 2815871, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10951-p6.png",
+  "render_sha256": "0a375776add085c829291553497f1087ccf175b5360eb8f67c6bff17332af8b3",
+  "match_text": "Offences punishable under the Cooperative Banks (Repayment",
+  "before_text": "Offences punishable under the Cooperative Banks (Repayment",
+  "after_text": "Offences punishable under the Cooperative Banks (Repayment"
+ }
+]

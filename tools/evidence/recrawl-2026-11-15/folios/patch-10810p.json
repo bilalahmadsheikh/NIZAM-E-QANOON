@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 10810,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2803730
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '629' alone at its foot (block 2803730, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10810-p1.png",
+  "render_sha256": "7827bcdf2ed6738158e729db3f5b8c916c3df4499cc76f3efa0ccd491942bc78",
+  "match_text": "Interim Constitution  Act, 1974, the President is pleased to make and",
+  "before_text": "Interim Constitution  Act, 1974, the President is pleased to make and",
+  "after_text": "Interim Constitution  Act, 1974, the President is pleased to make and"
+ },
+ {
+  "document_id": 10810,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2803741
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '630' alone at its foot (block 2803741, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10810-p2.png",
+  "render_sha256": "533a1d84fcd408c3a3733d4345bf5b0f3d5e9e50e34cdfe189526518d3ac5069",
+  "match_text": "Pakistan or any part of Pakistan, shall be construed to refer to the",
+  "before_text": "Pakistan or any part of Pakistan, shall be construed to refer to the",
+  "after_text": "Pakistan or any part of Pakistan, shall be construed to refer to the"
+ }
+]

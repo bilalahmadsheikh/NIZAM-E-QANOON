@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 1201,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   60998
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1' alone at its foot (block 60998, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1201-p1.png",
+  "render_sha256": "89026395dd384923371a4070b3f3583b99be6e17b84be12f96abd52a258c5fb6",
+  "match_text": "that behalf, the Governor of Sindh is pleased to make and promulgate the following",
+  "before_text": "that behalf, the Governor of Sindh is pleased to make and promulgate the following",
+  "after_text": "that behalf, the Governor of Sindh is pleased to make and promulgate the following"
+ },
+ {
+  "document_id": 1201,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   61009
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 61009, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1201-p2.png",
+  "render_sha256": "b72af9599a0d3e3f91d3c9a2f6593e50367cc94923bd5615381ece4bf78dffde",
+  "match_text": "THE STAMP (FOURTH SINDH AMENDMENT) ORDINANCE, 2002.",
+  "before_text": "THE STAMP (FOURTH SINDH AMENDMENT) ORDINANCE, 2002.",
+  "after_text": "THE STAMP (FOURTH SINDH AMENDMENT) ORDINANCE, 2002."
+ }
+]

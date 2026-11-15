@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 10809,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2803688
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '729' alone at its foot (block 2803688, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10809-p1.png",
+  "render_sha256": "5c39e28370aa77bdc8e0a1bf9f45507b2bfa250be09e085482946715e4d08b21",
+  "match_text": "Assembly received the assent of the President on 18th",
+  "before_text": "Assembly received the assent of the President on 18th",
+  "after_text": "Assembly received the assent of the President on 18th"
+ },
+ {
+  "document_id": 10809,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2803699
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '730' alone at its foot (block 2803699, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10809-p2.png",
+  "render_sha256": "70954856b87d2a34cc44cd02bc51e9bf97e4fb66feff6f6872a7504449e4955f",
+  "match_text": "Fund.- (1)There shall be established a fund to be",
+  "before_text": "Fund.- (1)There shall be established a fund to be",
+  "after_text": "Fund.- (1)There shall be established a fund to be"
+ },
+ {
+  "document_id": 10809,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2803706
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '731' alone at its foot (block 2803706, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10809-p3.png",
+  "render_sha256": "623bf309c9688ca4c401c2883d9744a800ed742ff2b59a0ac60731995ea4d648",
+  "match_text": "his family shall be entitled to receive pension at the",
+  "before_text": "his family shall be entitled to receive pension at the",
+  "after_text": "his family shall be entitled to receive pension at the"
+ },
+ {
+  "document_id": 10809,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2803712
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '732' alone at its foot (block 2803712, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10809-p4.png",
+  "render_sha256": "c4566eba3fc91823f7155e597197fe41a41ed8699ecf895be7004e6f587f8562",
+  "match_text": "Repeal.- The Azad Jammu and Kashmir legislative",
+  "before_text": "Repeal.- The Azad Jammu and Kashmir legislative",
+  "after_text": "Repeal.- The Azad Jammu and Kashmir legislative"
+ }
+]

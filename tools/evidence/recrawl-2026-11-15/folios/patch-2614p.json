@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 2614,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   223676
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 223676, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2614-p2.png",
+  "render_sha256": "ea67d1ccb6b83ca10bd3ff077161da3495aae504d206c7f7740b9d69da98bf40",
+  "match_text": "(1) A tenant, who claims first right of pre-emption in respect of land comprised in his",
+  "before_text": "(1) A tenant, who claims first right of pre-emption in respect of land comprised in his",
+  "after_text": "(1) A tenant, who claims first right of pre-emption in respect of land comprised in his"
+ },
+ {
+  "document_id": 2614,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   223678
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 223678, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2614-p3.png",
+  "render_sha256": "43e69323060324fac9c1f22cceeaccbef67ddeb87907498cf15a948b1c642a4f",
+  "match_text": "Gazette of Sind, Extraordinary, Part IV-A, 18th February, 1974.",
+  "before_text": "Gazette of Sind, Extraordinary, Part IV-A, 18th February, 1974.",
+  "after_text": "Gazette of Sind, Extraordinary, Part IV-A, 18th February, 1974."
+ }
+]

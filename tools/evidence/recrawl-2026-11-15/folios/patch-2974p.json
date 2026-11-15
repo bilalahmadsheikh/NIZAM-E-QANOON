@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 2974,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   283080
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1' alone at its foot (block 283080, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2974-p1.png",
+  "render_sha256": "90ba1fed976d6d2d69bdd73c8c410ed6f2e0e4f3f6e78edfc7c4f7cd41776e5f",
+  "match_text": "2.       In the Peoples University of Medical and Health Sciences",
+  "before_text": "2.       In the Peoples University of Medical and Health Sciences",
+  "after_text": "2.       In the Peoples University of Medical and Health Sciences"
+ },
+ {
+  "document_id": 2974,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   283090
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 283090, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2974-p2.png",
+  "render_sha256": "9021496ee1e9d85c5ccfa55c3f3a9d6ca11bc2df70ac97ab67422b388add7f3a",
+  "match_text": "(ii) after sub-section (2), the following new sub-section",
+  "before_text": "(ii) after sub-section (2), the following new sub-section",
+  "after_text": "(ii) after sub-section (2), the following new sub-section"
+ }
+]

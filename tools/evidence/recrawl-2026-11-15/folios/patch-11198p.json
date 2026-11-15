@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 11198,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2839071
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '929' alone at its foot (block 2839071, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11198-p1.png",
+  "render_sha256": "5f6dcf5034312d7627b02c3f4f2ace81bb4aa594538b4ebc2d687bff351bb573",
+  "match_text": "procedure, 1898 (Act V of 1898), for the purposes hereinafter appearing ;",
+  "before_text": "procedure, 1898 (Act V of 1898), for the purposes hereinafter appearing ;",
+  "after_text": "procedure, 1898 (Act V of 1898), for the purposes hereinafter appearing ;"
+ },
+ {
+  "document_id": 11198,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2839080
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '930' alone at its foot (block 2839080, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11198-p2.png",
+  "render_sha256": "7a6a8a2a22d9a597be0beb628587522d820b31518d4ab4f4c643431933fe15c1",
+  "match_text": "initiated, jurisdiction or powers exercised under the provisions of",
+  "before_text": "initiated, jurisdiction or powers exercised under the provisions of",
+  "after_text": "initiated, jurisdiction or powers exercised under the provisions of"
+ }
+]

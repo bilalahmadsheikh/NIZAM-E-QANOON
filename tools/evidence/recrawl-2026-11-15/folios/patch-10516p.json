@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 10516,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2779499
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '665' alone at its foot (block 2779499, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10516-p1.png",
+  "render_sha256": "6e53aaac3f1cf4074fb7545e4478066829481a7a087a61b05dfaee863a8f8d39",
+  "match_text": "to extend the scope and functions of the Fauji Foundation of Pakistan to",
+  "before_text": "to extend the scope and functions of the Fauji Foundation of Pakistan to",
+  "after_text": "to extend the scope and functions of the Fauji Foundation of Pakistan to"
+ },
+ {
+  "document_id": 10516,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2779507
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '666' alone at its foot (block 2779507, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10516-p2.png",
+  "render_sha256": "346a018e420908c2fc0da4542921f7691b29fe4eb301077bab278709662376d2",
+  "match_text": "settled or substituted by the Government of Pakistan under the",
+  "before_text": "settled or substituted by the Government of Pakistan under the",
+  "after_text": "settled or substituted by the Government of Pakistan under the"
+ }
+]

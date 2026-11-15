@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 2520,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   211379
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1' alone at its foot (block 211379, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2520-p1.png",
+  "render_sha256": "159a67de6ae64e41909bf5f9ab2d98ed622068fc77d399505709717f3e5f2909",
+  "match_text": "1. (1)  This Act may be called the Sindh Local Government       (Third",
+  "before_text": "1. (1)  This Act may be called the Sindh Local Government       (Third",
+  "after_text": "1. (1)  This Act may be called the Sindh Local Government       (Third"
+ },
+ {
+  "document_id": 2520,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   211397
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 211397, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2520-p2.png",
+  "render_sha256": "aa9a683c2fd7a479dfb673ba966239fb5ec7d215f7eaca595c54bd23882ef51e",
+  "match_text": "(5) in sub-section (3), (4), (5), (6), (7), (8) and (9), in clause",
+  "before_text": "(5) in sub-section (3), (4), (5), (6), (7), (8) and (9), in clause",
+  "after_text": "(5) in sub-section (3), (4), (5), (6), (7), (8) and (9), in clause"
+ },
+ {
+  "document_id": 2520,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   211412
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 211412, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2520-p3.png",
+  "render_sha256": "4de37bd327ca39ae7fb0e943cb4e240d9d19dd5f7f0f86f526a1a8c7e5214620",
+  "match_text": "6. In the said Act, in section 35, sub-section (1), in clause (c), for the",
+  "before_text": "6. In the said Act, in section 35, sub-section (1), in clause (c), for the",
+  "after_text": "6. In the said Act, in section 35, sub-section (1), in clause (c), for the"
+ }
+]

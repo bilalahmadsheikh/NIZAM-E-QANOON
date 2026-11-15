@@ -1,0 +1,14 @@
+[
+ {
+  "document_id": 169,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc169-p3.png",
+  "render_sha256": "05dcbe70751674336800a65e4b7b767617affd1595f74a87166e15ae3b6b778e",
+  "defect": "the Sindh Code's running head (the law's citation and title at the head of every page) was read into a provision's text, in the same block as the law below it",
+  "observed": "Page 3 prints the running head 'SINDH ACT NO. II OF 2008 / THE SINDH FINANCE ACT, 2008.' at its head; the same head opens the document's other pages",
+  "match_text": "SINDH ACT NO. II OF 2008",
+  "before_text": "SINDH ACT NO. II OF 2008 \nTHE SINDH FINANCE ACT, 2008.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-head lines are cut from the block; the law after them is kept as printed"
+ }
+]

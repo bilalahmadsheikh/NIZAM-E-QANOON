@@ -1,0 +1,92 @@
+[
+ {
+  "document_id": 10692,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2795470
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '2081' alone at its foot (block 2795470, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10692-p1.png",
+  "render_sha256": "b9794c0fd969279e5bf1567a9698703929e2aa0de29252003d04e39925315d39",
+  "match_text": "to give effect to the financial proposals of Azad Government of",
+  "before_text": "to give effect to the financial proposals of Azad Government of",
+  "after_text": "to give effect to the financial proposals of Azad Government of"
+ },
+ {
+  "document_id": 10692,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2795477
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2082' alone at its foot (block 2795477, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10692-p2.png",
+  "render_sha256": "520ca37982df49e8ed27df622e6fcabd8828cefc9f078c896ecfeb1f6e47180d",
+  "match_text": "collected, before coming into force of this Act, shall be",
+  "before_text": "collected, before coming into force of this Act, shall be",
+  "after_text": "collected, before coming into force of this Act, shall be"
+ },
+ {
+  "document_id": 10692,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2795482
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '2083' alone at its foot (block 2795482, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10692-p3.png",
+  "render_sha256": "f54e4a06344ede55f4497d400033a29cfb04f0270bcbd3423081cbc3eaa06a10",
+  "match_text": "sub-clause (c) of clause (20) of Section 2 of the said Act",
+  "before_text": "sub-clause (c) of clause (20) of Section 2 of the said Act",
+  "after_text": "sub-clause (c) of clause (20) of Section 2 of the said Act"
+ },
+ {
+  "document_id": 10692,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2795488
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '2084' alone at its foot (block 2795488, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10692-p4.png",
+  "render_sha256": "0d915a756096205e72ec21d72c7e008ecb6996b6b0111045025cf33546120226",
+  "match_text": "issued there under, as enforced in Pakistan, at any time",
+  "before_text": "issued there under, as enforced in Pakistan, at any time",
+  "after_text": "issued there under, as enforced in Pakistan, at any time"
+ },
+ {
+  "document_id": 10692,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2795496
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '2085' alone at its foot (block 2795496, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10692-p5.png",
+  "render_sha256": "cc69a793bacce1045d3dad792e682b06f39b88dc7d8747fd383693263d0d740d",
+  "match_text": "(Act IV of 1975), after Section 3-D, the following new",
+  "before_text": "(Act IV of 1975), after Section 3-D, the following new",
+  "after_text": "(Act IV of 1975), after Section 3-D, the following new"
+ },
+ {
+  "document_id": 10692,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   2795499
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 6 prints its page number '2086' alone at its foot (block 2795499, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10692-p6.png",
+  "render_sha256": "921a4b32ff9dbc6fca400edeede2d849cc651dc8fecd733b0aea0106ecd58b97",
+  "match_text": "direct the registration of any class, type or",
+  "before_text": "direct the registration of any class, type or",
+  "after_text": "direct the registration of any class, type or"
+ }
+]

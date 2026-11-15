@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 10916,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2811971
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '151' alone at its foot (block 2811971, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10916-p1.png",
+  "render_sha256": "fe542056ea2c5264db52c6419d4e606c59036d6fc01f54218b3cc635f5ed89ac",
+  "match_text": "to give effect to the financial proposals of Azad Government of",
+  "before_text": "to give effect to the financial proposals of Azad Government of",
+  "after_text": "to give effect to the financial proposals of Azad Government of"
+ },
+ {
+  "document_id": 10916,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2811984
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '152' alone at its foot (block 2811984, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10916-p2.png",
+  "render_sha256": "e2b24cb3ca2e2061c74b4b84e7a6508b4867c64f98354f7385c579703acf17a4",
+  "match_text": "of 1992), in Section 4, in sub-section (12), for clause (b),",
+  "before_text": "of 1992), in Section 4, in sub-section (12), for clause (b),",
+  "after_text": "of 1992), in Section 4, in sub-section (12), for clause (b),"
+ }
+]

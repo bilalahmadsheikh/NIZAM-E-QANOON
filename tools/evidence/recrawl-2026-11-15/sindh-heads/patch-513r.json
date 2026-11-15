@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 513,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   19803
+  ],
+  "defect": "the Sindh Code's running head (the law's citation printed at the head of every page) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the running-head block is set aside; no law text changes",
+  "observed": "Page 2 prints the running head 'SIND ORDINANCE NO.XIV OF 1984' alone at its head (block 19803, the page's first block); the same line heads the document's other pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc513-p2.png",
+  "render_sha256": "47e929a1e6c8b6dc4f52094b0b5c08f558913e0f9196fb9901aef2528dfc6c00",
+  "match_text": "THE SIND CIVIL SERVANTS WELFARE FUND (AMENDMENT) ORDINANCE, 1984",
+  "before_text": "THE SIND CIVIL SERVANTS WELFARE FUND (AMENDMENT) ORDINANCE, 1984",
+  "after_text": "THE SIND CIVIL SERVANTS WELFARE FUND (AMENDMENT) ORDINANCE, 1984"
+ }
+]

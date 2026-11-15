@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 1200,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   60956
+  ],
+  "defect": "the Sindh Code's running head (the law's citation printed at the head of every page) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the running-head block is set aside; no law text changes",
+  "observed": "Page 3 prints the running head 'SINDH ACT NO.III OF 2005' alone at its head (block 60956, the page's first block); the same line heads the document's other pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc1200-p3.png",
+  "render_sha256": "e0f2523e9b6b39be355d356f28aa343f5393902fb3ab60898e4d6ff557214879",
+  "match_text": "advalorem basis at the rate of  seven and half percent of room rent per lodging",
+  "before_text": "advalorem basis at the rate of  seven and half percent of room rent per lodging",
+  "after_text": "advalorem basis at the rate of  seven and half percent of room rent per lodging"
+ }
+]

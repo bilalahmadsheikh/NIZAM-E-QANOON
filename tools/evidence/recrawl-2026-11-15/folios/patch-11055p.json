@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 11055,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2828188
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '114' alone at its foot (block 2828188, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11055-p1.png",
+  "render_sha256": "eabacba06b0e19946f77792ff69ddca14d3b40583c466324a4513370a815ac1f",
+  "match_text": "Kashmir for giving effect to the provisions of Section 31 of the Interim",
+  "before_text": "Kashmir for giving effect to the provisions of Section 31 of the Interim",
+  "after_text": "Kashmir for giving effect to the provisions of Section 31 of the Interim"
+ },
+ {
+  "document_id": 11055,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2828203
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '115' alone at its foot (block 2828203, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11055-p2.png",
+  "render_sha256": "36cdd0e3ada8c55e844cf449eb3cd8206915c1e89a262e60da4144ae45556660",
+  "match_text": "to in clause (b) of sub-section (3) to be the Chairman of Islamic",
+  "before_text": "to in clause (b) of sub-section (3) to be the Chairman of Islamic",
+  "after_text": "to in clause (b) of sub-section (3) to be the Chairman of Islamic"
+ },
+ {
+  "document_id": 11055,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2828214
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '116' alone at its foot (block 2828214, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11055-p3.png",
+  "render_sha256": "213ad4ee80bd3666e7f3d4856b6e31263f845342606e0d417a43bef2860773ec",
+  "match_text": "the Islamic Council shall, within fifteen days thereof, inform the",
+  "before_text": "the Islamic Council shall, within fifteen days thereof, inform the",
+  "after_text": "the Islamic Council shall, within fifteen days thereof, inform the"
+ },
+ {
+  "document_id": 11055,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2828225
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '117' alone at its foot (block 2828225, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11055-p4.png",
+  "render_sha256": "38aed81434e1f5ef7738d951e374846b3ac126bc13f6598403fc6cbc52f8742d",
+  "match_text": "may be, within six months of its receipt, and the Assembly or the",
+  "before_text": "may be, within six months of its receipt, and the Assembly or the",
+  "after_text": "may be, within six months of its receipt, and the Assembly or the"
+ }
+]

@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 11280,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2843894
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '346' alone at its foot (block 2843894, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11280-p1.png",
+  "render_sha256": "5c13cf086f38d1410eb9deb36dc3ee74f463658b5b8fb9dfbfe05915b08b6c6a",
+  "match_text": "further to amend the Holders of Representative Offices (Disqualification)",
+  "before_text": "further to amend the Holders of Representative Offices (Disqualification)",
+  "after_text": "further to amend the Holders of Representative Offices (Disqualification)"
+ },
+ {
+  "document_id": 11280,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2843902
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '347' alone at its foot (block 2843902, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11280-p2.png",
+  "render_sha256": "013543bb5ac489149f7d2f71427a2ebc3ecb19357fe8cf04efb240077306f84f",
+  "match_text": "“7-A. Appeals to the Supreme Court.- Any party aggrieved",
+  "before_text": "“7-A. Appeals to the Supreme Court.- Any party aggrieved",
+  "after_text": "“7-A. Appeals to the Supreme Court.- Any party aggrieved"
+ }
+]

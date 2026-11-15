@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 10633,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2791025
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '927' alone at its foot (block 2791025, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10633-p1.png",
+  "render_sha256": "62115197397c2f162d199f452d0516f19ca5176137314f6e1b1879f98aed9209",
+  "match_text": "reffered to as the said Act, and all rules, notifications and orders made",
+  "before_text": "reffered to as the said Act, and all rules, notifications and orders made",
+  "after_text": "reffered to as the said Act, and all rules, notifications and orders made"
+ },
+ {
+  "document_id": 10633,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2791034
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '928' alone at its foot (block 2791034, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10633-p2.png",
+  "render_sha256": "a63dc8d920ff1f946eeb5936789f7e5127d0271ab2576aaa129a86e944ccd70d",
+  "match_text": "giving effect to the provisions of the said Act or in regard to the",
+  "before_text": "giving effect to the provisions of the said Act or in regard to the",
+  "after_text": "giving effect to the provisions of the said Act or in regard to the"
+ }
+]

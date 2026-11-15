@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 602,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   24645
+  ],
+  "defect": "the Sindh Code's running head (the law's citation printed at the head of every page) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the running-head block is set aside; no law text changes",
+  "observed": "Page 2 prints the running head 'SINDH ACT NO.VI OF 2014' alone at its head (block 24645, the page's first block); the same line heads the document's other pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc602-p2.png",
+  "render_sha256": "89b057e130d175be865548b21b6ff34bf26c05b1a90138811f7232707f998d5b",
+  "match_text": "after the words “the registering officer”, the word “shall”",
+  "before_text": "after the words “the registering officer”, the word “shall”",
+  "after_text": "after the words “the registering officer”, the word “shall”"
+ }
+]

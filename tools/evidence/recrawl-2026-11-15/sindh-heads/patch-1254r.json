@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 1254,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   66303
+  ],
+  "defect": "the Sindh Code's running head (the law's citation printed at the head of every page) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the running-head block is set aside; no law text changes",
+  "observed": "Page 3 prints the running head 'SINDH ORDINANCE NO. XXVI OF 2002' alone at its head (block 66303, the page's first block); the same line heads the document's other pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc1254-p3.png",
+  "render_sha256": "74ed1a10cfed0ca8392ceddb9b0f700f2a8bb94d1d2bc10725c0e6d08711cb2c",
+  "match_text": "Consolidated Fund within the meaning of Article 121 (e) of the Constitution of the",
+  "before_text": "Consolidated Fund within the meaning of Article 121 (e) of the Constitution of the",
+  "after_text": "Consolidated Fund within the meaning of Article 121 (e) of the Constitution of the"
+ },
+ {
+  "document_id": 1254,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   66315
+  ],
+  "defect": "the Sindh Code's running head (the law's citation printed at the head of every page) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the running-head block is set aside; no law text changes",
+  "observed": "Page 4 prints the running head 'SINDH ORDINANCE NO. XXVI OF 2002' alone at its head (block 66315, the page's first block); the same line heads the document's other pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc1254-p4.png",
+  "render_sha256": "9266128661363c78c7a5547bf59896d801637ce5a68dbe0544c50d0258f6f19e",
+  "match_text": "of the Chief Secretary and the Secretary Finance in their capacity as Chairman and",
+  "before_text": "of the Chief Secretary and the Secretary Finance in their capacity as Chairman and",
+  "after_text": "of the Chief Secretary and the Secretary Finance in their capacity as Chairman and"
+ }
+]

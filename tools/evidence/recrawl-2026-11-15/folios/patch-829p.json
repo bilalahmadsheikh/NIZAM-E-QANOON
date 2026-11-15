@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 829,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   37363
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 37363, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc829-p2.png",
+  "render_sha256": "1c967791c9bd2889b6cfaa1dffe37320660384b5c995ffbe1dc5c1565751ee9d",
+  "match_text": "3.     Where an injured person is brought to a hospital, he shall",
+  "before_text": "3.     Where an injured person is brought to a hospital, he shall",
+  "after_text": "3.     Where an injured person is brought to a hospital, he shall"
+ },
+ {
+  "document_id": 829,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   37376
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 37376, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc829-p3.png",
+  "render_sha256": "bb61139d7ec7e36ad585e4322ba4de1443ff1e929cbabb51a8b44a536dc3326b",
+  "match_text": "6. (1) An injured person shall not be shifted from a hospital until",
+  "before_text": "6. (1) An injured person shall not be shifted from a hospital until",
+  "after_text": "6. (1) An injured person shall not be shifted from a hospital until"
+ },
+ {
+  "document_id": 829,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   37387
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 37387, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc829-p4.png",
+  "render_sha256": "1437043ff889ad16e2523b2d457c68bf6cd1864c424dffc131109fd8751d921c",
+  "match_text": "humanitarian basis, in particular in traffic accident cases, shall",
+  "before_text": "humanitarian basis, in particular in traffic accident cases, shall",
+  "after_text": "humanitarian basis, in particular in traffic accident cases, shall"
+ },
+ {
+  "document_id": 829,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   37394
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '5' alone at its foot (block 37394, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc829-p5.png",
+  "render_sha256": "dc1272c82085b35a99d96cbb563aa23ba86f361fcc4f92cddbf085d64d97bb1e",
+  "match_text": "the police official or officers shall be liable to disciplinary",
+  "before_text": "the police official or officers shall be liable to disciplinary",
+  "after_text": "the police official or officers shall be liable to disciplinary"
+ }
+]

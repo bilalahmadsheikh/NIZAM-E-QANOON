@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 745,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   33208
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1' alone at its foot (block 33208, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc745-p1.png",
+  "render_sha256": "a0287a836a69592dd554dca156e2d711265e4246787465cb1ff52344dfbdeaee",
+  "match_text": "Consumption of Intoxicants Restriction Act, 1940 and the West Pakistan",
+  "before_text": "Consumption of Intoxicants Restriction Act, 1940 and the West Pakistan",
+  "after_text": "Consumption of Intoxicants Restriction Act, 1940 and the West Pakistan"
+ },
+ {
+  "document_id": 745,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   33217
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 33217, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc745-p2.png",
+  "render_sha256": "7d3a077d75233a6cc10818bd177651c1981c8cdb40ba6abfcfae2070152418b0",
+  "match_text": "THE ABKARI LAWS (SIND AMENDMENT) ACT, 1973.",
+  "before_text": "THE ABKARI LAWS (SIND AMENDMENT) ACT, 1973.",
+  "after_text": "THE ABKARI LAWS (SIND AMENDMENT) ACT, 1973."
+ },
+ {
+  "document_id": 745,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   33231
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 33231, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc745-p3.png",
+  "render_sha256": "a26c42c111af1b6f3de9690eb7779ca910f3a7ad311b89107be2601723fc4e58",
+  "match_text": "(a) for the words “six months or with",
+  "before_text": "(a) for the words “six months or with",
+  "after_text": "(a) for the words “six months or with"
+ },
+ {
+  "document_id": 745,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   33238
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 33238, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc745-p4.png",
+  "render_sha256": "bb342e2fc0dc4715c5516594071ee6633cf7c449b5381b008379fee000f14eb6",
+  "match_text": "of 1898), to any person arrested",
+  "before_text": "of 1898), to any person arrested",
+  "after_text": "of 1898), to any person arrested"
+ }
+]

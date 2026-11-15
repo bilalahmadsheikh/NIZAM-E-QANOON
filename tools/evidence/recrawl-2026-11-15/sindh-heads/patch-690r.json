@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 690,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   29605
+  ],
+  "defect": "the Sindh Code's running head (the law's citation printed at the head of every page) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the running-head block is set aside; no law text changes",
+  "observed": "Page 3 prints the running head 'SINDH ORDINANCE NO.I OF 2013' alone at its head (block 29605, the page's first block); the same line heads the document's other pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc690-p3.png",
+  "render_sha256": "673c80c00311bb467dd20bafdabf60e3a4acb5414d41209eec3c09ec990bae93",
+  "match_text": "THE PREVENTION OF DEFACEMENT OF PROPERTY ORDINANCE, 2013",
+  "before_text": "THE PREVENTION OF DEFACEMENT OF PROPERTY ORDINANCE, 2013",
+  "after_text": "THE PREVENTION OF DEFACEMENT OF PROPERTY ORDINANCE, 2013"
+ },
+ {
+  "document_id": 690,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   29617
+  ],
+  "defect": "the Sindh Code's running head (the law's citation printed at the head of every page) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the running-head block is set aside; no law text changes",
+  "observed": "Page 4 prints the running head 'SINDH ORDINANCE NO.I OF 2013' alone at its head (block 29617, the page's first block); the same line heads the document's other pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc690-p4.png",
+  "render_sha256": "49ed629a8937c528068bb3fbfde9e98475bf2af7befab2db2a2ddc18c6605753",
+  "match_text": "6.    Government may make rules for carrying out the",
+  "before_text": "6.    Government may make rules for carrying out the",
+  "after_text": "6.    Government may make rules for carrying out the"
+ }
+]

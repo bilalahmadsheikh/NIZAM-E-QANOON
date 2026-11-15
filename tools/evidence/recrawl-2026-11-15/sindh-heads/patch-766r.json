@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 766,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   34405
+  ],
+  "defect": "the Sindh Code's running head (the law's citation printed at the head of every page) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the running-head block is set aside; no law text changes",
+  "observed": "Page 2 prints the running head 'SINDH ORDINANCE NO.I OF 2011' alone at its head (block 34405, the page's first block); the same line heads the document's other pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc766-p2.png",
+  "render_sha256": "a904a2219ecf3775d21c690e0568e57ada8bc6da9929e235e7f62eccf08e3606",
+  "match_text": "3.       In  the  said  Act,  in  section  23,  sub-section  (4)  shall  be",
+  "before_text": "3.       In  the  said  Act,  in  section  23,  sub-section  (4)  shall  be",
+  "after_text": "3.       In  the  said  Act,  in  section  23,  sub-section  (4)  shall  be"
+ }
+]

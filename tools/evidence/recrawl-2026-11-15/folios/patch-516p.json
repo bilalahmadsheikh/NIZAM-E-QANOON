@@ -1,0 +1,77 @@
+[
+ {
+  "document_id": 516,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   19869
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1' alone at its foot (block 19869, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc516-p1.png",
+  "render_sha256": "c745addcd639d75e4a08456f3da4ae1c6d83d874402bc1c88331e27be7d996d4",
+  "match_text": "to the Province of Sind, hereinafter called as the said Act, in section",
+  "before_text": "to the Province of Sind, hereinafter called as the said Act, in section",
+  "after_text": "to the Province of Sind, hereinafter called as the said Act, in section"
+ },
+ {
+  "document_id": 516,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   19891
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 19891, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc516-p2.png",
+  "render_sha256": "d30bb4de7e68526b6c4d382de32ce226b601c1e206a15589d5409609427ee002",
+  "match_text": "In the said Act, in section 13, for sub-section (3), the following",
+  "before_text": "In the said Act, in section 13, for sub-section (3), the following",
+  "after_text": "In the said Act, in section 13, for sub-section (3), the following"
+ },
+ {
+  "document_id": 516,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   19915
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 19915, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc516-p3.png",
+  "render_sha256": "30dabe8aedcac7a5898b8b17535428aaaf8300f17a4650d44470f9da21626953",
+  "match_text": "In the said Act, in sections 84, 89, 92, 101, 102 103, 104, 107, 108",
+  "before_text": "In the said Act, in sections 84, 89, 92, 101, 102 103, 104, 107, 108",
+  "after_text": "In the said Act, in sections 84, 89, 92, 101, 102 103, 104, 107, 108"
+ },
+ {
+  "document_id": 516,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   19940
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 19940, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc516-p4.png",
+  "render_sha256": "4be47e826070e83ba2b10b5a945aec845a6c73544329ab99c6b15e6f46718f48",
+  "match_text": "In the said Act, in section 162, after clause (a), the following",
+  "before_text": "In the said Act, in section 162, after clause (a), the following",
+  "after_text": "In the said Act, in section 162, after clause (a), the following"
+ },
+ {
+  "document_id": 516,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   19955
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '5' alone at its foot (block 19955, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc516-p5.png",
+  "render_sha256": "3dec8432b8c6bc050b91ab8793a16851e5292c9b2d4c417b9ea63ea68be8bcd0",
+  "match_text": "(c) for sub-section (4), the following shall be substituted",
+  "before_text": "(c) for sub-section (4), the following shall be substituted",
+  "after_text": "(c) for sub-section (4), the following shall be substituted"
+ }
+]

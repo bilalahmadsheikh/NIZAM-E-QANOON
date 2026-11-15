@@ -1,0 +1,14 @@
+[
+ {
+  "document_id": 2309,
+  "page_no": 2,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc2309-p2.png",
+  "render_sha256": "4a9554762974cf97c1d567c24588454839a124cb819a7947cc86b3b55ad4512c",
+  "defect": "the Sindh Code's running head (the law's citation and title at the head of every page) was read into a provision's text, in the same block as the law below it",
+  "observed": "Page 2 prints the running head 'SIND ORDINANCE NO. XIV OF 2000 / THE SINDH IRRIGATION (AMENDMENT) ORDINANCE, 2000.' at its head; the same head opens the document's other pages",
+  "match_text": "SIND ORDINANCE NO. XIV OF 2000",
+  "before_text": "SIND ORDINANCE NO. XIV OF 2000 \nTHE SINDH IRRIGATION (AMENDMENT) ORDINANCE, 2000.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-head lines are cut from the block; the law after them is kept as printed"
+ }
+]

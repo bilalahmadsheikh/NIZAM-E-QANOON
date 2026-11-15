@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 976,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   45917
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1' alone at its foot (block 45917, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc976-p1.png",
+  "render_sha256": "ea2dc26ac063205387de89b486ac494ccea86f8df54e9d43be3553c7e7f39f1f",
+  "match_text": "Ordinance, in section 3, in sub-section (1), the following shall be",
+  "before_text": "Ordinance, in section 3, in sub-section (1), the following shall be",
+  "after_text": "Ordinance, in section 3, in sub-section (1), the following shall be"
+ },
+ {
+  "document_id": 976,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   45931
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 45931, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc976-p2.png",
+  "render_sha256": "c8f14c083746276499fa2c232d9458213ce2be2107fd15e0697ec675eb30c8ab",
+  "match_text": "remuneration or other benefits as Government may determine.",
+  "before_text": "remuneration or other benefits as Government may determine.",
+  "after_text": "remuneration or other benefits as Government may determine."
+ }
+]

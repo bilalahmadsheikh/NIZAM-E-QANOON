@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 10235,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2759632
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '383' alone at its foot (block 2759632, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10235-p1.png",
+  "render_sha256": "821023c50d2fccee500a36f423b965802ec019ece5f59344f93cbcfe779b8aba",
+  "match_text": "to provide for law relating to cancellation of irregular and unauthorized",
+  "before_text": "to provide for law relating to cancellation of irregular and unauthorized",
+  "after_text": "to provide for law relating to cancellation of irregular and unauthorized"
+ },
+ {
+  "document_id": 10235,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2759638
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '384' alone at its foot (block 2759638, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10235-p2.png",
+  "render_sha256": "82ccc7662782f8c65b33823ec31deb064b584610c0ad96b15319295cb0314a93",
+  "match_text": "authority in which the land initially vested shall resumed the land",
+  "before_text": "authority in which the land initially vested shall resumed the land",
+  "after_text": "authority in which the land initially vested shall resumed the land"
+ },
+ {
+  "document_id": 10235,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2759649
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '385' alone at its foot (block 2759649, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10235-p3.png",
+  "render_sha256": "78b4185fb100db0c1d7a9b516711db9e634843aa048c5c60cf73b026500dc663",
+  "match_text": "Indemnity.- No suit, prosecution or other legal proceedings shall",
+  "before_text": "Indemnity.- No suit, prosecution or other legal proceedings shall",
+  "after_text": "Indemnity.- No suit, prosecution or other legal proceedings shall"
+ }
+]

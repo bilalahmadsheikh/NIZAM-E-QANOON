@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 556,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   21679
+  ],
+  "defect": "the Sindh Code's running head (the law's citation printed at the head of every page) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the running-head block is set aside; no law text changes",
+  "observed": "Page 2 prints the running head 'SIND ORDINANCE NO. L of 1984' alone at its head (block 21679, the page's first block); the same line heads the document's other pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc556-p2.png",
+  "render_sha256": "48bb0784ee0fbe8c2b0e63040db5d341c08623df1cd2cad8e014309a015cf389",
+  "match_text": "THE AGRICULTURAL  PRODUCE MARKETS (SIND AMENDMENT) ORDINANCE, 1984",
+  "before_text": "THE AGRICULTURAL  PRODUCE MARKETS (SIND AMENDMENT) ORDINANCE, 1984",
+  "after_text": "THE AGRICULTURAL  PRODUCE MARKETS (SIND AMENDMENT) ORDINANCE, 1984"
+ }
+]

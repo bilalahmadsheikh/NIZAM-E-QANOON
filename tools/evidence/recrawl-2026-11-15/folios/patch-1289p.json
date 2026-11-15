@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 1289,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   70389
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 70389, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1289-p2.png",
+  "render_sha256": "c92b5b039a3ddd2a4c34f149f9ff1cb65618376b04d8a5a6ddfd8035ef21ed15",
+  "match_text": "fifth day of July, 1977, read with the laws (continuance in force) Order,",
+  "before_text": "fifth day of July, 1977, read with the laws (continuance in force) Order,",
+  "after_text": "fifth day of July, 1977, read with the laws (continuance in force) Order,"
+ },
+ {
+  "document_id": 1289,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   70399
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 70399, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1289-p3.png",
+  "render_sha256": "09d257e2b5f8024d3383a98788ff8cbf97c8909046e981cc5a6667f57592ead2",
+  "match_text": "arbitrator shall have the powers of a civil court trying a suit under",
+  "before_text": "arbitrator shall have the powers of a civil court trying a suit under",
+  "after_text": "arbitrator shall have the powers of a civil court trying a suit under"
+ }
+]

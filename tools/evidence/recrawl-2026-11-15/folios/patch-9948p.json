@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 9948,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2739498
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '625' alone at its foot (block 2739498, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc9948-p1.png",
+  "render_sha256": "49f8abbe95850f0b88705ab35b6bd2b8062836fc1ed0bc43d5028439a99e5981",
+  "match_text": "(Ordinance XCII of 1979) for the purposes hereinafter appearing ;",
+  "before_text": "(Ordinance XCII of 1979) for the purposes hereinafter appearing ;",
+  "after_text": "(Ordinance XCII of 1979) for the purposes hereinafter appearing ;"
+ },
+ {
+  "document_id": 9948,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2739505
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '626' alone at its foot (block 2739505, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc9948-p2.png",
+  "render_sha256": "89048a9e6ca44d79b44fcc6069fc5771bac35221c8f39f9f3bf90962503bba37",
+  "match_text": "done, taken, issued, made, initiated or exercised under this",
+  "before_text": "done, taken, issued, made, initiated or exercised under this",
+  "after_text": "done, taken, issued, made, initiated or exercised under this"
+ }
+]

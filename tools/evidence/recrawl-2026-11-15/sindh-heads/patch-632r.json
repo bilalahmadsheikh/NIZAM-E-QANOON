@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 632,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   26062
+  ],
+  "defect": "the Sindh Code's running head (the law's citation printed at the head of every page) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the running-head block is set aside; no law text changes",
+  "observed": "Page 3 prints the running head 'SIND ORDINANCE NO. II OF 1987' alone at its head (block 26062, the page's first block); the same line heads the document's other pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc632-p3.png",
+  "render_sha256": "f6750e6187a1788abd89b1a5feb530566ee0067c78dbe8ef4c9507ecd53bc6b8",
+  "match_text": "(e) disciplinary action against and imposition of penalty",
+  "before_text": "(e) disciplinary action against and imposition of penalty",
+  "after_text": "(e) disciplinary action against and imposition of penalty"
+ }
+]

@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 1718,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   110876
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1' alone at its foot (block 110876, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1718-p1.png",
+  "render_sha256": "bc652dfd957383b5a8a20e5595a887b68d8555735fb8f6013abc7e6ab4a74e1a",
+  "match_text": "berm or any of its structures, or which causes or is likely to cause",
+  "before_text": "berm or any of its structures, or which causes or is likely to cause",
+  "after_text": "berm or any of its structures, or which causes or is likely to cause"
+ },
+ {
+  "document_id": 1718,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   110893
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 110893, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1718-p2.png",
+  "render_sha256": "9bb5def47d493aad02148856fb2e5a53a0a3f410fc7bac3728413537d556d436",
+  "match_text": "Ordinance  or   the   rules   made   thereunder   shall   be   tried",
+  "before_text": "Ordinance  or   the   rules   made   thereunder   shall   be   tried",
+  "after_text": "Ordinance  or   the   rules   made   thereunder   shall   be   tried"
+ }
+]

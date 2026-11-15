@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 801,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   36170
+  ],
+  "defect": "the Sindh Code's running head (the law's citation printed at the head of every page) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the running-head block is set aside; no law text changes",
+  "observed": "Page 3 prints the running head 'SINDH ACT NO.IV OF 2011' alone at its head (block 36170, the page's first block); the same line heads the document's other pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc801-p3.png",
+  "render_sha256": "bf3c1d21ec2a5a35dbcec8efa75940ba57d4a86a82dd93ac18326061aaf9c04a",
+  "match_text": "gazette, make rules for carrying out the purposes of this Act.",
+  "before_text": "gazette, make rules for carrying out the purposes of this Act.",
+  "after_text": "gazette, make rules for carrying out the purposes of this Act."
+ }
+]

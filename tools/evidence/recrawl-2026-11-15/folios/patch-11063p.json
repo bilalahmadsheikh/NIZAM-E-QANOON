@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 11063,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2828888
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '627' alone at its foot (block 2828888, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11063-p1.png",
+  "render_sha256": "31b15c8065bee9a8d62171700cca936757c985a2abb6c61128c6d644c7de03d3",
+  "match_text": "Interim Constitution Act, 1974, the President is pleased to make",
+  "before_text": "Interim Constitution Act, 1974, the President is pleased to make",
+  "after_text": "Interim Constitution Act, 1974, the President is pleased to make"
+ },
+ {
+  "document_id": 11063,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2828895
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '628' alone at its foot (block 2828895, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11063-p2.png",
+  "render_sha256": "4d9b2c3da798584fa5d3225cfb55c9d5e8153550b7b930bf86bbf2f892b7e6c3",
+  "match_text": "divisible by 10000 the remainder shall be dis-regarded if it is less",
+  "before_text": "divisible by 10000 the remainder shall be dis-regarded if it is less",
+  "after_text": "divisible by 10000 the remainder shall be dis-regarded if it is less"
+ }
+]

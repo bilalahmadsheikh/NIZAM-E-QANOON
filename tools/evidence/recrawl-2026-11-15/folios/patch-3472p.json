@@ -1,0 +1,92 @@
+[
+ {
+  "document_id": 3472,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   387579
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 387579, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3472-p2.png",
+  "render_sha256": "0b1aef4b83954ccc6d39ac3dbaabef2ff6ee531a16e0ac9659888d4918c4175f",
+  "match_text": "No. OSD (PH) Legis-III / 2013. In exercise of the powers conferred under subsection (1) of",
+  "before_text": "No. OSD (PH) Legis-III / 2013. In exercise of the powers conferred under subsection (1) of",
+  "after_text": "No. OSD (PH) Legis-III / 2013. In exercise of the powers conferred under subsection (1) of"
+ },
+ {
+  "document_id": 3472,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   387582
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 387582, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3472-p3.png",
+  "render_sha256": "bb52369fd9df18e2bd7a0f624b8ac674771f895b0b906d4f9f4f1f3ae18c2644",
+  "match_text": "breeding, with such type of pesticide as may be specified in such notice and within the time",
+  "before_text": "breeding, with such type of pesticide as may be specified in such notice and within the time",
+  "after_text": "breeding, with such type of pesticide as may be specified in such notice and within the time"
+ },
+ {
+  "document_id": 3472,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   387589
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 387589, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3472-p4.png",
+  "render_sha256": "b9c8b100f92adb8cb9aa910240cbd7e7b1dba3e774cb8cb4767716590e37377f",
+  "match_text": "has been issued under these regulations, neglects or fails to comply with the requirement of",
+  "before_text": "has been issued under these regulations, neglects or fails to comply with the requirement of",
+  "after_text": "has been issued under these regulations, neglects or fails to comply with the requirement of"
+ },
+ {
+  "document_id": 3472,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   387595
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '5' alone at its foot (block 387595, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3472-p5.png",
+  "render_sha256": "803a2aba7e28c6325f9af85a7a6658c3f639074dfa53c1342f1424346f8a5c10",
+  "match_text": "necessary or appropriate, to rectify such situation and prevent the breeding of mosquitoes,",
+  "before_text": "necessary or appropriate, to rectify such situation and prevent the breeding of mosquitoes,",
+  "after_text": "necessary or appropriate, to rectify such situation and prevent the breeding of mosquitoes,"
+ },
+ {
+  "document_id": 3472,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   387606
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 6 prints its page number '6' alone at its foot (block 387606, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3472-p6.png",
+  "render_sha256": "ad67346e5b2fb56925f7c0737d11756ba3c8722515dfa7ba2228b58b31801bec",
+  "match_text": "Power or entry and inspection.- (1) Subject to the provisions of para (2), the Health",
+  "before_text": "Power or entry and inspection.- (1) Subject to the provisions of para (2), the Health",
+  "after_text": "Power or entry and inspection.- (1) Subject to the provisions of para (2), the Health"
+ },
+ {
+  "document_id": 3472,
+  "page_no": 7,
+  "source_apparatus_blocks": [
+   387612
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 7 prints its page number '7' alone at its foot (block 387612, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3472-p7.png",
+  "render_sha256": "b64e6c2fc19de647bfbc4bb5d69b57b2122a003a2f0f2dbbf3d9f2bd818f7b9f",
+  "match_text": "obtain from the court of a Magistrate having jurisdiction in the area a search warrant under",
+  "before_text": "obtain from the court of a Magistrate having jurisdiction in the area a search warrant under",
+  "after_text": "obtain from the court of a Magistrate having jurisdiction in the area a search warrant under"
+ }
+]

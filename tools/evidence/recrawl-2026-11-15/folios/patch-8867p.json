@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 8867,
+  "page_no": 10,
+  "source_apparatus_blocks": [
+   2350950
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 10 prints its page number '10' alone at its foot (block 2350950, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc8867-p10.png",
+  "render_sha256": "d68472bc330be4572e4f343cf09b463441034ed8649c2e312c5f33427835d376",
+  "match_text": "aspects relating to the distribution system with necessary details and particulars for",
+  "before_text": "aspects relating to the distribution system with necessary details and particulars for",
+  "after_text": "aspects relating to the distribution system with necessary details and particulars for"
+ },
+ {
+  "document_id": 8867,
+  "page_no": 11,
+  "source_apparatus_blocks": [
+   2350965
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 11 prints its page number '11' alone at its foot (block 2350965, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc8867-p11.png",
+  "render_sha256": "95e2c8deeb7f6d4a46b78537765c3cc353323656c91e40aba9b218564e177e9b",
+  "match_text": "distribution system or any intangible assets accruing or likely to accrue to the licensee",
+  "before_text": "distribution system or any intangible assets accruing or likely to accrue to the licensee",
+  "after_text": "distribution system or any intangible assets accruing or likely to accrue to the licensee"
+ },
+ {
+  "document_id": 8867,
+  "page_no": 12,
+  "source_apparatus_blocks": [
+   2350979
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 12 prints its page number '12' alone at its foot (block 2350979, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc8867-p12.png",
+  "render_sha256": "a368235b753c2bfb627d3b78da1de6d92caa42d4456d12ce9112b05f40ea8f4e",
+  "match_text": "(3) | The Authority shall have the right, upon forty eight hours prior written notice to",
+  "before_text": "(3) | The Authority shall have the right, upon forty eight hours prior written notice to",
+  "after_text": "(3) | The Authority shall have the right, upon forty eight hours prior written notice to"
+ }
+]

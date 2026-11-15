@@ -1,0 +1,14 @@
+[
+ {
+  "document_id": 1851,
+  "page_no": 15,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc1851-p15.png",
+  "render_sha256": "8b81deefaf7984e88c22e2e6e270eeead41da512dee4788ebd858727de3d4790",
+  "defect": "the Sindh Code's running head (the law's citation and title at the head of every page) was read into a provision's text, in the same block as the law below it",
+  "observed": "Page 15 prints the running head 'SINDH ACT NO.XXI OF 2010 / THE ZULFIKARABAD DEVELOPMENT AUTHORITY ACT, 2010' at its head; the same head opens the document's other pages",
+  "match_text": "SINDH ACT NO.XXI OF 2010",
+  "before_text": "SINDH ACT NO.XXI OF 2010 \nTHE ZULFIKARABAD DEVELOPMENT AUTHORITY ACT, 2010",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-head lines are cut from the block; the law after them is kept as printed"
+ }
+]

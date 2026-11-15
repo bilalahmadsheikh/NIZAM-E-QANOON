@@ -1,0 +1,14 @@
+[
+ {
+  "document_id": 1341,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc1341-p4.png",
+  "render_sha256": "5250e15e9f9213947707fa1b66e01bb13c92cc58a08511021162cc07212a5264",
+  "defect": "the Sindh Code's running head (the law's citation and title at the head of every page) was read into a provision's text, in the same block as the law below it",
+  "observed": "Page 4 prints the running head 'SINDH ACT NO.XVIII OF 2010 / THE SINDH PUBLIC PROPERTY (REMOVAL OF ENCROACHMENT) ACT, 2010' at its head; the same head opens the document's other pages",
+  "match_text": "SINDH ACT NO.XVIII OF 2010",
+  "before_text": "SINDH ACT NO.XVIII OF 2010 \nTHE SINDH PUBLIC PROPERTY (REMOVAL OF ENCROACHMENT) ACT, 2010",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-head lines are cut from the block; the law after them is kept as printed"
+ }
+]

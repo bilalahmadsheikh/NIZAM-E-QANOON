@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 1528,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   92048
+  ],
+  "defect": "the Sindh Code's running head (the law's citation printed at the head of every page) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the running-head block is set aside; no law text changes",
+  "observed": "Page 2 prints the running head 'SIND ACT NO. VIII OF 1986.' alone at its head (block 92048, the page's first block); the same line heads the document's other pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc1528-p2.png",
+  "render_sha256": "dbd661b7da4ea8419e96c6b98813ff9e738cfe85f4dfeb4dfbeefef4243ad216",
+  "match_text": "Act, exercise such powers and perform such functions of the Vice-",
+  "before_text": "Act, exercise such powers and perform such functions of the Vice-",
+  "after_text": "Act, exercise such powers and perform such functions of the Vice-"
+ }
+]

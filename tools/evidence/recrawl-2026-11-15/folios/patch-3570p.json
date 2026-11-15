@@ -1,0 +1,437 @@
+[
+ {
+  "document_id": 3570,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   412525
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1' alone at its foot (block 412525, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3570-p1.png",
+  "render_sha256": "abbad1150d93e19bb3ecc6a9bbe402391bfb7b29db85102a76d90e82956d5a10",
+  "match_text": "No. 10 of  2019  having  been passed by  the  Provincial Assembly  of Balochistan on",
+  "before_text": "No. 10 of  2019  having  been passed by  the  Provincial Assembly  of Balochistan on",
+  "after_text": "No. 10 of  2019  having  been passed by  the  Provincial Assembly  of Balochistan on"
+ },
+ {
+  "document_id": 3570,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   412531
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 412531, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3570-p2.png",
+  "render_sha256": "218fea2fe2419f5de7d7733e682b58e83b93b7b1327cd1c4ba614793c709bc08",
+  "match_text": "“Certificate of registration” means the certificate issued",
+  "before_text": "“Certificate of registration” means the certificate issued",
+  "after_text": "“Certificate of registration” means the certificate issued"
+ },
+ {
+  "document_id": 3570,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   412539
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 412539, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3570-p3.png",
+  "render_sha256": "ccbb6eb9ee1b07e5e4cdbf21e0f9ba7c1542d6960b27fe080bb1f1d5b75bd34d",
+  "match_text": "hospital, diagnostic centre, medical clinics, medical store,",
+  "before_text": "hospital, diagnostic centre, medical clinics, medical store,",
+  "after_text": "hospital, diagnostic centre, medical clinics, medical store,"
+ },
+ {
+  "document_id": 3570,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   412546
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 412546, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3570-p4.png",
+  "render_sha256": "42116ef5144784264e85868a43b2168321804ebcfebf02ebb826f1576fcfb6bb",
+  "match_text": "sustains injury or dies as a result of improper treatment",
+  "before_text": "sustains injury or dies as a result of improper treatment",
+  "after_text": "sustains injury or dies as a result of improper treatment"
+ },
+ {
+  "document_id": 3570,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   412553
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '5' alone at its foot (block 412553, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3570-p5.png",
+  "render_sha256": "90c092a26ea29e3c2d0d3ae7c1f252d018beeb44bc20b5635cf100a255e3ceb3",
+  "match_text": "deeds of title or any document evidencing right, title or",
+  "before_text": "deeds of title or any document evidencing right, title or",
+  "after_text": "deeds of title or any document evidencing right, title or"
+ },
+ {
+  "document_id": 3570,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   412562
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 6 prints its page number '6' alone at its foot (block 412562, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3570-p6.png",
+  "render_sha256": "4b513e72768fdd07d0fe7d266b16d5b5032fa5df14f75bf149dbddb7d2137e92",
+  "match_text": "jointly in accordance to the provision of this Act and the Rules",
+  "before_text": "jointly in accordance to the provision of this Act and the Rules",
+  "after_text": "jointly in accordance to the provision of this Act and the Rules"
+ },
+ {
+  "document_id": 3570,
+  "page_no": 7,
+  "source_apparatus_blocks": [
+   412570
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 7 prints its page number '7' alone at its foot (block 412570, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3570-p7.png",
+  "render_sha256": "6ca678f721dce6ccbfb7131a69072411102637495d18bc622e08ac163e7ccb7c",
+  "match_text": "to  the healthcare services and to grant certification",
+  "before_text": "to  the healthcare services and to grant certification",
+  "after_text": "to  the healthcare services and to grant certification"
+ },
+ {
+  "document_id": 3570,
+  "page_no": 8,
+  "source_apparatus_blocks": [
+   412574
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 8 prints its page number '8' alone at its foot (block 412574, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3570-p8.png",
+  "render_sha256": "7d758ff7aeea56e152db115452b2f4af31e908ba33fe7e5096e7477651cb14b5",
+  "match_text": "take measures for the welfare of the present and past",
+  "before_text": "take measures for the welfare of the present and past",
+  "after_text": "take measures for the welfare of the present and past"
+ },
+ {
+  "document_id": 3570,
+  "page_no": 9,
+  "source_apparatus_blocks": [
+   412581
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 9 prints its page number '9' alone at its foot (block 412581, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3570-p9.png",
+  "render_sha256": "89bc12d3f1abe4f87044e2fcf5c85885d1827add9178c853b742068ca2ac0c1c",
+  "match_text": "a person on such terms and conditions as may be determined by",
+  "before_text": "a person on such terms and conditions as may be determined by",
+  "after_text": "a person on such terms and conditions as may be determined by"
+ },
+ {
+  "document_id": 3570,
+  "page_no": 10,
+  "source_apparatus_blocks": [
+   412597
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 10 prints its page number '10' alone at its foot (block 412597, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3570-p10.png",
+  "render_sha256": "1bddcc13e05fbff30bb29d78e47d96312ff1597eef4be44f5d4ea48c032064fe",
+  "match_text": "ations  or   declarations   which   shall   be   admitted   in  evidence  in",
+  "before_text": "ations  or   declarations   which   shall   be   admitted   in  evidence  in",
+  "after_text": "ations  or   declarations   which   shall   be   admitted   in  evidence  in"
+ },
+ {
+  "document_id": 3570,
+  "page_no": 11,
+  "source_apparatus_blocks": [
+   412611
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 11 prints its page number '11' alone at its foot (block 412611, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3570-p11.png",
+  "render_sha256": "de03ed7a329eb8549adc04d86f6ef8d0ad68aad8c8266d0ac317e83407d3ebf0",
+  "match_text": "Minister   shall    prescribe   the   remuneration   payable   to   a   member",
+  "before_text": "Minister   shall    prescribe   the   remuneration   payable   to   a   member",
+  "after_text": "Minister   shall    prescribe   the   remuneration   payable   to   a   member"
+ },
+ {
+  "document_id": 3570,
+  "page_no": 12,
+  "source_apparatus_blocks": [
+   412628
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 12 prints its page number '12' alone at its foot (block 412628, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3570-p12.png",
+  "render_sha256": "dd7e01bb9758b5803061a66f0c39b6c181a2aad6eb2f3fdcb0ad692d92291004",
+  "match_text": "votes, the  Chairperson  shall  have  a  second  or  casting  vote.",
+  "before_text": "votes, the  Chairperson  shall  have  a  second  or  casting  vote.",
+  "after_text": "votes, the  Chairperson  shall  have  a  second  or  casting  vote."
+ },
+ {
+  "document_id": 3570,
+  "page_no": 13,
+  "source_apparatus_blocks": [
+   412639
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 13 prints its page number '13' alone at its foot (block 412639, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3570-p13.png",
+  "render_sha256": "5c487103362c75f55218c9ee32fcd8f0cea164978fe50111e47aac80a2eca0fb",
+  "match_text": "ballot to  elect  the  Chairperson  from  amongst themselves   for  a",
+  "before_text": "ballot to  elect  the  Chairperson  from  amongst themselves   for  a",
+  "after_text": "ballot to  elect  the  Chairperson  from  amongst themselves   for  a"
+ },
+ {
+  "document_id": 3570,
+  "page_no": 14,
+  "source_apparatus_blocks": [
+   412655
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 14 prints its page number '14' alone at its foot (block 412655, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3570-p14.png",
+  "render_sha256": "f8718fae10a39d0cd68cd8557d1a026b49c88a99cef448a30800cd0be80af8d8",
+  "match_text": "(5)       The Chief   Executive Officer   shall   devote   his  whole",
+  "before_text": "(5)       The Chief   Executive Officer   shall   devote   his  whole",
+  "after_text": "(5)       The Chief   Executive Officer   shall   devote   his  whole"
+ },
+ {
+  "document_id": 3570,
+  "page_no": 15,
+  "source_apparatus_blocks": [
+   412683
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 15 prints its page number '15' alone at its foot (block 412683, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3570-p15.png",
+  "render_sha256": "17051d45507d743abc05b0c27369c850f984e76e0c1fcbdb65a0e68d3572e32a",
+  "match_text": "members shall be re-nominated after every three years, in case of",
+  "before_text": "members shall be re-nominated after every three years, in case of",
+  "after_text": "members shall be re-nominated after every three years, in case of"
+ },
+ {
+  "document_id": 3570,
+  "page_no": 16,
+  "source_apparatus_blocks": [
+   412692
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 16 prints its page number '16' alone at its foot (block 412692, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3570-p16.png",
+  "render_sha256": "4a321f008cfcf798590f97560f79a14157fde75c4b66088be730edc130158e4e",
+  "match_text": "(a) one   representative   each   to   be   nominated   by  the—",
+  "before_text": "(a) one   representative   each   to   be   nominated   by  the—",
+  "after_text": "(a) one   representative   each   to   be   nominated   by  the—"
+ },
+ {
+  "document_id": 3570,
+  "page_no": 17,
+  "source_apparatus_blocks": [
+   412707
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 17 prints its page number '17' alone at its foot (block 412707, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3570-p17.png",
+  "render_sha256": "c1a3a54d061d3e91c0233a235a164e8cdf5fc89ab932c189cecb41ad8ec2e3ab",
+  "match_text": "shall   chair   meetings    of    the   Committee    and    the   Chief   Executive",
+  "before_text": "shall   chair   meetings    of    the   Committee    and    the   Chief   Executive",
+  "after_text": "shall   chair   meetings    of    the   Committee    and    the   Chief   Executive"
+ },
+ {
+  "document_id": 3570,
+  "page_no": 18,
+  "source_apparatus_blocks": [
+   412717
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 18 prints its page number '18' alone at its foot (block 412717, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3570-p18.png",
+  "render_sha256": "bbc5dc31ff6cf23c509669297ff333941f57fcbaa7b36d4a57419a45000c6cb0",
+  "match_text": "in accordance  with   the  terms  and conditions  of  a  license   issued",
+  "before_text": "in accordance  with   the  terms  and conditions  of  a  license   issued",
+  "after_text": "in accordance  with   the  terms  and conditions  of  a  license   issued"
+ },
+ {
+  "document_id": 3570,
+  "page_no": 19,
+  "source_apparatus_blocks": [
+   412726
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 19 prints its page number '19' alone at its foot (block 412726, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3570-p19.png",
+  "render_sha256": "6486b4da789c3a1440858d1fc932cd0f62950bf11ed14e33cb0fd572286513db",
+  "match_text": "specify   the   kind   of   healthcare   establishment   for   which   it   is",
+  "before_text": "specify   the   kind   of   healthcare   establishment   for   which   it   is",
+  "after_text": "specify   the   kind   of   healthcare   establishment   for   which   it   is"
+ },
+ {
+  "document_id": 3570,
+  "page_no": 20,
+  "source_apparatus_blocks": [
+   412738
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 20 prints its page number '20' alone at its foot (block 412738, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3570-p20.png",
+  "render_sha256": "28e2a604a04bf98e85f46f62d6977b2dc170bd80f58620379aa65d7cc81f1ea1",
+  "match_text": "negligence      of       same      nature   have      proved   against         the",
+  "before_text": "negligence      of       same      nature   have      proved   against         the",
+  "after_text": "negligence      of       same      nature   have      proved   against         the"
+ },
+ {
+  "document_id": 3570,
+  "page_no": 21,
+  "source_apparatus_blocks": [
+   412754
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 21 prints its page number '21' alone at its foot (block 412754, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3570-p21.png",
+  "render_sha256": "8aef0bfcd9a2a5586dff2a42dff7ac3bea11e541e329b94fd4164255d7a9a851",
+  "match_text": "decision or further refer to other competent forum as prescribed by",
+  "before_text": "decision or further refer to other competent forum as prescribed by",
+  "after_text": "decision or further refer to other competent forum as prescribed by"
+ },
+ {
+  "document_id": 3570,
+  "page_no": 22,
+  "source_apparatus_blocks": [
+   412768
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 22 prints its page number '22' alone at its foot (block 412768, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3570-p22.png",
+  "render_sha256": "4902249fe191589b3515401e458347b0169f3ee2e4b2122c9d566498e1aae155",
+  "match_text": "healthcare    service   provider   or   healthcare    establishment.",
+  "before_text": "healthcare    service   provider   or   healthcare    establishment.",
+  "after_text": "healthcare    service   provider   or   healthcare    establishment."
+ },
+ {
+  "document_id": 3570,
+  "page_no": 23,
+  "source_apparatus_blocks": [
+   412780
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 23 prints its page number '23' alone at its foot (block 412780, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3570-p23.png",
+  "render_sha256": "8a2feaf48f8521eb8ab14ef67a8d593aff1190521c8265c926f2e97e497b3054",
+  "match_text": "this     Act,    rules   or  regulations   subject    to   such  conditions  and",
+  "before_text": "this     Act,    rules   or  regulations   subject    to   such  conditions  and",
+  "after_text": "this     Act,    rules   or  regulations   subject    to   such  conditions  and"
+ },
+ {
+  "document_id": 3570,
+  "page_no": 24,
+  "source_apparatus_blocks": [
+   412799
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 24 prints its page number '24' alone at its foot (block 412799, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3570-p24.png",
+  "render_sha256": "b3ce4000c947abea4069c246561cf57102496bad625c66d18927b52ba05332c6",
+  "match_text": "any    duty    or   function   under   this   Act   unless    allowed    in   writing",
+  "before_text": "any    duty    or   function   under   this   Act   unless    allowed    in   writing",
+  "after_text": "any    duty    or   function   under   this   Act   unless    allowed    in   writing"
+ },
+ {
+  "document_id": 3570,
+  "page_no": 25,
+  "source_apparatus_blocks": [
+   412813
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 25 prints its page number '25' alone at its foot (block 412813, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3570-p25.png",
+  "render_sha256": "f15e24c9a61a1a2d7fad09d3221ccaf5e6436584f966b7fca3713de3753fd5b1",
+  "match_text": "rules  or   regulations,     impose fine as prescribed by rules, keeping",
+  "before_text": "rules  or   regulations,     impose fine as prescribed by rules, keeping",
+  "after_text": "rules  or   regulations,     impose fine as prescribed by rules, keeping"
+ },
+ {
+  "document_id": 3570,
+  "page_no": 26,
+  "source_apparatus_blocks": [
+   412825
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 26 prints its page number '26' alone at its foot (block 412825, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3570-p26.png",
+  "render_sha256": "c58526b520179411e953e1a8cb92daffb77e36d51f38faca01fb503a25e4f385",
+  "match_text": "order   of  the Commission, prefer an appeal in writing to the",
+  "before_text": "order   of  the Commission, prefer an appeal in writing to the",
+  "after_text": "order   of  the Commission, prefer an appeal in writing to the"
+ },
+ {
+  "document_id": 3570,
+  "page_no": 27,
+  "source_apparatus_blocks": [
+   412830
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 27 prints its page number '27' alone at its foot (block 412830, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3570-p27.png",
+  "render_sha256": "0a4211bef9ef1e22a438bdb50d42a9284baab93af7fab29c63fdd9bf619c8a83",
+  "match_text": "the     annual    report   of   the   Commission  send   a      copy   of   the",
+  "before_text": "the     annual    report   of   the   Commission  send   a      copy   of   the",
+  "after_text": "the     annual    report   of   the   Commission  send   a      copy   of   the"
+ },
+ {
+  "document_id": 3570,
+  "page_no": 28,
+  "source_apparatus_blocks": [
+   412851
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 28 prints its page number '28' alone at its foot (block 412851, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3570-p28.png",
+  "render_sha256": "46a497e340ee64d530fbc9e6e3196c8302e7341b54dadaa1e0c292cda02ee399",
+  "match_text": "inconsistent     with    the   provisions   of     this     Act     as     may   appear",
+  "before_text": "inconsistent     with    the   provisions   of     this     Act     as     may   appear",
+  "after_text": "inconsistent     with    the   provisions   of     this     Act     as     may   appear"
+ },
+ {
+  "document_id": 3570,
+  "page_no": 29,
+  "source_apparatus_blocks": [
+   412861
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 29 prints its page number '29' alone at its foot (block 412861, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3570-p29.png",
+  "render_sha256": "8eecb6a17588fdee1f9af4d94a9962c503a6743b6d8a1088815c36d6f0273fcf",
+  "match_text": "Minister, Chief  Secretary  or  Secretary  Health,  with  exception",
+  "before_text": "Minister, Chief  Secretary  or  Secretary  Health,  with  exception",
+  "after_text": "Minister, Chief  Secretary  or  Secretary  Health,  with  exception"
+ }
+]

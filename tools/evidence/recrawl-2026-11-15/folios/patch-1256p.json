@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 1256,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   66369
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 66369, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1256-p2.png",
+  "render_sha256": "53fa5535ac3417a32f2898614ee9bf85b35dc9bf3c609f79536855e1f6f59843",
+  "match_text": "the persons appointed to the service by transfer who were not otherwise eligible for",
+  "before_text": "the persons appointed to the service by transfer who were not otherwise eligible for",
+  "after_text": "the persons appointed to the service by transfer who were not otherwise eligible for"
+ },
+ {
+  "document_id": 1256,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   66378
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 66378, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1256-p3.png",
+  "render_sha256": "5b000716371f3a4e2e227de62e870f92caf6319e3d86d9748d25448378e72cb2",
+  "match_text": "and applications pending in this behalf shall abate on the coming into force of this",
+  "before_text": "and applications pending in this behalf shall abate on the coming into force of this",
+  "after_text": "and applications pending in this behalf shall abate on the coming into force of this"
+ }
+]

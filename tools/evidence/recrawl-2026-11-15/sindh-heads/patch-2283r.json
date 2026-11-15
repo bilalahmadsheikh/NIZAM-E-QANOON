@@ -1,0 +1,26 @@
+[
+ {
+  "document_id": 2283,
+  "page_no": 8,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc2283-p8.png",
+  "render_sha256": "337e535e92ab989d6c9b8f05e4a27d2da79746eb14b52dbe2d2c99d984c789fc",
+  "defect": "the Sindh Code's running head (the law's citation and title at the head of every page) was read into a provision's text, in the same block as the law below it",
+  "observed": "Page 8 prints the running head 'SINDH ACT NO. V OF 2008 / THE GORAKH HILLS DEVELOPMENT AUTHORITY ACT, 2008.' at its head; the same head opens the document's other pages",
+  "match_text": "SINDH ACT NO. V OF 2008",
+  "before_text": "SINDH ACT NO. V OF 2008 \nTHE GORAKH HILLS DEVELOPMENT AUTHORITY ACT, 2008.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-head lines are cut from the block; the law after them is kept as printed"
+ },
+ {
+  "document_id": 2283,
+  "page_no": 12,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc2283-p12.png",
+  "render_sha256": "0d0c6327d530a2b11e5928e234d2630d642fe0e4aee8864afed20ff38a6e0443",
+  "defect": "the Sindh Code's running head (the law's citation and title at the head of every page) was read into a provision's text, in the same block as the law below it",
+  "observed": "Page 12 prints the running head 'SINDH ACT NO. V OF 2008 / THE GORAKH HILLS DEVELOPMENT AUTHORITY ACT, 2008.' at its head; the same head opens the document's other pages",
+  "match_text": "SINDH ACT NO. V OF 2008",
+  "before_text": "SINDH ACT NO. V OF 2008 \nTHE GORAKH HILLS DEVELOPMENT AUTHORITY ACT, 2008.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-head lines are cut from the block; the law after them is kept as printed"
+ }
+]

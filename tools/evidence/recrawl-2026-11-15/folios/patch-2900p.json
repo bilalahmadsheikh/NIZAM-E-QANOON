@@ -1,0 +1,77 @@
+[
+ {
+  "document_id": 2900,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   270260
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 270260, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2900-p2.png",
+  "render_sha256": "a335ecf633313c5eaaa69e837f61d68db8cf270bf8507b0c5105d81b26ff98bd",
+  "match_text": "Notification No. PD/SGA/-716.-  In exercise of the powers conferred by section 12 of the",
+  "before_text": "Notification No. PD/SGA/-716.-  In exercise of the powers conferred by section 12 of the",
+  "after_text": "Notification No. PD/SGA/-716.-  In exercise of the powers conferred by section 12 of the"
+ },
+ {
+  "document_id": 2900,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   270273
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 270273, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2900-p3.png",
+  "render_sha256": "b4f1b53d49723e2420beba169abc03188f89a0913d0228cf0428fb8fee8db0ee",
+  "match_text": "5.    Eligibility of allotment grant.-        One deserving Member of a Family holding",
+  "before_text": "5.    Eligibility of allotment grant.-        One deserving Member of a Family holding",
+  "after_text": "5.    Eligibility of allotment grant.-        One deserving Member of a Family holding"
+ },
+ {
+  "document_id": 2900,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   270285
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 270285, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2900-p4.png",
+  "render_sha256": "057e76fbb64a295259183351fa15b8f26ee87465db9f4799d3d77f3311f89c66",
+  "match_text": "Project Director or his representative or all of them to enter upon the plot or house at",
+  "before_text": "Project Director or his representative or all of them to enter upon the plot or house at",
+  "after_text": "Project Director or his representative or all of them to enter upon the plot or house at"
+ },
+ {
+  "document_id": 2900,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   270298
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '5' alone at its foot (block 270298, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2900-p5.png",
+  "render_sha256": "b71cd683b5c08bf57ff30f4a059d192fbd6dcb55ad5f8a2af79c6677b6cb252d",
+  "match_text": "30 (thirty) days and for  of filing an appeal against the order of the District Officer",
+  "before_text": "30 (thirty) days and for  of filing an appeal against the order of the District Officer",
+  "after_text": "30 (thirty) days and for  of filing an appeal against the order of the District Officer"
+ },
+ {
+  "document_id": 2900,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   270304
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 6 prints its page number '6' alone at its foot (block 270304, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2900-p6.png",
+  "render_sha256": "c81ba200296a8894648b71f4ba8743c596196bdccbfe9da0e8bd645841dc2f46",
+  "match_text": "(5)   The Appellate Authority shall, on receipt of an appeal, and after perusal of",
+  "before_text": "(5)   The Appellate Authority shall, on receipt of an appeal, and after perusal of",
+  "after_text": "(5)   The Appellate Authority shall, on receipt of an appeal, and after perusal of"
+ }
+]

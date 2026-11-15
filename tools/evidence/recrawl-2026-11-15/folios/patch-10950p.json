@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 10950,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2815784
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '46' alone at its foot (block 2815784, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10950-p1.png",
+  "render_sha256": "5251720f582e329bb2c1da94ce9e189865862f2dc48c3a9e93494e8efa4127b2",
+  "match_text": "President on the 29th day of March, 1978, is hereby published for general",
+  "before_text": "President on the 29th day of March, 1978, is hereby published for general",
+  "after_text": "President on the 29th day of March, 1978, is hereby published for general"
+ },
+ {
+  "document_id": 10950,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2815794
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '47' alone at its foot (block 2815794, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10950-p2.png",
+  "render_sha256": "f25f8ee535b219e469b7b03be9ac9741c64e24e11edc399fe66d30797fdabfa6",
+  "match_text": "giving effect to the provisions of the said Act or in regard to the",
+  "before_text": "giving effect to the provisions of the said Act or in regard to the",
+  "after_text": "giving effect to the provisions of the said Act or in regard to the"
+ }
+]

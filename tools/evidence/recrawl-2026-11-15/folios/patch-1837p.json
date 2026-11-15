@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 1837,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   124761
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 124761, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1837-p2.png",
+  "render_sha256": "81dee8a78fbbc8d544d8875494669445b98905add08b90bf5ed8ab9febd08dc2",
+  "match_text": "within thirty days of the order, file appeal to the Magistrate of",
+  "before_text": "within thirty days of the order, file appeal to the Magistrate of",
+  "after_text": "within thirty days of the order, file appeal to the Magistrate of"
+ },
+ {
+  "document_id": 1837,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   124763
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 124763, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1837-p3.png",
+  "render_sha256": "bd5735b906b0f5db9b231479a0c517f3476ecc52416bb09c3e48d7957f94cfa2",
+  "match_text": "KARACHI,TUESDAY, SEPTEMBER  15,1981.",
+  "before_text": "KARACHI,TUESDAY, SEPTEMBER  15,1981.",
+  "after_text": "KARACHI,TUESDAY, SEPTEMBER  15,1981."
+ }
+]

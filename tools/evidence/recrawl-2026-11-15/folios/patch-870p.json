@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 870,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   39309
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 39309, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc870-p2.png",
+  "render_sha256": "0a9e7e2ef08150fb4b9c6ae44f6f096ce75a9d0a85cfec2cd5a0f5916050a19d",
+  "match_text": "to provide for the continuation of laws in the erstwhile Provincially Administered Tribal",
+  "before_text": "to provide for the continuation of laws in the erstwhile Provincially Administered Tribal",
+  "after_text": "to provide for the continuation of laws in the erstwhile Provincially Administered Tribal"
+ },
+ {
+  "document_id": 870,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   39313
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 39313, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc870-p3.png",
+  "render_sha256": "a0d26c051be0cb9a6b1e93105336a405e2c09b07147aa3a226eac0d96e0724ba",
+  "match_text": "the time being in force, all the laws, Regulations, rules, notifications and bye-laws, including",
+  "before_text": "the time being in force, all the laws, Regulations, rules, notifications and bye-laws, including",
+  "after_text": "the time being in force, all the laws, Regulations, rules, notifications and bye-laws, including"
+ }
+]

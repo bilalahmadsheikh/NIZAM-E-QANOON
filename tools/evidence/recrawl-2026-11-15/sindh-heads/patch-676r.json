@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 676,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   28416
+  ],
+  "defect": "the Sindh Code's running head (the law's citation printed at the head of every page) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the running-head block is set aside; no law text changes",
+  "observed": "Page 2 prints the running head 'SIND ORDINANCE NO. VII of 1987.' alone at its head (block 28416, the page's first block); the same line heads the document's other pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc676-p2.png",
+  "render_sha256": "aaa8b1e805cc49de70d9b18bacb332cf2acec1da4e73f3c33420da5bf3707fc1",
+  "match_text": "Secretary is attached, shall be the Controlling Authority",
+  "before_text": "Secretary is attached, shall be the Controlling Authority",
+  "after_text": "Secretary is attached, shall be the Controlling Authority"
+ }
+]

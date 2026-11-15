@@ -1,0 +1,92 @@
+[
+ {
+  "document_id": 3079,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   302965
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1' alone at its foot (block 302965, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3079-p1.png",
+  "render_sha256": "9c598ff9412020d783df97638b2c4edde5cffdf91cb83ed7d23c93554f2f33ed",
+  "match_text": "Children Act, 1955, the Government of Sindh are pleased to make the following rules:-",
+  "before_text": "Children Act, 1955, the Government of Sindh are pleased to make the following rules:-",
+  "after_text": "Children Act, 1955, the Government of Sindh are pleased to make the following rules:-"
+ },
+ {
+  "document_id": 3079,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   302975
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 302975, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3079-p2.png",
+  "render_sha256": "aa2469ef25e13c90d03b2672ee2ccb5451880a18223290b4417217da3d840817",
+  "match_text": "proper accommodation to the inmates including such as separate bed, sanitary,",
+  "before_text": "proper accommodation to the inmates including such as separate bed, sanitary,",
+  "after_text": "proper accommodation to the inmates including such as separate bed, sanitary,"
+ },
+ {
+  "document_id": 3079,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   302986
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 302986, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3079-p3.png",
+  "render_sha256": "2b4c700a904b2de991f509ca2c91a0571c1b0f0fbe733a7e2ddd56a3339a0a6d",
+  "match_text": "or her property, which shall be kept in safe custody and shall be returned to child",
+  "before_text": "or her property, which shall be kept in safe custody and shall be returned to child",
+  "after_text": "or her property, which shall be kept in safe custody and shall be returned to child"
+ },
+ {
+  "document_id": 3079,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   302998
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 302998, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3079-p4.png",
+  "render_sha256": "2e1aecc23ed717e63672605083f10e45fb98d8e0feede6b5839a1a2c2d93c060",
+  "match_text": "once report the death or serious illness of any inmate to the Director, the Police,",
+  "before_text": "once report the death or serious illness of any inmate to the Director, the Police,",
+  "after_text": "once report the death or serious illness of any inmate to the Director, the Police,"
+ },
+ {
+  "document_id": 3079,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   303010
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '5' alone at its foot (block 303010, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3079-p5.png",
+  "render_sha256": "64a7552c100d5248a9024289a36ad7b0c5b62af328893234991bbff532449041",
+  "match_text": "facilities and with the provision of indoor and outdoor games during their stay at",
+  "before_text": "facilities and with the provision of indoor and outdoor games during their stay at",
+  "after_text": "facilities and with the provision of indoor and outdoor games during their stay at"
+ },
+ {
+  "document_id": 3079,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   303015
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 6 prints its page number '6' alone at its foot (block 303015, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3079-p6.png",
+  "render_sha256": "b6543a4ee46fddc147103405ceef12a2800a963c9d0ecaac03c9023c92b80395",
+  "match_text": "20. No stigmatization, labour, corporal punishment.- No inmate shall be –",
+  "before_text": "20. No stigmatization, labour, corporal punishment.- No inmate shall be –",
+  "after_text": "20. No stigmatization, labour, corporal punishment.- No inmate shall be –"
+ }
+]

@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 705,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   30853
+  ],
+  "defect": "the Sindh Code's running head (the law's citation printed at the head of every page) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the running-head block is set aside; no law text changes",
+  "observed": "Page 2 prints the running head 'SINDH ACT NO.VI OF 1991' alone at its head (block 30853, the page's first block); the same line heads the document's other pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc705-p2.png",
+  "render_sha256": "e82330a1011c67e95f3d33f48cdcacee6e7c6058c4d4ec75fb74a72a350ec940",
+  "match_text": "4.           In  the  said  Act,  in  section  8,  in  sub-section  (1),  the",
+  "before_text": "4.           In  the  said  Act,  in  section  8,  in  sub-section  (1),  the",
+  "after_text": "4.           In  the  said  Act,  in  section  8,  in  sub-section  (1),  the"
+ }
+]

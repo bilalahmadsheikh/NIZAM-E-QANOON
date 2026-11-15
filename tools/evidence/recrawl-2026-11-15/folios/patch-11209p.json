@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 11209,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2839465
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '749' alone at its foot (block 2839465, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11209-p1.png",
+  "render_sha256": "d230ee28626eadfe3b9e9865474ae40985b66b4ddc733db10bd4ae2e0dfa1508",
+  "match_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "before_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "after_text": "Constitution Act, 1974, the President is pleased to make and promulgate"
+ },
+ {
+  "document_id": 11209,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2839478
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '750' alone at its foot (block 2839478, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11209-p2.png",
+  "render_sha256": "661c5a5f5b19cf55b44693ac4d6541d5a5b16854ad3e6b6dc5ce998499e30b75",
+  "match_text": "In the said Ordinance, after Section 14, a new Section 14-A shall",
+  "before_text": "In the said Ordinance, after Section 14, a new Section 14-A shall",
+  "after_text": "In the said Ordinance, after Section 14, a new Section 14-A shall"
+ },
+ {
+  "document_id": 11209,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2839496
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '751' alone at its foot (block 2839496, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11209-p3.png",
+  "render_sha256": "678002c606b72dce61da7e39993e55abaaac7b28fdccfa4544bfe8ea9fc6c71c",
+  "match_text": "certificates, secrutities, insurance ploicies, jewellery and motor vehicles),",
+  "before_text": "certificates, secrutities, insurance ploicies, jewellery and motor vehicles),",
+  "after_text": "certificates, secrutities, insurance ploicies, jewellery and motor vehicles),"
+ }
+]

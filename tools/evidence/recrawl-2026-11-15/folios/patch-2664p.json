@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 2664,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   230432
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1' alone at its foot (block 230432, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2664-p1.png",
+  "render_sha256": "4a8ee71caf0f44c9c266d90e69db83b5c7f4dbe317c02bcdb4fb3bebb1c6f18f",
+  "match_text": "Sindh, hereinafter referred to as the said Act, in section 2, in clause",
+  "before_text": "Sindh, hereinafter referred to as the said Act, in section 2, in clause",
+  "after_text": "Sindh, hereinafter referred to as the said Act, in section 2, in clause"
+ },
+ {
+  "document_id": 2664,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   230453
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 230453, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2664-p2.png",
+  "render_sha256": "652d31e10274a1fd9e992910c3cdcb7afba33d5d1b44540b23e7c4a3d5bcc6f9",
+  "match_text": "In the said Act, in section 17,  the full stop at the end shall be",
+  "before_text": "In the said Act, in section 17,  the full stop at the end shall be",
+  "after_text": "In the said Act, in section 17,  the full stop at the end shall be"
+ },
+ {
+  "document_id": 2664,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   230460
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 230460, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2664-p3.png",
+  "render_sha256": "00600c8fd5336d29f2411d3aaa0416b91e2c549457239b528b2403c555e32f4c",
+  "match_text": "THE   STAMP (SECOND SINDH AMENDMENT) ORDINANCE, 2002.",
+  "before_text": "THE   STAMP (SECOND SINDH AMENDMENT) ORDINANCE, 2002.",
+  "after_text": "THE   STAMP (SECOND SINDH AMENDMENT) ORDINANCE, 2002."
+ }
+]

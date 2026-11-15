@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 621,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   25548
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1' alone at its foot (block 25548, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc621-p1.png",
+  "render_sha256": "c3b3d4fe3b6e52dbeccbb8a48369446ec3a16e3bec61aa364a100bebb783adf9",
+  "match_text": "2.       In   the   Sindh   Service   Tribunals   Act,1973,   in",
+  "before_text": "2.       In   the   Sindh   Service   Tribunals   Act,1973,   in",
+  "after_text": "2.       In   the   Sindh   Service   Tribunals   Act,1973,   in"
+ },
+ {
+  "document_id": 621,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   25551
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 25551, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc621-p2.png",
+  "render_sha256": "a9a4a395f255d2d56f6b8ba28c2ebba2b97196ded3cf3d89c0dee49f3b289844",
+  "match_text": "THE SINDH SERVICE TRIBUNALS (AMENDMENT) ORDINANCE, 2013",
+  "before_text": "THE SINDH SERVICE TRIBUNALS (AMENDMENT) ORDINANCE, 2013",
+  "after_text": "THE SINDH SERVICE TRIBUNALS (AMENDMENT) ORDINANCE, 2013"
+ }
+]

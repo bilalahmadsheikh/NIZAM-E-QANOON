@@ -1,0 +1,77 @@
+[
+ {
+  "document_id": 10943,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2815452
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '641' alone at its foot (block 2815452, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10943-p1.png",
+  "render_sha256": "62d8d74a338e7663d39aba1987fbb2fc7a949eb33ff466dc593dae088f551f5a",
+  "match_text": "Constitution Act, 1974, the president is pleased to make and promulgate",
+  "before_text": "Constitution Act, 1974, the president is pleased to make and promulgate",
+  "after_text": "Constitution Act, 1974, the president is pleased to make and promulgate"
+ },
+ {
+  "document_id": 10943,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2815460
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '642' alone at its foot (block 2815460, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10943-p2.png",
+  "render_sha256": "9862f36aff5547acae8192e1883396128ece91d63305c55cea24177c59720092",
+  "match_text": "(Rasoomat) referred to in sub-section (I) except with the prior",
+  "before_text": "(Rasoomat) referred to in sub-section (I) except with the prior",
+  "after_text": "(Rasoomat) referred to in sub-section (I) except with the prior"
+ },
+ {
+  "document_id": 10943,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2815468
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '643' alone at its foot (block 2815468, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10943-p3.png",
+  "render_sha256": "33c158d06051fe4a79203731f1a3d3b7decfe537f561c352381d2b202662041b",
+  "match_text": "other person, the amount of the compensation, if any, paid to the",
+  "before_text": "other person, the amount of the compensation, if any, paid to the",
+  "after_text": "other person, the amount of the compensation, if any, paid to the"
+ },
+ {
+  "document_id": 10943,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2815477
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '644' alone at its foot (block 2815477, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10943-p4.png",
+  "render_sha256": "863a0d5ccc214d13354394bd6b07fb48bab0afd6f6b7d454f7015db82734ea68",
+  "match_text": "section 7, in subsection (1) the full stop occurring at the end shall",
+  "before_text": "section 7, in subsection (1) the full stop occurring at the end shall",
+  "after_text": "section 7, in subsection (1) the full stop occurring at the end shall"
+ },
+ {
+  "document_id": 10943,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2815488
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '645' alone at its foot (block 2815488, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10943-p5.png",
+  "render_sha256": "b645d8196261963e942335d810a2a518d947f10680dd9576e6c0235f88b7aee6",
+  "match_text": "section 19, in section (2) after clause (b), the following clause",
+  "before_text": "section 19, in section (2) after clause (b), the following clause",
+  "after_text": "section 19, in section (2) after clause (b), the following clause"
+ }
+]

@@ -1,0 +1,77 @@
+[
+ {
+  "document_id": 10196,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2757935
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1815' alone at its foot (block 2757935, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10196-p1.png",
+  "render_sha256": "9691935f42d0589d58c689bd53275304776d2c3b1bfa8bf342e3198907059bab",
+  "match_text": "to give effect to the financial proposals of Azad Government of",
+  "before_text": "to give effect to the financial proposals of Azad Government of",
+  "after_text": "to give effect to the financial proposals of Azad Government of"
+ },
+ {
+  "document_id": 10196,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2757940
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '1816' alone at its foot (block 2757940, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10196-p2.png",
+  "render_sha256": "3a79d1fb5efcd97062d2a7b82e2bf0abc713df05bdf29b73b2f7b7359c0c579a",
+  "match_text": "clause (a) of sub-section (2) of Section 13 of the said Act,",
+  "before_text": "clause (a) of sub-section (2) of Section 13 of the said Act,",
+  "after_text": "clause (a) of sub-section (2) of Section 13 of the said Act,"
+ },
+ {
+  "document_id": 10196,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2757954
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '1817' alone at its foot (block 2757954, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10196-p3.png",
+  "render_sha256": "4969b7aa985f469010372af408a7ea2bef3b747b4ba396191cedcb7a2f308ef6",
+  "match_text": "Tax (Tax on Services) Act, 2001 (XXIV of 2001), following",
+  "before_text": "Tax (Tax on Services) Act, 2001 (XXIV of 2001), following",
+  "after_text": "Tax (Tax on Services) Act, 2001 (XXIV of 2001), following"
+ },
+ {
+  "document_id": 10196,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2757965
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '1818' alone at its foot (block 2757965, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10196-p4.png",
+  "render_sha256": "b955ec8ca360df90075263b72532837cb924dd00e8e174137e665159dca83ea7",
+  "match_text": "(vi), following new clause (vii) shall be added and",
+  "before_text": "(vi), following new clause (vii) shall be added and",
+  "after_text": "(vi), following new clause (vii) shall be added and"
+ },
+ {
+  "document_id": 10196,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2757975
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '1819' alone at its foot (block 2757975, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10196-p5.png",
+  "render_sha256": "add8d784da1d919d239cc9d4c651f68db1ef4be57c2b6b4e2bc4675f7b779f7a",
+  "match_text": "after Serial No. 42 and entries relating thereto in",
+  "before_text": "after Serial No. 42 and entries relating thereto in",
+  "after_text": "after Serial No. 42 and entries relating thereto in"
+ }
+]

@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 475,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   18664
+  ],
+  "defect": "the Sindh Code's running head (the law's citation printed at the head of every page) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the running-head block is set aside; no law text changes",
+  "observed": "Page 2 prints the running head 'SIND ORDINANCE NO.XLIII OF 1984' alone at its head (block 18664, the page's first block); the same line heads the document's other pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc475-p2.png",
+  "render_sha256": "d54c33eddb2e335f8ef888181a973f5a21afd5423e847ecf6c632c99ec0a4792",
+  "match_text": "“(3)   Before   any     order     is     made     by   the",
+  "before_text": "“(3)   Before   any     order     is     made     by   the",
+  "after_text": "“(3)   Before   any     order     is     made     by   the"
+ }
+]

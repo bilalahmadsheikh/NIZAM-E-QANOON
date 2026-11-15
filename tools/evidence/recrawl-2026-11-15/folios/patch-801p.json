@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 801,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   36169
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 36169, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc801-p2.png",
+  "render_sha256": "945fa6f399c65a38a53056738c6871d933c36d7dba504efe9fc570941d4904c6",
+  "match_text": "THE SINDH REGULATION AND CONTROL OF DISPOSABLE SYRINGES ACT, 2010.",
+  "before_text": "THE SINDH REGULATION AND CONTROL OF DISPOSABLE SYRINGES ACT, 2010.",
+  "after_text": "THE SINDH REGULATION AND CONTROL OF DISPOSABLE SYRINGES ACT, 2010."
+ },
+ {
+  "document_id": 801,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   36185
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 36185, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc801-p3.png",
+  "render_sha256": "bf3c1d21ec2a5a35dbcec8efa75940ba57d4a86a82dd93ac18326061aaf9c04a",
+  "match_text": "Secretary Health or any other officer authorized by him in this",
+  "before_text": "Secretary Health or any other officer authorized by him in this",
+  "after_text": "Secretary Health or any other officer authorized by him in this"
+ }
+]

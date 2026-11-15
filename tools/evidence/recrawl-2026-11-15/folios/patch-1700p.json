@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 1700,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   109413
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1' alone at its foot (block 109413, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1700-p1.png",
+  "render_sha256": "27670e92dab7b31017bd9fc18800cf0539c9e5c80be91ecc3fbc30c8bb12098b",
+  "match_text": "1.         (1)  This  Ordinance  may  be  called  the  Removal  from  Service  (special",
+  "before_text": "1.         (1)  This  Ordinance  may  be  called  the  Removal  from  Service  (special",
+  "after_text": "1.         (1)  This  Ordinance  may  be  called  the  Removal  from  Service  (special"
+ },
+ {
+  "document_id": 1700,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   109435
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 109435, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1700-p2.png",
+  "render_sha256": "30e36b4f546d6f243458317bad9050b5a7bba48368eab63a14cc199ca5e7c3b8",
+  "match_text": "3.         In the said Ordinance, for section 5, the following shall be substituted:-",
+  "before_text": "3.         In the said Ordinance, for section 5, the following shall be substituted:-",
+  "after_text": "3.         In the said Ordinance, for section 5, the following shall be substituted:-"
+ },
+ {
+  "document_id": 1700,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   109458
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 109458, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1700-p3.png",
+  "render_sha256": "06848433e6a6d29946e0b968227103ecccc437b379c23e9b9a790ed3d088827c",
+  "match_text": "against the accused, or for reasons to be recorded in writing, it is satisfied that there",
+  "before_text": "against the accused, or for reasons to be recorded in writing, it is satisfied that there",
+  "after_text": "against the accused, or for reasons to be recorded in writing, it is satisfied that there"
+ },
+ {
+  "document_id": 1700,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   109472
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 109472, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1700-p4.png",
+  "render_sha256": "1dd08b8737c219009685781ab07f6f8c98e04fcbcf8f4677b889d6eca049116a",
+  "match_text": "6.         In the said Ordinance, in section 8, for the words “Inquiry Committee” the",
+  "before_text": "6.         In the said Ordinance, in section 8, for the words “Inquiry Committee” the",
+  "after_text": "6.         In the said Ordinance, in section 8, for the words “Inquiry Committee” the"
+ }
+]

@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 10883,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2809696
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '487' alone at its foot (block 2809696, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10883-p1.png",
+  "render_sha256": "847750a0c89db7f1603678c00e37e5bc0024357f8e64699d3907f9f23c64cc68",
+  "match_text": "received the assent of the President on the 3rdday of March,",
+  "before_text": "received the assent of the President on the 3rdday of March,",
+  "after_text": "received the assent of the President on the 3rdday of March,"
+ },
+ {
+  "document_id": 10883,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2809701
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '488' alone at its foot (block 2809701, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10883-p2.png",
+  "render_sha256": "3f80615c9cb706734b6796d5881d4cd9d04da0dff0294b6d3772e373ec4fb4fe",
+  "match_text": "hereinafter called as the said Act, section 4 shall be",
+  "before_text": "hereinafter called as the said Act, section 4 shall be",
+  "after_text": "hereinafter called as the said Act, section 4 shall be"
+ }
+]

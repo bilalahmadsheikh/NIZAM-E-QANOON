@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 10377,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2769734
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '685' alone at its foot (block 2769734, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10377-p1.png",
+  "render_sha256": "19bffd4b3f0b23558060ffdea80f375c842d85742c2bee6f75df5fb1499dcf09",
+  "match_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "before_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "after_text": "Constitution Act, 1974, the President is pleased to make and promulgate"
+ },
+ {
+  "document_id": 10377,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2769751
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '686' alone at its foot (block 2769751, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10377-p2.png",
+  "render_sha256": "242d0c72de4f2e16398de8332ab94d48b9dcddcb4db582c0e007a7d514f382e0",
+  "match_text": "office except in the manner to be prescribed by rules made under",
+  "before_text": "office except in the manner to be prescribed by rules made under",
+  "after_text": "office except in the manner to be prescribed by rules made under"
+ },
+ {
+  "document_id": 10377,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2769757
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '687' alone at its foot (block 2769757, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10377-p3.png",
+  "render_sha256": "7735e19d286a155952bcd7de6badc0f9419f3b07f9e39ac10253d0ada3e27b9c",
+  "match_text": "Function of the Commission:- The function of the Commission",
+  "before_text": "Function of the Commission:- The function of the Commission",
+  "after_text": "Function of the Commission:- The function of the Commission"
+ },
+ {
+  "document_id": 10377,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2769768
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '688' alone at its foot (block 2769768, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10377-p4.png",
+  "render_sha256": "0a48674ca81710ec7b9045d279a0aa11e4bd67a72d53206ed47f6eb12594383c",
+  "match_text": "the official Gazette, make rules for carrying out the purposes of",
+  "before_text": "the official Gazette, make rules for carrying out the purposes of",
+  "after_text": "the official Gazette, make rules for carrying out the purposes of"
+ }
+]

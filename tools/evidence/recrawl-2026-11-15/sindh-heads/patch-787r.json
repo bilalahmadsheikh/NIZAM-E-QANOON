@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 787,
+  "page_no": 2,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc787-p2.png",
+  "render_sha256": "64cc77187e4d908b4becae1b0f2c38c164df41d3f9d08d7683048a0cc7950b83",
+  "defect": "the Sindh Code's running head (the law's citation and title at the head of every page) was read into a provision's text, in the same block as the law below it",
+  "observed": "Page 2 prints the running head 'SINDH ACT NO.LVI OF 2013 / THE MALIR DEVELOPMENT AUTHORITY (REVIVAL AND AMENDING) ACT, 2013' at its head; the same head opens the document's other pages",
+  "source_apparatus_blocks": [
+   35681
+  ],
+  "match_text": "5.       In section 8, in sub section (1), after clause (iii), the",
+  "before_text": "5.       In section 8, in sub section (1), after clause (iii), the",
+  "after_text": "5.       In section 8, in sub section (1), after clause (iii), the",
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) are set aside; no law text changes"
+ }
+]

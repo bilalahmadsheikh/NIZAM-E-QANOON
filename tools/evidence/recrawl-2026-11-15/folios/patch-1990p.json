@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 1990,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   144894
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 144894, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1990-p2.png",
+  "render_sha256": "ab2f64d9a0744bc775b1adb4792bbe95f1c421e79e4bf82b38e9c19b14060612",
+  "match_text": "Sindh Coastal Development Authority Act, 1994, the government of Sindh are pleased to",
+  "before_text": "Sindh Coastal Development Authority Act, 1994, the government of Sindh are pleased to",
+  "after_text": "Sindh Coastal Development Authority Act, 1994, the government of Sindh are pleased to"
+ },
+ {
+  "document_id": 1990,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   144907
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 144907, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1990-p3.png",
+  "render_sha256": "eab60a4693ef1d8a597351371084897d8d997476ea0557e4ca2d497a52d7f6eb",
+  "match_text": "office in which the appellant is posted at  the time of filing",
+  "before_text": "office in which the appellant is posted at  the time of filing",
+  "after_text": "office in which the appellant is posted at  the time of filing"
+ },
+ {
+  "document_id": 1990,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   144912
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 144912, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1990-p4.png",
+  "render_sha256": "e760811ae586722be5f03f5a176bc4ebc51f32f52861cc950a6513963470bf4f",
+  "match_text": "3. The Superintendent, Sindh Government Printing Press Karachi, with a request to",
+  "before_text": "3. The Superintendent, Sindh Government Printing Press Karachi, with a request to",
+  "after_text": "3. The Superintendent, Sindh Government Printing Press Karachi, with a request to"
+ }
+]

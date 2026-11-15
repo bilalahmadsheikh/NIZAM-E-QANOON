@@ -1,0 +1,92 @@
+[
+ {
+  "document_id": 11144,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2834666
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '157' alone at its foot (block 2834666, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11144-p1.png",
+  "render_sha256": "dc92502149d5a54cf6fe0670cd68472287e175808126421484ef6cfc6e58f6f9",
+  "match_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "before_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "after_text": "Constitution Act, 1974, the President is pleased to make and promulgate"
+ },
+ {
+  "document_id": 11144,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2834678
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '158' alone at its foot (block 2834678, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11144-p2.png",
+  "render_sha256": "e7d42440eb9193547430c11ed925b1f905f7d20d750f8be73af937a56ea3f7e8",
+  "match_text": "Explanation.- 'Benami loan' means a loan the real beneficiary or",
+  "before_text": "Explanation.- 'Benami loan' means a loan the real beneficiary or",
+  "after_text": "Explanation.- 'Benami loan' means a loan the real beneficiary or"
+ },
+ {
+  "document_id": 11144,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2834686
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '159' alone at its foot (block 2834686, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11144-p3.png",
+  "render_sha256": "d89ebd82920c154ba3f6ed5c79a803251a116eb74c1b1d77eefc3ef59e52eb0e",
+  "match_text": "sub-section (5) of the said section, in the following manner, that",
+  "before_text": "sub-section (5) of the said section, in the following manner, that",
+  "after_text": "sub-section (5) of the said section, in the following manner, that"
+ },
+ {
+  "document_id": 11144,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2834695
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '160' alone at its foot (block 2834695, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11144-p4.png",
+  "render_sha256": "6b4b73aba1750e373bd200fdff8dd2a954733631b3db819f77589c82bf020dd2",
+  "match_text": "(2) is issued doss not admit the loan or any liability arising there",
+  "before_text": "(2) is issued doss not admit the loan or any liability arising there",
+  "after_text": "(2) is issued doss not admit the loan or any liability arising there"
+ },
+ {
+  "document_id": 11144,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2834712
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '161' alone at its foot (block 2834712, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11144-p5.png",
+  "render_sha256": "871257f265b3d54bb8f42ac0a164fca608bdc9890cf007988e74d7bd5bb576a2",
+  "match_text": "ready or had failed to furnish security to the satisfaction of the",
+  "before_text": "ready or had failed to furnish security to the satisfaction of the",
+  "after_text": "ready or had failed to furnish security to the satisfaction of the"
+ },
+ {
+  "document_id": 11144,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   2834726
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 6 prints its page number '162' alone at its foot (block 2834726, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11144-p6.png",
+  "render_sha256": "0c99395a6903030b0c390ffed2e344ec5b652c9e3badc2001687f6ca64a3331f",
+  "match_text": "be specified therein, such alienation shall not operate to transfer",
+  "before_text": "be specified therein, such alienation shall not operate to transfer",
+  "after_text": "be specified therein, such alienation shall not operate to transfer"
+ }
+]

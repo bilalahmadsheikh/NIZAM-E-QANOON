@@ -1,0 +1,77 @@
+[
+ {
+  "document_id": 10023,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2745668
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1387' alone at its foot (block 2745668, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10023-p1.png",
+  "render_sha256": "0bc0b3be59fac2074e090adef98da0a4ecf9ea116b130c26335e2ae9d5210da8",
+  "match_text": "received the assent of the President on the 08th day of February",
+  "before_text": "received the assent of the President on the 08th day of February",
+  "after_text": "received the assent of the President on the 08th day of February"
+ },
+ {
+  "document_id": 10023,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2745679
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '1388' alone at its foot (block 2745679, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10023-p2.png",
+  "render_sha256": "35698b5a8995e5ae62e280ded0fa86cefdab6375e87fa4bc7a4ac8d0c1321539",
+  "match_text": "to this Act, it shall be unlawful for any person to use, or",
+  "before_text": "to this Act, it shall be unlawful for any person to use, or",
+  "after_text": "to this Act, it shall be unlawful for any person to use, or"
+ },
+ {
+  "document_id": 10023,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2745693
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '1389' alone at its foot (block 2745693, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10023-p3.png",
+  "render_sha256": "ed255b2491e2c42d4dc4798511fa64bdbb545966c0f780a78497aa21acc0cfb2",
+  "match_text": "(2) Subject to sub-section (2) of Section 3, a person may",
+  "before_text": "(2) Subject to sub-section (2) of Section 3, a person may",
+  "after_text": "(2) Subject to sub-section (2) of Section 3, a person may"
+ },
+ {
+  "document_id": 10023,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2745702
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '1390' alone at its foot (block 2745702, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10023-p4.png",
+  "render_sha256": "c907a7f4ed3440e1bc62ec5d263ce004751df879739378105bdf6366100fcbe7",
+  "match_text": "(2) A Magistrate of the first class shall conduct the trial",
+  "before_text": "(2) A Magistrate of the first class shall conduct the trial",
+  "after_text": "(2) A Magistrate of the first class shall conduct the trial"
+ },
+ {
+  "document_id": 10023,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2745710
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '1391' alone at its foot (block 2745710, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10023-p5.png",
+  "render_sha256": "46e2d538ed3d61caacae44c72239e8d86793cc0cf05ca3564fe9d0a60838820f",
+  "match_text": "have been validly taken, made, passed, issued, initiated,",
+  "before_text": "have been validly taken, made, passed, issued, initiated,",
+  "after_text": "have been validly taken, made, passed, issued, initiated,"
+ }
+]

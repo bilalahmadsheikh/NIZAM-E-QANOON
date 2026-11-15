@@ -1,0 +1,77 @@
+[
+ {
+  "document_id": 3147,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   315718
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 315718, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3147-p2.png",
+  "render_sha256": "59642f6d5ab7d9872dcc0e7d87f3f928b94422027abe230a765949de9414f441",
+  "match_text": "NO.SO(ACD-II)9-6/2002.    In exercise of the powers conferred by section  7",
+  "before_text": "NO.SO(ACD-II)9-6/2002.    In exercise of the powers conferred by section  7",
+  "after_text": "NO.SO(ACD-II)9-6/2002.    In exercise of the powers conferred by section  7"
+ },
+ {
+  "document_id": 3147,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   315731
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 315731, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3147-p3.png",
+  "render_sha256": "9d018bfab99f13e19ed1f56d0b4000c6dcdba8bab2493178f2011b797832004d",
+  "match_text": "of their child in the school failing which the matter will be",
+  "before_text": "of their child in the school failing which the matter will be",
+  "after_text": "of their child in the school failing which the matter will be"
+ },
+ {
+  "document_id": 3147,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   315734
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 315734, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3147-p4.png",
+  "render_sha256": "49ecb64f62ecda86abcd7876e62a6dd7458845c971ec1b14531c8c7cf0731f4e",
+  "match_text": "(v)       to comply with the directions of Government",
+  "before_text": "(v)       to comply with the directions of Government",
+  "after_text": "(v)       to comply with the directions of Government"
+ },
+ {
+  "document_id": 3147,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   315743
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '5' alone at its foot (block 315743, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3147-p5.png",
+  "render_sha256": "a123d6039e5c5ec09e17c55d50c344dcf044489dbcfd083a7423a2aa57042146",
+  "match_text": "(Notice under provision of the Sindh Compulsory Primary Education Rules, 2002)",
+  "before_text": "(Notice under provision of the Sindh Compulsory Primary Education Rules, 2002)",
+  "after_text": "(Notice under provision of the Sindh Compulsory Primary Education Rules, 2002)"
+ },
+ {
+  "document_id": 3147,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   315749
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 6 prints its page number '6' alone at its foot (block 315749, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3147-p6.png",
+  "render_sha256": "e1446b90c0813a517662fe3c096b9c24d28da327f3abca74019726d2b86b37e9",
+  "match_text": "(order under provision of the Sindh Compulsory Primary Education Rules, 2002)",
+  "before_text": "(order under provision of the Sindh Compulsory Primary Education Rules, 2002)",
+  "after_text": "(order under provision of the Sindh Compulsory Primary Education Rules, 2002)"
+ }
+]

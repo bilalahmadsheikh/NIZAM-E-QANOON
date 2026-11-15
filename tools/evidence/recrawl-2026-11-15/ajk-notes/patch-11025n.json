@@ -1,0 +1,14 @@
+[
+ {
+  "document_id": 11025,
+  "page_no": 1,
+  "match_text": "1Section 2 subs. by the Excise and Salt (Adaptation) (Amendment) Act, 1992,",
+  "before_text": "1Section 2 subs. by the Excise and Salt (Adaptation) (Amendment) Act, 1992, \n(XIX of 1992) dt. 15.07.1992.The extract of Original Section 2  of  Act II of \n1990 is as under:- \n“2. Adaptation and amendment of the Central Excise and Salt Act, \n1944.  The Central Excise and Salt Act, 1944 (I of 1944), hereinafter \nreferred to as the said Act, and the rules, notification or orders made or \nissued thereunder, as in force in Pakistan, shall as far as practicable, be \nin force in Azad Jammu and Kashmir, subject to the modifications that \nthe reference in the said Act to “Pakistan”, “Federal Government” and \n“Central Board of Revenue” shall respectively be construed to be \nreference to “Azad Jammu and Kashmir”, “the Azad Government of \nthe State of Jammu and Kashmir” and “Board of Revenue of Azad \nJammu and Kashmir”.",
+  "after_text": " ",
+  "defect": "the block fuses the law's last line with the page note printed under it; the note was read as law",
+  "fixes": "parser-input correction: the note is cut from the block, from its marker to the block's end; the law before it is kept as printed",
+  "observed": "Page 1 prints the law ending 'd of Revenue” shall respectively be construed to be reference to “Azad Jammu and', then the note rule and the note '1Section 2 subs. by the Excise and Salt (Adaptation) (Amendment) Act, 1992, (XIX of 1992) dt. 15.07.1992.The extract of '",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc11025-p1.png",
+  "render_sha256": "deab21306811cbf3b088fd7714d9713f553ffb0ef187957552383c5c0dfd0856"
+ }
+]

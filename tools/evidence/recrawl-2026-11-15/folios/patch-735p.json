@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 735,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   32398
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 32398, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc735-p2.png",
+  "render_sha256": "7fa806d77bcbaa7c1fa4fe9bf48eb1695ee8dca8a54076d55243c4665205f4c9",
+  "match_text": "number and limits of Divisions, Districts, Sub-Divisions",
+  "before_text": "number and limits of Divisions, Districts, Sub-Divisions",
+  "after_text": "number and limits of Divisions, Districts, Sub-Divisions"
+ },
+ {
+  "document_id": 735,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   32409
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 32409, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc735-p3.png",
+  "render_sha256": "880b836d8ff0bd12e8bfba7be40a6b85356ed6b63cf0a093accfb6b35833c7a7",
+  "match_text": "the words “in his District”, the words “in his Division” shall be",
+  "before_text": "the words “in his District”, the words “in his Division” shall be",
+  "after_text": "the words “in his District”, the words “in his Division” shall be"
+ }
+]

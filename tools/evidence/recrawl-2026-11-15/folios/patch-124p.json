@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 124,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   3680
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1' alone at its foot (block 3680, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc124-p1.png",
+  "render_sha256": "ba957e075baeb09b21b179325f20965a9f1635b382cf1712213bbcecbf7c7f5f",
+  "match_text": "accord his assent as required under clause (2)(a) of Article 116 but he, instead of accord",
+  "before_text": "accord his assent as required under clause (2)(a) of Article 116 but he, instead of accord",
+  "after_text": "accord his assent as required under clause (2)(a) of Article 116 but he, instead of accord"
+ },
+ {
+  "document_id": 124,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   3704
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 3704, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc124-p2.png",
+  "render_sha256": "071e1d59a1f9c7db482a5ae3a0281eff0536108f183e5308def5bdc68133b3e8",
+  "match_text": "9.    In the said Act, in section 10, in sub-section (9), in the proviso, for the",
+  "before_text": "9.    In the said Act, in section 10, in sub-section (9), in the proviso, for the",
+  "after_text": "9.    In the said Act, in section 10, in sub-section (9), in the proviso, for the"
+ },
+ {
+  "document_id": 124,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   3723
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 3723, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc124-p3.png",
+  "render_sha256": "93b11b4d2f63177d2656167246cc2e1a7f85e5066d4aa4ee8e3024713d6b8e14",
+  "match_text": "In the said Act, in section 28, in sub-sections (1) and (2), for the",
+  "before_text": "In the said Act, in section 28, in sub-sections (1) and (2), for the",
+  "after_text": "In the said Act, in section 28, in sub-sections (1) and (2), for the"
+ }
+]

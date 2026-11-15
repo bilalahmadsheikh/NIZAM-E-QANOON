@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 10960,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2816668
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '653' alone at its foot (block 2816668, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10960-p1.png",
+  "render_sha256": "05341822e43a42053c57b5968c7fc26331e31f424b085a3a6e1e86911df047eb",
+  "match_text": "sub-section (1) of Section 41, of the Azad Jammu and Kashmir Interim",
+  "before_text": "sub-section (1) of Section 41, of the Azad Jammu and Kashmir Interim",
+  "after_text": "sub-section (1) of Section 41, of the Azad Jammu and Kashmir Interim"
+ },
+ {
+  "document_id": 10960,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2816671
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '654' alone at its foot (block 2816671, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10960-p2.png",
+  "render_sha256": "454d18cc542c8aabf1f6837a1d7ca443377af3b27fea939cc8790fe5ef1fc5aa",
+  "match_text": "sovereignty, integrity of Pakistan, or security of Azad",
+  "before_text": "sovereignty, integrity of Pakistan, or security of Azad",
+  "after_text": "sovereignty, integrity of Pakistan, or security of Azad"
+ },
+ {
+  "document_id": 10960,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2816675
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '655' alone at its foot (block 2816675, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10960-p3.png",
+  "render_sha256": "2a998fc4c827cf9735bf3dba83c92d637cd5c9721e909009bbf97407e725fa8e",
+  "match_text": "of 1913), of which he is a share-holder but is neither a director",
+  "before_text": "of 1913), of which he is a share-holder but is neither a director",
+  "after_text": "of 1913), of which he is a share-holder but is neither a director"
+ },
+ {
+  "document_id": 10960,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2816682
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '656' alone at its foot (block 2816682, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10960-p4.png",
+  "render_sha256": "54dffea7639470bed03c200953ab64b502d495af2c55b2edfeba2f08e2db2f08",
+  "match_text": "bearer of a political party' means an office  bearer at the National",
+  "before_text": "bearer of a political party' means an office  bearer at the National",
+  "after_text": "bearer of a political party' means an office  bearer at the National"
+ }
+]

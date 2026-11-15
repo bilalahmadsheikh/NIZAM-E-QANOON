@@ -1,0 +1,122 @@
+[
+ {
+  "document_id": 1196,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   60665
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 60665, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1196-p2.png",
+  "render_sha256": "b75273ede9426dd168961f76b7220b1a278ee519a667c8e7597547d928ce2d57",
+  "match_text": "remaining provisions shall take effect on such date as may be",
+  "before_text": "remaining provisions shall take effect on such date as may be",
+  "after_text": "remaining provisions shall take effect on such date as may be"
+ },
+ {
+  "document_id": 1196,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   60675
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 60675, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1196-p3.png",
+  "render_sha256": "10a3a9121bc5b2efe7784aede29fde45b3faa79e6c563cb66b592543e48c6770",
+  "match_text": "to the provisions of this Act, to acquire land in accordance with",
+  "before_text": "to the provisions of this Act, to acquire land in accordance with",
+  "after_text": "to the provisions of this Act, to acquire land in accordance with"
+ },
+ {
+  "document_id": 1196,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   60705
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 60705, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1196-p4.png",
+  "render_sha256": "e569c347f48dc8b948b5467240d0f30b18e814c62b0b4e02b3c7fdb10f654313",
+  "match_text": "Director during the tenure of his office in the prescribed manner.",
+  "before_text": "Director during the tenure of his office in the prescribed manner.",
+  "after_text": "Director during the tenure of his office in the prescribed manner."
+ },
+ {
+  "document_id": 1196,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   60715
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '5' alone at its foot (block 60715, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1196-p5.png",
+  "render_sha256": "394f21828693993e20039ec0aa152e9a4ec213cbab61f0bcc4f240238ca84fd3",
+  "match_text": "removal of a Director, other than an ex-officio Director, shall be",
+  "before_text": "removal of a Director, other than an ex-officio Director, shall be",
+  "after_text": "removal of a Director, other than an ex-officio Director, shall be"
+ },
+ {
+  "document_id": 1196,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   60721
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 6 prints its page number '6' alone at its foot (block 60721, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1196-p6.png",
+  "render_sha256": "ff429a841e4032207ecfd990dcde7c2d34e58e1acb725cbc848eceec1a5099ee",
+  "match_text": "Foundation who shall be the Chief Executive of the Foundation.",
+  "before_text": "Foundation who shall be the Chief Executive of the Foundation.",
+  "after_text": "Foundation who shall be the Chief Executive of the Foundation."
+ },
+ {
+  "document_id": 1196,
+  "page_no": 7,
+  "source_apparatus_blocks": [
+   60738
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 7 prints its page number '7' alone at its foot (block 60738, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1196-p7.png",
+  "render_sha256": "f40846476b87fa96b9293587f77d5d1390a9d47c74ae2a7d3809ccf3fb5ccd9c",
+  "match_text": "Board with the approval of Government for a specified period.",
+  "before_text": "Board with the approval of Government for a specified period.",
+  "after_text": "Board with the approval of Government for a specified period."
+ },
+ {
+  "document_id": 1196,
+  "page_no": 8,
+  "source_apparatus_blocks": [
+   60753
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 8 prints its page number '8' alone at its foot (block 60753, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1196-p8.png",
+  "render_sha256": "782434a666573945f3004cb85e235f1e0bf9b219bb91a18f83a4459346e7bf58",
+  "match_text": "residential unit of a particular category, keeping in view of his",
+  "before_text": "residential unit of a particular category, keeping in view of his",
+  "after_text": "residential unit of a particular category, keeping in view of his"
+ },
+ {
+  "document_id": 1196,
+  "page_no": 9,
+  "source_apparatus_blocks": [
+   60762
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 9 prints its page number '9' alone at its foot (block 60762, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1196-p9.png",
+  "render_sha256": "fbe12f45e260a02bb786212f13110b552bc24f5f4e6cd4f7f8896bf7b1ae23d7",
+  "match_text": "any provision of this Act shall be deemed to be public servants",
+  "before_text": "any provision of this Act shall be deemed to be public servants",
+  "after_text": "any provision of this Act shall be deemed to be public servants"
+ }
+]

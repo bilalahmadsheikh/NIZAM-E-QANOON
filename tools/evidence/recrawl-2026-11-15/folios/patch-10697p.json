@@ -1,0 +1,92 @@
+[
+ {
+  "document_id": 10697,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2796392
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '685' alone at its foot (block 2796392, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10697-p1.png",
+  "render_sha256": "be2e962ad5e71a00fad381e63a17dcad216bfebb4063907002add065d01a8147",
+  "match_text": "effect to the Financial Proposals of the Azad Government",
+  "before_text": "effect to the Financial Proposals of the Azad Government",
+  "after_text": "effect to the Financial Proposals of the Azad Government"
+ },
+ {
+  "document_id": 10697,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2796396
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '686' alone at its foot (block 2796396, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10697-p2.png",
+  "render_sha256": "b8164395da73c72a8a17dda1c6d562e73cfa9089c4dc39e4eee15b355dff9d3c",
+  "match_text": "or collected, proceedings initiated, notices issued, orders",
+  "before_text": "or collected, proceedings initiated, notices issued, orders",
+  "after_text": "or collected, proceedings initiated, notices issued, orders"
+ },
+ {
+  "document_id": 10697,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2796402
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '687' alone at its foot (block 2796402, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10697-p3.png",
+  "render_sha256": "5cfc0d2ac7edb27143af58638edbb641e0944436d4285897e58993c5272e97ab",
+  "match_text": "referred to as the “Said Ordinance”, the clause (a) of",
+  "before_text": "referred to as the “Said Ordinance”, the clause (a) of",
+  "after_text": "referred to as the “Said Ordinance”, the clause (a) of"
+ },
+ {
+  "document_id": 10697,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2796434
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '688' alone at its foot (block 2796434, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10697-p4.png",
+  "render_sha256": "4f7b32a98d23d6da1afb3c92a209924daec30e6fa4ba383989c8dd0ca245b3d2",
+  "match_text": "and insignia displaying “Chinar” leaf on the left of",
+  "before_text": "and insignia displaying “Chinar” leaf on the left of",
+  "after_text": "and insignia displaying “Chinar” leaf on the left of"
+ },
+ {
+  "document_id": 10697,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2796453
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '689' alone at its foot (block 2796453, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10697-p5.png",
+  "render_sha256": "26c65aff80cd941aa99cbc56a51dca72ebca9452a44f539c2060db7cb12e6222",
+  "match_text": "Ordinance shall be substituted with the following:-",
+  "before_text": "Ordinance shall be substituted with the following:-",
+  "after_text": "Ordinance shall be substituted with the following:-"
+ },
+ {
+  "document_id": 10697,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   2796458
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 6 prints its page number '690' alone at its foot (block 2796458, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10697-p6.png",
+  "render_sha256": "726eb782a1c2e1522cc48cf3453ea806375a31c409d234797c81c5d8751b6fc7",
+  "match_text": "Form “N” as set forth in first Schedule of the",
+  "before_text": "Form “N” as set forth in first Schedule of the",
+  "after_text": "Form “N” as set forth in first Schedule of the"
+ }
+]

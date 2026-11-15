@@ -1,0 +1,77 @@
+[
+ {
+  "document_id": 8796,
+  "page_no": 11,
+  "source_apparatus_blocks": [
+   2345118
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 11 prints its page number '11' alone at its foot (block 2345118, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc8796-p11.png",
+  "render_sha256": "ce343ec5c060982c84041c1488d7809838f9da31e337a8a0be800ac9acc49fd8",
+  "match_text": "practices for the remainder of the electrical systems associated with PV installations are also beyond",
+  "before_text": "practices for the remainder of the electrical systems associated with PV installations are also beyond",
+  "after_text": "practices for the remainder of the electrical systems associated with PV installations are also beyond"
+ },
+ {
+  "document_id": 8796,
+  "page_no": 12,
+  "source_apparatus_blocks": [
+   2345135
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 12 prints its page number '12' alone at its foot (block 2345135, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc8796-p12.png",
+  "render_sha256": "28533b5176b10f9495dbe12a34b0a1ea40e179bf095f875c1079e9a172b9aeaf",
+  "match_text": "62898 (all parts) intends to provide general guidelines and technical requirements for Microgrids.",
+  "before_text": "62898 (all parts) intends to provide general guidelines and technical requirements for Microgrids.",
+  "after_text": "62898 (all parts) intends to provide general guidelines and technical requirements for Microgrids."
+ },
+ {
+  "document_id": 8796,
+  "page_no": 13,
+  "source_apparatus_blocks": [
+   2345149
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 13 prints its page number '13' alone at its foot (block 2345149, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc8796-p13.png",
+  "render_sha256": "1aea3f79f45e9a63a1fd14361902e3d112c8bc501af6d32fe237223b8d053b7c",
+  "match_text": "It has content for both grid-connected and isolated Microgrid without separated into clauses. They",
+  "before_text": "It has content for both grid-connected and isolated Microgrid without separated into clauses. They",
+  "after_text": "It has content for both grid-connected and isolated Microgrid without separated into clauses. They"
+ },
+ {
+  "document_id": 8796,
+  "page_no": 14,
+  "source_apparatus_blocks": [
+   2345169
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 14 prints its page number '14' alone at its foot (block 2345169, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc8796-p14.png",
+  "render_sha256": "9da9e082b7dce8e34decf625e617887bfe052b7651c631ee3925803844ab94e4",
+  "match_text": "Technical specifications — Considerations for rural electrification systems extension- Interconnection",
+  "before_text": "Technical specifications — Considerations for rural electrification systems extension- Interconnection",
+  "after_text": "Technical specifications — Considerations for rural electrification systems extension- Interconnection"
+ },
+ {
+  "document_id": 8796,
+  "page_no": 15,
+  "source_apparatus_blocks": [
+   2345184
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 15 prints its page number '15' alone at its foot (block 2345184, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc8796-p15.png",
+  "render_sha256": "428df8333b8782a9bf79bb99ed8647145ccf2481859d4e60ccb3e3d50143c641",
+  "match_text": "(Microgrid) Regulations, 2022” for immediate publication in the official Gazette of Pakistan .",
+  "before_text": "(Microgrid) Regulations, 2022” for immediate publication in the official Gazette of Pakistan .",
+  "after_text": "(Microgrid) Regulations, 2022” for immediate publication in the official Gazette of Pakistan ."
+ }
+]

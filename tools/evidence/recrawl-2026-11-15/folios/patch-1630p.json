@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 1630,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   101793
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1' alone at its foot (block 101793, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1630-p1.png",
+  "render_sha256": "e8164a1b47f228a2756832da242a484b8e9af2dda1c1c7cad82a9ceb13933bf9",
+  "match_text": "1958, hereinafter referred to as the said Act, in section",
+  "before_text": "1958, hereinafter referred to as the said Act, in section",
+  "after_text": "1958, hereinafter referred to as the said Act, in section"
+ },
+ {
+  "document_id": 1630,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   101817
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 101817, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1630-p2.png",
+  "render_sha256": "03a4944eca56f4cb74f0afe81800d53ecaefa8a7aad5a0cf3ce5fb6fff7386ca",
+  "match_text": "In the said Act, in section 8, in sub-section (2), for",
+  "before_text": "In the said Act, in section 8, in sub-section (2), for",
+  "after_text": "In the said Act, in section 8, in sub-section (2), for"
+ },
+ {
+  "document_id": 1630,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   101823
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 101823, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1630-p3.png",
+  "render_sha256": "f8c1820bac05b39410770cff78d1c0caf4eb8aa757ac677ab9d46a8d3655001d",
+  "match_text": "In the said Act in section 23, sub-section (4) shall be",
+  "before_text": "In the said Act in section 23, sub-section (4) shall be",
+  "after_text": "In the said Act in section 23, sub-section (4) shall be"
+ }
+]

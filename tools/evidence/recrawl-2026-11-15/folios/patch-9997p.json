@@ -1,0 +1,77 @@
+[
+ {
+  "document_id": 9997,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2743794
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '175' alone at its foot (block 2743794, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc9997-p1.png",
+  "render_sha256": "62c0cc36f4a16b4243e9016af616214a28616e93dee75ea5dc5380d55e45e278",
+  "match_text": "to provide for law relating to the declaration assets by the Ministers,",
+  "before_text": "to provide for law relating to the declaration assets by the Ministers,",
+  "after_text": "to provide for law relating to the declaration assets by the Ministers,"
+ },
+ {
+  "document_id": 9997,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2743804
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '176' alone at its foot (block 2743804, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc9997-p2.png",
+  "render_sha256": "6a58423d9d241c5bcfd74ddb9f7fd9d7da666b8c5858565204d24d995fce2d91",
+  "match_text": "possession or under his control, directly or indirectly, either in",
+  "before_text": "possession or under his control, directly or indirectly, either in",
+  "after_text": "possession or under his control, directly or indirectly, either in"
+ },
+ {
+  "document_id": 9997,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2743813
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '177' alone at its foot (block 2743813, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc9997-p3.png",
+  "render_sha256": "679c072b2d5bf02a3e45ed604844857dcd2bc1294dbb1a7e637681c64ebc8aa4",
+  "match_text": "sells, transfers or otherwise disposes of any of the properties and",
+  "before_text": "sells, transfers or otherwise disposes of any of the properties and",
+  "after_text": "sells, transfers or otherwise disposes of any of the properties and"
+ },
+ {
+  "document_id": 9997,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2743822
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '178' alone at its foot (block 2743822, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc9997-p4.png",
+  "render_sha256": "be6b15c14ab676b557e3043a3036177684be5aa85aae9681dd3a4ad56784db12",
+  "match_text": "fine and / or forfeiture of the whole or part of his properties and",
+  "before_text": "fine and / or forfeiture of the whole or part of his properties and",
+  "after_text": "fine and / or forfeiture of the whole or part of his properties and"
+ },
+ {
+  "document_id": 9997,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2743833
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '179' alone at its foot (block 2743833, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc9997-p5.png",
+  "render_sha256": "5234ece3ce4de8244ea2846ebb367aafacc5442632c92b0f063524f1db44685b",
+  "match_text": "all parties shall be entitled to nominate fresh candidates for that",
+  "before_text": "all parties shall be entitled to nominate fresh candidates for that",
+  "after_text": "all parties shall be entitled to nominate fresh candidates for that"
+ }
+]

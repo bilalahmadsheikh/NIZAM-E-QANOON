@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 10518,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2779551
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '122' alone at its foot (block 2779551, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10518-p1.png",
+  "render_sha256": "1f5d1dc6ff5073b5692fcf9d0c94b913376e29fd1cee2b7bddee34dcd937e5a0",
+  "match_text": "on 21st day of June, 1978, is hereby published for general information:-",
+  "before_text": "on 21st day of June, 1978, is hereby published for general information:-",
+  "after_text": "on 21st day of June, 1978, is hereby published for general information:-"
+ },
+ {
+  "document_id": 10518,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2779559
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '123' alone at its foot (block 2779559, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10518-p2.png",
+  "render_sha256": "ac8515d6209ba4b05bf7c4b346f36a187eba9414ee9ad569c96040a771ddd4ce",
+  "match_text": "shall be reffered to the Commission for assessing their suitability",
+  "before_text": "shall be reffered to the Commission for assessing their suitability",
+  "after_text": "shall be reffered to the Commission for assessing their suitability"
+ }
+]

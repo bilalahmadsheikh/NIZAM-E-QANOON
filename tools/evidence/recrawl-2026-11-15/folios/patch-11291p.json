@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 11291,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2844321
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '42' alone at its foot (block 2844321, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11291-p1.png",
+  "render_sha256": "c1a4f8876e5265a5a1b4564a4f319a6b614d47abd1081283ac2f05fe7b6c4ede",
+  "match_text": "to amend the Holders of Representative Offices (Disqualification)",
+  "before_text": "to amend the Holders of Representative Offices (Disqualification)",
+  "after_text": "to amend the Holders of Representative Offices (Disqualification)"
+ },
+ {
+  "document_id": 11291,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2844330
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '43' alone at its foot (block 2844330, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11291-p2.png",
+  "render_sha256": "a587bcb5a53482da72f2bf514f8272be8c930c7ad9bca8d5acc15304127fc368",
+  "match_text": "5. Insertion of Section 6- A. Ordinance IX of 1978.- In the said",
+  "before_text": "5. Insertion of Section 6- A. Ordinance IX of 1978.- In the said",
+  "after_text": "5. Insertion of Section 6- A. Ordinance IX of 1978.- In the said"
+ }
+]

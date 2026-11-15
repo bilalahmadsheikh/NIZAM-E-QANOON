@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 11351,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2848122
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '2133' alone at its foot (block 2848122, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11351-p1.png",
+  "render_sha256": "b05322b6faa12f6704160e61cd3e592ec8e4dad8a6bb23fe6bad351d264b0ec6",
+  "match_text": "the Interim Constitution, it is expedient to provide a law",
+  "before_text": "the Interim Constitution, it is expedient to provide a law",
+  "after_text": "the Interim Constitution, it is expedient to provide a law"
+ },
+ {
+  "document_id": 11351,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2848146
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2134' alone at its foot (block 2848146, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11351-p2.png",
+  "render_sha256": "0223da13d14a89282a1420b5eceb48ee3f6f94e74bd887b2f0f3ff47ee2339db",
+  "match_text": "Definitions.-In this Act, unless there is anything",
+  "before_text": "Definitions.-In this Act, unless there is anything",
+  "after_text": "Definitions.-In this Act, unless there is anything"
+ },
+ {
+  "document_id": 11351,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2848169
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '2135' alone at its foot (block 2848169, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11351-p3.png",
+  "render_sha256": "d26ed5b0f8aec72ffc00c0c9c564742409d935ae24f38c153d770351125fe0c2",
+  "match_text": "Application.-(1)Subject to sub-section (2), this Act",
+  "before_text": "Application.-(1)Subject to sub-section (2), this Act",
+  "after_text": "Application.-(1)Subject to sub-section (2), this Act"
+ },
+ {
+  "document_id": 11351,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2848186
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '2136' alone at its foot (block 2848186, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11351-p4.png",
+  "render_sha256": "b8e136528df333f234c90f97e750aa9d52a324dc604980ec8bf0c4e7b8138f61",
+  "match_text": "notification in the official Gazette, make rules for",
+  "before_text": "notification in the official Gazette, make rules for",
+  "after_text": "notification in the official Gazette, make rules for"
+ }
+]

@@ -1,0 +1,77 @@
+[
+ {
+  "document_id": 10304,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2764703
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '2120' alone at its foot (block 2764703, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10304-p1.png",
+  "render_sha256": "ab260de83ccd036632c56cb40ccae86ead2836066be8744bd758ba13bdd4df98",
+  "match_text": "04th day of February, 2021 and received the assent of the",
+  "before_text": "04th day of February, 2021 and received the assent of the",
+  "after_text": "04th day of February, 2021 and received the assent of the"
+ },
+ {
+  "document_id": 10304,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2764726
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2121' alone at its foot (block 2764726, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10304-p2.png",
+  "render_sha256": "bb4897701ef8c37e00743f311dfe9eab83a63c466b85f0624f3ad280fce208aa",
+  "match_text": "deemed to have taken effect from 14th May, 2020.",
+  "before_text": "deemed to have taken effect from 14th May, 2020.",
+  "after_text": "deemed to have taken effect from 14th May, 2020."
+ },
+ {
+  "document_id": 10304,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2764750
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '2122' alone at its foot (block 2764750, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10304-p3.png",
+  "render_sha256": "766df2d3b1b125cf8f391c5e78cd89b1acb733e81408efa0b2d6751e1c239acd",
+  "match_text": "contractual or temporary basis shall not be entitled",
+  "before_text": "contractual or temporary basis shall not be entitled",
+  "after_text": "contractual or temporary basis shall not be entitled"
+ },
+ {
+  "document_id": 10304,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2764773
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '2123' alone at its foot (block 2764773, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10304-p4.png",
+  "render_sha256": "103c7d3acbbe9f5fbc63b20131ae9f6e4166f408de9507f1d226ac60bf38ea3e",
+  "match_text": "all savings or fixed deposits of the Corporation in",
+  "before_text": "all savings or fixed deposits of the Corporation in",
+  "after_text": "all savings or fixed deposits of the Corporation in"
+ },
+ {
+  "document_id": 10304,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2764793
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '2124' alone at its foot (block 2764793, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10304-p5.png",
+  "render_sha256": "a2348ae38e181ebd4362044f11a62eb1a06cd60c1ba4781b30ed906ada79c5f9",
+  "match_text": "things done, actions taken or rates, fees, or charges",
+  "before_text": "things done, actions taken or rates, fees, or charges",
+  "after_text": "things done, actions taken or rates, fees, or charges"
+ }
+]

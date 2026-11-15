@@ -1,0 +1,92 @@
+[
+ {
+  "document_id": 573,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   23057
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1' alone at its foot (block 23057, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc573-p1.png",
+  "render_sha256": "f3f8d78cc92f3e63e24a09352cce9d8912ab66ce2095df0d85e8c804709013fd",
+  "match_text": "Bill, 2019 having passed by the Provincial Assembly of Sindh on 28th January, 2019 and assented to by",
+  "before_text": "Bill, 2019 having passed by the Provincial Assembly of Sindh on 28th January, 2019 and assented to by",
+  "after_text": "Bill, 2019 having passed by the Provincial Assembly of Sindh on 28th January, 2019 and assented to by"
+ },
+ {
+  "document_id": 573,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   23067
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 23067, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc573-p2.png",
+  "render_sha256": "0ba0cd30e039532a7e5baf0e306eb5d39b895fec6319e2f90ddf5cf323cfde15",
+  "match_text": "priority basis, without complying with medico-legal formalities or demanding",
+  "before_text": "priority basis, without complying with medico-legal formalities or demanding",
+  "after_text": "priority basis, without complying with medico-legal formalities or demanding"
+ },
+ {
+  "document_id": 573,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   23083
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 23083, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc573-p3.png",
+  "render_sha256": "6b53caa74942a24ed81a2277357c948f554ff3088f7ba0d6c5b860f5926d119f",
+  "match_text": "facilities, such hospital shall at its own cost and expense arrange for the transfer",
+  "before_text": "facilities, such hospital shall at its own cost and expense arrange for the transfer",
+  "after_text": "facilities, such hospital shall at its own cost and expense arrange for the transfer"
+ },
+ {
+  "document_id": 573,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   23098
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 23098, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc573-p4.png",
+  "render_sha256": "11c7e33f033887e37db4580f2825239f404772ebbee4bde255ddbc7b5a8fd4ed",
+  "match_text": "years or fine which shall not be less than rupees five hundred thousand, or with",
+  "before_text": "years or fine which shall not be less than rupees five hundred thousand, or with",
+  "after_text": "years or fine which shall not be less than rupees five hundred thousand, or with"
+ },
+ {
+  "document_id": 573,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   23112
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '5' alone at its foot (block 23112, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc573-p5.png",
+  "render_sha256": "b2520831a8f9b49d4b037a69ca8e440ba131c834e4311f61988aebb30a5c4963",
+  "match_text": "officers of law enforcement agencies on the duties and obligations arising out of",
+  "before_text": "officers of law enforcement agencies on the duties and obligations arising out of",
+  "after_text": "officers of law enforcement agencies on the duties and obligations arising out of"
+ },
+ {
+  "document_id": 573,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   23121
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 6 prints its page number '6' alone at its foot (block 23121, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc573-p6.png",
+  "render_sha256": "00f2967bfd9e62d82aea9fae60cb0471b0efb1cbbe7fef20ef120a58645db9f8",
+  "match_text": "instructions as may be issued by the Department from time to time to cater to",
+  "before_text": "instructions as may be issued by the Department from time to time to cater to",
+  "after_text": "instructions as may be issued by the Department from time to time to cater to"
+ }
+]

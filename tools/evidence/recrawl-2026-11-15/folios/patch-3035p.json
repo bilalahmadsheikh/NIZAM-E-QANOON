@@ -1,0 +1,377 @@
+[
+ {
+  "document_id": 3035,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   295272
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 295272, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3035-p4.png",
+  "render_sha256": "d77ef36a0eaab7610e6004cd5356a7115744581ca5e570a82411956c6f508c0e",
+  "match_text": "THE QUAID-E-AWAM UNIVERSITY OF ENGINEERING, SCIENCE AND TECHNOLOGY,",
+  "before_text": "THE QUAID-E-AWAM UNIVERSITY OF ENGINEERING, SCIENCE AND TECHNOLOGY,",
+  "after_text": "THE QUAID-E-AWAM UNIVERSITY OF ENGINEERING, SCIENCE AND TECHNOLOGY,"
+ },
+ {
+  "document_id": 3035,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   295277
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '5' alone at its foot (block 295277, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3035-p5.png",
+  "render_sha256": "2ee84ced64f5adbcf78485b1c91ef893e47fd5c06cd8c4d49f47913805272538",
+  "match_text": "―Officer‖ means any of the Officers of the University",
+  "before_text": "―Officer‖ means any of the Officers of the University",
+  "after_text": "―Officer‖ means any of the Officers of the University"
+ },
+ {
+  "document_id": 3035,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   295291
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 6 prints its page number '6' alone at its foot (block 295291, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3035-p6.png",
+  "render_sha256": "6843541d1da0c579319d49e60db728e6174a91839eb13d845d5e70eab3ac5cab",
+  "match_text": "and interests held or enjoyed, by, and all liabilities subsisting",
+  "before_text": "and interests held or enjoyed, by, and all liabilities subsisting",
+  "after_text": "and interests held or enjoyed, by, and all liabilities subsisting"
+ },
+ {
+  "document_id": 3035,
+  "page_no": 7,
+  "source_apparatus_blocks": [
+   295313
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 7 prints its page number '7' alone at its foot (block 295313, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3035-p7.png",
+  "render_sha256": "b4119ede7d2e71a78b25e33a29473dcc8487a0db901de92a6a58ce8a26f5b8bc",
+  "match_text": "(g) to affiliate or disaffiliate colleges in the prescribed",
+  "before_text": "(g) to affiliate or disaffiliate colleges in the prescribed",
+  "after_text": "(g) to affiliate or disaffiliate colleges in the prescribed"
+ },
+ {
+  "document_id": 3035,
+  "page_no": 8,
+  "source_apparatus_blocks": [
+   295332
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 8 prints its page number '8' alone at its foot (block 295332, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3035-p8.png",
+  "render_sha256": "137ba9df6c0f446118c0d8b73067a4be3cb36bd3936bf7f00a29862d0eefdcd1",
+  "match_text": "(m) to recognize any teacher of an affiliated college",
+  "before_text": "(m) to recognize any teacher of an affiliated college",
+  "after_text": "(m) to recognize any teacher of an affiliated college"
+ },
+ {
+  "document_id": 3035,
+  "page_no": 9,
+  "source_apparatus_blocks": [
+   295346
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 9 prints its page number '9' alone at its foot (block 295346, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3035-p9.png",
+  "render_sha256": "16f0f71532e775fca905da351fa97905f7097a6950ca7e5e5d52924cf09652ea",
+  "match_text": "the University shall have jurisdiction within the province of Sindh",
+  "before_text": "the University shall have jurisdiction within the province of Sindh",
+  "after_text": "the University shall have jurisdiction within the province of Sindh"
+ },
+ {
+  "document_id": 3035,
+  "page_no": 10,
+  "source_apparatus_blocks": [
+   295359
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 10 prints its page number '10' alone at its foot (block 295359, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3035-p10.png",
+  "render_sha256": "5cc9c2cc73cf1745c138442ee89458e804bc53c05967f238fa45c1724cdbd315",
+  "match_text": "a discipline to be called the ―Islamic and Pakistan Studies Discipline‖",
+  "before_text": "a discipline to be called the ―Islamic and Pakistan Studies Discipline‖",
+  "after_text": "a discipline to be called the ―Islamic and Pakistan Studies Discipline‖"
+ },
+ {
+  "document_id": 3035,
+  "page_no": 11,
+  "source_apparatus_blocks": [
+   295383
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 11 prints its page number '11' alone at its foot (block 295383, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3035-p11.png",
+  "render_sha256": "f700c6d20cb8a573f39204d75954e286cef5103999918cb0b38e60148e8fe4f2",
+  "match_text": "Minister the Minister for Higher and Technical Education shall",
+  "before_text": "Minister the Minister for Higher and Technical Education shall",
+  "after_text": "Minister the Minister for Higher and Technical Education shall"
+ },
+ {
+  "document_id": 3035,
+  "page_no": 12,
+  "source_apparatus_blocks": [
+   295394
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 12 prints its page number '12' alone at its foot (block 295394, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3035-p12.png",
+  "render_sha256": "30bf4ba7f7cde80ff916cc63b0085c9be4e616980b5ea65f2723c5fa8a478ae2",
+  "match_text": "third of the total number of members, a fraction being counted as",
+  "before_text": "third of the total number of members, a fraction being counted as",
+  "after_text": "third of the total number of members, a fraction being counted as"
+ },
+ {
+  "document_id": 3035,
+  "page_no": 13,
+  "source_apparatus_blocks": [
+   295404
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 13 prints its page number '13' alone at its foot (block 295404, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3035-p13.png",
+  "render_sha256": "81b228c35282ce7fb4a4d662578e7badaee1889b608cb6c670f1fee29b96662e",
+  "match_text": "members shall hold office for two years and if the office of any",
+  "before_text": "members shall hold office for two years and if the office of any",
+  "after_text": "members shall hold office for two years and if the office of any"
+ },
+ {
+  "document_id": 3035,
+  "page_no": 14,
+  "source_apparatus_blocks": [
+   295424
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 14 prints its page number '14' alone at its foot (block 295424, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3035-p14.png",
+  "render_sha256": "323fc75bee79729f6facc9deed09e01f7955f0b613aa758b6d470cb3fd27b446",
+  "match_text": "(g) to provide buildings and other premises, libraries, furniture,",
+  "before_text": "(g) to provide buildings and other premises, libraries, furniture,",
+  "after_text": "(g) to provide buildings and other premises, libraries, furniture,"
+ },
+ {
+  "document_id": 3035,
+  "page_no": 15,
+  "source_apparatus_blocks": [
+   295439
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 15 prints its page number '15' alone at its foot (block 295439, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3035-p15.png",
+  "render_sha256": "e19b5fc2fae1cac4c21715c52fad4b0f4927fb0d267c98b1b6b00b6af62cec5a",
+  "match_text": "(w) to delegate any of its powers to an Authority or Officer or",
+  "before_text": "(w) to delegate any of its powers to an Authority or Officer or",
+  "after_text": "(w) to delegate any of its powers to an Authority or Officer or"
+ },
+ {
+  "document_id": 3035,
+  "page_no": 16,
+  "source_apparatus_blocks": [
+   295456
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 16 prints its page number '16' alone at its foot (block 295456, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3035-p16.png",
+  "render_sha256": "53ddb3299f61f91fb0287b2a4040d573b2f688250594606d240be3cdc6f96ed2",
+  "match_text": "body of the University and shall, subject to the provisions of this",
+  "before_text": "body of the University and shall, subject to the provisions of this",
+  "after_text": "body of the University and shall, subject to the provisions of this"
+ },
+ {
+  "document_id": 3035,
+  "page_no": 17,
+  "source_apparatus_blocks": [
+   295472
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 17 prints its page number '17' alone at its foot (block 295472, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3035-p17.png",
+  "render_sha256": "401aadb4c9ccef9c24ad97c8cbfac24821ce8dd9e2db9265e747344f0e71ea46",
+  "match_text": "or for any such other reason remains absent from the University for a",
+  "before_text": "or for any such other reason remains absent from the University for a",
+  "after_text": "or for any such other reason remains absent from the University for a"
+ },
+ {
+  "document_id": 3035,
+  "page_no": 18,
+  "source_apparatus_blocks": [
+   295487
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 18 prints its page number '18' alone at its foot (block 295487, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3035-p18.png",
+  "render_sha256": "13c00d2f7eda606e4be46167ca8a56c1ac2cd1c59d7bcacb642291f821d315aa",
+  "match_text": "or he is absent or is unable to perform the functions of his office",
+  "before_text": "or he is absent or is unable to perform the functions of his office",
+  "after_text": "or he is absent or is unable to perform the functions of his office"
+ },
+ {
+  "document_id": 3035,
+  "page_no": 19,
+  "source_apparatus_blocks": [
+   295494
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 19 prints its page number '19' alone at its foot (block 295494, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3035-p19.png",
+  "render_sha256": "5f8c1188565e822c7aa12285d7765cfdd38b1ca7a452a0d54db52037c3eddbbb",
+  "match_text": "possible, the action so taken to the Officer, Authority or",
+  "before_text": "possible, the action so taken to the Officer, Authority or",
+  "after_text": "possible, the action so taken to the Officer, Authority or"
+ },
+ {
+  "document_id": 3035,
+  "page_no": 20,
+  "source_apparatus_blocks": [
+   295510
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 20 prints its page number '20' alone at its foot (block 295510, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3035-p20.png",
+  "render_sha256": "3fc128873b4e4ecb9f027765c0c7c9ed25b4835793c021133d06f0e596547a7b",
+  "match_text": "sub-section (1), he shall, notwithstanding anything contained in",
+  "before_text": "sub-section (1), he shall, notwithstanding anything contained in",
+  "after_text": "sub-section (1), he shall, notwithstanding anything contained in"
+ },
+ {
+  "document_id": 3035,
+  "page_no": 21,
+  "source_apparatus_blocks": [
+   295531
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 21 prints its page number '21' alone at its foot (block 295531, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3035-p21.png",
+  "render_sha256": "de43d90656b26388e1c43d1f8d23c82d1c7938c6065aa5865a04d74a83f2e0ad",
+  "match_text": "provided that the first Controller of Examinations, immediately,",
+  "before_text": "provided that the first Controller of Examinations, immediately,",
+  "after_text": "provided that the first Controller of Examinations, immediately,"
+ },
+ {
+  "document_id": 3035,
+  "page_no": 22,
+  "source_apparatus_blocks": [
+   295541
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 22 prints its page number '22' alone at its foot (block 295541, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3035-p22.png",
+  "render_sha256": "c15d7f7bc7f111b78cde6d428494718cbdccffb22fd9625c5781b346beaa2b1e",
+  "match_text": "post in the University to be filled by appointing an employee of",
+  "before_text": "post in the University to be filled by appointing an employee of",
+  "after_text": "post in the University to be filled by appointing an employee of"
+ },
+ {
+  "document_id": 3035,
+  "page_no": 23,
+  "source_apparatus_blocks": [
+   295559
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 23 prints its page number '23' alone at its foot (block 295559, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3035-p23.png",
+  "render_sha256": "e1c9939fa5a5e5aa10fc23f139e6f0fea4aa65b18fb0ab74175537b3a06b7b05",
+  "match_text": "section, the provisions of the Provident Fund Act, 1925 (Act XIX",
+  "before_text": "section, the provisions of the Provident Fund Act, 1925 (Act XIX",
+  "after_text": "section, the provisions of the Provident Fund Act, 1925 (Act XIX"
+ },
+ {
+  "document_id": 3035,
+  "page_no": 24,
+  "source_apparatus_blocks": [
+   295580
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 24 prints its page number '24' alone at its foot (block 295580, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3035-p24.png",
+  "render_sha256": "3210cb631135f2ae718cf8ce36b3dd7f465899ea851627e4c274af0f271a1a67",
+  "match_text": "(c) the strength, qualification and the terms and conditions of",
+  "before_text": "(c) the strength, qualification and the terms and conditions of",
+  "after_text": "(c) the strength, qualification and the terms and conditions of"
+ },
+ {
+  "document_id": 3035,
+  "page_no": 25,
+  "source_apparatus_blocks": [
+   295592
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 25 prints its page number '25' alone at its foot (block 295592, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3035-p25.png",
+  "render_sha256": "2e4b8d4fed6c6a4ddc384211109e0baf4a674ecc70a46ab0a472004215fb1376",
+  "match_text": "of studies in respect of which it has been granted affiliation, the",
+  "before_text": "of studies in respect of which it has been granted affiliation, the",
+  "after_text": "of studies in respect of which it has been granted affiliation, the"
+ },
+ {
+  "document_id": 3035,
+  "page_no": 26,
+  "source_apparatus_blocks": [
+   295613
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 26 prints its page number '26' alone at its foot (block 295613, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3035-p26.png",
+  "render_sha256": "5d4f53f6763a1998b43ce3266e696622e9c739a6e3d0afb3c2ef62669c7838a6",
+  "match_text": "with or without any modifications or refer it back to the Syndicate for",
+  "before_text": "with or without any modifications or refer it back to the Syndicate for",
+  "after_text": "with or without any modifications or refer it back to the Syndicate for"
+ },
+ {
+  "document_id": 3035,
+  "page_no": 27,
+  "source_apparatus_blocks": [
+   295634
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 27 prints its page number '27' alone at its foot (block 295634, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3035-p27.png",
+  "render_sha256": "811e1e758b2e034affabe86359c91dff83c86b1b7c554ac303156400f819b961",
+  "match_text": "the Chancellor shall promulgate the First Statutes which shall remain",
+  "before_text": "the Chancellor shall promulgate the First Statutes which shall remain",
+  "after_text": "the Chancellor shall promulgate the First Statutes which shall remain"
+ },
+ {
+  "document_id": 3035,
+  "page_no": 28,
+  "source_apparatus_blocks": [
+   295647
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 28 prints its page number '28' alone at its foot (block 295647, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3035-p28.png",
+  "render_sha256": "d693654e9bd71c8170d380203eebc8736388f5f62324f819ebd81510375267c7",
+  "match_text": "Rules consistent with this Ordinance, Statutes and Regulations,",
+  "before_text": "Rules consistent with this Ordinance, Statutes and Regulations,",
+  "after_text": "Rules consistent with this Ordinance, Statutes and Regulations,"
+ }
+]

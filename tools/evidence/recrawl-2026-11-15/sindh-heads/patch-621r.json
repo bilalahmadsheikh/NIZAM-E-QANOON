@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 621,
+  "page_no": 2,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc621-p2.png",
+  "render_sha256": "a9a4a395f255d2d56f6b8ba28c2ebba2b97196ded3cf3d89c0dee49f3b289844",
+  "defect": "the Sindh Code's running head (the law's citation and title at the head of every page) was read into a provision's text, in the same block as the law below it",
+  "observed": "Page 2 prints the running head 'SINDH ORDINANCE NO.V OF 2013 / THE SINDH SERVICE TRIBUNALS (AMENDMENT) ORDINANCE, 2013' at its head; the same head opens the document's other pages",
+  "source_apparatus_blocks": [
+   25549
+  ],
+  "match_text": "Sessions Judge or, as the case may be, the civil",
+  "before_text": "Sessions Judge or, as the case may be, the civil",
+  "after_text": "Sessions Judge or, as the case may be, the civil",
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) are set aside; no law text changes"
+ }
+]

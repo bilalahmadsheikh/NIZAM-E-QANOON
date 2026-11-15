@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 10070,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2749107
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '137' alone at its foot (block 2749107, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10070-p1.png",
+  "render_sha256": "3ae4ddcf029e2a528da11b2956c05ffb8e2c486098b879f3cd246d062581049a",
+  "match_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "before_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "after_text": "Constitution Act, 1974, the President is pleased to make and promulgate"
+ },
+ {
+  "document_id": 10070,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2749114
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '138' alone at its foot (block 2749114, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10070-p2.png",
+  "render_sha256": "7219fa4353495569c703fb77e978ce9b0036078a3a5b0b5454316cd95b594e7f",
+  "match_text": "Minister, Minister, Advisor to the President, Advisor or Special",
+  "before_text": "Minister, Minister, Advisor to the President, Advisor or Special",
+  "after_text": "Minister, Minister, Advisor to the President, Advisor or Special"
+ }
+]

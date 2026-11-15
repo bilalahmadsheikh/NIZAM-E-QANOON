@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 1067,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   50329
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 50329, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1067-p2.png",
+  "render_sha256": "e2f9bdb0a07b1eb460357a1ca93ffc2e3bf748303486590f51debbd247945edc",
+  "match_text": "person, determine its correct value and for that purpose the provisions",
+  "before_text": "person, determine its correct value and for that purpose the provisions",
+  "after_text": "person, determine its correct value and for that purpose the provisions"
+ },
+ {
+  "document_id": 1067,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   50341
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 50341, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1067-p3.png",
+  "render_sha256": "dc260326e04d97cc821f9afab4a87f98c9fb08e54e11ee88b91354c81f1202a0",
+  "match_text": "sub-section (1), except the provisos and explanation below it, the",
+  "before_text": "sub-section (1), except the provisos and explanation below it, the",
+  "after_text": "sub-section (1), except the provisos and explanation below it, the"
+ }
+]

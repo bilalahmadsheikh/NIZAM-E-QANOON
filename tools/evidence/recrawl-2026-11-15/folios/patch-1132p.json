@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 1132,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   54908
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 54908, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1132-p2.png",
+  "render_sha256": "f2680894791c0fb603986a8193a797a00b3d9e2c69b8a0289ee9b5b5059475cf",
+  "match_text": "Revenue Act, 1967, or the Sind Finance Act, 1965, no land revenue",
+  "before_text": "Revenue Act, 1967, or the Sind Finance Act, 1965, no land revenue",
+  "after_text": "Revenue Act, 1967, or the Sind Finance Act, 1965, no land revenue"
+ }
+]

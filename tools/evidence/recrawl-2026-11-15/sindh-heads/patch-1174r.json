@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 1174,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc1174-p3.png",
+  "render_sha256": "ba9a3971df23f6038fcfb312bffd8ad52cf375fc5e95bc1763ba33d82048e896",
+  "defect": "the Sindh Code's running head (the law's citation and title at the head of every page) was read into a provision's text, in the same block as the law below it",
+  "observed": "Page 3 prints the running head 'SINDH ORDINANCE NO. VII OF 2008 / THE SINDH GENERAL PROVIDENT INVESTMENT FUND ORDINANCE, 2008.' at its head; the same head opens the document's other pages",
+  "source_apparatus_blocks": [
+   58833
+  ],
+  "match_text": "(3)  The Finance Department, Government of Sindh, shall provide     Secretarial",
+  "before_text": "(3)  The Finance Department, Government of Sindh, shall provide     Secretarial",
+  "after_text": "(3)  The Finance Department, Government of Sindh, shall provide     Secretarial",
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) are set aside; no law text changes"
+ },
+ {
+  "document_id": 1174,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc1174-p4.png",
+  "render_sha256": "08987f185ffbc61a572a16a80e1eb62380bfd0d5f64902ffefd6e277456e156d",
+  "defect": "the Sindh Code's running head (the law's citation and title at the head of every page) was read into a provision's text, in the same block as the law below it",
+  "observed": "Page 4 prints the running head 'SINDH ORDINANCE NO. VII OF 2008 / THE SINDH GENERAL PROVIDENT INVESTMENT FUND ORDINANCE, 2008.' at its head; the same head opens the document's other pages",
+  "source_apparatus_blocks": [
+   58852
+  ],
+  "match_text": "The bank, in which the Fund is kept, shall maintain the accounts of the Fund in",
+  "before_text": "The bank, in which the Fund is kept, shall maintain the accounts of the Fund in",
+  "after_text": "The bank, in which the Fund is kept, shall maintain the accounts of the Fund in",
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) are set aside; no law text changes"
+ }
+]

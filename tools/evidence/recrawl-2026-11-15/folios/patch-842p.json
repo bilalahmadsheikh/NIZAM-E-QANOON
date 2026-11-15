@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 842,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   37904
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 37904, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc842-p2.png",
+  "render_sha256": "9d741cbb3062e3484fa4734866a4cd3ed96d0234df7130bdb8ef4dfeb111c1cc",
+  "match_text": "clause (1) of Article 128 of the Constitution of the Islamic Republic",
+  "before_text": "clause (1) of Article 128 of the Constitution of the Islamic Republic",
+  "after_text": "clause (1) of Article 128 of the Constitution of the Islamic Republic"
+ },
+ {
+  "document_id": 842,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   37930
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 37930, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc842-p3.png",
+  "render_sha256": "d5ef40ebdfa023d8fb1c8fdb6722839eed945e9199bcf39a482a9a0170106e90",
+  "match_text": "3. (1) Subject to the provisions of this Ordinance, it shall be unlawful",
+  "before_text": "3. (1) Subject to the provisions of this Ordinance, it shall be unlawful",
+  "after_text": "3. (1) Subject to the provisions of this Ordinance, it shall be unlawful"
+ },
+ {
+  "document_id": 842,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   37952
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 37952, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc842-p4.png",
+  "render_sha256": "10f2419331dcc50cb7684da3ac8e68468b98372288fd0a7b51b589335b4319c8",
+  "match_text": "7. (1) A police officer not below the rank of Assistant Sub-Inspector",
+  "before_text": "7. (1) A police officer not below the rank of Assistant Sub-Inspector",
+  "after_text": "7. (1) A police officer not below the rank of Assistant Sub-Inspector"
+ },
+ {
+  "document_id": 842,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   37959
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '5' alone at its foot (block 37959, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc842-p5.png",
+  "render_sha256": "c05a06507b48fe99e06050dab8bc56a591ca72fafb4a656fc05103a8278bb713",
+  "match_text": "notwithstanding anything contained in any other law, for the time",
+  "before_text": "notwithstanding anything contained in any other law, for the time",
+  "after_text": "notwithstanding anything contained in any other law, for the time"
+ }
+]

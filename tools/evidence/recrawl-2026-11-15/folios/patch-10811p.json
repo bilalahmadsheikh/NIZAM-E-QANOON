@@ -1,0 +1,92 @@
+[
+ {
+  "document_id": 10811,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2803757
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '344' alone at its foot (block 2803757, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10811-p1.png",
+  "render_sha256": "5663c43fb7ee2c459fbb0268cfb50d6a8de7aa1e0c6b83f258e0a8e543c2637d",
+  "match_text": "to give effect to the financial proposals of the Azad Government",
+  "before_text": "to give effect to the financial proposals of the Azad Government",
+  "after_text": "to give effect to the financial proposals of the Azad Government"
+ },
+ {
+  "document_id": 10811,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2803770
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '345' alone at its foot (block 2803770, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10811-p2.png",
+  "render_sha256": "87037ce4cd5c7d83e9bd8e440c5486183fa7f7186e7685dd7a665419081c9f94",
+  "match_text": "Ordinance, 1971:- In the said Ordinance, for Section",
+  "before_text": "Ordinance, 1971:- In the said Ordinance, for Section",
+  "after_text": "Ordinance, 1971:- In the said Ordinance, for Section"
+ },
+ {
+  "document_id": 10811,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2803777
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '346' alone at its foot (block 2803777, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10811-p3.png",
+  "render_sha256": "70ff1dbfbbacbd43a4d55d6fb583e9d91e63b129bc38257b2353e87a0012390b",
+  "match_text": "referred to in clauses (a), (b) and (c) of subsection",
+  "before_text": "referred to in clauses (a), (b) and (c) of subsection",
+  "after_text": "referred to in clauses (a), (b) and (c) of subsection"
+ },
+ {
+  "document_id": 10811,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2803787
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '347' alone at its foot (block 2803787, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10811-p4.png",
+  "render_sha256": "9833135a3caaa942c8a44294ea83838335cc7da34837b9ecaa3d7575a09fd8c8",
+  "match_text": "collected a one time tax at the following rates on luxury",
+  "before_text": "collected a one time tax at the following rates on luxury",
+  "after_text": "collected a one time tax at the following rates on luxury"
+ },
+ {
+  "document_id": 10811,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2803795
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '348' alone at its foot (block 2803795, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10811-p5.png",
+  "render_sha256": "9619e864a31bc93e5d6aff519f012eecb1a0b759f41995c997701b504f3f0072",
+  "match_text": "(1) Except otherwise legislated by an Act of Assembly all",
+  "before_text": "(1) Except otherwise legislated by an Act of Assembly all",
+  "after_text": "(1) Except otherwise legislated by an Act of Assembly all"
+ },
+ {
+  "document_id": 10811,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   2803801
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 6 prints its page number '349' alone at its foot (block 2803801, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10811-p6.png",
+  "render_sha256": "abcd6c325e6fb36c3d66e7c054a1ae381c359b95ab3e0506ba30c31450bf7d86",
+  "match_text": "paid or collected, before the coming into force of this Act",
+  "before_text": "paid or collected, before the coming into force of this Act",
+  "after_text": "paid or collected, before the coming into force of this Act"
+ }
+]

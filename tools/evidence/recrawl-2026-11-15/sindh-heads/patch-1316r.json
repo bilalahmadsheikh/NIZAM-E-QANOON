@@ -1,0 +1,34 @@
+[
+ {
+  "document_id": 1316,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc1316-p3.png",
+  "render_sha256": "f28c7c8d088fcc23fad310c4e83fba908e8e41f880c1da7286479ecc03e5f7f0",
+  "defect": "the Sindh Code's running head (the law's citation and title at the head of every page) was read into a provision's text, in the same block as the law below it",
+  "observed": "Page 3 prints the running head 'SINDH ORDINANCE NO. II OF 2004 / THE SINDH DOW UNIVERSITY OF HEALTH SCIENCES (AMENDMENT)' at its head; the same head opens the document's other pages",
+  "source_apparatus_blocks": [
+   72787,
+   72788
+  ],
+  "match_text": "In the said ordinance, in section 22, after clause (iv), the following shall be",
+  "before_text": "In the said ordinance, in section 22, after clause (iv), the following shall be",
+  "after_text": "In the said ordinance, in section 22, after clause (iv), the following shall be",
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) are set aside; no law text changes"
+ },
+ {
+  "document_id": 1316,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc1316-p4.png",
+  "render_sha256": "e47c73d0c05d1ad808cc6fcfc5612724a672013cc73c7b3aac4ba84c612842a5",
+  "defect": "the Sindh Code's running head (the law's citation and title at the head of every page) was read into a provision's text, in the same block as the law below it",
+  "observed": "Page 4 prints the running head 'SINDH ORDINANCE NO. II OF 2004 / THE SINDH DOW UNIVERSITY OF HEALTH SCIENCES (AMENDMENT)' at its head; the same head opens the document's other pages",
+  "source_apparatus_blocks": [
+   72805,
+   72806
+  ],
+  "match_text": "Such other Faculties of allied sciences as may be prescribed by",
+  "before_text": "Such other Faculties of allied sciences as may be prescribed by",
+  "after_text": "Such other Faculties of allied sciences as may be prescribed by",
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) are set aside; no law text changes"
+ }
+]

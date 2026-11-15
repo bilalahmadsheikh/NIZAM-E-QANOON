@@ -1,0 +1,92 @@
+[
+ {
+  "document_id": 1716,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   110714
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 110714, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1716-p2.png",
+  "render_sha256": "801b1d818f6207a14fd493d4d2b8d6309b92aefd13d19309b673fc16c28a85d3",
+  "match_text": "following expressions shall have the meanings hereby respectively assigned to them, that is to",
+  "before_text": "following expressions shall have the meanings hereby respectively assigned to them, that is to",
+  "after_text": "following expressions shall have the meanings hereby respectively assigned to them, that is to"
+ },
+ {
+  "document_id": 1716,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   110735
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 110735, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1716-p3.png",
+  "render_sha256": "ed3a784371576b797c9f2766bbe4984ec9b9fbad85d65ff16ec0e996c6a507a3",
+  "match_text": "of jurisdiction of Ex-officio Deputy Director shall be the district of his posting while that of ex-officio",
+  "before_text": "of jurisdiction of Ex-officio Deputy Director shall be the district of his posting while that of ex-officio",
+  "after_text": "of jurisdiction of Ex-officio Deputy Director shall be the district of his posting while that of ex-officio"
+ },
+ {
+  "document_id": 1716,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   110751
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 110751, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1716-p4.png",
+  "render_sha256": "3a4585571dd5dc3f6682e47a3e5502254b8072f331c1301bf4e0ef92b2777af6",
+  "match_text": "said authorities shall also be informed immediately after the arrest of the accused public servant.",
+  "before_text": "said authorities shall also be informed immediately after the arrest of the accused public servant.",
+  "after_text": "said authorities shall also be informed immediately after the arrest of the accused public servant."
+ },
+ {
+  "document_id": 1716,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   110770
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '5' alone at its foot (block 110770, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1716-p5.png",
+  "render_sha256": "b3da344ad2f2c341db049761b89819a1169ae934cbd88cad5fc77083c6e022a2",
+  "match_text": "the competent authority for these decision shall be the one, which is in case of the public servant",
+  "before_text": "the competent authority for these decision shall be the one, which is in case of the public servant",
+  "after_text": "the competent authority for these decision shall be the one, which is in case of the public servant"
+ },
+ {
+  "document_id": 1716,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   110783
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 6 prints its page number '6' alone at its foot (block 110783, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1716-p6.png",
+  "render_sha256": "e4c63adeab4e627c816895ee844a97faeb545cc10817cc9ee1f8d55f5a870e9a",
+  "match_text": "category of cases, which shall be dealt with by the ex-officio Additional Directors and ex-officio Deputy Directors of the",
+  "before_text": "category of cases, which shall be dealt with by the ex-officio Additional Directors and ex-officio Deputy Directors of the",
+  "after_text": "category of cases, which shall be dealt with by the ex-officio Additional Directors and ex-officio Deputy Directors of the"
+ },
+ {
+  "document_id": 1716,
+  "page_no": 7,
+  "source_apparatus_blocks": [
+   110785
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 7 prints its page number '7' alone at its foot (block 110785, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1716-p7.png",
+  "render_sha256": "e0d1083c05df88f13d0839404b01aa246e54b964e71148f9367af68490d18ac2",
+  "match_text": "16 The word District Coordination Officer of the District Government was amended and added vide Notification dated",
+  "before_text": "16 The word District Coordination Officer of the District Government was amended and added vide Notification dated",
+  "after_text": "16 The word District Coordination Officer of the District Government was amended and added vide Notification dated"
+ }
+]

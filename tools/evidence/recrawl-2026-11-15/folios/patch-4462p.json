@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 4462,
+  "page_no": 45,
+  "source_apparatus_blocks": [
+   827671
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 45 prints its page number '45' alone at its foot (block 827671, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc4462-p45.png",
+  "render_sha256": "823fce74f693c7407090892657f7bc378f08e78636dbec6a63dafd93b03bdf78",
+  "match_text": "Certified that the undersigned has carried out a detailed survey of the building and material referred to above and is",
+  "before_text": "Certified that the undersigned has carried out a detailed survey of the building and material referred to above and is",
+  "after_text": "Certified that the undersigned has carried out a detailed survey of the building and material referred to above and is"
+ },
+ {
+  "document_id": 4462,
+  "page_no": 51,
+  "source_apparatus_blocks": [
+   827687
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 51 prints its page number '51' alone at its foot (block 827687, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc4462-p51.png",
+  "render_sha256": "bb8492055585c5ebf953e38f2502f7c4e236c123512d153310285abed2599100",
+  "match_text": "Dangerous behaviour; stop; shutdown; emergency cut-out devices;",
+  "before_text": "Dangerous behaviour; stop; shutdown; emergency cut-out devices;",
+  "after_text": "Dangerous behaviour; stop; shutdown; emergency cut-out devices;"
+ }
+]

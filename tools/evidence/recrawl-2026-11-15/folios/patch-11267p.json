@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 11267,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2843466
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '85' alone at its foot (block 2843466, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11267-p1.png",
+  "render_sha256": "f19d957b264f39574ac677bc37cc03b6abc0a90aaaafa5c385c2ba818388b5a7",
+  "match_text": "to adapt and enforce the Central Excise and Salt Act, 1914 of Pakistan in",
+  "before_text": "to adapt and enforce the Central Excise and Salt Act, 1914 of Pakistan in",
+  "after_text": "to adapt and enforce the Central Excise and Salt Act, 1914 of Pakistan in"
+ },
+ {
+  "document_id": 11267,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2843476
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '86' alone at its foot (block 2843476, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11267-p2.png",
+  "render_sha256": "3309d65c6711b2d127460a4af1fa5a42fb832ca331d5500a8215f75bc0c4302d",
+  "match_text": "duties to be fixed thereunder in future in Pakistan shall, as far as",
+  "before_text": "duties to be fixed thereunder in future in Pakistan shall, as far as",
+  "after_text": "duties to be fixed thereunder in future in Pakistan shall, as far as"
+ }
+]

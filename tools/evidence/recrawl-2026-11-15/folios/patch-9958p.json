@@ -1,0 +1,77 @@
+[
+ {
+  "document_id": 9958,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2740995
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '546' alone at its foot (block 2740995, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc9958-p1.png",
+  "render_sha256": "ae112bcc7e50a66bdab7d394cfa02218cddeaa487481e47f8790b563574ee6b3",
+  "match_text": "before the word “Fund” the word “Pension” ins. by the AJ&K Legislative",
+  "before_text": "before the word “Fund” the word “Pension” ins. by the AJ&K Legislative",
+  "after_text": "before the word “Fund” the word “Pension” ins. by the AJ&K Legislative"
+ },
+ {
+  "document_id": 9958,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2741011
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '547' alone at its foot (block 2741011, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc9958-p2.png",
+  "render_sha256": "de91b68409d1884966a79461e24e2ee98387156af56ed4db586fd287f105cb30",
+  "match_text": "Act, 2006 (Act IV of 2006) dt. 31.01.2006. The original context of cl. g) of",
+  "before_text": "Act, 2006 (Act IV of 2006) dt. 31.01.2006. The original context of cl. g) of",
+  "after_text": "Act, 2006 (Act IV of 2006) dt. 31.01.2006. The original context of cl. g) of"
+ },
+ {
+  "document_id": 9958,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2741032
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '548' alone at its foot (block 2741032, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc9958-p3.png",
+  "render_sha256": "74e7cb7e7334454b0b32041eb40db2673a17a3f008f3a94aad9fee637d5f8fb1",
+  "match_text": "Omitted by Ibid. The original context of Sec. 4 is reproduced as under:-",
+  "before_text": "Omitted by Ibid. The original context of Sec. 4 is reproduced as under:-",
+  "after_text": "Omitted by Ibid. The original context of Sec. 4 is reproduced as under:-"
+ },
+ {
+  "document_id": 9958,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2741055
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '549' alone at its foot (block 2741055, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc9958-p4.png",
+  "render_sha256": "fab065276b638b5bb5ec87fcd27171e9577300ca8db0a92fa2435465b058124b",
+  "match_text": "ancillary or incidental to any of the powers under subSection (2) or",
+  "before_text": "ancillary or incidental to any of the powers under subSection (2) or",
+  "after_text": "ancillary or incidental to any of the powers under subSection (2) or"
+ },
+ {
+  "document_id": 9958,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2741069
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '550' alone at its foot (block 2741069, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc9958-p5.png",
+  "render_sha256": "2539275da6c20fe50b701db9040d16eb24fa64d01ee27ecedbbf1333cc33fd60",
+  "match_text": "Act, 2006 (Act IV of 2006) dt. 31.01.2006. The original extract of Sec. 7",
+  "before_text": "Act, 2006 (Act IV of 2006) dt. 31.01.2006. The original extract of Sec. 7",
+  "after_text": "Act, 2006 (Act IV of 2006) dt. 31.01.2006. The original extract of Sec. 7"
+ }
+]

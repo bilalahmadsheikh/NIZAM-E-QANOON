@@ -1,0 +1,92 @@
+[
+ {
+  "document_id": 4751,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   985800
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1' alone at its foot (block 985800, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc4751-p1.png",
+  "render_sha256": "bf2e73df759b81cb87c3bc6aed0c7eacde41a96fc8b7407df04be2ba92bd623f",
+  "match_text": "to further amend the Balochistan Land Revenue Act, 1967 (Act XVII of 1967)",
+  "before_text": "to further amend the Balochistan Land Revenue Act, 1967 (Act XVII of 1967)",
+  "after_text": "to further amend the Balochistan Land Revenue Act, 1967 (Act XVII of 1967)"
+ },
+ {
+  "document_id": 4751,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   985807
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 985807, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc4751-p2.png",
+  "render_sha256": "e44e8f4a010d1795e3fa8b9922fb081c6ab53c50df831fec00a2ebed5dae9dfe",
+  "match_text": "(4)      In the said Act, in section-42, in sub-section (1),-",
+  "before_text": "(4)      In the said Act, in section-42, in sub-section (1),-",
+  "after_text": "(4)      In the said Act, in section-42, in sub-section (1),-"
+ },
+ {
+  "document_id": 4751,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   985815
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 985815, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc4751-p3.png",
+  "render_sha256": "c6a49e4274e0fd75b100d74d1c626a30032a2d4d9d0f4b703a96101eb33b8958",
+  "match_text": "(5)      In the said Act, after section-42, the following new",
+  "before_text": "(5)      In the said Act, after section-42, the following new",
+  "after_text": "(5)      In the said Act, after section-42, the following new"
+ },
+ {
+  "document_id": 4751,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   985826
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 985826, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc4751-p4.png",
+  "render_sha256": "53eba4046ff8fbea9560ba42c505ecb484e1fa69f9fce6226240714bdf64074a",
+  "match_text": "(8)    In the said Act, for section-48, the following shall",
+  "before_text": "(8)    In the said Act, for section-48, the following shall",
+  "after_text": "(8)    In the said Act, for section-48, the following shall"
+ },
+ {
+  "document_id": 4751,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   985857
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '5' alone at its foot (block 985857, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc4751-p5.png",
+  "render_sha256": "a1d677ab34736af5f8cc71b8483d72815a9dae97a19fd361da51d69620d994e9",
+  "match_text": "appearing at the end shall be substituted by “colon” and",
+  "before_text": "appearing at the end shall be substituted by “colon” and",
+  "after_text": "appearing at the end shall be substituted by “colon” and"
+ },
+ {
+  "document_id": 4751,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   985863
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 6 prints its page number '6' alone at its foot (block 985863, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc4751-p6.png",
+  "render_sha256": "a633dc2a0c77996c5e0128306ad4b9ca3e645693265a835d276a99a52f73ea16",
+  "match_text": "The Secretary, Government of Balochistan, Law and Parliamentary Affairs Department, Quetta.",
+  "before_text": "The Secretary, Government of Balochistan, Law and Parliamentary Affairs Department, Quetta.",
+  "after_text": "The Secretary, Government of Balochistan, Law and Parliamentary Affairs Department, Quetta."
+ }
+]

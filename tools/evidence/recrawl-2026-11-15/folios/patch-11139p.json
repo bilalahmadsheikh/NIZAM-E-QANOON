@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 11139,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2834135
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '571' alone at its foot (block 2834135, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11139-p1.png",
+  "render_sha256": "f455d1819f6e5e8ac5400689ffc15d38bb8af0b962fec2d79f8b7b39b468be14",
+  "match_text": "constitution Act, 1974, the President is pleased to make and promulgate",
+  "before_text": "constitution Act, 1974, the President is pleased to make and promulgate",
+  "after_text": "constitution Act, 1974, the President is pleased to make and promulgate"
+ },
+ {
+  "document_id": 11139,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2834143
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '572' alone at its foot (block 2834143, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11139-p2.png",
+  "render_sha256": "efd823cedf279abf1d7ac8f8d3eee3a002b7a56161492f6fa1875379061be841",
+  "match_text": "contravention of the provision of sub-section (1), shall",
+  "before_text": "contravention of the provision of sub-section (1), shall",
+  "after_text": "contravention of the provision of sub-section (1), shall"
+ }
+]

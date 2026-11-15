@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 1030,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   48288
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1' alone at its foot (block 48288, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1030-p1.png",
+  "render_sha256": "dcae2743beb9d204e436d3a633aa03fc43b8c58a4ae91edc6801cdc9fb967868",
+  "match_text": "THE SIND ABOLITION OF LAND REVENUE AND AGRICULTURE",
+  "before_text": "THE SIND ABOLITION OF LAND REVENUE AND AGRICULTURE",
+  "after_text": "THE SIND ABOLITION OF LAND REVENUE AND AGRICULTURE"
+ },
+ {
+  "document_id": 1030,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   48305
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 48305, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1030-p2.png",
+  "render_sha256": "85dbf685b27e78a9cbc095351fdd9a1374d86b8c7af9168bec25bfe3fba6519e",
+  "match_text": "Revenue Act, 1967, or the Sind Finance Act, 1965, no land revenue",
+  "before_text": "Revenue Act, 1967, or the Sind Finance Act, 1965, no land revenue",
+  "after_text": "Revenue Act, 1967, or the Sind Finance Act, 1965, no land revenue"
+ }
+]

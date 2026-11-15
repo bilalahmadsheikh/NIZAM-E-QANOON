@@ -1,0 +1,77 @@
+[
+ {
+  "document_id": 3014,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   292419
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 292419, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3014-p2.png",
+  "render_sha256": "19e6248927f085ef604c66aea8608a8f11de61e4ad638f8e05d11f65ca557950",
+  "match_text": "the Sindh Local Government Ordinance, 2001 the Government of Sindh is pleased to make",
+  "before_text": "the Sindh Local Government Ordinance, 2001 the Government of Sindh is pleased to make",
+  "after_text": "the Sindh Local Government Ordinance, 2001 the Government of Sindh is pleased to make"
+ },
+ {
+  "document_id": 3014,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   292437
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 292437, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3014-p3.png",
+  "render_sha256": "407fdde51f902baab7989358aa635c0b21b89f076160933a0f998b83b730beda",
+  "match_text": "all Zila, Taluka/Town land Union travelling on duty, shall",
+  "before_text": "all Zila, Taluka/Town land Union travelling on duty, shall",
+  "after_text": "all Zila, Taluka/Town land Union travelling on duty, shall"
+ },
+ {
+  "document_id": 3014,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   292446
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 292446, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3014-p4.png",
+  "render_sha256": "f4a2fd68bd16dc447204cf223d00a6a81d5f2dca9e99ba55d074f3c3dd6319b7",
+  "match_text": "Council/Administration. He shall also be entitled to such",
+  "before_text": "Council/Administration. He shall also be entitled to such",
+  "after_text": "Council/Administration. He shall also be entitled to such"
+ },
+ {
+  "document_id": 3014,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   292451
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '5' alone at its foot (block 292451, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3014-p5.png",
+  "render_sha256": "3b8f42e77bb60e62a493af5bd8548c40cbb0828762a6f21a5cd61e9a8ccf7c32",
+  "match_text": "(Honoraria & privileges) Rules, 1980 are hereby repealed.",
+  "before_text": "(Honoraria & privileges) Rules, 1980 are hereby repealed.",
+  "after_text": "(Honoraria & privileges) Rules, 1980 are hereby repealed."
+ },
+ {
+  "document_id": 3014,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   292453
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 6 prints its page number '6' alone at its foot (block 292453, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3014-p6.png",
+  "render_sha256": "5b05c4b412b14c5633a81cd2dabcd8404bda25af3952babccf4ec6847f0dfb77",
+  "match_text": "KARACHI, WEDNESDAY DECEMBER 5,2001.",
+  "before_text": "KARACHI, WEDNESDAY DECEMBER 5,2001.",
+  "after_text": "KARACHI, WEDNESDAY DECEMBER 5,2001."
+ }
+]

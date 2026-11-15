@@ -1,0 +1,92 @@
+[
+ {
+  "document_id": 11066,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2829334
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '950' alone at its foot (block 2829334, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11066-p1.png",
+  "render_sha256": "55b3757f4e20c02f0e1b782da841668a5384471d1315d62d3bcb5e95938e76de",
+  "match_text": "2019.(Act I of 2019) dt. 13.02.2019. the original extract of cl. (a) of",
+  "before_text": "2019.(Act I of 2019) dt. 13.02.2019. the original extract of cl. (a) of",
+  "after_text": "2019.(Act I of 2019) dt. 13.02.2019. the original extract of cl. (a) of"
+ },
+ {
+  "document_id": 11066,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2829352
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '951' alone at its foot (block 2829352, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11066-p2.png",
+  "render_sha256": "6856b63c3dda3a24fc3b2a8a323427ce07b3776520cc523b036712ab677faa43",
+  "match_text": "Liberation Cell for carrying out the purposes of the Act,",
+  "before_text": "Liberation Cell for carrying out the purposes of the Act,",
+  "after_text": "Liberation Cell for carrying out the purposes of the Act,"
+ },
+ {
+  "document_id": 11066,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2829364
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '952' alone at its foot (block 2829364, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11066-p3.png",
+  "render_sha256": "b69a59c45687d66776cf51f5fbf15382694fc7641575b71dd59d02e581474752",
+  "match_text": "Government, establish its offices within or outside Azad",
+  "before_text": "Government, establish its offices within or outside Azad",
+  "after_text": "Government, establish its offices within or outside Azad"
+ },
+ {
+  "document_id": 11066,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2829375
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '953' alone at its foot (block 2829375, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11066-p4.png",
+  "render_sha256": "ce3414f81d464a81d48d91b605d5e3fd323d000922c7c63323733fa34ea3979d",
+  "match_text": "officers, staff, experts or consultants as it may consider",
+  "before_text": "officers, staff, experts or consultants as it may consider",
+  "after_text": "officers, staff, experts or consultants as it may consider"
+ },
+ {
+  "document_id": 11066,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2829389
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '954' alone at its foot (block 2829389, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11066-p5.png",
+  "render_sha256": "caabaed70b0074f757699d6f28c0b7d33981d41a53dc07bd6bd40c8c9b415a7c",
+  "match_text": "2019.(Act I of 2019) dt. 13.02.2019. the original extract of subsection (2)",
+  "before_text": "2019.(Act I of 2019) dt. 13.02.2019. the original extract of subsection (2)",
+  "after_text": "2019.(Act I of 2019) dt. 13.02.2019. the original extract of subsection (2)"
+ },
+ {
+  "document_id": 11066,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   2829400
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 6 prints its page number '955' alone at its foot (block 2829400, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11066-p6.png",
+  "render_sha256": "16cae3e6b005e60f17f2320cc295d7d974f36590bea0b97d0f30169638840b4a",
+  "match_text": "final and shall not be called in question in any court by",
+  "before_text": "final and shall not be called in question in any court by",
+  "after_text": "final and shall not be called in question in any court by"
+ }
+]

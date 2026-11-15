@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 11067,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2829415
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '536' alone at its foot (block 2829415, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11067-p1.png",
+  "render_sha256": "ab14f3e71c611d38db27b8cc5b3f42c63c333b39bf41bde023b478f565144da4",
+  "match_text": "received the assent of the President on 11th day of April,",
+  "before_text": "received the assent of the President on 11th day of April,",
+  "after_text": "received the assent of the President on 11th day of April,"
+ },
+ {
+  "document_id": 11067,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2829425
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '537' alone at its foot (block 2829425, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11067-p2.png",
+  "render_sha256": "f5a6f91c0737feca4c610687820fa5d8f3345b005d488d93ff3ebac120b6129e",
+  "match_text": "direct that the provisions of this Act shall not apply",
+  "before_text": "direct that the provisions of this Act shall not apply",
+  "after_text": "direct that the provisions of this Act shall not apply"
+ }
+]

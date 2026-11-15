@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 1194,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   60582
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1' alone at its foot (block 60582, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1194-p1.png",
+  "render_sha256": "42774acb14406bfd963f33fc756281a95ea97e67ee68dc23436ed0d1d16f23be",
+  "match_text": "3.         In the said Ordinance, in section 15, in sub-section (2), in clause (ii), the",
+  "before_text": "3.         In the said Ordinance, in section 15, in sub-section (2), in clause (ii), the",
+  "after_text": "3.         In the said Ordinance, in section 15, in sub-section (2), in clause (ii), the"
+ },
+ {
+  "document_id": 1194,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   60602
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 60602, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1194-p2.png",
+  "render_sha256": "61d8b1b0b609814e2a704574044d8e81b1918bc50a29af9af42a9c4ca042a061",
+  "match_text": "In the said Ordinance, after section 21, the following new section shall be",
+  "before_text": "In the said Ordinance, after section 21, the following new section shall be",
+  "after_text": "In the said Ordinance, after section 21, the following new section shall be"
+ }
+]

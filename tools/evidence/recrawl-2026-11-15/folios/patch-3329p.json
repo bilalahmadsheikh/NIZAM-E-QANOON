@@ -1,0 +1,77 @@
+[
+ {
+  "document_id": 3329,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   353308
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1' alone at its foot (block 353308, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3329-p1.png",
+  "render_sha256": "d5727d6c39418343751e978e7a6db59db3bd895e736854e095c9839fed42cdcf",
+  "match_text": "ADMINISTRATION/UNION ADMINISTRATION) RULES, 2001.",
+  "before_text": "ADMINISTRATION/UNION ADMINISTRATION) RULES, 2001.",
+  "after_text": "ADMINISTRATION/UNION ADMINISTRATION) RULES, 2001."
+ },
+ {
+  "document_id": 3329,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   353322
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 353322, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3329-p2.png",
+  "render_sha256": "babe75375258756aef4d061a451fe511630084f50412e82b5fc7dd05cc5e9fa0",
+  "match_text": "subsection (1) of the Sindh Local Government Ordinance, 2001 read with Item No. 18 of Vth",
+  "before_text": "subsection (1) of the Sindh Local Government Ordinance, 2001 read with Item No. 18 of Vth",
+  "after_text": "subsection (1) of the Sindh Local Government Ordinance, 2001 read with Item No. 18 of Vth"
+ },
+ {
+  "document_id": 3329,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   353333
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 353333, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3329-p3.png",
+  "render_sha256": "46e8307b3689762cb4292f13b44a2d6b4802576c020a1a406cf2f19e15e240af",
+  "match_text": "Repeal.—    Sindh Local Councils (Delegation of Financial and",
+  "before_text": "Repeal.—    Sindh Local Councils (Delegation of Financial and",
+  "after_text": "Repeal.—    Sindh Local Councils (Delegation of Financial and"
+ },
+ {
+  "document_id": 3329,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   353336
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 353336, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3329-p4.png",
+  "render_sha256": "752752f962060302d2b0b2a5a3abcdd527365024bd52bfb2a9bec2a13eaeccdf",
+  "match_text": "KARACHI,  15TH DECEMBER,2001.",
+  "before_text": "KARACHI,  15TH DECEMBER,2001.",
+  "after_text": "KARACHI,  15TH DECEMBER,2001."
+ },
+ {
+  "document_id": 3329,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   353339
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '5' alone at its foot (block 353339, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3329-p5.png",
+  "render_sha256": "f671762bffe8aa95026402f9f55fe43a20acdc9882fb8f908cc7c3e259b4dd0b",
+  "match_text": "THE SINDH GOVERNMENT GAZETTE",
+  "before_text": "THE SINDH GOVERNMENT GAZETTE",
+  "after_text": "THE SINDH GOVERNMENT GAZETTE"
+ }
+]

@@ -1,0 +1,527 @@
+[
+ {
+  "document_id": 2921,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   273142
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 273142, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2921-p2.png",
+  "render_sha256": "4e82632ddeb2d0deba514bcc1c346a54d78b4c32a4ddfd17c739d5182eae19bb",
+  "match_text": "powers conferred by section 16 of the Thar Coal and Energy",
+  "before_text": "powers conferred by section 16 of the Thar Coal and Energy",
+  "after_text": "powers conferred by section 16 of the Thar Coal and Energy"
+ },
+ {
+  "document_id": 2921,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   273158
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 273158, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2921-p3.png",
+  "render_sha256": "1169daf0a47f1669682b4abbd4c806097cccf99892a4a5227f807b2f753d0857",
+  "match_text": "the persons qualified and well reputed in the field of mining",
+  "before_text": "the persons qualified and well reputed in the field of mining",
+  "after_text": "the persons qualified and well reputed in the field of mining"
+ },
+ {
+  "document_id": 2921,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   273172
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 273172, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2921-p4.png",
+  "render_sha256": "f43c5e716d887f729a5d7c90421c7760e04721b80422e13d8466b3fbfdfd4898",
+  "match_text": "4. (1) Any mine leaseholder in the Thar Coalfield interested in",
+  "before_text": "4. (1) Any mine leaseholder in the Thar Coalfield interested in",
+  "after_text": "4. (1) Any mine leaseholder in the Thar Coalfield interested in"
+ },
+ {
+  "document_id": 2921,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   273185
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '5' alone at its foot (block 273185, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2921-p5.png",
+  "render_sha256": "5c3432f63eed36e0236f18006279e0337d67634b29b97b9151ebfaa14ac38251",
+  "match_text": "(ii) “Contract stage tariff”: A mine leaseholder",
+  "before_text": "(ii) “Contract stage tariff”: A mine leaseholder",
+  "after_text": "(ii) “Contract stage tariff”: A mine leaseholder"
+ },
+ {
+  "document_id": 2921,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   273197
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 6 prints its page number '6' alone at its foot (block 273197, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2921-p6.png",
+  "render_sha256": "e9732631b2c08a3ba456eb12de8290ab3074044da55c4a3720d7d7bfb2a8feaf",
+  "match_text": "(ii) “Subsequent multiyear stage tariff”: Not later",
+  "before_text": "(ii) “Subsequent multiyear stage tariff”: Not later",
+  "after_text": "(ii) “Subsequent multiyear stage tariff”: Not later"
+ },
+ {
+  "document_id": 2921,
+  "page_no": 7,
+  "source_apparatus_blocks": [
+   273212
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 7 prints its page number '7' alone at its foot (block 273212, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2921-p7.png",
+  "render_sha256": "55e0c32326197da4b37510c696226b83392b42834cb9fbed26ba43591f4980d9",
+  "match_text": "petition to satisfy himself of the conformity thereof with the",
+  "before_text": "petition to satisfy himself of the conformity thereof with the",
+  "after_text": "petition to satisfy himself of the conformity thereof with the"
+ },
+ {
+  "document_id": 2921,
+  "page_no": 8,
+  "source_apparatus_blocks": [
+   273219
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 8 prints its page number '8' alone at its foot (block 273219, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2921-p8.png",
+  "render_sha256": "a92d172388a32b697503539dd04cfe37cd0f2692fd79926b7004ed90afe64713",
+  "match_text": "to be filed on the date on which it is filed with the Registrar.",
+  "before_text": "to be filed on the date on which it is filed with the Registrar.",
+  "after_text": "to be filed on the date on which it is filed with the Registrar."
+ },
+ {
+  "document_id": 2921,
+  "page_no": 9,
+  "source_apparatus_blocks": [
+   273233
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 9 prints its page number '9' alone at its foot (block 273233, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2921-p9.png",
+  "render_sha256": "35d82d430cada7751076b475001d2acbfa86757a4900b5fb8eb28d0bead4df97",
+  "match_text": "registered post or courier service. If an authorized agent files",
+  "before_text": "registered post or courier service. If an authorized agent files",
+  "after_text": "registered post or courier service. If an authorized agent files"
+ },
+ {
+  "document_id": 2921,
+  "page_no": 10,
+  "source_apparatus_blocks": [
+   273245
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 10 prints its page number '10' alone at its foot (block 273245, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2921-p10.png",
+  "render_sha256": "00b0abcb76120cc6f14567c2a8e269c497d4534c989561278e0a80a7893d16f0",
+  "match_text": "publication shall also contain a notice of the availability of a",
+  "before_text": "publication shall also contain a notice of the availability of a",
+  "after_text": "publication shall also contain a notice of the availability of a"
+ },
+ {
+  "document_id": 2921,
+  "page_no": 11,
+  "source_apparatus_blocks": [
+   273258
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 11 prints its page number '11' alone at its foot (block 273258, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2921-p11.png",
+  "render_sha256": "a92b3c553d6eb001177c4d06b1fef1f07b201097aa80893799caf7b4706da06e",
+  "match_text": "its discretion allow the parties the right to cross examination",
+  "before_text": "its discretion allow the parties the right to cross examination",
+  "after_text": "its discretion allow the parties the right to cross examination"
+ },
+ {
+  "document_id": 2921,
+  "page_no": 12,
+  "source_apparatus_blocks": [
+   273268
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 12 prints its page number '12' alone at its foot (block 273268, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2921-p12.png",
+  "render_sha256": "ef77b94b93da75d8d9a2137018e2be8557124c63f1135917cd46df7746002e4b",
+  "match_text": "such terms as it considers fit, if it is satisfied that there was",
+  "before_text": "such terms as it considers fit, if it is satisfied that there was",
+  "after_text": "such terms as it considers fit, if it is satisfied that there was"
+ },
+ {
+  "document_id": 2921,
+  "page_no": 13,
+  "source_apparatus_blocks": [
+   273279
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 13 prints its page number '13' alone at its foot (block 273279, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2921-p13.png",
+  "render_sha256": "10ff931d8e89fdf2da804cc71815738551d7bccd33b46602db64b42709a17dc3",
+  "match_text": "sub-rule, the Board may, at any time prior to the rendering of",
+  "before_text": "sub-rule, the Board may, at any time prior to the rendering of",
+  "after_text": "sub-rule, the Board may, at any time prior to the rendering of"
+ },
+ {
+  "document_id": 2921,
+  "page_no": 14,
+  "source_apparatus_blocks": [
+   273290
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 14 prints its page number '14' alone at its foot (block 273290, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2921-p14.png",
+  "render_sha256": "cbefd4c03bcf8a1c57515b19af8eebb7283bf3a3138fe3f4d783ec7cf572ba00",
+  "match_text": "inadvertent error in a calculation contained in the final order,",
+  "before_text": "inadvertent error in a calculation contained in the final order,",
+  "after_text": "inadvertent error in a calculation contained in the final order,"
+ },
+ {
+  "document_id": 2921,
+  "page_no": 15,
+  "source_apparatus_blocks": [
+   273305
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 15 prints its page number '15' alone at its foot (block 273305, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2921-p15.png",
+  "render_sha256": "c02d64bb82a67bab9eb2f116ecd9201f1fba4b161ef16827110c825e54ce3f05",
+  "match_text": "motion for leave for review by the Board of such final order,",
+  "before_text": "motion for leave for review by the Board of such final order,",
+  "after_text": "motion for leave for review by the Board of such final order,"
+ },
+ {
+  "document_id": 2921,
+  "page_no": 16,
+  "source_apparatus_blocks": [
+   273326
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 16 prints its page number '16' alone at its foot (block 273326, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2921-p16.png",
+  "render_sha256": "4014dde06a567cf94f59fd7d879ddd43484a378c92743468074938cd38d09f45",
+  "match_text": "legibly duplicated and shall be filed with the Registrar in such",
+  "before_text": "legibly duplicated and shall be filed with the Registrar in such",
+  "after_text": "legibly duplicated and shall be filed with the Registrar in such"
+ },
+ {
+  "document_id": 2921,
+  "page_no": 17,
+  "source_apparatus_blocks": [
+   273340
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 17 prints its page number '17' alone at its foot (block 273340, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2921-p17.png",
+  "render_sha256": "3adcaa9a8cb567a5c0a6b791aa02124f101840db65df1023af42926266982e99",
+  "match_text": "and shall make its determination on a claim for confidentiality",
+  "before_text": "and shall make its determination on a claim for confidentiality",
+  "after_text": "and shall make its determination on a claim for confidentiality"
+ },
+ {
+  "document_id": 2921,
+  "page_no": 18,
+  "source_apparatus_blocks": [
+   273347
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 18 prints its page number '18' alone at its foot (block 273347, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2921-p18.png",
+  "render_sha256": "89ae9ab2ad614d8a6f52093ecc230576a3708008213585b78886aacaeee1b496",
+  "match_text": "made by motion before the expiration of the period originally",
+  "before_text": "made by motion before the expiration of the period originally",
+  "after_text": "made by motion before the expiration of the period originally"
+ },
+ {
+  "document_id": 2921,
+  "page_no": 19,
+  "source_apparatus_blocks": [
+   273364
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 19 prints its page number '19' alone at its foot (block 273364, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2921-p19.png",
+  "render_sha256": "7428307bb10c533544c20d78af8a673ea00c9ac375f326cf91589343ec76fe47",
+  "match_text": "prevailing on the date of determination of the fees by the Board, and the",
+  "before_text": "prevailing on the date of determination of the fees by the Board, and the",
+  "after_text": "prevailing on the date of determination of the fees by the Board, and the"
+ },
+ {
+  "document_id": 2921,
+  "page_no": 20,
+  "source_apparatus_blocks": [
+   273378
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 20 prints its page number '20' alone at its foot (block 273378, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2921-p20.png",
+  "render_sha256": "611ffd9f4e131c5040629c5f6bbe567d04a2236b95bfd75f0dd8b6dff58b23d2",
+  "match_text": "feasibility study under the “feasibility stage tariff” is the necessity to be",
+  "before_text": "feasibility study under the “feasibility stage tariff” is the necessity to be",
+  "after_text": "feasibility study under the “feasibility stage tariff” is the necessity to be"
+ },
+ {
+  "document_id": 2921,
+  "page_no": 21,
+  "source_apparatus_blocks": [
+   273382
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 21 prints its page number '21' alone at its foot (block 273382, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2921-p21.png",
+  "render_sha256": "eb74c0e68950b1eb86b03518e2f4d500bc4f04d9fa000730f29e897a42433d12",
+  "match_text": "Characteristics of local aquifers and aquitards – distribution, lateral",
+  "before_text": "Characteristics of local aquifers and aquitards – distribution, lateral",
+  "after_text": "Characteristics of local aquifers and aquitards – distribution, lateral"
+ },
+ {
+  "document_id": 2921,
+  "page_no": 22,
+  "source_apparatus_blocks": [
+   273395
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 22 prints its page number '22' alone at its foot (block 273395, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2921-p22.png",
+  "render_sha256": "a2d70bb1340d1434b8e27f9fabfe6796720634f62d9708940042507b2023423f",
+  "match_text": "g. 3D file of engineered pit showing starter pit, pit stages and final pit",
+  "before_text": "g. 3D file of engineered pit showing starter pit, pit stages and final pit",
+  "after_text": "g. 3D file of engineered pit showing starter pit, pit stages and final pit"
+ },
+ {
+  "document_id": 2921,
+  "page_no": 23,
+  "source_apparatus_blocks": [
+   273408
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 23 prints its page number '23' alone at its foot (block 273408, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2921-p23.png",
+  "render_sha256": "77b203f95a51703cf9f6d9c899ab804c5789e0d8bf304dfe9ec63390dfffe7b2",
+  "match_text": "schedules etc.) in English and in native electronic format (dxf, PDF,",
+  "before_text": "schedules etc.) in English and in native electronic format (dxf, PDF,",
+  "after_text": "schedules etc.) in English and in native electronic format (dxf, PDF,"
+ },
+ {
+  "document_id": 2921,
+  "page_no": 24,
+  "source_apparatus_blocks": [
+   273414
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 24 prints its page number '24' alone at its foot (block 273414, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2921-p24.png",
+  "render_sha256": "f4586463752709b9a82b5f7c13a53189584d27eee3e6c4ccdbd9aa5ba940c3b0",
+  "match_text": "specifications, bill of quantities, codes, standards, guidelines,",
+  "before_text": "specifications, bill of quantities, codes, standards, guidelines,",
+  "after_text": "specifications, bill of quantities, codes, standards, guidelines,"
+ },
+ {
+  "document_id": 2921,
+  "page_no": 25,
+  "source_apparatus_blocks": [
+   273420
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 25 prints its page number '25' alone at its foot (block 273420, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2921-p25.png",
+  "render_sha256": "b789da706f799830c5691c567e36d689c7d1ae64d5b60a02dd16c8e9c625ef86",
+  "match_text": "Details of actual expenditure to be reflected through provision of",
+  "before_text": "Details of actual expenditure to be reflected through provision of",
+  "after_text": "Details of actual expenditure to be reflected through provision of"
+ },
+ {
+  "document_id": 2921,
+  "page_no": 26,
+  "source_apparatus_blocks": [
+   273437
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 26 prints its page number '26' alone at its foot (block 273437, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2921-p26.png",
+  "render_sha256": "e3b9bd4c8eec859a397c7045c17c750e5f0f032bdd0eb0bc3a400c68cbc0028b",
+  "match_text": "Preferred: Participatory: Redeemable at company’s option",
+  "before_text": "Preferred: Participatory: Redeemable at company’s option",
+  "after_text": "Preferred: Participatory: Redeemable at company’s option"
+ },
+ {
+  "document_id": 2921,
+  "page_no": 27,
+  "source_apparatus_blocks": [
+   273458
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 27 prints its page number '27' alone at its foot (block 273458, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2921-p27.png",
+  "render_sha256": "ce96366bf037d96c66361f4b607d2409b2ba351afb0e566fd6c91ae55c88e63e",
+  "match_text": "Preferred: Participatory: Redeemable at Shareholder’s option",
+  "before_text": "Preferred: Participatory: Redeemable at Shareholder’s option",
+  "after_text": "Preferred: Participatory: Redeemable at Shareholder’s option"
+ },
+ {
+  "document_id": 2921,
+  "page_no": 28,
+  "source_apparatus_blocks": [
+   273473
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 28 prints its page number '28' alone at its foot (block 273473, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2921-p28.png",
+  "render_sha256": "d376b8e48b40b10bac6fc8b564a404abf33b03227af8a0f20dcf2367c9cebf95",
+  "match_text": "11.6. The consideration for which shares have been allotted is as follow: -",
+  "before_text": "11.6. The consideration for which shares have been allotted is as follow: -",
+  "after_text": "11.6. The consideration for which shares have been allotted is as follow: -"
+ },
+ {
+  "document_id": 2921,
+  "page_no": 29,
+  "source_apparatus_blocks": [
+   273485
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 29 prints its page number '29' alone at its foot (block 273485, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2921-p29.png",
+  "render_sha256": "a80ce12ac931376a40b0ccf6fb955236ccce459e25e0aa4a8d9ea5bed3ceccfd",
+  "match_text": "(An attested copy of the resolution authorizing the issue of the bonus shares",
+  "before_text": "(An attested copy of the resolution authorizing the issue of the bonus shares",
+  "after_text": "(An attested copy of the resolution authorizing the issue of the bonus shares"
+ },
+ {
+  "document_id": 2921,
+  "page_no": 30,
+  "source_apparatus_blocks": [
+   273497
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 30 prints its page number '30' alone at its foot (block 273497, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2921-p30.png",
+  "render_sha256": "1c8e4af4d63bcbcc9b177586f5668c7670c1a3e1e172ec04dffb50a303c8c291",
+  "match_text": "13. PART D—NAMES, ADDRESSES, OCCUPATIONS, ETC. OF THE ALLOTTEES.",
+  "before_text": "13. PART D—NAMES, ADDRESSES, OCCUPATIONS, ETC. OF THE ALLOTTEES.",
+  "after_text": "13. PART D—NAMES, ADDRESSES, OCCUPATIONS, ETC. OF THE ALLOTTEES."
+ },
+ {
+  "document_id": 2921,
+  "page_no": 31,
+  "source_apparatus_blocks": [
+   273504
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 31 prints its page number '31' alone at its foot (block 273504, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2921-p31.png",
+  "render_sha256": "5d13820b49e45e039eafc77f38e7d3252718e593561524f81dc249a9ac3e3931",
+  "match_text": "14.  Signature of Chief",
+  "before_text": "14.  Signature of Chief",
+  "after_text": "14.  Signature of Chief"
+ },
+ {
+  "document_id": 2921,
+  "page_no": 32,
+  "source_apparatus_blocks": [
+   273523
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 32 prints its page number '32' alone at its foot (block 273523, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2921-p32.png",
+  "render_sha256": "16262e6d258772a39a2bd167481b0f63b658e7ff5d4e1f7690f31a5ae212ba5f",
+  "match_text": "FORM A (Serial No. 5 and 20 of Schedule-II)",
+  "before_text": "FORM A (Serial No. 5 and 20 of Schedule-II)",
+  "after_text": "FORM A (Serial No. 5 and 20 of Schedule-II)"
+ },
+ {
+  "document_id": 2921,
+  "page_no": 33,
+  "source_apparatus_blocks": [
+   273546
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 33 prints its page number '33' alone at its foot (block 273546, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2921-p33.png",
+  "render_sha256": "42d43c3c7f3668ffe000ace37eec7f159522d7c5735c157be91e4f623eec3910",
+  "match_text": "Amount of indebtedness on the date upto which form A is made in respect of all",
+  "before_text": "Amount of indebtedness on the date upto which form A is made in respect of all",
+  "after_text": "Amount of indebtedness on the date upto which form A is made in respect of all"
+ },
+ {
+  "document_id": 2921,
+  "page_no": 34,
+  "source_apparatus_blocks": [
+   273557
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 34 prints its page number '34' alone at its foot (block 273557, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2921-p34.png",
+  "render_sha256": "7049fe39bb3f7b8a037b5c636b2a0d93565af8d23520441dbb205a057d2f8708",
+  "match_text": "20.  List of members & debenture holders on the date upto which this Form A is made",
+  "before_text": "20.  List of members & debenture holders on the date upto which this Form A is made",
+  "after_text": "20.  List of members & debenture holders on the date upto which this Form A is made"
+ },
+ {
+  "document_id": 2921,
+  "page_no": 35,
+  "source_apparatus_blocks": [
+   273568
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 35 prints its page number '35' alone at its foot (block 273568, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2921-p35.png",
+  "render_sha256": "dbe182f60ef8e07579f57a2e4a2d5388b9e40848a7f49627ad80e899e67bf7c3",
+  "match_text": "I certify that this return and the accompanying statements state the facts correctly and completely as on",
+  "before_text": "I certify that this return and the accompanying statements state the facts correctly and completely as on",
+  "after_text": "I certify that this return and the accompanying statements state the facts correctly and completely as on"
+ },
+ {
+  "document_id": 2921,
+  "page_no": 36,
+  "source_apparatus_blocks": [
+   273578
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 36 prints its page number '36' alone at its foot (block 273578, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2921-p36.png",
+  "render_sha256": "fc79689c5668cd493034707fd28be9dc0c7dc7db4feaef9a5c40e570b23119a5",
+  "match_text": "Under nature of business, please give precisely the specific",
+  "before_text": "Under nature of business, please give precisely the specific",
+  "after_text": "Under nature of business, please give precisely the specific"
+ }
+]

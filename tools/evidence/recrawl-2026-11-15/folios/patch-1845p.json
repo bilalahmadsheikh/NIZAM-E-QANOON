@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 1845,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   126119
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1' alone at its foot (block 126119, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1845-p1.png",
+  "render_sha256": "a4e2e29f7ec1cc8cdc9023f11873e0181e8f31bfe19e3fdc1aa4edd75abbd63d",
+  "match_text": "section    15,    after    the    word    “District”,    the    words",
+  "before_text": "section    15,    after    the    word    “District”,    the    words",
+  "after_text": "section    15,    after    the    word    “District”,    the    words"
+ },
+ {
+  "document_id": 1845,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   126131
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 126131, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1845-p2.png",
+  "render_sha256": "047bce7557be589b7707e19ca780b6e775f43d7fe3b353950f7a436878b6aa37",
+  "match_text": "(2)      for   sub-section    (5),    the   following   shall    be",
+  "before_text": "(2)      for   sub-section    (5),    the   following   shall    be",
+  "after_text": "(2)      for   sub-section    (5),    the   following   shall    be"
+ },
+ {
+  "document_id": 1845,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   126149
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 126149, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1845-p3.png",
+  "render_sha256": "bb02ce1e8aa6ce6fafdbfd3e4e9c7def3c1db921e2dc66247c37b20ac2a3deac",
+  "match_text": "7.        In the Sindh Local Government Act, 2013, in Part-C of",
+  "before_text": "7.        In the Sindh Local Government Act, 2013, in Part-C of",
+  "after_text": "7.        In the Sindh Local Government Act, 2013, in Part-C of"
+ }
+]

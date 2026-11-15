@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 9779,
+  "page_no": 10,
+  "source_apparatus_blocks": [
+   2650871
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 10 prints its page number '10' alone at its foot (block 2650871, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc9779-p10.png",
+  "render_sha256": "2091e44e574d2755e98fc5e346196d08fcf301caae73905eb5a5fcdf2e54c3e5",
+  "match_text": "under these regulations shall be addressed to the Registrar of the Authority unless the",
+  "before_text": "under these regulations shall be addressed to the Registrar of the Authority unless the",
+  "after_text": "under these regulations shall be addressed to the Registrar of the Authority unless the"
+ },
+ {
+  "document_id": 9779,
+  "page_no": 11,
+  "source_apparatus_blocks": [
+   2650878
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 11 prints its page number '11' alone at its foot (block 2650878, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc9779-p11.png",
+  "render_sha256": "311147438698325abd3ae2400501b9660fd0a5d8a1ecc0710ca121e0c4fdc0e7",
+  "match_text": "Name of the licensee: _____ For the Quarter Ending: _____",
+  "before_text": "Name of the licensee: _____ For the Quarter Ending: _____",
+  "after_text": "Name of the licensee: _____ For the Quarter Ending: _____"
+ }
+]

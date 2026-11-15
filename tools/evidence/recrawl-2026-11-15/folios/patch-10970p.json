@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 10970,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2817753
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1650' alone at its foot (block 2817753, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10970-p1.png",
+  "render_sha256": "3e943464c427a28d33c481afa1f877201c097d5064dc4452f5de3a60925c4419",
+  "match_text": "Whereas, it is expedient to prohibit the making of agreement to",
+  "before_text": "Whereas, it is expedient to prohibit the making of agreement to",
+  "after_text": "Whereas, it is expedient to prohibit the making of agreement to"
+ },
+ {
+  "document_id": 10970,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2817762
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '1651' alone at its foot (block 2817762, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10970-p2.png",
+  "render_sha256": "4a20b8f132b4b4f121d9fe9e472e756b2123e05c9dd37dbf4be81c801baefe8e",
+  "match_text": "parent or guardian pledges the labour of the Child shall",
+  "before_text": "parent or guardian pledges the labour of the Child shall",
+  "after_text": "parent or guardian pledges the labour of the Child shall"
+ },
+ {
+  "document_id": 10970,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2817767
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '1652' alone at its foot (block 2817767, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10970-p3.png",
+  "render_sha256": "f1f8193632c1e448dc4f96c241fa4b592481f2d03d37b418a6e2e00d59ec16f4",
+  "match_text": "Magistrate of first class empowered in this behalf by the",
+  "before_text": "Magistrate of first class empowered in this behalf by the",
+  "after_text": "Magistrate of first class empowered in this behalf by the"
+ }
+]

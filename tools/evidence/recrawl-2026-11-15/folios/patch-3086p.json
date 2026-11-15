@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 3086,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   304963
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 304963, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3086-p2.png",
+  "render_sha256": "5f5a1574775667410de63682093536fa93e69ead8d7b6ee198d2500a6e74af57",
+  "match_text": "No. O.S.D.(H.E.)-5-8/70.-  In exercise of  the powers conferred by   section 21 of the Sind",
+  "before_text": "No. O.S.D.(H.E.)-5-8/70.-  In exercise of  the powers conferred by   section 21 of the Sind",
+  "after_text": "No. O.S.D.(H.E.)-5-8/70.-  In exercise of  the powers conferred by   section 21 of the Sind"
+ },
+ {
+  "document_id": 3086,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   304968
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 304968, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3086-p3.png",
+  "render_sha256": "02e8eb3fbb3c15adfa7452f60e5b6e1ef7b8fecea6d313df85dca67d21a34acd",
+  "match_text": "scale, a teacher in such scale shall not be entitled to cross the efficiency bar unless",
+  "before_text": "scale, a teacher in such scale shall not be entitled to cross the efficiency bar unless",
+  "after_text": "scale, a teacher in such scale shall not be entitled to cross the efficiency bar unless"
+ },
+ {
+  "document_id": 3086,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   304974
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 304974, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3086-p4.png",
+  "render_sha256": "27718b6fd12593c9ced4022f06f4e85910a484975059ec5e7debf634e99a3067",
+  "match_text": "in rule 14, a teacher may be dismissed from service, if he is convicted by a Court of",
+  "before_text": "in rule 14, a teacher may be dismissed from service, if he is convicted by a Court of",
+  "after_text": "in rule 14, a teacher may be dismissed from service, if he is convicted by a Court of"
+ }
+]

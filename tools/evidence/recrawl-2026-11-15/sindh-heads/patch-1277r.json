@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 1277,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   68967
+  ],
+  "defect": "the Sindh Code's running head (the law's citation printed at the head of every page) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the running-head block is set aside; no law text changes",
+  "observed": "Page 2 prints the running head 'SINDH ORDINANCE NO. XII OF 2001' alone at its head (block 68967, the page's first block); the same line heads the document's other pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc1277-p2.png",
+  "render_sha256": "e824a9ad311e114e8bd7003f38a1c31d28a61875c88c71782b429602fce48a09",
+  "match_text": "4.         No provision of this Ordinance or any order made thereunder shall",
+  "before_text": "4.         No provision of this Ordinance or any order made thereunder shall",
+  "after_text": "4.         No provision of this Ordinance or any order made thereunder shall"
+ }
+]

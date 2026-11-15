@@ -1,0 +1,18 @@
+[
+ {
+  "document_id": 1642,
+  "page_no": 2,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc1642-p2.png",
+  "render_sha256": "720d3bd2e3ec48452787c74ed40b6febc6dfb855a34fd13f0f392aa10df6aae1",
+  "defect": "the Sindh Code's running head (the law's citation and title at the head of every page) was read into a provision's text, in the same block as the law below it",
+  "observed": "Page 2 prints the running head 'SIND ORDINANCE NO. XI OF 2000 / THE SINDH AGRICULTURAL INCOME TAX (AMENDMENT)' at its head; the same head opens the document's other pages",
+  "source_apparatus_blocks": [
+   102583,
+   102584
+  ],
+  "match_text": "1.      (1)     This Ordinance may be called the Sindh Agricultural",
+  "before_text": "1.      (1)     This Ordinance may be called the Sindh Agricultural",
+  "after_text": "1.      (1)     This Ordinance may be called the Sindh Agricultural",
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) are set aside; no law text changes"
+ }
+]

@@ -1,0 +1,92 @@
+[
+ {
+  "document_id": 1652,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   103664
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 103664, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1652-p2.png",
+  "render_sha256": "0c602809854d51ad1d06d4a10549e614b7ff85d2e9d914d5cf57a35553dfea67",
+  "match_text": "THE KARACHI DEVELOPMENT AND BEAUTIFICATION AUTHORITY ORDINANCE, 1988.",
+  "before_text": "THE KARACHI DEVELOPMENT AND BEAUTIFICATION AUTHORITY ORDINANCE, 1988.",
+  "after_text": "THE KARACHI DEVELOPMENT AND BEAUTIFICATION AUTHORITY ORDINANCE, 1988."
+ },
+ {
+  "document_id": 1652,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   103686
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 103686, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1652-p3.png",
+  "render_sha256": "9564c98e8c272be9d45bc6cfc0a9adb5f553cf65c13f47f808476a33ee3533f9",
+  "match_text": "committee to act as Authority for carrying out the purposes of this",
+  "before_text": "committee to act as Authority for carrying out the purposes of this",
+  "after_text": "committee to act as Authority for carrying out the purposes of this"
+ },
+ {
+  "document_id": 1652,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   103702
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 103702, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1652-p4.png",
+  "render_sha256": "84d8b09becd8d8ca1d68578b84fe5b50f768827e300a555b56f83f86f23c1171",
+  "match_text": "shall hold office at the pleasure of Government but may at any",
+  "before_text": "shall hold office at the pleasure of Government but may at any",
+  "after_text": "shall hold office at the pleasure of Government but may at any"
+ },
+ {
+  "document_id": 1652,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   103721
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '5' alone at its foot (block 103721, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1652-p5.png",
+  "render_sha256": "84d2be32cd4bbfa07d59acd0ceac035dd6266663f847d235358e6fc0cd421b4d",
+  "match_text": "Gazette, alter or amend the list of subjects given in sub-section (2),",
+  "before_text": "Gazette, alter or amend the list of subjects given in sub-section (2),",
+  "after_text": "Gazette, alter or amend the list of subjects given in sub-section (2),"
+ },
+ {
+  "document_id": 1652,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   103740
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 6 prints its page number '6' alone at its foot (block 103740, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1652-p6.png",
+  "render_sha256": "f66ee139f9d7cc4417ddc1221f268bfce3b9197a2e55fac4e059fbb7cfe81ad1",
+  "match_text": "such neon sign, hoarding or structure, to remove or alter it, so as to",
+  "before_text": "such neon sign, hoarding or structure, to remove or alter it, so as to",
+  "after_text": "such neon sign, hoarding or structure, to remove or alter it, so as to"
+ },
+ {
+  "document_id": 1652,
+  "page_no": 7,
+  "source_apparatus_blocks": [
+   103752
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 7 prints its page number '7' alone at its foot (block 103752, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1652-p7.png",
+  "render_sha256": "6f9e56d1bd8d00646e37463f32910eabe4e0ce7fe76016ea71326549cd8fd538",
+  "match_text": "hundred rupees for every day after the date of the first commission",
+  "before_text": "hundred rupees for every day after the date of the first commission",
+  "after_text": "hundred rupees for every day after the date of the first commission"
+ }
+]

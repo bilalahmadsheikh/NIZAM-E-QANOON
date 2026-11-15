@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 254,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   11172
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1' alone at its foot (block 11172, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc254-p1.png",
+  "render_sha256": "26c571b14d47c2e45b8a9a35a06b5b105dc81e1e87aca034f3ecbfe8f8c2d562",
+  "match_text": "In the said Act, in section 6, in sub-section (2), after clause (I),",
+  "before_text": "In the said Act, in section 6, in sub-section (2), after clause (I),",
+  "after_text": "In the said Act, in section 6, in sub-section (2), after clause (I),"
+ },
+ {
+  "document_id": 254,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   11190
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 11190, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc254-p2.png",
+  "render_sha256": "dae5b6ab8b14817aaa31f862f0dcab702aaea0885d9bd3f24bf4a3a866b02cca",
+  "match_text": "In the said Act, in section 18, sub-section (4) shall be omitted.",
+  "before_text": "In the said Act, in section 18, sub-section (4) shall be omitted.",
+  "after_text": "In the said Act, in section 18, sub-section (4) shall be omitted."
+ }
+]

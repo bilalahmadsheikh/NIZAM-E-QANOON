@@ -1,0 +1,77 @@
+[
+ {
+  "document_id": 1462,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   86354
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 86354, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1462-p2.png",
+  "render_sha256": "764ed50a9784d234a7e73b372c9b862a139fd835fd5862f032752896ea3c5fa6",
+  "match_text": "clause (1) of Article 128 of the Constitution of the Islamic Republic of Pakistan,",
+  "before_text": "clause (1) of Article 128 of the Constitution of the Islamic Republic of Pakistan,",
+  "after_text": "clause (1) of Article 128 of the Constitution of the Islamic Republic of Pakistan,"
+ },
+ {
+  "document_id": 1462,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   86375
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 86375, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1462-p3.png",
+  "render_sha256": "3637f95f2200ecafa8a44afa029d70cfe0caa64bc0d3eb22f60f065f73b69207",
+  "match_text": "property, both movable and immovable, and shall by the name specified in sub-",
+  "before_text": "property, both movable and immovable, and shall by the name specified in sub-",
+  "after_text": "property, both movable and immovable, and shall by the name specified in sub-"
+ },
+ {
+  "document_id": 1462,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   86392
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 86392, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1462-p4.png",
+  "render_sha256": "0277981fd09497b09857cc30d048b6db8e3fe0d38727918d577071f3cc272020",
+  "match_text": "(3) The existence of a vacancy in, or defect in the constitution of,",
+  "before_text": "(3) The existence of a vacancy in, or defect in the constitution of,",
+  "after_text": "(3) The existence of a vacancy in, or defect in the constitution of,"
+ },
+ {
+  "document_id": 1462,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   86410
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '5' alone at its foot (block 86410, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1462-p5.png",
+  "render_sha256": "e41a3014896a5f2c199e7e070182f59e7a28625c7e90e57fec1a1a3d8971d7fe",
+  "match_text": "either by direct recruitment, transfer, deputation or otherwise, on such terms and",
+  "before_text": "either by direct recruitment, transfer, deputation or otherwise, on such terms and",
+  "after_text": "either by direct recruitment, transfer, deputation or otherwise, on such terms and"
+ },
+ {
+  "document_id": 1462,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   86425
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 6 prints its page number '6' alone at its foot (block 86425, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1462-p6.png",
+  "render_sha256": "f6fabc790616676acb9b99a5c7c5c8c18b85180e186784999d6401c7d5a04fb7",
+  "match_text": "various activities carried out by the Academy during the last year, together with",
+  "before_text": "various activities carried out by the Academy during the last year, together with",
+  "after_text": "various activities carried out by the Academy during the last year, together with"
+ }
+]

@@ -1,0 +1,18 @@
+[
+ {
+  "document_id": 764,
+  "page_no": 2,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc764-p2.png",
+  "render_sha256": "00d91a0ccb62cb9837d054597883a2196bcb7e6258f2f587c14f3b9c5ffc9016",
+  "defect": "the Sindh Code's running head (the law's citation and title at the head of every page) was read into a provision's text, in the same block as the law below it",
+  "observed": "Page 2 prints the running head 'SINDH ACT NO.I OF 2009 / THE SINDH PUBLIC PROPERTY (REMOVAL OF ENCROACHMENT) (AMENDMENT)' at its head; the same head opens the document's other pages",
+  "source_apparatus_blocks": [
+   34287,
+   34288
+  ],
+  "match_text": "8.       In the said Act, after section 15, the following new section",
+  "before_text": "8.       In the said Act, after section 15, the following new section",
+  "after_text": "8.       In the said Act, after section 15, the following new section",
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) are set aside; no law text changes"
+ }
+]

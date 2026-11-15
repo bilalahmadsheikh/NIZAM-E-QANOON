@@ -1,0 +1,18 @@
+[
+ {
+  "document_id": 2696,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc2696-p3.png",
+  "render_sha256": "393c33d74ceaf62fe77ba7ff3a413c6b140ca3b35e9ac687a6d38776f3e97a4e",
+  "defect": "the Sindh Code's running head (the law's citation and title at the head of every page) was read into a provision's text, in the same block as the law below it",
+  "observed": "Page 3 prints the running head 'SINDH  ORDINANCE  NO. I OF 2003 / THE SINDH (PROHIBITION OF TAKING MINERALS INCLUDING RETI (SAND)' at its head; the same head opens the document's other pages",
+  "source_apparatus_blocks": [
+   235298,
+   235299
+  ],
+  "match_text": "against any person for anything which is in good faith done or",
+  "before_text": "against any person for anything which is in good faith done or",
+  "after_text": "against any person for anything which is in good faith done or",
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) are set aside; no law text changes"
+ }
+]

@@ -1,0 +1,77 @@
+[
+ {
+  "document_id": 10466,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2775871
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '79' alone at its foot (block 2775871, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10466-p1.png",
+  "render_sha256": "fa1e9c3ae75e9ce6bc05069f1836ea26b1f55d11a36cbc08a38b5fd4c26a84a2",
+  "match_text": "to provide for the Constitution of a Board of Revenue for Azad",
+  "before_text": "to provide for the Constitution of a Board of Revenue for Azad",
+  "after_text": "to provide for the Constitution of a Board of Revenue for Azad"
+ },
+ {
+  "document_id": 10466,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2775879
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '80' alone at its foot (block 2775879, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10466-p2.png",
+  "render_sha256": "759f4b34d4143a6236adca8054e8cc5e54e27a51df0d0baf7d18853c1fb066b7",
+  "match_text": "“three” subs. by the Azad Jammu and Kashmir Board of Revenue",
+  "before_text": "“three” subs. by the Azad Jammu and Kashmir Board of Revenue",
+  "after_text": "“three” subs. by the Azad Jammu and Kashmir Board of Revenue"
+ },
+ {
+  "document_id": 10466,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2775888
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '81' alone at its foot (block 2775888, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10466-p3.png",
+  "render_sha256": "e6c3fa7468168baf40554875cf0bdbe26d1849b0144bfc7c53ad532531869133",
+  "match_text": "decree, and if considers that there are sufficient reasons",
+  "before_text": "decree, and if considers that there are sufficient reasons",
+  "after_text": "decree, and if considers that there are sufficient reasons"
+ },
+ {
+  "document_id": 10466,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2775897
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '82' alone at its foot (block 2775897, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10466-p4.png",
+  "render_sha256": "8b9644b9fcb92a53df7b03434b1de60bc42e096dbd269d8c7bd1a6a25d3b87f3",
+  "match_text": "New sub-section (3) added by the AJ&K Board of Revenue (Amdt.)",
+  "before_text": "New sub-section (3) added by the AJ&K Board of Revenue (Amdt.)",
+  "after_text": "New sub-section (3) added by the AJ&K Board of Revenue (Amdt.)"
+ },
+ {
+  "document_id": 10466,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2775909
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '83' alone at its foot (block 2775909, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10466-p5.png",
+  "render_sha256": "e5b70fc51bbc8daa00beab208b6e4d63739f04d0fe01e0aa380aef938be6ce4b",
+  "match_text": "the purpose of carrying into effect the provisions of this",
+  "before_text": "the purpose of carrying into effect the provisions of this",
+  "after_text": "the purpose of carrying into effect the provisions of this"
+ }
+]

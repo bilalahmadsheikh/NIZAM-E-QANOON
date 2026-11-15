@@ -1,0 +1,77 @@
+[
+ {
+  "document_id": 2487,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   206314
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1' alone at its foot (block 206314, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2487-p1.png",
+  "render_sha256": "9de4045a9cc96fac14cf729fc7846bf0b05cf20ed7e4bddd97a71ff22e3bdfff",
+  "match_text": "1 These rules were notified vide Notification No.PRA/Orders.06/2012 (5), dated 1.8.2012; and published in the Punjab Weekly",
+  "before_text": "1 These rules were notified vide Notification No.PRA/Orders.06/2012 (5), dated 1.8.2012; and published in the Punjab Weekly",
+  "after_text": "1 These rules were notified vide Notification No.PRA/Orders.06/2012 (5), dated 1.8.2012; and published in the Punjab Weekly"
+ },
+ {
+  "document_id": 2487,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   206327
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 206327, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2487-p2.png",
+  "render_sha256": "874cc6369d6f85ca5125976b9042d37d9be8f5bae210db2c4da75c430ce877c2",
+  "match_text": "including digital certification for electronic filing of return or any other declarations or",
+  "before_text": "including digital certification for electronic filing of return or any other declarations or",
+  "after_text": "including digital certification for electronic filing of return or any other declarations or"
+ },
+ {
+  "document_id": 2487,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   206342
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 206342, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2487-p3.png",
+  "render_sha256": "f92955850b1c9a2a867effdd902a3347825fc8a0b804678bf6cc166e51e225e0",
+  "match_text": "otherwise, in relation to a specific transaction or to verify adequacy or integrity of the",
+  "before_text": "otherwise, in relation to a specific transaction or to verify adequacy or integrity of the",
+  "after_text": "otherwise, in relation to a specific transaction or to verify adequacy or integrity of the"
+ },
+ {
+  "document_id": 2487,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   206357
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 206357, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2487-p4.png",
+  "render_sha256": "80af7bf2d3f189770bc37390b500ed0042a8332fb2e5cd7a46ab7a6033871cbc",
+  "match_text": "the Authority, use an appropriate system of electronic invoicing in respect of taxable",
+  "before_text": "the Authority, use an appropriate system of electronic invoicing in respect of taxable",
+  "after_text": "the Authority, use an appropriate system of electronic invoicing in respect of taxable"
+ },
+ {
+  "document_id": 2487,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   206366
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '5' alone at its foot (block 206366, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2487-p5.png",
+  "render_sha256": "5902f2386c930b26aaf4c54c4ba34ced48b6cf7bb297c88c696ac58e0eddc266",
+  "match_text": "invoices for his purchases or has a computer facility to electrify his purchase invoices,",
+  "before_text": "invoices for his purchases or has a computer facility to electrify his purchase invoices,",
+  "after_text": "invoices for his purchases or has a computer facility to electrify his purchase invoices,"
+ }
+]

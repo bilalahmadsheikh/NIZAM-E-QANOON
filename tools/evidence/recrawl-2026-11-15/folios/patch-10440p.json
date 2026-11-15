@@ -1,0 +1,92 @@
+[
+ {
+  "document_id": 10440,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2774154
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '635' alone at its foot (block 2774154, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10440-p1.png",
+  "render_sha256": "5677fa93e5116265b331866a8e6b9a4bf3d7f0b4fae91f594aa36c34645e67d3",
+  "match_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "before_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "after_text": "Constitution Act, 1974, the President is pleased to make and promulgate"
+ },
+ {
+  "document_id": 10440,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2774166
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '636' alone at its foot (block 2774166, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10440-p2.png",
+  "render_sha256": "13f08312ee451746175836effa3c4fe4ca2a01b7f7ac524a5ec1f239294e0645",
+  "match_text": "source of its funds, and submit its finances and accounts to audit,",
+  "before_text": "source of its funds, and submit its finances and accounts to audit,",
+  "after_text": "source of its funds, and submit its finances and accounts to audit,"
+ },
+ {
+  "document_id": 10440,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2774178
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '637' alone at its foot (block 2774178, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10440-p3.png",
+  "render_sha256": "643ed6fa0ac9cebdf000c0d0a848814cb33aff32b981053bea687ecc91e89577",
+  "match_text": "constitution, a list of the names of all its office-bearers at the",
+  "before_text": "constitution, a list of the names of all its office-bearers at the",
+  "after_text": "constitution, a list of the names of all its office-bearers at the"
+ },
+ {
+  "document_id": 10440,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2774190
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '638' alone at its foot (block 2774190, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10440-p4.png",
+  "render_sha256": "d8b9f57fb304dfdd3362da1cb2d32d7dd9d3d6d72100ee9440c6fee98f792feb",
+  "match_text": "Lawful political activities:- Subject to the provisions of Section",
+  "before_text": "Lawful political activities:- Subject to the provisions of Section",
+  "after_text": "Lawful political activities:- Subject to the provisions of Section"
+ },
+ {
+  "document_id": 10440,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2774201
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '639' alone at its foot (block 2774201, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10440-p5.png",
+  "render_sha256": "1e86868ca6c1c07f96d70cc58e691920d3f3db4c5a0184dfc258c44237e331ba",
+  "match_text": "satisfied that a political party is a foreign aided party or has been",
+  "before_text": "satisfied that a political party is a foreign aided party or has been",
+  "after_text": "satisfied that a political party is a foreign aided party or has been"
+ },
+ {
+  "document_id": 10440,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   2774212
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 6 prints its page number '640' alone at its foot (block 2774212, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10440-p6.png",
+  "render_sha256": "81a91fe4f9aeb9b058c0ae26db9e7e16eeef7cd9c063a45034f468b8fca7bff0",
+  "match_text": "Explanation:- In this section, office bearer of a political party,",
+  "before_text": "Explanation:- In this section, office bearer of a political party,",
+  "after_text": "Explanation:- In this section, office bearer of a political party,"
+ }
+]

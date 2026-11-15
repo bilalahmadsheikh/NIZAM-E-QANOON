@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 10689,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2795202
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '51' alone at its foot (block 2795202, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10689-p1.png",
+  "render_sha256": "070e56a637c6d36086052ae517e022746eb4500a036d400c28c450387e8f0ae0",
+  "match_text": "uniforms resembling those specified for armed or civil forces or",
+  "before_text": "uniforms resembling those specified for armed or civil forces or",
+  "after_text": "uniforms resembling those specified for armed or civil forces or"
+ },
+ {
+  "document_id": 10689,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2795211
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '52' alone at its foot (block 2795211, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10689-p2.png",
+  "render_sha256": "45f90f041dc6d9ffd9daef73d475a793be1dffe0649667036aa19a188048e6cb",
+  "match_text": "parades in military order or wears uniform signifying his",
+  "before_text": "parades in military order or wears uniform signifying his",
+  "after_text": "parades in military order or wears uniform signifying his"
+ },
+ {
+  "document_id": 10689,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2795218
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '53' alone at its foot (block 2795218, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10689-p3.png",
+  "render_sha256": "64a4056a3f2eb64e35fe8ac6d60645abd30f94f06144026a114771cbea58181d",
+  "match_text": "charged with the offence of taking part in the control or",
+  "before_text": "charged with the offence of taking part in the control or",
+  "after_text": "charged with the offence of taking part in the control or"
+ },
+ {
+  "document_id": 10689,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2795226
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '54' alone at its foot (block 2795226, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10689-p4.png",
+  "render_sha256": "deaaf37a8a9a66574efa927318526bbe14c445c43bda955eab3d28759b92e8fe",
+  "match_text": "any distinctive uniforms to assist in the preservation of",
+  "before_text": "any distinctive uniforms to assist in the preservation of",
+  "after_text": "any distinctive uniforms to assist in the preservation of"
+ }
+]

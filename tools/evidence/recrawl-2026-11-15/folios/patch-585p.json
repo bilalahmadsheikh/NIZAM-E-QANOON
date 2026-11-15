@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 585,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   23867
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1' alone at its foot (block 23867, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc585-p1.png",
+  "render_sha256": "2adc72900680f636e6ef80081fc51fa76b42281df1c4a1e1f167589b80c2c83c",
+  "match_text": "2.           In the Sind Ministers (Salaries, Allowances and",
+  "before_text": "2.           In the Sind Ministers (Salaries, Allowances and",
+  "after_text": "2.           In the Sind Ministers (Salaries, Allowances and"
+ },
+ {
+  "document_id": 585,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   23871
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 23871, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc585-p2.png",
+  "render_sha256": "1cca9abc649aa98f066184c218fb702d457ccecb69c12c4dcdb75e0e4b2008c9",
+  "match_text": "THE SINDH MINISTERS (SALARIES, ALLOWANCES AND PRIVILEGES)",
+  "before_text": "THE SINDH MINISTERS (SALARIES, ALLOWANCES AND PRIVILEGES)",
+  "after_text": "THE SINDH MINISTERS (SALARIES, ALLOWANCES AND PRIVILEGES)"
+ }
+]

@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 303,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   14269
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1' alone at its foot (block 14269, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc303-p1.png",
+  "render_sha256": "e5545040e2a7bed80b298ab96d8f80f091951398e90683f82c3bcd494f925c16",
+  "match_text": "Province of Sind, hereinafter referred to as the said Act, in section 3,",
+  "before_text": "Province of Sind, hereinafter referred to as the said Act, in section 3,",
+  "after_text": "Province of Sind, hereinafter referred to as the said Act, in section 3,"
+ },
+ {
+  "document_id": 303,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   14288
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 14288, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc303-p2.png",
+  "render_sha256": "caf5790bb09862cd1712987c403b8f76e8cd22cb3adb5b93c257f356d570ed6e",
+  "match_text": "Gazette”, the words and comma “with the previous approval of the",
+  "before_text": "Gazette”, the words and comma “with the previous approval of the",
+  "after_text": "Gazette”, the words and comma “with the previous approval of the"
+ }
+]

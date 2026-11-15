@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 10715,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2797069
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '733' alone at its foot (block 2797069, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10715-p1.png",
+  "render_sha256": "7936a69781d418e6305812232d2b9d3d7e4f2f1acbbfb683a7e609fbc1718e6a",
+  "match_text": "Assembly received the assent of the President on 28th",
+  "before_text": "Assembly received the assent of the President on 28th",
+  "after_text": "Assembly received the assent of the President on 28th"
+ },
+ {
+  "document_id": 10715,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2797073
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '734' alone at its foot (block 2797073, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10715-p2.png",
+  "render_sha256": "3143b3e5aaad8a7c65909bc925163408eb7a1a2bc5a710db84225d9b58d564af",
+  "match_text": "this Act, shall also, as far as practicable, be deemed",
+  "before_text": "this Act, shall also, as far as practicable, be deemed",
+  "after_text": "this Act, shall also, as far as practicable, be deemed"
+ },
+ {
+  "document_id": 10715,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2797079
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '735' alone at its foot (block 2797079, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10715-p3.png",
+  "render_sha256": "1479be894e7cdd419a42310113074ae02713f6b85200d733d30d2ef46b0bd5ec",
+  "match_text": "been validly levied, charged, collected, initiated, issued,",
+  "before_text": "been validly levied, charged, collected, initiated, issued,",
+  "after_text": "been validly levied, charged, collected, initiated, issued,"
+ },
+ {
+  "document_id": 10715,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2797088
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '736' alone at its foot (block 2797088, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10715-p4.png",
+  "render_sha256": "e9c75bbfe127784603b6276bfc63c816ba57ef0de58015dbed607e43cef4d23e",
+  "match_text": "in sub-section (2) the comma, figures and",
+  "before_text": "in sub-section (2) the comma, figures and",
+  "after_text": "in sub-section (2) the comma, figures and"
+ }
+]

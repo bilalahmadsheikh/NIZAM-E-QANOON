@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 9838,
+  "page_no": 69,
+  "source_apparatus_blocks": [
+   2669162
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 69 prints its page number '95' alone at its foot (block 2669162, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc9838-p69.png",
+  "render_sha256": "9516651e5be3095bd695e0a880c83364df16c48129d447f6d6965e612fde6b04",
+  "match_text": "Particulars of the Policies for Valuation.",
+  "before_text": "Particulars of the Policies for Valuation.",
+  "after_text": "Particulars of the Policies for Valuation."
+ },
+ {
+  "document_id": 9838,
+  "page_no": 70,
+  "source_apparatus_blocks": [
+   2669169
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 70 prints its page number '96' alone at its foot (block 2669169, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc9838-p70.png",
+  "render_sha256": "1f241cf9a73831d9e1407eff361147af8101c4c987f09863215ab52f611fc498",
+  "match_text": "Adjustments, if any (to be separately specified)",
+  "before_text": "Adjustments, if any (to be separately specified)",
+  "after_text": "Adjustments, if any (to be separately specified)"
+ }
+]

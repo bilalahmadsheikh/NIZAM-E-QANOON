@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 3038,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   295842
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 295842, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3038-p2.png",
+  "render_sha256": "63451ad676e8b1e2b943bafeb29b7a9d1be273fa8d937f572bae931608d01e2b",
+  "match_text": "No. O.S.D.(H.E.)-5-8/70.-  In exercise of  the powers conferred by clause (e) of subsection",
+  "before_text": "No. O.S.D.(H.E.)-5-8/70.-  In exercise of  the powers conferred by clause (e) of subsection",
+  "after_text": "No. O.S.D.(H.E.)-5-8/70.-  In exercise of  the powers conferred by clause (e) of subsection"
+ },
+ {
+  "document_id": 3038,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   295849
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 295849, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3038-p3.png",
+  "render_sha256": "77df95ff60f9d49daedf2b02f328af382ab06e82e4b4a6d3a7d8fa8b5e594ce3",
+  "match_text": "addition of one vote for one such candidate would entitle  him to be declared elected",
+  "before_text": "addition of one vote for one such candidate would entitle  him to be declared elected",
+  "after_text": "addition of one vote for one such candidate would entitle  him to be declared elected"
+ },
+ {
+  "document_id": 3038,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   295852
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 295852, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3038-p4.png",
+  "render_sha256": "d4b6e2360506c0f73472e2349d52429c6434a1de9b853f2c32b9996cbc6f4ed4",
+  "match_text": "the parties concerned an opportunity to be heard  shall give its decision kin writing.",
+  "before_text": "the parties concerned an opportunity to be heard  shall give its decision kin writing.",
+  "after_text": "the parties concerned an opportunity to be heard  shall give its decision kin writing."
+ }
+]

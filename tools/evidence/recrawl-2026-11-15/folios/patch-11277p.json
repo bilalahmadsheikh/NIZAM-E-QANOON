@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 11277,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2843729
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1150' alone at its foot (block 2843729, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11277-p1.png",
+  "render_sha256": "312d990e3fa982d0a441313e03b33317da065e351c669e5bc1faa4056ccbef77",
+  "match_text": "to give effect to the financial proposals of Azad Government of",
+  "before_text": "to give effect to the financial proposals of Azad Government of",
+  "after_text": "to give effect to the financial proposals of Azad Government of"
+ },
+ {
+  "document_id": 11277,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2843734
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '1151' alone at its foot (block 2843734, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11277-p2.png",
+  "render_sha256": "6513d7feaf4a79d391a8fe4b56f2a1b543cc4860f8e01d3db416929dcde75649",
+  "match_text": "been validly levied, charged, collected, initiated, issued,",
+  "before_text": "been validly levied, charged, collected, initiated, issued,",
+  "after_text": "been validly levied, charged, collected, initiated, issued,"
+ },
+ {
+  "document_id": 11277,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2843738
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '1152' alone at its foot (block 2843738, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11277-p3.png",
+  "render_sha256": "f8090106b739acc521a687666e242dced5a5625a2a2fb949308eb1b1884abe4a",
+  "match_text": "this Act, shall be leviable, chargeable and recoverable in",
+  "before_text": "this Act, shall be leviable, chargeable and recoverable in",
+  "after_text": "this Act, shall be leviable, chargeable and recoverable in"
+ }
+]

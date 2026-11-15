@@ -1,0 +1,92 @@
+[
+ {
+  "document_id": 2533,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   212472
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1' alone at its foot (block 212472, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2533-p1.png",
+  "render_sha256": "68ea322d88ad4a6a6a3fa5d06516fff6f298c696f47cf0e9a4c6d8d2d0a836a2",
+  "match_text": "benefits and to provide adequate financial protection to the family in the event of",
+  "before_text": "benefits and to provide adequate financial protection to the family in the event of",
+  "after_text": "benefits and to provide adequate financial protection to the family in the event of"
+ },
+ {
+  "document_id": 2533,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   212493
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 212493, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2533-p2.png",
+  "render_sha256": "c38d778d1d75ba25c26bbf969e68eb2083a722610fcd18785b3fe45ad92bc3fc",
+  "match_text": "and B (indicated in service statues of the University) shall be eligible for membership",
+  "before_text": "and B (indicated in service statues of the University) shall be eligible for membership",
+  "after_text": "and B (indicated in service statues of the University) shall be eligible for membership"
+ },
+ {
+  "document_id": 2533,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   212507
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 212507, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2533-p3.png",
+  "render_sha256": "92c075f4b362b276407273713ac51a0111b62386111ebe4e35bd1ea0a2892cd5",
+  "match_text": "the coming into force of these statues, every employee who is entitled to the benefits",
+  "before_text": "the coming into force of these statues, every employee who is entitled to the benefits",
+  "after_text": "the coming into force of these statues, every employee who is entitled to the benefits"
+ },
+ {
+  "document_id": 2533,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   212512
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 212512, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2533-p4.png",
+  "render_sha256": "bbaaeb2ffddab16185b9268093d44dfe6d3a8c9fd561917be8b4baf99df74b4a",
+  "match_text": "University towards the group insurance from the insurance company or other insurer",
+  "before_text": "University towards the group insurance from the insurance company or other insurer",
+  "after_text": "University towards the group insurance from the insurance company or other insurer"
+ },
+ {
+  "document_id": 2533,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   212531
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '5' alone at its foot (block 212531, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2533-p5.png",
+  "render_sha256": "e019552da4ee7119956d9d4d850a2f9b9ff565eebe1f7b8de3c71988300c597a",
+  "match_text": "family as defined in the University Group Insurance Statutes to receive the assured",
+  "before_text": "family as defined in the University Group Insurance Statutes to receive the assured",
+  "after_text": "family as defined in the University Group Insurance Statutes to receive the assured"
+ },
+ {
+  "document_id": 2533,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   212558
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 6 prints its page number '6' alone at its foot (block 212558, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2533-p6.png",
+  "render_sha256": "99814521e3635f3f273bd81adcaf80ebffef22c4ed6806738ec1da0f1f9520bf",
+  "match_text": "_______________ only), the amount for which the deceased was covered may be",
+  "before_text": "_______________ only), the amount for which the deceased was covered may be",
+  "after_text": "_______________ only), the amount for which the deceased was covered may be"
+ }
+]

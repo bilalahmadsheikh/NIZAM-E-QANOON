@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 1853,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   127745
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 127745, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1853-p2.png",
+  "render_sha256": "1a30dd15dcb6a4c0c5a3563d3d3b897c15d5de34eddc3652fc102a106ba7bb35",
+  "match_text": "to enable them to lead a prosperous life in the society and for matters connected therewith",
+  "before_text": "to enable them to lead a prosperous life in the society and for matters connected therewith",
+  "after_text": "to enable them to lead a prosperous life in the society and for matters connected therewith"
+ },
+ {
+  "document_id": 1853,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   127767
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 127767, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1853-p3.png",
+  "render_sha256": "ef3173452f8a5ad16e23ec6131e3c1f8b1ea4eba89f5b400264e4652719cdd36",
+  "match_text": "administrative control of the Committee and shall be kept in such bank and invested in",
+  "before_text": "administrative control of the Committee and shall be kept in such bank and invested in",
+  "after_text": "administrative control of the Committee and shall be kept in such bank and invested in"
+ },
+ {
+  "document_id": 1853,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   127781
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 127781, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1853-p4.png",
+  "render_sha256": "f3182ec49d3ffeb71bb593e9f9f776a62e0771207c5506405f5fa1c5eee54d6c",
+  "match_text": "Audit and accounts.---(1) The bank shall be responsible to maintain the accounts",
+  "before_text": "Audit and accounts.---(1) The bank shall be responsible to maintain the accounts",
+  "after_text": "Audit and accounts.---(1) The bank shall be responsible to maintain the accounts"
+ }
+]

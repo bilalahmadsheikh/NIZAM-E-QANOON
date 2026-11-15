@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 10739,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2798127
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1921' alone at its foot (block 2798127, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10739-p1.png",
+  "render_sha256": "5754962c7730850ea4e6beb4cc9fbd75f1a898f9106436ee8add16c8b76d0da5",
+  "match_text": "received the assent of the President on the 3rd day of January",
+  "before_text": "received the assent of the President on the 3rd day of January",
+  "after_text": "received the assent of the President on the 3rd day of January"
+ },
+ {
+  "document_id": 10739,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2798134
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '1922' alone at its foot (block 2798134, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10739-p2.png",
+  "render_sha256": "b233e6774a310f621868653cf75699a0a069d7cc9537567dab9addc848b84331",
+  "match_text": "intelligible manner, on the label or container thereof and",
+  "before_text": "intelligible manner, on the label or container thereof and",
+  "after_text": "intelligible manner, on the label or container thereof and"
+ },
+ {
+  "document_id": 10739,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2798142
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '1923' alone at its foot (block 2798142, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10739-p3.png",
+  "render_sha256": "d7dc9caf9c814ebe041cff9d41c350cc1d9fe61c53869a2b3496a3d29ae93227",
+  "match_text": "sentence of fine to the extent provided for by this Act in",
+  "before_text": "sentence of fine to the extent provided for by this Act in",
+  "after_text": "sentence of fine to the extent provided for by this Act in"
+ }
+]

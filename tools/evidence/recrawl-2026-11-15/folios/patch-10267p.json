@@ -1,0 +1,77 @@
+[
+ {
+  "document_id": 10267,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2762298
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '107' alone at its foot (block 2762298, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10267-p1.png",
+  "render_sha256": "d5e4d721c7bfd12f64d099cc6858182804f4b3178aa12f64605ad1edcb217fd9",
+  "match_text": "into any matter of public importance in the manner hereinafter appearing;",
+  "before_text": "into any matter of public importance in the manner hereinafter appearing;",
+  "after_text": "into any matter of public importance in the manner hereinafter appearing;"
+ },
+ {
+  "document_id": 10267,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2762314
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '108' alone at its foot (block 2762314, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10267-p2.png",
+  "render_sha256": "80d07733f448aa66625479427aecf8b603574cd52d7fbe26ae5fedf33159cdb7",
+  "match_text": "(1) The Chief Executive may, if is of opinion that it is necessary",
+  "before_text": "(1) The Chief Executive may, if is of opinion that it is necessary",
+  "after_text": "(1) The Chief Executive may, if is of opinion that it is necessary"
+ },
+ {
+  "document_id": 10267,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2762323
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '109' alone at its foot (block 2762323, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10267-p3.png",
+  "render_sha256": "00e35da9841f412f460c3c80dfd8d20560c33ea63fd4797d173abe9e73235267",
+  "match_text": "may be useful for, or relevant to the subject matter of the inquiry.",
+  "before_text": "may be useful for, or relevant to the subject matter of the inquiry.",
+  "after_text": "may be useful for, or relevant to the subject matter of the inquiry."
+ },
+ {
+  "document_id": 10267,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2762332
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '110' alone at its foot (block 2762332, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10267-p4.png",
+  "render_sha256": "aa9acb8966d4528434c111e7cf770eea21d4c1de0b41c9533c931f7adf2b0a80",
+  "match_text": "the fixing of places and times of its sittings and deciding whether",
+  "before_text": "the fixing of places and times of its sittings and deciding whether",
+  "after_text": "the fixing of places and times of its sittings and deciding whether"
+ },
+ {
+  "document_id": 10267,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2762343
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '111' alone at its foot (block 2762343, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10267-p5.png",
+  "render_sha256": "c935b7380938644d09aedc6816431fa31bed67b55225d54be2c1e750a7e2986f",
+  "match_text": "person acting under the direction either of the Chief-Executive or",
+  "before_text": "person acting under the direction either of the Chief-Executive or",
+  "after_text": "person acting under the direction either of the Chief-Executive or"
+ }
+]

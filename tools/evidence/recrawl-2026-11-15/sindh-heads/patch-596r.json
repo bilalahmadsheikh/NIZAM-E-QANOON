@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 596,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   24283
+  ],
+  "defect": "the Sindh Code's running head (the law's citation printed at the head of every page) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the running-head block is set aside; no law text changes",
+  "observed": "Page 3 prints the running head 'SIND ACT No. XXIX of 1974' alone at its head (block 24283, the page's first block); the same line heads the document's other pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc596-p3.png",
+  "render_sha256": "30ab3f7b1f2015d2a9ac076583c3a5f1600b6fe69564bc123692605e92b8edbb",
+  "match_text": "New Provision added vide Sind Act No.VIII of 2004 dated 11-06-2004.",
+  "before_text": "New Provision added vide Sind Act No.VIII of 2004 dated 11-06-2004.",
+  "after_text": "New Provision added vide Sind Act No.VIII of 2004 dated 11-06-2004."
+ },
+ {
+  "document_id": 596,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   24297
+  ],
+  "defect": "the Sindh Code's running head (the law's citation printed at the head of every page) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the running-head block is set aside; no law text changes",
+  "observed": "Page 4 prints the running head 'SIND ACT No. XXIX of 1974' alone at its head (block 24297, the page's first block); the same line heads the document's other pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc596-p4.png",
+  "render_sha256": "cdb96ec16b01f04f8e7939aefb49817964870b89ad9fb1fc13d1381af0507a8d",
+  "match_text": "Added new entry (8-10) vide amendment of Schedule to Sind Act, XI of 1976 dated July 15th, 1976.",
+  "before_text": "Added new entry (8-10) vide amendment of Schedule to Sind Act, XI of 1976 dated July 15th, 1976.",
+  "after_text": "Added new entry (8-10) vide amendment of Schedule to Sind Act, XI of 1976 dated July 15th, 1976."
+ }
+]

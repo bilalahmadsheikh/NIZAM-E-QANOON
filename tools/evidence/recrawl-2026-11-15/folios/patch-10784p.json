@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 10784,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2801820
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '964' alone at its foot (block 2801820, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10784-p1.png",
+  "render_sha256": "2e4343d26b2b619d8aa0a812e86438a8ce958a2ba2d782158c1ed9f21194f96f",
+  "match_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "before_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "after_text": "Constitution Act, 1974, the President is pleased to make and promulgate"
+ },
+ {
+  "document_id": 10784,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2801823
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '965' alone at its foot (block 2801823, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10784-p2.png",
+  "render_sha256": "6738f96827cb5fc4c05d3e2617bd2eb430dbf63a05cfa53061264d5442ead0c8",
+  "match_text": "petition and after giving an opportunity to a petitioner of being",
+  "before_text": "petition and after giving an opportunity to a petitioner of being",
+  "after_text": "petition and after giving an opportunity to a petitioner of being"
+ },
+ {
+  "document_id": 10784,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2801831
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '966' alone at its foot (block 2801831, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10784-p3.png",
+  "render_sha256": "470a4ed7119585a18ddf2bec113155f301311224996d14a1a0f1d7549cf73ad9",
+  "match_text": "and render all other possible assistance in the disposal of petition",
+  "before_text": "and render all other possible assistance in the disposal of petition",
+  "after_text": "and render all other possible assistance in the disposal of petition"
+ }
+]

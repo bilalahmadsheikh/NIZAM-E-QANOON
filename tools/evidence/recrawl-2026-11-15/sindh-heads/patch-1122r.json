@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 1122,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   54605
+  ],
+  "defect": "the Sindh Code's running head (the law's citation printed at the head of every page) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the running-head block is set aside; no law text changes",
+  "observed": "Page 2 prints the running head 'SINDH ACT NO.V OF 2017' alone at its head (block 54605, the page's first block); the same line heads the document's other pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc1122-p2.png",
+  "render_sha256": "e1bb3101b08059f96114bda6fbbdefe01f30cf8cce80a50c618364307a4eacc0",
+  "match_text": "In the said Ordinance, 1965, for the Thirteenth Schedule, the",
+  "before_text": "In the said Ordinance, 1965, for the Thirteenth Schedule, the",
+  "after_text": "In the said Ordinance, 1965, for the Thirteenth Schedule, the"
+ }
+]

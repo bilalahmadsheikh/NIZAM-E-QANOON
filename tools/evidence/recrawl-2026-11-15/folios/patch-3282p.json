@@ -1,0 +1,92 @@
+[
+ {
+  "document_id": 3282,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   343760
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 343760, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3282-p2.png",
+  "render_sha256": "c2bfb0ef0a9831dacafd4a8f031b0a8033a34d2f2682f5d9dd45795b6c886ffb",
+  "match_text": "him in that behalf, the Governor of Sind and Martial Law Administrator, Zone ‘D’, is pleased",
+  "before_text": "him in that behalf, the Governor of Sind and Martial Law Administrator, Zone ‘D’, is pleased",
+  "after_text": "him in that behalf, the Governor of Sind and Martial Law Administrator, Zone ‘D’, is pleased"
+ },
+ {
+  "document_id": 3282,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   343769
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 343769, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3282-p3.png",
+  "render_sha256": "d0d28c27a123ff21afcbba1b3ca2c48cb429e69bd051d2ee5bdbe4601e96766a",
+  "match_text": "(2)   The certificate shall specify the District or other local area in Sind of which the",
+  "before_text": "(2)   The certificate shall specify the District or other local area in Sind of which the",
+  "after_text": "(2)   The certificate shall specify the District or other local area in Sind of which the"
+ },
+ {
+  "document_id": 3282,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   343782
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 343782, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3282-p4.png",
+  "render_sha256": "c7cc914ebd83e4ddd5b472293f5daedd93d66e6a88069c666d3b38cec68daeec",
+  "match_text": "FORM OF APPLICATION FOR GRANT OF A CERTIFICATE OF PERMANENT",
+  "before_text": "FORM OF APPLICATION FOR GRANT OF A CERTIFICATE OF PERMANENT",
+  "after_text": "FORM OF APPLICATION FOR GRANT OF A CERTIFICATE OF PERMANENT"
+ },
+ {
+  "document_id": 3282,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   343785
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '5' alone at its foot (block 343785, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3282-p5.png",
+  "render_sha256": "76d669c05d26c511e82ffa44a2c7d4be8cedd22c629828fdb58650d8f6eaeb39",
+  "match_text": "Note 1.—   in the case of a person illegitimate birth, the information required to be",
+  "before_text": "Note 1.—   in the case of a person illegitimate birth, the information required to be",
+  "after_text": "Note 1.—   in the case of a person illegitimate birth, the information required to be"
+ },
+ {
+  "document_id": 3282,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   343788
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 6 prints its page number '6' alone at its foot (block 343788, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3282-p6.png",
+  "render_sha256": "3cab627c2965ec54a5f342263dc397b659314c8ba8cd586d4ff8d1ce441f33bd",
+  "match_text": "purpose of admission to an educational institution specified in rule (2)(1) of the Sind",
+  "before_text": "purpose of admission to an educational institution specified in rule (2)(1) of the Sind",
+  "after_text": "purpose of admission to an educational institution specified in rule (2)(1) of the Sind"
+ },
+ {
+  "document_id": 3282,
+  "page_no": 7,
+  "source_apparatus_blocks": [
+   343811
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 7 prints its page number '7' alone at its foot (block 343811, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3282-p7.png",
+  "render_sha256": "507a2c8dc7932c1825375a22b718a2456838f41cdb028613b219aaf5cd491c76",
+  "match_text": "The certificate is granted for the purposes of recruitment to the Public Service in",
+  "before_text": "The certificate is granted for the purposes of recruitment to the Public Service in",
+  "after_text": "The certificate is granted for the purposes of recruitment to the Public Service in"
+ }
+]

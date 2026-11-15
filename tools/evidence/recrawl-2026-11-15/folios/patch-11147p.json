@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 11147,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2834775
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '569' alone at its foot (block 2834775, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11147-p1.png",
+  "render_sha256": "4fae09ff7b6d7dcfdf1558ab205b2fa007190f493b6570ddcf66e2b85942f51a",
+  "match_text": "on 30th Day of July, 1979 is hereby published for general information:-",
+  "before_text": "on 30th Day of July, 1979 is hereby published for general information:-",
+  "after_text": "on 30th Day of July, 1979 is hereby published for general information:-"
+ },
+ {
+  "document_id": 11147,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2834782
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '570' alone at its foot (block 2834782, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11147-p2.png",
+  "render_sha256": "795fce719800aa41f45a468274443d6a5de2aabb65ed0f7820c0b4c746cc540a",
+  "match_text": "Act, 1952 (XXXIX of 1952), as in force in Pakistan, the",
+  "before_text": "Act, 1952 (XXXIX of 1952), as in force in Pakistan, the",
+  "after_text": "Act, 1952 (XXXIX of 1952), as in force in Pakistan, the"
+ }
+]

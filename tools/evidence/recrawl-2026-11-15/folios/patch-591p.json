@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 591,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   23991
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 23991, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc591-p2.png",
+  "render_sha256": "8cf2c0d35f3e17b45948764fd18e0f9e18d6be95c80be6a6ff6d53bf09ae26c5",
+  "match_text": "the Chief Minister or any authority or officer, authorized by",
+  "before_text": "the Chief Minister or any authority or officer, authorized by",
+  "after_text": "the Chief Minister or any authority or officer, authorized by"
+ },
+ {
+  "document_id": 591,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   23997
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 23997, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc591-p3.png",
+  "render_sha256": "3edacd4ae518bcc483db1b4140bc5d538be6b8acd54ac5689deb1dd6c06d9111",
+  "match_text": "of this Act, the Chief Minister may, by notification in the",
+  "before_text": "of this Act, the Chief Minister may, by notification in the",
+  "after_text": "of this Act, the Chief Minister may, by notification in the"
+ }
+]

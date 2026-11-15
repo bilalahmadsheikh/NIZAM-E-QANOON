@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 794,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   35905
+  ],
+  "defect": "the Sindh Code's running head (the law's citation printed at the head of every page) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the running-head block is set aside; no law text changes",
+  "observed": "Page 2 prints the running head 'SIND ORDINANCE NO. III OF 1983' alone at its head (block 35905, the page's first block); the same line heads the document's other pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc794-p2.png",
+  "render_sha256": "129c9c75e5e52b03873a7a107841ae820cadd331aa138bf6b8a965be0561fb7a",
+  "match_text": "( THE SINDH MINISTER (SALARIES, ALLOWANCES AND PRIVILEGES)(AMENDMENT) ORDINANCE, 1983",
+  "before_text": "( THE SINDH MINISTER (SALARIES, ALLOWANCES AND PRIVILEGES)(AMENDMENT) ORDINANCE, 1983",
+  "after_text": "( THE SINDH MINISTER (SALARIES, ALLOWANCES AND PRIVILEGES)(AMENDMENT) ORDINANCE, 1983"
+ }
+]

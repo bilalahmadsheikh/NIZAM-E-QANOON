@@ -1,0 +1,14 @@
+[
+ {
+  "document_id": 1665,
+  "page_no": 5,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc1665-p5.png",
+  "render_sha256": "7d9c0714fa1fd9f4a38f63a2290f15f98fd01a8f5249d745ef41dfadce5bcd6e",
+  "defect": "the Sindh Code's running head (the law's citation and title at the head of every page) was read into a provision's text, in the same block as the law below it",
+  "observed": "Page 5 prints the running head 'SINDH ORDINANCE NO. I OF 2001. / THE PROVINCIAL MOTOR VEHICLES (AMENDMENT) ORDINANCE, 2000.' at its head; the same head opens the document's other pages",
+  "match_text": "SINDH ORDINANCE NO. I OF 2001.",
+  "before_text": "SINDH ORDINANCE NO. I OF 2001. \nTHE PROVINCIAL MOTOR VEHICLES (AMENDMENT) ORDINANCE, 2000.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-head lines are cut from the block; the law after them is kept as printed"
+ }
+]

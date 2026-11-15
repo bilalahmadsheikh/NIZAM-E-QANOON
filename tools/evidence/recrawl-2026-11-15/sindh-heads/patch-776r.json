@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 776,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   35337
+  ],
+  "defect": "the Sindh Code's running head (the law's citation printed at the head of every page) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the running-head block is set aside; no law text changes",
+  "observed": "Page 2 prints the running head 'SINDH ACT NO.XLIX OF 2013' alone at its head (block 35337, the page's first block); the same line heads the document's other pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc776-p2.png",
+  "render_sha256": "4be112bb53698198afef33a76fbf0e93787ff87fb12f31baa96cd285beecf5a7",
+  "match_text": "which this Act comes into force (both days inclusive), shall,",
+  "before_text": "which this Act comes into force (both days inclusive), shall,",
+  "after_text": "which this Act comes into force (both days inclusive), shall,"
+ }
+]

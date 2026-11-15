@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 10101,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2751068
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '238' alone at its foot (block 2751068, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10101-p1.png",
+  "render_sha256": "63579548d4eb3ecc262fcf4cefefd2389697ed10e121c59a4b9cd422462a17f9",
+  "match_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "before_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "after_text": "Constitution Act, 1974, the President is pleased to make and promulgate"
+ },
+ {
+  "document_id": 10101,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2751075
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '239' alone at its foot (block 2751075, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10101-p2.png",
+  "render_sha256": "16717bb2cd367c55aefaecb1c1d01e77a9cf76e4d2b49cbfaf8f12396363e30b",
+  "match_text": "such transfer will promote the ends of justice, or tend to",
+  "before_text": "such transfer will promote the ends of justice, or tend to",
+  "after_text": "such transfer will promote the ends of justice, or tend to"
+ }
+]

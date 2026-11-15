@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 965,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   45512
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1' alone at its foot (block 45512, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc965-p1.png",
+  "render_sha256": "00fbb0485c35b9a5b1ee5eeea9cd60b0131ad16b60cd5f10dc70efa0bbbcdcd9",
+  "match_text": "the fifth day of July, 1977, and the Provisional Constitution Order, 1981,",
+  "before_text": "the fifth day of July, 1977, and the Provisional Constitution Order, 1981,",
+  "after_text": "the fifth day of July, 1977, and the Provisional Constitution Order, 1981,"
+ },
+ {
+  "document_id": 965,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   45519
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 45519, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc965-p2.png",
+  "render_sha256": "d29c9224ab7a3fa8f875499eb80eecb54029a093bf9cea7036326d855456d0ac",
+  "match_text": "clause (vii) of section 15, relets the building or premises to",
+  "before_text": "clause (vii) of section 15, relets the building or premises to",
+  "after_text": "clause (vii) of section 15, relets the building or premises to"
+ }
+]

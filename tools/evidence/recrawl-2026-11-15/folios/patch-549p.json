@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 549,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   21328
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '3' alone at its foot (block 21328, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc549-p2.png",
+  "render_sha256": "9aaacb22a1f04db0577e89dc5bbe6bc85490dc3cad61ccd79ec802a6d2195f0e",
+  "match_text": "project comprising of three renowned scientists of the relevant field shall review the project for its",
+  "before_text": "project comprising of three renowned scientists of the relevant field shall review the project for its",
+  "after_text": "project comprising of three renowned scientists of the relevant field shall review the project for its"
+ },
+ {
+  "document_id": 549,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   21349
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '4' alone at its foot (block 21349, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc549-p3.png",
+  "render_sha256": "37ecc84e2fa372a429042b1cce6d8db1e6515608d160620f37982a462ec86b46",
+  "match_text": "permissible to Category-II officers of the Govt. while visiting London, to cover hotel charges and",
+  "before_text": "permissible to Category-II officers of the Govt. while visiting London, to cover hotel charges and",
+  "after_text": "permissible to Category-II officers of the Govt. while visiting London, to cover hotel charges and"
+ },
+ {
+  "document_id": 549,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   21367
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '5' alone at its foot (block 21367, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc549-p4.png",
+  "render_sha256": "bc4e7f107ce06f3c0857274530592e4326c595ea7e9e0e87602b8e868659b4d8",
+  "match_text": "13.Director Punjab Economic Research Institute (PERI), Jauhar town, Lahore",
+  "before_text": "13.Director Punjab Economic Research Institute (PERI), Jauhar town, Lahore",
+  "after_text": "13.Director Punjab Economic Research Institute (PERI), Jauhar town, Lahore"
+ }
+]

@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 517,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   19972
+  ],
+  "defect": "the Sindh Code's running head (the law's citation printed at the head of every page) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the running-head block is set aside; no law text changes",
+  "observed": "Page 2 prints the running head 'SIND ORDINANCE NO.IV OF 1985.' alone at its head (block 19972, the page's first block); the same line heads the document's other pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc517-p2.png",
+  "render_sha256": "ffa943f04930722cba34f3965147cf702fbc8c094d0f502f5fb3077123ab7db5",
+  "match_text": "THE SIND CO-OPERATIVE HOUSING AUTHORITY (AMENDMENT) ORDINANCE, 1985.",
+  "before_text": "THE SIND CO-OPERATIVE HOUSING AUTHORITY (AMENDMENT) ORDINANCE, 1985.",
+  "after_text": "THE SIND CO-OPERATIVE HOUSING AUTHORITY (AMENDMENT) ORDINANCE, 1985."
+ }
+]

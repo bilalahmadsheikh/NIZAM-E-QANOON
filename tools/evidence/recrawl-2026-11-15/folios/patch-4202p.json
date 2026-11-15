@@ -1,0 +1,92 @@
+[
+ {
+  "document_id": 4202,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   619285
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1' alone at its foot (block 619285, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc4202-p1.png",
+  "render_sha256": "f7dcf9ee1eb01e804e2a586bdb1e460bc264247ce7e83ce69ce63d9a79582e92",
+  "match_text": "26th September, 2022 is hereby published as an Act of the Legislature of",
+  "before_text": "26th September, 2022 is hereby published as an Act of the Legislature of",
+  "after_text": "26th September, 2022 is hereby published as an Act of the Legislature of"
+ },
+ {
+  "document_id": 4202,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   619287
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 619287, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc4202-p2.png",
+  "render_sha256": "6c06747cebb628127b2a54958050d50d07ab6ec871440be9328d2cb690382eca",
+  "match_text": "qualitative, in-depth investigation of the causes of and",
+  "before_text": "qualitative, in-depth investigation of the causes of and",
+  "after_text": "qualitative, in-depth investigation of the causes of and"
+ },
+ {
+  "document_id": 4202,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   619297
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 619297, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc4202-p3.png",
+  "render_sha256": "508aeaab82b87bbfe5cfed4687fe15f1dd915ba54084c6949657168e78d60f00",
+  "match_text": "In the said Act, in section 3, in clause (ii), the full stop at",
+  "before_text": "In the said Act, in section 3, in clause (ii), the full stop at",
+  "after_text": "In the said Act, in section 3, in clause (ii), the full stop at"
+ },
+ {
+  "document_id": 4202,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   619303
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 619303, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc4202-p4.png",
+  "render_sha256": "5f395d9eba2e6843f4c2550d1914ff657841b6cdcdabea4f61287a9dbd3f506e",
+  "match_text": "In the said Act, after section 6, the following new section",
+  "before_text": "In the said Act, after section 6, the following new section",
+  "after_text": "In the said Act, after section 6, the following new section"
+ },
+ {
+  "document_id": 4202,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   619311
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '5' alone at its foot (block 619311, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc4202-p5.png",
+  "render_sha256": "b89252a6b4c9c64c25118c5b09ce6be0b9df8191ead0cbb3d31653767153d182",
+  "match_text": "(xii) to provide information on negative effects of early",
+  "before_text": "(xii) to provide information on negative effects of early",
+  "after_text": "(xii) to provide information on negative effects of early"
+ },
+ {
+  "document_id": 4202,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   619324
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 6 prints its page number '6' alone at its foot (block 619324, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc4202-p6.png",
+  "render_sha256": "a67362a59dac5ae243f3044a13001f48f4c0e5e9c0de3074924b458c5390b298",
+  "match_text": "(h) to set up provincial task force, district and facility",
+  "before_text": "(h) to set up provincial task force, district and facility",
+  "after_text": "(h) to set up provincial task force, district and facility"
+ }
+]

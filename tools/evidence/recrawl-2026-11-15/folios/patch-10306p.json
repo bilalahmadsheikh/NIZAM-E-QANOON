@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 10306,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2764824
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '591' alone at its foot (block 2764824, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10306-p1.png",
+  "render_sha256": "12db5abd6e79b587f8321e2f82b4296c26a59e76591ea081a56f496340950e22",
+  "match_text": "Section 4, in sub-section (1), for clause (i), (ii), (iii) and (iv) the",
+  "before_text": "Section 4, in sub-section (1), for clause (i), (ii), (iii) and (iv) the",
+  "after_text": "Section 4, in sub-section (1), for clause (i), (ii), (iii) and (iv) the"
+ },
+ {
+  "document_id": 10306,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2764831
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '592' alone at its foot (block 2764831, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10306-p2.png",
+  "render_sha256": "8b36306998e28725cebb9b6367e7309843a9885306acf672dacaa68c656c563f",
+  "match_text": "initiated, jurisdiction or powers exercised under the provisions of",
+  "before_text": "initiated, jurisdiction or powers exercised under the provisions of",
+  "after_text": "initiated, jurisdiction or powers exercised under the provisions of"
+ }
+]

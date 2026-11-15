@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 797,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc797-p3.png",
+  "render_sha256": "a24d4694c177fa6fab7b31abe8fe7b08d38c46a52b25f930552c4d98725321bc",
+  "defect": "the Sindh Code's running head (the law's citation and title at the head of every page) was read into a provision's text, in the same block as the law below it",
+  "observed": "Page 3 prints the running head 'SINDH ACT NO.X OF 2010 / THE SINDH HIGH DENSITY DEVELOPMENT BOARD ACT, 2010' at its head; the same head opens the document's other pages",
+  "source_apparatus_blocks": [
+   35958
+  ],
+  "match_text": "of the Province under this Act. The Board shall consist of",
+  "before_text": "of the Province under this Act. The Board shall consist of",
+  "after_text": "of the Province under this Act. The Board shall consist of",
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) are set aside; no law text changes"
+ }
+]

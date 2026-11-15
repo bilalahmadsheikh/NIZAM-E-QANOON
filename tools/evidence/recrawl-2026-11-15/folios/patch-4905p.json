@@ -1,0 +1,77 @@
+[
+ {
+  "document_id": 4905,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   998416
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 998416, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc4905-p2.png",
+  "render_sha256": "79b5fc97c9bb14c1082d925115f47232d5bcc88ead400c6a74d08c20d8af44f3",
+  "match_text": "Force in the merged districts and sub-divisions, and to revisit their institutional structure",
+  "before_text": "Force in the merged districts and sub-divisions, and to revisit their institutional structure",
+  "after_text": "Force in the merged districts and sub-divisions, and to revisit their institutional structure"
+ },
+ {
+  "document_id": 4905,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   998433
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 998433, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc4905-p3.png",
+  "render_sha256": "e58fc844d094b113f0e1734a8780566f728e512d51b260859c3f05b3291727ee",
+  "match_text": "1 After clause (e), new clause inserted by Khyber Pakhtunkhwa Ordinance No. VIII of 2020 and thereafter the same insertion also made by Khyber Pakhtunkhwa",
+  "before_text": "1 After clause (e), new clause inserted by Khyber Pakhtunkhwa Ordinance No. VIII of 2020 and thereafter the same insertion also made by Khyber Pakhtunkhwa",
+  "after_text": "1 After clause (e), new clause inserted by Khyber Pakhtunkhwa Ordinance No. VIII of 2020 and thereafter the same insertion also made by Khyber Pakhtunkhwa"
+ },
+ {
+  "document_id": 4905,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   998451
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 998451, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc4905-p4.png",
+  "render_sha256": "f67500a6e94849bb5d262c0fd37a2be8ffbfe8b7d1d390a03c87978c6ea3ca0e",
+  "match_text": "of the Force shall be placed at the disposal of the District Administration for performing",
+  "before_text": "of the Force shall be placed at the disposal of the District Administration for performing",
+  "after_text": "of the Force shall be placed at the disposal of the District Administration for performing"
+ },
+ {
+  "document_id": 4905,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   998461
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '5' alone at its foot (block 998461, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc4905-p5.png",
+  "render_sha256": "9a39a34b6c7eb49c6817c5d62e71a5249138ab6e93981b264d4b359b7cec9da7",
+  "match_text": "effect, notwithstanding anything contained in any other law, on the subject, for the time",
+  "before_text": "effect, notwithstanding anything contained in any other law, on the subject, for the time",
+  "after_text": "effect, notwithstanding anything contained in any other law, on the subject, for the time"
+ },
+ {
+  "document_id": 4905,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   998481
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 6 prints its page number '6' alone at its foot (block 998481, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc4905-p6.png",
+  "render_sha256": "d420b1798ffbe82b042c5cd8200a3eb6feae8bc134baa07e159af59ae5c4569f",
+  "match_text": "Darazinda in district Dera Ismail Khan.",
+  "before_text": "Darazinda in district Dera Ismail Khan.",
+  "after_text": "Darazinda in district Dera Ismail Khan."
+ }
+]

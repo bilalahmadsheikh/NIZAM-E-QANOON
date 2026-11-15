@@ -1,0 +1,407 @@
+[
+ {
+  "document_id": 1922,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   135558
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 135558, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1922-p3.png",
+  "render_sha256": "9969a92a25557dfa7160ddbd509d59d839c43db94c41ef2570a97911345c0efc",
+  "match_text": "NO._____________________:- In exercise of the powers conferred",
+  "before_text": "NO._____________________:- In exercise of the powers conferred",
+  "after_text": "NO._____________________:- In exercise of the powers conferred"
+ },
+ {
+  "document_id": 1922,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   135588
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 135588, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1922-p4.png",
+  "render_sha256": "7ee34b6fce1c5f488cd01ceba9f96b81a8cbff254623439baa46f8269cce118d",
+  "match_text": "(1) The Principal seat of the Board shall be at Karachi and it",
+  "before_text": "(1) The Principal seat of the Board shall be at Karachi and it",
+  "after_text": "(1) The Principal seat of the Board shall be at Karachi and it"
+ },
+ {
+  "document_id": 1922,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   135608
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '5' alone at its foot (block 135608, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1922-p5.png",
+  "render_sha256": "05021c9ef6827d46eaf32777228b4af95ac690a398ee9eacad61764ae6e18409",
+  "match_text": "panel level, shall not attend the meeting of the Board in respect",
+  "before_text": "panel level, shall not attend the meeting of the Board in respect",
+  "after_text": "panel level, shall not attend the meeting of the Board in respect"
+ },
+ {
+  "document_id": 1922,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   135623
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 6 prints its page number '6' alone at its foot (block 135623, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1922-p6.png",
+  "render_sha256": "e18758663a30be48dcb838dadcae63ad4104f32f0b9f7b0d93148bd372d12141",
+  "match_text": "may submit such film to the Board for certification in the revised",
+  "before_text": "may submit such film to the Board for certification in the revised",
+  "after_text": "may submit such film to the Board for certification in the revised"
+ },
+ {
+  "document_id": 1922,
+  "page_no": 7,
+  "source_apparatus_blocks": [
+   135633
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 7 prints its page number '7' alone at its foot (block 135633, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1922-p7.png",
+  "render_sha256": "dcf4c5576b994733297a4d291b2570d1c20c400862ae06c6d5af27fe007cddd6",
+  "match_text": "Government for such order in relation thereto as it may think fit.",
+  "before_text": "Government for such order in relation thereto as it may think fit.",
+  "after_text": "Government for such order in relation thereto as it may think fit."
+ },
+ {
+  "document_id": 1922,
+  "page_no": 8,
+  "source_apparatus_blocks": [
+   135648
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 8 prints its page number '8' alone at its foot (block 135648, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1922-p8.png",
+  "render_sha256": "1c93a7db92c61034a6b2b88b70fd99045336f22060951fab9a49b59e208268b1",
+  "match_text": "10 is pre-excised, the Secretary shall bring it to the notice of the",
+  "before_text": "10 is pre-excised, the Secretary shall bring it to the notice of the",
+  "after_text": "10 is pre-excised, the Secretary shall bring it to the notice of the"
+ },
+ {
+  "document_id": 1922,
+  "page_no": 9,
+  "source_apparatus_blocks": [
+   135674
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 9 prints its page number '9' alone at its foot (block 135674, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1922-p9.png",
+  "render_sha256": "c64662f6d5100bb2fb6a4d24303c533ffe1374f24b68845555b9a182a6f041f5",
+  "match_text": "16. (1) On receipt of a report under rule 16, the Secretary shall,",
+  "before_text": "16. (1) On receipt of a report under rule 16, the Secretary shall,",
+  "after_text": "16. (1) On receipt of a report under rule 16, the Secretary shall,"
+ },
+ {
+  "document_id": 1922,
+  "page_no": 10,
+  "source_apparatus_blocks": [
+   135691
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 10 prints its page number '10' alone at its foot (block 135691, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1922-p10.png",
+  "render_sha256": "fc76fcb15cb09a638e9340e5cb05c6ccb914dd24ec96cf9bce25544e1492a42d",
+  "match_text": "films only, for which, the certificate shall be valid, but in respect",
+  "before_text": "films only, for which, the certificate shall be valid, but in respect",
+  "after_text": "films only, for which, the certificate shall be valid, but in respect"
+ },
+ {
+  "document_id": 1922,
+  "page_no": 11,
+  "source_apparatus_blocks": [
+   135711
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 11 prints its page number '11' alone at its foot (block 135711, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1922-p11.png",
+  "render_sha256": "01584353f7d6a9a4f2c50ac2c4e93f28bdf93dd5d5761d32c827e86bb821c999",
+  "match_text": "in form “G” to be kept in the office till the expiry of the Censor",
+  "before_text": "in form “G” to be kept in the office till the expiry of the Censor",
+  "after_text": "in form “G” to be kept in the office till the expiry of the Censor"
+ },
+ {
+  "document_id": 1922,
+  "page_no": 12,
+  "source_apparatus_blocks": [
+   135728
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 12 prints its page number '12' alone at its foot (block 135728, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1922-p12.png",
+  "render_sha256": "971c11a1df5a384399ea15296db3a76a94c64414cfc958296212426e4415a6da",
+  "match_text": "23. (1) If after certification, a film is altered by excision, addition",
+  "before_text": "23. (1) If after certification, a film is altered by excision, addition",
+  "after_text": "23. (1) If after certification, a film is altered by excision, addition"
+ },
+ {
+  "document_id": 1922,
+  "page_no": 13,
+  "source_apparatus_blocks": [
+   135745
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 13 prints its page number '13' alone at its foot (block 135745, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1922-p13.png",
+  "render_sha256": "bbd1fdf17575e2ffe63328c68ad53c66ccd521f8d9a7996b405d49bfebcf4788",
+  "match_text": "that film has been issued, indicate in such insertion that the film",
+  "before_text": "that film has been issued, indicate in such insertion that the film",
+  "after_text": "that film has been issued, indicate in such insertion that the film"
+ },
+ {
+  "document_id": 1922,
+  "page_no": 14,
+  "source_apparatus_blocks": [
+   135763
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 14 prints its page number '14' alone at its foot (block 135763, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1922-p14.png",
+  "render_sha256": "5fd27fda1d2e3b96f982ee542893bc42bf988670846a7a7991489291147b9c70",
+  "match_text": "certified film is or is not a Pakistani film, or is or is not a foreign",
+  "before_text": "certified film is or is not a Pakistani film, or is or is not a foreign",
+  "after_text": "certified film is or is not a Pakistani film, or is or is not a foreign"
+ },
+ {
+  "document_id": 1922,
+  "page_no": 15,
+  "source_apparatus_blocks": [
+   135781
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 15 prints its page number '15' alone at its foot (block 135781, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1922-p15.png",
+  "render_sha256": "eff2c8b5b0ed5c483d432cfc7e9a85b572fc2a97b34ee492d05f5f072cb53c88",
+  "match_text": "application submitted to the Board for certification of the film,",
+  "before_text": "application submitted to the Board for certification of the film,",
+  "after_text": "application submitted to the Board for certification of the film,"
+ },
+ {
+  "document_id": 1922,
+  "page_no": 16,
+  "source_apparatus_blocks": [
+   135792
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 16 prints its page number '16' alone at its foot (block 135792, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1922-p16.png",
+  "render_sha256": "e74931180948ed287784eb5a533bfe4e65b26dddb8db5072c7d3d3bf95f650b3",
+  "match_text": "I apply for certification of a film the particulars of which are as",
+  "before_text": "I apply for certification of a film the particulars of which are as",
+  "after_text": "I apply for certification of a film the particulars of which are as"
+ },
+ {
+  "document_id": 1922,
+  "page_no": 17,
+  "source_apparatus_blocks": [
+   135802
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 17 prints its page number '17' alone at its foot (block 135802, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1922-p17.png",
+  "render_sha256": "3d0090fd2efba7aac1eae22f74297135334c286b5270b7cb21e6b574cc2a0c35",
+  "match_text": "11. Is the film in its original version as produced/imported, or dubbed? If",
+  "before_text": "11. Is the film in its original version as produced/imported, or dubbed? If",
+  "after_text": "11. Is the film in its original version as produced/imported, or dubbed? If"
+ },
+ {
+  "document_id": 1922,
+  "page_no": 18,
+  "source_apparatus_blocks": [
+   135810
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 18 prints its page number '18' alone at its foot (block 135810, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1922-p18.png",
+  "render_sha256": "20c35fb240c77426b2ab8378a8812ce2713ecd7bfa843e72e5da779b7ae4e80b",
+  "match_text": "I declare that the statement made by me in this applicant is true in",
+  "before_text": "I declare that the statement made by me in this applicant is true in",
+  "after_text": "I declare that the statement made by me in this applicant is true in"
+ },
+ {
+  "document_id": 1922,
+  "page_no": 19,
+  "source_apparatus_blocks": [
+   135826
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 19 prints its page number '19' alone at its foot (block 135826, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1922-p19.png",
+  "render_sha256": "c13d9fac004b46da5bfe1e66b5a85caa04e118594ad861cbda55cc710227e1d9",
+  "match_text": "2011 (Act No.IV of 2012) and Article 18 of the Constitution of Islamic Republic",
+  "before_text": "2011 (Act No.IV of 2012) and Article 18 of the Constitution of Islamic Republic",
+  "after_text": "2011 (Act No.IV of 2012) and Article 18 of the Constitution of Islamic Republic"
+ },
+ {
+  "document_id": 1922,
+  "page_no": 20,
+  "source_apparatus_blocks": [
+   135838
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 20 prints its page number '20' alone at its foot (block 135838, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1922-p20.png",
+  "render_sha256": "9d6d704bfa95d591220c980a559813641493c312e94cee6052cd9495beb065cb",
+  "match_text": "Gauge of the Film --------------- Format of Film -----------------------------",
+  "before_text": "Gauge of the Film --------------- Format of Film -----------------------------",
+  "after_text": "Gauge of the Film --------------- Format of Film -----------------------------"
+ },
+ {
+  "document_id": 1922,
+  "page_no": 21,
+  "source_apparatus_blocks": [
+   135854
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 21 prints its page number '21' alone at its foot (block 135854, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1922-p21.png",
+  "render_sha256": "222e7e3382aaff31f265a01f5072be1662bd4e333508b1ca8b1dd6b560e8e566",
+  "match_text": "Motion Pictures Act, 2011 (Act No.IV of 2012) and Article 18 of the Constitution",
+  "before_text": "Motion Pictures Act, 2011 (Act No.IV of 2012) and Article 18 of the Constitution",
+  "after_text": "Motion Pictures Act, 2011 (Act No.IV of 2012) and Article 18 of the Constitution"
+ },
+ {
+  "document_id": 1922,
+  "page_no": 22,
+  "source_apparatus_blocks": [
+   135880
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 22 prints its page number '22' alone at its foot (block 135880, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1922-p22.png",
+  "render_sha256": "5d466e3bf859985d129df1c2ee9557baa94c565e7d9d7e6ec98e8cf933470c17",
+  "match_text": "to ensure that the film on commercial exhibition does not contain the under-",
+  "before_text": "to ensure that the film on commercial exhibition does not contain the under-",
+  "after_text": "to ensure that the film on commercial exhibition does not contain the under-"
+ },
+ {
+  "document_id": 1922,
+  "page_no": 23,
+  "source_apparatus_blocks": [
+   135891
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 23 prints its page number '23' alone at its foot (block 135891, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1922-p23.png",
+  "render_sha256": "aff2e779a09d4158b36484b16ae927071e8967df48d3dea73a2a0f63a15914c9",
+  "match_text": "Copy of application submitted to the Board for certification of the film.",
+  "before_text": "Copy of application submitted to the Board for certification of the film.",
+  "after_text": "Copy of application submitted to the Board for certification of the film."
+ },
+ {
+  "document_id": 1922,
+  "page_no": 24,
+  "source_apparatus_blocks": [
+   135904
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 24 prints its page number '24' alone at its foot (block 135904, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1922-p24.png",
+  "render_sha256": "92129eb4ef11cc454b1eacb716955080a494e9920ce2d13284e27586658e81ce",
+  "match_text": "disc of film_______________________________________________ submitted to the",
+  "before_text": "disc of film_______________________________________________ submitted to the",
+  "after_text": "disc of film_______________________________________________ submitted to the"
+ },
+ {
+  "document_id": 1922,
+  "page_no": 25,
+  "source_apparatus_blocks": [
+   135916
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 25 prints its page number '25' alone at its foot (block 135916, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1922-p25.png",
+  "render_sha256": "674ed59c97dec2de67d249b279a6d3d87bfaaf48af1d7fe9dbe36de91c3c3dd3",
+  "match_text": "(2) That the firm referred to above is not a plagiarised version of an Indian",
+  "before_text": "(2) That the firm referred to above is not a plagiarised version of an Indian",
+  "after_text": "(2) That the firm referred to above is not a plagiarised version of an Indian"
+ },
+ {
+  "document_id": 1922,
+  "page_no": 26,
+  "source_apparatus_blocks": [
+   135925
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 26 prints its page number '26' alone at its foot (block 135925, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1922-p26.png",
+  "render_sha256": "36363a4e07de7de79a12886646a10e97115a438258593a0bc1a7db61bac4594d",
+  "match_text": "_____________________________________________________________________",
+  "before_text": "_____________________________________________________________________",
+  "after_text": "_____________________________________________________________________"
+ },
+ {
+  "document_id": 1922,
+  "page_no": 27,
+  "source_apparatus_blocks": [
+   135938
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 27 prints its page number '27' alone at its foot (block 135938, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1922-p27.png",
+  "render_sha256": "b7936509e192eb30412e7932b238092609a4f545d7ae24f9bd991a029f851896",
+  "match_text": "been passed for RESTRICTED exhibition to ages eighteen and above under",
+  "before_text": "been passed for RESTRICTED exhibition to ages eighteen and above under",
+  "after_text": "been passed for RESTRICTED exhibition to ages eighteen and above under"
+ },
+ {
+  "document_id": 1922,
+  "page_no": 28,
+  "source_apparatus_blocks": [
+   135955
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 28 prints its page number '28' alone at its foot (block 135955, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1922-p28.png",
+  "render_sha256": "9f714f0842e12bfc11a5926032cfe5cd79550c6e7f010dd9fc4c8c8e3aa8023c",
+  "match_text": "Short film viz. trailer",
+  "before_text": "Short film viz. trailer",
+  "after_text": "Short film viz. trailer"
+ },
+ {
+  "document_id": 1922,
+  "page_no": 29,
+  "source_apparatus_blocks": [
+   135960
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 29 prints its page number '29' alone at its foot (block 135960, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1922-p29.png",
+  "render_sha256": "84039166d794d69b73b60d7d35a6b5f9777b88bf585fed1ea928e67a69c76ec3",
+  "match_text": "frame) for Pakistani film",
+  "before_text": "frame) for Pakistani film",
+  "after_text": "frame) for Pakistani film"
+ }
+]

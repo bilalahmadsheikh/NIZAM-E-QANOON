@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 11322,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2846388
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '763' alone at its foot (block 2846388, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11322-p1.png",
+  "render_sha256": "f4e0ec491fed9776ef04d8400725b74be12a595bdd64932227d16596e8f52574",
+  "match_text": "Assembly received the assent of the President on 10th",
+  "before_text": "Assembly received the assent of the President on 10th",
+  "after_text": "Assembly received the assent of the President on 10th"
+ },
+ {
+  "document_id": 11322,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2846392
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '764' alone at its foot (block 2846392, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11322-p2.png",
+  "render_sha256": "fcadd3563570feba5535f0683c2249e9c0027eb1e6f9a59a1ad499ffc79b2b8b",
+  "match_text": "tax have not been levied, charged, paid or collected,",
+  "before_text": "tax have not been levied, charged, paid or collected,",
+  "after_text": "tax have not been levied, charged, paid or collected,"
+ },
+ {
+  "document_id": 11322,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2846397
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '765' alone at its foot (block 2846397, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11322-p3.png",
+  "render_sha256": "6a65d7a7f33cafd491a84bbc486cf38014ec65aa449d0e882d560db6d614e915",
+  "match_text": "paid, or collected, before coming into force of this Act,",
+  "before_text": "paid, or collected, before coming into force of this Act,",
+  "after_text": "paid, or collected, before coming into force of this Act,"
+ }
+]

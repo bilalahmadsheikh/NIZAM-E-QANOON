@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 10705,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2796804
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '489' alone at its foot (block 2796804, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10705-p1.png",
+  "render_sha256": "2c07b9aa46e9cd3b747f2a71f5aa5fbed14f03ba635f3d47709a18540c515c3a",
+  "match_text": "Jurisdiction, Scope and Functions) (Amdt.) Act, 2014 (Act XIV of 2014)",
+  "before_text": "Jurisdiction, Scope and Functions) (Amdt.) Act, 2014 (Act XIV of 2014)",
+  "after_text": "Jurisdiction, Scope and Functions) (Amdt.) Act, 2014 (Act XIV of 2014)"
+ },
+ {
+  "document_id": 10705,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2796811
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '490' alone at its foot (block 2796811, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10705-p2.png",
+  "render_sha256": "50c49d4842e16128db9cf51964a11a9398f75e4c78d6fb05dd681fcd7d86906f",
+  "match_text": "Society, established under the Pakistan Red Crescent Society Act, 1920,",
+  "before_text": "Society, established under the Pakistan Red Crescent Society Act, 1920,",
+  "after_text": "Society, established under the Pakistan Red Crescent Society Act, 1920,"
+ },
+ {
+  "document_id": 10705,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2796820
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '491' alone at its foot (block 2796820, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10705-p3.png",
+  "render_sha256": "3e7477a1ddad8e297dd88801a84b2d4505155ca5e67412b2af141403dc073557",
+  "match_text": "After the existing Section 12 of the said Act,",
+  "before_text": "After the existing Section 12 of the said Act,",
+  "after_text": "After the existing Section 12 of the said Act,"
+ },
+ {
+  "document_id": 10705,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2796829
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '492' alone at its foot (block 2796829, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10705-p4.png",
+  "render_sha256": "d27f9c54226fe87d867dfa524fffe78d76fb76cbbd2f6bc5b22df64897a16f2c",
+  "match_text": "Crescent Branch (Extension of Jurisdiction Scope",
+  "before_text": "Crescent Branch (Extension of Jurisdiction Scope",
+  "after_text": "Crescent Branch (Extension of Jurisdiction Scope"
+ }
+]

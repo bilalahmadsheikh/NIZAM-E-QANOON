@@ -1,0 +1,107 @@
+[
+ {
+  "document_id": 3279,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   342930
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 342930, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3279-p2.png",
+  "render_sha256": "db40fb8910834867c9be7cf9114841c6a5598baa6c406a0d4ae46a506a1836b3",
+  "match_text": "uninterrupted provision of healthcare services and for matters connected therewith",
+  "before_text": "uninterrupted provision of healthcare services and for matters connected therewith",
+  "after_text": "uninterrupted provision of healthcare services and for matters connected therewith"
+ },
+ {
+  "document_id": 3279,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   342945
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 342945, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3279-p3.png",
+  "render_sha256": "2d79e1c03bd51156b69cdc32d85ec049e34a4f8c4264a3f28317a02007119185",
+  "match_text": "facility means the administrative, clinical, support and auxiliary staff",
+  "before_text": "facility means the administrative, clinical, support and auxiliary staff",
+  "after_text": "facility means the administrative, clinical, support and auxiliary staff"
+ },
+ {
+  "document_id": 3279,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   342959
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 342959, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3279-p4.png",
+  "render_sha256": "f14edb7d66f2e5480ec44f88d6e3a61d9ecc40f7b3ddc77a5b6f68607d861299",
+  "match_text": "healthcare service provider, patient or his attendants or any other person within a",
+  "before_text": "healthcare service provider, patient or his attendants or any other person within a",
+  "after_text": "healthcare service provider, patient or his attendants or any other person within a"
+ },
+ {
+  "document_id": 3279,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   342968
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '5' alone at its foot (block 342968, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3279-p5.png",
+  "render_sha256": "57052e4884bbd8093ec241783ee3bab7e19f6840bb06b7dd36fd52e5bda3dbd1",
+  "match_text": "healthcare facilities in connection with or incidental to their activities in healthcare",
+  "before_text": "healthcare facilities in connection with or incidental to their activities in healthcare",
+  "after_text": "healthcare facilities in connection with or incidental to their activities in healthcare"
+ },
+ {
+  "document_id": 3279,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   342979
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 6 prints its page number '6' alone at its foot (block 342979, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3279-p6.png",
+  "render_sha256": "2d9c93ee12423a1f4a903e0380671e665476803a51b29e451bd1c633beb8f479",
+  "match_text": "person shall cause disruption or obstruction of healthcare services in a healthcare",
+  "before_text": "person shall cause disruption or obstruction of healthcare services in a healthcare",
+  "after_text": "person shall cause disruption or obstruction of healthcare services in a healthcare"
+ },
+ {
+  "document_id": 3279,
+  "page_no": 7,
+  "source_apparatus_blocks": [
+   342989
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 7 prints its page number '7' alone at its foot (block 342989, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3279-p7.png",
+  "render_sha256": "685ba17ce92932392c3400b616548a97bce1e74c6f45f2285ad6d882f8e51608",
+  "match_text": "it shall be the responsibility of each healthcare service facility to ensure that the",
+  "before_text": "it shall be the responsibility of each healthcare service facility to ensure that the",
+  "after_text": "it shall be the responsibility of each healthcare service facility to ensure that the"
+ },
+ {
+  "document_id": 3279,
+  "page_no": 8,
+  "source_apparatus_blocks": [
+   342992
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 8 prints its page number '8' alone at its foot (block 342992, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3279-p8.png",
+  "render_sha256": "bc330dde4550bfaf13307f35f92cf6f82d7c769f40fb5b539273551d78e7b563",
+  "match_text": "Official Gazette, make rules for the purposes of carrying out the provisions of this",
+  "before_text": "Official Gazette, make rules for the purposes of carrying out the provisions of this",
+  "after_text": "Official Gazette, make rules for the purposes of carrying out the provisions of this"
+ }
+]

@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 2059,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   153565
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 153565, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2059-p2.png",
+  "render_sha256": "a6831bbca7f340c1aea11dda03ff41c48181490a09291eee9e03aa4dd1725910",
+  "match_text": "No. SO(ADMN-I)(P&D)15(1)/98: In exercise of the powers conferred by section 25 of the Coastal",
+  "before_text": "No. SO(ADMN-I)(P&D)15(1)/98: In exercise of the powers conferred by section 25 of the Coastal",
+  "after_text": "No. SO(ADMN-I)(P&D)15(1)/98: In exercise of the powers conferred by section 25 of the Coastal"
+ },
+ {
+  "document_id": 2059,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   153582
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 153582, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2059-p3.png",
+  "render_sha256": "500afa698e3b429674e19e926e4bd3d50c5c1c08b17bd30cd91e9153bc3569de",
+  "match_text": "take part in such deliberations he shall not participate in",
+  "before_text": "take part in such deliberations he shall not participate in",
+  "after_text": "take part in such deliberations he shall not participate in"
+ },
+ {
+  "document_id": 2059,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   153595
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 153595, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2059-p4.png",
+  "render_sha256": "f7dd6980972633b74c94e3b5cc5f3674879a6350348fe8f3c17ee9eeafed46e3",
+  "match_text": "No. SO (ADMN-I) (P&D)15(1)98:  Karachi dated 30th January, 2001.",
+  "before_text": "No. SO (ADMN-I) (P&D)15(1)98:  Karachi dated 30th January, 2001.",
+  "after_text": "No. SO (ADMN-I) (P&D)15(1)98:  Karachi dated 30th January, 2001."
+ },
+ {
+  "document_id": 2059,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   153600
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '5' alone at its foot (block 153600, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2059-p5.png",
+  "render_sha256": "1e5ebefac4922d2420b13f5eeaab9698414961c39c7bd8f03835787ab5ef3390",
+  "match_text": "3. The Superintendent, Sindh Government Printing Press Karachi, with a request to",
+  "before_text": "3. The Superintendent, Sindh Government Printing Press Karachi, with a request to",
+  "after_text": "3. The Superintendent, Sindh Government Printing Press Karachi, with a request to"
+ }
+]

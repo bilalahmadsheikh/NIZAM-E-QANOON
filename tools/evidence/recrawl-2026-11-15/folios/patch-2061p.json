@@ -1,0 +1,77 @@
+[
+ {
+  "document_id": 2061,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   153683
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 153683, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2061-p2.png",
+  "render_sha256": "f47f939ca4126ea5cdbc98e588270731784accfda5968280fdc280b68827acdf",
+  "match_text": "victims of terrorism and their family members in order to enable them to lead a",
+  "before_text": "victims of terrorism and their family members in order to enable them to lead a",
+  "after_text": "victims of terrorism and their family members in order to enable them to lead a"
+ },
+ {
+  "document_id": 2061,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   153691
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 153691, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2061-p3.png",
+  "render_sha256": "550d31ac238a2e1a38734352feaf4f26bbdd02224d97b0097acfe5b7043d3af3",
+  "match_text": "welfare and rehabilitation of the victims or their family members, as the case may",
+  "before_text": "welfare and rehabilitation of the victims or their family members, as the case may",
+  "after_text": "welfare and rehabilitation of the victims or their family members, as the case may"
+ },
+ {
+  "document_id": 2061,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   153716
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 153716, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2061-p4.png",
+  "render_sha256": "c256c85ec9eaa152e52f4dc6e92f211cb4b9fb4fb923081c494326dab92c8ae7",
+  "match_text": "welfare, financial support, compensation and rehabilitation of the victims and their",
+  "before_text": "welfare, financial support, compensation and rehabilitation of the victims and their",
+  "after_text": "welfare, financial support, compensation and rehabilitation of the victims and their"
+ },
+ {
+  "document_id": 2061,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   153735
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '5' alone at its foot (block 153735, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2061-p5.png",
+  "render_sha256": "8b8f1bd39406106964cbd6be7a8db3d583fefad07df97cc33c2c5f4069cbb2dd",
+  "match_text": "circulated at least ten days before the meeting; provided that this provision shall",
+  "before_text": "circulated at least ten days before the meeting; provided that this provision shall",
+  "after_text": "circulated at least ten days before the meeting; provided that this provision shall"
+ },
+ {
+  "document_id": 2061,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   153744
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 6 prints its page number '6' alone at its foot (block 153744, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2061-p6.png",
+  "render_sha256": "916c1921123b8045b193f572b4c26d0d726a6f39fc9eca40632823b61a6b768b",
+  "match_text": "the Auditor General of Pakistan once in a financial year in the prescribed manner.",
+  "before_text": "the Auditor General of Pakistan once in a financial year in the prescribed manner.",
+  "after_text": "the Auditor General of Pakistan once in a financial year in the prescribed manner."
+ }
+]

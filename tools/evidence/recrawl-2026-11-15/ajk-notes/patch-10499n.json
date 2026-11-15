@@ -1,0 +1,29 @@
+[
+ {
+  "document_id": 10499,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2778217
+  ],
+  "defect": "page notes (amendment notes and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the note blocks are set aside; no law text changes",
+  "observed": "Page 5 prints, under its note rule, 1 note block(s), the first '1The full stop at the end of clause (c) is subs. by colon and thereafter new cl. (d) and (e) added by the Establishment of Office of Mohtasi'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10499-p5.png",
+  "render_sha256": "84318e8a583aa3436360082d4abf58d7b849fe68d3ba64d85e4bc1c35de61b4f",
+  "match_text": "1The full stop at the end of clause (c) is subs. by colon and thereafter new cl. (d)",
+  "before_text": "1The full stop at the end of clause (c) is subs. by colon and thereafter new cl. (d)",
+  "after_text": "1The full stop at the end of clause (c) is subs. by colon and thereafter new cl. (d)"
+ },
+ {
+  "document_id": 10499,
+  "page_no": 6,
+  "match_text": "1Between the words “public servant” and “or”, the comma and words “civil",
+  "before_text": "1Between the words “public servant” and “or”, the comma and words “civil \nservant” inserted by the Establishment of Office of Mohtasib (Ombudsman) in \nAzad Jammu and Kashmir (Amendment) Act, 1997 (XV of 1997) dt. \n29.10.1997.",
+  "after_text": " ",
+  "defect": "the block fuses the law's last line with the page note printed under it; the note was read as law",
+  "fixes": "parser-input correction: the note is cut from the block, from its marker to the block's end; the law before it is kept as printed",
+  "observed": "Page 6 prints the law ending 'o conduct an investigation he shall issue to the principal officer of the Agency', then the note rule and the note '1Between the words “public servant” and “or”, the comma and words “civil servant” inserted by the Establishment of Offic'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10499-p6.png",
+  "render_sha256": "55b8813d081bca7b88b8e14aa72de5c6f5c9a45e098e3cb958a99ae83835304c"
+ }
+]

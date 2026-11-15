@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 10805,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2802947
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '17' alone at its foot (block 2802947, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10805-p1.png",
+  "render_sha256": "6fab18774fa1bb69e474861aa3904e5da7707dae78f971467c92b10068a50f64",
+  "match_text": "circumstances exist which render it necessary to take immediate action;",
+  "before_text": "circumstances exist which render it necessary to take immediate action;",
+  "after_text": "circumstances exist which render it necessary to take immediate action;"
+ },
+ {
+  "document_id": 10805,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2802960
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '18' alone at its foot (block 2802960, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10805-p2.png",
+  "render_sha256": "fb59643f5af3f1a06f054dd1d2be7bb00d9b5829a5af81eaaa7db2f08b6a47ae",
+  "match_text": "Ordinance, after section 31, the following new section 31A shall",
+  "before_text": "Ordinance, after section 31, the following new section 31A shall",
+  "after_text": "Ordinance, after section 31, the following new section 31A shall"
+ },
+ {
+  "document_id": 10805,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2802971
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '19' alone at its foot (block 2802971, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10805-p3.png",
+  "render_sha256": "706b5297656dffc5344b212c5ca532451c2e6f813d5568b3924f6d0635cec362",
+  "match_text": "Ordinance, for Section 48, the following shall be substituted:-",
+  "before_text": "Ordinance, for Section 48, the following shall be substituted:-",
+  "after_text": "Ordinance, for Section 48, the following shall be substituted:-"
+ },
+ {
+  "document_id": 10805,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2802981
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '20' alone at its foot (block 2802981, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10805-p4.png",
+  "render_sha256": "3819ad89a58d68a7fb85a2c86f84d537369729e0ad2def22dfabc45596c94b86",
+  "match_text": "sub-section (1) above, the Authority shall exercise all the",
+  "before_text": "sub-section (1) above, the Authority shall exercise all the",
+  "after_text": "sub-section (1) above, the Authority shall exercise all the"
+ }
+]

@@ -1,0 +1,18 @@
+[
+ {
+  "document_id": 1256,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc1256-p3.png",
+  "render_sha256": "5b000716371f3a4e2e227de62e870f92caf6319e3d86d9748d25448378e72cb2",
+  "defect": "the Sindh Code's running head (the law's citation and title at the head of every page) was read into a provision's text, in the same block as the law below it",
+  "observed": "Page 3 prints the running head 'SINDH ORDINANCE NO. VII OF 2001 / THE SINDH CIVIL SERVANTS (ASSESSMENT OF SUITABILITY OF' at its head; the same head opens the document's other pages",
+  "source_apparatus_blocks": [
+   66370,
+   66371
+  ],
+  "match_text": "issued to him under section 3 or he is not found suitable for the specified post the",
+  "before_text": "issued to him under section 3 or he is not found suitable for the specified post the",
+  "after_text": "issued to him under section 3 or he is not found suitable for the specified post the",
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) are set aside; no law text changes"
+ }
+]

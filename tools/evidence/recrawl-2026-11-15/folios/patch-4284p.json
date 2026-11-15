@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 4284,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   656927
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 656927, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc4284-p2.png",
+  "render_sha256": "b5d06809c15c994f78406d5f63b882d2fdbe083172e16bf67d2200bae7c8d0fc",
+  "match_text": "services of employees of District Governance and Community Development Project in",
+  "before_text": "services of employees of District Governance and Community Development Project in",
+  "after_text": "services of employees of District Governance and Community Development Project in"
+ },
+ {
+  "document_id": 4284,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   656947
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 656947, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc4284-p3.png",
+  "render_sha256": "b452c062c3711ab3183ce8971cd182cc3df8d70d72be069c790123ff122440e2",
+  "match_text": "regularized under this Act, shall rank junior to all civil servants belonging to the same",
+  "before_text": "regularized under this Act, shall rank junior to all civil servants belonging to the same",
+  "after_text": "regularized under this Act, shall rank junior to all civil servants belonging to the same"
+ },
+ {
+  "document_id": 4284,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   656950
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 656950, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc4284-p4.png",
+  "render_sha256": "36af6e9f2393ffdce5abf4e32a74add9f97c34cc59d370bb25b55c6afac25edb",
+  "match_text": "all the record, service profiles and assets of project shall, invariably, be handed over to",
+  "before_text": "all the record, service profiles and assets of project shall, invariably, be handed over to",
+  "after_text": "all the record, service profiles and assets of project shall, invariably, be handed over to"
+ }
+]

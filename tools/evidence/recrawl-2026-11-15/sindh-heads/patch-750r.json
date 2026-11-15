@@ -1,0 +1,18 @@
+[
+ {
+  "document_id": 750,
+  "page_no": 2,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc750-p2.png",
+  "render_sha256": "d894e235c8de62aa7cf20dcbca6ed2895bb4701b753c7cae9f1bfbe8bfb0c801",
+  "defect": "the Sindh Code's running head (the law's citation and title at the head of every page) was read into a provision's text, in the same block as the law below it",
+  "observed": "Page 2 prints the running head 'SIND ORDINANCE NO. XVI OF 2000. / THE SINDH LOCAL GOVERNMENT ELECTIONS (SECOND AMENDMENT)' at its head; the same head opens the document's other pages",
+  "source_apparatus_blocks": [
+   33354,
+   33355
+  ],
+  "match_text": "3.    In the Ordinance, after section 35 the following new section",
+  "before_text": "3.    In the Ordinance, after section 35 the following new section",
+  "after_text": "3.    In the Ordinance, after section 35 the following new section",
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) are set aside; no law text changes"
+ }
+]

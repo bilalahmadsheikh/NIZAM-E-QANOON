@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 2851,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   259856
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 259856, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2851-p2.png",
+  "render_sha256": "b33c6a1a6e8626362ea644648bdd4e7e5e401d3e8a243e33198cb140bd36d4b4",
+  "match_text": "Conversions, Exchange) Ordinance No.III of 2001, the Government of Sindh",
+  "before_text": "Conversions, Exchange) Ordinance No.III of 2001, the Government of Sindh",
+  "after_text": "Conversions, Exchange) Ordinance No.III of 2001, the Government of Sindh"
+ },
+ {
+  "document_id": 2851,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   259867
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 259867, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2851-p3.png",
+  "render_sha256": "c7d3edc1d7560b4227c42ec787e51daf161c250ecaecee54d11048362ec89d62",
+  "match_text": "(2)         If an installment under sub-rule (1) is not paid",
+  "before_text": "(2)         If an installment under sub-rule (1) is not paid",
+  "after_text": "(2)         If an installment under sub-rule (1) is not paid"
+ },
+ {
+  "document_id": 2851,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   259877
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 259877, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2851-p4.png",
+  "render_sha256": "49040426816795ec795e1cea2769253cb7655160d4af60015e58752e5e5c8157",
+  "match_text": "No.PS/MBR/LU/09-127-03/759                     Karachi, dated the 01- July, 2003.",
+  "before_text": "No.PS/MBR/LU/09-127-03/759                     Karachi, dated the 01- July, 2003.",
+  "after_text": "No.PS/MBR/LU/09-127-03/759                     Karachi, dated the 01- July, 2003."
+ }
+]

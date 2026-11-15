@@ -1,0 +1,92 @@
+[
+ {
+  "document_id": 7955,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   1988682
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 1988682, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc7955-p2.png",
+  "render_sha256": "498041cd3afa15587e8f4097e15dcd3441371f2048b71b583d4758b565ded526",
+  "match_text": "1Published in the Gazette of Pakistan, Extraordinaiy, Part II, Islamabad, dated 21st August, 2014,",
+  "before_text": "1Published in the Gazette of Pakistan, Extraordinaiy, Part II, Islamabad, dated 21st August, 2014,",
+  "after_text": "1Published in the Gazette of Pakistan, Extraordinaiy, Part II, Islamabad, dated 21st August, 2014,"
+ },
+ {
+  "document_id": 7955,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   1988695
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 1988695, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc7955-p3.png",
+  "render_sha256": "f444059e4c6dc6b68d92b061e1f0b49f467693a7456288fc0897589ab643d376",
+  "match_text": "■ a s ^ s s s ^ B a s s s ^ ^ H a B s m i^ H s n a e s s s ^ a e ^ B s s s B a ^ s ^ s B s a s ^ B s a",
+  "before_text": "■ a s ^ s s s ^ B a s s s ^ ^ H a B s m i^ H s n a e s s s ^ a e ^ B s s s B a ^ s ^ s B s a s ^ B s a",
+  "after_text": "■ a s ^ s s s ^ B a s s s ^ ^ H a B s m i^ H s n a e s s s ^ a e ^ B s s s B a ^ s ^ s B s a s ^ B s a"
+ },
+ {
+  "document_id": 7955,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   1988706
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 1988706, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc7955-p4.png",
+  "render_sha256": "218d000df64aa68fa49f7ccbb10d48f4eb0fee030ba8caff18de202a8da1de57",
+  "match_text": "serving agencies, bring the same to the notice o f concerned",
+  "before_text": "serving agencies, bring the same to the notice o f concerned",
+  "after_text": "serving agencies, bring the same to the notice o f concerned"
+ },
+ {
+  "document_id": 7955,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   1988725
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '5' alone at its foot (block 1988725, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc7955-p5.png",
+  "render_sha256": "684b1c2ecca408e70bc14c19c9f2eeb41c31f2cb5db771c745231aaa4d98a839",
+  "match_text": "Have you filed any appeal or grievance with the court complained against itself? Yes (",
+  "before_text": "Have you filed any appeal or grievance with the court complained against itself? Yes (",
+  "after_text": "Have you filed any appeal or grievance with the court complained against itself? Yes ("
+ },
+ {
+  "document_id": 7955,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   1988737
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 6 prints its page number '6' alone at its foot (block 1988737, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc7955-p6.png",
+  "render_sha256": "dd543602a7e180f613f17218aab464425755059d352e154bf633e511ce8768be",
+  "match_text": "(Your date o f birth, domicile, qualification, profession, National Identity Card No.",
+  "before_text": "(Your date o f birth, domicile, qualification, profession, National Identity Card No.",
+  "after_text": "(Your date o f birth, domicile, qualification, profession, National Identity Card No."
+ },
+ {
+  "document_id": 7955,
+  "page_no": 7,
+  "source_apparatus_blocks": [
+   1988750
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 7 prints its page number '7' alone at its foot (block 1988750, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc7955-p7.png",
+  "render_sha256": "28db2ec6e5655e6880abc3dcc4fb3414a2786c2509be83275fe6bc3e511c4317",
+  "match_text": "correct to the best of my knowledge and be ief and nothing has been concealed in this",
+  "before_text": "correct to the best of my knowledge and be ief and nothing has been concealed in this",
+  "after_text": "correct to the best of my knowledge and be ief and nothing has been concealed in this"
+ }
+]

@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 269,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   12080
+  ],
+  "defect": "the Sindh Code's running head (the law's citation printed at the head of every page) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the running-head block is set aside; no law text changes",
+  "observed": "Page 3 prints the running head 'SINDH ACT NO.VIII OF 2015' alone at its head (block 12080, the page's first block); the same line heads the document's other pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc269-p3.png",
+  "render_sha256": "54321270c26d8a572b30578711950fd9fd6e327cbcbfb83044ae0546bb2a2d33",
+  "match_text": "the district, all the powers under this section exercisable by",
+  "before_text": "the district, all the powers under this section exercisable by",
+  "after_text": "the district, all the powers under this section exercisable by"
+ }
+]

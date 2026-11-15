@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 11185,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2837595
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '435' alone at its foot (block 2837595, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11185-p1.png",
+  "render_sha256": "f546cfa5609a2f9b64d9f5bde449736cfa1c92de898b5d9fcdf409b805bacd0f",
+  "match_text": "further to amend the Holders of Representative Offices (Disqualification)",
+  "before_text": "further to amend the Holders of Representative Offices (Disqualification)",
+  "after_text": "further to amend the Holders of Representative Offices (Disqualification)"
+ },
+ {
+  "document_id": 11185,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2837602
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '436' alone at its foot (block 2837602, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11185-p2.png",
+  "render_sha256": "e1a17326371a7269b2181a160d980a088d37773a00420f0c97112ceb5a603120",
+  "match_text": "Minister, during the period December, 1970 and August, 1977,",
+  "before_text": "Minister, during the period December, 1970 and August, 1977,",
+  "after_text": "Minister, during the period December, 1970 and August, 1977,"
+ }
+]

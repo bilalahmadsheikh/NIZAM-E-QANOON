@@ -1,0 +1,92 @@
+[
+ {
+  "document_id": 10166,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2755946
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '144' alone at its foot (block 2755946, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10166-p1.png",
+  "render_sha256": "9157478d21fef80d04e7a070979202761b597e4bbe7c3e5b005170eb05dc9ea6",
+  "match_text": "to provide for price control and prevention of profiteering and hoarding",
+  "before_text": "to provide for price control and prevention of profiteering and hoarding",
+  "after_text": "to provide for price control and prevention of profiteering and hoarding"
+ },
+ {
+  "document_id": 10166,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2755953
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '145' alone at its foot (block 2755953, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10166-p2.png",
+  "render_sha256": "9138517180f6fcec99dd09f92a8ab2672b2fe065bb4ad0c6b31ff535ebaf6c49",
+  "match_text": "distributions of an essential commodity and its availability at fair",
+  "before_text": "distributions of an essential commodity and its availability at fair",
+  "after_text": "distributions of an essential commodity and its availability at fair"
+ },
+ {
+  "document_id": 10166,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2755959
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '146' alone at its foot (block 2755959, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10166-p3.png",
+  "render_sha256": "fead09b59077457464032ed898b91438a21e8b8741555824216cd6ce71fdb1a7",
+  "match_text": "prices may be fixed for different localities or for different classes",
+  "before_text": "prices may be fixed for different localities or for different classes",
+  "after_text": "prices may be fixed for different localities or for different classes"
+ },
+ {
+  "document_id": 10166,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2755970
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '147' alone at its foot (block 2755970, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10166-p4.png",
+  "render_sha256": "6d80785709b970234081d5592513b048d7b4070f257494b5353f8174416b87d7",
+  "match_text": "property in respect of which the court is satisfied that the order",
+  "before_text": "property in respect of which the court is satisfied that the order",
+  "after_text": "property in respect of which the court is satisfied that the order"
+ },
+ {
+  "document_id": 10166,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2755981
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '148' alone at its foot (block 2755981, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10166-p5.png",
+  "render_sha256": "4a9c20e16c7dba9ee7e5da619010e3b72b2e36dd5eb63bf63f7eb53c6ab5d8a3",
+  "match_text": "prosecution or other legal proceeding shall lie against any person",
+  "before_text": "prosecution or other legal proceeding shall lie against any person",
+  "after_text": "prosecution or other legal proceeding shall lie against any person"
+ },
+ {
+  "document_id": 10166,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   2755991
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 6 prints its page number '149' alone at its foot (block 2755991, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10166-p6.png",
+  "render_sha256": "056cbbdd75d05536580fc50e5d6e79f9a327b22901c9e362dd150e9483631de1",
+  "match_text": "water, fruit juices and squashes 8. Cigarettes 9. Salt 10. Potatoes",
+  "before_text": "water, fruit juices and squashes 8. Cigarettes 9. Salt 10. Potatoes",
+  "after_text": "water, fruit juices and squashes 8. Cigarettes 9. Salt 10. Potatoes"
+ }
+]

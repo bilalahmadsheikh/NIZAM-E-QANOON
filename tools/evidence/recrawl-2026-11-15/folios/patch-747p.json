@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 747,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   33274
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 33274, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc747-p2.png",
+  "render_sha256": "d74b6d020ae162b0d062897ae7230497e1dc7704b3fe5e9e1ac61b027f6e0ebe",
+  "match_text": "accountability of all transactions in relation thereto and to",
+  "before_text": "accountability of all transactions in relation thereto and to",
+  "after_text": "accountability of all transactions in relation thereto and to"
+ },
+ {
+  "document_id": 747,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   33285
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 33285, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc747-p3.png",
+  "render_sha256": "de00c37bb4a93eb2c3390eb5911c2c9a21936e28abf66ba354fa5315be4eca0e",
+  "match_text": "provision of this Act or rules shall be guilty of an offence and",
+  "before_text": "provision of this Act or rules shall be guilty of an offence and",
+  "after_text": "provision of this Act or rules shall be guilty of an offence and"
+ },
+ {
+  "document_id": 747,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   33293
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 33293, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc747-p4.png",
+  "render_sha256": "3a46af77b839f4cc4e522be3cac362c07605fbd36e77971818f9340dc36f8917",
+  "match_text": "shall have jurisdiction to try cases under this Act.",
+  "before_text": "shall have jurisdiction to try cases under this Act.",
+  "after_text": "shall have jurisdiction to try cases under this Act."
+ },
+ {
+  "document_id": 747,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   33300
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '5' alone at its foot (block 33300, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc747-p5.png",
+  "render_sha256": "79e0511ac642d99094bf84a0f599c1546791a7ae15e9c88b36b7dbf7b523fcf0",
+  "match_text": "in each case as in force in the Province of Sindh before the",
+  "before_text": "in each case as in force in the Province of Sindh before the",
+  "after_text": "in each case as in force in the Province of Sindh before the"
+ }
+]

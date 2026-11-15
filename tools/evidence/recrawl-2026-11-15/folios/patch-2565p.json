@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 2565,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   216690
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1' alone at its foot (block 216690, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2565-p1.png",
+  "render_sha256": "d70f9a4e26dedab060fc0494df977311d1f25490f496e3f60e6cff3a643bb0ec",
+  "match_text": "lay down the constitution of a Council known as the Provincial Council of Sind, (here-in-",
+  "before_text": "lay down the constitution of a Council known as the Provincial Council of Sind, (here-in-",
+  "after_text": "lay down the constitution of a Council known as the Provincial Council of Sind, (here-in-"
+ },
+ {
+  "document_id": 2565,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   216692
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 216692, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2565-p2.png",
+  "render_sha256": "9c197e2a6ea48685ac2dd12bd3bc6c59ee5819344fb51276bd1f3710eed0c464",
+  "match_text": "(2)      The notice under sub-clause (1) shall be given in writing addressed to",
+  "before_text": "(2)      The notice under sub-clause (1) shall be given in writing addressed to",
+  "after_text": "(2)      The notice under sub-clause (1) shall be given in writing addressed to"
+ },
+ {
+  "document_id": 2565,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   216697
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 216697, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2565-p3.png",
+  "render_sha256": "dbcfb9cdfa71f56772a2742ed0bac656c72a217d4784d1d1920892fb3b7e40f8",
+  "match_text": "i Subsituted by Notification No. PA/SECY/HTPLGRD/1298 /81 dated 23rd February, 1981",
+  "before_text": "i Subsituted by Notification No. PA/SECY/HTPLGRD/1298 /81 dated 23rd February, 1981",
+  "after_text": "i Subsituted by Notification No. PA/SECY/HTPLGRD/1298 /81 dated 23rd February, 1981"
+ }
+]

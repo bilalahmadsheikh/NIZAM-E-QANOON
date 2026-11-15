@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 1320,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   72982
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1' alone at its foot (block 72982, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1320-p1.png",
+  "render_sha256": "19c224923a6db72456c7754612a25591c2a37eef2f6e42d2e38637c39083aaab",
+  "match_text": "that behalf, the Governor of Sindh is pleased to make and promulgate the following",
+  "before_text": "that behalf, the Governor of Sindh is pleased to make and promulgate the following",
+  "after_text": "that behalf, the Governor of Sindh is pleased to make and promulgate the following"
+ },
+ {
+  "document_id": 1320,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   72989
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 72989, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1320-p2.png",
+  "render_sha256": "1cd81e13faf9ce9db09ece1936d94364c4edcf034a0628be231fdffa5a920493",
+  "match_text": "provide free labour or labour against their will for the",
+  "before_text": "provide free labour or labour against their will for the",
+  "after_text": "provide free labour or labour against their will for the"
+ }
+]

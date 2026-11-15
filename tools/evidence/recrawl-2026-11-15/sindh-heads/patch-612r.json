@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 612,
+  "page_no": 2,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc612-p2.png",
+  "render_sha256": "8a702c0ce4758355491757a3d716050ed19e2c2b4763b7a863928c167c1a0962",
+  "defect": "the Sindh Code's running head (the law's citation and title at the head of every page) was read into a provision's text, in the same block as the law below it",
+  "observed": "Page 2 prints the running head 'SINDH ACT NO.II OF 2009 / THE SINDH WILDLIFE PROTECTION (AMENDMENT) ACT, 2008' at its head; the same head opens the document's other pages",
+  "source_apparatus_blocks": [
+   24891
+  ],
+  "match_text": "3.        In the said Ordinance, in section 33, in sub-section (3), for",
+  "before_text": "3.        In the said Ordinance, in section 33, in sub-section (3), for",
+  "after_text": "3.        In the said Ordinance, in section 33, in sub-section (3), for",
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) are set aside; no law text changes"
+ }
+]

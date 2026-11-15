@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 10528,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2780630
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1924' alone at its foot (block 2780630, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10528-p1.png",
+  "render_sha256": "aac3212f9ad174f4bff448a185373acefcaed8856099cff5920bc609625abc04",
+  "match_text": "Assembly received the assent of the President on the 3rd day of",
+  "before_text": "Assembly received the assent of the President on the 3rd day of",
+  "after_text": "Assembly received the assent of the President on the 3rd day of"
+ },
+ {
+  "document_id": 10528,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2780641
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '1925' alone at its foot (block 2780641, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10528-p2.png",
+  "render_sha256": "5b3847d52c8a03aa44b20b4a055190b0d6e6c7d612517dcd8bf3f88fad1a0cfe",
+  "match_text": "provisions of this Act shall be in addition to, and not in",
+  "before_text": "provisions of this Act shall be in addition to, and not in",
+  "after_text": "provisions of this Act shall be in addition to, and not in"
+ }
+]

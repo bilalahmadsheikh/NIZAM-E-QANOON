@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 1072,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   50721
+  ],
+  "defect": "the Sindh Code's running head (the law's citation printed at the head of every page) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the running-head block is set aside; no law text changes",
+  "observed": "Page 2 prints the running head 'SINDH ORDINANCE NO. XXXII OF 2001' alone at its head (block 50721, the page's first block); the same line heads the document's other pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc1072-p2.png",
+  "render_sha256": "d6e75995eb8851f62cc9d88bc1dfa7547b8b1db2a5ba21f8c1767393f4368824",
+  "match_text": "shall hold office for the remaining portion of the term of the",
+  "before_text": "shall hold office for the remaining portion of the term of the",
+  "after_text": "shall hold office for the remaining portion of the term of the"
+ }
+]

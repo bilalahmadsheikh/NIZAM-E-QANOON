@@ -1,0 +1,92 @@
+[
+ {
+  "document_id": 1156,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   57019
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 57019, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1156-p2.png",
+  "render_sha256": "0d883a0870aa4c5a30f8353810f1cbbe869bdd278b5ace31140a76ae327b5272",
+  "match_text": "clause (1) of Article 128 of the Constitution of the Islamic Republic",
+  "before_text": "clause (1) of Article 128 of the Constitution of the Islamic Republic",
+  "after_text": "clause (1) of Article 128 of the Constitution of the Islamic Republic"
+ },
+ {
+  "document_id": 1156,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   57038
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 57038, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1156-p3.png",
+  "render_sha256": "5396dfdfbe700987cb4f16ceaf759c30a40d3e25aff321442a0d37c01423966c",
+  "match_text": "THE SINDH SECURITY OF VULNERABLE ESTABLISHMENTS ORDINANCE, 2015",
+  "before_text": "THE SINDH SECURITY OF VULNERABLE ESTABLISHMENTS ORDINANCE, 2015",
+  "after_text": "THE SINDH SECURITY OF VULNERABLE ESTABLISHMENTS ORDINANCE, 2015"
+ },
+ {
+  "document_id": 1156,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   57058
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 57058, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1156-p4.png",
+  "render_sha256": "51094419a5083bc2c57d3536090fa15f7aedc5d5c9257fc6a98a407c545f3fe2",
+  "match_text": "list of the vulnerable establishments and shall issue updated list on",
+  "before_text": "list of the vulnerable establishments and shall issue updated list on",
+  "after_text": "list of the vulnerable establishments and shall issue updated list on"
+ },
+ {
+  "document_id": 1156,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   57074
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '5' alone at its foot (block 57074, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1156-p5.png",
+  "render_sha256": "6015b0973b3b5d25f10b74f94a19d3896c7152ae6e8906a0c761b080fe9bec53",
+  "match_text": "vulnerable establishment or suspension of its operations till the time",
+  "before_text": "vulnerable establishment or suspension of its operations till the time",
+  "after_text": "vulnerable establishment or suspension of its operations till the time"
+ },
+ {
+  "document_id": 1156,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   57090
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 6 prints its page number '6' alone at its foot (block 57090, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1156-p6.png",
+  "render_sha256": "8a6ebeca7402372d88f231bb8a51fc645f89ccc45b2a8908c3ce5bf0f5994a61",
+  "match_text": "may extend to six months and fine which shall not be less than forty",
+  "before_text": "may extend to six months and fine which shall not be less than forty",
+  "after_text": "may extend to six months and fine which shall not be less than forty"
+ },
+ {
+  "document_id": 1156,
+  "page_no": 7,
+  "source_apparatus_blocks": [
+   57101
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 7 prints its page number '7' alone at its foot (block 57101, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1156-p7.png",
+  "render_sha256": "1e53129591b16202ef23501e2a7fb9cfd2d2731dac64bc8fd05e055e2d183ccd",
+  "match_text": "notwithstanding anything contained in any other law, for the time",
+  "before_text": "notwithstanding anything contained in any other law, for the time",
+  "after_text": "notwithstanding anything contained in any other law, for the time"
+ }
+]

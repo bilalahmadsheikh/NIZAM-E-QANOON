@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 10847,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2807115
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '93' alone at its foot (block 2807115, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10847-p1.png",
+  "render_sha256": "b658044a97f5c60bf80a3f049f3f660c3d24571a364629561f88ddfba620bbe2",
+  "match_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "before_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "after_text": "Constitution Act, 1974, the President is pleased to make and promulgate"
+ },
+ {
+  "document_id": 10847,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2807121
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '94' alone at its foot (block 2807121, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10847-p2.png",
+  "render_sha256": "db0025c9d3b777caa1b34bcda823a250f23a8e3c1005ae1a80783ddc3b94c1c2",
+  "match_text": "(Amendment) Ordinance, 1978 (ordinance X of 1978), is hereby",
+  "before_text": "(Amendment) Ordinance, 1978 (ordinance X of 1978), is hereby",
+  "after_text": "(Amendment) Ordinance, 1978 (ordinance X of 1978), is hereby"
+ }
+]

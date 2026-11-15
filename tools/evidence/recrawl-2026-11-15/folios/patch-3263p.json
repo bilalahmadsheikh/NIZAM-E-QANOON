@@ -1,0 +1,92 @@
+[
+ {
+  "document_id": 3263,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   338714
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 338714, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3263-p2.png",
+  "render_sha256": "d0fe14a8fe2c6c78a333f1e4cc08462c4ae91fba4528af373c804aa76ee20e8f",
+  "match_text": "Committee of the Provincial Assembly of Sind has made the following rules for regulating its",
+  "before_text": "Committee of the Provincial Assembly of Sind has made the following rules for regulating its",
+  "after_text": "Committee of the Provincial Assembly of Sind has made the following rules for regulating its"
+ },
+ {
+  "document_id": 3263,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   338728
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 338728, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3263-p3.png",
+  "render_sha256": "5606b371dd076ebd5be4a651f4c543c35a103e3d0dc03f6642dd7e7dde60ea7e",
+  "match_text": "(2)    Subject to sub-rule (1), on a requisition made by not less than three members,",
+  "before_text": "(2)    Subject to sub-rule (1), on a requisition made by not less than three members,",
+  "after_text": "(2)    Subject to sub-rule (1), on a requisition made by not less than three members,"
+ },
+ {
+  "document_id": 3263,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   338734
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 338734, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3263-p4.png",
+  "render_sha256": "fbe0a97291da249b8bc8ff7eed01c0585876b655c2021e27753ccc0c431d7a69",
+  "match_text": "11. Decision.--  All decisions at a meeting which shall be binding, shall be taken by the",
+  "before_text": "11. Decision.--  All decisions at a meeting which shall be binding, shall be taken by the",
+  "after_text": "11. Decision.--  All decisions at a meeting which shall be binding, shall be taken by the"
+ },
+ {
+  "document_id": 3263,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   338740
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '5' alone at its foot (block 338740, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3263-p5.png",
+  "render_sha256": "386fce2b2eebd1378289f37a5ae352d9479cb64466aff5463c0f94c0e7939650",
+  "match_text": "assist him in financial and accounting matters and such officer shall perform duties and",
+  "before_text": "assist him in financial and accounting matters and such officer shall perform duties and",
+  "after_text": "assist him in financial and accounting matters and such officer shall perform duties and"
+ },
+ {
+  "document_id": 3263,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   338752
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 6 prints its page number '6' alone at its foot (block 338752, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3263-p6.png",
+  "render_sha256": "377461351aea06154ac88cf38cac162bff8c0397a6a7d79268554f7b8b5a9e03",
+  "match_text": "presumed within the limits laid down by it for the incurring of expenditure by any officer",
+  "before_text": "presumed within the limits laid down by it for the incurring of expenditure by any officer",
+  "after_text": "presumed within the limits laid down by it for the incurring of expenditure by any officer"
+ },
+ {
+  "document_id": 3263,
+  "page_no": 7,
+  "source_apparatus_blocks": [
+   338761
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 7 prints its page number '7' alone at its foot (block 338761, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3263-p7.png",
+  "render_sha256": "c0c19db66cf2640723eedce675e9fb72e31f2445a5c0489e7572913f4e978a3c",
+  "match_text": "point of procedure or interpretation of these rules, the decision of the Speaker thereon",
+  "before_text": "point of procedure or interpretation of these rules, the decision of the Speaker thereon",
+  "after_text": "point of procedure or interpretation of these rules, the decision of the Speaker thereon"
+ }
+]

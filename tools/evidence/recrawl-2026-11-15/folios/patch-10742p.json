@@ -1,0 +1,92 @@
+[
+ {
+  "document_id": 10742,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2798241
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '2125' alone at its foot (block 2798241, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10742-p1.png",
+  "render_sha256": "97a16550b94fabc4fea98a22e09c5c334a27d1f35cd3b31ce4e15e7899b19431",
+  "match_text": "assent of the President on the 21st day of April, 2021, is",
+  "before_text": "assent of the President on the 21st day of April, 2021, is",
+  "after_text": "assent of the President on the 21st day of April, 2021, is"
+ },
+ {
+  "document_id": 10742,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2798264
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2126' alone at its foot (block 2798264, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10742-p2.png",
+  "render_sha256": "8f4be206b740db9726a343c2acb7641f5908793d9b103c226a5afea99f86c4e3",
+  "match_text": "Definitions.-In this Act, unless there is anything",
+  "before_text": "Definitions.-In this Act, unless there is anything",
+  "after_text": "Definitions.-In this Act, unless there is anything"
+ },
+ {
+  "document_id": 10742,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2798288
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '2127' alone at its foot (block 2798288, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10742-p3.png",
+  "render_sha256": "b95dc2242c56598c6dda5f110f4a24334a56685e8139195cf5af88ae61a7407b",
+  "match_text": "Act, 2014 and any other facility notified by",
+  "before_text": "Act, 2014 and any other facility notified by",
+  "after_text": "Act, 2014 and any other facility notified by"
+ },
+ {
+  "document_id": 10742,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2798312
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '2128' alone at its foot (block 2798312, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10742-p4.png",
+  "render_sha256": "09805897d586a8ba369ae9e1de0c94bcb6cb42f862f815c7c8de4d4df72e09f5",
+  "match_text": "Facilities which have been seized and freezed by the",
+  "before_text": "Facilities which have been seized and freezed by the",
+  "after_text": "Facilities which have been seized and freezed by the"
+ },
+ {
+  "document_id": 10742,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2798336
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '2129' alone at its foot (block 2798336, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10742-p5.png",
+  "render_sha256": "fe4f5b55774517fa957071afddfe382ee724e6dfe130650b3e70b7c5c47c6e3f",
+  "match_text": "with the affairs of the institutions or facilities, in",
+  "before_text": "with the affairs of the institutions or facilities, in",
+  "after_text": "with the affairs of the institutions or facilities, in"
+ },
+ {
+  "document_id": 10742,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   2798353
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 6 prints its page number '2130' alone at its foot (block 2798353, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10742-p6.png",
+  "render_sha256": "cd1f08f6481a946f53a2d62d22aff6c1a8ebfdaeadc48b850de7e4f4b69d6fe0",
+  "match_text": "Removal of difficulties.- If any difficulty arises in",
+  "before_text": "Removal of difficulties.- If any difficulty arises in",
+  "after_text": "Removal of difficulties.- If any difficulty arises in"
+ }
+]

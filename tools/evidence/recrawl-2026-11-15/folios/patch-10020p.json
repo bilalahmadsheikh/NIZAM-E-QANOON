@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 10020,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2745260
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '704' alone at its foot (block 2745260, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10020-p1.png",
+  "render_sha256": "0528baafb86b4400502b65824e8984be946b3639eaa7e5f2b1d3479fab1f6844",
+  "match_text": "The following Act of the Legislative Assembly received the assent of",
+  "before_text": "The following Act of the Legislative Assembly received the assent of",
+  "after_text": "The following Act of the Legislative Assembly received the assent of"
+ },
+ {
+  "document_id": 10020,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2745273
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '705' alone at its foot (block 2745273, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10020-p2.png",
+  "render_sha256": "07d5f9a6aff7fc4698ba338888eb29c0c31b047a4368223a98c2a572bca2b44f",
+  "match_text": "(ii) Subject to the provision of sub-section (i) if any Officer",
+  "before_text": "(ii) Subject to the provision of sub-section (i) if any Officer",
+  "after_text": "(ii) Subject to the provision of sub-section (i) if any Officer"
+ }
+]

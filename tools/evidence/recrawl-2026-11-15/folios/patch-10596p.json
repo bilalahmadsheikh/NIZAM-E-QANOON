@@ -1,0 +1,302 @@
+[
+ {
+  "document_id": 10596,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2788088
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '7' alone at its foot (block 2788088, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10596-p1.png",
+  "render_sha256": "4c945ced8f7f4c4ae1b2e64c7e4cfb3448769b1adf63f1d64a21f53170c5ad74",
+  "match_text": "Assembly received the assent of the President on the 24th",
+  "before_text": "Assembly received the assent of the President on the 24th",
+  "after_text": "Assembly received the assent of the President on the 24th"
+ },
+ {
+  "document_id": 10596,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2788097
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '8' alone at its foot (block 2788097, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10596-p2.png",
+  "render_sha256": "43f8aae484a745ae3bd6448d7e00a2429e98fb0499140b6590ddf98285714dfc",
+  "match_text": "for the time being in force having jurisdiction",
+  "before_text": "for the time being in force having jurisdiction",
+  "after_text": "for the time being in force having jurisdiction"
+ },
+ {
+  "document_id": 10596,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2788109
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '9' alone at its foot (block 2788109, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10596-p3.png",
+  "render_sha256": "eedef6d6054b4e3e448aae8193257b99c1c1f5be27e5382a5509830d651d6f1a",
+  "match_text": "Gazette, declare any part or parts of Kotli District to",
+  "before_text": "Gazette, declare any part or parts of Kotli District to",
+  "after_text": "Gazette, declare any part or parts of Kotli District to"
+ },
+ {
+  "document_id": 10596,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2788120
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '10' alone at its foot (block 2788120, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10596-p4.png",
+  "render_sha256": "c9d456baa83c1e97f2ae7d220ed09a65b4ae3ea577b4cdbd9077a22be99edda3",
+  "match_text": "invalid merely on the ground of the existence of any",
+  "before_text": "invalid merely on the ground of the existence of any",
+  "after_text": "invalid merely on the ground of the existence of any"
+ },
+ {
+  "document_id": 10596,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2788132
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '11' alone at its foot (block 2788132, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10596-p5.png",
+  "render_sha256": "abbc889597454fa0bbcd147179d7c150df08dd1563168f000fa1c8514cb53c7b",
+  "match_text": "subject to such directions as the Government may from time to time",
+  "before_text": "subject to such directions as the Government may from time to time",
+  "after_text": "subject to such directions as the Government may from time to time"
+ },
+ {
+  "document_id": 10596,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   2788142
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 6 prints its page number '12' alone at its foot (block 2788142, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10596-p6.png",
+  "render_sha256": "2a7e53a55f374c13628cc116b0d4019f159b9585866d0ed00b56272e192028c5",
+  "match_text": "restrict or prohibit by general or special order any",
+  "before_text": "restrict or prohibit by general or special order any",
+  "after_text": "restrict or prohibit by general or special order any"
+ },
+ {
+  "document_id": 10596,
+  "page_no": 7,
+  "source_apparatus_blocks": [
+   2788152
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 7 prints its page number '13' alone at its foot (block 2788152, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10596-p7.png",
+  "render_sha256": "314edf24ff539a013e08cc1e8780108077d961281dcdca875bbe39fd1e7da9b2",
+  "match_text": "land which the Authority is authorized to acquire or",
+  "before_text": "land which the Authority is authorized to acquire or",
+  "after_text": "land which the Authority is authorized to acquire or"
+ },
+ {
+  "document_id": 10596,
+  "page_no": 8,
+  "source_apparatus_blocks": [
+   2788159
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 8 prints its page number '14' alone at its foot (block 2788159, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10596-p8.png",
+  "render_sha256": "5a74cc12437410e100d0c1e997968688278ef69aa34324f8ed5533dcc7cf1e3f",
+  "match_text": "agencies. (1) The Authority may require a local body",
+  "before_text": "agencies. (1) The Authority may require a local body",
+  "after_text": "agencies. (1) The Authority may require a local body"
+ },
+ {
+  "document_id": 10596,
+  "page_no": 9,
+  "source_apparatus_blocks": [
+   2788167
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 9 prints its page number '15' alone at its foot (block 2788167, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10596-p9.png",
+  "render_sha256": "b5bb3c8cb6d4ad4657cc5d03a66ae2db4a5366109356c5e784c3ca97478f5e07",
+  "match_text": "by it or him under sub-section (1) to any officer or",
+  "before_text": "by it or him under sub-section (1) to any officer or",
+  "after_text": "by it or him under sub-section (1) to any officer or"
+ },
+ {
+  "document_id": 10596,
+  "page_no": 10,
+  "source_apparatus_blocks": [
+   2788179
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 10 prints its page number '16' alone at its foot (block 2788179, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10596-p10.png",
+  "render_sha256": "0d7f4765988258d6379085834e8a1ca9141bf97ba41e686f0b7e42a7531ffc6e",
+  "match_text": "Full stop at the end of the Section 17 omitted and thereafter the new",
+  "before_text": "Full stop at the end of the Section 17 omitted and thereafter the new",
+  "after_text": "Full stop at the end of the Section 17 omitted and thereafter the new"
+ },
+ {
+  "document_id": 10596,
+  "page_no": 11,
+  "source_apparatus_blocks": [
+   2788188
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 11 prints its page number '17' alone at its foot (block 2788188, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10596-p11.png",
+  "render_sha256": "9ae8e4479be839c5d49815f831bf6275512f82250e0eb527b180c01bd0991c98",
+  "match_text": "the Authority and shall be utilized by the Authority",
+  "before_text": "the Authority and shall be utilized by the Authority",
+  "after_text": "the Authority and shall be utilized by the Authority"
+ },
+ {
+  "document_id": 10596,
+  "page_no": 12,
+  "source_apparatus_blocks": [
+   2788201
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 12 prints its page number '18' alone at its foot (block 2788201, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10596-p12.png",
+  "render_sha256": "5b77b6fbe31a8565794b1ea112c2e54fc23f057547bd2c1e7b182c05dbfe4b32",
+  "match_text": "Between the words “submit” and “to” the words “within the first",
+  "before_text": "Between the words “submit” and “to” the words “within the first",
+  "after_text": "Between the words “submit” and “to” the words “within the first"
+ },
+ {
+  "document_id": 10596,
+  "page_no": 13,
+  "source_apparatus_blocks": [
+   2788211
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 13 prints its page number '19' alone at its foot (block 2788211, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10596-p13.png",
+  "render_sha256": "cfc281a7109b53ff1f420c8d177419580a621704fe7e5fd146c5f60d051d82be",
+  "match_text": "which exists in its annual estimates of receipts and",
+  "before_text": "which exists in its annual estimates of receipts and",
+  "after_text": "which exists in its annual estimates of receipts and"
+ },
+ {
+  "document_id": 10596,
+  "page_no": 14,
+  "source_apparatus_blocks": [
+   2788220
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 14 prints its page number '20' alone at its foot (block 2788220, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10596-p14.png",
+  "render_sha256": "32187866ab4f405acd5f4f9edeb92e4b48acf905209972cac9726f6967160464",
+  "match_text": "following, a report on the conduct of its affairs for",
+  "before_text": "following, a report on the conduct of its affairs for",
+  "after_text": "following, a report on the conduct of its affairs for"
+ },
+ {
+  "document_id": 10596,
+  "page_no": 15,
+  "source_apparatus_blocks": [
+   2788231
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 15 prints its page number '21' alone at its foot (block 2788231, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10596-p15.png",
+  "render_sha256": "d8f31b586ba41907f7bc53e33416d18f3cdb655abff221e34a0a902932d50e45",
+  "match_text": "title issued by the Authority in respect of any lease,",
+  "before_text": "title issued by the Authority in respect of any lease,",
+  "after_text": "title issued by the Authority in respect of any lease,"
+ },
+ {
+  "document_id": 10596,
+  "page_no": 16,
+  "source_apparatus_blocks": [
+   2788236
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 16 prints its page number '22' alone at its foot (block 2788236, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10596-p16.png",
+  "render_sha256": "ba12cfd9a07af4f573d7cf9bf5386d1ed134eb451e590bbc2bd59e0010642b50",
+  "match_text": "Development Authority (Amendment) Act, 2001 (XXI of 2001) dt.",
+  "before_text": "Development Authority (Amendment) Act, 2001 (XXI of 2001) dt.",
+  "after_text": "Development Authority (Amendment) Act, 2001 (XXI of 2001) dt."
+ },
+ {
+  "document_id": 10596,
+  "page_no": 17,
+  "source_apparatus_blocks": [
+   2788243
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 17 prints its page number '23' alone at its foot (block 2788243, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10596-p17.png",
+  "render_sha256": "4ae8eca1f168d5f0f378ef84f0be003ab71a759dd23a088cf6b7fd09abc64a4d",
+  "match_text": "Police assistance.- The Officer-incharge of a police",
+  "before_text": "Police assistance.- The Officer-incharge of a police",
+  "after_text": "Police assistance.- The Officer-incharge of a police"
+ },
+ {
+  "document_id": 10596,
+  "page_no": 18,
+  "source_apparatus_blocks": [
+   2788249
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 18 prints its page number '24' alone at its foot (block 2788249, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10596-p18.png",
+  "render_sha256": "ee5a68a07b42138bba82589dd2c1b7c56a375245dbf0d24a864f3ca0b458d4ec",
+  "match_text": "Authority shall stand repealed to the extent of Kotli",
+  "before_text": "Authority shall stand repealed to the extent of Kotli",
+  "after_text": "Authority shall stand repealed to the extent of Kotli"
+ },
+ {
+  "document_id": 10596,
+  "page_no": 19,
+  "source_apparatus_blocks": [
+   2788259
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 19 prints its page number '25' alone at its foot (block 2788259, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10596-p19.png",
+  "render_sha256": "9bc7d2dcf89298a38b7431e766c5797b309d1d79a697074c482a31ee1f1927c5",
+  "match_text": "may, by notification in the Official Gazette, declared",
+  "before_text": "may, by notification in the Official Gazette, declared",
+  "after_text": "may, by notification in the Official Gazette, declared"
+ },
+ {
+  "document_id": 10596,
+  "page_no": 20,
+  "source_apparatus_blocks": [
+   2788265
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 20 prints its page number '26' alone at its foot (block 2788265, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10596-p20.png",
+  "render_sha256": "ad08e9d257241f27970d3608e46b99f1a30f88ebca68a13c494995b588957861",
+  "match_text": "majority shall prevail, however such cases shall be",
+  "before_text": "majority shall prevail, however such cases shall be",
+  "after_text": "majority shall prevail, however such cases shall be"
+ }
+]

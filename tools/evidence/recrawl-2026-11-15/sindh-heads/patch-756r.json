@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 756,
+  "page_no": 2,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc756-p2.png",
+  "render_sha256": "dd77c59a64fc743ad8a5c59efb08b9dfe63178c10cedead0e9be6c9e6dcc0b48",
+  "defect": "the Sindh Code's running head (the law's citation and title at the head of every page) was read into a provision's text, in the same block as the law below it",
+  "observed": "Page 2 prints the running head 'SINDH ACT NO.II OF 2010 / THE SINDH LOCAL GOVERNMENT (AMENDMENT) ACT, 2010' at its head; the same head opens the document's other pages",
+  "source_apparatus_blocks": [
+   33486
+  ],
+  "match_text": "Administrators   who  shall   perform   the   functions   and",
+  "before_text": "Administrators   who  shall   perform   the   functions   and",
+  "after_text": "Administrators   who  shall   perform   the   functions   and",
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) are set aside; no law text changes"
+ }
+]

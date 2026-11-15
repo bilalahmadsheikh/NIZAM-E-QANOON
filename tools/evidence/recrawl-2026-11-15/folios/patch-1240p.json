@@ -1,0 +1,77 @@
+[
+ {
+  "document_id": 1240,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   64788
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1' alone at its foot (block 64788, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1240-p1.png",
+  "render_sha256": "90c6dbf344c971c4801508cb79f2224d8bc44555a650c71f01980d55c8904537",
+  "match_text": "2.            In  laws  specified  in  column  2  of  the  Schedule",
+  "before_text": "2.            In  laws  specified  in  column  2  of  the  Schedule",
+  "after_text": "2.            In  laws  specified  in  column  2  of  the  Schedule"
+ },
+ {
+  "document_id": 1240,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   64811
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 64811, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1240-p2.png",
+  "render_sha256": "ddd9ee4b2188b3ab7800777f5cec20ead45d3d0d96f2a05d047505c3e7646610",
+  "match_text": "(c) for    the    words    “District    Officer",
+  "before_text": "(c) for    the    words    “District    Officer",
+  "after_text": "(c) for    the    words    “District    Officer"
+ },
+ {
+  "document_id": 1240,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   64835
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 64835, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1240-p3.png",
+  "render_sha256": "13e0946204672b0f671541dd8490b2ca1f7e13b0391b11b43efafbb42b816e23",
+  "match_text": "Coordination       Officer”,       the       word",
+  "before_text": "Coordination       Officer”,       the       word",
+  "after_text": "Coordination       Officer”,       the       word"
+ },
+ {
+  "document_id": 1240,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   64849
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 64849, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1240-p4.png",
+  "render_sha256": "30051b0e3cdee4ad78a4904ce9d13f3f77a59cfd7a928da4c1bbf3117eb92667",
+  "match_text": "2.  In section 2, in clause (c), for the words",
+  "before_text": "2.  In section 2, in clause (c), for the words",
+  "after_text": "2.  In section 2, in clause (c), for the words"
+ },
+ {
+  "document_id": 1240,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   64858
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '5' alone at its foot (block 64858, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1240-p5.png",
+  "render_sha256": "ed89a8a75b3b6c92aa3fb1ad8f964dc246047bdd930687c11caa5bbe569e745d",
+  "match_text": "words       “Executive       District       Officer",
+  "before_text": "words       “Executive       District       Officer",
+  "after_text": "words       “Executive       District       Officer"
+ }
+]

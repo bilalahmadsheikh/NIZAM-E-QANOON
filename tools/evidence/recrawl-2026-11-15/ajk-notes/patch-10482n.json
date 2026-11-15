@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 10482,
+  "page_no": 7,
+  "source_apparatus_blocks": [
+   2777290,
+   2777291,
+   2777292,
+   2777293
+  ],
+  "defect": "page notes (amendment notes and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the note blocks are set aside; no law text changes",
+  "observed": "Page 7 prints, under its note rule, 4 note block(s), the first '1For the words and figures “BPS-19”, the words and figures “BPS-16” substituted by the Kotli Development Authority (Amendment) Act, 2001 (XX'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10482-p7.png",
+  "render_sha256": "c3ee5dad4a92400d9a6c55b76f605f38582d79f26624a7cbd592e34feee7334a",
+  "match_text": "substituted by the Kotli Development Authority (Amendment) Act, 2001 (XXI",
+  "before_text": "substituted by the Kotli Development Authority (Amendment) Act, 2001 (XXI",
+  "after_text": "substituted by the Kotli Development Authority (Amendment) Act, 2001 (XXI"
+ },
+ {
+  "document_id": 10482,
+  "page_no": 8,
+  "source_apparatus_blocks": [
+   2777312
+  ],
+  "defect": "page notes (amendment notes and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the note blocks are set aside; no law text changes",
+  "observed": "Page 8 prints, under its note rule, 1 note block(s), the first '1Between the words “submit” and “to” the words “within the first quarter of every financialyear” ins. by the Kotli Development Authority (Am'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10482-p8.png",
+  "render_sha256": "568eb15acb0f44c72322faa7aa177b718102f8973cc4c8a83a7ef618d1479de6",
+  "match_text": "1Between the words “submit” and “to” the words “within the first quarter of",
+  "before_text": "1Between the words “submit” and “to” the words “within the first quarter of",
+  "after_text": "1Between the words “submit” and “to” the words “within the first quarter of"
+ },
+ {
+  "document_id": 10482,
+  "page_no": 11,
+  "source_apparatus_blocks": [
+   2777342
+  ],
+  "defect": "page notes (amendment notes and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the note blocks are set aside; no law text changes",
+  "observed": "Page 11 prints, under its note rule, 1 note block(s), the first '1For the words “fifteen days”, the words “ten days” subs. by the Kotli Development Authority (Amendment) Act, 2001 (XXI of 2001) dt. 26.12.2'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10482-p11.png",
+  "render_sha256": "8effe18eda08f77000e4d1b6779129ff36395ca5ab432eb20ff9fe8aae970bac",
+  "match_text": "2For the words “opportunity of being heard”, the words “ten days notice” is",
+  "before_text": "2For the words “opportunity of being heard”, the words “ten days notice” is",
+  "after_text": "2For the words “opportunity of being heard”, the words “ten days notice” is"
+ },
+ {
+  "document_id": 10482,
+  "page_no": 4,
+  "match_text": "Sub-section (2) of Section 9 omitted by the Kotli Development Authority",
+  "before_text": "1 \nSub-section (2) of Section 9 omitted by the Kotli Development Authority \n(Amendment) Act, 2001 (XXI of 2001) dt. 26.12.2001. The extract of  sub-\nsection (2) of Section 9 of Act III of 1992 is reproduced as under:- \n \n“(2) Until the Board is duly constituted, the Chairman shall, subject to such \ndirections as the Government may from time to time give, exercise the \npowers, discharge the duties and perform the functions of the Board.”",
+  "after_text": " ",
+  "defect": "the block fuses the law's last line with the page note printed under it; the note was read as law",
+  "fixes": "parser-input correction: the note is cut from the block, from its marker to the block's end; the law before it is kept as printed",
+  "observed": "Page 4 prints the law ending 'dditions and alterations as per actual requirements in the approved master Plan.', then the note rule and the note '1 Sub-section (2) of Section 9 omitted by the Kotli Development Authority (Amendment) Act, 2001 (XXI of 2001) dt. 26.12.'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10482-p4.png",
+  "render_sha256": "2db2d0a2bb5d023a6a59565fe24a66f62d164e6fda0dea6dcfdd714527cd3cf4"
+ }
+]

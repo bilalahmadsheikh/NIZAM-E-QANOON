@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 656,
+  "page_no": 2,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc656-p2.png",
+  "render_sha256": "728c38d4afb4832e9bd9054bea5d9a5abbea714238480af5009d1d11bb6e8130",
+  "defect": "the Sindh Code's running head (the law's citation and title at the head of every page) was read into a provision's text, in the same block as the law below it",
+  "observed": "Page 2 prints the running head 'SINDH ACT NO.V OF 2009 / THE COLONIZATION OF GOVERNMENT LANDS (AMENDMENT), ACT, 2009' at its head; the same head opens the document's other pages",
+  "source_apparatus_blocks": [
+   27705
+  ],
+  "match_text": "3.         In the said Act, after section 24, the following new",
+  "before_text": "3.         In the said Act, after section 24, the following new",
+  "after_text": "3.         In the said Act, after section 24, the following new",
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) are set aside; no law text changes"
+ }
+]

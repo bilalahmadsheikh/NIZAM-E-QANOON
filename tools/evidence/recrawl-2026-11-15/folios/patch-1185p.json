@@ -1,0 +1,92 @@
+[
+ {
+  "document_id": 1185,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   59389
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 59389, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1185-p2.png",
+  "render_sha256": "e4346e8bd45ccc24be9a7bc524f52455a4eab42299866f50b8d16a8775cf75be",
+  "match_text": "provisions of this Act to acquire, hold and dispose of the property, both",
+  "before_text": "provisions of this Act to acquire, hold and dispose of the property, both",
+  "after_text": "provisions of this Act to acquire, hold and dispose of the property, both"
+ },
+ {
+  "document_id": 1185,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   59409
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 59409, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1185-p3.png",
+  "render_sha256": "eb85cc43ac8e1a52df96e5f4316092753f37bd9c1530072dd3430dd479298dea",
+  "match_text": "affairs shall vest in the Board which may exercise all powers",
+  "before_text": "affairs shall vest in the Board which may exercise all powers",
+  "after_text": "affairs shall vest in the Board which may exercise all powers"
+ },
+ {
+  "document_id": 1185,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   59423
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 59423, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1185-p4.png",
+  "render_sha256": "5d2569b658d4e8b7cb32bdc25c36b111b13e03e82eb7f378cf89ff292a9c504d",
+  "match_text": "the powers and discharge the duties and perform the functions",
+  "before_text": "the powers and discharge the duties and perform the functions",
+  "after_text": "the powers and discharge the duties and perform the functions"
+ },
+ {
+  "document_id": 1185,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   59446
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '5' alone at its foot (block 59446, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1185-p5.png",
+  "render_sha256": "f7377f8ace36ae4782c837e5b70999ce095179d4a39d104f92b9fa33fef34c70",
+  "match_text": "prescribed by regulations and until regulations are framed, the",
+  "before_text": "prescribed by regulations and until regulations are framed, the",
+  "after_text": "prescribed by regulations and until regulations are framed, the"
+ },
+ {
+  "document_id": 1185,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   59463
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 6 prints its page number '6' alone at its foot (block 59463, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1185-p6.png",
+  "render_sha256": "33517a14db6b09b36af0606feee3ae3f993617fb421cb6483acd0587d38057e1",
+  "match_text": "document, return, statement, statistics or any other information",
+  "before_text": "document, return, statement, statistics or any other information",
+  "after_text": "document, return, statement, statistics or any other information"
+ },
+ {
+  "document_id": 1185,
+  "page_no": 7,
+  "source_apparatus_blocks": [
+   59475
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 7 prints its page number '7' alone at its foot (block 59475, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1185-p7.png",
+  "render_sha256": "4dff2416f16ee268ce76d18200ee8a2ebadc35d7895851093dc6b9543d9254d8",
+  "match_text": "provided for in the rules and for which provisions is necessary for",
+  "before_text": "provided for in the rules and for which provisions is necessary for",
+  "after_text": "provided for in the rules and for which provisions is necessary for"
+ }
+]

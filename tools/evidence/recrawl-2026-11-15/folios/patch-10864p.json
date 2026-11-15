@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 10864,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2808057
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1869' alone at its foot (block 2808057, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10864-p1.png",
+  "render_sha256": "3939fa9b7b5aff0b99d7693089b98fcb068e7dd03ca79bb5687b6196e7c69a33",
+  "match_text": "to provide a law for terms and conditions of the Members of the",
+  "before_text": "to provide a law for terms and conditions of the Members of the",
+  "after_text": "to provide a law for terms and conditions of the Members of the"
+ },
+ {
+  "document_id": 10864,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2808072
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '1870' alone at its foot (block 2808072, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10864-p2.png",
+  "render_sha256": "381851700712cf9fd143e97a9414269ac0d4e55a67e7fbaec5bcabfce7d5b26c",
+  "match_text": "by the AJ&K Members of Election Commission (Terms & Conditions) (Amdt.)",
+  "before_text": "by the AJ&K Members of Election Commission (Terms & Conditions) (Amdt.)",
+  "after_text": "by the AJ&K Members of Election Commission (Terms & Conditions) (Amdt.)"
+ }
+]

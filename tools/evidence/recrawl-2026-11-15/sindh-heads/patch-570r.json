@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 570,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   22806
+  ],
+  "defect": "the Sindh Code's running head (the law's citation printed at the head of every page) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the running-head block is set aside; no law text changes",
+  "observed": "Page 2 prints the running head 'SIND ACT NO.XIV OF 1975' alone at its head (block 22806, the page's first block); the same line heads the document's other pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc570-p2.png",
+  "render_sha256": "7accd5e98cc09a43d613033abe3ff52845af945b071537141b62d7f15cd46f83",
+  "match_text": "In the said Act, for Section 26, the following shall be substituted,",
+  "before_text": "In the said Act, for Section 26, the following shall be substituted,",
+  "after_text": "In the said Act, for Section 26, the following shall be substituted,"
+ },
+ {
+  "document_id": 570,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   22830
+  ],
+  "defect": "the Sindh Code's running head (the law's citation printed at the head of every page) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the running-head block is set aside; no law text changes",
+  "observed": "Page 3 prints the running head 'SIND ACT NO. XIV OF 1975' alone at its head (block 22830, the page's first block); the same line heads the document's other pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc570-p3.png",
+  "render_sha256": "751d3dc2298eb2239a1fa2df7fa9e82685479ebd7883c06602613c76d5d1096f",
+  "match_text": "THE SIND BORSTAL SCHOOLS AND THE SIND CHILDREN (AMENDMENT) ACT, 1975.",
+  "before_text": "THE SIND BORSTAL SCHOOLS AND THE SIND CHILDREN (AMENDMENT) ACT, 1975.",
+  "after_text": "THE SIND BORSTAL SCHOOLS AND THE SIND CHILDREN (AMENDMENT) ACT, 1975."
+ }
+]

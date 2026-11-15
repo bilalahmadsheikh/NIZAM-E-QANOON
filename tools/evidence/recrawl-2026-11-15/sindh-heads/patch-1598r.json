@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 1598,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   98769
+  ],
+  "defect": "the Sindh Code's running head (the law's citation printed at the head of every page) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the running-head block is set aside; no law text changes",
+  "observed": "Page 2 prints the running head 'SIND ORDINANCE NO. VII OF 1974' alone at its head (block 98769, the page's first block); the same line heads the document's other pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc1598-p2.png",
+  "render_sha256": "7603e829813a323dece0030b66ab87c1ba538205d38f29f2ecba148ef6302c22",
+  "match_text": "as sub-section (1) of that section, and after sub-section (1) so",
+  "before_text": "as sub-section (1) of that section, and after sub-section (1) so",
+  "after_text": "as sub-section (1) of that section, and after sub-section (1) so"
+ }
+]

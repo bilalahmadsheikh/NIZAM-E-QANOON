@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 1277,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   68966
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1' alone at its foot (block 68966, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1277-p1.png",
+  "render_sha256": "4756ed6563ac0eee4e6988366c1db0e247d76fcf17c407c4f2193ea65bfb6c80",
+  "match_text": "convenience,  eating  places,  landscape,   forests,  fisheries,  delta  conservation,",
+  "before_text": "convenience,  eating  places,  landscape,   forests,  fisheries,  delta  conservation,",
+  "after_text": "convenience,  eating  places,  landscape,   forests,  fisheries,  delta  conservation,"
+ },
+ {
+  "document_id": 1277,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   68976
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 68976, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1277-p2.png",
+  "render_sha256": "e824a9ad311e114e8bd7003f38a1c31d28a61875c88c71782b429602fce48a09",
+  "match_text": "development of infrastructure and other activities ancillary thereto in such manner",
+  "before_text": "development of infrastructure and other activities ancillary thereto in such manner",
+  "after_text": "development of infrastructure and other activities ancillary thereto in such manner"
+ }
+]

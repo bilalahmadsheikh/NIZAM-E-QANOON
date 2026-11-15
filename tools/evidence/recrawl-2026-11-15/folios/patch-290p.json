@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 290,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   13627
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 13627, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc290-p2.png",
+  "render_sha256": "fb5ab0f91017f045b02c83e662c80e3f56f6591bc127bf50e9a786970efb4020",
+  "match_text": "property and prohibition of expression of matters on walls in",
+  "before_text": "property and prohibition of expression of matters on walls in",
+  "after_text": "property and prohibition of expression of matters on walls in"
+ },
+ {
+  "document_id": 290,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   13641
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 13641, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc290-p3.png",
+  "render_sha256": "7052605211dee3a5af753bac79aae83e93e0d0e194efb9144497bb7f1d9849c6",
+  "match_text": "existing Defacement of Property within its jurisdiction which",
+  "before_text": "existing Defacement of Property within its jurisdiction which",
+  "after_text": "existing Defacement of Property within its jurisdiction which"
+ }
+]

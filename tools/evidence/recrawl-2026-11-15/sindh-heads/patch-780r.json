@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 780,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc780-p3.png",
+  "render_sha256": "2ea2289732fc34cde782482228df513f70c52b7cf856214a07dc6ce516bd6ccd",
+  "defect": "the Sindh Code's running head (the law's citation and title at the head of every page) was read into a provision's text, in the same block as the law below it",
+  "observed": "Page 3 prints the running head 'SINDH ORDINANCE NO.XI OF 1973 / THE SIND SERVICE TRIBUNALS ORDINANCE, 1973' at its head; the same head opens the document's other pages",
+  "source_apparatus_blocks": [
+   35497
+  ],
+  "match_text": "of matters relating to the terms and conditions of service or civil",
+  "before_text": "of matters relating to the terms and conditions of service or civil",
+  "after_text": "of matters relating to the terms and conditions of service or civil",
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) are set aside; no law text changes"
+ },
+ {
+  "document_id": 780,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc780-p4.png",
+  "render_sha256": "5023db268d9c458099904102f24d02fb6bfe318954a34f2765268c1418d9f707",
+  "defect": "the Sindh Code's running head (the law's citation and title at the head of every page) was read into a provision's text, in the same block as the law below it",
+  "observed": "Page 4 prints the running head 'SINDH ORDINANCE NO.XI OF 1973 / THE SIND SERVICE TRIBUNALS ORDINANCE, 1973' at its head; the same head opens the document's other pages",
+  "source_apparatus_blocks": [
+   35509
+  ],
+  "match_text": "appeal to, or filing, exhibiting or recording any document in, or",
+  "before_text": "appeal to, or filing, exhibiting or recording any document in, or",
+  "after_text": "appeal to, or filing, exhibiting or recording any document in, or",
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) are set aside; no law text changes"
+ }
+]

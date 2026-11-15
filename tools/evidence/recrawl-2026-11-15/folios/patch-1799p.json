@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 1799,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   119283
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 119283, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1799-p2.png",
+  "render_sha256": "a3c4494f8d0ed956020fa440462c5ca85af5e55820b1f029af3ab1fb6227e1b0",
+  "match_text": "conferred by clause (1) of Article 128 of the Constitution",
+  "before_text": "conferred by clause (1) of Article 128 of the Constitution",
+  "after_text": "conferred by clause (1) of Article 128 of the Constitution"
+ },
+ {
+  "document_id": 1799,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   119290
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 119290, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1799-p3.png",
+  "render_sha256": "5fe078c048d9b6bf14b1f866be7eaf1c775e2f16b4a499f616f45c8ef91715fa",
+  "match_text": "appointed as teacher as a civil servant on regular basis:",
+  "before_text": "appointed as teacher as a civil servant on regular basis:",
+  "after_text": "appointed as teacher as a civil servant on regular basis:"
+ }
+]

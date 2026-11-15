@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 915,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   42604
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 42604, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc915-p2.png",
+  "render_sha256": "4b449c116f388c7a717e3ec0e0d5ead471d7aacd54345c3a9c3c16755a0c3789",
+  "match_text": "1.  (1) This Act may be called the Sindh Compulsory Iodization of",
+  "before_text": "1.  (1) This Act may be called the Sindh Compulsory Iodization of",
+  "after_text": "1.  (1) This Act may be called the Sindh Compulsory Iodization of"
+ },
+ {
+  "document_id": 915,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   42619
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 42619, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc915-p3.png",
+  "render_sha256": "266b4fcd0c87734bd7813b5f099817d54b73357a803c6c712b5eb43f045d01e0",
+  "match_text": "3.  (1) The manufacturer, processor and importer of iodized salt",
+  "before_text": "3.  (1) The manufacturer, processor and importer of iodized salt",
+  "after_text": "3.  (1) The manufacturer, processor and importer of iodized salt"
+ },
+ {
+  "document_id": 915,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   42635
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 42635, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc915-p4.png",
+  "render_sha256": "cd0e772d296838b599d2867013a414f219849a09941801e37d250ad68160bd6d",
+  "match_text": "7. (1) No salt processors, distributors or retailers shall give",
+  "before_text": "7. (1) No salt processors, distributors or retailers shall give",
+  "after_text": "7. (1) No salt processors, distributors or retailers shall give"
+ },
+ {
+  "document_id": 915,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   42653
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '5' alone at its foot (block 42653, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc915-p5.png",
+  "render_sha256": "74a8d03c5c9ae9b38ac1cb992385a211790c5dc461208ff721b3100d433d42c8",
+  "match_text": "Act, shall be dealt with one or more of the following penalties:-",
+  "before_text": "Act, shall be dealt with one or more of the following penalties:-",
+  "after_text": "Act, shall be dealt with one or more of the following penalties:-"
+ }
+]

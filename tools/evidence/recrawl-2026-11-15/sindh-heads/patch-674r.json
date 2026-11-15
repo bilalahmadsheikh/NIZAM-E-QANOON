@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 674,
+  "page_no": 2,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc674-p2.png",
+  "render_sha256": "22aede5d9ac06f550801eef1f82dd63edeb41a4b92c0d6d361d9f9a477a622ad",
+  "defect": "the Sindh Code's running head (the law's citation and title at the head of every page) was read into a provision's text, in the same block as the law below it",
+  "observed": "Page 2 prints the running head 'SIND ACT NO.I OF 1977 / THE ABKARI LAWS (SIND AMENDMENT) ACT, 1977' at its head; the same head opens the document's other pages",
+  "source_apparatus_blocks": [
+   28384
+  ],
+  "match_text": "5.           All cases relating to offences punishable under the Sind",
+  "before_text": "5.           All cases relating to offences punishable under the Sind",
+  "after_text": "5.           All cases relating to offences punishable under the Sind",
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) are set aside; no law text changes"
+ }
+]

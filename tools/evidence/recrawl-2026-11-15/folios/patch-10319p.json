@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 10319,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2765479
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '803' alone at its foot (block 2765479, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10319-p1.png",
+  "render_sha256": "9f979a350e13fa225efe0c43a0cd5e9857e52ade02eef53b7c34b07e12e4d26b",
+  "match_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "before_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "after_text": "Constitution Act, 1974, the President is pleased to make and promulgate"
+ },
+ {
+  "document_id": 10319,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2765492
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '804' alone at its foot (block 2765492, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10319-p2.png",
+  "render_sha256": "a4ef17ea746d31dd875d2bf7a15e1b5fb3de9cb80c235ddd7a285620503bca0c",
+  "match_text": "officers and servants as it considers necessary for the efficient",
+  "before_text": "officers and servants as it considers necessary for the efficient",
+  "after_text": "officers and servants as it considers necessary for the efficient"
+ },
+ {
+  "document_id": 10319,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2765507
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '805' alone at its foot (block 2765507, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10319-p3.png",
+  "render_sha256": "ee8c7807f136cd82a5419a9b567547e09d28660470112281700f3b458f9254b6",
+  "match_text": "prepare schemes for the allotment of plots in the Upper Chhattar",
+  "before_text": "prepare schemes for the allotment of plots in the Upper Chhattar",
+  "after_text": "prepare schemes for the allotment of plots in the Upper Chhattar"
+ },
+ {
+  "document_id": 10319,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2765514
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '806' alone at its foot (block 2765514, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10319-p4.png",
+  "render_sha256": "b08302c1f963e011a83850c7b0b2e0b693d8cfd7b65679b10a43a1e5cef19299",
+  "match_text": "initiated, jurisdiction or powers exercised under the provisions of",
+  "before_text": "initiated, jurisdiction or powers exercised under the provisions of",
+  "after_text": "initiated, jurisdiction or powers exercised under the provisions of"
+ }
+]

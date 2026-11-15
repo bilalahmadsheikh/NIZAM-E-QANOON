@@ -1,0 +1,77 @@
+[
+ {
+  "document_id": 5043,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   1022455
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 1022455, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc5043-p3.png",
+  "render_sha256": "f3c7e08533cc1bdb04a498c0c83a6119b49f3a0760046d5d84d012c961eab33e",
+  "match_text": "expressions shall have the meanings hereby respectively assigned to them, that is to say-",
+  "before_text": "expressions shall have the meanings hereby respectively assigned to them, that is to say-",
+  "after_text": "expressions shall have the meanings hereby respectively assigned to them, that is to say-"
+ },
+ {
+  "document_id": 5043,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   1022472
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 1022472, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc5043-p4.png",
+  "render_sha256": "ee2fd35419e6df77ced2472045df5f09029a5a03a10926ac9f3a82f1b4bc1cca",
+  "match_text": "power crusher unless he has a valid license granted by the Licensing Authority under this Act.",
+  "before_text": "power crusher unless he has a valid license granted by the Licensing Authority under this Act.",
+  "after_text": "power crusher unless he has a valid license granted by the Licensing Authority under this Act."
+ },
+ {
+  "document_id": 5043,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   1022489
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '5' alone at its foot (block 1022489, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc5043-p5.png",
+  "render_sha256": "7036bf46a912727e37639c892a973503e8c8a9330d139645e5f7f66fc688735a",
+  "match_text": "like mosque, school, hospital, canal, tunnel, transmission line, orchard, forest, major road,",
+  "before_text": "like mosque, school, hospital, canal, tunnel, transmission line, orchard, forest, major road,",
+  "after_text": "like mosque, school, hospital, canal, tunnel, transmission line, orchard, forest, major road,"
+ },
+ {
+  "document_id": 5043,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   1022504
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 6 prints its page number '6' alone at its foot (block 1022504, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc5043-p6.png",
+  "render_sha256": "a31a0ec0a493874888240b2d90498e34b69ff5ca7fc244987f077d118cd145d5",
+  "match_text": "license, the Licensing Authority or authorized officer may, either pass an order directing such",
+  "before_text": "license, the Licensing Authority or authorized officer may, either pass an order directing such",
+  "after_text": "license, the Licensing Authority or authorized officer may, either pass an order directing such"
+ },
+ {
+  "document_id": 5043,
+  "page_no": 7,
+  "source_apparatus_blocks": [
+   1022512
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 7 prints its page number '7' alone at its foot (block 1022512, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc5043-p7.png",
+  "render_sha256": "92be3f668803a153bb4a33016d18dd4eb4bb546af905094e66ceb039d364e6d9",
+  "match_text": "and shall continue to be in force until expired, cancelled, withdrawn or repealed under the",
+  "before_text": "and shall continue to be in force until expired, cancelled, withdrawn or repealed under the",
+  "after_text": "and shall continue to be in force until expired, cancelled, withdrawn or repealed under the"
+ }
+]

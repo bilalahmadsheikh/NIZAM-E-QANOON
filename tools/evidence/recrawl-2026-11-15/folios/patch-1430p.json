@@ -1,0 +1,92 @@
+[
+ {
+  "document_id": 1430,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   83244
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1' alone at its foot (block 83244, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1430-p1.png",
+  "render_sha256": "0de892ff2ae40fd9a44783074d2308930a18bb6246c3261c3fab41f8654303c3",
+  "match_text": "1.       (1)   This   Act   may   be   called   the   Sind   Universities",
+  "before_text": "1.       (1)   This   Act   may   be   called   the   Sind   Universities",
+  "after_text": "1.       (1)   This   Act   may   be   called   the   Sind   Universities"
+ },
+ {
+  "document_id": 1430,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   83264
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 83264, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1430-p2.png",
+  "render_sha256": "44f80f586534bd9cd40292f8804bb2bca5a507aae9088f9cfc01d385a6724c57",
+  "match_text": "(ii)      In clause (iv), the full-stop shall be replaced by a",
+  "before_text": "(ii)      In clause (iv), the full-stop shall be replaced by a",
+  "after_text": "(ii)      In clause (iv), the full-stop shall be replaced by a"
+ },
+ {
+  "document_id": 1430,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   83283
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 83283, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1430-p3.png",
+  "render_sha256": "3ce77dd6627393693642790b81ed1eee1c2e079860f1aa54ef08a027406ed7f0",
+  "match_text": "(ix)     In section 20, in sub-section (1), after clause (iii),",
+  "before_text": "(ix)     In section 20, in sub-section (1), after clause (iii),",
+  "after_text": "(ix)     In section 20, in sub-section (1), after clause (iii),"
+ },
+ {
+  "document_id": 1430,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   83304
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 83304, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1430-p4.png",
+  "render_sha256": "31212ebb9cc0e4009be49084422e144b43c9c0537afec9942c85549e5e3483e0",
+  "match_text": "(x)      In section 22, in sub-section (1), after clause (i),",
+  "before_text": "(x)      In section 22, in sub-section (1), after clause (i),",
+  "after_text": "(x)      In section 22, in sub-section (1), after clause (i),"
+ },
+ {
+  "document_id": 1430,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   83327
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '5' alone at its foot (block 83327, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1430-p5.png",
+  "render_sha256": "75d3adc1a3433ea63c19462ba54d1cc9feea3104230568681ccdd9f7f3e068e9",
+  "match_text": "52.   No,   suit   legal   proceedings   shall   lie   against",
+  "before_text": "52.   No,   suit   legal   proceedings   shall   lie   against",
+  "after_text": "52.   No,   suit   legal   proceedings   shall   lie   against"
+ },
+ {
+  "document_id": 1430,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   83348
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 6 prints its page number '6' alone at its foot (block 83348, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1430-p6.png",
+  "render_sha256": "6ed3471b674375bec9f8e2719b8d478b14151d81c83595bae2152afde8e9e4e7",
+  "match_text": "3.       The Sind Universities (Amendment) Ordinance, 1976, is",
+  "before_text": "3.       The Sind Universities (Amendment) Ordinance, 1976, is",
+  "after_text": "3.       The Sind Universities (Amendment) Ordinance, 1976, is"
+ }
+]

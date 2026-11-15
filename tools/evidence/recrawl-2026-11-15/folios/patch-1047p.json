@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 1047,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   49680
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1' alone at its foot (block 49680, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1047-p1.png",
+  "render_sha256": "7aaf067297c8b9a5db38240f53bca0aef32c6dab59252e396ab128c964da4710",
+  "match_text": "1.         (i) This Ordinance may be called The Sindh Speaker's and Deputy Speaker's",
+  "before_text": "1.         (i) This Ordinance may be called The Sindh Speaker's and Deputy Speaker's",
+  "after_text": "1.         (i) This Ordinance may be called The Sindh Speaker's and Deputy Speaker's"
+ },
+ {
+  "document_id": 1047,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   49685
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 49685, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1047-p2.png",
+  "render_sha256": "1fd3875cda2b2cfc71a656bfc3e86ff9f268dd0fe240f2445951b7ba14741504",
+  "match_text": "In  the said  Act,  in  section  10,  in  sub-section  (1),  for  the words “Four",
+  "before_text": "In  the said  Act,  in  section  10,  in  sub-section  (1),  for  the words “Four",
+  "after_text": "In  the said  Act,  in  section  10,  in  sub-section  (1),  for  the words “Four"
+ }
+]

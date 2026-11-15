@@ -1,0 +1,77 @@
+[
+ {
+  "document_id": 1220,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   62859
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1' alone at its foot (block 62859, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1220-p1.png",
+  "render_sha256": "ed2a15198456fdce3492f82a4e1fe1027b0d72d388503dc014824c6683205e12",
+  "match_text": "4.       In the  said  Act,  in  section  43,  in  the  Table,  against",
+  "before_text": "4.       In the  said  Act,  in  section  43,  in  the  Table,  against",
+  "after_text": "4.       In the  said  Act,  in  section  43,  in  the  Table,  against"
+ },
+ {
+  "document_id": 1220,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   62882
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 62882, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1220-p2.png",
+  "render_sha256": "d2e46284bec8313637a0eca45feda10f47213bc4085b5ead5b7ca941fdf75801",
+  "match_text": "(i)       after    sub-section    (1),    the    following    shall",
+  "before_text": "(i)       after    sub-section    (1),    the    following    shall",
+  "after_text": "(i)       after    sub-section    (1),    the    following    shall"
+ },
+ {
+  "document_id": 1220,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   62907
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 62907, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1220-p3.png",
+  "render_sha256": "3b6413bd6ef85f630114a85d86512ab01cea0724a2883d890efc483a411c0242",
+  "match_text": "THE SINDH SALES TAX ON SERVICES (AMENDMENT) ORDINANCE, 2011.",
+  "before_text": "THE SINDH SALES TAX ON SERVICES (AMENDMENT) ORDINANCE, 2011.",
+  "after_text": "THE SINDH SALES TAX ON SERVICES (AMENDMENT) ORDINANCE, 2011."
+ },
+ {
+  "document_id": 1220,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   62930
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 62930, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1220-p4.png",
+  "render_sha256": "a5113fd4fdbfb4e54ac95dae8cc64304443f3a03ea4762c334fb681722fa27c4",
+  "match_text": "(iv)after   the   Tariff   heading   “9813.9000”   the",
+  "before_text": "(iv)after   the   Tariff   heading   “9813.9000”   the",
+  "after_text": "(iv)after   the   Tariff   heading   “9813.9000”   the"
+ },
+ {
+  "document_id": 1220,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   62950
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '5' alone at its foot (block 62950, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1220-p5.png",
+  "render_sha256": "4a69b0aa35e9036abd3820776a7814456a73ab6fb5080a307971d2a007914d7a",
+  "match_text": "(v)  after   the   Tariff   heading   “9819.2000”,   the",
+  "before_text": "(v)  after   the   Tariff   heading   “9819.2000”,   the",
+  "after_text": "(v)  after   the   Tariff   heading   “9819.2000”,   the"
+ }
+]

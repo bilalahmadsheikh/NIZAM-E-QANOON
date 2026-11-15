@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 984,
+  "page_no": 2,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc984-p2.png",
+  "render_sha256": "9538c11a40534e1de0336f2233bf9f6ea1673df4c254a521bbe5d0a73ca35ffd",
+  "defect": "the Sindh Code's running head (the law's citation and title at the head of every page) was read into a provision's text, in the same block as the law below it",
+  "observed": "Page 2 prints the running head 'SIND ACT NO.XXI OF 1974 / THE SIND SERVICE TRIBUNALS (SECOND AMENDMENT) ACT, 1974' at its head; the same head opens the document's other pages",
+  "source_apparatus_blocks": [
+   46471
+  ],
+  "match_text": "4.       The    Sind    Services   Tribunals    (Second    Amendment)",
+  "before_text": "4.       The    Sind    Services   Tribunals    (Second    Amendment)",
+  "after_text": "4.       The    Sind    Services   Tribunals    (Second    Amendment)",
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) are set aside; no law text changes"
+ }
+]

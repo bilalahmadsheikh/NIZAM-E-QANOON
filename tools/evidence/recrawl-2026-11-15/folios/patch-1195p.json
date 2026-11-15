@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 1195,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   60621
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1' alone at its foot (block 60621, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1195-p1.png",
+  "render_sha256": "6d5b49b8c48d9a717dfe3a3dab39f27a6dce219bb376b09280fc1e92ee0772f2",
+  "match_text": "hereinafter referred to as the said Ordinance, in Schedule V, in Part",
+  "before_text": "hereinafter referred to as the said Ordinance, in Schedule V, in Part",
+  "after_text": "hereinafter referred to as the said Ordinance, in Schedule V, in Part"
+ },
+ {
+  "document_id": 1195,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   60626
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 60626, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1195-p2.png",
+  "render_sha256": "a2b4c9fb525fed6e953bdd68d8ae20302f6fa1ab0d3506595a02eb33c7bb3d9c",
+  "match_text": "THE SIND LOCAL GOVERNMENT (AMENDMENT) ORDINANCE, 1988.",
+  "before_text": "THE SIND LOCAL GOVERNMENT (AMENDMENT) ORDINANCE, 1988.",
+  "after_text": "THE SIND LOCAL GOVERNMENT (AMENDMENT) ORDINANCE, 1988."
+ }
+]

@@ -1,0 +1,77 @@
+[
+ {
+  "document_id": 10318,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2765430
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '167' alone at its foot (block 2765430, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10318-p1.png",
+  "render_sha256": "2977b7a74ea7680c2ae8ee9b41576d5d2ea95d19a13e38f8fb16a68e81ea1b20",
+  "match_text": "investigation of certain offences relating to corruption by public",
+  "before_text": "investigation of certain offences relating to corruption by public",
+  "after_text": "investigation of certain offences relating to corruption by public"
+ },
+ {
+  "document_id": 10318,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2765439
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '168' alone at its foot (block 2765439, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10318-p2.png",
+  "render_sha256": "56b21abd04c9a2bb3708103580647d80017b76c0d888c4d983750ed8f10caf91",
+  "match_text": "privileges and liabilities which a police officer has or is",
+  "before_text": "privileges and liabilities which a police officer has or is",
+  "after_text": "privileges and liabilities which a police officer has or is"
+ },
+ {
+  "document_id": 10318,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2765448
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '169' alone at its foot (block 2765448, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10318-p3.png",
+  "render_sha256": "cd03e19c74d38cf6d65d970d3b6799152c5de7c987eb7759ae265f7277fbbfbf",
+  "match_text": "incharge of a police station discharging the functions of",
+  "before_text": "incharge of a police station discharging the functions of",
+  "after_text": "incharge of a police station discharging the functions of"
+ },
+ {
+  "document_id": 10318,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2765450
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '170' alone at its foot (block 2765450, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10318-p4.png",
+  "render_sha256": "40e91fb942962e46c0cd34bcbc42d1e9194394be82d54f4ad748e3b0b2b92ab5",
+  "match_text": "Corruption Establishment Ordinance, 1993 (Ordinance",
+  "before_text": "Corruption Establishment Ordinance, 1993 (Ordinance",
+  "after_text": "Corruption Establishment Ordinance, 1993 (Ordinance"
+ },
+ {
+  "document_id": 10318,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2765458
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '171' alone at its foot (block 2765458, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10318-p5.png",
+  "render_sha256": "175d19c608efeac534b9ed03e409f13a7473862563f0cd8e1509d3d16cab33e6",
+  "match_text": "the AJ&K Anti-Corruption (Amdt.) Act, 1998 (Act IV of 1998) dt.",
+  "before_text": "the AJ&K Anti-Corruption (Amdt.) Act, 1998 (Act IV of 1998) dt.",
+  "after_text": "the AJ&K Anti-Corruption (Amdt.) Act, 1998 (Act IV of 1998) dt."
+ }
+]

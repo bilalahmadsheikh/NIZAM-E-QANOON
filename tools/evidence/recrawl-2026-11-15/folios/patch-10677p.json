@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 10677,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2794631
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '189' alone at its foot (block 2794631, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10677-p1.png",
+  "render_sha256": "c2dd22dce221487f0dff55160c8d5d1c352973fd32412e166c9793ca6fd3931d",
+  "match_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "before_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "after_text": "Constitution Act, 1974, the President is pleased to make and promulgate"
+ },
+ {
+  "document_id": 10677,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2794640
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '190' alone at its foot (block 2794640, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10677-p2.png",
+  "render_sha256": "bab06fe31710bb90b252ee262e684a7cf0a6d3b56e163b729adc7bedd312b260",
+  "match_text": "Section 13, after sub-section (1), the proviso shall be deleted.",
+  "before_text": "Section 13, after sub-section (1), the proviso shall be deleted.",
+  "after_text": "Section 13, after sub-section (1), the proviso shall be deleted."
+ }
+]

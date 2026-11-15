@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 2835,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   257319
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 257319, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2835-p2.png",
+  "render_sha256": "caadb580de41c0ffbe4dc820f87a9423450d08b35d834e66afa7bc83caae3e57",
+  "match_text": "by or under any law for the time being kin force perform all or any of",
+  "before_text": "by or under any law for the time being kin force perform all or any of",
+  "after_text": "by or under any law for the time being kin force perform all or any of"
+ },
+ {
+  "document_id": 2835,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   257333
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 257333, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2835-p3.png",
+  "render_sha256": "9f5509b72e6c420ca71aec37fa6a86b8b346235f0f477f45bbce47b856e05a98",
+  "match_text": "the request of the majority of the members, call such meeting at any",
+  "before_text": "the request of the majority of the members, call such meeting at any",
+  "after_text": "the request of the majority of the members, call such meeting at any"
+ },
+ {
+  "document_id": 2835,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   257347
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 257347, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2835-p4.png",
+  "render_sha256": "c9706b6d04054774bbc9bfd635c39cf839748cd0042ea67f7443d0318383deb5",
+  "match_text": "(b) Motivating the Muslim Population, to order list life in",
+  "before_text": "(b) Motivating the Muslim Population, to order list life in",
+  "after_text": "(b) Motivating the Muslim Population, to order list life in"
+ },
+ {
+  "document_id": 2835,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   257349
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '5' alone at its foot (block 257349, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2835-p5.png",
+  "render_sha256": "6486144ac359c4fde6232e3d77b0888364442ea478116065d1072226675072d3",
+  "match_text": "KARACHI, SUNDAY, MAY  11,1980.",
+  "before_text": "KARACHI, SUNDAY, MAY  11,1980.",
+  "after_text": "KARACHI, SUNDAY, MAY  11,1980."
+ }
+]

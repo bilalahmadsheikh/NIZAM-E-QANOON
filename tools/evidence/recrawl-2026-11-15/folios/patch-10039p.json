@@ -1,0 +1,317 @@
+[
+ {
+  "document_id": 10039,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2746311
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '2099' alone at its foot (block 2746311, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10039-p1.png",
+  "render_sha256": "4299fb8185943d2c9589daa07bff69f8979f554d20aeb2bf86dc651c51710f8f",
+  "match_text": "Whereas, it is necessary to provide for the registration,",
+  "before_text": "Whereas, it is necessary to provide for the registration,",
+  "after_text": "Whereas, it is necessary to provide for the registration,"
+ },
+ {
+  "document_id": 10039,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2746320
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2100' alone at its foot (block 2746320, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10039-p2.png",
+  "render_sha256": "07497cf7f1df07e6bab2c98d5debf3b8a9b42a16bd2a9964dc84aa2fa24ebbd3",
+  "match_text": "and goods collected for a limited period of",
+  "before_text": "and goods collected for a limited period of",
+  "after_text": "and goods collected for a limited period of"
+ },
+ {
+  "document_id": 10039,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2746332
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '2101' alone at its foot (block 2746332, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10039-p3.png",
+  "render_sha256": "3b277f200f49c1b197dbe89c77a5dcef87012ef48f6ae69d5afa0a1f9dd10b5d",
+  "match_text": "for, receiving, collecting or attempting to",
+  "before_text": "for, receiving, collecting or attempting to",
+  "after_text": "for, receiving, collecting or attempting to"
+ },
+ {
+  "document_id": 10039,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2746348
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '2102' alone at its foot (block 2746348, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10039-p4.png",
+  "render_sha256": "85765355b94ef4c49e4a395c788e2ce7c992d2d2f993272c4d3db59e7fbd04f4",
+  "match_text": "district or any other person appointed by",
+  "before_text": "district or any other person appointed by",
+  "after_text": "district or any other person appointed by"
+ },
+ {
+  "document_id": 10039,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2746363
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '2103' alone at its foot (block 2746363, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10039-p5.png",
+  "render_sha256": "cbd51b90f0b354e421996be71ab9f88353e14361a86459bc1b4b684532df2ba8",
+  "match_text": "The Commission.–(1) There shall be a Charity",
+  "before_text": "The Commission.–(1) There shall be a Charity",
+  "after_text": "The Commission.–(1) There shall be a Charity"
+ },
+ {
+  "document_id": 10039,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   2746375
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 6 prints its page number '2104' alone at its foot (block 2746375, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10039-p6.png",
+  "render_sha256": "3fbd66ee960da231a5770afcc2e787cf4158303fb47c8d4b6e247c51a5ea9a7b",
+  "match_text": "responsible for the discharge of the mandate of the",
+  "before_text": "responsible for the discharge of the mandate of the",
+  "after_text": "responsible for the discharge of the mandate of the"
+ },
+ {
+  "document_id": 10039,
+  "page_no": 7,
+  "source_apparatus_blocks": [
+   2746388
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 7 prints its page number '2105' alone at its foot (block 2746388, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10039-p7.png",
+  "render_sha256": "6ee04b5ec99fb184722e57c9618b7515ff057b3aeea9ac0e9f549beae8fe4f6d",
+  "match_text": "information about a Charity, a Charity Trustee, the",
+  "before_text": "information about a Charity, a Charity Trustee, the",
+  "after_text": "information about a Charity, a Charity Trustee, the"
+ },
+ {
+  "document_id": 10039,
+  "page_no": 8,
+  "source_apparatus_blocks": [
+   2746398
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 8 prints its page number '2106' alone at its foot (block 2746398, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10039-p8.png",
+  "render_sha256": "acc6d804ccc8d92b1c27f95e0f48a710cf3be029e85cfe9f08420ff91c9e50a5",
+  "match_text": "officer or office-bearer of a Charity if such charity",
+  "before_text": "officer or office-bearer of a Charity if such charity",
+  "after_text": "officer or office-bearer of a Charity if such charity"
+ },
+ {
+  "document_id": 10039,
+  "page_no": 9,
+  "source_apparatus_blocks": [
+   2746409
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 9 prints its page number '2107' alone at its foot (block 2746409, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10039-p9.png",
+  "render_sha256": "8ef30d5a808dcd5f5063fff621ea0540927ac7cb260aa30987ad2c5e690bf7f1",
+  "match_text": "seek collection of the charitable funds unless it is",
+  "before_text": "seek collection of the charitable funds unless it is",
+  "after_text": "seek collection of the charitable funds unless it is"
+ },
+ {
+  "document_id": 10039,
+  "page_no": 10,
+  "source_apparatus_blocks": [
+   2746418
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 10 prints its page number '2108' alone at its foot (block 2746418, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10039-p10.png",
+  "render_sha256": "eb79eb91de9aea9142c0359c3de74c15e84fd67fb44a502060259629da10e865",
+  "match_text": "organization if in its opinion the objects of Charity",
+  "before_text": "organization if in its opinion the objects of Charity",
+  "after_text": "organization if in its opinion the objects of Charity"
+ },
+ {
+  "document_id": 10039,
+  "page_no": 11,
+  "source_apparatus_blocks": [
+   2746432
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 11 prints its page number '2109' alone at its foot (block 2746432, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10039-p11.png",
+  "render_sha256": "5b4e441ad496477ebbc3e7c79321fb757bf950bd84a042efd8535314680aba0b",
+  "match_text": "17.Registering Authority.–(1) The Commission shall be",
+  "before_text": "17.Registering Authority.–(1) The Commission shall be",
+  "after_text": "17.Registering Authority.–(1) The Commission shall be"
+ },
+ {
+  "document_id": 10039,
+  "page_no": 12,
+  "source_apparatus_blocks": [
+   2746439
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 12 prints its page number '2110' alone at its foot (block 2746439, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10039-p12.png",
+  "render_sha256": "504f0a907391d6da1c34301573c73568c546073ac7c39a9a6ab470b8ebf68ea6",
+  "match_text": "sanction the collection under this Section if it is not",
+  "before_text": "sanction the collection under this Section if it is not",
+  "after_text": "sanction the collection under this Section if it is not"
+ },
+ {
+  "document_id": 10039,
+  "page_no": 13,
+  "source_apparatus_blocks": [
+   2746450
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 13 prints its page number '2111' alone at its foot (block 2746450, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10039-p13.png",
+  "render_sha256": "7a7862bb12ea9a3d2323088c115aef925fbc59aafa3384d1d67581a91b4582b9",
+  "match_text": "Administrative Actions.– (1) If, after evaluation or",
+  "before_text": "Administrative Actions.– (1) If, after evaluation or",
+  "after_text": "Administrative Actions.– (1) If, after evaluation or"
+ },
+ {
+  "document_id": 10039,
+  "page_no": 14,
+  "source_apparatus_blocks": [
+   2746462
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 14 prints its page number '2112' alone at its foot (block 2746462, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10039-p14.png",
+  "render_sha256": "d51680e41610ed27c46f4ca61980281a05c2554e3dacaff49bd305aa4ec59396",
+  "match_text": "transactions of the Charity and shall also reflect on",
+  "before_text": "transactions of the Charity and shall also reflect on",
+  "after_text": "transactions of the Charity and shall also reflect on"
+ },
+ {
+  "document_id": 10039,
+  "page_no": 15,
+  "source_apparatus_blocks": [
+   2746477
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 15 prints its page number '2113' alone at its foot (block 2746477, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10039-p15.png",
+  "render_sha256": "efbd877034a21671fee01d4a9bebd8c644dbf726dd860674f69c7cde6a8832cc",
+  "match_text": "recorded, direct that the accounts of a Charity shall",
+  "before_text": "recorded, direct that the accounts of a Charity shall",
+  "after_text": "recorded, direct that the accounts of a Charity shall"
+ },
+ {
+  "document_id": 10039,
+  "page_no": 16,
+  "source_apparatus_blocks": [
+   2746483
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 16 prints its page number '2114' alone at its foot (block 2746483, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10039-p16.png",
+  "render_sha256": "6b9e57c305b2d974f686b05e41c09946e5d34ada0adf76b549a6a10e6897f8c1",
+  "match_text": "fraudulently tampers with, conceals or destroys any",
+  "before_text": "fraudulently tampers with, conceals or destroys any",
+  "after_text": "fraudulently tampers with, conceals or destroys any"
+ },
+ {
+  "document_id": 10039,
+  "page_no": 17,
+  "source_apparatus_blocks": [
+   2746492
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 17 prints its page number '2115' alone at its foot (block 2746492, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10039-p17.png",
+  "render_sha256": "a022ee566300b404d117b6c8d408916ba59f0ded71dbbcadb13b713b6da64b5c",
+  "match_text": "(2) A Magistrate of the first class shall conduct the",
+  "before_text": "(2) A Magistrate of the first class shall conduct the",
+  "after_text": "(2) A Magistrate of the first class shall conduct the"
+ },
+ {
+  "document_id": 10039,
+  "page_no": 18,
+  "source_apparatus_blocks": [
+   2746505
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 18 prints its page number '2116' alone at its foot (block 2746505, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10039-p18.png",
+  "render_sha256": "7b6bfd874f6c4101a6064be195e5c16a6d0ffd53236324ece5da136871eba57e",
+  "match_text": "(3) The Committee shall perform its functions in the",
+  "before_text": "(3) The Committee shall perform its functions in the",
+  "after_text": "(3) The Committee shall perform its functions in the"
+ },
+ {
+  "document_id": 10039,
+  "page_no": 19,
+  "source_apparatus_blocks": [
+   2746511
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 19 prints its page number '2117' alone at its foot (block 2746511, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10039-p19.png",
+  "render_sha256": "2a2db2c85a595f734e8d81be87ae859b84603ba9b09df27479d83dde5045d9b0",
+  "match_text": "in respect of anything which is, in good faith, done",
+  "before_text": "in respect of anything which is, in good faith, done",
+  "after_text": "in respect of anything which is, in good faith, done"
+ },
+ {
+  "document_id": 10039,
+  "page_no": 20,
+  "source_apparatus_blocks": [
+   2746532
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 20 prints its page number '2118' alone at its foot (block 2746532, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10039-p20.png",
+  "render_sha256": "250b9a91e4928d6325be30e7f6e3bb534a15ecb9759d46cd49f17337a94a4b4b",
+  "match_text": "Civic education, aimed at developing sense of",
+  "before_text": "Civic education, aimed at developing sense of",
+  "after_text": "Civic education, aimed at developing sense of"
+ },
+ {
+  "document_id": 10039,
+  "page_no": 21,
+  "source_apparatus_blocks": [
+   2746547
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 21 prints its page number '2119' alone at its foot (block 2746547, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10039-p21.png",
+  "render_sha256": "a6afbeb57b8c3b9635a308d2b1ae132cf12b57e052c5257539e3d2d5cfe383de",
+  "match_text": "Religious education, Interfaith and Sectarian",
+  "before_text": "Religious education, Interfaith and Sectarian",
+  "after_text": "Religious education, Interfaith and Sectarian"
+ }
+]

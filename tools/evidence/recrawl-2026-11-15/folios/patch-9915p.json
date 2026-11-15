@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 9915,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2737644
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '211' alone at its foot (block 2737644, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc9915-p1.png",
+  "render_sha256": "66e212aebc38d0276ac993ad64a6a1173678e8f3dbfdb7872abd24d606eeda95",
+  "match_text": "received the assent of the President on the 7th April, 1995, is",
+  "before_text": "received the assent of the President on the 7th April, 1995, is",
+  "after_text": "received the assent of the President on the 7th April, 1995, is"
+ },
+ {
+  "document_id": 9915,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2737663
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '212' alone at its foot (block 2737663, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc9915-p2.png",
+  "render_sha256": "00de9673cd9f9ff1d68336cfc42ae86ffeffffde34729b02de6978becc572c9e",
+  "match_text": "(ii) For the words  and figures “Rs. 30000/-” the words and figures",
+  "before_text": "(ii) For the words  and figures “Rs. 30000/-” the words and figures",
+  "after_text": "(ii) For the words  and figures “Rs. 30000/-” the words and figures"
+ },
+ {
+  "document_id": 9915,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2737676
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '213' alone at its foot (block 2737676, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc9915-p3.png",
+  "render_sha256": "00bc7e362f27930376822f3444439981b1e9c5f84ae8cbb4182c6df0b13169c1",
+  "match_text": "For the words “two hundred and fifty” the words “one thousand”",
+  "before_text": "For the words “two hundred and fifty” the words “one thousand”",
+  "after_text": "For the words “two hundred and fifty” the words “one thousand”"
+ },
+ {
+  "document_id": 9915,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2737688
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '214' alone at its foot (block 2737688, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc9915-p4.png",
+  "render_sha256": "a30fc5fa07ec6f84adad5acc4b739d349e414b0c935a9d0818eec2644f0c069f",
+  "match_text": "Subs. by the President’s Pension (Amdt.) Act, 2003 (Act II of 2003) dt.",
+  "before_text": "Subs. by the President’s Pension (Amdt.) Act, 2003 (Act II of 2003) dt.",
+  "after_text": "Subs. by the President’s Pension (Amdt.) Act, 2003 (Act II of 2003) dt."
+ }
+]

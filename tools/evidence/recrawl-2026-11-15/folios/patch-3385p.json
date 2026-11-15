@@ -1,0 +1,77 @@
+[
+ {
+  "document_id": 3385,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   365530
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1' alone at its foot (block 365530, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3385-p1.png",
+  "render_sha256": "28fe0820f609f6de984f15004d384bb7e10f1fb03a4249fde6dd50c97c89294d",
+  "match_text": "age limit and other incidental matters for the posts of the Functional Unit shall be",
+  "before_text": "age limit and other incidental matters for the posts of the Functional Unit shall be",
+  "after_text": "age limit and other incidental matters for the posts of the Functional Unit shall be"
+ },
+ {
+  "document_id": 3385,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   365564
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 365564, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3385-p2.png",
+  "render_sha256": "dbb9754dcc727173db99204e55fff6da6b35f16fb87b93d859a564993c791f23",
+  "match_text": "2 Printed in the Gazette notification as “promotion”",
+  "before_text": "2 Printed in the Gazette notification as “promotion”",
+  "after_text": "2 Printed in the Gazette notification as “promotion”"
+ },
+ {
+  "document_id": 3385,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   365586
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 365586, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3385-p3.png",
+  "render_sha256": "15779198387a93be422bab06366fca99a939624d360177039ef146d3d410c47e",
+  "match_text": "3 Amended vide S&GAD’s Notification No.SOR-III(S&GAD)1-11/2008 dated 28.06.2016 and published in the Punjab Gazette 03.08.2016",
+  "before_text": "3 Amended vide S&GAD’s Notification No.SOR-III(S&GAD)1-11/2008 dated 28.06.2016 and published in the Punjab Gazette 03.08.2016",
+  "after_text": "3 Amended vide S&GAD’s Notification No.SOR-III(S&GAD)1-11/2008 dated 28.06.2016 and published in the Punjab Gazette 03.08.2016"
+ },
+ {
+  "document_id": 3385,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   365612
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 365612, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3385-p4.png",
+  "render_sha256": "1c9b91279837df8f47dfbb0477149f8d67d2fb5f7c87818463a043dfc3ed202a",
+  "match_text": "from amongst Junior Clerks",
+  "before_text": "from amongst Junior Clerks",
+  "after_text": "from amongst Junior Clerks"
+ },
+ {
+  "document_id": 3385,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   365641
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '5' alone at its foot (block 365641, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3385-p5.png",
+  "render_sha256": "5b8b18fc87d1e305fbdb1f4b6d4a662103c5372f1a266731f3a47ec6a18d2cd8",
+  "match_text": "5 Printed in the Gazette Notification as “licence”",
+  "before_text": "5 Printed in the Gazette Notification as “licence”",
+  "after_text": "5 Printed in the Gazette Notification as “licence”"
+ }
+]

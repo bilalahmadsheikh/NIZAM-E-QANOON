@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 1310,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   72136
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 72136, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1310-p2.png",
+  "render_sha256": "18828537b43e5edbcc64540bdce927bd736dfc0aed75c4b4e2ebdb3e090fce66",
+  "match_text": "that behalf, the Governor of Sindh is pleased to make and promulgate the following",
+  "before_text": "that behalf, the Governor of Sindh is pleased to make and promulgate the following",
+  "after_text": "that behalf, the Governor of Sindh is pleased to make and promulgate the following"
+ },
+ {
+  "document_id": 1310,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   72167
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 72167, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1310-p3.png",
+  "render_sha256": "754c28f20e76ba03877129f648fbe83ca1b51ceb6e95c8b40c060e0a09166bd4",
+  "match_text": "(2) The quorum to constitute a sitting of the Committee shall be one third of",
+  "before_text": "(2) The quorum to constitute a sitting of the Committee shall be one third of",
+  "after_text": "(2) The quorum to constitute a sitting of the Committee shall be one third of"
+ },
+ {
+  "document_id": 1310,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   72185
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 72185, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1310-p4.png",
+  "render_sha256": "f8e2c2e3cf42b65d65b17bc75842f52446a6a9dbca2608a5355948d8c8adfcb9",
+  "match_text": "The Auditor-General shall submit his reports relating to the Accounts of the",
+  "before_text": "The Auditor-General shall submit his reports relating to the Accounts of the",
+  "after_text": "The Auditor-General shall submit his reports relating to the Accounts of the"
+ },
+ {
+  "document_id": 1310,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   72192
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '5' alone at its foot (block 72192, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1310-p5.png",
+  "render_sha256": "6000e3eed0f23876c6a00037ec49cdcf891f849697406981c0387c47f398d798",
+  "match_text": "section(1), all actions taken, proceeding initiated, orders made by the Adhoc Public",
+  "before_text": "section(1), all actions taken, proceeding initiated, orders made by the Adhoc Public",
+  "after_text": "section(1), all actions taken, proceeding initiated, orders made by the Adhoc Public"
+ }
+]

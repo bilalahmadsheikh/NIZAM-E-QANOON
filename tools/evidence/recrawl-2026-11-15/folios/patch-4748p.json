@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 4748,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   985683
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1' alone at its foot (block 985683, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc4748-p1.png",
+  "render_sha256": "a47463e667bb0fbcf5f9aa6b4af34a5950a506c4a7575c31b1191e5367949a1f",
+  "match_text": "2025 (Bill No. 09 of 2025), having been passed by the Provincial Assembly of Balochistan on 03rd",
+  "before_text": "2025 (Bill No. 09 of 2025), having been passed by the Provincial Assembly of Balochistan on 03rd",
+  "after_text": "2025 (Bill No. 09 of 2025), having been passed by the Provincial Assembly of Balochistan on 03rd"
+ },
+ {
+  "document_id": 4748,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   985695
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 985695, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc4748-p2.png",
+  "render_sha256": "d81a50dc3a7e90ab66125519ce351ef3aed7cf757720d7a6b798e080cd3876b3",
+  "match_text": "final printing, a copy thereof be sent to this Secretariat for Proof reading. Fifty copies of the",
+  "before_text": "final printing, a copy thereof be sent to this Secretariat for Proof reading. Fifty copies of the",
+  "after_text": "final printing, a copy thereof be sent to this Secretariat for Proof reading. Fifty copies of the"
+ }
+]

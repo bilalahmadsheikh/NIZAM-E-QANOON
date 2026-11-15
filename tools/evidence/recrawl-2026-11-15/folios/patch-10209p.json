@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 10209,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2758589
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '709' alone at its foot (block 2758589, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10209-p1.png",
+  "render_sha256": "56b720a868ab47384a249827e966165c23e7e1523405b711e6fd0e4e36634da5",
+  "match_text": "received the assent of the President and is hereby published for",
+  "before_text": "received the assent of the President and is hereby published for",
+  "after_text": "received the assent of the President and is hereby published for"
+ },
+ {
+  "document_id": 10209,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2758603
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '710' alone at its foot (block 2758603, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10209-p2.png",
+  "render_sha256": "57b41420c5a8495065a936d41dab7b99630176741b7d6a60bd7da60bd98f80c9",
+  "match_text": "search:- If a District Magistrate, Sub-Divisional Magistrate,",
+  "before_text": "search:- If a District Magistrate, Sub-Divisional Magistrate,",
+  "after_text": "search:- If a District Magistrate, Sub-Divisional Magistrate,"
+ },
+ {
+  "document_id": 10209,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2758619
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '711' alone at its foot (block 2758619, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10209-p3.png",
+  "render_sha256": "e3c3b389ba0aaaa7379c9ca37c28a437e9c1d13428f6358959ee63421f11e7ef",
+  "match_text": "vehicle, vessel, club or place, entered or searched under the",
+  "before_text": "vehicle, vessel, club or place, entered or searched under the",
+  "after_text": "vehicle, vessel, club or place, entered or searched under the"
+ },
+ {
+  "document_id": 10209,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2758624
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '712' alone at its foot (block 2758624, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10209-p4.png",
+  "render_sha256": "b0ca471b84060752721fa367dbb5bc29b44d8c2bc75736cd4eec548ec6cb09d1",
+  "match_text": "Legislative Assembly of Azad Jammu and Kashmir.",
+  "before_text": "Legislative Assembly of Azad Jammu and Kashmir.",
+  "after_text": "Legislative Assembly of Azad Jammu and Kashmir."
+ }
+]

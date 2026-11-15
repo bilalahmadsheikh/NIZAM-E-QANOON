@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 11051,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2828029
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '125' alone at its foot (block 2828029, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11051-p1.png",
+  "render_sha256": "a9e79934bf880e06c8259d73dcdf28e0d1f6560ece3e8058a8f18a4cbd07dde5",
+  "match_text": "for efficient conduct of an inquiry, in the manner hereinafter appearing;",
+  "before_text": "for efficient conduct of an inquiry, in the manner hereinafter appearing;",
+  "after_text": "for efficient conduct of an inquiry, in the manner hereinafter appearing;"
+ },
+ {
+  "document_id": 11051,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2828040
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '126' alone at its foot (block 2828040, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11051-p2.png",
+  "render_sha256": "322b35b1af230fe3684e27c067d03fcc6e7b8cd462330593f59ad7a3be08b773",
+  "match_text": "possession or under his control as may be specified in the or the",
+  "before_text": "possession or under his control as may be specified in the or the",
+  "after_text": "possession or under his control as may be specified in the or the"
+ },
+ {
+  "document_id": 11051,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2828053
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '127' alone at its foot (block 2828053, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11051-p3.png",
+  "render_sha256": "83d2b9ce62ef213d270deaef1b6d7ef559b7279ae1f6be548341eab685f0d59e",
+  "match_text": "the official Gazette, make rules to carry out the purposes of this",
+  "before_text": "the official Gazette, make rules to carry out the purposes of this",
+  "after_text": "the official Gazette, make rules to carry out the purposes of this"
+ }
+]

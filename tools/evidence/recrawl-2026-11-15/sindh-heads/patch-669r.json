@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 669,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   28047
+  ],
+  "defect": "the Sindh Code's running head (the law's citation printed at the head of every page) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the running-head block is set aside; no law text changes",
+  "observed": "Page 2 prints the running head 'SINDH ORDINANCE NO.XI of 1997.' alone at its head (block 28047, the page's first block); the same line heads the document's other pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc669-p2.png",
+  "render_sha256": "0d2be497409ac889478137f7f458dddc2eeddb93b568646ef760ff2bcf00c1b1",
+  "match_text": "4.       In the said Act, after section 13, the following new section",
+  "before_text": "4.       In the said Act, after section 13, the following new section",
+  "after_text": "4.       In the said Act, after section 13, the following new section"
+ }
+]

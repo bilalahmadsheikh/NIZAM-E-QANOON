@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 10086,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2750056
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '639' alone at its foot (block 2750056, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10086-p1.png",
+  "render_sha256": "02fae73d18efc0d6716f8df667269dc53506305547029f9374f8271e86a0510f",
+  "match_text": "Assembly received the assent of the President on 1st day",
+  "before_text": "Assembly received the assent of the President on 1st day",
+  "after_text": "Assembly received the assent of the President on 1st day"
+ },
+ {
+  "document_id": 10086,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2750060
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '640' alone at its foot (block 2750060, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10086-p2.png",
+  "render_sha256": "b99ccfe15b733f825128e29e22c9112f09e626fd3f88d1009bfbadda49619e14",
+  "match_text": "paid or collected, before coming into force of this Act,",
+  "before_text": "paid or collected, before coming into force of this Act,",
+  "after_text": "paid or collected, before coming into force of this Act,"
+ },
+ {
+  "document_id": 10086,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2750067
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '641' alone at its foot (block 2750067, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10086-p3.png",
+  "render_sha256": "cc036b559fb17d2ea3fe57a61e37c621b5f9fb68357e49c857d82be75c56aa2b",
+  "match_text": "or collected, proceedings initiated, notices issued, orders",
+  "before_text": "or collected, proceedings initiated, notices issued, orders",
+  "after_text": "or collected, proceedings initiated, notices issued, orders"
+ },
+ {
+  "document_id": 10086,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2750072
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '642' alone at its foot (block 2750072, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10086-p4.png",
+  "render_sha256": "997171f09c86abf47da8b8d97ff8433f9f3d23c71e6744342d8e351c69b1b118",
+  "match_text": "collection of education cess, fails to pay",
+  "before_text": "collection of education cess, fails to pay",
+  "after_text": "collection of education cess, fails to pay"
+ }
+]

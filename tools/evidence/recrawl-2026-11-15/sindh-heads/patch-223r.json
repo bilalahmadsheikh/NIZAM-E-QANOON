@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 223,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   9134
+  ],
+  "defect": "the Sindh Code's running head (the law's citation printed at the head of every page) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the running-head block is set aside; no law text changes",
+  "observed": "Page 2 prints the running head 'SIND ORDINANCE NO. XX OF 1972' alone at its head (block 9134, the page's first block); the same line heads the document's other pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc223-p2.png",
+  "render_sha256": "0eeb89419ac61dbc0347ed8e842086d1415abb01d827625205e857a5ac2772f2",
+  "match_text": "In the said Act, after section 79, the following new",
+  "before_text": "In the said Act, after section 79, the following new",
+  "after_text": "In the said Act, after section 79, the following new"
+ }
+]

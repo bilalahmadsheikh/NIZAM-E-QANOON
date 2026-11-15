@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 1175,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc1175-p4.png",
+  "render_sha256": "3afb9569a44e0ffba96e343385111ce6457b2c09d87a2a2b9a42dce855d06115",
+  "defect": "the Sindh Code's running head (the law's citation and title at the head of every page) was read into a provision's text, in the same block as the law below it",
+  "observed": "Page 4 prints the running head 'SINDH ORDINANCE NO. XIX of 1993 / THE  SEHWAN DEVELOPMENT AUTHORITY ORDINANCE, 1993' at its head; the same head opens the document's other pages",
+  "source_apparatus_blocks": [
+   58883
+  ],
+  "match_text": "office of non-official member shall hold office for the unexpired",
+  "before_text": "office of non-official member shall hold office for the unexpired",
+  "after_text": "office of non-official member shall hold office for the unexpired",
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) are set aside; no law text changes"
+ }
+]

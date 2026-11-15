@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 709,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   30974
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1' alone at its foot (block 30974, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc709-p1.png",
+  "render_sha256": "bd3da3baa6e6a805b4e899cd4da0faa196c0f2976a874163c3f9fe6524de3ffc",
+  "match_text": "2.       In this Act, unless there is anything repugnant in",
+  "before_text": "2.       In this Act, unless there is anything repugnant in",
+  "after_text": "2.       In this Act, unless there is anything repugnant in"
+ },
+ {
+  "document_id": 709,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   30990
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 30990, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc709-p2.png",
+  "render_sha256": "c0f0e27d3ab3df449dba523c3275129aa2fefbb31569e4c105285d48a9eb8ed5",
+  "match_text": "than circumcision, incision of boils and administration of",
+  "before_text": "than circumcision, incision of boils and administration of",
+  "after_text": "than circumcision, incision of boils and administration of"
+ },
+ {
+  "document_id": 709,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   30997
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 30997, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc709-p3.png",
+  "render_sha256": "263e1085991fe9ccbfd61ac4fdd679c6ab55db6864ca3bbf118e2dfd2479a4aa",
+  "match_text": "First Class shall try an offence punishable under this Act.",
+  "before_text": "First Class shall try an offence punishable under this Act.",
+  "after_text": "First Class shall try an offence punishable under this Act."
+ }
+]

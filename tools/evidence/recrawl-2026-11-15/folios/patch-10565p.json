@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 10565,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2785459
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1755' alone at its foot (block 2785459, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10565-p1.png",
+  "render_sha256": "d1e0c9bbc80148fea6f4695af119d44d1c7b29b919a749a81fb090f2648460dd",
+  "match_text": "Assembly received the assent of the President on the 22ndday of",
+  "before_text": "Assembly received the assent of the President on the 22ndday of",
+  "after_text": "Assembly received the assent of the President on the 22ndday of"
+ },
+ {
+  "document_id": 10565,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2785463
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '1756' alone at its foot (block 2785463, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10565-p2.png",
+  "render_sha256": "bebcf9b94087f35dd088d7abe11e284ff31c8381d493a0f70b9ce667a04b1a29",
+  "match_text": "hereinafter referred to as the said Act, except otherwise",
+  "before_text": "hereinafter referred to as the said Act, except otherwise",
+  "after_text": "hereinafter referred to as the said Act, except otherwise"
+ },
+ {
+  "document_id": 10565,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2785467
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '1757' alone at its foot (block 2785467, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10565-p3.png",
+  "render_sha256": "007ae58351da99ef9671bdb57b28cadf35422fa69ca03065fc3c375e4ad784d1",
+  "match_text": "collected, before coming into force of this Act, shall be",
+  "before_text": "collected, before coming into force of this Act, shall be",
+  "after_text": "collected, before coming into force of this Act, shall be"
+ }
+]

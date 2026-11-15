@@ -1,0 +1,122 @@
+[
+ {
+  "document_id": 887,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   40797
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 40797, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc887-p2.png",
+  "render_sha256": "08b507276f358717fa936cded9c90fd6c9d8584e2b7d9414abdaa8ce88b52382",
+  "match_text": "rehabilitation and welfare of differently able persons and for",
+  "before_text": "rehabilitation and welfare of differently able persons and for",
+  "after_text": "rehabilitation and welfare of differently able persons and for"
+ },
+ {
+  "document_id": 887,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   40828
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 40828, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc887-p3.png",
+  "render_sha256": "432b47793611ed40c20d613b4d7e43afde8e1023f02bd82d4cbaa408f94b236d",
+  "match_text": "THE SINDH DIFFERENTLY ABLE PERSONS (EMPLOYMENT, REHABILITATION",
+  "before_text": "THE SINDH DIFFERENTLY ABLE PERSONS (EMPLOYMENT, REHABILITATION",
+  "after_text": "THE SINDH DIFFERENTLY ABLE PERSONS (EMPLOYMENT, REHABILITATION"
+ },
+ {
+  "document_id": 887,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   40857
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 40857, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc887-p4.png",
+  "render_sha256": "44ed0ef32c189b5e8b4198c26121a28fdce40554e0addcb9a1d416ceb78c6cff",
+  "match_text": "take stock to the extent of functional disabilities of",
+  "before_text": "take stock to the extent of functional disabilities of",
+  "after_text": "take stock to the extent of functional disabilities of"
+ },
+ {
+  "document_id": 887,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   40875
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '5' alone at its foot (block 40875, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc887-p5.png",
+  "render_sha256": "98c608aeeb8a80b9d0a2b70c1c88cba50083731a68da8018de856399e88d46a1",
+  "match_text": "5. (1) The meetings of the Council shall be held at such time",
+  "before_text": "5. (1) The meetings of the Council shall be held at such time",
+  "after_text": "5. (1) The meetings of the Council shall be held at such time"
+ },
+ {
+  "document_id": 887,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   40892
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 6 prints its page number '6' alone at its foot (block 40892, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc887-p6.png",
+  "render_sha256": "122b6ebfb91431c3444e6717028daf7620c75230a05f569d3fc2afb4b8dfbb8e",
+  "match_text": "able persons as required by section 8, shall pay into the funds",
+  "before_text": "able persons as required by section 8, shall pay into the funds",
+  "after_text": "able persons as required by section 8, shall pay into the funds"
+ },
+ {
+  "document_id": 887,
+  "page_no": 7,
+  "source_apparatus_blocks": [
+   40906
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 7 prints its page number '7' alone at its foot (block 40906, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc887-p7.png",
+  "render_sha256": "450daab1e52531f1cfee51de266db0bccc3b970311347f153902caee42aa3e7f",
+  "match_text": "shall establish training centers in such trades and vocations in",
+  "before_text": "shall establish training centers in such trades and vocations in",
+  "after_text": "shall establish training centers in such trades and vocations in"
+ },
+ {
+  "document_id": 887,
+  "page_no": 8,
+  "source_apparatus_blocks": [
+   40931
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 8 prints its page number '8' alone at its foot (block 40931, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc887-p8.png",
+  "render_sha256": "74e361b5f3f26e795df4164f92a4b990e3065bf3a3db2bf1f218131a67c92566",
+  "match_text": "may, after giving the parties an opportunity of being heard or",
+  "before_text": "may, after giving the parties an opportunity of being heard or",
+  "after_text": "may, after giving the parties an opportunity of being heard or"
+ },
+ {
+  "document_id": 887,
+  "page_no": 9,
+  "source_apparatus_blocks": [
+   40939
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 9 prints its page number '9' alone at its foot (block 40939, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc887-p9.png",
+  "render_sha256": "1426e2beb3a394d77646d3d767867ad3ddaf1e2ec95ad14da0227705eba19f29",
+  "match_text": "19. (1) No court inferior to that of a Magistrate of the first class",
+  "before_text": "19. (1) No court inferior to that of a Magistrate of the first class",
+  "after_text": "19. (1) No court inferior to that of a Magistrate of the first class"
+ }
+]

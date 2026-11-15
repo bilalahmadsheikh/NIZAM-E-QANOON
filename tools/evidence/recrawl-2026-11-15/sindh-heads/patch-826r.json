@@ -1,0 +1,18 @@
+[
+ {
+  "document_id": 826,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc826-p3.png",
+  "render_sha256": "956dacf1e4f51bef81bec72189b3ae986eb80947e3a5c56ad76e4f6efbd042dc",
+  "defect": "the Sindh Code's running head (the law's citation and title at the head of every page) was read into a provision's text, in the same block as the law below it",
+  "observed": "Page 3 prints the running head 'SINDH ACT NO. VI OF 2006 / THE SINDH PROVINCE PENSION FUND (AMENDMENT)' at its head; the same head opens the document's other pages",
+  "source_apparatus_blocks": [
+   37245,
+   37246
+  ],
+  "match_text": "5.    In the said Ordinance, in section 8, for sub-section (2), the",
+  "before_text": "5.    In the said Ordinance, in section 8, for sub-section (2), the",
+  "after_text": "5.    In the said Ordinance, in section 8, for sub-section (2), the",
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) are set aside; no law text changes"
+ }
+]

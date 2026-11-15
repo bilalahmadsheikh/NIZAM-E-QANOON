@@ -1,0 +1,77 @@
+[
+ {
+  "document_id": 2796,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   250409
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 250409, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2796-p2.png",
+  "render_sha256": "7ca63644396438b7dfc12563627994ee54b29334126acd639edfb769bc629240",
+  "match_text": "International and domestic tourists, it is necessary to transfer and bring all Government",
+  "before_text": "International and domestic tourists, it is necessary to transfer and bring all Government",
+  "after_text": "International and domestic tourists, it is necessary to transfer and bring all Government"
+ },
+ {
+  "document_id": 2796,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   250421
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 250421, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2796-p3.png",
+  "render_sha256": "42c10a52fba56994a3a95a7a3580312267a6f59c37f22061f56b0dcc7fb7d8cb",
+  "match_text": "in force, or any title deed, the ownership of Tourism Properties shall vest in the Sports,",
+  "before_text": "in force, or any title deed, the ownership of Tourism Properties shall vest in the Sports,",
+  "after_text": "in force, or any title deed, the ownership of Tourism Properties shall vest in the Sports,"
+ },
+ {
+  "document_id": 2796,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   250434
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 250434, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2796-p4.png",
+  "render_sha256": "51780e1cb931b0b79bb89e2a2ef1c72a23fd797e13f0804f498e4d782ef833a9",
+  "match_text": "Tourism Properties.---(1) Soon after the commencement of this Act, all the Government",
+  "before_text": "Tourism Properties.---(1) Soon after the commencement of this Act, all the Government",
+  "after_text": "Tourism Properties.---(1) Soon after the commencement of this Act, all the Government"
+ },
+ {
+  "document_id": 2796,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   250446
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '5' alone at its foot (block 250446, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2796-p5.png",
+  "render_sha256": "b574a3b23f3e21481372d52d7189802fb592e2448ce1aafa8e0ca11716ba9825",
+  "match_text": "Properties.--- Subject to sub-section (1) of section (3) of this Act, after taking over by",
+  "before_text": "Properties.--- Subject to sub-section (1) of section (3) of this Act, after taking over by",
+  "after_text": "Properties.--- Subject to sub-section (1) of section (3) of this Act, after taking over by"
+ },
+ {
+  "document_id": 2796,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   250455
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 6 prints its page number '6' alone at its foot (block 250455, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc2796-p6.png",
+  "render_sha256": "bd0348e2197adcb8035ad0447cb4b4c776228de4d218324a205ad64c194332c0",
+  "match_text": "(1) of section 3 of this Act, all legal instruments, notifications and executive orders etc.",
+  "before_text": "(1) of section 3 of this Act, all legal instruments, notifications and executive orders etc.",
+  "after_text": "(1) of section 3 of this Act, all legal instruments, notifications and executive orders etc."
+ }
+]

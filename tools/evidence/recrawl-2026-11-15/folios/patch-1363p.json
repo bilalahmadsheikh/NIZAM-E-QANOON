@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 1363,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   76899
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1' alone at its foot (block 76899, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1363-p1.png",
+  "render_sha256": "cf9a3e792e2a65802a327f308aee9d5aeb50b9603a3459902e84e630f8483ebf",
+  "match_text": "4) Maximum cost of furnishing of a new residence Furnishing of the requisitioned residence",
+  "before_text": "4) Maximum cost of furnishing of a new residence Furnishing of the requisitioned residence",
+  "after_text": "4) Maximum cost of furnishing of a new residence Furnishing of the requisitioned residence"
+ },
+ {
+  "document_id": 1363,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   76921
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 76921, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1363-p2.png",
+  "render_sha256": "ed5c998410a992ea21fe553d04fdf33b713014778fe31fc5e9db2101c1c8ad0b",
+  "match_text": "residence of a Minister shall not exceed one million rupees excluding the taxes and transportation",
+  "before_text": "residence of a Minister shall not exceed one million rupees excluding the taxes and transportation",
+  "after_text": "residence of a Minister shall not exceed one million rupees excluding the taxes and transportation"
+ },
+ {
+  "document_id": 1363,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   76931
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 76931, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1363-p3.png",
+  "render_sha256": "9e4301f45a7bdfd1af738c8a89bb0e809dc69de48d91297840565230cb833fad",
+  "match_text": "inventory of all the furnishing items, furniture, fitting and fixtures at the residence of a Minister at",
+  "before_text": "inventory of all the furnishing items, furniture, fitting and fixtures at the residence of a Minister at",
+  "after_text": "inventory of all the furnishing items, furniture, fitting and fixtures at the residence of a Minister at"
+ }
+]

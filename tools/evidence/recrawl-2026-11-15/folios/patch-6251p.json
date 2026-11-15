@@ -1,0 +1,77 @@
+[
+ {
+  "document_id": 6251,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   1497764
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 1497764, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc6251-p2.png",
+  "render_sha256": "392667eb3f6de660a2b8fd9174b0ae15c36721177947d00829f1ab4af7fd0584",
+  "match_text": "19 of the Customs Act, 1969 (IV of 1969), and sub-section (2) of section 13 of the",
+  "before_text": "19 of the Customs Act, 1969 (IV of 1969), and sub-section (2) of section 13 of the",
+  "after_text": "19 of the Customs Act, 1969 (IV of 1969), and sub-section (2) of section 13 of the"
+ },
+ {
+  "document_id": 6251,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   1497773
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 1497773, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc6251-p3.png",
+  "render_sha256": "d8a8f3a7fbcfddfdf6ba984dbecfe70e058863d2684f3969561b4cd8f49d339b",
+  "match_text": "after ascertaining correctness of description, classification and",
+  "before_text": "after ascertaining correctness of description, classification and",
+  "after_text": "after ascertaining correctness of description, classification and"
+ },
+ {
+  "document_id": 6251,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   1497785
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 1497785, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc6251-p4.png",
+  "render_sha256": "5d016797e30349d38f0afdd31b787a0a8f8dd7d4f2a70c32595d0138906e8091",
+  "match_text": "An application under condition (ii) shall be submitted on the following",
+  "before_text": "An application under condition (ii) shall be submitted on the following",
+  "after_text": "An application under condition (ii) shall be submitted on the following"
+ },
+ {
+  "document_id": 6251,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   1497799
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '5' alone at its foot (block 1497799, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc6251-p5.png",
+  "render_sha256": "c1d4348e62b2b931ff0bcbabc5537bf7f988635640c2a893e05fbeb136454513",
+  "match_text": "Plush fabrics, nylon, polyester fiber, eyes and nose for use in stuffed",
+  "before_text": "Plush fabrics, nylon, polyester fiber, eyes and nose for use in stuffed",
+  "after_text": "Plush fabrics, nylon, polyester fiber, eyes and nose for use in stuffed"
+ },
+ {
+  "document_id": 6251,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   1497812
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 6 prints its page number '6' alone at its foot (block 1497812, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc6251-p6.png",
+  "render_sha256": "6fab3fada467e33bad7dac9772ab5b1b0cb75cad2a9e92dbab59848a5286c879",
+  "match_text": "sifting, clarification, filtering, marking, sealing, labeling, re-packing,",
+  "before_text": "sifting, clarification, filtering, marking, sealing, labeling, re-packing,",
+  "after_text": "sifting, clarification, filtering, marking, sealing, labeling, re-packing,"
+ }
+]

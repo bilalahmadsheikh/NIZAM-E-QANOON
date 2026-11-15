@@ -1,0 +1,108 @@
+[
+ {
+  "document_id": 10977,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2818369
+  ],
+  "defect": "page notes (amendment notes and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the note blocks are set aside; no law text changes",
+  "observed": "Page 2 prints, under its note rule, 1 note block(s), the first 'Kashmir working as an Editor or Correspondent of a Daily Newspaper, Weekly Magazine or any other Periodical on the media list of Azad Jammu '",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10977-p2.png",
+  "render_sha256": "1085eae5e4c5513f5b7595e2b6e60ccf79d869dacc0a3288379bedb9c0fdf22f",
+  "match_text": "Journalist by the Public Relations/Information Department and who",
+  "before_text": "Journalist by the Public Relations/Information Department and who",
+  "after_text": "Journalist by the Public Relations/Information Department and who"
+ },
+ {
+  "document_id": 10977,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2818378,
+   2818379,
+   2818380,
+   2818381,
+   2818382,
+   2818383,
+   2818384
+  ],
+  "defect": "page notes (amendment notes and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the note blocks are set aside; no law text changes",
+  "observed": "Page 3 prints, under its note rule, 7 note block(s), the first '1 Incl. (d) of subsection (1) of Sec. 3 for the word “Director General” the words “Head of Attached Department of Public Relation Department'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10977-p3.png",
+  "render_sha256": "560994bfbaebca295ee586996218a81feab0383c1583da150f9cea3b6afa0b15",
+  "match_text": "Sec. 4 is amended / subs. two times. The original extract of the Sec. 4 is",
+  "before_text": "Sec. 4 is amended / subs. two times. The original extract of the Sec. 4 is",
+  "after_text": "Sec. 4 is amended / subs. two times. The original extract of the Sec. 4 is"
+ },
+ {
+  "document_id": 10977,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2818399,
+   2818400
+  ],
+  "defect": "page notes (amendment notes and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the note blocks are set aside; no law text changes",
+  "observed": "Page 4 prints, under its note rule, 2 note block(s), the first 'A. Cl (e) of Sec. 4 subs. by the AJ&K Press Foundation (Amdt.) Act, 2004 (Act II of 2004) dt. 23.09.2004as under:- “(e) He/She should at lea'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10977-p4.png",
+  "render_sha256": "3bad8c8d69e2ac381caa8e6ddf0cdd68127cb8f0b996e75f922c8bb9bb212710",
+  "match_text": "“(e)  He/She should at least possess a certificate of matriculation or should",
+  "before_text": "“(e)  He/She should at least possess a certificate of matriculation or should",
+  "after_text": "“(e)  He/She should at least possess a certificate of matriculation or should"
+ },
+ {
+  "document_id": 10977,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   2818442
+  ],
+  "defect": "page notes (amendment notes and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the note blocks are set aside; no law text changes",
+  "observed": "Page 6 prints, under its note rule, 1 note block(s), the first 'the following manners: - a) one member from each district; and b) two members shall be elected by such members of the Foundation who are wor'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10977-p6.png",
+  "render_sha256": "f2306666fb1f59a1db7756e30302d354020ef05eab55a93f8d6851d4fcfa8e4f",
+  "match_text": "Chief or representative of Daily, Weekly Newspapers, which are",
+  "before_text": "Chief or representative of Daily, Weekly Newspapers, which are",
+  "after_text": "Chief or representative of Daily, Weekly Newspapers, which are"
+ },
+ {
+  "document_id": 10977,
+  "page_no": 8,
+  "source_apparatus_blocks": [
+   2818472
+  ],
+  "defect": "page notes (amendment notes and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the note blocks are set aside; no law text changes",
+  "observed": "Page 8 prints, under its note rule, 1 note block(s), the first 'Provided that the members who have already performed Hajj shall not be eligible for the assistance.”'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10977-p8.png",
+  "render_sha256": "5a7581cb2a5d4b432be6efc563f7374bd8de805589e6f4a21d0da8d9e2c513b9",
+  "match_text": "Provided that the members who have already performed Hajj shall",
+  "before_text": "Provided that the members who have already performed Hajj shall",
+  "after_text": "Provided that the members who have already performed Hajj shall"
+ },
+ {
+  "document_id": 10977,
+  "page_no": 8,
+  "match_text": "For the words “more than once” the words “in a year” bythe AJ&K Press",
+  "before_text": "1  \nFor the words “more than once” the words “in a year” bythe AJ&K Press \nFoundation (Amdt.) Act, 2018 (Act VII of 2018) dt. 11.10.2018. \n2  \nOmitted by Ibid. The original extract of subsection (2) of Sec.11 is \nreproduced as under:- \n“(2) \nEvery year one member, selected through draw of ballots, \nshall be financed, out of Board Fund, to perform Hajj:",
+  "after_text": " ",
+  "defect": "the block fuses the law's last line with the page note printed under it; the note was read as law",
+  "fixes": "parser-input correction: the note is cut from the block, from its marker to the block's end; the law before it is kept as printed",
+  "observed": "Page 8 prints the law ending 'rs which have not been enumerated in clause (a ), (b) and (c) of subsection (1).', then the note rule and the note '1 For the words “more than once” the words “in a year” bythe AJ&K Press Foundation (Amdt.) Act, 2018 (Act VII of 2018) d'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10977-p8.png",
+  "render_sha256": "5a7581cb2a5d4b432be6efc563f7374bd8de805589e6f4a21d0da8d9e2c513b9"
+ },
+ {
+  "document_id": 10977,
+  "page_no": 10,
+  "match_text": "For the words “every months” the words “every year” added by the AJ&K",
+  "before_text": "1  \nFor the words “every months” the words “every year” added by the AJ&K \nPress Foundation (Amdt.) Act, 2018 (Act VII of 2018) dt. 11.10.2018. \n2  \nAddedby the AJ&K Press Foundation (Amdt.) Act, 2018 (Act VII of 2018) \ndt. 11.10.2018.",
+  "after_text": " ",
+  "defect": "the block fuses the law's last line with the page note printed under it; the note was read as law",
+  "fixes": "parser-input correction: the note is cut from the block, from its marker to the block's end; the law before it is kept as printed",
+  "observed": "Page 10 prints the law ending 'h other functions as may be assigned to it by the Board under the Regulations.”]', then the note rule and the note '1 For the words “every months” the words “every year” added by the AJ&K Press Foundation (Amdt.) Act, 2018 (Act VII of 2'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10977-p10.png",
+  "render_sha256": "7c904c76b301078d23db18fe239ca126db4070a1e2e7ca3157d378f5fc2795fd"
+ }
+]

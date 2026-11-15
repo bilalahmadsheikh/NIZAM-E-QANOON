@@ -1,0 +1,77 @@
+[
+ {
+  "document_id": 10393,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2770576
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1399' alone at its foot (block 2770576, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10393-p1.png",
+  "render_sha256": "3f2220ce1b1f611d86894925544678bc5855cd8881c79cc638512328e43fd63a",
+  "match_text": "Essential Services to public at large and to prohibit illegal and",
+  "before_text": "Essential Services to public at large and to prohibit illegal and",
+  "after_text": "Essential Services to public at large and to prohibit illegal and"
+ },
+ {
+  "document_id": 10393,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2770590
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '1400' alone at its foot (block 2770590, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10393-p2.png",
+  "render_sha256": "5e29b5974f76dfc480bba9cf4edb56f76cea5464edbe7fb8b83ca2e420f6439f",
+  "match_text": "performing the  basic humanitarian and public services,",
+  "before_text": "performing the  basic humanitarian and public services,",
+  "after_text": "performing the  basic humanitarian and public services,"
+ },
+ {
+  "document_id": 10393,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2770603
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '1401' alone at its foot (block 2770603, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10393-p3.png",
+  "render_sha256": "64317d58646084c2a02346578a13a247f2abd7e638cdec4ea8b797136c2f3a31",
+  "match_text": "any law, he shall not be entitled to any kind of salary or",
+  "before_text": "any law, he shall not be entitled to any kind of salary or",
+  "after_text": "any law, he shall not be entitled to any kind of salary or"
+ },
+ {
+  "document_id": 10393,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2770612
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '1402' alone at its foot (block 2770612, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10393-p4.png",
+  "render_sha256": "eb7d6b7950cd96b3f547c4da292090f8ad7d3c1c29947026be60e96a1e18c73f",
+  "match_text": "and shall also be liable to fine which may extend to Rs.",
+  "before_text": "and shall also be liable to fine which may extend to Rs.",
+  "after_text": "and shall also be liable to fine which may extend to Rs."
+ },
+ {
+  "document_id": 10393,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2770617
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '1403' alone at its foot (block 2770617, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10393-p5.png",
+  "render_sha256": "fb1c5495186e060a231c8ea6fd3ea7f98cc04ebec1749152a71a26ac5583836d",
+  "match_text": "proceeding initiated, jurisdiction or power exercised",
+  "before_text": "proceeding initiated, jurisdiction or power exercised",
+  "after_text": "proceeding initiated, jurisdiction or power exercised"
+ }
+]

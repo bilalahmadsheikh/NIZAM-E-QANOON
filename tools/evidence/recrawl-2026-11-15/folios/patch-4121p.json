@@ -1,0 +1,92 @@
+[
+ {
+  "document_id": 4121,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   589547
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 589547, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc4121-p2.png",
+  "render_sha256": "2b36332ff75f3f12f86984637ff3f9434398ad12f7160552c00073c5981daecc",
+  "match_text": "expert opinion by an independent agency is essential for facilitating criminal investigation",
+  "before_text": "expert opinion by an independent agency is essential for facilitating criminal investigation",
+  "after_text": "expert opinion by an independent agency is essential for facilitating criminal investigation"
+ },
+ {
+  "document_id": 4121,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   589566
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 589566, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc4121-p3.png",
+  "render_sha256": "0b996d82d8caaf61b4d75acdd5d0e799c19740ca0a15411db5a62f2b7554a0c9",
+  "match_text": "official Gazette, establish an Agency to be known as the Khyber Pakhtunkhwa Forensic",
+  "before_text": "official Gazette, establish an Agency to be known as the Khyber Pakhtunkhwa Forensic",
+  "after_text": "official Gazette, establish an Agency to be known as the Khyber Pakhtunkhwa Forensic"
+ },
+ {
+  "document_id": 4121,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   589589
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 589589, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc4121-p4.png",
+  "render_sha256": "490b0858fc2b9a55e0464d8cd2d3188395589405e7e5b79e812eff8dc5461f79",
+  "match_text": "General on the recommendation of a Search Committee, comprising the following members:",
+  "before_text": "General on the recommendation of a Search Committee, comprising the following members:",
+  "after_text": "General on the recommendation of a Search Committee, comprising the following members:"
+ },
+ {
+  "document_id": 4121,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   589606
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '5' alone at its foot (block 589606, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc4121-p5.png",
+  "render_sha256": "b26fc15b15c63f6f4f671bca1d6ad476dd8b223cc801810d5180e731196e7364",
+  "match_text": "Court, tribunal or authority may refer it to the Agency for clarification on a specific question.",
+  "before_text": "Court, tribunal or authority may refer it to the Agency for clarification on a specific question.",
+  "after_text": "Court, tribunal or authority may refer it to the Agency for clarification on a specific question."
+ },
+ {
+  "document_id": 4121,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   589621
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 6 prints its page number '6' alone at its foot (block 589621, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc4121-p6.png",
+  "render_sha256": "ba047b02535ceb144918a1192ff1692dd75dedeb6e06ed46a404c3d92908f864",
+  "match_text": "consideration of the opinion, it may, for reasons to be recorded in writing, direct the Agency to",
+  "before_text": "consideration of the opinion, it may, for reasons to be recorded in writing, direct the Agency to",
+  "after_text": "consideration of the opinion, it may, for reasons to be recorded in writing, direct the Agency to"
+ },
+ {
+  "document_id": 4121,
+  "page_no": 7,
+  "source_apparatus_blocks": [
+   589628
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 7 prints its page number '7' alone at its foot (block 589628, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc4121-p7.png",
+  "render_sha256": "dfd20cadfff27e2ae0f714d1fd75e8713176f714bf8ee4a8c2d5f3b4ebb831e1",
+  "match_text": "Power to make rules.---Government may make rules for carrying out the purposes of",
+  "before_text": "Power to make rules.---Government may make rules for carrying out the purposes of",
+  "after_text": "Power to make rules.---Government may make rules for carrying out the purposes of"
+ }
+]

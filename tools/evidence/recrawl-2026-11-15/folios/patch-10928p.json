@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 10928,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2813841
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '743' alone at its foot (block 2813841, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10928-p1.png",
+  "render_sha256": "a40b132adbcafee56606b656a6d7df8724ec899c861621b776a059d479930f7e",
+  "match_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "before_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "after_text": "Constitution Act, 1974, the President is pleased to make and promulgate"
+ },
+ {
+  "document_id": 10928,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2813850
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '744' alone at its foot (block 2813850, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10928-p2.png",
+  "render_sha256": "f51e317ba6bc9916799f2b1e3061aab4605f2e3abed37e51813d6da77cf5250b",
+  "match_text": "Insertion of Section 10-A, Ordinance X of 1970.- In the Azad",
+  "before_text": "Insertion of Section 10-A, Ordinance X of 1970.- In the Azad",
+  "after_text": "Insertion of Section 10-A, Ordinance X of 1970.- In the Azad"
+ }
+]

@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 1618,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   100729
+  ],
+  "defect": "the Sindh Code's running head (the law's citation printed at the head of every page) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the running-head block is set aside; no law text changes",
+  "observed": "Page 2 prints the running head 'SIND ACT NO. I OF 1988.' alone at its head (block 100729, the page's first block); the same line heads the document's other pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc1618-p2.png",
+  "render_sha256": "861a19cf05e1eddb4a73274f5b8277a607d5c6850878ea26a77319962a491d1f",
+  "match_text": "and Privileges) (Amendment) Ordinance, 1987 is hereby repealed.",
+  "before_text": "and Privileges) (Amendment) Ordinance, 1987 is hereby repealed.",
+  "after_text": "and Privileges) (Amendment) Ordinance, 1987 is hereby repealed."
+ }
+]

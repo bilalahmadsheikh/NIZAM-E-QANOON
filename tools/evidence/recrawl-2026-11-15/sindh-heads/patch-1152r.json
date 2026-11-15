@@ -1,0 +1,18 @@
+[
+ {
+  "document_id": 1152,
+  "page_no": 2,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc1152-p2.png",
+  "render_sha256": "408404480ca52db73f7b52f7bfbc956447ad814b3fb73a96b1e1bb46b8b79e34",
+  "defect": "the Sindh Code's running head (the law's citation and title at the head of every page) was read into a provision's text, in the same block as the law below it",
+  "observed": "Page 2 prints the running head 'SINDH ORDINANCE NO. XII OF 2002 / THE SINDH LOCAL GOVERNMENT (SECOND AMENDMENT)' at its head; the same head opens the document's other pages",
+  "source_apparatus_blocks": [
+   56781,
+   56782
+  ],
+  "match_text": "5.   In  the  said  Ordinance,  in  section  185,  after  sub-section  (2),  the",
+  "before_text": "5.   In  the  said  Ordinance,  in  section  185,  after  sub-section  (2),  the",
+  "after_text": "5.   In  the  said  Ordinance,  in  section  185,  after  sub-section  (2),  the",
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) are set aside; no law text changes"
+ }
+]

@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 10851,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2807231
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '294' alone at its foot (block 2807231, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10851-p1.png",
+  "render_sha256": "aa526ce864646bea358da741afa9340aa08c16089f6b1a4a014d13a3fdd5e9d7",
+  "match_text": "to provide for law relating to the constitution of the Shariat Benches of",
+  "before_text": "to provide for law relating to the constitution of the Shariat Benches of",
+  "after_text": "to provide for law relating to the constitution of the Shariat Benches of"
+ },
+ {
+  "document_id": 10851,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2807235
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '295' alone at its foot (block 2807235, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10851-p2.png",
+  "render_sha256": "1656c08ce2030d409aaf4c6de234e62187b8ee122221f812d3d703f771b41b12",
+  "match_text": "law is repugnant to the Injunctions of Islam, it shall set out in its",
+  "before_text": "law is repugnant to the Injunctions of Islam, it shall set out in its",
+  "after_text": "law is repugnant to the Injunctions of Islam, it shall set out in its"
+ },
+ {
+  "document_id": 10851,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2807238
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '296' alone at its foot (block 2807238, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10851-p3.png",
+  "render_sha256": "4fe9407205d94cd7ac4565457a82c0a85ddda351a19112e3327b722dd770beba",
+  "match_text": "before the High Court shall not plead for the party but shall state,",
+  "before_text": "before the High Court shall not plead for the party but shall state,",
+  "after_text": "before the High Court shall not plead for the party but shall state,"
+ },
+ {
+  "document_id": 10851,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2807245
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '297' alone at its foot (block 2807245, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10851-p4.png",
+  "render_sha256": "f32f2201a613d8ed498e68d578c0e1a1b815967e4f9e2f9b062be116fc712404",
+  "match_text": "issue therein shall be decided, in accordance with the law for the",
+  "before_text": "issue therein shall be decided, in accordance with the law for the",
+  "after_text": "issue therein shall be decided, in accordance with the law for the"
+ }
+]

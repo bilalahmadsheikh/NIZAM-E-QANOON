@@ -1,0 +1,92 @@
+[
+ {
+  "document_id": 4741,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   985192
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1' alone at its foot (block 985192, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc4741-p1.png",
+  "render_sha256": "586f5f98966308a1340df45d42d0f0b4e2e5b42540505a83bff0eb741a46abe1",
+  "match_text": "Governor Balochistan, on 06th August, 2024 is hereby published as an Act of the",
+  "before_text": "Governor Balochistan, on 06th August, 2024 is hereby published as an Act of the",
+  "after_text": "Governor Balochistan, on 06th August, 2024 is hereby published as an Act of the"
+ },
+ {
+  "document_id": 4741,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   985226
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 985226, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc4741-p2.png",
+  "render_sha256": "938a0e3597bb8c37291ed1ed2968a806cb90fbff536df0bebdd00c9ec0c15415",
+  "match_text": "a.     The Authority shall carry out all works and functions, as envisioned",
+  "before_text": "a.     The Authority shall carry out all works and functions, as envisioned",
+  "after_text": "a.     The Authority shall carry out all works and functions, as envisioned"
+ },
+ {
+  "document_id": 4741,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   985256
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 985256, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc4741-p3.png",
+  "render_sha256": "c5d46b8dae8acff33b7fb7bf9987789cc574566b4d8f6cb96a4b2c150d5e5ff1",
+  "match_text": "Amendment of Section 5, Act XI of 2015.- In the said Act, in Section 5:",
+  "before_text": "Amendment of Section 5, Act XI of 2015.- In the said Act, in Section 5:",
+  "after_text": "Amendment of Section 5, Act XI of 2015.- In the said Act, in Section 5:"
+ },
+ {
+  "document_id": 4741,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   985286
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 985286, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc4741-p4.png",
+  "render_sha256": "1e35c54ccdc72fe2066667ca211a50b2f384c914dd2b6eef5b082c53e39d8b20",
+  "match_text": "may delegate to the Authority or any person all or any of their functions",
+  "before_text": "may delegate to the Authority or any person all or any of their functions",
+  "after_text": "may delegate to the Authority or any person all or any of their functions"
+ },
+ {
+  "document_id": 4741,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   985315
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '5' alone at its foot (block 985315, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc4741-p5.png",
+  "render_sha256": "18b436dceba41e78ff032ac5de7d1c1bbcbe6cb4b5e8b08120102c3479f3014c",
+  "match_text": "in addition to and not in derogation of any other law for the time being in",
+  "before_text": "in addition to and not in derogation of any other law for the time being in",
+  "after_text": "in addition to and not in derogation of any other law for the time being in"
+ },
+ {
+  "document_id": 4741,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   985325
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 6 prints its page number '6' alone at its foot (block 985325, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc4741-p6.png",
+  "render_sha256": "99c4182dfd857bc104e252059f04bf15619ee33b68fffa258dbaa3eb89c975f7",
+  "match_text": "4. The Secretary, Government of Balochistan, Law & Parliamentary Affairs Department, Quetta.",
+  "before_text": "4. The Secretary, Government of Balochistan, Law & Parliamentary Affairs Department, Quetta.",
+  "after_text": "4. The Secretary, Government of Balochistan, Law & Parliamentary Affairs Department, Quetta."
+ }
+]

@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 1483,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc1483-p3.png",
+  "render_sha256": "4451a6afd0ee6588c698d17f092c40fccc907b89a67d5908991cd486f76c1ff3",
+  "defect": "the Sindh Code's running head (the law's citation and title at the head of every page) was read into a provision's text, in the same block as the law below it",
+  "observed": "Page 3 prints the running head 'SINDH ORDINANCE NO.XI OF 1993 / THE SINDH AGRICULTURAL INCOME TAX ORDINANCE, 1993' at its head; the same head opens the document's other pages",
+  "source_apparatus_blocks": [
+   87877
+  ],
+  "match_text": "(1)    The tax shall be assessed by the Collector of the district within the",
+  "before_text": "(1)    The tax shall be assessed by the Collector of the district within the",
+  "after_text": "(1)    The tax shall be assessed by the Collector of the district within the",
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) are set aside; no law text changes"
+ },
+ {
+  "document_id": 1483,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc1483-p4.png",
+  "render_sha256": "9d4893b79aeb6b60f22224469e8f06939ab13d0fb8dbca56c37664da6df7c98d",
+  "defect": "the Sindh Code's running head (the law's citation and title at the head of every page) was read into a provision's text, in the same block as the law below it",
+  "observed": "Page 4 prints the running head 'SINDH ORDINANCE NO.XI OF 1993 / THE SINDH AGRICULTURAL INCOME TAX ORDINANCE, 1993' at its head; the same head opens the document's other pages",
+  "source_apparatus_blocks": [
+   87901
+  ],
+  "match_text": "under this Ordinance shall be deemed to be an order of revenue officer",
+  "before_text": "under this Ordinance shall be deemed to be an order of revenue officer",
+  "after_text": "under this Ordinance shall be deemed to be an order of revenue officer",
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) are set aside; no law text changes"
+ }
+]

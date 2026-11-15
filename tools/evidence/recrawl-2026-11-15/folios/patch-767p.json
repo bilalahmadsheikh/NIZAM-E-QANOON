@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 767,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   34451
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1' alone at its foot (block 34451, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc767-p1.png",
+  "render_sha256": "4615fbb974acfd33d0c648c720e60cb881e3addd880bc054f3257dafd58934ca",
+  "match_text": "4.            In the said Act, in section 2, after clause (b), the",
+  "before_text": "4.            In the said Act, in section 2, after clause (b), the",
+  "after_text": "4.            In the said Act, in section 2, after clause (b), the"
+ },
+ {
+  "document_id": 767,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   34466
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 34466, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc767-p2.png",
+  "render_sha256": "6b43c6e6885a9f94cae947a991c0120603b0f68082f4e572e9bb494b2268e9ca",
+  "match_text": "6.       In  section  7,  after  clause  (iii),  the  following  new",
+  "before_text": "6.       In  section  7,  after  clause  (iii),  the  following  new",
+  "after_text": "6.       In  section  7,  after  clause  (iii),  the  following  new"
+ }
+]

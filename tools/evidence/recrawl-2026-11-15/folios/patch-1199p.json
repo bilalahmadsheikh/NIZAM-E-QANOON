@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 1199,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   60893
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 60893, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1199-p2.png",
+  "render_sha256": "501ddde09b60e5ed2f132da7a0b847ebfe7dfb2fd1fc0ac4d64474adce5a8c5c",
+  "match_text": "Authority Act, 1994, the Government of Sindh are pleased to make the following rules:",
+  "before_text": "Authority Act, 1994, the Government of Sindh are pleased to make the following rules:",
+  "after_text": "Authority Act, 1994, the Government of Sindh are pleased to make the following rules:"
+ },
+ {
+  "document_id": 1199,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   60909
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 60909, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1199-p3.png",
+  "render_sha256": "f3ffae6f53ca2fb50621ace426ca862b875b85fe91bee2933d7334eb28692e93",
+  "match_text": "writing by the authorized medical officer in this behalf, be re-",
+  "before_text": "writing by the authorized medical officer in this behalf, be re-",
+  "after_text": "writing by the authorized medical officer in this behalf, be re-"
+ },
+ {
+  "document_id": 1199,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   60921
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 60921, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1199-p4.png",
+  "render_sha256": "74c96191482d913afc35bb76224bf5d22d192a4b97cb5a2546c2ce1c81873d11",
+  "match_text": "sub-rule (1) shall, on production of certificate in writing by the",
+  "before_text": "sub-rule (1) shall, on production of certificate in writing by the",
+  "after_text": "sub-rule (1) shall, on production of certificate in writing by the"
+ },
+ {
+  "document_id": 1199,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   60934
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '5' alone at its foot (block 60934, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1199-p5.png",
+  "render_sha256": "ad88e919283f0dbaf1faae81aef7326c82631eaaecc553b9eed3ab7e1efe4175",
+  "match_text": "3. The Superintendent, Sindh Government Printing Press, Karachi with a request to",
+  "before_text": "3. The Superintendent, Sindh Government Printing Press, Karachi with a request to",
+  "after_text": "3. The Superintendent, Sindh Government Printing Press, Karachi with a request to"
+ }
+]

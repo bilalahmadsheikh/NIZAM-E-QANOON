@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 544,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   21112
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 21112, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc544-p2.png",
+  "render_sha256": "e448fa6f9236fb067d3f6f298849351d218a19178b6a42b333add0751532b209",
+  "match_text": "and the Governor is satisfied that the circumstances exist which",
+  "before_text": "and the Governor is satisfied that the circumstances exist which",
+  "after_text": "and the Governor is satisfied that the circumstances exist which"
+ },
+ {
+  "document_id": 544,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   21121
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 21121, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc544-p3.png",
+  "render_sha256": "77f4b7aa6612b23255bcd26ba767626874937d5babb9d67ad08bf236984aa61d",
+  "match_text": "inclusive), shall continue to remain in force, until altered,",
+  "before_text": "inclusive), shall continue to remain in force, until altered,",
+  "after_text": "inclusive), shall continue to remain in force, until altered,"
+ }
+]

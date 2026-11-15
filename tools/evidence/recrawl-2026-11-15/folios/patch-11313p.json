@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 11313,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2846124
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '91' alone at its foot (block 2846124, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11313-p1.png",
+  "render_sha256": "f5965bbd0513a898dddb84f7f3423830f1c9bd7818c0435d829986bafc233c11",
+  "match_text": "Act, 1974, the President is pleased to make and promulgate the following",
+  "before_text": "Act, 1974, the President is pleased to make and promulgate the following",
+  "after_text": "Act, 1974, the President is pleased to make and promulgate the following"
+ },
+ {
+  "document_id": 11313,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2846135
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '92' alone at its foot (block 2846135, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc11313-p2.png",
+  "render_sha256": "98408b496b3b91cf3555c5ab1bcd8122120f1d2daa50d4407e4f70dfa19f0bb5",
+  "match_text": "said Ordinance, after section 3, the following new section 3-A",
+  "before_text": "said Ordinance, after section 3, the following new section 3-A",
+  "after_text": "said Ordinance, after section 3, the following new section 3-A"
+ }
+]

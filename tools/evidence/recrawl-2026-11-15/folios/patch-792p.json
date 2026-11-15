@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 792,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   35828
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1' alone at its foot (block 35828, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc792-p1.png",
+  "render_sha256": "e85576a1c66f85599f0eea9b7cdb7d4f6c73d8054f2be72bc0b53d9593b95b6b",
+  "match_text": "2.        In   the   Sindh   Public   Private   Partnership   Act,   2010,",
+  "before_text": "2.        In   the   Sindh   Public   Private   Partnership   Act,   2010,",
+  "after_text": "2.        In   the   Sindh   Public   Private   Partnership   Act,   2010,"
+ },
+ {
+  "document_id": 792,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   35853
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 35853, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc792-p2.png",
+  "render_sha256": "88233841ded3f0ae62631559d819b2180abb1a7d4aa42fe1254700652030cbe8",
+  "match_text": "4.          In  the  said  Act,  in  section  6,  in  sub-section  (2),  after",
+  "before_text": "4.          In  the  said  Act,  in  section  6,  in  sub-section  (2),  after",
+  "after_text": "4.          In  the  said  Act,  in  section  6,  in  sub-section  (2),  after"
+ }
+]

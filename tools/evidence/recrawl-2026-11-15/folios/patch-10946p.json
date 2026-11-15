@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 10946,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2815561
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '657' alone at its foot (block 2815561, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10946-p1.png",
+  "render_sha256": "266e00d81b5aa59ca782aceb6ec1398147ddde4f09e90eb7cda3d8dcf5613ba6",
+  "match_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "before_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "after_text": "Constitution Act, 1974, the President is pleased to make and promulgate"
+ },
+ {
+  "document_id": 10946,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2815570
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '658' alone at its foot (block 2815570, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10946-p2.png",
+  "render_sha256": "f7bf01e16c9f4a3cc4c89341d8f406a315e0580ba1b6bf25e9b4d4754679aa42",
+  "match_text": "shall be substituted and between the words, ‘-integrity' and 'or'",
+  "before_text": "shall be substituted and between the words, ‘-integrity' and 'or'",
+  "after_text": "shall be substituted and between the words, ‘-integrity' and 'or'"
+ }
+]

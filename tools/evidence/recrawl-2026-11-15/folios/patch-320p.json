@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 320,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   15175
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '3' alone at its foot (block 15175, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc320-p2.png",
+  "render_sha256": "9955212795ff7d8543a25a25ecc25cab3ec332c92fc486ade9c00dc32a58afab",
+  "match_text": "No. PARB-VIII-3(23)91:Consequent upon approval by the Board, given in the 17th PARB Board",
+  "before_text": "No. PARB-VIII-3(23)91:Consequent upon approval by the Board, given in the 17th PARB Board",
+  "after_text": "No. PARB-VIII-3(23)91:Consequent upon approval by the Board, given in the 17th PARB Board"
+ },
+ {
+  "document_id": 320,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   15187
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '4' alone at its foot (block 15187, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc320-p3.png",
+  "render_sha256": "b804590a8dadc9fc9b0c22370dc91b39cd12104dc0228cf8beb534ba23009875",
+  "match_text": "Qualifying marks shall be one hundred fifty (150). In case of tie, preference shall be given to the",
+  "before_text": "Qualifying marks shall be one hundred fifty (150). In case of tie, preference shall be given to the",
+  "after_text": "Qualifying marks shall be one hundred fifty (150). In case of tie, preference shall be given to the"
+ }
+]

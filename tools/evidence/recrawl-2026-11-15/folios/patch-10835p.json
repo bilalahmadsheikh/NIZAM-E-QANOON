@@ -1,0 +1,962 @@
+[
+ {
+  "document_id": 10835,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2804981
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '2324' alone at its foot (block 2804981, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p1.png",
+  "render_sha256": "7000aac610ba0cf2bb193fb3f475a8fd333516d3fabb690b804a3ebaf2c9270c",
+  "match_text": "assent of the President on the 15th day of June, 2021, is",
+  "before_text": "assent of the President on the 15th day of June, 2021, is",
+  "after_text": "assent of the President on the 15th day of June, 2021, is"
+ },
+ {
+  "document_id": 10835,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2805006
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2325' alone at its foot (block 2805006, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p2.png",
+  "render_sha256": "4fe47f83a2a8ec292eddda124ac1a8e5159f60c0245c847ffecb252fea92b39d",
+  "match_text": "apply to public or private religious or charitable",
+  "before_text": "apply to public or private religious or charitable",
+  "after_text": "apply to public or private religious or charitable"
+ },
+ {
+  "document_id": 10835,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2805030
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '2326' alone at its foot (block 2805030, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p3.png",
+  "render_sha256": "6444da14ab28553884bf44997006bf0f51f50eab2621b390ac55d1ba7de529d3",
+  "match_text": "“Notice”: a person is said to have “notice” of a",
+  "before_text": "“Notice”: a person is said to have “notice” of a",
+  "after_text": "“Notice”: a person is said to have “notice” of a"
+ },
+ {
+  "document_id": 10835,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2805054
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '2327' alone at its foot (block 2805054, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p4.png",
+  "render_sha256": "73c596d2c91129b8e3eea81ab10a1ec91ca41ef7e23bf319125103c7efc93b3e",
+  "match_text": "ownership of a property, and arising out of a",
+  "before_text": "ownership of a property, and arising out of a",
+  "after_text": "ownership of a property, and arising out of a"
+ },
+ {
+  "document_id": 10835,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2805078
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '2328' alone at its foot (block 2805078, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p5.png",
+  "render_sha256": "c461e8e4aee94ebc93cc702996bd5d770213fcfe095c5f63e88b886424e73f15",
+  "match_text": "registered, or by the will of the author of the trust",
+  "before_text": "registered, or by the will of the author of the trust",
+  "after_text": "registered, or by the will of the author of the trust"
+ },
+ {
+  "document_id": 10835,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   2805100
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 6 prints its page number '2329' alone at its foot (block 2805100, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p6.png",
+  "render_sha256": "525b25fdc98a8b23d06dd82ad5631f5a8c38b1d01437e2870f1f40799758f132",
+  "match_text": "(2)        No trust in relation to movable property",
+  "before_text": "(2)        No trust in relation to movable property",
+  "after_text": "(2)        No trust in relation to movable property"
+ },
+ {
+  "document_id": 10835,
+  "page_no": 7,
+  "source_apparatus_blocks": [
+   2805123
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 7 prints its page number '2330' alone at its foot (block 2805123, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p7.png",
+  "render_sha256": "2433567f83e90a74b09766a86799d40aeca745bb8875ec11e16b7bcd078ea118",
+  "match_text": "by disclaimer addressed to the trustee, or by setting",
+  "before_text": "by disclaimer addressed to the trustee, or by setting",
+  "after_text": "by disclaimer addressed to the trustee, or by setting"
+ },
+ {
+  "document_id": 10835,
+  "page_no": 8,
+  "source_apparatus_blocks": [
+   2805146
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 8 prints its page number '2331' alone at its foot (block 2805146, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p8.png",
+  "render_sha256": "9dde67f3c6cfd9d983f3b5f8de9f0b238322076186d41319729cac840b1cc358",
+  "match_text": "(2)        In case of more than one trustees, if one of",
+  "before_text": "(2)        In case of more than one trustees, if one of",
+  "after_text": "(2)        In case of more than one trustees, if one of"
+ },
+ {
+  "document_id": 10835,
+  "page_no": 9,
+  "source_apparatus_blocks": [
+   2805169
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 9 prints its page number '2332' alone at its foot (block 2805169, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p9.png",
+  "render_sha256": "767a3679342de6479bcbe18e161bffccf54c0fbfb5529e1527da4a00f704558b",
+  "match_text": "functional unless it is registered under this Act in",
+  "before_text": "functional unless it is registered under this Act in",
+  "after_text": "functional unless it is registered under this Act in"
+ },
+ {
+  "document_id": 10835,
+  "page_no": 10,
+  "source_apparatus_blocks": [
+   2805192
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 10 prints its page number '2333' alone at its foot (block 2805192, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p10.png",
+  "render_sha256": "4b01df73c84d0a026b3cbcf925f57c95cf43ebba6cd27f611717b2b456c3ab9a",
+  "match_text": "(4)        After receipt of the verified report mentioned",
+  "before_text": "(4)        After receipt of the verified report mentioned",
+  "after_text": "(4)        After receipt of the verified report mentioned"
+ },
+ {
+  "document_id": 10835,
+  "page_no": 11,
+  "source_apparatus_blocks": [
+   2805216
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 11 prints its page number '2334' alone at its foot (block 2805216, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p11.png",
+  "render_sha256": "070a580464217f0d967d17108f731c033b624e9637f4e3380f60584db84b69c5",
+  "match_text": "any other person exercising ultimate effective",
+  "before_text": "any other person exercising ultimate effective",
+  "after_text": "any other person exercising ultimate effective"
+ },
+ {
+  "document_id": 10835,
+  "page_no": 12,
+  "source_apparatus_blocks": [
+   2805239
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 12 prints its page number '2335' alone at its foot (block 2805239, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p12.png",
+  "render_sha256": "635237fc870ce6de6c11837818df3e717e45147c6369e986ad3db657f2220751",
+  "match_text": "relating to a trust from the trustee for any purpose,",
+  "before_text": "relating to a trust from the trustee for any purpose,",
+  "after_text": "relating to a trust from the trustee for any purpose,"
+ },
+ {
+  "document_id": 10835,
+  "page_no": 13,
+  "source_apparatus_blocks": [
+   2805264
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 13 prints its page number '2336' alone at its foot (block 2805264, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p13.png",
+  "render_sha256": "7508d261a1fd28f5ff539d1a459dcacfef9b04164ee908cbbc6d5e18b29abff7",
+  "match_text": "(5)    For the contravention of Section 21, a trustee,",
+  "before_text": "(5)    For the contravention of Section 21, a trustee,",
+  "after_text": "(5)    For the contravention of Section 21, a trustee,"
+ },
+ {
+  "document_id": 10835,
+  "page_no": 14,
+  "source_apparatus_blocks": [
+   2805289
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 14 prints its page number '2337' alone at its foot (block 2805289, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p14.png",
+  "render_sha256": "88976268a0e2f0331e02dab69255ba19156039154b6b34b51f8f1d48bcc12a8f",
+  "match_text": "including but not limited to the name and details of",
+  "before_text": "including but not limited to the name and details of",
+  "after_text": "including but not limited to the name and details of"
+ },
+ {
+  "document_id": 10835,
+  "page_no": 15,
+  "source_apparatus_blocks": [
+   2805312
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 15 prints its page number '2338' alone at its foot (block 2805312, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p15.png",
+  "render_sha256": "f26fe41a1b9e2b3f814a90566112f294abfdeb471b9840d2dcfd86c2bce09f82",
+  "match_text": "relating to a trust from the trustee, and the trustee",
+  "before_text": "relating to a trust from the trustee, and the trustee",
+  "after_text": "relating to a trust from the trustee, and the trustee"
+ },
+ {
+  "document_id": 10835,
+  "page_no": 16,
+  "source_apparatus_blocks": [
+   2805336
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 16 prints its page number '2339' alone at its foot (block 2805336, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p16.png",
+  "render_sha256": "b142a590bb765d328c31d44de530376164bbe41dbe7450095a9e4125db570ea0",
+  "match_text": "of its creation, except as modified by the consent of",
+  "before_text": "of its creation, except as modified by the consent of",
+  "after_text": "of its creation, except as modified by the consent of"
+ },
+ {
+  "document_id": 10835,
+  "page_no": 17,
+  "source_apparatus_blocks": [
+   2805359
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 17 prints its page number '2340' alone at its foot (block 2805359, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p17.png",
+  "render_sha256": "f02e45acb394ec77dd44029f5afaf69530bfc5a0aa5f129a579c77fe681730b3",
+  "match_text": "over the trust to his satisfaction and requirement of",
+  "before_text": "over the trust to his satisfaction and requirement of",
+  "after_text": "over the trust to his satisfaction and requirement of"
+ },
+ {
+  "document_id": 10835,
+  "page_no": 18,
+  "source_apparatus_blocks": [
+   2805383
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 18 prints its page number '2341' alone at its foot (block 2805383, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p18.png",
+  "render_sha256": "518845b1f942271c8001a794547989a3ea91a6f8aac7140708c4f4a3be7e892e",
+  "match_text": "(4)    A trustee shall further inform the Department",
+  "before_text": "(4)    A trustee shall further inform the Department",
+  "after_text": "(4)    A trustee shall further inform the Department"
+ },
+ {
+  "document_id": 10835,
+  "page_no": 19,
+  "source_apparatus_blocks": [
+   2805407
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 19 prints its page number '2342' alone at its foot (block 2805407, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p19.png",
+  "render_sha256": "ddfe6e2641dce6ce34a597e61b93362aae32b0f2f4757bbdf7dc80d2218fd79d",
+  "match_text": "and the assertion or protection of the title thereto.",
+  "before_text": "and the assertion or protection of the title thereto.",
+  "after_text": "and the assertion or protection of the title thereto."
+ },
+ {
+  "document_id": 10835,
+  "page_no": 20,
+  "source_apparatus_blocks": [
+   2805431
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 20 prints its page number '2343' alone at its foot (block 2805431, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p20.png",
+  "render_sha256": "4854a91f8dd0a3b3b5a3393c1a0aef2d273285e4ca32073ac1ec3d14fa5cb288",
+  "match_text": "trust is created for the benefit of several persons in",
+  "before_text": "trust is created for the benefit of several persons in",
+  "after_text": "trust is created for the benefit of several persons in"
+ },
+ {
+  "document_id": 10835,
+  "page_no": 21,
+  "source_apparatus_blocks": [
+   2805454
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 21 prints its page number '2344' alone at its foot (block 2805454, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p21.png",
+  "render_sha256": "4605ac9bfdb6ffc9efab5d60e682baf023c3141e671d45ad42026f7c9b80dd15",
+  "match_text": "the Court to control the exercise of such discretion",
+  "before_text": "the Court to control the exercise of such discretion",
+  "after_text": "the Court to control the exercise of such discretion"
+ },
+ {
+  "document_id": 10835,
+  "page_no": 22,
+  "source_apparatus_blocks": [
+   2805478
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 22 prints its page number '2345' alone at its foot (block 2805478, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p22.png",
+  "render_sha256": "26117ebdaad0c3c8e7ad72577de14e977c113cafee4ee8f356c71f4faec61e2e",
+  "match_text": "immediately or at an early date to the purposes of",
+  "before_text": "immediately or at an early date to the purposes of",
+  "after_text": "immediately or at an early date to the purposes of"
+ },
+ {
+  "document_id": 10835,
+  "page_no": 23,
+  "source_apparatus_blocks": [
+   2805501
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 23 prints its page number '2346' alone at its foot (block 2805501, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p23.png",
+  "render_sha256": "8e0770ed40144482118e85a38c0d7fdae8572c523ecf54808352e002a89acf4d",
+  "match_text": "invest the money on the following securities, and on",
+  "before_text": "invest the money on the following securities, and on",
+  "after_text": "invest the money on the following securities, and on"
+ },
+ {
+  "document_id": 10835,
+  "page_no": 24,
+  "source_apparatus_blocks": [
+   2805524
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 24 prints its page number '2347' alone at its foot (block 2805524, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p24.png",
+  "render_sha256": "07e0fab05aa664521e709e612ddc3eadb8509e81871ec5e368dc997471af6381",
+  "match_text": "authorized by a Civil Court of original jurisdiction.",
+  "before_text": "authorized by a Civil Court of original jurisdiction.",
+  "after_text": "authorized by a Civil Court of original jurisdiction."
+ },
+ {
+  "document_id": 10835,
+  "page_no": 25,
+  "source_apparatus_blocks": [
+   2805549
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 25 prints its page number '2348' alone at its foot (block 2805549, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p25.png",
+  "render_sha256": "c2661de67a04d169310568d8e749a6da78a2250519934bc456611dc8c2f79938",
+  "match_text": "cases (ii), (iii) and (iv), to account for simple interest",
+  "before_text": "cases (ii), (iii) and (iv), to account for simple interest",
+  "after_text": "cases (ii), (iii) and (iv), to account for simple interest"
+ },
+ {
+  "document_id": 10835,
+  "page_no": 26,
+  "source_apparatus_blocks": [
+   2805573
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 26 prints its page number '2349' alone at its foot (block 2805573, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p26.png",
+  "render_sha256": "85cfd1b84ba46cc18af25432fb283a99f1f885fc3b9b9abff7a1fe6262e6be33",
+  "match_text": "liable for a loss occasioned by a breach of trust in",
+  "before_text": "liable for a loss occasioned by a breach of trust in",
+  "after_text": "liable for a loss occasioned by a breach of trust in"
+ },
+ {
+  "document_id": 10835,
+  "page_no": 27,
+  "source_apparatus_blocks": [
+   2805597
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 27 prints its page number '2350' alone at its foot (block 2805597, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p27.png",
+  "render_sha256": "f76b71f77cd02a895ed26e913787f0547e3586c8e14c3311278febd69bef3771",
+  "match_text": "commit a breach of trust, each shall be liable to the",
+  "before_text": "commit a breach of trust, each shall be liable to the",
+  "after_text": "commit a breach of trust, each shall be liable to the"
+ },
+ {
+  "document_id": 10835,
+  "page_no": 28,
+  "source_apparatus_blocks": [
+   2805622
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 28 prints its page number '2351' alone at its foot (block 2805622, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p28.png",
+  "render_sha256": "508e5e0b2c97f45d9edb9b377427437cd0383d485b2efdcd7c26a0d53f8456fc",
+  "match_text": "the latter, or his legal representative to the extent of",
+  "before_text": "the latter, or his legal representative to the extent of",
+  "after_text": "the latter, or his legal representative to the extent of"
+ },
+ {
+  "document_id": 10835,
+  "page_no": 29,
+  "source_apparatus_blocks": [
+   2805646
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 29 prints its page number '2352' alone at its foot (block 2805646, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p29.png",
+  "render_sha256": "e3ae29b9fc5256185177942c2df047dae54147fd3f52d3019cf3567e7cc5d045",
+  "match_text": "the realization, preservation or benefit of the trust-",
+  "before_text": "the realization, preservation or benefit of the trust-",
+  "after_text": "the realization, preservation or benefit of the trust-"
+ },
+ {
+  "document_id": 10835,
+  "page_no": 30,
+  "source_apparatus_blocks": [
+   2805669
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 30 prints its page number '2353' alone at its foot (block 2805669, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p30.png",
+  "render_sha256": "f11bfc06bf923e7e36665583181eb50252ee0d4bd29d8e1fcf20ba136d13f607",
+  "match_text": "(2)        If the trust-property fails, the trustee shall",
+  "before_text": "(2)        If the trust-property fails, the trustee shall",
+  "after_text": "(2)        If the trust-property fails, the trustee shall"
+ },
+ {
+  "document_id": 10835,
+  "page_no": 31,
+  "source_apparatus_blocks": [
+   2805693
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 31 prints its page number '2354' alone at its foot (block 2805693, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p31.png",
+  "render_sha256": "989cddfd1ea42d09d5af91b734338b2f3bc761c33bbfd46c3c965d1aab126e51",
+  "match_text": "a Civil Court of original jurisdiction for its opinion,",
+  "before_text": "a Civil Court of original jurisdiction for its opinion,",
+  "after_text": "a Civil Court of original jurisdiction for its opinion,"
+ },
+ {
+  "document_id": 10835,
+  "page_no": 32,
+  "source_apparatus_blocks": [
+   2805718
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 32 prints its page number '2355' alone at its foot (block 2805718, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p32.png",
+  "render_sha256": "56d467946701d714a5acfcb174789a76d23e8db6d9d95d0ed7f557c040b7344b",
+  "match_text": "of original jurisdiction, no trustee shall lease trust-",
+  "before_text": "of original jurisdiction, no trustee shall lease trust-",
+  "after_text": "of original jurisdiction, no trustee shall lease trust-"
+ },
+ {
+  "document_id": 10835,
+  "page_no": 33,
+  "source_apparatus_blocks": [
+   2805742
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 33 prints its page number '2356' alone at its foot (block 2805742, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p33.png",
+  "render_sha256": "7d6e9aef1068109fb456f20c8df5faab644f85bfa39d78700cca5b18b30ed84f",
+  "match_text": "stipulations either as to title or evidence of title, or",
+  "before_text": "stipulations either as to title or evidence of title, or",
+  "after_text": "stipulations either as to title or evidence of title, or"
+ },
+ {
+  "document_id": 10835,
+  "page_no": 34,
+  "source_apparatus_blocks": [
+   2805767
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 34 prints its page number '2357' alone at its foot (block 2805767, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p34.png",
+  "render_sha256": "7906bcab70b2b742971f7ff2a4fe65274db80dc00e61254782b38029f6433818",
+  "match_text": "his discretion, pay to the guardians (if any) of such",
+  "before_text": "his discretion, pay to the guardians (if any) of such",
+  "after_text": "his discretion, pay to the guardians (if any) of such"
+ },
+ {
+  "document_id": 10835,
+  "page_no": 35,
+  "source_apparatus_blocks": [
+   2805790
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 35 prints its page number '2358' alone at its foot (block 2805790, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p35.png",
+  "render_sha256": "2d39a8be10a59a63d14634e79abcb372d8a4e49abb553dcee990d0b09cc342a4",
+  "match_text": "(3)        Nothing in this Section shall be deemed to",
+  "before_text": "(3)        Nothing in this Section shall be deemed to",
+  "after_text": "(3)        Nothing in this Section shall be deemed to"
+ },
+ {
+  "document_id": 10835,
+  "page_no": 36,
+  "source_apparatus_blocks": [
+   2805813
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 36 prints its page number '2359' alone at its foot (block 2805813, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p36.png",
+  "render_sha256": "c9ebfe507ef08d8f775f6ee9fd723b641bd4b66c9e34c43f73b6bc89e9884cf3",
+  "match_text": "trust, if any, a sole trustee is authorized to execute",
+  "before_text": "trust, if any, a sole trustee is authorized to execute",
+  "after_text": "trust, if any, a sole trustee is authorized to execute"
+ },
+ {
+  "document_id": 10835,
+  "page_no": 37,
+  "source_apparatus_blocks": [
+   2805836
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 37 prints its page number '2360' alone at its foot (block 2805836, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p37.png",
+  "render_sha256": "91c8de3a4ad9d790526091f23eaf55457bcf52e366d61c6804153e9f0387fb5c",
+  "match_text": "of a trust, the trustee shall not exercise any of his",
+  "before_text": "of a trust, the trustee shall not exercise any of his",
+  "after_text": "of a trust, the trustee shall not exercise any of his"
+ },
+ {
+  "document_id": 10835,
+  "page_no": 38,
+  "source_apparatus_blocks": [
+   2805858
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 38 prints its page number '2361' alone at its foot (block 2805858, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p38.png",
+  "render_sha256": "7c8ea41a0ccf76bed7b5eda5d2e2c40d6dda53150a701bf678bf5acf39ff45b7",
+  "match_text": "delegate his office or any of his duties either to a",
+  "before_text": "delegate his office or any of his duties either to a",
+  "after_text": "delegate his office or any of his duties either to a"
+ },
+ {
+  "document_id": 10835,
+  "page_no": 39,
+  "source_apparatus_blocks": [
+   2805881
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 39 prints its page number '2362' alone at its foot (block 2805881, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p39.png",
+  "render_sha256": "8032e029e56763d7b7d0f563357c1521d114415223aa2da72902734d9feb4b47",
+  "match_text": "trouble, skill and loss of time in executing the trust.",
+  "before_text": "trouble, skill and loss of time in executing the trust.",
+  "after_text": "trouble, skill and loss of time in executing the trust."
+ },
+ {
+  "document_id": 10835,
+  "page_no": 40,
+  "source_apparatus_blocks": [
+   2805905
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 40 prints its page number '2363' alone at its foot (block 2805905, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p40.png",
+  "render_sha256": "f46f1ca20b330a8b28d3e853689741292eb34c7a80b5dd9e2cee21ddfcd72c81",
+  "match_text": "property for the beneficiary shall buy it, or any part",
+  "before_text": "property for the beneficiary shall buy it, or any part",
+  "after_text": "property for the beneficiary shall buy it, or any part"
+ },
+ {
+  "document_id": 10835,
+  "page_no": 41,
+  "source_apparatus_blocks": [
+   2805929
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 41 prints its page number '2364' alone at its foot (block 2805929, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p41.png",
+  "render_sha256": "838dda56b0d99896af40b60a7ca975b92e73ffab2f532f5c1051807e52a136e3",
+  "match_text": "her beneficial interest, nothing in this Section shall",
+  "before_text": "her beneficial interest, nothing in this Section shall",
+  "after_text": "her beneficial interest, nothing in this Section shall"
+ },
+ {
+  "document_id": 10835,
+  "page_no": 42,
+  "source_apparatus_blocks": [
+   2805954
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 42 prints its page number '2365' alone at its foot (block 2805954, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p42.png",
+  "render_sha256": "bda6a1d6417d0e7d454768d209d3190db537c9ddc9f9a273bf57c90f7ef5361c",
+  "match_text": "property, the accounts of the trust-property and the",
+  "before_text": "property, the accounts of the trust-property and the",
+  "after_text": "property, the accounts of the trust-property and the"
+ },
+ {
+  "document_id": 10835,
+  "page_no": 43,
+  "source_apparatus_blocks": [
+   2805978
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 43 prints its page number '2366' alone at its foot (block 2805978, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p43.png",
+  "render_sha256": "1396aaf932da733762d7ec9cfeecc7afdc747b2b768806145d8c125ba1226bc6",
+  "match_text": "beneficiary has a right that the trust-property shall",
+  "before_text": "beneficiary has a right that the trust-property shall",
+  "after_text": "beneficiary has a right that the trust-property shall"
+ },
+ {
+  "document_id": 10835,
+  "page_no": 44,
+  "source_apparatus_blocks": [
+   2806002
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 44 prints its page number '2367' alone at its foot (block 2806002, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p44.png",
+  "render_sha256": "6b8c39f0b9785a73662b98c7ac827481899f567d449dc3564a20bc847ed81934",
+  "match_text": "trustee, if it remains in his hands unsold, or, if it",
+  "before_text": "trustee, if it remains in his hands unsold, or, if it",
+  "after_text": "trustee, if it remains in his hands unsold, or, if it"
+ },
+ {
+  "document_id": 10835,
+  "page_no": 45,
+  "source_apparatus_blocks": [
+   2806025
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 45 prints its page number '2368' alone at its foot (block 2806025, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p45.png",
+  "render_sha256": "ce23559f6cb5b41f124155fe5455d70cea7b15b8b42f86cc0d1a998688b4b5d2",
+  "match_text": "into the hands of a third person inconsistently with",
+  "before_text": "into the hands of a third person inconsistently with",
+  "after_text": "into the hands of a third person inconsistently with"
+ },
+ {
+  "document_id": 10835,
+  "page_no": 46,
+  "source_apparatus_blocks": [
+   2806048
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 46 prints its page number '2369' alone at its foot (block 2806048, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p46.png",
+  "render_sha256": "e9f1512c65979aef8fcdb45e49dbc8929a5e03afda0764fcd32eff78dc3cae09",
+  "match_text": "in Section 78 entitles the beneficiary to any right in",
+  "before_text": "in Section 78 entitles the beneficiary to any right in",
+  "after_text": "in Section 78 entitles the beneficiary to any right in"
+ },
+ {
+  "document_id": 10835,
+  "page_no": 47,
+  "source_apparatus_blocks": [
+   2806073
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 47 prints its page number '2370' alone at its foot (block 2806073, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p47.png",
+  "render_sha256": "3457772747b631ca960d0e3fc5d30e489a6b323ced35b8af9a4819f31bb830e7",
+  "match_text": "property, the property again becomes subject to the",
+  "before_text": "property, the property again becomes subject to the",
+  "after_text": "property, the property again becomes subject to the"
+ },
+ {
+  "document_id": 10835,
+  "page_no": 48,
+  "source_apparatus_blocks": [
+   2806097
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 48 prints its page number '2371' alone at its foot (block 2806097, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p48.png",
+  "render_sha256": "27460a725967fe38c5b6e1f2f472e057ae2c45ed629534f0ab7b3f55877749fa",
+  "match_text": "personal capacity to the beneficiaries unless he has",
+  "before_text": "personal capacity to the beneficiaries unless he has",
+  "after_text": "personal capacity to the beneficiaries unless he has"
+ },
+ {
+  "document_id": 10835,
+  "page_no": 49,
+  "source_apparatus_blocks": [
+   2806120
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 49 prints its page number '2372' alone at its foot (block 2806120, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p49.png",
+  "render_sha256": "85212b8065c9e732e311cddf5598428b24fb37566ad7b28c315bbb59c5f68663",
+  "match_text": "Office how vacated.-The office of a trustee shall be",
+  "before_text": "Office how vacated.-The office of a trustee shall be",
+  "after_text": "Office how vacated.-The office of a trustee shall be"
+ },
+ {
+  "document_id": 10835,
+  "page_no": 50,
+  "source_apparatus_blocks": [
+   2806143
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 50 prints its page number '2373' alone at its foot (block 2806143, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p50.png",
+  "render_sha256": "360487456e5437a9913f347d42995fa4e003c1f439fb7588af07f0234390874e",
+  "match_text": "by appointment under this Act of a new trustee in his",
+  "before_text": "by appointment under this Act of a new trustee in his",
+  "after_text": "by appointment under this Act of a new trustee in his"
+ },
+ {
+  "document_id": 10835,
+  "page_no": 51,
+  "source_apparatus_blocks": [
+   2806167
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 51 prints its page number '2374' alone at its foot (block 2806167, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p51.png",
+  "render_sha256": "bc7fe42e9ac5345920e8fe850460a3a61c1c4944a026350ad9ff42d4139507ec",
+  "match_text": "opinion of a Civil Court of original jurisdiction, unfit",
+  "before_text": "opinion of a Civil Court of original jurisdiction, unfit",
+  "after_text": "opinion of a Civil Court of original jurisdiction, unfit"
+ },
+ {
+  "document_id": 10835,
+  "page_no": 52,
+  "source_apparatus_blocks": [
+   2806191
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 52 prints its page number '2375' alone at its foot (block 2806191, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p52.png",
+  "render_sha256": "3b723ef2b7864067c3bef7b6ec975698c7cba72713a3aea39bf337674078a573",
+  "match_text": "(4)    The Official Trustee may, with his consent and",
+  "before_text": "(4)    The Official Trustee may, with his consent and",
+  "after_text": "(4)    The Official Trustee may, with his consent and"
+ },
+ {
+  "document_id": 10835,
+  "page_no": 53,
+  "source_apparatus_blocks": [
+   2806213
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 53 prints its page number '2376' alone at its foot (block 2806213, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p53.png",
+  "render_sha256": "4d8e959220cf1fa6ad1e843d0e2d2d6cedf0f5886de131d5ca28a045189e5d92",
+  "match_text": "shall include refusing or retiring trustee if willing to",
+  "before_text": "shall include refusing or retiring trustee if willing to",
+  "after_text": "shall include refusing or retiring trustee if willing to"
+ },
+ {
+  "document_id": 10835,
+  "page_no": 54,
+  "source_apparatus_blocks": [
+   2806237
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 54 prints its page number '2377' alone at its foot (block 2806237, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p54.png",
+  "render_sha256": "d59661726f2f96c3aefb041d8ccaffc1b89db85b5092dcb791105e2784339175",
+  "match_text": "trustee, either solely or jointly with the surviving or",
+  "before_text": "trustee, either solely or jointly with the surviving or",
+  "after_text": "trustee, either solely or jointly with the surviving or"
+ },
+ {
+  "document_id": 10835,
+  "page_no": 55,
+  "source_apparatus_blocks": [
+   2806260
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 55 prints its page number '2378' alone at its foot (block 2806260, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p55.png",
+  "render_sha256": "0b9b13e07c6a8b984e1195f028dddaf71af92cf4f5da282932320474986988f9",
+  "match_text": "Revocation of trust.-(1)A trust created by will may",
+  "before_text": "Revocation of trust.-(1)A trust created by will may",
+  "after_text": "Revocation of trust.-(1)A trust created by will may"
+ },
+ {
+  "document_id": 10835,
+  "page_no": 56,
+  "source_apparatus_blocks": [
+   2806284
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 56 prints its page number '2379' alone at its foot (block 2806284, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p56.png",
+  "render_sha256": "57434b8ae54265153851e4e783759c4dbf56252aed80e0871a7b123ecd6d4059",
+  "match_text": "may revoke the trust. But if the creditors are parties",
+  "before_text": "may revoke the trust. But if the creditors are parties",
+  "after_text": "may revoke the trust. But if the creditors are parties"
+ },
+ {
+  "document_id": 10835,
+  "page_no": 57,
+  "source_apparatus_blocks": [
+   2806309
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 57 prints its page number '2380' alone at its foot (block 2806309, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p57.png",
+  "render_sha256": "05e6e03d0304020855ab9e901da8956a8ebb45c211afc2ee2032d869a9b7e418",
+  "match_text": "beneficial interest therein, the transferee or legatee",
+  "before_text": "beneficial interest therein, the transferee or legatee",
+  "after_text": "beneficial interest therein, the transferee or legatee"
+ },
+ {
+  "document_id": 10835,
+  "page_no": 58,
+  "source_apparatus_blocks": [
+   2806334
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 58 prints its page number '2381' alone at its foot (block 2806334, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p58.png",
+  "render_sha256": "f39c3f5399bb5f21216204040260a867e03812fa42d6ab8bb73602d23c53dd70",
+  "match_text": "will to be unlawful, or during the testator's life-time",
+  "before_text": "will to be unlawful, or during the testator's life-time",
+  "after_text": "will to be unlawful, or during the testator's life-time"
+ },
+ {
+  "document_id": 10835,
+  "page_no": 59,
+  "source_apparatus_blocks": [
+   2806358
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 59 prints its page number '2382' alone at its foot (block 2806358, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p59.png",
+  "render_sha256": "2dc4a8a1a218590a4205fd19c5b2bb3190aacd24865d306cb5fe13ad9d766a77",
+  "match_text": "representative of his creditor, he shall hold the debt",
+  "before_text": "representative of his creditor, he shall hold the debt",
+  "after_text": "representative of his creditor, he shall hold the debt"
+ },
+ {
+  "document_id": 10835,
+  "page_no": 60,
+  "source_apparatus_blocks": [
+   2806383
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 60 prints its page number '2383' alone at its foot (block 2806383, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p60.png",
+  "render_sha256": "5c2e3b7e91379d50fa8b26180fc94085565cdeeec3a7159ee2caecfbf3c3742f",
+  "match_text": "qualified owner of any property, by availing himself",
+  "before_text": "qualified owner of any property, by availing himself",
+  "after_text": "qualified owner of any property, by availing himself"
+ },
+ {
+  "document_id": 10835,
+  "page_no": 61,
+  "source_apparatus_blocks": [
+   2806408
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 61 prints its page number '2384' alone at its foot (block 2806408, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p61.png",
+  "render_sha256": "c2e0687fbf8f9575ed21f477a837323c7b93b9195bea4970dbf6cd5cb4677659",
+  "match_text": "benefit of the latter to the extent necessary to give",
+  "before_text": "benefit of the latter to the extent necessary to give",
+  "after_text": "benefit of the latter to the extent necessary to give"
+ },
+ {
+  "document_id": 10835,
+  "page_no": 62,
+  "source_apparatus_blocks": [
+   2806432
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 62 prints its page number '2385' alone at its foot (block 2806432, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p62.png",
+  "render_sha256": "a9c2147651bbc691fc7bd35bca4e381cbcf835af1aa44b2e4fe5b3dfa5dd4fb7",
+  "match_text": "109. Obligator's duties, liabilities and disabilities.-The",
+  "before_text": "109. Obligator's duties, liabilities and disabilities.-The",
+  "after_text": "109. Obligator's duties, liabilities and disabilities.-The"
+ },
+ {
+  "document_id": 10835,
+  "page_no": 63,
+  "source_apparatus_blocks": [
+   2806453
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 63 prints its page number '2386' alone at its foot (block 2806453, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p63.png",
+  "render_sha256": "08fd5ab806e6a72ad4478dcf1a61f7310989f6f38fb727802ce785cdc5ea9197",
+  "match_text": "112. Repeal and saving.- (1) The Trusts Act, 1882 (II of",
+  "before_text": "112. Repeal and saving.- (1) The Trusts Act, 1882 (II of",
+  "after_text": "112. Repeal and saving.- (1) The Trusts Act, 1882 (II of"
+ },
+ {
+  "document_id": 10835,
+  "page_no": 64,
+  "source_apparatus_blocks": [
+   2806467
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 64 prints its page number '2387' alone at its foot (block 2806467, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10835-p64.png",
+  "render_sha256": "13454d9947ad8bc400b2d6f40c1347344943f2e90d96e0368b3b97c6df9fe635",
+  "match_text": "freshly registered under this Act within a period of",
+  "before_text": "freshly registered under this Act within a period of",
+  "after_text": "freshly registered under this Act within a period of"
+ }
+]

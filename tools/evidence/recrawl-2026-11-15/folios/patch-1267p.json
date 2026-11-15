@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 1267,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   67504
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 67504, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1267-p2.png",
+  "render_sha256": "c96c45da84265a6394a5d98b7382bb880f371a07a9a41e4aebe624e0d95592a4",
+  "match_text": "special allowance to employees and for matters ancillary thereto,",
+  "before_text": "special allowance to employees and for matters ancillary thereto,",
+  "after_text": "special allowance to employees and for matters ancillary thereto,"
+ },
+ {
+  "document_id": 1267,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   67526
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 67526, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1267-p3.png",
+  "render_sha256": "5c7a194473ec797cad23f8f0092e74c8c22ab24a56c4e5c11aa663f242719111",
+  "match_text": "notification in the official Gazette, declare to be undertaking for",
+  "before_text": "notification in the official Gazette, declare to be undertaking for",
+  "after_text": "notification in the official Gazette, declare to be undertaking for"
+ },
+ {
+  "document_id": 1267,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   67551
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 67551, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1267-p4.png",
+  "render_sha256": "fdc7fbd39e7e5a541fc49f8c6f4aebdda814bc036da70c5101b87ab45b90180f",
+  "match_text": "rupees shall, in resect of his employment on or after the 1st day of",
+  "before_text": "rupees shall, in resect of his employment on or after the 1st day of",
+  "after_text": "rupees shall, in resect of his employment on or after the 1st day of"
+ },
+ {
+  "document_id": 1267,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   67561
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '5' alone at its foot (block 67561, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1267-p5.png",
+  "render_sha256": "528499b1a189c06c8aff8a1a2fa41d083033d243b0382c11d047970eac4208b2",
+  "match_text": "by an officer of a registered trade union of which such employee is",
+  "before_text": "by an officer of a registered trade union of which such employee is",
+  "after_text": "by an officer of a registered trade union of which such employee is"
+ }
+]

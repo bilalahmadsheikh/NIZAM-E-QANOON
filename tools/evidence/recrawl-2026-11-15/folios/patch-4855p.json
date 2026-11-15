@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 4855,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   994308
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1' alone at its foot (block 994308, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc4855-p1.png",
+  "render_sha256": "4b9f363186975d439b8f48a510d382082f7bd084268629be1512a181083f386a",
+  "match_text": "only on full pay. It shall be calculated at the rate of two days for every calendar month of",
+  "before_text": "only on full pay. It shall be calculated at the rate of two days for every calendar month of",
+  "after_text": "only on full pay. It shall be calculated at the rate of two days for every calendar month of"
+ },
+ {
+  "document_id": 4855,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   994318
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 994318, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc4855-p2.png",
+  "render_sha256": "15d74f5cbcfa2d9409ff90d7383859ab9080324a5d6351ef61f672546427d84a",
+  "match_text": "account, either on full pay or partly on half pay, or entirely on half pay, at the discretion",
+  "before_text": "account, either on full pay or partly on half pay, or entirely on half pay, at the discretion",
+  "after_text": "account, either on full pay or partly on half pay, or entirely on half pay, at the discretion"
+ },
+ {
+  "document_id": 4855,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   994329
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 994329, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc4855-p3.png",
+  "render_sha256": "abb67a602cf20e776870d65f9a7ee501ae8e10e9c4288b47dccb109a34de8356",
+  "match_text": "to attend their private affairs of casual nature. It is entirely within the discretion of the",
+  "before_text": "to attend their private affairs of casual nature. It is entirely within the discretion of the",
+  "after_text": "to attend their private affairs of casual nature. It is entirely within the discretion of the"
+ },
+ {
+  "document_id": 4855,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   994333
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 994333, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc4855-p4.png",
+  "render_sha256": "156b1e520ea0b9869eda6c6847aed329fb8846fcfb8f59bcfa25b1295ce3681f",
+  "match_text": "11. The Deputy Director (IT) Health Department for uploading in the official",
+  "before_text": "11. The Deputy Director (IT) Health Department for uploading in the official",
+  "after_text": "11. The Deputy Director (IT) Health Department for uploading in the official"
+ }
+]

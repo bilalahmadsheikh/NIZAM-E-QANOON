@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 10655,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2792969
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '25' alone at its foot (block 2792969, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10655-p1.png",
+  "render_sha256": "7e505f69b5cf02a817681bc240bea29d7e31ba69eea9a7748cd665ead35b4723",
+  "match_text": "for efficient conduct of an inquiry, in the manner hereinafter appearing;",
+  "before_text": "for efficient conduct of an inquiry, in the manner hereinafter appearing;",
+  "after_text": "for efficient conduct of an inquiry, in the manner hereinafter appearing;"
+ },
+ {
+  "document_id": 10655,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2792980
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '26' alone at its foot (block 2792980, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10655-p2.png",
+  "render_sha256": "7e775f354a03dbf107a601b10200e84558e4d942af662c0b845a55ac3079b847",
+  "match_text": "knows or has reasonable cause to believe to be false, or not true,",
+  "before_text": "knows or has reasonable cause to believe to be false, or not true,",
+  "after_text": "knows or has reasonable cause to believe to be false, or not true,"
+ },
+ {
+  "document_id": 10655,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2792991
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '27' alone at its foot (block 2792991, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10655-p3.png",
+  "render_sha256": "66a744fec5e95e884ae24d9b2fddf472469bf0dbc758f9c90289ff47bba5f729",
+  "match_text": "and bailable and shall be triable by a Magistrate of the first class",
+  "before_text": "and bailable and shall be triable by a Magistrate of the first class",
+  "after_text": "and bailable and shall be triable by a Magistrate of the first class"
+ }
+]

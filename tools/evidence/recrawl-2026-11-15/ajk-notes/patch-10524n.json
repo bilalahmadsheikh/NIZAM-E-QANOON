@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 10524,
+  "page_no": 7,
+  "source_apparatus_blocks": [
+   2780118,
+   2780119,
+   2780120,
+   2780121
+  ],
+  "defect": "page notes (amendment notes and the superseded text a revised volume reproduces in them) were read into the law as provision text",
+  "fixes": "rule reviewed_apparatus_block: the note blocks are set aside; no law text changes",
+  "observed": "Page 7 prints, under its note rule, 4 note block(s), the first '1 For the words and figure “BPS-18” the words and figures “BPS-16” subs. by the Development Authority Muzaffarabad (Amdt.) Act, 2001 (XX of '",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10524-p7.png",
+  "render_sha256": "d686f5cbfc3d376bdee23a356b7f16f80bc6115232f91049fc0ef34694067a99",
+  "match_text": "Act, 2001 (XX of 2001) dt. 12.12.2001. The extract of original sub-section (2)",
+  "before_text": "Act, 2001 (XX of 2001) dt. 12.12.2001. The extract of original sub-section (2)",
+  "after_text": "Act, 2001 (XX of 2001) dt. 12.12.2001. The extract of original sub-section (2)"
+ },
+ {
+  "document_id": 10524,
+  "page_no": 8,
+  "match_text": "1 Between the words “submit” and “to” the words “within the 1st quarter of",
+  "before_text": "1 Between the words “submit” and “to” the words “within the 1st quarter of \nevery financial year” ins. by the Development Authority (Amdt.) Act, 2001 \n(XX of 2001) dt. 12.12.2001.",
+  "after_text": " ",
+  "defect": "the block fuses the law's last line with the page note printed under it; the note was read as law",
+  "fixes": "parser-input correction: the note is cut from the block, from its marker to the block's end; the law before it is kept as printed",
+  "observed": "Page 8 prints the law ending 'eipts and expenditure in foreign exchange in respect of the next financial year.', then the note rule and the note '1 Between the words “submit” and “to” the words “within the 1st quarter of every financial year” ins. by the Development'",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc10524-p8.png",
+  "render_sha256": "f966e91772f5df623f2e300b2146d35c5048607a10d3a72118b294c26734b205"
+ }
+]

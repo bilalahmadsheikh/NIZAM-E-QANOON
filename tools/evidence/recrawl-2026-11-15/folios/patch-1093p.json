@@ -1,0 +1,77 @@
+[
+ {
+  "document_id": 1093,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   52072
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 52072, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1093-p2.png",
+  "render_sha256": "060ef7682660258827abef80fcffb7e73a0673d770fff5d7ac88c2c2d0b54985",
+  "match_text": "THE SINDH PREVENTION AND CONTROL OF THALASSEMIA ORDINANCE, 2013",
+  "before_text": "THE SINDH PREVENTION AND CONTROL OF THALASSEMIA ORDINANCE, 2013",
+  "after_text": "THE SINDH PREVENTION AND CONTROL OF THALASSEMIA ORDINANCE, 2013"
+ },
+ {
+  "document_id": 1093,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   52086
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 52086, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1093-p3.png",
+  "render_sha256": "59ddd41a7ba4f6655e8ddc62dc2a0f177d417a95550035eefadc4b7fc01b49a0",
+  "match_text": "5.  (1) The health care facility treating the thalassemia patients",
+  "before_text": "5.  (1) The health care facility treating the thalassemia patients",
+  "after_text": "5.  (1) The health care facility treating the thalassemia patients"
+ },
+ {
+  "document_id": 1093,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   52096
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 52096, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1093-p4.png",
+  "render_sha256": "dbcbc8e4ec13bf5241297200edad6d4951f4b4234546f5397e7430ac01304c33",
+  "match_text": "6.  (1) The test results shall be reported to those who are tested",
+  "before_text": "6.  (1) The test results shall be reported to those who are tested",
+  "after_text": "6.  (1) The test results shall be reported to those who are tested"
+ },
+ {
+  "document_id": 1093,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   52113
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '5' alone at its foot (block 52113, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1093-p5.png",
+  "render_sha256": "0e63256539b255783cd05c7cbc7d61ebd5afe639106ba45549bfd836ca6d4406",
+  "match_text": "Health Services or District Health Officer or any other officer on",
+  "before_text": "Health Services or District Health Officer or any other officer on",
+  "after_text": "Health Services or District Health Officer or any other officer on"
+ },
+ {
+  "document_id": 1093,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   52120
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 6 prints its page number '6' alone at its foot (block 52120, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc1093-p6.png",
+  "render_sha256": "7f88dd9ed7128b3d108af2ac700831dadd8e7f4348509e793bf49b2e3cfbc5cc",
+  "match_text": "anything contained in any other law for the time being in force.",
+  "before_text": "anything contained in any other law for the time being in force.",
+  "after_text": "anything contained in any other law for the time being in force."
+ }
+]

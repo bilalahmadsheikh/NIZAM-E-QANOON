@@ -1,0 +1,18 @@
+[
+ {
+  "document_id": 2506,
+  "page_no": 2,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc2506-p2.png",
+  "render_sha256": "5aa7eeec53246b540f58ae103502a74c2933b4a6d311f7233f1eca33b08a4101",
+  "defect": "the Sindh Code's running head (the law's citation and title at the head of every page) was read into a provision's text, in the same block as the law below it",
+  "observed": "Page 2 prints the running head 'SINDH ORDINANCE NO. I OF 2005. / THE SINDH PROVINCIAL PENSION FUND' at its head; the same head opens the document's other pages",
+  "source_apparatus_blocks": [
+   210043,
+   210044
+  ],
+  "match_text": "5.             In the said Ordinance, in section 8, for sub-section",
+  "before_text": "5.             In the said Ordinance, in section 8, for sub-section",
+  "after_text": "5.             In the said Ordinance, in section 8, for sub-section",
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) are set aside; no law text changes"
+ }
+]

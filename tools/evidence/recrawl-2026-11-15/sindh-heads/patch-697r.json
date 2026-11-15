@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 697,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   30481
+  ],
+  "defect": "the Sindh Code's running head (the law's citation printed at the head of every page) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the running-head block is set aside; no law text changes",
+  "observed": "Page 2 prints the running head 'SINDH ACT NO.II OF 1990' alone at its head (block 30481, the page's first block); the same line heads the document's other pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-head/doc697-p2.png",
+  "render_sha256": "057f27cf7104eb203fafd0069d5fe03ecce050c5ebe0797e8042fae0e0e2c81a",
+  "match_text": "Mahsool Validating) Ordinance, 1989 is hereby repealed.",
+  "before_text": "Mahsool Validating) Ordinance, 1989 is hereby repealed.",
+  "after_text": "Mahsool Validating) Ordinance, 1989 is hereby repealed."
+ }
+]

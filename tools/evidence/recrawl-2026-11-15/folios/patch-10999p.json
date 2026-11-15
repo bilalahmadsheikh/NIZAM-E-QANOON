@@ -1,0 +1,77 @@
+[
+ {
+  "document_id": 10999,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2823551
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '407' alone at its foot (block 2823551, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10999-p1.png",
+  "render_sha256": "36a7b46d836ef6a6c6cf93c0d1b25f85ecba147c66a876b9a99fbda982e40756",
+  "match_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "before_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "after_text": "Constitution Act, 1974, the President is pleased to make and promulgate"
+ },
+ {
+  "document_id": 10999,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2823566
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '408' alone at its foot (block 2823566, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10999-p2.png",
+  "render_sha256": "909ed23b677df9520d922705f5d8f9702b2c85a67492e480c6c9485ea4bba624",
+  "match_text": "Ordinarily meet for the transaction of business at such place as",
+  "before_text": "Ordinarily meet for the transaction of business at such place as",
+  "after_text": "Ordinarily meet for the transaction of business at such place as"
+ },
+ {
+  "document_id": 10999,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2823578
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '409' alone at its foot (block 2823578, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10999-p3.png",
+  "render_sha256": "833e9430bb4e789b3c6555f5e5a5105550d6ce01cbe04cc772676315db552398",
+  "match_text": "may appoint a person as the Appellate Authority for the purposes",
+  "before_text": "may appoint a person as the Appellate Authority for the purposes",
+  "after_text": "may appoint a person as the Appellate Authority for the purposes"
+ },
+ {
+  "document_id": 10999,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2823590
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '410' alone at its foot (block 2823590, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10999-p4.png",
+  "render_sha256": "cf18c1e5e5ec57e5c998c4b7ef4e3c26b2e3a13b45f528be5d2b21a1db5a7946",
+  "match_text": "from any person in pursuance of the provisions of this Ordinance",
+  "before_text": "from any person in pursuance of the provisions of this Ordinance",
+  "after_text": "from any person in pursuance of the provisions of this Ordinance"
+ },
+ {
+  "document_id": 10999,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2823599
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '411' alone at its foot (block 2823599, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10999-p5.png",
+  "render_sha256": "0038d0ad73b315b550ae9a79af5f3c181ea9e91be0a7a7f12d7254e0cf04d8cc",
+  "match_text": "provision is necessary or expedient for carrying out the purposes",
+  "before_text": "provision is necessary or expedient for carrying out the purposes",
+  "after_text": "provision is necessary or expedient for carrying out the purposes"
+ }
+]

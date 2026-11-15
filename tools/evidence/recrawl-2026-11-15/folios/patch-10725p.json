@@ -1,0 +1,92 @@
+[
+ {
+  "document_id": 10725,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2797350
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '3' alone at its foot (block 2797350, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10725-p1.png",
+  "render_sha256": "30a0614111181dd974207d4bd70636c903479690409950e964c7a201f9a62b0f",
+  "match_text": "to provide for law relating to the declaration of assets by the Ministers,",
+  "before_text": "to provide for law relating to the declaration of assets by the Ministers,",
+  "after_text": "to provide for law relating to the declaration of assets by the Ministers,"
+ },
+ {
+  "document_id": 10725,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2797356
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '4' alone at its foot (block 2797356, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10725-p2.png",
+  "render_sha256": "568b8d15ee2b40ab4e4aca59783fc313e6b2dd10567b55c351f1d5421a216d40",
+  "match_text": "has, at any time, been a Special Assistant or Advisor to the prime",
+  "before_text": "has, at any time, been a Special Assistant or Advisor to the prime",
+  "after_text": "has, at any time, been a Special Assistant or Advisor to the prime"
+ },
+ {
+  "document_id": 10725,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2797365
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '5' alone at its foot (block 2797365, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10725-p3.png",
+  "render_sha256": "ca3ec2466bb997dd6a17bb0cf846e664dbbdf66046ddf52f31a2ea3a617cc93f",
+  "match_text": "transfers or otherwise disposes of any of the properties and assets",
+  "before_text": "transfers or otherwise disposes of any of the properties and assets",
+  "after_text": "transfers or otherwise disposes of any of the properties and assets"
+ },
+ {
+  "document_id": 10725,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2797373
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '6' alone at its foot (block 2797373, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10725-p4.png",
+  "render_sha256": "fd4595a3b258b65698d9793166a1bc43f872ebec6b1d84e595e75d9d67f4552e",
+  "match_text": "obligation or in pursuance of any direction or order of a Court or",
+  "before_text": "obligation or in pursuance of any direction or order of a Court or",
+  "after_text": "obligation or in pursuance of any direction or order of a Court or"
+ },
+ {
+  "document_id": 10725,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2797385
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '7' alone at its foot (block 2797385, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10725-p5.png",
+  "render_sha256": "32e9d62524b7f0629e582708db156e575edac64ec7c7aca414c643fa3bbd9f57",
+  "match_text": "provision of this section, all parties shall be entitled to nominate",
+  "before_text": "provision of this section, all parties shall be entitled to nominate",
+  "after_text": "provision of this section, all parties shall be entitled to nominate"
+ },
+ {
+  "document_id": 10725,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   2797409
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 6 prints its page number '8' alone at its foot (block 2797409, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc10725-p6.png",
+  "render_sha256": "0241fc89554fda52961e1552ca02ad730b73ab88336159a5b605750748a1b08a",
+  "match_text": "I,------------son of-----------------resident of------------Legislative Ex-Minister/Prisidential Assistant/Special Assistant or Adviser to the Prime",
+  "before_text": "I,------------son of-----------------resident of------------Legislative Ex-Minister/Prisidential Assistant/Special Assistant or Adviser to the Prime",
+  "after_text": "I,------------son of-----------------resident of------------Legislative Ex-Minister/Prisidential Assistant/Special Assistant or Adviser to the Prime"
+ }
+]

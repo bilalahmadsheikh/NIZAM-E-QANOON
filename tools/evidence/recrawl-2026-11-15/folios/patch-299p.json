@@ -1,0 +1,92 @@
+[
+ {
+  "document_id": 299,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   14111
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1' alone at its foot (block 14111, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc299-p1.png",
+  "render_sha256": "e60ff0bd109e4a04a83db78c9757182ad62db536c26c03888c35186e24ad22fa",
+  "match_text": "Governor of Sindh on 29th November, 2019 is hereby published as an Act of the Legislature of",
+  "before_text": "Governor of Sindh on 29th November, 2019 is hereby published as an Act of the Legislature of",
+  "after_text": "Governor of Sindh on 29th November, 2019 is hereby published as an Act of the Legislature of"
+ },
+ {
+  "document_id": 299,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   14132
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 14132, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc299-p2.png",
+  "render_sha256": "23ab5c5fe721eb673374154b190b6cabf9a44c8ff5075a90fa650c3b00b3f666",
+  "match_text": "promotion of reproductive health care rights in the Province of Sindh shall be in",
+  "before_text": "promotion of reproductive health care rights in the Province of Sindh shall be in",
+  "after_text": "promotion of reproductive health care rights in the Province of Sindh shall be in"
+ },
+ {
+  "document_id": 299,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   14152
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 14152, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc299-p3.png",
+  "render_sha256": "7157cb2e0e7a876f3e7c87d0abb59622bc0a8ca294e3cd1431e6cb3e665e6902",
+  "match_text": "(4) All persons shall have the right to be free from ill treatment and to be protected",
+  "before_text": "(4) All persons shall have the right to be free from ill treatment and to be protected",
+  "after_text": "(4) All persons shall have the right to be free from ill treatment and to be protected"
+ },
+ {
+  "document_id": 299,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   14174
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 14174, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc299-p4.png",
+  "render_sha256": "c71f78b6f6ab44fa502b6410f2ec0e4de3e0ebb672b183947b1dde6040ae7e9b",
+  "match_text": "(a) provision of full range of integrated services including family planning",
+  "before_text": "(a) provision of full range of integrated services including family planning",
+  "after_text": "(a) provision of full range of integrated services including family planning"
+ },
+ {
+  "document_id": 299,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   14189
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 5 prints its page number '5' alone at its foot (block 14189, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc299-p5.png",
+  "render_sha256": "0e20792d08df2535ca556820a832a626846ab32eabbb100b71aefe8dc7c5ae6f",
+  "match_text": "responsible for oversight of this Act and shall give effect to the provisions herein",
+  "before_text": "responsible for oversight of this Act and shall give effect to the provisions herein",
+  "after_text": "responsible for oversight of this Act and shall give effect to the provisions herein"
+ },
+ {
+  "document_id": 299,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   14200
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 6 prints its page number '6' alone at its foot (block 14200, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc299-p6.png",
+  "render_sha256": "fc357c971c833a065a2586d688def1e8673d3b29ff1dc4ea17af1db6cb97ebe6",
+  "match_text": "Government may, by order published in the official Gazette, make such provision not",
+  "before_text": "Government may, by order published in the official Gazette, make such provision not",
+  "after_text": "Government may, by order published in the official Gazette, make such provision not"
+ }
+]

@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 3427,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   375729
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 1 prints its page number '1' alone at its foot (block 375729, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3427-p1.png",
+  "render_sha256": "0274415f783f8e28af49bcc118bddee97a4d00b39fc86b0d7f62f28884e0d427",
+  "match_text": "2021 having been passed by the Provincial Assembly of Sindh on 04th August, 2022",
+  "before_text": "2021 having been passed by the Provincial Assembly of Sindh on 04th August, 2022",
+  "after_text": "2021 having been passed by the Provincial Assembly of Sindh on 04th August, 2022"
+ },
+ {
+  "document_id": 3427,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   375744
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 2 prints its page number '2' alone at its foot (block 375744, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3427-p2.png",
+  "render_sha256": "e9ac6362227c516e761c69312a5311c16fe4323356d3c60c28088c80e7c77b7d",
+  "match_text": "Participation) Act, 2015 (Sindh Act No. XVIII of 2016)” shall be",
+  "before_text": "Participation) Act, 2015 (Sindh Act No. XVIII of 2016)” shall be",
+  "after_text": "Participation) Act, 2015 (Sindh Act No. XVIII of 2016)” shall be"
+ },
+ {
+  "document_id": 3427,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   375756
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 3 prints its page number '3' alone at its foot (block 375756, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3427-p3.png",
+  "render_sha256": "eca85d4583487e6c4f5a75352f247ae7e9d0bea350caafd6953f6167c81461e0",
+  "match_text": "(iv) for sub-section (4), the following shall be substituted:-",
+  "before_text": "(iv) for sub-section (4), the following shall be substituted:-",
+  "after_text": "(iv) for sub-section (4), the following shall be substituted:-"
+ },
+ {
+  "document_id": 3427,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   375766
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 4 prints its page number '4' alone at its foot (block 375766, the page's last block), continuing the document's page sequence",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/folio/doc3427-p4.png",
+  "render_sha256": "ce1cfe91f95abde2c961bdf9bcba78c3e06b95092a2a4f599b22901866a7d4db",
+  "match_text": "In the said Act, in section 6, in sub-section (1), for the",
+  "before_text": "In the said Act, in section 6, in sub-section (1), for the",
+  "after_text": "In the said Act, in section 6, in sub-section (1), for the"
+ }
+]
