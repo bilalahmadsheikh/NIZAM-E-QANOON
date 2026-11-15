@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 9911,
+  "page_no": 19,
+  "source_decimal_regulation_series": true,
+  "defect": "the body numbers its regulations chapter.serial (1.01, 4.17., 12.03) and prints numbered paragraphs '1.', '2.' inside them; the paragraphs opened as top-level sections (S7 collisions 1-4 in Part III) and a run 6-13 inside regulation 4.20-A left section 13 open, so every later regulation (5.01 onward) became its clause",
+  "fixes": "rule reviewed_decimal_regulation_series: a plain number line opened while a chapter.serial regulation is the nearest open section is that regulation's sub-regulation; no text changes",
+  "observed": "Page 19 opens CHAPTER 01 with regulations '1.01. Short title and commencement.' and '1.02. Extent of application.'; page 36 prints '4.17. Procedure for Promotion.-' followed by paragraphs '1.' to '4.', then '4.18 Conditions of Promotion:-' with its own '1.' and '2.'; pages 42-43 print paragraphs '6. CONDITIONS FOR SUPERSESSION:-' to '13. EFFICIENCY INDEX ...' under regulation 4.20-A; page 59 opens '5.01. Liability to serve in any post:-'",
+  "additional_render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p36.png",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p19.png",
+  "render_sha256": "2da305e8b0890691164fc7901ba0f4b12f0cfd98aa5b52548ac62c90b961c8bb",
+  "additional_render_sha256": "e92bbaa93bfed25f0fd715759c646d75a3f5992f46ca4b718258572384b74ab9",
+  "match_text": "CDA Employees Service Regulations 1992 Volume-I (updated as on 10th August, 2022)",
+  "before_text": "CDA Employees Service Regulations 1992 Volume-I (updated as on 10th August, 2022)",
+  "after_text": "CDA Employees Service Regulations 1992 Volume-I (updated as on 10th August, 2022)"
+ }
+]

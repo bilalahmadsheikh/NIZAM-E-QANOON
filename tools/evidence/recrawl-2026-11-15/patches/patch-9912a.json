@@ -1,0 +1,2100 @@
+[
+ {
+  "document_id": 9912,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p4.png",
+  "source_division_openers": [
+   {
+    "source_block_id": 2733861,
+    "kind": "appendix",
+    "label": "APPENDIX-1"
+   }
+  ],
+  "source_apparatus_blocks": [
+   2733879
+  ],
+  "defect": "the volume prints only appendices (posts, qualifications and methods of appointment by cadre); the parse opened one section on page 6 holding every table row, and read page numbers into rows",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 4 prints the heading 'APPENDIX-1' opening that appendix (block 2733861) and its page number '4' alone at the foot (block 2733879)",
+  "render_sha256": "9a2a47e80e8dce060fc25cc8bbac528913727412539b3028b38a47cbd58a53aa",
+  "match_text": "CDA EMPLOYEES SERVICE REGULATIONS, 1992, VOLUME-II (UPDATED AS ON August 10, 2022",
+  "before_text": "CDA EMPLOYEES SERVICE REGULATIONS, 1992, VOLUME-II (UPDATED AS ON August 10, 2022",
+  "after_text": "CDA EMPLOYEES SERVICE REGULATIONS, 1992, VOLUME-II (UPDATED AS ON August 10, 2022"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 5,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p5.png",
+  "source_division_openers": [
+   {
+    "source_block_id": 2733881,
+    "kind": "appendix",
+    "label": "APPENDIX-2"
+   }
+  ],
+  "source_apparatus_blocks": [
+   2733884
+  ],
+  "defect": "the volume prints only appendices (posts, qualifications and methods of appointment by cadre); the parse opened one section on page 6 holding every table row, and read page numbers into rows",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 5 prints the heading 'APPENDIX-2' opening that appendix (block 2733881) and its page number '5' alone at the foot (block 2733884)",
+  "render_sha256": "dcd6f6e46df6a23b0cd7cbdeea3b53b7d07819ce5ce588cf7239db0f27d9c7bb",
+  "match_text": "CDA EMPLOYEES SERVICE REGULATIONS, 1992, VOLUME-II (UPDATED AS ON August 10, 2022",
+  "before_text": "CDA EMPLOYEES SERVICE REGULATIONS, 1992, VOLUME-II (UPDATED AS ON August 10, 2022",
+  "after_text": "CDA EMPLOYEES SERVICE REGULATIONS, 1992, VOLUME-II (UPDATED AS ON August 10, 2022"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 6,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p6.png",
+  "source_apparatus_blocks": [
+   2733904
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 6 prints its page number '6' alone at the foot (block 2733904)",
+  "render_sha256": "fe50c64c5a8962bd8e57b9a8e5078cb88418dde480607b08bd75528712df8878",
+  "match_text": "Sub Inspector Enforcement BPS-14",
+  "before_text": "Sub Inspector Enforcement BPS-14",
+  "after_text": "Sub Inspector Enforcement BPS-14"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 7,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p7.png",
+  "source_apparatus_blocks": [
+   2733919
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 7 prints its page number '7' alone at the foot (block 2733919)",
+  "render_sha256": "5772a4642dbf0af4a5e2ac2db0ad5e09433275b66fcf9da9c994eb9b7b411094",
+  "match_text": "**No.CDA-7(01)-HRD-III/Sec-VI/2017/4444 dated 31-08-2017",
+  "before_text": "**No.CDA-7(01)-HRD-III/Sec-VI/2017/4444 dated 31-08-2017",
+  "after_text": "**No.CDA-7(01)-HRD-III/Sec-VI/2017/4444 dated 31-08-2017"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 8,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p8.png",
+  "source_apparatus_blocks": [
+   2733941
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 8 prints its page number '8' alone at the foot (block 2733941)",
+  "render_sha256": "f03ea7c889c1d49fa59f3477f256bb11632b7cf792786777d7139db7e44b5994",
+  "match_text": "Head Constable (BPS-07)",
+  "before_text": "Head Constable (BPS-07)",
+  "after_text": "Head Constable (BPS-07)"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 9,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p9.png",
+  "source_apparatus_blocks": [
+   2733954
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 9 prints its page number '9' alone at the foot (block 2733954)",
+  "render_sha256": "702fabcf7b4668c62abb2804e5657d3b4f3498e0e9ff82919cded35d2f28972e",
+  "match_text": "availability of a suitable person eligible for promotion and it is considered expedient to fill",
+  "before_text": "availability of a suitable person eligible for promotion and it is considered expedient to fill",
+  "after_text": "availability of a suitable person eligible for promotion and it is considered expedient to fill"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 10,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p10.png",
+  "source_apparatus_blocks": [
+   2733978
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 10 prints its page number '10' alone at the foot (block 2733978)",
+  "render_sha256": "0c401978bc118170deffdb749b255e5f1fed1292465fef85320883e4c3d0ebe0",
+  "match_text": "04 Years experience in the relevant filed in",
+  "before_text": "04 Years experience in the relevant filed in",
+  "after_text": "04 Years experience in the relevant filed in"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 11,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p11.png",
+  "source_apparatus_blocks": [
+   2734007
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 11 prints its page number '11' alone at the foot (block 2734007)",
+  "render_sha256": "1851f8cd198ff65f507c9245b60c7cb5cbad3e76013a8a26dfe9c4188acdc5d5",
+  "match_text": "Ex-NCO with ten years experience.",
+  "before_text": "Ex-NCO with ten years experience.",
+  "after_text": "Ex-NCO with ten years experience."
+ },
+ {
+  "document_id": 9912,
+  "page_no": 12,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p12.png",
+  "source_apparatus_blocks": [
+   2734018
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 12 prints its page number '12' alone at the foot (block 2734018)",
+  "render_sha256": "773bc31c5ddc7dfac6e73aee3e2ec66a2d360f98cfdb380eda32bbedd3760093",
+  "match_text": "Retired sepoy from Armed Forces.",
+  "before_text": "Retired sepoy from Armed Forces.",
+  "after_text": "Retired sepoy from Armed Forces."
+ },
+ {
+  "document_id": 9912,
+  "page_no": 13,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p13.png",
+  "source_apparatus_blocks": [
+   2734043
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 13 prints its page number '13' alone at the foot (block 2734043)",
+  "render_sha256": "de488c92ed88e802fb0d1ecaca0fcc2149c56d31de115f661a002aa31f95087e",
+  "match_text": "of Captain qualified Intelligence course.",
+  "before_text": "of Captain qualified Intelligence course.",
+  "after_text": "of Captain qualified Intelligence course."
+ },
+ {
+  "document_id": 9912,
+  "page_no": 14,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p14.png",
+  "source_apparatus_blocks": [
+   2734059
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 14 prints its page number '14' alone at the foot (block 2734059)",
+  "render_sha256": "68daaa1f0cd853b788439fa4b364a6b9c73b52c5309ce350362620bea7360b19",
+  "match_text": "*     No. S.R.O. 222 (I)/2005.dated 19.01.2005",
+  "before_text": "*     No. S.R.O. 222 (I)/2005.dated 19.01.2005",
+  "after_text": "*     No. S.R.O. 222 (I)/2005.dated 19.01.2005"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 15,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p15.png",
+  "source_apparatus_blocks": [
+   2734083
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 15 prints its page number '15' alone at the foot (block 2734083)",
+  "render_sha256": "654be9bae8d9900864b163b49df4a6a4696f4ddb77f7e90c546e9627f82f3998",
+  "match_text": "Service in the post specified in",
+  "before_text": "Service in the post specified in",
+  "after_text": "Service in the post specified in"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 16,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p16.png",
+  "source_apparatus_blocks": [
+   2734104
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 16 prints its page number '16' alone at the foot (block 2734104)",
+  "render_sha256": "d75dbbf9621f9367acd2ccbd582118e459531aeecb3ccbd6e44efea4a6e1828d",
+  "match_text": "*** No. CDA-7(50)-HRD-III/2009/Sec-VI/3130, dated 09.09.2009.",
+  "before_text": "*** No. CDA-7(50)-HRD-III/2009/Sec-VI/3130, dated 09.09.2009.",
+  "after_text": "*** No. CDA-7(50)-HRD-III/2009/Sec-VI/3130, dated 09.09.2009."
+ },
+ {
+  "document_id": 9912,
+  "page_no": 17,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p17.png",
+  "source_apparatus_blocks": [
+   2734136
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 17 prints its page number '17' alone at the foot (block 2734136)",
+  "render_sha256": "079c20dce1df346d241e8911a22d276af8c7d817c059b6268bbf0b5576f5db99",
+  "match_text": "Assistant Director (E/M)",
+  "before_text": "Assistant Director (E/M)",
+  "after_text": "Assistant Director (E/M)"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 18,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p18.png",
+  "source_apparatus_blocks": [
+   2734168
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 18 prints its page number '18' alone at the foot (block 2734168)",
+  "render_sha256": "202172417c8aebab14ca3adb00e4210c7f76212a6abfe790f3927ee21a6d3f68",
+  "match_text": "Upgraded from (BPS-08)",
+  "before_text": "Upgraded from (BPS-08)",
+  "after_text": "Upgraded from (BPS-08)"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 19,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p19.png",
+  "source_apparatus_blocks": [
+   2734201
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 19 prints its page number '19' alone at the foot (block 2734201)",
+  "render_sha256": "db3e05ced7f6bd3ab5e92ac590275e53e8f0036703c9c95c3531c8478c6b58e8",
+  "match_text": "* No.CDA-7(84)-HRD-III/2007/Sec.VI/  dt. 28.08.2008",
+  "before_text": "* No.CDA-7(84)-HRD-III/2007/Sec.VI/  dt. 28.08.2008",
+  "after_text": "* No.CDA-7(84)-HRD-III/2007/Sec.VI/  dt. 28.08.2008"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 20,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p20.png",
+  "source_apparatus_blocks": [
+   2734212
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 20 prints its page number '20' alone at the foot (block 2734212)",
+  "render_sha256": "6684a305543045ff1480128a03af6a2b2e7da3c67ec3be0dd7efe783d23e9790",
+  "match_text": "****** No. CDA-7(20)-HRD-III/2010/Sec-VI/696/ dated 24.03.2010",
+  "before_text": "****** No. CDA-7(20)-HRD-III/2010/Sec-VI/696/ dated 24.03.2010",
+  "after_text": "****** No. CDA-7(20)-HRD-III/2010/Sec-VI/696/ dated 24.03.2010"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 21,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p21.png",
+  "source_apparatus_blocks": [
+   2734236
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 21 prints its page number '21' alone at the foot (block 2734236)",
+  "render_sha256": "0b137b515889e0184d0f743a87493811efe08885348cf4dff3bec180172df10d",
+  "match_text": "Assistant Director (E&M)",
+  "before_text": "Assistant Director (E&M)",
+  "after_text": "Assistant Director (E&M)"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 22,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p22.png",
+  "source_apparatus_blocks": [
+   2734252
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 22 prints its page number '22' alone at the foot (block 2734252)",
+  "render_sha256": "5cf8100961eb60e11d29f445ec8fedc28e338b8170ef12daaffea7b33e10c0d3",
+  "match_text": "8. Chief Street Light Inspector(BPS-11)",
+  "before_text": "8. Chief Street Light Inspector(BPS-11)",
+  "after_text": "8. Chief Street Light Inspector(BPS-11)"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 23,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p23.png",
+  "source_apparatus_blocks": [
+   2734270
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 23 prints its page number '23' alone at the foot (block 2734270)",
+  "render_sha256": "2c75ea6d46c295e4ea943160db95272b9b19a300f060c1ffeb2502498d13df45",
+  "match_text": "24-C *Sr. Welder /Sr. Turner/Sr. Molder",
+  "before_text": "24-C *Sr. Welder /Sr. Turner/Sr. Molder",
+  "after_text": "24-C *Sr. Welder /Sr. Turner/Sr. Molder"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 24,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p24.png",
+  "source_apparatus_blocks": [
+   2734282
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 24 prints its page number '24' alone at the foot (block 2734282)",
+  "render_sha256": "b1800b4949d5d9a77963003395eae6e8b0a4c52e4aa444391d8175f3b4ee93dc",
+  "match_text": "42. Field Attendant(BPS-01)",
+  "before_text": "42. Field Attendant(BPS-01)",
+  "after_text": "42. Field Attendant(BPS-01)"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 25,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p25.png",
+  "source_apparatus_blocks": [
+   2734305
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 25 prints its page number '25' alone at the foot (block 2734305)",
+  "render_sha256": "7a49b69e628dc82453d4d32378870ff313f1f59d6ce7f4ca3d83f2cc40ad0f1e",
+  "match_text": "aresponsible position equivalent to BPS-17",
+  "before_text": "aresponsible position equivalent to BPS-17",
+  "after_text": "aresponsible position equivalent to BPS-17"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 26,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p26.png",
+  "source_apparatus_blocks": [
+   2734318
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 26 prints its page number '26' alone at the foot (block 2734318)",
+  "render_sha256": "f15a544a06494eb4a82cffdd7094de731e42e000c7d38b7a6bfec6e701404ea9",
+  "match_text": "relatedDiscipline of Engineering.",
+  "before_text": "relatedDiscipline of Engineering.",
+  "after_text": "relatedDiscipline of Engineering."
+ },
+ {
+  "document_id": 9912,
+  "page_no": 27,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p27.png",
+  "source_apparatus_blocks": [
+   2734329
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 27 prints its page number '27' alone at the foot (block 2734329)",
+  "render_sha256": "c9685a938c58c4dd24b679bead48b692ae3619c833b944d353d13002003ce812",
+  "match_text": "12. Charge man Drilling(BPS-09)",
+  "before_text": "12. Charge man Drilling(BPS-09)",
+  "after_text": "12. Charge man Drilling(BPS-09)"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 28,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p28.png",
+  "source_apparatus_blocks": [
+   2734343
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 28 prints its page number '28' alone at the foot (block 2734343)",
+  "render_sha256": "b5c386505051391f8fee7fc5ba29a1e805344c4c22dd591e1fcd7da2f3b5e741",
+  "match_text": "*       NO.SRO 843(I)/96 dt. 15.09.1996",
+  "before_text": "*       NO.SRO 843(I)/96 dt. 15.09.1996",
+  "after_text": "*       NO.SRO 843(I)/96 dt. 15.09.1996"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 29,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p29.png",
+  "source_apparatus_blocks": [
+   2734355
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 29 prints its page number '29' alone at the foot (block 2734355)",
+  "render_sha256": "a9387cac98c3080d9ea590d7f92ceedbb1bf0d06d068c1222ec72c2abca8e50d",
+  "match_text": "ii).2nd class Boiler Engineering certificate.",
+  "before_text": "ii).2nd class Boiler Engineering certificate.",
+  "after_text": "ii).2nd class Boiler Engineering certificate."
+ },
+ {
+  "document_id": 9912,
+  "page_no": 30,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p30.png",
+  "source_apparatus_blocks": [
+   2734365
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 30 prints its page number '30' alone at the foot (block 2734365)",
+  "render_sha256": "55c5b2756f6cfedb57c95b1dc43841e2f57cc673eafd66396cdd30710c3e597c",
+  "match_text": "In the above head the following shall substitute/insert in the given Column(s).",
+  "before_text": "In the above head the following shall substitute/insert in the given Column(s).",
+  "after_text": "In the above head the following shall substitute/insert in the given Column(s)."
+ },
+ {
+  "document_id": 9912,
+  "page_no": 31,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p31.png",
+  "source_apparatus_blocks": [
+   2734398
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 31 prints its page number '31' alone at the foot (block 2734398)",
+  "render_sha256": "514918de6fa926c26adff93291b8af7b390bed39f96833ac254b7312bdee4489",
+  "match_text": "ii. Possession of a degree n",
+  "before_text": "ii. Possession of a degree n",
+  "after_text": "ii. Possession of a degree n"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 32,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p32.png",
+  "source_apparatus_blocks": [
+   2734416
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 32 prints its page number '32' alone at the foot (block 2734416)",
+  "render_sha256": "2841ac61023b4d4640a9e5225c563602e52f9af4e18658349bbf1d29216daeb3",
+  "match_text": "Five years service in the posts as",
+  "before_text": "Five years service in the posts as",
+  "after_text": "Five years service in the posts as"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 33,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p33.png",
+  "source_apparatus_blocks": [
+   2734440
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 33 prints its page number '33' alone at the foot (block 2734440)",
+  "render_sha256": "74dc6afa632605ab136c51f11f90f155643aef55100afa0645076bd4014b5fb9",
+  "match_text": "All Helper (working with AC i.",
+  "before_text": "All Helper (working with AC i.",
+  "after_text": "All Helper (working with AC i."
+ },
+ {
+  "document_id": 9912,
+  "page_no": 34,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p34.png",
+  "source_apparatus_blocks": [
+   2734460
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 34 prints its page number '34' alone at the foot (block 2734460)",
+  "render_sha256": "9d3efdf82541fd268bd665d6962b597b14964653e98389817ce75f6efead30e1",
+  "match_text": "Upgraded from BPS-05 and place",
+  "before_text": "Upgraded from BPS-05 and place",
+  "after_text": "Upgraded from BPS-05 and place"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 35,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p35.png",
+  "source_apparatus_blocks": [
+   2734482
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 35 prints its page number '35' alone at the foot (block 2734482)",
+  "render_sha256": "e7711c6aa22ed7e956edae3e707fd18d6830da679d6315e1081e99dd61630c1b",
+  "match_text": "to produce registration certificate from the council at the time of appointment”.",
+  "before_text": "to produce registration certificate from the council at the time of appointment”.",
+  "after_text": "to produce registration certificate from the council at the time of appointment”."
+ },
+ {
+  "document_id": 9912,
+  "page_no": 36,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p36.png",
+  "source_apparatus_blocks": [
+   2734511
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 36 prints its page number '36' alone at the foot (block 2734511)",
+  "render_sha256": "158540ecf138dff4beb47c1a5b788891f835439a66a7802d795eae2c9350a6d8",
+  "match_text": "Horticulture Supervisor (BPS-8).",
+  "before_text": "Horticulture Supervisor (BPS-8).",
+  "after_text": "Horticulture Supervisor (BPS-8)."
+ },
+ {
+  "document_id": 9912,
+  "page_no": 37,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p37.png",
+  "source_apparatus_blocks": [
+   2734547
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 37 prints its page number '37' alone at the foot (block 2734547)",
+  "render_sha256": "8699be4e5fd7771d39272f5563cc1df1e0f1d1a155b45a133c768848534f2860",
+  "match_text": "4. Horticulture Supervisor (BPS-8).",
+  "before_text": "4. Horticulture Supervisor (BPS-8).",
+  "after_text": "4. Horticulture Supervisor (BPS-8)."
+ },
+ {
+  "document_id": 9912,
+  "page_no": 38,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p38.png",
+  "source_apparatus_blocks": [
+   2734563
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 38 prints its page number '38' alone at the foot (block 2734563)",
+  "render_sha256": "9c6c51842f681296b280b384f92c17bf9a11f8b2921c0dded77f2c80d138a172",
+  "match_text": "field in a responsible position equivalent to",
+  "before_text": "field in a responsible position equivalent to",
+  "after_text": "field in a responsible position equivalent to"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 39,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p39.png",
+  "source_apparatus_blocks": [
+   2734588
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 39 prints its page number '39' alone at the foot (block 2734588)",
+  "render_sha256": "324c667c558ecf18410bbd2330a88eee3b4c2874e25ce5631364545de2b8497f",
+  "match_text": "Second Class/Grade “C” B.Sc. (Forestry)/",
+  "before_text": "Second Class/Grade “C” B.Sc. (Forestry)/",
+  "after_text": "Second Class/Grade “C” B.Sc. (Forestry)/"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 40,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p40.png",
+  "source_apparatus_blocks": [
+   2734610
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 40 prints its page number '40' alone at the foot (block 2734610)",
+  "render_sha256": "6529105373f8ba35e0c814df2a635f514f66e4d08eb2665ec359c3f9b062ebaf",
+  "match_text": "**     No. S.R.O. 532(I)/2003.Dated 10.06.2003",
+  "before_text": "**     No. S.R.O. 532(I)/2003.Dated 10.06.2003",
+  "after_text": "**     No. S.R.O. 532(I)/2003.Dated 10.06.2003"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 41,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p41.png",
+  "source_apparatus_blocks": [
+   2734635
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 41 prints its page number '41' alone at the foot (block 2734635)",
+  "render_sha256": "572df73382bb74966608e9d6b645e91762833fc111a098993ac90f199078ac19",
+  "match_text": "(i). Assistant Director",
+  "before_text": "(i). Assistant Director",
+  "after_text": "(i). Assistant Director"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 42,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p42.png",
+  "source_apparatus_blocks": [
+   2734653
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 42 prints its page number '42' alone at the foot (block 2734653)",
+  "render_sha256": "4c2463a2f660c77b4e823137e6eec803692d21136c1df22bcb5c4c85cb70a22f",
+  "match_text": "Forest Guard",
+  "before_text": "Forest Guard",
+  "after_text": "Forest Guard"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 43,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p43.png",
+  "source_apparatus_blocks": [
+   2734657
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 43 prints its page number '43' alone at the foot (block 2734657)",
+  "render_sha256": "b0893d34d3a317f97fd85b6fc94f8229c82d26f0e794f1c7b27d6810c2c66c16",
+  "match_text": "**No.CDA-1(2)(90)HRD/Sec-I/6239 dated 01-12-2008",
+  "before_text": "**No.CDA-1(2)(90)HRD/Sec-I/6239 dated 01-12-2008",
+  "after_text": "**No.CDA-1(2)(90)HRD/Sec-I/6239 dated 01-12-2008"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 44,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p44.png",
+  "source_apparatus_blocks": [
+   2734685
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 44 prints its page number '44' alone at the foot (block 2734685)",
+  "render_sha256": "c09d220508eb1cd3e0817b369c63f4b90deb7c279bdcdc1cb78e659659bf8293",
+  "match_text": "x.Deputy Director (Computer)",
+  "before_text": "x.Deputy Director (Computer)",
+  "after_text": "x.Deputy Director (Computer)"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 45,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p45.png",
+  "source_apparatus_blocks": [
+   2734717
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 45 prints its page number '45' alone at the foot (block 2734717)",
+  "render_sha256": "8a497d3ed152e0143161ccc6c3126a43195cfe99bc3d95f051b6b91d656a4ec2",
+  "match_text": "Data Entry Operator (BPS-14)",
+  "before_text": "Data Entry Operator (BPS-14)",
+  "after_text": "Data Entry Operator (BPS-14)"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 46,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p46.png",
+  "source_apparatus_blocks": [
+   2734738
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 46 prints its page number '46' alone at the foot (block 2734738)",
+  "render_sha256": "8b52444a3e9a83ee9cc2f0031476cb20f19588cb4da769d7540533909ec01c26",
+  "match_text": "O.M F.No.19 (55)-Legal-II/2010-1055 dated 23.12.2011; No. CDA -7(34)-DD-",
+  "before_text": "O.M F.No.19 (55)-Legal-II/2010-1055 dated 23.12.2011; No. CDA -7(34)-DD-",
+  "after_text": "O.M F.No.19 (55)-Legal-II/2010-1055 dated 23.12.2011; No. CDA -7(34)-DD-"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 47,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p47.png",
+  "source_apparatus_blocks": [
+   2734765
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 47 prints its page number '47' alone at the foot (block 2734765)",
+  "render_sha256": "874d80d1117bfb931b0c10a5275aa13a48f8b6598ef9a26a0ef6e351dade9196",
+  "match_text": "E- Posts in BPS-17",
+  "before_text": "E- Posts in BPS-17",
+  "after_text": "E- Posts in BPS-17"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 48,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p48.png",
+  "source_apparatus_blocks": [
+   2734804
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 48 prints its page number '48' alone at the foot (block 2734804)",
+  "render_sha256": "7583ee08b5f938b61aa89bf1997ae599d98ef7a7954240633b9e94604c0b3dd5",
+  "match_text": "Meter reader BPS-11",
+  "before_text": "Meter reader BPS-11",
+  "after_text": "Meter reader BPS-11"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 49,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p49.png",
+  "source_apparatus_blocks": [
+   2734814
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 49 prints its page number '49' alone at the foot (block 2734814)",
+  "render_sha256": "25516ba6bd1956d8129fb44155dbc24b278d3d0eecfd558ed37c791c9963e726",
+  "match_text": "for the post in the table below subject to relaxation in the age limits prescribed in",
+  "before_text": "for the post in the table below subject to relaxation in the age limits prescribed in",
+  "after_text": "for the post in the table below subject to relaxation in the age limits prescribed in"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 50,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p50.png",
+  "source_apparatus_blocks": [
+   2734832
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 50 prints its page number '50' alone at the foot (block 2734832)",
+  "render_sha256": "b9647472810c0afc16edcdf68f51bb538d90e4ea1b940b98feccfbe613994b62",
+  "match_text": "Director (Enquiry)",
+  "before_text": "Director (Enquiry)",
+  "after_text": "Director (Enquiry)"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 51,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p51.png",
+  "source_apparatus_blocks": [
+   2734850
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 51 prints its page number '51' alone at the foot (block 2734850)",
+  "render_sha256": "82eb3b4872b3f2d657649a8990ac1fdc494132896ffa998098ed4b5544e72d92",
+  "match_text": "2nd class or Grade ‘C’ Master’s degree in Computer",
+  "before_text": "2nd class or Grade ‘C’ Master’s degree in Computer",
+  "after_text": "2nd class or Grade ‘C’ Master’s degree in Computer"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 52,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p52.png",
+  "source_apparatus_blocks": [
+   2734867
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 52 prints its page number '52' alone at the foot (block 2734867)",
+  "render_sha256": "53ab430724fc8abe9f1a93446c2d35f4cc641b918b15fb870bbd269de2d00d97",
+  "match_text": "(Programmer)",
+  "before_text": "(Programmer)",
+  "after_text": "(Programmer)"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 53,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p53.png",
+  "source_apparatus_blocks": [
+   2734882
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 53 prints its page number '53' alone at the foot (block 2734882)",
+  "render_sha256": "e58263d13820bdd03ed1dc941f35a557f250768c8c2a919a8493b32acd877cd5",
+  "match_text": "ii)  Three years experience in library   work with at least",
+  "before_text": "ii)  Three years experience in library   work with at least",
+  "after_text": "ii)  Three years experience in library   work with at least"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 54,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p54.png",
+  "source_apparatus_blocks": [
+   2734909
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 54 prints its page number '54' alone at the foot (block 2734909)",
+  "render_sha256": "70d255d7f8055ce4d674206b492e64d45795eb1544750ab5e4c967c7534f690b",
+  "match_text": "No.CDA-7(109)-HRD/2008/Sec-VI/5461/ dated 27-10-2009.",
+  "before_text": "No.CDA-7(109)-HRD/2008/Sec-VI/5461/ dated 27-10-2009.",
+  "after_text": "No.CDA-7(109)-HRD/2008/Sec-VI/5461/ dated 27-10-2009."
+ },
+ {
+  "document_id": 9912,
+  "page_no": 55,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p55.png",
+  "source_apparatus_blocks": [
+   2734916
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 55 prints its page number '55' alone at the foot (block 2734916)",
+  "render_sha256": "de27493722094fa68011c6e693e1f48abacaf15e581d8aad6886900fa100ba15",
+  "match_text": "(2) Experience means experience after acquiring the relevant qualification specified in",
+  "before_text": "(2) Experience means experience after acquiring the relevant qualification specified in",
+  "after_text": "(2) Experience means experience after acquiring the relevant qualification specified in"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 56,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p56.png",
+  "source_apparatus_blocks": [
+   2734944
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 56 prints its page number '56' alone at the foot (block 2734944)",
+  "render_sha256": "c6ce604fcbf87393d44d8bb10519b9a3c83dbdf925c781344b17cab4a2ba7cf8",
+  "match_text": "• Assistant Director other",
+  "before_text": "• Assistant Director other",
+  "after_text": "• Assistant Director other"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 57,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p57.png",
+  "source_apparatus_blocks": [
+   2734985
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 57 prints its page number '57' alone at the foot (block 2734985)",
+  "render_sha256": "90ac4d641c1121acb4eb8a270984c4d08e808ea36fbb541ce775af137cf39288",
+  "match_text": "• Assistant Protocol Officer",
+  "before_text": "• Assistant Protocol Officer",
+  "after_text": "• Assistant Protocol Officer"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 58,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p58.png",
+  "source_apparatus_blocks": [
+   2735014
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 58 prints its page number '58' alone at the foot (block 2735014)",
+  "render_sha256": "630602cd90ce172857410d10e8c186a43e447b2764724e2de866cf9c1cf0063a",
+  "match_text": "The post in BPS-16 shall not be filled under PM Assistance Package and PM Assistance",
+  "before_text": "The post in BPS-16 shall not be filled under PM Assistance Package and PM Assistance",
+  "after_text": "The post in BPS-16 shall not be filled under PM Assistance Package and PM Assistance"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 59,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p59.png",
+  "source_apparatus_blocks": [
+   2735018
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 59 prints its page number '59' alone at the foot (block 2735018)",
+  "render_sha256": "b5bec0110969a914095933eb1774daa72f54d3b4846d56390e1c8a593321a1d4",
+  "match_text": "******* No.CDA-8(15)-HRD/2006/Sec-I/2242, dated 07.12.2017",
+  "before_text": "******* No.CDA-8(15)-HRD/2006/Sec-I/2242, dated 07.12.2017",
+  "after_text": "******* No.CDA-8(15)-HRD/2006/Sec-I/2242, dated 07.12.2017"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 60,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p60.png",
+  "source_apparatus_blocks": [
+   2735067
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 60 prints its page number '60' alone at the foot (block 2735067)",
+  "render_sha256": "5b27696a7c60fd411cd341cfb4bfa58e1f6be1971a3728ec693e9dad55da2c51",
+  "match_text": "Research Officer",
+  "before_text": "Research Officer",
+  "after_text": "Research Officer"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 61,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p61.png",
+  "source_apparatus_blocks": [
+   2735100
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 61 prints its page number '61' alone at the foot (block 2735100)",
+  "render_sha256": "1cb407473b07d6344a1a003413e67971e4e265ebe387ef34e1aa3ebecd2759d6",
+  "match_text": "by promotion",
+  "before_text": "by promotion",
+  "after_text": "by promotion"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 62,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p62.png",
+  "source_apparatus_blocks": [
+   2735136
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 62 prints its page number '62' alone at the foot (block 2735136)",
+  "render_sha256": "7828a17f84c69805aa780aab8d48f3339e05f836c83c7a2e92fadf85254f7bdc",
+  "match_text": "2. Accountant (Dte. of Audit and",
+  "before_text": "2. Accountant (Dte. of Audit and",
+  "after_text": "2. Accountant (Dte. of Audit and"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 63,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p63.png",
+  "source_apparatus_blocks": [
+   2735163
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 63 prints its page number '63' alone at the foot (block 2735163)",
+  "render_sha256": "fbfc0d799d2582c79bda1e27027118da210468d49e16466b07e1d9af12c3daac",
+  "match_text": "* No.CDA/DA/Admin-1(109)83/93/2130/374 dt: 15.12.1994.",
+  "before_text": "* No.CDA/DA/Admin-1(109)83/93/2130/374 dt: 15.12.1994.",
+  "after_text": "* No.CDA/DA/Admin-1(109)83/93/2130/374 dt: 15.12.1994."
+ },
+ {
+  "document_id": 9912,
+  "page_no": 64,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p64.png",
+  "source_apparatus_blocks": [
+   2735184
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 64 prints its page number '64' alone at the foot (block 2735184)",
+  "render_sha256": "b4e3f6237fb38ee6a7ce55ec3a342ca5466bfdbf4ccdf472dcbcd4b02a42d16d",
+  "match_text": "relevant experience in a responsible position",
+  "before_text": "relevant experience in a responsible position",
+  "after_text": "relevant experience in a responsible position"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 65,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p65.png",
+  "source_apparatus_blocks": [
+   2735204
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 65 prints its page number '65' alone at the foot (block 2735204)",
+  "render_sha256": "b083aa217e3cee1bcfdf1a949392560cf7ecd051dcde4975324b623257cb6a0f",
+  "match_text": "degree and (SAS) Accountant examination",
+  "before_text": "degree and (SAS) Accountant examination",
+  "after_text": "degree and (SAS) Accountant examination"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 66,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p66.png",
+  "source_apparatus_blocks": [
+   2735226
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 66 prints its page number '66' alone at the foot (block 2735226)",
+  "render_sha256": "086b795e5f500f75f6dc8ecf3d8a4768e0cedb77706ebc50d2ca44e63507c821",
+  "match_text": "Statistics or Economics with Statistics as one",
+  "before_text": "Statistics or Economics with Statistics as one",
+  "after_text": "Statistics or Economics with Statistics as one"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 67,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p67.png",
+  "source_apparatus_blocks": [
+   2735234
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 67 prints its page number '67' alone at the foot (block 2735234)",
+  "render_sha256": "16cfcbd0d1b9d6f6978c7935913bcc5e542f89f79151ecf2408be1e3010831a9",
+  "match_text": "(2)        Experience means experience after acquiring the relevant qualification specified in",
+  "before_text": "(2)        Experience means experience after acquiring the relevant qualification specified in",
+  "after_text": "(2)        Experience means experience after acquiring the relevant qualification specified in"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 68,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p68.png",
+  "source_apparatus_blocks": [
+   2735262
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 68 prints its page number '68' alone at the foot (block 2735262)",
+  "render_sha256": "64d5a957e48295422e2d8197d7f78a3761555521d628cc7e1ad35ea8f8b529c3",
+  "match_text": "*S.R.O. 1114(I)/2007 dated. 3.11.2007",
+  "before_text": "*S.R.O. 1114(I)/2007 dated. 3.11.2007",
+  "after_text": "*S.R.O. 1114(I)/2007 dated. 3.11.2007"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 69,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p69.png",
+  "source_apparatus_blocks": [
+   2735287
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 69 prints its page number '69' alone at the foot (block 2735287)",
+  "render_sha256": "a036b58d72093b5b7e28b7fe00bb764217aa5a933ae4d0591ed6214c1666d873",
+  "match_text": "**No.CDA-7(1)HRD-III((VI)/2021/914 dated July 28, 2021",
+  "before_text": "**No.CDA-7(1)HRD-III((VI)/2021/914 dated July 28, 2021",
+  "after_text": "**No.CDA-7(1)HRD-III((VI)/2021/914 dated July 28, 2021"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 70,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p70.png",
+  "source_apparatus_blocks": [
+   2735307
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 70 prints its page number '70' alone at the foot (block 2735307)",
+  "render_sha256": "46ed192d39a7c53040bd96ab38ca5d501205231158123aadd720f8b9c6933f6c",
+  "match_text": "33% of the posts of junior",
+  "before_text": "33% of the posts of junior",
+  "after_text": "33% of the posts of junior"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 71,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p71.png",
+  "source_apparatus_blocks": [
+   2735362
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 71 prints its page number '71' alone at the foot (block 2735362)",
+  "render_sha256": "7fed1710b308cacfbd94ab2f544310d7c26831cd8ee5e4a003f582903dccfd18",
+  "match_text": "Dermatologist",
+  "before_text": "Dermatologist",
+  "after_text": "Dermatologist"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 72,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p72.png",
+  "source_apparatus_blocks": [
+   2735412
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 72 prints its page number '72' alone at the foot (block 2735412)",
+  "render_sha256": "acbcf7f40aa3ba5f882dff6d601b0e108fcb0e97ace3929dc54cc6061f642f18",
+  "match_text": "*Physiotherapist",
+  "before_text": "*Physiotherapist",
+  "after_text": "*Physiotherapist"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 73,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p73.png",
+  "source_apparatus_blocks": [
+   2735465
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 73 prints its page number '73' alone at the foot (block 2735465)",
+  "render_sha256": "3fd23a0afd6c48b07594a4b8709169e3dbb5335ac7af659f48643c98b9e15ba9",
+  "match_text": "v.Audiologist",
+  "before_text": "v.Audiologist",
+  "after_text": "v.Audiologist"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 74,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p74.png",
+  "source_apparatus_blocks": [
+   2735518
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 74 prints its page number '74' alone at the foot (block 2735518)",
+  "render_sha256": "9c303007734f62ff87392cac74cdb85b472335f8bdfa28028a3dfde02cb36b55",
+  "match_text": "Dental Technician BPS-9",
+  "before_text": "Dental Technician BPS-9",
+  "after_text": "Dental Technician BPS-9"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 75,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p75.png",
+  "source_apparatus_blocks": [
+   2735581
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 75 prints its page number '75' alone at the foot (block 2735581)",
+  "render_sha256": "b0c36dc31cdf736eed7ee9ecafea36679beb8947dea8562e52ec959761b57a2c",
+  "match_text": "Helper BPS-1",
+  "before_text": "Helper BPS-1",
+  "after_text": "Helper BPS-1"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 76,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p76.png",
+  "source_apparatus_blocks": [
+   2735591
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 76 prints its page number '76' alone at the foot (block 2735591)",
+  "render_sha256": "e27f14564d97c3c5906fab9d3f30e7ab5538ae0dd4f93633dd6f0eb85b0f3dd8",
+  "match_text": "*33% of the posts of Technician mentioned at S.No. 7 to 14 in selection grade of BPS-11.",
+  "before_text": "*33% of the posts of Technician mentioned at S.No. 7 to 14 in selection grade of BPS-11.",
+  "after_text": "*33% of the posts of Technician mentioned at S.No. 7 to 14 in selection grade of BPS-11."
+ },
+ {
+  "document_id": 9912,
+  "page_no": 77,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p77.png",
+  "source_apparatus_blocks": [
+   2735648
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 77 prints its page number '77' alone at the foot (block 2735648)",
+  "render_sha256": "c2f72b22beee8faa5a9dbf3266ed1a4281e5a50448fd14a31c8cbd1aacc72adb",
+  "match_text": "Cardiac Surgeon",
+  "before_text": "Cardiac Surgeon",
+  "after_text": "Cardiac Surgeon"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 78,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p78.png",
+  "source_apparatus_blocks": [
+   2735702
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 78 prints its page number '78' alone at the foot (block 2735702)",
+  "render_sha256": "e1d49dce4fa345bd8d76a0fdd45434f26aaf61f9f308475f2c1198982be114ff",
+  "match_text": "**No.CDA-7(01)/HRD-III (VI)/2021/1027 dated 17.09.2021",
+  "before_text": "**No.CDA-7(01)/HRD-III (VI)/2021/1027 dated 17.09.2021",
+  "after_text": "**No.CDA-7(01)/HRD-III (VI)/2021/1027 dated 17.09.2021"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 79,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p79.png",
+  "source_apparatus_blocks": [
+   2735767
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 79 prints its page number '79' alone at the foot (block 2735767)",
+  "render_sha256": "8f399b9d69c3f8653d2f384106597cacbe54088e95a7686c1845313ac5724d44",
+  "match_text": "(Blood Bank)",
+  "before_text": "(Blood Bank)",
+  "after_text": "(Blood Bank)"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 80,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p80.png",
+  "source_apparatus_blocks": [
+   2735841
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 80 prints its page number '80' alone at the foot (block 2735841)",
+  "render_sha256": "ef602aa608e9abbf3fad82b174121f48ce7ea5dd5ff8ab88f6618b8ea5cbab62",
+  "match_text": "(Dte.. of Health Services",
+  "before_text": "(Dte.. of Health Services",
+  "after_text": "(Dte.. of Health Services"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 81,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p81.png",
+  "source_apparatus_blocks": [
+   2735881
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 81 prints its page number '81' alone at the foot (block 2735881)",
+  "render_sha256": "4ace5ed0eddedccf204d01a8131ebe94a5d75305fae23eee74bb8b7b3c5b1ea2",
+  "match_text": "availability of a suitable person eligible for promotion and it is considered expedient to fill",
+  "before_text": "availability of a suitable person eligible for promotion and it is considered expedient to fill",
+  "after_text": "availability of a suitable person eligible for promotion and it is considered expedient to fill"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 82,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p82.png",
+  "source_apparatus_blocks": [
+   2735908
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 82 prints its page number '82' alone at the foot (block 2735908)",
+  "render_sha256": "65e4982d60bd3125740d94a87c7bef40e3d6891ba7ed2e965844297fa22abbd1",
+  "match_text": "qualification in public Health with ten",
+  "before_text": "qualification in public Health with ten",
+  "after_text": "qualification in public Health with ten"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 83,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p83.png",
+  "source_apparatus_blocks": [
+   2735930
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 83 prints its page number '83' alone at the foot (block 2735930)",
+  "render_sha256": "97309c82df14e8075f5c80e6143310f334512b7ac8071df644a6e668d32a526f",
+  "match_text": "qualification recognized by Pakistan",
+  "before_text": "qualification recognized by Pakistan",
+  "after_text": "qualification recognized by Pakistan"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 84,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p84.png",
+  "source_apparatus_blocks": [
+   2735936
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 84 prints its page number '84' alone at the foot (block 2735936)",
+  "render_sha256": "9a76fceed6f7d4940146c195e05d34477c851c042e343778126cba8286303787",
+  "match_text": "MCPS or diploma in Psychiatry with",
+  "before_text": "MCPS or diploma in Psychiatry with",
+  "after_text": "MCPS or diploma in Psychiatry with"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 85,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p85.png",
+  "source_apparatus_blocks": [
+   2735949
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 85 prints its page number '85' alone at the foot (block 2735949)",
+  "render_sha256": "cc545eeb8cd72fc98b0eca5f649ee0303b4ac236ccd64a0c0103e3abe16cc604",
+  "match_text": "M.Sc. Physics with specialization in",
+  "before_text": "M.Sc. Physics with specialization in",
+  "after_text": "M.Sc. Physics with specialization in"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 86,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p86.png",
+  "source_apparatus_blocks": [
+   2735967
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 86 prints its page number '86' alone at the foot (block 2735967)",
+  "render_sha256": "b5bcea845879315bea113e9b227659914564d943a11454ced99fd55d8e801667",
+  "match_text": "i). It is (a) 5 years service as Medical Officer",
+  "before_text": "i). It is (a) 5 years service as Medical Officer",
+  "after_text": "i). It is (a) 5 years service as Medical Officer"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 87,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p87.png",
+  "source_apparatus_blocks": [
+   2735984
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 87 prints its page number '87' alone at the foot (block 2735984)",
+  "render_sha256": "322032baa61c01ab4b8a0ce9a4bd719d07889da5be2fc6563139990e5b080b97",
+  "match_text": "M.Sc second class in Bio chemistry with",
+  "before_text": "M.Sc second class in Bio chemistry with",
+  "after_text": "M.Sc second class in Bio chemistry with"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 88,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p88.png",
+  "source_apparatus_blocks": [
+   2735998
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 88 prints its page number '88' alone at the foot (block 2735998)",
+  "render_sha256": "94a1232e952cd4ce836793353f409cb2a087eb82ed5b8f748f0b4e2a183991db",
+  "match_text": "experience  in the requisite specialty",
+  "before_text": "experience  in the requisite specialty",
+  "after_text": "experience  in the requisite specialty"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 89,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p89.png",
+  "source_apparatus_blocks": [
+   2736009
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 89 prints its page number '89' alone at the foot (block 2736009)",
+  "render_sha256": "65c95e45bf1ccefef065c217d861c4aa78c7b6d2940732bb13d8015aae0de173",
+  "match_text": "Diploma in mid wifery",
+  "before_text": "Diploma in mid wifery",
+  "after_text": "Diploma in mid wifery"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 90,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p90.png",
+  "source_apparatus_blocks": [
+   2736029
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 90 prints its page number '90' alone at the foot (block 2736029)",
+  "render_sha256": "29fc2f8380ed379982d805f38abdbcbe70715c17958fb3f4ca233b3f135a2d99",
+  "match_text": "ii) Certificate in Physiotherapy.",
+  "before_text": "ii) Certificate in Physiotherapy.",
+  "after_text": "ii) Certificate in Physiotherapy."
+ },
+ {
+  "document_id": 9912,
+  "page_no": 91,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p91.png",
+  "source_apparatus_blocks": [
+   2736060
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 91 prints its page number '91' alone at the foot (block 2736060)",
+  "render_sha256": "af68d7d5c74332f1445abd78dfea20c8c8f3aa2583d7372b002e2262350507d0",
+  "match_text": "in Echocardiography",
+  "before_text": "in Echocardiography",
+  "after_text": "in Echocardiography"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 92,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p92.png",
+  "source_apparatus_blocks": [
+   2736089
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 92 prints its page number '92' alone at the foot (block 2736089)",
+  "render_sha256": "d643ed5418b762ed31e7578feaf2b4ea25f0b83bc23af1009a658917fc73b33c",
+  "match_text": "33.   Dark Room Attendant BPS-2",
+  "before_text": "33.   Dark Room Attendant BPS-2",
+  "after_text": "33.   Dark Room Attendant BPS-2"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 93,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p93.png",
+  "source_apparatus_blocks": [
+   2736109
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 93 prints its page number '93' alone at the foot (block 2736109)",
+  "render_sha256": "6d6e3b019c983bf8ae4c0c8d0cc736093cd66397eb2a7099e807e6d43b9a7a2f",
+  "match_text": "Minimum qualifications and",
+  "before_text": "Minimum qualifications and",
+  "after_text": "Minimum qualifications and"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 94,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p94.png",
+  "source_apparatus_blocks": [
+   2736130
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 94 prints its page number '94' alone at the foot (block 2736130)",
+  "render_sha256": "e5e71bc8d8cec3358b7cd1053434a34c5d5168f00500788fc49510ec6604d22d",
+  "match_text": "service in BPS-19 in  case",
+  "before_text": "service in BPS-19 in  case",
+  "after_text": "service in BPS-19 in  case"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 95,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p95.png",
+  "source_apparatus_blocks": [
+   2736155
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 95 prints its page number '95' alone at the foot (block 2736155)",
+  "render_sha256": "d04f1fbd0839250d9fc08fb3b752feb8de3530b45efde5ee26fa659b55a06c50",
+  "match_text": "in Column 2.",
+  "before_text": "in Column 2.",
+  "after_text": "in Column 2."
+ },
+ {
+  "document_id": 9912,
+  "page_no": 96,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p96.png",
+  "source_apparatus_blocks": [
+   2736184
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 96 prints its page number '96' alone at the foot (block 2736184)",
+  "render_sha256": "3c87668a87fcc5c483ffdb031ab320765034a91b6e8846efaa2ffbe02d55877c",
+  "match_text": "diploma in Public Health,",
+  "before_text": "diploma in Public Health,",
+  "after_text": "diploma in Public Health,"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 97,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p97.png",
+  "source_apparatus_blocks": [
+   2736210
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 97 prints its page number '97' alone at the foot (block 2736210)",
+  "render_sha256": "bbeae7710eaffe5bb502633d8a3fd0a6b383622f5bbadde7473803044cdaccdc",
+  "match_text": "FCPS/FRCS equivalent",
+  "before_text": "FCPS/FRCS equivalent",
+  "after_text": "FCPS/FRCS equivalent"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 98,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p98.png",
+  "source_apparatus_blocks": [
+   2736227
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 98 prints its page number '98' alone at the foot (block 2736227)",
+  "render_sha256": "c901a23226c8cf4e21eec01c4ba208b60c37a4139bf8af9ece116b44545a223a",
+  "match_text": "Five years service as Bio-",
+  "before_text": "Five years service as Bio-",
+  "after_text": "Five years service as Bio-"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 99,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p99.png",
+  "source_apparatus_blocks": [
+   2736259
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 99 prints its page number '99' alone at the foot (block 2736259)",
+  "render_sha256": "ebfa7475a2359b440ced93aea574aa2618d93d278b40cefb06ccb4f7d21a0688",
+  "match_text": "3.  Technician BPS-9",
+  "before_text": "3.  Technician BPS-9",
+  "after_text": "3.  Technician BPS-9"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 100,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p100.png",
+  "source_apparatus_blocks": [
+   2736279
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 100 prints its page number '100' alone at the foot (block 2736279)",
+  "render_sha256": "338fa4a55f24d65d429afdd1bcbd0fc8adfcef811c9d9b13abcaa193981bfc7e",
+  "match_text": "(Administration) will add any leftover discipline at appropriate level, if any.",
+  "before_text": "(Administration) will add any leftover discipline at appropriate level, if any.",
+  "after_text": "(Administration) will add any leftover discipline at appropriate level, if any."
+ },
+ {
+  "document_id": 9912,
+  "page_no": 101,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p101.png",
+  "source_apparatus_blocks": [
+   2736301
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 101 prints its page number '101' alone at the foot (block 2736301)",
+  "render_sha256": "f4cbb3c7c5ba3d63eeddb481b8f4014b36aeed5d103128f4321bbd4335711d11",
+  "match_text": "with 20 year service",
+  "before_text": "with 20 year service",
+  "after_text": "with 20 year service"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 102,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p102.png",
+  "source_apparatus_blocks": [
+   2736321
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 102 prints its page number '102' alone at the foot (block 2736321)",
+  "render_sha256": "b39c05bbc4e665cfbde5f291986841fbc49fb063613d3d1e427b6e5e684f2f91",
+  "match_text": "BPS-07 in the",
+  "before_text": "BPS-07 in the",
+  "after_text": "BPS-07 in the"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 103,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p103.png",
+  "source_apparatus_blocks": [
+   2736347
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 103 prints its page number '103' alone at the foot (block 2736347)",
+  "render_sha256": "5eed5af5897d12a1c976aff768f9b39c3ba522cb730ccdbb2a0eb09352a0e49e",
+  "match_text": "institution / Government Hospital",
+  "before_text": "institution / Government Hospital",
+  "after_text": "institution / Government Hospital"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 104,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p104.png",
+  "source_apparatus_blocks": [
+   2736350
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 104 prints its page number '104' alone at the foot (block 2736350)",
+  "render_sha256": "dfd67bc54a266c2adaf65151465d77f14ec26be749798935265e35612a74de0d",
+  "match_text": "No. CDA-10(22)HRD-III/Sec-VI/2015/901 dated 18-02-201519th Board",
+  "before_text": "No. CDA-10(22)HRD-III/Sec-VI/2015/901 dated 18-02-201519th Board",
+  "after_text": "No. CDA-10(22)HRD-III/Sec-VI/2015/901 dated 18-02-201519th Board"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 105,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p105.png",
+  "source_apparatus_blocks": [
+   2736399
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 105 prints its page number '105' alone at the foot (block 2736399)",
+  "render_sha256": "3cda639e7ff4d2342f5a38d14d07cd260bacda28aa5f8cb041402a671fd23aa6",
+  "match_text": "* S.R.O. 1122(I))/2003 dated 20.11.2003",
+  "before_text": "* S.R.O. 1122(I))/2003 dated 20.11.2003",
+  "after_text": "* S.R.O. 1122(I))/2003 dated 20.11.2003"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 106,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p106.png",
+  "source_apparatus_blocks": [
+   2736419
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 106 prints its page number '106' alone at the foot (block 2736419)",
+  "render_sha256": "59421064b2a4fbdfdd7757fad09d837baee046fabd4c1c6bc8f78e45c0068309",
+  "match_text": "Ratio of appointment",
+  "before_text": "Ratio of appointment",
+  "after_text": "Ratio of appointment"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 107,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p107.png",
+  "source_apparatus_blocks": [
+   2736444
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 107 prints its page number '107' alone at the foot (block 2736444)",
+  "render_sha256": "66900c9ae9c3f6fe36a3d3cda7d5a2a31410efdc3af8d59f8e99646c6495d5fc",
+  "match_text": "20.Pressman  (Laundry) BPS-2",
+  "before_text": "20.Pressman  (Laundry) BPS-2",
+  "after_text": "20.Pressman  (Laundry) BPS-2"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 108,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p108.png",
+  "source_apparatus_blocks": [
+   2736451
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 108 prints its page number '108' alone at the foot (block 2736451)",
+  "render_sha256": "edf27bbd4391af9ab1fe49695ee8b720ca3afb4ffea1b88b0073c76a23bfb8e6",
+  "match_text": "expedient to fill the post, it may be filled by initial appointment. If a post reserved",
+  "before_text": "expedient to fill the post, it may be filled by initial appointment. If a post reserved",
+  "after_text": "expedient to fill the post, it may be filled by initial appointment. If a post reserved"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 109,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p109.png",
+  "source_apparatus_blocks": [
+   2736475
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 109 prints its page number '109' alone at the foot (block 2736475)",
+  "render_sha256": "0bae19b851f94a17e8bc725b9ebb75f73b2b77e25e127e54aae0b757689d6477",
+  "match_text": "Master in Social Sciences / MBA Three",
+  "before_text": "Master in Social Sciences / MBA Three",
+  "after_text": "Master in Social Sciences / MBA Three"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 110,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p110.png",
+  "source_apparatus_blocks": [
+   2736492
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 110 prints its page number '110' alone at the foot (block 2736492)",
+  "render_sha256": "c356c6d2be4d3b861a549f48d923e825acf2f45c10af1688daf596fa00370f42",
+  "match_text": "Ex-serviceman (NCO) with five years",
+  "before_text": "Ex-serviceman (NCO) with five years",
+  "after_text": "Ex-serviceman (NCO) with five years"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 111,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p111.png",
+  "source_apparatus_blocks": [
+   2736506
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 111 prints its page number '111' alone at the foot (block 2736506)",
+  "render_sha256": "0b0c3293e1075956f90c05dc306dd2411f3ebdd9e2c6c07025bee1e7849a6eb4",
+  "match_text": "36. Field ChowkidarBPS-1",
+  "before_text": "36. Field ChowkidarBPS-1",
+  "after_text": "36. Field ChowkidarBPS-1"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 112,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p112.png",
+  "source_apparatus_blocks": [
+   2736531
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 112 prints its page number '112' alone at the foot (block 2736531)",
+  "render_sha256": "2a45492e338602b6413e372e79a24bc69f5b46f3d68e0cd334d429f615f243be",
+  "match_text": "Ten years service in the post",
+  "before_text": "Ten years service in the post",
+  "after_text": "Ten years service in the post"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 113,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p113.png",
+  "source_apparatus_blocks": [
+   2736567
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 113 prints its page number '113' alone at the foot (block 2736567)",
+  "render_sha256": "63066f4b5d720eb692e78239be36b07b4409428bfa9a13c0197bb22991600d19",
+  "match_text": "NO.CDA-7(01)-HRD-III/VI/2017/950 dated 28.10.2019",
+  "before_text": "NO.CDA-7(01)-HRD-III/VI/2017/950 dated 28.10.2019",
+  "after_text": "NO.CDA-7(01)-HRD-III/VI/2017/950 dated 28.10.2019"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 114,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p114.png",
+  "source_apparatus_blocks": [
+   2736611
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 114 prints its page number '114' alone at the foot (block 2736611)",
+  "render_sha256": "eb1e17795eebb29d9c095ddd44b1cdd326545c4b69816573260ecacdda8658be",
+  "match_text": "*No. S.R.O 784 (I)/2000 dated. 19.10.2000",
+  "before_text": "*No. S.R.O 784 (I)/2000 dated. 19.10.2000",
+  "after_text": "*No. S.R.O 784 (I)/2000 dated. 19.10.2000"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 115,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p115.png",
+  "source_apparatus_blocks": [
+   2736627
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 115 prints its page number '115' alone at the foot (block 2736627)",
+  "render_sha256": "139a2e6d8fd9135119601786cde281f1e1b6635d07f473bd289458372766d941",
+  "match_text": "*****No.CDA-7(18)-HRD-III/Sec-VI/2008/957 dated 08.03.2008",
+  "before_text": "*****No.CDA-7(18)-HRD-III/Sec-VI/2008/957 dated 08.03.2008",
+  "after_text": "*****No.CDA-7(18)-HRD-III/Sec-VI/2008/957 dated 08.03.2008"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 116,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p116.png",
+  "source_apparatus_blocks": [
+   2736661
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 116 prints its page number '116' alone at the foot (block 2736661)",
+  "render_sha256": "ce4c30945512f6c2b50fc0a3a3b678c7ba00c8ac97153be6f17e5e5ebeddc884",
+  "match_text": "(Dte. of Municipal Administration)",
+  "before_text": "(Dte. of Municipal Administration)",
+  "after_text": "(Dte. of Municipal Administration)"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 117,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p117.png",
+  "source_apparatus_blocks": [
+   2736710
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 117 prints its page number '117' alone at the foot (block 2736710)",
+  "render_sha256": "3895b75717fe34a345d66e7c88dea7a68eb7b0be986902a706a0de4b1ad16a95",
+  "match_text": "10. Fire control SupervisorBPS-8",
+  "before_text": "10. Fire control SupervisorBPS-8",
+  "after_text": "10. Fire control SupervisorBPS-8"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 118,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p118.png",
+  "source_apparatus_blocks": [
+   2736713
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 118 prints its page number '118' alone at the foot (block 2736713)",
+  "render_sha256": "df7b89e1a9fd4b8c5b61e48772124a07fc39fc8c8329f2f91da5e5322f6a02dc",
+  "match_text": "of a suitable person eligible for promotion and it is considered expedient to fill the post, it",
+  "before_text": "of a suitable person eligible for promotion and it is considered expedient to fill the post, it",
+  "after_text": "of a suitable person eligible for promotion and it is considered expedient to fill the post, it"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 119,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p119.png",
+  "source_apparatus_blocks": [
+   2736737
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 119 prints its page number '119' alone at the foot (block 2736737)",
+  "render_sha256": "3ae0b394ec48bc6fa780cad3fe5079526619efa80e2a235fc37c2427ba7477ed",
+  "match_text": "software regarding Logistics and stock",
+  "before_text": "software regarding Logistics and stock",
+  "after_text": "software regarding Logistics and stock"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 120,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p120.png",
+  "source_apparatus_blocks": [
+   2736753
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 120 prints its page number '120' alone at the foot (block 2736753)",
+  "render_sha256": "506333e27e4e45d7db52f14e13cd4506256183c8e5a8c18bfc2107e5749d0897",
+  "match_text": "3. *****Search & Rescue Team",
+  "before_text": "3. *****Search & Rescue Team",
+  "after_text": "3. *****Search & Rescue Team"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 121,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p121.png",
+  "source_apparatus_blocks": [
+   2736764
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 121 prints its page number '121' alone at the foot (block 2736764)",
+  "render_sha256": "3433c28f8680f32622315ebf4a3ae86786dfeeb651f6edd37ce5f83311440961",
+  "match_text": "8. *****Instructor (BPS-10)",
+  "before_text": "8. *****Instructor (BPS-10)",
+  "after_text": "8. *****Instructor (BPS-10)"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 122,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p122.png",
+  "source_apparatus_blocks": [
+   2736782
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 122 prints its page number '122' alone at the foot (block 2736782)",
+  "render_sha256": "3be2318c5633bfef764a09d383602250d9df5b4e39cc38c9ca48d9cb67bc0691",
+  "match_text": "Experience means experience after acquiring the relevant qualification specified in",
+  "before_text": "Experience means experience after acquiring the relevant qualification specified in",
+  "after_text": "Experience means experience after acquiring the relevant qualification specified in"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 123,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p123.png",
+  "source_apparatus_blocks": [
+   2736825
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 123 prints its page number '123' alone at the foot (block 2736825)",
+  "render_sha256": "2ae71e3e894a6d9c50dbc3f70125c9782ba4af2f8955891772cabafbf907738c",
+  "match_text": "3.  Chief Sanitary",
+  "before_text": "3.  Chief Sanitary",
+  "after_text": "3.  Chief Sanitary"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 124,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p124.png",
+  "source_apparatus_blocks": [
+   2736848
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 124 prints its page number '124' alone at the foot (block 2736848)",
+  "render_sha256": "cb3f7e5366f8b6fcdb4a7e6e24551823404fbdfb0cb354dc1795a9b368f797e5",
+  "match_text": "*      No. S.R.O 784 (I)/2000 dated. 19.10.2000",
+  "before_text": "*      No. S.R.O 784 (I)/2000 dated. 19.10.2000",
+  "after_text": "*      No. S.R.O 784 (I)/2000 dated. 19.10.2000"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 125,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p125.png",
+  "source_apparatus_blocks": [
+   2736887
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 125 prints its page number '125' alone at the foot (block 2736887)",
+  "render_sha256": "a5d49e1ea3f84dfb075e19cf9a55b2a3caf8f0a6db3d7c19aa6f97429a27d3cd",
+  "match_text": "(Dte. of Architecture DesignWing)",
+  "before_text": "(Dte. of Architecture DesignWing)",
+  "after_text": "(Dte. of Architecture DesignWing)"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 126,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p126.png",
+  "source_apparatus_blocks": [
+   2736928
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 126 prints its page number '126' alone at the foot (block 2736928)",
+  "render_sha256": "540948b84b945081a03c12bf6091d928a480e96c5d12fb8ee13f6a7a28694089",
+  "match_text": "(Planning) (Planning Wing)",
+  "before_text": "(Planning) (Planning Wing)",
+  "after_text": "(Planning) (Planning Wing)"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 127,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p127.png",
+  "source_apparatus_blocks": [
+   2736973
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 127 prints its page number '127' alone at the foot (block 2736973)",
+  "render_sha256": "670b10b62d84a49db9f1491454001ec8c0eaf0fbd16e266b91afffcec2822938",
+  "match_text": "9. Ferro Printer BPS-5",
+  "before_text": "9. Ferro Printer BPS-5",
+  "after_text": "9. Ferro Printer BPS-5"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 128,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p128.png",
+  "source_apparatus_blocks": [
+   2736994
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 128 prints its page number '128' alone at the foot (block 2736994)",
+  "render_sha256": "a688541fcc8d25d76ab64bdc524847971252075d8779b5badcb9fbd8c2f1d9a9",
+  "match_text": "i)   Master’s degree in Town Planning",
+  "before_text": "i)   Master’s degree in Town Planning",
+  "after_text": "i)   Master’s degree in Town Planning"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 129,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p129.png",
+  "source_apparatus_blocks": [
+   2737019
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 129 prints its page number '129' alone at the foot (block 2737019)",
+  "render_sha256": "cf3a92263b94cd148714a914622807018d9c5de2daaf0447cc048128bbff6807",
+  "match_text": "Notification dated 25.02.2010, whereby all Building Inspectors were upgraded to BPS-16 shall not be",
+  "before_text": "Notification dated 25.02.2010, whereby all Building Inspectors were upgraded to BPS-16 shall not be",
+  "after_text": "Notification dated 25.02.2010, whereby all Building Inspectors were upgraded to BPS-16 shall not be"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 130,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p130.png",
+  "source_apparatus_blocks": [
+   2737054
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 130 prints its page number '130' alone at the foot (block 2737054)",
+  "render_sha256": "199260b48ff861fcee1e3fd9ba28894d7b943d958438ee8a59d524a9fbc2782c",
+  "match_text": "ii)  12 years service in case of",
+  "before_text": "ii)  12 years service in case of",
+  "after_text": "ii)  12 years service in case of"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 131,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p131.png",
+  "source_apparatus_blocks": [
+   2737094
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 131 prints its page number '131' alone at the foot (block 2737094)",
+  "render_sha256": "6fe8eb585ff856f932fa4c713e5f2c548df616f670920759276343b7537628e4",
+  "match_text": "i)  Three years service in the",
+  "before_text": "i)  Three years service in the",
+  "after_text": "i)  Three years service in the"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 132,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p132.png",
+  "source_apparatus_blocks": [
+   2737107
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 132 prints its page number '132' alone at the foot (block 2737107)",
+  "render_sha256": "12c9d4c05e30db479edaa729c3426d01a08b2991b7f99f2e3fa15961fb16dd6f",
+  "match_text": "Town Planning Assistant and",
+  "before_text": "Town Planning Assistant and",
+  "after_text": "Town Planning Assistant and"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 133,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p133.png",
+  "source_apparatus_blocks": [
+   2737121
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 133 prints its page number '133' alone at the foot (block 2737121)",
+  "render_sha256": "51994c67f3e5d5fea22284ecbcbf236ed8c1e481a2ac48b0396909defdefcb73",
+  "match_text": "3.Assistant Store keeper (BPS-7)",
+  "before_text": "3.Assistant Store keeper (BPS-7)",
+  "after_text": "3.Assistant Store keeper (BPS-7)"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 134,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p134.png",
+  "source_apparatus_blocks": [
+   2737137
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 134 prints its page number '134' alone at the foot (block 2737137)",
+  "render_sha256": "9024509e8ce93ab4e8b9a7112e8b73dda51bce84f2e3e21e1a88203961ae9abb",
+  "match_text": "50% of Drivers and Dispatch Riders to be granted BPS-5, 6 and 7 according to para-4 of",
+  "before_text": "50% of Drivers and Dispatch Riders to be granted BPS-5, 6 and 7 according to para-4 of",
+  "after_text": "50% of Drivers and Dispatch Riders to be granted BPS-5, 6 and 7 according to para-4 of"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 135,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p135.png",
+  "source_apparatus_blocks": [
+   2737149
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 135 prints its page number '135' alone at the foot (block 2737149)",
+  "render_sha256": "c344ab7d0a58448fb0b3003afcb5f3594949adae3e0aa0d76fa1029e98f74b37",
+  "match_text": "deputation or contract if in the opinion of the chairman it is expedient to do so in the",
+  "before_text": "deputation or contract if in the opinion of the chairman it is expedient to do so in the",
+  "after_text": "deputation or contract if in the opinion of the chairman it is expedient to do so in the"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 136,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p136.png",
+  "source_apparatus_blocks": [
+   2737166
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 136 prints its page number '136' alone at the foot (block 2737166)",
+  "render_sha256": "79cbd606f993e537e060c2f0907ddde0eee08c7df9050b3aff342cc873481c95",
+  "match_text": "ii)  Should possess a valid LTV",
+  "before_text": "ii)  Should possess a valid LTV",
+  "after_text": "ii)  Should possess a valid LTV"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 137,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p137.png",
+  "source_apparatus_blocks": [
+   2737188
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 137 prints its page number '137' alone at the foot (block 2737188)",
+  "render_sha256": "fb6cb18fce4e50caaaa8450531277309f1f4a1cc101589bdcac9a7e01a9b139d",
+  "match_text": "Selection may be made",
+  "before_text": "Selection may be made",
+  "after_text": "Selection may be made"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 138,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p138.png",
+  "source_apparatus_blocks": [
+   2737198
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 138 prints its page number '138' alone at the foot (block 2737198)",
+  "render_sha256": "58962d83de4f9b60edbfe72c87a7b71479b3ace55804af8d6867afcafb47857b",
+  "match_text": "dispatch rider, during t he period prescribed for the grant of the pay scale 5, 6",
+  "before_text": "dispatch rider, during t he period prescribed for the grant of the pay scale 5, 6",
+  "after_text": "dispatch rider, during t he period prescribed for the grant of the pay scale 5, 6"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 139,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p139.png",
+  "source_apparatus_blocks": [
+   2737201
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 139 prints its page number '139' alone at the foot (block 2737201)",
+  "render_sha256": "d89789fae029ded0a3baf331e12ae124e72475a3af7cb3c73f2367f331e7a7d6",
+  "match_text": "Pay may be allowed in basic pay scale 9 to those drivers who possess a valid",
+  "before_text": "Pay may be allowed in basic pay scale 9 to those drivers who possess a valid",
+  "after_text": "Pay may be allowed in basic pay scale 9 to those drivers who possess a valid"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 140,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p140.png",
+  "source_division_openers": [
+   {
+    "source_block_id": 2737203,
+    "kind": "appendix",
+    "label": "Apppendix-3"
+   }
+  ],
+  "source_apparatus_blocks": [
+   2737205
+  ],
+  "defect": "the volume prints only appendices (posts, qualifications and methods of appointment by cadre); the parse opened one section on page 6 holding every table row, and read page numbers into rows",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 140 prints the heading 'Apppendix-3' opening that appendix (block 2737203) and its page number '140' alone at the foot (block 2737205)",
+  "render_sha256": "ebd57d7bc3cfac10d1d37305fd3564b03463a2de8cc2b79cde6df985c0457adc",
+  "match_text": "CDA EMPLOYEES SERVICE REGULATIONS, 1992, VOLUME-II (UPDATED AS ON August 10, 2022",
+  "before_text": "CDA EMPLOYEES SERVICE REGULATIONS, 1992, VOLUME-II (UPDATED AS ON August 10, 2022",
+  "after_text": "CDA EMPLOYEES SERVICE REGULATIONS, 1992, VOLUME-II (UPDATED AS ON August 10, 2022"
+ },
+ {
+  "document_id": 9912,
+  "page_no": 141,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p141.png",
+  "source_division_openers": [
+   {
+    "source_block_id": 2737208,
+    "kind": "appendix",
+    "label": "Apppendix-5"
+   }
+  ],
+  "source_apparatus_blocks": [
+   2737210
+  ],
+  "defect": "the volume prints only appendices (posts, qualifications and methods of appointment by cadre); the parse opened one section on page 6 holding every table row, and read page numbers into rows",
+  "fixes": "rule reviewed_division_opener: the printed APPENDIX heading opens the appendix; rule reviewed_apparatus_block: the page number is set aside; no text changes",
+  "observed": "Page 141 prints the heading 'Apppendix-5' opening that appendix (block 2737208) and its page number '141' alone at the foot (block 2737210)",
+  "render_sha256": "836a28d589e761d9ffd5081f548c83ad614bddf01a63e8fe84a09bd8a3c6f386",
+  "match_text": "*(Regulation 14.01)",
+  "before_text": "*(Regulation 14.01)",
+  "after_text": "*(Regulation 14.01)"
+ }
+]

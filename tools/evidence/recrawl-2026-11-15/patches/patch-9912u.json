@@ -1,0 +1,26 @@
+[
+ {
+  "document_id": 9912,
+  "page_no": 141,
+  "match_text": "*(Regulation 14.01) \n \nBPS",
+  "before_text": "*(Regulation 14.01)",
+  "after_text": "*(Regulation 14.01)\nBasic pay scale",
+  "source_apparatus_blocks": [
+   2737207
+  ],
+  "source_text_units": [
+   {
+    "source_block_id": 2737204,
+    "kind": "section",
+    "label": "4"
+   }
+  ],
+  "defect": "the text layer orders Appendix-5's title 'Basic pay scale' (printed below the heading) before the heading 'Apppendix-5', so the title joined a row of Appendix-2; and on page 140 the line 'Regulation 4.12' under 'Apppendix-3' classified as a section '4' with text '12' and became a row of Appendix-2 carrying the appendix's transcribed text",
+  "fixes": "parser-input correction: the title is read where page 141 prints it, after '*(Regulation 14.01)' in the heading's block, and its out-of-order block is set aside (words unchanged); rule reviewed_text_unit: page 140's 'Regulation 4.12' is the open appendix's text (it names the regulation the appendix serves, as the INDEX on page 3 prints '3 | 4.12')",
+  "observed": "Page 141 prints 'Apppendix-5' (y=88), '*(Regulation 14.01)', then 'Basic pay scale' (y=133) over the table 'BPS / Number' rows 1 13550-430-26450 ...; page 140 prints 'Apppendix-3' and below it 'Regulation 4.12', then the scanned notification S.R.O. No. 747(1)/2020",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p141.png",
+  "additional_render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p140.png",
+  "render_sha256": "836a28d589e761d9ffd5081f548c83ad614bddf01a63e8fe84a09bd8a3c6f386",
+  "additional_render_sha256": "ebd57d7bc3cfac10d1d37305fd3564b03463a2de8cc2b79cde6df985c0457adc"
+ }
+]

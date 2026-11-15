@@ -2532,6 +2532,13 @@ def subdivide_spans(text: str) -> list[tuple[int, str]]:
     if text in _CO_CUT_TEXTS.get():
         lower_heading_cuts |= {m.end() for m in re.finditer(
             r"(?<=\n)[ \t\u00a0]*(?=(?:\d{1,3}\s*\[\s*)?Chapter[ \t]+\d{1,2}[A-Z]?[ \t]*\n)", text)}
+    # Rule `reviewed_decimal_regulation_series` (doc 9911): in a flagged body every block is cut before a line opening a
+    # chapter.serial regulation ('8.05. Suspension etc.', '*5.02.  Transfer', '12.01 / Leave'); the walk then reads a
+    # cut number that only continues a cross-reference back into the open provision.
+    if text in _DR_SERIES_TEXTS.get():
+        lower_heading_cuts |= {m.end() for m in re.finditer(
+            r"(?<=\n)[ \t ]*(?=\*?[ \t]*\d{1,2}\.\s?\d{2}(?:[ \t]*-?[ \t]*[A-Z](?![A-Za-z]))?\.?"
+            r"(?:[ \t ]+|[ \t ]*\n[ \t ]*)[A-Z\"“(])", text)}
     if text in _DF_DECIMAL_CUT_TEXTS.get():
         lower_heading_cuts |= {m.end() for m in re.finditer(
             r"(?<=\n)[ \t\u00a0]*(?=\d{1,2}(?:\.\d{1,2}){1,3}\.?(?:[ \t\u00a0]+|[ \t\u00a0]*\n[ \t\u00a0]*)"
@@ -6505,6 +6512,13 @@ def _part_identity(value: str | None) -> str | None:
     return match.group(1).casefold() if match else None
 
 
+def _decimal_regulation_key(label) -> tuple | None:
+    """A chapter.serial regulation number as an orderable key: '4.20-A' -> (4, 20, 'A'); anything else None
+    (rule `reviewed_decimal_regulation_series`)."""
+    m = re.fullmatch(r"(\d{1,2})\.\s?(\d{1,3})(?:\s*-?\s*([A-Z]))?", str(label or "").strip())   # '8. 06' as printed
+    return (int(m.group(1)), int(m.group(2)), m.group(3) or "") if m else None
+
+
 def _classify_body(text: str, toc: dict[str, str],
                    seen: set[str] | None = None,
                    previous_heading: str | None = None,
@@ -8870,6 +8884,8 @@ _JB_EXPLANATION_OF_HEADING: contextvars.ContextVar[bool] = contextvars.ContextVa
 _JB_NO_CUT_TEXTS: contextvars.ContextVar[frozenset] = contextvars.ContextVar("jb_no_cut_texts", default=frozenset())
 _DF_DECIMAL_CUT_TEXTS: contextvars.ContextVar[frozenset] = contextvars.ContextVar(
     "df_decimal_cut_texts", default=frozenset())
+# Rule `reviewed_decimal_regulation_series` (doc 9911): every block text of a flagged body (data-gated, every profile).
+_DR_SERIES_TEXTS: contextvars.ContextVar[frozenset] = contextvars.ContextVar("dr_series_texts", default=frozenset())
 _DF_TABLE_ROW_BLOCKS: contextvars.ContextVar[frozenset] = contextvars.ContextVar(
     "df_table_row_blocks", default=frozenset())
 _DF_DIVISION_CONTINUES: contextvars.ContextVar[frozenset] = contextvars.ContextVar(
@@ -9025,6 +9041,11 @@ def segment(blocks: list[dict], curation_patches: list[dict] | None = None,
                 raise ValueError(f"{_df_key} not found: {sorted(_df_ids - set(_df_found))}")
             _df_texts[_df_key] = frozenset(_df_found.values())
     _df_cut_token = _DF_DECIMAL_CUT_TEXTS.set(_df_texts["source_decimal_cut_blocks"])
+    _dr_series_texts = frozenset()
+    if _df_over.get("source_decimal_regulation_series") is True:
+        _dr_patched, _ = _apply_curation_patches(blocks, curation_patches or [])
+        _dr_series_texts = frozenset(b["text"] for b in _dr_patched if b.get("text"))
+    _dr_series_token = _DR_SERIES_TEXTS.set(_dr_series_texts)
     _k2_hps_token = _K2_HPS_TEXTS.set(_df_texts["source_half_paren_subrule_blocks"])
     _jb_nocut_ids = {int(v) for v in (_df_over.get("source_no_cut_blocks") or [])}
     _jb_nocut_texts = frozenset()
@@ -9330,6 +9351,7 @@ def segment(blocks: list[dict], curation_patches: list[dict] | None = None,
         _CK_BARE_SERIES.reset(_ck_bare_token)
         _CK_DECIMAL_SERIES.reset(_ck_series_token)
         _DF_DECIMAL_CUT_TEXTS.reset(_df_cut_token)
+        _DR_SERIES_TEXTS.reset(_dr_series_token)
         _JB_NO_CUT_TEXTS.reset(_jb_nocut_token)
         _JB_EXPLANATION_OF_HEADING.reset(_jb_expl_token)
         _JB_STATUTE_ROW_HEADINGS.reset(_jb_srh_token)
@@ -12216,6 +12238,35 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
             if int(c[1]) == len(_cl_numbered) + 1 and all(
                     child.label == str(k + 1) for k, child in enumerate(_cl_numbered)):
                 c = ("clause", c[1], c[2])
+        # Rule `reviewed_decimal_regulation_series` (doc 9911, 15 Nov 2026; data-gated, every profile): a page-read
+        # observation flag for a body that numbers its regulations chapter.serial ('4.17.', '12.03', '4.10-A'). A plain
+        # number line ('1.', '6. CONDITIONS FOR SUPERSESSION') opened while such a regulation is the nearest open section
+        # is that regulation's sub-regulation, never a section: unflagged, '4.17's paragraphs 1-4 became sections, and
+        # a run 6-13 inside 4.20-A left section 13 open, so every later regulation (5.01 ... 25.x) became its clause.
+        if (c is not None and c[0] == "section" and overrides.get("source_decimal_regulation_series") is True
+                and re.fullmatch(r"\d{1,3}(?:\s?-?[A-Z])?", str(c[1] or ""))):     # '1.', '2A', '2-A' as printed
+            _dr_open = next((n for n in reversed(stack) if n is not root and n.kind == "section"), None)
+            if _dr_open is not None and _decimal_regulation_key(_dr_open.label) is not None:
+                c = ("subsection", c[1], c[2])
+        # The same rule's cross-references: a regulation number wrapped to the head of a line is a reference, not an
+        # opener, when the words after it run on in lower case ('21.32 in so far as ...', '21.27 to 21.32.', '23.11
+        # including ...'), when the line itself opens in lower case ('regulation 23.11.'), or when the number stands
+        # alone after a line ending 'regulation' ('... specified in regulation / 21.38.', p190; the real regulation 21.38
+        # is printed on p207). The block stays the open provision's text as printed.
+        if (c is not None and c[0] == "section" and overrides.get("source_decimal_regulation_series") is True
+                and _decimal_regulation_key(c[1]) is not None):
+            _dr_rest = (c[2] or "").strip()
+            _dr_prev = _norm(previous_content(idx) or "")
+            _dr_opened = [k for k in map(_decimal_regulation_key, label_nodes) if k is not None]
+            if (re.match(r"[a-z]", _dr_rest) or re.match(r"\s*[a-z]", text)
+                    or re.match(r"\.?\d", _dr_rest)                         # a date: '01.07.2011, till further orders'
+                    or re.search(r"\b(?:sub-)?(?:regulations?|rules?)\s*$", _dr_prev, re.I)
+                    or (re.fullmatch(r"[.\s]*", _dr_rest)
+                        and re.search(r"\b(?:under|of|in|to|and)\s*$", _dr_prev, re.I))
+                    # a number cut from inside a block must continue the series upward
+                    or (idx > 0 and units[idx - 1][0] is b and _dr_opened
+                        and _decimal_regulation_key(c[1]) <= max(_dr_opened))):
+                c = None
         # Profile rule `half_paren_clause_label` (unreleased-v4): in a reviewed block, 'c)' alone at the unit's
         # head is clause c (the label as printed, without the parenthesis; nothing is added to the text).
         # Rule `reviewed_table_row_blocks` (stage 3, agent DF, doc 4347 p4): a numbered row of a page-read table block is a row
@@ -13099,7 +13150,8 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
             # a note marker glued on as printed superscript, '3APPENDIX' (doc 6029 p8, its note 3 'Appendix substituted
             # by ... Notification ... 2014'), is the note's, as rule V reads '1SCHEDULE III'
             # ... and 'THE SCHEDULE' (doc 5121 p14) is the schedule as 'SCHEDULE' is
-            _do_key = lambda s: re.sub(r"[^0-9A-Za-z]", "", re.sub(r"^\s*(?:(?:\d{1,3}\s*)?\[\s*|\*{1,3}\s*|\d{1,2}(?=[A-Z]))?(?i:THE\s+)?(?i:FORMS?|APPENDI(?:X|CES)|ANNEX(?:URE)?|SCHEDULES?)", "", s)).casefold()  # noqa: E731
+            # ... and the misprint 'Apppendix-3' (doc 9912 pp140-141, 15 Nov 2026) is the appendix it names
+            _do_key =lambda s: re.sub(r"[^0-9A-Za-z]", "", re.sub(r"^\s*(?:(?:\d{1,3}\s*)?\[\s*|\*{1,3}\s*|\d{1,2}(?=[A-Z]))?(?i:THE\s+)?(?i:FORMS?|AP+ENDI(?:X|CES)|ANNEX(?:URE)?|SCHEDULES?)", "", s)).casefold()  # noqa: E731
             if "contents_row_block_id" in _do_e:
                 # the contents row prints '<roman>.' and a title; the division's own block (or the next) prints that title
                 _do_row = next((blk for blk in original_blocks
@@ -13118,7 +13170,7 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
                                       "source_block_id": source_id,
                                       "contents_row_block_id": _do_e["contents_row_block_id"]})
             else:
-                if not re.match(r"\s*(?:(?:\d{1,3}\s*)?\[\s*|\*{1,3}\s*|\d{1,2}(?=[A-Z]))?(?i:THE\s+)?(?i:FORMS?|APPENDI(?:X|CES)|ANNEX(?:URE)?|SCHEDULES?)\b", _do_line):
+                if not re.match(r"\s*(?:(?:\d{1,3}\s*)?\[\s*|\*{1,3}\s*|\d{1,2}(?=[A-Z]))?(?i:THE\s+)?(?i:FORMS?|AP+ENDI(?:X|CES)|ANNEX(?:URE)?|SCHEDULES?)\b", _do_line):
                     raise ValueError(f"source division opener at block {source_id} does not print FORM/APPENDIX: {_do_line!r}")
                 if _do_e["label"] is not None and _do_key(_do_e["label"]) != _do_key(_do_line):
                     raise ValueError(f"source division opener {_do_e['label']!r} is not the print {_do_line!r}")
@@ -13530,6 +13582,14 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
                     and _DISPOSITION_ROW.match(expected_heading or "")
                     and re.fullmatch(r"[\s*.\[\]\u2026]*", rest or "")):
                 next_promised_section = True
+            # Rule `reviewed_decimal_regulation_series` (doc 9911; data-gated): paragraph 16 of regulation 4.20-A
+            # declares a TABLE and, with no contents to promise the next regulation, regulations 4.21 ... 25.x became
+            # its rows. In a flagged body a chapter.serial number above every regulation opened closes the table.
+            if not next_promised_section and overrides.get("source_decimal_regulation_series") is True:
+                _dr_key = _decimal_regulation_key(table_key)
+                _dr_open = [k for k in map(_decimal_regulation_key, label_nodes) if k is not None]
+                if _dr_key is not None and _dr_open and _dr_key > max(_dr_open):
+                    next_promised_section = True
             # Profile rule `substituted_schedule_items`: inside a reviewed substituted-Schedule span no
             # contents row closes the list
             if (_cg_spec is not None and _cg_state == "open" and explicit_table_owner is _cg_owner
@@ -14649,6 +14709,16 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
                                if _m and _m.group(1) == _dm.group(1)]
                     if _minors and max(_minors) < int(_dm.group(2)) <= max(_minors) + 3:
                         resumes = True
+            # Rule `reviewed_decimal_regulation_series` (doc 9911, 15 Nov 2026; data-gated): regulation 4.20-A
+            # reproduces a promotion policy with its own Schedules I-IV, and the schedule never closed -- regulations
+            # 4.21 ... 25.x became its rows. In a flagged body a chapter.serial number above every regulation the
+            # body has opened resumes the body.
+            if (not resumes and schedule_node is not None
+                    and overrides.get("source_decimal_regulation_series") is True):
+                _dr_key = _decimal_regulation_key(key)
+                _dr_open = [k for k in map(_decimal_regulation_key, label_nodes) if k is not None]
+                if _dr_key is not None and _dr_open and _dr_key > max(_dr_open):
+                    resumes = True
             # Profile rule `last_promised_section_after_schedule` (unreleased-v4): doc 3142
             # prints rule 12 'REPEAL' after its Schedule; the contents' last and highest row,
             # not yet produced and opening with its contents heading, resumes the body.

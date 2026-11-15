@@ -1,0 +1,3459 @@
+[
+ {
+  "document_id": 9911,
+  "page_no": 19,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p19.png",
+  "source_apparatus_blocks": [
+   2728699
+  ],
+  "source_contents_region": {
+   "first_block_id": 2728111,
+   "last_block_id": 2728678,
+   "body_start_block_id": 2728680,
+   "rows": "none",
+   "skip_apparatus": true
+  },
+  "defect": "Volume I of the CDA Employees Service Regulations's CONTENTS (INDEX) pages were read as law: their rows became parts and subsections, and the body's opening chapters were nested under the contents' last part",
+  "fixes": "rule reviewed_contents_region: the INDEX from block 2728111 (p4) to block 2728678 (p18) is contents only (rows not linked); the body opens at block 2728680 (p19)",
+  "observed": "Pages 4-18 print the INDEX table (chapter, subject, page); page 19 opens the body 'CHAPTER 01'; its page number '1' is printed at the foot",
+  "render_sha256": "2da305e8b0890691164fc7901ba0f4b12f0cfd98aa5b52548ac62c90b961c8bb",
+  "match_text": "***************************************************",
+  "before_text": "***************************************************",
+  "after_text": "***************************************************"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 20,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p20.png",
+  "source_apparatus_blocks": [
+   2728711
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 20 prints its page number '2' alone at the foot (block 2728711, the page's last block, y=738 of 792)",
+  "render_sha256": "dd12564131a492c11e57decf81f29aedacf8e83aefe8699fe933e2996e4fc4dd",
+  "match_text": "“Employee” means an officer, servant, expert or consultant appointed or deemed to be",
+  "before_text": "“Employee” means an officer, servant, expert or consultant appointed or deemed to be",
+  "after_text": "“Employee” means an officer, servant, expert or consultant appointed or deemed to be"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 21,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p21.png",
+  "source_apparatus_blocks": [
+   2728728
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 21 prints its page number '3' alone at the foot (block 2728728, the page's last block, y=738 of 792)",
+  "render_sha256": "f3c1a78dac35a12de152aa7c317cb593221f2e4618dd3f257be1ff7876771f7d",
+  "match_text": "“Personal pay” means additional pay granted to an employee:-",
+  "before_text": "“Personal pay” means additional pay granted to an employee:-",
+  "after_text": "“Personal pay” means additional pay granted to an employee:-"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 22,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p22.png",
+  "source_apparatus_blocks": [
+   2728750
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 22 prints its page number '4' alone at the foot (block 2728750, the page's last block, y=738 of 792)",
+  "render_sha256": "c151a1bbd59907baa999486c978ed52d98cdd8852ce7f1d8f9c6eca9e3954727",
+  "match_text": "“Temporary post” means a post other than a regular post; and",
+  "before_text": "“Temporary post” means a post other than a regular post; and",
+  "after_text": "“Temporary post” means a post other than a regular post; and"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 23,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p23.png",
+  "source_apparatus_blocks": [
+   2728761
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 23 prints its page number '5' alone at the foot (block 2728761, the page's last block, y=738 of 792)",
+  "render_sha256": "9fdd999eeb8794f120cfc55ef8b6aab785eecb81dbbc42d04b96603133ab6238",
+  "match_text": "************************************",
+  "before_text": "************************************",
+  "after_text": "************************************"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 24,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p24.png",
+  "source_apparatus_blocks": [
+   2728787
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 24 prints its page number '6' alone at the foot (block 2728787, the page's last block, y=738 of 792)",
+  "render_sha256": "8f529c6fe00dee5fa17241267aa48d139ccbc3370f9eaa149fd4898ade170490",
+  "match_text": "*No. CDA-7(01) HRD-III/2013/1270 dated 24-06-2013",
+  "before_text": "*No. CDA-7(01) HRD-III/2013/1270 dated 24-06-2013",
+  "after_text": "*No. CDA-7(01) HRD-III/2013/1270 dated 24-06-2013"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 25,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p25.png",
+  "source_apparatus_blocks": [
+   2728817
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 25 prints its page number '7' alone at the foot (block 2728817, the page's last block, y=738 of 792)",
+  "render_sha256": "3986dbed52d311d275216a7a3f1475b8cc649468bee3bf7294165557eda90715",
+  "match_text": "incapacitated for further service, the competent authority may require him to retire from service and",
+  "before_text": "incapacitated for further service, the competent authority may require him to retire from service and",
+  "after_text": "incapacitated for further service, the competent authority may require him to retire from service and"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 26,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p26.png",
+  "source_apparatus_blocks": [
+   2728846
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 26 prints its page number '8' alone at the foot (block 2728846, the page's last block, y=738 of 792)",
+  "render_sha256": "a10d80ceba69c8503d84416c7ad6da7f2f78bdaf7d6fae7d2b4b01377434152c",
+  "match_text": "****************************************",
+  "before_text": "****************************************",
+  "after_text": "****************************************"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 27,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p27.png",
+  "source_apparatus_blocks": [
+   2728869
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 27 prints its page number '9' alone at the foot (block 2728869, the page's last block, y=738 of 792)",
+  "render_sha256": "da792d8ff4d5540274d5c59f76a011817b6eda27241f13504051fc1ed17faec0",
+  "match_text": "________________________________________________________________________________",
+  "before_text": "________________________________________________________________________________",
+  "after_text": "________________________________________________________________________________"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 28,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p28.png",
+  "source_apparatus_blocks": [
+   2728892
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 28 prints its page number '10' alone at the foot (block 2728892, the page's last block, y=738 of 792)",
+  "render_sha256": "6ab258723ff793f292e7455b5b7aa016d3a1713bf215b57b7ac9adce1d0a9331",
+  "match_text": "In case where Director (Concerned) is Director-II, HRD, the Director-I (HRD) would act as",
+  "before_text": "In case where Director (Concerned) is Director-II, HRD, the Director-I (HRD) would act as",
+  "after_text": "In case where Director (Concerned) is Director-II, HRD, the Director-I (HRD) would act as"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 29,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p29.png",
+  "source_apparatus_blocks": [
+   2728902
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 29 prints its page number '11' alone at the foot (block 2728902, the page's last block, y=738 of 792)",
+  "render_sha256": "beecf2ccea44859a5b862a90bbe94256de69e9fba926ae951f93341f51f98b46",
+  "match_text": "*No.CDA-7(01) HRD-III/2021/757 dated 13.07.2021 & Board decision dated 17.06.2022 and notification is",
+  "before_text": "*No.CDA-7(01) HRD-III/2021/757 dated 13.07.2021 & Board decision dated 17.06.2022 and notification is",
+  "after_text": "*No.CDA-7(01) HRD-III/2021/757 dated 13.07.2021 & Board decision dated 17.06.2022 and notification is"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 30,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p30.png",
+  "source_apparatus_blocks": [
+   2728926
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 30 prints its page number '12' alone at the foot (block 2728926, the page's last block, y=738 of 792)",
+  "render_sha256": "20bb42f622f1c9e449cfd6824a8a8746a66d75b979933e83720a25182d6b8d8a",
+  "match_text": "_________________________________________________________________________________",
+  "before_text": "_________________________________________________________________________________",
+  "after_text": "_________________________________________________________________________________"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 31,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p31.png",
+  "source_apparatus_blocks": [
+   2728947
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 31 prints its page number '13' alone at the foot (block 2728947, the page's last block, y=738 of 792)",
+  "render_sha256": "6276b6207fd5b3d823e398ed609ad61e807f722b1157f0f2b68ae0f701fec107",
+  "match_text": "**Inserted as per Board decision issued No.CDA-1377/BM-SCB/2021/68   dated 15-01-2021",
+  "before_text": "**Inserted as per Board decision issued No.CDA-1377/BM-SCB/2021/68   dated 15-01-2021",
+  "after_text": "**Inserted as per Board decision issued No.CDA-1377/BM-SCB/2021/68   dated 15-01-2021"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 32,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p32.png",
+  "source_apparatus_blocks": [
+   2728966
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 32 prints its page number '14' alone at the foot (block 2728966, the page's last block, y=738 of 792)",
+  "render_sha256": "f8c0c8169a463d1a3bcdaf32921b2df79e5b0f19958093e37441646fc89ee4ae",
+  "match_text": "of years actually served",
+  "before_text": "of years actually served",
+  "after_text": "of years actually served"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 33,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p33.png",
+  "source_apparatus_blocks": [
+   2728982
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 33 prints its page number '15' alone at the foot (block 2728982, the page's last block, y=738 of 792)",
+  "render_sha256": "78a2804befba4abef6e7e2a0e7f4c25e49396b2505c8bf94de1c1c280f21dd0b",
+  "match_text": "*No.CDA-7(01)HRD-III/VI/2021/969 dated 25.08.2021 5th Board meeting dated 02.06.2021",
+  "before_text": "*No.CDA-7(01)HRD-III/VI/2021/969 dated 25.08.2021 5th Board meeting dated 02.06.2021",
+  "after_text": "*No.CDA-7(01)HRD-III/VI/2021/969 dated 25.08.2021 5th Board meeting dated 02.06.2021"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 34,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p34.png",
+  "source_apparatus_blocks": [
+   2729005
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 34 prints its page number '16' alone at the foot (block 2729005, the page's last block, y=738 of 792)",
+  "render_sha256": "53f1793d95754c36bf576f28ee9f6bad3f272b66a0dc72ae7e608a2d8ca2380b",
+  "match_text": "_________________________________________________________",
+  "before_text": "_________________________________________________________",
+  "after_text": "_________________________________________________________"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 35,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p35.png",
+  "source_apparatus_blocks": [
+   2729021
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 35 prints its page number '17' alone at the foot (block 2729021, the page's last block, y=738 of 792)",
+  "render_sha256": "7a829d91e9422184fb53c67271957c830e41cd3ffb3c07753a035146f83d0d34",
+  "match_text": "character and antecedents are satisfactory.",
+  "before_text": "character and antecedents are satisfactory.",
+  "after_text": "character and antecedents are satisfactory."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 36,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p36.png",
+  "source_apparatus_blocks": [
+   2729045
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 36 prints its page number '18' alone at the foot (block 2729045, the page's last block, y=738 of 792)",
+  "render_sha256": "e92bbaa93bfed25f0fd715759c646d75a3f5992f46ca4b718258572384b74ab9",
+  "match_text": "by the Board or is so specified in appendix 4.",
+  "before_text": "by the Board or is so specified in appendix 4.",
+  "after_text": "by the Board or is so specified in appendix 4."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 37,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p37.png",
+  "source_apparatus_blocks": [
+   2729074
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 37 prints its page number '19' alone at the foot (block 2729074, the page's last block, y=738 of 792)",
+  "render_sha256": "1d1b00ed8740c0c810c5972f5bfda3c181036ab3b2edee1b292bf0a450a13f8a",
+  "match_text": "*Inserted vide No.CDA-7(01)(21)-HRD-III(Sec-VI)/2022/516 Dated 15-06-2022",
+  "before_text": "*Inserted vide No.CDA-7(01)(21)-HRD-III(Sec-VI)/2022/516 Dated 15-06-2022",
+  "after_text": "*Inserted vide No.CDA-7(01)(21)-HRD-III(Sec-VI)/2022/516 Dated 15-06-2022"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 38,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p38.png",
+  "source_apparatus_blocks": [
+   2729100
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 38 prints its page number '20' alone at the foot (block 2729100, the page's last block, y=738 of 792)",
+  "render_sha256": "80800974c4a6f5ed01d9c01c7b7d13560f144d6532adb0c50bc391c6d743fb98",
+  "match_text": "Basic pay scale 20",
+  "before_text": "Basic pay scale 20",
+  "after_text": "Basic pay scale 20"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 39,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p39.png",
+  "source_apparatus_blocks": [
+   2729125
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 39 prints its page number '21' alone at the foot (block 2729125, the page's last block, y=738 of 792)",
+  "render_sha256": "5b1df767e8cb3417281d7a4fabd111d1695a724733165b1333400e592863533d",
+  "match_text": "**No.CDA-1(1)-HRD/2009/Sec-I/368      Islamabad, February 12, 2021",
+  "before_text": "**No.CDA-1(1)-HRD/2009/Sec-I/368      Islamabad, February 12, 2021",
+  "after_text": "**No.CDA-1(1)-HRD/2009/Sec-I/368      Islamabad, February 12, 2021"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 40,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p40.png",
+  "source_apparatus_blocks": [
+   2729156
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 40 prints its page number '22' alone at the foot (block 2729156, the page's last block, y=738 of 792)",
+  "render_sha256": "a0e8ae5a6876a72e467e8577a0a23f9a44442251545fbe0ceccde0399fd94382",
+  "match_text": "that the delay in such actualization is attributable to the officer recommended for promotion.",
+  "before_text": "that the delay in such actualization is attributable to the officer recommended for promotion.",
+  "after_text": "that the delay in such actualization is attributable to the officer recommended for promotion."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 41,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p41.png",
+  "source_apparatus_blocks": [
+   2729171
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 41 prints its page number '23' alone at the foot (block 2729171, the page's last block, y=738 of 792)",
+  "render_sha256": "eef4af377932d4d2f10043b3cbfd647d7f7fc23772e9edff1e1d9d6e2b651afd",
+  "match_text": "study leave as well as similar leave within Pakistan for a period of not less than one year",
+  "before_text": "study leave as well as similar leave within Pakistan for a period of not less than one year",
+  "after_text": "study leave as well as similar leave within Pakistan for a period of not less than one year"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 42,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p42.png",
+  "source_apparatus_blocks": [
+   2729187
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 42 prints its page number '24' alone at the foot (block 2729187, the page's last block, y=738 of 792)",
+  "render_sha256": "bbe1eb2855fba71cab3903876b348681f26ac77e034761208e18097bc990c71b",
+  "match_text": "earned only part PER in that year for reasons beyond his/her control, then his/her special",
+  "before_text": "earned only part PER in that year for reasons beyond his/her control, then his/her special",
+  "after_text": "earned only part PER in that year for reasons beyond his/her control, then his/her special"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 43,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p43.png",
+  "source_apparatus_blocks": [
+   2729203
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 43 prints its page number '25' alone at the foot (block 2729203, the page's last block, y=738 of 792)",
+  "render_sha256": "9cb6308cfafa82c0fcbb3076609101f88114f6f3bfa6a493a5d8e15ed4c6a92b",
+  "match_text": "column (2) of the Table below shall be as mentioned in column (3)of that Table, namely:-",
+  "before_text": "column (2) of the Table below shall be as mentioned in column (3)of that Table, namely:-",
+  "after_text": "column (2) of the Table below shall be as mentioned in column (3)of that Table, namely:-"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 44,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p44.png",
+  "source_apparatus_blocks": [
+   2729225
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 44 prints its page number '26' alone at the foot (block 2729225, the page's last block, y=738 of 792)",
+  "render_sha256": "269a42604cc037beafaa8c89aa7c61b44f0f3d44804b84328ae7990301efb17e",
+  "match_text": "Training Evaluation Reports (TERs)",
+  "before_text": "Training Evaluation Reports (TERs)",
+  "after_text": "Training Evaluation Reports (TERs)"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 45,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p45.png",
+  "source_apparatus_blocks": [
+   2729239
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 45 prints its page number '27' alone at the foot (block 2729239, the page's last block, y=738 of 792)",
+  "render_sha256": "223d44ebb03853183920f15dea3e4a6a383590c5807e28364a5bf7261e23f8c0",
+  "match_text": "consideration of DPC depending on availability of the eligible officer in the cadre.",
+  "before_text": "consideration of DPC depending on availability of the eligible officer in the cadre.",
+  "after_text": "consideration of DPC depending on availability of the eligible officer in the cadre."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 46,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p46.png",
+  "source_apparatus_blocks": [
+   2729256
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 46 prints its page number '28' alone at the foot (block 2729256, the page's last block, y=738 of 792)",
+  "render_sha256": "04fe3168a0144ab074e1cbd74cffdbcd367c7b7bad08aab93d32a5e780696c73",
+  "match_text": "of the present scale shall be given the total weightage assigned to the PERs in the table",
+  "before_text": "of the present scale shall be given the total weightage assigned to the PERs in the table",
+  "after_text": "of the present scale shall be given the total weightage assigned to the PERs in the table"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 47,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p47.png",
+  "source_apparatus_blocks": [
+   2729268
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 47 prints its page number '29' alone at the foot (block 2729268, the page's last block, y=738 of 792)",
+  "render_sha256": "ff3e6b13560664b1a24021bfadfe884d465da1c702c63d4e1688d729447e3e31",
+  "match_text": "PERs for one full year shall imply, one full year PER(s) earned after consideration/supersession",
+  "before_text": "PERs for one full year shall imply, one full year PER(s) earned after consideration/supersession",
+  "after_text": "PERs for one full year shall imply, one full year PER(s) earned after consideration/supersession"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 48,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p48.png",
+  "source_apparatus_blocks": [
+   2729281
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 48 prints its page number '30' alone at the foot (block 2729281, the page's last block, y=738 of 792)",
+  "render_sha256": "2d1c3ce10763f2b03f59c8f00fe356c6be7640b0700ba916dc76c69315c3e9d7",
+  "match_text": "Length of service reduced by",
+  "before_text": "Length of service reduced by",
+  "after_text": "Length of service reduced by"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 49,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p49.png",
+  "source_apparatus_blocks": [
+   2729298
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 49 prints its page number '31' alone at the foot (block 2729298, the page's last block, y=738 of 792)",
+  "render_sha256": "d9cdd0502afad04958654cf87934f3f163e1cb3aca117361203d027631395472",
+  "match_text": "the same basic pay scale and a weighted aggregate score will be worked out as follows:",
+  "before_text": "the same basic pay scale and a weighted aggregate score will be worked out as follows:",
+  "after_text": "the same basic pay scale and a weighted aggregate score will be worked out as follows:"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 50,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p50.png",
+  "source_apparatus_blocks": [
+   2729313
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 50 prints its page number '32' alone at the foot (block 2729313, the page's last block, y=738 of 792)",
+  "render_sha256": "039f2fae686d56a25bb7ca53b010981c0551707ff22bfb76d1e91ab51f6adb26",
+  "match_text": "If an officer is exempted from one or both trainings on the basis of either belonging to a specialist cadre",
+  "before_text": "If an officer is exempted from one or both trainings on the basis of either belonging to a specialist cadre",
+  "after_text": "If an officer is exempted from one or both trainings on the basis of either belonging to a specialist cadre"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 51,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p51.png",
+  "source_apparatus_blocks": [
+   2729338
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 51 prints its page number '33' alone at the foot (block 2729338, the page's last block, y=738 of 792)",
+  "render_sha256": "05aa6b65890081599c37eaa27e190ab439eeed89ff8a89d49ba493eb502ba14b",
+  "match_text": "whether or not any departmental proceedings or investigations/trial by NAB, FIA etc. are",
+  "before_text": "whether or not any departmental proceedings or investigations/trial by NAB, FIA etc. are",
+  "after_text": "whether or not any departmental proceedings or investigations/trial by NAB, FIA etc. are"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 52,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p52.png",
+  "source_apparatus_blocks": [
+   2729355
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 52 prints its page number '34' alone at the foot (block 2729355, the page's last block, y=738 of 792)",
+  "render_sha256": "93a6f682c1c91bcf73b57e51e38c722e1719c9e0268111123610876c551e4c66",
+  "match_text": "No employee shall have a claim to be promoted to any particular posts or scale by virtue of",
+  "before_text": "No employee shall have a claim to be promoted to any particular posts or scale by virtue of",
+  "after_text": "No employee shall have a claim to be promoted to any particular posts or scale by virtue of"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 53,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p53.png",
+  "source_apparatus_blocks": [
+   2729364
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 53 prints its page number '35' alone at the foot (block 2729364, the page's last block, y=738 of 792)",
+  "render_sha256": "af40671b4860b0f8e85c1f6e1061f6397d2fba731582fa0a058c10a16c89da79",
+  "match_text": "* No.CDA-7(01) HRD-III/2013/1270 dated 24.06.2013",
+  "before_text": "* No.CDA-7(01) HRD-III/2013/1270 dated 24.06.2013",
+  "after_text": "* No.CDA-7(01) HRD-III/2013/1270 dated 24.06.2013"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 54,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p54.png",
+  "source_apparatus_blocks": [
+   2729387
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 54 prints its page number '36' alone at the foot (block 2729387, the page's last block, y=738 of 792)",
+  "render_sha256": "b7c03e5399be29947da6a004e39eee5ca93378d363c93a24f71e45626e95fce1",
+  "match_text": "* Inserted No.CDA-7(01)HRD-III/2013/1270 dated 24.06.2013",
+  "before_text": "* Inserted No.CDA-7(01)HRD-III/2013/1270 dated 24.06.2013",
+  "after_text": "* Inserted No.CDA-7(01)HRD-III/2013/1270 dated 24.06.2013"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 55,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p55.png",
+  "source_apparatus_blocks": [
+   2729412
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 55 prints its page number '37' alone at the foot (block 2729412, the page's last block, y=738 of 792)",
+  "render_sha256": "012e90dace3cbddf453dd87da6f085df24274b28f76ea0b4b3ea837f7e041756",
+  "match_text": "his character and antecedents have been verified as satisfactory in the opinion of the appointing",
+  "before_text": "his character and antecedents have been verified as satisfactory in the opinion of the appointing",
+  "after_text": "his character and antecedents have been verified as satisfactory in the opinion of the appointing"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 56,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p56.png",
+  "source_apparatus_blocks": [
+   2729432
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 56 prints its page number '38' alone at the foot (block 2729432, the page's last block, y=738 of 792)",
+  "render_sha256": "6aa9243da9d75a09961f39e15cf000d4478b9c624d3e7bcf5f4a027634456d95",
+  "match_text": "was appointed to such post by promotion or by transfer.",
+  "before_text": "was appointed to such post by promotion or by transfer.",
+  "after_text": "was appointed to such post by promotion or by transfer."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 57,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p57.png",
+  "source_apparatus_blocks": [
+   2729460
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 57 prints its page number '39' alone at the foot (block 2729460, the page's last block, y=738 of 792)",
+  "render_sha256": "1dcb3d8c7496a640db15a5266397bc514d1bab2512ec1feb97dec427329c75bc",
+  "match_text": "three months with the approval of the Chairman.",
+  "before_text": "three months with the approval of the Chairman.",
+  "after_text": "three months with the approval of the Chairman."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 58,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p58.png",
+  "source_apparatus_blocks": [
+   2729480
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 58 prints its page number '40' alone at the foot (block 2729480, the page's last block, y=738 of 792)",
+  "render_sha256": "72c7467227d01da09e0a18b09d23358d5606fdf0650df9289e8e7bde9d061b35",
+  "match_text": "fit and qualified to hold the post, should be considered.",
+  "before_text": "fit and qualified to hold the post, should be considered.",
+  "after_text": "fit and qualified to hold the post, should be considered."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 59,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p59.png",
+  "source_apparatus_blocks": [
+   2729504
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 59 prints its page number '41' alone at the foot (block 2729504, the page's last block, y=731 of 792)",
+  "render_sha256": "f0e23664cafc7a1f0774f14036b99b6d3c6d706aca181168fdf0b01ca4cebd36",
+  "match_text": "any time and for any duration and on such terms and conditions as he may specify in each case.",
+  "before_text": "any time and for any duration and on such terms and conditions as he may specify in each case.",
+  "after_text": "any time and for any duration and on such terms and conditions as he may specify in each case."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 60,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p60.png",
+  "source_apparatus_blocks": [
+   2729523
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 60 prints its page number '42' alone at the foot (block 2729523, the page's last block, y=731 of 792)",
+  "render_sha256": "e9e2d51e90c30454e21b9007f18bfb0bceb927ecdc121546b9fd9cc68bbddbc7",
+  "match_text": "case may be;",
+  "before_text": "case may be;",
+  "after_text": "case may be;"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 61,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p61.png",
+  "source_apparatus_blocks": [
+   2729551
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 61 prints its page number '43' alone at the foot (block 2729551, the page's last block, y=731 of 792)",
+  "render_sha256": "570ed04c235aa35591677859f28f99f22fedff1ebce548952b3d88b1f250faee",
+  "match_text": "which a person of that batch assumes charge of the post after approval of such appointment by the",
+  "before_text": "which a person of that batch assumes charge of the post after approval of such appointment by the",
+  "after_text": "which a person of that batch assumes charge of the post after approval of such appointment by the"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 62,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p62.png",
+  "source_apparatus_blocks": [
+   2729561
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 62 prints its page number '44' alone at the foot (block 2729561, the page's last block, y=731 of 792)",
+  "render_sha256": "10c9c5c493c13ecb3d328fab273a809527117e178cbfb90a40f2705430b9f9b7",
+  "match_text": "**************************************",
+  "before_text": "**************************************",
+  "after_text": "**************************************"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 63,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p63.png",
+  "source_apparatus_blocks": [
+   2729568
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 63 prints its page number '45' alone at the foot (block 2729568, the page's last block, y=731 of 792)",
+  "render_sha256": "f64aecb08ce637353dc4fab8c6cb2ed183d0388635c4b434bf11e4a1d349c437",
+  "match_text": "offence. If, however, he cannot do so, he shall accept the gift and shall report its receipt to the",
+  "before_text": "offence. If, however, he cannot do so, he shall accept the gift and shall report its receipt to the",
+  "after_text": "offence. If, however, he cannot do so, he shall accept the gift and shall report its receipt to the"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 64,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p64.png",
+  "source_apparatus_blocks": [
+   2729573
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 64 prints its page number '46' alone at the foot (block 2729573, the page's last block, y=731 of 792)",
+  "render_sha256": "efb1880cd4980b8418e08b10b3d416f7640b0cfa55f3e19cc9c614124def9bd2",
+  "match_text": "without such permission shall be guilty of misconduct and render himself liable to one or more penalties",
+  "before_text": "without such permission shall be guilty of misconduct and render himself liable to one or more penalties",
+  "after_text": "without such permission shall be guilty of misconduct and render himself liable to one or more penalties"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 65,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p65.png",
+  "source_apparatus_blocks": [
+   2729581
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 65 prints its page number '47' alone at the foot (block 2729581, the page's last block, y=731 of 792)",
+  "render_sha256": "ec5c6a013ce865bcf1c6ccdf11c1edc03cb891826853f2e70bf1eb43362600fa",
+  "match_text": "* No.CDA-7(01)HRD-III/2013/1270 dated 24.06.2013",
+  "before_text": "* No.CDA-7(01)HRD-III/2013/1270 dated 24.06.2013",
+  "after_text": "* No.CDA-7(01)HRD-III/2013/1270 dated 24.06.2013"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 66,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p66.png",
+  "source_apparatus_blocks": [
+   2729603
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 66 prints its page number '48' alone at the foot (block 2729603, the page's last block, y=731 of 792)",
+  "render_sha256": "8140831d4674a90afb6cf5b6ed0d52ce9f490dab5185ea50ac2d3b769f50d8a8",
+  "match_text": "* No.CDA-7(01)HRD-III/2013/1270 dated 24.06.2013",
+  "before_text": "* No.CDA-7(01)HRD-III/2013/1270 dated 24.06.2013",
+  "after_text": "* No.CDA-7(01)HRD-III/2013/1270 dated 24.06.2013"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 67,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p67.png",
+  "source_apparatus_blocks": [
+   2729626
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 67 prints its page number '49' alone at the foot (block 2729626, the page's last block, y=731 of 792)",
+  "render_sha256": "4252afecf813178f1cb1fcb9cd896b4621c77e92b152166778458e4a4099e1de",
+  "match_text": "sanction, undertake a small enterprise which absorbs family labor and where he does so, he shall file",
+  "before_text": "sanction, undertake a small enterprise which absorbs family labor and where he does so, he shall file",
+  "after_text": "sanction, undertake a small enterprise which absorbs family labor and where he does so, he shall file"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 68,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p68.png",
+  "source_apparatus_blocks": [
+   2729634
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 68 prints its page number '50' alone at the foot (block 2729634, the page's last block, y=731 of 792)",
+  "render_sha256": "4c31ba6c201da7a194186e00ca5640420e13e8dd66b833a233d28bea68ed5459",
+  "match_text": "Senate or Provincial Assembly, or any other non-official person to intervene on his behalf in any matter.",
+  "before_text": "Senate or Provincial Assembly, or any other non-official person to intervene on his behalf in any matter.",
+  "after_text": "Senate or Provincial Assembly, or any other non-official person to intervene on his behalf in any matter."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 69,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p69.png",
+  "source_apparatus_blocks": [
+   2729641
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 69 prints its page number '51' alone at the foot (block 2729641, the page's last block, y=731 of 792)",
+  "render_sha256": "f1097d95f4d7ab7d9dc05f5cbc52ab9ba6f4643ce26cbe265a8338cd63ac9e74",
+  "match_text": "No employee shall canvass or otherwise interfere or use his influence in connection with",
+  "before_text": "No employee shall canvass or otherwise interfere or use his influence in connection with",
+  "after_text": "No employee shall canvass or otherwise interfere or use his influence in connection with"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 70,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p70.png",
+  "source_apparatus_blocks": [
+   2729651
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 70 prints its page number '52' alone at the foot (block 2729651, the page's last block, y=731 of 792)",
+  "render_sha256": "5365486114d1e89b831a7e15e687ec0d78a004048746e3320915f3b5cff10433",
+  "match_text": "Membership of the association and its office bearers shall be confined to a distinct class",
+  "before_text": "Membership of the association and its office bearers shall be confined to a distinct class",
+  "after_text": "Membership of the association and its office bearers shall be confined to a distinct class"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 71,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p71.png",
+  "source_apparatus_blocks": [
+   2729664
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 71 prints its page number '53' alone at the foot (block 2729664, the page's last block, y=731 of 792)",
+  "render_sha256": "262bd1caed2325ef1d14b8965827bf7ee888a12a9de7ef46ccf8c91dd2ae7e0a",
+  "match_text": "facilities aboard.",
+  "before_text": "facilities aboard.",
+  "after_text": "facilities aboard."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 72,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p72.png",
+  "source_apparatus_blocks": [
+   2729682
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 72 prints its page number '54' alone at the foot (block 2729682, the page's last block, y=731 of 792)",
+  "render_sha256": "5876e75966fd22aea17f9f303e19363d15a1510304d09382c8c8c54fc6dcca9b",
+  "match_text": "***********************************",
+  "before_text": "***********************************",
+  "after_text": "***********************************"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 73,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p73.png",
+  "source_apparatus_blocks": [
+   2729703
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 73 prints its page number '55' alone at the foot (block 2729703, the page's last block, y=731 of 792)",
+  "render_sha256": "e0029d941e13017dd9ed08fa96d98f4abd24657c057e8856bc5bdc65ce103b1d",
+  "match_text": "* No.CDA-7(01)HRD-III/2013/1270 dated 24.06.2013",
+  "before_text": "* No.CDA-7(01)HRD-III/2013/1270 dated 24.06.2013",
+  "after_text": "* No.CDA-7(01)HRD-III/2013/1270 dated 24.06.2013"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 74,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p74.png",
+  "source_apparatus_blocks": [
+   2729727
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 74 prints its page number '56' alone at the foot (block 2729727, the page's last block, y=731 of 792)",
+  "render_sha256": "cafef2db305894a906869052811f1b3ede5f7cd80dd1a7e26da7b7ec04772c21",
+  "match_text": "___________________________________________________________________________",
+  "before_text": "___________________________________________________________________________",
+  "after_text": "___________________________________________________________________________"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 75,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p75.png",
+  "source_apparatus_blocks": [
+   2729751
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 75 prints its page number '57' alone at the foot (block 2729751, the page's last block, y=731 of 792)",
+  "render_sha256": "3640c880a09b09132db99ebf4f5424e1a7d1b3f8fb74810fed5dc9e59d9768ca",
+  "match_text": "If the charge or charges have not been proved, the authorized officer shall exonerate the",
+  "before_text": "If the charge or charges have not been proved, the authorized officer shall exonerate the",
+  "after_text": "If the charge or charges have not been proved, the authorized officer shall exonerate the"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 76,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p76.png",
+  "source_apparatus_blocks": [
+   2729756
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 76 prints its page number '58' alone at the foot (block 2729756, the page's last block, y=731 of 792)",
+  "render_sha256": "fd3107ce07e69a792cf5518b3b386c008ddb1b8ed50a655918fadd5348abd725",
+  "match_text": "The Inquiry Officer or the Committee, as the case may be, shall enquire into the",
+  "before_text": "The Inquiry Officer or the Committee, as the case may be, shall enquire into the",
+  "after_text": "The Inquiry Officer or the Committee, as the case may be, shall enquire into the"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 77,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p77.png",
+  "source_apparatus_blocks": [
+   2729762
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 77 prints its page number '59' alone at the foot (block 2729762, the page's last block, y=731 of 792)",
+  "render_sha256": "732d9c3ed5abf8baa9d6483b172c93503ae6ddfba7ca3b09f6c8bd9273c2b39c",
+  "match_text": "removed or compulsorily retired form service, or is not reduced in rank, he shall be reinstated or, as the",
+  "before_text": "removed or compulsorily retired form service, or is not reduced in rank, he shall be reinstated or, as the",
+  "after_text": "removed or compulsorily retired form service, or is not reduced in rank, he shall be reinstated or, as the"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 78,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p78.png",
+  "source_apparatus_blocks": [
+   2729774
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 78 prints its page number '60' alone at the foot (block 2729774, the page's last block, y=731 of 792)",
+  "render_sha256": "56f6d37cba1c79d46b0864f775da8db10426ba7136364aebac9689e075afb4fd",
+  "match_text": "authority, the authorized officer, an inquiry officer or an inquiry committee shall be represented by an",
+  "before_text": "authority, the authorized officer, an inquiry officer or an inquiry committee shall be represented by an",
+  "after_text": "authority, the authorized officer, an inquiry officer or an inquiry committee shall be represented by an"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 79,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p79.png",
+  "source_apparatus_blocks": [
+   2729798
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 79 prints its page number '61' alone at the foot (block 2729798, the page's last block, y=731 of 792)",
+  "render_sha256": "00a9dcc8738e2b6f78192e4734badda377990174f4fac887eeb68f5ec9b15d51",
+  "match_text": "employee holds a post in basic pay scale 19 and above and the Member (Administration) in other cases.",
+  "before_text": "employee holds a post in basic pay scale 19 and above and the Member (Administration) in other cases.",
+  "after_text": "employee holds a post in basic pay scale 19 and above and the Member (Administration) in other cases."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 80,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p80.png",
+  "source_apparatus_blocks": [
+   2729825
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 80 prints its page number '62' alone at the foot (block 2729825, the page's last block, y=731 of 792)",
+  "render_sha256": "8c22ee6a407d56051a0b8e5b06fe71d93d5b0d2922811391ca2626dd814852ee",
+  "match_text": "remedial or irremediable, if any, should be communicated in writing to the employee reported upon",
+  "before_text": "remedial or irremediable, if any, should be communicated in writing to the employee reported upon",
+  "after_text": "remedial or irremediable, if any, should be communicated in writing to the employee reported upon"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 81,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p81.png",
+  "source_apparatus_blocks": [
+   2729856
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 81 prints its page number '63' alone at the foot (block 2729856, the page's last block, y=731 of 792)",
+  "render_sha256": "2747c5ac1af6f9147ed7bd73441410bfecb9add4f5244792b53177e8ec67798b",
+  "match_text": "adverse remarks or modify them or expunge them.",
+  "before_text": "adverse remarks or modify them or expunge them.",
+  "after_text": "adverse remarks or modify them or expunge them."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 82,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p82.png",
+  "source_apparatus_blocks": [
+   2729879
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 82 prints its page number '64' alone at the foot (block 2729879, the page's last block, y=731 of 792)",
+  "render_sha256": "77fc2c8d4f8b37c5066c46f5023e1ff32e05a6f7f894fc06a7f74e5f7809f3c5",
+  "match_text": "****************************************************",
+  "before_text": "****************************************************",
+  "after_text": "****************************************************"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 83,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p83.png",
+  "source_apparatus_blocks": [
+   2729896
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 83 prints its page number '65' alone at the foot (block 2729896, the page's last block, y=731 of 792)",
+  "render_sha256": "01826b2590e5d869b97763697bc7596bf24b97107d3c4e9b533ab50951d1e1b1",
+  "match_text": "* No. S.R.O 872(I)2000 dated 14.11.2000",
+  "before_text": "* No. S.R.O 872(I)2000 dated 14.11.2000",
+  "after_text": "* No. S.R.O 872(I)2000 dated 14.11.2000"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 84,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p84.png",
+  "source_apparatus_blocks": [
+   2729922
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 84 prints its page number '66' alone at the foot (block 2729922, the page's last block, y=731 of 792)",
+  "render_sha256": "f904a593c0f26eb4136e52bb55667edf5755c35ecd41bbc16c4481bd09fbbc98",
+  "match_text": "that of more than fifteen days being treated as a full calendar month for the purpose.",
+  "before_text": "that of more than fifteen days being treated as a full calendar month for the purpose.",
+  "after_text": "that of more than fifteen days being treated as a full calendar month for the purpose."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 85,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p85.png",
+  "source_apparatus_blocks": [
+   2729952
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 85 prints its page number '67' alone at the foot (block 2729952, the page's last block, y=731 of 792)",
+  "render_sha256": "dd4b6c85b310a872726dbdcfbd41254c193ad5fdf6dad81a5253385516631450",
+  "match_text": "the employee has completed more than five years and up to ten years of continuous service:",
+  "before_text": "the employee has completed more than five years and up to ten years of continuous service:",
+  "after_text": "the employee has completed more than five years and up to ten years of continuous service:"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 86,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p86.png",
+  "source_apparatus_blocks": [
+   2729983
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 86 prints its page number '68' alone at the foot (block 2729983, the page's last block, y=731 of 792)",
+  "render_sha256": "f687c7a8288205eae1b3bb209bf081798eebe1451596bf97557a6e2d5d8cf952",
+  "match_text": "leave from her normal leave account.",
+  "before_text": "leave from her normal leave account.",
+  "after_text": "leave from her normal leave account."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 87,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p87.png",
+  "source_apparatus_blocks": [
+   2730012
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 87 prints its page number '69' alone at the foot (block 2730012, the page's last block, y=731 of 792)",
+  "render_sha256": "e09715c28a077620e7bdd9f7616e0fbf14aa9913466972792a4f395f8cc6b616",
+  "match_text": "full pay, or partly on full pay, or entirely on half pay, at the discretion of the employee.",
+  "before_text": "full pay, or partly on full pay, or entirely on half pay, at the discretion of the employee.",
+  "after_text": "full pay, or partly on full pay, or entirely on half pay, at the discretion of the employee."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 88,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p88.png",
+  "source_apparatus_blocks": [
+   2730036
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 88 prints its page number '70' alone at the foot (block 2730036, the page's last block, y=731 of 792)",
+  "render_sha256": "1766e2ac7a07fd204330cd3186b50ab1723f03aaf51912f65140c86e390ddeeb",
+  "match_text": "*No.CDA-8(01)-Pers/96/Sec-I/433 dated 07-11-2012 through SRO 70(KE)/2012 Dated 01-09-2012",
+  "before_text": "*No.CDA-8(01)-Pers/96/Sec-I/433 dated 07-11-2012 through SRO 70(KE)/2012 Dated 01-09-2012",
+  "after_text": "*No.CDA-8(01)-Pers/96/Sec-I/433 dated 07-11-2012 through SRO 70(KE)/2012 Dated 01-09-2012"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 89,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p89.png",
+  "source_apparatus_blocks": [
+   2730050
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 89 prints its page number '71' alone at the foot (block 2730050, the page's last block, y=731 of 792)",
+  "render_sha256": "c3c1385a70249f0909809b500e6e93228590de3dd5826d2718e4bad7d799b9b9",
+  "match_text": "*No.CDA-8(01)-Pers/96/Sec-I/433 dated 07-11-2012 through SRO 70(KE)/2012 Dated 01-09-2012",
+  "before_text": "*No.CDA-8(01)-Pers/96/Sec-I/433 dated 07-11-2012 through SRO 70(KE)/2012 Dated 01-09-2012",
+  "after_text": "*No.CDA-8(01)-Pers/96/Sec-I/433 dated 07-11-2012 through SRO 70(KE)/2012 Dated 01-09-2012"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 90,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p90.png",
+  "source_apparatus_blocks": [
+   2730080
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 90 prints its page number '72' alone at the foot (block 2730080, the page's last block, y=731 of 792)",
+  "render_sha256": "e5ffa5299121f26b390c41e74e25c0256eda0e7be96e8b8611882f96e00468af",
+  "match_text": "is due and admissible to him and it shall not be refused on the ground that another kind of leave should",
+  "before_text": "is due and admissible to him and it shall not be refused on the ground that another kind of leave should",
+  "after_text": "is due and admissible to him and it shall not be refused on the ground that another kind of leave should"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 91,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p91.png",
+  "source_apparatus_blocks": [
+   2730084
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 91 prints its page number '73' alone at the foot (block 2730084, the page's last block, y=731 of 792)",
+  "render_sha256": "ac9f3f3c1b08f7954fc0c391cfd381aa8edab31cae5302e883f55dc57eab020f",
+  "match_text": "sanctioned his leave and assume charge of the post to which he is directed by that authority unless such",
+  "before_text": "sanctioned his leave and assume charge of the post to which he is directed by that authority unless such",
+  "after_text": "sanctioned his leave and assume charge of the post to which he is directed by that authority unless such"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 92,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p92.png",
+  "source_apparatus_blocks": [
+   2730100
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 92 prints its page number '74' alone at the foot (block 2730100, the page's last block, y=731 of 792)",
+  "render_sha256": "e7c517d21cfc4b8bb8a3480727644964d4685a78f8d5a3190df0e4cf88c6ad81",
+  "match_text": "leave in excess of 3 months may be granted as Extra Ordinary Leave without pay subject to the",
+  "before_text": "leave in excess of 3 months may be granted as Extra Ordinary Leave without pay subject to the",
+  "after_text": "leave in excess of 3 months may be granted as Extra Ordinary Leave without pay subject to the"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 93,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p93.png",
+  "source_apparatus_blocks": [
+   2730122
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 93 prints its page number '75' alone at the foot (block 2730122, the page's last block, y=731 of 792)",
+  "render_sha256": "00234684fa9a6efb18f91744878efa67c7a71a65928b951db142085dbecfef6a",
+  "match_text": "A proper record of casual leave shall be maintained in the prescribed form.",
+  "before_text": "A proper record of casual leave shall be maintained in the prescribed form.",
+  "after_text": "A proper record of casual leave shall be maintained in the prescribed form."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 94,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p94.png",
+  "source_apparatus_blocks": [
+   2730138
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 94 prints its page number '76' alone at the foot (block 2730138, the page's last block, y=731 of 792)",
+  "render_sha256": "0d5827047052e2bd0f41e8bc9c0b2c3390887033764e2642dae0ea0b97fb1273",
+  "match_text": "To employees holding posts in basic pay scales 6 to 15",
+  "before_text": "To employees holding posts in basic pay scales 6 to 15",
+  "after_text": "To employees holding posts in basic pay scales 6 to 15"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 95,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p95.png",
+  "source_apparatus_blocks": [
+   2730159
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 95 prints its page number '77' alone at the foot (block 2730159, the page's last block, y=731 of 792)",
+  "render_sha256": "6cd4b1c81867b84407a2b9ae50fffdfda83982ad06ff4f75c883d716779c0674",
+  "match_text": "*NO.SRO.920(1)/99 dated 04.08.1999 replaced by CDA-7(01)HRD-III(VI)/2021/759 dated 13.07.2021    5th CDA",
+  "before_text": "*NO.SRO.920(1)/99 dated 04.08.1999 replaced by CDA-7(01)HRD-III(VI)/2021/759 dated 13.07.2021    5th CDA",
+  "after_text": "*NO.SRO.920(1)/99 dated 04.08.1999 replaced by CDA-7(01)HRD-III(VI)/2021/759 dated 13.07.2021    5th CDA"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 96,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p96.png",
+  "source_apparatus_blocks": [
+   2730183
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 96 prints its page number '78' alone at the foot (block 2730183, the page's last block, y=731 of 792)",
+  "render_sha256": "620b7a5d320291d269f414d76673f0607e1ad0fde162fa97ffdc5238324afa60",
+  "match_text": "_______________________________________________________________________________",
+  "before_text": "_______________________________________________________________________________",
+  "after_text": "_______________________________________________________________________________"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 97,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p97.png",
+  "source_apparatus_blocks": [
+   2730206
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 97 prints its page number '79' alone at the foot (block 2730206, the page's last block, y=731 of 792)",
+  "render_sha256": "4325c5cf151e0b6ee00285673a2a2d6e2e223ff9a6d27e5d89177f8f7f72efed",
+  "match_text": "Selection grade has been abolished",
+  "before_text": "Selection grade has been abolished",
+  "after_text": "Selection grade has been abolished"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 98,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p98.png",
+  "source_apparatus_blocks": [
+   2730232
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 98 prints its page number '80' alone at the foot (block 2730232, the page's last block, y=731 of 792)",
+  "render_sha256": "d81ff5aa7b160ae3faa375bf14d2d2f7dc1791c40eec89654b2be7d779b0cf52",
+  "match_text": "* Finance Division O.M No. F.1(1) Imp/2008, dated. 30.06.2008",
+  "before_text": "* Finance Division O.M No. F.1(1) Imp/2008, dated. 30.06.2008",
+  "after_text": "* Finance Division O.M No. F.1(1) Imp/2008, dated. 30.06.2008"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 99,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p99.png",
+  "source_apparatus_blocks": [
+   2730260
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 99 prints its page number '81' alone at the foot (block 2730260, the page's last block, y=731 of 792)",
+  "render_sha256": "868c6a7dd30fbf0d7ceaa02269ad37ebfd12ad9d9a1601ca63e57ba234aaf67b",
+  "match_text": "appointed to the other post.",
+  "before_text": "appointed to the other post.",
+  "after_text": "appointed to the other post."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 100,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p100.png",
+  "source_apparatus_blocks": [
+   2730286
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 100 prints its page number '82' alone at the foot (block 2730286, the page's last block, y=731 of 792)",
+  "render_sha256": "b092f8eaafc2fd20e352f0301b42b0ab9af9fc4a17e3e1cc4db0f540acac37dd",
+  "match_text": "placed on exactly the same footing as regard future increments as an employee who has so risen.",
+  "before_text": "placed on exactly the same footing as regard future increments as an employee who has so risen.",
+  "after_text": "placed on exactly the same footing as regard future increments as an employee who has so risen."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 101,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p101.png",
+  "source_apparatus_blocks": [
+   2730311
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 101 prints its page number '83' alone at the foot (block 2730311, the page's last block, y=731 of 792)",
+  "render_sha256": "e3584267df3ba0eaa29984a5580730d55b87e1f0c3f6268d449d971e4a53a1ba",
+  "match_text": "CDA Finance Wing adoption letter No.AFW(G)-44(28)/(pay/pension)/2013/2399 dated 08.01.2013",
+  "before_text": "CDA Finance Wing adoption letter No.AFW(G)-44(28)/(pay/pension)/2013/2399 dated 08.01.2013",
+  "after_text": "CDA Finance Wing adoption letter No.AFW(G)-44(28)/(pay/pension)/2013/2399 dated 08.01.2013"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 102,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p102.png",
+  "source_apparatus_blocks": [
+   2730331
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 102 prints its page number '84' alone at the foot (block 2730331, the page's last block, y=731 of 792)",
+  "render_sha256": "8f66560ca43556c79e629a3781a6664df421920772c9f24624594981b0fc1f15",
+  "match_text": "*Finance Division. O.M No.F.8(4)R -2/97 dated 19.09.2003  CDA Finance Wing adoption letter",
+  "before_text": "*Finance Division. O.M No.F.8(4)R -2/97 dated 19.09.2003  CDA Finance Wing adoption letter",
+  "after_text": "*Finance Division. O.M No.F.8(4)R -2/97 dated 19.09.2003  CDA Finance Wing adoption letter"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 103,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p103.png",
+  "source_apparatus_blocks": [
+   2730350
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 103 prints its page number '85' alone at the foot (block 2730350, the page's last block, y=731 of 792)",
+  "render_sha256": "3bb286501ef6f8d87406aab7f6f20b59b5a59af095c05356eff62cd422498850",
+  "match_text": "CIMA and ACCA qualified employees may henceforth be allowed Qualification Pay at",
+  "before_text": "CIMA and ACCA qualified employees may henceforth be allowed Qualification Pay at",
+  "after_text": "CIMA and ACCA qualified employees may henceforth be allowed Qualification Pay at"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 104,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p104.png",
+  "source_apparatus_blocks": [
+   2730370
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 104 prints its page number '86' alone at the foot (block 2730370, the page's last block, y=731 of 792)",
+  "render_sha256": "281430201a958e148725cec3cff1c993caf238157cbb75b31fda5c0a6e6abb48",
+  "match_text": "**No.F.No.1(2)Imp/2016-333    dated 1-7-2016",
+  "before_text": "**No.F.No.1(2)Imp/2016-333    dated 1-7-2016",
+  "after_text": "**No.F.No.1(2)Imp/2016-333    dated 1-7-2016"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 105,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p105.png",
+  "source_apparatus_blocks": [
+   2730383
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 105 prints its page number '87' alone at the foot (block 2730383, the page's last block, y=731 of 792)",
+  "render_sha256": "6063bcb284e622a5db548fa84ed0c2908832e453a7d0c6de42fde179e34c04f3",
+  "match_text": "*&** No.CDA30(II)(Noti)Coord/94 dated.02.11.1994 w.e.f 30.06.1993",
+  "before_text": "*&** No.CDA30(II)(Noti)Coord/94 dated.02.11.1994 w.e.f 30.06.1993",
+  "after_text": "*&** No.CDA30(II)(Noti)Coord/94 dated.02.11.1994 w.e.f 30.06.1993"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 106,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p106.png",
+  "source_apparatus_blocks": [
+   2730412
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 106 prints its page number '88' alone at the foot (block 2730412, the page's last block, y=731 of 792)",
+  "render_sha256": "420bc2a0401c9a23a6a6c52c1ce9af011ae729e880639e2d5106e84d75c49c44",
+  "match_text": "operation of this regulation, be reduced below rs.500/- if non-recurring or Rs.500/- a year if recurring.",
+  "before_text": "operation of this regulation, be reduced below rs.500/- if non-recurring or Rs.500/- a year if recurring.",
+  "after_text": "operation of this regulation, be reduced below rs.500/- if non-recurring or Rs.500/- a year if recurring."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 107,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p107.png",
+  "source_apparatus_blocks": [
+   2730440
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 107 prints its page number '89' alone at the foot (block 2730440, the page's last block, y=731 of 792)",
+  "render_sha256": "75f471a7bd5e53c2ae996a3cd15c994ae686bf72f8e4990e3e25aa4910f927d3",
+  "match_text": "who are so employed have, therefore, no claim to extra remuneration.",
+  "before_text": "who are so employed have, therefore, no claim to extra remuneration.",
+  "after_text": "who are so employed have, therefore, no claim to extra remuneration."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 108,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p108.png",
+  "source_apparatus_blocks": [
+   2730459
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 108 prints its page number '90' alone at the foot (block 2730459, the page's last block, y=731 of 792)",
+  "render_sha256": "a513b4ddb533fc3733f42411ae520562d2acbba7161232fc755929fec72e718b",
+  "match_text": "___________________________________________________________________________________",
+  "before_text": "___________________________________________________________________________________",
+  "after_text": "___________________________________________________________________________________"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 109,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p109.png",
+  "source_apparatus_blocks": [
+   2730486
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 109 prints its page number '91' alone at the foot (block 2730486, the page's last block, y=731 of 792)",
+  "render_sha256": "0f42aa7fa0a093392f6c4ab688a11de93e39f461eef388c1b4ec39bbe3fe9813",
+  "match_text": "CDA Adoption No. CDA/FW(g)-44(28)(allowances)/2013/2317 dated 05.03.2013",
+  "before_text": "CDA Adoption No. CDA/FW(g)-44(28)(allowances)/2013/2317 dated 05.03.2013",
+  "after_text": "CDA Adoption No. CDA/FW(g)-44(28)(allowances)/2013/2317 dated 05.03.2013"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 110,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p110.png",
+  "source_apparatus_blocks": [
+   2730511
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 110 prints its page number '92' alone at the foot (block 2730511, the page's last block, y=731 of 792)",
+  "render_sha256": "08614d18cab09d6106e5694fd51d2ec31411a1d3a5afa694c864c2c21a6e0c40",
+  "match_text": "Authority but reside with their parents having been allotted residence by the",
+  "before_text": "Authority but reside with their parents having been allotted residence by the",
+  "after_text": "Authority but reside with their parents having been allotted residence by the"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 111,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p111.png",
+  "source_apparatus_blocks": [
+   2730522
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 111 prints its page number '93' alone at the foot (block 2730522, the page's last block, y=731 of 792)",
+  "render_sha256": "c93428af7dcdb33564a3a700a30aecead77fa48bdce826e80a686e1296e48040",
+  "match_text": "** No.CDA-4(1)(46)-Pers/VIII/2000/6356 dt.25.10.2003",
+  "before_text": "** No.CDA-4(1)(46)-Pers/VIII/2000/6356 dt.25.10.2003",
+  "after_text": "** No.CDA-4(1)(46)-Pers/VIII/2000/6356 dt.25.10.2003"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 112,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p112.png",
+  "source_apparatus_blocks": [
+   2730549
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 112 prints its page number '94' alone at the foot (block 2730549, the page's last block, y=731 of 792)",
+  "render_sha256": "d270e3b1183147332e9674b428a6d0e0781d6b51b6858369d96c17c0b4085a7f",
+  "match_text": "*** No: CDA/FW (G)-44(28)/2011/142  dated: 21.07.2011",
+  "before_text": "*** No: CDA/FW (G)-44(28)/2011/142  dated: 21.07.2011",
+  "after_text": "*** No: CDA/FW (G)-44(28)/2011/142  dated: 21.07.2011"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 113,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p113.png",
+  "source_apparatus_blocks": [
+   2730572
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 113 prints its page number '95' alone at the foot (block 2730572, the page's last block, y=731 of 792)",
+  "render_sha256": "715824f1a7d538d95d4d413ff23d87401a07af9b94134fd7df3a187be629fddf",
+  "match_text": "** No.F.9-75/2005-MF dt. 22.07.2006 adopted by the CDA their NotificationNo.CDA/FW(G)-44(28)/2006",
+  "before_text": "** No.F.9-75/2005-MF dt. 22.07.2006 adopted by the CDA their NotificationNo.CDA/FW(G)-44(28)/2006",
+  "after_text": "** No.F.9-75/2005-MF dt. 22.07.2006 adopted by the CDA their NotificationNo.CDA/FW(G)-44(28)/2006"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 114,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p114.png",
+  "source_apparatus_blocks": [
+   2730595
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 114 prints its page number '96' alone at the foot (block 2730595, the page's last block, y=731 of 792)",
+  "render_sha256": "c5ab75ebde289ddf23b3f9a661fa7db682e82c6f1018ab12a7525c058d64e6dd",
+  "match_text": "Chronic skin diseases, allergies-chronic connective tissue and auto immune disorders.",
+  "before_text": "Chronic skin diseases, allergies-chronic connective tissue and auto immune disorders.",
+  "after_text": "Chronic skin diseases, allergies-chronic connective tissue and auto immune disorders."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 115,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p115.png",
+  "source_apparatus_blocks": [
+   2730604
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 115 prints its page number '97' alone at the foot (block 2730604, the page's last block, y=731 of 792)",
+  "render_sha256": "d462bc627b685669f9de0a25563f3c3a8e7f0a729a99cc3dd1fc092a98bd288c",
+  "match_text": "**No.F.6(1)R-10/2010-171-2011 dt. 24.03.2011 adopted by CDA their Notification     No.CDA/FW(G)-",
+  "before_text": "**No.F.6(1)R-10/2010-171-2011 dt. 24.03.2011 adopted by CDA their Notification     No.CDA/FW(G)-",
+  "after_text": "**No.F.6(1)R-10/2010-171-2011 dt. 24.03.2011 adopted by CDA their Notification     No.CDA/FW(G)-"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 116,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p116.png",
+  "source_apparatus_blocks": [
+   2730618
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 116 prints its page number '98' alone at the foot (block 2730618, the page's last block, y=731 of 792)",
+  "render_sha256": "d540850c3013959f55237155baf6c9e44af419524ec7b3b7798e667ecf268325",
+  "match_text": "No.CDA/FW(G)-44(28)/2011/5049  dt. 29.06.2011 & also notification number,    No.CDA/FW(G)-",
+  "before_text": "No.CDA/FW(G)-44(28)/2011/5049  dt. 29.06.2011 & also notification number,    No.CDA/FW(G)-",
+  "after_text": "No.CDA/FW(G)-44(28)/2011/5049  dt. 29.06.2011 & also notification number,    No.CDA/FW(G)-"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 117,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p117.png",
+  "source_apparatus_blocks": [
+   2730632
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 117 prints its page number '99' alone at the foot (block 2730632, the page's last block, y=731 of 792)",
+  "render_sha256": "5dc8fc18e6789994ef9a84da907fc5311c49a7d0931c4ecfdab2949e3ea8ac31",
+  "match_text": "*&**   No.F.1(5)Imp/2011-419 dt. 04.07.2011 adopted by CDA their NO.",
+  "before_text": "*&**   No.F.1(5)Imp/2011-419 dt. 04.07.2011 adopted by CDA their NO.",
+  "after_text": "*&**   No.F.1(5)Imp/2011-419 dt. 04.07.2011 adopted by CDA their NO."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 118,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p118.png",
+  "source_apparatus_blocks": [
+   2730643
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 118 prints its page number '100' alone at the foot (block 2730643, the page's last block, y=731 of 792)",
+  "render_sha256": "4d4999f04374b80dc15b54d7666d2f94e012552f6eeca3e6a729c149ca449646",
+  "match_text": "*No.F.1(5)Imp/2011-419 dt. 04.07.2011 adopted by CDA vide No.CDA/FW(G)-44(28)/2011 dt. 21.07.2011",
+  "before_text": "*No.F.1(5)Imp/2011-419 dt. 04.07.2011 adopted by CDA vide No.CDA/FW(G)-44(28)/2011 dt. 21.07.2011",
+  "after_text": "*No.F.1(5)Imp/2011-419 dt. 04.07.2011 adopted by CDA vide No.CDA/FW(G)-44(28)/2011 dt. 21.07.2011"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 119,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p119.png",
+  "source_apparatus_blocks": [
+   2730652
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 119 prints its page number '101' alone at the foot (block 2730652, the page's last block, y=731 of 792)",
+  "render_sha256": "56a83a45a506ca99525462309173a4a71c9973e5da04a59f2af10678e2069ca4",
+  "match_text": "**&***No.CDA-7(84)HRD-III/2007/Sec-VI/1800  dt. 22.08.2008",
+  "before_text": "**&***No.CDA-7(84)HRD-III/2007/Sec-VI/1800  dt. 22.08.2008",
+  "after_text": "**&***No.CDA-7(84)HRD-III/2007/Sec-VI/1800  dt. 22.08.2008"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 120,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p120.png",
+  "source_apparatus_blocks": [
+   2730666
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 120 prints its page number '102' alone at the foot (block 2730666, the page's last block, y=731 of 792)",
+  "render_sha256": "64f98c3db182b1977e012a28d068de5580a35a5f6c7a67ab1ad82ac12380f208",
+  "match_text": "******   No.F.1(5)Imp/2006 dated. 24.06.2006    adopted by the CDA Notification",
+  "before_text": "******   No.F.1(5)Imp/2006 dated. 24.06.2006    adopted by the CDA Notification",
+  "after_text": "******   No.F.1(5)Imp/2006 dated. 24.06.2006    adopted by the CDA Notification"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 121,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p121.png",
+  "source_apparatus_blocks": [
+   2730674
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 121 prints its page number '103' alone at the foot (block 2730674, the page's last block, y=731 of 792)",
+  "render_sha256": "1794b216ad9946dbfe1f9ed66b2c0e53ce8973377f077733719089fb4375a737",
+  "match_text": "Finance Division O.M No.F.13(10)-Reg.6/2008/413 dated 16.05.2011",
+  "before_text": "Finance Division O.M No.F.13(10)-Reg.6/2008/413 dated 16.05.2011",
+  "after_text": "Finance Division O.M No.F.13(10)-Reg.6/2008/413 dated 16.05.2011"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 122,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p122.png",
+  "source_apparatus_blocks": [
+   2730699
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 122 prints its page number '104' alone at the foot (block 2730699, the page's last block, y=731 of 792)",
+  "render_sha256": "29c469ee2bc624ea1f777d29b0d4d5aa169db3f7d749ef8d3dcde5f5fe3b3614",
+  "match_text": "is death; the hour at which death takes place has no effect on the claim.",
+  "before_text": "is death; the hour at which death takes place has no effect on the claim.",
+  "after_text": "is death; the hour at which death takes place has no effect on the claim."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 123,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p123.png",
+  "source_apparatus_blocks": [
+   2730717
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 123 prints its page number '105' alone at the foot (block 2730717, the page's last block, y=731 of 792)",
+  "render_sha256": "1357d96a31a6b9108442a024c191f0498d24a1cf5fd5f47cc4f60760a8ba29e9",
+  "match_text": "are payable only at Islamabad.",
+  "before_text": "are payable only at Islamabad.",
+  "after_text": "are payable only at Islamabad."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 124,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p124.png",
+  "source_apparatus_blocks": [
+   2730741
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 124 prints its page number '106' alone at the foot (block 2730741, the page's last block, y=731 of 792)",
+  "render_sha256": "b17b36a612c66baad4508164d759a07b65a1283180fc9d6db323b744732bf9d5",
+  "match_text": "hired house till the age",
+  "before_text": "hired house till the age",
+  "after_text": "hired house till the age"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 125,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p125.png",
+  "source_apparatus_blocks": [
+   2730780
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 125 prints its page number '107' alone at the foot (block 2730780, the page's last block, y=731 of 792)",
+  "render_sha256": "44282fa61cdeb535e87ea041a401adb04167ed3244b409e51c86cbbd04bba1d4",
+  "match_text": "Financial Advisor /",
+  "before_text": "Financial Advisor /",
+  "after_text": "Financial Advisor /"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 126,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p126.png",
+  "source_apparatus_blocks": [
+   2730821
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 126 prints its page number '108' alone at the foot (block 2730821, the page's last block, y=731 of 792)",
+  "render_sha256": "5034870e1953fd802239c2652d1be48a692fa578f75c51f8e2cfd06111b5fde5",
+  "match_text": ". Director concerned",
+  "before_text": ". Director concerned",
+  "after_text": ". Director concerned"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 127,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p127.png",
+  "source_apparatus_blocks": [
+   2730842
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 127 prints its page number '109' alone at the foot (block 2730842, the page's last block, y=731 of 792)",
+  "render_sha256": "7f560f185f561e954b495d80327eb1b6049e965da9b8662cb4e39d732110844b",
+  "match_text": "**No.8/10/2013-E-2 22.10.2014 adopted vide No.CDA/FW(G)/44(28)/Assistance Package/2014/1357",
+  "before_text": "**No.8/10/2013-E-2 22.10.2014 adopted vide No.CDA/FW(G)/44(28)/Assistance Package/2014/1357",
+  "after_text": "**No.8/10/2013-E-2 22.10.2014 adopted vide No.CDA/FW(G)/44(28)/Assistance Package/2014/1357"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 128,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p128.png",
+  "source_apparatus_blocks": [
+   2730848
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 128 prints its page number '110' alone at the foot (block 2730848, the page's last block, y=731 of 792)",
+  "render_sha256": "dad291f411acf9a2381f482af3aea58936ce9c88b2ca85ef86f7f20d77d1ad5f",
+  "match_text": "____________________________________________________________________________________________",
+  "before_text": "____________________________________________________________________________________________",
+  "after_text": "____________________________________________________________________________________________"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 129,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p129.png",
+  "source_apparatus_blocks": [
+   2730874
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 129 prints its page number '111' alone at the foot (block 2730874, the page's last block, y=731 of 792)",
+  "render_sha256": "c396fe223d41d0b67e0894f692913ea0b99b6be2d6f0e2ffce7338a82a47a787",
+  "match_text": "The actual cost of traveling.",
+  "before_text": "The actual cost of traveling.",
+  "after_text": "The actual cost of traveling."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 130,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p130.png",
+  "source_apparatus_blocks": [
+   2730901
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 130 prints its page number '112' alone at the foot (block 2730901, the page's last block, y=731 of 792)",
+  "render_sha256": "eccc16fbbb25c354da90108c18b348e27ad72b162e62564057881ca6a938f236",
+  "match_text": "allowance is admissible to him. The provisions regulating, mileage allowance contained in these",
+  "before_text": "allowance is admissible to him. The provisions regulating, mileage allowance contained in these",
+  "after_text": "allowance is admissible to him. The provisions regulating, mileage allowance contained in these"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 131,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p131.png",
+  "source_apparatus_blocks": [
+   2730923
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 131 prints its page number '113' alone at the foot (block 2730923, the page's last block, y=731 of 792)",
+  "render_sha256": "f4e230beb07edd8141b9741784484d1a8c2d2c0ca1c25f2be97fe9003253736b",
+  "match_text": "an employee is the fare of the class in which he is entitled to accommodation plus daily allowance as",
+  "before_text": "an employee is the fare of the class in which he is entitled to accommodation plus daily allowance as",
+  "after_text": "an employee is the fare of the class in which he is entitled to accommodation plus daily allowance as"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 132,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p132.png",
+  "source_apparatus_blocks": [
+   2730942
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 132 prints its page number '114' alone at the foot (block 2730942, the page's last block, y=731 of 792)",
+  "render_sha256": "65a6dd59784458d96552d26a5a3a490ac1fff4ae1d71ef1c3044d05e942f3010",
+  "match_text": "CDA adoption No.CDA/FW(g)-44(28)(allowances)/2012/1452 dated 19.10.2012",
+  "before_text": "CDA adoption No.CDA/FW(g)-44(28)(allowances)/2012/1452 dated 19.10.2012",
+  "after_text": "CDA adoption No.CDA/FW(g)-44(28)(allowances)/2012/1452 dated 19.10.2012"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 133,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p133.png",
+  "source_apparatus_blocks": [
+   2730966
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 133 prints its page number '115' alone at the foot (block 2730966, the page's last block, y=731 of 792)",
+  "render_sha256": "6a7146c0ac53d82a75e323c081fcaf5761447f106b51bf9d8c6eb67528d2189f",
+  "match_text": "actual cost of the return air tickets of that class if such tickets are available, plus daily allowance.",
+  "before_text": "actual cost of the return air tickets of that class if such tickets are available, plus daily allowance.",
+  "after_text": "actual cost of the return air tickets of that class if such tickets are available, plus daily allowance."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 134,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p134.png",
+  "source_apparatus_blocks": [
+   2730987
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 134 prints its page number '116' alone at the foot (block 2730987, the page's last block, y=731 of 792)",
+  "render_sha256": "f33b440b602f64ac2a214be9fe74db0d22d8c6bda4b96e35d69cd4b18ddeba7e",
+  "match_text": "No.F.1(1)Imp/2010-624 dt. 05.07.2010 and adopted by the CDA in their",
+  "before_text": "No.F.1(1)Imp/2010-624 dt. 05.07.2010 and adopted by the CDA in their",
+  "after_text": "No.F.1(1)Imp/2010-624 dt. 05.07.2010 and adopted by the CDA in their"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 135,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p135.png",
+  "source_apparatus_blocks": [
+   2731009
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 135 prints its page number '117' alone at the foot (block 2731009, the page's last block, y=731 of 792)",
+  "render_sha256": "9c28c446f55983e6355121ac85c07dae11cf789c59f207456e2a4f00fbb351ae",
+  "match_text": "tents and camp equipage.",
+  "before_text": "tents and camp equipage.",
+  "after_text": "tents and camp equipage."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 136,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p136.png",
+  "source_apparatus_blocks": [
+   2731035
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 136 prints its page number '118' alone at the foot (block 2731035, the page's last block, y=731 of 792)",
+  "render_sha256": "b99068e7a8a7b5bca15a9c3c74c2b1dfe3cad7518747f79d7cd826bcb2bd6f0b",
+  "match_text": "involved and if absence from headquarters exceeds four hours including time spent in transit half daily",
+  "before_text": "involved and if absence from headquarters exceeds four hours including time spent in transit half daily",
+  "after_text": "involved and if absence from headquarters exceeds four hours including time spent in transit half daily"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 137,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p137.png",
+  "source_apparatus_blocks": [
+   2731063
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 137 prints its page number '119' alone at the foot (block 2731063, the page's last block, y=731 of 792)",
+  "render_sha256": "5d1c52bd76cd6c195897f9e3465efdb60fc7c49cc014744d8532b40f57eff81e",
+  "match_text": "paid by the Authority.",
+  "before_text": "paid by the Authority.",
+  "after_text": "paid by the Authority."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 138,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p138.png",
+  "source_apparatus_blocks": [
+   2731089
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 138 prints its page number '120' alone at the foot (block 2731089, the page's last block, y=731 of 792)",
+  "render_sha256": "1241b4d17cd899ad9ba8799faef42165515532a34477f7a80e3cd8f9c6847acf",
+  "match_text": "without regard to the points fixed by or under regulation 15.08.",
+  "before_text": "without regard to the points fixed by or under regulation 15.08.",
+  "after_text": "without regard to the points fixed by or under regulation 15.08."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 139,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p139.png",
+  "source_apparatus_blocks": [
+   2731116
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 139 prints its page number '121' alone at the foot (block 2731116, the page's last block, y=731 of 792)",
+  "render_sha256": "71edc7b0ded424d6e90f636e158e53611d330e61c5c0532b766fb8bc1476462c",
+  "match_text": "*No.F.1(2)-Reg.10/2005 dated 10-09-2005 (Finance Division)",
+  "before_text": "*No.F.1(2)-Reg.10/2005 dated 10-09-2005 (Finance Division)",
+  "after_text": "*No.F.1(2)-Reg.10/2005 dated 10-09-2005 (Finance Division)"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 140,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p140.png",
+  "source_apparatus_blocks": [
+   2731143
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 140 prints its page number '122' alone at the foot (block 2731143, the page's last block, y=731 of 792)",
+  "render_sha256": "f0d3ba0b73138eb91eea7feb824381ca864c340e3168ef540abce2c228b5f97d",
+  "match_text": "that case transportation charge for motor car or motor cycle/scooter will not be admissible.",
+  "before_text": "that case transportation charge for motor car or motor cycle/scooter will not be admissible.",
+  "after_text": "that case transportation charge for motor car or motor cycle/scooter will not be admissible."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 141,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p141.png",
+  "source_apparatus_blocks": [
+   2731173
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 141 prints its page number '123' alone at the foot (block 2731173, the page's last block, y=731 of 792)",
+  "render_sha256": "1f2e281648823b329e63b3791a49e0260c5e22ec7c62eb455ac593189286d0a8",
+  "match_text": "traveling allowance.",
+  "before_text": "traveling allowance.",
+  "after_text": "traveling allowance."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 142,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p142.png",
+  "source_apparatus_blocks": [
+   2731201
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 142 prints its page number '124' alone at the foot (block 2731201, the page's last block, y=731 of 792)",
+  "render_sha256": "93473dd82c487d7935fe8505dc121f63ee577e97f723b3adfc5f50fca32924fa",
+  "match_text": "abandons his claim to mileage allowance specified in regulation 15.37 and 15.38 for himself.",
+  "before_text": "abandons his claim to mileage allowance specified in regulation 15.37 and 15.38 for himself.",
+  "after_text": "abandons his claim to mileage allowance specified in regulation 15.37 and 15.38 for himself."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 143,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p143.png",
+  "source_apparatus_blocks": [
+   2731225
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 143 prints its page number '125' alone at the foot (block 2731225, the page's last block, y=731 of 792)",
+  "render_sha256": "484e318696a40a64abc7dc7a31448b075c614dc9ae7c5b2be66f7abd1ad21eaf",
+  "match_text": "one station to join duty at another station.",
+  "before_text": "one station to join duty at another station.",
+  "after_text": "one station to join duty at another station."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 144,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p144.png",
+  "source_apparatus_blocks": [
+   2731253
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 144 prints its page number '126' alone at the foot (block 2731253, the page's last block, y=731 of 792)",
+  "render_sha256": "a15b499b7cbcbbeef680e9044a8908703e15a83b8d11a16b0fb8c5da8b01ab93",
+  "match_text": "If he dies during this period without availing himself of this concession, it may be allowed to his family",
+  "before_text": "If he dies during this period without availing himself of this concession, it may be allowed to his family",
+  "after_text": "If he dies during this period without availing himself of this concession, it may be allowed to his family"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 145,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p145.png",
+  "source_apparatus_blocks": [
+   2731279
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 145 prints its page number '127' alone at the foot (block 2731279, the page's last block, y=731 of 792)",
+  "render_sha256": "6e89dff1036f0e0dc23479f2bc8d03336675c9d96185cb384dbacf0553e4d645",
+  "match_text": "vii) Approximate weight of personal effects to be transported.",
+  "before_text": "vii) Approximate weight of personal effects to be transported.",
+  "after_text": "vii) Approximate weight of personal effects to be transported."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 146,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p146.png",
+  "source_apparatus_blocks": [
+   2731306
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 146 prints its page number '128' alone at the foot (block 2731306, the page's last block, y=731 of 792)",
+  "render_sha256": "c685dcffbbf2f3ea2574594fac61f626795e61de9ff30fbe9525cb68733445a9",
+  "match_text": "No. CDA-7(84) HRD-III/2008/Sec-VI/1800     dated: 22.08.2008",
+  "before_text": "No. CDA-7(84) HRD-III/2008/Sec-VI/1800     dated: 22.08.2008",
+  "after_text": "No. CDA-7(84) HRD-III/2008/Sec-VI/1800     dated: 22.08.2008"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 147,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p147.png",
+  "source_apparatus_blocks": [
+   2731333
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 147 prints its page number '129' alone at the foot (block 2731333, the page's last block, y=731 of 792)",
+  "render_sha256": "f5c1fd9d8e82a0f8ae0c1ea5bfa1d91cb7b0d663fd03127b9d3e1face45ee8c6",
+  "match_text": "which he is to give evidence have come to his knowledge in the discharge of his duties as an employee",
+  "before_text": "which he is to give evidence have come to his knowledge in the discharge of his duties as an employee",
+  "after_text": "which he is to give evidence have come to his knowledge in the discharge of his duties as an employee"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 148,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p148.png",
+  "source_apparatus_blocks": [
+   2731362
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 148 prints its page number '130' alone at the foot (block 2731362, the page's last block, y=731 of 792)",
+  "render_sha256": "5a08d7d812c6a86f3e98fadcae1f77bfddb8e9a9ae3f6149448a67dfb6bed067",
+  "match_text": "Traveling allowance for journeys during the course of training:",
+  "before_text": "Traveling allowance for journeys during the course of training:",
+  "after_text": "Traveling allowance for journeys during the course of training:"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 149,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p149.png",
+  "source_apparatus_blocks": [
+   2731388
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 149 prints its page number '131' alone at the foot (block 2731388, the page's last block, y=731 of 792)",
+  "render_sha256": "dceecd41201f845ad7e72defc6ca5b5f73bd39c0a8ffac70712a5bf7ae3139bc",
+  "match_text": "traveling allowance is claimed and disallow the whole or a part of the traveling",
+  "before_text": "traveling allowance is claimed and disallow the whole or a part of the traveling",
+  "after_text": "traveling allowance is claimed and disallow the whole or a part of the traveling"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 150,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p150.png",
+  "source_apparatus_blocks": [
+   2731404
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 150 prints its page number '132' alone at the foot (block 2731404, the page's last block, y=731 of 792)",
+  "render_sha256": "0c5821eeb3cfb886f55daaf93a0152614e8a686b3151f1fe6aa3893ea5b77fbe",
+  "match_text": "*************************************************",
+  "before_text": "*************************************************",
+  "after_text": "*************************************************"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 151,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p151.png",
+  "source_apparatus_blocks": [
+   2731429
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 151 prints its page number '133' alone at the foot (block 2731429, the page's last block, y=731 of 792)",
+  "render_sha256": "2189b8fec42c914dbc90ad8863b54cc099ae0d20eecb61da4f2492c0edc581d7",
+  "match_text": "The joining time is normally calculated by the route which travelers ordinarily use irrespective",
+  "before_text": "The joining time is normally calculated by the route which travelers ordinarily use irrespective",
+  "after_text": "The joining time is normally calculated by the route which travelers ordinarily use irrespective"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 152,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p152.png",
+  "source_apparatus_blocks": [
+   2731450
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 152 prints its page number '134' alone at the foot (block 2731450, the page's last block, y=731 of 792)",
+  "render_sha256": "13af09c26adc9e772438e4fd7ddd01fb9efd059e6398e51eebe5ca0637afe950",
+  "match_text": "*******************************",
+  "before_text": "*******************************",
+  "after_text": "*******************************"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 153,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p153.png",
+  "source_apparatus_blocks": [
+   2731477
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 153 prints its page number '135' alone at the foot (block 2731477, the page's last block, y=731 of 792)",
+  "render_sha256": "7f5b90abd0ed2486391fc5687d4f8dc8fe9ebfc780f559c17d5a49433560ce66",
+  "match_text": "regulation (1) above:",
+  "before_text": "regulation (1) above:",
+  "after_text": "regulation (1) above:"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 154,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p154.png",
+  "source_apparatus_blocks": [
+   2731506
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 154 prints its page number '136' alone at the foot (block 2731506, the page's last block, y=731 of 792)",
+  "render_sha256": "5e286675f5e7665d87d9f1d788f2f5d9f759fb3cfbecf87f1bd70cd1a78da359",
+  "match_text": "the Member (Administration).  Advances of pay and traveling allowance on transfer may be",
+  "before_text": "the Member (Administration).  Advances of pay and traveling allowance on transfer may be",
+  "after_text": "the Member (Administration).  Advances of pay and traveling allowance on transfer may be"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 155,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p155.png",
+  "source_apparatus_blocks": [
+   2731534
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 155 prints its page number '137' alone at the foot (block 2731534, the page's last block, y=731 of 792)",
+  "render_sha256": "3b392191138fc7bc0e5de4bee2dff85d0fd3d5ab94c5bc01a9d918fb2c29c9b5",
+  "match_text": "calculating total house building advance to which an employee is entitled.",
+  "before_text": "calculating total house building advance to which an employee is entitled.",
+  "after_text": "calculating total house building advance to which an employee is entitled."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 156,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p156.png",
+  "source_apparatus_blocks": [
+   2731563
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 156 prints its page number '138' alone at the foot (block 2731563, the page's last block, y=731 of 792)",
+  "render_sha256": "9ef80e7c983a12858f02eb19262a546e57dab32ccba320f62f263119525b271e",
+  "match_text": "amount of advance and interest thereon is repaid in full before the date of superannuation.",
+  "before_text": "amount of advance and interest thereon is repaid in full before the date of superannuation.",
+  "after_text": "amount of advance and interest thereon is repaid in full before the date of superannuation."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 157,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p157.png",
+  "source_apparatus_blocks": [
+   2731591
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 157 prints its page number '139' alone at the foot (block 2731591, the page's last block, y=731 of 792)",
+  "render_sha256": "3997fd4ce03b0d9267f77305e2979180cda16e54e826b69a1aa3f4b7736a8456",
+  "match_text": "advance up to 70% of the total amount of house building advance.",
+  "before_text": "advance up to 70% of the total amount of house building advance.",
+  "after_text": "advance up to 70% of the total amount of house building advance."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 158,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p158.png",
+  "source_apparatus_blocks": [
+   2731623
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 158 prints its page number '140' alone at the foot (block 2731623, the page's last block, y=731 of 792)",
+  "render_sha256": "0a54afe4afbf2415061389ebb390de1be3affaced701ba01dc1003305641a99f",
+  "match_text": "(including the balance payable to the Authority on that account) may be made in 40 monthly",
+  "before_text": "(including the balance payable to the Authority on that account) may be made in 40 monthly",
+  "after_text": "(including the balance payable to the Authority on that account) may be made in 40 monthly"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 159,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p159.png",
+  "source_apparatus_blocks": [
+   2731652
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 159 prints its page number '141' alone at the foot (block 2731652, the page's last block, y=731 of 792)",
+  "render_sha256": "67093c7be4156e9864c224edeafac4a8ab9c6b867ddd245778fc50d77679fbbe",
+  "match_text": "the drawing and disbursing officer will arrange for direct payment of the sanctioned amount to the",
+  "before_text": "the drawing and disbursing officer will arrange for direct payment of the sanctioned amount to the",
+  "after_text": "the drawing and disbursing officer will arrange for direct payment of the sanctioned amount to the"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 160,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p160.png",
+  "source_apparatus_blocks": [
+   2731673
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 160 prints its page number '142' alone at the foot (block 2731673, the page's last block, y=731 of 792)",
+  "render_sha256": "6882ecbf3dd667b977155aeaf9e4691008c2d5fc1ce8e02574c0b1e00cfb9fac",
+  "match_text": "service. The advance may be sanctioned by the Member (Administration).",
+  "before_text": "service. The advance may be sanctioned by the Member (Administration).",
+  "after_text": "service. The advance may be sanctioned by the Member (Administration)."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 161,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p161.png",
+  "source_apparatus_blocks": [
+   2731699
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 161 prints its page number '143' alone at the foot (block 2731699, the page's last block, y=731 of 792)",
+  "render_sha256": "4edd7651e1bbdd17a2d863481b78b9e4d6a5a70deb05957c8bb9c59db6db608b",
+  "match_text": "No.F.8(2)-Reg.7/87(Vol-II)-529/2002 01.07.2002  and adopt by the CDA in their",
+  "before_text": "No.F.8(2)-Reg.7/87(Vol-II)-529/2002 01.07.2002  and adopt by the CDA in their",
+  "after_text": "No.F.8(2)-Reg.7/87(Vol-II)-529/2002 01.07.2002  and adopt by the CDA in their"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 162,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p162.png",
+  "source_apparatus_blocks": [
+   2731727
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 162 prints its page number '144' alone at the foot (block 2731727, the page's last block, y=731 of 792)",
+  "render_sha256": "942e8ee90d6daf2eab4057572c51c8a8969eecdaaafe3e5c9ee3c2ca16180ba5",
+  "match_text": "of damage to or loss of vehicle; or",
+  "before_text": "of damage to or loss of vehicle; or",
+  "after_text": "of damage to or loss of vehicle; or"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 163,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p163.png",
+  "source_apparatus_blocks": [
+   2731750
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 163 prints its page number '145' alone at the foot (block 2731750, the page's last block, y=731 of 792)",
+  "render_sha256": "eeacaaa7fe7b56f567da59f3e04bbf2dd9fc47e62bd405fc9f3a7d5302f0be30",
+  "match_text": "No.F.8(2)-Reg.7/87(Vol-II)-529/2002 01.07.2002  and adopt by the CDA in their",
+  "before_text": "No.F.8(2)-Reg.7/87(Vol-II)-529/2002 01.07.2002  and adopt by the CDA in their",
+  "after_text": "No.F.8(2)-Reg.7/87(Vol-II)-529/2002 01.07.2002  and adopt by the CDA in their"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 164,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p164.png",
+  "source_apparatus_blocks": [
+   2731775
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 164 prints its page number '146' alone at the foot (block 2731775, the page's last block, y=731 of 792)",
+  "render_sha256": "aad5c907f5b91ba8b56581ce1da17fbc7a9bf914ac3c7efc724dcc76909f1242",
+  "match_text": "the old station. There is no objection to an employee drawing a second advance of raveling",
+  "before_text": "the old station. There is no objection to an employee drawing a second advance of raveling",
+  "after_text": "the old station. There is no objection to an employee drawing a second advance of raveling"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 165,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p165.png",
+  "source_apparatus_blocks": [
+   2731800
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 165 prints its page number '147' alone at the foot (block 2731800, the page's last block, y=731 of 792)",
+  "render_sha256": "1f09fb6d5d5fc285a965b6297908c230f3790342a22ae9188f8e39492d6bf540",
+  "match_text": "admitted in audit unless the advance drawn for the purpose is properly adjusted.",
+  "before_text": "admitted in audit unless the advance drawn for the purpose is properly adjusted.",
+  "after_text": "admitted in audit unless the advance drawn for the purpose is properly adjusted."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 166,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p166.png",
+  "source_apparatus_blocks": [
+   2731831
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 166 prints its page number '148' alone at the foot (block 2731831, the page's last block, y=731 of 792)",
+  "render_sha256": "4fac88748eac779a6ca62baef47f7e215701077e1aa032dc9e3ef654fb1568ce",
+  "match_text": "officers/officials as per previous policy.",
+  "before_text": "officers/officials as per previous policy.",
+  "after_text": "officers/officials as per previous policy."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 167,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p167.png",
+  "source_apparatus_blocks": [
+   2731852
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 167 prints its page number '149' alone at the foot (block 2731852, the page's last block, y=731 of 792)",
+  "render_sha256": "8e7a2ec4777667e643bf6604ea375113e5996c79eb4f2abb26d844091a490459",
+  "match_text": "After cut-off date for submission of application, seniority will be determined amongst applicants",
+  "before_text": "After cut-off date for submission of application, seniority will be determined amongst applicants",
+  "after_text": "After cut-off date for submission of application, seniority will be determined amongst applicants"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 168,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p168.png",
+  "source_apparatus_blocks": [
+   2731857
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 168 prints its page number '150' alone at the foot (block 2731857, the page's last block, y=731 of 792)",
+  "render_sha256": "4dafb694d4483ce6913715a4d5636c96ec31adc4608b8d969e9ef2bc2c53838e",
+  "match_text": "*No. CDA-70(01) HRD-III/VI/2021/203   dated 19-03-2021",
+  "before_text": "*No. CDA-70(01) HRD-III/VI/2021/203   dated 19-03-2021",
+  "after_text": "*No. CDA-70(01) HRD-III/VI/2021/203   dated 19-03-2021"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 169,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p169.png",
+  "source_apparatus_blocks": [
+   2731884
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 169 prints its page number '151' alone at the foot (block 2731884, the page's last block, y=731 of 792)",
+  "render_sha256": "37081aebb08c0303caf43b102b281c9423877404467d2752646109f8ccf8bcdc",
+  "match_text": "*No.CDA-7(01)HRD-III/VI/2021/109 dated 18-02-2022",
+  "before_text": "*No.CDA-7(01)HRD-III/VI/2021/109 dated 18-02-2022",
+  "after_text": "*No.CDA-7(01)HRD-III/VI/2021/109 dated 18-02-2022"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 170,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p170.png",
+  "source_apparatus_blocks": [
+   2731912
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 170 prints its page number '152' alone at the foot (block 2731912, the page's last block, y=731 of 792)",
+  "render_sha256": "b1d83a8bb798498a4e9aa4ea91db8b348181c6289042b24b18d400995f9429e5",
+  "match_text": "authorized medical attendant;",
+  "before_text": "authorized medical attendant;",
+  "after_text": "authorized medical attendant;"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 171,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p171.png",
+  "source_apparatus_blocks": [
+   2731939
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 171 prints its page number '153' alone at the foot (block 2731939, the page's last block, y=731 of 792)",
+  "render_sha256": "550ec16002c55941ed8df5eef5713e4babad6d33ca49f1ff5997e8491e6b50d6",
+  "match_text": "diseases but does not include provision of glasses;",
+  "before_text": "diseases but does not include provision of glasses;",
+  "after_text": "diseases but does not include provision of glasses;"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 172,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p172.png",
+  "source_apparatus_blocks": [
+   2731962
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 172 prints its page number '154' alone at the foot (block 2731962, the page's last block, y=731 of 792)",
+  "render_sha256": "ab3995eb0916eb35516f151038f00431df11c2a5fc868562ade4239279928330",
+  "match_text": "attendant in this behalf, be entitled to traveling allowance for the journeys to and from Islamabad.",
+  "before_text": "attendant in this behalf, be entitled to traveling allowance for the journeys to and from Islamabad.",
+  "after_text": "attendant in this behalf, be entitled to traveling allowance for the journeys to and from Islamabad."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 173,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p173.png",
+  "source_apparatus_blocks": [
+   2731982
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 173 prints its page number '155' alone at the foot (block 2731982, the page's last block, y=731 of 792)",
+  "render_sha256": "d2864dc32425c794fdb98ed959dc4452418417ddb66995e817c6b13dd0742872",
+  "match_text": "Powers entrusted to them under item No.68 or Revised Schedule of Financial Powers-",
+  "before_text": "Powers entrusted to them under item No.68 or Revised Schedule of Financial Powers-",
+  "after_text": "Powers entrusted to them under item No.68 or Revised Schedule of Financial Powers-"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 174,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p174.png",
+  "source_apparatus_blocks": [
+   2732009
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 174 prints its page number '156' alone at the foot (block 2732009, the page's last block, y=731 of 792)",
+  "render_sha256": "511e3dadd60441f5e0458fe46fa852fc404506c9a6fc7a5086a72945adc8ffbe",
+  "match_text": "authorized medical attendant and paid by the patient.",
+  "before_text": "authorized medical attendant and paid by the patient.",
+  "after_text": "authorized medical attendant and paid by the patient."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 175,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p175.png",
+  "source_apparatus_blocks": [
+   2732021
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 175 prints its page number '157' alone at the foot (block 2732021, the page's last block, y=731 of 792)",
+  "render_sha256": "30f6eeb2c9148fedf6caf38e6b0261b100968ac33ef97fc30df1a2a576ae6bd9",
+  "match_text": "******************************",
+  "before_text": "******************************",
+  "after_text": "******************************"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 176,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p176.png",
+  "source_apparatus_blocks": [
+   2732040
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 176 prints its page number '158' alone at the foot (block 2732040, the page's last block, y=731 of 792)",
+  "render_sha256": "521f42fa0383feb6107f7a47cdaf9b53f670418f4aaf9a4c623f5dd163442446",
+  "match_text": "___________________________________________________________________________________",
+  "before_text": "___________________________________________________________________________________",
+  "after_text": "___________________________________________________________________________________"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 177,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p177.png",
+  "source_apparatus_blocks": [
+   2732067
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 177 prints its page number '159' alone at the foot (block 2732067, the page's last block, y=731 of 792)",
+  "render_sha256": "0294da4e5cc6337e3d5be8ced9581a362452a90e9499658f9c4ddebaa55dbceb",
+  "match_text": "of instructions or training or in any other connection. If so, whether",
+  "before_text": "of instructions or training or in any other connection. If so, whether",
+  "after_text": "of instructions or training or in any other connection. If so, whether"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 178,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p178.png",
+  "source_apparatus_blocks": [
+   2732091
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 178 prints its page number '160' alone at the foot (block 2732091, the page's last block, y=731 of 792)",
+  "render_sha256": "ca69915901eadc3417a97cd5dbb43b40b2d09c4881f98c88157f47054082b221",
+  "match_text": "why his appointment should not be terminated.",
+  "before_text": "why his appointment should not be terminated.",
+  "after_text": "why his appointment should not be terminated."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 179,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p179.png",
+  "source_apparatus_blocks": [
+   2732115
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 179 prints its page number '161' alone at the foot (block 2732115, the page's last block, y=731 of 792)",
+  "render_sha256": "bc5c596a50862841e54db0c18709e0232ebd00931c5ce533cd2c25c0b5cbdd74",
+  "match_text": "order passed by an authority which:-",
+  "before_text": "order passed by an authority which:-",
+  "after_text": "order passed by an authority which:-"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 180,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p180.png",
+  "source_apparatus_blocks": [
+   2732140
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 180 prints its page number '162' alone at the foot (block 2732140, the page's last block, y=731 of 792)",
+  "render_sha256": "e1364bb6382495484722ae0d00c09a758247c8ce7af84d40a961270d894c1a9a",
+  "match_text": "authority subordinate to the Member.",
+  "before_text": "authority subordinate to the Member.",
+  "after_text": "authority subordinate to the Member."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 181,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p181.png",
+  "source_apparatus_blocks": [
+   2732163
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 181 prints its page number '163' alone at the foot (block 2732163, the page's last block, y=731 of 792)",
+  "render_sha256": "6e4310c4eebd07f74208cf455c1d7ff3848e4422f2b050103e1ae314e5a0f002",
+  "match_text": "pass such order as, having regard to all circumstances of the case, appears to it just and equitable.",
+  "before_text": "pass such order as, having regard to all circumstances of the case, appears to it just and equitable.",
+  "after_text": "pass such order as, having regard to all circumstances of the case, appears to it just and equitable."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 182,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p182.png",
+  "source_apparatus_blocks": [
+   2732190
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 182 prints its page number '164' alone at the foot (block 2732190, the page's last block, y=731 of 792)",
+  "render_sha256": "a54a5328223e34796186f638bced6b257f67883f4551ca02aaae75b4d23e2c07",
+  "match_text": "authority, as the case may be, it shall not be withheld.",
+  "before_text": "authority, as the case may be, it shall not be withheld.",
+  "after_text": "authority, as the case may be, it shall not be withheld."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 183,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p183.png",
+  "source_apparatus_blocks": [
+   2732205
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 183 prints its page number '165' alone at the foot (block 2732205, the page's last block, y=731 of 792)",
+  "render_sha256": "341c31b0cc1b8b26338cb54dbb1cda97035ad52663b24f496a02ebfef740ec07",
+  "match_text": "these regulations.",
+  "before_text": "these regulations.",
+  "after_text": "these regulations."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 184,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p184.png",
+  "source_apparatus_blocks": [
+   2732230
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 184 prints its page number '166' alone at the foot (block 2732230, the page's last block, y=731 of 792)",
+  "render_sha256": "ca371b9c4eb6487cd8a4cb2ff822f2447d102c7c41572776a5d372a9d4ce05d9",
+  "match_text": "amount of pension or gratuity finally determined as payable to such employee or his",
+  "before_text": "amount of pension or gratuity finally determined as payable to such employee or his",
+  "after_text": "amount of pension or gratuity finally determined as payable to such employee or his"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 185,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p185.png",
+  "source_apparatus_blocks": [
+   2732254
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 185 prints its page number '167' alone at the foot (block 2732254, the page's last block, y=731 of 792)",
+  "render_sha256": "570a9d5a1340d1528bb79db444ac54f8f7008366acf6e19b54d9735cb0a0df2f",
+  "match_text": "Government office or other organization set up, controlled or administered by the Federal",
+  "before_text": "Government office or other organization set up, controlled or administered by the Federal",
+  "after_text": "Government office or other organization set up, controlled or administered by the Federal"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 186,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p186.png",
+  "source_apparatus_blocks": [
+   2732278
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 186 prints its page number '168' alone at the foot (block 2732278, the page's last block, y=731 of 792)",
+  "render_sha256": "6802b9f2052bfdca5ac0ff371f642bd1170342b40f444e7922b944e55835974f",
+  "match_text": "All periods of leave, other than extraordinary leave;",
+  "before_text": "All periods of leave, other than extraordinary leave;",
+  "after_text": "All periods of leave, other than extraordinary leave;"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 187,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p187.png",
+  "source_apparatus_blocks": [
+   2732301
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 187 prints its page number '169' alone at the foot (block 2732301, the page's last block, y=731 of 792)",
+  "render_sha256": "82e44f49ef064b5c992ada99af27e8b4d8d4bc2706ceabbd5f24644c0405e078",
+  "match_text": "Loss of appointment owing to abolition of office or reduction in",
+  "before_text": "Loss of appointment owing to abolition of office or reduction in",
+  "after_text": "Loss of appointment owing to abolition of office or reduction in"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 188,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p188.png",
+  "source_apparatus_blocks": [
+   2732324
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 188 prints its page number '170' alone at the foot (block 2732324, the page's last block, y=731 of 792)",
+  "render_sha256": "15a779651c692f71858ab30a7d3d8f1e33f5a9f4421f8fc2d27538a271eea4f3",
+  "match_text": "service rendered by him had been meritorious.",
+  "before_text": "service rendered by him had been meritorious.",
+  "after_text": "service rendered by him had been meritorious."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 189,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p189.png",
+  "source_apparatus_blocks": [
+   2732350
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 189 prints its page number '171' alone at the foot (block 2732350, the page's last block, y=731 of 792)",
+  "render_sha256": "7309c006f6d178a00c61341022aa409b4c38625b2cb1708bcb478f57cef37b19",
+  "match_text": "and continuing to count his previous service for pension.",
+  "before_text": "and continuing to count his previous service for pension.",
+  "after_text": "and continuing to count his previous service for pension."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 190,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p190.png",
+  "source_apparatus_blocks": [
+   2732378
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 190 prints its page number '172' alone at the foot (block 2732378, the page's last block, y=731 of 792)",
+  "render_sha256": "7b917b420bfd7395fe55e769585cabd2d44606208da38832cdc5f2212eb18086",
+  "match_text": "made on this account.",
+  "before_text": "made on this account.",
+  "after_text": "made on this account."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 191,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p191.png",
+  "source_apparatus_blocks": [
+   2732404
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 191 prints its page number '173' alone at the foot (block 2732404, the page's last block, y=731 of 792)",
+  "render_sha256": "0da2034e524f6230d05c9fe0bde3578f298b17ad2bd15c94365be0c639ba2a86",
+  "match_text": "withdrawn after the competent authority has accepted it.",
+  "before_text": "withdrawn after the competent authority has accepted it.",
+  "after_text": "withdrawn after the competent authority has accepted it."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 192,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p192.png",
+  "source_apparatus_blocks": [
+   2732431
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 192 prints its page number '174' alone at the foot (block 2732431, the page's last block, y=731 of 792)",
+  "render_sha256": "bc4f374503edb7386433ac13fae5b4fa613fbd2f462eeb6566ff8e0e1c8d44ea",
+  "match_text": "emoluments of the last twelve months on completion of thirty years",
+  "before_text": "emoluments of the last twelve months on completion of thirty years",
+  "after_text": "emoluments of the last twelve months on completion of thirty years"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 193,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p193.png",
+  "source_apparatus_blocks": [
+   2732445
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 193 prints its page number '175' alone at the foot (block 2732445, the page's last block, y=731 of 792)",
+  "render_sha256": "e45c80a28268f810e31ab343c24aa3c00d3880fce25f1b661965a3e72c97347c",
+  "match_text": "*No.F.1(5)Imp/2001 dt. 04.09.2001 (Para 16-C) of the letter",
+  "before_text": "*No.F.1(5)Imp/2001 dt. 04.09.2001 (Para 16-C) of the letter",
+  "after_text": "*No.F.1(5)Imp/2001 dt. 04.09.2001 (Para 16-C) of the letter"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 194,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p194.png",
+  "source_apparatus_blocks": [
+   2732471
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 194 prints its page number '176' alone at the foot (block 2732471, the page's last block, y=731 of 792)",
+  "render_sha256": "ffbd6a97bb38674a485863fffd26d7653951db859af34599cbbb652b4d8e9f15",
+  "match_text": "* No. F.15(1)Reg 6/2010-777      dated 05.07.2010 and  No.CDA/FW(G)-44(28)/2010/112 dt. 19.07.2010",
+  "before_text": "* No. F.15(1)Reg 6/2010-777      dated 05.07.2010 and  No.CDA/FW(G)-44(28)/2010/112 dt. 19.07.2010",
+  "after_text": "* No. F.15(1)Reg 6/2010-777      dated 05.07.2010 and  No.CDA/FW(G)-44(28)/2010/112 dt. 19.07.2010"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 195,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p195.png",
+  "source_apparatus_blocks": [
+   2732496
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 195 prints its page number '177' alone at the foot (block 2732496, the page's last block, y=731 of 792)",
+  "render_sha256": "b4be21c4a8c66e67a90674883e5255d642bd60c0ca1572b2122225f8d60b7244",
+  "match_text": "in writing her intimation excluding him.",
+  "before_text": "in writing her intimation excluding him.",
+  "after_text": "in writing her intimation excluding him."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 196,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p196.png",
+  "source_apparatus_blocks": [
+   2732522
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 196 prints its page number '178' alone at the foot (block 2732522, the page's last block, y=731 of 792)",
+  "render_sha256": "d79b193444aa2cb9008d92cc8f24284ed1b919577afce92e540eab98549902c9",
+  "match_text": "the occurrence of any event by reason of which the nomination becomes so void by",
+  "before_text": "the occurrence of any event by reason of which the nomination becomes so void by",
+  "after_text": "the occurrence of any event by reason of which the nomination becomes so void by"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 197,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p197.png",
+  "source_apparatus_blocks": [
+   2732548
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 197 prints its page number '179' alone at the foot (block 2732548, the page's last block, y=731 of 792)",
+  "render_sha256": "aa3455cb9bffbbeff609af10112b5132ee76143f93c310ee39c095482f6ed383",
+  "match_text": "the members  of his family in equal shares:",
+  "before_text": "the members  of his family in equal shares:",
+  "after_text": "the members  of his family in equal shares:"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 198,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p198.png",
+  "source_apparatus_blocks": [
+   2732575
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 198 prints its page number '180' alone at the foot (block 2732575, the page's last block, y=731 of 792)",
+  "render_sha256": "484f9150841eb8a37b8d9487d27db81d6a9942d165925c16005118c5ae469f0a",
+  "match_text": "be payable to the following surviving relatives, if any, of the employee in equal",
+  "before_text": "be payable to the following surviving relatives, if any, of the employee in equal",
+  "after_text": "be payable to the following surviving relatives, if any, of the employee in equal"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 199,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p199.png",
+  "source_apparatus_blocks": [
+   2732598
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 199 prints its page number '181' alone at the foot (block 2732598, the page's last block, y=731 of 792)",
+  "render_sha256": "f772d4010534215d57ed77308c332ede89d4f8befc84e0593579c7b03647e3e9",
+  "match_text": "*No. F.2(3) Reg 6/2010/786 dt. 05.07.2010 and adopt by the CDA",
+  "before_text": "*No. F.2(3) Reg 6/2010/786 dt. 05.07.2010 and adopt by the CDA",
+  "after_text": "*No. F.2(3) Reg 6/2010/786 dt. 05.07.2010 and adopt by the CDA"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 200,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p200.png",
+  "source_apparatus_blocks": [
+   2732624
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 200 prints its page number '182' alone at the foot (block 2732624, the page's last block, y=731 of 792)",
+  "render_sha256": "b632a7f07479fe21f302f14dbfd433271e0f0649c6fcf89b644d2ccd3569edac",
+  "match_text": "*No. F.2(3) Reg 6/2010/786 dt. 05.07.2010 and adopt by the CDA",
+  "before_text": "*No. F.2(3) Reg 6/2010/786 dt. 05.07.2010 and adopt by the CDA",
+  "after_text": "*No. F.2(3) Reg 6/2010/786 dt. 05.07.2010 and adopt by the CDA"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 201,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p201.png",
+  "source_apparatus_blocks": [
+   2732649
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 201 prints its page number '183' alone at the foot (block 2732649, the page's last block, y=731 of 792)",
+  "render_sha256": "a45f1e7aff98cca72e65db9c706f529e3b747ad00cb8cd6d83ece78c18eade80",
+  "match_text": "of this regulation without production of reasonable proof",
+  "before_text": "of this regulation without production of reasonable proof",
+  "after_text": "of this regulation without production of reasonable proof"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 202,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p202.png",
+  "source_apparatus_blocks": [
+   2732674
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 202 prints its page number '184' alone at the foot (block 2732674, the page's last block, y=731 of 792)",
+  "render_sha256": "9504dbbbba65ccff82f25b3252ba11aa8e432033fefb5a790463f1077fa7ac6b",
+  "match_text": "consider desirable to suit the special circumstances.",
+  "before_text": "consider desirable to suit the special circumstances.",
+  "after_text": "consider desirable to suit the special circumstances."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 203,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p203.png",
+  "source_apparatus_blocks": [
+   2732701
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 203 prints its page number '185' alone at the foot (block 2732701, the page's last block, y=731 of 792)",
+  "render_sha256": "72cc8cb675f6e7985bbc004a9b0a808b1e892f64e071a01179231aeef568e72c",
+  "match_text": "Increments accrued during leave preparatory to",
+  "before_text": "Increments accrued during leave preparatory to",
+  "after_text": "Increments accrued during leave preparatory to"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 204,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p204.png",
+  "source_apparatus_blocks": [
+   2732728
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 204 prints its page number '186' alone at the foot (block 2732728, the page's last block, y=731 of 792)",
+  "render_sha256": "03da3829fd17e82726b2c9fc2dec9759aedfb29cb68a3141f64e938ca859cde0",
+  "match_text": "may be, thirty six months, being included.",
+  "before_text": "may be, thirty six months, being included.",
+  "after_text": "may be, thirty six months, being included."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 205,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p205.png",
+  "source_apparatus_blocks": [
+   2732756
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 205 prints its page number '187' alone at the foot (block 2732756, the page's last block, y=731 of 792)",
+  "render_sha256": "f33390046d413eaea90b347c78bb89668648794e963b0a498353238ba7364bb8",
+  "match_text": "respect of any portion of the service included in this application and in respect of",
+  "before_text": "respect of any portion of the service included in this application and in respect of",
+  "after_text": "respect of any portion of the service included in this application and in respect of"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 206,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p206.png",
+  "source_apparatus_blocks": [
+   2732785
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 206 prints its page number '188' alone at the foot (block 2732785, the page's last block, y=731 of 792)",
+  "render_sha256": "9977b2d3fc0da462c6464fc876da7ada1e878eda2f51259ce2d7c15749eb1d0e",
+  "match_text": "pension payment order, order recovery of any dues from the pension granted to an",
+  "before_text": "pension payment order, order recovery of any dues from the pension granted to an",
+  "after_text": "pension payment order, order recovery of any dues from the pension granted to an"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 207,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p207.png",
+  "source_apparatus_blocks": [
+   2732810
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 207 prints its page number '189' alone at the foot (block 2732810, the page's last block, y=731 of 792)",
+  "render_sha256": "12cd2de138f97e1c13feef5611cc88800ea09540c1f1738f1ab3aae8d4409e2c",
+  "match_text": "*     BOI. Admin Power 2007 clause No. 52",
+  "before_text": "*     BOI. Admin Power 2007 clause No. 52",
+  "after_text": "*     BOI. Admin Power 2007 clause No. 52"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 208,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p208.png",
+  "source_apparatus_blocks": [
+   2732838
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 208 prints its page number '190' alone at the foot (block 2732838, the page's last block, y=731 of 792)",
+  "render_sha256": "095e56a9342680a70f0ad869710d4070c87bf08c4afdf35ba99639bcc38ca42c",
+  "match_text": "pension. The Chairman shall have the right of withholding or withdrawing a pension",
+  "before_text": "pension. The Chairman shall have the right of withholding or withdrawing a pension",
+  "after_text": "pension. The Chairman shall have the right of withholding or withdrawing a pension"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 209,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p209.png",
+  "source_apparatus_blocks": [
+   2732860
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 209 prints its page number '191' alone at the foot (block 2732860, the page's last block, y=731 of 792)",
+  "render_sha256": "7ef2e890a59ff3548cda3486828240fea8d8d9126f875d7f78f64e727d8ab02c",
+  "match_text": "service or within a year from the date on which he was last on",
+  "before_text": "service or within a year from the date on which he was last on",
+  "after_text": "service or within a year from the date on which he was last on"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 210,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p210.png",
+  "source_apparatus_blocks": [
+   2732884
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 210 prints its page number '192' alone at the foot (block 2732884, the page's last block, y=731 of 792)",
+  "render_sha256": "342b09e6330549e4f3525945db6686c8776d4781d50a86fa7cedef88e8c80891",
+  "match_text": "which death takes place has no effect on the claim.",
+  "before_text": "which death takes place has no effect on the claim.",
+  "after_text": "which death takes place has no effect on the claim."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 211,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p211.png",
+  "source_apparatus_blocks": [
+   2732913
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 211 prints its page number '193' alone at the foot (block 2732913, the page's last block, y=731 of 792)",
+  "render_sha256": "d1f99a462d7ef427cf5ccace4b3ff3168726962540d084303fa6d620e5b94f9e",
+  "match_text": "sanctioning authority may, at its discretion, renew administrative sanction for a",
+  "before_text": "sanctioning authority may, at its discretion, renew administrative sanction for a",
+  "after_text": "sanctioning authority may, at its discretion, renew administrative sanction for a"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 212,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p212.png",
+  "source_apparatus_blocks": [
+   2732942
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 212 prints its page number '194' alone at the foot (block 2732942, the page's last block, y=731 of 792)",
+  "render_sha256": "bbe3f671f5d20b12e360221b4f7586150a5fdf265e06dc10052862fb7ec01ac4",
+  "match_text": "the amount paid and the effect upon the pension shall be the same as if the",
+  "before_text": "the amount paid and the effect upon the pension shall be the same as if the",
+  "after_text": "the amount paid and the effect upon the pension shall be the same as if the"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 213,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p213.png",
+  "source_apparatus_blocks": [
+   2732966
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 213 prints its page number '195' alone at the foot (block 2732966, the page's last block, y=731 of 792)",
+  "render_sha256": "80b1f940ec52aec730393d20c04e79af14f97bd1614e509d59c755de887580ea",
+  "match_text": "which he receives notice of the modification.",
+  "before_text": "which he receives notice of the modification.",
+  "after_text": "which he receives notice of the modification."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 214,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p214.png",
+  "source_apparatus_blocks": [
+   2732978
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 214 prints its page number '196' alone at the foot (block 2732978, the page's last block, y=731 of 792)",
+  "render_sha256": "fd9c185b8f00f445999f655a261b9031981142c689ed8241ef8131de87f35c20",
+  "match_text": "Finance Division No. F.1 (5) Imp/2001 dt. 04.09.2001   (adopted by CDA)",
+  "before_text": "Finance Division No. F.1 (5) Imp/2001 dt. 04.09.2001   (adopted by CDA)",
+  "after_text": "Finance Division No. F.1 (5) Imp/2001 dt. 04.09.2001   (adopted by CDA)"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 215,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p215.png",
+  "source_apparatus_blocks": [
+   2732996
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 215 prints its page number '197' alone at the foot (block 2732996, the page's last block, y=731 of 792)",
+  "render_sha256": "1a25abed6651850d9bef158c49a20e65195f5040140187ae7c5cf216dfdce50b",
+  "match_text": "basic pay scale * 16 and below within one month of the expiry of the prescribed time.",
+  "before_text": "basic pay scale * 16 and below within one month of the expiry of the prescribed time.",
+  "after_text": "basic pay scale * 16 and below within one month of the expiry of the prescribed time."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 216,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p216.png",
+  "source_apparatus_blocks": [
+   2733040
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 216 prints its page number '198' alone at the foot (block 2733040, the page's last block, y=731 of 792)",
+  "render_sha256": "d7c1bcf113d17ef7ae85a1a54a93ddb5107127140e172c98f5dfac8b1116ac31",
+  "match_text": "__________________________________________________________________",
+  "before_text": "__________________________________________________________________",
+  "after_text": "__________________________________________________________________"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 217,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p217.png",
+  "source_apparatus_blocks": [
+   2733058
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 217 prints its page number '199' alone at the foot (block 2733058, the page's last block, y=731 of 792)",
+  "render_sha256": "556fcd8fdab5b7fb70c5bc06702665b460c90b2c7e301b2af9149aa20eba49fb",
+  "match_text": "not qualify for the concession.",
+  "before_text": "not qualify for the concession.",
+  "after_text": "not qualify for the concession."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 218,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p218.png",
+  "source_apparatus_blocks": [
+   2733084
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 218 prints its page number '200' alone at the foot (block 2733084, the page's last block, y=731 of 792)",
+  "render_sha256": "f2ad65fc9134bad85c9f9072dfce65ab6ab7987ee792d28d4158973e8a8b725a",
+  "match_text": "opinion and other evidence.",
+  "before_text": "opinion and other evidence.",
+  "after_text": "opinion and other evidence."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 219,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p219.png",
+  "source_apparatus_blocks": [
+   2733108
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 219 prints its page number '201' alone at the foot (block 2733108, the page's last block, y=731 of 792)",
+  "render_sha256": "19f02bd0c18be9b6bac556acfaa1719f70af539245e0521d0247ad2c3545050d",
+  "match_text": "history and merits of each case.",
+  "before_text": "history and merits of each case.",
+  "after_text": "history and merits of each case."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 220,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p220.png",
+  "source_apparatus_blocks": [
+   2733114
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 220 prints its page number '202' alone at the foot (block 2733114, the page's last block, y=731 of 792)",
+  "render_sha256": "744faeecf31be23eb0f6d76c66c97098187b1082237e09ca2b8a5c1c82e674cb",
+  "match_text": "*******************************************",
+  "before_text": "*******************************************",
+  "after_text": "*******************************************"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 221,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p221.png",
+  "source_apparatus_blocks": [
+   2733142
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 221 prints its page number '203' alone at the foot (block 2733142, the page's last block, y=731 of 792)",
+  "render_sha256": "c260abd5b1926d25608d247897d65bc73287879c32d876656c2a4e565ae34fcd",
+  "match_text": "years of qualifying service by the Authority under regulation 25 (a) of the Capital",
+  "before_text": "years of qualifying service by the Authority under regulation 25 (a) of the Capital",
+  "after_text": "years of qualifying service by the Authority under regulation 25 (a) of the Capital"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 222,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p222.png",
+  "source_apparatus_blocks": [
+   2733169
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 222 prints its page number '204' alone at the foot (block 2733169, the page's last block, y=731 of 792)",
+  "render_sha256": "c0fc65026de1a4d7fe7ccf3e221526ab94796ff054bbc6141e01bfb76078629c",
+  "match_text": "employed or such longer period as the Chairman may direct:",
+  "before_text": "employed or such longer period as the Chairman may direct:",
+  "after_text": "employed or such longer period as the Chairman may direct:"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 223,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p223.png",
+  "source_apparatus_blocks": [
+   2733197
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 223 prints its page number '205' alone at the foot (block 2733197, the page's last block, y=731 of 792)",
+  "render_sha256": "93db111c07230ac88c62cccbab4a5455954e63b24823e5639e0fbba10eb3c8fc",
+  "match_text": "much of pension only as will make his initial pay plus pension equal to his pay at the time",
+  "before_text": "much of pension only as will make his initial pay plus pension equal to his pay at the time",
+  "after_text": "much of pension only as will make his initial pay plus pension equal to his pay at the time"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 224,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p224.png",
+  "source_apparatus_blocks": [
+   2733222
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 224 prints its page number '206' alone at the foot (block 2733222, the page's last block, y=731 of 792)",
+  "render_sha256": "a71b5905ef158593093ec4297fa65f1a3e058b8d94d20463a65e9f88ec8c530e",
+  "match_text": "be employed in the Authority unless it be in the interests of the Authority.",
+  "before_text": "be employed in the Authority unless it be in the interests of the Authority.",
+  "after_text": "be employed in the Authority unless it be in the interests of the Authority."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 225,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p225.png",
+  "source_apparatus_blocks": [
+   2733249
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 225 prints its page number '207' alone at the foot (block 2733249, the page's last block, y=731 of 792)",
+  "render_sha256": "2fcc880e4750f0f94cc6ec6f347f2e8490e48a9db59101d9316f87805f40abb0",
+  "match_text": "post in which he is re-employed and he shall be allowed to draw his",
+  "before_text": "post in which he is re-employed and he shall be allowed to draw his",
+  "after_text": "post in which he is re-employed and he shall be allowed to draw his"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 226,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p226.png",
+  "source_apparatus_blocks": [
+   2733259
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 226 prints its page number '208' alone at the foot (block 2733259, the page's last block, y=731 of 792)",
+  "render_sha256": "7e33e28d86598276deff02c3d23b7a2cdf26d6f05992cc54b5495f7ef1ad9814",
+  "match_text": "**************************************************************************",
+  "before_text": "**************************************************************************",
+  "after_text": "**************************************************************************"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 227,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p227.png",
+  "source_apparatus_blocks": [
+   2733285
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 227 prints its page number '209' alone at the foot (block 2733285, the page's last block, y=731 of 792)",
+  "render_sha256": "25b4a30e2e756e2051b2b2501ad62ba66df63670878a3a2d755cc6501ce00f40",
+  "match_text": "no longer a member of the subscriber’s family in matters to which these regulations pertaining to",
+  "before_text": "no longer a member of the subscriber’s family in matters to which these regulations pertaining to",
+  "after_text": "no longer a member of the subscriber’s family in matters to which these regulations pertaining to"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 228,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p228.png",
+  "source_apparatus_blocks": [
+   2733315
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 228 prints its page number '210' alone at the foot (block 2733315, the page's last block, y=731 of 792)",
+  "render_sha256": "d798e97e18e75490d1e22fc6f6d9790d06f58577024bc852b9aa8b3e260352fb",
+  "match_text": "(2)  All other eligible employees may elect to join the fund as optional subscribers.",
+  "before_text": "(2)  All other eligible employees may elect to join the fund as optional subscribers.",
+  "after_text": "(2)  All other eligible employees may elect to join the fund as optional subscribers."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 229,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p229.png",
+  "source_apparatus_blocks": [
+   2733342
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 229 prints its page number '211' alone at the foot (block 2733342, the page's last block, y=731 of 792)",
+  "render_sha256": "1678dd6e78d2fd9d9657703aae44d2d49145bc8ff20aab32b3b46870bba5cbc0",
+  "match_text": "nomination to which that notice relates consequently stands cancelled, the",
+  "before_text": "nomination to which that notice relates consequently stands cancelled, the",
+  "after_text": "nomination to which that notice relates consequently stands cancelled, the"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 230,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p230.png",
+  "source_apparatus_blocks": [
+   2733368
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 230 prints its page number '212' alone at the foot (block 2733368, the page's last block, y=731 of 792)",
+  "render_sha256": "829d5216b905dcbdca21732693470ea7e7f17fc5b53de0f0fbd29931c86104d6",
+  "match_text": "subscription changes, the change shall take effect from the 1st of June next.",
+  "before_text": "subscription changes, the change shall take effect from the 1st of June next.",
+  "after_text": "subscription changes, the change shall take effect from the 1st of June next."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 231,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p231.png",
+  "source_apparatus_blocks": [
+   2733397
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 231 prints its page number '213' alone at the foot (block 2733397, the page's last block, y=731 of 792)",
+  "render_sha256": "8a9c8d26dee2022e279728f31b95bf9224f42a565344b188939b27e5cd4b6ae8",
+  "match_text": "year. In other words, total general Provident Fund balance (G.P. Fund balance including profit",
+  "before_text": "year. In other words, total general Provident Fund balance (G.P. Fund balance including profit",
+  "after_text": "year. In other words, total general Provident Fund balance (G.P. Fund balance including profit"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 232,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p232.png",
+  "source_apparatus_blocks": [
+   2733424
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 232 prints its page number '214' alone at the foot (block 2733424, the page's last block, y=731 of 792)",
+  "render_sha256": "d750f103419fa67bfbcaea40bdd213bdb56e8115d46fa3c531ceeea067fc3c9f",
+  "match_text": "day of the next succeeding month.",
+  "before_text": "day of the next succeeding month.",
+  "after_text": "day of the next succeeding month."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 233,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p233.png",
+  "source_apparatus_blocks": [
+   2733453
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 233 prints its page number '215' alone at the foot (block 2733453, the page's last block, y=731 of 792)",
+  "render_sha256": "ea0d32a5fb7dd922fde956cd5a77bd724d1d95d619b46bee95b66c4b1160b881",
+  "match_text": "be in the manner described in this regulation.",
+  "before_text": "be in the manner described in this regulation.",
+  "after_text": "be in the manner described in this regulation."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 234,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p234.png",
+  "source_apparatus_blocks": [
+   2733478
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 234 prints its page number '216' alone at the foot (block 2733478, the page's last block, y=731 of 792)",
+  "render_sha256": "5870867f38b722c7ac653e827b1ee3ac17ec5cdf252509a2c6e7a077f66988f3",
+  "match_text": "on the following object or objects and not otherwise:-",
+  "before_text": "on the following object or objects and not otherwise:-",
+  "after_text": "on the following object or objects and not otherwise:-"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 235,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p235.png",
+  "source_apparatus_blocks": [
+   2733508
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 235 prints its page number '217' alone at the foot (block 2733508, the page's last block, y=731 of 792)",
+  "render_sha256": "4388b11c87d48e48fdb2201583b981fa737c22fcf35273c8528d867e4f698d38",
+  "match_text": "subject to the following conditions:",
+  "before_text": "subject to the following conditions:",
+  "after_text": "subject to the following conditions:"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 236,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p236.png",
+  "source_apparatus_blocks": [
+   2733537
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 236 prints its page number '218' alone at the foot (block 2733537, the page's last block, y=731 of 792)",
+  "render_sha256": "a52f3f1d7cf66a56dc1a349e844ea93d53d1b45401b462cc1b3aa2d8fe896d9d",
+  "match_text": "regulation 23.13 subject to the following conditions, namely:-",
+  "before_text": "regulation 23.13 subject to the following conditions, namely:-",
+  "after_text": "regulation 23.13 subject to the following conditions, namely:-"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 237,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p237.png",
+  "source_apparatus_blocks": [
+   2733564
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 237 prints its page number '219' alone at the foot (block 2733564, the page's last block, y=731 of 792)",
+  "render_sha256": "2bf2524b6f0c779feb35f4e8e5f5b4f2cfaeab4c160404b386fff1811594555d",
+  "match_text": "his wife or children or by any of them. The advance shall mutatis mutandis",
+  "before_text": "his wife or children or by any of them. The advance shall mutatis mutandis",
+  "after_text": "his wife or children or by any of them. The advance shall mutatis mutandis"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 238,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p238.png",
+  "source_apparatus_blocks": [
+   2733592
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 238 prints its page number '220' alone at the foot (block 2733592, the page's last block, y=731 of 792)",
+  "render_sha256": "8d1b82ef325946659a6884b9be292463d4568d18b64ee028c95905b0d5dc02f4",
+  "match_text": "amount of advance together with interest accrued thereon, in a lump sum.",
+  "before_text": "amount of advance together with interest accrued thereon, in a lump sum.",
+  "after_text": "amount of advance together with interest accrued thereon, in a lump sum."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 239,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p239.png",
+  "source_apparatus_blocks": [
+   2733622
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 239 prints its page number '221' alone at the foot (block 2733622, the page's last block, y=731 of 792)",
+  "render_sha256": "aeeda8bebc3be37d70c8591f56891d0d61abdc0ef56fe57afe2a14b5b1aaeb71",
+  "match_text": "*No. S.R.O 676(I)/2001 dt. 18.09.2001",
+  "before_text": "*No. S.R.O 676(I)/2001 dt. 18.09.2001",
+  "after_text": "*No. S.R.O 676(I)/2001 dt. 18.09.2001"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 240,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p240.png",
+  "source_apparatus_blocks": [
+   2733652
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 240 prints its page number '222' alone at the foot (block 2733652, the page's last block, y=731 of 792)",
+  "render_sha256": "0b2ac42a66c3be655d496b0d7374bd4ecd245e43a00858fa2eafbe6665a61cd5",
+  "match_text": "advance is subsequently disallowed before repayment is completed, the whole or balance of the",
+  "before_text": "advance is subsequently disallowed before repayment is completed, the whole or balance of the",
+  "after_text": "advance is subsequently disallowed before repayment is completed, the whole or balance of the"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 241,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p241.png",
+  "source_apparatus_blocks": [
+   2733680
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 241 prints its page number '223' alone at the foot (block 2733680, the page's last block, y=731 of 792)",
+  "render_sha256": "00ea19dec21cfa2e332832acac5c870a376bc3a90276ea4a6b6fea7bc28220db",
+  "match_text": "to retire or has been declared by a competent medical authority to be unfit for further service, the",
+  "before_text": "to retire or has been declared by a competent medical authority to be unfit for further service, the",
+  "after_text": "to retire or has been declared by a competent medical authority to be unfit for further service, the"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 242,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p242.png",
+  "source_apparatus_blocks": [
+   2733708
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 242 prints its page number '224' alone at the foot (block 2733708, the page's last block, y=731 of 792)",
+  "render_sha256": "e8cd2619ddaf2d6df1c897335b640ca08b69c954615e0a2a6c74d5901d691055",
+  "match_text": "Sons who have attained legal majority;",
+  "before_text": "Sons who have attained legal majority;",
+  "after_text": "Sons who have attained legal majority;"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 243,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p243.png",
+  "source_apparatus_blocks": [
+   2733734
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 243 prints its page number '225' alone at the foot (block 2733734, the page's last block, y=731 of 792)",
+  "render_sha256": "df31b9c3fe8d3e5a0e5545d325c10a6d9719a4793f0e8620d816bed866a8b512",
+  "match_text": "the payment will be made to such manager and not to the lunatic.",
+  "before_text": "the payment will be made to such manager and not to the lunatic.",
+  "after_text": "the payment will be made to such manager and not to the lunatic."
+ },
+ {
+  "document_id": 9911,
+  "page_no": 244,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p244.png",
+  "source_apparatus_blocks": [
+   2733761
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 244 prints its page number '226' alone at the foot (block 2733761, the page's last block, y=731 of 792)",
+  "render_sha256": "75f48a08ed8c10c03c27e2190c7e2edbcd352c5773930caa08fd631ac6ef2d7c",
+  "match_text": "Desires to make any alteration in any nomination made under regulation 23.05;",
+  "before_text": "Desires to make any alteration in any nomination made under regulation 23.05;",
+  "after_text": "Desires to make any alteration in any nomination made under regulation 23.05;"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 245,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p245.png",
+  "source_apparatus_blocks": [
+   2733776
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 245 prints its page number '227' alone at the foot (block 2733776, the page's last block, y=731 of 792)",
+  "render_sha256": "4e311dc45cee833564289710b74b146323e531c48bf9a72a810012abe4a12688",
+  "match_text": "********************************",
+  "before_text": "********************************",
+  "after_text": "********************************"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 246,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p246.png",
+  "source_apparatus_blocks": [
+   2733802
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 246 prints its page number '228' alone at the foot (block 2733802, the page's last block, y=731 of 792)",
+  "render_sha256": "8e1d37b7d1e199450039a5c2608918819e6036a1a2ff24498e0e1695b1705467",
+  "match_text": "may provide in the nomination:-",
+  "before_text": "may provide in the nomination:-",
+  "after_text": "may provide in the nomination:-"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 247,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p247.png",
+  "source_apparatus_blocks": [
+   2733816
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 247 prints its page number '229' alone at the foot (block 2733816, the page's last block, y=731 of 792)",
+  "render_sha256": "836d74c434e4c33af654403dd1c77ca07458420b2d06257b914fbcb4e1cd05b6",
+  "match_text": "*********************************",
+  "before_text": "*********************************",
+  "after_text": "*********************************"
+ },
+ {
+  "document_id": 9911,
+  "page_no": 248,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9911-p248.png",
+  "source_apparatus_blocks": [
+   2733838
+  ],
+  "defect": "the page's printed page number was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the page-number block is set aside; no law text changes",
+  "observed": "Page 248 prints its page number '230' alone at the foot (block 2733838, the page's last block, y=731 of 792)",
+  "render_sha256": "291eb220c95424820e179c8ca557b0ad1be2504c40b73c9b2e710d64f384f20f",
+  "match_text": "*************************************",
+  "before_text": "*************************************",
+  "after_text": "*************************************"
+ }
+]

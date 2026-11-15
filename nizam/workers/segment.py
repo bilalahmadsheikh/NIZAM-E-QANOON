@@ -1238,8 +1238,9 @@ def reviewed_structural_overrides(resolutions: list[dict] | None,
                     raise ValueError(f"unsupported curation structural override {key}")
                 merged[key] = list(merged.get(key) or []) + [v for v in value if v not in (merged.get(key) or [])]
                 continue
-            if key == "source_contents_page_column":
-                # Rule `reviewed_contents_page_column` (agent K2, doc 4489): an observation flag.
+            if key in ("source_contents_page_column", "source_decimal_regulation_series"):
+                # Rules `reviewed_contents_page_column` (agent K2, doc 4489) and `reviewed_decimal_regulation_series`
+                # (doc 9911, 15 Nov 2026): observation flags.
                 if value is not True:
                     raise ValueError(f"unsupported curation structural override {key}")
                 merged[key] = True

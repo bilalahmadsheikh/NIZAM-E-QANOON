@@ -570,6 +570,7 @@ STRUCTURAL_PATCH_KEYS = (
     "source_half_paren_subrule_blocks",
     "source_contents_page_column",
     "source_unstopped_contents_rows",
+    "source_decimal_regulation_series",
     "source_chapter_opener_blocks",
     "source_dash_label_section_blocks",
     "source_heading_line_stub_blocks",

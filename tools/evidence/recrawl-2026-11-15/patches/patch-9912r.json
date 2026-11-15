@@ -1,0 +1,23 @@
+[
+ {
+  "document_id": 9912,
+  "page_no": 4,
+  "source_contents_region": {
+   "first_block_id": 2733846,
+   "last_block_id": 2733859,
+   "body_start_block_id": 2733861,
+   "rows": "none",
+   "skip_apparatus": true
+  },
+  "defect": "the volume's INDEX of appendices (page 3) was taken with the next two pages as front matter, so the printed headings APPENDIX-1 (p4) and APPENDIX-2 (p5) could not open their appendices",
+  "fixes": "rule reviewed_contents_region: page 3 from 'APPENDICES / INDEX' to its foot is contents only (rows not linked); the body opens at 'APPENDIX-1' on page 4",
+  "observed": "Page 3 prints 'APPENDICES', 'INDEX' and a table of appendix numbers, the regulations they serve, their contents and pages (1 3.01 List of cadre ... 4; 2 3.01, 4.03 and 14.02 Part-A, Part-B ... 6-139; 3 4.12 ... 140; 4 14.01 Basic pay scales 141); page 4 opens 'APPENDIX-1 / REGULATION 3.01 / LIST OF CADRES'",
+  "additional_render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p3.png",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc9912-p4.png",
+  "render_sha256": "9a2a47e80e8dce060fc25cc8bbac528913727412539b3028b38a47cbd58a53aa",
+  "additional_render_sha256": "b493559a4a876ed0ea76f9468e903497204f68e31bbcb8ba883f4342000f3c81",
+  "match_text": "REGULATION 3.01",
+  "before_text": "REGULATION 3.01",
+  "after_text": "REGULATION 3.01"
+ }
+]

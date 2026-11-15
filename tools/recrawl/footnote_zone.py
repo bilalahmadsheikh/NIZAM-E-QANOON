@@ -30,6 +30,9 @@ from nizam.storage.db import connect  # noqa: E402
 
 CORPUS = Path("/mnt/e/nizam-data")
 FOLIO = re.compile(r"^\s*\d{1,4}\s*$")
+# --star-notes: an editor's note as the CDA compilations print it -- stars (and '&') then the note's own words, never a
+# '*' bullet before law text ('*  Study leave up to 3 months ...', doc 9911 p92)
+STAR_NOTE = re.compile(r"\s*\*+[&*\s]*(?:Inserted|Substituted|Added|Omitted|Amended|Deleted|No\s*\.)", re.I)
 MARKER = re.compile(r"^\s*(?:\d{1,3}\s|[A-Z]\.\s|\*+|_{5,}|\(\s*[a-z]{1,2}\s*\)\s|\(\s*[ivx]{1,5}\s*\)\s)")
 
 
@@ -111,7 +114,13 @@ def page_zone(blocks: list, rules: list[float], small: set, zone_before: bool) -
 
 
 def main() -> int:
-    out, docs = sys.argv[1], [int(d) for d in sys.argv[2:]]
+    # --star-notes (ICT CDA compilations, 15 Nov 2026): the editor's notes there open with '*' ('*Inserted vide
+    # No.CDA-7(01)(21)-HRD-III(Sec-VI)/2022/516 Dated 15-06-2022') and are set at the LAW's size, so the size test never
+    # takes them; with the flag a block below the rule that opens with '*' counts as small. The rule and the
+    # every-block-below-is-a-note test still apply.
+    star = "--star-notes" in sys.argv
+    args = [a for a in sys.argv[1:] if a != "--star-notes"]
+    out, docs = args[0], [int(d) for d in args[1:]]
     recs, census = [], []
     with connect() as conn, conn.cursor() as cur:
         for doc in docs:
@@ -148,6 +157,8 @@ def main() -> int:
                 small = {b[0] for b in blocks if body_size and (bs := block_size(sizes[page_no], float(b[6]), float(b[2]),
                                                                                   float(b[7]), float(b[3]), largest=True))
                          is not None and bs <= body_size - 1}
+                if star:
+                    small |= {b[0] for b in blocks if STAR_NOTE.match(b[4] or "")}
                 # a footnote zone opens with a note marker ('1 Sec. 6 subs. by', 'A. Cl (e)', '*', a second rule '____')
                 # or continues the previous page's notes; small text under a table rule does neither and is not taken
                 rule, zone, zone_before = page_zone(blocks, ys, small, zone_before)

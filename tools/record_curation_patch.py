@@ -185,6 +185,8 @@ STRUCTURAL_KEYS = frozenset({
     "source_half_paren_subrule_blocks",
     "source_contents_page_column",
     "source_unstopped_contents_rows",
+    # rule reviewed_decimal_regulation_series (doc 9911, 15 Nov 2026): an observation flag
+    "source_decimal_regulation_series",
     # group 10 ports (16 Oct): agents K4, K5, K3
     "source_heading_line_stub_blocks",
     "source_quote_span_end_blocks",
@@ -292,6 +294,7 @@ GENERIC_STRUCTURAL_KEYS = frozenset({
     "source_half_paren_subrule_blocks",
     "source_contents_page_column",
     "source_unstopped_contents_rows",
+    "source_decimal_regulation_series",
     # group 10 ports (16 Oct): agents K4, K5, K3; keyed entries carrying an owner_decision are checked below
     "source_heading_line_stub_blocks",
     "source_quote_span_end_blocks",
