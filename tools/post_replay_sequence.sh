@@ -202,8 +202,18 @@ else
     echo "  doc 4427's collapsed range)."
 fi
 
-# ---------------------------------------------------------------- step 4b (0094)
-say "4b. refresh the serving snapshot operative_provision reads (audit A16 fails while stale)"
+# ---------------------------------------------------------------- step 4a (0095)
+say "4a. where each law runs, from its own text: extent clauses, then repeals confined to one territory"
+if [ "$APPLY" = "1" ]; then
+    uv run python tools/record_territorial_extent.py --apply --show 0
+    uv run python tools/record_territorial_repeals.py --apply | tail -1
+else
+    uv run python tools/record_territorial_extent.py --show 0
+    uv run python tools/record_territorial_repeals.py | tail -1
+fi
+
+# ---------------------------------------------------------------- step 4b (0094, 0096-0098)
+say "4b. refresh the serving snapshots operative_provision reads (audit A16 fails while stale)"
 if [ "$APPLY" = "1" ]; then
     uv run python tools/refresh_serving.py
 fi

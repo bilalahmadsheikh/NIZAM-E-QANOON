@@ -184,17 +184,20 @@ def build(cs: CaseSet, title_note: str) -> int:
                     if kind == "necessary":
                         full.append(u["_full"])
                         if c["outcome"] != "abstain" and not u["operativeAtAsOfInTerritory"]:
-                            cur.execute("""SELECT min(lower(v.validity))::text FROM provision p
+                            cur.execute("""SELECT min(lower(v.validity))::text,
+                                                  min(k.text_known_from)::text, string_agg(DISTINCT k.basis, ',')
+                                             FROM provision p
                                              JOIN provision_version v ON v.provision_id = p.id
+                                             LEFT JOIN mv_provision_text_known_from k ON k.provision_id = p.id
                                             WHERE p.instrument_id = %s AND p.is_active AND p.path <@ %s::ltree""",
                                         (u["instrumentId"], u["path"]))
-                            held_from = cur.fetchone()[0]
+                            held_from, known_from, basis = cur.fetchone()
                             if c["as_of"] != DEFAULT_AS_OF and held_from and held_from > c["as_of"]:
-                                # a past-dated (temporal) case: the gold is the law in force then; the system holds
-                                # no text version that early (provision_version validity starts at capture)
+                                # a past-dated (temporal) case: the gold is the law in force then; the system cannot
+                                # yet show the held text was the law that early (mv_provision_text_known_from, 0098)
                                 observations.append(f"{c['cid']}: necessary {doc}/{ref} ({u['instrument']}) is not "
-                                                    f"servable at {c['as_of']}: its held text versions start "
-                                                    f"{held_from} (no point-in-time history before capture)")
+                                                    f"servable at {c['as_of']}: held text captured {held_from}, "
+                                                    f"known from {known_from or 'unknown'} ({basis})")
                             else:
                                 problems.append(f"{c['cid']}: necessary {doc}/{ref} NOT served at {c['as_of']} in "
                                                 f"{c['territory']}")

@@ -554,23 +554,46 @@ m AS (
     -- A16 (migration 0094). The serving snapshot operative_provision reads equals the live derivation: every released
     -- canonical law (as-made twins excluded) with the same currency, reason, cut-off, reach and status. Any difference
     -- means a refresh (tools/refresh_serving.py) was missed. Counts are reported, the rule is exact.
+    -- (0095) the territory exits too; (0096-0098) mv_provision_text_known_from holds exactly the active provisions of
+    -- the served laws -- one missing or one left over means it was not refreshed after a replay.
     ,(SELECT count(*) FROM (
-        (SELECT c.instrument_id, c.currency, c.reason, c.not_current_from, c.territory_reach, i.status::text
+        (SELECT c.instrument_id, c.currency, c.reason, c.not_current_from, c.territory_reach, i.status::text,
+                c.territory_exits
            FROM v_instrument_currency c JOIN v_release_instrument i ON i.id = c.instrument_id
           WHERE NOT EXISTS (SELECT 1 FROM v_consolidated_twin_current t WHERE t.as_made_instrument_id = i.id)
          EXCEPT
-         SELECT instrument_id, currency, currency_reason, not_current_from, territory_reach, status
+         SELECT instrument_id, currency, currency_reason, not_current_from, territory_reach, status, territory_exits
            FROM mv_instrument_serving)
         UNION ALL
-        (SELECT instrument_id, currency, currency_reason, not_current_from, territory_reach, status
+        (SELECT instrument_id, currency, currency_reason, not_current_from, territory_reach, status, territory_exits
            FROM mv_instrument_serving
          EXCEPT
-         SELECT c.instrument_id, c.currency, c.reason, c.not_current_from, c.territory_reach, i.status::text
+         SELECT c.instrument_id, c.currency, c.reason, c.not_current_from, c.territory_reach, i.status::text,
+                c.territory_exits
            FROM v_instrument_currency c JOIN v_release_instrument i ON i.id = c.instrument_id
           WHERE NOT EXISTS (SELECT 1 FROM v_consolidated_twin_current t WHERE t.as_made_instrument_id = i.id))) d)
+     + (SELECT count(*) FROM mv_instrument_serving m
+          JOIN provision p ON p.instrument_id = m.instrument_id AND p.is_active
+         WHERE NOT EXISTS (SELECT 1 FROM mv_provision_text_known_from k WHERE k.provision_id = p.id))
+     + (SELECT count(*) FROM mv_provision_text_known_from k
+         WHERE NOT EXISTS (SELECT 1 FROM provision p WHERE p.id = k.provision_id AND p.is_active))
                                                                                         AS serving_stale
     ,(SELECT count(*) FROM mv_instrument_serving)                                       AS serving_laws
 -- <<< A16 measures
+    -- >>> A17 measures
+    -- A17 (migration 0095). Where a law runs is decided by its own text and is consistent: a territorial repeal removes
+    -- a FEDERAL-text law from the repealing law's own province, or from ICT for a federal repealer; a printed extent
+    -- clause is recorded only for a federal-text law. Counts of standing records are reported, never a threshold.
+    ,(SELECT count(*) FROM v_territorial_repeal_current tr
+        JOIN instrument a ON a.id = tr.repealed_instrument_id
+        JOIN instrument b ON b.id = tr.repealing_instrument_id
+       WHERE a.jurisdiction::text <> 'fed'
+          OR tr.territory <> CASE WHEN b.jurisdiction::text = 'fed' THEN 'ict' ELSE b.jurisdiction::text END)
+     + (SELECT count(*) FROM v_instrument_metadata_current c JOIN instrument i ON i.id = c.instrument_id
+         WHERE c.field = 'territorial_extent' AND i.jurisdiction::text <> 'fed')         AS territory_inconsistent
+    ,(SELECT count(*) FROM v_territorial_repeal_current)                                AS territorial_repeals
+    ,(SELECT count(*) FROM v_instrument_metadata_current WHERE field = 'territorial_extent') AS extent_clauses
+-- <<< A17 measures
 )
 SELECT * FROM (
   SELECT 'C1' AS id, 'every acquired file becomes a blob'      AS criterion,
@@ -727,6 +750,10 @@ SELECT * FROM (
          serving_laws||' laws served from the snapshot (reported); '||serving_stale||' differ from live',
          '0 differ; count reported',
          CASE WHEN serving_stale=0 THEN 'PASS' ELSE 'FAIL' END FROM m
+  UNION ALL SELECT 'A17','where a law runs is read from its own text, consistently',
+         extent_clauses||' extent clauses, '||territorial_repeals||' territorial repeals (reported); '||
+         territory_inconsistent||' inconsistent', '0 inconsistent; counts reported',
+         CASE WHEN territory_inconsistent=0 THEN 'PASS' ELSE 'FAIL' END FROM m
   UNION ALL SELECT 'A6','no overlapping law (enforced, not tested)',
          CASE WHEN excl_present=1 THEN 'EXCLUDE constraint present'
               ELSE 'CONSTRAINT MISSING' END, 'enforced',

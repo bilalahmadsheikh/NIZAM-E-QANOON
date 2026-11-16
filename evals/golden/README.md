@@ -82,13 +82,18 @@ Two kinds of finding go into a report section of the readable file. They are
 not failures, because the gold answer is right either way; they are what a
 retrieval run is expected to get wrong until the system is fixed:
 
-- **A trap the system serves.** For example, the federal Child Marriage
-  Restraint Act 1929 is still served in Punjab, ICT and Balochistan, although
-  each has repealed it for its own territory. Repeals confined to one
-  territory are not modelled yet.
-- **A past date the system cannot serve.** Every held text version is valid
-  only from the day it was captured (June–October 2026). So the database
-  cannot yet answer "as at 2020" from text (INV-5 point-in-time history).
+- **A trap the system serves.** At first build, set 3 found five, such as the
+  federal Child Marriage Restraint Act 1929 still served in Punjab, ICT and
+  Balochistan after each repealed it for its own territory. Migrations
+  0095–0100 fixed all five: territorial repeals and printed extent clauses
+  (docs/SCHEMA.md, "Where a law runs").
+- **A past date the system cannot serve.** A held text is served before its
+  capture only as far back as the corpus can prove it was the law: the law's
+  start, or its latest dated amendment (`mv_provision_text_known_from`). A law
+  with an amendment the corpus cannot date is not served before capture. Set
+  3 has two such cases left, the Punjab texts of the Child Marriage Restraint
+  Act 1929 and the Defamation Ordinance 2002. Both are correct refusals until
+  their amendments are dated.
 
 Language variants of a question share the same `familyId` as their English
 case. They count as one statistical cluster and always go in the same split

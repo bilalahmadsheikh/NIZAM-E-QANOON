@@ -31,11 +31,32 @@ def test_titles_fold_case_punctuation_footnotes_and_sind():
     assert title_key("SINDH JUDICIAL ACADEMY ACT, 1993") == "sindh judicial academy act"
 
 
+def test_one_place_under_several_names_folds_to_one_key():
+    # the AJK Rent Restriction Act, 1986 s.26 names the law the corpus holds as 'The Azad Kashmir ... Act, 1952'
+    assert norm("Azad Jammu and Kashmir Rent Restriction Act") == norm("The Azad Kashmir Rent Restriction Act")
+    assert norm("N.W.F.P. Tenancy Act") == norm("Khyber Pakhtunkhwa Tenancy Act")
+    assert norm("Baluchistan Levies Act") == norm("Balochistan Levies Act")
+
+
+def test_every_title_of_a_list_repeal_is_a_clause():
+    text = ("(1) The Canal and Drainage Act, 1873 (VIII of 1873) and the Punjab Soil Reclamation Act, 1952 (XXI of "
+            "1952) are hereby repealed.")
+    got = {(c["title"], c["year"]) for c in repeal_clauses(text) if not c["qualified"]}
+    assert ("Punjab Soil Reclamation Act", 1952) in got
+    three = ("The General Statistics Act, 1975 (LXIX of 1975), the Agricultural Census Act, 1958 (XLI of 1958) and the "
+             "Census Ordinance, 1959 (X of 1959) are hereby repealed.")
+    assert {("Agricultural Census Act", 1958), ("Census Ordinance", 1959)} <= {
+        (c["title"], c["year"]) for c in repeal_clauses(three)}
+    # a qualifier anywhere in the list reads nothing as a whole repeal
+    part = ("The A Act, 1950 and the B Act, 1960 are hereby repealed in their application to the Province of Sindh.")
+    assert all(c["qualified"] for c in repeal_clauses(part))
+
+
 def test_an_ajk_title_matches_past_its_printed_citation_and_ampersand():
     assert title_key("The Azad Jammu & Kashmir Land Reforms Act, 1960 (Act No V of 1960)") == \
         norm("Azad Jammu and Kashmir Land Reforms Act")
     assert title_key("The Azad Jammu and Kashmir Land Reforms (Amendment) Act, 1972 (Act VI of 1972) "
-                     "(Act No. VI Of 1972)") == "azad jammu and kashmir land reforms amendment act"
+                     "(Act No. VI Of 1972)") == "ajk land reforms amendment act"
     assert norm("AJ&K Board of Revenue Act") == norm("Azad Jammu and Kashmir Board of Revenue Act")
     # a bracket that is part of the name stays
     assert title_key("Civil Courts (Sind Amendment) Ordinance, 1970") == "civil courts sindh amendment ordinance"

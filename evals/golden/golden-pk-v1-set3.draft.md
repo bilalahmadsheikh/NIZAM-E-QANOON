@@ -2,7 +2,7 @@
 
 Set 3: provinces, territories and time — jurisdiction pairs across Punjab, Sindh, KP, Balochistan, ICT and AJK, and temporal pairs at two dates.
 
-Corpus revision 33bdb51. Strata: citizen 20, professional 12, procedural 8, urdu 5, unanswerable 5.
+Corpus revision ffdfd32. Strata: citizen 20, professional 12, procedural 8, urdu 5, unanswerable 5.
 Status: **draft** — A0 authoring and A3 identity resolution only. Not gold until two legal annotators (A1) and a senior advocate (A2) have reviewed it; do not tune or report on it before then.
 
 ## S3-C01 · citizen · fed/ict · as of 2026-11-16 · expect **answer**
@@ -40,7 +40,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
   > Registration of child marriages – (1) No Nikah registrar shall register a child marriage. 1This Act was passed by Provincial Assembly of the Punjab on 27 April 2026; and was assented to by Governor of the Punjab on 11 May 2026; and was published in the Punjab 
 - **Hard negative (grade 0)** — Child Marriage Restraint Act, 1929, s./art. 2 (not_current: repealed; not served in punjab) · `07c7125c-08a1-4eae-bd57-0a3d7e135018` · [source](https://punjabcode.punjab.gov.pk/uploads/articles/10-child-marriage-restraint-act-1929-pdf.pdf)
   > Definitions. – In this Act: "child" means a person who, if a male, is under eighteen years of age, and if a female, is under sixteen years of age; "child marriage” means a marriage to which either of the contracting parties is a child; “Government” means Gover
-- **Hard negative (grade 0)** — Child Marriage Restraint Act, 1929, s./art. 4 (current: owner_presumption_in_force; served in punjab) · `389e4b5d-a33c-4a45-8697-0acbe9b1d0ca` · [source](https://pakistancode.gov.pk/pdffiles/administrator0cb12b901d4304d7e5463da076d88639.pdf)
+- **Hard negative (grade 0)** — Child Marriage Restraint Act, 1929, s./art. 4 (current: owner_presumption_in_force; not served in punjab) · `389e4b5d-a33c-4a45-8697-0acbe9b1d0ca` · [source](https://pakistancode.gov.pk/pdffiles/administrator0cb12b901d4304d7e5463da076d88639.pdf)
   > Punishment for male adult above twenty-one years of age marrying a child Whoever, being a male above 3[eighteen] years of age, contracts a child marriage shall be punishable with simple imprisonment which may extend to one month, or with fine which may extend 
 
 ## S3-C04 · citizen · punjab/punjab · as of 2020-06-01 · expect **answer**
@@ -64,7 +64,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
   > Registration of child marriages No Nikah registrar shall register a marriage where one or both the contracting parties are below the age of eighteen years. The Nikah registrar or any person solemnizing Nikah must ensure that the contracting parties possess val
 - **Necessary (grade 3)** — Islamabad Capital Territory Child Marriage Restraint Act, 2025, s./art. 4 (current: commenced_on_established; served in ict) · `6d02db01-3d4a-454d-8e56-3199d9f4b6b4` · [source](https://pakistancode.gov.pk/pdffiles/administratorecc8e12e1de9dfa4925e655c9cd5a385.pdf)
   > Punishment for male adult above eighteen years of age marrying a Child Whoever, being a male above eighteen years of age, contracts a child marriage shall be punished with rigorous imprisonment which may extend to three years but shall not be less than two yea
-- **Hard negative (grade 0)** — Child Marriage Restraint Act, 1929, s./art. 4 (current: owner_presumption_in_force; served in ict) · `389e4b5d-a33c-4a45-8697-0acbe9b1d0ca` · [source](https://pakistancode.gov.pk/pdffiles/administrator0cb12b901d4304d7e5463da076d88639.pdf)
+- **Hard negative (grade 0)** — Child Marriage Restraint Act, 1929, s./art. 4 (current: owner_presumption_in_force; not served in ict) · `389e4b5d-a33c-4a45-8697-0acbe9b1d0ca` · [source](https://pakistancode.gov.pk/pdffiles/administrator0cb12b901d4304d7e5463da076d88639.pdf)
   > Punishment for male adult above twenty-one years of age marrying a child Whoever, being a male above 3[eighteen] years of age, contracts a child marriage shall be punishable with simple imprisonment which may extend to one month, or with fine which may extend 
 
 ## S3-C06 · citizen · balochistan/balochistan · as of 2026-11-16 · expect **answer**
@@ -74,7 +74,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 - *Proposition:* A male above eighteen who contracts a child marriage faces rigorous imprisonment of two to three years and fine of one to two hundred thousand rupees.
 - **Necessary (grade 3)** — The Balochistan Child Marriages Restraint Act, 2025, s./art. 3 (current: commences_at_once; served in balochistan) · `7414b719-b3ed-4ebd-9735-48e3bb9d852b` · [source](http://balochistancode.gob.pk/lawdir/f7f31001-7c81-4e06-abf7-25b4ab44d06e.pdf)
   > Punishment for male adult marrying a Child. Whoever, being a male above eighteen years of age, contracts a child marriage shall be punished with rigorous imprisonment which may extend up to three years but shall not be less than two years and with fine which m
-- **Hard negative (grade 0)** — Child Marriage Restraint Act, 1929, s./art. 4 (current: owner_presumption_in_force; served in balochistan) · `389e4b5d-a33c-4a45-8697-0acbe9b1d0ca` · [source](https://pakistancode.gov.pk/pdffiles/administrator0cb12b901d4304d7e5463da076d88639.pdf)
+- **Hard negative (grade 0)** — Child Marriage Restraint Act, 1929, s./art. 4 (current: owner_presumption_in_force; not served in balochistan) · `389e4b5d-a33c-4a45-8697-0acbe9b1d0ca` · [source](https://pakistancode.gov.pk/pdffiles/administrator0cb12b901d4304d7e5463da076d88639.pdf)
   > Punishment for male adult above twenty-one years of age marrying a child Whoever, being a male above 3[eighteen] years of age, contracts a child marriage shall be punishable with simple imprisonment which may extend to one month, or with fine which may extend 
 
 ## S3-C07 · citizen · punjab/punjab · as of 2026-11-16 · expect **answer**
@@ -86,7 +86,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
   > Defamation actionable – Subject to the provisions of this Act and any other law for the time being in force, defamation shall be a civil wrong and the person defamed may initiate an action under this Act without proof of actual damage or loss and, where defama
 - **Hard negative (grade 0)** — Defamation Ordinance, 2002, s./art. 3 (not_current: repealed; not served in punjab) · `9c461888-035b-4663-aef4-45641ee40549` · [source](https://punjabcode.punjab.gov.pk/uploads/articles/DEFAMATION_ORDINANCE%2C_2002.doc.pdf)
   > Defamation – (1) Any wrongful act or publication or circulation of a false statement or representation made orally or in written or visual form which injures the reputation of a person, tends to lower him in the estimation of others or tends to reduce him to r
-- **Hard negative (grade 0)** — Defamation Ordinance, 2002, s./art. 4 (current: owner_presumption_in_force; served in punjab) · `9854a279-3820-4bff-b69a-7cfe6eb8dcd3` · [source](https://pakistancode.gov.pk/pdffiles/administrator741de22e0685408278606962079d12b2.pdf)
+- **Hard negative (grade 0)** — Defamation Ordinance, 2002, s./art. 4 (current: owner_presumption_in_force; not served in punjab) · `9854a279-3820-4bff-b69a-7cfe6eb8dcd3` · [source](https://pakistancode.gov.pk/pdffiles/administrator741de22e0685408278606962079d12b2.pdf)
   > Defamation actionable. The publication of defamatory matter is an actionable wrong without proof of special damage to the person defamed and where defamation is proved, damage shall be presumed.
 
 ## S3-C08 · citizen · punjab/punjab · as of 2020-01-01 · expect **answer**
@@ -220,7 +220,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
   > Conditions for a hindu marriage. A marriage may be solemnized under this Act, if the following conditions are fulfilled, namely: parties to the marriage are of 18 years of age or above; parties to the marriage are able to give consent; parties to the marriage 
 - **Necessary (grade 3)** — Sindh Hindus Marriage Act, 2016, s./art. 6 (current: commences_at_once; served in sindh) · `9b95b70f-d32b-42c1-9ba7-7c59f55dddb4` · [source](https://sindhlaws.gov.pk/setup/publications_SindhCode/PUB-NEW-18-000106.pdf)
   > Registration of marriages. Every marriage solemnized under this Act shall be registered with the Union Council/Ward or any other Municipal Authority, where the marriage ceremony took place, within 45 days of the solemnization.
-- **Hard negative (grade 0)** — Hindu Marriage Act, 2017, s./art. 4 (current: commenced_on_established; served in sindh) · `35106aa0-8967-42c8-b3dc-f25f1a8f176c` · [source](https://pakistancode.gov.pk/pdffiles/administrator8cf3b3c8dbef7ea138cd39d37850f2fc.pdf)
+- **Hard negative (grade 0)** — Hindu Marriage Act, 2017, s./art. 4 (current: commenced_on_established; not served in sindh) · `35106aa0-8967-42c8-b3dc-f25f1a8f176c` · [source](https://pakistancode.gov.pk/pdffiles/administrator8cf3b3c8dbef7ea138cd39d37850f2fc.pdf)
   > Conditions for a Hindu marriage. A Hindu marriage shall be solemnized, if the following conditions are fulfilled, namely: — at the time of marriage, the parties are of sound mind and capable of giving a valid consent; both the parties are not below the age of 
 
 ## S3-P01 · professional · fed/punjab · as of 2026-11-16 · expect **answer**
@@ -238,7 +238,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** In March 2021, who was empowered to establish anti-rape crisis cells?
 
 - *Proposition:* As at March 2021 the Anti-Rape (Investigation and Trial) Ordinance, 2020 empowered the Prime Minister to establish or designate anti-rape crisis cells in public hospitals.
-- **Necessary (grade 3)** — The Anti-Rape (Investigation and Trial) Ordinance, 2020, s./art. 4 (not_current: ordinance_lapsed; not served in punjab) · `7ddb3786-431f-48a0-8178-7e1e029b17ff` · [source](https://drs.molaw.gov.pk/pdf/The%20Anti-Rape%20%28Investigation%20and%20Trial%29%20Ordinance%2C%202020%20%281%29.pdf)
+- **Necessary (grade 3)** — The Anti-Rape (Investigation and Trial) Ordinance, 2020, s./art. 4 (not_current: ordinance_lapsed; served in punjab) · `7ddb3786-431f-48a0-8178-7e1e029b17ff` · [source](https://drs.molaw.gov.pk/pdf/The%20Anti-Rape%20%28Investigation%20and%20Trial%29%20Ordinance%2C%202020%20%281%29.pdf)
   > Anti-Rape Crisis Cells.{l) The Prime Minister shall establish or desipate as many Anti-Rape Crisis Cells throughout the country in relation to offences mentioned in ScheduleJl, in such public hospitals with adequate medical facilities, as he may deem fit. The 
 - **Hard negative (grade 0)** — Anti-Rape (Investigation and Trial) Act, 2021, s./art. 4 (current: owner_presumption_in_force; not served in punjab) · `cfb7dd0e-9b12-4d7e-ac79-688d8127b8f0` · [source](https://pakistancode.gov.pk/pdffiles/administratordcbf53fa2d37ade990bcaa63630e66ff.pdf)
   > Anti-rape crisis cells The secretary, ministry of law and justice, in consultation with the chief secretary of the province or the chief commissioner of the Islamabad Capital Territory (ICT), as the case may be, shall establish or designate as many anti- rape 
@@ -485,11 +485,5 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 
 The gold is unchanged by these; they are what an L3 run is expected to fail until fixed.
 
-- S3-C03: hard negative 2693/4 (Child Marriage Restraint Act, 1929) IS served at 2026-11-16 in punjab; the gold says it must not be
-- S3-C04: necessary 3227/2 (Child Marriage Restraint Act, 1929) is not servable at 2020-06-01: its held text versions start 2026-06-27 (no point-in-time history before capture)
-- S3-C05: hard negative 2693/4 (Child Marriage Restraint Act, 1929) IS served at 2026-11-16 in ict; the gold says it must not be
-- S3-C06: hard negative 2693/4 (Child Marriage Restraint Act, 1929) IS served at 2026-11-16 in balochistan; the gold says it must not be
-- S3-C07: hard negative 2020/4 (Defamation Ordinance, 2002) IS served at 2026-11-16 in punjab; the gold says it must not be
-- S3-C08: necessary 6333/3 (Defamation Ordinance, 2002) is not servable at 2020-01-01: its held text versions start 2026-10-20 (no point-in-time history before capture)
-- S3-C20: hard negative 3483/4 (Hindu Marriage Act, 2017) IS served at 2026-11-16 in sindh; the gold says it must not be
-- S3-P02: necessary 5366/4 (The Anti-Rape (Investigation and Trial) Ordinance, 2020) is not servable at 2021-03-01: its held text versions start 2026-10-20 (no point-in-time history before capture)
+- S3-C04: necessary 3227/2 (Child Marriage Restraint Act, 1929) is not servable at 2020-06-01: held text captured 2026-06-27, known from unknown (an_amendment_is_undated)
+- S3-C08: necessary 6333/3 (Defamation Ordinance, 2002) is not servable at 2020-01-01: held text captured 2026-10-20, known from unknown (an_amendment_is_undated)

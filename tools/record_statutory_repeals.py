@@ -75,7 +75,14 @@ def norm(title: str | None) -> str:
     t = re.sub(r"\bsind\b", "sindh", t)
     t = re.sub(r"\baj\s*&\s*k\b", "azad jammu and kashmir", t)
     t = t.replace("&", " and ")
-    return re.sub(r"[^a-z0-9]+", " ", t.replace("'", "")).strip()
+    t = re.sub(r"[^a-z0-9]+", " ", t.replace("'", "")).strip()
+    # (16 Nov 2026) one place under several names: the AJK Rent Restriction Act, 1986 s.26 repeals "the Azad Jammu
+    # and Kashmir Rent Restriction Act, 1952", held as "The Azad Kashmir Rent Restriction Act, 1952" -- missed, and
+    # then presumed in force. A repeal clause and a held title naming the same place differently now meet.
+    t = re.sub(r"\b(?:azad\s+jammu\s+and\s+kashmir|azad\s+jammu\s+kashmir|azad\s+kashmir|a\s*j\s*k)\b", "ajk", t)
+    t = re.sub(r"\b(?:north\s+west\s+frontier\s+province|n\s*w\s*f\s*p)\b", "khyber pakhtunkhwa", t)
+    t = re.sub(r"\bbaluchistan\b", "balochistan", t)
+    return t
 
 
 # the law's own citation printed after its title in AJK short titles: '... Act, 1960 (Act No V of 1960)'
@@ -98,8 +105,43 @@ def title_key(short_title: str | None) -> str:
     return norm(re.sub(r",?\s*(1[89]\d\d|20\d\d)\s*\.?\s*$", "", t.strip()))
 
 
+# (16 Nov 2026) a clause that repeals a LIST names the later enactments in the words between the first year and the
+# verb: 'The Child Marriage Restraint Act, 1929 (XIX of 1929) and the Punjab Child Marriage Restraint Ordinance 2026
+# (I of 2026) are hereby repealed'. Only the first title was matched; each listed one is now a clause of its own.
+LISTED = re.compile(r"(?:^|,|;|\band\b)\s*(?:the\s+)?(?P<title>[A-Z][^.;:()\n,]{2,160}?\b" + KIND +
+                    r"),?\s*(?P<year>1[89]\d\d|20\d\d)(?P<num>\s*\((?:[^()]|\([^()]*\))*\))?")
+LIST_REPEAL = re.compile(
+    r"(?:^|[.;:]\s+|\(\d+\)\s*|\b(?:The|the)\s+)"
+    r"(?P<title>(?:the\s+)?[A-Z][^.;:()\n]{2,160}?\b" + KIND + r"),?\s*(?P<year>1[89]\d\d|20\d\d)"
+    r"(?P<num>\s*\((?:[^()]|\([^()]*\))*\))?"
+    r"(?P<list>(?:\s*(?:,|\band\b)\s*(?:the\s+)?[A-Z][^.;:()\n]{2,160}?\b" + KIND + r",?\s*(?:1[89]\d\d|20\d\d)"
+    r"(?:\s*\((?:[^()]|\([^()]*\))*\))?){1,8})"
+    r"\s+(?:are|shall\s+stand|stand)\s+(?:hereby\s+)?repealed", re.S)
+
+
+def listed_repeals(text: str) -> list[dict]:
+    """The second and later enactments of every list repeal in `text` (the first is repeal_clauses' match). A list
+    is read only when it is nothing but titles with years and citations joined by commas and 'and', and the verb
+    follows directly ('are hereby repealed'); anything else in it -- a qualifier, a section -- reads nothing."""
+    found = []
+    for m in LIST_REPEAL.finditer(text or ""):
+        before = text[max(0, m.start() - 60):m.start()]
+        after = re.split(r"(?<=[.;])\s", text[m.end():m.end() + 160], maxsplit=1)[0]
+        qualified = bool(PART_BEFORE.search(before) or AFTER_QUALIFIER.search(after)
+                         or QUALIFIER.search(m.group("list")))
+        for item in LISTED.finditer(m.group("list")):
+            found.append({"title": item.group("title").strip(), "year": int(item.group("year")),
+                          "clause": " ".join(m.group(0).split()), "qualified": qualified, "listed": True})
+    return found
+
+
 def repeal_clauses(text: str) -> list[dict]:
-    """Every whole-enactment repeal clause in `text`, with `qualified` True when partial or qualifying words apply."""
+    """Every whole-enactment repeal clause in `text`, with `qualified` True when partial or qualifying words apply;
+    a list repeal contributes one clause per enactment it names (listed_repeals)."""
+    return _single_clauses(text) + listed_repeals(text)
+
+
+def _single_clauses(text: str) -> list[dict]:
     found = []
     for m in REPEAL.finditer(text or ""):
         before = text[max(0, m.start() - 60):m.start()]

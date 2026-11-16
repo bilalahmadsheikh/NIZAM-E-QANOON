@@ -1009,20 +1009,128 @@ in the usual way; to withdraw the presumption wholesale, run the tool with
    current. It is now recorded from the page-read clause
    (`tools/evidence/ajk-rent-1952-repealed-by-1986-2026-11-16.sql`) and is
    `not_current` from 1986-03-05.
-2. **A repeal confined to one territory is not modelled.** The ICT, Punjab and
-   Balochistan child-marriage Acts each repeal the Child Marriage Restraint
-   Act, 1929 "to the extent of" their own territory. The Punjab Defamation
-   Act, 2024 repeals the Defamation Ordinance, 2002 in Punjab. The federal
-   texts are still served there.
+   The deeper cause was a **list repeal**: "The … Act, 1952 (…) and … Ordinance,
+   1986 … are hereby repealed". Only the first title of a list was ever read,
+   and here an OCR-damaged bracket hid even that. `record_statutory_repeals.py`
+   now reads every title of a list (`listed_repeals`). It also folds one place
+   under several names (Azad Kashmir / Azad Jammu and Kashmir / AJK, N.W.F.P. /
+   Khyber Pakhtunkhwa, Baluchistan / Balochistan). This found 9 more whole
+   repeals.
+2. **Repeals confined to one territory, and printed extent: fixed by 0095,
+   0100.** See "Where a law runs" below.
+3. **Text history before capture: fixed by 0096–0099, conservatively.** See
+   "How far back the held text is the law" below.
 
-   The serving model also reads no federal extent clause. The Hindu Marriage
-   Act, 2017 s.1 excludes Sindh, yet it is served in Sindh.
+### Where a law runs: extent clauses and territorial repeals (0095, 0100)
 
-   Golden set 3 records each of these as a trap the system serves.
-3. **There is no text history before capture.** Every `provision_version`
-   starts at its source capture (June–October 2026), so `operative_provision`
-   serves nothing at an earlier `as_of`. INV-5 holds from capture forward
-   only. The point-in-time history docs/03 §2 calls for is still to build.
+**Extent.** `tools/record_territorial_extent.py` reads a federal-text law's own
+extent clause, "It extends to …". It records instrument_metadata_assertion
+field `territorial_extent`: the territories as a comma list, with the clause
+verbatim and its source block. Where one stands it decides the law's reach;
+otherwise `territory_reach3`'s title reading stands. `extent_basis` says which.
+
+A clause is read only when every word of it maps to a territory:
+- the whole of Pakistan, or all the territories of Pakistan;
+- West Pakistan: the four provinces, since its excepted tribal and special
+  areas lie inside them;
+- each province, by its current or older name;
+- ICT;
+- "all the provinces" only together with the capital.
+
+"The capital of the Federation" and "the Federal Capital" are resolved by the
+law's year. They mean Karachi (Sindh) in laws of 1948–1960, Islamabad from
+1963, and are not read for 1961–1962. "Sections 13 and 17 of this Act shall
+extend to …" is the extent of some sections, not of the law, and is not read.
+
+First run: 1,128 laws read. 61 changed reach from the title reading; for
+example, the Hindu Marriage Act, 2017 now runs in ICT, Balochistan, KP and
+Punjab, not Sindh.
+
+**Territorial repeal.** The table `territorial_repeal` is append-only, latest
+wins, and keyed like `statutory_repeal`. `tools/record_territorial_repeals.py`
+records a released Act repealing a **federal-text** law for one territory:
+- a provincial Act's repeal, which operates in its own province only;
+- a clause that itself says "to the extent of" or "in its application to" a
+  territory, where that territory is the repealer's own, or ICT for a federal
+  law.
+
+Any other qualifier, a federal repeal not confined to ICT, an ambiguous title
+or a revival is skipped.
+
+The record never sets `instrument.status`: the law stays in force elsewhere.
+`v_instrument_currency.territory_exits` maps each territory to the date the law
+left it. That date is the printed one, else the repealer's commencement, its
+enactment, or 1 January of its year. A law that has left every territory it
+reached is `not_current`, with reason `repealed_in_each_territory`.
+
+`operative_provision` stops serving a law in a territory from its exit date.
+A read without `nzq.territory` still returns it, with `territory_exits`.
+
+First run: 47 rows. Among them:
+- the Child Marriage Restraint Act, 1929 left ICT (2025-05-29), Balochistan
+  (2025-11-18) and Punjab (2026-05-11);
+- the Defamation Ordinance, 2002 left Punjab (2024-06-07);
+- the Control of Narcotic Substances Act, 1997 left Sindh;
+- the Pakistan Arms Ordinance, 1965 left Balochistan;
+- the Canal and Drainage Act, 1873, which runs only in Punjab, is not current.
+
+0100 made the exit test NULL-safe. As 0095 shipped it, a law with no exit was
+served in no territory at all. The golden-set build caught this on the same
+day, and `tests/test_territorial_serving.py` pins it.
+
+Audit A17 checks that these records are consistent.
+
+### How far back the held text is the law (0096–0099)
+
+Each `provision_version` is still written `daterange(<capture>, NULL)`. The
+replay writes it, and it is not edited. What is new is the view
+`mv_provision_text_known_from` (refreshed by `tools/refresh_serving.py`, and
+checked by A16). It holds, per provision of a served law, the earliest date
+the held text, consolidated at capture, is **known** to have been the law.
+`operative_provision` serves the single open version from that date.
+
+The date is decided **per law** (0098):
+- **Any undated amendment.** If any amendment footnote of the law has no
+  recoverable date, or any provision's own text carries more amendment markers
+  than the dated references aimed at it, the whole law is unknown before
+  capture (`an_amendment_is_undated`). One provision's undated change proves
+  nothing about the silence of the others.
+- **Every amendment dated.** The date is the latest of the law's start, its
+  dated amendment references, and the held "(… Amendment)" laws whose titles
+  name it (`after_latest_recorded_amendment`).
+- **No amendment evidence at all.** The date is the law's start
+  (`no_amendment_recorded`).
+
+Where only a year is known, a date means 31 December of it, never 1 January.
+So a law is not served before it existed.
+
+The markers counted (0099):
+- an opening insertion mark, `1[` or `2[:]`, where the digits are not part of a
+  year or a decimal;
+- a closing `]` with no letter after it, beyond the plain brackets the same
+  text opens;
+- an omission mark, `5* * *`.
+
+Gazette running heads ("DECEMBER 18,2020 [PART I") and OCR noise are not
+counted.
+
+Measured 16 Nov 2026:
+
+| Basis | Laws | Provisions |
+|---|---|---|
+| `no_amendment_recorded` | 6,022 | 433,165 |
+| `after_latest_recorded_amendment` | 376 | 39,555 |
+| `an_amendment_is_undated` | 3,856 | 652,601 |
+
+The PPC, the Constitution, the MFLO and the Punjab text of the 1929
+child-marriage Act are among the undated ones. They stay unservable before
+capture until their amendment footnotes are dated.
+
+**Residual risk:** a text that was amended but prints no marker, has no
+footnote and has no held amending law is served back to its start.
+
+0096 also pinned `search_path` on every SQL and plpgsql function of ours,
+because a materialized view is built under a restricted path.
 
 **Ordinance lapse, widened (0091, 0092; 16 Nov 2026).** The Eighteenth
 Amendment's own text is held as doc 4434. Its s.27 substitutes "for the words
