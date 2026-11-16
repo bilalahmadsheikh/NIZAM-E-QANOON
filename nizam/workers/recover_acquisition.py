@@ -47,6 +47,10 @@ ALLOWED_HOSTS = {
     # territories taken into scope 14 Nov 2026 (docs/02 §2.2): AJK Law, Justice & Parliamentary Affairs Department;
     # the Capital Development Authority (ICT); the Government of Gilgit-Baltistan and the GB Assembly
     "law.gok.pk", "www.cda.gov.pk", "gilgitbaltistan.gov.pk", "gbassembly.gbit.gov.pk",
+    # the GB Assembly's own site, where its Acts are filed (16 Nov 2026). Its certificate has expired, so it is never
+    # fetched live; its files land from the Internet Archive's digest-verified captures (tools/acquire/stage_wayback.py)
+    # under this official URL as canonical_url
+    "gba.gov.pk", "www.gilgitbaltistan.gov.pk",
 }
 # generic client name: requests to outside services never carry the project's or a person's name
 USER_AGENT = "Mozilla/5.0 (compatible; legal-research-crawler/1.0)"

@@ -15,6 +15,10 @@ holds as a blob (a held file under a new URL is not a missing law). Dry run by d
 tools/acquire/stage_candidates.py directory that fetched them the same day, TLS-verified, from the same official URL.
 The staged bytes are landed instead of a second fetch (law.gok.pk serves ~1 file a minute), dated by their staging
 fetch (fetched_at and source_metadata.staged_fetch), and only while they still hash to the staged sha256.
+
+An item carrying archived_capture (16 Nov 2026, tools/acquire/stage_wayback.py) was staged from the Internet Archive's
+raw capture of the official URL, its SHA-1 equal to the archive's recorded digest. canonical_url is still the official
+URL; source_metadata.archived_capture says where the bytes came from, and staged_fetch names stage_wayback.py.
 """
 from __future__ import annotations
 
@@ -147,6 +151,12 @@ def land_one(it: dict, cur, conn, report: dict, scraper_version: str = None, sta
     if got:
         data, fetched_at = got
         status, final, err = 200, safe_official_url(url), None
+        cap = it.get("archived_capture")
+        if cap and re.fullmatch(r"\d{14}", cap.get("timestamp") or ""):
+            # the official host served these bytes when the archive captured them: that is the date the corpus can
+            # attest the text was published (nizam/storage/legal_write.observed_on opens provision validity there)
+            t = cap["timestamp"]
+            fetched_at = f"{t[:4]}-{t[4:6]}-{t[6:8]}T{t[8:10]}:{t[10:12]}:{t[12:14]}+00:00"
     else:
         status, final, mt, data, err = fetch(safe_official_url(url), attempts=3, timeout=300)
     if status is None or not 200 <= status < 300 or not data:
@@ -163,7 +173,12 @@ def land_one(it: dict, cur, conn, report: dict, scraper_version: str = None, sta
                               "type": it.get("kind"), "listing": it.get("listing"),
                               "detail_url": it.get("detail_url"), "number": it.get("number"),
                               "date": it.get("date"), "recrawl": recrawl_day, "listed_pdf_url": it.get("pdf_url"),
-                              "staged_fetch": ({"tool": "tools/acquire/stage_candidates.py", "fetched_at": fetched_at}
+                              # bytes from the Internet Archive's capture of the official URL (16 Nov 2026): the
+                              # capture, its timestamp and the digest the staged bytes were verified against
+                              "archived_capture": it.get("archived_capture"),
+                              "staged_fetch": ({"tool": ("tools/acquire/stage_wayback.py" if it.get("archived_capture")
+                                                         else "tools/acquire/stage_candidates.py"),
+                                                "fetched_at": fetched_at}
                                                if fetched_at else None)}.items() if v}
     cur.execute("""INSERT INTO blob (sha256,source_id,object_key,byte_length,media_type,first_seen)
                    VALUES (%s,%s,%s,%s,'application/pdf',now()) ON CONFLICT (sha256) DO NOTHING""",

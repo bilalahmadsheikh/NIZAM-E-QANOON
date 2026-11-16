@@ -41,7 +41,7 @@ import collections
 import json
 import re
 import sys
-from datetime import date
+from datetime import date, timedelta
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
@@ -66,6 +66,63 @@ CEASE = re.compile(r"(?:^|[.;:]\s+|\(\d+\)\s*|\b(?:The|the)\s+)"
                    r"(?:is|are|shall\s+stand|stands)\s+(?:hereby\s+)?omitted)", re.S)
 NOT_COVERED = ("a repeal by a law the corpus does not hold; judicial invalidation; territorial extent "
                "(operative_provision declares invalidation_coverage 'not_tracked' and extent 'jurisdiction_default')")
+
+# ---- 'lapsed' (migration 0085): an Ordinance the Constitution has repealed by lapse of time ------------------------
+# Constitution of 1973 as held (doc 4419): Art. 89(2) -- a President's Ordinance 'shall stand repealed at the
+# expiration of one hundred and twenty days from its promulgation', extendable once by 120 days; Art. 128(2) -- a
+# Governor's Ordinance, ninety days, extendable once by ninety. Art. 270A (1977-1985) and Art. 270AA (12 Oct 1999 -
+# 31 Dec 2003, 'and still in force') continue the Ordinances of their windows; the 1973 text does not govern earlier
+# regimes; AJK and GB constitutions are not held. So only federal and provincial Ordinances of 2004 onward.
+LAPSE_JURISDICTIONS = {"fed": (240, "stood_repealed_art89_2"), "punjab": (180, "stood_repealed_art128_2"),
+                       "sindh": (180, "stood_repealed_art128_2"), "kp": (180, "stood_repealed_art128_2"),
+                       "balochistan": (180, "stood_repealed_art128_2")}
+# The 120/90-day wording (and its single extension) was inserted by the Constitution (Eighteenth Amendment) Act, 2010
+# -- doc 4419's footnotes: 'Ins. and subs. by the Constitution (Eighteenth Amendment) Act, 2010 (Act No. X of 2010),
+# s. 27' -- which the corpus holds commenced on 2010-04-20 (doc 4434). The footnotes do not print the words replaced,
+# so the corpus does not state the rule for an Ordinance made before then: only Ordinances promulgated under the
+# current text are asserted (an established promulgation date on or after 2010-04-20, or a printed year 2011+).
+CURRENT_TEXT_FROM = date(2010, 4, 20)
+FIRST_UNPROTECTED_YEAR = 2011
+ART = {"stood_repealed_art89_2": "Art. 89(2): 'shall stand repealed at the expiration of one hundred and twenty days "
+                                 "from its promulgation' (extendable once by a further one hundred and twenty days)",
+       "stood_repealed_art128_2": "Art. 128(2): 'shall stand repealed at the expiration of ninety days from its "
+                                  "promulgation' (extendable once by a further ninety days)"}
+CONTINUE = re.compile(r"(?:^|[.;:]\s+|\(\d+\)\s*|\b(?:The|the)\s+)"
+                      r"(?P<title>(?:the\s+)?[A-Z][^.;:()\n]{2,160}?\bOrdinance),?\s*(?P<year>20\d\d)"
+                      r"[^.;]{0,200}?\b(?:shall\s+continue|continue\s+to\s+(?:be\s+in\s+force|have\s+effect)|"
+                      r"(?:be\s+)?deemed\s+to\s+(?:be|have\s+been)\s+(?:an?\s+)?Act|shall\s+have\s+effect\s+as\s+if)",
+                      re.S)
+
+
+def continued_against(texts: list[tuple[str, str]]) -> dict[tuple[str, int], list[str]]:
+    """(title words, year) -> ids of instruments whose provisions continue an Ordinance or deem it an Act."""
+    hits: dict = collections.defaultdict(list)
+    for iid, text in texts:
+        for m in CONTINUE.finditer(text or ""):
+            hits[(norm(m.group("title")), int(m.group("year")))].append(iid)
+    return hits
+
+
+def ordinance_lapse(jur: str, year: int | None, enacted: str | None, titles: list[str], today: date
+                    ) -> tuple[str | None, str, date | None]:
+    """(basis or None, refusal, latest possible lapse)."""
+    rule = LAPSE_JURISDICTIONS.get(jur)
+    if rule is None:
+        return None, "ordinance_outside_art89_128", None
+    if year is None:
+        return None, "ordinance_without_year", None
+    if enacted:
+        if date.fromisoformat(enacted) < CURRENT_TEXT_FROM:
+            return None, "ordinance_before_current_art89_text", None
+    elif year < FIRST_UNPROTECTED_YEAR:
+        return None, "ordinance_before_current_art89_text", None
+    if not any(re.search(rf"\b{year}\b", t or "") for t in titles):
+        return None, "ordinance_year_not_printed_in_title", None
+    start = date.fromisoformat(enacted) if enacted else date(year, 12, 31)
+    latest = start + timedelta(days=rule[0])
+    if latest + timedelta(days=365) > today:
+        return None, "ordinance_may_still_run", latest
+    return rule[1], "ok", latest
 
 
 PROVISION_LEVEL = re.compile(r"\b(?:sections?|clauses?|sub-sections?|rules?\s+\d|articles?|schedules?|paragraphs?|"
@@ -210,7 +267,16 @@ def main() -> int:
                          FROM v_release_instrument i JOIN provision p ON p.instrument_id = i.id AND p.is_active
                          JOIN provision_version v ON v.provision_id = p.id AND upper_inf(v.validity)
                         WHERE v.text_en ~* '(repeal|cease\\s+to|omitted)'""")
-        hits = named_against(cur.fetchall())
+        texts = cur.fetchall()
+        hits = named_against(texts)
+        cur.execute("""SELECT i.id::text, v.text_en
+                         FROM v_release_instrument i JOIN provision p ON p.instrument_id = i.id AND p.is_active
+                         JOIN provision_version v ON v.provision_id = p.id AND upper_inf(v.validity)
+                        WHERE v.text_en ~* '(continue|deemed\\s+to)' AND v.text_en ~* 'Ordinance'""")
+        continued = continued_against(cur.fetchall())
+        cur.execute("""SELECT instrument_id::text, enacted_on FROM (SELECT id AS instrument_id, enacted_on::text
+                         FROM v_release_instrument) e""")
+        enacted_of = dict(cur.fetchall())
         cur.execute("""SELECT source_observation_id, expression_ordinal FROM v_instrument_metadata_current
                         WHERE field = 'status'""")
         standing = {(r[0], r[1]) for r in cur.fetchall()}
@@ -218,6 +284,57 @@ def main() -> int:
         for (iid, obs, ordinal, doc, jur, kind, year, short, display, commenced, is_repealed, lang,
              portal_title, host) in todo:
             reason, basis = None, None
+            if kind == "ordinance":
+                value = "lapsed"
+                lb, why, latest = ordinance_lapse(jur, year, enacted_of.get(iid), [short or "", display or ""],
+                                                  date.today())
+                if lb and (is_repealed or iid in repealed):
+                    lb, why = None, "statutory_repeal_stands"
+                if lb:
+                    keys = {k for k in (title_key(short), title_key(display) if display else None) if k}
+                    own = {iid} | twin[iid]
+                    if any(any(same_law(mine, k) for mine in keys) and not all(x in own for x in ids)
+                           for (k, y), ids in continued.items() if y == year):
+                        lb, why = None, "continued_or_deemed_an_act"
+                if not lb:
+                    counts[f"ordinance: {why}"] += 1
+                    if (obs, ordinal) in standing:
+                        withdraw(cur, obs, ordinal, "status", METHOD, f"not reproduced: {why}")
+                        counts["withdrawn_on_recheck"] += 1
+                    continue
+                counts[f"lapsed: {lb}"] += 1
+                if (obs, ordinal) in withdrawn:
+                    counts["withdrawn_kept"] += 1; continue
+                if (obs, ordinal) in standing:
+                    counts["unchanged"] += 1; continue
+                cur.execute("""SELECT p.first_block, p.first_page, concat_ws(' ', p.heading, v.text_en)
+                                 FROM provision p
+                                 LEFT JOIN provision_version v ON v.provision_id = p.id AND upper_inf(v.validity)
+                                WHERE p.instrument_id = %s AND p.is_active AND p.first_block IS NOT NULL
+                                ORDER BY p.ordinal, p.path LIMIT 1""", (iid,))
+                fb = cur.fetchone()
+                if not fb:
+                    counts["no_source_block"] += 1; continue
+                evidence = dict(reviewer_type="tool", kind=kind, year=year, jurisdiction=jur,
+                                promulgated_on=enacted_of.get(iid), latest_possible_lapse=latest.isoformat(),
+                                constitution=ART[lb] + " -- Constitution of the Islamic Republic of Pakistan "
+                                             "(doc 4419, Pakistan Code consolidated)",
+                                not_protected="2004 or later: after the Art. 270A (1977-1985) and Art. 270AA "
+                                              "(12 Oct 1999 - 31 Dec 2003) windows",
+                                screened_on=date.today().isoformat(),
+                                screen="no statutory repeal standing; no law in the corpus continues it or deems "
+                                       "it an Act")
+                cur.execute("""INSERT INTO instrument_metadata_assertion
+                                 (source_observation_id, expression_ordinal, field, value, assertion, basis,
+                                  source_block_id, source_page, quote, method, evidence, recorded_by)
+                               VALUES (%s, %s, 'status', 'lapsed', 'asserted', %s, %s, %s, %s, %s, %s::jsonb,
+                                       'claude')""",
+                            (obs, ordinal, lb, fb[0], fb[1], " ".join((fb[2] or short or "").split())[:300],
+                             METHOD, json.dumps(evidence)))
+                counts["recorded"] += 1
+                dumped.append(dict(document_id=doc, jur=jur, year=year, title=display or short, basis=lb,
+                                   quote=f"latest lapse {latest}"))
+                continue
             if kind not in KINDS:
                 reason = "kind_not_asserted"
             elif year is None:

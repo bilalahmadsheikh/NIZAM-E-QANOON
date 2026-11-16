@@ -904,10 +904,11 @@ a withdrawal is a row with `assertion = 'withdrawn'`. One field per row:
 
 | field | recorded by | rule |
 |---|---|---|
-| `display_title` | `tools/record_display_titles.py` | the name verified or near-matched in the instrument's own printed text (`.artifacts/instrument-names-2026-11-11/`); names needing review are not recorded |
+| `display_title` | `tools/record_display_titles.py` | the name verified or near-matched in the instrument's own printed text (`.artifacts/instrument-names-2026-11-11/`); names needing review are not recorded. **`--short-title-clause` (16 Nov 2026)**, for laws with none: the law's own "may be called …" clause checks the catalogue title. If they agree (≥85% of words), the cleaned catalogue title is kept. If the catalogue title is a file name or abbreviation ("Baln", "NA-", ".docx"), the clause's name is recorded. If they disagree, nothing is recorded. 1,239 recorded, plus 9 page-read (`tools/evidence/display-titles-*-2026-11-16.sql`), including three historical Gazette scans whose catalogue title named a different law (9067 is Act XXVII of 1870, not the Penal Code; 8846 is Act I of 1896; 6688 is the Civil Pioneer Force (Amendment) Ordinance, 1943). Their stored `year` is still the catalogue's: an open defect |
 | `number` | `tools/record_instrument_numbers.py` (`--correct-stored`: a segmenter number that disagrees with the one printed number is replaced, basis `printed_number_corrects_stored`; 29 on 12 Nov 2026, plus 1707 by hand) | printed in the **title region** (first ≤80 blocks, cut at long title / preamble / enacting formula / section 1 in body form; first 20 blocks when no marker); year equal to the instrument's; kind word agrees; canonical numeral; exactly one candidate |
 | `enacted_on` | `tools/record_enacted_dates.py` | read in the title region. **v1:** the bracketed date under the title (`[18th April, 1956]`) or a printed assent statement. **v2, 16 Nov 2026:** also "assented to by the Governor … on …"; "made / promulgated by the President … on …" (Ordinances, Orders, Regulations); a block that is only a date under the title; and, for Rules, Regulations, Notifications and Orders only, the notification's own line ("Dated Lahore, the …", "No. …, dated 2.11.2004"). Refused: Gazette mastheads, "Dated …" lines on Acts and Ordinances (publication), "Updated till", draft rules, two-digit years. The year must equal the instrument's, or (Acts and Ordinances) its printed number's year within 2. **Precedence:** assent or promulgation statement > bracket > date line > notification line. The most direct form present must give exactly one date; lower forms that disagree are kept in the evidence. The catalogue date is **not** a source (placeholders and upload dates) |
 | `commenced_on` | `tools/record_commencement.py` | only a self-executing commencement of the **whole** instrument: "at once" gives the established `enacted_on` (0066's convention), or a printed "on <date>". **General clauses default (16 Nov 2026)** for an Act silent on its commencement: federal GCA 1897 s.5(1), the day of assent, only from a printed assent statement; Punjab / KP / Balochistan GCA 1956 s.3, the first publication, whose date "shall be printed either above or below the title", only from that printed date. Not Sindh or AJK, whose general clauses sections are not held. Notification, partial, enumerated or deemed commencement is never recorded (docs/03b: commencement lives in the Gazette) |
+| `long_title` | `tools/record_long_titles.py` (0083) | the printed long title, capitalised as a title ("AN ACT to …", "An Ordinance further to …"), to the end of its sentence. It is read in the first 80 blocks, and up to 400 only when none is printed there, never past section 1's body. Exactly one distinct title. Refused when it is cut short (ends on a function word), takes in a neighbouring Gazette column ("; (c)", a numbered subsection), or carries preamble or printer words ("expedient", "hereby enacted", "Printed by", "Gazette"). 16 Nov 2026: 6,394 recorded (80% of Acts, 85% of Ordinances) |
 | `status` | `tools/record_status.py` (0082) | `in_force` only for an **Act** that has commenced (established `commenced_on`, "shall come into force at once", or silent under its general clauses statute) **and** against which no repeal is known: no standing statutory repeal, no portal repeal note, and no released provision of another law naming it in a whole, territorial or extent-limited repeal, cease or omit clause. Never Ordinances (lapse is a constitutional question) or subordinate instruments (they stand with an enabling law the corpus does not link). Not covered, and stated on every row: repeal by a law not held, judicial invalidation, extent. Everything else stays `unknown` |
 | `text_language` | `tools/record_text_language.py` | Arabic-script share of all released text ≥ 0.60 gives `ur` (or `sd` with Sindhi letters), ≤ 0.10 gives `en`; anything else is left for a person |
 
@@ -919,6 +920,66 @@ They never re-assert a withdrawn key. There is one exception (16 Nov 2026,
 `record_enacted_dates.py`): a key withdrawn on recheck (`recheck_not_reproduced`)
 by the same method version may be asserted again when that version reproduces a
 date. A person's withdrawal, or another method's, stands for good.
+
+**Lapsed Ordinances (0085, 16 Nov 2026).** `status = 'lapsed'` comes from the
+corpus's own Constitution (doc 4419). Under Art. 89(2), a President's
+Ordinance "shall stand repealed at the expiration of one hundred and twenty
+days", extendable once, so it lives at most 240 days. Under Art. 128(2), a
+Governor's Ordinance lives at most 180 days.
+
+It is asserted only for a federal or provincial Ordinance promulgated under
+that wording, i.e. on or after the Eighteenth Amendment's commencement on
+2010-04-20 (doc 4434). The footnotes do not print the words that amendment
+replaced, so the corpus states no rule for earlier Ordinances. Three further
+conditions apply:
+
+- its year is printed in its own title;
+- it is at least a year past its latest possible lapse;
+- no repeal of it stands, and no law in the corpus continues it or deems it
+  an Act.
+
+16 Nov 2026: 101 lapsed. `operative_provision` stops serving a lapsed
+Ordinance only after its *latest* possible lapse, because disapproval or an
+Act can end it sooner. Not asserted:
+
+- Ordinances that Art. 270A (1977–85) and Art. 270AA (12 Oct 1999 – 31 Dec
+  2003) continue. Whether one was still in force on the dates those Articles
+  name depends on regime orders the corpus does not hold.
+- Ordinances of 1973–2010.
+- AJK and GB Ordinances.
+
+**Territorial reach (0086, 0087).** Owner rule, 16 Nov 2026: "each provincial
+jurisdiction in their own provinces while federal is for all". With
+`nzq.territory` set, `operative_provision` serves a province's, ICT's, AJK's
+or GB's own law there. Federal law is served in all four provinces and ICT,
+except where its printed title confines it (`territory_reach3`):
+
+- **West Pakistan:** the four provinces.
+- **Islamabad / Capital Territory:** ICT.
+- **A named province, or a city's own law** (rent, municipal, courts, port):
+  that province.
+- **Places outside Pakistan** (Bengal, Oudh, Burma, East Pakistan, Delhi …):
+  nowhere, unless Pakistan Code publishes the text as current law.
+
+Federal forces (Frontier Corps and Constabulary) and federal charters of an
+institution in a city reach everywhere. AJK and GB get their own law only: a
+federal Act runs there only as adapted or extended. `extent_coverage` names
+the rule: `own_territory`, `title_named_territory` or `jurisdiction_default`.
+
+`territory_reach3` is a plpgsql function evaluated per row. A whole-territory
+scan of the view takes minutes, so retrieval (L3) should precompute it per
+instrument.
+
+**Official source URLs (16 Nov 2026).** 53 released laws had no
+`source_url`. All came from the original scrapes, and all have an apostrophe
+in their title: the scrapers lost the URL when sanitising the file name. Each
+was matched to the portal listing or the August scrape manifest. It was
+accepted only when the official PDF is byte-identical to the held blob (a
+live fetch, or the manifest's recorded sha256 where the portal re-generates
+PDFs). Only a NULL `canonical_url` was filled, with the proof in
+`source_metadata.canonical_url_traced`
+(`tools/evidence/official-urls-traced-2026-11-16*.sql`). Every released law
+now has its official URL.
 
 What the dates mean. On a provincial Act the date under the title is, by the
 general clauses statute, the date of first publication. On a Pakistan Code text
@@ -957,6 +1018,25 @@ or prints the same amendment in full. Recorded 14 Nov 2026: `F.A.O., 1975` →
 Federal Adaptation of Laws Order (305 footnotes). Not recorded: `A.O., 1937`,
 `1961` and `1964` (Orders not held), `A.O., 1949` (no corpus gloss), and
 `Baln. A.O. of 1975` (Order not held).
+
+Migration 0084 (16 Nov 2026) resolves four more shapes, each to one answer:
+
+- **Title, "No." and number:** "the Repealing Act No. XVI of 1874". Resolved
+  by number when the printed words agree with the candidate's title.
+- **A title the parser cut at a bracket or comma:** "Revision and Declaration)
+  Ordinance, 1981". Resolved when it is the *end* of exactly one same-year,
+  same-jurisdiction title.
+- **A provincial law citing its own province's law:** a candidate in that
+  province is preferred, when the amended law's title names the province.
+- **A Constitution amendment held only as a provincial reprint.**
+
+Result: 4,757 → 4,999 resolved, and no earlier resolution changed. Still
+unresolved, by design:
+
+- 2,116 cite laws the corpus does not hold (Indian amending Acts of
+  1880–1946);
+- about 2,300 cite a number that the corpus's (OCR) copy does not carry;
+- citations shared by a federal and a provincial law, which stay ambiguous.
 
 This is docs/03b's `amends` relation **without version history**. The corpus
 holds only current consolidated wording, so no version is closed or opened.
@@ -1053,6 +1133,34 @@ only as extended by notification. `nzq_territory()` therefore still refuses
 territories included. docs/04 requires a territory or an explicit comparison,
 never a guess. The docs/03b §6 `extent` relation must be built before these
 territories are served.
+
+**GB from archived captures (lead decision, 16 Nov 2026, standing owner
+delegation).** docs/02 §3.1 names no archive route, so this records one. GB's
+laws are on official hosts the corpus cannot fetch today:
+
+- `gba.gov.pk`, the GB Assembly's site, files its Acts under
+  `/tables/alldocuments/actdocx/` and presents an expired TLS certificate.
+  TLS is never bypassed.
+- `gbassembly.gbit.gov.pk` and `gilgitbaltistan.gov.pk` refuse connections.
+  This was probed from two network stacks; Pakistan Code and law.gok.pk
+  answered from the same host.
+
+The Internet Archive captured these files from those hosts while they served
+them. `tools/acquire/stage_wayback.py` stages them:
+
+1. It asks the CDX index for the host's PDF captures that answered 200.
+2. It takes one capture per payload digest.
+3. It fetches the raw capture (`/web/<ts>id_/<url>`, the bytes as the host
+   served them), with TLS verified.
+4. It keeps the bytes **only** when their SHA-1 equals the digest the archive
+   recorded at capture time.
+
+The landed observation's `canonical_url` is the **official** URL.
+`source_metadata.archived_capture` gives the capture URL, its timestamp and the
+verified digest, and `staged_fetch` names the tool. Nothing claims the official
+host was fetched today. Everything after staging is the ordinary lane:
+preflight, selection (text-layer laws only, the owner's no-OCR rule), landing,
+extraction, the Poppler gates and release.
 
 Consolidated text is valid from its 2026 observation date, so a question about
 an earlier date finds no text and abstains. The exception is 0064 historical

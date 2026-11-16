@@ -77,7 +77,12 @@ def main() -> int:
         chosen.append({"source_id": a.source_id, "title": r["title"], "year": int(y[-1]) if y else None,
                        "kind": r["kind"], "listing": f"{r['portal']}:{r['kind']}", "detail_url": r["detail_url"],
                        "pdf_url": r["pdf_url"], "number": m.group(1).upper() if m else None,
-                       "staged_sha256": r["sha256"], "preflight": pf[r["sha256"]]["verdict"]})
+                       "staged_sha256": r["sha256"], "preflight": pf[r["sha256"]]["verdict"],
+                       # a file staged from the Internet Archive's capture (stage_wayback.py) carries its evidence
+                       **({"archived_capture": {"url": r["archive_url"], "timestamp": r["archive_timestamp"],
+                                                "sha1_base32": r["archive_digest"],
+                                                "verified": "sha1 of the staged bytes equals the archive's digest"}}
+                          if r.get("archive_url") else {})})
     with open(a.out, "w", encoding="utf-8") as f:
         for c in chosen:
             f.write(json.dumps(c, ensure_ascii=False) + "\n")

@@ -34,6 +34,7 @@ BOTH_WAYS = {
     "text_language": "text",
     "enacted_on": "date",
     "commenced_on": "date",
+    "long_title": "text",          # 0083
 }
 
 
@@ -84,16 +85,16 @@ UPDATE instrument i SET number = c.value
 # status (0082): 'in_force' from a standing assertion, both ways -- never over a 'repealed' status or a standing
 # repeal's repealed_by_id (tools/apply_statutory_repeals.py owns those; it runs first, post-replay step 2b3)
 STATUS_SET = """
-UPDATE instrument i SET status = 'in_force'
+UPDATE instrument i SET status = c.value::lifecycle_state
   FROM v_instrument_metadata_current c
- WHERE c.field = 'status' AND c.value = 'in_force' AND i.id = c.instrument_id
+ WHERE c.field = 'status' AND c.value IN ('in_force', 'lapsed') AND i.id = c.instrument_id
    AND i.status = 'unknown' AND i.repealed_by_id IS NULL"""
 STATUS_UNSET = """
 UPDATE instrument i SET status = 'unknown'
- WHERE i.is_active AND i.status = 'in_force'
+ WHERE i.is_active AND i.status IN ('in_force', 'lapsed')
    AND (i.repealed_by_id IS NOT NULL
         OR NOT EXISTS (SELECT 1 FROM v_instrument_metadata_current c
-                        WHERE c.field = 'status' AND c.value = 'in_force' AND c.instrument_id = i.id))"""
+                        WHERE c.field = 'status' AND c.value = i.status::text AND c.instrument_id = i.id))"""
 
 NUMBER_CONFLICTS = """
 SELECT i.id, i.document_id, i.number, c.value

@@ -57,5 +57,27 @@ def test_the_portal_repeal_note_stops_the_claim():
         "portal_repeal_note"
 
 
+def test_an_ordinance_lapses_only_outside_the_protected_windows_and_after_its_maximum_life():
+    from datetime import date
+    today = date(2026, 11, 16)
+    # federal, 2013, printed year: made under the current Art. 89 text, at most 240 days, long past
+    assert st.ordinance_lapse("fed", 2013, None, ["The Foo Ordinance, 2013"], today)[0] == "stood_repealed_art89_2"
+    assert st.ordinance_lapse("sindh", 2015, "2015-03-01", ["Sindh Foo Ordinance, 2015"], today)[0] == \
+        "stood_repealed_art128_2"
+    assert st.ordinance_lapse("fed", 2010, "2010-06-01", ["Foo Ordinance, 2010"], today)[0] == "stood_repealed_art89_2"
+    # before the Eighteenth Amendment's text (2010-04-20): the corpus does not state the rule -- never; AJK/GB never
+    for jur, y, d in (("fed", 2008, None), ("fed", 2010, "2010-01-05"), ("fed", 2001, None), ("fed", 1980, None),
+                      ("ajk", 2015, None), ("gb", 2015, None)):
+        assert st.ordinance_lapse(jur, y, d, [f"The Foo Ordinance, {y}"], today)[0] is None
+    # still possibly running, or a year the title does not print
+    assert st.ordinance_lapse("fed", 2026, "2026-01-10", ["Foo Ordinance, 2026"], today)[1] == "ordinance_may_still_run"
+    assert st.ordinance_lapse("fed", 2015, None, ["Foo Ordinance"], today)[1] == "ordinance_year_not_printed_in_title"
+
+
+def test_a_law_continuing_an_ordinance_is_found():
+    hits = st.continued_against([("x", "The Foo Ordinance, 2008 shall continue to be in force until repealed.")])
+    assert (norm("Foo Ordinance"), 2008) in hits
+
+
 def test_only_acts_are_asserted():
     assert st.KINDS == {"act", "constitution"}

@@ -25,8 +25,18 @@ New instruments (14 Nov 2026, reviewed-2026-11-14-new-laws.json): a decision wit
 instrument landed after the table was built; it carries instrument_id, page_read, action and name, and is recorded
 directly (same refusals).
 
+SHORT-TITLE CLAUSE PASS (16 Nov 2026, --short-title-clause, method /2). The names table was built before AJK landed
+(1,420 AJK laws had no display title) and left 169 others. Every law prints its own name in its short-title clause:
+'This Act may be called the Azad Jammu and Kashmir ... Act, 2014'. For a released instrument with NO standing display
+title, the name that clause prints is recorded (basis printed_short_title_clause) when it is a law's title: it ends
+'<Act|Ordinance|Order|Rules|Regulations|Code|...>, <year>' (or the bracketed citation the AJK prints after it is
+dropped), the year equals the instrument's year (or its printed number's year, within two), and it is 8-200
+characters. Exactly one such clause in the first three provisions. 'the' is printed lower-case inside the sentence:
+the recorded name starts with a capital. A name with catalogue artefacts is refused as above.
+
     python tools/record_display_titles.py            # report
     python tools/record_display_titles.py --apply    # write
+    python tools/record_display_titles.py --short-title-clause [--apply]
 """
 from __future__ import annotations
 
@@ -46,12 +56,122 @@ ACCEPT = {"verified_in_printed_text", "near_match_in_printed_text"}
 ARTEFACT = re.compile(r"^\s*NA\s*-|\bBaln\b|official website|under review|\.docx|\.pdf", re.I)
 
 
+CLAUSE_METHOD = "nizam.display_title_from_short_title_clause/1"
+CALLED = re.compile(r"\bmay\s+be\s+(?:called|cited\s+as)\s*,?\s*(?P<name>.{6,240}?)\s*(?:[.;:](?:\s|$)|\n|$)", re.I | re.S)
+TITLE_END = re.compile(r"\b(?:Act|Ordinance|Order|Orders|Rules|Regulations?|Code|Bye-?laws|Scheme|Statutes?|"
+                       r"Notification|Resolution|Constitution)\s*,?\s*(?:\(\s*\d{4}\s*\)|(1[89]\d\d|20\d\d))$", re.I)
+TRAILING_CITATION = re.compile(r"\s*\(\s*(?:act|ordinance|ord|regulation|order|p\.\s*o)\.?\s*(?:no\.?\s*)?"
+                               r"[ivxlc0-9]+\s+of\s+\d{4}\s*\)\s*$", re.I)
+
+
+def clause_name(text: str, year: int) -> tuple[str | None, str]:
+    """(name or None, refusal) from the short-title clause in `text`."""
+    names = set()
+    for m in CALLED.finditer(text or ""):
+        n = " ".join(m.group("name").split())
+        n = re.sub(r"^\d{1,2}\[|\]\s*$", "", n)                   # footnote brackets around a substituted name
+        n = re.sub(r"\s*\d{1,2}\[|\]", "", n)
+        n = TRAILING_CITATION.sub("", n).strip(" ,'\"’‘“”")
+        m2 = TITLE_END.search(n)
+        if not m2:
+            continue
+        y = m2.group(1)
+        if y and abs(int(y) - (year or int(y))) > 2:
+            continue
+        if not 8 <= len(n) <= 200 or ARTEFACT.search(n):
+            continue
+        names.add(n[0].upper() + n[1:])
+    if len(names) != 1:
+        return None, "no_clause" if not names else "two_clauses_disagree"
+    return names.pop(), "ok"
+
+
+# a catalogue title that is a file name: '.docx', '1102014', 'XIVJuvenile ...' (a numeral glued to the name -- case
+# sensitive, or 'The' would match), a trailing '23.06' upload stamp, underscores
+FILE_ARTEFACT = re.compile(r"(?i:\.docx?|\.pdf)|^\s*\d+\s*$|^[IVXLC]{1,6}(?=[A-Z][a-z])|\b\d{1,2}\.\d{2}\s*$|_")
+
+
+def _words(t: str) -> set[str]:
+    t = re.sub(r"&", " and ", (t or "").lower())
+    return {w for w in re.findall(r"[a-z0-9]+", t) if w not in ("the", "of", "and")}
+
+
+def choose(short: str, clause: str) -> tuple[str | None, str]:
+    """The display title from the catalogue short title and the printed clause name: (name or None, basis).
+    The clause CHECKS the catalogue title. They agree (>= 85% of words in common): the catalogue title, cleaned of its
+    trailing printed citation, is kept for its spelling and capitals ('The he Penal Code', 'That Antiquities', OCR in
+    the clause) -- unless it carries no year, when the clause's form is taken. The catalogue title is a file-name
+    artefact: the clause's name. Otherwise they disagree and nothing is recorded."""
+    cleaned = TRAILING_CITATION.sub("", short or "").strip(" ,")
+    # a file-name title, or one carrying the catalogue's own abbreviations ('Baln ... Add Subject', 'NA-'): the
+    # printed clause is the better witness, not a second opinion
+    if FILE_ARTEFACT.search(short or "") or ARTEFACT.search(short or ""):
+        return clause, "printed_short_title_clause"
+    a, b = _words(cleaned), _words(clause)
+    if not a or not b:
+        return None, "empty"
+    sim = len(a & b) / len(a | b)
+    if sim >= 0.85:
+        if TITLE_END.search(cleaned) and not ARTEFACT.search(cleaned):
+            return cleaned[0].upper() + cleaned[1:], "verified_by_short_title_clause"
+        return clause, "printed_short_title_clause"
+    return None, "clause_disagrees_with_catalogue_title"
+
+
+def short_title_clause_pass(apply: bool) -> int:
+    from nizam.storage.db import connect
+    counts: dict = {}
+    shown = []
+    with connect() as conn, conn.cursor() as cur:
+        cur.execute("""SELECT i.id::text, i.source_observation_id, i.expression_ordinal, i.year, i.short_title,
+                              i.document_id
+                         FROM v_release_instrument i
+                        WHERE NOT EXISTS (SELECT 1 FROM v_instrument_metadata_current c
+                                           WHERE c.instrument_id = i.id AND c.field = 'display_title')""")
+        todo = cur.fetchall()
+        for iid, obs, ordinal, year, short, doc in todo:
+            cur.execute("""SELECT p.first_block, p.first_page, concat_ws(' ', p.heading, v.text_en)
+                             FROM provision p
+                             LEFT JOIN provision_version v ON v.provision_id = p.id AND upper_inf(v.validity)
+                            WHERE p.instrument_id = %s AND p.is_active ORDER BY p.ordinal, p.path LIMIT 3""", (iid,))
+            provs = cur.fetchall()
+            printed, why = clause_name("\n".join(p[2] or "" for p in provs), year)
+            name, basis = choose(short, printed) if printed else (None, why)
+            counts[basis] = counts.get(basis, 0) + 1
+            if not name:
+                continue
+            block = next((p for p in provs if p[2] and CALLED.search(p[2])), provs[0])
+            evidence = {"reviewer_type": "tool", "short_title_at_recording": short, "clause_name": printed,
+                        "rule": "the instrument's own short-title clause ('may be called ...') checks the catalogue "
+                                "title; see record_display_titles.choose"}
+            cur.execute("""INSERT INTO instrument_metadata_assertion
+                             (source_observation_id, expression_ordinal, field, value, assertion, basis,
+                              source_block_id, source_page, quote, method, evidence, recorded_by)
+                           VALUES (%s, %s, 'display_title', %s, 'asserted', %s,
+                                   %s, %s, %s, %s, %s::jsonb, 'claude')""",
+                        (obs, ordinal, name, basis, block[0], block[1], " ".join((block[2] or "").split())[:300],
+                         CLAUSE_METHOD, json.dumps(evidence, ensure_ascii=False)))
+            counts["recorded"] = counts.get("recorded", 0) + 1
+            if len(shown) < 25:
+                shown.append(f"  {doc}: {short!r} -> {name!r}")
+        if not apply:
+            conn.rollback()
+    print(json.dumps(counts, indent=1))
+    print("\n".join(shown))
+    print("applied" if apply else "dry run (rolled back); pass --apply to write")
+    return 0
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--apply", action="store_true")
     ap.add_argument("--reviewed", action="append", default=[],
                     help="JSON of reviewer decisions on needs_review rows (see above); may be given more than once")
+    ap.add_argument("--short-title-clause", action="store_true",
+                    help="record the name each untitled instrument's own short-title clause prints")
     args = ap.parse_args()
+    if args.short_title_clause:
+        return short_title_clause_pass(args.apply)
     decisions, source = {}, {}
     for f in args.reviewed:
         for k, v in json.loads(Path(f).read_text(encoding="utf-8")).items():

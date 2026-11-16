@@ -525,6 +525,7 @@ m AS (
           OR (c.field='text_language' AND i.text_language IS DISTINCT FROM c.value)
           OR (c.field='enacted_on'    AND i.enacted_on   IS DISTINCT FROM c.value::date)
           OR (c.field='commenced_on'  AND i.commenced_on IS DISTINCT FROM c.value::date)
+          OR (c.field='long_title'    AND i.long_title IS DISTINCT FROM c.value)          -- 0083
           -- status (0082): a standing 'in_force' is reflected unless a repeal now links the instrument
           OR (c.field='status'        AND i.repealed_by_id IS NULL AND i.status::text IS DISTINCT FROM c.value)
           -- number is fill-only, except a printed_number_corrects_stored assertion, which must be the number
@@ -541,8 +542,10 @@ m AS (
                                      WHERE c.instrument_id=i.id AND c.field='enacted_on'))
            OR (i.commenced_on IS NOT NULL AND NOT EXISTS (SELECT 1 FROM v_instrument_metadata_current c
                                      WHERE c.instrument_id=i.id AND c.field='commenced_on'))
+           OR (i.long_title IS NOT NULL AND NOT EXISTS (SELECT 1 FROM v_instrument_metadata_current c
+                                     WHERE c.instrument_id=i.id AND c.field='long_title'))
            -- an 'in_force' status rests on a standing status assertion (0082)
-           OR (i.status='in_force' AND NOT EXISTS (SELECT 1 FROM v_instrument_metadata_current c
+           OR (i.status IN ('in_force', 'lapsed') AND NOT EXISTS (SELECT 1 FROM v_instrument_metadata_current c
                                      WHERE c.instrument_id=i.id AND c.field='status'))))  AS meta_unevidenced
     ,(SELECT string_agg(field||' '||n, ', ' ORDER BY field)
         FROM (SELECT field, count(*) n FROM v_instrument_metadata_current GROUP BY 1) s)   AS meta_standing
