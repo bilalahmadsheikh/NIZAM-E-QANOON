@@ -79,5 +79,15 @@ def test_a_law_continuing_an_ordinance_is_found():
     assert (norm("Foo Ordinance"), 2008) in hits
 
 
+def test_every_unknown_carries_a_stable_reason_code():
+    assert st.reason_code("kind_not_asserted", "rules") == "subordinate_rules_enabling_law_not_linked"
+    assert st.reason_code("not_commenced: partial_or_notified", "act") == "commencement_by_notification_or_in_parts"
+    assert st.reason_code("not_commenced: silent: default_not_applicable", "act") == \
+        "silent_on_commencement_default_not_applicable"
+    assert st.reason_code("ordinance_before_current_art89_text", "ordinance") == "ordinance_before_current_art89_text"
+    assert st.reason_code("pre_independence_not_from_a_consolidated_code", "act") == \
+        "pre_independence_not_from_a_consolidated_code"
+
+
 def test_only_acts_are_asserted():
     assert st.KINDS == {"act", "constitution"}

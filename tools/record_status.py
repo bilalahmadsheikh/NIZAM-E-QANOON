@@ -94,6 +94,24 @@ CONTINUE = re.compile(r"(?:^|[.;:]\s+|\(\d+\)\s*|\b(?:The|the)\s+)"
                       re.S)
 
 
+def reason_code(reason: str, kind: str) -> str:
+    """The basis an 'unknown' status assertion carries (0088): a stable code for why no status could be asserted."""
+    r = reason.strip()
+    if r == "kind_not_asserted":
+        return f"subordinate_{kind}_enabling_law_not_linked" if kind != "ordinance" else "ordinance_not_assessed"
+    if r.startswith("not_commenced:"):
+        r = r.split(":", 1)[1].strip()
+        if r.startswith("silent:"):
+            return "silent_on_commencement_" + r.split(":", 1)[1].strip()
+        return {"partial_or_notified": "commencement_by_notification_or_in_parts",
+                "unrecognised_form": "commencement_form_not_recognised",
+                "disagreeing_sentences": "commencement_sentences_disagree",
+                "at_once_block_not_found": "commencement_source_block_not_found"}.get(r, "commencement_" + r)
+    if r.startswith("ordinance_") or r in ("statutory_repeal_stands", "continued_or_deemed_an_act"):
+        return r
+    return re.sub(r"[^a-z0-9_]+", "_", r.lower()).strip("_")
+
+
 def continued_against(texts: list[tuple[str, str]]) -> dict[tuple[str, int], list[str]]:
     """(title words, year) -> ids of instruments whose provisions continue an Ordinance or deem it an Act."""
     hits: dict = collections.defaultdict(list)
@@ -277,10 +295,34 @@ def main() -> int:
         cur.execute("""SELECT instrument_id::text, enacted_on FROM (SELECT id AS instrument_id, enacted_on::text
                          FROM v_release_instrument) e""")
         enacted_of = dict(cur.fetchall())
-        cur.execute("""SELECT source_observation_id, expression_ordinal FROM v_instrument_metadata_current
+        cur.execute("""SELECT source_observation_id, expression_ordinal, value, basis FROM v_instrument_metadata_current
                         WHERE field = 'status'""")
-        standing = {(r[0], r[1]) for r in cur.fetchall()}
+        standing = {(r[0], r[1]): (r[2], r[3]) for r in cur.fetchall()}
         withdrawn = latest_withdrawn(cur, "status")
+
+        def record_unknown(obs, ordinal, iid, reason, kind):
+            """0088: an expression this tool cannot assert gets a standing 'unknown' with WHY as its basis, so its
+            currency (v_instrument_currency) and every operative row say so. Replaces the old silent withdrawal."""
+            code = reason_code(reason, kind)
+            if standing.get((obs, ordinal)) == ("unknown", code):
+                counts["unknown_unchanged"] += 1; return
+            cur.execute("""SELECT p.first_block, p.first_page, concat_ws(' ', p.heading, v.text_en)
+                             FROM provision p
+                             LEFT JOIN provision_version v ON v.provision_id = p.id AND upper_inf(v.validity)
+                            WHERE p.instrument_id = %s AND p.is_active AND p.first_block IS NOT NULL
+                            ORDER BY p.ordinal, p.path LIMIT 1""", (iid,))
+            fb = cur.fetchone()
+            if not fb:
+                counts["unknown_no_source_block"] += 1; return
+            cur.execute("""INSERT INTO instrument_metadata_assertion
+                             (source_observation_id, expression_ordinal, field, value, assertion, basis,
+                              source_block_id, source_page, quote, method, evidence, recorded_by)
+                           VALUES (%s, %s, 'status', 'unknown', 'asserted', %s, %s, %s, %s, %s, %s::jsonb, 'claude')""",
+                        (obs, ordinal, code, fb[0], fb[1], " ".join((fb[2] or "").split())[:300] or "(first provision)",
+                         METHOD, json.dumps(dict(reviewer_type="tool", reason=reason, kind=kind,
+                                                 screened_on=date.today().isoformat(),
+                                                 meaning="no status asserted; the basis says why"))))
+            counts["unknown_recorded"] += 1
         for (iid, obs, ordinal, doc, jur, kind, year, short, display, commenced, is_repealed, lang,
              portal_title, host) in todo:
             reason, basis = None, None
@@ -298,14 +340,12 @@ def main() -> int:
                         lb, why = None, "continued_or_deemed_an_act"
                 if not lb:
                     counts[f"ordinance: {why}"] += 1
-                    if (obs, ordinal) in standing:
-                        withdraw(cur, obs, ordinal, "status", METHOD, f"not reproduced: {why}")
-                        counts["withdrawn_on_recheck"] += 1
+                    record_unknown(obs, ordinal, iid, why, kind)
                     continue
                 counts[f"lapsed: {lb}"] += 1
                 if (obs, ordinal) in withdrawn:
                     counts["withdrawn_kept"] += 1; continue
-                if (obs, ordinal) in standing:
+                if standing.get((obs, ordinal)) == ("lapsed", lb):
                     counts["unchanged"] += 1; continue
                 cur.execute("""SELECT p.first_block, p.first_page, concat_ws(' ', p.heading, v.text_en)
                                  FROM provision p
@@ -358,14 +398,12 @@ def main() -> int:
                 counts[reason.split(":")[0] if reason.startswith("not_commenced") else reason] += 1
                 if reason.startswith("not_commenced"):
                     counts[reason] += 1
-                if (obs, ordinal) in standing:
-                    withdraw(cur, obs, ordinal, "status", METHOD, f"not reproduced: {reason}")
-                    counts["withdrawn_on_recheck"] += 1
+                record_unknown(obs, ordinal, iid, reason, kind)
                 continue
             counts[f"in_force: {basis}"] += 1
             if (obs, ordinal) in withdrawn:
                 counts["withdrawn_kept"] += 1; continue
-            if (obs, ordinal) in standing:
+            if standing.get((obs, ordinal), (None,))[0] == "in_force":
                 counts["unchanged"] += 1; continue
             if block is None:
                 counts["no_source_block"] += 1; continue

@@ -345,8 +345,11 @@ def resolve(cur, doc: int, ref: str) -> dict | None:
                       WHERE p2.instrument_id = %s AND p2.is_active AND (p2.path <@ %s::ltree)) d
                      JOIN provision_version v ON v.provision_id = d.id AND upper_inf(v.validity)""", (iid, path))
     text = " ".join((cur.fetchone()[0] or "").split())
+    cur.execute("SELECT currency, reason FROM v_instrument_currency WHERE instrument_id = %s", (iid,))
+    currency, reason = cur.fetchone() or (None, None)
     return dict(provisionId=pid, path=path, label=label, heading=heading, instrumentId=str(iid), documentId=doc,
-                instrument=title, jurisdiction=jur, year=year, status=status, officialUrl=url,
+                instrument=title, jurisdiction=jur, year=year, status=status, currency=currency,
+                currencyReason=reason, officialUrl=url,
                 textSha256=hashlib.sha256(text.encode()).hexdigest(), excerpt=text[:400])
 
 
@@ -427,7 +430,8 @@ def main() -> int:
             for u in r["retrievalGold"][kind]:
                 served = {True: "served", False: "not served", None: "-"}[u["operativeAtAsOfInTerritory"]]
                 lines.append(f"- **{label} (grade {u['grade']})** — {u['instrument']}, s./art. {u['label']} "
-                             f"({u['status']}; {served} in {r['scope']['territory']}) · `{u['provisionId']}` · "
+                             f"({u['currency']}: {u['currencyReason']}; {served} in {r['scope']['territory']}) · "
+                             f"`{u['provisionId']}` · "
                              f"[source]({u['officialUrl']})\n  > {u['excerpt'][:260]}")
         if r["abstention"]:
             lines.append(f"- *Abstain:* {r['abstention']['code']} — {r['abstention']['why']}")

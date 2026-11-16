@@ -948,6 +948,34 @@ Act can end it sooner. Not asserted:
 - Ordinances of 1973–2010.
 - AJK and GB Ordinances.
 
+**Currency (0088, 16 Nov 2026).** Every released law has a currency in
+`v_instrument_currency`, with a reason and the earliest date the evidence
+proves it stopped being law. Owner instruction: "do something about these
+unknown so it is not a problem". `operative_provision` carries `currency` and
+`currency_reason` on every row.
+
+- **`current`:** `in_force`.
+- **`not_current`:** repealed; lapsed; a repeal certain but undated, from the
+  repealer's commencement or else its enactment; replaced by a later Act of
+  the same name (0067; owner q6 "shown as replaced"), from the successor's
+  enactment; or the official portal marks it repealed.
+- **`historical`:** a place outside Pakistan, or a pre-1947 text no
+  consolidated code publishes; from 1947-08-15.
+- **`current_unverified`:** everything else.
+
+The view stops serving `not_current` and `historical` laws from that date.
+`current_unverified` laws are still served, with their reason.
+`tools/record_status.py` records every status it cannot assert as
+`value = 'unknown'`, with the reason as its basis: commencement by
+notification, an Ordinance before the current Art. 89 text, an AJK Ordinance
+(the AJK Interim Constitution itself is not held), or a subordinate
+instrument whose enabling law is not linked. So no law is silently unknown.
+
+16 Nov 2026: 2,579 current, 6,544 current_unverified, 550 not_current, 639
+historical. Known cost: the Companies Ordinance, 1984 counts as replaced,
+although s.509 of the 2017 Act keeps its Part VIIIA in force. Questions on
+that Part abstain until partial repeals are modelled.
+
 **Territorial reach (0086, 0087).** Owner rule, 16 Nov 2026: "each provincial
 jurisdiction in their own provinces while federal is for all". With
 `nzq.territory` set, `operative_provision` serves a province's, ICT's, AJK's
