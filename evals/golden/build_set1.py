@@ -289,13 +289,16 @@ case("S1-U05", "urdu", "F-polygamy", "family", ["ur-Latn"], "roman_urdu",
       "wife consents."], necessary=[(3283, "6", 3)])
 
 # ---------------------------------------------------------------- deliberately unanswerable (5)
-case("S1-X01", "unanswerable", "F-x-gb", "property", ["en"], "latin",
-     "What does the rent law in Gilgit-Baltistan say about eviction?",
-     "Rent law of Gilgit-Baltistan", "gb", "gb", "abstain", [],
+# S1-X01 changed 16 Nov 2026: it asked for Gilgit-Baltistan rent law while the corpus held no GB law; the Gilgit-
+# Baltistan Rented Premises Act, 2010 (doc 11356) was released that day, so the question became answerable and
+# leaves the unanswerable stratum (it belongs in a later set as an answer case: s.13 eviction, s.15 appeal).
+case("S1-X01", "unanswerable", "F-x-foreign-rent-kabul", "property", ["en"], "latin",
+     "What does the law in Kabul, Afghanistan say about evicting a tenant?",
+     "Foreign rent law", "foreign", None, "abstain", [],
      abstention=dict(code="unsupported_scope", requiredClarification=[],
-                     unsafeAlternatives=["answering from Punjab or AJK rent law", "answering from federal law"],
-                     why="the corpus holds no released Gilgit-Baltistan law"),
-     negatives=[(6269, "15", 0), (11195, "13", 0)])
+                     unsafeAlternatives=["answering from Pakistani or Gilgit-Baltistan rent law"],
+                     why="the corpus is the law of Pakistan, AJK and Gilgit-Baltistan only"),
+     negatives=[(6269, "15", 0), (11356, "13", 0)])
 case("S1-X02", "unanswerable", "F-x-precedent", "routine", ["en"], "latin",
      "What did the Supreme Court decide in the Panama Papers case?",
      "A judgment's holding", "fed", None, "abstain", [],

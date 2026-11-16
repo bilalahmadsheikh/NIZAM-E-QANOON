@@ -2,7 +2,7 @@
 
 Set 1: the first 50 cases — citizen scenarios, professional lookups, procedure, Urdu/Roman Urdu and deliberately unanswerable questions.
 
-Corpus revision ffdfd32. Strata: citizen 20, professional 12, procedural 8, urdu 5, unanswerable 5.
+Corpus revision bb49c29. Strata: citizen 20, professional 12, procedural 8, urdu 5, unanswerable 5.
 Status: **draft** — A0 authoring and A3 identity resolution only. Not gold until two legal annotators (A1) and a senior advocate (A2) have reviewed it; do not tune or report on it before then.
 
 ## S1-C01 · citizen · punjab/punjab · as of 2026-11-16 · expect **answer**
@@ -429,15 +429,15 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 - **Necessary (grade 3)** — Muslim Family Laws Ordinance, 1961, s./art. 6 (current: owner_presumption_in_force; served in kp) · `1d2f70cc-9439-4d8d-b1e4-cddad521bd92` · [source](https://pakistancode.gov.pk/pdffiles/administratoreecaf3b490e2d43d2e3b50c0c068b5d7.pdf)
   > Polygamy. ⸺(1) No man, during the subsistence of an existing marriage, shall, except with the previous permission in writing of the Arbitration Council, contract another marriage, nor shall any such marriage contracted without such permission be registered und
 
-## S1-X01 · unanswerable · gb/gb · as of 2026-11-16 · expect **abstain**
+## S1-X01 · unanswerable · foreign/None · as of 2026-11-16 · expect **abstain**
 
-**Q:** What does the rent law in Gilgit-Baltistan say about eviction?
+**Q:** What does the law in Kabul, Afghanistan say about evicting a tenant?
 
-- **Hard negative (grade 0)** — Punjab Rented Premises Act, 2009, s./art. 15 (current: commenced_on_established; not served in gb) · `874d4c34-6c75-478d-982d-ea3e4d0acb9c` · [source](https://punjabcode.punjab.gov.pk/uploads/articles/THE_PUNJAB_RENTED_PREMISES_ACT_2009.doc.pdf)
+- **Hard negative (grade 0)** — Punjab Rented Premises Act, 2009, s./art. 15 (current: commenced_on_established; - in None) · `874d4c34-6c75-478d-982d-ea3e4d0acb9c` · [source](https://punjabcode.punjab.gov.pk/uploads/articles/THE_PUNJAB_RENTED_PREMISES_ACT_2009.doc.pdf)
   > Grounds for eviction – A landlord may seek eviction of the tenant if– the period of tenancy has expired; the tenant has failed to pay or tender the rent within a period of thirty days after the expiry of the period stipulated in section 7; the tenant has commi
-- **Hard negative (grade 0)** — THE AZAD KASHMIR RENT RESTRICTION ACT, 1952, s./art. 13 (not_current: repealed; not served in gb) · `4884f943-c3ac-4f72-8a0b-c5876e1316f9` · [source](https://law.gok.pk/wp-content/uploads/2024/03/THE-AZAD-KASHMIR-RENT-RESTRICTION-ACT-1952.pdf)
-  > Eviction of tenants :- A tenant in possession of a building or rented land shall not be evicted therefrom in execution of a decree passed before or after the commencement of this Act or otherwise and whether before or after the termination of the tenancy, exce
-- *Abstain:* unsupported_scope — the corpus holds no released Gilgit-Baltistan law
+- **Hard negative (grade 0)** — The Gilgit-Baltistan Rented Premises Act, 2010, s./art. 13 (current: commences_at_once; - in None) · `20b963fd-5147-46e6-9a53-039061f462d9` · [source](https://gba.gov.pk/gba/gba/tables/alldocuments/actdocx/2019-03-11%2001:43:01gb-rented-premises-act-2010.pdf)
+  > Eviction of tenant.— A tenant in possession of a building or rented land shall not be evicted there from in execution of a decree passed before or after the commencement of this Act or otherwise, and whether before or after the termination of the tenancy, exce
+- *Abstain:* unsupported_scope — the corpus is the law of Pakistan, AJK and Gilgit-Baltistan only
 
 ## S1-X02 · unanswerable · fed/None · as of 2026-11-16 · expect **abstain**
 
