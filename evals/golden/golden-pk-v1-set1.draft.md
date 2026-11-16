@@ -1,6 +1,6 @@
 # golden-pk-v1 — draft set 1 (50 cases)
 
-As of 2026-11-16; corpus revision 88719df. Strata: citizen 20, professional 12, procedural 8, urdu 5, unanswerable 5.
+As of 2026-11-16; corpus revision 0c14d20. Strata: citizen 20, professional 12, procedural 8, urdu 5, unanswerable 5.
 Status: **draft** — A0 authoring and A3 identity resolution only. Not gold until two legal annotators (A1) and a senior advocate (A2) have reviewed it; do not tune or report on it before then.
 
 ## S1-C01 · citizen · punjab/punjab · expect **answer**

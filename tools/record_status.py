@@ -97,8 +97,14 @@ CONTINUE = re.compile(r"(?:^|[.;:]\s+|\(\d+\)\s*|\b(?:The|the)\s+)"
 def reason_code(reason: str, kind: str) -> str:
     """The basis an 'unknown' status assertion carries (0088): a stable code for why no status could be asserted."""
     r = reason.strip()
-    if r == "kind_not_asserted":
-        return f"subordinate_{kind}_enabling_law_not_linked" if kind != "ordinance" else "ordinance_not_assessed"
+    if r.startswith("kind_not_asserted"):
+        if kind == "ordinance":
+            return "ordinance_not_assessed"
+        # 0089: the enabling law's own currency, where the instrument's enacting formula links one
+        parent = r.split(":", 1)[1] if ":" in r else None
+        return f"subordinate_{kind}_enabling_law_" + {"current": "in_force", "current_unverified": "unverified",
+                                                       "not_current": "not_current",
+                                                       "historical": "historical"}.get(parent or "", "not_linked")
     if r.startswith("not_commenced:"):
         r = r.split(":", 1)[1].strip()
         if r.startswith("silent:"):
@@ -295,6 +301,9 @@ def main() -> int:
         cur.execute("""SELECT instrument_id::text, enacted_on FROM (SELECT id AS instrument_id, enacted_on::text
                          FROM v_release_instrument) e""")
         enacted_of = dict(cur.fetchall())
+        cur.execute("""SELECT d.delegated_instrument_id::text, c.currency FROM v_delegation_current d
+                         JOIN v_instrument_currency c ON c.instrument_id = d.enabling_instrument_id""")
+        parent_currency = dict(cur.fetchall())
         cur.execute("""SELECT source_observation_id, expression_ordinal, value, basis FROM v_instrument_metadata_current
                         WHERE field = 'status'""")
         standing = {(r[0], r[1]): (r[2], r[3]) for r in cur.fetchall()}
@@ -376,7 +385,7 @@ def main() -> int:
                                    quote=f"latest lapse {latest}"))
                 continue
             if kind not in KINDS:
-                reason = "kind_not_asserted"
+                reason = "kind_not_asserted" + (f":{parent_currency[iid]}" if iid in parent_currency else "")
             elif year is None:
                 reason = "no_year"
             elif year < INDEPENDENCE_YEAR and host not in CONSOLIDATED_CODES:

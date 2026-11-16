@@ -1089,6 +1089,30 @@ the record behind each edge.
   the destination is the repealed instrument. Validity runs from the repeal
   date.
 
+- **`empowers` (0089, 16 Nov 2026).** Built from `v_delegation_current`.
+  The source is the enabling section, or the parent law when the section does
+  not resolve. The destination is the subordinate instrument.
+  `tools/record_delegation.py` reads the instrument's own enacting formula
+  ("In exercise of the powers conferred by section 25 of the Balochistan Civil
+  Servants Act, 1974 …"). It records a link only when the named law and year
+  resolve to one released law: same jurisdiction first, else the federation.
+  Several texts of one law count as one: the consolidated text wins over an
+  as-made copy; otherwise the fullest text, with `texts_of_one_law` in the
+  evidence.
+
+  First run: 1,042 of 2,600 subordinate instruments linked to 292 parent
+  laws, 1,003 of them to the enabling section. 1,311 print no readable
+  formula; 247 name a law not held. The same tool records "in supersession of
+  the … Rules, YYYY" (not partial) as `instrument_supersession` basis
+  `supersession_clause`. That gave one row: the corpus seldom holds the
+  superseded instrument.
+
+  The currency reason of a subordinate instrument names its parent's currency.
+  A parent that is `historical` makes the instrument historical (0090). A
+  parent that is `not_current` does not: under GCA s.24, rules survive a
+  repeal-and-re-enactment. So it stays `current_unverified`, with the reason
+  `…_enabling_law_not_current`.
+
 An edge appears only when both ends resolve. First measured, 14 Nov 2026: 4,620
 `amends` edges (3,242 to a provision) and 129 `repeals` edges, all from a
 clause. `contains` is the ltree. Supersession and consolidated twins relate

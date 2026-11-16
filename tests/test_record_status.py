@@ -81,6 +81,9 @@ def test_a_law_continuing_an_ordinance_is_found():
 
 def test_every_unknown_carries_a_stable_reason_code():
     assert st.reason_code("kind_not_asserted", "rules") == "subordinate_rules_enabling_law_not_linked"
+    assert st.reason_code("kind_not_asserted:current", "rules") == "subordinate_rules_enabling_law_in_force"
+    assert st.reason_code("kind_not_asserted:not_current", "regulation") == \
+        "subordinate_regulation_enabling_law_not_current"
     assert st.reason_code("not_commenced: partial_or_notified", "act") == "commencement_by_notification_or_in_parts"
     assert st.reason_code("not_commenced: silent: default_not_applicable", "act") == \
         "silent_on_commencement_default_not_applicable"
