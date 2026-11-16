@@ -1000,6 +1000,30 @@ The presumption is a row, not a rewrite. Finding a repeal later supersedes it
 in the usual way; to withdraw the presumption wholesale, run the tool with
 `OWNER_PRESUMPTION = False`, which records `unknown` again under the same keys.
 
+**Known costs, found while authoring golden sets 2–4 (16 Nov 2026).**
+
+1. **A repeal the title match missed.** The AJK Rent Restriction Act, 1986
+   s.26 repeals "the Azad Jammu and Kashmir Rent Restriction Act, 1952", but
+   both held texts of that law are titled "The Azad Kashmir Rent Restriction
+   Act, 1952". No repeal was matched, and the presumption made the 1952 Act
+   current. It is now recorded from the page-read clause
+   (`tools/evidence/ajk-rent-1952-repealed-by-1986-2026-11-16.sql`) and is
+   `not_current` from 1986-03-05.
+2. **A repeal confined to one territory is not modelled.** The ICT, Punjab and
+   Balochistan child-marriage Acts each repeal the Child Marriage Restraint
+   Act, 1929 "to the extent of" their own territory. The Punjab Defamation
+   Act, 2024 repeals the Defamation Ordinance, 2002 in Punjab. The federal
+   texts are still served there.
+
+   The serving model also reads no federal extent clause. The Hindu Marriage
+   Act, 2017 s.1 excludes Sindh, yet it is served in Sindh.
+
+   Golden set 3 records each of these as a trap the system serves.
+3. **There is no text history before capture.** Every `provision_version`
+   starts at its source capture (June–October 2026), so `operative_provision`
+   serves nothing at an earlier `as_of`. INV-5 holds from capture forward
+   only. The point-in-time history docs/03 §2 calls for is still to build.
+
 **Ordinance lapse, widened (0091, 0092; 16 Nov 2026).** The Eighteenth
 Amendment's own text is held as doc 4434. Its s.27 substitutes "for the words
 'four months' the words 'one hundred and twenty days'" in Art. 89(2)(a)(i)

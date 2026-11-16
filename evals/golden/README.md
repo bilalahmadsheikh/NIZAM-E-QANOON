@@ -7,18 +7,22 @@ Nothing in retrieval (L3) or generation (L4) can be tuned or claimed without it.
 
 | File | What it is |
 |---|---|
-| `golden-pk-v1-set1.draft.jsonl` | **Set 1**: 50 cases, one `LegalEvalCase` record per line (docs/10 §5) |
-| `golden-pk-v1-set1.draft.md` | The same 50 cases in readable form: question, propositions, every expected provision with its text excerpt, status and official PDF link |
-| `build_set1.py` | Rebuilds set 1 from the database and checks every case: each expected provision must resolve and be servable on its date in its territory |
+| `golden-pk-v1-setN.draft.jsonl` | **Sets 1–4**: 50 cases each (200 in all), one `LegalEvalCase` record per line (docs/10 §5) |
+| `golden-pk-v1-setN.draft.md` | The same cases in readable form: question, propositions, every expected provision with its text excerpt, status and official PDF link; at the end, what the system currently gets wrong on that set |
+| `build_setN.py` | The cases of set N, written as data; running it rebuilds the set from the database and checks every case |
+| `golden_common.py` | The shared builder and its checks (below) |
+| `peek.py` | Reads a provision's text from the database while writing a case: `python evals/golden/peek.py 4441:379 4501:154` |
 | `show_negatives.py` | Lists each case's hard negatives (trap laws) and whether the system would wrongly serve them |
 | `make_review_sheets.py` | Makes one blank review sheet per annotator |
 | `agreement.py` | Compares two filled sheets: agreement, Cohen's kappa, list of disagreements |
 | `apply_review.py` | Writes the reviewed result into a new `*.reviewed.jsonl` |
 | `review/` | Review sheets and disagreement lists |
 
-### Set 1 composition
+### What each set covers
 
-| Stratum | Cases | Example |
+Every set has the same mix of strata:
+
+| Stratum | Cases per set | Example |
 |---|---|---|
 | Citizen scenario | 20 | "My landlord in Lahore wants me out — on what grounds?" |
 | Professional lookup | 12 | "CrPC provision on bail in non-bailable offences" |
@@ -26,10 +30,65 @@ Nothing in retrieval (L3) or generation (L4) can be tuned or claimed without it.
 | Urdu / Roman Urdu | 5 | "Talaq dene ke baad shohar ko kis ko notice dena zaroori hai?" |
 | Deliberately unanswerable | 5 | "What does the rent law in Gilgit-Baltistan say?" (the system must decline) |
 
-The cases cover the federation, Punjab, Sindh, KP, Balochistan, ICT and AJK.
-Some cases carry **traps**: laws that are no longer current, such as the
-Companies Ordinance 1984 or the Prevention of Electronic Crimes Ordinance 2008.
-The system must not serve these as current law.
+| Set | Theme |
+|---|---|
+| 1 | A first sweep: rent, family, labour, consumer, the major codes, tax and the Constitution |
+| 2 | The core codes (PPC, CrPC, CPC, Contract Act, Qanun-e-Shahadat, Limitation Act, TPA, Specific Relief Act), personal law and online offences |
+| 3 | Provinces, territories and time: the same question in different provinces, and the same question at two dates (below) |
+| 4 | Work, money, business, rights and regulation, including subordinate Rules (Family Courts Rules, the Punjab RTI and consumer Rules, the ICT consumer Rules) |
+
+Together the sets cover the federation, Punjab, Sindh, KP, Balochistan, ICT and AJK.
+
+**Traps.** Many cases name hard negatives: laws a system must not serve for
+that question. These are laws that have ended, another province's law, or
+another territory's law. Examples are the Companies Ordinance 1984 for a
+question about current company law, Punjab rent law for an Islamabad tenant,
+and the Hindu Marriage Act 2017 in Sindh (that Act's own s.1 excludes Sindh).
+
+**Temporal pairs (set 3).** Some questions are asked twice, today and at an
+earlier date:
+- Punjab child marriage: in June 2020 a girl was a "child" only under sixteen;
+  today a child is anyone under eighteen;
+- Punjab defamation: the Defamation Ordinance 2002 in January 2020, the Punjab
+  Defamation Act 2024 now;
+- anti-rape crisis cells: the Anti-Rape Ordinance 2020 in March 2021, the 2021
+  Act now.
+
+### How each case is checked (`golden_common.py`)
+
+Every build reads each expected provision from the database. Its text, status
+and official link are never typed by hand (INV-1). The build then checks:
+
+1. **The provision exists and is served.** Each expected provision must
+   resolve to exactly one provision and be served on the case's date in the
+   case's territory.
+2. **The text says what the answer says.** Every case in sets 2–4 lists the
+   key words and numbers its answer depends on ("fifteen days", "one million"
+   and so on). The build fails unless they appear in the provision's own text.
+   Every answer was written from the provision text read with `peek.py`, never
+   from memory.
+3. **Provincial texts are compared.** Punjab, KP and Balochistan publish their
+   own official copies of several federal codes (`PROVINCIAL_COPY`). For a
+   case in such a province, the builder compares the two texts:
+   - nearly identical: the provincial copy is recorded as an equivalent text
+     (grade 3), so a system citing either one is not marked wrong;
+   - different: the build fails until the author decides which text answers.
+
+   This check corrected set 1 case S1-R03: Punjab's khula provision differs
+   materially from the federal one.
+4. **Families stay inside their set.** A family must not appear in two sets.
+
+Two kinds of finding go into a report section of the readable file. They are
+not failures, because the gold answer is right either way; they are what a
+retrieval run is expected to get wrong until the system is fixed:
+
+- **A trap the system serves.** For example, the federal Child Marriage
+  Restraint Act 1929 is still served in Punjab, ICT and Balochistan, although
+  each has repealed it for its own territory. Repeals confined to one
+  territory are not modelled yet.
+- **A past date the system cannot serve.** Every held text version is valid
+  only from the day it was captured (June–October 2026). So the database
+  cannot yet answer "as at 2020" from text (INV-5 point-in-time history).
 
 Language variants of a question share the same `familyId` as their English
 case. They count as one statistical cluster and always go in the same split
@@ -37,11 +96,11 @@ case. They count as one statistical cluster and always go in the same split
 
 ## Status: DRAFT
 
-Set 1 has passed stage **A0** (cases authored without system output) and stage
-**A3** (every provision is resolved to a stable ID with its official source).
-Stages **A1** and **A2**, the legal review, have **not** been done.
+All four sets have passed stage **A0** (cases authored without system output)
+and stage **A3** (every provision is resolved to a stable ID with its official
+source). Stages **A1** and **A2**, the legal review, have **not** been done.
 
-Until they are done, the set must not be used to tune anything or to report
+Until they are done, the sets must not be used to tune anything or to report
 any number. Every record says so in `review.status`.
 
 ## How to review (docs/10 §5)
@@ -59,12 +118,19 @@ conflicts of interest in their first `your_notes` cell (docs/10 §5).
 
 ### Step 1: make the sheets (data engineer)
 
+The blank sheets for all four sets are already in `review/`. To make them for
+a new set:
+
 ```
-python evals/golden/make_review_sheets.py evals/golden/golden-pk-v1-set1.draft.jsonl --annotators A B
+python evals/golden/make_review_sheets.py evals/golden/golden-pk-v1-set2.draft.jsonl --annotators A B
 ```
 
-This writes `review/golden-pk-v1-set1-annotator-A.csv` and `…-B.csv`. Give one
-to each annotator. Open them in Excel, Google Sheets or LibreOffice.
+This writes `review/golden-pk-v1-set2-annotator-A.csv` and `…-B.csv`. It never
+overwrites a sheet that already exists. Give one sheet to each annotator. Open
+them in Excel, Google Sheets or LibreOffice.
+
+The commands below use set 1; replace `set1` with the set being reviewed.
+Review one set at a time.
 
 ### Step 2: annotate (each annotator alone, stage A1)
 
@@ -133,18 +199,21 @@ Assign every family (`familyId`) to one split: Fit, Calibration, Locked release
 or Sealed challenge (docs/10 §4). Record a content digest, and never move a
 family between splits afterwards.
 
-## Sets 2, 3 and 4
+## Adding sets 5 to 10
 
-The target is **500** independently authored scenarios (docs/10 §4); each set
-adds 50 (or more).
+The target is **500** independently authored scenarios (docs/10 §4); 200 are
+done.
 
 For each new set:
-- copy `build_set1.py` to `build_set2.py` and author new cases without looking
+- copy `build_set4.py` to `build_set5.py` and write new cases without looking
   at system output;
+- read every provision with `peek.py` and give every answer case a `check`;
 - keep the strata mix (40% citizen, 25% professional, 15% procedural, 10%
   Urdu/Roman Urdu, 10% unanswerable);
-- widen into Rules, Notifications, ICT, AJK, temporal pairs (the same question
-  at two dates) and jurisdiction pairs (the same question in two provinces).
+- use family ids prefixed `F5-` so they stay inside the set.
 
 A new case must not paraphrase an existing family. If it does, it joins that
 family.
+
+Build all sets with `python evals/golden/build_setN.py` for each N; every set
+must report `problems: 0`.

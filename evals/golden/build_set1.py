@@ -14,30 +14,17 @@ proposal for the annotators to confirm or change; the set must not be used to tu
 """
 from __future__ import annotations
 
-import hashlib
-import json
-import subprocess
 import sys
-from datetime import date
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[2]
-sys.path.insert(0, str(ROOT))
-
-AS_OF = "2026-11-16"
-OUT = ROOT / "evals/golden/golden-pk-v1-set1.draft.jsonl"
-REPORT = ROOT / "evals/golden/golden-pk-v1-set1.draft.md"
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from golden_common import CaseSet, build  # noqa: E402
 
 # unit: (document_id, path or section label, grade 0-3). A path contains a dot; otherwise it is a section label.
-C = []
-
-
-def case(cid, stratum, family, risk, lang, script, text, meaning, jurisdiction, territory, outcome, props,
-         necessary=(), relevant=(), negatives=(), abstention=None, facts=(), omitted=()):
-    C.append(dict(cid=cid, stratum=stratum, family=family, risk=risk, lang=lang, script=script, text=text,
-                  meaning=meaning, jurisdiction=jurisdiction, territory=territory, outcome=outcome, props=props,
-                  necessary=list(necessary), relevant=list(relevant), negatives=list(negatives),
-                  abstention=abstention, facts=list(facts), omitted=list(omitted)))
+# Set 1 predates the per-case text checks (sets 2-4 carry them), so they are not required here; it shares the rest of
+# the builder, including the provincial-text comparison (golden_common.PROVINCIAL_COPY).
+S = CaseSet("set1", require_checks=False)
+case = S.case
 
 
 # ---------------------------------------------------------------- citizen scenarios (20)
@@ -127,7 +114,7 @@ case("S1-C15", "citizen", "F-sale-registration", "property", ["en"], "latin",
      "Form of sale of immovable property and compulsory registration", "fed", "punjab", "answer",
      ["A sale of tangible immovable property of one hundred rupees or more can be made only by a registered "
       "instrument; such documents are compulsorily registrable."],
-     necessary=[(3991, "54", 3)], relevant=[(3876, "17", 2)])
+     necessary=[(3991, "54", 3)], relevant=[(3876, "17", 2)], equivalent=[(4290, "54")])
 case("S1-C16", "citizen", "F-specific-performance", "property", ["en"], "latin",
      "The seller took my advance for a house and now refuses to transfer it. Can a court make him go through with it?",
      "Specific performance of a contract for sale", "fed", "sindh", "conditional",
@@ -139,7 +126,9 @@ case("S1-C17", "citizen", "F-specific-performance", "deadline", ["en"], "latin",
      "Limitation period for a suit for specific performance", "fed", "punjab", "answer",
      ["The period is three years, running from the date fixed for performance or, if none, from when the plaintiff "
       "has notice that performance is refused."],
-     necessary=[(4237, "fed.act.y1908_o107.pt_VI_n10_1.s_113", 3)])
+     necessary=[(4237, "fed.act.y1908_o107.pt_VI_n10_1.s_113", 3)],
+     # the Punjab text prints the same Article 113 (its unit also runs on into Arts. 114-115: a segmentation defect)
+     equivalent=[(4006, "punjab.act.y1908_IX_o2075.pt_V.sch_FIRST_SCHEDULE.pt_VI.cl_113")])
 case("S1-C18", "citizen", "F-rti-kp", "routine", ["en"], "latin",
      "How do I ask a government department in Peshawar for information it holds?",
      "Right to information and the Public Information Officer in KP", "kp", "kp", "answer",
@@ -154,10 +143,14 @@ case("S1-C19", "citizen", "F-custody", "family", ["en"], "latin",
      necessary=[(4283, "17", 3)])
 case("S1-C20", "citizen", "F-rent-ajk", "property", ["en"], "latin",
      "My landlord in Muzaffarabad wants to evict me. What is the procedure in Azad Kashmir?",
-     "Eviction of tenants under the Azad Kashmir Rent Restriction Act, 1952", "ajk", "ajk", "answer",
-     ["A tenant may be evicted only in accordance with section 13: the landlord applies to the Deputy Commissioner, "
-      "who may direct eviction on the grounds it lists (e.g. non-payment within fifteen days)."],
-     necessary=[(11195, "13", 3)], relevant=[(10096, "13", 3)], negatives=[(6269, "15", 0)])
+     "Eviction of tenants under the Azad Jammu and Kashmir Rent Restriction Act, 1986", "ajk", "ajk", "answer",
+     ["A tenant may be evicted only in accordance with section 14 of the AJK Rent Restriction Act, 1986: the landlord "
+      "applies to the Controller, who may direct eviction on the grounds it lists (e.g. rent not paid within fifteen "
+      "days after the time fixed in the tenancy agreement)."],
+     # corrected 16 Nov 2026 while authoring set 2: s.26 of the 1986 Act repeals the 1952 Act (both held texts of it
+     # are now hard negatives; tools/evidence/ajk-rent-1952-repealed-by-1986-2026-11-16.sql)
+     necessary=[(10394, "ajk.act.y1986_XIII_o14327.s_14", 3)],
+     negatives=[(11195, "13", 0), (10096, "13", 0), (6269, "15", 0)])
 
 # ---------------------------------------------------------------- professional lookups (12)
 case("S1-P01", "professional", "F-bail-nonbailable", "liberty", ["en"], "latin",
@@ -229,11 +222,14 @@ case("S1-R02", "procedural", "F-sale-registration", "property", ["en"], "latin",
                 "transferring interests in immovable property of one hundred rupees and upwards."],
      necessary=[(3876, "17", 3)])
 case("S1-R03", "procedural", "F-khula", "family", ["en"], "latin",
-     "How does a wife get khula through the family court?", "Pre-trial and khula in the Family Courts Act, 1964",
-     "fed", "punjab", "answer",
-     ["At the pre-trial the family court attempts reconciliation; in a suit for dissolution, if reconciliation fails, "
-      "the court passes a decree for dissolution (khula) as section 10 provides."],
-     necessary=[(2944, "10", 3)], relevant=[(3100, "2", 2)])
+     "How does a wife get khula through the family court?",
+     "Pre-trial and khula under the Punjab text of the Family Courts Act, 1964", "punjab", "punjab", "answer",
+     ["At the pre-trial the Family Court attempts a compromise; in a suit for dissolution of marriage, if "
+      "reconciliation fails, it shall immediately decree dissolution, and in a khula may direct the wife to "
+      "surrender up to fifty percent of her deferred dower or up to twenty-five percent of her admitted prompt dower."],
+     # corrected 16 Nov 2026: the Punjab text of s.10 (doc 4081) differs materially from the federal text (doc 2944,
+     # which restores the whole Haq Mehr); in Punjab the Punjab text answers
+     necessary=[(4081, "10", 3)], relevant=[(2944, "10", 1), (3100, "2", 2)])
 case("S1-R04", "procedural", "F-khula", "family", ["en"], "latin",
      "On what grounds can a Muslim wife get a court decree dissolving her marriage?",
      "Grounds under the Dissolution of Muslim Marriages Act, 1939", "fed", "kp", "answer",
@@ -268,7 +264,8 @@ case("S1-U01", "urdu", "F-talaq-notice", "family", ["ur-Latn"], "roman_urdu",
      "Talaq dene ke baad shohar ko kis ko notice dena zaroori hai?",
      "Notice of talaq (Roman Urdu variant of S1-C04)", "fed", "punjab", "answer",
      ["After pronouncing talaq a husband must give the Chairman written notice and supply a copy to the wife."],
-     necessary=[(3283, "7", 3)])
+     # the Punjab text of s.7 differs elsewhere (the federal Fiqah-e-Jafria proviso) but prints this duty identically
+     necessary=[(3283, "7", 3)], equivalent=[(3910, "7")])
 case("S1-U02", "urdu", "F-bail-nonbailable", "liberty", ["ur-Latn"], "roman_urdu",
      "Na-qabil-e-zamanat jurm mein zamanat kab mil sakti hai?",
      "Bail in non-bailable offences (Roman Urdu variant of S1-P01)", "fed", "sindh", "answer",
@@ -281,7 +278,10 @@ case("S1-U03", "urdu", "F-rent-punjab", "property", ["ur"], "arabic",
 case("S1-U04", "urdu", "F-cheque", "money", ["ur"], "arabic",
      "چیک باؤنس ہونے پر کیا سزا ہے؟",
      "Dishonoured cheque (Urdu variant of S1-C10)", "fed", "punjab", "answer",
-     ["Section 489-F PPC punishes dishonestly issuing a cheque that is dishonoured."], necessary=[(4441, "489F", 3)])
+     ["Section 489-F PPC punishes dishonestly issuing a cheque that is dishonoured."], necessary=[(4441, "489F", 3)],
+     # the Punjab Code text holds two units labelled 489-F (prize bonds, and the cheque offence as a clause): the
+     # cheque one is named by path
+     equivalent=[(4458, "punjab.act.y1860_XLV_o2160.ch_XVIII.cl_489_F")])
 case("S1-U05", "urdu", "F-polygamy", "family", ["ur-Latn"], "roman_urdu",
      "Kya doosri shadi ke liye pehli biwi ki ijazat zaroori hai?",
      "Permission for a second marriage (Roman Urdu variant of S1-C03)", "fed", "kp", "answer",
@@ -321,131 +321,6 @@ case("S1-X05", "unanswerable", "F-x-nonlegal", "routine", ["en"], "latin",
                      why="not Pakistani statute law"))
 
 
-def resolve(cur, doc: int, ref: str) -> dict | None:
-    cur.execute("SELECT id, coalesce(display_title, short_title), status::text, source_url, jurisdiction::text, year "
-                "FROM v_release_instrument WHERE document_id = %s", (doc,))
-    r = cur.fetchone()
-    if not r:
-        return None
-    iid, title, status, url, jur, year = r
-    if "." in ref:
-        cur.execute("""SELECT p.id::text, p.path::text, p.label, p.heading FROM provision p
-                        WHERE p.instrument_id = %s AND p.is_active AND p.path::text = %s""", (iid, ref))
-    else:
-        cur.execute("""SELECT p.id::text, p.path::text, p.label, p.heading FROM provision p
-                        WHERE p.instrument_id = %s AND p.is_active AND p.label = %s
-                          AND p.kind::text IN ('section', 'article', 'order', 'schedule')
-                        ORDER BY nlevel(p.path), p.ordinal LIMIT 1""", (iid, ref))
-    p = cur.fetchone()
-    if not p:
-        return None
-    pid, path, label, heading = p
-    cur.execute("""SELECT string_agg(coalesce(v.text_en, ''), ' ' ORDER BY d.ord) FROM (
-                     SELECT p2.id, p2.ordinal AS ord FROM provision p2
-                      WHERE p2.instrument_id = %s AND p2.is_active AND (p2.path <@ %s::ltree)) d
-                     JOIN provision_version v ON v.provision_id = d.id AND upper_inf(v.validity)""", (iid, path))
-    text = " ".join((cur.fetchone()[0] or "").split())
-    cur.execute("SELECT currency, reason FROM v_instrument_currency WHERE instrument_id = %s", (iid,))
-    currency, reason = cur.fetchone() or (None, None)
-    return dict(provisionId=pid, path=path, label=label, heading=heading, instrumentId=str(iid), documentId=doc,
-                instrument=title, jurisdiction=jur, year=year, status=status, currency=currency,
-                currencyReason=reason, officialUrl=url,
-                textSha256=hashlib.sha256(text.encode()).hexdigest(), excerpt=text[:400])
-
-
-def operative(cur, unit: dict, territory: str | None) -> bool:
-    cur.execute("SELECT set_config('nzq.as_of', %s, false)", (AS_OF,))
-    cur.execute("SELECT set_config('nzq.territory', %s, false)", (territory or "",))
-    # a section whose words sit in its subsections has no text version of its own, so operative_provision serves its
-    # descendants, not the section row: the unit is servable when it or any provision under it is served
-    cur.execute("""SELECT EXISTS (SELECT 1 FROM operative_provision
-                                   WHERE instrument_id = %s AND path <@ %s::ltree)""",
-                (unit["instrumentId"], unit["path"]))
-    ok = cur.fetchone()[0]
-    cur.execute("RESET nzq.territory")
-    return ok
-
-
-def main() -> int:
-    from nizam.storage.db import connect
-    rev = subprocess.run(["git", "rev-parse", "--short", "HEAD"], cwd=ROOT, capture_output=True, text=True).stdout.strip()
-    problems, lines, rows = [], [], []
-    with connect() as conn, conn.cursor() as cur:
-        cur.execute("SET statement_timeout = 0")
-        for c in C:
-            units = {}
-            for kind in ("necessary", "relevant", "negatives"):
-                units[kind] = []
-                for doc, ref, grade in c[kind]:
-                    u = resolve(cur, doc, ref)
-                    if u is None:
-                        problems.append(f"{c['cid']}: {kind} unit {doc}/{ref} does not resolve"); continue
-                    territory = c["territory"] if c["territory"] not in (None, "gb") else None
-                    u["grade"] = grade
-                    u["operativeAtAsOfInTerritory"] = operative(cur, u, c["territory"]) if c["territory"] else None
-                    if kind == "necessary" and c["outcome"] != "abstain" and not u["operativeAtAsOfInTerritory"]:
-                        problems.append(f"{c['cid']}: necessary unit {doc}/{ref} is NOT served by operative_provision "
-                                        f"at {AS_OF} in {c['territory']}")
-                    units[kind].append(u)
-            rec = {
-                "caseId": c["cid"], "datasetVersion": "golden-pk-v1-draft/set1", "familyId": c["family"],
-                "riskClass": c["risk"], "languages": c["lang"], "stratum": c["stratum"],
-                "question": {"text": c["text"], "script": c["script"], "intendedMeaning": c["meaning"],
-                             "suppliedFacts": c["facts"], "omittedFacts": c["omitted"]},
-                "scope": {"jurisdiction": c["jurisdiction"], "territory": c["territory"], "asOf": AS_OF},
-                "expectedOutcome": c["outcome"],
-                "propositions": [{"id": f"{c['cid']}-p{i + 1}", "text": t, "materiality": "material",
-                                  "necessaryEvidence": [u["provisionId"] for u in units["necessary"]]}
-                                 for i, t in enumerate(c["props"])],
-                "retrievalGold": {"necessaryUnits": units["necessary"], "relevantUnits": units["relevant"],
-                                  "hardNegatives": units["negatives"]},
-                "abstention": c["abstention"],
-                "provenance": {"officialUrls": sorted({u["officialUrl"] for k in units for u in units[k]
-                                                       if u.get("officialUrl")}),
-                               "corpusRevision": rev, "labelledAt": date.today().isoformat()},
-                "review": {"annotatorA": "claude (draft: A0 authoring + A3 identity resolution)", "annotatorB": None,
-                           "agreement": None, "adjudicator": None, "reasons": [],
-                           "status": "draft — not gold until A1/A2 (two legal annotators, senior advocate)"},
-            }
-            rows.append(rec)
-    with OUT.open("w", encoding="utf-8") as f:
-        for r in rows:
-            f.write(json.dumps(r, ensure_ascii=False) + "\n")
-    # readable report: query and its gold results
-    from collections import Counter
-    strata = Counter(r["stratum"] for r in rows)
-    lines.append(f"# golden-pk-v1 — draft set 1 ({len(rows)} cases)\n")
-    lines.append(f"As of {AS_OF}; corpus revision {rev}. Strata: " + ", ".join(f"{k} {v}" for k, v in strata.items()) + ".")
-    lines.append("Status: **draft** — A0 authoring and A3 identity resolution only. Not gold until two legal annotators "
-                 "(A1) and a senior advocate (A2) have reviewed it; do not tune or report on it before then.\n")
-    for r in rows:
-        q = r["question"]
-        lines.append(f"## {r['caseId']} · {r['stratum']} · {r['scope']['jurisdiction']}/{r['scope']['territory']} · "
-                     f"expect **{r['expectedOutcome']}**\n")
-        lines.append(f"**Q:** {q['text']}\n")
-        for p in r["propositions"]:
-            lines.append(f"- *Proposition:* {p['text']}")
-        for kind, label in (("necessaryUnits", "Necessary"), ("relevantUnits", "Relevant"),
-                            ("hardNegatives", "Hard negative")):
-            for u in r["retrievalGold"][kind]:
-                served = {True: "served", False: "not served", None: "-"}[u["operativeAtAsOfInTerritory"]]
-                lines.append(f"- **{label} (grade {u['grade']})** — {u['instrument']}, s./art. {u['label']} "
-                             f"({u['currency']}: {u['currencyReason']}; {served} in {r['scope']['territory']}) · "
-                             f"`{u['provisionId']}` · "
-                             f"[source]({u['officialUrl']})\n  > {u['excerpt'][:260]}")
-        if r["abstention"]:
-            lines.append(f"- *Abstain:* {r['abstention']['code']} — {r['abstention']['why']}")
-        lines.append("")
-    if problems:
-        lines.append("## Problems found while building\n" + "\n".join(f"- {p}" for p in problems))
-    REPORT.write_text("\n".join(lines), encoding="utf-8")
-    print(f"{len(rows)} cases -> {OUT}")
-    print(dict(strata))
-    print("problems:", len(problems))
-    for p in problems:
-        print("  ", p)
-    return 0 if not problems else 1
-
-
 if __name__ == "__main__":
-    raise SystemExit(main())
+    raise SystemExit(build(S, "Set 1: the first 50 cases — citizen scenarios, professional lookups, procedure, "
+                              "Urdu/Roman Urdu and deliberately unanswerable questions."))
