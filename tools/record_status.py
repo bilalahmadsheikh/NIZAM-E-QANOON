@@ -178,6 +178,16 @@ def add_months(d: date, months: int) -> date:
 # named ones: 'the ... Ordinance, 1987 ... or its succeeding Ordinance issued from time to time'). Art. 51 continues
 # only laws in force before the Constitution commenced (1974): Ordinances of 1975 onward.
 AJK_FROM_YEAR = 1975
+# Owner decision, 16 Nov 2026: "i want all laws to be citable i don't research online read for remaining law or
+# considered them in force". A law whose status no evidence settles is presumed in force (basis
+# owner_presumption_in_force, the unresolved reason kept as evidence.presumed_over). Never presumed: a law the
+# evidence already places outside current law -- a standing repeal, a portal repeal note, a pre-1947 text no
+# consolidated code publishes, a rule made under a historical law (and, outside this tool, a lapse, a supersession, a
+# law of a place outside Pakistan: v_instrument_currency reads those first).
+OWNER_PRESUMPTION = True
+OWNER_DECISION = ("owner 16 Nov 2026: 'i want all laws to be citable i don't research online read for remaining law "
+                  "or considered them in force'")
+NOT_PRESUMED = {"statutory_repeal_stands", "portal_repeal_note", "pre_independence_not_from_a_consolidated_code"}
 # A continued Ordinance (Art. 270A, Art. 270AA, an earlier regime's 'existing law' Art. 268 keeps) that a held law
 # amends in or after this year was alive when amended: 270A's continues laws in force at 1985; 270AA's those 'still in
 # force' at the Eighteenth Amendment (2010); Art. 268's those in force at 14 August 1973.
@@ -392,8 +402,35 @@ def main() -> int:
 
         def record_unknown(obs, ordinal, iid, reason, kind):
             """0088: an expression this tool cannot assert gets a standing 'unknown' with WHY as its basis, so its
-            currency (v_instrument_currency) and every operative row say so. Replaces the old silent withdrawal."""
+            currency (v_instrument_currency) and every operative row say so. Replaces the old silent withdrawal.
+            Owner decision 16 Nov 2026 (OWNER_PRESUMPTION): such a law is presumed in force instead -- value
+            'in_force', basis 'owner_presumption_in_force', the reason kept in the evidence -- unless the reason is
+            itself evidence that the law is no longer law (NOT_PRESUMED)."""
             code = reason_code(reason, kind)
+            if OWNER_PRESUMPTION and code not in NOT_PRESUMED and not code.endswith("_enabling_law_historical"):
+                if standing.get((obs, ordinal)) == ("in_force", "owner_presumption_in_force"):
+                    counts["presumed_unchanged"] += 1; return
+                cur.execute("""SELECT p.first_block, p.first_page, concat_ws(' ', p.heading, v.text_en)
+                                 FROM provision p
+                                 LEFT JOIN provision_version v ON v.provision_id = p.id AND upper_inf(v.validity)
+                                WHERE p.instrument_id = %s AND p.is_active AND p.first_block IS NOT NULL
+                                ORDER BY p.ordinal, p.path LIMIT 1""", (iid,))
+                fb = cur.fetchone()
+                if not fb:
+                    counts["presumed_no_source_block"] += 1; return
+                cur.execute("""INSERT INTO instrument_metadata_assertion
+                                 (source_observation_id, expression_ordinal, field, value, assertion, basis,
+                                  source_block_id, source_page, quote, method, evidence, recorded_by)
+                               VALUES (%s, %s, 'status', 'in_force', 'asserted', 'owner_presumption_in_force',
+                                       %s, %s, %s, %s, %s::jsonb, 'claude')""",
+                            (obs, ordinal, fb[0], fb[1], " ".join((fb[2] or "").split())[:300] or "(first provision)",
+                             METHOD, json.dumps(dict(reviewer_type="owner", owner_decision=OWNER_DECISION,
+                                                     presumed_over=code, kind=kind,
+                                                     screened_on=date.today().isoformat(),
+                                                     meaning="no evidence settles this law's status; presumed in force "
+                                                             "by owner decision, not by evidence"))))
+                counts["presumed_in_force"] += 1
+                return
             if standing.get((obs, ordinal)) == ("unknown", code):
                 counts["unknown_unchanged"] += 1; return
             cur.execute("""SELECT p.first_block, p.first_page, concat_ws(' ', p.heading, v.text_en)

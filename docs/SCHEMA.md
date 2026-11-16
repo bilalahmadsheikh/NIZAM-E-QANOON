@@ -976,6 +976,30 @@ historical. Known cost: the Companies Ordinance, 1984 counts as replaced,
 although s.509 of the 2017 Act keeps its Part VIIIA in force. Questions on
 that Part abstain until partial repeals are modelled.
 
+**Owner presumption of force (16 Nov 2026, as built).** Owner decision: "i
+don't research online read for remaining law or considered them in force but
+everything must be citable and referanceable". `tools/record_status.py`
+(`OWNER_PRESUMPTION = True`) now records each status it cannot assert from a
+text as `value = 'in_force'`, with basis `owner_presumption_in_force`. The
+evidence carries `reviewer_type: "owner"`, the decision quoted, and
+`presumed_over`: the reason code that would otherwise have been recorded as
+`unknown`.
+
+The presumption never overrides evidence, so some codes are not presumed
+(`NOT_PRESUMED`):
+- a statutory repeal that stands;
+- a portal repeal note;
+- a pre-independence text that no consolidated code publishes;
+- any `…_enabling_law_historical`.
+
+Lapse, replacement and repeal rows still win, because currency reads them
+before status. First run: 5,886 presumed. Serving snapshot after it: 8,253
+current, 0 current_unverified, 1,362 not_current, 646 historical.
+
+The presumption is a row, not a rewrite. Finding a repeal later supersedes it
+in the usual way; to withdraw the presumption wholesale, run the tool with
+`OWNER_PRESUMPTION = False`, which records `unknown` again under the same keys.
+
 **Ordinance lapse, widened (0091, 0092; 16 Nov 2026).** The Eighteenth
 Amendment's own text is held as doc 4434. Its s.27 substitutes "for the words
 'four months' the words 'one hundred and twenty days'" in Art. 89(2)(a)(i)
