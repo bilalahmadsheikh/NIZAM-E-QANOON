@@ -48,7 +48,8 @@ ALLOWED_HOSTS = {
     # the Capital Development Authority (ICT); the Government of Gilgit-Baltistan and the GB Assembly
     "law.gok.pk", "www.cda.gov.pk", "gilgitbaltistan.gov.pk", "gbassembly.gbit.gov.pk",
 }
-USER_AGENT = "Nizam-e-Qanoon corpus recovery/1 (+official legal research)"
+# generic client name: requests to outside services never carry the project's or a person's name
+USER_AGENT = "Mozilla/5.0 (compatible; legal-research-crawler/1.0)"
 
 
 def safe_official_url(raw: str) -> str:

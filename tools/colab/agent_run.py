@@ -69,7 +69,7 @@ def send(stem, path):
 # --- 3. inputs: fetch from the official portal, verify SHA-256 -------------------------------------------------
 import pypdfium2 as pdfium
 items = json.loads(gzip.decompress(base64.b64decode(MANIFEST)))
-UA = {"User-Agent": "Mozilla/5.0 (Nizam-e-Qanoon corpus re-OCR; verifies SHA-256 against the landed copy)"}
+UA = {"User-Agent": "Mozilla/5.0 (compatible; legal-research-crawler/1.0)"}  # generic: no project name off-host
 
 
 def fetch(item):

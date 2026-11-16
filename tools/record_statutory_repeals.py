@@ -83,10 +83,19 @@ PRINTED_CITATION = re.compile(r"(?:\s*\(\s*(?:act|ordinance|ord|regulation|order
                               r"(?:no\.?\s*)?[ivxlc0-9]+\s+of\s+\d{4}\s*\)\s*\.?)+\s*$", re.I)
 
 
+# the official portal's repeal annotation carried in a catalogue title (16 Nov 2026): 'Boilers Act, 1923(Repeal by
+# Ord. 52 of 2001, S, 610)', '(Repealed vide Act XVIII of 2020) THE AZAD JAMMU AND KASHMIR ...'. It is the portal's
+# note, not part of the law's title, and it kept 40 such laws from ever matching the clause that repeals them.
+PORTAL_REPEAL_NOTE = re.compile(r"[\(\[]\s*(?:rep\.|repeal(?:ed)?)\s*(?:by|vide|through)\b[^\)\]]*(?:[\)\]]|$)", re.I)
+
+
 def title_key(short_title: str | None) -> str:
-    """An instrument's stored title without its trailing printed citation and year."""
-    t = PRINTED_CITATION.sub("", short_title or "")
-    return norm(re.sub(r",?\s*(1[89]\d\d|20\d\d)\s*\.?\s*$", "", t))
+    """An instrument's stored title without its trailing printed citation and year (and without a portal repeal
+    annotation or an unmatched closing bracket the catalogue left on it)."""
+    t = PORTAL_REPEAL_NOTE.sub(" ", short_title or "")
+    t = re.sub(r"\)+\s*$", "", t) if t.count(")") > t.count("(") else t
+    t = PRINTED_CITATION.sub("", t.strip())
+    return norm(re.sub(r",?\s*(1[89]\d\d|20\d\d)\s*\.?\s*$", "", t.strip()))
 
 
 def repeal_clauses(text: str) -> list[dict]:
@@ -94,6 +103,22 @@ def repeal_clauses(text: str) -> list[dict]:
     found = []
     for m in REPEAL.finditer(text or ""):
         before = text[max(0, m.start() - 60):m.start()]
+        # (16 Nov 2026) the named thing is not the whole enactment when:
+        #  * it is something OF the Act: '... under section 28 (1) (g) of the University of Karachi Act, 1972 are
+        #    hereby repealed' (2458; the segmenter split the sentence at '(g)', so the clause text starts 'of the');
+        #  * the title runs on past its year into another enactment's: 'The Bombay District Police Act, 1890 (Repeal)
+        #    Ordinance, 1955, is hereby repealed' repeals the 1955 Ordinance (5241), not the 1890 Act.
+        num = (m.group("num") or "").strip()
+        # a bracket after the year that is not a citation ('(Repeal)', '(Amendment)') means the title runs on; a list
+        # ('The X Act, 1929 (XIX of 1929) and the Y Ordinance 2026 ... are hereby repealed') is a whole repeal of each
+        # ('(Ordinance No. VIII)' is a citation without its year: a numeral is enough)
+        runs_on = bool(num and not re.search(r"\d|\b[IVXLC]+\b", num))
+        of_it = bool(re.search(r"\bof\s*$", before + m.group(0)[:m.start("title") - m.start()], re.I)
+                     or re.match(r"\s*of\b", text or "", re.I) and m.start() < 8)
+        if runs_on or of_it:
+            found.append({"title": m.group("title").strip(), "year": int(m.group("year")),
+                          "clause": " ".join(m.group(0).split()), "qualified": True})
+            continue
         # the qualifier may also FOLLOW the verb: '... is hereby repealed in its application to the Islamabad
         # Capital Territory' / '... repealed so far as it relates to ...' (up to the end of the sentence)
         after = re.split(r"(?<=[.;])\s", text[m.end():m.end() + 160], maxsplit=1)[0]
@@ -104,13 +129,38 @@ def repeal_clauses(text: str) -> list[dict]:
     return found
 
 
-def plan(instruments: list[tuple], provisions: list[tuple], revival_texts: list[str]) -> tuple[list[dict], dict]:
-    """Decide the rows. instruments: (id, jurisdiction, kind, title, year, observation, ordinal);
-    provisions: (instrument id, relative path, first block, text)."""
+def resolve_hits(hits: list[str], clause_title: str, meta: dict, twins: frozenset) -> list[str]:
+    """The instruments a clause repeals, from its title-and-year hits (16 Nov 2026):
+      * one hit: it;
+      * several hits that are all one law -- every pair a standing consolidated twin (0075), the as-made Gazette
+        text and its consolidated text -- each of them: a repeal is a fact about the law, and A14 requires each
+        text's 'repealed' to rest on its own row;
+      * otherwise exactly one hit of the kind the clause names ('... Act, 1977' against an Act and a text whose kind
+        was mis-inferred as a regulation from 'and Regulation of Cooperative Banking Act');
+      * otherwise none (ambiguous)."""
+    if len(hits) <= 1:
+        return hits
+    if all(frozenset((a, b)) in twins for i, a in enumerate(hits) for b in hits[i + 1:]):
+        return list(hits)
+    word = (clause_title.split() or [""])[-1].lower()
+    kind = {"regulations": "regulation", "rules": "rules"}.get(word, word)
+    same_kind = [h for h in hits if meta[h][1] == kind]
+    return same_kind if len(same_kind) == 1 else []
+
+
+def plan(instruments: list[tuple], provisions: list[tuple], revival_texts: list[str],
+         twins: frozenset = frozenset()) -> tuple[list[dict], dict]:
+    """Decide the rows. instruments: (id, jurisdiction, kind, title, year, observation, ordinal[, display title]);
+    provisions: (instrument id, relative path, first block, text); twins: frozenset of {instrument id, instrument id}
+    pairs that are standing consolidated twins."""
     by_key: dict = collections.defaultdict(list)
     meta = {}
-    for iid, jur, kind, title, year, obs, ordinal in instruments:
-        by_key[(jur, title_key(title), year)].append(iid)
+    for iid, jur, kind, title, year, obs, ordinal, *display in instruments:
+        # the stored short title and (16 Nov 2026) the display title verified in the law's own print: either may be
+        # the form a repealing clause names; one instrument is counted once however many of its titles match
+        for t in {title_key(title), *(title_key(d) for d in display if d)}:
+            if t and iid not in by_key[(jur, t, year)]:
+                by_key[(jur, t, year)].append(iid)
         meta[iid] = (jur, kind, title, obs, ordinal)
     revived = " ".join(norm(t) for t in revival_texts)
     stats: collections.Counter = collections.Counter()
@@ -124,24 +174,29 @@ def plan(instruments: list[tuple], provisions: list[tuple], revival_texts: list[
             if kind != "act":
                 stats["skipped: repealing instrument is not an Act"] += 1; continue
             hits = by_key.get((jur, norm(c["title"]), c["year"]), [])
-            if len(hits) != 1:
+            targets = resolve_hits(hits, c["title"], meta, twins)
+            if not targets:
                 stats["skipped: not held" if not hits else "skipped: ambiguous"] += 1; continue
-            target = hits[0]
-            if target == iid:
+            if len(targets) > 1:
+                stats["twin texts of one law"] += 1
+            elif len(hits) > 1:
+                stats["resolved by the clause's kind word"] += 1
+            if iid in targets:
                 stats["skipped: names itself"] += 1; continue
             if norm(c["title"]) and norm(c["title"]) in revived:
                 stats["skipped: a revival names it"] += 1; continue
-            t_jur, _k, t_title, t_obs, t_ord = meta[target]
-            key = (t_obs, t_ord, obs, ordinal, rel_path)
-            if key in seen:
-                continue
-            seen.add(key)
-            stats["recordable"] += 1
-            rows.append({"repealed_observation_id": t_obs, "repealed_expression_ordinal": t_ord,
-                         "repealing_observation_id": obs, "repealing_expression_ordinal": ordinal,
-                         "repealing_source_block_id": block, "repealing_relative_path": rel_path,
-                         "clause_text": c["clause"], "matched_title": t_title, "matched_year": c["year"],
-                         "repealed_instrument_id": target, "repealing_instrument_id": iid})
+            for target in targets:
+                t_jur, _k, t_title, t_obs, t_ord = meta[target]
+                key = (t_obs, t_ord, obs, ordinal, rel_path)
+                if key in seen:
+                    continue
+                seen.add(key)
+                stats["recordable"] += 1
+                rows.append({"repealed_observation_id": t_obs, "repealed_expression_ordinal": t_ord,
+                             "repealing_observation_id": obs, "repealing_expression_ordinal": ordinal,
+                             "repealing_source_block_id": block, "repealing_relative_path": rel_path,
+                             "clause_text": c["clause"], "matched_title": t_title, "matched_year": c["year"],
+                             "repealed_instrument_id": target, "repealing_instrument_id": iid})
     stats["instruments"] = len({r["repealed_instrument_id"] for r in rows})
     return rows, dict(stats)
 
@@ -157,7 +212,7 @@ def main() -> int:
         if cur.fetchone()[0] is None:
             print("migration 0066 is not applied"); return 1
         cur.execute("""SELECT i.id::text, i.jurisdiction::text, i.kind::text, i.short_title, i.year,
-                              i.source_observation_id, i.expression_ordinal
+                              i.source_observation_id, i.expression_ordinal, i.display_title
                          FROM v_release_instrument r JOIN instrument i ON i.id=r.id""")
         instruments = cur.fetchall()
         cur.execute("""SELECT i.id::text, subpath(p.path,3)::text, p.first_block, v.text_en
@@ -170,7 +225,10 @@ def main() -> int:
                          JOIN provision p ON p.instrument_id=i.id AND p.is_active
                          JOIN provision_version v ON v.provision_id=p.id WHERE v.text_en ~* 'reviv'""")
         revival = [r[0] for r in cur.fetchall()]
-        rows, stats = plan(instruments, provisions, revival)
+        cur.execute("""SELECT as_made_instrument_id::text, consolidated_instrument_id::text
+                         FROM v_consolidated_twin_current""")
+        twins = frozenset(frozenset(r) for r in cur.fetchall())
+        rows, stats = plan(instruments, provisions, revival, twins)
         dated = {}
         for repealing in {r["repealing_instrument_id"] for r in rows}:
             cur.execute("""SELECT i.document_id, i.source_start_block_id FROM instrument i WHERE i.id=%s""",
@@ -210,8 +268,9 @@ def main() -> int:
                              r["repealing_source_block_id"], r["repealing_relative_path"], r["clause_text"],
                              r["matched_title"], r["matched_year"], r["repealed_on"], r["repealed_on_basis"], METHOD,
                              json.dumps({"reviewer_type": "rule",
-                                         "rule": "whole-enactment repeal in a released Act; exact unique same-"
-                                                 "jurisdiction match; no qualifier; no revival",
+                                         "rule": "whole-enactment repeal in a released Act; exact same-jurisdiction "
+                                                 "match, unique or the linked twin texts of one law or the one of "
+                                                 "the clause's kind; no qualifier; no revival",
                                          "repealing_instrument_id_at_record": r["repealing_instrument_id"],
                                          "repealed_instrument_id_at_record": r["repealed_instrument_id"]})))
                 written += 1

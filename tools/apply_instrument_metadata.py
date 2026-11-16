@@ -5,6 +5,9 @@ them, both ways, as tools/apply_statutory_repeals.py does for status:
 
   * display_title, text_language, enacted_on, commenced_on -- set to the standing value; an active instrument that
     carries a value no standing assertion supports goes back to NULL (the segmenter never writes these);
+  * status (0082) -- 'in_force' where a standing status assertion says so (tools/record_status.py) and the
+    instrument is 'unknown' with no repealing link; an 'in_force' no assertion stands behind, or one a repeal now
+    links, goes back to 'unknown'. 'repealed' is never touched here (tools/apply_statutory_repeals.py);
   * number -- FILL-ONLY: written where the segmenter left it NULL. A segmenter number that disagrees with a standing
     assertion is reported, not overwritten. A number this tool wrote goes back to NULL when its assertion is
     withdrawn and nothing stands behind it. ONE EXCEPTION: an assertion with basis printed_number_corrects_stored
@@ -78,6 +81,20 @@ UPDATE instrument i SET number = c.value
  WHERE c.field = 'number' AND i.id = c.instrument_id AND c.basis = 'printed_number_corrects_stored'
    AND i.number IS DISTINCT FROM c.value"""
 
+# status (0082): 'in_force' from a standing assertion, both ways -- never over a 'repealed' status or a standing
+# repeal's repealed_by_id (tools/apply_statutory_repeals.py owns those; it runs first, post-replay step 2b3)
+STATUS_SET = """
+UPDATE instrument i SET status = 'in_force'
+  FROM v_instrument_metadata_current c
+ WHERE c.field = 'status' AND c.value = 'in_force' AND i.id = c.instrument_id
+   AND i.status = 'unknown' AND i.repealed_by_id IS NULL"""
+STATUS_UNSET = """
+UPDATE instrument i SET status = 'unknown'
+ WHERE i.is_active AND i.status = 'in_force'
+   AND (i.repealed_by_id IS NOT NULL
+        OR NOT EXISTS (SELECT 1 FROM v_instrument_metadata_current c
+                        WHERE c.field = 'status' AND c.value = 'in_force' AND c.instrument_id = i.id))"""
+
 NUMBER_CONFLICTS = """
 SELECT i.id, i.document_id, i.number, c.value
   FROM v_instrument_metadata_current c JOIN instrument i ON i.id = c.instrument_id
@@ -104,6 +121,9 @@ def main() -> int:
         cur.execute(NUMBER_UNSET); nu = cur.rowcount
         cur.execute(NUMBER_CORRECT); nc = cur.rowcount
         changed["number"] = (nf + nc, nu)
+        cur.execute(STATUS_UNSET); su = cur.rowcount
+        cur.execute(STATUS_SET); ss = cur.rowcount
+        changed["status"] = (ss, su)
         cur.execute(NUMBER_CONFLICTS)
         conflicts = cur.fetchall()
         cur.execute("SELECT field, count(*) FROM v_instrument_metadata_current GROUP BY 1 ORDER BY 1")

@@ -85,7 +85,94 @@ def test_bracket_and_assent_dates():
     assert enact.to_date("30", "February", "1956") is None
 
 
+def _dates(region: str, kind: str, year: int) -> set[str]:
+    spans, pos = [], 0
+    for i, line in enumerate(region.split("\n")):
+        spans.append((pos, pos + len(line), i + 1, 1)); pos += len(line) + 1
+    found = enact.printed_dates(region, spans, kind, enact.number_years(region, kind, year))
+    return {f"{d.isoformat()} {how}" for d, how, _s, _e in found}
+
+
+def test_v2_assented_and_promulgation_statements():
+    sindh = ("NO.PAS/LEGIS-B-23/2021-The Sindh Zakat and Ushr (Amendment) Bill, 2021, having been passed by the "
+             "Provincial Assembly of Sindh on 05th July, 2021 and assented to by the Governor of Sindh on 28th July, "
+             "2021 is hereby published")
+    assert _dates(sindh, "act", 2021) == {"2021-07-28 assent"}
+    ajk = "The following Ordinance made by the President on the 26th day of August, 1979, is hereby published"
+    assert _dates(ajk, "ordinance", 1979) == {"1979-08-26 promulgation"}
+    assert _dates("assented to by the Governor of Sindh on 25™-July, 2018 is", "act", 2018) == {"2018-07-25 assent"}
+    # a two-digit year is never read
+    assert _dates("The following Ordinance made by the President on 3.5.75 is hereby", "ordinance", 1975) == set()
+
+
+def test_v2_notification_date_only_for_subordinate_instruments():
+    rules = "GOVERNMENT OF THE PUNJAB\nDated Lahore, the 15th November 2021\nNOTIFICATION No.SO(E-IV)5-14/2021"
+    assert _dates(rules, "rules", 2021) == {"2021-11-15 notification_date"}
+    kp = "Notification Peshawar, dated the 2.11.2004 No.SO(Tech)ED/V-105/2003"
+    assert _dates(kp, "rules", 2004) == {"2004-11-02 notification_date"}
+    # on an Act the Assembly's 'Dated Quetta, the ...' line is its publication, not its enactment
+    act = "BALOCHISTAN PROVINCIAL ASSEMBLY SECRETARIAT Dated Quetta, the 05th May, 2021. NOTIFICATION."
+    assert _dates(act, "act", 2021) == set()
+
+
+def test_v2_a_gazette_masthead_or_publication_line_is_never_the_date():
+    assert _dates("THE SIND GOVERNMENT GAZETTE KARACHI,11TH AUGUST, 1977.\nNOTIFICATION", "rules", 1977) == set()
+    assert _dates("[Gazette of Sind (Extraordinary), dated the\n26th March, 1991].\nAN ACT", "act", 1991) == set()
+    assert _dates("SECRETARIAT, MUZAFFARABAD.\nDated 24th September, 1984.\nNo. 1/LD/84", "ordinance", 1984) == set()
+
+
+def test_v2_date_line_under_the_title():
+    region = "SINDH ACT NO. XXV OF 2015.\nTHE SINDH FINANCE (AMENDMENT) ACT, 2015.\n18th May, 2015.\n"
+    assert _dates(region, "act", 2015) == {"2015-05-18 date_line"}
+
+
+def test_v2_year_of_the_printed_number_within_two_years_only():
+    region = "SIND ORDINANCE NO.XIII OF 1971\nTHE WEST PAKISTAN CIVIL COURTS (SIND AMENDMENT) ORDINANCE, 1970\n" \
+             "[8th December, 1971]"
+    assert "1971-12-08 bracket" in _dates(region, "ordinance", 1970)
+    far = "PRESIDENT'S ACT No. VI oF 1957.\n[4th July, 1957]"
+    assert _dates(far, "act", 1931) == set()
+    # an explicit assent statement outranks the consolidator's bracket (6027: assent 1 Feb, bracket 4 Feb)
+    both = "ACT 1999 (II of 1999)\n[4th February, 1999]\nreceived the assent of the Governor on the 1st February, 1999"
+    spans, pos = [], 0
+    for i, line in enumerate(both.split("\n")):
+        spans.append((pos, pos + len(line), i + 1, 1)); pos += len(line) + 1
+    found = enact.printed_dates(both, spans, "act", {1999})
+    top = min(enact.RANK[f[1]] for f in found)
+    assert {f[0].isoformat() for f in found if enact.RANK[f[1]] == top} == {"1999-02-01"}
+    # a rule's region cites its enabling Act's number: never a second year for a rule
+    assert enact.number_years("under the Punjab Act No. XIII of 2002", "rules", 2005) == {2005}
+
+
 # --- commencement -------------------------------------------------------------------------------------------------
+def test_general_clauses_default_only_for_a_silent_act_with_its_date_form():
+    silent = [("1", "Short title and extent", "(1) This Act may be called the Foo Act, 2010."),
+              ("2", "Definitions", "In this Act, unless the context otherwise requires,")]
+    # federal: only an explicit assent statement is the day of assent (s.5(1))
+    assert comm.general_clauses_default("fed", "act", 2010, "2010-05-21", "printed_assent_statement", silent) == \
+        ("2010-05-21", "general_clauses_s5_assent")
+    assert comm.general_clauses_default("fed", "act", 2010, "2010-05-25", "printed_assent_date", silent)[0] is None
+    # provincial: only the date printed under the title is the first publication (s.3)
+    assert comm.general_clauses_default("punjab", "act", 1999, "1999-02-04", "printed_assent_date", silent) == \
+        ("1999-02-04", "general_clauses_s3_first_publication")
+    assert comm.general_clauses_default("punjab", "act", 1999, "1999-02-01", "printed_assent_statement",
+                                        silent)[0] is None
+    # never: Sindh / AJK (no general clauses section held), Ordinances, before the statute, or any text that speaks
+    for jur, kind, year in (("sindh", "act", 2010), ("ajk", "act", 2010), ("punjab", "ordinance", 1999),
+                            ("punjab", "act", 1950)):
+        assert comm.general_clauses_default(jur, kind, year, "1999-02-04", "printed_assent_date", silent)[0] is None
+    # a West Pakistan Act filed under fed is not a Central Act (9657, 9677)
+    assert comm.general_clauses_default("fed", "act", 1958, "1958-03-31", "printed_assent_statement", silent,
+                                        "West Pakistan Appropriation Act, 1958")[1] == "provincial_act_filed_fed"
+    speaks = silent + [("3", None, "This section shall take effect from the 1st July.")]
+    assert comm.general_clauses_default("punjab", "act", 1999, "1999-02-04", "printed_assent_date", speaks)[0] is None
+    promises = [("1", "Short title, extent and commencement", "(1) This Act may be called the Foo Act, 1999.")]
+    assert comm.general_clauses_default("punjab", "act", 1999, "1999-02-04", "printed_assent_date",
+                                        promises)[1] == "section_1_promises_a_commencement"
+    assert comm.general_clauses_default("punjab", "act", 1999, "1999-02-04", "printed_assent_date",
+                                        silent[1:])[1] == "section_1_not_found"
+
+
 def test_at_once_takes_the_printed_enactment_date():
     v, basis, _ = comm.classify("(3) It shall come into force at once.", "1959-04-29", 1959)
     assert (v, basis) == ("1959-04-29", "commences_at_once_on_printed_enactment_date")

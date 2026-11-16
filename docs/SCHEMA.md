@@ -857,6 +857,45 @@ repealing Act's established commencement (0070): 12 by exactly the rule above,
 method `nizam.statutory_repeal_dated_by_commencement/1`). That gives 62 repealed
 and dated, and 38 with a certain repealer but no date.
 
+Third pass, 16 Nov 2026. Four changes to the recorder, each found by reading
+the clauses it would record:
+
+- **The portal's repeal note is not part of a title.** 40 catalogue titles
+  carry it: `Boilers Act, 1923(Repeal by Ord. 52 of 2001, S, 610)`, `(Repealed
+  vide Act XVIII of 2020) THE AZAD JAMMU AND KASHMIR …`, or a cut note's
+  stray `)`. The Python title key (`PORTAL_REPEAL_NOTE`) and the SQL
+  `instrument_title_key` (migration 0081) both strip it. Before this, those laws
+  could not match the clause that repeals them, and the as-made and
+  consolidated texts of the Commissions of Inquiry Act could not be linked as
+  twins.
+- **The display title is matched too.** This is the name verified in the law's
+  own print. One instrument counts once, however many of its titles match.
+- **Several hits can still be one answer.** When every pair of hits is a
+  standing consolidated twin, the clause repeals one law, so each text gets its
+  own row. A14 needs each `repealed` to rest on its own row. Otherwise, the
+  one hit of the kind the clause names wins. This settled 4212, whose kind was
+  misread as `regulation` from "… and Regulation of Cooperative Banking Act".
+  Anything else stays ambiguous.
+- **Two shapes are refused** (they were recorded wrongly in trial):
+  - something *of* an Act: "… section 28 (1) (g) of the University of Karachi
+    Act, 1972 are hereby repealed" (2458; the segmenter split the sentence at
+    "(g)");
+  - a title that runs on past its year: "The Bombay District Police Act, 1890
+    (Repeal) Ordinance, 1955, is hereby repealed" repeals the 1955 Ordinance.
+
+  A bracket with a numeral (`(Ordinance No. VIII)`) is still a citation, and a
+  list ("X Act … and the Y Ordinance … are hereby repealed") is still a whole
+  repeal of each.
+
+Result: 21 new rows, mostly the twin texts of laws already repealed on one
+side. The 11 Nov commencement pass was run again over the commencements the
+16 Nov date work established, and dated 17 more. That gives 87 repealed and
+dated, and 64 with a certain repealer but no date (151 laws). One earlier row
+(Indian Electricity Act, 1903) is no longer reproduced, because a newly
+released Repealing and Amending Act, 1914 carries a generic "nor shall the
+repeal … revive" next to that title. The recorder never withdraws a row, and
+this one stands.
+
 ### `instrument_metadata_assertion` — names, numbers, dates and language from evidence
 
 Migration 0070. Append-only; keyed by `(source_observation_id,
@@ -867,15 +906,26 @@ a withdrawal is a row with `assertion = 'withdrawn'`. One field per row:
 |---|---|---|
 | `display_title` | `tools/record_display_titles.py` | the name verified or near-matched in the instrument's own printed text (`.artifacts/instrument-names-2026-11-11/`); names needing review are not recorded |
 | `number` | `tools/record_instrument_numbers.py` (`--correct-stored`: a segmenter number that disagrees with the one printed number is replaced, basis `printed_number_corrects_stored`; 29 on 12 Nov 2026, plus 1707 by hand) | printed in the **title region** (first ≤80 blocks, cut at long title / preamble / enacting formula / section 1 in body form; first 20 blocks when no marker); year equal to the instrument's; kind word agrees; canonical numeral; exactly one candidate |
-| `enacted_on` | `tools/record_enacted_dates.py` | the bracketed date under the title (`[18th April, 1956]`) or a printed assent statement, in the title region, year equal, exactly one. The catalogue date is **not** a source (placeholders and upload dates) |
-| `commenced_on` | `tools/record_commencement.py` | only a self-executing commencement of the **whole** instrument: "at once" gives the established `enacted_on` (0066's convention), or a printed "on <date>". Notification, partial, enumerated or deemed commencement is never recorded (docs/03b: commencement lives in the Gazette) |
+| `enacted_on` | `tools/record_enacted_dates.py` | read in the title region. **v1:** the bracketed date under the title (`[18th April, 1956]`) or a printed assent statement. **v2, 16 Nov 2026:** also "assented to by the Governor … on …"; "made / promulgated by the President … on …" (Ordinances, Orders, Regulations); a block that is only a date under the title; and, for Rules, Regulations, Notifications and Orders only, the notification's own line ("Dated Lahore, the …", "No. …, dated 2.11.2004"). Refused: Gazette mastheads, "Dated …" lines on Acts and Ordinances (publication), "Updated till", draft rules, two-digit years. The year must equal the instrument's, or (Acts and Ordinances) its printed number's year within 2. **Precedence:** assent or promulgation statement > bracket > date line > notification line. The most direct form present must give exactly one date; lower forms that disagree are kept in the evidence. The catalogue date is **not** a source (placeholders and upload dates) |
+| `commenced_on` | `tools/record_commencement.py` | only a self-executing commencement of the **whole** instrument: "at once" gives the established `enacted_on` (0066's convention), or a printed "on <date>". **General clauses default (16 Nov 2026)** for an Act silent on its commencement: federal GCA 1897 s.5(1), the day of assent, only from a printed assent statement; Punjab / KP / Balochistan GCA 1956 s.3, the first publication, whose date "shall be printed either above or below the title", only from that printed date. Not Sindh or AJK, whose general clauses sections are not held. Notification, partial, enumerated or deemed commencement is never recorded (docs/03b: commencement lives in the Gazette) |
+| `status` | `tools/record_status.py` (0082) | `in_force` only for an **Act** that has commenced (established `commenced_on`, "shall come into force at once", or silent under its general clauses statute) **and** against which no repeal is known: no standing statutory repeal, no portal repeal note, and no released provision of another law naming it in a whole, territorial or extent-limited repeal, cease or omit clause. Never Ordinances (lapse is a constitutional question) or subordinate instruments (they stand with an enabling law the corpus does not link). Not covered, and stated on every row: repeal by a law not held, judicial invalidation, extent. Everything else stays `unknown` |
 | `text_language` | `tools/record_text_language.py` | Arabic-script share of all released text ≥ 0.60 gives `ur` (or `sd` with Sindhi letters), ≤ 0.10 gives `en`; anything else is left for a person |
 
-Printed facts (`number`, `enacted_on`, `commenced_on`) must carry the verbatim
-`quote` and the `source_block_id`, and the guard checks that the block belongs
-to the observation. Recorders re-check their own earlier assertions under the
-current rules, and withdraw what is no longer reproduced. They never re-assert a
-withdrawn key.
+Printed facts (`number`, `enacted_on`, `commenced_on`), and `status` (0082),
+must carry the verbatim `quote` and the `source_block_id`. The guard checks that
+the block belongs to the observation. Recorders re-check their own earlier
+assertions under the current rules, and withdraw what is no longer reproduced.
+They never re-assert a withdrawn key. There is one exception (16 Nov 2026,
+`record_enacted_dates.py`): a key withdrawn on recheck (`recheck_not_reproduced`)
+by the same method version may be asserted again when that version reproduces a
+date. A person's withdrawal, or another method's, stands for good.
+
+What the dates mean. On a provincial Act the date under the title is, by the
+general clauses statute, the date of first publication. On a Pakistan Code text
+it is the consolidator's print. Measured on the twin pairs, it equals the
+Gazette assent statement in 4 of 7 cases and falls 2–12 days later in 3. So
+`enacted_on` can be a few days after assent, never before it. That direction is
+the safe one for `operative_provision` ("not yet enacted at `as_of`").
 
 ### `amendment_reference` — which law amended which provision
 

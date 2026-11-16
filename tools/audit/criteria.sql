@@ -525,6 +525,8 @@ m AS (
           OR (c.field='text_language' AND i.text_language IS DISTINCT FROM c.value)
           OR (c.field='enacted_on'    AND i.enacted_on   IS DISTINCT FROM c.value::date)
           OR (c.field='commenced_on'  AND i.commenced_on IS DISTINCT FROM c.value::date)
+          -- status (0082): a standing 'in_force' is reflected unless a repeal now links the instrument
+          OR (c.field='status'        AND i.repealed_by_id IS NULL AND i.status::text IS DISTINCT FROM c.value)
           -- number is fill-only, except a printed_number_corrects_stored assertion, which must be the number
           OR (c.field='number'        AND (i.number IS NULL
                OR (c.basis='printed_number_corrects_stored' AND i.number IS DISTINCT FROM c.value))))
@@ -538,7 +540,10 @@ m AS (
            OR (i.enacted_on IS NOT NULL AND NOT EXISTS (SELECT 1 FROM v_instrument_metadata_current c
                                      WHERE c.instrument_id=i.id AND c.field='enacted_on'))
            OR (i.commenced_on IS NOT NULL AND NOT EXISTS (SELECT 1 FROM v_instrument_metadata_current c
-                                     WHERE c.instrument_id=i.id AND c.field='commenced_on'))))  AS meta_unevidenced
+                                     WHERE c.instrument_id=i.id AND c.field='commenced_on'))
+           -- an 'in_force' status rests on a standing status assertion (0082)
+           OR (i.status='in_force' AND NOT EXISTS (SELECT 1 FROM v_instrument_metadata_current c
+                                     WHERE c.instrument_id=i.id AND c.field='status'))))  AS meta_unevidenced
     ,(SELECT string_agg(field||' '||n, ', ' ORDER BY field)
         FROM (SELECT field, count(*) n FROM v_instrument_metadata_current GROUP BY 1) s)   AS meta_standing
 -- <<< A15 measures
@@ -689,7 +694,7 @@ SELECT * FROM (
          repeal_unevidenced||' without evidence',
          '0 / 0; count reported',
          CASE WHEN repeal_unreflected=0 AND repeal_unevidenced=0 THEN 'PASS' ELSE 'FAIL' END FROM m
-  UNION ALL SELECT 'A15','instrument names, numbers, dates and language are recorded evidence, and every one is reflected',
+  UNION ALL SELECT 'A15','instrument names, numbers, dates, language and in-force status are recorded evidence, and every one is reflected',
          coalesce(meta_standing,'none')||' standing (reported); '||meta_unreflected||' unreflected; '||
          meta_unevidenced||' without evidence',
          '0 / 0; counts reported',

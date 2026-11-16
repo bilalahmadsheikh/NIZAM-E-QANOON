@@ -61,6 +61,38 @@ def test_a_whole_repeal_is_found_and_a_partial_one_is_qualified():
     assert after and after[0]["qualified"]
 
 
+def test_something_of_an_act_or_a_title_running_on_is_not_a_whole_repeal():
+    # 2458 s.18(1)(g): the segmenter split '... under section 28 (1) (g) of the University of Karachi Act, 1972'
+    of_it = repeal_clauses("of the University of Karachi Act, 1972 are hereby repealed.")
+    assert of_it and of_it[0]["qualified"]
+    # 5241: the 1955 Repeal Ordinance is what is repealed, not the 1890 Act
+    runs = repeal_clauses("The Bombay District Police Act, 1890 (Repeal) Ordinance, 1955, is hereby repealed.")
+    assert runs and all(c["qualified"] for c in runs if c["year"] == 1890)
+    # a printed citation after the year is still a whole repeal
+    cited = repeal_clauses("96. (1) The Balochistan Wildlife Protection Act, 1974 (Act No. XIX of 1974) is hereby repealed.")
+    assert [(c["year"], c["qualified"]) for c in cited] == [(1974, False)]
+    # a defined short name in between is not another enactment (600, 2119)
+    named = repeal_clauses("The Balochistan Technical Education and Vocational Training Authority Act, 2011 (II of "
+                           "2011), hereinafter called as repealed Act, shall stand repealed.")
+    assert [(c["year"], c["qualified"]) for c in named] == [(2011, False)]
+
+
+def test_twin_texts_of_one_law_are_both_repealed_and_a_kind_word_settles_a_mislabel():
+    from tools.record_statutory_repeals import resolve_hits
+    meta = {"a": ("fed", "act", "X Act", 1, 0), "b": ("fed", "act", "X Act", 2, 0),
+            "c": ("fed", "regulation", "Y Act", 3, 0), "d": ("fed", "act", "Y Act", 4, 0)}
+    assert sorted(resolve_hits(["a", "b"], "The X Act", meta, frozenset({frozenset(("a", "b"))}))) == ["a", "b"]
+    assert resolve_hits(["a", "b"], "The X Act", meta, frozenset()) == []          # same kind, not linked: refused
+    assert resolve_hits(["c", "d"], "The Y Act", meta, frozenset()) == ["d"]        # the clause names an Act
+
+
+def test_a_portal_repeal_note_in_a_catalogue_title_is_not_part_of_the_title():
+    assert title_key("Boilers Act, 1923(Repeal by Ord. 52 of 2001, S, 610)") == norm("Boilers Act")
+    assert title_key("Agricultural Census Act, 1958)") == norm("Agricultural Census Act")
+    assert title_key("(Repealed vide Act XVIII of 2020) THE AZAD JAMMU AND KASHMIR FOO ACT, 1970") == \
+        norm("Azad Jammu and Kashmir Foo Act")
+
+
 def test_only_an_act_repeals_and_only_an_exact_unique_same_jurisdiction_match():
     provisions = [("A", "s_18", 10, "The Sindh Judicial Academy Ordinance, 1993, is hereby repealed."),
                   ("B", "s_9", 11, "The Sindh Judicial Academy Act, 1993 is hereby repealed."),     # an Ordinance
