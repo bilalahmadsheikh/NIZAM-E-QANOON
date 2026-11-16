@@ -202,6 +202,12 @@ else
     echo "  doc 4427's collapsed range)."
 fi
 
+# ---------------------------------------------------------------- step 4b (0094)
+say "4b. refresh the serving snapshot operative_provision reads (audit A16 fails while stale)"
+if [ "$APPLY" = "1" ]; then
+    uv run python tools/refresh_serving.py
+fi
+
 # ---------------------------------------------------------------- step 5
 say "5. re-measure -- every pre-replay figure is now suspect"
 run ./nz s7-citability

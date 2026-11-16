@@ -1,6 +1,6 @@
 # golden-pk-v1 — draft set 1 (50 cases)
 
-As of 2026-11-16; corpus revision 0c14d20. Strata: citizen 20, professional 12, procedural 8, urdu 5, unanswerable 5.
+As of 2026-11-16; corpus revision 9447768. Strata: citizen 20, professional 12, procedural 8, urdu 5, unanswerable 5.
 Status: **draft** — A0 authoring and A3 identity resolution only. Not gold until two legal annotators (A1) and a senior advocate (A2) have reviewed it; do not tune or report on it before then.
 
 ## S1-C01 · citizen · punjab/punjab · expect **answer**
@@ -10,7 +10,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 - *Proposition:* A landlord may seek eviction only on the grounds the Punjab Rented Premises Act, 2009 lists, including expiry of the tenancy, failure to pay rent within thirty days after it is due, and breach of a term of the tenancy.
 - **Necessary (grade 3)** — Punjab Rented Premises Act, 2009, s./art. 15 (current: commenced_on_established; served in punjab) · `874d4c34-6c75-478d-982d-ea3e4d0acb9c` · [source](https://punjabcode.punjab.gov.pk/uploads/articles/THE_PUNJAB_RENTED_PREMISES_ACT_2009.doc.pdf)
   > – A landlord may seek eviction of the tenant if– the period of tenancy has expired; the tenant has failed to pay or tender the rent within a period of thirty days after the expiry of the period stipulated in section 7; the tenant has committed breach of a term
-- **Hard negative (grade 0)** — Sind Rented Premises Ordinance, 1979, s./art. 15 (current_unverified: ordinance_before_current_art89_text; not served in punjab) · `96444ab3-b36b-4bd9-bafe-ad1945f11038` · [source](https://sindhlaws.gov.pk/setup/publications_SindhCode/PUB-15-000484.pdf)
+- **Hard negative (grade 0)** — Sind Rented Premises Ordinance, 1979, s./art. 15 (current: commences_at_once; not served in punjab) · `96444ab3-b36b-4bd9-bafe-ad1945f11038` · [source](https://sindhlaws.gov.pk/setup/publications_SindhCode/PUB-15-000484.pdf)
   > Where a landlord seeks to evict the tenant otherwise than in accordance with section 14, he shall make such application to the Controller. The Controller shall, make as an order directing the tenant to put the landlord in possession of the premises within such
 
 ## S1-C02 · citizen · sindh/sindh · expect **answer**
@@ -18,7 +18,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** I rent a flat in Karachi. Can my landlord throw me out for not paying rent, and who decides?
 
 - *Proposition:* A Karachi landlord seeking eviction applies to the Rent Controller under the Sind Rented Premises Ordinance, 1979, and default in rent is a ground the Controller may act on.
-- **Necessary (grade 3)** — Sind Rented Premises Ordinance, 1979, s./art. 15 (current_unverified: ordinance_before_current_art89_text; served in sindh) · `96444ab3-b36b-4bd9-bafe-ad1945f11038` · [source](https://sindhlaws.gov.pk/setup/publications_SindhCode/PUB-15-000484.pdf)
+- **Necessary (grade 3)** — Sind Rented Premises Ordinance, 1979, s./art. 15 (current: commences_at_once; served in sindh) · `96444ab3-b36b-4bd9-bafe-ad1945f11038` · [source](https://sindhlaws.gov.pk/setup/publications_SindhCode/PUB-15-000484.pdf)
   > Where a landlord seeks to evict the tenant otherwise than in accordance with section 14, he shall make such application to the Controller. The Controller shall, make as an order directing the tenant to put the landlord in possession of the premises within such
 - **Hard negative (grade 0)** — Punjab Rented Premises Act, 2009, s./art. 15 (current: commenced_on_established; not served in sindh) · `874d4c34-6c75-478d-982d-ea3e4d0acb9c` · [source](https://punjabcode.punjab.gov.pk/uploads/articles/THE_PUNJAB_RENTED_PREMISES_ACT_2009.doc.pdf)
   > – A landlord may seek eviction of the tenant if– the period of tenancy has expired; the tenant has failed to pay or tender the rent within a period of thirty days after the expiry of the period stipulated in section 7; the tenant has committed breach of a term
@@ -28,7 +28,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** Can my husband marry a second wife without my permission?
 
 - *Proposition:* A man may not contract another marriage during an existing marriage without the previous written permission of the Arbitration Council; the application must state whether the existing wife consents.
-- **Necessary (grade 3)** — Muslim Family Laws Ordinance, 1961, s./art. 6 (current_unverified: ordinance_before_current_art89_text; served in punjab) · `1d2f70cc-9439-4d8d-b1e4-cddad521bd92` · [source](https://pakistancode.gov.pk/pdffiles/administratoreecaf3b490e2d43d2e3b50c0c068b5d7.pdf)
+- **Necessary (grade 3)** — Muslim Family Laws Ordinance, 1961, s./art. 6 (current_unverified: ordinance_of_a_pre_1973_regime; served in punjab) · `1d2f70cc-9439-4d8d-b1e4-cddad521bd92` · [source](https://pakistancode.gov.pk/pdffiles/administratoreecaf3b490e2d43d2e3b50c0c068b5d7.pdf)
   > ⸺(1) No man, during the subsistence of an existing marriage, shall, except with the previous permission in writing of the Arbitration Council, contract another marriage, nor shall any such marriage contracted without such permission be registered under this Or
 
 ## S1-C04 · citizen · fed/sindh · expect **answer**
@@ -36,7 +36,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** My husband says he has divorced me. Does he have to inform anyone for it to count?
 
 - *Proposition:* After pronouncing talaq a husband must give the Chairman written notice and supply a copy to the wife.
-- **Necessary (grade 3)** — Muslim Family Laws Ordinance, 1961, s./art. 7 (current_unverified: ordinance_before_current_art89_text; served in sindh) · `f8b7e951-efe0-43e5-965b-5a5d883e9dc6` · [source](https://pakistancode.gov.pk/pdffiles/administratoreecaf3b490e2d43d2e3b50c0c068b5d7.pdf)
+- **Necessary (grade 3)** — Muslim Family Laws Ordinance, 1961, s./art. 7 (current_unverified: ordinance_of_a_pre_1973_regime; served in sindh) · `f8b7e951-efe0-43e5-965b-5a5d883e9dc6` · [source](https://pakistancode.gov.pk/pdffiles/administratoreecaf3b490e2d43d2e3b50c0c068b5d7.pdf)
   > (1) Any man who wishes to divorce his wife shall, as soon as may be after the pronouncement of talaq in any form whatsoever, give the Chairman notice in writing of his having done so, and shall supply a copy thereof to the wife 2[:] that where the parties belo
 
 ## S1-C05 · citizen · fed/punjab · expect **answer**
@@ -268,7 +268,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** When is an individual resident for income tax?
 
 - *Proposition:* An individual is resident for a tax year if present in Pakistan 183 days or more in it, or is a government employee posted abroad, as section 82 provides.
-- **Necessary (grade 3)** — Income Tax Ordinance, 2001, s./art. 82 (current_unverified: ordinance_before_current_art89_text; served in sindh) · `08e40ab3-9fd0-47ed-ba71-e83c2b8bee48` · [source](https://pakistancode.gov.pk/pdffiles/administratorc09ecd376211abe32a7e44510f3fd719.pdf)
+- **Necessary (grade 3)** — Income Tax Ordinance, 2001, s./art. 82 (current_unverified: commencement_by_notification_or_in_parts; served in sindh) · `08e40ab3-9fd0-47ed-ba71-e83c2b8bee48` · [source](https://pakistancode.gov.pk/pdffiles/administratorc09ecd376211abe32a7e44510f3fd719.pdf)
   > An individual shall be a resident individual for a tax year if the individual — is present in Pakistan for a period of, or periods amounting in aggregate to, one hundred and 1[eighty-three] days or more in the tax year; 2[ ] 3[or] 4[ ] 5[ ] 6[ ] is an employee
 
 ## S1-P11 · professional · fed/punjab · expect **answer**
@@ -288,7 +288,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 - *Proposition:* Gaining unauthorised access to an information system or data with dishonest intention is punishable under section 3 of the Prevention of Electronic Crimes Act, 2016.
 - **Necessary (grade 3)** — Prevention of Electronic Crimes Act, 2016, s./art. 3 (current: commences_at_once; served in kp) · `ef38408e-1180-4879-ad12-442b934e05f6` · [source](https://pakistancode.gov.pk/pdffiles/administrator6a061efe0ed5bd153fa8b79b8eb4cba7.pdf)
   > Whoever with dishonest intention gains unauthorized access to any information system or data shall be punished with imprisonment for a term which may extend to three months or with fine which may extend to fifty thousand rupees or with both.
-- **Hard negative (grade 0)** — The Prevention of Electronic Crimes Ordinance, 2008, s./art. 3 (not_current: replaced_by_later_act; not served in kp) · `ef814843-de3e-4615-b2ed-a808b68a7fc4` · [source](https://drs.molaw.gov.pk/pdf/The%20Prevention%20of%20Electronic%20Crimes%20Ordinance%2C%202008%20%20IX%20%281%29.pdf)
+- **Hard negative (grade 0)** — The Prevention of Electronic Crimes Ordinance, 2008, s./art. 3 (not_current: ordinance_lapsed; not served in kp) · `ef814843-de3e-4615-b2ed-a808b68a7fc4` · [source](https://drs.molaw.gov.pk/pdf/The%20Prevention%20of%20Electronic%20Crimes%20Ordinance%2C%202008%20%20IX%20%281%29.pdf)
   > Criminal access—Whoever intentionally gains unauthorized access to the whole or any part of an electronic system or electronic device with or without infringing security measures, shall be punished with imprisonment of either description for aterm which may ex
 
 ## S1-R01 · procedural · fed/punjab · expect **answer**
@@ -332,7 +332,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** The Rent Controller in Karachi ordered my eviction. How long do I have to appeal and to whom?
 
 - *Proposition:* Appeal lies within thirty days of the order to the District Judge having jurisdiction over the premises.
-- **Necessary (grade 3)** — Sind Rented Premises Ordinance, 1979, s./art. 21 (current_unverified: ordinance_before_current_art89_text; served in sindh) · `70ccfda7-f504-43bd-b3de-c22cbcd57aad` · [source](https://sindhlaws.gov.pk/setup/publications_SindhCode/PUB-15-000484.pdf)
+- **Necessary (grade 3)** — Sind Rented Premises Ordinance, 1979, s./art. 21 (current: commences_at_once; served in sindh) · `70ccfda7-f504-43bd-b3de-c22cbcd57aad` · [source](https://sindhlaws.gov.pk/setup/publications_SindhCode/PUB-15-000484.pdf)
   > Any party aggrieved by an order, not being an interim order, made by the Controller may, within thirty days of such order, prefer an appeal to the 1["District Judge having Jurisdiction in the area where the premises in relation to which the order is passed"]. 
 
 ## S1-R06 · procedural · fed/punjab · expect **answer**
@@ -370,7 +370,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** Talaq dene ke baad shohar ko kis ko notice dena zaroori hai?
 
 - *Proposition:* After pronouncing talaq a husband must give the Chairman written notice and supply a copy to the wife.
-- **Necessary (grade 3)** — Muslim Family Laws Ordinance, 1961, s./art. 7 (current_unverified: ordinance_before_current_art89_text; served in punjab) · `f8b7e951-efe0-43e5-965b-5a5d883e9dc6` · [source](https://pakistancode.gov.pk/pdffiles/administratoreecaf3b490e2d43d2e3b50c0c068b5d7.pdf)
+- **Necessary (grade 3)** — Muslim Family Laws Ordinance, 1961, s./art. 7 (current_unverified: ordinance_of_a_pre_1973_regime; served in punjab) · `f8b7e951-efe0-43e5-965b-5a5d883e9dc6` · [source](https://pakistancode.gov.pk/pdffiles/administratoreecaf3b490e2d43d2e3b50c0c068b5d7.pdf)
   > (1) Any man who wishes to divorce his wife shall, as soon as may be after the pronouncement of talaq in any form whatsoever, give the Chairman notice in writing of his having done so, and shall supply a copy thereof to the wife 2[:] that where the parties belo
 
 ## S1-U02 · urdu · fed/sindh · expect **answer**
@@ -402,7 +402,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** Kya doosri shadi ke liye pehli biwi ki ijazat zaroori hai?
 
 - *Proposition:* Previous written permission of the Arbitration Council is required; the application states whether the existing wife consents.
-- **Necessary (grade 3)** — Muslim Family Laws Ordinance, 1961, s./art. 6 (current_unverified: ordinance_before_current_art89_text; served in kp) · `1d2f70cc-9439-4d8d-b1e4-cddad521bd92` · [source](https://pakistancode.gov.pk/pdffiles/administratoreecaf3b490e2d43d2e3b50c0c068b5d7.pdf)
+- **Necessary (grade 3)** — Muslim Family Laws Ordinance, 1961, s./art. 6 (current_unverified: ordinance_of_a_pre_1973_regime; served in kp) · `1d2f70cc-9439-4d8d-b1e4-cddad521bd92` · [source](https://pakistancode.gov.pk/pdffiles/administratoreecaf3b490e2d43d2e3b50c0c068b5d7.pdf)
   > ⸺(1) No man, during the subsistence of an existing marriage, shall, except with the previous permission in writing of the Arbitration Council, contract another marriage, nor shall any such marriage contracted without such permission be registered under this Or
 
 ## S1-X01 · unanswerable · gb/gb · expect **abstain**

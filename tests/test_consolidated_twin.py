@@ -134,6 +134,10 @@ def test_a_withdrawn_link_serves_the_as_made_text_again(conn):
         cur.execute("SAVEPOINT s")
         _insert(cur, a_obs, a_ord, c_obs, c_ord, assertion="withdrawn")
         cur.execute("SET LOCAL nzq.as_of = '2026-11-12'")
+        # 0094: operative_provision reads the serving snapshot; a record change shows after a refresh (audit A16
+        # fails until then). The refresh is transactional, so the savepoint rollback undoes it with the withdrawal.
+        cur.execute("SET LOCAL statement_timeout = 0")
+        cur.execute("REFRESH MATERIALIZED VIEW mv_instrument_serving")
         cur.execute("SELECT count(*) FROM operative_provision WHERE instrument_id = %s", (as_made,))
         assert cur.fetchone()[0] > 0
         cur.execute("ROLLBACK TO SAVEPOINT s")

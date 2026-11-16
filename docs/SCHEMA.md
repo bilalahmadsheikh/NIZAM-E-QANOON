@@ -976,6 +976,49 @@ historical. Known cost: the Companies Ordinance, 1984 counts as replaced,
 although s.509 of the 2017 Act keeps its Part VIIIA in force. Questions on
 that Part abstain until partial repeals are modelled.
 
+**Ordinance lapse, widened (0091, 0092; 16 Nov 2026).** The Eighteenth
+Amendment's own text is held as doc 4434. Its s.27 substitutes "for the words
+'four months' the words 'one hundred and twenty days'" in Art. 89(2)(a)(i)
+and (ii), and inserts the extension proviso. Its s.41 does the same for "three
+months" in Art. 128. Art. 89's footnotes (doc 4419) list every amendment of
+it: P.O. 14 of 1985, P.O. 20 of 1985 and the Eighteenth Amendment. So
+Ordinances promulgated from 1 Jan 1986 to 19 Apr 2010 stood repealed four
+months (federal) or three months (provincial) after promulgation, with no
+extension. Excluded are the Art. 270AA window (12 Oct 1999 – 31 Dec 2003) and
+everything before 1986.
+
+AJK has its own rule, from the Interim Constitution, 1974, Art. 41(2)(a): four
+months, extendable once by four. That text was read from the official file
+`https://law.gok.pk/wp-content/uploads/2023/10/AJK-interim-constitution.pdf`
+(sha256 `5901ea06…`, staged and not landed). The Interim Constitution has no
+affirmation or validation article, and no AJK law continues Ordinances
+generally, so it is applied to AJK Ordinances of 1975 onward. A continued
+Ordinance (270A, 270AA, or pre-1973) that a held law amended after its window
+was alive then. It is tested as an Act (38 in force).
+
+Result: 1,064 Ordinances lapsed. The ones still unverified carry their window
+as the reason: `ordinance_continued_by_art270A_1977_1985`,
+`…art270AA_1999_2003`, `ordinance_of_a_pre_1973_regime`,
+`ajk_ordinance_before_interim_constitution`.
+
+Searched and not found:
+- Pakistan Code (the Ministry of Law's consolidation) publishes no in-force
+  register. Its disclaimer says the laws "should not be taken as authentic".
+- The corpus holds no commencement notification.
+- The Sindh Code does not publish the Sindh General Clauses Act, 1956 (only
+  its 2002 amendment).
+- The held West Pakistan General Clauses Act, 1956 (8538) is too OCR-damaged
+  to read s.3.
+
+**Serving snapshot (0093, 0094).** `operative_provision` used to re-derive
+every law's release, currency and reach on each read: 7 min 25 s for one
+territory. It now reads `mv_instrument_serving`, a per-law snapshot of release,
+currency, reach, twin-level repeal, supersession and historical window. One
+territory now reads in 8.7 s, the whole corpus in 18.7 s. The date and
+territory tests stay in the view. `tools/refresh_serving.py` refreshes the
+snapshot and runs at the end of `post_replay_sequence.sh`. Audit A16 fails
+while the snapshot differs from the live derivation.
+
 **Territorial reach (0086, 0087).** Owner rule, 16 Nov 2026: "each provincial
 jurisdiction in their own provinces while federal is for all". With
 `nzq.territory` set, `operative_provision` serves a province's, ICT's, AJK's

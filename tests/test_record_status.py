@@ -65,10 +65,22 @@ def test_an_ordinance_lapses_only_outside_the_protected_windows_and_after_its_ma
     assert st.ordinance_lapse("sindh", 2015, "2015-03-01", ["Sindh Foo Ordinance, 2015"], today)[0] == \
         "stood_repealed_art128_2"
     assert st.ordinance_lapse("fed", 2010, "2010-06-01", ["Foo Ordinance, 2010"], today)[0] == "stood_repealed_art89_2"
-    # before the Eighteenth Amendment's text (2010-04-20): the corpus does not state the rule -- never; AJK/GB never
-    for jur, y, d in (("fed", 2008, None), ("fed", 2010, "2010-01-05"), ("fed", 2001, None), ("fed", 1980, None),
-                      ("ajk", 2015, None), ("gb", 2015, None)):
+    # 1986-2010 under the earlier text the Eighteenth Amendment replaced: four months (federal), three (provincial)
+    assert st.ordinance_lapse("fed", 2008, None, ["The Foo Ordinance, 2008"], today)[0] == \
+        "stood_repealed_art89_2_four_months"
+    assert st.ordinance_lapse("fed", 2010, "2010-01-05", ["The Foo Ordinance, 2010"], today)[2].isoformat() == "2010-05-05"
+    assert st.ordinance_lapse("sindh", 1992, None, ["Sindh Foo Ordinance, 1992"], today)[0] == \
+        "stood_repealed_art128_2_three_months"
+    # AJK: Interim Constitution Art. 41 -- four months, one extension of four: at most eight months, from 1975
+    assert st.ordinance_lapse("ajk", 1983, None, ["The Foo Ordinance, 1983"], today)[0] == \
+        "stood_repealed_ajk_interim_constitution_art41"
+    assert st.ordinance_lapse("ajk", 1972, None, ["The Foo Ordinance, 1972"], today)[0] is None
+    # protected (270A to 1985, 270AA 12 Oct 1999 - 2003), before 1986 (original 1973 text not held), GB: never
+    for jur, y, d in (("fed", 2001, None), ("fed", 1980, None), ("fed", 1999, None), ("fed", 1999, "1999-11-01"),
+                      ("fed", 1975, None), ("gb", 2015, None)):
         assert st.ordinance_lapse(jur, y, d, [f"The Foo Ordinance, {y}"], today)[0] is None
+    assert st.ordinance_lapse("fed", 1999, "1999-03-01", ["The Foo Ordinance, 1999"], today)[0] == \
+        "stood_repealed_art89_2_four_months"
     # still possibly running, or a year the title does not print
     assert st.ordinance_lapse("fed", 2026, "2026-01-10", ["Foo Ordinance, 2026"], today)[1] == "ordinance_may_still_run"
     assert st.ordinance_lapse("fed", 2015, None, ["Foo Ordinance"], today)[1] == "ordinance_year_not_printed_in_title"

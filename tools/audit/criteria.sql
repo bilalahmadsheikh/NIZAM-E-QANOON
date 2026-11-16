@@ -550,6 +550,27 @@ m AS (
     ,(SELECT string_agg(field||' '||n, ', ' ORDER BY field)
         FROM (SELECT field, count(*) n FROM v_instrument_metadata_current GROUP BY 1) s)   AS meta_standing
 -- <<< A15 measures
+    -- >>> A16 measures
+    -- A16 (migration 0094). The serving snapshot operative_provision reads equals the live derivation: every released
+    -- canonical law (as-made twins excluded) with the same currency, reason, cut-off, reach and status. Any difference
+    -- means a refresh (tools/refresh_serving.py) was missed. Counts are reported, the rule is exact.
+    ,(SELECT count(*) FROM (
+        (SELECT c.instrument_id, c.currency, c.reason, c.not_current_from, c.territory_reach, i.status::text
+           FROM v_instrument_currency c JOIN v_release_instrument i ON i.id = c.instrument_id
+          WHERE NOT EXISTS (SELECT 1 FROM v_consolidated_twin_current t WHERE t.as_made_instrument_id = i.id)
+         EXCEPT
+         SELECT instrument_id, currency, currency_reason, not_current_from, territory_reach, status
+           FROM mv_instrument_serving)
+        UNION ALL
+        (SELECT instrument_id, currency, currency_reason, not_current_from, territory_reach, status
+           FROM mv_instrument_serving
+         EXCEPT
+         SELECT c.instrument_id, c.currency, c.reason, c.not_current_from, c.territory_reach, i.status::text
+           FROM v_instrument_currency c JOIN v_release_instrument i ON i.id = c.instrument_id
+          WHERE NOT EXISTS (SELECT 1 FROM v_consolidated_twin_current t WHERE t.as_made_instrument_id = i.id))) d)
+                                                                                        AS serving_stale
+    ,(SELECT count(*) FROM mv_instrument_serving)                                       AS serving_laws
+-- <<< A16 measures
 )
 SELECT * FROM (
   SELECT 'C1' AS id, 'every acquired file becomes a blob'      AS criterion,
@@ -702,6 +723,10 @@ SELECT * FROM (
          meta_unevidenced||' without evidence',
          '0 / 0; counts reported',
          CASE WHEN meta_unreflected=0 AND meta_unevidenced=0 THEN 'PASS' ELSE 'FAIL' END FROM m
+  UNION ALL SELECT 'A16','the serving snapshot operative_provision reads matches the live derivation',
+         serving_laws||' laws served from the snapshot (reported); '||serving_stale||' differ from live',
+         '0 differ; count reported',
+         CASE WHEN serving_stale=0 THEN 'PASS' ELSE 'FAIL' END FROM m
   UNION ALL SELECT 'A6','no overlapping law (enforced, not tested)',
          CASE WHEN excl_present=1 THEN 'EXCLUDE constraint present'
               ELSE 'CONSTRAINT MISSING' END, 'enforced',
