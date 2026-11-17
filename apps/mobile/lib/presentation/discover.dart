@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../design/components.dart';
 import '../design/monument.dart';
 import '../design/theme.dart';
+import 'popular.dart';
 
 class DiscoverScreen extends StatelessWidget {
   const DiscoverScreen({super.key});
@@ -96,6 +97,8 @@ class DiscoverScreen extends StatelessWidget {
               ],
             ),
           ),
+          const SizedBox(height: 32),
+          const PopularCarousel(),
           const SizedBox(height: 32),
           Row(
             children: [

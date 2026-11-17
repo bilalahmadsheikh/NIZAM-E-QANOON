@@ -1,8 +1,11 @@
+import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
 import '../contracts/library_models.g.dart';
 import '../data/library_repository.dart';
+import '../domain/reading_mode.dart';
 import '../platform/source_actions.dart';
+export '../domain/reading_mode.dart';
 export '../data/library_repository.dart' show LibraryFailure;
 
 String pakistanDate() => DateTime.now()
@@ -127,3 +130,53 @@ final provisionProvider = FutureProvider.autoDispose
       (ref, id) =>
           ref.watch(repositoryProvider).provision(id, ref.watch(asOfProvider)),
     );
+
+/// The reading mode (domain/reading_mode.dart): density and tools, never a different law or status.
+final readingModeProvider = StateProvider<ReadingMode>((ref) => ReadingMode.everyday);
+
+/// A law's served sections, paged ahead of the reader's scroll. The served count and the law's serving record
+/// arrive with the first page and are kept beside the list.
+final sectionsHeadProvider = StateProvider.family<SectionPage?, String>((ref, id) => null);
+final sectionsProvider = StateNotifierProvider.autoDispose
+    .family<Pager<SectionItem>, AsyncValue<Paged<SectionItem>>, String>((ref, id) {
+  final repo = ref.watch(repositoryProvider);
+  final day = ref.watch(asOfProvider);
+  final territory = ref.watch(territoryProvider);
+  final link = ref.keepAlive();
+  Timer? timer;
+  ref.onCancel(() => timer = Timer(const Duration(minutes: 5), link.close));
+  ref.onResume(() => timer?.cancel());
+  ref.onDispose(() => timer?.cancel());
+  return Pager((after) async {
+    final page = await repo.sections(id, day, territory: territory, after: after);
+    if (after == null) {
+      Future.microtask(() => ref.read(sectionsHeadProvider(id).notifier).state = page);
+    }
+    return (page.items, page.next_cursor);
+  });
+});
+
+/// The home carousel: one small request, kept for the session.
+final popularProvider = FutureProvider<CollectionPage>(
+  (ref) => ref.watch(repositoryProvider).popular(ref.watch(asOfProvider)),
+);
+
+/// The reader's territory ('' = none chosen: every law is returned, each with its own reach). Part of the scope,
+/// like the date: a Punjab reader must not be served a law that does not run in Punjab (docs/04 §6).
+final territoryProvider = StateProvider<String>((ref) => '');
+
+/// A unit and its served subtree. Kept for five minutes after the screen closes, so going back to a section and
+/// forward again costs no request; the date and territory are part of the key through ref.watch.
+final unitTextProvider = FutureProvider.autoDispose.family<UnitText, String>((ref, id) async {
+  // the countdown starts only when the last screen showing this unit closes, and stops if one comes back
+  final link = ref.keepAlive();
+  Timer? timer;
+  ref.onCancel(() => timer = Timer(const Duration(minutes: 5), link.close));
+  ref.onResume(() => timer?.cancel());
+  ref.onDispose(() => timer?.cancel());
+  return ref.watch(repositoryProvider).unitText(
+        id,
+        ref.watch(asOfProvider),
+        territory: ref.watch(territoryProvider),
+      );
+});

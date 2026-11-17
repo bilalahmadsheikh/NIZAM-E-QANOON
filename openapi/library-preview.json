@@ -350,6 +350,236 @@
           }
         }
       }
+    },
+    "/v1/law/collections/popular": {
+      "get": {
+        "summary": "Popular",
+        "operationId": "popular_v1_law_collections_popular_get",
+        "parameters": [
+          {
+            "name": "as_of",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "As Of"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CollectionPage"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/law/instruments/{instrument_id}/sections": {
+      "get": {
+        "summary": "Sections",
+        "operationId": "sections_v1_law_instruments__instrument_id__sections_get",
+        "parameters": [
+          {
+            "name": "instrument_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Instrument Id"
+            }
+          },
+          {
+            "name": "as_of",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "As Of"
+            }
+          },
+          {
+            "name": "territory",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "enum": [
+                "",
+                "punjab",
+                "sindh",
+                "kp",
+                "balochistan",
+                "ict",
+                "ajk",
+                "gb"
+              ],
+              "type": "string",
+              "default": "",
+              "title": "Territory"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "default": 40,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "after",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 2048
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "After"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SectionPage"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/law/provisions/{provision_id}/text": {
+      "get": {
+        "summary": "Unit Text",
+        "operationId": "unit_text_v1_law_provisions__provision_id__text_get",
+        "parameters": [
+          {
+            "name": "provision_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Provision Id"
+            }
+          },
+          {
+            "name": "as_of",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "As Of"
+            }
+          },
+          {
+            "name": "territory",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "enum": [
+                "",
+                "punjab",
+                "sindh",
+                "kp",
+                "balochistan",
+                "ict",
+                "ajk",
+                "gb"
+              ],
+              "type": "string",
+              "default": "",
+              "title": "Territory"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnitText"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -396,6 +626,62 @@
           "kind"
         ],
         "title": "Ancestor"
+      },
+      "CollectionItem": {
+        "properties": {
+          "short_name": {
+            "type": "string",
+            "title": "Short Name"
+          },
+          "instrument": {
+            "$ref": "#/components/schemas/Instrument"
+          }
+        },
+        "type": "object",
+        "required": [
+          "short_name",
+          "instrument"
+        ],
+        "title": "CollectionItem"
+      },
+      "CollectionPage": {
+        "properties": {
+          "as_of": {
+            "type": "string",
+            "format": "date",
+            "title": "As Of"
+          },
+          "mode": {
+            "type": "string",
+            "const": "research_preview",
+            "title": "Mode",
+            "default": "research_preview"
+          },
+          "notice": {
+            "type": "string",
+            "title": "Notice",
+            "default": "Corpus qualification is ongoing. Check the official source; status may be unknown."
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/CollectionItem"
+            },
+            "type": "array",
+            "title": "Items"
+          }
+        },
+        "type": "object",
+        "required": [
+          "as_of",
+          "name",
+          "items"
+        ],
+        "title": "CollectionPage",
+        "description": "An editorial collection (nizam/api/collections.py): a starting point, not a claim of completeness."
       },
       "HTTPValidationError": {
         "properties": {
@@ -469,6 +755,79 @@
           "source_hash": {
             "type": "string",
             "title": "Source Hash"
+          },
+          "historical": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Historical"
+          },
+          "valid_from": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Valid From"
+          },
+          "valid_to": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Valid To"
+          },
+          "current_instrument_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Current Instrument Id"
+          },
+          "currency": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Currency"
+          },
+          "currency_reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Currency Reason"
+          },
+          "year_display": {
+            "type": "string",
+            "title": "Year Display",
+            "description": "The year as a client shows it. A NULL year is an owner-declared\nundated instrument (migration 0063 admits no other), shown 'undated';\na year is never inferred (INV-1).",
+            "readOnly": true
           }
         },
         "type": "object",
@@ -481,7 +840,8 @@
           "status",
           "source_url",
           "document_id",
-          "source_hash"
+          "source_hash",
+          "year_display"
         ],
         "title": "Instrument"
       },
@@ -558,6 +918,100 @@
           "item"
         ],
         "title": "InstrumentResult"
+      },
+      "LawStatus": {
+        "properties": {
+          "currency": {
+            "type": "string",
+            "title": "Currency"
+          },
+          "currency_reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Currency Reason"
+          },
+          "not_current_from": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Not Current From"
+          },
+          "repealed_on": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Repealed On"
+          },
+          "enacted_on": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Enacted On"
+          },
+          "commenced_on": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Commenced On"
+          },
+          "territory_reach": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Territory Reach"
+          },
+          "extent_basis": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Extent Basis"
+          }
+        },
+        "type": "object",
+        "required": [
+          "currency",
+          "currency_reason",
+          "not_current_from",
+          "repealed_on",
+          "enacted_on",
+          "commenced_on",
+          "territory_reach",
+          "extent_basis"
+        ],
+        "title": "LawStatus",
+        "description": "The law-level serving record (mv_instrument_serving). Codes, not prose: the client words them (docs/13)."
       },
       "Node": {
         "properties": {
@@ -802,6 +1256,17 @@
             ],
             "title": "Text Ur"
           },
+          "text_language": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Text Language"
+          },
           "operation": {
             "anyOf": [
               {
@@ -896,6 +1361,407 @@
           "item"
         ],
         "title": "ProvisionResult"
+      },
+      "SectionItem": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "kind": {
+            "type": "string",
+            "title": "Kind"
+          },
+          "label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Label"
+          },
+          "heading": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Heading"
+          },
+          "ordinal": {
+            "type": "integer",
+            "title": "Ordinal"
+          },
+          "first_page": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "First Page"
+          },
+          "preview": {
+            "type": "string",
+            "title": "Preview"
+          },
+          "group": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Group"
+          },
+          "citation": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Citation"
+          },
+          "survives_repeal": {
+            "type": "boolean",
+            "title": "Survives Repeal",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "label",
+          "heading",
+          "ordinal",
+          "first_page",
+          "preview",
+          "group",
+          "citation"
+        ],
+        "title": "SectionItem",
+        "description": "One section-level unit of a law for the law page: name, its Part/Chapter, the first words it serves, and a\ncitation rendered from the records (INV-1). `preview` is the start of the served text, never a summary."
+      },
+      "SectionPage": {
+        "properties": {
+          "as_of": {
+            "type": "string",
+            "format": "date",
+            "title": "As Of"
+          },
+          "mode": {
+            "type": "string",
+            "const": "research_preview",
+            "title": "Mode",
+            "default": "research_preview"
+          },
+          "notice": {
+            "type": "string",
+            "title": "Notice",
+            "default": "Corpus qualification is ongoing. Check the official source; status may be unknown."
+          },
+          "instrument": {
+            "$ref": "#/components/schemas/Instrument"
+          },
+          "law": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/LawStatus"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "territory": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Territory"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/SectionItem"
+            },
+            "type": "array",
+            "title": "Items"
+          },
+          "total": {
+            "type": "integer",
+            "title": "Total"
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Cursor"
+          }
+        },
+        "type": "object",
+        "required": [
+          "as_of",
+          "instrument",
+          "law",
+          "territory",
+          "items",
+          "total",
+          "next_cursor"
+        ],
+        "title": "SectionPage",
+        "description": "A page of a law's served sections, in printed order. `total` is the law's served section count at as_of in\nterritory (cheap: the index is computed once per law and date); `law` is its serving record."
+      },
+      "UnitNode": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "parent_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Parent Id"
+          },
+          "kind": {
+            "type": "string",
+            "title": "Kind"
+          },
+          "label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Label"
+          },
+          "heading": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Heading"
+          },
+          "marginal_note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Marginal Note"
+          },
+          "depth": {
+            "type": "integer",
+            "title": "Depth"
+          },
+          "first_page": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "First Page"
+          },
+          "text_en": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Text En"
+          },
+          "text_ur": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Text Ur"
+          },
+          "text_language": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Text Language"
+          },
+          "operation": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Operation"
+          },
+          "survives_repeal": {
+            "type": "boolean",
+            "title": "Survives Repeal",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "parent_id",
+          "kind",
+          "label",
+          "heading",
+          "marginal_note",
+          "depth",
+          "first_page",
+          "text_en",
+          "text_ur",
+          "operation"
+        ],
+        "title": "UnitNode",
+        "description": "One served unit inside the opened unit's subtree, in printed order; depth 0 is the opened unit itself."
+      },
+      "UnitText": {
+        "properties": {
+          "as_of": {
+            "type": "string",
+            "format": "date",
+            "title": "As Of"
+          },
+          "mode": {
+            "type": "string",
+            "const": "research_preview",
+            "title": "Mode",
+            "default": "research_preview"
+          },
+          "notice": {
+            "type": "string",
+            "title": "Notice",
+            "default": "Corpus qualification is ongoing. Check the official source; status may be unknown."
+          },
+          "item": {
+            "$ref": "#/components/schemas/Provision"
+          },
+          "law": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/LawStatus"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "territory": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Territory"
+          },
+          "nodes": {
+            "items": {
+              "$ref": "#/components/schemas/UnitNode"
+            },
+            "type": "array",
+            "title": "Nodes"
+          },
+          "truncated": {
+            "type": "boolean",
+            "title": "Truncated"
+          },
+          "not_served": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Not Served"
+          },
+          "not_served_from": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Not Served From"
+          }
+        },
+        "type": "object",
+        "required": [
+          "as_of",
+          "item",
+          "law",
+          "territory",
+          "nodes",
+          "truncated",
+          "not_served",
+          "not_served_from"
+        ],
+        "title": "UnitText",
+        "description": "A unit with its served subtree, read through operative_provision (INV-5). Empty `nodes` with a\n`not_served` code means the unit is not law at `as_of` (in `territory`); the code says which record decides."
       },
       "ValidationError": {
         "properties": {

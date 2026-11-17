@@ -3,7 +3,18 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../contracts/library_models.g.dart' as law;
 import '../design/components.dart';
+import '../design/status_banner.dart';
+import '../domain/law_status.dart';
 import '../state/library_state.dart';
+import 'sections.dart';
+
+/// An instrument's standing from its serving record; an as-made text with none falls back to its stored status.
+StatusWording instrumentWording(law.Instrument item) => item.currency != null
+    ? lawStatusWording(currency: item.currency, reason: item.currency_reason)
+    : lawStatusWording(
+        currency: item.status == 'repealed' ? 'not_current' : null,
+        reason: null,
+      );
 
 class CatalogueScreen extends ConsumerStatefulWidget {
   final String initialQuery;
@@ -232,7 +243,7 @@ class InstrumentCard extends StatelessWidget {
           children: [
             Expanded(
               child: Text(
-                statusName(item.status),
+                instrumentWording(item).title,
                 style: const TextStyle(fontSize: 12),
               ),
             ),
@@ -283,13 +294,25 @@ class ChildrenList extends ConsumerWidget {
                             children: [
                               SizedBox(
                                 width: 54,
-                                child: Text(
-                                  node.label ?? '—',
-                                  style: TextStyle(
-                                    fontFamily: 'Spectral',
-                                    fontSize: 23,
-                                    color:
-                                        Theme.of(context).colorScheme.secondary,
+                                // a long label ('XVIIA') shrinks to fit rather than wrap; an unnumbered unit
+                                // whose label only repeats its kind ('Preamble') leaves the number slot empty,
+                                // since the eyebrow beside it already names the kind
+                                child: FittedBox(
+                                  fit: BoxFit.scaleDown,
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                    (node.label ?? '').toLowerCase() ==
+                                            node.kind.toLowerCase()
+                                        ? ''
+                                        : (node.label ?? '—'),
+                                    maxLines: 1,
+                                    style: TextStyle(
+                                      fontFamily: 'Spectral',
+                                      fontSize: 23,
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .secondary,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -349,14 +372,26 @@ class ChildrenList extends ConsumerWidget {
   }
 }
 
-class InstrumentScreen extends ConsumerWidget {
+/// A law's page: its standing, then every served section (lazy, paged ahead of the scroll) -- or, switched, its
+/// printed structure (Parts, Chapters) to walk down level by level.
+class InstrumentScreen extends ConsumerStatefulWidget {
   final String id;
   const InstrumentScreen({super.key, required this.id});
   @override
-  Widget build(BuildContext context, WidgetRef ref) => LibraryScaffold(
-    title: 'Instrument',
+  ConsumerState<InstrumentScreen> createState() => _InstrumentScreenState();
+}
+
+class _InstrumentScreenState extends ConsumerState<InstrumentScreen> {
+  bool structure = false;
+  String get id => widget.id;
+
+  @override
+  Widget build(BuildContext context) => LibraryScaffold(
+    title: 'Law',
     body: ReadingWidth(
       child: CustomScrollView(
+        // build rows well ahead of the viewport so a fast fling meets laid-out rows, not blank space
+        cacheExtent: 1600,
         slivers: [
           SliverPadding(
             padding: const EdgeInsets.all(24),
@@ -384,15 +419,32 @@ class InstrumentScreen extends ConsumerWidget {
                             style: Theme.of(context).textTheme.headlineMedium,
                           ),
                           const SizedBox(height: 24),
-                          StatusNote(item.status),
-                          const SizedBox(height: 28),
-                          const Eyebrow('Source structure'),
-                          const SizedBox(height: 12),
-                          const Text(
-                            'Follow the printed hierarchy. Parts and chapters lead to articles, sections, clauses and schedules.',
-                            style: TextStyle(height: 1.5),
+                          StatusBanner(instrumentWording(item)),
+                          const SizedBox(height: 20),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  switch (ref.watch(sectionsHeadProvider(id))?.total) {
+                                    null => 'Sections',
+                                    1 => '1 section in force on ${result.as_of}',
+                                    final n => '$n sections served on ${result.as_of}',
+                                  },
+                                  style: Theme.of(context).textTheme.titleLarge,
+                                ),
+                              ),
+                            ],
                           ),
-                          const SizedBox(height: 24),
+                          const SizedBox(height: 12),
+                          SegmentedButton<bool>(
+                            segments: const [
+                              ButtonSegment(value: false, icon: Icon(Icons.view_agenda_outlined), label: Text('Sections')),
+                              ButtonSegment(value: true, icon: Icon(Icons.account_tree_outlined), label: Text('Structure')),
+                            ],
+                            selected: {structure},
+                            onSelectionChanged: (s) => setState(() => structure = s.first),
+                          ),
+                          const SizedBox(height: 16),
                         ],
                       );
                     },
@@ -401,8 +453,10 @@ class InstrumentScreen extends ConsumerWidget {
           ),
           if (ref.watch(instrumentProvider(id)).valueOrNull case final result?)
             SliverPadding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              sliver: ChildrenList(instrument: result.item.id),
+              padding: const EdgeInsets.fromLTRB(24, 0, 24, 120),
+              sliver: structure
+                  ? ChildrenList(instrument: result.item.id)
+                  : SectionList(instrument: result.item.id),
             ),
         ],
       ),

@@ -11,7 +11,14 @@ class Instrument {
   final String? source_url;
   final int document_id;
   final String source_hash;
-  const Instrument({required this.id, required this.title, required this.kind, required this.year, required this.jurisdiction, required this.status, required this.source_url, required this.document_id, required this.source_hash});
+  final bool? historical;
+  final String? valid_from;
+  final String? valid_to;
+  final String? current_instrument_id;
+  final String? currency;
+  final String? currency_reason;
+  final String year_display;
+  const Instrument({required this.id, required this.title, required this.kind, required this.year, required this.jurisdiction, required this.status, required this.source_url, required this.document_id, required this.source_hash, required this.historical, required this.valid_from, required this.valid_to, required this.current_instrument_id, required this.currency, required this.currency_reason, required this.year_display});
   factory Instrument.fromJson(Map<String, dynamic> json) => Instrument(
     id: json['id'] as String,
     title: json['title'] == null ? null : json['title'] as String,
@@ -22,6 +29,13 @@ class Instrument {
     source_url: json['source_url'] == null ? null : json['source_url'] as String,
     document_id: json['document_id'] as int,
     source_hash: json['source_hash'] as String,
+    historical: json['historical'] == null ? null : json['historical'] as bool,
+    valid_from: json['valid_from'] == null ? null : json['valid_from'] as String,
+    valid_to: json['valid_to'] == null ? null : json['valid_to'] as String,
+    current_instrument_id: json['current_instrument_id'] == null ? null : json['current_instrument_id'] as String,
+    currency: json['currency'] == null ? null : json['currency'] as String,
+    currency_reason: json['currency_reason'] == null ? null : json['currency_reason'] as String,
+    year_display: json['year_display'] as String,
   );
 }
 
@@ -78,12 +92,13 @@ class Provision {
   final bool has_children;
   final String? text_en;
   final String? text_ur;
+  final String? text_language;
   final String? operation;
   final String? valid_from;
   final String? valid_to;
   final Instrument instrument;
   final List<Ancestor> ancestors;
-  const Provision({required this.id, required this.instrument_id, required this.parent_id, required this.label, required this.heading, required this.marginal_note, required this.kind, required this.ordinal, required this.first_page, required this.has_children, required this.text_en, required this.text_ur, required this.operation, required this.valid_from, required this.valid_to, required this.instrument, required this.ancestors});
+  const Provision({required this.id, required this.instrument_id, required this.parent_id, required this.label, required this.heading, required this.marginal_note, required this.kind, required this.ordinal, required this.first_page, required this.has_children, required this.text_en, required this.text_ur, required this.text_language, required this.operation, required this.valid_from, required this.valid_to, required this.instrument, required this.ancestors});
   factory Provision.fromJson(Map<String, dynamic> json) => Provision(
     id: json['id'] as String,
     instrument_id: json['instrument_id'] as String,
@@ -97,6 +112,7 @@ class Provision {
     has_children: json['has_children'] as bool,
     text_en: json['text_en'] == null ? null : json['text_en'] as String,
     text_ur: json['text_ur'] == null ? null : json['text_ur'] as String,
+    text_language: json['text_language'] == null ? null : json['text_language'] as String,
     operation: json['operation'] == null ? null : json['operation'] as String,
     valid_from: json['valid_from'] == null ? null : json['valid_from'] as String,
     valid_to: json['valid_to'] == null ? null : json['valid_to'] as String,
@@ -162,5 +178,161 @@ class ProvisionResult {
     mode: json['mode'] as String,
     notice: json['notice'] as String,
     item: Provision.fromJson(json['item'] as Map<String, dynamic>),
+  );
+}
+
+class UnitNode {
+  final String id;
+  final String? parent_id;
+  final String kind;
+  final String? label;
+  final String? heading;
+  final String? marginal_note;
+  final int depth;
+  final int? first_page;
+  final String? text_en;
+  final String? text_ur;
+  final String? text_language;
+  final String? operation;
+  final bool survives_repeal;
+  const UnitNode({required this.id, required this.parent_id, required this.kind, required this.label, required this.heading, required this.marginal_note, required this.depth, required this.first_page, required this.text_en, required this.text_ur, required this.text_language, required this.operation, required this.survives_repeal});
+  factory UnitNode.fromJson(Map<String, dynamic> json) => UnitNode(
+    id: json['id'] as String,
+    parent_id: json['parent_id'] == null ? null : json['parent_id'] as String,
+    kind: json['kind'] as String,
+    label: json['label'] == null ? null : json['label'] as String,
+    heading: json['heading'] == null ? null : json['heading'] as String,
+    marginal_note: json['marginal_note'] == null ? null : json['marginal_note'] as String,
+    depth: json['depth'] as int,
+    first_page: json['first_page'] == null ? null : json['first_page'] as int,
+    text_en: json['text_en'] == null ? null : json['text_en'] as String,
+    text_ur: json['text_ur'] == null ? null : json['text_ur'] as String,
+    text_language: json['text_language'] == null ? null : json['text_language'] as String,
+    operation: json['operation'] == null ? null : json['operation'] as String,
+    survives_repeal: json['survives_repeal'] as bool,
+  );
+}
+
+class LawStatus {
+  final String currency;
+  final String? currency_reason;
+  final String? not_current_from;
+  final String? repealed_on;
+  final String? enacted_on;
+  final String? commenced_on;
+  final List<String> territory_reach;
+  final String? extent_basis;
+  const LawStatus({required this.currency, required this.currency_reason, required this.not_current_from, required this.repealed_on, required this.enacted_on, required this.commenced_on, required this.territory_reach, required this.extent_basis});
+  factory LawStatus.fromJson(Map<String, dynamic> json) => LawStatus(
+    currency: json['currency'] as String,
+    currency_reason: json['currency_reason'] == null ? null : json['currency_reason'] as String,
+    not_current_from: json['not_current_from'] == null ? null : json['not_current_from'] as String,
+    repealed_on: json['repealed_on'] == null ? null : json['repealed_on'] as String,
+    enacted_on: json['enacted_on'] == null ? null : json['enacted_on'] as String,
+    commenced_on: json['commenced_on'] == null ? null : json['commenced_on'] as String,
+    territory_reach: (json['territory_reach'] as List).map((v) => v as String).toList(),
+    extent_basis: json['extent_basis'] == null ? null : json['extent_basis'] as String,
+  );
+}
+
+class UnitText {
+  final String as_of;
+  final String mode;
+  final String notice;
+  final Provision item;
+  final LawStatus? law;
+  final String? territory;
+  final List<UnitNode> nodes;
+  final bool truncated;
+  final String? not_served;
+  final String? not_served_from;
+  const UnitText({required this.as_of, required this.mode, required this.notice, required this.item, required this.law, required this.territory, required this.nodes, required this.truncated, required this.not_served, required this.not_served_from});
+  factory UnitText.fromJson(Map<String, dynamic> json) => UnitText(
+    as_of: json['as_of'] as String,
+    mode: json['mode'] as String,
+    notice: json['notice'] as String,
+    item: Provision.fromJson(json['item'] as Map<String, dynamic>),
+    law: json['law'] == null ? null : LawStatus.fromJson(json['law'] as Map<String, dynamic>),
+    territory: json['territory'] == null ? null : json['territory'] as String,
+    nodes: (json['nodes'] as List).map((v) => UnitNode.fromJson(v as Map<String, dynamic>)).toList(),
+    truncated: json['truncated'] as bool,
+    not_served: json['not_served'] == null ? null : json['not_served'] as String,
+    not_served_from: json['not_served_from'] == null ? null : json['not_served_from'] as String,
+  );
+}
+
+class SectionItem {
+  final String id;
+  final String kind;
+  final String? label;
+  final String? heading;
+  final int ordinal;
+  final int? first_page;
+  final String preview;
+  final String? group;
+  final String? citation;
+  final bool survives_repeal;
+  const SectionItem({required this.id, required this.kind, required this.label, required this.heading, required this.ordinal, required this.first_page, required this.preview, required this.group, required this.citation, required this.survives_repeal});
+  factory SectionItem.fromJson(Map<String, dynamic> json) => SectionItem(
+    id: json['id'] as String,
+    kind: json['kind'] as String,
+    label: json['label'] == null ? null : json['label'] as String,
+    heading: json['heading'] == null ? null : json['heading'] as String,
+    ordinal: json['ordinal'] as int,
+    first_page: json['first_page'] == null ? null : json['first_page'] as int,
+    preview: json['preview'] as String,
+    group: json['group'] == null ? null : json['group'] as String,
+    citation: json['citation'] == null ? null : json['citation'] as String,
+    survives_repeal: json['survives_repeal'] as bool,
+  );
+}
+
+class SectionPage {
+  final String as_of;
+  final String mode;
+  final String notice;
+  final Instrument instrument;
+  final LawStatus? law;
+  final String? territory;
+  final List<SectionItem> items;
+  final int total;
+  final String? next_cursor;
+  const SectionPage({required this.as_of, required this.mode, required this.notice, required this.instrument, required this.law, required this.territory, required this.items, required this.total, required this.next_cursor});
+  factory SectionPage.fromJson(Map<String, dynamic> json) => SectionPage(
+    as_of: json['as_of'] as String,
+    mode: json['mode'] as String,
+    notice: json['notice'] as String,
+    instrument: Instrument.fromJson(json['instrument'] as Map<String, dynamic>),
+    law: json['law'] == null ? null : LawStatus.fromJson(json['law'] as Map<String, dynamic>),
+    territory: json['territory'] == null ? null : json['territory'] as String,
+    items: (json['items'] as List).map((v) => SectionItem.fromJson(v as Map<String, dynamic>)).toList(),
+    total: json['total'] as int,
+    next_cursor: json['next_cursor'] == null ? null : json['next_cursor'] as String,
+  );
+}
+
+class CollectionItem {
+  final String short_name;
+  final Instrument instrument;
+  const CollectionItem({required this.short_name, required this.instrument});
+  factory CollectionItem.fromJson(Map<String, dynamic> json) => CollectionItem(
+    short_name: json['short_name'] as String,
+    instrument: Instrument.fromJson(json['instrument'] as Map<String, dynamic>),
+  );
+}
+
+class CollectionPage {
+  final String as_of;
+  final String mode;
+  final String notice;
+  final String name;
+  final List<CollectionItem> items;
+  const CollectionPage({required this.as_of, required this.mode, required this.notice, required this.name, required this.items});
+  factory CollectionPage.fromJson(Map<String, dynamic> json) => CollectionPage(
+    as_of: json['as_of'] as String,
+    mode: json['mode'] as String,
+    notice: json['notice'] as String,
+    name: json['name'] as String,
+    items: (json['items'] as List).map((v) => CollectionItem.fromJson(v as Map<String, dynamic>)).toList(),
   );
 }

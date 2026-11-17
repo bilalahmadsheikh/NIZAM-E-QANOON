@@ -43,7 +43,7 @@ void main() {
       'http://fixture.invalid',
     );
     await expectLater(
-      repo.instruments(asOf: '2026-09-14', after: 'expired'),
+      repo.instruments(asOf: '2026-11-17', after: 'expired'),
       throwsA(
         isA<LibraryFailure>().having(
           (e) => e.refreshRequired,
@@ -75,23 +75,26 @@ void main() {
         }),
         'http://fixture.invalid',
       );
-      final page = await repo.instruments(asOf: '2026-09-14');
+      final page = await repo.instruments(asOf: '2026-11-17');
       expect(page.items, isNotEmpty);
       final instrument = await repo.instrument(
         page.items.first.id,
-        '2026-09-14',
+        '2026-11-17',
       );
       expect(instrument.item.source_hash.length, 64);
-      final provisionPath = fixture.keys.lastWhere(
-        (p) => p.startsWith('/v1/law/provisions/'),
+      // the leaf's own record and its served subtree (/text, 17 Nov 2026)
+      final textPath = fixture.keys.lastWhere(
+        (p) => Uri.parse(p).path.endsWith('/text'),
       );
-      final id = Uri.parse(provisionPath).pathSegments.last;
-      final source = await repo.provision(id, '2026-09-14');
-      expect(
-        source.item.text_en,
-        (fixture[provisionPath] as Map)['item']['text_en'],
-      );
-      expect(source.item.text_en, isNotEmpty);
+      final id = Uri.parse(textPath).pathSegments[3];
+      final unit = await repo.unitText(id, '2026-11-17');
+      final recorded = fixture[textPath] as Map;
+      expect(unit.nodes, isNotEmpty);
+      expect(unit.nodes.first.text_en, (recorded['nodes'] as List)[0]['text_en']);
+      expect(unit.item.instrument.source_hash.length, 64);
+      expect(unit.law?.currency, (recorded['law'] as Map)['currency']);
+      final source = await repo.provision(id, '2026-11-17');
+      expect(source.item.id, id);
     },
   );
   test(
@@ -99,13 +102,13 @@ void main() {
     () async {
       final repo = LibraryRepository(
         MockClient((request) async {
-          expect(request.url.queryParameters['as_of'], '2026-09-14');
+          expect(request.url.queryParameters['as_of'], '2026-11-17');
           return http.Response('{}', 404);
         }),
         'http://fixture.invalid',
       );
       await expectLater(
-        repo.provision('id', '2026-09-14'),
+        repo.provision('id', '2026-11-17'),
         throwsA(isA<LibraryFailure>()),
       );
     },
@@ -158,11 +161,12 @@ void main() {
         MockClient(
           (request) async => http.Response(
             jsonEncode({
-              'as_of': '2026-09-14',
+              'as_of': '2026-11-17',
               'mode': 'research_preview',
               'notice': 'Fixture',
               'items': [],
               'next_cursor': null,
+              if (request.url.path.endsWith('/collections/popular')) 'name': 'Most consulted laws',
             }),
             200,
           ),
@@ -173,7 +177,7 @@ void main() {
         ProviderScope(
           overrides: [
             repositoryProvider.overrideWithValue(repo),
-            asOfProvider.overrideWith((ref) => '2026-09-14'),
+            asOfProvider.overrideWith((ref) => '2026-11-17'),
           ],
           child: const NizamApp(),
         ),
@@ -249,13 +253,13 @@ void main() {
       final container = ProviderContainer(
         overrides: [
           repositoryProvider.overrideWithValue(repo),
-          asOfProvider.overrideWith((ref) => '2026-09-14'),
+          asOfProvider.overrideWith((ref) => '2026-11-17'),
         ],
       );
       addTearDown(container.dispose);
-      const instrument = '3f5e7f4e-2ec2-4517-bd10-634b9cc3681b';
-      const root = '4392e379-d1c2-4cc7-9ff3-cf103f806d2d';
-      const leaf = '12fc8042-a0c0-4320-850b-58469f8fcbef';
+      const instrument = '14968f5b-a03f-4bda-a904-031606c09592';
+      const root = '05f26c6b-5ea0-419c-8da9-ad37bacf5a27';
+      const leaf = 'c0a426c4-c42b-4d73-85b6-8f21d51b2750';
       container.read(routerProvider).go('/instrument/$instrument');
       await tester.pumpWidget(
         UncontrolledProviderScope(
@@ -264,46 +268,124 @@ void main() {
         ),
       );
       await tester.pumpAndSettle();
-      for (final node in [root, leaf]) {
-        final target = find.byKey(ValueKey('node/$node'));
-        await tester.scrollUntilVisible(
-          target,
-          240,
-          scrollable: find.byType(Scrollable).first,
-        );
-        await tester.tap(target);
-        await tester.pumpAndSettle();
-        expect(tester.takeException(), isNull);
-      }
-      final raw =
+      // the law page lists its sections lazily (one /sections page); each card shows the section's first words
+      final sectionsPage = fixture.entries
+          .firstWhere((e) => Uri.parse(e.key).path == '/v1/law/instruments/$instrument/sections')
+          .value as Map;
+      final first = (sectionsPage['items'] as List).first as Map;
+      expect(find.text(first['heading'] as String), findsOneWidget);
+      expect(find.text(first['preview'] as String), findsOneWidget);
+      expect(requested.where((u) => u.path.endsWith('/sections')).length, 1);
+      // its name is the button to the full text; the section opens with its sub-sections inline
+      final card = find.byKey(ValueKey('section/$root'));
+      await tester.tap(find.descendant(of: card, matching: find.text(first['heading'] as String)));
+      await tester.pumpAndSettle();
+      expect(tester.takeException(), isNull);
+      // the reader shows exactly the text operative_provision served for the leaf (INV-5), from one /text call
+      final served =
           (fixture.entries
                       .firstWhere(
                         (e) =>
-                            Uri.parse(e.key).path == '/v1/law/provisions/$leaf',
+                            Uri.parse(e.key).path ==
+                            '/v1/law/provisions/$leaf/text',
                       )
                       .value
-                  as Map)['item']
-              as Map;
+                  as Map);
+      final nodeText = ((served['nodes'] as List).first as Map)['text_en'] as String;
+      expect(find.text(nodeText.trim()), findsOneWidget);
       expect(
-        tester.widget<SelectableText>(find.byType(SelectableText)).data,
-        raw['text_en'],
+        requested.any((uri) => uri.path == '/v1/law/provisions/$root/text'),
+        isTrue,
+      );
+      // one request for the whole section: no per-sub-section reads
+      expect(
+        requested.where((uri) => uri.path.startsWith('/v1/law/provisions/')).length,
+        1,
       );
       expect(
-        requested.every((uri) => uri.queryParameters['as_of'] == '2026-09-14'),
+        requested.every((uri) => uri.queryParameters['as_of'] == '2026-11-17'),
         isTrue,
       );
       await expectLater(
         find.byType(MaterialApp),
         matchesGoldenFile('goldens/reader.png'),
       );
-      await tester.ensureVisible(find.byTooltip('Source and edition'));
-      await tester.tap(find.byTooltip('Source and edition'));
+      await tester.ensureVisible(find.text('Source & edition'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Source & edition'));
       await tester.pumpAndSettle();
       expect(
-        find.textContaining(raw['instrument']['source_hash'] as String),
+        find.textContaining(
+          (served['item'] as Map)['instrument']['source_hash'] as String,
+        ),
         findsOneWidget,
       );
       expect(tester.takeException(), isNull);
+      // the default (everyday) reading mode carries no record panel
+      expect(find.text('THE RECORD'), findsNothing);
+      // closing the reader starts the five-minute cache countdown; let it run out
+      await tester.pumpWidget(const SizedBox.shrink());
+      await tester.pump(const Duration(minutes: 6));
+    },
+  );
+
+  testWidgets(
+    'judge mode shows the served record above the text, same text, same requests',
+    (tester) async {
+      await fonts();
+      tester.view.physicalSize = const Size(430, 932);
+      tester.view.devicePixelRatio = 1;
+      addTearDown(tester.view.resetPhysicalSize);
+      addTearDown(tester.view.resetDevicePixelRatio);
+      final fixture =
+          jsonDecode(File('test/fixtures/library-responses.json').readAsStringSync()) as Map<String, dynamic>;
+      final requested = <Uri>[];
+      final repo = LibraryRepository(
+        MockClient((request) async {
+          requested.add(request.url);
+          final matched = fixture.entries.firstWhere((entry) {
+            final uri = Uri.parse(entry.key);
+            return uri.path == request.url.path &&
+                uri.queryParameters['parent'] == request.url.queryParameters['parent'];
+          });
+          return http.Response(jsonEncode(matched.value), 200,
+              headers: {'content-type': 'application/json; charset=utf-8'});
+        }),
+        'http://fixture.invalid',
+      );
+      final container = ProviderContainer(
+        overrides: [
+          repositoryProvider.overrideWithValue(repo),
+          asOfProvider.overrideWith((ref) => '2026-11-17'),
+        ],
+      );
+      addTearDown(container.dispose);
+      container.read(readingModeProvider.notifier).state = ReadingMode.judge;
+      const root = '05f26c6b-5ea0-419c-8da9-ad37bacf5a27';
+      const leaf = 'c0a426c4-c42b-4d73-85b6-8f21d51b2750';
+      container.read(routerProvider).go('/provision/$root');
+      await tester.pumpWidget(UncontrolledProviderScope(container: container, child: const NizamApp()));
+      await tester.pumpAndSettle();
+      expect(tester.takeException(), isNull);
+      final served = fixture.entries
+          .firstWhere((e) => Uri.parse(e.key).path == '/v1/law/provisions/$leaf/text')
+          .value as Map;
+      final lawRecord = served['law'] as Map?;
+      expect(find.text('THE RECORD'), findsOneWidget);
+      expect(find.text('Read as at'), findsOneWidget);
+      // the panel shows the record's own values, not client-derived ones
+      expect(find.text('2026-11-17'), findsWidgets);
+      if (lawRecord != null) {
+        expect(find.textContaining(lawRecord['currency'] as String), findsWidgets);
+      } else {
+        expect(find.text('Serving record'), findsOneWidget);
+      }
+      // a reading mode changes presentation only: the same text, from the same single request
+      final nodeText = ((served['nodes'] as List).first as Map)['text_en'] as String;
+      expect(find.text(nodeText.trim()), findsOneWidget);
+      expect(requested.where((u) => u.path.startsWith('/v1/law/provisions/')).length, 1);
+      await tester.pumpWidget(const SizedBox.shrink());
+      await tester.pump(const Duration(minutes: 6));
     },
   );
 }

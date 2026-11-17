@@ -97,4 +97,28 @@ class LibraryRepository {
       ProvisionResult.fromJson(
         await _get('/v1/law/provisions/$id', {'as_of': asOf}),
       );
+
+  /// A page of a law's served sections, in printed order (the law page's lazy list).
+  Future<SectionPage> sections(String id, String asOf, {String territory = '', String? after}) async =>
+      SectionPage.fromJson(
+        await _get('/v1/law/instruments/$id/sections', {
+          'as_of': asOf,
+          'limit': '40',
+          if (territory.isNotEmpty) 'territory': territory,
+          if (after != null) 'after': after,
+        }),
+      );
+
+  /// The home page's editorial collection of most-consulted laws.
+  Future<CollectionPage> popular(String asOf) async =>
+      CollectionPage.fromJson(await _get('/v1/law/collections/popular', {'as_of': asOf}));
+
+  /// A unit with everything under it, as operative_provision serves it at [asOf] in [territory] (INV-5): one
+  /// request for a whole section instead of one per sub-section.
+  Future<UnitText> unitText(String id, String asOf, {String territory = ''}) async => UnitText.fromJson(
+        await _get('/v1/law/provisions/$id/text', {
+          'as_of': asOf,
+          if (territory.isNotEmpty) 'territory': territory,
+        }),
+      );
 }

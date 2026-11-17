@@ -4,6 +4,7 @@ Run: uv run --extra api uvicorn nizam.api.library:create_app --factory --port 80
 Docs 07 §2/3/8; 08 §2/4; 13 §3. No generated answers or invented citations.
 """
 import base64
+import bisect
 from contextlib import asynccontextmanager
 from datetime import date, datetime
 import hashlib
@@ -20,6 +21,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, computed_field
 
+from nizam.api import collections
 from nizam.storage.library_read import LibraryRead
 
 
@@ -43,6 +45,11 @@ class Instrument(BaseModel):
     valid_from: str | None = None
     valid_to: str | None = None
     current_instrument_id: UUID | None = None
+    # The serving record (mv_instrument_serving, 0093-0103): current | not_current | historical, and why --
+    # e.g. 'owner_presumption_in_force' is in force by the owner's presumption, not by verified evidence. NULL for
+    # an as-made text served through its consolidated twin. Clients word it; `status` alone overstated presumed law.
+    currency: str | None = None
+    currency_reason: str | None = None
 
     @computed_field
     @property
@@ -85,6 +92,51 @@ class Provision(Node):
     ancestors: list[Ancestor]
 
 
+class UnitNode(BaseModel):
+    """One served unit inside the opened unit's subtree, in printed order; depth 0 is the opened unit itself."""
+    id: UUID
+    parent_id: UUID | None
+    kind: str
+    label: str | None
+    heading: str | None
+    marginal_note: str | None
+    depth: int
+    first_page: int | None
+    text_en: str | None
+    text_ur: str | None
+    text_language: str | None = None
+    operation: str | None
+    # 0103: the law has gone at as_of and this unit stays law because the repeal expressly excepts it
+    survives_repeal: bool = False
+
+
+class LawStatus(BaseModel):
+    """The law-level serving record (mv_instrument_serving). Codes, not prose: the client words them (docs/13)."""
+    currency: str
+    currency_reason: str | None
+    not_current_from: str | None
+    repealed_on: str | None
+    enacted_on: str | None
+    commenced_on: str | None
+    territory_reach: list[str]
+    extent_basis: str | None
+
+
+class SectionItem(BaseModel):
+    """One section-level unit of a law for the law page: name, its Part/Chapter, the first words it serves, and a
+    citation rendered from the records (INV-1). `preview` is the start of the served text, never a summary."""
+    id: UUID
+    kind: str
+    label: str | None
+    heading: str | None
+    ordinal: int
+    first_page: int | None
+    preview: str
+    group: str | None
+    citation: str | None
+    survives_repeal: bool = False
+
+
 class Meta(BaseModel):
     as_of: date
     mode: Literal['research_preview'] = 'research_preview'
@@ -107,6 +159,40 @@ class InstrumentResult(Meta):
 
 class ProvisionResult(Meta):
     item: Provision
+
+
+class CollectionItem(BaseModel):
+    short_name: str
+    instrument: Instrument
+
+
+class CollectionPage(Meta):
+    """An editorial collection (nizam/api/collections.py): a starting point, not a claim of completeness."""
+    name: str
+    items: list[CollectionItem]
+
+
+class SectionPage(Meta):
+    """A page of a law's served sections, in printed order. `total` is the law's served section count at as_of in
+    territory (cheap: the index is computed once per law and date); `law` is its serving record."""
+    instrument: Instrument
+    law: LawStatus | None
+    territory: str | None
+    items: list[SectionItem]
+    total: int
+    next_cursor: str | None
+
+
+class UnitText(Meta):
+    """A unit with its served subtree, read through operative_provision (INV-5). Empty `nodes` with a
+    `not_served` code means the unit is not law at `as_of` (in `territory`); the code says which record decides."""
+    item: Provision
+    law: LawStatus | None
+    territory: str | None
+    nodes: list[UnitNode]
+    truncated: bool
+    not_served: str | None
+    not_served_from: str | None
 
 
 class Cursor:
@@ -138,9 +224,23 @@ def create_app(repository=None):
     repo = repository or LibraryRead()
     cursor = Cursor(os.environ.get('NIZAM_CURSOR_SECRET', secrets.token_hex(32)).encode())
 
+    def warm():
+        """Pre-build the section index of the home page's laws for today, in the background, so the first tap on
+        a carousel card reads from memory. One connection at a time; a failure here only costs that warm-up."""
+        try:
+            day = resolved(None)
+            rows = repo.instruments_by_document([d for _s, d, _p in collections.POPULAR], as_of=day)
+            for entry in collections.resolve(rows):
+                repo.section_index(entry['instrument']['id'], as_of=day)
+        except Exception:                                       # noqa: BLE001
+            pass
+
     @asynccontextmanager
     async def lifespan(app):
         repo.open()
+        if isinstance(repo, LibraryRead) and os.environ.get('NIZAM_WARM', '1') != '0':
+            import threading
+            threading.Thread(target=warm, name='warm-popular', daemon=True).start()
         yield
         repo.close()
 
@@ -177,7 +277,10 @@ def create_app(repository=None):
         scope = ['instruments', q.strip(), jurisdiction, kind, day.isoformat()]
         rows = repo.instruments(q=q.strip(), jurisdiction=jurisdiction, kind=kind,
                                 after=cursor.decode(after, scope), limit=limit+1, as_of=day)
-        next_cursor = cursor.encode(scope, str(rows[limit-1]['id'])) if len(rows)>limit else None
+        last = rows[limit-1] if len(rows) > limit else None
+        # keyset on (prefix rank, sort title, id): the order the reader sees (migration 0104)
+        next_cursor = cursor.encode(scope, [last.get('sort_rank', 1), last.get('sort_title', ''), str(last['id'])]) \
+            if last else None
         return dict(items=rows[:limit], next_cursor=next_cursor, as_of=day)
 
     @app.get('/v1/law/instruments/{instrument_id}', response_model=InstrumentResult)
@@ -215,5 +318,39 @@ def create_app(repository=None):
         if not row:
             raise HTTPException(404, 'This revision is no longer available. Return to the library.')
         return dict(item=row, as_of=day)
+
+    @app.get('/v1/law/collections/popular', response_model=CollectionPage)
+    def popular(as_of: date | None = None):
+        day = resolved(as_of)
+        rows = repo.instruments_by_document([doc for _s, doc, _p in collections.POPULAR], as_of=day)
+        return dict(name='Most consulted laws', items=collections.resolve(rows), as_of=day)
+
+    @app.get('/v1/law/instruments/{instrument_id}/sections', response_model=SectionPage)
+    def sections(instrument_id: UUID, as_of: date | None = None,
+                 territory: Literal['', 'punjab', 'sindh', 'kp', 'balochistan', 'ict', 'ajk', 'gb'] = '',
+                 limit: int = Query(40, ge=1, le=100), after: str | None = Query(None, max_length=2048)):
+        day = resolved(as_of)
+        index = repo.section_index(instrument_id, as_of=day, territory=territory or None)
+        if not index:
+            raise HTTPException(404, 'This revision is not available in the release view. Return to the library.')
+        scope = ['sections', str(instrument_id), day.isoformat(), territory]
+        last = cursor.decode(after, scope)
+        rows = index['sections']
+        # keyset on the printed ordinal: the next page starts after the last section the client holds
+        start = 0 if last is None else bisect.bisect_right([s['ordinal'] for s in rows], last)
+        page = rows[start:start + limit]
+        more = start + limit < len(rows)
+        return dict(instrument=index['instrument'], law=index['law'], territory=territory or None,
+                    items=page, total=len(rows), as_of=day,
+                    next_cursor=cursor.encode(scope, page[-1]['ordinal']) if more and page else None)
+
+    @app.get('/v1/law/provisions/{provision_id}/text', response_model=UnitText)
+    def unit_text(provision_id: UUID, as_of: date | None = None,
+                  territory: Literal['', 'punjab', 'sindh', 'kp', 'balochistan', 'ict', 'ajk', 'gb'] = ''):
+        day = resolved(as_of)
+        result = repo.unit_text(provision_id, as_of=day, territory=territory or None)
+        if not result:
+            raise HTTPException(404, 'This revision is no longer available. Return to the library.')
+        return dict(result, as_of=day, territory=territory or None)
 
     return app

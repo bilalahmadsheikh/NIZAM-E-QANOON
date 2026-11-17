@@ -3,10 +3,17 @@
 Open **this directory**, not `android/`, in Android Studio. This is a read-only,
 real-data library slice, not a production legal-advice application.
 
-Verified: Flutter analysis, eight Flutter tests, ten API tests, generated-contract
-check and web compilation. **No APK yet:** Android compilation reached annotation
-extraction but eight Google/Maven dependency JARs could not be downloaded/cached.
-See the [exact build blocker](../../docs/MOBILE-LIBRARY-PREVIEW.md).
+Verified (17 Nov 2026): Flutter analysis, 15 Flutter tests and the API tests. Debug, profile and release APKs are
+built and run on an Android 16 emulator; the release APK is 8.2 MB for one ABI. Release signing is not configured
+yet, so a release APK installs only once signed. Measurements and open items are in
+[MOBILE-LIBRARY-PREVIEW.md](../../docs/MOBILE-LIBRARY-PREVIEW.md).
+
+Frame-timing benchmark (needs the API running and a device):
+
+```powershell
+flutter drive --profile --driver=test_driver/perf_driver.dart `
+  --target=integration_test/scroll_perf_test.dart --dart-define=API_BASE_URL=http://<WSL-IP>:8080
+```
 
 ## Start the API
 

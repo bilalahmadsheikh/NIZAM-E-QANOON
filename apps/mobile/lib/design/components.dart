@@ -1,29 +1,36 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../state/library_state.dart';
 
+/// The navigation surface. A solid panel, not a live blur: on 17 Nov 2026 the
+/// BackdropFilter(blur 12) that was here aborted the Impeller OpenGL ES raster
+/// thread on an Android 16 emulator ("Must be able to encode GL commands
+/// without error") on route changes. GLES is also the Impeller path on phones
+/// without Vulkan. Over a 91 % opaque surface the blur was barely visible, yet
+/// it cost an extra offscreen pass on every frame behind every screen.
 class GlassPanel extends StatelessWidget {
   final Widget child;
   const GlassPanel({super.key, required this.child});
   @override
-  Widget build(BuildContext context) => ClipRRect(
-    borderRadius: BorderRadius.circular(24),
-    child: BackdropFilter(
-      filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
-      child: Container(
-        decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.surface.withValues(alpha: .91),
-          borderRadius: BorderRadius.circular(24),
-          border: Border.all(
-            color: Theme.of(context).colorScheme.outline.withValues(alpha: .7),
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: scheme.surface.withValues(alpha: .97),
+        borderRadius: BorderRadius.circular(24),
+        border: Border.all(color: scheme.outline.withValues(alpha: .7)),
+        boxShadow: [
+          BoxShadow(
+            color: scheme.shadow.withValues(alpha: .08),
+            blurRadius: 12,
+            offset: const Offset(0, 2),
           ),
-        ),
-        child: child,
+        ],
       ),
-    ),
-  );
+      child: child,
+    );
+  }
 }
 
 class LibraryScaffold extends ConsumerWidget {
@@ -39,7 +46,20 @@ class LibraryScaffold extends ConsumerWidget {
     this.actions = const [],
   });
   @override
-  Widget build(BuildContext context, WidgetRef ref) => Scaffold(
+  Widget build(BuildContext context, WidgetRef ref) {
+    // Back on the Library or Heritage tab root returns to Discover instead of closing the app (seen on the
+    // emulator 17 Nov 2026); on Discover, or on any pushed page, Back behaves as the platform expects.
+    final tabRoot = selected != 0 && !GoRouter.of(context).canPop();
+    return PopScope(
+      canPop: !tabRoot,
+      onPopInvokedWithResult: (didPop, _) {
+        if (!didPop && tabRoot) context.go('/');
+      },
+      child: _scaffold(context, ref),
+    );
+  }
+
+  Widget _scaffold(BuildContext context, WidgetRef ref) => Scaffold(
     appBar: AppBar(
       title: Text(
         title,
@@ -106,22 +126,74 @@ class ScopeBand extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) => Container(
     width: double.infinity,
-    padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 5),
+    padding: const EdgeInsets.symmetric(horizontal: 12),
     decoration: BoxDecoration(
       border: Border(
         bottom: BorderSide(color: Theme.of(context).colorScheme.outline),
       ),
     ),
-    child: Wrap(
-      crossAxisAlignment: WrapCrossAlignment.center,
-      alignment: WrapAlignment.spaceBetween,
+    // one 48 dp row that scrolls sideways on a narrow phone, instead of wrapping to two rows on every screen
+    child: SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
       children: [
-        const Text(
-          'RESEARCH PREVIEW',
-          style: TextStyle(
-            fontSize: 10,
-            letterSpacing: 1.8,
-            fontWeight: FontWeight.w700,
+        const Padding(
+          padding: EdgeInsets.only(left: 12, right: 8),
+          child: Text(
+            'PREVIEW',
+            style: TextStyle(
+              fontSize: 10,
+              letterSpacing: 1.8,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+        ),
+        // reading mode: density and tools only (domain/reading_mode.dart) -- labelled as a mode, not an identity
+        PopupMenuButton<ReadingMode>(
+          tooltip: 'Reading mode',
+          initialValue: ref.watch(readingModeProvider),
+          onSelected: (m) => ref.read(readingModeProvider.notifier).state = m,
+          itemBuilder: (context) => [
+            for (final m in ReadingMode.values)
+              PopupMenuItem(
+                value: m,
+                child: ListTile(
+                  contentPadding: EdgeInsets.zero,
+                  title: Text(m.label),
+                  subtitle: Text(m.description, style: const TextStyle(fontSize: 12)),
+                ),
+              ),
+          ],
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+            child: Row(mainAxisSize: MainAxisSize.min, children: [
+              const Icon(Icons.chrome_reader_mode_outlined, size: 14),
+              const SizedBox(width: 6),
+              Text('Reading: ${ref.watch(readingModeProvider).label}', style: const TextStyle(fontSize: 12)),
+              const Icon(Icons.arrow_drop_down, size: 18),
+            ]),
+          ),
+        ),
+        // territory: part of the scope, like the date (docs/04 §6); '' = all, each law with its own reach
+        PopupMenuButton<String>(
+          tooltip: 'Territory',
+          initialValue: ref.watch(territoryProvider),
+          onSelected: (t) => ref.read(territoryProvider.notifier).state = t,
+          itemBuilder: (context) => [
+            for (final t in const ['', 'punjab', 'sindh', 'kp', 'balochistan', 'ict', 'ajk', 'gb'])
+              PopupMenuItem(value: t, child: Text(t.isEmpty ? 'All territories' : _territoryLabel(t))),
+          ],
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+            child: Row(mainAxisSize: MainAxisSize.min, children: [
+              const Icon(Icons.place_outlined, size: 14),
+              const SizedBox(width: 6),
+              Text(
+                ref.watch(territoryProvider).isEmpty ? 'All territories' : _territoryLabel(ref.watch(territoryProvider)),
+                style: const TextStyle(fontSize: 12),
+              ),
+              const Icon(Icons.arrow_drop_down, size: 18),
+            ]),
           ),
         ),
         TextButton.icon(
@@ -145,9 +217,22 @@ class ScopeBand extends ConsumerWidget {
           },
         ),
       ],
+      ),
     ),
   );
 }
+
+String _territoryLabel(String key) =>
+    const {
+      'punjab': 'Punjab',
+      'sindh': 'Sindh',
+      'kp': 'Khyber Pakhtunkhwa',
+      'balochistan': 'Balochistan',
+      'ict': 'Islamabad',
+      'ajk': 'AJK',
+      'gb': 'Gilgit-Baltistan',
+    }[key] ??
+    key;
 
 class Eyebrow extends StatelessWidget {
   final String text;
