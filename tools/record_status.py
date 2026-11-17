@@ -60,6 +60,12 @@ KINDS = {"act", "constitution"}
 CONSOLIDATED_CODES = {"pakistancode.gov.pk", "punjabcode.punjab.gov.pk", "sindhlaws.gov.pk", "kpcode.kp.gov.pk",
                       "balochistancode.gob.pk", "www.pakistancode.gov.pk"}
 INDEPENDENCE_YEAR = 1947
+
+
+def pre_independence_archive_text(year: int | None, host: str | None) -> bool:
+    """A pre-1947 text that no official consolidated code carries: an archive copy of what was made then, never
+    presumed in force (NOT_PRESUMED). Applies to every kind -- an Ordinance as much as an Act."""
+    return year is not None and year < INDEPENDENCE_YEAR and host not in CONSOLIDATED_CODES
 CEASE = re.compile(r"(?:^|[.;:]\s+|\(\d+\)\s*|\b(?:The|the)\s+)"
                    r"(?P<title>(?:the\s+)?[A-Z][^.;:()\n]{2,160}?\b" + KIND + r"),?\s*(?P<year>1[89]\d\d|20\d\d)"
                    r"[^.;]{0,160}?\b(?:shall\s+cease\s+to\s+(?:have\s+effect|be\s+in\s+force|operate|apply)|"
@@ -485,6 +491,14 @@ def main() -> int:
              portal_title, host) in todo:
             reason, basis = None, None
             survived = None
+            # A pre-1947 Ordinance read from an archive, not from an official consolidated code, is the same case as
+            # a pre-1947 Act (below) and is never presumed in force (NOT_PRESUMED). Found 17 Nov 2026: correcting doc
+            # 6688's kind to 'ordinance' (migration 0101) sent it through the lapse test instead, which has no window
+            # before 1947 and fell through to owner presumption -- as 30 other drs.molaw.gov.pk Ordinances had.
+            if kind == "ordinance" and pre_independence_archive_text(year, host):
+                counts["ordinance: pre_independence_not_from_a_consolidated_code"] += 1
+                record_unknown(obs, ordinal, iid, "pre_independence_not_from_a_consolidated_code", kind)
+                continue
             if kind == "ordinance":
                 value = "lapsed"
                 lb, why, latest = ordinance_lapse(jur, year, enacted_of.get(iid), [short or "", display or ""],
@@ -516,7 +530,7 @@ def main() -> int:
                 reason = "kind_not_asserted" + (f":{parent_currency[iid]}" if iid in parent_currency else "")
             elif year is None:
                 reason = "no_year"
-            elif year < INDEPENDENCE_YEAR and host not in CONSOLIDATED_CODES:
+            elif pre_independence_archive_text(year, host):
                 reason = "pre_independence_not_from_a_consolidated_code"
             elif is_repealed or iid in repealed:
                 reason = "statutory_repeal_stands"

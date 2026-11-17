@@ -106,3 +106,18 @@ def test_every_unknown_carries_a_stable_reason_code():
 
 def test_only_acts_are_asserted():
     assert st.KINDS == {"act", "constitution"}
+
+
+def test_a_pre_independence_archive_text_is_never_presumed_whatever_its_kind():
+    # 17 Nov 2026: doc 6688, the Civil Pioneer Force (Amendment) Ordinance, 1943, read from the Ministry of Law's
+    # Gazette archive, was presumed in force once its kind was corrected to 'ordinance' -- the Act-only check
+    # did not reach Ordinances. The rule is one function now, used for every kind.
+    assert st.pre_independence_archive_text(1943, "drs.molaw.gov.pk")
+    assert st.pre_independence_archive_text(1896, None)
+    # an official consolidated code still carries it: tested as a current law is, not set aside
+    assert not st.pre_independence_archive_text(1944, "punjabcode.punjab.gov.pk")
+    assert not st.pre_independence_archive_text(1931, "pakistancode.gov.pk")
+    # 1947 and after, or no year: not this rule
+    assert not st.pre_independence_archive_text(1947, "drs.molaw.gov.pk")
+    assert not st.pre_independence_archive_text(None, "drs.molaw.gov.pk")
+    assert "pre_independence_not_from_a_consolidated_code" in st.NOT_PRESUMED

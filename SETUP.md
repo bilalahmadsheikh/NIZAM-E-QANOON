@@ -5,13 +5,13 @@ pick the one that matches what you need.
 
 | | You want | Time | You need |
 |---|---|---|---|
-| **A** | The database, to build against | ~20 min | A snapshot file from a teammate |
-| **B** | To build the corpus from source | ~1 hr | The 1.6 GB of source archives |
+| **A** | The database, to build against | ~30 min | An export folder from a teammate (624 MB dump, or 1.3 GB exact copy) |
+| **B** | To build the corpus from source | many hours | The source archives and recrawl captures |
 
 Almost everyone wants **A**. Doc 09a §1.1 is explicit that the corpus travels as
-a restorable backup, not as something each person parses: *"A physical restore is
-a file copy... there is no HNSW rebuild on the receiving machine."* Only the
-person rebuilding the corpus needs the PDFs.
+a restorable backup, not as something each person parses. As built it travels
+as either a logical `pg_dump` or a byte-exact cluster copy (09a §1.1, as-built
+note). Only the person rebuilding the corpus needs the PDFs.
 
 ---
 
@@ -100,13 +100,79 @@ It will stop once, after installing Docker, and tell you to run `wsl --shutdown`
 from PowerShell. That is not an error — Linux group membership needs a new
 session. Reopen WSL and run `./nz bootstrap` again.
 
-Then drop your teammate's snapshot into `E:\nizam-data\snapshots\` and:
+There are two ways to get the database from a teammate. Both carry everything:
+every table and row (old revisions and evidence included), every view and
+materialized view, every function, trigger, foreign key and index, the
+extensions and the migration history. Both were tested on 17 Nov 2026 by
+restoring into a scratch copy, comparing the corpus signature and passing all
+39 audit criteria.
+
+| | **Dump** (`./nz export`) — recommended | **Exact copy** (`./nz export --physical`) |
+|---|---|---|
+| What it is | A logical `pg_dump` of the `nizam_clean` database | A byte-for-byte copy of the whole PostgreSQL cluster (`pg_basebackup`) |
+| Size | **624 MB** | **1.3 GB** |
+| Restore time | ~6 min (indexes and statistics rebuilt) | **~1 min** (nothing rebuilt) |
+| Indexes | rebuilt on arrival, identical definitions | arrive as built |
+| Exactness | every row and object identical; physical layout fresh | identical down to the disk pages, planner statistics included |
+| Receiver needs | the repo + `./nz up` | the repo + `./nz up`, the **same image digest** and CPU type (x86-64) |
+| Replaces | only the `nizam_clean` database | the **whole cluster**; their old database is gone |
+
+Use the **dump** normally: it is half the size, works on any machine with the
+repo, and cannot clobber anything but `nizam_clean`. Use the **exact copy** when
+you want the receiving machine to be literally the same database, for example
+before moving to the production server.
+
+**Dump.** Your teammate runs:
 
 ```bash
-./nz restore
+./nz export
+# -> E:\nizam-data\snapshots\exports\nizam_clean-<stamp>\
+#      nizam_clean-<stamp>.dump          the whole database, compressed
+#      nizam_clean-<stamp>.dump.sha256   checksum
+#      manifest.json                     git commit, image digest, corpus signature
 ```
 
-Done. You have the corpus without parsing a single PDF.
+They send you the whole folder (USB drive, Google Drive, anything). Check out the
+commit named in `manifest.json` (`git checkout <git_commit>`) so the migrations
+and tools match the data, run `./nz up`, copy the folder into
+`E:\nizam-data\snapshots\exports\` and:
+
+```bash
+./nz restore exports/nizam_clean-<stamp>/nizam_clean-<stamp>.dump
+```
+
+`restore` checks the sha256 and refuses a dump taken from another database. It
+restores in one transaction, gathering statistics before it rebuilds the serving
+views, and then recomputes the corpus signature, which must equal the one in
+`manifest.json`.
+
+**Exact copy.** Your teammate runs:
+
+```bash
+./nz export --physical
+# -> E:\nizam-data\snapshots\exports\physical-<stamp>\
+#      base.tar.gz  pg_wal.tar.gz  backup_manifest  SHA256SUMS  manifest.json
+```
+
+You check out the commit from `manifest.json`, run `./nz up` once (this creates
+the container and its volume), copy the folder into
+`E:\nizam-data\snapshots\exports\`, and:
+
+```bash
+./nz restore --physical --verify exports/physical-<stamp>   # optional: prove it in a throwaway container first
+./nz restore --physical exports/physical-<stamp>            # replace your cluster with it
+```
+
+The restore checks every checksum, the image digest and the CPU architecture
+before touching anything. It then stops Postgres and pgAdmin, swaps in the copy,
+starts them, and sets the login password back to the one in *your*
+`infra/.env` (the copy carries the sender's). Last, it compares the signature.
+
+Either way, `./nz audit` afterwards should report all 40 criteria passing.
+
+Done. You have the corpus without parsing a single PDF. The source PDFs (23 GB
+under `E:\nizam-data\raw`) are only needed for re-extraction and for the page
+images in `./nz browse`; copy that folder too if you want either.
 
 ---
 
@@ -118,20 +184,26 @@ Same bootstrap, but you need `data/*.zip` first (the five scraper archives,
 ```bash
 cd /mnt/e/Nizam_e_Qanoon
 ./nz bootstrap        # also lands the PDFs into E:\nizam-data\raw
-./nz extract --all    # ~4,600 documents
+./nz extract --all    # the ~4,600 documents of the original five archives
 ```
+
+That rebuilds only the August baseline. More than half of today's 10,339 laws
+came later. They came from the October–November portal recrawls and the ICT,
+AJK and GB landings (`tools/recrawl/`, `tools/acquire/`, `land_missing.py`),
+followed by the recorders in `tools/post_replay_sequence.sh`. Replaying all of
+that is not a one-command job, so use path A unless you are changing the parser.
 
 `bootstrap` runs the landing tool, which reads the archives without modifying
 them and promotes the bytes to a content-addressed store, verifying every hash
 against what the scrapers recorded.
 
-Then take a snapshot so nobody else has to repeat it:
+Then export it so nobody else has to repeat it:
 
 ```bash
-./nz snapshot --force
+./nz export
 ```
 
-Hand them the file from `E:\nizam-data\snapshots\`.
+Hand them the folder it prints.
 
 ---
 
@@ -151,8 +223,11 @@ Everything runs through `./nz` from WSL, or `.\nz.ps1` from PowerShell.
 ./nz state-clean   report nizam_clean completeness and quality percentages
 ./nz test          unit tests + the environment self test
 ./nz test-clean    the same environment self test against nizam_clean
-./nz snapshot      snapshot now
-./nz restore       restore the newest snapshot
+./nz snapshot      snapshot now (automatic every 15 min after a change)
+./nz export        one portable dump + sha256 + manifest for a teammate
+./nz export --physical         byte-exact copy of the whole cluster
+./nz restore       restore the newest snapshot of nizam_clean, or a named one/export
+./nz restore --physical [--verify] exports/physical-<stamp>   restore (or prove) an exact copy
 ./nz logs          follow container logs
 ./nz down          stop (your data is kept)
 ./nz bootstrap     a fresh machine, from nothing
@@ -160,10 +235,10 @@ Everything runs through `./nz` from WSL, or `.\nz.ps1` from PowerShell.
 
 Day to day it is `./nz up` in the morning and nothing else.
 
-`nizam_clean` is currently a rebuild candidate, not the default database. Its
-release gates and remaining review queues are recorded in
-`docs/CLEAN-REBUILD-REPORT.md`; do not switch or delete `nizam` merely because
-the candidate is smaller.
+`nizam_clean` is the only corpus database (`POSTGRES_DB=nizam_clean` in
+`infra/.env`). The old `nizam` database no longer exists; dumps named
+`nizam-2026…` in the snapshot folder are its September copies, and `restore`
+refuses them.
 
 ### Keep it running after you close the terminal
 
@@ -184,16 +259,26 @@ jumping to the same page. `/schema` shows every table, key and index live from t
 catalog. Read-only. See [tools/corpus-browser/README.md](tools/corpus-browser/README.md).
 
 **pgAdmin — http://localhost:5050.** The server is pre-registered; expand
-`Nizam` → `nizam` → `Schemas` → `public` → `Tables`.
+`Nizam` → `nizam_clean` → `Schemas` → `public` → `Tables`.
 
 **Your own pgAdmin, DBeaver or psql:** host `localhost`, port **5433**, database
-`nizam`, user `nizam`, password from `infra/.env`.
+`nizam_clean`, user `nizam`, password from `infra/.env`.
 
 > Port 5433, not 5432 — Windows often already runs a PostgreSQL service on 5432.
 
 Some queries worth knowing:
 
 ```sql
+-- the law as it reads today in Punjab: the only way application code reads law.
+-- as_of is required (INV-5); territory is optional (punjab sindh kp balochistan ict ajk gb)
+SET nzq.as_of = '2026-11-17';
+SET nzq.territory = 'punjab';
+SELECT jurisdiction, instrument_title, label, heading, currency, left(text_en, 80)
+  FROM operative_provision
+ WHERE instrument_title ILIKE 'Pakistan Penal Code%'
+   AND provision_kind = 'section' AND label = '302';
+-- two rows: Punjab's own copy of the Code and the federal text, both in force there
+
 -- find a statute by name
 SELECT document_id, title, year, page_count FROM v_document
 WHERE title ILIKE '%penal code%';
@@ -226,8 +311,9 @@ server and your laptop stop being the same thing.
 | | |
 |---|---|
 | `E:\wsl\Ubuntu\ext4.vhdx` | Ubuntu, Docker images, **the database** |
-| `E:\nizam-data\raw\` | Source PDF blobs, content-addressed |
+| `E:\nizam-data\raw\` | Source PDF blobs, content-addressed (23 GB) |
 | `E:\nizam-data\snapshots\` | Database snapshots, taken automatically |
+| `E:\nizam-data\snapshots\exports\` | `./nz export` folders, kept outside snapshot retention |
 | `E:\Nizam_e_Qanoon\` | This repository |
 
 The database lives in a Docker named volume inside the Ubuntu ext4 disk, never on
@@ -251,28 +337,21 @@ Full reference and the reasoning behind each choice: [infra/README.md](infra/REA
 
 ---
 
-## What exists today
+## What exists today (17 Nov 2026)
 
-- **PostgreSQL 17** with pgvector, pg_search, ltree, btree_gist, pg_trgm — the
-  same stack the VPS will run, so deployment is a restore, not a rebuild
-- **4,595 distinct source PDFs** landed and hash-verified from 4,716 official
-  observations; 41 catalog items remain genuinely unresolved
-- **4,595/4,595 active documents extracted** — 63,047 pages, 128,636,469
-  characters and 955,153 active text blocks with page coordinates
-- **4,788 active legal expressions** — 512,094 active provisions and 488,518
-  active versions; 4,668 observations are segmented and another 48 are
-  explicitly `unstructured`
-- **1,764,095,667-byte `nizam_clean` database** after restore-tested archival
-  pruning; nine retired identity-proof endpoints remain
-- **Automatic snapshots** that fire only after a real change settles
+- **PostgreSQL 17.11** (ParadeDB image, digest-pinned) with pgvector, pg_search,
+  ltree, btree_gist, pg_trgm and pgcrypto: the same stack the VPS will run
+- **10,339 laws released, none held**: federal, the four provinces, ICT, AJK and
+  Gilgit-Baltistan. 1,172,566 released provisions over 134,982 pages
+- **Every law answered as at a date and in a territory** through
+  `operative_provision` (`SET nzq.as_of`, optionally `SET nzq.territory`), with
+  in-force status, dates, extent and repeals recorded
+- **40 audit criteria, all passing**; 103 migrations
+- **A 4.8 GB database that exports to a 624 MB dump or a 1.3 GB exact copy**, plus automatic snapshots
+  that fire only after a real change settles
+- **Golden sets 1–4**: 200 evaluation cases with text-checked answers
 
-Extraction and block/character accounting close exactly for acquired blobs.
-Base segmentation is populated and citation labels are unambiguous, but corpus
-qualification is not complete: S7 has 2,312 pending structural decisions across
-406 observations and 1,988 canonical contents/body gaps affect 607 expressions
-(2,120 gaps when redundant provenance trees are also counted).
-The reviewed multi-instrument set is materialised and S10 is zero. The
-fail-closed legal views currently release 3,720 instruments, 300,137 provisions
-and 285,156 versions. Run `./nz audit` and `./nz state` for measured truth; the
-next build step is release-view-only retrieval segmentation while S7/contents
-curation continues—not first-time PDF extraction.
+Not built yet: the retrieval layer (chunks, embeddings, search indexes) and
+everything above it. The current state and the next step are in
+[docs/CORPUS-STATE-2026-11-17.md](docs/CORPUS-STATE-2026-11-17.md); run
+`./nz audit` and `./nz state` for measured truth.

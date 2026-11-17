@@ -9,7 +9,9 @@ Everything here is driven by one command from the repository root:
 ./nz up          start the database, migrate, verify     (.\nz.ps1 up from PowerShell)
 ./nz status      what is running and what is in it
 ./nz extract     run L1 extraction over the corpus
-./nz test        unit tests + the 30-check self test
+./nz test        unit tests + the environment self test
+./nz export      one portable dump + sha256 + manifest for a teammate
+./nz restore     restore a snapshot or an export (checked)
 ./nz bootstrap   a fresh machine, from nothing
 ```
 
@@ -58,9 +60,10 @@ powershell -ExecutionPolicy Bypass -File infra\wsl\keepalive.ps1 -Install
 `tools/corpus-land/land.py` reads the five archives in `data/` without modifying
 them and promotes the bytes to a content-addressed store. The original 28 August
 landing contained 4,710 PDFs and 4,592 unique blobs with zero hash mismatches.
-Recovery remained append-only; the current clean database contains 4,716 landed
-official observations over 4,595 distinct hashes, while 41 catalogue items
-remain unresolved. Failed, missing, recovered and repeated official
+The October–November recrawls and the ICT, AJK and GB landings went through
+`tools/recrawl/` and `land_missing.py` instead. On 17 Nov 2026 the database holds
+10,394 official observations over 10,188 distinct blobs, with 66 declared
+acquisition exceptions. Failed, missing, recovered and repeated official
 observations remain first-class rows as doc 02 §3.1 requires.
 
 ---
@@ -104,9 +107,15 @@ So a three-hour ingest produces **exactly one** snapshot, taken one tick after
 the writes stop — not twelve taken during it. An idle laptop produces none.
 
 Retention prunes on whichever limit bites first: `SNAPSHOT_KEEP` files (8) or
-`SNAPSHOT_BUDGET_GB` total (25). The budget is the one that matters as the
-corpus grows: the statutory corpus dumps to 55 MB, so eight is under half a
-gigabyte — but eight snapshots of the judgment corpus would be tens.
+`SNAPSHOT_BUDGET_GB` total (25). The statutory corpus now dumps to ~0.62 GB, so
+eight snapshots are ~5 GB. Retention prunes only `<db>-*.dump` at the top of
+the folder. It never removes interrupted `.partial-*` dumps, and those have to be
+cleared by hand.
+
+**Retention once removed prune evidence.** The archive dumps of prune batches 3 and
+4 (9 Sep) were ordinary snapshots and were rotated away. Any archive a
+`revision_archive_batch` row names must live outside the snapshot rotation, as
+`E:\nizam-data\archives\prune-2026-11-11\` does for batch 5.
 
 At judgment scale, replace this with pgBackRest incrementals, which ship only
 changed blocks — doc 09a §1.1 already specifies physical backup for that reason.
@@ -115,16 +124,26 @@ The `snapshot` / `restore` interface stays the same.
 ```bash
 bash infra/scripts/snapshot.sh          # now, if anything changed
 bash infra/scripts/snapshot.sh --force  # now, regardless
+bash infra/scripts/export.sh            # a portable folder for a teammate (./nz export)
+bash infra/scripts/export-physical.sh   # a byte-exact cluster copy (./nz export --physical)
+bash infra/scripts/restore-physical.sh --verify exports/physical-<stamp>   # prove an exact copy
 bash infra/scripts/restore.sh --list    # what is available
-bash infra/scripts/restore.sh           # restore the newest
+bash infra/scripts/restore.sh           # restore the newest snapshot of nizam_clean
+bash infra/scripts/restore.sh exports/<name>/<name>.dump   # restore an export
 ```
 
-A teammate who has the repo and Docker runs `up.sh`, drops a `.dump` into
-`snapshots/`, and runs `restore.sh`. They never parse a PDF.
+A teammate who has the repo and Docker runs `./nz up`. They copy an export folder
+into `snapshots/exports/` and run `./nz restore exports/<name>/<name>.dump`;
+they never parse a PDF. `restore` checks the dump's sha256 and refuses a dump
+made from a different database. A bare `restore` once picked `latest.dump`, the
+retired `nizam` database's 6 Sep snapshot, and would have rolled `nizam_clean`
+back two months. It then recomputes the corpus signature
+(`scripts/corpus-signature.sql`) and compares it with the export's
+`manifest.json`.
 
 **Why snapshots and not a rebuilt Docker image.** Image layers are immutable and
 content-addressed, so every database change would rewrite and re-push the whole
-thing as a new layer — 744 MB today, ~10 GB once judgments land, with no
+thing as a new layer: 4.8 GB today, more once judgments land, with no
 incremental. Doc 09a §1.1 is explicit that the corpus ships as a backup someone
 restores, not as an image they pull. This is that, automated. It is also the same
 procedure that recovers the database after a mistake, which is why 09a wants it
@@ -136,9 +155,10 @@ exercised weekly rather than discovered during an incident.
 
 | What | Where | Size |
 |---|---|---|
-| Ubuntu disk — Docker images, containers, **pgdata** | `E:\wsl\Ubuntu\ext4.vhdx` | 7.5 GB |
-| Source blobs | `E:\nizam-data\raw\` | 1.66 GB |
-| Snapshots | `E:\nizam-data\snapshots\` | 473 MB for the current restore-tested build |
+| Ubuntu disk — Docker images, containers, **pgdata** (6.4 GB of it) | `E:\wsl\Ubuntu\ext4.vhdx` | grows with pgdata |
+| Source blobs | `E:\nizam-data\raw\` | 23 GB |
+| Snapshots | `E:\nizam-data\snapshots\` | 13.5 GB on 17 Nov, ~6 GB of it interrupted `.partial-*` dumps |
+| Prune archives | `E:\nizam-data\archives\` | 2.0 GB |
 | Original archives | `E:\Nizam_e_Qanoon\data\` | 1.57 GB |
 
 Docker's data-root is `/var/lib/docker` *inside* the Ubuntu disk, so images,
@@ -211,7 +231,11 @@ Last run: **24 passed, 0 failed.**
 | `pgadmin/servers.json` | Pre-registers the server in the pgAdmin tree |
 | `scripts/migrate.sh` | Applies migrations once, refuses a changed one |
 | `scripts/snapshot.sh` | WAL-gated dump to E: |
-| `scripts/restore.sh` | Restore a snapshot |
+| `scripts/export.sh` | Portable dump + sha256 + manifest under `snapshots/exports/` |
+| `scripts/export-physical.sh` | Byte-exact cluster copy (`pg_basebackup`) + checksums + manifest |
+| `scripts/restore-physical.sh` | Restore an exact copy into the pgdata volume, or `--verify` it in a throwaway container |
+| `scripts/restore.sh` | Restore a snapshot or export: sha256, source-database and signature checks |
+| `scripts/corpus-signature.sql` | The one-line corpus signature export and restore compare |
 | `scripts/selftest.sh` | The 24 checks above |
 | `wsl/setup-docker.sh` | Docker Engine + the snapshot timer |
 | `wsl/keepalive.ps1` | Keeps WSL and the stack alive at logon |
@@ -227,25 +251,31 @@ Last run: **24 passed, 0 failed.**
 The identity ladder from doc 02 §7, built one rung at a time. Each rung is a
 different thing, and conflating them is the mistake that cannot be undone later.
 
+Counts measured 17 November 2026. "Total" includes retired revisions, which
+the prune workflow may archive.
+
 | Table | Holds | Rows | Migration |
 |---|---|---|---|
-| `source_observation` | What a portal exposed, when — URL, status, hash | 4,763 | 0001 |
-| `blob` | Bytes, identified by SHA-256 | 4,595 | 0002 |
-| `document` | A blob read as text, in one language | 4,631 total / 4,595 active | 0002, 0012 |
-| `page` | Per page: size, character count, extraction lane | 63,868 total / 63,047 active | 0002 |
-| `text_block` | The raw text with `{page, bbox, reading_order, script}` | 968,951 total / 955,153 active | 0002 |
-| `extraction_attempt` | Every extraction try, successful or not | 4,724 | 0003 |
-| **`instrument`** | **The legal work: jurisdiction + kind + number + year + expression ordinal** | **4,797 total / 4,788 active; 4,679 canonical** | **0004, 0012, 0036, 0040** |
-| **`provision`** | **THE CITABLE UNIT (INV-4) — a tree, not a list** | **528,132 total / 512,094 active** | **0004, 0012** |
-| **`provision_version`** | **That provision as at a date (INV-5)** | **504,368 total / 488,518 current-active** | **0004** |
-| `segmentation_run` | Every retained segmentation attempt | 20,941 | 0004 |
-| `provision_ancestor` | Disposable closure of real active provision parentage | 1,208,678 | 0018, 0027 |
-| `segmentation_structural_candidate` | Immutable source/page-anchored S7 decisions for retained trees | 7,239 total / 6,684 current canonical-expression items | 0035, 0036 |
-| `segmentation_structural_adjudication` | Append-only machine/source/human decisions retained live | 4,498 total / 4,372 current candidates adjudicated | 0035, 0036 |
-| `instrument_identity_resolution` | Full-tree SHA-256 proof for exact legal-expression identity | 110 resolutions; 109 active redundant trees | 0036 |
-| `segmentation_boundary_candidate` / `segmentation_boundary_adjudication` | Retained source-evidenced internal-boundary history | 42 / 0; 0 current pending | 0038 |
-| `instrument_expression_manifest` | Versioned source spans for materialised legal expressions in a PDF | 131 active / 11 retired | 0040 |
-| `instrument_revision_archive_manifest` | Recoverable proof for compacted superseded derived revisions | 15,989 | 0034, prune workflow |
+| `source_observation` | What a portal exposed, when — URL, status, hash | 10,394 | 0001 |
+| `blob` | Bytes, identified by SHA-256 | 10,188 | 0002 |
+| `document` | A blob read as text, in one language | 11,326 total / 10,188 active | 0002, 0012 |
+| `page` | Per page: size, character count, extraction lane | 153,929 total / 134,983 active | 0002 |
+| `text_block` | The raw text with `{page, bbox, reading_order, script}` | 2,843,446 total / 2,249,286 active | 0002 |
+| `extraction_attempt` | Every extraction try, successful or not | 12,198 | 0003 |
+| **`instrument`** | **The legal work: jurisdiction + kind + number + year + expression ordinal** | **13,685 total / 10,486 active; 10,339 released, 147 linked duplicates** | **0004, 0012, 0036, 0040** |
+| **`provision`** | **THE CITABLE UNIT (INV-4) — a tree, not a list** | **1,803,643 total / 1,197,584 active; 1,172,566 released** | **0004, 0012** |
+| **`provision_version`** | **That provision as at a date (INV-5)** | **1,720,412** | **0004** |
+| `segmentation_run` | Every retained segmentation attempt | 66,597 | 0004 |
+| `provision_ancestor` | Disposable closure of real active provision parentage | 3,242,502 | 0018, 0027 |
+| `segmentation_structural_candidate` / `_adjudication` | Source-anchored S7 decisions and their append-only resolutions | 5,519 / 4,334; 0 pending in release | 0035, 0036 |
+| `instrument_identity_resolution` | Full-tree SHA-256 proof for exact legal-expression identity | 632 | 0036 |
+| `segmentation_boundary_candidate` | Source-evidenced internal-boundary history | 61; 0 pending | 0038 |
+| `instrument_expression_manifest` | Versioned source spans for legal expressions in a PDF | 1,119 total / 476 active | 0040 |
+| `instrument_revision_archive_manifest` | Recoverable proof for archived superseded derived revisions | 51,834 | 0034, prune workflow |
+| `instrument_metadata_assertion` | Dated, sourced assertions: titles, dates, status, extent | ~56,000 | 0070, extended through 0095 |
+| `statutory_repeal` / `territorial_repeal` | Repeals read from the repealing law's own text | 199 / 47 | 0066, 0095 |
+| `consolidated_twin` | As-made Gazette text linked to its consolidated text | 51 | 0075 |
+| `mv_instrument_serving` / `mv_provision_text_known_from` | The serving snapshot `operative_provision` reads | 10,288 / 1,156,469 | 0094, 0096–0099 |
 
 Your own corpus is why the ladder exists. The Penal Code sits at **two paths** in
 the federal archive under **one SHA-256** — one blob, two observations. Punjab
@@ -257,13 +287,15 @@ Act and its provincial adaptation are different law.
 
 | View | For |
 |---|---|
+| **`operative_provision`** | **The only application read of law.** Requires `SET nzq.as_of`; optional `SET nzq.territory`. Serves each law where it runs, as at the date, with currency and `text_known_from` |
+| `v_instrument_currency` | Per law: current / not current / historical, with the reason and territory exits |
 | `v_document` | Curation/current-state documents by published title, year and URL — active, but not the application release boundary |
 | `v_extract_queue` | What still needs extracting, and why the last attempt failed |
 | `v_corpus_health` | Pages, characters and printable ratio per jurisdiction |
 | **`v_provision`** | **Curation/current-state provisions with currently-operative text; production uses the release views below** |
 | `v_segmentation_health` | Instruments, provisions and mean ToC agreement per jurisdiction |
 | `v_instrument_duplicates` | Citations claimed by more than one document — the identity-resolution queue |
-| `v_structural_adjudication_pending` | Exact source-anchored S7 review queue; currently 2,312 items across 406 observations; corrective decisions block until replayed |
+| `v_structural_adjudication_pending` | Exact source-anchored S7 review queue; corrective decisions block until replayed |
 | `v_release_document`, `v_release_text_block` | Quality-passed source evidence for application reads |
 | `v_release_instrument`, `v_release_provision`, `v_release_provision_version` | Fail-closed legal release; excludes pending S7, incomplete printed contents and unresolved multi-instrument boundaries |
 
@@ -318,50 +350,37 @@ SELECT b.page_no, left(b.text, 200)
    AND b.text LIKE '302.%' ORDER BY b.reading_order;
 ```
 
-Acquisition is explicit rather than silently “finished”: 4,716 observations are
-landed over 4,595 distinct hashes, with **zero hash mismatches**, and 41 current
-catalogue items remain an evidenced recovery queue. Historical failed, missing
-and recovered attempts remain in their ledgers.
+Acquisition is explicit rather than silently “finished”: 10,394 observations
+over 10,188 distinct blobs, and 66 catalogue items are declared acquisition
+exceptions with dated attempts and the observed error (C1). Failed, missing and
+recovered attempts remain in their ledgers.
 
-### The OCR backlog is a query, not a memory
+### Extraction lanes
 
-The active corpus contains 4,397 E2 born-digital documents, 99 mixed E3
-documents and 99 E4 OCR documents. OCR remains a bounded fallback, but its
-review queue is release-blocking rather than hidden by the corpus-wide rate.
-
-| Why it was rejected | Count | Goes to |
-|---|---|---|
-| No text layer at all — a scan | 93 | lane E4 |
-| Some pages blank | 46 | lane E3 |
-| Printable ratio below 0.95 | 31 | review |
-
-Concentrated in Balochistan (64) and Sindh (60), where scanned publication is
-still common. `SELECT * FROM v_extract_queue` is the work list.
+Of the 10,188 active documents, 8,212 are born-digital (E2), 171 are mixed (E3)
+and 1,805 are OCR (E4). New laws that would need OCR are not landed for now
+(owner rule, 14 Nov 2026): 874 AJK and 151 Gilgit-Baltistan scans wait.
+`SELECT * FROM v_extract_queue` is the work list.
 
 ### Segmentation, and how it is checked
 
 Doc 02 §5 requires the law be parsed, not window-chunked, and names the
 acceptance test: reconciliation against the document's own printed table of
-contents. The latest observation runs detect one in 3,117 observations.
+contents. Of the active, non-duplicate laws, 3,881 have a contents list the
+latest run compared against:
 
 ```
-mean agreement   0.9771        median  1.0000
-exact            2,494 / 3,117  (80.0%)
->= 0.95          2,741 / 3,117  (87.9%)
-below 0.50           8 / 3,117  (0.3%)
+mean agreement   0.9974        median  1.0000
+exact            3,799 / 3,881  (97.9%)
+>= 0.95          3,834 / 3,881  (98.8%)
 ```
 
 Every run is recorded in `segmentation_run` with its missing and extra labels.
-`v_toc_gap` reports 2,120 entries across 623 active provenance trees. After
-exact-duplicate exclusion, the canonical fail-closed queue is 1,988 entries
-across 607 expressions.
 
 ## What exists now, and what does not
 
-The database is real: PostgreSQL 17.11 with pgvector 0.8.4 and pg_search 0.25.6,
-the right collation, and 4,763 immutable source-observation ledger rows.
-The `nizam/` package implements extraction, verification, segmentation and
-append-only legal writing through migration 0041. Multi-expression source spans
-are materialised, and S10 is clear. Retrieval indexing is the next engineering
-slice, but it must consume only `v_release_provision_version`; S7 and canonical
-contents gaps continue as a separate curation queue.
+As of 17 Nov 2026: PostgreSQL 17.11 with pgvector 0.8 and pg_search 0.25.6, 101
+migrations, and 10,339 released laws served through `operative_provision`. All
+40 audit criteria pass. Retrieval indexing (the `chunk` table, BM25, then
+embeddings) is the next engineering slice. It must read only released law
+through `operative_provision`. See `docs/CORPUS-STATE-2026-11-17.md`.

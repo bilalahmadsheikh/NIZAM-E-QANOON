@@ -526,6 +526,9 @@ m AS (
           OR (c.field='enacted_on'    AND i.enacted_on   IS DISTINCT FROM c.value::date)
           OR (c.field='commenced_on'  AND i.commenced_on IS DISTINCT FROM c.value::date)
           OR (c.field='long_title'    AND i.long_title IS DISTINCT FROM c.value)          -- 0083
+          -- year and kind (0101) correct the catalogue value and must be what the instrument carries
+          OR (c.field='year'          AND i.year::text IS DISTINCT FROM c.value)
+          OR (c.field='kind'          AND i.kind::text IS DISTINCT FROM c.value)
           -- status (0082): a standing 'in_force' is reflected unless a repeal now links the instrument
           OR (c.field='status'        AND i.repealed_by_id IS NULL AND i.status::text IS DISTINCT FROM c.value)
           -- number is fill-only, except a printed_number_corrects_stored assertion, which must be the number
@@ -594,6 +597,60 @@ m AS (
     ,(SELECT count(*) FROM v_territorial_repeal_current)                                AS territorial_repeals
     ,(SELECT count(*) FROM v_instrument_metadata_current WHERE field = 'territorial_extent') AS extent_clauses
 -- <<< A17 measures
+    -- >>> A18 measures
+    -- A18 (migration 0102). A partial repeal is a unit the repealing law's own text names, and it is served as one:
+    -- (a) every standing row resolves to exactly one held provision of the active repealed law; (b) a territory is
+    -- set only where a province's law repeals part of a federal-text law, and is that province, while a same-
+    -- jurisdiction repeal has none; (c) the serving snapshot mv_provision_repeal equals the live derivation, both
+    -- ways. The count of standing units is reported, never a threshold.
+    ,(SELECT count(*) FROM (
+        SELECT DISTINCT ON (repealed_observation_id, repealed_expression_ordinal, repealed_relative_path,
+                            coalesce(territory, '*'), repealing_observation_id, repealing_expression_ordinal,
+                            repealing_relative_path) *
+          FROM provision_repeal
+         ORDER BY repealed_observation_id, repealed_expression_ordinal, repealed_relative_path,
+                  coalesce(territory, '*'), repealing_observation_id, repealing_expression_ordinal,
+                  repealing_relative_path, recorded_at DESC, id DESC) l
+       WHERE l.assertion = 'repealed'
+         AND (SELECT count(*) FROM v_provision_repeal_current c
+               WHERE c.id = l.id) <> 1)                                                  AS partial_unresolved
+    ,(SELECT count(*) FROM v_provision_repeal_current c
+        JOIN instrument a ON a.id = c.repealed_instrument_id
+        JOIN instrument b ON b.id = c.repealing_instrument_id
+       WHERE (c.territory IS NULL AND a.jurisdiction <> b.jurisdiction)
+          OR (c.territory IS NOT NULL AND (a.jurisdiction::text <> 'fed'
+                                           OR c.territory <> b.jurisdiction::text)))     AS partial_inconsistent
+    ,(SELECT count(*) FROM (
+        (SELECT repealed_instrument_id, provision_id, provision_path, coalesce(territory, '*'), min(effective_from)
+           FROM v_provision_repeal_current GROUP BY 1, 2, 3, 4
+         EXCEPT SELECT instrument_id, provision_id, path, territory_key, effective_from FROM mv_provision_repeal)
+        UNION ALL
+        (SELECT instrument_id, provision_id, path, territory_key, effective_from FROM mv_provision_repeal
+         EXCEPT SELECT repealed_instrument_id, provision_id, provision_path, coalesce(territory, '*'),
+                       min(effective_from)
+                  FROM v_provision_repeal_current GROUP BY 1, 2, 3, 4)) d)                AS partial_stale
+    ,(SELECT count(*) FROM mv_provision_repeal)                                         AS partial_units
+    ,(SELECT count(DISTINCT instrument_id) FROM mv_provision_repeal)                    AS partial_laws
+    -- (0103) a unit a whole repeal excepts: every standing row resolves, and the snapshot equals the live set
+    ,(SELECT count(*) FROM (
+        SELECT DISTINCT ON (survived_observation_id, survived_expression_ordinal, survived_relative_path,
+                            repealing_observation_id, repealing_expression_ordinal, repealing_relative_path) *
+          FROM provision_survival
+         ORDER BY survived_observation_id, survived_expression_ordinal, survived_relative_path,
+                  repealing_observation_id, repealing_expression_ordinal, repealing_relative_path,
+                  recorded_at DESC, id DESC) l
+       WHERE l.assertion = 'survives'
+         AND (SELECT count(*) FROM v_provision_survival_current c WHERE c.id = l.id) <> 1)
+     + (SELECT count(*) FROM (
+        (SELECT survived_instrument_id, provision_id, provision_path, bool_or(subtree)
+           FROM v_provision_survival_current GROUP BY 1, 2, 3
+         EXCEPT SELECT instrument_id, provision_id, path, subtree FROM mv_provision_survival)
+        UNION ALL
+        (SELECT instrument_id, provision_id, path, subtree FROM mv_provision_survival
+         EXCEPT SELECT survived_instrument_id, provision_id, provision_path, bool_or(subtree)
+                  FROM v_provision_survival_current GROUP BY 1, 2, 3)) d)              AS survival_bad
+    ,(SELECT count(*) FROM mv_provision_survival)                                       AS survival_units
+-- <<< A18 measures
 )
 SELECT * FROM (
   SELECT 'C1' AS id, 'every acquired file becomes a blob'      AS criterion,
@@ -754,6 +811,13 @@ SELECT * FROM (
          extent_clauses||' extent clauses, '||territorial_repeals||' territorial repeals (reported); '||
          territory_inconsistent||' inconsistent', '0 inconsistent; counts reported',
          CASE WHEN territory_inconsistent=0 THEN 'PASS' ELSE 'FAIL' END FROM m
+  UNION ALL SELECT 'A18','a partial repeal, or a unit a whole repeal excepts, is a unit the repealing law names, served as one',
+         partial_units||' repealed units in '||partial_laws||' laws, '||survival_units||' excepted units (reported); '||
+         partial_unresolved||' unresolved; '||partial_inconsistent||' territory inconsistent; '||
+         partial_stale||' snapshot rows differ; '||survival_bad||' excepted-unit rows unresolved or stale',
+         '0 / 0 / 0 / 0; counts reported',
+         CASE WHEN partial_unresolved=0 AND partial_inconsistent=0 AND partial_stale=0 AND survival_bad=0
+              THEN 'PASS' ELSE 'FAIL' END FROM m
   UNION ALL SELECT 'A6','no overlapping law (enforced, not tested)',
          CASE WHEN excl_present=1 THEN 'EXCLUDE constraint present'
               ELSE 'CONSTRAINT MISSING' END, 'enforced',

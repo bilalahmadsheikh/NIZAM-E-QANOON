@@ -16,7 +16,13 @@ trap cleanup EXIT
 
 cleanup
 docker exec "$CONTAINER" createdb -U "$USER_" "$DB"
-docker exec "$CONTAINER" pg_restore -U "$USER_" -d "$DB" --no-owner --no-acl "$DUMP"
+# Replayed through psql with ANALYZE before the first materialized-view refresh:
+# plain pg_restore refreshes the serving snapshot on tables with no statistics,
+# and that refresh ran past 35 minutes on 17 Nov 2026 (infra/scripts/restore.sh).
+docker exec "$CONTAINER" bash -o pipefail -c "
+  pg_restore --no-owner --no-acl -f - '$DUMP' \
+  | awk '/^REFRESH MATERIALIZED VIEW/ && !done { print \"ANALYZE;\"; done = 1 } { print }' \
+  | psql -U '$USER_' -d '$DB' -q -X -v ON_ERROR_STOP=1 --single-transaction >/dev/null"
 
 before=$(docker exec "$CONTAINER" psql -U "$USER_" -d "$DB" -Atc \
   "SELECT concat_ws(',',

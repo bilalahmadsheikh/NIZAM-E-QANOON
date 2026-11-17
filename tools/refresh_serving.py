@@ -1,5 +1,6 @@
-"""Refresh the serving snapshots operative_provision reads: mv_instrument_serving (migration 0094, per law) and then
-mv_provision_text_known_from (migration 0096, per provision; it reads the first).
+"""Refresh the serving snapshots operative_provision reads: mv_instrument_serving (migration 0094, per law), then
+mv_provision_text_known_from (migration 0096, per provision; it reads the first), then mv_provision_repeal (0102,
+partial repeals; record_provision_repeals.py writes what it reads).
 
 Run after anything that changes what is released or how a law is classed: a replay (tools/post_replay_sequence.sh
 runs it last), tools/record_status.py, tools/apply_instrument_metadata.py, record_statutory_repeals.py /
@@ -27,6 +28,14 @@ def main() -> int:
         cur.execute("SELECT to_regclass('mv_provision_text_known_from')")
         if cur.fetchone()[0]:
             cur.execute("REFRESH MATERIALIZED VIEW CONCURRENTLY mv_provision_text_known_from")
+            conn.commit()
+        cur.execute("SELECT to_regclass('mv_provision_repeal')")
+        if cur.fetchone()[0]:                                    # 0102: partial repeals
+            cur.execute("REFRESH MATERIALIZED VIEW CONCURRENTLY mv_provision_repeal")
+            conn.commit()
+        cur.execute("SELECT to_regclass('mv_provision_survival')")
+        if cur.fetchone()[0]:                                    # 0103: units a whole repeal excepts
+            cur.execute("REFRESH MATERIALIZED VIEW CONCURRENTLY mv_provision_survival")
             conn.commit()
         cur.execute("SELECT count(*), count(*) FILTER (WHERE currency = 'current') FROM mv_instrument_serving")
         n, current = cur.fetchone()

@@ -46,7 +46,11 @@
 #   ./nz test          tests + the self test
 #   ./nz test-clean    tests + environment self-test against nizam_clean
 #   ./nz snapshot      snapshot now (respects the change/settle gates)
-#   ./nz restore       restore the newest snapshot
+#   ./nz restore       restore the newest snapshot of this database, or a named
+#                      snapshot / export (checks sha256, source database, signature)
+#   ./nz export        one portable dump + sha256 + manifest for a teammate
+#   ./nz export --physical   byte-exact copy of the whole cluster (pg_basebackup)
+#   ./nz restore --physical [--verify] exports/physical-<stamp>   restore / prove it
 #   ./nz full-replay   safely replay all trees, recover reviews, and enforce
 #                      release/S7/TOC non-regression gates (--apply to run)
 #   ./nz down          stop the containers (data is kept)
@@ -263,7 +267,10 @@ cmd_disposition_materialize() { need_docker; need_uv
                  POSTGRES_DB="${NIZAM_CLEAN_DB:-nizam_clean}" \
                    uv run python tools/materialize_toc_dispositions.py "$@"; }
 cmd_snapshot() { bash "$INFRA/scripts/snapshot.sh" "$@"; }
-cmd_restore()  { bash "$INFRA/scripts/restore.sh" "$@"; }
+cmd_restore()  { if [ "${1:-}" = "--physical" ]; then shift; bash "$INFRA/scripts/restore-physical.sh" "$@";
+                 else bash "$INFRA/scripts/restore.sh" "$@"; fi; }
+cmd_export()   { if [ "${1:-}" = "--physical" ]; then shift; bash "$INFRA/scripts/export-physical.sh" "$@";
+                 else bash "$INFRA/scripts/export.sh" "$@"; fi; }
 cmd_logs()     { need_docker; dc logs -f --tail=80 "$@"; }
 cmd_down()     { need_docker; b "stopping (volumes kept)"; dc down; }
 
@@ -380,6 +387,7 @@ case "${1:-}" in
   browse)    shift; cmd_browse "$@" ;;
   snapshot)  shift; cmd_snapshot "$@" ;;
   restore)   shift; cmd_restore "$@" ;;
+  export)    shift; cmd_export "$@" ;;
   test)      shift; cmd_test "$@" ;;
   test-clean) shift; cmd_test_clean "$@" ;;
   logs)      shift; cmd_logs "$@" ;;

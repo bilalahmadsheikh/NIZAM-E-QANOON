@@ -90,7 +90,7 @@ def test_the_audit_restricts_a7_and_adds_a13():
                  "historical_target_unresolved", "historical_overlaps"):
         assert re.search(rf"AS {name}\b", a13), name
     assert "UNION ALL SELECT 'A13'" in sql
-    assert len(re.findall(r"SELECT '([A-Z][0-9]+)'", sql)) == 39   # A14 20 Oct 2026 (0066); A15 11 Nov (0070); A16 16 Nov (0094); A17 16 Nov (0095)
+    assert len(re.findall(r"SELECT '([A-Z][0-9]+)'", sql)) == 40   # A14 20 Oct 2026 (0066); A15 11 Nov (0070); A16 16 Nov (0094); A17 16 Nov (0095); A18 17 Nov (0102)
 
 
 # --- pure: the writer --------------------------------------------------------------
@@ -663,8 +663,10 @@ def test_db_the_library_boundary_table(conn):
                 opened = LibraryRead._instrument(conn, instrument, day, resolve_current=True)
                 children = repo._children(conn, instrument, parent=None, after=None, limit=5, as_of=day)
                 read = repo._provision(conn, provision, as_of=day)
-                # all four reads agree
-                assert ([r["id"] for r in rows] == [instrument]) is listed, day
+                # the three direct reads agree. The catalogue searches the serving snapshot (mv_instrument_serving,
+                # 0105), which holds a law only after tools/refresh_serving.py -- never this uncommitted scratch row;
+                # its date gate is tested on the released historical expression below
+                assert instrument not in [r["id"] for r in rows], day
                 assert (opened is not None) is listed, day
                 assert (children is not None) is listed, day
                 assert (read is not None) is listed, day
@@ -674,7 +676,6 @@ def test_db_the_library_boundary_table(conn):
                     assert payload["historical"] is True
                     assert (payload["valid_from"], payload["valid_to"]) == WINDOW
                     assert payload["current_instrument_id"] == t["current_id"]
-                    assert Instrument(**rows[0]).model_dump()["current_instrument_id"] is None
                 # a plain instrument is unchanged at every date
                 plain = LibraryRead._instrument(conn, t["current_id"], day)
                 assert plain is not None and plain["historical"] is False and plain["valid_to"] is None
@@ -756,3 +757,28 @@ def test_db_audit_a13_and_a7_fixtures(conn):
         _instrument(cur, t, validity=late, ordinal=ORDINAL - 1)
         _manifest(cur, t, window=late, ordinal=ORDINAL - 1)
         assert _delta(base13, _measures(conn, "A13"))["historical_overlaps"] == 1 + live_good + live_late
+
+
+def test_db_catalogue_lists_a_historical_expression_only_inside_its_window(conn):
+    """The catalogue reads the serving snapshot, then the historical gate: a released historical expression is
+    listed at a date inside its validity window and at no date outside it (the window's upper bound is exclusive)."""
+    pytest.importorskip("psycopg_pool")
+    from datetime import timedelta
+    from psycopg.rows import dict_row
+    from nizam.storage.library_read import LibraryRead
+    conn.row_factory = dict_row
+    hist = conn.execute("""
+        SELECT h.instrument_id, lower(h.historical_validity) AS lo, upper(h.historical_validity) AS hi,
+               m.instrument_title AS title
+          FROM v_instrument_historical h
+          JOIN v_release_instrument r ON r.id = h.instrument_id
+          JOIN mv_instrument_serving m ON m.instrument_id = h.instrument_id
+         WHERE NOT lower_inf(h.historical_validity) AND NOT upper_inf(h.historical_validity)
+         LIMIT 1""").fetchone()
+    if hist is None:
+        pytest.skip("no released historical expression with a bounded window in the serving snapshot")
+    for day, listed in [(hist["lo"] - timedelta(days=1), False), (hist["lo"], True),
+                        (hist["hi"] - timedelta(days=1), True), (hist["hi"], False)]:
+        rows = LibraryRead._instruments(conn, q=hist["title"], jurisdiction="", kind="", after=None,
+                                        limit=50, as_of=day)
+        assert (hist["instrument_id"] in [r["id"] for r in rows]) is listed, day

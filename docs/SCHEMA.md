@@ -3,7 +3,10 @@
 Dumped from the running cluster, not from the migrations. Everything below was
 read out of `pg_catalog` — if a column is here, it is in the database.
 
-PostgreSQL 17 (ParadeDB image) · schema `public` · 32 tables, 27 views, 9 enum types.
+PostgreSQL 17.11 (ParadeDB image) · schema `public` · 53 tables, 54 views, 4
+materialized views · 103 migrations (through 0103) · 4.8 GB on disk, measured
+17 Nov 2026 after prune batch 6 and `VACUUM FULL`. Application reads of law go through `operative_provision` alone
+(see "Where a law runs" and "How far back the held text is the law" below).
 
 ```
 btree_gist 1.7   ltree 1.3   pg_search 0.25.6   pg_trgm 1.6   vector 0.8.4   pgcrypto
@@ -489,9 +492,9 @@ context assembly. It is derived from `provision.parent_id`, not source evidence.
 Migration 0027 removed 1,563,444 rows for the synthetic
 `jurisdiction.kind.year_number` path prefix. Those strings identify an
 observation but are not provisions and could never be the root of a
-provision-based subtree query. The active closure is now 1,208,678 rows covering
-all 512,094 provisions; audit S9 recursively derives the expected graph and
-requires zero missing, extra, or stale rows.
+provision-based subtree query. On 17 Nov 2026 the active closure is 3,242,502
+rows covering all 1,197,584 active provisions; audit S9 recursively derives the
+expected graph and requires zero missing, extra, or stale rows.
 
 ### `provision_block` — every block has a home
 
@@ -994,7 +997,9 @@ The presumption never overrides evidence, so some codes are not presumed
 
 Lapse, replacement and repeal rows still win, because currency reads them
 before status. First run: 5,886 presumed. Serving snapshot after it: 8,253
-current, 0 current_unverified, 1,362 not_current, 646 historical.
+current, 0 current_unverified, 1,362 not_current, 646 historical. On 17 Nov the pre-independence exclusion was
+extended to Ordinances (`pre_independence_archive_text`); 31 archive Ordinances had escaped it. The snapshot is
+now 8,243 current, 1,369 not_current and 676 historical.
 
 The presumption is a row, not a rewrite. Finding a repeal later supersedes it
 in the usual way; to withdraw the presumption wholesale, run the tool with
@@ -1215,6 +1220,51 @@ Gazette assent statement in 4 of 7 cases and falls 2–12 days later in 3. So
 `enacted_on` can be a few days after assent, never before it. That direction is
 the safe one for `operative_provision` ("not yet enacted at `as_of`").
 
+### Partial repeals and the units a repeal excepts (0102, 0103)
+
+`provision_repeal` (0102) records a unit a later law repeals or omits: a section, sub-section, clause, Part,
+Chapter or Article. `provision_survival` (0103) records a unit a whole repeal expressly excepts. Both are
+append-only and source-keyed, like `statutory_repeal`. The unit is named by its relative provision path within
+the expression (`s_27.ss_2`, `pt_VIII.s_282_A`), so a replay does not orphan it.
+`tools/record_provision_repeals.py` writes both (post_replay_sequence step 4a2), and `tools/refresh_serving.py`
+refreshes `mv_provision_repeal` and `mv_provision_survival`. Audit A18 checks that every standing row resolves to
+exactly one held provision, that the territory follows the rule, and that both snapshots equal the live sets.
+
+A clause is read only when it is a plain list of units of one named law followed by the verb. Ranges ('121 to
+147', '282A to 282N'), sub-section ranges ('(2) to (6)'), lists spanning two laws and a printed date ('shall,
+as from the first day of July, 1962, stand repealed') are read. An amendment of words ('in section 2, the words
+...'), a schedule 'to' another law, or a qualifier by subject ('in relation to the subject matter of this Act')
+is not.
+
+A unit is recorded only when it resolves to exactly one held provision outside the schedules, and its held text
+is live. A unit the consolidation already prints as omitted counts as reflected; a unit with an amendment mark
+may have been re-enacted after the repeal. Both are reported, not recorded. The repeal date is the printed one,
+else the repealer's commencement, enactment, or 1 January of its year (as 0095).
+
+Measured 17 Nov 2026: 34 repealed units in 12 laws. Examples: Electronic Transactions Ordinance ss.36–37
+(PECA 2016); Patents and Designs Act ss.43–54 (Registered Designs Ordinance 2000); the Lahore Development
+Authority and Punjab Development of Cities Act units (Punjab Water and Sanitation Authority Act 2025); Sindh
+Finance Act 1994 s.9, still printed in its consolidated text and served as law until 0102. 16 excepted units in
+2 laws: Companies Ordinance 1984 ss.282A–282N, and PIA Corporation (Conversion) Act 2016 s.7(1), held as s.7's
+own words, so subtree false. Each such clause also records the whole repeal in `statutory_repeal` (method
+`nizam.repeal_except_units/1`), which `record_statutory_repeals.py` skips because of the 'except'.
+
+### Year and kind from the law's own text (0101)
+
+`instrument_metadata_assertion` also takes `year` and `kind`. A standing row corrects the catalogue value the
+segmenter wrote, and `apply_instrument_metadata.py` re-applies it after every replay; A15 checks it is reflected.
+Each needs the verbatim clause and its source block. Five laws are corrected
+(`tools/evidence/catalogue-corrections-2026-11-17.sql`):
+
+- 6688 is an Ordinance of 1943;
+- 8846 is Act I of 1896;
+- 9067 is Act XXVII of 1870;
+- 11382 is of 2014;
+- 11379 is Rules.
+
+The provision path keeps the catalogue year and kind it was minted with, because it is the lineage key, not a
+citation.
+
 ### `amendment_reference` — which law amended which provision
 
 Migration 0072 (resolution refined by 0073, 0074). Append-only. One row is one
@@ -1349,17 +1399,28 @@ rest on its own statutory repeal row.
 
 ### `operative_provision` — the view retrieval reads (INV-5)
 
-Migration 0071 (redefined by 0075 and 0077), docs/03b §6.2 as built. Set the date first:
-`SET nzq.as_of = 'YYYY-MM-DD'`. A read without it raises. `nzq.territory` is
-optional and takes punjab · sindh · kp · balochistan · ict.
+Migration 0071, redefined by 0075, 0077, 0086, 0093–0100, 0102 and 0103; docs/03b §6.2 as built. Set the date
+first: `SET nzq.as_of = 'YYYY-MM-DD'`. A read without it raises. `nzq.territory` is optional and takes
+punjab · sindh · kp · balochistan · ict · ajk · gb (0086).
 
-It returns the released provisions whose version is valid at `as_of`. It drops:
+It returns the released provisions whose version is valid at `as_of`. Before capture, a version counts as valid
+back to its `text_known_from` (0096–0099). It drops:
 
 - instruments not yet enacted at `as_of`;
 - instruments whose established commencement is after `as_of`;
 - instruments repealed on or before `as_of`;
+- instruments not current or historical from their `not_current_from` (lapsed Ordinances, 0091; replaced or
+  superseded laws; pre-1947 archive texts);
 - historical expressions whose window misses `as_of`;
-- instruments out of the territory, when one is set.
+- instruments out of the territory, when one is set. Reach comes from the law's own extent clause (0095) or else
+  its title. A federal law does not reach AJK or GB, where federal Acts run only as adapted or extended;
+- instruments a territorial repeal has removed from that territory (0095, NULL-safe since 0100);
+- **units a later law repeals or omits, with everything under them** (0102, `mv_provision_repeal`), from the
+  repeal, everywhere or in the repealing province.
+
+It keeps a unit a whole repeal expressly excepts (0103, `mv_provision_survival`), such as Part VIIIA of the
+Companies Ordinance, 1984 or s.7(1) of the PIA Corporation (Conversion) Act, 2016. Its last column
+`survives_repeal` is true there: the law has gone and this unit has not.
 
 Urdu and Sindhi text is returned in `text_ur` only. Every row carries
 `commencement_coverage` (`established` · `not_tracked`),
@@ -1383,7 +1444,8 @@ only as extended by notification. `nzq_territory()` therefore still refuses
 `ajk` and `gb`. With no territory set, the view returns every jurisdiction,
 territories included. docs/04 requires a territory or an explicit comparison,
 never a guess. The docs/03b §6 `extent` relation must be built before these
-territories are served.
+territories are served. *(As built, 15–16 Nov: 0086 made reach per instrument. A federal law's reach excludes
+AJK and GB, so `nzq_territory()` accepts both, and an AJK or GB read returns only that territory's own law.)*
 
 **GB from archived captures (lead decision, 16 Nov 2026, standing owner
 delegation).** docs/02 §3.1 names no archive route, so this records one. GB's

@@ -212,7 +212,15 @@ else
     uv run python tools/record_territorial_repeals.py | tail -1
 fi
 
-# ---------------------------------------------------------------- step 4b (0094, 0096-0098)
+# ---------------------------------------------------------------- step 4a2 (0102)
+say "4a2. partial repeals: units (sections, sub-sections, Parts, Articles) a later law repeals or omits"
+if [ "$APPLY" = "1" ]; then
+    uv run python tools/record_provision_repeals.py --apply | tail -1
+else
+    uv run python tools/record_provision_repeals.py | tail -1
+fi
+
+# ---------------------------------------------------------------- step 4b (0094, 0096-0098, 0102)
 say "4b. refresh the serving snapshots operative_provision reads (audit A16 fails while stale)"
 if [ "$APPLY" = "1" ]; then
     uv run python tools/refresh_serving.py

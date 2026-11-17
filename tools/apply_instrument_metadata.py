@@ -13,7 +13,9 @@ them, both ways, as tools/apply_statutory_repeals.py does for status:
     withdrawn and nothing stands behind it. ONE EXCEPTION: an assertion with basis printed_number_corrects_stored
     (tools/record_instrument_numbers.py --correct-stored, 12 Nov 2026: the segmenter had stored a number cited in the
     body, e.g. 1707 'LXXI' for the Service Tribunals Act, which prints 'ACT NO. LXX OF 1973') overwrites the stored
-    number; the replay writes the segmenter's value back and this step corrects it again.
+    number; the replay writes the segmenter's value back and this step corrects it again;
+  * year, kind (0101) -- CORRECT: a standing assertion (the law's own clause, e.g. 9067 'Act No. XXVII of 1870'
+    catalogued 1860) overwrites the catalogue value; a replay writes it back and this step corrects it again.
 
 Run after every replay (tools/post_replay_sequence.sh step 2b4); safe to run again.
 
@@ -96,6 +98,18 @@ UPDATE instrument i SET status = 'unknown'
         OR NOT EXISTS (SELECT 1 FROM v_instrument_metadata_current c
                         WHERE c.field = 'status' AND c.value = i.status::text AND c.instrument_id = i.id))"""
 
+# year and kind (0101): a standing assertion CORRECTS the catalogue value the segmenter wrote. Every replay writes the
+# catalogue value back and this step corrects it again (post_replay_sequence.sh step 2b4). A withdrawn correction is
+# not undone here -- the catalogue value is the segmenter's to restore, on the next replay.
+YEAR_CORRECT = """
+UPDATE instrument i SET year = c.value::smallint
+  FROM v_instrument_metadata_current c
+ WHERE c.field = 'year' AND i.id = c.instrument_id AND i.year IS DISTINCT FROM c.value::smallint"""
+KIND_CORRECT = """
+UPDATE instrument i SET kind = c.value::instrument_kind
+  FROM v_instrument_metadata_current c
+ WHERE c.field = 'kind' AND i.id = c.instrument_id AND i.kind::text IS DISTINCT FROM c.value"""
+
 NUMBER_CONFLICTS = """
 SELECT i.id, i.document_id, i.number, c.value
   FROM v_instrument_metadata_current c JOIN instrument i ON i.id = c.instrument_id
@@ -125,6 +139,10 @@ def main() -> int:
         cur.execute(STATUS_UNSET); su = cur.rowcount
         cur.execute(STATUS_SET); ss = cur.rowcount
         changed["status"] = (ss, su)
+        cur.execute("SELECT 1 FROM pg_constraint WHERE conname = 'instrument_metadata_assertion_year_value'")
+        if cur.fetchone():                                       # migration 0101
+            cur.execute(YEAR_CORRECT); changed["year"] = (cur.rowcount, 0)
+            cur.execute(KIND_CORRECT); changed["kind"] = (cur.rowcount, 0)
         cur.execute(NUMBER_CONFLICTS)
         conflicts = cur.fetchall()
         cur.execute("SELECT field, count(*) FROM v_instrument_metadata_current GROUP BY 1 ORDER BY 1")

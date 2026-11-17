@@ -91,6 +91,7 @@ reachable, each with its reason recorded.
 | **A14** | A repealed status is a statutory repeal the corpus prints, and every one is reflected | (a) standing repeals (0066 `v_statutory_repeal_current`) not reflected on their active canonical instrument -- dated: status `repealed`, that `repealed_on`, that `repealed_by_id`; undated: `repealed_by_id` only, status `unknown` (ck_repeal); (b) active instruments `repealed` or carrying `repealed_by_id` with no standing repeal. Repealed and dated counts are reported | 0 / 0; counts reported, never a threshold |
 | **A16** | The serving snapshot `operative_provision` reads matches the live derivation | `mv_instrument_serving` (0094) compared both ways with `v_instrument_currency` over released canonical laws (as-made twins excluded): currency, reason, cut-off date, territorial reach, status and (0095) territory exits; and (0096) `mv_provision_text_known_from` holds exactly the active provisions of the served laws. A difference means `tools/refresh_serving.py` was not run after a change | 0 differ; count reported |
 | **A17** | Where a law runs is read from its own text, consistently | A standing territorial repeal (0095) removes a **federal-text** law from the repealing law's own province, or from ICT for a federal repealer; a standing `territorial_extent` assertion sits only on a federal-text law. Counts of extent clauses and territorial repeals are reported | 0 inconsistent; counts reported |
+| **A18** | A partial repeal, or a unit a whole repeal excepts, is a unit the repealing law names, and it is served as one | (a) standing `provision_repeal` rows (0102) and `provision_survival` rows (0103) that do not resolve to exactly one held provision of the active repealed law; (b) a territory on a row that is not a province's law repealing part of a federal-text law for that province, or a cross-jurisdiction row with no territory; (c) `mv_provision_repeal` compared both ways with the live derivation. Repealed units and laws are reported | 0 / 0 / 0; counts reported |
 | **A15** | Instrument names, numbers, dates, language and in-force status are recorded evidence, and every one is reflected | (a) standing metadata assertions (0070 `v_instrument_metadata_current`) not reflected on their active canonical instrument -- `display_title`, `text_language`, `enacted_on`, `commenced_on` equal to the value; `number` written (fill-only: a segmenter number is kept, except where a `printed_number_corrects_stored` assertion replaces a body-cited number, which must then be the number); `long_title` (0083) equal to the value; `status` `in_force` or `lapsed` (0082, 0085) unless a repeal now links the instrument; (b) active canonical instruments carrying `display_title`, `text_language`, `enacted_on`, `commenced_on`, `long_title` or status `in_force`/`lapsed` with no standing assertion. Standing counts per field are reported | 0 / 0; counts reported, never a threshold |
 | **A13** | A historical text is bounded, closed, owned and points at current law | (a) bounded versions (`NOT upper_inf`) of active instruments no active manifest declares historical; (b) versions of a historical instrument outside its window; (c) active historical windows with `upper > current_date`; (d) historical manifests whose current-expression key does not resolve to exactly one active, released, non-historical instrument whose earliest version opens at or after the window's end; (e) overlapping windows of one work (same current expression). The number of historical instruments is reported | 0 / 0 / 0 / 0 / 0; count reported, never a threshold |
 
@@ -189,39 +190,36 @@ never failed has not been tested.
 The command prints every result and exits non-zero if any row is `FAIL`, so CI
 cannot mistake a complete report for permission to release.
 
-`./nz audit` prints all 35 criteria including A1, A2 and A6, which it cannot
+`./nz audit` prints all 40 criteria including A1, A2 and A6, which it cannot
 compute: A1 and A2 need an independent extractor, and A6 is enforced by an
 `EXCLUDE` constraint rather than measured. They appear in the table anyway, with
 where their answer comes from. A table that silently omits what it cannot check
 is the failure mode this whole document exists to prevent.
 
-## What the clean rebuild currently says
+## What the corpus currently says
 
-Measured 10 Sep 2026 over 4,595 active documents and 128,636,469 extracted
-characters. The whole active corpus is still a candidate; the release views are
-the only application-safe boundary.
+Measured 17 Nov 2026 over 10,188 active documents and 270,129,040 extracted
+characters. The release views remain the only application-safe boundary, and
+every active law except 147 linked duplicates is inside it.
 
 | Area | Result |
 |---|---|
-| acquired-PDF extraction | 4,595/4,595 distinct blobs have active documents |
-| block/character accounting | 135,867,627 expression characters expected and reachable; difference 0 |
-| independent quality status | 4,594/4,595 passed; document 4608 remains explicitly unverifiable |
-| document release scope | 4,594 documents and 955,111 blocks; 0 quarantine leaks |
-| character comparison | minimum recall 0.9991600 and minimum precision 0.9976800 under the accepted evidence policy; one declared unverifiable source |
-| OCR evidence | 106/106 recorded and accepted |
-| order evidence | 4,496/4,496 recorded and accepted |
-| text plausibility | 4,496/4,496 recorded and accepted |
-| contents agreement | median 1.0000; mean 0.9771; 2,120 gaps across all active provenance trees, 1,988 across 607 canonical release candidates |
-| unambiguous sibling citations | 4,788/4,788 active expressions; 0 collisions |
-| structural adjudication | 6,684 canonical-expression candidates itemized exactly; 4,372 adjudicated; 2,312 pending across 406 observations |
-| exact legal-expression identity | 109 redundant active provenance trees independently fingerprinted; all source evidence retained |
-| multi-instrument evidence | 131 active source-span manifests across 11 observations; independent detector and S10 queue both report 0 pending |
-| legal release scope | 3,720 instruments, 300,137 provisions and 285,156 versions; unresolved printed-contents and S7 work remain excluded |
-| corpus audit | 29/30 pass; only S7 remains fail closed |
+| acquisition | 10,394 observations over 10,188 distinct blobs; 66 declared acquisition exceptions with dated evidence (C1) |
+| extraction lanes | 8,212 born-digital (E2), 171 mixed (E3), 1,805 OCR (E4) |
+| document release scope | 134,982 released pages |
+| contents agreement | 3,881 non-duplicate laws with a compared contents list: median 1.0000, mean 0.9974; 3,799 exact |
+| legal release scope | 10,339 instruments and 1,172,566 provisions; 0 held |
+| currency (served directly) | 8,243 current, 1,369 not current, 676 historical |
+| serving snapshot | `mv_instrument_serving` 10,288 laws, `mv_provision_text_known_from` 1,156,469 provisions; A16 fresh |
+| territory | extent clauses read and 47 territorial repeals recorded; A17 0 inconsistent |
+| partial repeals | 34 repealed units in 12 laws (sections, sub-sections, clauses, Articles), 16 units in 2 laws a whole repeal excepts; A18 0 unresolved |
+| corpus audit | **40/40 pass** |
 
-The whole database therefore does **not** meet the release gate yet. `review`,
-`pending` and `unverifiable` are evidence states, not euphemisms for pass.
-Migration 0030 gives document consumers a fail-closed contract through
+`review`, `pending` and `unverifiable` remain evidence states, not euphemisms
+for pass; a law in one of them is not released. The current state, and what to
+run before any mutation, is `docs/CORPUS-STATE-2026-11-17.md`.
+
+How the release boundary was built: migration 0030 gives document consumers a fail-closed contract through
 `v_release_document`, `v_release_page` and `v_release_text_block`. Migration
 0035 adds immutable, source-anchored structural candidates and adjudications;
 0036 makes only `accept_non_citable` release-resolving and records exact

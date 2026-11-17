@@ -82,6 +82,9 @@ def norm(title: str | None) -> str:
     t = re.sub(r"\b(?:azad\s+jammu\s+and\s+kashmir|azad\s+jammu\s+kashmir|azad\s+kashmir|a\s*j\s*k)\b", "ajk", t)
     t = re.sub(r"\b(?:north\s+west\s+frontier\s+province|n\s*w\s*f\s*p)\b", "khyber pakhtunkhwa", t)
     t = re.sub(r"\bbaluchistan\b", "balochistan", t)
+    # (17 Nov 2026) the AJK Judicial Board Act, 1974 s.16 repeals sections of 'the Azad Jammu and Kashmir Court and
+    # Laws Code, 1949', held as '... Courts And Laws Code 1949'
+    t = re.sub(r"\bcourt and laws code\b", "courts and laws code", t)
     return t
 
 
