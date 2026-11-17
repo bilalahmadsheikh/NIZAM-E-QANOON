@@ -297,11 +297,16 @@ void main() {
         requested.any((uri) => uri.path == '/v1/law/provisions/$root/text'),
         isTrue,
       );
-      // one request for the whole section: no per-sub-section reads
+      // one request for the whole section: no per-sub-section reads (beside it, at most one for the units either
+      // side, which never carries text)
+      expect(requested.where((uri) => uri.path.endsWith('/text')).length, 1);
       expect(
-        requested.where((uri) => uri.path.startsWith('/v1/law/provisions/')).length,
-        1,
+        requested.where((uri) =>
+            uri.path.startsWith('/v1/law/provisions/') && !uri.path.endsWith('/text') &&
+            !uri.path.endsWith('/neighbours')),
+        isEmpty,
       );
+      expect(requested.where((uri) => uri.path.endsWith('/neighbours')).length, lessThanOrEqualTo(1));
       expect(
         requested.every((uri) => uri.queryParameters['as_of'] == '2026-11-17'),
         isTrue,
@@ -383,7 +388,11 @@ void main() {
       // a reading mode changes presentation only: the same text, from the same single request
       final nodeText = ((served['nodes'] as List).first as Map)['text_en'] as String;
       expect(find.text(nodeText.trim()), findsOneWidget);
-      expect(requested.where((u) => u.path.startsWith('/v1/law/provisions/')).length, 1);
+      expect(requested.where((u) => u.path.endsWith('/text')).length, 1);
+      expect(
+          requested.where((u) =>
+              u.path.startsWith('/v1/law/provisions/') && !u.path.endsWith('/text') && !u.path.endsWith('/neighbours')),
+          isEmpty);
       await tester.pumpWidget(const SizedBox.shrink());
       await tester.pump(const Duration(minutes: 6));
     },

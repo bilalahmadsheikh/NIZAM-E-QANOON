@@ -21,10 +21,42 @@ void main() {
     await tester.pumpWidget(UncontrolledProviderScope(container: container, child: const NizamApp()));
     await tester.pumpAndSettle();
 
-    // Open the PPC from the popular shelf, as a reader would
+    // The home page, as a reader scrolls it: down through the hero, the shelf and the browse sections, back up
+    // (17 Nov 2026: "scrolling stucks" -- is it the app or the emulator?)
     final ppc = find.text('PPC');
+    // the list builds lazily: wait for the hero, which is on screen at launch
+    await _waitFor(tester, find.text('Explore constitutional texts'));
+    await _frames(binding, () async {
+      for (var i = 0; i < 4; i++) {
+        await tester.fling(_vertical(), const Offset(0, -900), 2500);
+        await tester.pump(const Duration(milliseconds: 600));
+      }
+      for (var i = 0; i < 4; i++) {
+        await tester.fling(_vertical(), const Offset(0, 900), 2500);
+        await tester.pump(const Duration(milliseconds: 600));
+      }
+    }, 'home_scroll');
+
+    // the shelf, swiped sideways both ways
     await tester.scrollUntilVisible(find.text('Most consulted laws'), 300, scrollable: _vertical());
     await _waitFor(tester, ppc);
+    await tester.ensureVisible(ppc);
+    await tester.pumpAndSettle();
+    final shelf = find.byWidgetPredicate((w) => w is Scrollable && w.axisDirection == AxisDirection.right).first;
+    await _frames(binding, () async {
+      for (var i = 0; i < 3; i++) {
+        await tester.fling(shelf, const Offset(-600, 0), 2500);
+        await tester.pump(const Duration(milliseconds: 600));
+      }
+      for (var i = 0; i < 3; i++) {
+        await tester.fling(shelf, const Offset(600, 0), 2500);
+        await tester.pump(const Duration(milliseconds: 600));
+      }
+    }, 'shelf_swipe');
+
+    // Open the PPC from the popular shelf, as a reader would
+    await tester.ensureVisible(ppc);
+    await tester.pumpAndSettle();
     await tester.ensureVisible(ppc);
     await tester.pumpAndSettle();
     await tester.tap(ppc);

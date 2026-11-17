@@ -184,6 +184,80 @@ def test_citation_is_rendered_from_fields_and_never_guessed():
     assert render_citation('Pakistan Penal Code', 1860, 'preamble', None) == 'Pakistan Penal Code, 1860, Preamble'
 
 
+def test_a_constitution_is_cited_by_article():
+    from nizam.storage.library_read import render_citation
+    # the segmenter stores the Constitution's numbered units as `section`; the instrument kind decides the word
+    assert render_citation('Constitution of the Islamic Republic of Pakistan', 1973, 'section', '199', 'constitution') \
+        == 'Constitution of the Islamic Republic of Pakistan, 1973, Art. 199'
+    assert render_citation('Pakistan Penal Code', 1860, 'section', '302', 'act') == 'Pakistan Penal Code, 1860, s. 302'
+    assert render_citation('Constitution of the Islamic Republic of Pakistan', 1973, 'schedule', 'FIRST SCHEDULE',
+                           'constitution').endswith('Schedule FIRST SCHEDULE')
+
+
+def _row(doc, title, year, jurisdiction='punjab', amends=0, n=None):
+    return dict(id=UUID(int=n or doc), title=title, kind='act', year=year, jurisdiction=jurisdiction,
+                status='in_force', source_url=None, document_id=doc, source_hash='a' * 64, amends_units=amends)
+
+
+def test_constitution_page_groups_and_orders_the_family():
+    from nizam.api import collections as c
+    assert c.amendment_number('The Constitution (Eighteenth Amendment) Act, 2010') == 18
+    assert c.amendment_number('The Constitution (Twenty-First Amendment) Act, 2015') == 21
+    assert c.amendment_number('Constitution (Amendment) Order, 1980') is None
+    rows = [
+        _row(4419, 'Constitution of the Islamic Republic of Pakistan', 1973, 'fed'),
+        _row(4434, 'The Constitution (Eighteenth Amendment) Act, 2010', 2010, amends=41, n=1),
+        _row(4434, 'The Constitution (First Amendment) Act, 1974', 1974, amends=1, n=2),
+        _row(4434, 'The Constitution (Second Amendment) Order, 1980', 1980, n=3),
+        _row(9287, 'The Revival of the Constitution of 1973 Order, 1985', 1985, 'fed', amends=24),
+        _row(6541, 'The Pakistan (Provisional Constitution) Order, 1948', 1948, 'fed'),
+        _row(10000, 'The Azad Jammu and Kashmir Interim Constitution (Fifteenth Amendment) Act, 2023', 2023, 'ajk'),
+        # a pinned document whose title no longer matches is dropped, never shown as another law
+        _row(8093, 'Something Else Entirely', 1960, 'fed'),
+    ]
+    page = c.constitution_page(rows)
+    assert page['constitution']['document_id'] == 4419
+    groups = {g['key']: g['items'] for g in page['groups']}
+    assert [i['short_name'] for i in groups['amendments']] == \
+        ['1st Amendment', '2nd Amendment Order', 'Revival Order', '18th Amendment']
+    assert groups['amendments'][-1]['amends_units'] == 41
+    assert [i['short_name'] for i in groups['before_1973']] == ['Provisional Constitution Order']
+    assert [i['short_name'] for i in groups['ajk']] == ['AJK 15th Amendment']
+    assert 'edition' not in groups          # the 2016 edition is absent unless the historical gate returns it
+
+
+def test_constitution_endpoint_serves_codes_not_prose():
+    class Family(Repository):
+        def constitution_family(self, **kwargs):
+            assert kwargs['constitution_document'] == 4419 and isinstance(kwargs['as_of'], date)
+            return [_row(4419, 'Constitution of the Islamic Republic of Pakistan', 1973, 'fed'),
+                    _row(4434, 'The Constitution (First Amendment) Act, 1974', 1974, amends=1, n=2)]
+    with TestClient(create_app(Family())) as client:
+        body = client.get('/v1/law/collections/constitution?as_of=2026-11-17').json()
+        assert body['constitution']['title'] == 'Constitution of the Islamic Republic of Pakistan'
+        assert [g['key'] for g in body['groups']] == ['amendments']
+        assert body['groups'][0]['items'][0]['amends_units'] == 1
+
+
+def test_neighbours_follow_the_printed_index_and_never_borrow_another_law():
+    from nizam.storage.library_read import neighbours_in
+
+    class Index(Repository):
+        def neighbours(self, provision_id, **kwargs):
+            # the real lookup over the fixture law's index; an unknown unit is a law that is not released
+            return None if provision_id == UUID(int=99) else \
+                neighbours_in(Repository().section_index(ID)['sections'], provision_id)
+    # a unit not listed (a sub-section, a Part) has no neighbours rather than a guessed one
+    assert neighbours_in(Repository().section_index(ID)['sections'], UUID(int=50)) == \
+        dict(previous=None, next=None, position=None, total=7)
+    with TestClient(create_app(Index())) as client:
+        body = client.get(f'/v1/law/provisions/{UUID(int=1)}/neighbours?as_of=2026-11-17').json()
+        assert body['previous'] is None and body['next']['label'] == '2' and body['position'] == 1
+        last = client.get(f'/v1/law/provisions/{UUID(int=7)}/neighbours').json()
+        assert last['next'] is None and last['previous']['label'] == '6' and last['total'] == 7
+        assert client.get(f'/v1/law/provisions/{UUID(int=99)}/neighbours').status_code == 404
+
+
 def test_popular_collection_keeps_order_and_drops_a_document_whose_title_changed():
     with TestClient(create_app(Repository())) as client:
         body = client.get('/v1/law/collections/popular').json()

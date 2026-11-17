@@ -113,6 +113,18 @@ class LibraryRepository {
   Future<CollectionPage> popular(String asOf) async =>
       CollectionPage.fromJson(await _get('/v1/law/collections/popular', {'as_of': asOf}));
 
+  /// The units either side of [id] in its law's printed order, at [asOf] in [territory].
+  Future<Neighbours> neighbours(String id, String asOf, {String territory = ''}) async => Neighbours.fromJson(
+        await _get('/v1/law/provisions/$id/neighbours', {
+          'as_of': asOf,
+          if (territory.isNotEmpty) 'territory': territory,
+        }),
+      );
+
+  /// The Constitution and the texts around it, grouped by how they relate (D-070).
+  Future<ConstitutionPage> constitution(String asOf) async =>
+      ConstitutionPage.fromJson(await _get('/v1/law/collections/constitution', {'as_of': asOf}));
+
   /// A unit with everything under it, as operative_provision serves it at [asOf] in [territory] (INV-5): one
   /// request for a whole section instead of one per sub-section.
   Future<UnitText> unitText(String id, String asOf, {String territory = ''}) async => UnitText.fromJson(

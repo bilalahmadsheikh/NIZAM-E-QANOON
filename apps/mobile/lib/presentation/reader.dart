@@ -11,7 +11,8 @@ import 'statute_text.dart';
 
 /// The reader. One request returns the opened unit and everything under it as operative_provision serves it at the
 /// chosen date and territory (INV-5), so a section reads as the statute prints it -- not one tap per sub-section.
-/// Order: where you are, what it is, its legal standing (StatusBanner, above the text), the text, then its source.
+/// Order: where you are (the law, then each Part and Chapter by its printed title), what it is, its legal standing
+/// (StatusBanner, above the text), the text, then the units either side and its source.
 const _containers = {'part', 'chapter', 'schedule', 'division', 'title', 'appendix', 'annexure'};
 
 class ProvisionScreen extends ConsumerWidget {
@@ -59,9 +60,15 @@ class ProvisionScreen extends ConsumerWidget {
                 ),
                 SliverPadding(
                   padding: const EdgeInsets.symmetric(horizontal: 24),
-                  sliver: ChildrenList(instrument: unit.item.instrument_id, parent: id),
+                  sliver: ChildrenList(
+                      instrument: unit.item.instrument_id, parent: id, instrumentKind: unit.item.instrument.kind),
                 ),
               ],
+              if (unit != null)
+                SliverPadding(
+                  padding: const EdgeInsets.fromLTRB(24, 20, 24, 0),
+                  sliver: SliverToBoxAdapter(child: _Neighbours(id: id, instrumentKind: unit.item.instrument.kind)),
+                ),
               if (unit != null)
                 SliverPadding(
                   padding: const EdgeInsets.fromLTRB(24, 16, 24, 120),
@@ -230,6 +237,45 @@ class _RecordPanel extends StatelessWidget {
   }
 }
 
+/// The path to the opened unit: the law, then each enclosing Part / Chapter. Each step opens that level.
+class _Trail extends StatelessWidget {
+  final List<(String, VoidCallback)> steps;
+  const _Trail({required this.steps});
+  @override
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    return Wrap(
+      crossAxisAlignment: WrapCrossAlignment.center,
+      spacing: 2,
+      runSpacing: 2,
+      children: [
+        for (var i = 0; i < steps.length; i++) ...[
+          if (i > 0) Icon(Icons.chevron_right, size: 16, color: scheme.secondary),
+          InkWell(
+            onTap: steps[i].$2,
+            borderRadius: BorderRadius.circular(8),
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(minHeight: 40),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
+                child: Text(
+                  '\u2068${steps[i].$1}\u2069',
+                  style: TextStyle(
+                    fontSize: 13,
+                    height: 1.3,
+                    color: scheme.primary,
+                    fontWeight: i == 0 ? FontWeight.w700 : FontWeight.w500,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ],
+    );
+  }
+}
+
 class _Header extends ConsumerWidget {
   final law.UnitText unit;
   const _Header({required this.unit});
@@ -247,44 +293,43 @@ class _Header extends ConsumerWidget {
             commencedOn: lawStatus.commenced_on,
           );
     final survives = unit.nodes.any((n) => n.survives_repeal);
+    final kind = item.instrument.kind;
+    final numbered = const {'section', 'article', 'rule', 'regulation'}.contains(item.kind);
+    final caption = item.heading ?? item.marginal_note;
+    final scheme = Theme.of(context).colorScheme;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Wrap(
-          crossAxisAlignment: WrapCrossAlignment.center,
-          spacing: 2,
-          children: [
-            TextButton(
-              onPressed: () => context.push('/instrument/${item.instrument_id}'),
-              child: const Text('Law'),
-            ),
-            for (final ancestor in item.ancestors) ...[
-              const Icon(Icons.chevron_right, size: 14),
-              TextButton(
-                onPressed: () => context.push('/provision/${ancestor.id}'),
-                child: Text('\u2068${ancestor.kind} ${ancestor.label ?? ""}\u2069'),
+        _Trail(steps: [
+          (item.instrument.title ?? 'This law', () => context.push('/instrument/${item.instrument_id}')),
+          for (final a in item.ancestors)
+            (divisionTitle(kind, a.kind, a.label, a.heading ?? a.caption), () => context.push('/provision/${a.id}')),
+        ]),
+        const SizedBox(height: 14),
+        Eyebrow('${jurisdictionName(item.instrument.jurisdiction)} · ${unitNoun(kind, item.kind)}'
+            '${numbered && item.label != null ? ' ${item.label}' : ''}'),
+        const SizedBox(height: 10),
+        if (numbered)
+          Text.rich(
+            TextSpan(children: [
+              TextSpan(
+                text: '\u2068${printedLabel(item.kind, item.label)}\u2069  ',
+                style: TextStyle(color: scheme.secondary),
               ),
-            ],
-          ],
-        ),
-        const SizedBox(height: 8),
-        Eyebrow('${jurisdictionName(item.instrument.jurisdiction)} · ${item.kind}'),
-        const SizedBox(height: 8),
-        Text(
-          [
-            if (item.label != null) '\u2068${printedLabel(item.kind, item.label)}\u2069',
-            item.heading ?? item.marginal_note ?? '',
-          ].where((s) => s.isNotEmpty).join('  '),
-          style: Theme.of(context).textTheme.headlineMedium,
-        ),
-        const SizedBox(height: 8),
-        Text(item.instrument.title ?? 'Untitled source record', style: const TextStyle(fontSize: 14, height: 1.5)),
+              TextSpan(text: caption ?? ''),
+            ]),
+            style: Theme.of(context).textTheme.headlineMedium,
+          )
+        else
+          Text(
+            item.kind == 'preamble' ? 'Preamble' : divisionTitle(kind, item.kind, item.label, caption),
+            style: Theme.of(context).textTheme.headlineMedium,
+          ),
         const SizedBox(height: 16),
         StatusBanner(
           wording,
-          extra: survives
-              ? 'This part is still law: the repeal of this law expressly excepts it.'
-              : null,
+          compact: true,
+          extra: survives ? 'This part is still law: the repeal of this law expressly excepts it.' : null,
         ),
         if (ref.watch(readingModeProvider).showTemporal) ...[
           const SizedBox(height: 12),
@@ -298,6 +343,87 @@ class _Header extends ConsumerWidget {
           ),
         ],
         const SizedBox(height: 8),
+      ],
+    );
+  }
+}
+
+/// The units either side of this one in the law's printed order, so a reader goes on to the next Article without
+/// going back to the list. Fetched beside the text; while it loads, or for a unit that is not itself listed (a
+/// sub-section, a Part), nothing is shown.
+class _Neighbours extends ConsumerWidget {
+  final String id;
+  final String instrumentKind;
+  const _Neighbours({required this.id, required this.instrumentKind});
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final n = ref.watch(neighboursProvider(id)).valueOrNull;
+    if (n == null || n.position == null) return const SizedBox.shrink();
+    Widget card(law.SectionItem s, bool forward) {
+      final scheme = Theme.of(context).colorScheme;
+      final name = s.kind == 'preamble'
+          ? 'Preamble'
+          : const {'section', 'article', 'rule', 'regulation'}.contains(s.kind)
+              ? '${unitNoun(instrumentKind, s.kind)} ${s.label ?? ''}'
+              : divisionTitle(instrumentKind, s.kind, s.label, null);
+      return Material(
+        color: scheme.surface,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+          side: BorderSide(color: scheme.outline),
+        ),
+        clipBehavior: Clip.antiAlias,
+        child: InkWell(
+          // replace, so Back returns to the law rather than through every unit read on the way
+          onTap: () => context.pushReplacement('/provision/${s.id}'),
+          child: Padding(
+            padding: const EdgeInsets.all(14),
+            child: Column(
+              crossAxisAlignment: forward ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    if (!forward) Icon(Icons.arrow_back, size: 16, color: scheme.secondary),
+                    Text(forward ? 'Next' : 'Previous', style: TextStyle(fontSize: 12, color: scheme.secondary)),
+                    if (forward) Icon(Icons.arrow_forward, size: 16, color: scheme.secondary),
+                  ],
+                ),
+                const SizedBox(height: 6),
+                Text('\u2068$name\u2069',
+                    textAlign: forward ? TextAlign.end : TextAlign.start,
+                    style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 15)),
+                if ((s.heading ?? '').isNotEmpty) ...[
+                  const SizedBox(height: 4),
+                  Text(
+                    s.heading!,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: forward ? TextAlign.end : TextAlign.start,
+                    style: const TextStyle(fontSize: 13, height: 1.35),
+                  ),
+                ],
+              ],
+            ),
+          ),
+        ),
+      );
+    }
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text('${n.position} of ${n.total} in this law',
+            style: TextStyle(fontSize: 12, color: Theme.of(context).colorScheme.secondary)),
+        const SizedBox(height: 8),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(child: n.previous == null ? const SizedBox.shrink() : card(n.previous!, false)),
+            const SizedBox(width: 12),
+            Expanded(child: n.next == null ? const SizedBox.shrink() : card(n.next!, true)),
+          ],
+        ),
       ],
     );
   }

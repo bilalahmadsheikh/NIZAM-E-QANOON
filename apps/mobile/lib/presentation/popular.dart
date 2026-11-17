@@ -10,19 +10,55 @@ import 'library.dart';
 /// The home page's horizontal shelf of most-consulted laws (an editorial collection from the server, not a ranking
 /// in law). One small request; cards are built lazily as the shelf scrolls, and opening one lands on a law whose
 /// section index the server warmed at start-up.
-class PopularCarousel extends ConsumerWidget {
+class PopularCarousel extends ConsumerStatefulWidget {
   const PopularCarousel({super.key});
+  @override
+  ConsumerState<PopularCarousel> createState() => _PopularCarouselState();
+}
+
+class _PopularCarouselState extends ConsumerState<PopularCarousel> {
+  // a swipe is not the only way along the shelf: the arrows page it for a mouse, a trackpad, a keyboard or a
+  // screen reader (the emulator's mouse and a laptop touchpad could not drag it, 17 Nov 2026)
+  final _shelf = ScrollController();
+  static const _step = (210.0 + 12) * 2;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  void dispose() {
+    _shelf.dispose();
+    super.dispose();
+  }
+
+  void _page(int direction) {
+    if (!_shelf.hasClients) return;
+    final p = _shelf.position;
+    final target = (p.pixels + direction * _step).clamp(p.minScrollExtent, p.maxScrollExtent);
+    _shelf.animateTo(target, duration: const Duration(milliseconds: 320), curve: Curves.easeOutCubic);
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final popular = ref.watch(popularProvider);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Most consulted laws', style: Theme.of(context).textTheme.titleLarge),
-        const SizedBox(height: 6),
+        Row(
+          children: [
+            Expanded(child: Text('Most consulted laws', style: Theme.of(context).textTheme.titleLarge)),
+            IconButton(
+              tooltip: 'Earlier laws on the shelf',
+              onPressed: () => _page(-1),
+              icon: const Icon(Icons.chevron_left),
+            ),
+            IconButton(
+              tooltip: 'More laws on the shelf',
+              onPressed: () => _page(1),
+              icon: const Icon(Icons.chevron_right),
+            ),
+          ],
+        ),
+        const SizedBox(height: 2),
         const Text(
-          'A starting shelf, not a ranking in law. Swipe for more.',
+          'A starting shelf, not a ranking in law. Swipe, or use the arrows, for more.',
           style: TextStyle(fontSize: 13, height: 1.4),
         ),
         const SizedBox(height: 14),
@@ -37,6 +73,7 @@ class PopularCarousel extends ConsumerWidget {
             ),
             error: (e, s) => LoadFailure(e, onRetry: () => ref.invalidate(popularProvider)),
             data: (page) => ListView.separated(
+              controller: _shelf,
               scrollDirection: Axis.horizontal,
               // lay out a screen's worth beyond the edge so a swipe never meets an empty card
               cacheExtent: 600,

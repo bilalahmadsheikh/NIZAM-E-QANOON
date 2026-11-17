@@ -161,6 +161,15 @@ final popularProvider = FutureProvider<CollectionPage>(
   (ref) => ref.watch(repositoryProvider).popular(ref.watch(asOfProvider)),
 );
 
+/// The reader's previous / next units, fetched beside the text (never in its way).
+final neighboursProvider = FutureProvider.autoDispose.family<Neighbours, String>((ref, id) =>
+    ref.watch(repositoryProvider).neighbours(id, ref.watch(asOfProvider), territory: ref.watch(territoryProvider)));
+
+/// The Constitution's page: the Constitution, its amendments and the texts around it, as at the chosen date.
+final constitutionProvider = FutureProvider<ConstitutionPage>(
+  (ref) => ref.watch(repositoryProvider).constitution(ref.watch(asOfProvider)),
+);
+
 /// The reader's territory ('' = none chosen: every law is returned, each with its own reach). Part of the scope,
 /// like the date: a Punjab reader must not be served a law that does not run in Punjab (docs/04 §6).
 final territoryProvider = StateProvider<String>((ref) => '');

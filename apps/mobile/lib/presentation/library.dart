@@ -5,8 +5,10 @@ import '../contracts/library_models.g.dart' as law;
 import '../design/components.dart';
 import '../design/status_banner.dart';
 import '../domain/law_status.dart';
+import '../domain/law_units.dart';
 import '../state/library_state.dart';
 import 'sections.dart';
+export '../domain/law_units.dart';
 
 /// An instrument's standing from its serving record; an as-made text with none falls back to its stored status.
 StatusWording instrumentWording(law.Instrument item) => item.currency != null
@@ -19,10 +21,12 @@ StatusWording instrumentWording(law.Instrument item) => item.currency != null
 class CatalogueScreen extends ConsumerStatefulWidget {
   final String initialQuery;
   final String initialJurisdiction;
+  final String initialKind;
   const CatalogueScreen({
     super.key,
     this.initialQuery = '',
     this.initialJurisdiction = '',
+    this.initialKind = '',
   });
   @override
   ConsumerState<CatalogueScreen> createState() => _CatalogueScreenState();
@@ -34,7 +38,7 @@ class _CatalogueScreenState extends ConsumerState<CatalogueScreen> {
   );
   late String q = widget.initialQuery;
   late String jurisdiction = widget.initialJurisdiction;
-  String kind = '';
+  late String kind = widget.initialKind;
   @override
   void dispose() {
     search.dispose();
@@ -258,7 +262,9 @@ class InstrumentCard extends StatelessWidget {
 class ChildrenList extends ConsumerWidget {
   final String instrument;
   final String? parent;
-  const ChildrenList({super.key, required this.instrument, this.parent});
+  /// The law's stored kind, which names its units ('Article' in a constitution; domain/law_units.dart).
+  final String instrumentKind;
+  const ChildrenList({super.key, required this.instrument, this.parent, this.instrumentKind = ''});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final query = (instrument: instrument, parent: parent);
@@ -322,17 +328,22 @@ class ChildrenList extends ConsumerWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      node.kind.toUpperCase(),
+                                      unitNoun(instrumentKind, node.kind).toUpperCase(),
                                       style: const TextStyle(
                                         fontSize: 10,
                                         letterSpacing: 1.3,
                                       ),
                                     ),
                                     const SizedBox(height: 6),
+                                    // the printed heading, else the division's printed title line (caption, D-070),
+                                    // else the unit named by its kind -- never an empty card
                                     Text(
                                       node.heading ??
                                           node.marginal_note ??
-                                          'Read this unit',
+                                          (node.caption == null ? null : captionCase(node.caption!)) ??
+                                          (node.kind == 'preamble'
+                                              ? 'The Preamble'
+                                              : divisionTitle(instrumentKind, node.kind, node.label, null)),
                                       style: const TextStyle(
                                         fontSize: 16,
                                         height: 1.4,
@@ -426,9 +437,8 @@ class _InstrumentScreenState extends ConsumerState<InstrumentScreen> {
                               Expanded(
                                 child: Text(
                                   switch (ref.watch(sectionsHeadProvider(id))?.total) {
-                                    null => 'Sections',
-                                    1 => '1 section in force on ${result.as_of}',
-                                    final n => '$n sections served on ${result.as_of}',
+                                    null => captionCase(unitsNoun(item.kind, 2).toUpperCase()),
+                                    final n => '$n ${unitsNoun(item.kind, n)} served on ${result.as_of}',
                                   },
                                   style: Theme.of(context).textTheme.titleLarge,
                                 ),
@@ -437,9 +447,13 @@ class _InstrumentScreenState extends ConsumerState<InstrumentScreen> {
                           ),
                           const SizedBox(height: 12),
                           SegmentedButton<bool>(
-                            segments: const [
-                              ButtonSegment(value: false, icon: Icon(Icons.view_agenda_outlined), label: Text('Sections')),
-                              ButtonSegment(value: true, icon: Icon(Icons.account_tree_outlined), label: Text('Structure')),
+                            segments: [
+                              ButtonSegment(
+                                  value: false,
+                                  icon: const Icon(Icons.view_agenda_outlined),
+                                  label: Text(captionCase(unitsNoun(item.kind, 2).toUpperCase()))),
+                              const ButtonSegment(
+                                  value: true, icon: Icon(Icons.account_tree_outlined), label: Text('Structure')),
                             ],
                             selected: {structure},
                             onSelectionChanged: (s) => setState(() => structure = s.first),
@@ -455,8 +469,8 @@ class _InstrumentScreenState extends ConsumerState<InstrumentScreen> {
             SliverPadding(
               padding: const EdgeInsets.fromLTRB(24, 0, 24, 120),
               sliver: structure
-                  ? ChildrenList(instrument: result.item.id)
-                  : SectionList(instrument: result.item.id),
+                  ? ChildrenList(instrument: result.item.id, instrumentKind: result.item.kind)
+                  : SectionList(instrument: result.item.id, instrumentKind: result.item.kind),
             ),
         ],
       ),

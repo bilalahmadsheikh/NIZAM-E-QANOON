@@ -76,16 +76,13 @@ class DiscoverScreen extends StatelessWidget {
                           backgroundColor: Stamp.parchment,
                           foregroundColor: Stamp.pine,
                         ),
-                        onPressed:
-                            () => context.push(
-                              '/library?q=Constitution%20of&jurisdiction=fed',
-                            ),
+                        onPressed: () => context.push('/constitution'),
                         icon: const Icon(Icons.arrow_forward),
                         label: const Text('Explore constitutional texts'),
                       ),
                       const SizedBox(height: 12),
                       const Text(
-                        'Choose the exact instrument and source edition.',
+                        'The Constitution, its Parts and amendments, and the constitutions before it, on one page.',
                         style: TextStyle(
                           color: Color(0xFFD2DBD3),
                           fontSize: 12,
@@ -99,81 +96,90 @@ class DiscoverScreen extends StatelessWidget {
           ),
           const SizedBox(height: 32),
           const PopularCarousel(),
-          const SizedBox(height: 32),
-          Row(
+          const SizedBox(height: 36),
+          const _FindByTitle(),
+          const SizedBox(height: 36),
+          Text('Browse by jurisdiction', style: Theme.of(context).textTheme.titleLarge),
+          const SizedBox(height: 6),
+          const Text(
+            'Federal law applies across Pakistan; each province and territory also makes its own.',
+            style: TextStyle(fontSize: 13, height: 1.4),
+          ),
+          const SizedBox(height: 14),
+          LayoutBuilder(
+            builder: (context, box) {
+              final columns = box.maxWidth >= 640 ? 4 : 2;
+              final width = (box.maxWidth - 12 * (columns - 1)) / columns;
+              return Wrap(
+                spacing: 12,
+                runSpacing: 12,
+                children: [
+                  for (final (key, note) in const [
+                    ('fed', 'Acts of Parliament, Ordinances, Orders'),
+                    ('punjab', 'Provincial Assembly'),
+                    ('sindh', 'Provincial Assembly'),
+                    ('kp', 'Provincial Assembly'),
+                    ('balochistan', 'Provincial Assembly'),
+                    ('ict', 'Islamabad Capital Territory'),
+                    ('ajk', 'Azad Jammu and Kashmir'),
+                    ('gb', 'Gilgit-Baltistan'),
+                  ])
+                    SizedBox(width: width, child: _Tile(jurisdiction: key, note: note)),
+                ],
+              );
+            },
+          ),
+          const SizedBox(height: 36),
+          Text('Browse by kind of law', style: Theme.of(context).textTheme.titleLarge),
+          const SizedBox(height: 14),
+          Wrap(
+            spacing: 10,
+            runSpacing: 10,
             children: [
-              Expanded(
-                child: Text(
-                  'Choose a starting point',
-                  style: Theme.of(context).textTheme.titleLarge,
+              for (final (kind, label) in const [
+                ('act', 'Acts'),
+                ('ordinance', 'Ordinances'),
+                ('order', 'Orders'),
+                ('rules', 'Rules'),
+                ('regulation', 'Regulations'),
+                ('notification', 'Notifications'),
+              ])
+                ActionChip(
+                  label: Text(label),
+                  onPressed: () => context.push('/library?kind=$kind'),
                 ),
-              ),
-              IconButton(
-                tooltip: 'Open all instruments',
-                onPressed: () => context.go('/library'),
-                icon: const Icon(Icons.arrow_forward),
-              ),
             ],
           ),
-          const SizedBox(height: 16),
-          PaperCard(
-            onTap: () => context.go('/library'),
-            child: const Row(
-              children: [
-                Icon(Icons.auto_stories_outlined, size: 30),
-                SizedBox(width: 20),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Browse the library',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                      SizedBox(height: 6),
-                      Text(
-                        'Acts, ordinances, rules and more.\nFilter by jurisdiction and instrument type.',
-                        style: TextStyle(height: 1.5),
-                      ),
-                    ],
-                  ),
-                ),
-                Icon(Icons.chevron_right),
-              ],
-            ),
+          const SizedBox(height: 36),
+          Text('Topics', style: Theme.of(context).textTheme.titleLarge),
+          const SizedBox(height: 6),
+          const Text(
+            'Each topic searches law titles. It is a way in, not a complete list of the laws that apply.',
+            style: TextStyle(fontSize: 13, height: 1.4),
           ),
-          const SizedBox(height: 16),
-          PaperCard(
-            onTap: () => context.push('/library?q=Economic%20Corridor'),
-            child: const Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Eyebrow('Topic discovery'),
-                SizedBox(height: 12),
-                Text(
-                  'CPEC & economic corridors',
-                  style: TextStyle(fontFamily: 'Spectral', fontSize: 23),
+          const SizedBox(height: 14),
+          Wrap(
+            spacing: 10,
+            runSpacing: 10,
+            children: [
+              for (final (q, label) in const [
+                ('Family', 'Family'),
+                ('Rent', 'Rent and tenancy'),
+                ('Land Revenue', 'Land revenue'),
+                ('Police', 'Police'),
+                ('Income Tax', 'Income tax'),
+                ('Labour', 'Labour'),
+                ('Consumer', 'Consumers'),
+                ('Economic Corridor', 'CPEC'),
+              ])
+                ActionChip(
+                  avatar: const Icon(Icons.search, size: 16),
+                  label: Text(label),
+                  onPressed: () => context.push('/library?q=${Uri.encodeQueryComponent(q)}'),
                 ),
-                SizedBox(height: 8),
-                Text(
-                  'Search titles in the held corpus. This is not yet a curated or exhaustive collection of applicable laws.',
-                  style: TextStyle(height: 1.5),
-                ),
-                SizedBox(height: 16),
-                Row(
-                  children: [
-                    Text('Explore matching titles'),
-                    Spacer(),
-                    Icon(Icons.arrow_forward),
-                  ],
-                ),
-              ],
-            ),
+            ],
           ),
-          const SizedBox(height: 24),
+          const SizedBox(height: 32),
           const Notice(
             'Development preview: the corpus is still being qualified. A record passing current gates is not a legal accuracy certification. Always inspect its official source.',
           ),
@@ -182,6 +188,80 @@ class DiscoverScreen extends StatelessWidget {
       ),
     ),
   );
+}
+
+/// Search law titles from the home page; the library opens with the query.
+class _FindByTitle extends StatefulWidget {
+  const _FindByTitle();
+  @override
+  State<_FindByTitle> createState() => _FindByTitleState();
+}
+
+class _FindByTitleState extends State<_FindByTitle> {
+  final _query = TextEditingController();
+  @override
+  void dispose() {
+    _query.dispose();
+    super.dispose();
+  }
+
+  void _go() {
+    final q = _query.text.trim();
+    context.push(q.isEmpty ? '/library' : '/library?q=${Uri.encodeQueryComponent(q)}');
+  }
+
+  @override
+  Widget build(BuildContext context) => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('Find a law by its title', style: Theme.of(context).textTheme.titleLarge),
+          const SizedBox(height: 14),
+          TextField(
+            controller: _query,
+            textInputAction: TextInputAction.search,
+            onSubmitted: (_) => _go(),
+            decoration: InputDecoration(
+              hintText: 'Penal code, tenancy, evidence…',
+              prefixIcon: const Icon(Icons.search),
+              suffixIcon: IconButton(tooltip: 'Search titles', onPressed: _go, icon: const Icon(Icons.arrow_forward)),
+            ),
+          ),
+        ],
+      );
+}
+
+/// A jurisdiction: its name and what its laws are, opening the library filtered to it.
+class _Tile extends StatelessWidget {
+  final String jurisdiction;
+  final String note;
+  const _Tile({required this.jurisdiction, required this.note});
+  @override
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    return Material(
+      color: scheme.surface,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16), side: BorderSide(color: scheme.outline)),
+      clipBehavior: Clip.antiAlias,
+      child: InkWell(
+        onTap: () => context.push('/library?jurisdiction=$jurisdiction'),
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(14, 14, 10, 14),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(jurisdictionName(jurisdiction),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(fontFamily: 'Spectral', fontSize: 19, height: 1.2)),
+              const SizedBox(height: 4),
+              Text(note, maxLines: 2, overflow: TextOverflow.ellipsis,
+                  style: TextStyle(fontSize: 12, height: 1.35, color: scheme.onSurface.withValues(alpha: .75))),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 }
 
 class HeritageScreen extends ConsumerWidget {
@@ -276,10 +356,7 @@ class HeritageScreen extends ConsumerWidget {
           ),
           const SizedBox(height: 16),
           FilledButton(
-            onPressed:
-                () => context.push(
-                  '/library?q=Constitution%20of&jurisdiction=fed',
-                ),
+            onPressed: () => context.push('/constitution'),
             child: const Text('Browse constitutional texts'),
           ),
           const SizedBox(height: 24),

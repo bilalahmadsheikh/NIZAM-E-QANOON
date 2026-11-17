@@ -153,9 +153,9 @@ class LibraryRead:
             return None
         # Parent already passed the release boundary in this same snapshot.
         # No recursive subtree, version text, or total count in list responses.
-        return conn.execute("""
+        rows = conn.execute("""
             SELECT p.id, p.instrument_id, p.parent_id, p.label, p.heading,
-                   p.marginal_note, p.kind::text, p.ordinal, p.first_page,
+                   p.marginal_note, p.kind::text, p.ordinal, p.first_page, p.path::text AS path,
                    EXISTS(SELECT 1 FROM provision c WHERE c.parent_id=p.id
                           AND c.instrument_id=p.instrument_id AND c.is_active) AS has_children
               FROM provision p
@@ -167,6 +167,30 @@ class LibraryRead:
         """, dict(instrument=instrument_id, parent=parent,
                   ordinal=after[0] if after else None, id=after[1] if after else None,
                   limit=limit)).fetchall()
+        self._add_captions(conn, instrument_id, rows, as_of)
+        return rows
+
+    # ------------------------------------------------------------------ division captions (17 Nov 2026)
+    # A Part or Chapter whose printed title line the parser kept as the division's own words ('PART I' then
+    # 'INTRODUCTORY') has no heading, so lists showed it as 'Part I' alone. Its caption is its heading, else that
+    # short served text -- the rule the law page's chapter groups already follow (D-065). Read through
+    # operative_provision as at the date (INV-5), with the instrument and paths as values (see unit text below).
+    CAPTION_KINDS = ('part', 'chapter', 'division', 'title', 'schedule', 'annexure', 'appendix')
+    CAPTION_CHARS = 120
+
+    def _add_captions(self, conn, instrument_id: UUID, rows: list[dict], as_of: date):
+        need = [r['path'] for r in rows if r['kind'] in self.CAPTION_KINDS and not r.get('heading')]
+        served = {}
+        if need:
+            conn.execute("SELECT set_config('nzq.as_of', %s, true), set_config('nzq.territory', '', true)",
+                         (as_of.isoformat(),))
+            served = {r['path']: ' '.join((r['text'] or '').split()) for r in conn.execute("""
+                SELECT path::text AS path, CASE WHEN text_language IN ('ur', 'sd') THEN text_ur ELSE text_en END AS text
+                  FROM operative_provision WHERE instrument_id = %s AND path = ANY(%s::ltree[])
+            """, (instrument_id, need)).fetchall()}
+        for r in rows:
+            own = served.get(r.pop('path'), '')
+            r['caption'] = r.get('heading') or (own if 0 < len(own) <= self.CAPTION_CHARS else None)
 
     def children(self, instrument_id: UUID, *, parent: UUID | None,
                  after: tuple[int, str] | None, limit: int, as_of: date):
@@ -209,12 +233,13 @@ class LibraryRead:
                                    valid_from=None,valid_to=None))
         # Ancestors are a short path, not the entire instrument tree.
         row['ancestors'] = conn.execute("""
-            SELECT a.id, a.label, a.heading, a.kind::text
+            SELECT a.id, a.label, a.heading, a.kind::text, a.path::text AS path
               FROM provision a JOIN provision p ON p.id=%s
              WHERE a.instrument_id=p.instrument_id AND a.is_active
                AND a.path @> p.path AND a.id<>p.id
              ORDER BY nlevel(a.path)
         """, (provision_id,)).fetchall()
+        self._add_captions(conn, row['instrument_id'], row['ancestors'], as_of)
         return row
 
     def provision(self, provision_id: UUID, *, as_of: date):
@@ -306,7 +331,8 @@ class LibraryRead:
     # of a list -- a reader scrolling 642 sections never waits on the database again.
     # a preamble is listed too, first: it precedes the enacting text by definition, though 477 released laws carry an
     # ordinal after their first section (the segmenter numbers it after the opening chapter's subtree)
-    SECTION_KINDS = ('preamble', 'section', 'article', 'rule', 'regulation', 'schedule')
+    # an annexure or appendix carries law text as a schedule does (the Constitution's Annex, D-069)
+    SECTION_KINDS = ('preamble', 'section', 'article', 'rule', 'regulation', 'schedule', 'annexure', 'appendix')
     CONTAINER_KINDS = ('part', 'chapter', 'division', 'title')
     PREVIEW_CHARS = 300
     _index_cache: dict = {}
@@ -390,7 +416,8 @@ class LibraryRead:
                         preview=preview[:self.PREVIEW_CHARS] + ('…' if len(preview) > self.PREVIEW_CHARS else ''),
                         group=(' '.join(x for x in (group['kind'].title(), group['label'] or '') if x)
                                + (f" — {group_title}" if group_title else '')) if group else None,
-                        citation=render_citation(inst['title'], inst['year'], node['kind'], node['label']),
+                        citation=render_citation(inst['title'], inst['year'], node['kind'], node['label'],
+                                                 inst['kind']),
                         survives_repeal=bool(served.get(path, {}).get('survives_repeal')))
             by_path[path] = item
             sections.append(item)
@@ -413,17 +440,66 @@ class LibraryRead:
                  WHERE i.document_id = ANY(%(docs)s) AND {HISTORICAL_GATE}
             """, dict(docs=list(document_ids), as_of=as_of)).fetchall()
 
+    def constitution_family(self, *, documents: list[int], title_pattern: str, constitution_document: int,
+                            as_of: date):
+        """Released instruments readable at `as_of` that belong to the Constitution's page (nizam/api/collections.py):
+        the pinned documents and every title matching `title_pattern`, each with `amends_units` -- how many recorded
+        `amends` edges (legal_edge, 0079/0089) run from it into the Constitution's served text."""
+        with self.transaction() as conn:
+            rows = conn.execute(f"""
+                SELECT {_INSTRUMENT_COLUMNS}, NULL::uuid AS current_instrument_id, i.expression_ordinal
+                  FROM v_release_instrument i
+                  LEFT JOIN v_instrument_historical h ON h.instrument_id = i.id
+                 WHERE {HISTORICAL_GATE}
+                   AND (i.document_id = ANY(%(docs)s) OR coalesce(i.display_title, i.short_title) ~* %(pattern)s)
+            """, dict(docs=list(documents), pattern=title_pattern, as_of=as_of)).fetchall()
+            # ids as values, resolved from the rows above: a subquery over the release view here took 20.8 s, the
+            # value arrays ~1 s (the reader's VALUES lesson, docs/MOBILE-LIBRARY-PREVIEW.md)
+            targets = [r['id'] for r in rows if r['document_id'] == constitution_document]
+            counts = {r['src_instrument']: r['count'] for r in conn.execute("""
+                SELECT e.src_instrument, count(*)::int AS count FROM legal_edge e
+                 WHERE e.kind = 'amends' AND e.dst_instrument = ANY(%s::uuid[]) AND e.src_instrument = ANY(%s::uuid[])
+                 GROUP BY 1
+            """, (targets, [r['id'] for r in rows])).fetchall()} if targets else {}
+        for r in rows:
+            r['amends_units'] = counts.get(r['id'], 0)
+        return rows
+
+    def neighbours(self, provision_id: UUID, *, as_of: date, territory: str | None = None):
+        """The units before and after `provision_id` in its law's section index (printed order, preamble first) at
+        `as_of` in `territory`, with its position; None when the unit's law is not released. A unit that is not
+        itself listed (a sub-section, a Part) has no neighbours: the reader offers its sub-units instead."""
+        with self.transaction() as conn:
+            head = conn.execute("SELECT instrument_id FROM provision WHERE id = %s AND is_active",
+                                (provision_id,)).fetchone()
+            if not head:
+                return None
+            index = self._section_index(conn, head['instrument_id'], as_of=as_of, territory=territory)
+        return neighbours_in(index['sections'], provision_id) if index else None
+
     def section_index(self, instrument_id: UUID, *, as_of: date, territory: str | None = None):
         with self.transaction() as conn:
             return self._section_index(conn, instrument_id, as_of=as_of, territory=territory)
 
 
+def neighbours_in(items: list[dict], provision_id) -> dict:
+    """`provision_id`'s neighbours in a section index (printed order); no neighbours when it is not listed."""
+    at = next((i for i, s in enumerate(items) if str(s['id']) == str(provision_id)), None)
+    if at is None:
+        return dict(previous=None, next=None, position=None, total=len(items))
+    return dict(previous=items[at - 1] if at > 0 else None, next=items[at + 1] if at + 1 < len(items) else None,
+                position=at + 1, total=len(items))
+
+
 _CITE_KIND = {'section': 's.', 'article': 'Art.', 'rule': 'r.', 'regulation': 'reg.', 'schedule': 'Schedule'}
 
 
-def render_citation(title: str | None, year: int | None, kind: str, label: str | None) -> str | None:
+def render_citation(title: str | None, year: int | None, kind: str, label: str | None,
+                    instrument_kind: str | None = None) -> str | None:
     """A citation rendered from database fields only (INV-1): '<law title>[, <year>], s. <label>'. The year is added
-    only when the stored title does not already print it. Returns None without a title or label -- never guessed."""
+    only when the stored title does not already print it. Returns None without a title or label -- never guessed.
+    A constitution numbers Articles: the segmenter stores its numbered units as `section`, and the instrument's
+    stored kind (`constitution`) decides the word (DECISION-LOG D-070)."""
     if not title or not (label or kind == 'preamble'):
         return None
     name = title.strip().rstrip('.')
@@ -431,4 +507,6 @@ def render_citation(title: str | None, year: int | None, kind: str, label: str |
         name = f'{name}, {year}'
     if kind == 'preamble':
         return f"{name}, Preamble"
+    if kind == 'section' and instrument_kind == 'constitution':
+        kind = 'article'
     return f"{name}, {_CITE_KIND.get(kind, kind)} {label}"

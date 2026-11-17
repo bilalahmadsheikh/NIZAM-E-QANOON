@@ -7,11 +7,15 @@ import '../domain/law_status.dart';
 class StatusBanner extends StatelessWidget {
   final StatusWording wording;
   final String? extra;
-  const StatusBanner(this.wording, {super.key, this.extra});
+  /// Tighter type for the reader, where the text is the point. Applies only to a law in force or presumed in force:
+  /// a repealed, lapsed or historical standing always shows in full (client rules: StatusBanner).
+  final bool compact;
+  const StatusBanner(this.wording, {super.key, this.extra, this.compact = false});
 
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
+    final tight = compact && (wording.standing == Standing.inForce || wording.standing == Standing.presumed);
     final (icon, tone) = switch (wording.standing) {
       Standing.inForce => (Icons.verified_outlined, scheme.primary),
       Standing.presumed => (Icons.help_outline, scheme.secondary),
@@ -26,7 +30,7 @@ class StatusBanner extends StatelessWidget {
       child: ExcludeSemantics(
         child: Container(
           width: double.infinity,
-          padding: const EdgeInsets.fromLTRB(16, 14, 16, 14),
+          padding: tight ? const EdgeInsets.fromLTRB(12, 10, 12, 10) : const EdgeInsets.fromLTRB(16, 14, 16, 14),
           decoration: BoxDecoration(
             color: tone.withValues(alpha: .07),
             borderRadius: BorderRadius.circular(14),
@@ -35,19 +39,19 @@ class StatusBanner extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Icon(icon, size: 22, color: tone),
-              const SizedBox(width: 12),
+              Icon(icon, size: tight ? 18 : 22, color: tone),
+              SizedBox(width: tight ? 10 : 12),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       wording.title,
-                      style: TextStyle(fontWeight: FontWeight.w700, fontSize: 16, color: tone),
+                      style: TextStyle(fontWeight: FontWeight.w700, fontSize: tight ? 14 : 16, color: tone),
                     ),
                     if (detail.isNotEmpty) ...[
-                      const SizedBox(height: 4),
-                      Text(detail, style: const TextStyle(height: 1.45)),
+                      SizedBox(height: tight ? 2 : 4),
+                      Text(detail, style: TextStyle(height: tight ? 1.35 : 1.45, fontSize: tight ? 12.5 : null)),
                     ],
                   ],
                 ),

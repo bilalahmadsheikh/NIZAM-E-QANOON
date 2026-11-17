@@ -71,6 +71,9 @@ class Node(BaseModel):
     ordinal: int
     first_page: int | None
     has_children: bool
+    # A Part, Chapter, Schedule or Annex's title: its heading, else its own short served words where the parser kept
+    # the printed title line as text ('PART I' / 'INTRODUCTORY'). Read as at as_of; never generated (D-070).
+    caption: str | None = None
 
 
 class Ancestor(BaseModel):
@@ -78,6 +81,7 @@ class Ancestor(BaseModel):
     label: str | None
     heading: str | None
     kind: str
+    caption: str | None = None
 
 
 class Provision(Node):
@@ -170,6 +174,36 @@ class CollectionPage(Meta):
     """An editorial collection (nizam/api/collections.py): a starting point, not a claim of completeness."""
     name: str
     items: list[CollectionItem]
+
+
+class Neighbours(Meta):
+    """The units either side of an opened unit in its law's printed order (the law page's index), at as_of in
+    territory. `position` is 1-based; null, with no neighbours, when the opened unit is not itself listed."""
+    previous: SectionItem | None
+    next: SectionItem | None
+    position: int | None
+    total: int
+
+
+class FamilyItem(BaseModel):
+    short_name: str
+    instrument: Instrument
+    # recorded `amends` edges from this law into the Constitution's text (legal_edge); 0 where none is recorded,
+    # which is not evidence that it amends nothing
+    amends_units: int
+
+
+class FamilyGroup(BaseModel):
+    """A group of the Constitution's page. `key` is a code the client words: amendments | edition | before_1973 | ajk."""
+    key: str
+    items: list[FamilyItem]
+
+
+class ConstitutionPage(Meta):
+    """The Constitution and the texts around it (nizam/api/collections.py, D-070). `constitution` is null only when
+    its document is not released at as_of."""
+    constitution: Instrument | None
+    groups: list[FamilyGroup]
 
 
 class SectionPage(Meta):
@@ -325,6 +359,14 @@ def create_app(repository=None):
         rows = repo.instruments_by_document([doc for _s, doc, _p in collections.POPULAR], as_of=day)
         return dict(name='Most consulted laws', items=collections.resolve(rows), as_of=day)
 
+    @app.get('/v1/law/collections/constitution', response_model=ConstitutionPage)
+    def constitution(as_of: date | None = None):
+        day = resolved(as_of)
+        rows = repo.constitution_family(documents=collections.FAMILY_DOCUMENTS,
+                                        title_pattern=collections.FAMILY_TITLE_PATTERN,
+                                        constitution_document=collections.CONSTITUTION_DOCUMENT, as_of=day)
+        return dict(collections.constitution_page(rows), as_of=day)
+
     @app.get('/v1/law/instruments/{instrument_id}/sections', response_model=SectionPage)
     def sections(instrument_id: UUID, as_of: date | None = None,
                  territory: Literal['', 'punjab', 'sindh', 'kp', 'balochistan', 'ict', 'ajk', 'gb'] = '',
@@ -352,5 +394,14 @@ def create_app(repository=None):
         if not result:
             raise HTTPException(404, 'This revision is no longer available. Return to the library.')
         return dict(result, as_of=day, territory=territory or None)
+
+    @app.get('/v1/law/provisions/{provision_id}/neighbours', response_model=Neighbours)
+    def neighbours(provision_id: UUID, as_of: date | None = None,
+                   territory: Literal['', 'punjab', 'sindh', 'kp', 'balochistan', 'ict', 'ajk', 'gb'] = ''):
+        day = resolved(as_of)
+        result = repo.neighbours(provision_id, as_of=day, territory=territory or None)
+        if result is None:
+            raise HTTPException(404, 'This revision is no longer available. Return to the library.')
+        return dict(result, as_of=day)
 
     return app

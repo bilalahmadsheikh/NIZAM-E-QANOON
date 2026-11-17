@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../contracts/library_models.g.dart' as law;
 import '../design/components.dart';
 import '../domain/law_status.dart';
+import '../domain/law_units.dart';
 import '../state/library_state.dart';
 import 'statute_text.dart' show markedSpans;
 
@@ -17,7 +18,15 @@ const _prefetchAhead = 15;
 /// scroll, never all at once.
 class SectionList extends ConsumerWidget {
   final String instrument;
-  const SectionList({super.key, required this.instrument});
+  final String instrumentKind;
+  const SectionList({super.key, required this.instrument, this.instrumentKind = ''});
+
+  /// 'Part II — FUNDAMENTAL RIGHTS …' as 'Part II — Fundamental Rights …': the server joins the division and its
+  /// printed title; only the printed part is re-cased (domain/law_units.dart).
+  static String groupTitle(String group) {
+    final i = group.indexOf(' — ');
+    return i < 0 ? group : '${group.substring(0, i)} — ${captionCase(group.substring(i + 3))}';
+  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -57,11 +66,11 @@ class SectionList extends ConsumerWidget {
                 if (newGroup)
                   Padding(
                     padding: const EdgeInsets.only(top: 20, bottom: 10),
-                    child: Eyebrow(item.group!),
+                    child: Eyebrow(groupTitle(item.group!)),
                   ),
                 Padding(
                   padding: EdgeInsets.only(bottom: mode.compact ? 8 : 12),
-                  child: SectionCard(item: item),
+                  child: SectionCard(item: item, instrumentKind: instrumentKind),
                 ),
               ],
             );
@@ -97,7 +106,8 @@ class _Tail extends StatelessWidget {
 
 class SectionCard extends ConsumerWidget {
   final law.SectionItem item;
-  const SectionCard({super.key, required this.item});
+  final String instrumentKind;
+  const SectionCard({super.key, required this.item, this.instrumentKind = ''});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -109,8 +119,11 @@ class SectionCard extends ConsumerWidget {
         ? item.heading!.trim()
         : preamble
             ? 'Preamble'
-            : 'Untitled ${item.kind}';
-    final label = preamble ? '' : printedLabel(item.kind, item.label);
+            : divisionTitle(instrumentKind, item.kind, item.label, null);
+    // a schedule or annex is named by its title line, not a number column ('FIRST SCHEDULE', 'ANNEX')
+    final label = preamble || const {'schedule', 'annexure', 'appendix'}.contains(item.kind)
+        ? ''
+        : printedLabel(item.kind, item.label);
     return Container(
       padding: EdgeInsets.fromLTRB(16, mode.compact ? 6 : 10, 12, mode.compact ? 0 : 2),
       decoration: BoxDecoration(

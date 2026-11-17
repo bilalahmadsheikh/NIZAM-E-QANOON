@@ -398,6 +398,53 @@
         }
       }
     },
+    "/v1/law/collections/constitution": {
+      "get": {
+        "summary": "Constitution",
+        "operationId": "constitution_v1_law_collections_constitution_get",
+        "parameters": [
+          {
+            "name": "as_of",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "As Of"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConstitutionPage"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/law/instruments/{instrument_id}/sections": {
       "get": {
         "summary": "Sections",
@@ -580,6 +627,83 @@
           }
         }
       }
+    },
+    "/v1/law/provisions/{provision_id}/neighbours": {
+      "get": {
+        "summary": "Neighbours",
+        "operationId": "neighbours_v1_law_provisions__provision_id__neighbours_get",
+        "parameters": [
+          {
+            "name": "provision_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Provision Id"
+            }
+          },
+          {
+            "name": "as_of",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "As Of"
+            }
+          },
+          {
+            "name": "territory",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "enum": [
+                "",
+                "punjab",
+                "sindh",
+                "kp",
+                "balochistan",
+                "ict",
+                "ajk",
+                "gb"
+              ],
+              "type": "string",
+              "default": "",
+              "title": "Territory"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Neighbours"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -616,6 +740,17 @@
           "kind": {
             "type": "string",
             "title": "Kind"
+          },
+          "caption": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Caption"
           }
         },
         "type": "object",
@@ -682,6 +817,95 @@
         ],
         "title": "CollectionPage",
         "description": "An editorial collection (nizam/api/collections.py): a starting point, not a claim of completeness."
+      },
+      "ConstitutionPage": {
+        "properties": {
+          "as_of": {
+            "type": "string",
+            "format": "date",
+            "title": "As Of"
+          },
+          "mode": {
+            "type": "string",
+            "const": "research_preview",
+            "title": "Mode",
+            "default": "research_preview"
+          },
+          "notice": {
+            "type": "string",
+            "title": "Notice",
+            "default": "Corpus qualification is ongoing. Check the official source; status may be unknown."
+          },
+          "constitution": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Instrument"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "groups": {
+            "items": {
+              "$ref": "#/components/schemas/FamilyGroup"
+            },
+            "type": "array",
+            "title": "Groups"
+          }
+        },
+        "type": "object",
+        "required": [
+          "as_of",
+          "constitution",
+          "groups"
+        ],
+        "title": "ConstitutionPage",
+        "description": "The Constitution and the texts around it (nizam/api/collections.py, D-070). `constitution` is null only when\nits document is not released at as_of."
+      },
+      "FamilyGroup": {
+        "properties": {
+          "key": {
+            "type": "string",
+            "title": "Key"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/FamilyItem"
+            },
+            "type": "array",
+            "title": "Items"
+          }
+        },
+        "type": "object",
+        "required": [
+          "key",
+          "items"
+        ],
+        "title": "FamilyGroup",
+        "description": "A group of the Constitution's page. `key` is a code the client words: amendments | edition | before_1973 | ajk."
+      },
+      "FamilyItem": {
+        "properties": {
+          "short_name": {
+            "type": "string",
+            "title": "Short Name"
+          },
+          "instrument": {
+            "$ref": "#/components/schemas/Instrument"
+          },
+          "amends_units": {
+            "type": "integer",
+            "title": "Amends Units"
+          }
+        },
+        "type": "object",
+        "required": [
+          "short_name",
+          "instrument",
+          "amends_units"
+        ],
+        "title": "FamilyItem"
       },
       "HTTPValidationError": {
         "properties": {
@@ -1013,6 +1237,71 @@
         "title": "LawStatus",
         "description": "The law-level serving record (mv_instrument_serving). Codes, not prose: the client words them (docs/13)."
       },
+      "Neighbours": {
+        "properties": {
+          "as_of": {
+            "type": "string",
+            "format": "date",
+            "title": "As Of"
+          },
+          "mode": {
+            "type": "string",
+            "const": "research_preview",
+            "title": "Mode",
+            "default": "research_preview"
+          },
+          "notice": {
+            "type": "string",
+            "title": "Notice",
+            "default": "Corpus qualification is ongoing. Check the official source; status may be unknown."
+          },
+          "previous": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SectionItem"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "next": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SectionItem"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "position": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Position"
+          },
+          "total": {
+            "type": "integer",
+            "title": "Total"
+          }
+        },
+        "type": "object",
+        "required": [
+          "as_of",
+          "previous",
+          "next",
+          "position",
+          "total"
+        ],
+        "title": "Neighbours",
+        "description": "The units either side of an opened unit in its law's printed order (the law page's index), at as_of in\nterritory. `position` is 1-based; null, with no neighbours, when the opened unit is not itself listed."
+      },
       "Node": {
         "properties": {
           "id": {
@@ -1092,6 +1381,17 @@
           "has_children": {
             "type": "boolean",
             "title": "Has Children"
+          },
+          "caption": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Caption"
           }
         },
         "type": "object",
@@ -1233,6 +1533,17 @@
           "has_children": {
             "type": "boolean",
             "title": "Has Children"
+          },
+          "caption": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Caption"
           },
           "text_en": {
             "anyOf": [

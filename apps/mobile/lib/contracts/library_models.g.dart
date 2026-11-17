@@ -50,7 +50,8 @@ class Node {
   final int ordinal;
   final int? first_page;
   final bool has_children;
-  const Node({required this.id, required this.instrument_id, required this.parent_id, required this.label, required this.heading, required this.marginal_note, required this.kind, required this.ordinal, required this.first_page, required this.has_children});
+  final String? caption;
+  const Node({required this.id, required this.instrument_id, required this.parent_id, required this.label, required this.heading, required this.marginal_note, required this.kind, required this.ordinal, required this.first_page, required this.has_children, required this.caption});
   factory Node.fromJson(Map<String, dynamic> json) => Node(
     id: json['id'] as String,
     instrument_id: json['instrument_id'] as String,
@@ -62,6 +63,7 @@ class Node {
     ordinal: json['ordinal'] as int,
     first_page: json['first_page'] == null ? null : json['first_page'] as int,
     has_children: json['has_children'] as bool,
+    caption: json['caption'] == null ? null : json['caption'] as String,
   );
 }
 
@@ -70,12 +72,14 @@ class Ancestor {
   final String? label;
   final String? heading;
   final String kind;
-  const Ancestor({required this.id, required this.label, required this.heading, required this.kind});
+  final String? caption;
+  const Ancestor({required this.id, required this.label, required this.heading, required this.kind, required this.caption});
   factory Ancestor.fromJson(Map<String, dynamic> json) => Ancestor(
     id: json['id'] as String,
     label: json['label'] == null ? null : json['label'] as String,
     heading: json['heading'] == null ? null : json['heading'] as String,
     kind: json['kind'] as String,
+    caption: json['caption'] == null ? null : json['caption'] as String,
   );
 }
 
@@ -90,6 +94,7 @@ class Provision {
   final int ordinal;
   final int? first_page;
   final bool has_children;
+  final String? caption;
   final String? text_en;
   final String? text_ur;
   final String? text_language;
@@ -98,7 +103,7 @@ class Provision {
   final String? valid_to;
   final Instrument instrument;
   final List<Ancestor> ancestors;
-  const Provision({required this.id, required this.instrument_id, required this.parent_id, required this.label, required this.heading, required this.marginal_note, required this.kind, required this.ordinal, required this.first_page, required this.has_children, required this.text_en, required this.text_ur, required this.text_language, required this.operation, required this.valid_from, required this.valid_to, required this.instrument, required this.ancestors});
+  const Provision({required this.id, required this.instrument_id, required this.parent_id, required this.label, required this.heading, required this.marginal_note, required this.kind, required this.ordinal, required this.first_page, required this.has_children, required this.caption, required this.text_en, required this.text_ur, required this.text_language, required this.operation, required this.valid_from, required this.valid_to, required this.instrument, required this.ancestors});
   factory Provision.fromJson(Map<String, dynamic> json) => Provision(
     id: json['id'] as String,
     instrument_id: json['instrument_id'] as String,
@@ -110,6 +115,7 @@ class Provision {
     ordinal: json['ordinal'] as int,
     first_page: json['first_page'] == null ? null : json['first_page'] as int,
     has_children: json['has_children'] as bool,
+    caption: json['caption'] == null ? null : json['caption'] as String,
     text_en: json['text_en'] == null ? null : json['text_en'] as String,
     text_ur: json['text_ur'] == null ? null : json['text_ur'] as String,
     text_language: json['text_language'] == null ? null : json['text_language'] as String,
@@ -334,5 +340,63 @@ class CollectionPage {
     notice: json['notice'] as String,
     name: json['name'] as String,
     items: (json['items'] as List).map((v) => CollectionItem.fromJson(v as Map<String, dynamic>)).toList(),
+  );
+}
+
+class FamilyItem {
+  final String short_name;
+  final Instrument instrument;
+  final int amends_units;
+  const FamilyItem({required this.short_name, required this.instrument, required this.amends_units});
+  factory FamilyItem.fromJson(Map<String, dynamic> json) => FamilyItem(
+    short_name: json['short_name'] as String,
+    instrument: Instrument.fromJson(json['instrument'] as Map<String, dynamic>),
+    amends_units: json['amends_units'] as int,
+  );
+}
+
+class FamilyGroup {
+  final String key;
+  final List<FamilyItem> items;
+  const FamilyGroup({required this.key, required this.items});
+  factory FamilyGroup.fromJson(Map<String, dynamic> json) => FamilyGroup(
+    key: json['key'] as String,
+    items: (json['items'] as List).map((v) => FamilyItem.fromJson(v as Map<String, dynamic>)).toList(),
+  );
+}
+
+class ConstitutionPage {
+  final String as_of;
+  final String mode;
+  final String notice;
+  final Instrument? constitution;
+  final List<FamilyGroup> groups;
+  const ConstitutionPage({required this.as_of, required this.mode, required this.notice, required this.constitution, required this.groups});
+  factory ConstitutionPage.fromJson(Map<String, dynamic> json) => ConstitutionPage(
+    as_of: json['as_of'] as String,
+    mode: json['mode'] as String,
+    notice: json['notice'] as String,
+    constitution: json['constitution'] == null ? null : Instrument.fromJson(json['constitution'] as Map<String, dynamic>),
+    groups: (json['groups'] as List).map((v) => FamilyGroup.fromJson(v as Map<String, dynamic>)).toList(),
+  );
+}
+
+class Neighbours {
+  final String as_of;
+  final String mode;
+  final String notice;
+  final SectionItem? previous;
+  final SectionItem? next;
+  final int? position;
+  final int total;
+  const Neighbours({required this.as_of, required this.mode, required this.notice, required this.previous, required this.next, required this.position, required this.total});
+  factory Neighbours.fromJson(Map<String, dynamic> json) => Neighbours(
+    as_of: json['as_of'] as String,
+    mode: json['mode'] as String,
+    notice: json['notice'] as String,
+    previous: json['previous'] == null ? null : SectionItem.fromJson(json['previous'] as Map<String, dynamic>),
+    next: json['next'] == null ? null : SectionItem.fromJson(json['next'] as Map<String, dynamic>),
+    position: json['position'] == null ? null : json['position'] as int,
+    total: json['total'] as int,
   );
 }
