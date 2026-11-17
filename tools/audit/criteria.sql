@@ -651,6 +651,14 @@ m AS (
                   FROM v_provision_survival_current GROUP BY 1, 2, 3)) d)              AS survival_bad
     ,(SELECT count(*) FROM mv_provision_survival)                                       AS survival_units
 -- <<< A18 measures
+    -- (0106, D-071) the boundary evidence an active expression manifest cites is held: a prune once deleted it
+    ,(SELECT count(*) FROM instrument_expression_manifest em
+       WHERE em.is_active AND em.evidence->>'candidate_id' IS NOT NULL)                 AS boundary_cited
+    ,(SELECT count(*) FROM instrument_expression_manifest em
+       WHERE em.is_active AND em.evidence->>'candidate_id' IS NOT NULL
+         AND NOT EXISTS (SELECT 1 FROM segmentation_boundary_candidate bc
+                          WHERE bc.id = (em.evidence->>'candidate_id')::uuid))            AS boundary_missing
+-- <<< A19 measures
 )
 SELECT * FROM (
   SELECT 'C1' AS id, 'every acquired file becomes a blob'      AS criterion,
@@ -818,6 +826,9 @@ SELECT * FROM (
          '0 / 0 / 0 / 0; counts reported',
          CASE WHEN partial_unresolved=0 AND partial_inconsistent=0 AND partial_stale=0 AND survival_bad=0
               THEN 'PASS' ELSE 'FAIL' END FROM m
+  UNION ALL SELECT 'A19','the boundary evidence every active expression manifest cites is held',
+         boundary_cited||' citations (reported); '||boundary_missing||' missing', '0 missing; count reported',
+         CASE WHEN boundary_missing=0 THEN 'PASS' ELSE 'FAIL' END FROM m
   UNION ALL SELECT 'A6','no overlapping law (enforced, not tested)',
          CASE WHEN excl_present=1 THEN 'EXCLUDE constraint present'
               ELSE 'CONSTRAINT MISSING' END, 'enforced',

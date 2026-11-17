@@ -5,7 +5,7 @@ statutory corpus and judicial precedent of the federation and four provinces, an
 14 Nov 2026) Islamabad Capital Territory, Azad Jammu & Kashmir and Gilgit-Baltistan — docs/02 §2.2
 already listed the AJK and GB assemblies as P1 sources. Final Year Project, GIKI FCSE, four developers.
 
-**Current state (17 Nov 2026): L1 and the L2 legal data layer are done; L2 retrieval storage and L3 upward have not started.** The live continuation point is `docs/CORPUS-STATE-2026-11-17.md`; read it before any corpus mutation. **10,339 laws are released and none is held**, across federal, the four provinces, ICT, AJK and Gilgit-Baltistan. Every one is served through `operative_provision` as at a date (`nzq.as_of`) and in a territory (`nzq.territory`), with status, dates, extent and repeals recorded. `./nz audit` runs 40 criteria and all pass (A18, partial repeals, added 17 Nov). Sixteen documents
+**Current state (17 Nov 2026): L1 and the L2 legal data layer are done; L2 retrieval storage and L3 upward have not started.** The live continuation point is `docs/CORPUS-STATE-2026-11-17.md`; read it before any corpus mutation. **10,339 laws are released and none is held**, across federal, the four provinces, ICT, AJK and Gilgit-Baltistan. Every one is served through `operative_provision` as at a date (`nzq.as_of`) and in a territory (`nzq.territory`), with status, dates, extent and repeals recorded. `./nz audit` runs 41 criteria and all pass (A19, boundary evidence held, added 18 Nov). Sixteen documents
 in `docs/` fix the architecture, and where implementation has diverged the docs carry an "as built"
 correction rather than a quiet edit. Acquisition is fully accounted: every catalogued item either landed or carries a declared, evidence-backed exception. Laws that need OCR (874 AJK and 151 GB scans) are not landed, by owner rule. There is no
 `chunk`, `embedding`, facet or judgment table yet — the `chunk` table and BM25 index are the next slice. `legal_edge` exists
@@ -73,7 +73,7 @@ Layer rule: a layer calls **only** the layer immediately below it, plus the shar
 | Doc | Covers |
 |---|---|
 | `01-master-architecture` | Layers, domain model, interface contracts, 20 UML/C4 views, ADR index |
-| `02-corpus-and-ingestion` | Sources, extraction, segmentation, enrichment, quality gates (§8 as built: 40 criteria, docs/CORPUS-CRITERIA.md) |
+| `02-corpus-and-ingestion` | Sources, extraction, segmentation, enrichment, quality gates (§8 as built: 41 criteria, docs/CORPUS-CRITERIA.md) |
 | `03-data-and-storage` | Schema, extensions, indexes, publish transaction, migrations |
 | `03a-capacity-plan` | Measured corpus sizing, free-tier analysis, hosting ladder |
 | `03b-legal-data-model` | 14 legal edge types, 9 facets, schedules as tables, SQLite projection |

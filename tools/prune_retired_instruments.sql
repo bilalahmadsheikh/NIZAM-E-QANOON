@@ -218,10 +218,12 @@ DELETE FROM instrument_source s USING prune_instrument p
  WHERE s.instrument_id=p.archived_id;
 DELETE FROM instrument_status_assertion s USING prune_instrument p
  WHERE s.instrument_id=p.archived_id;
-DELETE FROM segmentation_boundary_adjudication a
- USING segmentation_boundary_candidate c,prune_instrument p
- WHERE a.candidate_id=c.id AND c.instrument_id=p.archived_id;
-DELETE FROM segmentation_boundary_candidate c USING prune_instrument p
+-- Boundary candidates and their adjudications are source evidence about the
+-- observation's blocks, which active expression manifests cite by id: keep
+-- them, and sever only the link to the archived tree (migration 0106; the
+-- 11 Nov prune deleted 226 of them, DECISION-LOG D-071).
+UPDATE segmentation_boundary_candidate c SET instrument_id=NULL
+  FROM prune_instrument p
  WHERE c.instrument_id=p.archived_id;
 DELETE FROM segmentation_structural_adjudication a
  USING segmentation_structural_candidate c,prune_instrument p
