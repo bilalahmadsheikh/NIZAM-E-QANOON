@@ -1,0 +1,30 @@
+[
+  {
+    "document_id": 4419,
+    "page_no": 17,
+    "match_text": "WHEREAS sovereignty over the entire Universe belongs to Almighty Allah",
+    "before_text": "WHEREAS sovereignty over the entire Universe belongs to Almighty Allah",
+    "after_text": "WHEREAS sovereignty over the entire Universe belongs to Almighty Allah",
+    "source_body_start_block": 772043,
+    "defect": "the Constitution's body boundary was read below its Preamble: pages 17-18 (PREAMBLE) and page 19's 'PART I / INTRODUCTORY' were classed as contents, so the Preamble was not served, Articles 1-6 stood outside Part I, and the Annex's recital (p145) became the instrument's Preamble",
+    "observed": "Page 17 prints the title 'THE CONSTITUTION OF THE ISLAMIC REPUBLIC OF PAKISTAN', '[12th April, 1973]', the Bismillah, then 'PREAMBLE' and its recitals ('WHEREAS sovereignty over the entire Universe belongs to Almighty Allah alone ...'), continued on page 18 to '... adopt, enact and give to ourselves, this Constitution.' Page 19 then prints 'PART I' / 'INTRODUCTORY' above Article 1. The contents list ends before page 17; the PREAMBLE head (block 772043) is the first block of the operative text.",
+    "render": "tools/evidence/constitution-4419-2026-11-17/page-17.png",
+    "render_sha256": "4b3c48720f97c3814485025d39f887d2adeb88a8f726a453d33e043f8ae1c623",
+    "additional_render": ["tools/evidence/constitution-4419-2026-11-17/page-18.png", "tools/evidence/constitution-4419-2026-11-17/page-19.png"],
+    "additional_render_sha256": ["9dd0c2f43d484d2735ccfc06f58db886f3af9878d99e0ff3c38856802556b24d", "889e7592d34ffcff9e88b3c465e1e18a90b833bc26ac5cceea5bf2e72a9a1004"],
+    "fixes": "DECISION-LOG D-069: Preamble served first, Articles 1-6 under Part I (as the PPC's Chapter I, D-063)"
+  },
+  {
+    "document_id": 4419,
+    "page_no": 145,
+    "match_text": "The Objectives Resolution",
+    "before_text": "The Objectives Resolution",
+    "after_text": "The Objectives Resolution",
+    "source_division_openers": [{"source_block_id": 774012, "kind": "annexure", "label": "ANNEX"}],
+    "defect": "the Annex was not opened: its head '1[ANNEX' (an insertion mark before the word) was read as the end of Article 280, and its recital as a Preamble",
+    "observed": "Page 145 prints '1[ANNEX' / '(Article 2A)' / 'The Objectives Resolution' / 'In the name of Allah, the Beneficient, the Merciful:' and the Resolution's recitals ('Whereas sovereignty over the entire universe belongs to Allah Almighty alone ...'), with footnote 1 'Ins. by the Revival of the Constitution of 1973 Order, 1985 (P.O. No. 14 of 1985), Art.2 and Sch.' Article 2A (p19) names it 'the Objectives Resolution reproduced in the Annex'. It is the Constitution's Annex, not part of Article 280 and not its Preamble.",
+    "render": "tools/evidence/constitution-4419-2026-11-17/page-145.png",
+    "render_sha256": "942f271b42925c0e6d0b0682d97277f2f9f9622c447a2814ddd27bcc9a63d1e1",
+    "fixes": "DECISION-LOG D-069: the Annex opens its own unit (rule reviewed_division_opener)"
+  }
+]

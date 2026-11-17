@@ -2,7 +2,7 @@
 
 Set 1: the first 50 cases — citizen scenarios, professional lookups, procedure, Urdu/Roman Urdu and deliberately unanswerable questions.
 
-Corpus revision 909b562. Strata: citizen 20, professional 12, procedural 8, urdu 5, unanswerable 5.
+Corpus revision a3e4072. Strata: citizen 20, professional 12, procedural 8, urdu 5, unanswerable 5.
 Status: **draft** — A0 authoring and A3 identity resolution only. Not gold until two legal annotators (A1) and a senior advocate (A2) have reviewed it; do not tune or report on it before then.
 
 ## S1-C01 · citizen · punjab/punjab · as of 2026-11-16 · expect **answer**
@@ -248,7 +248,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** Constitutional writ jurisdiction of the High Court
 
 - *Proposition:* A High Court may, if satisfied no other adequate remedy is provided by law, make the orders Article 199 lists.
-- **Necessary (grade 3)** — Constitution of the Islamic Republic of Pakistan, s./art. 199 (current: owner_presumption_in_force; served in punjab) · `6cdd54c3-04dc-4176-b45c-096fcace4d94` · [source](https://pakistancode.gov.pk/pdffiles/administrator9d8e2ecc414c6d3371ac41114b61a2c4.pdf)
+- **Necessary (grade 3)** — Constitution of the Islamic Republic of Pakistan, s./art. 199 (current: owner_presumption_in_force; served in punjab) · `ed178a43-e4a1-4a18-bd3c-8b945ef5534c` · [source](https://pakistancode.gov.pk/pdffiles/administrator9d8e2ecc414c6d3371ac41114b61a2c4.pdf)
   > Jurisdiction of High Court Subject to the Constitution, a High Court may, if it is satisfied that no other adequate remedy is provided by law,__ on the application of any aggrieved party, make an order— directing a person performing, within the territorial jur
 
 ## S1-P07 · professional · fed/balochistan · as of 2026-11-16 · expect **answer**
@@ -256,7 +256,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** Constitutional right to a fair trial
 
 - *Proposition:* For the determination of civil rights and obligations or any criminal charge, a person is entitled to a fair trial and due process.
-- **Necessary (grade 3)** — Constitution of the Islamic Republic of Pakistan, s./art. 10A (current: owner_presumption_in_force; served in balochistan) · `15f8dfc5-c30e-4563-a18b-80220d3a621c` · [source](https://pakistancode.gov.pk/pdffiles/administrator9d8e2ecc414c6d3371ac41114b61a2c4.pdf)
+- **Necessary (grade 3)** — Constitution of the Islamic Republic of Pakistan, s./art. 10A (current: owner_presumption_in_force; served in balochistan) · `436070d2-5e50-4a53-99c3-12cf85325446` · [source](https://pakistancode.gov.pk/pdffiles/administrator9d8e2ecc414c6d3371ac41114b61a2c4.pdf)
   > Right to fair trial For the determination of his civil rights and obligations or in any criminal charge against him a person shall be entitled to a fair trial and due process.]
 
 ## S1-P08 · professional · fed/ict · as of 2026-11-16 · expect **answer**
@@ -264,7 +264,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** How long does a Presidential Ordinance remain in force?
 
 - *Proposition:* An Ordinance stands repealed 120 days after promulgation unless disapproved earlier; the National Assembly may extend it once by a further 120 days.
-- **Necessary (grade 3)** — Constitution of the Islamic Republic of Pakistan, s./art. 89 (current: owner_presumption_in_force; served in ict) · `1e8ee3df-d7bd-4c99-b970-4842ea44af86` · [source](https://pakistancode.gov.pk/pdffiles/administrator9d8e2ecc414c6d3371ac41114b61a2c4.pdf)
+- **Necessary (grade 3)** — Constitution of the Islamic Republic of Pakistan, s./art. 89 (current: owner_presumption_in_force; served in ict) · `41716fbb-4b5c-4a63-874b-bc43533ee5e0` · [source](https://pakistancode.gov.pk/pdffiles/administrator9d8e2ecc414c6d3371ac41114b61a2c4.pdf)
   > Power of President to promulgate Ordinances The President may, except when the 4[Senate or] National Assembly is in session, if satisfied that circumstances exist which render it necessary to take immediate action, make and promulgate an Ordinance as the circu
 
 ## S1-P09 · professional · fed/punjab · as of 2026-11-16 · expect **answer**

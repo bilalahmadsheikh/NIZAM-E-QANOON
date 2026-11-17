@@ -2,7 +2,7 @@
 
 Set 3: provinces, territories and time — jurisdiction pairs across Punjab, Sindh, KP, Balochistan, ICT and AJK, and temporal pairs at two dates.
 
-Corpus revision 909b562. Strata: citizen 20, professional 12, procedural 8, urdu 5, unanswerable 5.
+Corpus revision a3e4072. Strata: citizen 20, professional 12, procedural 8, urdu 5, unanswerable 5.
 Status: **draft** — A0 authoring and A3 identity resolution only. Not gold until two legal annotators (A1) and a senior advocate (A2) have reviewed it; do not tune or report on it before then.
 
 ## S3-C01 · citizen · fed/ict · as of 2026-11-16 · expect **answer**
@@ -152,7 +152,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 - *Proposition:* Every child aged five to sixteen has a right to free and compulsory education; no fee may be charged that prevents completion; private schools must give free education to at least ten percent of their students.
 - **Necessary (grade 3)** — Sindh Right of Children to Free and Compulsory Education Act, 2013, s./art. 3 (current: commences_at_once; served in sindh) · `0236536d-58af-4925-ba96-69bf9df8a567` · [source](https://sindhlaws.gov.pk/setup/publications_SindhCode/PUB-NEW-18-000137.pdf)
   > Right of Child to Free and Compulsory Education. Every child of the age of five to sixteen years regardless to sex and race shall have a fundamental right to free and compulsory education in a school. No child shall be liable to pay any kind of fee or charges 
-- **Relevant (grade 2)** — Constitution of the Islamic Republic of Pakistan, s./art. 25A (current: owner_presumption_in_force; served in sindh) · `75461447-0882-429e-8793-1ad67c8d2da9` · [source](https://pakistancode.gov.pk/pdffiles/administrator9d8e2ecc414c6d3371ac41114b61a2c4.pdf)
+- **Relevant (grade 2)** — Constitution of the Islamic Republic of Pakistan, s./art. 25A (current: owner_presumption_in_force; served in sindh) · `0b4b4a7d-cf96-4ef3-a5dc-6487a2b91aaf` · [source](https://pakistancode.gov.pk/pdffiles/administrator9d8e2ecc414c6d3371ac41114b61a2c4.pdf)
   > Right to education The State shall provide free and compulsory education to all children of the age of five to sixteen years in such manner as may be determined by law.]
 
 ## S3-C14 · citizen · punjab/punjab · as of 2026-11-16 · expect **answer**
@@ -162,7 +162,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 - *Proposition:* Every child has a right to free and compulsory education from class one to ten (or the notified non-formal or vocational alternatives).
 - **Necessary (grade 3)** — Punjab Free and Compulsory Education Act, 2014, s./art. 3 (current: commenced_on_established; served in punjab) · `17c70498-0a5d-4d94-9489-f70de3207b73` · [source](https://punjabcode.punjab.gov.pk/uploads/articles/punjab_free_and_compulsory_education_act_2014-pdf2.pdf)
   > Right to free and compulsory education – (1) Every child shall have a right to free and compulsory education from class one to ten, non-formal education, vocational education or a combination of all or any of the two as notified by the Government considering t
-- **Relevant (grade 2)** — Constitution of the Islamic Republic of Pakistan, s./art. 25A (current: owner_presumption_in_force; served in punjab) · `75461447-0882-429e-8793-1ad67c8d2da9` · [source](https://pakistancode.gov.pk/pdffiles/administrator9d8e2ecc414c6d3371ac41114b61a2c4.pdf)
+- **Relevant (grade 2)** — Constitution of the Islamic Republic of Pakistan, s./art. 25A (current: owner_presumption_in_force; served in punjab) · `0b4b4a7d-cf96-4ef3-a5dc-6487a2b91aaf` · [source](https://pakistancode.gov.pk/pdffiles/administrator9d8e2ecc414c6d3371ac41114b61a2c4.pdf)
   > Right to education The State shall provide free and compulsory education to all children of the age of five to sixteen years in such manner as may be determined by law.]
 
 ## S3-C15 · citizen · fed/ict · as of 2026-11-16 · expect **answer**
@@ -172,7 +172,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 - *Proposition:* Every child has a fundamental right to free and compulsory education in a neighbourhood school, and no child is liable to pay any fee or charge that would prevent completing education; the Constitution requires free and compulsory education for ages five to sixteen.
 - **Necessary (grade 3)** — Right to Free and Compulsory Education Act, 2012, s./art. 3 (current: owner_presumption_in_force; served in ict) · `5e7b622f-0a8d-41b7-a08f-47ede88f230c` · [source](https://pakistancode.gov.pk/pdffiles/administrator16a64f92734a087c34a808294e416e15.pdf)
   > Right of child to free education. (1) Every child, regardless of sex, nationality or race, shall have a fundamental right to free and compulsory education in a neighbourhood school. No child shall be liable to pay any kind of fee, charges, expenses, etc., whic
-- **Relevant (grade 2)** — Constitution of the Islamic Republic of Pakistan, s./art. 25A (current: owner_presumption_in_force; served in ict) · `75461447-0882-429e-8793-1ad67c8d2da9` · [source](https://pakistancode.gov.pk/pdffiles/administrator9d8e2ecc414c6d3371ac41114b61a2c4.pdf)
+- **Relevant (grade 2)** — Constitution of the Islamic Republic of Pakistan, s./art. 25A (current: owner_presumption_in_force; served in ict) · `0b4b4a7d-cf96-4ef3-a5dc-6487a2b91aaf` · [source](https://pakistancode.gov.pk/pdffiles/administrator9d8e2ecc414c6d3371ac41114b61a2c4.pdf)
   > Right to education The State shall provide free and compulsory education to all children of the age of five to sixteen years in such manner as may be determined by law.]
 
 ## S3-C16 · citizen · sindh/sindh · as of 2026-11-16 · expect **answer**

@@ -2,7 +2,7 @@
 
 Set 2: the core codes (PPC, CrPC, CPC, Contract, Qanun-e-Shahadat, Limitation, TPA, Specific Relief), personal law and online offences.
 
-Corpus revision 909b562. Strata: citizen 20, professional 12, procedural 8, urdu 5, unanswerable 5.
+Corpus revision a3e4072. Strata: citizen 20, professional 12, procedural 8, urdu 5, unanswerable 5.
 Status: **draft** — A0 authoring and A3 identity resolution only. Not gold until two legal annotators (A1) and a senior advocate (A2) have reviewed it; do not tune or report on it before then.
 
 ## S2-C01 · citizen · fed/kp · as of 2026-11-16 · expect **answer**
@@ -42,7 +42,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** Police arrested my brother last night. How long can they keep him before taking him to a magistrate?
 
 - *Proposition:* A person arrested must be produced before a magistrate within twenty-four hours of arrest, excluding travel time, and may not be detained beyond that without a magistrate's authority; he must be told the grounds of arrest and may consult a lawyer of his choice.
-- **Necessary (grade 3)** — Constitution of the Islamic Republic of Pakistan, s./art. 10 (current: owner_presumption_in_force; served in sindh) · `2ea3454a-0e55-4e92-99b9-61710ae0b6a8` · [source](https://pakistancode.gov.pk/pdffiles/administrator9d8e2ecc414c6d3371ac41114b61a2c4.pdf)
+- **Necessary (grade 3)** — Constitution of the Islamic Republic of Pakistan, s./art. 10 (current: owner_presumption_in_force; served in sindh) · `f91aa1ac-0d60-44b9-90ee-e8bfa14c7ca0` · [source](https://pakistancode.gov.pk/pdffiles/administrator9d8e2ecc414c6d3371ac41114b61a2c4.pdf)
   > Safeguards as to arrest and detention No person who is arrested shall be detained in custody without being informed, as soon as may be, of the grounds for such arrest, nor shall he be denied the right to consult and be defended by a legal practitioner of his c
 - **Necessary (grade 3)** — Code of Criminal Procedure, 1898, s./art. 61 (current: owner_presumption_in_force; served in sindh) · `69d81863-0c19-423d-a66e-052715975a29` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
   > Person arrested not to be detained more than twenty-four hours No police-officer shall detain in custody a person arrested without warrant for a longer period than under all the circumstances of the case is reasonable, and such period shall not, in the absence
@@ -206,7 +206,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** Constitutional protection against double punishment and self-incrimination
 
 - *Proposition:* No person shall be prosecuted or punished for the same offence more than once, or be compelled to be a witness against himself.
-- **Necessary (grade 3)** — Constitution of the Islamic Republic of Pakistan, s./art. 13 (current: owner_presumption_in_force; served in ict) · `d6a16850-b409-4ff2-b23d-35be6855ef0e` · [source](https://pakistancode.gov.pk/pdffiles/administrator9d8e2ecc414c6d3371ac41114b61a2c4.pdf)
+- **Necessary (grade 3)** — Constitution of the Islamic Republic of Pakistan, s./art. 13 (current: owner_presumption_in_force; served in ict) · `13dc532a-5f1d-4926-945c-ce5495fd66a0` · [source](https://pakistancode.gov.pk/pdffiles/administrator9d8e2ecc414c6d3371ac41114b61a2c4.pdf)
   > Protection against double punishment and self-incrimination No person__ shall be prosecuted or punished for the same offence more than once; or shall, when accused of an offence, be compelled to be a witness against himself.
 
 ## S2-P05 · professional · fed/balochistan · as of 2026-11-16 · expect **answer**
@@ -214,7 +214,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** Can a law punish an act that was not an offence when it was done?
 
 - *Proposition:* No law may authorise punishment for an act not punishable when done, or a greater or different penalty than the law then prescribed — except for laws on abrogation or subversion of a Constitution since 23 March 1956.
-- **Necessary (grade 3)** — Constitution of the Islamic Republic of Pakistan, s./art. 12 (current: owner_presumption_in_force; served in balochistan) · `1cdbc7cd-3ec8-480e-8d3c-b16cd9acfa2a` · [source](https://pakistancode.gov.pk/pdffiles/administrator9d8e2ecc414c6d3371ac41114b61a2c4.pdf)
+- **Necessary (grade 3)** — Constitution of the Islamic Republic of Pakistan, s./art. 12 (current: owner_presumption_in_force; served in balochistan) · `b60945d1-a9f8-4f3a-8769-d3a263a52743` · [source](https://pakistancode.gov.pk/pdffiles/administrator9d8e2ecc414c6d3371ac41114b61a2c4.pdf)
   > Protection against retrospective punishment No law shall authorize the punishment of a person__ for an act or omission that was not punishable by law at the time of the act or omission; or for an offence by a penalty greater than, or of a kind different from, 
 
 ## S2-P06 · professional · fed/sindh · as of 2026-11-16 · expect **answer**
@@ -356,7 +356,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** پولیس گرفتاری کے بعد کسی کو مجسٹریٹ کے سامنے پیش کیے بغیر کتنی دیر تک رکھ سکتی ہے؟
 
 - *Proposition:* Within twenty-four hours of arrest, excluding travel time.
-- **Necessary (grade 3)** — Constitution of the Islamic Republic of Pakistan, s./art. 10 (current: owner_presumption_in_force; served in punjab) · `2ea3454a-0e55-4e92-99b9-61710ae0b6a8` · [source](https://pakistancode.gov.pk/pdffiles/administrator9d8e2ecc414c6d3371ac41114b61a2c4.pdf)
+- **Necessary (grade 3)** — Constitution of the Islamic Republic of Pakistan, s./art. 10 (current: owner_presumption_in_force; served in punjab) · `f91aa1ac-0d60-44b9-90ee-e8bfa14c7ca0` · [source](https://pakistancode.gov.pk/pdffiles/administrator9d8e2ecc414c6d3371ac41114b61a2c4.pdf)
   > Safeguards as to arrest and detention No person who is arrested shall be detained in custody without being informed, as soon as may be, of the grounds for such arrest, nor shall he be denied the right to consult and be defended by a legal practitioner of his c
 - **Necessary (grade 3)** — Code of Criminal Procedure, 1898, s./art. 61 (current: owner_presumption_in_force; served in punjab) · `69d81863-0c19-423d-a66e-052715975a29` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
   > Person arrested not to be detained more than twenty-four hours No police-officer shall detain in custody a person arrested without warrant for a longer period than under all the circumstances of the case is reasonable, and such period shall not, in the absence

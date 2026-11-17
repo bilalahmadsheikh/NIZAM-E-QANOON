@@ -242,6 +242,19 @@ Closed in the evening of 17 Nov:
   - Misordered laws fell from 283 to 44. The release stayed at 10,339 and the guard reported 0 rises.
   - Post-replay step 2 still reports 19 multi-expression plans that do not re-materialise; this predates the
     replay (DECISION-LOG open questions).
+
+Closed early on 18 Nov:
+- **The Constitution's structure** (D-069). Doc 4419 now serves its real Preamble (pp17–18), Part I "Introductory"
+  over Articles 1–6, and the Annex (the Objectives Resolution) as its own unit. Before, the Annex's recital was
+  served as the Preamble.
+  - This took two page-read readings, a hold, a replay and the full post-replay sequence.
+  - 1,925 of 1,927 units are unchanged; 24 changed path under Part I.
+  - Release 10,339, guard 0 rises, audit 40/40, golden sets 0 problems.
+- **Instrument ids change on replay.** The Constitution's id moved from dbef70df… to 40689a31…. Collections resolve
+  laws by document id, so links built from the API keep working; a stored instrument URL from before the replay
+  answers "not available".
+
+Still open:
 - Golden sets 5–10, and annotation of sets 1–4.
 - No Urdu statute text is landed. Sindh Urdu PDFs exist, but their text layer is
   reversed, so they must not be extracted as-is.

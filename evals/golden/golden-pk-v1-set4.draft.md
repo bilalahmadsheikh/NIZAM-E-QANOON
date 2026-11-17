@@ -2,7 +2,7 @@
 
 Set 4: work, money, business, rights and regulation — labour across provinces, tax and company filings, IP, banking, ombudsmen, constitutional rights, and Rules.
 
-Corpus revision 909b562. Strata: citizen 20, professional 12, procedural 8, urdu 5, unanswerable 5.
+Corpus revision a3e4072. Strata: citizen 20, professional 12, procedural 8, urdu 5, unanswerable 5.
 Status: **draft** — A0 authoring and A3 identity resolution only. Not gold until two legal annotators (A1) and a senior advocate (A2) have reviewed it; do not tune or report on it before then.
 
 ## S4-C01 · citizen · punjab/punjab · as of 2026-11-16 · expect **answer**
@@ -252,7 +252,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** Constitutional right to information
 
 - *Proposition:* Every citizen has the right of access to information in all matters of public importance, subject to regulation and reasonable restrictions imposed by law.
-- **Necessary (grade 3)** — Constitution of the Islamic Republic of Pakistan, s./art. 19A (current: owner_presumption_in_force; served in punjab) · `778b0089-f41d-46ad-b27c-3732cb7e487e` · [source](https://pakistancode.gov.pk/pdffiles/administrator9d8e2ecc414c6d3371ac41114b61a2c4.pdf)
+- **Necessary (grade 3)** — Constitution of the Islamic Republic of Pakistan, s./art. 19A (current: owner_presumption_in_force; served in punjab) · `233f2245-e5c4-4446-9043-831a49bdc35e` · [source](https://pakistancode.gov.pk/pdffiles/administrator9d8e2ecc414c6d3371ac41114b61a2c4.pdf)
   > Right to information Every citizen shall have the right to have access to information in all matters of public importance subject to regulation and reasonable restrictions imposed by law.]
 - **Relevant (grade 1)** — Punjab Transparency and Right to Information Act, 2013, s./art. 10 (current: commenced_on_established; served in punjab) · `3b13bfee-e59b-4086-bc1e-def7ce562f44` · [source](https://punjabcode.punjab.gov.pk/uploads/articles/punjab-transparency-and-right-to-information-act-2013-pdf1.pdf)
   > Application procedure – (1) An applicant may make an application to a public information officer on an information request form or on plain paper and the public information officer shall acknowledge receipt of the application. A public body shall make easily a
@@ -262,7 +262,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** Equality before law and the bar on sex discrimination
 
 - *Proposition:* All citizens are equal before law and entitled to equal protection; there is no discrimination on the basis of sex, but the State may make special provision for women and children.
-- **Necessary (grade 3)** — Constitution of the Islamic Republic of Pakistan, s./art. 25 (current: owner_presumption_in_force; served in sindh) · `a19b94a1-dcac-44cc-986f-d87dc32aba3d` · [source](https://pakistancode.gov.pk/pdffiles/administrator9d8e2ecc414c6d3371ac41114b61a2c4.pdf)
+- **Necessary (grade 3)** — Constitution of the Islamic Republic of Pakistan, s./art. 25 (current: owner_presumption_in_force; served in sindh) · `81e3c088-2744-4b30-8d26-46803a996707` · [source](https://pakistancode.gov.pk/pdffiles/administrator9d8e2ecc414c6d3371ac41114b61a2c4.pdf)
   > Equality of citizens All citizens are equal before law and are entitled to equal protection of law. There shall be no discrimination on the basis of sex 1[*]. Nothing in this Article shall prevent the State from making any special provision for the protection 
 
 ## S4-P12 · professional · fed/sindh · as of 2026-11-16 · expect **answer**
