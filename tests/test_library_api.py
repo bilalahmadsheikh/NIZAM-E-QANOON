@@ -258,6 +258,43 @@ def test_neighbours_follow_the_printed_index_and_never_borrow_another_law():
         assert client.get(f'/v1/law/provisions/{UUID(int=99)}/neighbours').status_code == 404
 
 
+def test_subject_search_returns_laws_with_their_matching_units_and_the_shelf():
+    class Subject(Repository):
+        def subject_search(self, **kwargs):
+            assert kwargs['q'] == 'robbery' and isinstance(kwargs['as_of'], date)
+            assert 4441 in kwargs['shelf']                      # the editorial shelf rides along for ranking
+            return [dict(instrument=dict(id=ID, title='Pakistan Penal Code', kind='act', year=1860, jurisdiction='fed',
+                                         status='in_force', source_url=None, document_id=4441, source_hash='a' * 64,
+                                         cited_by_laws=1160),
+                         matches=3, units=[dict(id=str(UUID(int=392)), kind='section', label='392',
+                                                heading='Punishment for robbery')])]
+    with TestClient(create_app(Subject())) as client:
+        body = client.get('/v1/law/search?q=robbery&as_of=2026-11-18').json()
+        assert body['query'] == 'robbery'
+        hit = body['items'][0]
+        assert hit['instrument']['cited_by_laws'] == 1160
+        assert hit['units'][0]['label'] == '392' and hit['units'][0]['heading'] == 'Punishment for robbery'
+        assert client.get('/v1/law/search?q=r').status_code == 422          # one letter is not a subject
+
+
+def test_catalogue_continuation_carries_the_reliance_order():
+    class Ranked(Repository):
+        def instruments(self, **kwargs):
+            after = kwargs['after']
+            rows = [dict(id=UUID(int=n), title=f'Law {n}', kind='act', year=2000, jurisdiction='fed',
+                         status='in_force', source_url=None, document_id=n, source_hash='a' * 64,
+                         sort_rank=1, reliance=100 - n, sort_title=f'law {n}') for n in range(1, 40)]
+            if after:
+                assert len(after) == 4 and after[1] == rows[29]['reliance']   # [rank, reliance, title, id]
+                rows = rows[30:]
+            return rows[:kwargs['limit']]
+    with TestClient(create_app(Ranked())) as client:
+        first = client.get('/v1/law/instruments?limit=30').json()
+        assert first['next_cursor']
+        second = client.get(f"/v1/law/instruments?limit=30&after={first['next_cursor']}").json()
+        assert second['items'][0]['title'] == 'Law 31'
+
+
 def test_popular_collection_keeps_order_and_drops_a_document_whose_title_changed():
     with TestClient(create_app(Repository())) as client:
         body = client.get('/v1/law/collections/popular').json()

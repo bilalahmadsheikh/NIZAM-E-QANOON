@@ -148,7 +148,7 @@ tests/         pure-function and database tests; the segmenter's regressions liv
 evals/golden/  golden sets 1–4 (build_set*.py, draft JSONL, blank review sheets)
 data/          scrapers + source archives (archives gitignored, 1.6 GB)
 .claude/       skills and agents
-nz  ·  nz.ps1  one command: up status psql extract ocr verify audit state browse test snapshot export restore
+nz  ·  nz.ps1  one command: up status api psql extract ocr verify audit state browse test snapshot export restore
 ```
 
 To hand the database to a teammate: `./nz export`, send the folder, and they run

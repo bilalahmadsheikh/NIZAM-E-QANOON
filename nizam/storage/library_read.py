@@ -37,7 +37,15 @@ _INSTRUMENT_COLUMNS = """
     h.instrument_id IS NOT NULL AS historical,
     h.valid_from::text AS valid_from, h.valid_to::text AS valid_to,
     (SELECT m.currency FROM mv_instrument_serving m WHERE m.instrument_id = i.id) AS currency,
-    (SELECT m.currency_reason FROM mv_instrument_serving m WHERE m.instrument_id = i.id) AS currency_reason"""
+    (SELECT m.currency_reason FROM mv_instrument_serving m WHERE m.instrument_id = i.id) AS currency_reason,
+    (SELECT c.cited_by_laws FROM law_citation_count c
+      WHERE c.document_id = i.document_id AND c.expression_ordinal = i.expression_ordinal) AS cited_by_laws"""
+
+# How much the rest of the corpus relies on a law (migration 0107, D-075): laws citing it by title, plus three for
+# each law linked to it by a recorded amends / repeals / empowers edge. The editorial shelf (collections.POPULAR) is
+# kept on top. A ranking signal only: it orders lists, it never decides what the law is.
+RELIANCE = """(coalesce(c.cited_by_laws, 0) + 3 * coalesce(c.edges_in, 0)
+               + CASE WHEN ii.document_id = ANY(%(shelf)s) THEN 100000 ELSE 0 END)"""
 
 
 class LibraryRead:
@@ -61,13 +69,15 @@ class LibraryRead:
 
     @staticmethod
     def _instruments(conn, *, q: str, jurisdiction: str, kind: str,
-                     after: list | None, limit: int, as_of: date):
-        """Ordered by (titles starting with the query first, title, id) and continued by keyset on that triple
-        (migration 0104 indexes the rendered title). `after` is the last row's [rank, sort title, id]."""
+                     after: list | None, limit: int, as_of: date, shelf: list[int] | None = None):
+        """Ordered by (title rank, the laws the corpus relies on most first, title, id) and continued by keyset on
+        that quadruple. `after` is the last row's [rank, reliance, sort title, id] (D-075)."""
         esc = q.lower().replace('!', '!!').replace('%', '!%').replace('_', '!_')
         # Filter and order the serving snapshot (0094/0105: released, served laws only, rendered titles), then
         # fetch instrument details for this page alone. Rank: 0 = the title starts with the query, 1 = it contains
         # it, 2 = an amending law ('... (Amendment) ...') -- so 'penal code' finds the Code before its amendments.
+        # Within a rank, the laws other laws cite most come first (law_citation_count, 0107): browsing a province's
+        # Rules shows the Rules practice turns on before the hundreds that nothing cites.
         # Sort key ignores a leading number or 'The' ('21.The Inland ...', 'The Contract Act' under C).
         rows = conn.execute(f"""
             WITH t AS (
@@ -82,31 +92,89 @@ class LibraryRead:
                    AND (%(jurisdiction)s = '' OR m.jurisdiction = %(jurisdiction)s)
                    AND (%(kind)s = '' OR m.instrument_kind = %(kind)s)),
             ranked AS (
-                SELECT id, sort_title,
+                SELECT t.id, t.sort_title,
                        CASE WHEN amending THEN 2 WHEN sort_title LIKE %(prefix)s ESCAPE '!' THEN 0 ELSE 1 END
-                       AS sort_rank
-                  FROM t),
+                       AS sort_rank,
+                       {RELIANCE} AS reliance
+                  FROM t JOIN instrument ii ON ii.id = t.id
+                  LEFT JOIN law_citation_count c
+                    ON c.document_id = ii.document_id AND c.expression_ordinal = ii.expression_ordinal),
             page AS (
                 SELECT * FROM ranked
                  WHERE %(after_rank)s::int IS NULL
-                    OR (sort_rank, sort_title, id) > (%(after_rank)s::int, %(after_title)s::text, %(after_id)s::uuid)
-                 ORDER BY sort_rank, sort_title, id LIMIT %(limit)s)
-            SELECT {_INSTRUMENT_COLUMNS}, NULL::uuid AS current_instrument_id, p.sort_rank, p.sort_title
+                    OR (sort_rank, -reliance, sort_title, id)
+                       > (%(after_rank)s::int, -%(after_reliance)s::int, %(after_title)s::text, %(after_id)s::uuid)
+                 ORDER BY sort_rank, reliance DESC, sort_title, id LIMIT %(limit)s)
+            SELECT {_INSTRUMENT_COLUMNS}, NULL::uuid AS current_instrument_id, p.sort_rank, p.reliance, p.sort_title
               FROM page p JOIN instrument i ON i.id = p.id
               LEFT JOIN v_instrument_historical h ON h.instrument_id = i.id
              WHERE {HISTORICAL_GATE}
-             ORDER BY p.sort_rank, p.sort_title, p.id
-        """, dict(q=q, contains='%' + esc + '%', prefix=esc + '%',
+             ORDER BY p.sort_rank, p.reliance DESC, p.sort_title, p.id
+        """, dict(q=q, contains='%' + esc + '%', prefix=esc + '%', shelf=list(shelf or []),
                   jurisdiction=jurisdiction, kind=kind, limit=limit, as_of=as_of,
-                  after_rank=after[0] if after else None, after_title=after[1] if after else None,
-                  after_id=after[2] if after else None)).fetchall()
+                  after_rank=after[0] if after else None, after_reliance=after[1] if after else None,
+                  after_title=after[2] if after else None, after_id=after[3] if after else None)).fetchall()
         return rows
 
+    # ------------------------------------------------------------------ search by subject (18 Nov 2026, D-075)
+    # 'robbery', 'bail', 'rent': laws whose section headings or marginal notes say it, each with its best matching
+    # units, ranked by how well the headings match and how much the corpus relies on the law; current law first.
+    # A library browse aid over headings (index provision_heading_fts, 0107), not L3 retrieval: no answer is formed.
+    SUBJECT_UNITS = 3
+
+    def subject_search(self, *, q: str, jurisdiction: str, kind: str, as_of: date, limit: int,
+                       shelf: list[int] | None = None):
+        with self.transaction() as conn:
+            hits = conn.execute(f"""
+                WITH qq AS (SELECT websearch_to_tsquery('english', %(q)s) AS q),
+                served AS (
+                    SELECT m.instrument_id, m.currency FROM mv_instrument_serving m
+                     WHERE (%(jurisdiction)s = '' OR m.jurisdiction = %(jurisdiction)s)
+                       AND (%(kind)s = '' OR m.instrument_kind = %(kind)s)),
+                unit AS (
+                    SELECT p.instrument_id, p.id, p.kind::text AS kind, p.label,
+                           coalesce(p.heading, p.marginal_note) AS heading, p.ordinal,
+                           ts_rank(to_tsvector('english', coalesce(p.heading, '') || ' ' || coalesce(p.marginal_note, '')),
+                                   qq.q) AS rank
+                      FROM provision p, qq
+                     WHERE p.is_active AND (p.heading IS NOT NULL OR p.marginal_note IS NOT NULL)
+                       AND to_tsvector('english', coalesce(p.heading, '') || ' ' || coalesce(p.marginal_note, ''))
+                           @@ qq.q),
+                law AS (
+                    SELECT u.instrument_id, s.currency, count(*) AS matches, max(u.rank) AS best,
+                           (array_agg(jsonb_build_object('id', u.id, 'kind', u.kind, 'label', u.label,
+                                                          'heading', u.heading)
+                                      ORDER BY u.rank DESC, u.ordinal))[1:{self.SUBJECT_UNITS}] AS units
+                      FROM unit u JOIN served s ON s.instrument_id = u.instrument_id
+                     GROUP BY 1, 2)
+                SELECT l.instrument_id, l.matches, l.units, {RELIANCE} AS reliance
+                  FROM law l JOIN instrument ii ON ii.id = l.instrument_id
+                  LEFT JOIN law_citation_count c
+                    ON c.document_id = ii.document_id AND c.expression_ordinal = ii.expression_ordinal
+                 ORDER BY (l.currency = 'current') DESC,
+                          l.best * 10 + ln(1 + least(l.matches, 20)) + ln(1 + {RELIANCE}) DESC
+                 LIMIT %(limit)s
+            """, dict(q=q, jurisdiction=jurisdiction, kind=kind, limit=limit, shelf=list(shelf or []))).fetchall()
+            out, seen = [], set()
+            for h in hits:
+                inst = self._instrument(conn, h['instrument_id'], as_of)
+                if not inst:
+                    continue
+                # with no jurisdiction chosen, a law reproduced in another code (the Punjab Code's copy of the PPC)
+                # is shown once: its most relied-on copy, which the order above puts first
+                name = re.sub(r'[^a-z0-9]+', ' ', re.sub(r'^\s*the\s+|,?\s*\d{4}\s*$', '',
+                                                         (inst['title'] or '').lower())).strip()
+                if not jurisdiction and name and name in seen:
+                    continue
+                seen.add(name)
+                out.append(dict(instrument=inst, matches=h['matches'], units=h['units']))
+            return out
+
     def instruments(self, *, q: str, jurisdiction: str, kind: str,
-                    after: list | None, limit: int, as_of: date):
+                    after: list | None, limit: int, as_of: date, shelf: list[int] | None = None):
         with self.transaction() as conn:
             return self._instruments(conn, q=q, jurisdiction=jurisdiction, kind=kind,
-                                     after=after, limit=limit, as_of=as_of)
+                                     after=after, limit=limit, as_of=as_of, shelf=shelf)
 
     @staticmethod
     def _instrument(conn, instrument_id: UUID, as_of: date, *, resolve_current: bool = False):

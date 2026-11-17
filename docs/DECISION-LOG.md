@@ -734,6 +734,48 @@ Area: corpus · Status: standing
   tests/test_gazette_head.py; nizam/workers/segment.py `--release-tree-dump`; `.artifacts/gz_proof.py`,
   `gz_after.py`, `gz_replay_docs.txt`.
 
+### D-075 · 2026-11-18 · Lists open with the laws the corpus relies on; search by subject; the API runs as a service
+Area: L2/API/client · Status: standing
+- Decision:
+  1. **Reliance measure.** `tools/measure_law_citations.py` reads every released law's text once and counts, per
+     law, how many other released laws cite it by title. A citation ends at a type word, or for "Code of …" opens
+     with one. A year printed after the name, then the citing law's jurisdiction, then federal, choose between laws
+     of one name; an ambiguous name is not counted, and self-citation is not counted. Recorded `legal_edge` links
+     are added as `edges_in`. The result is stored whole in `law_citation_count` (migration 0107), keyed by
+     (document, expression).
+     - Measured 18 Nov: Constitution 2,218 laws, CrPC 1,486, PPC 1,160, CPC 953; 3,626 laws are cited at least once.
+  2. **Ranked lists.** The catalogue orders by title rank, then reliance: laws citing it, plus 3 per law linked by
+     an edge, with the editorial shelf on top. Browsing a jurisdiction or kind therefore opens with the laws practice
+     turns on; federal Acts open with CrPC, PPC, CPC, Limitation, Companies, Stamp. The keyset cursor carries
+     reliance. Each card shows "Cited in N laws". This is a measured signal: it orders lists and never decides law.
+  3. **Search by subject.** `GET /v1/law/search` matches section headings and marginal notes (GIN index
+     `provision_heading_fts`, 0107). It returns laws with their best-matching units, ranked by match, matches and
+     reliance, current law first. With no jurisdiction chosen, a law reproduced in another code is shown once.
+     "robbery" → PPC ss. 390, 392, 393. "bail" → CrPC ss. 496–498. A browse aid, not L3 retrieval; no answer is
+     formed.
+  4. **Library page.** One box for a title or a subject, suggested searches, one-tap jurisdiction and kind chips,
+     subject results with their sections opening in the reader, and an honest note on the order.
+  5. **The API as a service.** `./nz api [start|stop|status|restart]` runs the library API detached, logging to
+     logs/api.log, and `./nz up` starts it. The app retries a refused or dropped connection twice, after 0.4 s and
+     1.2 s. An offline screen re-asks every 5 s and opens by itself; it shows no retry button, since offline is an
+     outcome (client rules).
+- Why:
+  - The owner asked for the laws people rely on to come first in jurisdiction, kind and topic lists, and for a
+    subject search to find, say, the law punishing robbery before minor laws. Nizam holds no usage data and invents
+    none; how often the rest of the law cites a law is evidence in the corpus itself.
+  - "Not connected": the API ran only as a background command of a working session, so each restart or end of
+    session refused the app's requests.
+- Not done, and why:
+  - **155 Gazette laws (D-072):** their rebuild moves words between units, mostly in tariff and tax tables; there is
+    no single pattern. They need page reading.
+  - **Three recital "preambles" (7036, 9638, 9881):** the form-text override is refused, rightly, outside an opened
+    form or appendix. The form must first be opened from the page.
+  - **The amendment Acts (D-074):** they need OCR, and by the owner's rule OCR laws are not landed.
+- Where: infra/postgres/migrations/0107_law_citation_count.sql; tools/measure_law_citations.py;
+  nizam/storage/library_read.py (`RELIANCE`, `subject_search`); nizam/api/library.py; nz (`api`);
+  apps/mobile/lib/presentation/catalogue.dart; apps/mobile/lib/data/library_repository.dart (retry);
+  apps/mobile/lib/design/components.dart (LoadFailure); tests/test_library_api.py.
+
 ### D-073 · 2026-11-18 · A preamble reads as its printed recitals
 Area: client · Status: standing
 - Decision: the reader breaks a preamble's served text into paragraphs where a recital opens: WHEREAS, AND

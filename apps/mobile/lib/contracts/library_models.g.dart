@@ -17,8 +17,9 @@ class Instrument {
   final String? current_instrument_id;
   final String? currency;
   final String? currency_reason;
+  final int? cited_by_laws;
   final String year_display;
-  const Instrument({required this.id, required this.title, required this.kind, required this.year, required this.jurisdiction, required this.status, required this.source_url, required this.document_id, required this.source_hash, required this.historical, required this.valid_from, required this.valid_to, required this.current_instrument_id, required this.currency, required this.currency_reason, required this.year_display});
+  const Instrument({required this.id, required this.title, required this.kind, required this.year, required this.jurisdiction, required this.status, required this.source_url, required this.document_id, required this.source_hash, required this.historical, required this.valid_from, required this.valid_to, required this.current_instrument_id, required this.currency, required this.currency_reason, required this.cited_by_laws, required this.year_display});
   factory Instrument.fromJson(Map<String, dynamic> json) => Instrument(
     id: json['id'] as String,
     title: json['title'] == null ? null : json['title'] as String,
@@ -35,6 +36,7 @@ class Instrument {
     current_instrument_id: json['current_instrument_id'] == null ? null : json['current_instrument_id'] as String,
     currency: json['currency'] == null ? null : json['currency'] as String,
     currency_reason: json['currency_reason'] == null ? null : json['currency_reason'] as String,
+    cited_by_laws: json['cited_by_laws'] == null ? null : json['cited_by_laws'] as int,
     year_display: json['year_display'] as String,
   );
 }
@@ -398,5 +400,47 @@ class Neighbours {
     next: json['next'] == null ? null : SectionItem.fromJson(json['next'] as Map<String, dynamic>),
     position: json['position'] == null ? null : json['position'] as int,
     total: json['total'] as int,
+  );
+}
+
+class SubjectUnit {
+  final String id;
+  final String kind;
+  final String? label;
+  final String? heading;
+  const SubjectUnit({required this.id, required this.kind, required this.label, required this.heading});
+  factory SubjectUnit.fromJson(Map<String, dynamic> json) => SubjectUnit(
+    id: json['id'] as String,
+    kind: json['kind'] as String,
+    label: json['label'] == null ? null : json['label'] as String,
+    heading: json['heading'] == null ? null : json['heading'] as String,
+  );
+}
+
+class SubjectHit {
+  final Instrument instrument;
+  final int matches;
+  final List<SubjectUnit> units;
+  const SubjectHit({required this.instrument, required this.matches, required this.units});
+  factory SubjectHit.fromJson(Map<String, dynamic> json) => SubjectHit(
+    instrument: Instrument.fromJson(json['instrument'] as Map<String, dynamic>),
+    matches: json['matches'] as int,
+    units: (json['units'] as List).map((v) => SubjectUnit.fromJson(v as Map<String, dynamic>)).toList(),
+  );
+}
+
+class SubjectPage {
+  final String as_of;
+  final String mode;
+  final String notice;
+  final String query;
+  final List<SubjectHit> items;
+  const SubjectPage({required this.as_of, required this.mode, required this.notice, required this.query, required this.items});
+  factory SubjectPage.fromJson(Map<String, dynamic> json) => SubjectPage(
+    as_of: json['as_of'] as String,
+    mode: json['mode'] as String,
+    notice: json['notice'] as String,
+    query: json['query'] as String,
+    items: (json['items'] as List).map((v) => SubjectHit.fromJson(v as Map<String, dynamic>)).toList(),
   );
 }

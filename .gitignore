@@ -274,3 +274,6 @@ overlay-*.png
 !/.artifacts/catalogue/
 /.artifacts/catalogue/*
 !/.artifacts/**/*.md
+
+# ./nz api log and pid (18 Nov 2026)
+/logs/

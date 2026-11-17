@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -329,14 +330,37 @@ class LoadingStructure extends StatelessWidget {
   );
 }
 
-class LoadFailure extends StatelessWidget {
+class LoadFailure extends StatefulWidget {
   final Object error;
   final VoidCallback onRetry;
   const LoadFailure(this.error, {super.key, required this.onRetry});
   @override
+  State<LoadFailure> createState() => _LoadFailureState();
+}
+
+/// Offline is an outcome, not an error (client rules): no retry button. While it stands, the page quietly asks again
+/// every few seconds and opens by itself when the library answers.
+class _LoadFailureState extends State<LoadFailure> {
+  Timer? _again;
+  bool get _offline => widget.error is LibraryFailure && (widget.error as LibraryFailure).offline;
+
+  @override
+  void initState() {
+    super.initState();
+    if (_offline) _again = Timer.periodic(const Duration(seconds: 5), (_) => widget.onRetry());
+  }
+
+  @override
+  void dispose() {
+    _again?.cancel();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final offline =
-        error is LibraryFailure && (error as LibraryFailure).offline;
+    final error = widget.error;
+    final onRetry = widget.onRetry;
+    final offline = _offline;
     return PaperCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -347,7 +371,7 @@ class LoadFailure extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           Text(
-            offline ? 'Not connected' : 'Unable to load this page',
+            offline ? 'Waiting for the library' : 'Unable to load this page',
             style: Theme.of(context).textTheme.titleLarge,
           ),
           const SizedBox(height: 12),
@@ -359,8 +383,12 @@ class LoadFailure extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           if (offline)
-            const Text(
-              'Reconnect, then reopen this page. No offline pack is installed.',
+            const Row(
+              children: [
+                SizedBox(width: 16, height: 16, child: CircularProgressIndicator(strokeWidth: 2)),
+                SizedBox(width: 12),
+                Expanded(child: Text('Checking again by itself; this page opens as soon as the library answers.')),
+              ],
             )
           else
             OutlinedButton(onPressed: onRetry, child: const Text('Try again')),

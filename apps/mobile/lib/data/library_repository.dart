@@ -22,7 +22,22 @@ class LibraryRepository {
   final String baseUrl;
   LibraryRepository(this._client, this.baseUrl);
 
-  Future<Map<String, dynamic>> _get(
+  /// A read that meets a dropped or refused connection is tried again twice, after 0.4 s and 1.2 s, before the
+  /// reader is told the library cannot be reached: a server restart or a network blip should not end a reading
+  /// (18 Nov 2026). Only connection failures are retried -- a 4xx/5xx answer or a timeout is reported at once.
+  Future<Map<String, dynamic>> _get(String path, Map<String, String> query) async {
+    const waits = [Duration(milliseconds: 400), Duration(milliseconds: 1200)];
+    for (var attempt = 0;; attempt++) {
+      try {
+        return await _getOnce(path, query);
+      } on LibraryFailure catch (e) {
+        if (!e.offline || attempt >= waits.length) rethrow;
+        await Future<void>.delayed(waits[attempt]);
+      }
+    }
+  }
+
+  Future<Map<String, dynamic>> _getOnce(
     String path,
     Map<String, String> query,
   ) async {
@@ -112,6 +127,15 @@ class LibraryRepository {
   /// The home page's editorial collection of most-consulted laws.
   Future<CollectionPage> popular(String asOf) async =>
       CollectionPage.fromJson(await _get('/v1/law/collections/popular', {'as_of': asOf}));
+
+  /// Laws dealing with a subject ('robbery', 'bail'), from section headings, with the units that say it (D-075).
+  Future<SubjectPage> subjectSearch(String q, String asOf, {String jurisdiction = '', String kind = ''}) async =>
+      SubjectPage.fromJson(await _get('/v1/law/search', {
+        'q': q,
+        'as_of': asOf,
+        if (jurisdiction.isNotEmpty) 'jurisdiction': jurisdiction,
+        if (kind.isNotEmpty) 'kind': kind,
+      }));
 
   /// The units either side of [id] in its law's printed order, at [asOf] in [territory].
   Future<Neighbours> neighbours(String id, String asOf, {String territory = ''}) async => Neighbours.fromJson(

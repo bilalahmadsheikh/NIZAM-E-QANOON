@@ -134,6 +134,118 @@
         }
       }
     },
+    "/v1/law/search": {
+      "get": {
+        "summary": "Subject",
+        "operationId": "subject_v1_law_search_get",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 120,
+              "title": "Q"
+            }
+          },
+          {
+            "name": "jurisdiction",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "enum": [
+                "",
+                "fed",
+                "punjab",
+                "sindh",
+                "kp",
+                "balochistan",
+                "ict",
+                "ajk",
+                "gb"
+              ],
+              "type": "string",
+              "default": "",
+              "title": "Jurisdiction"
+            }
+          },
+          {
+            "name": "kind",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "enum": [
+                "",
+                "constitution",
+                "act",
+                "ordinance",
+                "rules",
+                "regulation",
+                "order",
+                "sro",
+                "notification"
+              ],
+              "type": "string",
+              "default": "",
+              "title": "Kind"
+            }
+          },
+          {
+            "name": "as_of",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "As Of"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 40,
+              "minimum": 1,
+              "default": 20,
+              "title": "Limit"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubjectPage"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/law/instruments/{instrument_id}": {
       "get": {
         "summary": "Instrument",
@@ -1047,6 +1159,17 @@
             ],
             "title": "Currency Reason"
           },
+          "cited_by_laws": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cited By Laws"
+          },
           "year_display": {
             "type": "string",
             "title": "Year Display",
@@ -1845,6 +1968,114 @@
         ],
         "title": "SectionPage",
         "description": "A page of a law's served sections, in printed order. `total` is the law's served section count at as_of in\nterritory (cheap: the index is computed once per law and date); `law` is its serving record."
+      },
+      "SubjectHit": {
+        "properties": {
+          "instrument": {
+            "$ref": "#/components/schemas/Instrument"
+          },
+          "matches": {
+            "type": "integer",
+            "title": "Matches"
+          },
+          "units": {
+            "items": {
+              "$ref": "#/components/schemas/SubjectUnit"
+            },
+            "type": "array",
+            "title": "Units"
+          }
+        },
+        "type": "object",
+        "required": [
+          "instrument",
+          "matches",
+          "units"
+        ],
+        "title": "SubjectHit"
+      },
+      "SubjectPage": {
+        "properties": {
+          "as_of": {
+            "type": "string",
+            "format": "date",
+            "title": "As Of"
+          },
+          "mode": {
+            "type": "string",
+            "const": "research_preview",
+            "title": "Mode",
+            "default": "research_preview"
+          },
+          "notice": {
+            "type": "string",
+            "title": "Notice",
+            "default": "Corpus qualification is ongoing. Check the official source; status may be unknown."
+          },
+          "query": {
+            "type": "string",
+            "title": "Query"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/SubjectHit"
+            },
+            "type": "array",
+            "title": "Items"
+          }
+        },
+        "type": "object",
+        "required": [
+          "as_of",
+          "query",
+          "items"
+        ],
+        "title": "SubjectPage",
+        "description": "Laws dealing with a subject, read from section headings and marginal notes (D-075): the closest matches in\nthe laws the corpus relies on most first, current law first. A browse aid, not an answer."
+      },
+      "SubjectUnit": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "kind": {
+            "type": "string",
+            "title": "Kind"
+          },
+          "label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Label"
+          },
+          "heading": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Heading"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "label",
+          "heading"
+        ],
+        "title": "SubjectUnit",
+        "description": "A unit whose heading or marginal note matched the subject; its label and heading come from the record."
       },
       "UnitNode": {
         "properties": {

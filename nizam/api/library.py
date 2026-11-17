@@ -50,6 +50,9 @@ class Instrument(BaseModel):
     # an as-made text served through its consolidated twin. Clients word it; `status` alone overstated presumed law.
     currency: str | None = None
     currency_reason: str | None = None
+    # How many other released laws cite this one by title (law_citation_count, 0107, D-075): a measured reliance
+    # signal that orders lists. None where unmeasured.
+    cited_by_laws: int | None = None
 
     @computed_field
     @property
@@ -185,6 +188,27 @@ class Neighbours(Meta):
     total: int
 
 
+class SubjectUnit(BaseModel):
+    """A unit whose heading or marginal note matched the subject; its label and heading come from the record."""
+    id: UUID
+    kind: str
+    label: str | None
+    heading: str | None
+
+
+class SubjectHit(BaseModel):
+    instrument: Instrument
+    matches: int
+    units: list[SubjectUnit]
+
+
+class SubjectPage(Meta):
+    """Laws dealing with a subject, read from section headings and marginal notes (D-075): the closest matches in
+    the laws the corpus relies on most first, current law first. A browse aid, not an answer."""
+    query: str
+    items: list[SubjectHit]
+
+
 class FamilyItem(BaseModel):
     short_name: str
     instrument: Instrument
@@ -254,6 +278,9 @@ class Cursor:
             raise HTTPException(400, 'Invalid or expired cursor. Refresh this list.') from None
 
 
+SHELF = [doc for _s, doc, _p in collections.POPULAR]   # the editorial shelf stays on top of ranked lists
+
+
 def create_app(repository=None):
     repo = repository or LibraryRead()
     cursor = Cursor(os.environ.get('NIZAM_CURSOR_SECRET', secrets.token_hex(32)).encode())
@@ -310,12 +337,22 @@ def create_app(repository=None):
         day = resolved(as_of)
         scope = ['instruments', q.strip(), jurisdiction, kind, day.isoformat()]
         rows = repo.instruments(q=q.strip(), jurisdiction=jurisdiction, kind=kind,
-                                after=cursor.decode(after, scope), limit=limit+1, as_of=day)
+                                after=cursor.decode(after, scope), limit=limit+1, as_of=day, shelf=SHELF)
         last = rows[limit-1] if len(rows) > limit else None
-        # keyset on (prefix rank, sort title, id): the order the reader sees (migration 0104)
-        next_cursor = cursor.encode(scope, [last.get('sort_rank', 1), last.get('sort_title', ''), str(last['id'])]) \
-            if last else None
+        # keyset on (title rank, reliance, sort title, id): the order the reader sees (0104, D-075)
+        next_cursor = cursor.encode(scope, [last.get('sort_rank', 1), int(last.get('reliance', 0) or 0),
+                                            last.get('sort_title', ''), str(last['id'])]) if last else None
         return dict(items=rows[:limit], next_cursor=next_cursor, as_of=day)
+
+    @app.get('/v1/law/search', response_model=SubjectPage)
+    def subject(q: str = Query(..., min_length=2, max_length=120),
+                jurisdiction: Literal['', 'fed', 'punjab', 'sindh', 'kp', 'balochistan', 'ict', 'ajk', 'gb'] = '',
+                kind: Literal['', 'constitution', 'act', 'ordinance', 'rules', 'regulation', 'order', 'sro', 'notification'] = '',
+                as_of: date | None = None, limit: int = Query(20, ge=1, le=40)):
+        day = resolved(as_of)
+        items = repo.subject_search(q=q.strip(), jurisdiction=jurisdiction, kind=kind, as_of=day, limit=limit,
+                                    shelf=SHELF)
+        return dict(query=q.strip(), items=items, as_of=day)
 
     @app.get('/v1/law/instruments/{instrument_id}', response_model=InstrumentResult)
     def instrument(instrument_id: UUID, as_of: date | None = None):

@@ -190,8 +190,10 @@ void main() {
       );
       await tester.tap(find.text('Library'));
       await tester.pumpAndSettle();
-      expect(find.text('Search instrument titles'), findsOneWidget);
-      expect(find.textContaining('No matching instrument'), findsOneWidget);
+      // the library: one box for a title or a subject, one-tap filters, and an honest empty state
+      expect(find.text('A title or a subject — robbery, bail, rent…'), findsOneWidget);
+      expect(find.text('Everywhere'), findsOneWidget);
+      expect(find.textContaining('That is not proof none exists'), findsOneWidget);
       expect(tester.takeException(), isNull);
     },
   );

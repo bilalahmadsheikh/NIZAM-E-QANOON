@@ -3,6 +3,7 @@
 #
 #   ./nz up            start the database, apply migrations, verify
 #   ./nz status        what is running, and what is in the database
+#   ./nz api           start (stop|status|restart) the library API the apps read, detached
 #   ./nz psql          open a SQL prompt
 #   ./nz psql-clean    open a SQL prompt against the candidate database
 #   ./nz extract       run L1 extraction over the corpus (lane E2)
@@ -109,6 +110,8 @@ cmd_up() {
     b "loading acquisition observations"
     bash "$INFRA/scripts/load-observations.sh"
   fi
+  b "library api"
+  cmd_api start || true
   echo
   cmd_status
 }
@@ -272,7 +275,46 @@ cmd_restore()  { if [ "${1:-}" = "--physical" ]; then shift; bash "$INFRA/script
 cmd_export()   { if [ "${1:-}" = "--physical" ]; then shift; bash "$INFRA/scripts/export-physical.sh" "$@";
                  else bash "$INFRA/scripts/export.sh" "$@"; fi; }
 cmd_logs()     { need_docker; dc logs -f --tail=80 "$@"; }
-cmd_down()     { need_docker; b "stopping (volumes kept)"; dc down; }
+cmd_down()     { cmd_api stop >/dev/null 2>&1 || true; need_docker; b "stopping (volumes kept)"; dc down; }
+
+# ./nz api [start|stop|status|restart] -- the library API the apps read (nizam.api.library), detached from any
+# terminal so it outlives the session that started it (18 Nov 2026: the app showed "Not connected" whenever the
+# API's starting shell went away). Log: logs/api.log; pid: logs/api.pid; health: GET /v1/law/collections/popular.
+API_PORT="${NIZAM_API_PORT:-8080}"
+# the uvicorn process itself (setsid forks, so the launcher's $! is not it)
+_api_pid() { { pgrep -f "uvicorn nizam.api.library:create_app .*--port $API_PORT" || true; } | head -1; }
+cmd_api() {
+  mkdir -p "$ROOT/logs"
+  case "${1:-start}" in
+    status)
+      pid=$(_api_pid)
+      if [ -n "$pid" ]; then
+        echo "  api running (pid $pid) on port $API_PORT"
+        curl -s -o /dev/null -w "  health: HTTP %{http_code}\n" --max-time 10 "http://127.0.0.1:$API_PORT/v1/law/collections/popular" || true
+        echo "  apps reach it at http://$(hostname -I | awk '{print $1}'):$API_PORT"
+      else echo "  api not running"; return 1; fi ;;
+    stop)
+      if pid=$(_api_pid) && [ -n "$pid" ]; then
+        kill "$pid"
+        # wait for it to exit, or a restart finds it still there and starts nothing
+        for i in $(seq 1 20); do kill -0 "$pid" 2>/dev/null || break; sleep 0.5; done
+        echo "  api stopped"
+      else echo "  api not running"; fi ;;
+    restart) cmd_api stop; cmd_api start ;;
+    start)
+      pid=$(_api_pid); if [ -n "$pid" ]; then echo "  api already running (pid $pid)"; return 0; fi
+      [ -x "$ROOT/.venv/bin/python" ] || die "no .venv -- run ./nz bootstrap"
+      (cd "$ROOT" && set -a && . "$INFRA/.env" && set +a && export PYTHONPATH=. POSTGRES_DB="${NIZAM_CLEAN_DB:-nizam_clean}" \
+        && setsid nohup .venv/bin/python -m uvicorn nizam.api.library:create_app --factory --host 0.0.0.0 \
+             --port "$API_PORT" >>"$ROOT/logs/api.log" 2>&1 < /dev/null &) >/dev/null 2>&1   # hold no caller pipe
+      for i in $(seq 1 30); do
+        curl -s -o /dev/null --max-time 2 "http://127.0.0.1:$API_PORT/v1/law/collections/popular" && break
+        sleep 1
+      done
+      cmd_api status ;;
+    *) die "usage: ./nz api [start|stop|status|restart]" ;;
+  esac
+}
 
 cmd_test() {
   need_docker; need_uv
@@ -343,6 +385,7 @@ usage() { awk 'NR>1 { if ($0 !~ /^#/) exit; sub(/^# ?/, ""); print }' "${BASH_SO
 
 case "${1:-}" in
   up)        shift; cmd_up "$@" ;;
+  api)       shift; cmd_api "$@" ;;
   down)      shift; cmd_down "$@" ;;
   status|ps) shift; cmd_status "$@" ;;
   psql|sql)  shift; cmd_psql "$@" ;;

@@ -161,6 +161,11 @@ final popularProvider = FutureProvider<CollectionPage>(
   (ref) => ref.watch(repositoryProvider).popular(ref.watch(asOfProvider)),
 );
 
+/// Laws dealing with a subject, with the units that say it; only for a query of two letters or more.
+final subjectProvider = FutureProvider.autoDispose.family<SubjectPage, CatalogueQuery>((ref, query) =>
+    ref.watch(repositoryProvider).subjectSearch(query.q, ref.watch(asOfProvider),
+        jurisdiction: query.jurisdiction, kind: query.kind));
+
 /// The reader's previous / next units, fetched beside the text (never in its way).
 final neighboursProvider = FutureProvider.autoDispose.family<Neighbours, String>((ref, id) =>
     ref.watch(repositoryProvider).neighbours(id, ref.watch(asOfProvider), territory: ref.watch(territoryProvider)));
