@@ -790,7 +790,7 @@ Area: client · Status: standing
   apps/mobile/test/law_units_test.dart.
 
 ### D-074 · 2026-11-18 · The 23rd–27th Amendment Acts are not landed
-Area: corpus · Status: standing (open for OCR)
+Area: corpus · Status: standing for the 23rd and 24th; superseded by D-076 for the 25th, 26th and 27th
 - Decision: none of the later constitutional amendment Acts is landed.
   - **23rd (2017):** the only official copy found is the Bill as passed by the National Assembly, not the Act.
   - **24th (2017):** no official copy was found.
@@ -805,6 +805,65 @@ Area: corpus · Status: standing (open for OCR)
   fetched from the AIA URL in its own certificate.
 - Where: the staging folder above (staged.csv, preflight.csv). Next step: the OCR lane (memory: the Kaggle GPU
   route) and a proofread before landing.
+
+### D-076 · 2026-11-18 · The 25th, 26th and 27th Amendment Acts are landed from a three-way reading
+Area: corpus · Status: standing · Supersedes D-074 for these three Acts
+- Decision: the 25th (doc 11385, Act XXXVII of 2018), 26th (doc 11384, Act XXVI of 2024) and 27th (doc 11383,
+  Act XXXII of 2025) Amendment Acts are landed from their official Gazette scans and released. They make 10,342 laws,
+  none held.
+  - **Owner instruction.** For these three Acts only, use the Kaggle GPU and the best OCR available, and release
+    them correctly. The general owner rule that laws needing OCR are not landed still stands, and the 23rd and 24th
+    stay unlanded (D-074).
+  - **Source.** National Assembly Secretariat uploads (na.gov.pk). The host is added to `ALLOWED_HOSTS` in
+    `recover_acquisition.py`, fetched with TLS verified as in D-074. They are landed under scraper version
+    recrawl-2026-11-18/1, then held with a review row until read.
+  - **The reading (43 pages).** Every page was read from its 130-dpi render and recorded line for line as a page
+    reading (curation patches: pinread → txgo). It was then checked two ways:
+    - **Against the scan's own OCR layer, both directions** (`.artifacts/ocrdiff.py`). Every disagreement was an OCR
+      garble ("Q XVI" for XXVI, "1864" for 186A, "10" for 40) or page furniture. No word the OCR prints is missing.
+    - **Against a Qwen3-VL-8B reading on Kaggle** (2× T4, kernel amendvlm, 43 pages, `.artifacts/vlmcmp.py`).
+      - 25th: 1 disagreement; 26th: 11; 27th: 11. Every one was settled against the image.
+      - The model drops the Table's role column ("Member", "Members"), reads "(iiia)" as "iia", doubles "Court", and
+        reads "; and" as "; end" where the glyph is damaged. Each time the reading was right.
+    - The Surya OCR kernel could not run: on the current Kaggle image CMake cannot enable CUDA (the libcuda it finds
+      is a Julia artifact).
+  - **As printed.** The Act is recorded as the Gazette printed it, misprints included: "Majils-e-Shoora", "45,"
+    for s.45, "Constitutiona Court", 175A's two "(b)" items and s.40's missing "(b)".
+    - The 26th's page 16 is a corrigendum the National Assembly published separately. It is set aside as
+      not the Act's text, and its wording is kept in full in the page's set-aside note. It reads "declines, a judge",
+      "appointed" and "Majlis-e-Shoora" for the three printed words. The consolidated Constitution (doc 4419) carries
+      the corrected text.
+  - **Structure.** Text that an amending provision quotes into the Constitution stays in that provision; it never
+    becomes a unit of the Act (`source_quoted_insertion_spans` and `source_no_cut_blocks`, both reviewed and
+    page-anchored).
+    - Covered: the 27th's new Chapter 1A (Articles 175B–175L, pp7–11); the substituted Articles 185, 189, 200 and 209;
+      the 26th's Articles 191A, 202A and 209; and the 25th's Article 106(1A)–(1B) and 246(d).
+    - Trees: 25th, Preamble and ss.1–9 (26 units); 26th, Preamble and ss.1–27 (43); 27th, Preamble and ss.1–56 (138).
+  - **New rule `reviewed_comma_section_label`** (`source_comma_label_section_blocks`). A named page-read block
+    opening "45, Amendment of Article 206 …" opens s.45, but only as the next number after the root's last section.
+    Anything else fails closed. Registered in the worker merge, the recorder and the materialiser; tested
+    (tests/test_comma_section_label.py). `blockfix.py` now also anchors a page whose only new content is reviewed
+    overrides.
+  - **Metadata.** The title-region recorders read the raw OCR layer, so they recorded the 27th's long title as "…
+    lhe Ctm.stitution …" and missed the names, numbers and two assent dates. The values are recorded instead as
+    page-read assertions (tools/evidence/amendment-acts-metadata-2026-11-18.sql), and the 27th's garbled long title is
+    superseded. Assent and commencement ("at once"): 31 May 2018, 21 Oct 2024, 13 Nov 2025. All three are in force.
+- Why: the owner asked for these three Acts. The Constitution page listed the amendments without them, although the
+  consolidated Constitution's footnotes cite them. A three-way reading (page image, the scan's OCR, an independent
+  vision model) is a stronger check than any single OCR engine. Every citation stays a database record (INV-1).
+- Proof:
+  - Release: 10,339 → 10,342 laws, the rise declared in the replay approval ("new released expression").
+  - Leakscan clean; text gate 100% / 99.3% / 99.4%. The shortfall is rare words outside the vocabulary (riba,
+    suo motu, mutatis mutandis).
+  - Post-replay sequence; audit 41/41; golden sets 1–4, 0 problems; full test suite passes.
+  - Serving: 10,291 laws served directly, 8,246 current.
+  - Edges: the Constitution's footnotes now resolve 38 `amends` edges to the three Acts (27th 25, 26th 8, 25th 5).
+- Where:
+  - Readings and overrides: `.artifacts/recrawl-queue/specs/read-1138{3,4,5}.unpinned.txt` and `edits-1138{3,4,5}.json`.
+  - Model reading: E:/nizam-data/ocr/kaggle/out-amendvlm.
+  - Code and evidence: nizam/corpus/segment.py; nizam/workers/segment.py; tools/record_curation_patch.py;
+    tools/materialize_multi_instrument.py; tools/recrawl/blockfix.py; docs/SEGMENTATION-PROFILES.md;
+    tools/evidence/hold-amendment-acts-ocr-2026-11-18.sql; tools/evidence/amendment-acts-metadata-2026-11-18.sql.
 
 ---
 
@@ -833,5 +892,10 @@ These were found and deliberately left open. Each will become an entry when it i
 - **Repeals by subject** and amendments of words are not modelled as unit repeals.
 - **The section list's frame-time tail** (8–13 of about 790 frames over budget on the emulator) and cold start need
   measuring on a phone. On 18 Nov the emulator itself degraded (D-070), so its raster numbers no longer judge the app.
-- **Later constitutional amendments.** The 23rd–27th Amendment Acts are not held as separate laws (D-074). The AJK
+- **Later constitutional amendments.** The 23rd and 24th Amendment Acts are not held as separate laws (D-074): no
+  official Act text was found. The 25th–27th are landed (D-076).
+- **Title-region recorders read raw OCR.** `record_instrument_numbers`, `record_long_titles` and
+  `record_enacted_dates` read `text_block` without page-read corrections. That is harmless for text-layer laws and wrong
+  for scans read by hand (D-076 recorded those values by assertion). Applying the corrections inside the recorders
+  would re-read every page-read law's metadata, so it needs its own corpus-wide dry run. The AJK
   Interim Constitution Act, 1974 is not landed, and its amendments carry no `amends` edges.

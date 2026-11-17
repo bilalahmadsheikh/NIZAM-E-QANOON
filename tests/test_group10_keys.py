@@ -10,7 +10,9 @@ import pytest
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 BLOCK = ["source_heading_line_stub_blocks", "source_quote_span_end_blocks", "source_percent_clause_blocks",
          "source_marked_subsection_cut_blocks", "source_chapter_opener_blocks",
-         "source_section_word_part_blocks", "source_dash_label_section_blocks"]
+         "source_section_word_part_blocks", "source_dash_label_section_blocks",
+         # rule reviewed_comma_section_label (doc 11383, 18 Nov 2026, D-076)
+         "source_comma_label_section_blocks"]
 KEYED = {"source_paired_repeal_stubs": "body_block_id", "source_quoted_appendix_labels": "block_id",
          "source_note_owner_blocks": "block_id", "source_heading_lines": "label"}
 JE_KEYS = ["source_printed_rule_openers", "source_set_aside_units", "source_hyphen_rule_numbers"]

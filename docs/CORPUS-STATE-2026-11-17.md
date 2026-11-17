@@ -26,7 +26,7 @@ versions (docs/03 §3, docs/04), measured against golden sets 1–4.
 
 | | |
 |---|---|
-| Laws released | **10,339** — none held. 147 more active rows are exact duplicates linked by `duplicate_of` |
+| Laws released | **10,342** — none held (the 25th–27th Constitution Amendment Acts added 18 Nov, D-076). 147 more active rows are exact duplicates linked by `duplicate_of` |
 | Released provisions | 1,172,566 |
 | Released pages | 134,982 |
 | Active documents / characters | 10,188 / 270,129,040 |
@@ -37,20 +37,20 @@ versions (docs/03 §3, docs/04), measured against golden sets 1–4.
 | Partial repeals / units a repeal excepts | 34 units in 12 laws / 16 units in 2 laws (0102, 0103) |
 | Migrations applied | 103 (last 0103) |
 | Database size | 4.8 GB after the 17 Nov cleanup |
-| Audit | 40 criteria, all pass (A18 added 17 Nov) |
+| Audit | 41 criteria, all pass (A19 added 18 Nov) |
 
 ### By jurisdiction
 
 | | Released | Served directly | Current | Not current | Historical |
 |---|---|---|---|---|---|
-| Federal | 3,559 | 3,508 | 2,426 | 411 | 671 |
+| Federal | 3,562 | 3,511 | 2,429 | 411 | 671 |
 | Sindh | 2,004 | 2,004 | 1,713 | 291 | 0 |
 | AJK | 1,442 | 1,442 | 808 | 634 | 0 |
 | Punjab | 1,366 | 1,366 | 1,346 | 16 | 4 |
 | Balochistan | 1,030 | 1,030 | 1,020 | 9 | 1 |
 | KP | 911 | 911 | 903 | 8 | 0 |
 | Gilgit-Baltistan | 27 | 27 | 27 | 0 | 0 |
-| **Total** | **10,339** | **10,288** | **8,243** | **1,369** | **676** |
+| **Total** | **10,342** | **10,291** | **8,246** | **1,369** | **676** |
 
 The 51 federal laws released but not served directly are as-made Gazette texts.
 Each is served through its consolidated text (`consolidated_twin`, 0075).
@@ -266,6 +266,13 @@ Closed later on 18 Nov:
 - **Audit:** 41 criteria (A19 added), all pass. Release 10,339, guard 0 rises.
 - **Constitution amendment Acts 23rd–27th:** not landed (D-074). The official Gazette scans have poor OCR text
   layers and are staged for the OCR lane.
+- **25th, 26th and 27th Amendment Acts landed and released** (D-076, owner instruction).
+  - All 43 pages were read from the images and checked against the scans' OCR layer and a Kaggle Qwen3-VL reading;
+    every disagreement was settled on the image.
+  - Quoted Constitution text stays inside the provisions that insert it (27th: Chapter 1A, Articles 175B–175L).
+  - The new rule `reviewed_comma_section_label` covers the 27th's s.45, printed "45,".
+  - Release 10,342 (federal 3,562), served directly 10,291, current 8,246. Audit 41/41; golden sets 0 problems.
+  - 38 `amends` edges now resolve into the Constitution. The 23rd and 24th stay unlanded: no official Act text.
 
 Still open:
 - Golden sets 5–10, and annotation of sets 1–4.

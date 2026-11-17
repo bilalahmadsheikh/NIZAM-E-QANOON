@@ -573,6 +573,7 @@ STRUCTURAL_PATCH_KEYS = (
     "source_decimal_regulation_series",
     "source_chapter_opener_blocks",
     "source_dash_label_section_blocks",
+    "source_comma_label_section_blocks",
     "source_heading_line_stub_blocks",
     "source_heading_lines",
     "source_hyphen_rule_numbers",

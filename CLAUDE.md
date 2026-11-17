@@ -5,9 +5,9 @@ statutory corpus and judicial precedent of the federation and four provinces, an
 14 Nov 2026) Islamabad Capital Territory, Azad Jammu & Kashmir and Gilgit-Baltistan — docs/02 §2.2
 already listed the AJK and GB assemblies as P1 sources. Final Year Project, GIKI FCSE, four developers.
 
-**Current state (17 Nov 2026): L1 and the L2 legal data layer are done; L2 retrieval storage and L3 upward have not started.** The live continuation point is `docs/CORPUS-STATE-2026-11-17.md`; read it before any corpus mutation. **10,339 laws are released and none is held**, across federal, the four provinces, ICT, AJK and Gilgit-Baltistan. Every one is served through `operative_provision` as at a date (`nzq.as_of`) and in a territory (`nzq.territory`), with status, dates, extent and repeals recorded. `./nz audit` runs 41 criteria and all pass (A19, boundary evidence held, added 18 Nov). Sixteen documents
+**Current state (17 Nov 2026): L1 and the L2 legal data layer are done; L2 retrieval storage and L3 upward have not started.** The live continuation point is `docs/CORPUS-STATE-2026-11-17.md`; read it before any corpus mutation. **10,342 laws are released and none is held**, across federal, the four provinces, ICT, AJK and Gilgit-Baltistan. Every one is served through `operative_provision` as at a date (`nzq.as_of`) and in a territory (`nzq.territory`), with status, dates, extent and repeals recorded. `./nz audit` runs 41 criteria and all pass (A19, boundary evidence held, added 18 Nov). Sixteen documents
 in `docs/` fix the architecture, and where implementation has diverged the docs carry an "as built"
-correction rather than a quiet edit. Acquisition is fully accounted: every catalogued item either landed or carries a declared, evidence-backed exception. Laws that need OCR (874 AJK and 151 GB scans) are not landed, by owner rule. There is no
+correction rather than a quiet edit. Acquisition is fully accounted: every catalogued item either landed or carries a declared, evidence-backed exception. Laws that need OCR (874 AJK and 151 GB scans) are not landed, by owner rule; the one exception is the 25th–27th Constitution Amendment Acts, read page by page with a Kaggle GPU cross-check (D-076). There is no
 `chunk`, `embedding`, facet or judgment table yet — the `chunk` table and BM25 index are the next slice. `legal_edge` exists
 as a view (0079, 0089: `amends`, `repeals` and `empowers`, resolved from source-keyed records; docs/SCHEMA.md).
 Golden sets 1–4 (200 of the 500 target cases) are built and text-checked; their review sheets are not yet annotated.
@@ -105,10 +105,10 @@ From the built corpus (`nizam_clean`), measured 17 Nov 2026. These supersede the
 checkpoints (4,687 expressions, 4,084 released), which counted the corpus before the Oct–Nov
 portal recrawls and the territories. `docs/CORPUS-STATE-2026-11-17.md` has the full table:
 
-- **10,339 laws released, 0 held**: federal 3,559 · Sindh 2,004 · AJK 1,442 · Punjab 1,366 ·
+- **10,342 laws released, 0 held**: federal 3,562 · Sindh 2,004 · AJK 1,442 · Punjab 1,366 ·
   Balochistan 1,030 · KP 911 · GB 27. Another 147 active rows are exact duplicates linked by
   `duplicate_of`. The 51 federal as-made Gazette texts are served through their consolidated twin
-- **Currency of the 10,288 laws served directly: 8,243 current, 1,369 not current (repealed,
+- **Currency of the 10,291 laws served directly: 8,246 current, 1,369 not current (repealed,
   lapsed, replaced or superseded), 676 historical** (pre-1947 archive texts and laws of places outside Pakistan).
   Laws whose force could not be verified are presumed in force (owner decision, 16 Nov). The presumption never
   covers a pre-1947 archive text of any kind

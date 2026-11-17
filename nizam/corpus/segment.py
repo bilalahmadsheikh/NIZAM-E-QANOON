@@ -11627,6 +11627,9 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
     _k1_marked_applied: set = set()
     _k3d_blocks = {int(v) for v in (overrides.get("source_dash_label_section_blocks") or [])}
     _k3d_applied: set = set()
+    # rule `reviewed_comma_section_label` (doc 11383 p16, 18 Nov 2026, D-076)
+    _cs_blocks = {int(v) for v in (overrides.get("source_comma_label_section_blocks") or [])}
+    _cs_applied: set = set()
     _k3a_blocks = {int(v) for v in (overrides.get("source_section_word_part_blocks") or [])}
     _k3a_applied: set = set()
     _ja_part_in_chapter = [False]   # agJA rule C `reviewed_chapter_over_part`
@@ -12592,6 +12595,17 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
                 raise ValueError(f"source dash label section {b.get('id')} does not open with a contents-row 'NA---(1)' label")
             c = ("section", _k3d_m.group(1), text[_k3d_m.end():])
             _k3d_applied.add(b.get("id"))
+        # rule `reviewed_comma_section_label` (doc 11383 p16, 18 Nov 2026, D-076): a page-read block opening
+        # '45, Amendment of Article 206 ...' -- a section number the Gazette printed with a comma for its stop -- opens
+        # that section, only when it is the next number after the root's last section. Fails closed.
+        if b.get("id") in _cs_blocks and (idx == 0 or units[idx - 1][0] is not b):
+            _cs_m = re.match(r"^\s*(\d{1,3})[ \t]*,[ \t]+(?=[A-Z])", text)
+            _cs_prev = next((n for n in reversed(root.children) if n.kind == "section"), None)
+            if (not _cs_m or _cs_prev is None or not str(_cs_prev.label).isdigit()
+                    or int(_cs_m.group(1)) != int(_cs_prev.label) + 1):
+                raise ValueError(f"source comma label section {b.get('id')} does not open the next section 'N, ...'")
+            c = ("section", _cs_m.group(1), text[_cs_m.end():])
+            _cs_applied.add(b.get("id"))
         # agK4 rule Q `reviewed_part_line` (doc 3696): 'PART-IV' after a sentence ending in a colon is Part IV
         if b.get("id") in _k4_pl_blocks and (idx == 0 or units[idx - 1][0] is not b):
             _k4_plm = re.match(r"^\s*PART[ \t]*[-\u2013\u2014]?[ \t]*([IVXLC]{1,6})[ \t]*(?:\n|$)", text)
@@ -17649,6 +17663,8 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
     # agK3 rule D: every reviewed dash-label block must have opened its section.
     if _k3d_blocks - _k3d_applied:
         raise ValueError(f"source_dash_label_section_blocks never opened: {sorted(_k3d_blocks - _k3d_applied)}")
+    if _cs_blocks - _cs_applied:
+        raise ValueError(f"source_comma_label_section_blocks never opened: {sorted(_cs_blocks - _cs_applied)}")
     # agJA rule F: every reviewed form block must have been read.
     if _ja_form_text_ids - _ja_form_seen:
         raise ValueError(f"source_form_text_blocks never read: {sorted(_ja_form_text_ids - _ja_form_seen)}")

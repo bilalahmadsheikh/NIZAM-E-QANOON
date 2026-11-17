@@ -216,7 +216,9 @@ for p, pg in sorted(spec["pages"].items(), key=lambda kv: int(kv[0])):
     real = [x for x in pieces if (x[2] is None or x[2] != x[1]) and (x[1], x[2]) not in already]
     if not real and aside and set(aside) <= aside_recorded.get(p, set()):
         aside = []
-    if not real and aside:
+    # a page whose blocks are all recorded already but which now carries reviewed structural overrides needs an anchor
+    # for them too (doc 11384, 18 Nov: quoted-insertion overrides added after the reading was recorded)
+    if not real and (aside or pg.get("overrides")):
         def ok2(s):
             fl = lambda x: re.sub(r"\s+", " ", x).casefold()   # noqa: E731
             # nor a line an active record's replacement already holds: the anchor would then match two blocks (doc 9608 p7)

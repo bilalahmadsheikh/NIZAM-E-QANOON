@@ -876,7 +876,9 @@ _BZ_BLOCK_LIST_KEYS = frozenset({"source_no_cut_blocks", "source_form_text_block
                                  "source_marked_subsection_cut_blocks",
                                  "source_chapter_opener_blocks",
                                  "source_section_word_part_blocks",
-                                 "source_dash_label_section_blocks"})
+                                 "source_dash_label_section_blocks",
+                                 # rule reviewed_comma_section_label (doc 11383, 18 Nov 2026, D-076)
+                                 "source_comma_label_section_blocks"})
 
 
 def _bz_margin_heading_owner_ok(v) -> bool:
