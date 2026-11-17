@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../contracts/library_models.g.dart' as law;
 import '../domain/law_status.dart';
+import '../domain/law_units.dart';
 
 /// A unit read the way the statute prints it: the opened unit's own words, then every served sub-unit in printed
 /// order, indented by depth, each with its printed label -- '(1)', '(a)', 'Provided that'. A lazy sliver: a long
@@ -87,7 +88,14 @@ class _NodeRow extends StatelessWidget {
                 style: TextStyle(fontWeight: FontWeight.w700, fontSize: size - 1, height: 1.4),
               ),
             ),
-          if (text != null && text.isNotEmpty)
+          // a preamble reads as its printed recitals, one paragraph each (domain/law_units.dart, D-073)
+          if (text != null && text.isNotEmpty && node.kind == 'preamble' && !urdu)
+            for (final (k, para) in preambleParagraphs(text).indexed)
+              Padding(
+                padding: EdgeInsets.only(top: k == 0 ? 0 : size * .7),
+                child: Text.rich(TextSpan(children: markedSpans(para, body)), style: body),
+              )
+          else if (text != null && text.isNotEmpty)
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               textDirection: urdu ? TextDirection.rtl : TextDirection.ltr,

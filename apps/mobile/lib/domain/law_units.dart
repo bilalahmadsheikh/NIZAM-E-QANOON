@@ -56,6 +56,30 @@ String captionCase(String caption) {
   }).join(' ');
 }
 
+// A recital opens where the preamble prints one: after a stop (';', ':', '—', '.', ',') or at the start, in the
+// capitals or the capitalised words the statute itself uses (DECISION-LOG D-073).
+final _recital = RegExp(
+    r'(?<=^|[;:—.,]\s{0,3}|_{2}\s{0,3})(?=(?:AND\s+WHEREAS|WHEREAS|WHEREIN|NOW,?\s+THEREFORE|Now,?\s+therefore|'
+    r'And\s+whereas|So\s+that\s|Conscious\s+of|Cognisant\s+of|Faithful\s+to|Dedicated\s+to|Inspired\s+by|'
+    r'Do\s+hereby|It\s+is\s+hereby\s+enacted)\b)');
+final _printedHead = RegExp(r'^\s*PREAMBLE\.?\s+(?=\S)');
+
+/// A preamble's served words as the paragraphs the statute prints. The stored text joins its printed recitals with
+/// spaces, so the reader breaks it where a recital opens; the printed head 'PREAMBLE' above the first recital is
+/// not repeated under a title that already says Preamble. No word is changed, added or dropped beyond that head.
+List<String> preambleParagraphs(String text) {
+  final body = text.replaceFirst(_printedHead, '');
+  final cuts = _recital.allMatches(body).map((m) => m.start).where((i) => i > 0).toList();
+  final parts = <String>[];
+  var at = 0;
+  for (final c in cuts) {
+    parts.add(body.substring(at, c).trim());
+    at = c;
+  }
+  parts.add(body.substring(at).trim());
+  return parts.where((p) => p.isNotEmpty).toList();
+}
+
 /// A division as a reader names it: 'Part II — Fundamental Rights and Principles of Policy', 'Annex', 'Preamble'.
 /// The label is shown only when it adds to the noun (a stored label 'Preamble' or 'ANNEX' repeats it).
 String divisionTitle(String instrumentKind, String kind, String? label, String? caption) {
