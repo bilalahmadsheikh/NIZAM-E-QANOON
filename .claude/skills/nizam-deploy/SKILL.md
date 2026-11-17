@@ -20,7 +20,14 @@ description: Rules for running Nizam-e-Qanoon — the local development environm
 | Disk | ~35 GB | ~120 GB |
 | Where | Your laptop | **Rent it** — a box for a day is ~€2 |
 
-Developers **never parse anything**. They restore a **physical** pgBackRest backup — indexes arrive already built, so no HNSW rebuild: statutes ~280 MB in under a minute; full corpus ~3.5 GB in ~6 minutes. `pg_restore` would rebuild indexes and take 4 and 50 minutes respectively.
+Developers **never parse anything**. The plan is a **physical** pgBackRest backup, so indexes arrive already built and there is no HNSW rebuild.
+
+**As built (17 Nov 2026):** no pgBackRest yet. The build database is 4.8 GB, and there are two checked transfer formats:
+
+- `./nz export`: a 624 MB `pg_dump`, its sha256 and a `manifest.json` (git commit, image digest, corpus signature). The receiver restores it with `./nz restore exports/<name>/<name>.dump` in about 6 minutes. This is the default.
+- `./nz export --physical`: a 1.3 GB `pg_basebackup` of the whole cluster. The receiver restores it with `./nz restore --physical [--verify] exports/physical-<stamp>`; it needs the same image digest and CPU architecture, and it replaces the whole cluster. This is for moving *the* database (e.g. to the VPS), or for when an HNSW index exists.
+
+Both check checksums and require the signature to match. Both were restore-tested to 39/39.
 
 Production parses **deltas only** — 20–50 gazette documents a week, one small worker.
 

@@ -376,3 +376,12 @@ exist on disk.
 was written; that tree is retained so the link stays valid. Instrument
 `16f6e7b7…` (9361 e0) has two `segmented` runs, so `v_release_instrument`
 returns 8,852 rows for 8,851 instruments.
+
+<!-- superseded-banner -->
+> **Historical record — superseded.** The counts, queues and next steps below describe the
+> corpus at the date of this report and are no longer current: the release queue it
+> describes has since closed. On 17 Nov 2026, 10,339 laws are released, none is held, and
+> all 40 audit criteria pass. The live state and continuation point is
+> [CORPUS-STATE-2026-11-17.md](CORPUS-STATE-2026-11-17.md). This file is kept unchanged as
+> the record of how those decisions were made.
+

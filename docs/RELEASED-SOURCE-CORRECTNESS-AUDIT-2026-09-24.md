@@ -1,5 +1,13 @@
 # Source-backed correctness audit of the released corpus — 24 September 2026
 
+<!-- superseded-banner -->
+> **Historical record — superseded.** The counts, queues and next steps below describe the
+> corpus at the date of this report and are no longer current: the release queue it
+> describes has since closed. On 17 Nov 2026, 10,339 laws are released, none is held, and
+> all 40 audit criteria pass. The live state and continuation point is
+> [CORPUS-STATE-2026-11-17.md](CORPUS-STATE-2026-11-17.md). This file is kept unchanged as
+> the record of how those decisions were made.
+
 ## Bottom line
 
 At the read-only database snapshot of **2026-09-23 20:16:13 UTC** (24 September in Pakistan), **4,122 active canonical instruments were released**. All 4,122 repository-recorded source PDF objects were present and SHA-256 matched their database records. That establishes source-file integrity for this check, **not structural correctness or independent provenance of the official publication**. Only **one released instrument** currently meets the stated full-instrument, source-image structural verification scope. Eight released instruments have source-confirmed defects; 2,106 have unresolved evidence; 2,007 passed the specified automated bundle but are not independently source-verified. No production row or release state was changed.

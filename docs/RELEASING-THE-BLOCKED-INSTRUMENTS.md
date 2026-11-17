@@ -1,5 +1,13 @@
 # How to release the instruments the gate is holding
 
+<!-- superseded-banner -->
+> **Historical record — superseded.** The counts, queues and next steps below describe the
+> corpus at the date of this report and are no longer current: the release queue it
+> describes has since closed. On 17 Nov 2026, 10,339 laws are released, none is held, and
+> all 40 audit criteria pass. The live state and continuation point is
+> [CORPUS-STATE-2026-11-17.md](CORPUS-STATE-2026-11-17.md). This file is kept unchanged as
+> the record of how those decisions were made.
+
 *12 September 2026. Measured, not estimated: every number here is reproduced by
 `./nz psql < tools/audit/blocked-release-worklist.sql`, which reads only.*
 

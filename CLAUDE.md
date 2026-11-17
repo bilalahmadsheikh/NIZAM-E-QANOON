@@ -5,15 +5,12 @@ statutory corpus and judicial precedent of the federation and four provinces, an
 14 Nov 2026) Islamabad Capital Territory, Azad Jammu & Kashmir and Gilgit-Baltistan — docs/02 §2.2
 already listed the AJK and GB assemblies as P1 sources. Final Year Project, GIKI FCSE, four developers.
 
-**Current state: L1 extraction and L2 base segmentation are built and measured; L2 production qualification remains open, and L3 upward has not started.** The live release continuation point is `docs/RELEASE-ALL-HANDOFF-2026-09-23.md`; read it before any corpus mutation. Its signed baseline has 4,687 canonical expressions, 4,084 released, and 603 blocked. Sixteen documents
+**Current state (17 Nov 2026): L1 and the L2 legal data layer are done; L2 retrieval storage and L3 upward have not started.** The live continuation point is `docs/CORPUS-STATE-2026-11-17.md`; read it before any corpus mutation. **10,339 laws are released and none is held**, across federal, the four provinces, ICT, AJK and Gilgit-Baltistan. Every one is served through `operative_provision` as at a date (`nzq.as_of`) and in a territory (`nzq.territory`), with status, dates, extent and repeals recorded. `./nz audit` runs 40 criteria and all pass (A18, partial repeals, added 17 Nov). Sixteen documents
 in `docs/` fix the architecture, and where implementation has diverged the docs carry an "as built"
-correction rather than a quiet edit. The corpus lives in Postgres. At the signed
-23 September checkpoint it has 4,687 canonical expressions: 4,084 released and
-603 fail-closed, with 1,111 pending TOC rows and 727 pending S7 units. `./nz audit`
-runs 39 criteria (33 at the signed checkpoint, when 32 passed with only S7 red; A12 added 10 Oct, A13 13 Oct, A14 20 Oct, A15 11 Nov, A16 and A17 16 Nov). Acquisition is fully accounted: every
-catalogued item either landed or carries a declared, evidence-backed exception. There is no
-`chunk`, `embedding`, facet or judgment table yet — those are the next layers. `legal_edge` exists
-as a view (0079, `amends` and `repeals` resolved from source-keyed records; docs/SCHEMA.md).
+correction rather than a quiet edit. Acquisition is fully accounted: every catalogued item either landed or carries a declared, evidence-backed exception. Laws that need OCR (874 AJK and 151 GB scans) are not landed, by owner rule. There is no
+`chunk`, `embedding`, facet or judgment table yet — the `chunk` table and BM25 index are the next slice. `legal_edge` exists
+as a view (0079, 0089: `amends`, `repeals` and `empowers`, resolved from source-keyed records; docs/SCHEMA.md).
+Golden sets 1–4 (200 of the 500 target cases) are built and text-checked; their review sheets are not yet annotated.
 
 ---
 
@@ -39,6 +36,14 @@ skill. Load it when implementing anything.
 If the docs do not cover it, say so explicitly rather than inventing a convention — then propose one
 and record it. The documents are the contract; code that contradicts them is a defect in one or the
 other, and which one is a decision, not an accident.
+
+**Every decision is logged in `docs/DECISION-LOG.md`, in the same change that makes it.** This covers
+a design or architecture choice, a corpus or linking rule, a schema or serving convention, a client
+behaviour, a process rule, and every owner ruling. Append the next `D-NNN` entry in the file's format:
+date, area, status, then the decision, why, and where it is recorded. Never rewrite a past entry. To
+change a decision, add a new entry that supersedes it, and mark the old one `Superseded by D-NNN`.
+Routine work that follows an existing decision is not logged; cite the entry instead. An open question
+goes in the log's last section until it is decided.
 
 **Never assert an external fact from memory.** Vendor prices, free-tier limits, extension
 availability, model pricing, and the current status of any Pakistani statute are all things that
@@ -68,7 +73,7 @@ Layer rule: a layer calls **only** the layer immediately below it, plus the shar
 | Doc | Covers |
 |---|---|
 | `01-master-architecture` | Layers, domain model, interface contracts, 20 UML/C4 views, ADR index |
-| `02-corpus-and-ingestion` | Sources, extraction, segmentation, enrichment, quality gates (§8 as built: 30 criteria) |
+| `02-corpus-and-ingestion` | Sources, extraction, segmentation, enrichment, quality gates (§8 as built: 40 criteria, docs/CORPUS-CRITERIA.md) |
 | `03-data-and-storage` | Schema, extensions, indexes, publish transaction, migrations |
 | `03a-capacity-plan` | Measured corpus sizing, free-tier analysis, hosting ladder |
 | `03b-legal-data-model` | 14 legal edge types, 9 facets, schedules as tables, SQLite projection |
@@ -83,6 +88,7 @@ Layer rule: a layer calls **only** the layer immediately below it, plus the shar
 | `11-security-and-privacy` | Classification, threat model, anonymous proof, RLS, evidence integrity |
 | `12-design-system` | Stamp-paper palette, Spectral/Karla, spacing, components |
 | `13-ux-and-interaction-architecture` | Journeys, answer anatomy, uncertainty, voice, content system |
+| `DECISION-LOG.md` | Every decision so far (D-001 onwards) with why and where it is recorded; append on every new one |
 
 Skills mirror these: `nizam-invariants` (always), `nizam-corpus`, `nizam-database`,
 `nizam-retrieval`, `nizam-generation`, `nizam-services`, `nizam-api`, `nizam-client`,
@@ -93,50 +99,62 @@ Agents: `legal-source-scout`, `vendor-verifier`, `grounding-reviewer`, `schema-r
 
 ---
 
-## Historical measured facts — do not use as the live release checkpoint
+## Measured facts
 
-From the built corpus (`nizam_clean`), measured 11 Sep 2026. These supersede the 28 Aug estimates,
-which were scaled from a 144-PDF sample. Release counts in this subsection are historical;
-`docs/RELEASE-ALL-HANDOFF-2026-09-23.md` is authoritative for current release work:
+From the built corpus (`nizam_clean`), measured 17 Nov 2026. These supersede the September
+checkpoints (4,687 expressions, 4,084 released), which counted the corpus before the Oct–Nov
+portal recrawls and the territories. `docs/CORPUS-STATE-2026-11-17.md` has the full table:
 
-- **4,757 effective catalogue items · 4,596 distinct blobs · 0 unresolved.** Acquisition is
-  closed, not merely measured: of the items that first failed, **14 were recovered by refetch**
-  and **1 by an alternate official copy** (the Raisani Hospital Act's nine-page Gazette, landed
-  against the truncated three-page derivative without touching the original observation), leaving
-  **40 declared exceptions** — 28 catalogued URLs that no longer resolve, 8 serving non-PDF
-  content, 2 with no PDF URL catalogued, 1 portal refusing the request, 1 publishing no English
-  PDF. Each carries its dated attempts and observed error. C1 asserts the rule; the "41" quoted
-  in earlier notes was the queue size at the start of that work, not a standing figure
-- **63,878 pages · 128,654,015 extracted characters · 969,053 text blocks**
-- **517,171 active provisions from 103,169 sections** — tree expansion **4.99×**, not the 3.2× estimated
-- **Statutory corpus on disk: 1,912 MB** after multi-expression materialisation and restore-tested pruning of superseded
-  derived trees and removal of 1,563,444 synthetic ancestor-prefix rows. The 744 MB
-  estimate in 03a predates `provision_block`, `instrument_toc_entry`, `provision_ancestor` and
-  append-only revisions — see 03a §2A. **Supabase's 500 MB free tier no longer holds it**
-- **~96% carry a clean text layer** — OCR evidence covers 106 documents and remains a fallback, not a pillar
-- Character evidence against an independent extractor: **minimum recall 0.9991600; minimum precision 0.9976800 under the accepted evidence policy**
-- Current contents agreement remains measured by the audit; the live release
-  queue is **1,111 TOC rows and 727 S7 units across 603 expressions**.
-- **4,084 of 4,687 canonical expressions** are in the fail-closed legal release.
-  `docs/RELEASE-ALL-HANDOFF-2026-09-23.md` defines the continuation order and
-  regression gates; `tools/audit/blocked-release-worklist.sql` re-derives yield.
-- Production needs **~14 GB RAM**, well under one core at 50k MAU. RAM buys latency, not correctness
-- A single €21–40 VPS carries **50,000–100,000 MAU**; at scale infrastructure is ~3% of the bill
+- **10,339 laws released, 0 held**: federal 3,559 · Sindh 2,004 · AJK 1,442 · Punjab 1,366 ·
+  Balochistan 1,030 · KP 911 · GB 27. Another 147 active rows are exact duplicates linked by
+  `duplicate_of`. The 51 federal as-made Gazette texts are served through their consolidated twin
+- **Currency of the 10,288 laws served directly: 8,243 current, 1,369 not current (repealed,
+  lapsed, replaced or superseded), 676 historical** (pre-1947 archive texts and laws of places outside Pakistan).
+  Laws whose force could not be verified are presumed in force (owner decision, 16 Nov). The presumption never
+  covers a pre-1947 archive text of any kind
+- **Repeals at unit level:** 34 units in 12 laws repealed by a later law (0102), and 16 units in 2 laws that a
+  whole repeal excepts and so stay law (0103, e.g. Companies Ordinance 1984 Part VIIIA). Catalogue year and
+  kind are corrected from the law's own text (0101)
+- **10,394 source observations; 66 declared acquisition exceptions**, each with dated attempts
+  and the observed error. C1 asserts the rule
+- **10,188 active documents · 134,982 released pages · 270,129,040 extracted characters**
+- **1,172,566 released provisions; 1,197,584 active from 202,604 sections** — tree expansion
+  **5.91×**, not the 3.2× estimated
+- **Database on disk: 4.8 GB** after the 17 Nov prune (batch 6) and `VACUUM FULL` (was 5.6 GB).
+  Transfer is `./nz export` (624 MB dump) or `./nz export --physical` (1.3 GB byte-exact cluster
+  copy); both were restore-tested to 39/39. **Supabase's 500 MB free tier does not hold it** —
+  see 03a §2A
+- **Older-date serving:** 6,398 laws can be served before their capture date. For the other
+  3,856, an amendment is undated, so the text is served only from capture
+  (`text_known_from`, 0096–0099)
+- **A1/A2 hold for every comparable document** (character recall and precision ≥ 0.999 against
+  an independent extractor)
+- **Golden sets 1–4: 200 cases, text-checked, 0 build problems; κ not yet measured**
+- Production needs **~14 GB RAM**, well under one core at 50k MAU. RAM buys latency, not
+  correctness. These are 09b planning figures, computed before the corpus doubled
+- A single €21–40 VPS carries **50,000–100,000 MAU**; at scale infrastructure is ~3% of the
+  bill. Also a 09b planning figure
 
 ---
 
 ## Repo layout
 
 ```
-docs/          the specification set — the contract, plus SCHEMA.md and CORPUS-CRITERIA.md
+docs/          the specification set — the contract, plus SCHEMA.md, CORPUS-CRITERIA.md and DECISION-LOG.md
 nizam/         the package: corpus/ (extract, ocr, segment), storage/, workers/, shared/
-infra/         compose file, Postgres image, migrations (0000–0041), scripts
-tools/         audit/criteria.sql and state.sql, the corpus browser, diagnostics
-tests/         pure-function tests; the segmenter's regressions live here
+infra/         compose file, Postgres image, migrations (0000–0103), scripts (snapshot, export, restore)
+tools/         audit/criteria.sql and state.sql, recorders (dates, status, extent, repeals), the corpus browser
+tests/         pure-function and database tests; the segmenter's regressions live here
+evals/golden/  golden sets 1–4 (build_set*.py, draft JSONL, blank review sheets)
 data/          scrapers + source archives (archives gitignored, 1.6 GB)
 .claude/       skills and agents
-nz  ·  nz.ps1  one command: up status psql extract ocr verify audit state browse test snapshot
+nz  ·  nz.ps1  one command: up status psql extract ocr verify audit state browse test snapshot export restore
 ```
+
+To hand the database to a teammate: `./nz export`, send the folder, and they run
+`./nz restore exports/<name>/<name>.dump`. For a byte-exact copy, use
+`./nz export --physical` and `./nz restore --physical exports/physical-<stamp>`
+(SETUP.md path A).
 
 Schema lives in migrations in git, never in a GUI. The Postgres image is digest-pinned so a laptop
 and the server cannot drift. Commits end with the `Co-Authored-By` trailer; branch before pushing.

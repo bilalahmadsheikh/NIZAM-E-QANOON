@@ -10,7 +10,14 @@ description: Rules for the Nizam-e-Qanoon corpus and ingestion layer (L1) — sc
 
 ## Measured facts — do not re-estimate
 
-From the archives in `data/`, measured 28 Aug 2026:
+**The corpus now (17 Nov 2026, `docs/CORPUS-STATE-2026-11-17.md`):** 10,339 laws released,
+none held, across federal, Punjab, Sindh, KP, Balochistan, ICT, AJK and Gilgit-Baltistan;
+1,172,566 released provisions; 40 audit criteria pass. Laws that need OCR are not landed for
+now (owner rule). New laws go stage → `preflight_segment.py` → `select_landing.py` →
+`land_missing.py` → `tools/recrawl/pipeline.sh`, then the recorders in
+`tools/post_replay_sequence.sh`.
+
+The August baseline, from the archives in `data/`, measured 28 Aug 2026:
 
 - **4,710 PDFs**, 1,857 MB, across federal + Punjab + Sindh + KP + Balochistan
 - **243 MB** of extracted text; **113,158** top-level sections; ~362k tree nodes

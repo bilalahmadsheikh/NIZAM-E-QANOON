@@ -1,5 +1,13 @@
 # Remaining release blockers: evidence-based diagnosis
 
+<!-- superseded-banner -->
+> **Historical record — superseded.** The counts, queues and next steps below describe the
+> corpus at the date of this report and are no longer current: the release queue it
+> describes has since closed. On 17 Nov 2026, 10,339 laws are released, none is held, and
+> all 40 audit criteria pass. The live state and continuation point is
+> [CORPUS-STATE-2026-11-17.md](CORPUS-STATE-2026-11-17.md). This file is kept unchanged as
+> the record of how those decisions were made.
+
 > This is the **14 September historical snapshot**. Subsequent contents/schedule repairs and source reviews changed the database. Documents 1438/2581's final-boundary fix was completed by Claude; document 1224's remaining title-year gap and document 16's operative-section inversion were repaired on 15 September. See [current readiness](CORPUS-READINESS-2026-09-15.md) and [fresh remaining inventory](../.review/release-repair-2026-09-15/after/INVENTORY.md): 4,192 releasable, 496 withheld, 965 TOC gaps and 889 S7 units. The individual diagnoses below retain their original measured date.
 
 Snapshot: **14 September 2026, 06:45:04 UTC**, `nizam_clean`. This is a diagnostic report, not a release certification or a corpus repair. No corpus rows, adjudications, or release views were changed during this investigation.

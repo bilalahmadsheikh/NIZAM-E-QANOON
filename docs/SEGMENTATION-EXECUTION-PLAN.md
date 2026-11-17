@@ -1,5 +1,13 @@
 # Production segmentation execution plan
 
+<!-- superseded-banner -->
+> **Historical record — superseded.** The counts, queues and next steps below describe the
+> corpus at the date of this report and are no longer current: the release queue it
+> describes has since closed. On 17 Nov 2026, 10,339 laws are released, none is held, and
+> all 40 audit criteria pass. The live state and continuation point is
+> [CORPUS-STATE-2026-11-17.md](CORPUS-STATE-2026-11-17.md). This file is kept unchanged as
+> the record of how those decisions were made.
+
 Status: implementation contract for completing L1/L2 before retrieval. It must
 be read with Documents 01–04 and 10, `CORPUS-CRITERIA.md`, `SCHEMA.md`, and
 `CLEAN-REBUILD-REPORT.md`. If prose and an executable gate disagree, stop and

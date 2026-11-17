@@ -116,6 +116,10 @@ NOTES: dict[str, dict[str, str]] = {
 }
 
 VIEW_NOTES = {
+    "operative_provision": "THE application read of law (INV-5). Requires SET nzq.as_of; optional "
+                           "SET nzq.territory (punjab sindh kp balochistan ict ajk gb). Released law "
+                           "in force on that date and in that territory, with currency and text_known_from.",
+    "v_instrument_currency": "Per law: current / not_current / historical, with reason and territory_exits.",
     "v_release_instrument": "Instruments that pass every release gate. THE set an app may serve.",
     "v_release_provision": "Provisions under release-ready instruments.",
     "v_release_provision_version": "Version text under release-ready provisions; retrieval indexes this view.",

@@ -13,6 +13,11 @@ Measured from `data/` on 28 Aug 2026: 4,710 PDFs · 1,857 MB · **243 MB extract
 
 Do not re-estimate these. Do check whether the current corpus still matches them.
 
+That was the August baseline. On 17 Nov 2026 the corpus is 10,339 released laws across seven
+jurisdictions (none held), 1,172,566 released provisions, and `./nz audit` passes all 40
+criteria. `docs/CORPUS-STATE-2026-11-17.md` is the current state. Run the audit rather than
+trusting either set of figures.
+
 ## What you check
 
 **The seven gates, per instrument.** Coverage ≥98% of normalised source characters · section labels monotonic within chapter (accounting for letter suffixes and omissions) · **TOC reconciliation** — parse the printed table of contents independently and diff against the parsed body · cross-reference resolution ≥95% · amendment resolution · duplicate SHA-256 against a different title · human spot-check.

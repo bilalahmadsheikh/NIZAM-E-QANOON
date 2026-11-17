@@ -1,5 +1,13 @@
 # Legislative parser structural audit — 23 September 2026
 
+<!-- superseded-banner -->
+> **Historical record — superseded.** The counts, queues and next steps below describe the
+> corpus at the date of this report and are no longer current: the release queue it
+> describes has since closed. On 17 Nov 2026, 10,339 laws are released, none is held, and
+> all 40 audit criteria pass. The live state and continuation point is
+> [CORPUS-STATE-2026-11-17.md](CORPUS-STATE-2026-11-17.md). This file is kept unchanged as
+> the record of how those decisions were made.
+
 ## Outcome and boundary
 
 This is a **whole-active-corpus structural screen with a source-verified sample**, not a completed source-by-source adjudication of every flagged passage. The audit read 4,808 active instrument revisions in 4,598 documents, 597,387 active provision nodes, and 84,736 active printed-contents entries. The database also retains 35,746 total instrument revisions; the 30,938 inactive historical revisions were **not** screened. The separate signed release baseline lists 4,687 canonical instruments, of which 4,122 were released and 565 blocked at its measurement time. Its smaller denominator excludes active non-canonical copies. No production data, adjudication, parser tree, or release state was changed by this audit.

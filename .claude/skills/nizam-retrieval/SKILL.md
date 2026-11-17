@@ -16,6 +16,17 @@ retrieve(QuerySpec) → GroundingContext | Abstention
 
 **Two-valued. Never add a third.** This is INV-2 expressed as a type signature and it is the single most load-bearing line in the interface table.
 
+## What L3 reads (as built, 17 Nov 2026)
+
+L3 has not been started. It will read 10,339 released laws through `operative_provision`.
+Every transaction sets `SET nzq.as_of = '<date>'`, which the view requires. It optionally sets
+`SET nzq.territory = 'punjab'`; the values are `punjab sindh kp balochistan ict ajk gb`.
+Chunks and indexes are built over released versions. The date and territory filters are
+applied at read time through the view, never baked into the index. A law with an undated
+amendment is served only from its capture date (`text_known_from`), so an earlier `as_of`
+must abstain. The golden sets to measure against are `evals/golden/` sets 1–4: 200 cases,
+not yet annotated. See `docs/04-retrieval.html` §1 and `docs/CORPUS-STATE-2026-11-17.md`.
+
 ## Stage 0 — resolve before you search
 
 - **Citation grammar first.** `s.302 PPC`, `section 9(c) CNSA`, `Art 184(3)`, `PLD 2016 SC 1`, `SRO 745(I)/2023` → direct fetch, ~5 ms, 100% precision, **no model involved**. Roughly a quarter of professional queries.

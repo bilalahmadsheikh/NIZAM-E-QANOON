@@ -1,5 +1,13 @@
 # Release-queue handoff — 6 November 2026
 
+<!-- superseded-banner -->
+> **Historical record — superseded.** The counts, queues and next steps below describe the
+> corpus at the date of this report and are no longer current: the release queue it
+> describes has since closed. On 17 Nov 2026, 10,339 laws are released, none is held, and
+> all 40 audit criteria pass. The live state and continuation point is
+> [CORPUS-STATE-2026-11-17.md](CORPUS-STATE-2026-11-17.md). This file is kept unchanged as
+> the record of how those decisions were made.
+
 Written for: the next session (Claude or Codex) picking up the release queue, and the owner reviewing where it stands.
 Supersedes the *live* checkpoint in `RELEASE-ALL-HANDOFF-2026-09-23.md` (that file keeps the signed 23 September
 baseline of 4,687 expressions; the corpus has since grown, see §1).
