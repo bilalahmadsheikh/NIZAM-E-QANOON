@@ -2,7 +2,7 @@
 
 Set 1: the first 50 cases — citizen scenarios, professional lookups, procedure, Urdu/Roman Urdu and deliberately unanswerable questions.
 
-Corpus revision bb49c29. Strata: citizen 20, professional 12, procedural 8, urdu 5, unanswerable 5.
+Corpus revision 909b562. Strata: citizen 20, professional 12, procedural 8, urdu 5, unanswerable 5.
 Status: **draft** — A0 authoring and A3 identity resolution only. Not gold until two legal annotators (A1) and a senior advocate (A2) have reviewed it; do not tune or report on it before then.
 
 ## S1-C01 · citizen · punjab/punjab · as of 2026-11-16 · expect **answer**
@@ -96,7 +96,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** Someone paid back a loan with a cheque that bounced. Is that a crime?
 
 - *Proposition:* Dishonestly issuing a cheque towards repayment of a loan that is dishonoured is punishable with imprisonment up to three years, fine, or both, unless the issuer establishes the stated defence.
-- **Necessary (grade 3)** — Pakistan Penal Code, s./art. 489F (current: owner_presumption_in_force; served in sindh) · `9258ab84-51cd-40f7-b021-dde2effc36c3` · [source](https://pakistancode.gov.pk/pdffiles/administratord5622ea3f15bfa00b17d2cf7770a8434.pdf)
+- **Necessary (grade 3)** — Pakistan Penal Code, s./art. 489F (current: owner_presumption_in_force; served in sindh) · `428b841e-3130-4a53-a621-7c38b47f3079` · [source](https://pakistancode.gov.pk/pdffiles/administratord5622ea3f15bfa00b17d2cf7770a8434.pdf)
   > Dishonestly issuing a cheque __ Whoever dishonestly issues a cheque towards re-payment of a loan or fulfillment of an obligation which is dishonoured on presentation, shall be punishable with imprisonment which may extend to three years, or with fine, or with 
 
 ## S1-C11 · citizen · fed/kp · as of 2026-11-16 · expect **answer**
@@ -104,7 +104,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** What is the punishment for murder in Pakistan?
 
 - *Proposition:* Qatl-i-amd is punishable with death as qisas or, where the qisas proof is not available, as ta'zir with death or imprisonment for life, subject to the Chapter.
-- **Necessary (grade 3)** — Pakistan Penal Code, s./art. 302 (current: owner_presumption_in_force; served in kp) · `be736dae-c062-4721-bb89-67fbc7573b01` · [source](https://pakistancode.gov.pk/pdffiles/administratord5622ea3f15bfa00b17d2cf7770a8434.pdf)
+- **Necessary (grade 3)** — Pakistan Penal Code, s./art. 302 (current: owner_presumption_in_force; served in kp) · `fe8ff95d-73bb-4b13-8431-67d61b0bd545` · [source](https://pakistancode.gov.pk/pdffiles/administratord5622ea3f15bfa00b17d2cf7770a8434.pdf)
   > Punishment of qatl-i-amd Whoever commits qatl-e-amd shall, subject to the provisions of this Chapter be__ punished with death as qisas; punished with death for imprisonment for life as ta'zir having regard to the facts and circumstances of the case, if the pro
 
 ## S1-C12 · citizen · fed/punjab · as of 2026-11-16 · expect **conditional**
@@ -292,7 +292,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 - *Proposition:* The Companies Ordinance, 1984 stands repealed by section 509 of the Companies Act, 2017 — except Part VIIIA (sections 282A to 282N), which the Act keeps in force — subject to the savings.
 - **Necessary (grade 3)** — Companies Act, 2017, s./art. 509 (current: owner_presumption_in_force; served in punjab) · `de3e3354-7017-4b4a-9d38-3917218060ab` · [source](https://pakistancode.gov.pk/pdffiles/administrator89de324eeaa53c96ff701820d2e007e4.pdf)
   > Repeal and savings. (1) The Companies Ordinance, 1984 (XLVII of 1984), hereinafter called as repealed Ordinance, shall stand repealed, except Part VIIIA consisting of sections 282A to 282N, from the date of coming into force of this Act and the provisions of t
-- **Hard negative (grade 0)** — Companies Ordinance, 1984, s./art. 1 (not_current: replaced_by_later_act; not served in punjab) · `2cf36e0d-9d9e-4117-a9fd-4637ee659302` · [source](https://pakistancode.gov.pk/pdffiles/administratordcf11eff82268b4a6ba50d93a2d2273b.pdf)
+- **Hard negative (grade 0)** — Companies Ordinance, 1984, s./art. 1 (not_current: repealed_date_not_established; not served in punjab) · `2cf36e0d-9d9e-4117-a9fd-4637ee659302` · [source](https://pakistancode.gov.pk/pdffiles/administratordcf11eff82268b4a6ba50d93a2d2273b.pdf)
   > Short title, extent and commencement. ­(1) This Ordinance may be called the Companies Ordinance, 1984. It extends to the whole of Pakistan. This section shall come into force at once and the remaining provisions of this Ordinance shall come into force on such 
 
 ## S1-P12 · professional · fed/kp · as of 2026-11-16 · expect **answer**
@@ -302,7 +302,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 - *Proposition:* Gaining unauthorised access to an information system or data with dishonest intention is punishable under section 3 of the Prevention of Electronic Crimes Act, 2016.
 - **Necessary (grade 3)** — Prevention of Electronic Crimes Act, 2016, s./art. 3 (current: commences_at_once; served in kp) · `ef38408e-1180-4879-ad12-442b934e05f6` · [source](https://pakistancode.gov.pk/pdffiles/administrator6a061efe0ed5bd153fa8b79b8eb4cba7.pdf)
   > Unauthorized access to information system or data Whoever with dishonest intention gains unauthorized access to any information system or data shall be punished with imprisonment for a term which may extend to three months or with fine which may extend to fift
-- **Hard negative (grade 0)** — The Prevention of Electronic Crimes Ordinance, 2008, s./art. 3 (not_current: ordinance_lapsed; not served in kp) · `ef814843-de3e-4615-b2ed-a808b68a7fc4` · [source](https://drs.molaw.gov.pk/pdf/The%20Prevention%20of%20Electronic%20Crimes%20Ordinance%2C%202008%20%20IX%20%281%29.pdf)
+- **Hard negative (grade 0)** — The Prevention of Electronic Crimes Ordinance, 2008, s./art. 3 (not_current: ordinance_lapsed; not served in kp) · `62dde8de-c236-4779-a8a6-c0db7ee4032e` · [source](https://drs.molaw.gov.pk/pdf/The%20Prevention%20of%20Electronic%20Crimes%20Ordinance%2C%202008%20%20IX%20%281%29.pdf)
   > Criminal access—Whoever intentionally gains unauthorized access to the whole or any part of an electronic system or electronic device with or without infringing security measures, shall be punished with imprisonment of either description for aterm which may ex
 
 ## S1-R01 · procedural · fed/punjab · as of 2026-11-16 · expect **answer**
@@ -382,7 +382,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 - *Proposition:* A juvenile is tried by a Juvenile Court established or designated under the Juvenile Justice System Act, 2018; the Juvenile Justice System Ordinance, 2000 is repealed.
 - **Necessary (grade 3)** — Juvenile Justice System Act, 2018, s./art. 4 (current: commenced_on_established; served in punjab) · `26464e81-759e-478a-a156-944e7cf6849b` · [source](https://pakistancode.gov.pk/pdffiles/administrator01c49d3cff67abf97e39c2e1d6dacc43.pdf)
   > Juvenile Court The 1[Prime Minister] in consultation with the concerned High Court shall [by notification in the official Gazette] establish or designate one or more Juvenile Courts, within a period of three months of the commencement of this Act. A Juvenile C
-- **Hard negative (grade 0)** — The Juvenile Justice System Ordinance, 2000, s./art. 1 (not_current: repealed; not served in punjab) · `49c6b35d-5be4-480d-84a3-9583da54f72a` · [source](https://drs.molaw.gov.pk/pdf/The%20Juvenile%20Justice%20System%20Ordinance%2C%202000.pdf)
+- **Hard negative (grade 0)** — The Juvenile Justice System Ordinance, 2000, s./art. 1 (not_current: repealed; not served in punjab) · `f35cd3e0-ee51-48fa-90fd-4b4bdd3011f5` · [source](https://drs.molaw.gov.pk/pdf/The%20Juvenile%20Justice%20System%20Ordinance%2C%202000.pdf)
   > Short title, extent and commencement.—(1) This Ordinance may be called the Juvenile Justice System Ordinance, 2000. It extends to the whole of Pakistan. It shall come into force at once.
 
 ## S1-U01 · urdu · fed/punjab · as of 2026-11-16 · expect **answer**
@@ -416,7 +416,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** چیک باؤنس ہونے پر کیا سزا ہے؟
 
 - *Proposition:* Section 489-F PPC punishes dishonestly issuing a cheque that is dishonoured.
-- **Necessary (grade 3)** — Pakistan Penal Code, s./art. 489F (current: owner_presumption_in_force; served in punjab) · `9258ab84-51cd-40f7-b021-dde2effc36c3` · [source](https://pakistancode.gov.pk/pdffiles/administratord5622ea3f15bfa00b17d2cf7770a8434.pdf)
+- **Necessary (grade 3)** — Pakistan Penal Code, s./art. 489F (current: owner_presumption_in_force; served in punjab) · `428b841e-3130-4a53-a621-7c38b47f3079` · [source](https://pakistancode.gov.pk/pdffiles/administratord5622ea3f15bfa00b17d2cf7770a8434.pdf)
   > Dishonestly issuing a cheque __ Whoever dishonestly issues a cheque towards re-payment of a loan or fulfillment of an obligation which is dishonoured on presentation, shall be punishable with imprisonment which may extend to three years, or with fine, or with 
 - **Relevant (grade 3)** — Pakistan Penal Code, 1860, s./art. 489-F (current: owner_presumption_in_force; served in punjab) · `f36a41b9-bddb-41b0-9a95-d0ada6b2c54c` · [source](https://punjabcode.punjab.gov.pk/uploads/articles/PAKISTAN_PENAL_CODE%2C_1860.pdf)
   > Dishonestly issuing a cheque.– How ever dishonestly issues a cheque towards repayment of a loan or fulfillment of an obligation which is dishonoured on presentation, shall be punished with imprisonment which may extend to three years or with fine, or with both
@@ -449,7 +449,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 
 **Q:** What is the punishment for theft under the Indian Penal Code in India today?
 
-- **Hard negative (grade 0)** — Pakistan Penal Code, s./art. 379 (current: owner_presumption_in_force; - in None) · `06e75720-118b-4c6a-9cc0-e5d27668846c` · [source](https://pakistancode.gov.pk/pdffiles/administratord5622ea3f15bfa00b17d2cf7770a8434.pdf)
+- **Hard negative (grade 0)** — Pakistan Penal Code, s./art. 379 (current: owner_presumption_in_force; - in None) · `ae3bc76f-e85a-46a7-b29e-5a2069ddf173` · [source](https://pakistancode.gov.pk/pdffiles/administratord5622ea3f15bfa00b17d2cf7770a8434.pdf)
   > Punishment for theft Whoever commits theft shall be punished with imprisonment of either description for a term which may extend to three years, or with fine or with both.
 - *Abstain:* unsupported_scope — the corpus is Pakistani law only
 

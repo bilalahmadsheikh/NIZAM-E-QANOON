@@ -2,7 +2,7 @@
 
 Set 2: the core codes (PPC, CrPC, CPC, Contract, Qanun-e-Shahadat, Limitation, TPA, Specific Relief), personal law and online offences.
 
-Corpus revision bb49c29. Strata: citizen 20, professional 12, procedural 8, urdu 5, unanswerable 5.
+Corpus revision 909b562. Strata: citizen 20, professional 12, procedural 8, urdu 5, unanswerable 5.
 Status: **draft** — A0 authoring and A3 identity resolution only. Not gold until two legal annotators (A1) and a senior advocate (A2) have reviewed it; do not tune or report on it before then.
 
 ## S2-C01 · citizen · fed/kp · as of 2026-11-16 · expect **answer**
@@ -10,7 +10,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** Someone stole my motorbike in Peshawar. What punishment can the thief get?
 
 - *Proposition:* Theft is punishable with imprisonment of either description for up to three years, or fine, or both.
-- **Necessary (grade 3)** — Pakistan Penal Code, s./art. 379 (current: owner_presumption_in_force; served in kp) · `06e75720-118b-4c6a-9cc0-e5d27668846c` · [source](https://pakistancode.gov.pk/pdffiles/administratord5622ea3f15bfa00b17d2cf7770a8434.pdf)
+- **Necessary (grade 3)** — Pakistan Penal Code, s./art. 379 (current: owner_presumption_in_force; served in kp) · `ae3bc76f-e85a-46a7-b29e-5a2069ddf173` · [source](https://pakistancode.gov.pk/pdffiles/administratord5622ea3f15bfa00b17d2cf7770a8434.pdf)
   > Punishment for theft Whoever commits theft shall be punished with imprisonment of either description for a term which may extend to three years, or with fine or with both.
 
 ## S2-C02 · citizen · fed/sindh · as of 2026-11-16 · expect **answer**
@@ -18,7 +18,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** A man in Karachi took my money promising a job abroad and disappeared. Is that a crime?
 
 - *Proposition:* Cheating that dishonestly induces the deceived person to deliver property is punishable with imprisonment of either description for up to seven years, and fine.
-- **Necessary (grade 3)** — Pakistan Penal Code, s./art. 420 (current: owner_presumption_in_force; served in sindh) · `9fe94259-ccce-48ef-a3c2-83c3f26db45b` · [source](https://pakistancode.gov.pk/pdffiles/administratord5622ea3f15bfa00b17d2cf7770a8434.pdf)
+- **Necessary (grade 3)** — Pakistan Penal Code, s./art. 420 (current: owner_presumption_in_force; served in sindh) · `98476f1d-b02b-450f-a3ba-b918d1d5e00f` · [source](https://pakistancode.gov.pk/pdffiles/administratord5622ea3f15bfa00b17d2cf7770a8434.pdf)
   > Cheating and dishonestly inducing delivery of property Whoever cheats and thereby dishonestly induces the person deceived to deliver any property to any person, or to make, alter or destroy the whole or any part of a valuable security, or anything which is sig
 
 ## S2-C03 · citizen · fed/sindh · as of 2026-11-16 · expect **answer**
@@ -26,7 +26,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** What is the punishment for throwing acid on someone?
 
 - *Proposition:* Causing hurt by corrosive substance is punishable with imprisonment for life or of either description of not less than fourteen years, and a minimum fine of one million rupees.
-- **Necessary (grade 3)** — Pakistan Penal Code, s./art. 336B (current: owner_presumption_in_force; served in sindh) · `3503ea85-c2d9-4272-afc2-d78b40a7e132` · [source](https://pakistancode.gov.pk/pdffiles/administratord5622ea3f15bfa00b17d2cf7770a8434.pdf)
+- **Necessary (grade 3)** — Pakistan Penal Code, s./art. 336B (current: owner_presumption_in_force; served in sindh) · `fc31fa70-83cd-4b1c-8641-b992f0d8cce5` · [source](https://pakistancode.gov.pk/pdffiles/administratord5622ea3f15bfa00b17d2cf7770a8434.pdf)
   > Punishment for hurt by corrosive substance __ Whoever causes hurt by corrosive substance shall be punished with imprisonment for life or imprisonment of either description which shall not be less than fourteen years and a minimum fine of one million rupees.]
 
 ## S2-C04 · citizen · fed/sindh · as of 2026-11-16 · expect **answer**
@@ -34,7 +34,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** A driver hit and killed a pedestrian by driving carelessly. What is he liable for?
 
 - *Proposition:* Qatl-i-khata by rash or negligent driving is punishable, in addition to diyat, with imprisonment of either description for up to ten years.
-- **Necessary (grade 3)** — Pakistan Penal Code, s./art. 320 (current: owner_presumption_in_force; served in sindh) · `861c1031-b8df-49aa-8af5-bfb33fc39564` · [source](https://pakistancode.gov.pk/pdffiles/administratord5622ea3f15bfa00b17d2cf7770a8434.pdf)
+- **Necessary (grade 3)** — Pakistan Penal Code, s./art. 320 (current: owner_presumption_in_force; served in sindh) · `620ce0ea-f6b1-4e37-9f06-7095f5f585eb` · [source](https://pakistancode.gov.pk/pdffiles/administratord5622ea3f15bfa00b17d2cf7770a8434.pdf)
   > Punishment for qatl-i-khata by rash or negligent driving __ Whoever commits qatl-i-khata by rash or negligent driving shall, having regard to the facts and circumstances of the case, in addition to diyat, be punished with imprisonment of either description for
 
 ## S2-C05 · citizen · fed/sindh · as of 2026-11-16 · expect **answer**
@@ -158,7 +158,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 - *Proposition:* Intentionally and publicly transmitting information through an information system that one knows to be false, and that harms a person's reputation or privacy, is punishable with imprisonment up to three years, fine up to one million rupees, or both; the aggrieved person may apply for its removal.
 - **Necessary (grade 3)** — Prevention of Electronic Crimes Act, 2016, s./art. 20 (current: commences_at_once; served in punjab) · `35d179bd-ab63-4291-897d-4f0d53bc7a21` · [source](https://pakistancode.gov.pk/pdffiles/administrator6a061efe0ed5bd153fa8b79b8eb4cba7.pdf)
   > Offences against dignity of a natural person Whoever intentionally and publicly exhibits or displays or transmits any information through any information system, which he knows to be false, and intimidates or harms the reputation or privacy of a natural person
-- **Hard negative (grade 1)** — Pakistan Penal Code, s./art. 500 (current: owner_presumption_in_force; served in punjab) · `b58eb885-781c-4c72-a4f7-ee6bceeb1e63` · [source](https://pakistancode.gov.pk/pdffiles/administratord5622ea3f15bfa00b17d2cf7770a8434.pdf)
+- **Hard negative (grade 1)** — Pakistan Penal Code, s./art. 500 (current: owner_presumption_in_force; served in punjab) · `e1110372-2402-4422-b5c1-4213bc4e9df2` · [source](https://pakistancode.gov.pk/pdffiles/administratord5622ea3f15bfa00b17d2cf7770a8434.pdf)
   > Punishment for defamation Whoever defames another shall be punished with simple imprisonment for a term which may extend to two years, or with fine, or with both 2[:] that the originator of the defamatory imputation shall be punished with imprisonment of eithe
 
 ## S2-C19 · citizen · fed/sindh · as of 2026-11-16 · expect **answer**
@@ -174,7 +174,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** A neighbour in Hyderabad spread lies about my character. Can he be punished criminally?
 
 - *Proposition:* Defamation is punishable with imprisonment up to two years, fine, or both; the originator of the defamatory imputation faces up to five years or a fine of not less than one hundred thousand rupees, or both.
-- **Necessary (grade 3)** — Pakistan Penal Code, s./art. 500 (current: owner_presumption_in_force; served in sindh) · `b58eb885-781c-4c72-a4f7-ee6bceeb1e63` · [source](https://pakistancode.gov.pk/pdffiles/administratord5622ea3f15bfa00b17d2cf7770a8434.pdf)
+- **Necessary (grade 3)** — Pakistan Penal Code, s./art. 500 (current: owner_presumption_in_force; served in sindh) · `e1110372-2402-4422-b5c1-4213bc4e9df2` · [source](https://pakistancode.gov.pk/pdffiles/administratord5622ea3f15bfa00b17d2cf7770a8434.pdf)
   > Punishment for defamation Whoever defames another shall be punished with simple imprisonment for a term which may extend to two years, or with fine, or with both 2[:] that the originator of the defamatory imputation shall be punished with imprisonment of eithe
 
 ## S2-P01 · professional · fed/sindh · as of 2026-11-16 · expect **answer**
@@ -182,7 +182,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** Liability for acts done in furtherance of common intention — PPC
 
 - *Proposition:* When several persons do a criminal act in furtherance of the common intention of all, each is liable as if he had done it alone.
-- **Necessary (grade 3)** — Pakistan Penal Code, s./art. 34 (current: owner_presumption_in_force; served in sindh) · `22be2609-6ac8-4416-b2a6-d355810c27d5` · [source](https://pakistancode.gov.pk/pdffiles/administratord5622ea3f15bfa00b17d2cf7770a8434.pdf)
+- **Necessary (grade 3)** — Pakistan Penal Code, s./art. 34 (current: owner_presumption_in_force; served in sindh) · `37dfcc23-0394-40c7-ba75-51cdb011529f` · [source](https://pakistancode.gov.pk/pdffiles/administratord5622ea3f15bfa00b17d2cf7770a8434.pdf)
   > Acts done by several persons in furtherance of common intention When a criminal act is done by several persons, in furtherance of the common intention of all, each of such persons is liable for that act in the same manner as if it were done by him alone.]
 
 ## S2-P02 · professional · fed/sindh · as of 2026-11-16 · expect **answer**
@@ -348,7 +348,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** Chori ki saza kya hai?
 
 - *Proposition:* Theft is punishable with imprisonment up to three years, or fine, or both.
-- **Necessary (grade 3)** — Pakistan Penal Code, s./art. 379 (current: owner_presumption_in_force; served in kp) · `06e75720-118b-4c6a-9cc0-e5d27668846c` · [source](https://pakistancode.gov.pk/pdffiles/administratord5622ea3f15bfa00b17d2cf7770a8434.pdf)
+- **Necessary (grade 3)** — Pakistan Penal Code, s./art. 379 (current: owner_presumption_in_force; served in kp) · `ae3bc76f-e85a-46a7-b29e-5a2069ddf173` · [source](https://pakistancode.gov.pk/pdffiles/administratord5622ea3f15bfa00b17d2cf7770a8434.pdf)
   > Punishment for theft Whoever commits theft shall be punished with imprisonment of either description for a term which may extend to three years, or with fine or with both.
 
 ## S2-U02 · urdu · fed/punjab · as of 2026-11-16 · expect **answer**
@@ -397,7 +397,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 
 **Q:** What is the punishment for theft in the UAE?
 
-- **Hard negative (grade 0)** — Pakistan Penal Code, s./art. 379 (current: owner_presumption_in_force; - in None) · `06e75720-118b-4c6a-9cc0-e5d27668846c` · [source](https://pakistancode.gov.pk/pdffiles/administratord5622ea3f15bfa00b17d2cf7770a8434.pdf)
+- **Hard negative (grade 0)** — Pakistan Penal Code, s./art. 379 (current: owner_presumption_in_force; - in None) · `ae3bc76f-e85a-46a7-b29e-5a2069ddf173` · [source](https://pakistancode.gov.pk/pdffiles/administratord5622ea3f15bfa00b17d2cf7770a8434.pdf)
   > Punishment for theft Whoever commits theft shall be punished with imprisonment of either description for a term which may extend to three years, or with fine or with both.
 - *Abstain:* unsupported_scope — the corpus is Pakistani law only
 

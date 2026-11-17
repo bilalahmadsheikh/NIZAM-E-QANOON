@@ -1790,6 +1790,31 @@ def unmanaged_full_replay(args: argparse.Namespace) -> bool:
     )
 
 
+def _release_diff(out: pathlib.Path, doc_id: int, observation_id, inst: SegmentedInstrument) -> None:
+    """--release-diff: append, for a released expression, the release gate's own comparison of this rebuild with
+    the stored tree. `ordinal_only` is true when every path, field and contents row is identical except ordinals,
+    the change a reordering rule makes (D-067). Read-only."""
+    with connect() as conn, conn.cursor() as cur:
+        cur.execute("""SELECT i.id FROM instrument i JOIN v_release_instrument r ON r.id=i.id
+                        WHERE i.source_observation_id=%s AND i.expression_ordinal=%s AND i.is_active""",
+                    (observation_id, inst.expression_ordinal))
+        row = cur.fetchone()
+        if row is None:
+            return
+        change = legal_write.released_tree_change(cur, row[0], inst)
+    record = {"document_id": doc_id, "expression_ordinal": inst.expression_ordinal,
+              "instrument_id": str(row[0]), "identical": change is None}
+    if change is not None:
+        record["ordinal_only"] = (not change["paths_removed"] and not change["paths_added"]
+                                  and change["provisions_changed"] == 0
+                                  and change["provisions"][0] == change["provisions"][1]
+                                  and not change["toc_changed"] and not change["toc_added"]
+                                  and change["toc_entries"][0] == change["toc_entries"][1])
+        record["change"] = change
+    with out.open("a", encoding="utf-8") as fh:
+        fh.write(json.dumps(record, default=str) + "\n")
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description="L1 segmentation (doc 02 §5)")
     g = ap.add_mutually_exclusive_group(required=True)
@@ -1840,7 +1865,13 @@ def main() -> int:
                     help="replace a RELEASED tree although the rebuild differs from it: "
                          "'<reason; owner approval ref>', recorded in segmentation_run.detail "
                          "(without it such a replacement is refused; identical rebuilds pass)")
+    ap.add_argument("--release-diff", type=pathlib.Path, metavar="JSONL",
+                    help="dry-run only: for each RELEASED expression, append what the release gate "
+                         "(legal_write.released_tree_change) would see, one JSON line per expression; read-only")
     a = ap.parse_args()
+    if a.release_diff is not None and not a.dry_run:
+        print("REFUSING --release-diff without --dry-run", file=sys.stderr)
+        return 2
     if a.toc_improvements_only or a.toc_improvements_summary:
         a.dry_run = True
     # A written tree's profile comes only from segmentation_profile_pin, where
@@ -2223,6 +2254,8 @@ def main() -> int:
             if a.heading_only and not is_heading_only:
                 continue
             if a.dry_run:
+                if a.release_diff is not None:
+                    _release_diff(a.release_diff, doc_id, observation_id, inst)
                 done += 1
                 candidate_units += new_candidates
                 candidate_observations += int(new_candidates > 0)

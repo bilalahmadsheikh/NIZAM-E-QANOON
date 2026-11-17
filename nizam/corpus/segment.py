@@ -9504,6 +9504,69 @@ def _lettered_paragraph_sequence(blocks: list[dict]) -> frozenset[str]:
     return frozenset(allowed)
 
 
+_PB_DIVISIONS = frozenset({"part", "chapter"})
+
+
+def preamble_before_empty_division(root: "Node", blocks: list[dict]) -> int:
+    """Rule `preamble_before_empty_division` (D-067, 17 Nov 2026). Move a top-level preamble ahead of the run of
+    Part/Chapter headings printed just before it, when none of those divisions holds a unit read before it and
+    none repeats the kind and label of an earlier child of the root.
+
+    Consolidated texts print 'PART I PRELIMINARY' (or the PPC's 'CHAPTER I INTRODUCTION') and then the
+    preamble, and only then section 1. The walk appends the preamble to the root after that still-empty
+    division, and section 1 then joins the division, so in document order (ordinal) sections 1..n came before
+    the preamble printed above them: 283 released laws on 17 Nov. Only sibling order changes. Paths are built
+    from labels, except that a later sibling with an earlier sibling's key takes its position (`assign_paths`:
+    `pt_I_n1_1`); moving past such a division would renumber a stored path, so the move is refused there (INV-4).
+    The first occurrence keeps its plain path wherever it sits, so jumping it is safe. Reading position is the
+    block's place in `blocks`, not its id: a re-read block carries a newer id. Returns the number moved."""
+    position = {b.get("id"): k for k, b in enumerate(blocks)}
+
+    def key(node: "Node") -> tuple[str, str]:
+        return node.kind, re.sub(r"[^A-Za-z0-9]+", "_", node.label or "").strip("_")
+
+    # assign_paths gives the first sibling with a key the plain path and every later one a path keyed by its
+    # position; moving the preamble shifts the jumped divisions by one, so only a later occurrence would change
+    repeat_ids, seen = set(), set()
+    for c in root.children:
+        if key(c) in seen:
+            repeat_ids.add(id(c))
+        seen.add(key(c))
+
+    def at(node: "Node") -> int | None:
+        return position.get(node.first_block) if node.first_block is not None else None
+
+    def unit_before(node: "Node", limit: int) -> bool:
+        for child in node.children:
+            p = at(child)
+            if child.kind not in _PB_DIVISIONS and p is not None and p < limit:
+                return True
+            if unit_before(child, limit):
+                return True
+        return False
+
+    moved = 0
+    for preamble in [c for c in root.children if c.kind == "preamble"]:
+        p = at(preamble)
+        if p is None or id(preamble) in repeat_ids:
+            continue
+        i = root.children.index(preamble)
+        j = i
+        while j > 0:
+            division = root.children[j - 1]
+            d = at(division)
+            if division.kind not in _PB_DIVISIONS or d is None or d >= p or unit_before(division, p):
+                break
+            if id(division) in repeat_ids:
+                j = i                      # its position-keyed path would change: leave the order as built
+                break
+            j -= 1
+        if j < i:
+            root.children.insert(j, root.children.pop(i))
+            moved += 1
+    return moved
+
+
 def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
              toc_dispositions: list[dict] | None = None,
              split_fused_margins: bool = False,
@@ -12139,6 +12202,15 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
                 _k5_m = re.fullmatch(r"\s*\[\s*Chapter[ \t]+([IVXLC]{1,6})(?:[ \t]*\n(.*))?\s*", text, re.S)
                 if _k5_m:
                     c = ("chapter", _k5_m.group(1), _k5_m.group(2) or "")
+                else:
+                    # A chapter an amendment inserted, as the Pakistan Penal Code prints it (doc 4441, 17 Nov 2026):
+                    # its footnote pointer, the opening bracket, 'CHAPTER' in capitals and a lettered number --
+                    # '2[CHAPTER VA', '1[CHAPTER XVI A]', '1[CHAPTER XVII B'. The label joins the letter to the
+                    # numeral ('XVIA'), the form the same Code prints for 'VA', 'IXA' and 'XXA'.
+                    _k5_m = re.fullmatch(r"\s*\d{1,3}\s*\[\s*(?:Chapter|CHAPTER)[ \t]+([IVXLC]{1,6})(?:[ \t-]?([A-Z]))?"
+                                         r"[ \t]*\]?(?:[ \t]*\n(.*))?\s*", text, re.S)
+                    if _k5_m:
+                        c = ("chapter", _k5_m.group(1) + (_k5_m.group(2) or ""), _k5_m.group(3) or "")
         # Rule `reviewed_marked_rule_label` (agent K1, doc 4474 '225[Rule 939. (i) ...'): a 'Rule N.' print behind an amendment
         # bracket in a page-read block, the block's first unit, is that rule; the bracket stays at the head of its text.
         if c is None and b.get("id") in _k1_marked_rules and (idx == 0 or units[idx - 1][0] is not b):
@@ -16727,6 +16799,7 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
     if schedule_form_group:
         reviews_enacted.append(_apply_source_schedule_form_group(
             root, schedule_form_group, seg_roles))
+    preamble_before_empty_division(root, original_blocks)
 
     seg = Segmentation(root=root, toc=toc, body_starts_page=body_page,
                        toc_found=toc_found, block_roles=seg_roles,
