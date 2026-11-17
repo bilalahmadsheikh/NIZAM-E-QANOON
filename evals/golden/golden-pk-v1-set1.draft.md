@@ -2,7 +2,7 @@
 
 Set 1: the first 50 cases — citizen scenarios, professional lookups, procedure, Urdu/Roman Urdu and deliberately unanswerable questions.
 
-Corpus revision a3e4072. Strata: citizen 20, professional 12, procedural 8, urdu 5, unanswerable 5.
+Corpus revision b51dc79. Strata: citizen 20, professional 12, procedural 8, urdu 5, unanswerable 5.
 Status: **draft** — A0 authoring and A3 identity resolution only. Not gold until two legal annotators (A1) and a senior advocate (A2) have reviewed it; do not tune or report on it before then.
 
 ## S1-C01 · citizen · punjab/punjab · as of 2026-11-16 · expect **answer**
@@ -382,7 +382,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 - *Proposition:* A juvenile is tried by a Juvenile Court established or designated under the Juvenile Justice System Act, 2018; the Juvenile Justice System Ordinance, 2000 is repealed.
 - **Necessary (grade 3)** — Juvenile Justice System Act, 2018, s./art. 4 (current: commenced_on_established; served in punjab) · `26464e81-759e-478a-a156-944e7cf6849b` · [source](https://pakistancode.gov.pk/pdffiles/administrator01c49d3cff67abf97e39c2e1d6dacc43.pdf)
   > Juvenile Court The 1[Prime Minister] in consultation with the concerned High Court shall [by notification in the official Gazette] establish or designate one or more Juvenile Courts, within a period of three months of the commencement of this Act. A Juvenile C
-- **Hard negative (grade 0)** — The Juvenile Justice System Ordinance, 2000, s./art. 1 (not_current: repealed; not served in punjab) · `f35cd3e0-ee51-48fa-90fd-4b4bdd3011f5` · [source](https://drs.molaw.gov.pk/pdf/The%20Juvenile%20Justice%20System%20Ordinance%2C%202000.pdf)
+- **Hard negative (grade 0)** — The Juvenile Justice System Ordinance, 2000, s./art. 1 (not_current: repealed; not served in punjab) · `c5cfb2a3-7ef7-43fd-94ff-8669a89d51eb` · [source](https://drs.molaw.gov.pk/pdf/The%20Juvenile%20Justice%20System%20Ordinance%2C%202000.pdf)
   > Short title, extent and commencement.—(1) This Ordinance may be called the Juvenile Justice System Ordinance, 2000. It extends to the whole of Pakistan. It shall come into force at once.
 
 ## S1-U01 · urdu · fed/punjab · as of 2026-11-16 · expect **answer**

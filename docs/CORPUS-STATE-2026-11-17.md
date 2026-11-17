@@ -254,6 +254,19 @@ Closed early on 18 Nov:
   laws by document id, so links built from the API keep working; a stored instrument URL from before the replay
   answers "not available".
 
+Closed later on 18 Nov:
+- **Boundary evidence restored** (D-071, migration 0106, audit A19). The 11 Nov prune had deleted 226 boundary
+  candidates that active expression manifests cite. They were restored from its archive records, and the prune now
+  severs the link instead of deleting. 18 of the 19 multi-expression documents re-materialise again; 4347 e3 stands
+  as released (older drift).
+- **Gazette running heads** (D-072, rule `gazette_running_head`).
+  - 445 documents were dry-run, and 230 laws passed a word-exact proof.
+  - 225 were replaced; the release gate refused 5, which stand.
+  - Misordered preambles fell from 44 to 38. 155 Gazette laws keep their false Parts until a page-read repair.
+- **Audit:** 41 criteria (A19 added), all pass. Release 10,339, guard 0 rises.
+- **Constitution amendment Acts 23rd–27th:** not landed (D-074). The official Gazette scans have poor OCR text
+  layers and are staged for the OCR lane.
+
 Still open:
 - Golden sets 5–10, and annotation of sets 1–4.
 - No Urdu statute text is landed. Sindh Urdu PDFs exist, but their text layer is

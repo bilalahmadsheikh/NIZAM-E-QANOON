@@ -2,7 +2,7 @@
 
 Set 3: provinces, territories and time — jurisdiction pairs across Punjab, Sindh, KP, Balochistan, ICT and AJK, and temporal pairs at two dates.
 
-Corpus revision a3e4072. Strata: citizen 20, professional 12, procedural 8, urdu 5, unanswerable 5.
+Corpus revision b51dc79. Strata: citizen 20, professional 12, procedural 8, urdu 5, unanswerable 5.
 Status: **draft** — A0 authoring and A3 identity resolution only. Not gold until two legal annotators (A1) and a senior advocate (A2) have reviewed it; do not tune or report on it before then.
 
 ## S3-C01 · citizen · fed/ict · as of 2026-11-16 · expect **answer**
@@ -230,7 +230,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 - *Proposition:* Under the Anti-Rape (Investigation and Trial) Act, 2021 the Secretary, Ministry of Law and Justice, in consultation with the provincial chief secretary or ICT chief commissioner, establishes anti-rape crisis cells in public hospitals.
 - **Necessary (grade 3)** — Anti-Rape (Investigation and Trial) Act, 2021, s./art. 4 (current: owner_presumption_in_force; served in punjab) · `cfb7dd0e-9b12-4d7e-ac79-688d8127b8f0` · [source](https://pakistancode.gov.pk/pdffiles/administratordcbf53fa2d37ade990bcaa63630e66ff.pdf)
   > Anti-rape crisis cells The secretary, ministry of law and justice, in consultation with the chief secretary of the province or the chief commissioner of the Islamabad Capital Territory (ICT), as the case may be, shall establish or designate as many anti- rape 
-- **Hard negative (grade 0)** — The Anti-Rape (Investigation and Trial) Ordinance, 2020, s./art. 4 (not_current: ordinance_lapsed; not served in punjab) · `7ddb3786-431f-48a0-8178-7e1e029b17ff` · [source](https://drs.molaw.gov.pk/pdf/The%20Anti-Rape%20%28Investigation%20and%20Trial%29%20Ordinance%2C%202020%20%281%29.pdf)
+- **Hard negative (grade 0)** — The Anti-Rape (Investigation and Trial) Ordinance, 2020, s./art. 4 (not_current: ordinance_lapsed; not served in punjab) · `379fb154-b51c-47a7-bfce-dd08c16d1a36` · [source](https://drs.molaw.gov.pk/pdf/The%20Anti-Rape%20%28Investigation%20and%20Trial%29%20Ordinance%2C%202020%20%281%29.pdf)
   > Anti-Rape Crisis Cells.{l) The Prime Minister shall establish or desipate as many Anti-Rape Crisis Cells throughout the country in relation to offences mentioned in ScheduleJl, in such public hospitals with adequate medical facilities, as he may deem fit. The 
 
 ## S3-P02 · professional · fed/punjab · as of 2021-03-01 · expect **answer**
@@ -238,7 +238,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** In March 2021, who was empowered to establish anti-rape crisis cells?
 
 - *Proposition:* As at March 2021 the Anti-Rape (Investigation and Trial) Ordinance, 2020 empowered the Prime Minister to establish or designate anti-rape crisis cells in public hospitals.
-- **Necessary (grade 3)** — The Anti-Rape (Investigation and Trial) Ordinance, 2020, s./art. 4 (not_current: ordinance_lapsed; served in punjab) · `7ddb3786-431f-48a0-8178-7e1e029b17ff` · [source](https://drs.molaw.gov.pk/pdf/The%20Anti-Rape%20%28Investigation%20and%20Trial%29%20Ordinance%2C%202020%20%281%29.pdf)
+- **Necessary (grade 3)** — The Anti-Rape (Investigation and Trial) Ordinance, 2020, s./art. 4 (not_current: ordinance_lapsed; served in punjab) · `379fb154-b51c-47a7-bfce-dd08c16d1a36` · [source](https://drs.molaw.gov.pk/pdf/The%20Anti-Rape%20%28Investigation%20and%20Trial%29%20Ordinance%2C%202020%20%281%29.pdf)
   > Anti-Rape Crisis Cells.{l) The Prime Minister shall establish or desipate as many Anti-Rape Crisis Cells throughout the country in relation to offences mentioned in ScheduleJl, in such public hospitals with adequate medical facilities, as he may deem fit. The 
 - **Hard negative (grade 0)** — Anti-Rape (Investigation and Trial) Act, 2021, s./art. 4 (current: owner_presumption_in_force; not served in punjab) · `cfb7dd0e-9b12-4d7e-ac79-688d8127b8f0` · [source](https://pakistancode.gov.pk/pdffiles/administratordcbf53fa2d37ade990bcaa63630e66ff.pdf)
   > Anti-rape crisis cells The secretary, ministry of law and justice, in consultation with the chief secretary of the province or the chief commissioner of the Islamabad Capital Territory (ICT), as the case may be, shall establish or designate as many anti- rape 

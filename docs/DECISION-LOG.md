@@ -671,20 +671,119 @@ Area: API and client · Status: standing
   constitution.dart, reader.dart, discover.dart, popular.dart; apps/mobile/lib/domain/law_units.dart;
   tests/test_library_api.py; apps/mobile/test/law_units_test.dart; integration_test/scroll_perf_test.dart.
 
+### D-071 · 2026-11-18 · Boundary evidence is never pruned; the lost rows are restored
+Area: corpus · Status: standing
+- Decision:
+  1. A `segmentation_boundary_candidate`'s link to the instrument it was recorded against becomes optional
+     (migration 0106). The retired-revision prune now severs that link instead of deleting the candidate and its
+     adjudications.
+  2. The 228 candidates that active expression manifests cite but the live tables had lost were restored from the
+     prune's own archive records (`instrument_revision_archive_manifest.archived_record->'boundary_candidates'`).
+     They came back as originally recorded: same ids, evidence and adjudications (226 decisions, all
+     `confirmed_split`). Only `instrument_id` is NULL, because it named the pruned revision.
+  3. Audit criterion A19: every candidate an active manifest cites is held.
+- Why: post-replay step 2 refused 19 reviewed multi-expression documents ("need a recorded confirmed_split boundary
+  candidate at their first span start").
+  - The candidates were keyed to the instrument that was active when they were recorded. A replay retired that
+    instrument, and the 11 Nov prune (batch f97cfaf2) deleted 226 candidates with it; the 9 Sep prune deleted 2.
+  - That was decision evidence for 99 documents. The archive dump (sha256 37c93bd6…) holds the same rows.
+- After the restore:
+  - A19: 315 citations, 0 missing; audit 41/41.
+  - Step 2 re-materialised 18 of the 19, as identical rebuilds; the release stayed at 10,339.
+  - Document 4347 is refused. Its expression 3 would rebuild with item 1 read as a "Part 1"; the released tree (Part
+    I, items 1–5) is the better one and stands. Logged as older drift.
+- Where: infra/postgres/migrations/0106_boundary_candidate_survives_prune.sql; tools/prune_retired_instruments.sql;
+  tools/evidence/restore-boundary-evidence-2026-11-18.sql; tools/audit/criteria.sql (A19).
+
+### D-072 · 2026-11-18 · Gazette page heads are page furniture, not a Part of the law
+Area: corpus · Status: standing
+- Decision: segmenter rule `gazette_running_head` (`gazette_furniture()`), applied after the curation readings.
+  - **Recognised as furniture:**
+    - a Gazette running head: odd pages "PART I] THE GAZETTE OF PAKISTAN, EXTRA., JAN. 29, 2025 23", even pages
+      "24 THE GAZETTE OF PAKISTAN, … [PART I";
+    - the issue's own Part heading: "PART I" over "Acts, Ordinances, President's Orders and Regulations".
+  - **Where it matches:** a head is matched as a whole line. A head broken over two or three lines counts only when
+    it ends in the Gazette's date and page.
+  - **What it does:** a block that is only a head takes role `running_header`. A head fused onto a block's first line
+    is cut from the parser's copy. Extracted text is never altered.
+- Why:
+  - Read as law, the odd head opened a false "Part I": 2,765 false divisions in 398 released laws. On first pages it
+    also swept the Gazette's front matter and the previous law's last lines into that Part.
+  - That is why 15 laws numbered their Preamble after sections printed below it. The even head ran into clauses and
+    sub-sections.
+- Replay, per law, only on proof:
+  - The `--release-tree-dump` dry-run of all 445 affected released documents gave 444 expressions, 385 of them
+    differing.
+  - `.artifacts/gz_proof.py` keys units by kind, label and first block. A law passes only if:
+    - every unit is kept;
+    - none is added;
+    - every text change is exactly Gazette head words removed;
+    - the only units gone are false divisions whose own words are head words or front matter printed before the
+      law's first unit;
+    - the law's whole word multiset is unchanged apart from those words.
+  - 230 passed. Replayed under a recorded approval, 225 were replaced; the release gate refused 5 (7306, 6871, 6728,
+    6218, 8317) for repeated labels their rebuild left, and they stand as released. Every replaced canonical tree
+    equals its proved rebuild field for field (`.artifacts/gz_after.py`).
+  - Afterwards: guard 10,339 → 10,339, audit 41/41, golden sets 0 problems.
+- Not replayed (155 laws), each still exactly as released:
+  - Removing the false Part lets other page clutter fall into the text: stray page numbers, column headings, OCR
+    smudges. Or the items around it change kind (section ↔ clause).
+  - Those need page-read repairs, law by law, not a rule.
+- Preamble order: misordered laws fell from 44 to 38 (2512, 2772, 4910, 6641, 6702 and 7708 fixed).
+- Where: nizam/corpus/segment.py (`gazette_furniture`, `_GAZETTE_HEAD`, `_GAZETTE_HEAD_JOINED`);
+  tests/test_gazette_head.py; nizam/workers/segment.py `--release-tree-dump`; `.artifacts/gz_proof.py`,
+  `gz_after.py`, `gz_replay_docs.txt`.
+
+### D-073 · 2026-11-18 · A preamble reads as its printed recitals
+Area: client · Status: standing
+- Decision: the reader breaks a preamble's served text into paragraphs where a recital opens: WHEREAS, AND
+  WHEREAS, WHEREIN, NOW THEREFORE, So that, Conscious of, Do hereby, It is hereby enacted, and the like. A break
+  happens only after a printed stop or at the start. The printed head "PREAMBLE" is not repeated under the title
+  that already says Preamble. No other word is changed, added or dropped (`domain/law_units.dart`
+  `preambleParagraphs`, tested).
+- Why: the stored text of every unit joins its printed blocks with spaces (`Node.text`), so the Constitution's
+  Preamble read as one block. Changing the join in the segmenter would change the stored text of every released law
+  that has a preamble. The words are right; only their layout was lost.
+- Where: apps/mobile/lib/domain/law_units.dart; apps/mobile/lib/presentation/statute_text.dart;
+  apps/mobile/test/law_units_test.dart.
+
+### D-074 · 2026-11-18 · The 23rd–27th Amendment Acts are not landed
+Area: corpus · Status: standing (open for OCR)
+- Decision: none of the later constitutional amendment Acts is landed.
+  - **23rd (2017):** the only official copy found is the Bill as passed by the National Assembly, not the Act.
+  - **24th (2017):** no official copy was found.
+  - **25th, 26th and 27th:** the official Gazette copies (na.gov.pk) are staged with their sha256 in
+    E:/nizam-data/acquire/constitution-amendments-2026-11-18/. Each is a scan whose text layer is poor OCR: the 25th
+    misreads the National Assembly seat table ("l6", "t73"), the 26th gives new Article "9A" as "94", and the 27th
+    misreads its running heads and law text throughout ("Constiflrtional Cout").
+- Why: landed text is served as the law. A misread article number or seat count is a wrong citation (INV-1). By
+  the owner's rule a file that needs OCR is not landed, and in practice these do. The Constitution's consolidated
+  text (doc 4419) already reads with all five amendments.
+- Fetching: generic User-Agent; TLS verified with a bundle that adds each site's missing GoGetSSL intermediate,
+  fetched from the AIA URL in its own certificate.
+- Where: the staging folder above (staged.csv, preflight.csv). Next step: the OCR lane (memory: the Kaggle GPU
+  route) and a proofread before landing.
+
 ---
 
 ## Open questions (not yet decided)
 
 These were found and deliberately left open. Each will become an entry when it is decided.
 
-- **Preamble ordinals, the remainder.** After D-068, 44 released laws still number their preamble after sections
-  printed below it. Most come from block order; the others are repeated-label cases or have older drift. The law
-  page lists the preamble first regardless (D-065).
-- **Multi-expression plans that no longer re-materialise.** Post-replay step 2 raises "need a recorded
-  confirmed_split boundary candidate" for 19 multi-expression documents (268, 691, 1106, 1626, 1822, 1973, 2063,
-  2146, 2404, 3389, 3423, 3464, 3696, 3912, 3949, 4347, 4378, 4428, 4434). The step continues and their
-  materialised expressions stand. The same 19 failed this morning, before D-068.
-- **Older rebuild drift.** At least 8 released laws (2772, 5494, 6576, 6784, 8173, 8213, 9310, 9659) no longer rebuild
+- **Preamble ordinals, the remainder (38).** After D-068 and D-072, 38 released laws still number a "preamble"
+  after sections printed below it. The law page lists the preamble first regardless (D-065). They fall into four
+  groups:
+  - **Gazette laws whose rebuild failed the D-072 proof:** 5201, 5334, 5415, 5840, 6218, 9440.
+  - **Older drift:** 5494, 6576, 6784, 8213, 9310, 9659.
+  - **Gazette heads in forms the rule does not take** (scan noise, provincial gazettes): 6646, 6840, 7282, 8170,
+    8214, 8345, 9067, 9219, 9435, 8602, 9285.
+  - **Not an order problem: the "preamble" is the wrong text.**
+    - Another law bound into the same file: 5409, 5673, 6923, 9623 (and 7318, the Estacode compilation).
+    - A form's or a clause's recital: 7036, 9638, 9881.
+    - A scan whose cover or contents pages were read as sections: 4635, 7411, 7434, 9214, 9254, 9315, 9832.
+  - Each group needs page reading, law by law.
+- **155 Gazette laws not replayed under D-072.** Their false Gazette Parts stand until a page-read repair, law by law.
+- **Older rebuild drift.** At least 9 released laws (2772, 4347 e3, 5494, 6576, 6784, 8173, 8213, 9310, 9659) no longer rebuild
   identically under today's segmenter, independent of D-068. For example, catalogue-corrected path prefixes (0101)
   and changed clause nesting. Their next replay needs its own review.
 - **The label "462 I"** carries a stray space in the PPC; it is kept as stored until the page is read.
@@ -692,9 +791,5 @@ These were found and deliberately left open. Each will become an entry when it i
 - **Repeals by subject** and amendments of words are not modelled as unit repeals.
 - **The section list's frame-time tail** (8–13 of about 790 frames over budget on the emulator) and cold start need
   measuring on a phone. On 18 Nov the emulator itself degraded (D-070), so its raster numbers no longer judge the app.
-- **Preamble text paragraphs.** The Constitution's Preamble (D-069) is served as one paragraph that starts with its
-  printed head "PREAMBLE": the stored text joins the printed recitals with spaces. This is true of preambles
-  generally; splitting them needs a segmenter change and replays.
-- **Later constitutional amendments.** The library holds the amending Acts up to the 22nd Amendment (2016, from the
-  Punjab Code). The 23rd–27th are in the consolidated text but not held as separate laws. The AJK Interim
-  Constitution Act, 1974 is not landed, and its amendments carry no `amends` edges.
+- **Later constitutional amendments.** The 23rd–27th Amendment Acts are not held as separate laws (D-074). The AJK
+  Interim Constitution Act, 1974 is not landed, and its amendments carry no `amends` edges.

@@ -1790,10 +1790,11 @@ def unmanaged_full_replay(args: argparse.Namespace) -> bool:
     )
 
 
-def _release_diff(out: pathlib.Path, doc_id: int, observation_id, inst: SegmentedInstrument) -> None:
+def _release_diff(out: pathlib.Path, doc_id: int, observation_id, inst: SegmentedInstrument,
+                  dump: pathlib.Path | None = None) -> None:
     """--release-diff: append, for a released expression, the release gate's own comparison of this rebuild with
     the stored tree. `ordinal_only` is true when every path, field and contents row is identical except ordinals,
-    the change a reordering rule makes (D-067). Read-only."""
+    the change a reordering rule makes (D-067). With `dump`, both trees are written whole (D-072). Read-only."""
     with connect() as conn, conn.cursor() as cur:
         cur.execute("""SELECT i.id FROM instrument i JOIN v_release_instrument r ON r.id=i.id
                         WHERE i.source_observation_id=%s AND i.expression_ordinal=%s AND i.is_active""",
@@ -1802,6 +1803,15 @@ def _release_diff(out: pathlib.Path, doc_id: int, observation_id, inst: Segmente
         if row is None:
             return
         change = legal_write.released_tree_change(cur, row[0], inst)
+        if dump is not None and change is not None:
+            cur.execute(legal_write._RELEASED_TREE_SQL, (row[0],))
+            stored = [list(r) for r in cur.fetchall()]
+            built, _toc = legal_write._built_identity(inst)
+            dump.mkdir(parents=True, exist_ok=True)
+            (dump / f"{doc_id}_{inst.expression_ordinal}.json").write_text(json.dumps(
+                {"document_id": doc_id, "expression_ordinal": inst.expression_ordinal, "instrument_id": str(row[0]),
+                 "fields": legal_write.TREE_FIELDS, "stored": stored, "built": [list(r) for r in built]},
+                default=str), encoding="utf-8")
     record = {"document_id": doc_id, "expression_ordinal": inst.expression_ordinal,
               "instrument_id": str(row[0]), "identical": change is None}
     if change is not None:
@@ -1868,7 +1878,13 @@ def main() -> int:
     ap.add_argument("--release-diff", type=pathlib.Path, metavar="JSONL",
                     help="dry-run only: for each RELEASED expression, append what the release gate "
                          "(legal_write.released_tree_change) would see, one JSON line per expression; read-only")
+    ap.add_argument("--release-tree-dump", type=pathlib.Path, metavar="DIR",
+                    help="with --release-diff: also write DIR/<doc>_<ordinal>.json holding the stored and the rebuilt "
+                         "tree in the release gate's own fields, for a proof of exactly what a replay would change")
     a = ap.parse_args()
+    if a.release_tree_dump is not None and a.release_diff is None:
+        print("REFUSING --release-tree-dump without --release-diff", file=sys.stderr)
+        return 2
     if a.release_diff is not None and not a.dry_run:
         print("REFUSING --release-diff without --dry-run", file=sys.stderr)
         return 2
@@ -2255,7 +2271,7 @@ def main() -> int:
                 continue
             if a.dry_run:
                 if a.release_diff is not None:
-                    _release_diff(a.release_diff, doc_id, observation_id, inst)
+                    _release_diff(a.release_diff, doc_id, observation_id, inst, a.release_tree_dump)
                 done += 1
                 candidate_units += new_candidates
                 candidate_observations += int(new_candidates > 0)

@@ -9567,6 +9567,71 @@ def preamble_before_empty_division(root: "Node", blocks: list[dict]) -> int:
     return moved
 
 
+# Rule `gazette_running_head` (18 Nov 2026, DECISION-LOG D-072). A Gazette prints a running head on every page --
+# odd pages 'PART I] THE GAZETTE OF PAKISTAN, EXTRA., JAN. 29, 2025 23', even pages '24 THE GAZETTE OF PAKISTAN,
+# EXTRA., JAN. 29, 2025 [PART I' -- and opens each Part of the issue with 'PART I' over 'Acts, Ordinances,
+# President's Orders and Regulations'. None is the law's text. Read as the law, the odd head opened a false 'Part I'
+# (2,765 false divisions in 398 released laws) and the even head ran into clauses and sub-sections. The head is
+# matched as a whole line: a block that is only the head is page furniture (role running_header); a head fused onto
+# the first line of a block is cut from the parser's copy of that block. Extracted text is never altered.
+# 'THE' as the text layer gives it: THE, 'IIE, TIIE, TI-IE (the 27th Amendment Act's Gazette prints "]'IIE GAZETTE")
+_GZ_THE = r"[\W_]{0,2}[TI1l']{1,2}(?:H|I-?I|II)?E"
+_GAZETTE_HEAD = re.compile(
+    r"^\s*(?:PART\s*[IVXLY1l]{1,4}\s*[\]\)|}]\s*" + _GZ_THE + r"\s+[A-Z.\- ]{0,40}GAZETTE\b[^\n]{0,90}"
+    r"|\d{1,4}\s+" + _GZ_THE + r"\s+[A-Z.\- ]{0,40}GAZETTE\b[^\n]{0,90}?[\[\(|{]\s*PART\s*[IVXLY1l]{1,4}\s*\]?)\s*$",
+    re.I)
+# A head the text layer breaks over two or three lines ('PART I]' / 'THE GAZETTE OF PAKISTAN, EXTRA.,' /
+# 'ocToBER 21,2024 545', the 26th Amendment Act's Gazette) is matched on its lines joined, and only when it ends in
+# the Gazette's date and page -- so a joined match can never run on into the law's own first line.
+_GAZETTE_HEAD_JOINED = re.compile(
+    r"^\s*(?:PART\s*[IVXLY1l]{1,4}\s*[\]\)|}]\s*" + _GZ_THE + r"\s+[A-Z.\- ]{0,40}GAZETTE\b"
+    r"(?:\s+OF\s+[A-Z][A-Z\- ]{1,30}?)?[\s,.]*(?:EXTRA(?:ORDINARY)?[\s,.]*)?"
+    r"[A-Z]{3,9}[\s,.]*\d{1,2}[\s,.]*\d{4}(?:\s+\S{1,6}){0,2}"
+    r"|\d{1,4}\s+" + _GZ_THE + r"\s+[A-Z.\- ]{0,40}GAZETTE\b(?:\s+OF\s+[A-Z][A-Z\- ]{1,30}?)?[\s,.]*"
+    r"(?:EXTRA(?:ORDINARY)?[\s,.]*)?"
+    r"[A-Z]{3,9}[\s,.]*\d{1,2}[\s,.]*\d{4}\s*[\[\(|{]\s*PART\s*[IVXLY1l]{1,4}\s*\]?)\s*$", re.I)
+_GAZETTE_PART_TITLE = re.compile(
+    r"^\s*(?:Acts,?\s+Ordinances,?\s+President\W?s\s+Orders\s+and\s+Regulations"
+    r"|Statutory\s+Notifications\s*\(?\s*S\.\s*R\.\s*O\.?\s*\)?)\s*$", re.I)
+
+
+def gazette_furniture(blocks: list[dict]) -> tuple[list[dict], set]:
+    """The parser's blocks with Gazette running heads taken out, and the ids of blocks that are wholly furniture.
+
+    A block whose only line is a running head, or the Gazette's own Part heading ('PART I' immediately followed by a
+    block that is only its Part title), is furniture. A running head fused onto the first line of a longer block is
+    cut from that block's copy. Pure: the input dicts are not modified."""
+    furniture: set = set()
+    out = []
+    for k, b in enumerate(blocks):
+        text = b.get("text") or ""
+        lines = [ln for ln in text.split("\n")]
+        filled = [i for i, ln in enumerate(lines) if ln.strip()]
+        if not filled:
+            out.append(b)
+            continue
+        first = lines[filled[0]]
+        # the head's lines: three or two joined when they end in the Gazette's date and page, else the first alone
+        span = next((k for k in (3, 2) if len(filled) >= k and _GAZETTE_HEAD_JOINED.match(
+            " ".join(lines[i].strip() for i in filled[:k]))), 1 if _GAZETTE_HEAD.match(first) else 0)
+        if span:
+            if len(filled) == span:
+                furniture.add(b.get("id"))
+                out.append(b)
+            else:
+                rest = "\n".join(lines[filled[span]:])
+                out.append({**b, "text": rest,
+                            "_gazette_head_cut": " ".join(lines[i].strip() for i in filled[:span])})
+            continue
+        nxt = blocks[k + 1] if k + 1 < len(blocks) else None
+        if (len(filled) == 1 and re.fullmatch(r"\s*PART\s+[IVX]{1,4}\s*", first, re.I) and nxt is not None
+                and nxt.get("page_no") == b.get("page_no")
+                and _GAZETTE_PART_TITLE.match(" ".join((nxt.get("text") or "").split()))):
+            furniture.update({b.get("id"), nxt.get("id")})
+        out.append(b)
+    return out, furniture
+
+
 def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
              toc_dispositions: list[dict] | None = None,
              split_fused_margins: bool = False,
@@ -9606,6 +9671,8 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
     reviewed_structure = _reviewed_structure_index(structural_resolutions)
     blocks, patches_applied = _apply_curation_patches(
         blocks, curation_patches or [])
+    # Rule `gazette_running_head` (D-072): after the readings, so a page-read correction of a head line is honoured
+    blocks, _gazette_furniture = gazette_furniture(blocks)
     # agK6 rule D `reviewed_fused_margin_tail` (doc 4645): a page-read margin note fused onto the end of a law line
     # (applied to the PATCHED text, so a reading that corrects the margin words is honoured)
     _k6_tails = list(overrides.get("source_fused_margin_tails") or [])
@@ -10513,6 +10580,10 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
     if profile_rule("download_stamp_furniture"):
         source_nonoperative_roles.update(
             (block_id, "running_header") for block_id in _download_stamp_blocks(body))
+    # Rule `gazette_running_head` (D-072): Gazette page heads and the issue's own Part headings
+    source_nonoperative_roles.update(
+        (block["id"], "running_header") for block in body
+        if block.get("id") is not None and block.get("id") in _gazette_furniture)
     # Profile rule `page_number_furniture` (unreleased-v2): a block that is only
     # its own page number. Doc 3635's blank pages 9-11 carry just "9", "10",
     # "11", which the last rule's text absorbed.
