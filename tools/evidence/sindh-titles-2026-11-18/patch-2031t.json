@@ -1,0 +1,50 @@
+[
+ {
+  "document_id": 2031,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2031-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head 'TECHNOLOGY ORDINANCE, 2001' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "TECHNOLOGY ORDINANCE, 2001",
+  "before_text": "TECHNOLOGY ORDINANCE, 2001",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "09610537522a6ff73a2dc650966f7db2e1716f30c49be780fb5a41783d3d07a4"
+ },
+ {
+  "document_id": 2031,
+  "page_no": 5,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2031-p5.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 5 prints the running head 'TECHNOLOGY ORDINANCE, 2001' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "TECHNOLOGY ORDINANCE, 2001",
+  "before_text": "TECHNOLOGY ORDINANCE, 2001",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "730478d2c78dd814fba95b9c988fae82d857a48162ed67223c2f70e943154892"
+ },
+ {
+  "document_id": 2031,
+  "page_no": 7,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2031-p7.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 7 prints the running head 'TECHNOLOGY ORDINANCE, 2001' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "TECHNOLOGY ORDINANCE, 2001",
+  "before_text": "TECHNOLOGY ORDINANCE, 2001",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "f87e0525cd42633c077939cb0adcb40dcec2b3226de5328faa46b70ae6d60668"
+ },
+ {
+  "document_id": 2031,
+  "page_no": 8,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2031-p8.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 8 prints the running head 'TECHNOLOGY ORDINANCE, 2001' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "TECHNOLOGY ORDINANCE, 2001",
+  "before_text": "TECHNOLOGY ORDINANCE, 2001",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "81bb725fdb527d2b92c7b3eb5990f2daaf9549f670135a6d39f40a6425a7a676"
+ }
+]

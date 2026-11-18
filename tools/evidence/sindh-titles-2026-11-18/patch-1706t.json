@@ -1,0 +1,14 @@
+[
+ {
+  "document_id": 1706,
+  "page_no": 6,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1706-p6.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 6 prints the running head 'THE SIND LOCAL GOVERNMENT (AMENDMENT) ORDINANCE, 1983' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SIND LOCAL GOVERNMENT (AMENDMENT) ORDINANCE, 1983",
+  "before_text": "THE SIND LOCAL GOVERNMENT (AMENDMENT) ORDINANCE, 1983",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "1335926d83931ec883b0cfb3eef7e9188dcb79259696e012fe6c11c2b5425afd"
+ }
+]

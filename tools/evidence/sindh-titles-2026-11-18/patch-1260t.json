@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 1260,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1260-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head 'THE SINDH (ERADICATION AND CURBING THE MENACE OF INVOLUNTARY / DONATION OF FORCED CHANDA) ORDINANCE, 2002' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "DONATION OF FORCED CHANDA) ORDINANCE, 2002",
+  "before_text": "DONATION OF FORCED CHANDA) ORDINANCE, 2002",
+  "after_text": " ",
+  "source_apparatus_blocks": [
+   66646
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside; parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "31957870c08c5cba22b274a05126010a521a9fc098c8cae9690ef9a331054243"
+ }
+]

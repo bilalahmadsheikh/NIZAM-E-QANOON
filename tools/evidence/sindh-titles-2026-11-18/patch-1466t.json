@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 1466,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1466-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head 'THE SIND AGRICULTURAL INCOME TAX ACT, 1994.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "submit full particulars of such land to the Collector and where such",
+  "before_text": "submit full particulars of such land to the Collector and where such",
+  "after_text": "submit full particulars of such land to the Collector and where such",
+  "source_apparatus_blocks": [
+   86623
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "0a94396bfa73bceebfb4182cd5ecbd095eae8c6502b760fd2f9ba13bee7ddd3a"
+ },
+ {
+  "document_id": 1466,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1466-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head 'THE SIND AGRICULTURAL INCOME TAX ACT, 1994.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "persons wholly or partly from payment of the tax as may be",
+  "before_text": "persons wholly or partly from payment of the tax as may be",
+  "after_text": "persons wholly or partly from payment of the tax as may be",
+  "source_apparatus_blocks": [
+   86636
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "6c652e8cc6ef8bd2596c74aa7089a86c7b069400404f32e1ba2eed13782a4e23"
+ }
+]

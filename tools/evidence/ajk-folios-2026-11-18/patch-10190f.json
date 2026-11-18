@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 10190,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2757193
+  ],
+  "match_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "before_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "after_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '757' alone at its head or foot (block 2757193); the document's folios run at page + 756 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10190-p1.png",
+  "render_sha256": "4d12e6882f10ff737f27bb2578eef040415156052a74cabf56372ea13bca52fe"
+ },
+ {
+  "document_id": 10190,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2757208
+  ],
+  "match_text": "(4), (5) or (6) a Tribunal established to exercise jurisdiction in",
+  "before_text": "(4), (5) or (6) a Tribunal established to exercise jurisdiction in",
+  "after_text": "(4), (5) or (6) a Tribunal established to exercise jurisdiction in",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '758' alone at its head or foot (block 2757208); the document's folios run at page + 756 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10190-p2.png",
+  "render_sha256": "d27f55da0bc6bb5d5f5df307b48c10b1a9bf45fc9b26ceba05ee26dd4b14302a"
+ },
+ {
+  "document_id": 10190,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2757213
+  ],
+  "match_text": "arguments, if any, shall be considered by the Tribunal as a whole",
+  "before_text": "arguments, if any, shall be considered by the Tribunal as a whole",
+  "after_text": "arguments, if any, shall be considered by the Tribunal as a whole",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '759' alone at its head or foot (block 2757213); the document's folios run at page + 756 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10190-p3.png",
+  "render_sha256": "986f52779a5363aa554ab5ab8ec764a0306edee813932322396bdcdc4751f901"
+ },
+ {
+  "document_id": 10190,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2757217
+  ],
+  "match_text": "Member of the Tribunal to hear and finally dispose of the appeal,",
+  "before_text": "Member of the Tribunal to hear and finally dispose of the appeal,",
+  "after_text": "Member of the Tribunal to hear and finally dispose of the appeal,",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 4 prints its folio '760' alone at its head or foot (block 2757217); the document's folios run at page + 756 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10190-p4.png",
+  "render_sha256": "aee3f49779cfc2cf4945f094bb1569f1bb49907b9b947e20cabff13d1f36f833"
+ }
+]

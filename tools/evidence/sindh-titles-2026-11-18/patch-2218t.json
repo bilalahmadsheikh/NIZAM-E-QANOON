@@ -1,0 +1,50 @@
+[
+ {
+  "document_id": 2218,
+  "page_no": 6,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2218-p6.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 6 prints the running head 'THE SINDH WORKERS WELFARE FUND ACT,2014.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH WORKERS WELFARE FUND ACT,2014.",
+  "before_text": "THE SINDH WORKERS WELFARE FUND ACT,2014.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "46b4155e2dcafc0d857154b2c43c9753e949cbd5dca5414d961d1af78e12b7ca"
+ },
+ {
+  "document_id": 2218,
+  "page_no": 7,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2218-p7.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 7 prints the running head 'THE SINDH WORKERS WELFARE FUND ACT,2014.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH WORKERS WELFARE FUND ACT,2014.",
+  "before_text": "THE SINDH WORKERS WELFARE FUND ACT,2014.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "33753c99c563d21da52018f175ac2a42208b0a926c0f3cab0dd364c340818d68"
+ },
+ {
+  "document_id": 2218,
+  "page_no": 8,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2218-p8.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 8 prints the running head 'THE SINDH WORKERS WELFARE FUND ACT,2014.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH WORKERS WELFARE FUND ACT,2014.",
+  "before_text": "THE SINDH WORKERS WELFARE FUND ACT,2014.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "f7a1f4976de30c111fd86285ea5fd462257ec665e1c1db738b9ce9ed9d551060"
+ },
+ {
+  "document_id": 2218,
+  "page_no": 11,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2218-p11.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 11 prints the running head 'THE SINDH WORKERS WELFARE FUND ACT,2014.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH WORKERS WELFARE FUND ACT,2014.",
+  "before_text": "THE SINDH WORKERS WELFARE FUND ACT,2014.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "eacc72fff71df5e2a568595b9a58eec1cd61bd3b6641a30f07d9f61d6ad62dfa"
+ }
+]

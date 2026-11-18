@@ -1,0 +1,50 @@
+[
+ {
+  "document_id": 3843,
+  "page_no": 25,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc3843-p25.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 25 prints the running head 'ENTREPRENEURSHIP ACT, 2015.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "ENTREPRENEURSHIP ACT, 2015.",
+  "before_text": "ENTREPRENEURSHIP ACT, 2015.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "35b64cdb6b9792a7fa5ec0a736b6d858949c78855c784f0b466ae997379e796e"
+ },
+ {
+  "document_id": 3843,
+  "page_no": 26,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc3843-p26.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 26 prints the running head 'ENTREPRENEURSHIP ACT, 2015.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "ENTREPRENEURSHIP ACT, 2015.",
+  "before_text": "ENTREPRENEURSHIP ACT, 2015.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "5da326124b954dbf5155b4bc1682a5c19846aaae8d1402d738c19ad188d273ce"
+ },
+ {
+  "document_id": 3843,
+  "page_no": 28,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc3843-p28.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 28 prints the running head 'ENTREPRENEURSHIP ACT, 2015.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "ENTREPRENEURSHIP ACT, 2015.",
+  "before_text": "ENTREPRENEURSHIP ACT, 2015.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "2f0e2be808897a784f1c9f8fc976175ebeb439ea3bdeaa3efe82277a815cdfb4"
+ },
+ {
+  "document_id": 3843,
+  "page_no": 30,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc3843-p30.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 30 prints the running head 'ENTREPRENEURSHIP ACT, 2015.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "ENTREPRENEURSHIP ACT, 2015.",
+  "before_text": "ENTREPRENEURSHIP ACT, 2015.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "ae73e820b4d66fa96c4c0a6fbc23fb6371425bcb3b60c31bbd66bf13b9887483"
+ }
+]

@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 9933,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2738928
+  ],
+  "match_text": "the 30th day of July, 1992 is hereby published for general information: -",
+  "before_text": "the 30th day of July, 1992 is hereby published for general information: -",
+  "after_text": "the 30th day of July, 1992 is hereby published for general information: -",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '768' alone at its head or foot (block 2738928); the document's folios run at page + 767 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc9933-p1.png",
+  "render_sha256": "316ec5c6da78d25fd620177726838a92722ff727c1f03fc794ed1586f6e81e6c"
+ },
+ {
+  "document_id": 9933,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2738943
+  ],
+  "match_text": "Code, 1949.- In the said Code, in Section 17, subsection (2) shall",
+  "before_text": "Code, 1949.- In the said Code, in Section 17, subsection (2) shall",
+  "after_text": "Code, 1949.- In the said Code, in Section 17, subsection (2) shall",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '769' alone at its head or foot (block 2738943); the document's folios run at page + 767 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc9933-p2.png",
+  "render_sha256": "55af8180834016182b844cec5a7f8d3b2bd7ab9448fa836c496fe270a62d0d1e"
+ },
+ {
+  "document_id": 9933,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2738959
+  ],
+  "match_text": "Code, 1949.- In the said Code, in Section 52, in sub-section (1 ) ,",
+  "before_text": "Code, 1949.- In the said Code, in Section 52, in sub-section (1 ) ,",
+  "after_text": "Code, 1949.- In the said Code, in Section 52, in sub-section (1 ) ,",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '770' alone at its head or foot (block 2738959); the document's folios run at page + 767 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc9933-p3.png",
+  "render_sha256": "094a1ec0e838ee17b66be865570f26862be260e581030dd97c9083c1de088c20"
+ }
+]

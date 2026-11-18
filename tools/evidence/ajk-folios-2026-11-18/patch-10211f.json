@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 10211,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2758672
+  ],
+  "match_text": "An Act to provide for credit facilities for persons engaged in",
+  "before_text": "An Act to provide for credit facilities for persons engaged in",
+  "after_text": "An Act to provide for credit facilities for persons engaged in",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '1196' alone at its head or foot (block 2758672); the document's folios run at page + 1195 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10211-p1.png",
+  "render_sha256": "17cc76c42948556bce2b20d221071bbccd29498022ee45fa60d09f0e1776330a"
+ },
+ {
+  "document_id": 10211,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2758684
+  ],
+  "match_text": "of the title of the holder of the pass book to the parcels of",
+  "before_text": "of the title of the holder of the pass book to the parcels of",
+  "after_text": "of the title of the holder of the pass book to the parcels of",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '1197' alone at its head or foot (block 2758684); the document's folios run at page + 1195 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10211-p2.png",
+  "render_sha256": "81899b840abcc427fc51cac2a1f6c9f596bfd2e25eab5d887e6e397e87ddbd5b"
+ },
+ {
+  "document_id": 10211,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2758697
+  ],
+  "match_text": "notification in the official Gazette, make rules for carrying",
+  "before_text": "notification in the official Gazette, make rules for carrying",
+  "after_text": "notification in the official Gazette, make rules for carrying",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '1198' alone at its head or foot (block 2758697); the document's folios run at page + 1195 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10211-p3.png",
+  "render_sha256": "631d88bc941329c079cce7ec3443d23613798bf0eea4104de68a9188eafd73e9"
+ },
+ {
+  "document_id": 10211,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2758703
+  ],
+  "match_text": "Azad Government of the State of",
+  "before_text": "Azad Government of the State of",
+  "after_text": "Azad Government of the State of",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 4 prints its folio '1199' alone at its head or foot (block 2758703); the document's folios run at page + 1195 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10211-p4.png",
+  "render_sha256": "c8ea7086874364b05606db92ab444cfaa2de93dee7e36e2717f0aad0ce53f1a2"
+ }
+]

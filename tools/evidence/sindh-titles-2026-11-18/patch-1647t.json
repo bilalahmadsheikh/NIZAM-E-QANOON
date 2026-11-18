@@ -1,0 +1,26 @@
+[
+ {
+  "document_id": 1647,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1647-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head 'THE SINDH SALES TAX ORDINANCE, 2000' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH SALES TAX ORDINANCE, 2000",
+  "before_text": "THE SINDH SALES TAX ORDINANCE, 2000",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "999355edeec85ca0356be423b30545e2f0059800382c38e13e1aadcc068343d5"
+ },
+ {
+  "document_id": 1647,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1647-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head 'THE SINDH SALES TAX ORDINANCE, 2000' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH SALES TAX ORDINANCE, 2000",
+  "before_text": "THE SINDH SALES TAX ORDINANCE, 2000",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "711af0fc7aaffa4a136f6fce6513219463107c1203197d08e5508809dbeaa15a"
+ }
+]

@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 10670,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2794255
+  ],
+  "match_text": "21st day of the May, 1984, is hereby published for general information:-",
+  "before_text": "21st day of the May, 1984, is hereby published for general information:-",
+  "after_text": "21st day of the May, 1984, is hereby published for general information:-",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '649' alone at its head or foot (block 2794255); the document's folios run at page + 648 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10670-p1.png",
+  "render_sha256": "5a2daee5330a61315b9ab619fef6e2df105aa154578ac2706454ed2554680f60"
+ },
+ {
+  "document_id": 10670,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2794269
+  ],
+  "match_text": "particulars set out in Schedule II to this Act, the words ‘in the",
+  "before_text": "particulars set out in Schedule II to this Act, the words ‘in the",
+  "after_text": "particulars set out in Schedule II to this Act, the words ‘in the",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '650' alone at its head or foot (block 2794269); the document's folios run at page + 648 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10670-p2.png",
+  "render_sha256": "a117f667e6e19136f1323bc1cb7bdbbdda40e2a4ebbc19db83a26f3051ee8de8"
+ },
+ {
+  "document_id": 10670,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2794282
+  ],
+  "match_text": "Registration Act, (VI of 1975) hereinafter referred to as the said",
+  "before_text": "Registration Act, (VI of 1975) hereinafter referred to as the said",
+  "after_text": "Registration Act, (VI of 1975) hereinafter referred to as the said",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '651' alone at its head or foot (block 2794282); the document's folios run at page + 648 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10670-p3.png",
+  "render_sha256": "5cd885c3c0348930920e35722238de608ed37b290596b45897a282dfdd4fef0b"
+ },
+ {
+  "document_id": 10670,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2794288
+  ],
+  "match_text": "initiated, jurisdiction or powers exercised under the provisions of",
+  "before_text": "initiated, jurisdiction or powers exercised under the provisions of",
+  "after_text": "initiated, jurisdiction or powers exercised under the provisions of",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 4 prints its folio '652' alone at its head or foot (block 2794288); the document's folios run at page + 648 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10670-p4.png",
+  "render_sha256": "078bfcc90a2ce3bfecf09ef10e30d788cf3b336e62988ef0a19c4390dffe5598"
+ }
+]

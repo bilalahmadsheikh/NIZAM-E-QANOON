@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 2405,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2405-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head 'THE SINDH EYE SURGERY (RESTRICTION) ACT, 2014' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "7.      Government , may make rules to carry out the purposes",
+  "before_text": "7.      Government , may make rules to carry out the purposes",
+  "after_text": "7.      Government , may make rules to carry out the purposes",
+  "source_apparatus_blocks": [
+   197142
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "975fa81c607cb9c3a7d13b1d4a34719fe777ae843331ab7505dc1c87d38ffc98"
+ }
+]

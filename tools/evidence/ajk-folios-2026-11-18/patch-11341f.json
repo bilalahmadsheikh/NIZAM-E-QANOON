@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 11341,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2847753
+  ],
+  "match_text": "received the assent of the President on the 16th day of March 2017, is",
+  "before_text": "received the assent of the President on the 16th day of March 2017, is",
+  "after_text": "received the assent of the President on the 16th day of March 2017, is",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '379' alone at its head or foot (block 2847753); the document's folios run at page + 378 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11341-p1.png",
+  "render_sha256": "073cf35e1300daab6b606762e6a35f6db7777acbab1e394312e1077e60e5a72a"
+ },
+ {
+  "document_id": 11341,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2847794
+  ],
+  "match_text": "shall observe such procedure in regard to transaction of business",
+  "before_text": "shall observe such procedure in regard to transaction of business",
+  "after_text": "shall observe such procedure in regard to transaction of business",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '381' alone at its head or foot (block 2847794); the document's folios run at page + 378 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11341-p3.png",
+  "render_sha256": "9465b9114e5060cb40d53e2b27ccd8c01a61da289057295e60089faa25346e52"
+ },
+ {
+  "document_id": 11341,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2847824
+  ],
+  "match_text": "sub-section (1) to a Government Agency, it shall, within a period",
+  "before_text": "sub-section (1) to a Government Agency, it shall, within a period",
+  "after_text": "sub-section (1) to a Government Agency, it shall, within a period",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 5 prints its folio '383' alone at its head or foot (block 2847824); the document's folios run at page + 378 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11341-p5.png",
+  "render_sha256": "3fd2af92ac2b346a9c0ab8aeb030ff1451fb00698ecc75a5969851f8444b38bc"
+ }
+]

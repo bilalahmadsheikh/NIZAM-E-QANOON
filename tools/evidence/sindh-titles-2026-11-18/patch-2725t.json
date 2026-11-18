@@ -1,0 +1,74 @@
+[
+ {
+  "document_id": 2725,
+  "page_no": 12,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2725-p12.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 12 prints the running head 'THE SINDH PUBLIC PRIVATE PARTNERSHIP ORDINANCE, 2009.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH PUBLIC PRIVATE PARTNERSHIP ORDINANCE, 2009.",
+  "before_text": "THE SINDH PUBLIC PRIVATE PARTNERSHIP ORDINANCE, 2009.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "5eb63f76b2402f034f79c7f833078b6a15e372cd188e11efad0a2dcfb550b287"
+ },
+ {
+  "document_id": 2725,
+  "page_no": 14,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2725-p14.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 14 prints the running head 'THE SINDH PUBLIC PRIVATE PARTNERSHIP ORDINANCE, 2009.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH PUBLIC PRIVATE PARTNERSHIP ORDINANCE, 2009.",
+  "before_text": "THE SINDH PUBLIC PRIVATE PARTNERSHIP ORDINANCE, 2009.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "cbce1830bd0439bcf208de47047308c09bf73da3e6b0af771e4fc6d6aab88071"
+ },
+ {
+  "document_id": 2725,
+  "page_no": 15,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2725-p15.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 15 prints the running head 'THE SINDH PUBLIC PRIVATE PARTNERSHIP ORDINANCE, 2009.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH PUBLIC PRIVATE PARTNERSHIP ORDINANCE, 2009.",
+  "before_text": "THE SINDH PUBLIC PRIVATE PARTNERSHIP ORDINANCE, 2009.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "30c0c60636fb1a64108c8922494a025c32e40c680b2a8c495b17a2c5c4c768bf"
+ },
+ {
+  "document_id": 2725,
+  "page_no": 16,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2725-p16.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 16 prints the running head 'THE SINDH PUBLIC PRIVATE PARTNERSHIP ORDINANCE, 2009.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH PUBLIC PRIVATE PARTNERSHIP ORDINANCE, 2009.",
+  "before_text": "THE SINDH PUBLIC PRIVATE PARTNERSHIP ORDINANCE, 2009.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "42790baba6c5cb4311972e45350468eaf8006c8b523e19baa2dd9711b36b622d"
+ },
+ {
+  "document_id": 2725,
+  "page_no": 19,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2725-p19.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 19 prints the running head 'THE SINDH PUBLIC PRIVATE PARTNERSHIP ORDINANCE, 2009.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH PUBLIC PRIVATE PARTNERSHIP ORDINANCE, 2009.",
+  "before_text": "THE SINDH PUBLIC PRIVATE PARTNERSHIP ORDINANCE, 2009.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "469d43bea8989db81a4cea0e0aba195674f61ff2a6dda70fc740e3a62f0ca42e"
+ },
+ {
+  "document_id": 2725,
+  "page_no": 20,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2725-p20.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 20 prints the running head 'THE SINDH PUBLIC PRIVATE PARTNERSHIP ORDINANCE, 2009.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH PUBLIC PRIVATE PARTNERSHIP ORDINANCE, 2009.",
+  "before_text": "THE SINDH PUBLIC PRIVATE PARTNERSHIP ORDINANCE, 2009.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "5678471e11ff34e89ebcc4a0545f403064bd460359f2b84d9d5a9f6b8a3ee735"
+ }
+]

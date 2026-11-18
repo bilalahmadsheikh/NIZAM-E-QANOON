@@ -1,0 +1,41 @@
+[
+ {
+  "document_id": 819,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc819-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head 'THE SINDH INFORMATION TECHNOLOGY BOARD, ORDINANCE, 1999' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH INFORMATION TECHNOLOGY BOARD, ORDINANCE, 1999",
+  "before_text": "THE SINDH INFORMATION TECHNOLOGY BOARD, ORDINANCE, 1999",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "7ff7f35e1f244ff7821dfeb7fe6919e65f490cf9352cfd4d89b8654a83a6ace8"
+ },
+ {
+  "document_id": 819,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc819-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head 'THE SINDH INFORMATION TECHNOLOGY BOARD, ORDINANCE, 1999' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "necessary for the efficient performance of its functions in such",
+  "before_text": "necessary for the efficient performance of its functions in such",
+  "after_text": "necessary for the efficient performance of its functions in such",
+  "source_apparatus_blocks": [
+   36920
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "10369e1eac30fff84c4d802aa625dee25b6e86f280db749707079ebba0045816"
+ },
+ {
+  "document_id": 819,
+  "page_no": 5,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc819-p5.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 5 prints the running head 'THE SINDH INFORMATION TECHNOLOGY BOARD, ORDINANCE, 1999' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH INFORMATION TECHNOLOGY BOARD, ORDINANCE, 1999",
+  "before_text": "THE SINDH INFORMATION TECHNOLOGY BOARD, ORDINANCE, 1999",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "87fa66b4c9110e5952e0358fc66567164015592787cdf70195507b4986a26e8f"
+ }
+]

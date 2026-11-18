@@ -1,0 +1,18 @@
+[
+ {
+  "document_id": 1799,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1799-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head 'THE SINDH REGULARIZATION OF TEACHERS APPOINTED / ON CONTRACT BASIS ORDINANCE, 2012.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "regularized under this Act shall not be transferred from",
+  "before_text": "regularized under this Act shall not be transferred from",
+  "after_text": "regularized under this Act shall not be transferred from",
+  "source_apparatus_blocks": [
+   119285,
+   119286
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "5fe078c048d9b6bf14b1f866be7eaf1c775e2f16b4a499f616f45c8ef91715fa"
+ }
+]

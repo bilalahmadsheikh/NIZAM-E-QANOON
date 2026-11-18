@@ -1,0 +1,19 @@
+[
+ {
+  "document_id": 1151,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1151-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head '3 / THE AROR UNIVERSITY OF ART, ARCHITECTURE, DESIGN AND / HERITAGE, SUKKUR (AMENDMENT) ACT, 2025 / SINDH ACT NO. XIII OF 2025' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "In the said Act, in the Schedule, in clause 1, in sub-clause (1) –",
+  "before_text": "In the said Act, in the Schedule, in clause 1, in sub-clause (1) –",
+  "after_text": "In the said Act, in the Schedule, in clause 1, in sub-clause (1) –",
+  "source_apparatus_blocks": [
+   56760,
+   56761,
+   56762
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "758b77110fa79341bb71ace03bb66d6800d693f0cc3cdef338a541e38d2f1429"
+ }
+]

@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 11008,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2824798
+  ],
+  "match_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "before_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "after_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '554' alone at its head or foot (block 2824798); the document's folios run at page + 553 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11008-p1.png",
+  "render_sha256": "4fee725dff02f23d1f8ab469a758da72009614db5cbc7b46bf129136d07f35d6"
+ },
+ {
+  "document_id": 11008,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2824812
+  ],
+  "match_text": "called upon to render aid under sub-section (3) such call shall be",
+  "before_text": "called upon to render aid under sub-section (3) such call shall be",
+  "after_text": "called upon to render aid under sub-section (3) such call shall be",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '555' alone at its head or foot (block 2824812); the document's folios run at page + 553 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11008-p2.png",
+  "render_sha256": "72a40d524ff7f529b8e4960052086e938eef3dd1934c5dbb86f920bd16d9cacb"
+ },
+ {
+  "document_id": 11008,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2824820
+  ],
+  "match_text": "Magistrate and to officier in charge of the nearest Police-",
+  "before_text": "Magistrate and to officier in charge of the nearest Police-",
+  "after_text": "Magistrate and to officier in charge of the nearest Police-",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '556' alone at its head or foot (block 2824820); the document's folios run at page + 553 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11008-p3.png",
+  "render_sha256": "f651c0f78a26223d813663a5bd96f62c6e84eb69e5a2ec6860857a61ee4bc360"
+ }
+]

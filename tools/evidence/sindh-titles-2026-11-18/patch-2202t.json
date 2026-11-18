@@ -1,0 +1,77 @@
+[
+ {
+  "document_id": 2202,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2202-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head 'THE SINDH BONDED LABOUR SYSTEM (ABOLITION) ACT, 2015' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "(h) “nominal wages\" in relation to any labour, means a wage which",
+  "before_text": "(h) “nominal wages\" in relation to any labour, means a wage which",
+  "after_text": "(h) “nominal wages\" in relation to any labour, means a wage which",
+  "source_apparatus_blocks": [
+   168526
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "6bb3d2638977c70f4eb0c61f56dc76858b4236acef95e089195dd821f621abc1"
+ },
+ {
+  "document_id": 2202,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2202-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head 'THE SINDH BONDED LABOUR SYSTEM (ABOLITION) ACT, 2015' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH BONDED LABOUR SYSTEM (ABOLITION) ACT, 2015",
+  "before_text": "THE SINDH BONDED LABOUR SYSTEM (ABOLITION) ACT, 2015",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "a8af5bf729c88efc31602709bd41e4c148a8be8cc91743c0945964c0b935dddd"
+ },
+ {
+  "document_id": 2202,
+  "page_no": 5,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2202-p5.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 5 prints the running head 'THE SINDH BONDED LABOUR SYSTEM (ABOLITION) ACT, 2015' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH BONDED LABOUR SYSTEM (ABOLITION) ACT, 2015",
+  "before_text": "THE SINDH BONDED LABOUR SYSTEM (ABOLITION) ACT, 2015",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "17fb7ce71597d0752ef2060c6bae7d67f874f7e5981aad10cb783662b297ce48"
+ },
+ {
+  "document_id": 2202,
+  "page_no": 6,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2202-p6.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 6 prints the running head 'THE SINDH BONDED LABOUR SYSTEM (ABOLITION) ACT, 2015' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH BONDED LABOUR SYSTEM (ABOLITION) ACT, 2015",
+  "before_text": "THE SINDH BONDED LABOUR SYSTEM (ABOLITION) ACT, 2015",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "70042f5722e04a15e75eacc65493e60a2799b4381a9df5e17a71d26d7064d5d1"
+ },
+ {
+  "document_id": 2202,
+  "page_no": 7,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2202-p7.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 7 prints the running head 'THE SINDH BONDED LABOUR SYSTEM (ABOLITION) ACT, 2015' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH BONDED LABOUR SYSTEM (ABOLITION) ACT, 2015",
+  "before_text": "THE SINDH BONDED LABOUR SYSTEM (ABOLITION) ACT, 2015",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "c552b26e9008e48898ae60ca6e88dd315834e63278498d92471926d1f6911151"
+ },
+ {
+  "document_id": 2202,
+  "page_no": 8,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2202-p8.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 8 prints the running head 'THE SINDH BONDED LABOUR SYSTEM (ABOLITION) ACT, 2015' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH BONDED LABOUR SYSTEM (ABOLITION) ACT, 2015",
+  "before_text": "THE SINDH BONDED LABOUR SYSTEM (ABOLITION) ACT, 2015",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "576f610a73cafdf7269c47c64944d5a6991195a9c3e8027f7a278a9278f028df"
+ }
+]

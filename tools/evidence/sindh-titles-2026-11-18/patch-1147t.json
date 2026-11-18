@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 1147,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1147-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head 'THE SINDH FINANCE (AMENDMENT) ACT, 2007' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "Authorities upon their entering in and using the infrastructure of the",
+  "before_text": "Authorities upon their entering in and using the infrastructure of the",
+  "after_text": "Authorities upon their entering in and using the infrastructure of the",
+  "source_apparatus_blocks": [
+   56477
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "29e5cdb61f5eb43a3bbae67eccf827a755bbfc9659d0a2971547b82194d0883b"
+ }
+]

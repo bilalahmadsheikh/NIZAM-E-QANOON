@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 1082,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1082-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head '4 / NATIONAL ACCOUNTABILITY ORDINANCE 1999 SINDH REPEAL' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "or arising out of order or judgment of any court under the repealed",
+  "before_text": "or arising out of order or judgment of any court under the repealed",
+  "after_text": "or arising out of order or judgment of any court under the repealed",
+  "source_apparatus_blocks": [
+   51218
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "833554dbe30c4a1f0d424768321ea1147a29420cada019e58df4123af63e4f0e"
+ }
+]

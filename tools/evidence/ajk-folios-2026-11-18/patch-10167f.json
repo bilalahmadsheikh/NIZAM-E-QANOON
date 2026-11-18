@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 10167,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2756014
+  ],
+  "match_text": "the 15th day of April, 1989, is hereby published for general information:-",
+  "before_text": "the 15th day of April, 1989, is hereby published for general information:-",
+  "after_text": "the 15th day of April, 1989, is hereby published for general information:-",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '478' alone at its head or foot (block 2756014); the document's folios run at page + 477 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10167-p1.png",
+  "render_sha256": "6a6c89167b7d69dcb55869cb9f81ac008d7f57020b3075d3cdec6a7641ae58de"
+ },
+ {
+  "document_id": 10167,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2756028
+  ],
+  "match_text": "line incidents compensation fund “(hereinafter referred to as “the",
+  "before_text": "line incidents compensation fund “(hereinafter referred to as “the",
+  "after_text": "line incidents compensation fund “(hereinafter referred to as “the",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '479' alone at its head or foot (block 2756028); the document's folios run at page + 477 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10167-p2.png",
+  "render_sha256": "a303e960ecdceb2f504042fa1dd7a3bd4cbf5009bbece5b2f9daa59d8185c14b"
+ },
+ {
+  "document_id": 10167,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2756037
+  ],
+  "match_text": "notification in the Official Gazette make rules for carrying out",
+  "before_text": "notification in the Official Gazette make rules for carrying out",
+  "after_text": "notification in the Official Gazette make rules for carrying out",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '480' alone at its head or foot (block 2756037); the document's folios run at page + 477 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10167-p3.png",
+  "render_sha256": "7940b063aeb9b4c2c18163954713e866c99903a229f8ff1bb03957a9357a49af"
+ }
+]

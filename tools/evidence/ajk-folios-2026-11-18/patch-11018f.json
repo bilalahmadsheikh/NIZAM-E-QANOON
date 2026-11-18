@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 11018,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2825247
+  ],
+  "match_text": "No. 282-86/LD/Leg/93. The following Act of the Assembly received the",
+  "before_text": "No. 282-86/LD/Leg/93. The following Act of the Assembly received the",
+  "after_text": "No. 282-86/LD/Leg/93. The following Act of the Assembly received the",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '252' alone at its head or foot (block 2825247); the document's folios run at page + 251 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11018-p1.png",
+  "render_sha256": "9512ad9689615b94c4a01bb99eeac54422ad4e884f1e1e5482a421c625a84565"
+ },
+ {
+  "document_id": 11018,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2825254
+  ],
+  "match_text": "provisions of this Act or any other law, rules or statutory orders,",
+  "before_text": "provisions of this Act or any other law, rules or statutory orders,",
+  "after_text": "provisions of this Act or any other law, rules or statutory orders,",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '253' alone at its head or foot (block 2825254); the document's folios run at page + 251 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11018-p2.png",
+  "render_sha256": "cf4e274a73a216a386a29ef329697f3940f7ff4401ffac8de83a107142b64e93"
+ },
+ {
+  "document_id": 11018,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2825260
+  ],
+  "match_text": "1New sub-section (3) added by the AJ&K Board of Revenue (Amdt.) Act, 1997",
+  "before_text": "1New sub-section (3) added by the AJ&K Board of Revenue (Amdt.) Act, 1997",
+  "after_text": "1New sub-section (3) added by the AJ&K Board of Revenue (Amdt.) Act, 1997",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '254' alone at its head or foot (block 2825260); the document's folios run at page + 251 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11018-p3.png",
+  "render_sha256": "8ed039b7a105db21e73d2ee4cdb1c9747221ec79d80f0ee3b5b5b3180d16f415"
+ },
+ {
+  "document_id": 11018,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2825265
+  ],
+  "match_text": "as practicable continue to apply to the proceedings before the",
+  "before_text": "as practicable continue to apply to the proceedings before the",
+  "after_text": "as practicable continue to apply to the proceedings before the",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 4 prints its folio '255' alone at its head or foot (block 2825265); the document's folios run at page + 251 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11018-p4.png",
+  "render_sha256": "1030bf1c0f0eeb55a85ac577a98ac987a7765e71cb7a33ca9eb1acef277b3623"
+ }
+]

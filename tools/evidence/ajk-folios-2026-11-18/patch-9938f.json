@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 9938,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2739168
+  ],
+  "match_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "before_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "after_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '692' alone at its head or foot (block 2739168); the document's folios run at page + 691 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc9938-p1.png",
+  "render_sha256": "9d1887dadf98e5ac06b470b1b70c3fe112eff5fd0da445bbb806eb2200191355"
+ },
+ {
+  "document_id": 9938,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2739182
+  ],
+  "match_text": "Preparation.- Perfumery, cosmatics and toilet preparation,",
+  "before_text": "Preparation.- Perfumery, cosmatics and toilet preparation,",
+  "after_text": "Preparation.- Perfumery, cosmatics and toilet preparation,",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '693' alone at its head or foot (block 2739182); the document's folios run at page + 691 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc9938-p2.png",
+  "render_sha256": "19af3718f60ff9b8f2ea0d7ea50fec949c4abda3fc566850a2b4197974d8b5ac"
+ },
+ {
+  "document_id": 9938,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2739193
+  ],
+  "match_text": "gargles, dentifrices, tooth pastes, tooth powders, denture",
+  "before_text": "gargles, dentifrices, tooth pastes, tooth powders, denture",
+  "after_text": "gargles, dentifrices, tooth pastes, tooth powders, denture",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '694' alone at its head or foot (block 2739193); the document's folios run at page + 691 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc9938-p3.png",
+  "render_sha256": "d1234ec485b54b4022261e79aca168e14bd13a58b4f6350967c9cff05f81dd91"
+ },
+ {
+  "document_id": 9938,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2739202
+  ],
+  "match_text": "wrapper, or on the article itself if it",
+  "before_text": "wrapper, or on the article itself if it",
+  "after_text": "wrapper, or on the article itself if it",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 4 prints its folio '695' alone at its head or foot (block 2739202); the document's folios run at page + 691 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc9938-p4.png",
+  "render_sha256": "b38c2ee2cab80116cf5b0d77907a8014b88f0532c5bd05a69f9d4d71603b24b6"
+ }
+]

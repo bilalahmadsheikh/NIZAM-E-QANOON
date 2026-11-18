@@ -1,0 +1,50 @@
+[
+ {
+  "document_id": 1533,
+  "page_no": 8,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1533-p8.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 8 prints the running head 'THE SIND ARID ZONE DEVELOPMENT AUTHORITY ORDINANCE, 1985.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SIND ARID ZONE DEVELOPMENT AUTHORITY ORDINANCE, 1985.",
+  "before_text": "THE SIND ARID ZONE DEVELOPMENT AUTHORITY ORDINANCE, 1985.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "29bb83cbf316477d12f4244bfa1a4a390b0efd3061056988eb27042f7686814b"
+ },
+ {
+  "document_id": 1533,
+  "page_no": 10,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1533-p10.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 10 prints the running head 'THE SIND ARID ZONE DEVELOPMENT AUTHORITY ORDINANCE, 1985.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SIND ARID ZONE DEVELOPMENT AUTHORITY ORDINANCE, 1985.",
+  "before_text": "THE SIND ARID ZONE DEVELOPMENT AUTHORITY ORDINANCE, 1985.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "8c73fcf85aa6db7049a9993137eccabd2ef82e50e85341bc98c3e56964bf668d"
+ },
+ {
+  "document_id": 1533,
+  "page_no": 11,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1533-p11.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 11 prints the running head 'THE SIND ARID ZONE DEVELOPMENT AUTHORITY ORDINANCE, 1985.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SIND ARID ZONE DEVELOPMENT AUTHORITY ORDINANCE, 1985.",
+  "before_text": "THE SIND ARID ZONE DEVELOPMENT AUTHORITY ORDINANCE, 1985.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "00c65a23db3b4d3f0d4f66bc397005bee53e8d5f205620622199f84c6d7a2b12"
+ },
+ {
+  "document_id": 1533,
+  "page_no": 12,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1533-p12.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 12 prints the running head 'THE SIND ARID ZONE DEVELOPMENT AUTHORITY ORDINANCE, 1985.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SIND ARID ZONE DEVELOPMENT AUTHORITY ORDINANCE, 1985.",
+  "before_text": "THE SIND ARID ZONE DEVELOPMENT AUTHORITY ORDINANCE, 1985.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "4fd3950b76e0e999b80dad551b223fcae19e5fe0430900670599c98e144d04e9"
+ }
+]

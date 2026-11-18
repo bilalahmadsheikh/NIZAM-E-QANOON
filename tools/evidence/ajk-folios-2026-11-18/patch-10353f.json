@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 10353,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2767849
+  ],
+  "match_text": "received the assent of the President on 16th August, 1992, is hereby",
+  "before_text": "received the assent of the President on 16th August, 1992, is hereby",
+  "after_text": "received the assent of the President on 16th August, 1992, is hereby",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '236' alone at its head or foot (block 2767849); the document's folios run at page + 235 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10353-p1.png",
+  "render_sha256": "632462ea2c686511b080d03d806902797a32d953cc6c4a7ccec3370981555f0b"
+ },
+ {
+  "document_id": 10353,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2767865
+  ],
+  "match_text": "territories under its administration into Civil Districts and Sub-",
+  "before_text": "territories under its administration into Civil Districts and Sub-",
+  "after_text": "territories under its administration into Civil Districts and Sub-",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '237' alone at its head or foot (block 2767865); the document's folios run at page + 235 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10353-p2.png",
+  "render_sha256": "1faab03db2d700f68c784804a9abf7c905154e05cfd362e17772429177e15a33"
+ },
+ {
+  "document_id": 10353,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2767878
+  ],
+  "match_text": "Code, 1949.- In the said Code, in Section 52, in sub-section (1),",
+  "before_text": "Code, 1949.- In the said Code, in Section 52, in sub-section (1),",
+  "after_text": "Code, 1949.- In the said Code, in Section 52, in sub-section (1),",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '238' alone at its head or foot (block 2767878); the document's folios run at page + 235 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10353-p3.png",
+  "render_sha256": "f4c1862e7223bb26ef4890779f3351ec5ae2ac288667c86096d5d38c27a4c4b6"
+ }
+]

@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 10446,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2774331
+  ],
+  "match_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "before_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "after_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '530' alone at its head or foot (block 2774331); the document's folios run at page + 529 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10446-p1.png",
+  "render_sha256": "d05ee32557e7f50ce31f8b47383e0fe9708be2bda5bd7ca1aa652575a2eacabd"
+ },
+ {
+  "document_id": 10446,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2774343
+  ],
+  "match_text": "said Ordinance, in Section 14, for sub-section (3) the following",
+  "before_text": "said Ordinance, in Section 14, for sub-section (3) the following",
+  "after_text": "said Ordinance, in Section 14, for sub-section (3) the following",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '531' alone at its head or foot (block 2774343); the document's folios run at page + 529 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10446-p2.png",
+  "render_sha256": "cae006bef56ebd9ffa8895e049f236288673e754b342c00fe46a2d478af0e7fd"
+ },
+ {
+  "document_id": 10446,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2774357
+  ],
+  "match_text": "the locality present in the gathering raises objection with respect",
+  "before_text": "the locality present in the gathering raises objection with respect",
+  "after_text": "the locality present in the gathering raises objection with respect",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '532' alone at its head or foot (block 2774357); the document's folios run at page + 529 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10446-p3.png",
+  "render_sha256": "a89d62abb570bf5f665fe5af863129e91e6e3e4f47ebd95060ecc2c909ca4709"
+ },
+ {
+  "document_id": 10446,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2774376
+  ],
+  "match_text": "turpitude, or been declared a goonda under the law relating to the",
+  "before_text": "turpitude, or been declared a goonda under the law relating to the",
+  "after_text": "turpitude, or been declared a goonda under the law relating to the",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 4 prints its folio '533' alone at its head or foot (block 2774376); the document's folios run at page + 529 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10446-p4.png",
+  "render_sha256": "4a02706ddfc8a93eee1a6979ed81b1b558c8bba99616c93b459fc347a4862783"
+ }
+]

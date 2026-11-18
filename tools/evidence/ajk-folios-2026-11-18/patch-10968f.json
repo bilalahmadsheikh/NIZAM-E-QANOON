@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 10968,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2817707
+  ],
+  "match_text": "petent authority is the Head of Department, the prior approval of",
+  "before_text": "petent authority is the Head of Department, the prior approval of",
+  "after_text": "petent authority is the Head of Department, the prior approval of",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '317' alone at its head or foot (block 2817707); the document's folios run at page + 316 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10968-p1.png",
+  "render_sha256": "eaf534aa9ba5761aed98b6f4784b0de25c7271d8c840f81d9403fde230af5b65"
+ },
+ {
+  "document_id": 10968,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2817708
+  ],
+  "match_text": "rules applicable to his service or post on the date of such retire-",
+  "before_text": "rules applicable to his service or post on the date of such retire-",
+  "after_text": "rules applicable to his service or post on the date of such retire-",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '318' alone at its head or foot (block 2817708); the document's folios run at page + 316 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10968-p2.png",
+  "render_sha256": "910f5fc4e1b5e06ca9b8e5c034352d82248f32df7fce7ef467af118073d04101"
+ },
+ {
+  "document_id": 10968,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2817714
+  ],
+  "match_text": "rules applicable to his service or post on the date of such retire-",
+  "before_text": "rules applicable to his service or post on the date of such retire-",
+  "after_text": "rules applicable to his service or post on the date of such retire-",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '318' alone at its head or foot (block 2817714); the document's folios run at page + 316 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10968-p2.png",
+  "render_sha256": "910f5fc4e1b5e06ca9b8e5c034352d82248f32df7fce7ef467af118073d04101"
+ }
+]

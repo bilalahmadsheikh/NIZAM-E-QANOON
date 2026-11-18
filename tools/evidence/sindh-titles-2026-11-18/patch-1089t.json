@@ -1,0 +1,34 @@
+[
+ {
+  "document_id": 1089,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1089-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head '3 / THE SINDH REVENUE BOARD (AMENDMENT) ACT, 2025 / SINDH ACT NO. XXVI OF 2025' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "in sub-section (6), for the full-stop at the end, a colon shall",
+  "before_text": "in sub-section (6), for the full-stop at the end, a colon shall",
+  "after_text": "in sub-section (6), for the full-stop at the end, a colon shall",
+  "source_apparatus_blocks": [
+   51821,
+   51822
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "705376fde0ca77b35c5246ee9596b10ae2c1a607264017cabe2f5d4455b8b600"
+ },
+ {
+  "document_id": 1089,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1089-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head '4 / THE SINDH REVENUE BOARD (AMENDMENT) ACT, 2025 / SINDH ACT NO. XXVI OF 2025' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "functions as may be assigned to them or required",
+  "before_text": "functions as may be assigned to them or required",
+  "after_text": "functions as may be assigned to them or required",
+  "source_apparatus_blocks": [
+   51826,
+   51827
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "26e157b5a88c7a24ed252956ba6ed0acb2ce1bf79766e0b709448c33a6ebafd5"
+ }
+]

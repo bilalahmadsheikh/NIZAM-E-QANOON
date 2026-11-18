@@ -1,0 +1,92 @@
+[
+ {
+  "document_id": 10231,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2759461
+  ],
+  "match_text": "public entertainment in the Azad Jammu and Kashmir Territory;",
+  "before_text": "public entertainment in the Azad Jammu and Kashmir Territory;",
+  "after_text": "public entertainment in the Azad Jammu and Kashmir Territory;",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '120' alone at its head or foot (block 2759461); the document's folios run at page + 119 on 6 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10231-p1.png",
+  "render_sha256": "9f39be985b2061c80524e0d739283d1a12a34918eb18e90be2e0a7fd776b2b55"
+ },
+ {
+  "document_id": 10231,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2759472
+  ],
+  "match_text": "period of time or for any privilege, right, facility or thing",
+  "before_text": "period of time or for any privilege, right, facility or thing",
+  "after_text": "period of time or for any privilege, right, facility or thing",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '121' alone at its head or foot (block 2759472); the document's folios run at page + 119 on 6 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10231-p2.png",
+  "render_sha256": "c81d9546e217a3beb5ab70f5862782a92b484850338685a686ebe28300c58d60"
+ },
+ {
+  "document_id": 10231,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2759485
+  ],
+  "match_text": "duty:- Entertainments duty shall be levied and paid on all",
+  "before_text": "duty:- Entertainments duty shall be levied and paid on all",
+  "after_text": "duty:- Entertainments duty shall be levied and paid on all",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '122' alone at its head or foot (block 2759485); the document's folios run at page + 119 on 6 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10231-p3.png",
+  "render_sha256": "0ed80e4eb242a587c3cc02de947cedd8f9ba1f8d11c2d8992dc194c9786d3f16"
+ },
+ {
+  "document_id": 10231,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2759496
+  ],
+  "match_text": "and generally for carrying into effect the provisions of this",
+  "before_text": "and generally for carrying into effect the provisions of this",
+  "after_text": "and generally for carrying into effect the provisions of this",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 4 prints its folio '123' alone at its head or foot (block 2759496); the document's folios run at page + 119 on 6 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10231-p4.png",
+  "render_sha256": "8314af84c13d6ec2ead3429952452b2137fda01c4ce8c0befbbc758370d65e65"
+ },
+ {
+  "document_id": 10231,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2759509
+  ],
+  "match_text": "a Magistrate, be liable in respect of each offence to a fine",
+  "before_text": "a Magistrate, be liable in respect of each offence to a fine",
+  "after_text": "a Magistrate, be liable in respect of each offence to a fine",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 5 prints its folio '124' alone at its head or foot (block 2759509); the document's folios run at page + 119 on 6 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10231-p5.png",
+  "render_sha256": "322132389784835c727e340e0aefd0ce70a25815140c3534d5322f171e25180e"
+ },
+ {
+  "document_id": 10231,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   2759514
+  ],
+  "match_text": "order or direction given in pursuance of sub-section (1) of",
+  "before_text": "order or direction given in pursuance of sub-section (1) of",
+  "after_text": "order or direction given in pursuance of sub-section (1) of",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 6 prints its folio '125' alone at its head or foot (block 2759514); the document's folios run at page + 119 on 6 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10231-p6.png",
+  "render_sha256": "2dd40bc471048d2241a759a461f610048fed7e4ce0d8ec8a8b4bf5aa7043b622"
+ }
+]

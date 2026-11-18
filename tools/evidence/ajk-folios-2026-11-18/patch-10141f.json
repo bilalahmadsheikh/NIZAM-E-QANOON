@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 10141,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2753989
+  ],
+  "match_text": "more persons are employed or were employed on any day during the",
+  "before_text": "more persons are employed or were employed on any day during the",
+  "after_text": "more persons are employed or were employed on any day during the",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '1030' alone at its head or foot (block 2753989); the document's folios run at page + 1029 on 6 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10141-p1.png",
+  "render_sha256": "ef9829bc48ebe041c1f802460cfa9c4bc3c030e7e7311b64c52ea44abfd37b3a"
+ },
+ {
+  "document_id": 10141,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2754000
+  ],
+  "match_text": "1[cost of living allowance,special allowance] any other fixed allowance but does not",
+  "before_text": "1[cost of living allowance,special allowance] any other fixed allowance but does not",
+  "after_text": "1[cost of living allowance,special allowance] any other fixed allowance but does not",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '1031' alone at its head or foot (block 2754000); the document's folios run at page + 1029 on 6 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10141-p2.png",
+  "render_sha256": "039b15564fc018c82e5fb03f0f82913f99a8a1b97c4e089a09afed07d63eb602"
+ },
+ {
+  "document_id": 10141,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2754014
+  ],
+  "match_text": "establishment situated in an area specified in column 1 of the schedule, shall",
+  "before_text": "establishment situated in an area specified in column 1 of the schedule, shall",
+  "after_text": "establishment situated in an area specified in column 1 of the schedule, shall",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '1032' alone at its head or foot (block 2754014); the document's folios run at page + 1029 on 6 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10141-p3.png",
+  "render_sha256": "dfdb9fc71b51108a8126c7e032e3ea5ebbd8ec73e3d1c3952d88a0f3f3c13a2a"
+ },
+ {
+  "document_id": 10141,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2754022
+  ],
+  "match_text": "duress shall, form the date of coming into force of this Act,",
+  "before_text": "duress shall, form the date of coming into force of this Act,",
+  "after_text": "duress shall, form the date of coming into force of this Act,",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 4 prints its folio '1033' alone at its head or foot (block 2754022); the document's folios run at page + 1029 on 6 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10141-p4.png",
+  "render_sha256": "a99a3645422da861b494bd56a10535a40b559fe34bc129178eb53f6ba47b3806"
+ }
+]

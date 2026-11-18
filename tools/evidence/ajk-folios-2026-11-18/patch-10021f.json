@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 10021,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2745287
+  ],
+  "match_text": "Agriculturists Relief Act, 1983 (Bikrimi) , it is hereby enacted as",
+  "before_text": "Agriculturists Relief Act, 1983 (Bikrimi) , it is hereby enacted as",
+  "after_text": "Agriculturists Relief Act, 1983 (Bikrimi) , it is hereby enacted as",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '557' alone at its head or foot (block 2745287); the document's folios run at page + 556 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10021-p1.png",
+  "render_sha256": "352c411e45ef6f22afd96a35f0e05282b057ca83251b81c615c62f44a1c4f719"
+ },
+ {
+  "document_id": 10021,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2745288
+  ],
+  "match_text": "15-C.    (i)  An offence under Section 15-B shall be triable by a",
+  "before_text": "15-C.    (i)  An offence under Section 15-B shall be triable by a",
+  "after_text": "15-C.    (i)  An offence under Section 15-B shall be triable by a",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '558' alone at its head or foot (block 2745288); the document's folios run at page + 556 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10021-p2.png",
+  "render_sha256": "32ceeb7a519a2e90267a6f8d9aa81a8c669d7edeaf49ddceeb4d3693aebfa94b"
+ },
+ {
+  "document_id": 10021,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2745296
+  ],
+  "match_text": "15-C.    (i)  An offence under Section 15-B shall be triable by a",
+  "before_text": "15-C.    (i)  An offence under Section 15-B shall be triable by a",
+  "after_text": "15-C.    (i)  An offence under Section 15-B shall be triable by a",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '558' alone at its head or foot (block 2745296); the document's folios run at page + 556 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10021-p2.png",
+  "render_sha256": "32ceeb7a519a2e90267a6f8d9aa81a8c669d7edeaf49ddceeb4d3693aebfa94b"
+ }
+]

@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 689,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc689-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head 'THE SINDH SHAHEED RECOGNITION AND COMPENSATION ACT, 2014' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "award compensation to the person who laid his or her life in act",
+  "before_text": "award compensation to the person who laid his or her life in act",
+  "after_text": "award compensation to the person who laid his or her life in act",
+  "source_apparatus_blocks": [
+   29557
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "a0e4ed5160571942646581c1c192f1c545ba6a57cb8bd9d17ab832d5ec4c6d4a"
+ }
+]

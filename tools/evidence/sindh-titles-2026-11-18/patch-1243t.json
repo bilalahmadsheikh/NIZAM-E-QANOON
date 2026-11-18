@@ -1,0 +1,66 @@
+[
+ {
+  "document_id": 1243,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1243-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head '3 / THE SINDH FINANCE ACT, 2017 / SINDH ACT NO. XXIV OF 2017' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "deducted by service recipient in terms of the rules notified",
+  "before_text": "deducted by service recipient in terms of the rules notified",
+  "after_text": "deducted by service recipient in terms of the rules notified",
+  "source_apparatus_blocks": [
+   65322,
+   65323
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "bf0e31b438699c25b20d620be6dd6dc47f0dd6f66e3383cf9b665e59c7a5ab00"
+ },
+ {
+  "document_id": 1243,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1243-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head '4 / THE SINDH FINANCE ACT, 2017 / SINDH ACT NO. XXIV OF 2017' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "(viii) after section 47, the following new section shall be added,",
+  "before_text": "(viii) after section 47, the following new section shall be added,",
+  "after_text": "(viii) after section 47, the following new section shall be added,",
+  "source_apparatus_blocks": [
+   65330,
+   65331
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "a340ec064f8ceb667e27a330c7e9906cc58dd61c12bdf27ef62b7ce06b5e157b"
+ },
+ {
+  "document_id": 1243,
+  "page_no": 5,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1243-p5.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 5 prints the running head '5 / THE SINDH FINANCE ACT, 2017 / SINDH ACT NO. XXIV OF 2017' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "service or services or class of services, and transferring the",
+  "before_text": "service or services or class of services, and transferring the",
+  "after_text": "service or services or class of services, and transferring the",
+  "source_apparatus_blocks": [
+   65339,
+   65340
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "7042dee3f85a7130eb522bbdd2c7821fdb5ce0feb57c166f526497f157642423"
+ },
+ {
+  "document_id": 1243,
+  "page_no": 6,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1243-p6.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 6 prints the running head '6 / THE SINDH FINANCE ACT, 2017 / SINDH ACT NO. XXIV OF 2017' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "(xiii) after section 72, the following new section shall be added,",
+  "before_text": "(xiii) after section 72, the following new section shall be added,",
+  "after_text": "(xiii) after section 72, the following new section shall be added,",
+  "source_apparatus_blocks": [
+   65345,
+   65346
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "25ff5bed07b1a4442a14a9a141ae62daeb7190464f165cbc35ee8b5517945a1f"
+ }
+]

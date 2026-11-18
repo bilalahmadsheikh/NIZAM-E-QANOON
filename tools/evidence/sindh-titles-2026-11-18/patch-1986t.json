@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 1986,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1986-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head 'THE SIND KATCHI ABADIS ACT, 1987' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SIND KATCHI ABADIS ACT, 1987",
+  "before_text": "THE SIND KATCHI ABADIS ACT, 1987",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "b97c4eec491d87ebc891dda9c9d43a2682953fd4b2c198baf393cc3f589be1d0"
+ },
+ {
+  "document_id": 1986,
+  "page_no": 5,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1986-p5.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 5 prints the running head 'THE SIND KATCHI ABADIS ACT, 1987' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SIND KATCHI ABADIS ACT, 1987",
+  "before_text": "THE SIND KATCHI ABADIS ACT, 1987",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "1559abc1d9b8b92ffd2343a9af30f1b20dc711482aee8bf5ae6067098c6eba85"
+ },
+ {
+  "document_id": 1986,
+  "page_no": 10,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1986-p10.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 10 prints the running head 'THE SIND KATCHI ABADIS ACT, 1987' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SIND KATCHI ABADIS ACT, 1987",
+  "before_text": "THE SIND KATCHI ABADIS ACT, 1987",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "86fe0491d597a98e0d275c011b39d1a675ac829554751b82cfa6e9b8992f2903"
+ },
+ {
+  "document_id": 1986,
+  "page_no": 14,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1986-p14.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 14 prints the running head 'THE SIND KATCHI ABADIS ACT, 1987' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SIND KATCHI ABADIS ACT, 1987",
+  "before_text": "THE SIND KATCHI ABADIS ACT, 1987",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "b9c7faa9e07aaf341a01f6d16acdd66bd8573280c73b373f9fda32097f9f2b6b"
+ },
+ {
+  "document_id": 1986,
+  "page_no": 15,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1986-p15.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 15 prints the running head 'THE SIND KATCHI ABADIS ACT, 1987' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SIND KATCHI ABADIS ACT, 1987",
+  "before_text": "THE SIND KATCHI ABADIS ACT, 1987",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "bc08512ab9fc00fb4d7e4e40d8dd1ba7e066657814a306df482a0d90a24c9dad"
+ }
+]

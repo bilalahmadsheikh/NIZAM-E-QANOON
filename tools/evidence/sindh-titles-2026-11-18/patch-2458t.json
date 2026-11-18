@@ -1,0 +1,128 @@
+[
+ {
+  "document_id": 2458,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2458-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head 'THE INSTITUTE OF BUSINESS ADMINISTRATION ACT, 1994.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE INSTITUTE OF BUSINESS ADMINISTRATION ACT, 1994.",
+  "before_text": "THE INSTITUTE OF BUSINESS ADMINISTRATION ACT, 1994.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "25c46d866bda2dc606f343c113ca3cb2953ae9cfb6200693cc8e0fc555f3104f"
+ },
+ {
+  "document_id": 2458,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2458-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head 'THE INSTITUTE OF BUSINESS ADMINISTRATION ACT, 1994.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE INSTITUTE OF BUSINESS ADMINISTRATION ACT, 1994.",
+  "before_text": "THE INSTITUTE OF BUSINESS ADMINISTRATION ACT, 1994.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "65291ad85ec0e7de6ba21e8f9a4feb05006c60b2a1fbf147c4357e1e26b538d2"
+ },
+ {
+  "document_id": 2458,
+  "page_no": 5,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2458-p5.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 5 prints the running head 'THE INSTITUTE OF BUSINESS ADMINISTRATION ACT, 1994.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE INSTITUTE OF BUSINESS ADMINISTRATION ACT, 1994.",
+  "before_text": "THE INSTITUTE OF BUSINESS ADMINISTRATION ACT, 1994.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "a7c72e453f127b5b44ec70889e963faa9ee77d4ee7d4ae4109f8926396595892"
+ },
+ {
+  "document_id": 2458,
+  "page_no": 6,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2458-p6.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 6 prints the running head 'THE INSTITUTE OF BUSINESS ADMINISTRATION ACT, 1994.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE INSTITUTE OF BUSINESS ADMINISTRATION ACT, 1994.",
+  "before_text": "THE INSTITUTE OF BUSINESS ADMINISTRATION ACT, 1994.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "c89f88aefea0754e0eaa7d15a2eae8b2100d6c09f7ee91e028a79ecfe0733f0d"
+ },
+ {
+  "document_id": 2458,
+  "page_no": 7,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2458-p7.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 7 prints the running head 'THE INSTITUTE OF BUSINESS ADMINISTRATION ACT, 1994.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "removed earlier shall hold office for three years commencing",
+  "before_text": "removed earlier shall hold office for three years commencing",
+  "after_text": "removed earlier shall hold office for three years commencing",
+  "source_apparatus_blocks": [
+   202604
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "a25a9d9a45f15d1d94cde7cfcc055a1df23bccd504cb53cef7ea5e35ca56f4e7"
+ },
+ {
+  "document_id": 2458,
+  "page_no": 8,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2458-p8.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 8 prints the running head 'THE INSTITUTE OF BUSINESS ADMINISTRATION ACT, 1994.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE INSTITUTE OF BUSINESS ADMINISTRATION ACT, 1994.",
+  "before_text": "THE INSTITUTE OF BUSINESS ADMINISTRATION ACT, 1994.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "cc137a90ec40f1fdc04b4ad843d2d71d7fac14899cccde86829b3a86f83343f4"
+ },
+ {
+  "document_id": 2458,
+  "page_no": 9,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2458-p9.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 9 prints the running head 'THE INSTITUTE OF BUSINESS ADMINISTRATION ACT, 1994.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE INSTITUTE OF BUSINESS ADMINISTRATION ACT, 1994.",
+  "before_text": "THE INSTITUTE OF BUSINESS ADMINISTRATION ACT, 1994.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "b2166274b8ae8a2ed194e0b0d0b6af297bd0c92f0333451f763f263bcc077f24"
+ },
+ {
+  "document_id": 2458,
+  "page_no": 10,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2458-p10.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 10 prints the running head 'THE INSTITUTE OF BUSINESS ADMINISTRATION ACT, 1994.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE INSTITUTE OF BUSINESS ADMINISTRATION ACT, 1994.",
+  "before_text": "THE INSTITUTE OF BUSINESS ADMINISTRATION ACT, 1994.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "ae5eb9c568d8596f273013ef5ccf7c9d53cf2512b36cadd88b59f789503383d6"
+ },
+ {
+  "document_id": 2458,
+  "page_no": 11,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2458-p11.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 11 prints the running head 'THE INSTITUTE OF BUSINESS ADMINISTRATION ACT, 1994.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "a bill for its payment has been audited by the Audit Officer of",
+  "before_text": "a bill for its payment has been audited by the Audit Officer of",
+  "after_text": "a bill for its payment has been audited by the Audit Officer of",
+  "source_apparatus_blocks": [
+   202673
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "02d695367221f6a07239da39940a085850ebd37b25b9a6b58ac2aced21283dda"
+ },
+ {
+  "document_id": 2458,
+  "page_no": 12,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2458-p12.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 12 prints the running head 'THE INSTITUTE OF BUSINESS ADMINISTRATION ACT, 1994.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE INSTITUTE OF BUSINESS ADMINISTRATION ACT, 1994.",
+  "before_text": "THE INSTITUTE OF BUSINESS ADMINISTRATION ACT, 1994.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "0c6734e8e2d6e25e2fa3487e1cf0de223d0c9644c880b1d39db173d603c97266"
+ }
+]

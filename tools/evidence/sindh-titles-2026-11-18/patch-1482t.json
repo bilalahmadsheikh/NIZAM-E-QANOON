@@ -1,0 +1,128 @@
+[
+ {
+  "document_id": 1482,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1482-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head 'THE SIND WAQF PROPERTIES ORDINANCE, 1979' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SIND WAQF PROPERTIES ORDINANCE, 1979",
+  "before_text": "THE SIND WAQF PROPERTIES ORDINANCE, 1979",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "7d3c89fca215503c28ad399d004346b734fde2d782487af55f483feeb9e440fe"
+ },
+ {
+  "document_id": 1482,
+  "page_no": 5,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1482-p5.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 5 prints the running head 'THE SIND WAQF PROPERTIES ORDINANCE, 1979' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SIND WAQF PROPERTIES ORDINANCE, 1979",
+  "before_text": "THE SIND WAQF PROPERTIES ORDINANCE, 1979",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "943dc380263dbc40d4d969f7c0ea317f5e7984e823c727698024388e9c09395e"
+ },
+ {
+  "document_id": 1482,
+  "page_no": 6,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1482-p6.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 6 prints the running head 'THE SIND WAQF PROPERTIES ORDINANCE, 1979' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SIND WAQF PROPERTIES ORDINANCE, 1979",
+  "before_text": "THE SIND WAQF PROPERTIES ORDINANCE, 1979",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "8e1de4b480f72dc41a201dfb86e7cd63bf2b4bf2d53db6d00b78c3b883ce16bf"
+ },
+ {
+  "document_id": 1482,
+  "page_no": 7,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1482-p7.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 7 prints the running head 'THE SIND WAQF PROPERTIES ORDINANCE, 1979' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SIND WAQF PROPERTIES ORDINANCE, 1979",
+  "before_text": "THE SIND WAQF PROPERTIES ORDINANCE, 1979",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "cf664eb5c77a2435e257fede0d76c911ea148b8338544c1bfa2799d94f9eb6d6"
+ },
+ {
+  "document_id": 1482,
+  "page_no": 8,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1482-p8.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 8 prints the running head 'THE SIND WAQF PROPERTIES ORDINANCE, 1979' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "interest in the income, offerings, subscriptions or articles referred",
+  "before_text": "interest in the income, offerings, subscriptions or articles referred",
+  "after_text": "interest in the income, offerings, subscriptions or articles referred",
+  "source_apparatus_blocks": [
+   87762
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "73832311537ba7381963a1eba9fd012b5f27a16cab833f40223cb273252fa557"
+ },
+ {
+  "document_id": 1482,
+  "page_no": 9,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1482-p9.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 9 prints the running head 'THE SIND WAQF PROPERTIES ORDINANCE, 1979' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SIND WAQF PROPERTIES ORDINANCE, 1979",
+  "before_text": "THE SIND WAQF PROPERTIES ORDINANCE, 1979",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "568bca1bba6eded896e31636bceb1361e27fdb41bce2785f667fa6a5075d1173"
+ },
+ {
+  "document_id": 1482,
+  "page_no": 10,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1482-p10.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 10 prints the running head 'THE SIND WAQF PROPERTIES ORDINANCE, 1979' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SIND WAQF PROPERTIES ORDINANCE, 1979",
+  "before_text": "THE SIND WAQF PROPERTIES ORDINANCE, 1979",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "286a0af86b19d39334a033f2036dcaa9f6d93647b610776221e94aca5a116011"
+ },
+ {
+  "document_id": 1482,
+  "page_no": 11,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1482-p11.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 11 prints the running head 'THE SIND WAQF PROPERTIES ORDINANCE, 1979' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "instituted against any person for anything which is in good faith",
+  "before_text": "instituted against any person for anything which is in good faith",
+  "after_text": "instituted against any person for anything which is in good faith",
+  "source_apparatus_blocks": [
+   87799
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "0ede52070a9100c31994a124cc6d088bdfbfe8a2998180f596ee5287b59cc682"
+ },
+ {
+  "document_id": 1482,
+  "page_no": 12,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1482-p12.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 12 prints the running head 'THE SIND WAQF PROPERTIES ORDINANCE, 1979' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SIND WAQF PROPERTIES ORDINANCE, 1979",
+  "before_text": "THE SIND WAQF PROPERTIES ORDINANCE, 1979",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "2efab4cda8767b96c0c22c38f9e1a0fdaf9afa78fe78e46bc9a01d7078a2d857"
+ },
+ {
+  "document_id": 1482,
+  "page_no": 13,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1482-p13.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 13 prints the running head 'THE SIND WAQF PROPERTIES ORDINANCE, 1979' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SIND WAQF PROPERTIES ORDINANCE, 1979",
+  "before_text": "THE SIND WAQF PROPERTIES ORDINANCE, 1979",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "c373170ca5540de0cf95047b78c9ba36c356c59e3a8f755c98dbcb584e846483"
+ }
+]

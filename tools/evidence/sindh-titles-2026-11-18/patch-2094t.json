@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 2094,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2094-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head 'THE SIND FINANCE ACT, 1976.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "In the Sind Tobacco Vend Act, 1958, for section 3, the",
+  "before_text": "In the Sind Tobacco Vend Act, 1958, for section 3, the",
+  "after_text": "In the Sind Tobacco Vend Act, 1958, for section 3, the",
+  "source_apparatus_blocks": [
+   156344
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "4f165bbc2cefcb8a8cbef9698323c4ef71d5363535ab3541f34440fded23c717"
+ },
+ {
+  "document_id": 2094,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2094-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head 'THE SIND FINANCE ACT, 1976.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "Proprietors of permanent places of entertainment to which",
+  "before_text": "Proprietors of permanent places of entertainment to which",
+  "after_text": "Proprietors of permanent places of entertainment to which",
+  "source_apparatus_blocks": [
+   156361
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "05df713fd9e065c743fd0aad817f588320e61b476de9ba5d51a93ac9c665eabd"
+ }
+]

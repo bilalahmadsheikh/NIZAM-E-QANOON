@@ -1,0 +1,19 @@
+[
+ {
+  "document_id": 1564,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1564-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head '3 / THE NATIONAL INSTITUTE OF CARDIOVASCULAR DISEASES (SINDH / ADMINISTRATION) ACT, 2014 (REVIVAL) ACT, 2026. / SINDH ACT NO. V OF 2026.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "If any difficulty arises in giving effect to the provisions of this Act,",
+  "before_text": "If any difficulty arises in giving effect to the provisions of this Act,",
+  "after_text": "If any difficulty arises in giving effect to the provisions of this Act,",
+  "source_apparatus_blocks": [
+   94734,
+   94735,
+   94736
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "3b2aa7cb0e952d8a0d04d5ffb407755550bd9e7ca31f5754b168563d16927101"
+ }
+]

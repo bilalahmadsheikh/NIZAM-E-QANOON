@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 10435,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2774009
+  ],
+  "match_text": "modifications and changes, if any, to be adopted shall be reported by the",
+  "before_text": "modifications and changes, if any, to be adopted shall be reported by the",
+  "after_text": "modifications and changes, if any, to be adopted shall be reported by the",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '29' alone at its head or foot (block 2774009); the document's folios run at page + 28 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10435-p1.png",
+  "render_sha256": "c7868ebcc68b4ccc572f2d234fadf2d10b062dae2bad18493e61fa39ea4c91bd"
+ },
+ {
+  "document_id": 10435,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2774010
+  ],
+  "match_text": "Whoever is a deserter shall, on conviction before a Magistrate of",
+  "before_text": "Whoever is a deserter shall, on conviction before a Magistrate of",
+  "after_text": "Whoever is a deserter shall, on conviction before a Magistrate of",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '30' alone at its head or foot (block 2774010); the document's folios run at page + 28 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10435-p2.png",
+  "render_sha256": "40f0bafc2dc181cbb525012e8200d9c670ef1788012b2f11217a8565820ea4e4"
+ },
+ {
+  "document_id": 10435,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2774013
+  ],
+  "match_text": "Whoever is a deserter shall, on conviction before a Magistrate of",
+  "before_text": "Whoever is a deserter shall, on conviction before a Magistrate of",
+  "after_text": "Whoever is a deserter shall, on conviction before a Magistrate of",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '30' alone at its head or foot (block 2774013); the document's folios run at page + 28 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10435-p2.png",
+  "render_sha256": "40f0bafc2dc181cbb525012e8200d9c670ef1788012b2f11217a8565820ea4e4"
+ }
+]

@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 10087,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2750093
+  ],
+  "match_text": "to provide for law relating to the Housing Schemes, Rawalakot and Kotli",
+  "before_text": "to provide for law relating to the Housing Schemes, Rawalakot and Kotli",
+  "after_text": "to provide for law relating to the Housing Schemes, Rawalakot and Kotli",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '51' alone at its head or foot (block 2750093); the document's folios run at page + 50 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10087-p1.png",
+  "render_sha256": "70f0c9ac416a9658ca422b3b6774620138c96e3ecb3f21efdf291b5896922640"
+ },
+ {
+  "document_id": 10087,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2750106
+  ],
+  "match_text": "delegated under Section 6 of this Act may, within 15 days of the",
+  "before_text": "delegated under Section 6 of this Act may, within 15 days of the",
+  "after_text": "delegated under Section 6 of this Act may, within 15 days of the",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '52' alone at its head or foot (block 2750106); the document's folios run at page + 50 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10087-p2.png",
+  "render_sha256": "bd6b4a0b245a184f2ac8945e33060a34e379d0e30cb98cf73db4ba01fe83927f"
+ },
+ {
+  "document_id": 10087,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2750118
+  ],
+  "match_text": "Substituted by the Housing Schemes at Rawalakot and kotli (Amendment) Act, 1993",
+  "before_text": "Substituted by the Housing Schemes at Rawalakot and kotli (Amendment) Act, 1993",
+  "after_text": "Substituted by the Housing Schemes at Rawalakot and kotli (Amendment) Act, 1993",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '53' alone at its head or foot (block 2750118); the document's folios run at page + 50 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10087-p3.png",
+  "render_sha256": "44d5b06eed3f5ced418db1ae16ad45f7b807c3d628fb897d0878ec07deb6e991"
+ },
+ {
+  "document_id": 10087,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2750126
+  ],
+  "match_text": "provision in necessary or expedient for carrying out the purposes",
+  "before_text": "provision in necessary or expedient for carrying out the purposes",
+  "after_text": "provision in necessary or expedient for carrying out the purposes",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 4 prints its folio '54' alone at its head or foot (block 2750126); the document's folios run at page + 50 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10087-p4.png",
+  "render_sha256": "d0f01b61232842d2ba87037a8bbdf187844f79b2d5ac30053e18a0b62d84d781"
+ }
+]

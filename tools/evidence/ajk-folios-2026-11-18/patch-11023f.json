@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 11023,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2825520
+  ],
+  "match_text": "9th day of the April, 1984, is herby published for general information:-",
+  "before_text": "9th day of the April, 1984, is herby published for general information:-",
+  "after_text": "9th day of the April, 1984, is herby published for general information:-",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '629' alone at its head or foot (block 2825520); the document's folios run at page + 628 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11023-p1.png",
+  "render_sha256": "300cdc4e2f10944147b2f2d7d8d5c03b720a5df635d1559a355dc927e4ab3e2f"
+ },
+ {
+  "document_id": 11023,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2825530
+  ],
+  "match_text": "land shall be transferred through a title certificate granted by the",
+  "before_text": "land shall be transferred through a title certificate granted by the",
+  "after_text": "land shall be transferred through a title certificate granted by the",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '630' alone at its head or foot (block 2825530); the document's folios run at page + 628 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11023-p2.png",
+  "render_sha256": "d3998029ce406bdd33b89fae3412bf2439381488dd3cf13fa562347fb9d40bda"
+ },
+ {
+  "document_id": 11023,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2825538
+  ],
+  "match_text": "be altered partially so far as in necessary to avoid contravention",
+  "before_text": "be altered partially so far as in necessary to avoid contravention",
+  "after_text": "be altered partially so far as in necessary to avoid contravention",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '631' alone at its head or foot (block 2825538); the document's folios run at page + 628 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11023-p3.png",
+  "render_sha256": "225fca3189b0627e1f5a92a836f89ae46e8bdcdcee4157b1837ecab239b73b82"
+ }
+]

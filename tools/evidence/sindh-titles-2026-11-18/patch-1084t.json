@@ -1,0 +1,53 @@
+[
+ {
+  "document_id": 1084,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1084-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head 'THE SIND PUBLIC PROPERTY (REMOVAL OF ENCROACHMENT) ORDINANCE, 1975' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "responsible directly or indirectly for encroachment, require such",
+  "before_text": "responsible directly or indirectly for encroachment, require such",
+  "after_text": "responsible directly or indirectly for encroachment, require such",
+  "source_apparatus_blocks": [
+   51333
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "fb4dc8b6dfd2b240109bf458771e94348b4d01f23dd44adf5512598a2f7101d3"
+ },
+ {
+  "document_id": 1084,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1084-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head 'THE SIND PUBLIC PROPERTY (REMOVAL OF ENCROACHMENT) ORDINANCE, 1975' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SIND PUBLIC PROPERTY (REMOVAL OF ENCROACHMENT) ORDINANCE, 1975",
+  "before_text": "THE SIND PUBLIC PROPERTY (REMOVAL OF ENCROACHMENT) ORDINANCE, 1975",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "3c7c464aa0700be8d4073f78b7c15c07932ce6f2fceaf438bb125159b9a56566"
+ },
+ {
+  "document_id": 1084,
+  "page_no": 5,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1084-p5.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 5 prints the running head 'THE SIND PUBLIC PROPERTY (REMOVAL OF ENCROACHMENT) ORDINANCE, 1975' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SIND PUBLIC PROPERTY (REMOVAL OF ENCROACHMENT) ORDINANCE, 1975",
+  "before_text": "THE SIND PUBLIC PROPERTY (REMOVAL OF ENCROACHMENT) ORDINANCE, 1975",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "32e5c7debe3362f9d6a2f55ff73f9b7dcd7c32ec8886132931c638af1b0ef8d2"
+ },
+ {
+  "document_id": 1084,
+  "page_no": 6,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1084-p6.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 6 prints the running head 'THE SIND PUBLIC PROPERTY (REMOVAL OF ENCROACHMENT) ORDINANCE, 1975' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SIND PUBLIC PROPERTY (REMOVAL OF ENCROACHMENT) ORDINANCE, 1975",
+  "before_text": "THE SIND PUBLIC PROPERTY (REMOVAL OF ENCROACHMENT) ORDINANCE, 1975",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "412acdbf5608d26bcf0edec799df76c6d651d9b4aa11cab88b1d23ffe26a8d27"
+ }
+]

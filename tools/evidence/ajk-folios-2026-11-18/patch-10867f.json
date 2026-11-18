@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 10867,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2808448
+  ],
+  "match_text": "prescribed for the trial of offences and to bring the procedure into",
+  "before_text": "prescribed for the trial of offences and to bring the procedure into",
+  "after_text": "prescribed for the trial of offences and to bring the procedure into",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '107' alone at its head or foot (block 2808448); the document's folios run at page + 106 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10867-p1.png",
+  "render_sha256": "2d9127288a0fba3e2de845f6e1a93f14137846551c96e219191dfe67300dd4fd"
+ },
+ {
+  "document_id": 10867,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2808449
+  ],
+  "match_text": "Nothing in this Act shall affect the powers of the Government to",
+  "before_text": "Nothing in this Act shall affect the powers of the Government to",
+  "after_text": "Nothing in this Act shall affect the powers of the Government to",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '108' alone at its head or foot (block 2808449); the document's folios run at page + 106 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10867-p2.png",
+  "render_sha256": "5edd5649c89858540293c9248441cb92ed7d56f2cc90b9360db7c41f91f116f2"
+ },
+ {
+  "document_id": 10867,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2808457
+  ],
+  "match_text": "Nothing in this Act shall affect the powers of the Government to",
+  "before_text": "Nothing in this Act shall affect the powers of the Government to",
+  "after_text": "Nothing in this Act shall affect the powers of the Government to",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '108' alone at its head or foot (block 2808457); the document's folios run at page + 106 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10867-p2.png",
+  "render_sha256": "5edd5649c89858540293c9248441cb92ed7d56f2cc90b9360db7c41f91f116f2"
+ }
+]

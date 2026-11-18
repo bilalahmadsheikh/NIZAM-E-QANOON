@@ -1,0 +1,19 @@
+[
+ {
+  "document_id": 2546,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2546-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head '3 / THE SINDH REGULARIZATION OF TEACHERS APPOINTED ON / CONTRACT BASIS ACT, 2018 / SINDH ACT NO. XVII OF 2018' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "prescribed for the post and his performance is not satisfactory:",
+  "before_text": "prescribed for the post and his performance is not satisfactory:",
+  "after_text": "prescribed for the post and his performance is not satisfactory:",
+  "source_apparatus_blocks": [
+   213973,
+   213974,
+   213975
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "f818814f8a4e0cb38a842fde25362cb51b1288931948e081ccb4683c8f94aff7"
+ }
+]

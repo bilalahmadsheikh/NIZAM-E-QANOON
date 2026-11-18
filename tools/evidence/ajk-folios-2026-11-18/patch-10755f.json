@@ -1,0 +1,77 @@
+[
+ {
+  "document_id": 10755,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2799132
+  ],
+  "match_text": "(i)  In sub-section (1) of Section 2, the full-stop shall be deleted",
+  "before_text": "(i)  In sub-section (1) of Section 2, the full-stop shall be deleted",
+  "after_text": "(i)  In sub-section (1) of Section 2, the full-stop shall be deleted",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '398' alone at its head or foot (block 2799132); the document's folios run at page + 397 on 6 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10755-p1.png",
+  "render_sha256": "73b743ed86da1363e307e56b12a2972505c917c95897f8d36f71c1a7f1cee375"
+ },
+ {
+  "document_id": 10755,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2799133
+  ],
+  "match_text": "in any other law for the time being in force, a Court in ay convict",
+  "before_text": "in any other law for the time being in force, a Court in ay convict",
+  "after_text": "in any other law for the time being in force, a Court in ay convict",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '399' alone at its head or foot (block 2799133); the document's folios run at page + 397 on 6 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10755-p2.png",
+  "render_sha256": "068aebdb77290ba08156b25c5dc5962bf21d620d105cecf3ccc4c5e03a77918f"
+ },
+ {
+  "document_id": 10755,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2799138
+  ],
+  "match_text": "in any other law for the time being in force, a Court in ay convict",
+  "before_text": "in any other law for the time being in force, a Court in ay convict",
+  "after_text": "in any other law for the time being in force, a Court in ay convict",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '399' alone at its head or foot (block 2799138); the document's folios run at page + 397 on 6 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10755-p2.png",
+  "render_sha256": "068aebdb77290ba08156b25c5dc5962bf21d620d105cecf3ccc4c5e03a77918f"
+ },
+ {
+  "document_id": 10755,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2799139
+  ],
+  "match_text": "any order, or to exercise any other power may in addition to any",
+  "before_text": "any order, or to exercise any other power may in addition to any",
+  "after_text": "any order, or to exercise any other power may in addition to any",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '400' alone at its head or foot (block 2799139); the document's folios run at page + 397 on 6 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10755-p3.png",
+  "render_sha256": "1656e2e86a74262f2d48c3d42ad5fb964d76f867c5462734ea0fe7d54cbfc166"
+ },
+ {
+  "document_id": 10755,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2799142
+  ],
+  "match_text": "any order, or to exercise any other power may in addition to any",
+  "before_text": "any order, or to exercise any other power may in addition to any",
+  "after_text": "any order, or to exercise any other power may in addition to any",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '400' alone at its head or foot (block 2799142); the document's folios run at page + 397 on 6 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10755-p3.png",
+  "render_sha256": "1656e2e86a74262f2d48c3d42ad5fb964d76f867c5462734ea0fe7d54cbfc166"
+ }
+]

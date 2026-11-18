@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 11020,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2825321
+  ],
+  "match_text": "President on the 8th day of July, 1990, is hereby published for general",
+  "before_text": "President on the 8th day of July, 1990, is hereby published for general",
+  "after_text": "President on the 8th day of July, 1990, is hereby published for general",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '573' alone at its head or foot (block 2825321); the document's folios run at page + 572 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11020-p1.png",
+  "render_sha256": "d8c05a9acb23713d4d7d527d09ff3b1065284551d81bc605234f301badde0a8c"
+ },
+ {
+  "document_id": 11020,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2825334
+  ],
+  "match_text": "(4) (5) or (6), a Tribunal established to exercise jurisdiction in",
+  "before_text": "(4) (5) or (6), a Tribunal established to exercise jurisdiction in",
+  "after_text": "(4) (5) or (6), a Tribunal established to exercise jurisdiction in",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '574' alone at its head or foot (block 2825334); the document's folios run at page + 572 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11020-p2.png",
+  "render_sha256": "1dbd95ec97fd81fef1559f876d90c59f85c9ce703008b686ce157d3d96d0fc7a"
+ },
+ {
+  "document_id": 11020,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2825345
+  ],
+  "match_text": "no appeal shall lie to a tribunal against an order or decision",
+  "before_text": "no appeal shall lie to a tribunal against an order or decision",
+  "after_text": "no appeal shall lie to a tribunal against an order or decision",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '575' alone at its head or foot (block 2825345); the document's folios run at page + 572 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11020-p3.png",
+  "render_sha256": "034073c53a214ae2ddcc9e25c5d022c7f1b3a31ba7f40141aa5856f8fdaf6732"
+ }
+]

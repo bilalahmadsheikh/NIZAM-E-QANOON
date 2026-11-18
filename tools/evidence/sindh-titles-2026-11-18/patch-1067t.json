@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 1067,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1067-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head 'THE SIND FINANCE ACT, 1986' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "In the Sind Entertainment Duty Act, 1958, in section 3, for",
+  "before_text": "In the Sind Entertainment Duty Act, 1958, in section 3, for",
+  "after_text": "In the Sind Entertainment Duty Act, 1958, in section 3, for",
+  "source_apparatus_blocks": [
+   50331
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "dc260326e04d97cc821f9afab4a87f98c9fb08e54e11ee88b91354c81f1202a0"
+ }
+]

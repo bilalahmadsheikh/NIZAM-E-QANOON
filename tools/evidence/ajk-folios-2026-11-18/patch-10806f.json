@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 10806,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2802990
+  ],
+  "match_text": "(ii)  The word \"further\" occurring in the second proviso to Clause",
+  "before_text": "(ii)  The word \"further\" occurring in the second proviso to Clause",
+  "after_text": "(ii)  The word \"further\" occurring in the second proviso to Clause",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '305' alone at its head or foot (block 2802990); the document's folios run at page + 304 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10806-p1.png",
+  "render_sha256": "826b4d92a81910c49fadfa0940d25043b143b4b7801af1f871c01b9cb88eb0c8"
+ },
+ {
+  "document_id": 10806,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2802991
+  ],
+  "match_text": "Government or any authority authorised by them in this behalf",
+  "before_text": "Government or any authority authorised by them in this behalf",
+  "after_text": "Government or any authority authorised by them in this behalf",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '306' alone at its head or foot (block 2802991); the document's folios run at page + 304 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10806-p2.png",
+  "render_sha256": "9963dff168bcbaadd3099dc779c104361501d30926d7bf989b71e37a59e3b403"
+ },
+ {
+  "document_id": 10806,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2802994
+  ],
+  "match_text": "Government or any authority authorised by them in this behalf",
+  "before_text": "Government or any authority authorised by them in this behalf",
+  "after_text": "Government or any authority authorised by them in this behalf",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '306' alone at its head or foot (block 2802994); the document's folios run at page + 304 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10806-p2.png",
+  "render_sha256": "9963dff168bcbaadd3099dc779c104361501d30926d7bf989b71e37a59e3b403"
+ }
+]

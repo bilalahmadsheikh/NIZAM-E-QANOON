@@ -1,0 +1,50 @@
+[
+ {
+  "document_id": 3327,
+  "page_no": 5,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc3327-p5.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 5 prints the running head 'THE HAMDARD UNIVERSITY KARACHI ACT, 1991' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE HAMDARD UNIVERSITY KARACHI ACT, 1991",
+  "before_text": "THE HAMDARD UNIVERSITY KARACHI ACT, 1991",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "d53c45b5649ec022a6cc46377346356dddaee996faf4d30d90218169bc4c4807"
+ },
+ {
+  "document_id": 3327,
+  "page_no": 8,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc3327-p8.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 8 prints the running head 'THE HAMDARD UNIVERSITY KARACHI ACT, 1991' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE HAMDARD UNIVERSITY KARACHI ACT, 1991",
+  "before_text": "THE HAMDARD UNIVERSITY KARACHI ACT, 1991",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "9d22fd9e7c41d168a1d9bc007bd1f1e9e8ad7c9a7ccf1751c28b8663cbb7bf02"
+ },
+ {
+  "document_id": 3327,
+  "page_no": 20,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc3327-p20.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 20 prints the running head 'THE HAMDARD UNIVERSITY KARACHI ACT, 1991' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE HAMDARD UNIVERSITY KARACHI ACT, 1991",
+  "before_text": "THE HAMDARD UNIVERSITY KARACHI ACT, 1991",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "a4ddf08a0fc1e0ce1b01d1c25a887b0ab36658a612dd6e342d57770c1301331d"
+ },
+ {
+  "document_id": 3327,
+  "page_no": 28,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc3327-p28.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 28 prints the running head 'THE HAMDARD UNIVERSITY KARACHI ACT, 1991' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE HAMDARD UNIVERSITY KARACHI ACT, 1991",
+  "before_text": "THE HAMDARD UNIVERSITY KARACHI ACT, 1991",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "627b8625f3ecd492a1d1b788ab1fdc6025eb95c64c3913d5bd1debb5dcf92fb7"
+ }
+]

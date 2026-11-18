@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 10825,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2804436
+  ],
+  "match_text": "the assent of the President on 15th day of June, 2010, is hereby published",
+  "before_text": "the assent of the President on 15th day of June, 2010, is hereby published",
+  "after_text": "the assent of the President on 15th day of June, 2010, is hereby published",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '438' alone at its head or foot (block 2804436); the document's folios run at page + 437 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10825-p1.png",
+  "render_sha256": "e1923c8281c669a37c7a149f70aa48778fa7c45544f743d33fd786c749ffd846"
+ },
+ {
+  "document_id": 10825,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2804452
+  ],
+  "match_text": "the case to the  Ehtesab Court for its satisfaction over voluntary",
+  "before_text": "the case to the  Ehtesab Court for its satisfaction over voluntary",
+  "after_text": "the case to the  Ehtesab Court for its satisfaction over voluntary",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '439' alone at its head or foot (block 2804452); the document's folios run at page + 437 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10825-p2.png",
+  "render_sha256": "5d14c8caa840cd0848b91a001f7bd906f290ce5ac31728644c34361898bf5940"
+ },
+ {
+  "document_id": 10825,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2804465
+  ],
+  "match_text": "appealable in High Court within a period as may be prescribed in",
+  "before_text": "appealable in High Court within a period as may be prescribed in",
+  "after_text": "appealable in High Court within a period as may be prescribed in",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '440' alone at its head or foot (block 2804465); the document's folios run at page + 437 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10825-p3.png",
+  "render_sha256": "4ea1bb93d746ef324e7a0dcde045a8529d8bd940af2d77ec8345856a34cd28fe"
+ }
+]

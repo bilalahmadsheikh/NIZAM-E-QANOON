@@ -90,6 +90,17 @@ for d in $MULTI_DOCS; do
     fi
 done
 
+# --------------------------------------------------------------- step 2-dup
+# Step 2 re-materializes after step 1 re-linked duplicates, so a duplicate row can be left naming the RETIRED
+# canonical of its own expression; the retired-revision prune then refuses to run (18 Nov 2026: 44 links in docs
+# 1970, 3392, 4497). Advance each to the active canonical of the same observation and expression.
+say "2-dup. advance duplicate links whose canonical was re-materialized"
+if [ "$APPLY" = "1" ]; then
+    ./nz psql < tools/advance_duplicate_links.sql
+else
+    ./nz psql -tAc "SELECT count(*) || ' link(s) would advance' FROM instrument i JOIN instrument t ON t.id=i.duplicate_of WHERE i.is_active AND NOT t.is_active"
+fi
+
 # --------------------------------------------------------------- step 2a
 # Source incompleteness is durable at document level, but the duplicate_of
 # flag which keeps a truncated copy out of the release view lives on the

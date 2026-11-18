@@ -1,0 +1,18 @@
+[
+ {
+  "document_id": 2465,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2465-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head '3 / THE SINDH CIVIL COURTS (AMENDMENT) ACT, 2025. / SINDH ACT NO. VI OF 2025.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "any other law, for the time being in force, or judgment or",
+  "before_text": "any other law, for the time being in force, or judgment or",
+  "after_text": "any other law, for the time being in force, or judgment or",
+  "source_apparatus_blocks": [
+   203390,
+   203391
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "8b1918b7e0496331b0619336c24cb5acfbcc185977d63c625ffa0d9310f6f5e4"
+ }
+]

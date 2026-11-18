@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 10603,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2788999
+  ],
+  "match_text": "the assent of the President on 28th day of June, 2008, is hereby published",
+  "before_text": "the assent of the President on 28th day of June, 2008, is hereby published",
+  "after_text": "the assent of the President on 28th day of June, 2008, is hereby published",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '404' alone at its head or foot (block 2788999); the document's folios run at page + 403 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10603-p1.png",
+  "render_sha256": "5c2603988cd22db81a0c52ccd5518cf478bf5c735fa9f2207271c20591d09c1e"
+ },
+ {
+  "document_id": 10603,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2789008
+  ],
+  "match_text": "in Pakistan at any time on  or after the 28th September, 2007, and",
+  "before_text": "in Pakistan at any time on  or after the 28th September, 2007, and",
+  "after_text": "in Pakistan at any time on  or after the 28th September, 2007, and",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '405' alone at its head or foot (block 2789008); the document's folios run at page + 403 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10603-p2.png",
+  "render_sha256": "7f2797c1f9e87f6d91b4baa8a79c07bcd24e67359fd42976a8aafeef6971b93a"
+ },
+ {
+  "document_id": 10603,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2789018
+  ],
+  "match_text": "clause (b) under serial No.1 shall be omitted.",
+  "before_text": "clause (b) under serial No.1 shall be omitted.",
+  "after_text": "clause (b) under serial No.1 shall be omitted.",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '406' alone at its head or foot (block 2789018); the document's folios run at page + 403 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10603-p3.png",
+  "render_sha256": "90214ac6ddfd62f0399faf9a9ffeadde356b13ae1aca64f0aec23a0d55245f0f"
+ }
+]

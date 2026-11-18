@@ -1,0 +1,77 @@
+[
+ {
+  "document_id": 10001,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2743929
+  ],
+  "match_text": "assent of the President on the 10th June, 1993, is hereby published for",
+  "before_text": "assent of the President on the 10th June, 1993, is hereby published for",
+  "after_text": "assent of the President on the 10th June, 1993, is hereby published for",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '349' alone at its head or foot (block 2743929); the document's folios run at page + 348 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10001-p1.png",
+  "render_sha256": "073db4768e25290a38222ee6dc8971908a9cb4c96720ac72546abe24891f11d9"
+ },
+ {
+  "document_id": 10001,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2743943
+  ],
+  "match_text": "containing soap or detergent), including oils, creams, dressings,",
+  "before_text": "containing soap or detergent), including oils, creams, dressings,",
+  "after_text": "containing soap or detergent), including oils, creams, dressings,",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '350' alone at its head or foot (block 2743943); the document's folios run at page + 348 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10001-p2.png",
+  "render_sha256": "218019fa98b64614ac4a7c0b77503144e8fa2f39a08e4f22b14f8cd85469513f"
+ },
+ {
+  "document_id": 10001,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2743955
+  ],
+  "match_text": "or not containing soap or detergent) after-shave or pre-shave oils,",
+  "before_text": "or not containing soap or detergent) after-shave or pre-shave oils,",
+  "after_text": "or not containing soap or detergent) after-shave or pre-shave oils,",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '351' alone at its head or foot (block 2743955); the document's folios run at page + 348 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10001-p3.png",
+  "render_sha256": "496d0cfd5c92274fcb03448e55e71c80a8c8f602a492391b7aeae3aa738053d8"
+ },
+ {
+  "document_id": 10001,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2743963
+  ],
+  "match_text": "Act, after Section 3, the following new Section 3-A shall be",
+  "before_text": "Act, after Section 3, the following new Section 3-A shall be",
+  "after_text": "Act, after Section 3, the following new Section 3-A shall be",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 4 prints its folio '352' alone at its head or foot (block 2743963); the document's folios run at page + 348 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10001-p4.png",
+  "render_sha256": "7c26f55e38cb643e08233ce320312c393fa040b971f6832391a68b4ea12b7ae1"
+ },
+ {
+  "document_id": 10001,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2743967
+  ],
+  "match_text": "(Amendment) Ordinance, 1993 (Ordinance XXI of 1993) is",
+  "before_text": "(Amendment) Ordinance, 1993 (Ordinance XXI of 1993) is",
+  "after_text": "(Amendment) Ordinance, 1993 (Ordinance XXI of 1993) is",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 5 prints its folio '353' alone at its head or foot (block 2743967); the document's folios run at page + 348 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10001-p5.png",
+  "render_sha256": "a2a081b07c7fa678f82748fc8f6ba9d06dd91503cdf001f78278703334ef1ef4"
+ }
+]

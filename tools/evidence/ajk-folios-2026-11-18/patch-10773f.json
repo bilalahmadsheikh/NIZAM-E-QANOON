@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 10773,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2800403
+  ],
+  "match_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "before_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "after_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '38' alone at its head or foot (block 2800403); the document's folios run at page + 37 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10773-p1.png",
+  "render_sha256": "f3ac673062df732533747317c14bfb2a48c345486318527a93499393bdde96ab"
+ },
+ {
+  "document_id": 10773,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2800422
+  ],
+  "match_text": "office except in the manner to be prescribed by rules made under",
+  "before_text": "office except in the manner to be prescribed by rules made under",
+  "after_text": "office except in the manner to be prescribed by rules made under",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '39' alone at its head or foot (block 2800422); the document's folios run at page + 37 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10773-p2.png",
+  "render_sha256": "0788be3ecd9d681ba06cdfac1d412802f84581b16bfecb4766864a6cdc42a7f9"
+ },
+ {
+  "document_id": 10773,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2800433
+  ],
+  "match_text": "initial appointment otherwise than by promotion or transfer.",
+  "before_text": "initial appointment otherwise than by promotion or transfer.",
+  "after_text": "initial appointment otherwise than by promotion or transfer.",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '40' alone at its head or foot (block 2800433); the document's folios run at page + 37 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10773-p3.png",
+  "render_sha256": "bca4de4b4337697f7a95488751ff94f670edceb043fdb05dbff6f2802df8bb4f"
+ },
+ {
+  "document_id": 10773,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2800447
+  ],
+  "match_text": "initiated, jurisdiction or powers exercised under the provisions of",
+  "before_text": "initiated, jurisdiction or powers exercised under the provisions of",
+  "after_text": "initiated, jurisdiction or powers exercised under the provisions of",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 4 prints its folio '41' alone at its head or foot (block 2800447); the document's folios run at page + 37 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10773-p4.png",
+  "render_sha256": "428097cf8fcd4c7335714a7d823a438b4610ba92236d8fc87bfe4ec4bc6fea46"
+ }
+]

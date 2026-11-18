@@ -1,0 +1,36 @@
+[
+ {
+  "document_id": 1760,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1760-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head '3 / THE SINDH REGULATION OF AESTHETIC AND LASER / TREATMENT ACT, 2018 / SINDH ACT NO. XXIII OF 2018' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "Sale of aesthetic equipment, intense pulsed light (IPL) lasers,",
+  "before_text": "Sale of aesthetic equipment, intense pulsed light (IPL) lasers,",
+  "after_text": "Sale of aesthetic equipment, intense pulsed light (IPL) lasers,",
+  "source_apparatus_blocks": [
+   115643,
+   115644,
+   115645
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "625619b38582bfe726e380150328922efea9f1c7364bf91a1259489da3555c8e"
+ },
+ {
+  "document_id": 1760,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1760-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head '4 / THE SINDH REGULATION OF AESTHETIC AND LASER / TREATMENT ACT, 2018 / SINDH ACT NO. XXIII OF 2018' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "The provisions of this Act shall be enforced by the Department",
+  "before_text": "The provisions of this Act shall be enforced by the Department",
+  "after_text": "The provisions of this Act shall be enforced by the Department",
+  "source_apparatus_blocks": [
+   115650,
+   115651,
+   115652
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "3e89f9f532b746683050ed449436f4b92f54adde6013a5c287e0da2633f3082b"
+ }
+]

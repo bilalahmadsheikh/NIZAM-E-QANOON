@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 653,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc653-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head 'THE SINDH PROTECTION OF COMMUNAL PROPERTIES OF MINORITIES ACT, 2013' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "such order not inconsistent with the provisions of this Act",
+  "before_text": "such order not inconsistent with the provisions of this Act",
+  "after_text": "such order not inconsistent with the provisions of this Act",
+  "source_apparatus_blocks": [
+   27429
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "595b4873675db215337c74b0b5e38908b5a636619cac7e2de3f2367f22b203a8"
+ }
+]

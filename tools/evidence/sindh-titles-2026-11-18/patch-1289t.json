@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 1289,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1289-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head 'THE SINDH MINING CONCESSIONS (CANCELLATION) ORDINANCE,' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "section (1), Government shall make a reference to such arbitrator",
+  "before_text": "section (1), Government shall make a reference to such arbitrator",
+  "after_text": "section (1), Government shall make a reference to such arbitrator",
+  "source_apparatus_blocks": [
+   70391
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "09d257e2b5f8024d3383a98788ff8cbf97c8909046e981cc5a6667f57592ead2"
+ }
+]

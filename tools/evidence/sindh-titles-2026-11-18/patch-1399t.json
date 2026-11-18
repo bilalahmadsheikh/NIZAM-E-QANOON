@@ -1,0 +1,116 @@
+[
+ {
+  "document_id": 1399,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1399-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head 'THE SINDH COAL AUTHORITY ACT, 1993' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "the provisions of this Act, to acquire, hold and dispose of the",
+  "before_text": "the provisions of this Act, to acquire, hold and dispose of the",
+  "after_text": "the provisions of this Act, to acquire, hold and dispose of the",
+  "source_apparatus_blocks": [
+   80537
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "323f3ea85cd932e52966cd0e4d4a29ba9dc0942d9778aec919665932a98c4925"
+ },
+ {
+  "document_id": 1399,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1399-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head 'THE SINDH COAL AUTHORITY ACT, 1993' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "EXPLANATION.___ Planning includes studies, surveys, experiments",
+  "before_text": "EXPLANATION.___ Planning includes studies, surveys, experiments",
+  "after_text": "EXPLANATION.___ Planning includes studies, surveys, experiments",
+  "source_apparatus_blocks": [
+   80552
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "518de3cd027cdc534e15eba283d9e2e8c0b80b43b4b19c2a8ccd746dbc376e79"
+ },
+ {
+  "document_id": 1399,
+  "page_no": 5,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1399-p5.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 5 prints the running head 'THE SINDH COAL AUTHORITY ACT, 1993' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH COAL AUTHORITY ACT, 1993",
+  "before_text": "THE SINDH COAL AUTHORITY ACT, 1993",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "7713f378ca17cb87cb91b8ce32d19d5fc0f699df61fdcc7a7d447a0154d80e96"
+ },
+ {
+  "document_id": 1399,
+  "page_no": 6,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1399-p6.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 6 prints the running head 'THE SINDH COAL AUTHORITY ACT, 1993' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH COAL AUTHORITY ACT, 1993",
+  "before_text": "THE SINDH COAL AUTHORITY ACT, 1993",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "9cf0142cacf818bba402716e2965d55bc4b9de77c1307cfb28458f232ee7bc90"
+ },
+ {
+  "document_id": 1399,
+  "page_no": 7,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1399-p7.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 7 prints the running head 'THE SINDH COAL AUTHORITY ACT, 1993' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH COAL AUTHORITY ACT, 1993",
+  "before_text": "THE SINDH COAL AUTHORITY ACT, 1993",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "a6d7717a45e2480de20f32d844da60c673c7b335b21fd599435413472ac2a667"
+ },
+ {
+  "document_id": 1399,
+  "page_no": 8,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1399-p8.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 8 prints the running head 'THE SINDH COAL AUTHORITY ACT, 1993' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH COAL AUTHORITY ACT, 1993",
+  "before_text": "THE SINDH COAL AUTHORITY ACT, 1993",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "1c3da73dfa2ea2ecb8300fa352e7246faed8bdccfc684133b272e9ac9f534b5d"
+ },
+ {
+  "document_id": 1399,
+  "page_no": 9,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1399-p9.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 9 prints the running head 'THE SINDH COAL AUTHORITY ACT, 1993' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH COAL AUTHORITY ACT, 1993",
+  "before_text": "THE SINDH COAL AUTHORITY ACT, 1993",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "e7cf7b8c1d98b1a7f4930e93bd9428cc48769d318610516f665be5f5ca36ce82"
+ },
+ {
+  "document_id": 1399,
+  "page_no": 10,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1399-p10.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 10 prints the running head 'THE SINDH COAL AUTHORITY ACT, 1993' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH COAL AUTHORITY ACT, 1993",
+  "before_text": "THE SINDH COAL AUTHORITY ACT, 1993",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "ec6da7323b9041e3e38bb7f8b7abff228151bfb12b3c191bbb91487ff6f1b4aa"
+ },
+ {
+  "document_id": 1399,
+  "page_no": 11,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1399-p11.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 11 prints the running head 'THE SINDH COAL AUTHORITY ACT, 1993' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH COAL AUTHORITY ACT, 1993",
+  "before_text": "THE SINDH COAL AUTHORITY ACT, 1993",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "48bcd9abdce70c81ad95ac20122cf4e8aefb9a0dab3cab01136dd900330dda93"
+ }
+]

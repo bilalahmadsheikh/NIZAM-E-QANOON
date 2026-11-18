@@ -1,0 +1,38 @@
+[
+ {
+  "document_id": 1317,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1317-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head 'THE SINDH TRANSFUSION OF SAFE BLOOD ACT, 1997.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH TRANSFUSION OF SAFE BLOOD ACT, 1997.",
+  "before_text": "THE SINDH TRANSFUSION OF SAFE BLOOD ACT, 1997.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "d85ec579e0b7cdc4f928e0c5767773ddee55a15be237b25855b64a432e390b8d"
+ },
+ {
+  "document_id": 1317,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1317-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head 'THE SINDH TRANSFUSION OF SAFE BLOOD ACT, 1997.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH TRANSFUSION OF SAFE BLOOD ACT, 1997.",
+  "before_text": "THE SINDH TRANSFUSION OF SAFE BLOOD ACT, 1997.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "9711690c2290524789ee9c4f54b0068f6b790fc49b93134a35b2b3dbf670f919"
+ },
+ {
+  "document_id": 1317,
+  "page_no": 5,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1317-p5.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 5 prints the running head 'THE SINDH TRANSFUSION OF SAFE BLOOD ACT, 1997.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH TRANSFUSION OF SAFE BLOOD ACT, 1997.",
+  "before_text": "THE SINDH TRANSFUSION OF SAFE BLOOD ACT, 1997.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "4522c2f933c242dec118785e205ff7370a752f26b3cf1131c85eb472ef91d324"
+ }
+]

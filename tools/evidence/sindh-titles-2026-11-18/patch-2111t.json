@@ -1,0 +1,14 @@
+[
+ {
+  "document_id": 2111,
+  "page_no": 18,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2111-p18.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 18 prints the running head 'THE MUHAMMAD ALI JINNAH  UNIVERSITY, ORDINANCE, 1999' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE MUHAMMAD ALI JINNAH  UNIVERSITY, ORDINANCE, 1999",
+  "before_text": "THE MUHAMMAD ALI JINNAH  UNIVERSITY, ORDINANCE, 1999",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "ca2a754199f48c2ea1c141b200f9c1961ae64c4c5e037e8b1e38f4719969a88e"
+ }
+]

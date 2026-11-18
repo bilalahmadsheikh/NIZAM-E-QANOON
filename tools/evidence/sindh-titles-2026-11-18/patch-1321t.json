@@ -1,0 +1,82 @@
+[
+ {
+  "document_id": 1321,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1321-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head '3 / THE SINDH PUBLIC SERVICE COMMISSION ACT, 2022 / SINDH ACT NO. IV OF 2022' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "and/or shall hold office upto the age of sixty five years, whichever",
+  "before_text": "and/or shall hold office upto the age of sixty five years, whichever",
+  "after_text": "and/or shall hold office upto the age of sixty five years, whichever",
+  "source_apparatus_blocks": [
+   73008,
+   73009
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "c62ff6880799e01693f92830a103e766b1b1a36b0b472199fec3f5015a6e8127"
+ },
+ {
+  "document_id": 1321,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1321-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head '4 / THE SINDH PUBLIC SERVICE COMMISSION ACT, 2022 / SINDH ACT NO. IV OF 2022' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "(2) If after holding the inquiry, the Inquiry Officer submits a report",
+  "before_text": "(2) If after holding the inquiry, the Inquiry Officer submits a report",
+  "after_text": "(2) If after holding the inquiry, the Inquiry Officer submits a report",
+  "source_apparatus_blocks": [
+   73016,
+   73017
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "5b2b0dee3979defbcfc8f7cb4d81fc2c536e18a4c6e1820ac4a9f2aa31e68efd"
+ },
+ {
+  "document_id": 1321,
+  "page_no": 5,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1321-p5.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 5 prints the running head '5 / THE SINDH PUBLIC SERVICE COMMISSION ACT, 2022 / SINDH ACT NO. IV OF 2022' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "Commission, it shall give such intimation to the Commission with",
+  "before_text": "Commission, it shall give such intimation to the Commission with",
+  "after_text": "Commission, it shall give such intimation to the Commission with",
+  "source_apparatus_blocks": [
+   73022,
+   73023
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "0f18757457d9e87dfc7df4cd4bbcbde39638dd39258676e3a7265469dc3deef5"
+ },
+ {
+  "document_id": 1321,
+  "page_no": 6,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1321-p6.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 6 prints the running head '6 / THE SINDH PUBLIC SERVICE COMMISSION ACT, 2022 / SINDH ACT NO. IV OF 2022' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "functions and transacting business assigned to it by or under this",
+  "before_text": "functions and transacting business assigned to it by or under this",
+  "after_text": "functions and transacting business assigned to it by or under this",
+  "source_apparatus_blocks": [
+   73033,
+   73034
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "d8a8557241245d276eac9122d62b2d6728a3632e1d20e0b41109a869a794e0a7"
+ },
+ {
+  "document_id": 1321,
+  "page_no": 7,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1321-p7.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 7 prints the running head '7 / THE SINDH PUBLIC SERVICE COMMISSION ACT, 2022 / SINDH ACT NO. IV OF 2022' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "the law, and always in  the interest of the solidarity, integrity, well- being and prosperity",
+  "before_text": "the law, and always in  the interest of the solidarity, integrity, well- being and prosperity",
+  "after_text": "the law, and always in  the interest of the solidarity, integrity, well- being and prosperity",
+  "source_apparatus_blocks": [
+   73044,
+   73045
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "aa4e739ea0c0915ba1a064ebcaf9b3fb831004ea32bca3463daab4b79f11918a"
+ }
+]

@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 10566,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2785482
+  ],
+  "match_text": "to give effect to the Financial Proposals of Azad Government of the state",
+  "before_text": "to give effect to the Financial Proposals of Azad Government of the state",
+  "after_text": "to give effect to the Financial Proposals of Azad Government of the state",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '302' alone at its head or foot (block 2785482); the document's folios run at page + 301 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10566-p1.png",
+  "render_sha256": "bb740cc404a87cec1bd81e9938f98602bdd163d7c61262b789e9176a96fad950"
+ },
+ {
+  "document_id": 10566,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2785491
+  ],
+  "match_text": "in Pakistan at any time on or after the 16th July, 2005 and before",
+  "before_text": "in Pakistan at any time on or after the 16th July, 2005 and before",
+  "after_text": "in Pakistan at any time on or after the 16th July, 2005 and before",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '303' alone at its head or foot (block 2785491); the document's folios run at page + 301 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10566-p2.png",
+  "render_sha256": "57c5cadefcf9d84f990ec44dd7b9be18c54a010046ed79fe08bb100344fff919"
+ },
+ {
+  "document_id": 10566,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2785498
+  ],
+  "match_text": "Section 2 of Income Tax Ordinance, 2001, as enforced in",
+  "before_text": "Section 2 of Income Tax Ordinance, 2001, as enforced in",
+  "after_text": "Section 2 of Income Tax Ordinance, 2001, as enforced in",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '304' alone at its head or foot (block 2785498); the document's folios run at page + 301 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10566-p3.png",
+  "render_sha256": "928ff6813194f716caceddad53434e06be6f5988662368fe6ceab44280b09e1e"
+ }
+]

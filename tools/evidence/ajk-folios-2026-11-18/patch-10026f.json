@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 10026,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2745768
+  ],
+  "match_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "before_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "after_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '583' alone at its head or foot (block 2745768); the document's folios run at page + 582 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10026-p1.png",
+  "render_sha256": "e56d8026b8e25682a7b0def27f9c8d53f869ba3df45f26514699e5734888dab7"
+ },
+ {
+  "document_id": 10026,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2745778
+  ],
+  "match_text": "Ordinance, in Section 45, in sub-section (3) for  the words “fifteen",
+  "before_text": "Ordinance, in Section 45, in sub-section (3) for  the words “fifteen",
+  "after_text": "Ordinance, in Section 45, in sub-section (3) for  the words “fifteen",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '584' alone at its head or foot (block 2745778); the document's folios run at page + 582 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10026-p2.png",
+  "render_sha256": "8d832bf8cc7c6479626d120cb91d99a35ef527cd4dd67bbeaf1f7bd04af5a1de"
+ },
+ {
+  "document_id": 10026,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2745788
+  ],
+  "match_text": "Ordinance, in Section 90, after sub-section (2), the following",
+  "before_text": "Ordinance, in Section 90, after sub-section (2), the following",
+  "after_text": "Ordinance, in Section 90, after sub-section (2), the following",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '585' alone at its head or foot (block 2745788); the document's folios run at page + 582 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10026-p3.png",
+  "render_sha256": "458de34b1f4f91e07eccd79ad5ba738779e62da60be8d2ec3c443c2bd3213f78"
+ }
+]

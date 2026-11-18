@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 11239,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2841624
+  ],
+  "match_text": "Preamble:- Whereas it is expedient to provide for the restitution",
+  "before_text": "Preamble:- Whereas it is expedient to provide for the restitution",
+  "after_text": "Preamble:- Whereas it is expedient to provide for the restitution",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '54' alone at its head or foot (block 2841624); the document's folios run at page + 53 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11239-p1.png",
+  "render_sha256": "ccbad2e4ea109d091acd5e734c7c411552bd8041784ded3777261b5febacd7fb"
+ },
+ {
+  "document_id": 11239,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2841639
+  ],
+  "match_text": "(1) If the Collector finds that the mortgage is one to which",
+  "before_text": "(1) If the Collector finds that the mortgage is one to which",
+  "after_text": "(1) If the Collector finds that the mortgage is one to which",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '55' alone at its head or foot (block 2841639); the document's folios run at page + 53 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11239-p2.png",
+  "render_sha256": "2b06f7f856bb226d41ae4da79c04e78a1e5e64eb5dacf5bae7c1600cd751e18a"
+ },
+ {
+  "document_id": 11239,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2841652
+  ],
+  "match_text": "If the Collector finds that any sum is due to the mortgagee",
+  "before_text": "If the Collector finds that any sum is due to the mortgagee",
+  "after_text": "If the Collector finds that any sum is due to the mortgagee",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '56' alone at its head or foot (block 2841652); the document's folios run at page + 53 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11239-p3.png",
+  "render_sha256": "cb46f77851be366620214fe45ad00598a5bcc96c91f9304ebe208d6dcbc3656d"
+ },
+ {
+  "document_id": 11239,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2841673
+  ],
+  "match_text": "(iii) The provisions of section 5 of the Indian Limitation Act",
+  "before_text": "(iii) The provisions of section 5 of the Indian Limitation Act",
+  "after_text": "(iii) The provisions of section 5 of the Indian Limitation Act",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 4 prints its folio '57' alone at its head or foot (block 2841673); the document's folios run at page + 53 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11239-p4.png",
+  "render_sha256": "0b90093e84455ffa3ca9d25b9182da656900d844022dfb8e8398d4ec8a1b8c7c"
+ }
+]

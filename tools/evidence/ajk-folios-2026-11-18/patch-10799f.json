@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 10799,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2802632
+  ],
+  "match_text": "the Azad Government of the State of Jammu and Kashmir is pleased to",
+  "before_text": "the Azad Government of the State of Jammu and Kashmir is pleased to",
+  "after_text": "the Azad Government of the State of Jammu and Kashmir is pleased to",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '735' alone at its head or foot (block 2802632); the document's folios run at page + 734 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10799-p1.png",
+  "render_sha256": "af43d261e3e6d208b802a4420005f9160df1a5fb4c9bc65592637a013e09d342"
+ },
+ {
+  "document_id": 10799,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2802633
+  ],
+  "match_text": "Dated the ............................. 19 ......................... Member.",
+  "before_text": "Dated the ............................. 19 ......................... Member.",
+  "after_text": "Dated the ............................. 19 ......................... Member.",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '736' alone at its head or foot (block 2802633); the document's folios run at page + 734 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10799-p2.png",
+  "render_sha256": "38cbe63165824fc67744573627ad5d4619b54b4014eefb08d3d7777216a3945e"
+ }
+]

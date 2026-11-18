@@ -1,0 +1,34 @@
+[
+ {
+  "document_id": 1101,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1101-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head '3 / THE SINDH COAL AUTHORITY (AMENDMENT) ACT, 2017 / SINDH ACT NO. XIII OF 2017' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "In the said Act, in section 10, in sub-sections (1) and (3), for the",
+  "before_text": "In the said Act, in section 10, in sub-sections (1) and (3), for the",
+  "after_text": "In the said Act, in section 10, in sub-sections (1) and (3), for the",
+  "source_apparatus_blocks": [
+   52708,
+   52709
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "06de9485d46113e756fb825e7811e8690fb6dd0e91c0a249e2808ffe809fc5b9"
+ },
+ {
+  "document_id": 1101,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1101-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head '4 / THE SINDH COAL AUTHORITY (AMENDMENT) ACT, 2017 / SINDH ACT NO. XIII OF 2017' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "Act and shall continue to remain in force until altered, repealed or",
+  "before_text": "Act and shall continue to remain in force until altered, repealed or",
+  "after_text": "Act and shall continue to remain in force until altered, repealed or",
+  "source_apparatus_blocks": [
+   52719,
+   52720
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "89310c991139ef95e926309ba8c399cee8121a9ce579c53560c01e85b328bac6"
+ }
+]

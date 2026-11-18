@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 10849,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2807155
+  ],
+  "match_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "before_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "after_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '682' alone at its head or foot (block 2807155); the document's folios run at page + 681 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10849-p1.png",
+  "render_sha256": "d3f94f85323d894293cb79f5d425cf22a0d5d6276ec9c40b1739bf99912baed3"
+ },
+ {
+  "document_id": 10849,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2807162
+  ],
+  "match_text": "In the said Ordinance, in Section 5, in the first proviso between",
+  "before_text": "In the said Ordinance, in Section 5, in the first proviso between",
+  "after_text": "In the said Ordinance, in Section 5, in the first proviso between",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '683' alone at its head or foot (block 2807162); the document's folios run at page + 681 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10849-p2.png",
+  "render_sha256": "cac455bf1116c06d37c7c94f4ad907f1d82860c1e8b6c9e0b9e2c29a785de25b"
+ },
+ {
+  "document_id": 10849,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2807182
+  ],
+  "match_text": "Compensation payable in certain cases Amount of Compensation for",
+  "before_text": "Compensation payable in certain cases Amount of Compensation for",
+  "after_text": "Compensation payable in certain cases Amount of Compensation for",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '684' alone at its head or foot (block 2807182); the document's folios run at page + 681 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10849-p3.png",
+  "render_sha256": "e8fabe1aff8dcf7de814cf4378c63517bddc8605ff69d3b62ef00762bdd35718"
+ },
+ {
+  "document_id": 10849,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2807191
+  ],
+  "match_text": "Grievous Hurt/injury means and includes such Grievous Hurt/injury as defined in Section 320 A.J.K. Penal Code.",
+  "before_text": "Grievous Hurt/injury means and includes such Grievous Hurt/injury as defined in Section 320 A.J.K. Penal Code.",
+  "after_text": "Grievous Hurt/injury means and includes such Grievous Hurt/injury as defined in Section 320 A.J.K. Penal Code.",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 4 prints its folio '685' alone at its head or foot (block 2807191); the document's folios run at page + 681 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10849-p4.png",
+  "render_sha256": "15e651a9c3c2387e0536c6709fdfd576c77745dd7e8f3235682051d89805c84d"
+ }
+]

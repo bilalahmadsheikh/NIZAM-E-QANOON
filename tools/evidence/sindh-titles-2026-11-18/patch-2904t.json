@@ -1,0 +1,74 @@
+[
+ {
+  "document_id": 2904,
+  "page_no": 10,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2904-p10.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 10 prints the running head 'THE N.E.D. UNIVERSITY OF ENGINEERING AND TECHNOLOGY ACT, 1977' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE N.E.D. UNIVERSITY OF ENGINEERING AND TECHNOLOGY ACT, 1977",
+  "before_text": "THE N.E.D. UNIVERSITY OF ENGINEERING AND TECHNOLOGY ACT, 1977",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "621482938ec9de20327996ff0d8668e50db372358307d0c9f6adfc4ee303ce83"
+ },
+ {
+  "document_id": 2904,
+  "page_no": 11,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2904-p11.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 11 prints the running head 'THE N.E.D. UNIVERSITY OF ENGINEERING AND TECHNOLOGY ACT, 1977' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE N.E.D. UNIVERSITY OF ENGINEERING AND TECHNOLOGY ACT, 1977",
+  "before_text": "THE N.E.D. UNIVERSITY OF ENGINEERING AND TECHNOLOGY ACT, 1977",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "870d3ec2d2d6fb76241f915a15beff0f9f8bc619208b8bfa3e74e37609227f81"
+ },
+ {
+  "document_id": 2904,
+  "page_no": 19,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2904-p19.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 19 prints the running head 'THE N.E.D. UNIVERSITY OF ENGINEERING AND TECHNOLOGY ACT, 1977' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE N.E.D. UNIVERSITY OF ENGINEERING AND TECHNOLOGY ACT, 1977",
+  "before_text": "THE N.E.D. UNIVERSITY OF ENGINEERING AND TECHNOLOGY ACT, 1977",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "d2e3630670d87c4a94dd88bf8a91ccf436bba4a7e97243d4737ad4f8242b2bb2"
+ },
+ {
+  "document_id": 2904,
+  "page_no": 22,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2904-p22.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 22 prints the running head 'THE N.E.D. UNIVERSITY OF ENGINEERING AND TECHNOLOGY ACT, 1977' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE N.E.D. UNIVERSITY OF ENGINEERING AND TECHNOLOGY ACT, 1977",
+  "before_text": "THE N.E.D. UNIVERSITY OF ENGINEERING AND TECHNOLOGY ACT, 1977",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "92209d215dc9acb38f5fc600406e373cc1064a687b2c49209537336d95516266"
+ },
+ {
+  "document_id": 2904,
+  "page_no": 27,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2904-p27.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 27 prints the running head 'THE N.E.D. UNIVERSITY OF ENGINEERING AND TECHNOLOGY ACT, 1977' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE N.E.D. UNIVERSITY OF ENGINEERING AND TECHNOLOGY ACT, 1977",
+  "before_text": "THE N.E.D. UNIVERSITY OF ENGINEERING AND TECHNOLOGY ACT, 1977",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "33d2384db89379f254865ea04f01b81743f7247f9bc2204746d216fac6f16098"
+ },
+ {
+  "document_id": 2904,
+  "page_no": 29,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2904-p29.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 29 prints the running head 'THE N.E.D. UNIVERSITY OF ENGINEERING AND TECHNOLOGY ACT, 1977' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE N.E.D. UNIVERSITY OF ENGINEERING AND TECHNOLOGY ACT, 1977",
+  "before_text": "THE N.E.D. UNIVERSITY OF ENGINEERING AND TECHNOLOGY ACT, 1977",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "f4da226676eb389b4d0f5dc4fca1458405efc402ca8d8de3c2180f6a3bc325ef"
+ }
+]

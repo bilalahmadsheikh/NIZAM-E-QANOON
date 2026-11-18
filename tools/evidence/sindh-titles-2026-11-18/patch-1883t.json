@@ -1,0 +1,66 @@
+[
+ {
+  "document_id": 1883,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1883-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head '3 / THE SINDH FISCAL RESPONSIBILITY AND DEBT MANAGEMENT / SINDH ACT NO. XXXIII OF 2023' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "(2) All revenues, expenditures, loans and grants in this Act shall",
+  "before_text": "(2) All revenues, expenditures, loans and grants in this Act shall",
+  "after_text": "(2) All revenues, expenditures, loans and grants in this Act shall",
+  "source_apparatus_blocks": [
+   131108,
+   131110
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "e690e663aedf158af74c8aa1bc32262a4fd0c95db305fae0c6622c3bd1ca8ae9"
+ },
+ {
+  "document_id": 1883,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1883-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head '4 / THE SINDH FISCAL RESPONSIBILITY AND DEBT MANAGEMENT / SINDH ACT NO. XXXIII OF 2023' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "exceeding three financial years, not including the financial year",
+  "before_text": "exceeding three financial years, not including the financial year",
+  "after_text": "exceeding three financial years, not including the financial year",
+  "source_apparatus_blocks": [
+   131113,
+   131115
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "a19c270efa3c0203815458a5a9bc95dbcc6be7e3f7d75b88eaa96eb2c2aaa629"
+ },
+ {
+  "document_id": 1883,
+  "page_no": 5,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1883-p5.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 5 prints the running head '5 / THE SINDH FISCAL RESPONSIBILITY AND DEBT MANAGEMENT / SINDH ACT NO. XXXIII OF 2023' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "No suit, prosecution or other legal proceedings shall lie against",
+  "before_text": "No suit, prosecution or other legal proceedings shall lie against",
+  "after_text": "No suit, prosecution or other legal proceedings shall lie against",
+  "source_apparatus_blocks": [
+   131131,
+   131133
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "74d662b4457611036ff1ded0b5bbf4a2a51742bc0f926bf3e7f09a62f0f3751b"
+ },
+ {
+  "document_id": 1883,
+  "page_no": 6,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1883-p6.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 6 prints the running head '6 / THE SINDH FISCAL RESPONSIBILITY AND DEBT MANAGEMENT / SINDH ACT NO. XXXIII OF 2023' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "(1) If any difficulty arises in giving effect to the provisions of",
+  "before_text": "(1) If any difficulty arises in giving effect to the provisions of",
+  "after_text": "(1) If any difficulty arises in giving effect to the provisions of",
+  "source_apparatus_blocks": [
+   131146,
+   131148
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "21b6be68c17b72be18d01dc75299a7f3a0084adee46b5fdc348e23bbcbff5491"
+ }
+]

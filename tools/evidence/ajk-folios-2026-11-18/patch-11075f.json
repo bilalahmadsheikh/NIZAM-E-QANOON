@@ -1,0 +1,92 @@
+[
+ {
+  "document_id": 11075,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2830412
+  ],
+  "match_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "before_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "after_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '382' alone at its head or foot (block 2830412); the document's folios run at page + 381 on 7 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11075-p1.png",
+  "render_sha256": "16ae3e6bd2275f442417560c04a4777b3937548b751ef17250c58a724ae9984d"
+ },
+ {
+  "document_id": 11075,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2830426
+  ],
+  "match_text": "or Judge shall not hold office latter than three years from the date",
+  "before_text": "or Judge shall not hold office latter than three years from the date",
+  "after_text": "or Judge shall not hold office latter than three years from the date",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '383' alone at its head or foot (block 2830426); the document's folios run at page + 381 on 7 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11075-p2.png",
+  "render_sha256": "077dfb1ffd71c4bfc8f068b149fb4a8e3c11a5b93e5deee1b0d1cf11eb3be0b8"
+ },
+ {
+  "document_id": 11075,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2830436
+  ],
+  "match_text": "or is unable to perform the functions of his office, the President",
+  "before_text": "or is unable to perform the functions of his office, the President",
+  "after_text": "or is unable to perform the functions of his office, the President",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '384' alone at its head or foot (block 2830436); the document's folios run at page + 381 on 7 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11075-p3.png",
+  "render_sha256": "15ae7dbbc6b678bf4ab08905e873dfcb847212df172f2a77e51a836b9c08fda9"
+ },
+ {
+  "document_id": 11075,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2830451
+  ],
+  "match_text": "other jurisdiction as may be conferred on it by or under any Law.",
+  "before_text": "other jurisdiction as may be conferred on it by or under any Law.",
+  "after_text": "other jurisdiction as may be conferred on it by or under any Law.",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 4 prints its folio '385' alone at its head or foot (block 2830451); the document's folios run at page + 381 on 7 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11075-p4.png",
+  "render_sha256": "a4df5cbb8cff1a961434f193e1fb26e0a5b711c90c5cf079ee416eca4d3c00ea"
+ },
+ {
+  "document_id": 11075,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2830464
+  ],
+  "match_text": "sections (4) to (8) of Section 7 shall apply to and in relation to",
+  "before_text": "sections (4) to (8) of Section 7 shall apply to and in relation to",
+  "after_text": "sections (4) to (8) of Section 7 shall apply to and in relation to",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 5 prints its folio '386' alone at its head or foot (block 2830464); the document's folios run at page + 381 on 7 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11075-p5.png",
+  "render_sha256": "66355d156be021a6dd6a77fa3be5a9773860e1643cac42fbf9b8555dbe730cf6"
+ },
+ {
+  "document_id": 11075,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   2830475
+  ],
+  "match_text": "the point in issue therein shall be decided, in accordance with the",
+  "before_text": "the point in issue therein shall be decided, in accordance with the",
+  "after_text": "the point in issue therein shall be decided, in accordance with the",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 6 prints its folio '387' alone at its head or foot (block 2830475); the document's folios run at page + 381 on 7 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11075-p6.png",
+  "render_sha256": "8fd16688260d757c491c71dbd7378ddb7ed4487c539b857cbae387b4dc143f66"
+ }
+]

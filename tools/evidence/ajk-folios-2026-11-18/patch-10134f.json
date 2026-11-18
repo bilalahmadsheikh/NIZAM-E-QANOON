@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 10134,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2753676
+  ],
+  "match_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "before_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "after_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '605' alone at its head or foot (block 2753676); the document's folios run at page + 604 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10134-p1.png",
+  "render_sha256": "2d6ddcf385c903741c24562889cfc06eeaa328adad8dacce569900dafe57a3dc"
+ },
+ {
+  "document_id": 10134,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2753683
+  ],
+  "match_text": "Relief fund” (hereinafter referred to the Relief fund) in order to",
+  "before_text": "Relief fund” (hereinafter referred to the Relief fund) in order to",
+  "after_text": "Relief fund” (hereinafter referred to the Relief fund) in order to",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '606' alone at its head or foot (block 2753683); the document's folios run at page + 604 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10134-p2.png",
+  "render_sha256": "aac71de5c50d492a325bb96ec4597ca67a833f56e9e2e213cc6fdec021bfbd97"
+ },
+ {
+  "document_id": 10134,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2753691
+  ],
+  "match_text": "notification in the Official Gazette make rules for carrying out",
+  "before_text": "notification in the Official Gazette make rules for carrying out",
+  "after_text": "notification in the Official Gazette make rules for carrying out",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '607' alone at its head or foot (block 2753691); the document's folios run at page + 604 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10134-p3.png",
+  "render_sha256": "1e828e271e2b33871e6d4596bbbcc6ef5001e67319229dabac59711cea66c361"
+ }
+]

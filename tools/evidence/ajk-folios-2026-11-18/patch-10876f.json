@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 10876,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2809469
+  ],
+  "match_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "before_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "after_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '222' alone at its head or foot (block 2809469); the document's folios run at page + 221 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10876-p1.png",
+  "render_sha256": "d8bc9fc201618c7830f0740c5d596d390d13e72a96b3061d731ed5392410b010"
+ },
+ {
+  "document_id": 10876,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2809481
+  ],
+  "match_text": "allottees in respect of such Evacuee Property, the old tenant shall",
+  "before_text": "allottees in respect of such Evacuee Property, the old tenant shall",
+  "after_text": "allottees in respect of such Evacuee Property, the old tenant shall",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '223' alone at its head or foot (block 2809481); the document's folios run at page + 221 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10876-p2.png",
+  "render_sha256": "2185abe6651e75a2af441384e977671ffa5e443413f274639a6478e1c15599bf"
+ },
+ {
+  "document_id": 10876,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2809489
+  ],
+  "match_text": "A and orders pass under section 18-B shall be final and shall not",
+  "before_text": "A and orders pass under section 18-B shall be final and shall not",
+  "after_text": "A and orders pass under section 18-B shall be final and shall not",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '224' alone at its head or foot (block 2809489); the document's folios run at page + 221 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10876-p3.png",
+  "render_sha256": "26edd2ce1fd8bf86473b1f11e32abba3be725ef155a728dcb2e1609f7852f45e"
+ }
+]

@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 10996,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2823357
+  ],
+  "match_text": "28th day of October, 1982, is hereby published for general information:-",
+  "before_text": "28th day of October, 1982, is hereby published for general information:-",
+  "after_text": "28th day of October, 1982, is hereby published for general information:-",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '454' alone at its head or foot (block 2823357); the document's folios run at page + 453 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10996-p1.png",
+  "render_sha256": "e653be1a95ee5c9be6830529dba0dc470d0a14098e75bed5f1eec608b26f6b0e"
+ },
+ {
+  "document_id": 10996,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2823371
+  ],
+  "match_text": "the appeal or proceed to hear it in such a manner as it thinks fit.",
+  "before_text": "the appeal or proceed to hear it in such a manner as it thinks fit.",
+  "after_text": "the appeal or proceed to hear it in such a manner as it thinks fit.",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '455' alone at its head or foot (block 2823371); the document's folios run at page + 453 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10996-p2.png",
+  "render_sha256": "2bbaba4fad9354acb8ee54e65c2131c62a62056ed90842f742050922d91ea78f"
+ },
+ {
+  "document_id": 10996,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2823384
+  ],
+  "match_text": "or any  order made there under shall be recoverable as arrears of",
+  "before_text": "or any  order made there under shall be recoverable as arrears of",
+  "after_text": "or any  order made there under shall be recoverable as arrears of",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '456' alone at its head or foot (block 2823384); the document's folios run at page + 453 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10996-p3.png",
+  "render_sha256": "f15b51c089e6f380d82ed9e0dae0b3747d89a80a9998584ecfea51bc7644827c"
+ },
+ {
+  "document_id": 10996,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2823395
+  ],
+  "match_text": "provision is necessary or expedient for carrying out the purposes",
+  "before_text": "provision is necessary or expedient for carrying out the purposes",
+  "after_text": "provision is necessary or expedient for carrying out the purposes",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 4 prints its folio '457' alone at its head or foot (block 2823395); the document's folios run at page + 453 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10996-p4.png",
+  "render_sha256": "d0defcc54a21ed8546fb4d7d8a7b7f659c60d18cb673d53576903036df83cb7f"
+ }
+]

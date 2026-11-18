@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 596,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc596-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head 'THE SIND TAX EVASION (PUNISHMENT) ACT, 1974' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "furnishing of false information shall, for the purpose of this",
+  "before_text": "furnishing of false information shall, for the purpose of this",
+  "after_text": "furnishing of false information shall, for the purpose of this",
+  "source_apparatus_blocks": [
+   24284
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "30ab3f7b1f2015d2a9ac076583c3a5f1600b6fe69564bc123692605e92b8edbb"
+ },
+ {
+  "document_id": 596,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc596-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head 'THE SIND TAX EVASION (PUNISHMENT) ACT, 1974' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "1[8.   The Sind Cotton Control Ordinance. 1966 in so far as it relates to fees",
+  "before_text": "1[8.   The Sind Cotton Control Ordinance. 1966 in so far as it relates to fees",
+  "after_text": "1[8.   The Sind Cotton Control Ordinance. 1966 in so far as it relates to fees",
+  "source_apparatus_blocks": [
+   24298
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "cdb96ec16b01f04f8e7939aefb49817964870b89ad9fb1fc13d1381af0507a8d"
+ }
+]

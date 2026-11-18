@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 11072,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2830312
+  ],
+  "match_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "before_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "after_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '601' alone at its head or foot (block 2830312); the document's folios run at page + 600 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11072-p1.png",
+  "render_sha256": "fca4dae86e6b6ed0e357dc92748e2eaf74768fc38b0a718bd26edf86f8db4828"
+ },
+ {
+  "document_id": 11072,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2830321
+  ],
+  "match_text": "inforce, a contesting candidate at the general elections held under",
+  "before_text": "inforce, a contesting candidate at the general elections held under",
+  "after_text": "inforce, a contesting candidate at the general elections held under",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '602' alone at its head or foot (block 2830321); the document's folios run at page + 600 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11072-p2.png",
+  "render_sha256": "f7b7626faa0dfbc1580a47c61ec4aebf4c0a27c0058bb18cf645276042aa1005"
+ },
+ {
+  "document_id": 11072,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2830331
+  ],
+  "match_text": "Ordinance, in Section 90, after sub-section (2), the following",
+  "before_text": "Ordinance, in Section 90, after sub-section (2), the following",
+  "after_text": "Ordinance, in Section 90, after sub-section (2), the following",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '603' alone at its head or foot (block 2830331); the document's folios run at page + 600 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11072-p3.png",
+  "render_sha256": "3564c287824975b3818395b2cadf4be6dc05c59856a3cccb4c8eee4b2dee6441"
+ }
+]

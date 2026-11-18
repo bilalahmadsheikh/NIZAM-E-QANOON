@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 1119,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1119-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head 'THE SIND REGISTRATION OF GODOWNS ACT, 1995.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "godown registered under this Act and seize any essential article in",
+  "before_text": "godown registered under this Act and seize any essential article in",
+  "after_text": "godown registered under this Act and seize any essential article in",
+  "source_apparatus_blocks": [
+   54357
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "339fd4036982153bca6aefabebdc3bf42aa6153f80724f9adc837f29b6095a7c"
+ }
+]

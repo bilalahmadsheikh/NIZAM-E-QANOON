@@ -1,0 +1,77 @@
+[
+ {
+  "document_id": 10911,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2811203
+  ],
+  "match_text": "1st  day of October, 1981, is hereby published for general information:-",
+  "before_text": "1st  day of October, 1981, is hereby published for general information:-",
+  "after_text": "1st  day of October, 1981, is hereby published for general information:-",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '227' alone at its head or foot (block 2811203); the document's folios run at page + 226 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10911-p1.png",
+  "render_sha256": "3eeac036dba1671d79ab2937b151d18142c14be87ac0364c36ba1ef76f024f27"
+ },
+ {
+  "document_id": 10911,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2811215
+  ],
+  "match_text": "Substitution of Section 39, Ordinance IV of 1974.- In the said",
+  "before_text": "Substitution of Section 39, Ordinance IV of 1974.- In the said",
+  "after_text": "Substitution of Section 39, Ordinance IV of 1974.- In the said",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '228' alone at its head or foot (block 2811215); the document's folios run at page + 226 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10911-p2.png",
+  "render_sha256": "c171313052e465241af9438e3a574535c4a233063de877299bda332c7e384a3d"
+ },
+ {
+  "document_id": 10911,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2811226
+  ],
+  "match_text": "Substitution of Section 48, Ordinance IV of 1974.- In the said",
+  "before_text": "Substitution of Section 48, Ordinance IV of 1974.- In the said",
+  "after_text": "Substitution of Section 48, Ordinance IV of 1974.- In the said",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '229' alone at its head or foot (block 2811226); the document's folios run at page + 226 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10911-p3.png",
+  "render_sha256": "0482eb0413cbe63c3e5ed2ba728f3a4a8514e62531645d5336af332f4b6e1663"
+ },
+ {
+  "document_id": 10911,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2811234
+  ],
+  "match_text": "relating to the allotment or disposal of property etc. then",
+  "before_text": "relating to the allotment or disposal of property etc. then",
+  "after_text": "relating to the allotment or disposal of property etc. then",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 4 prints its folio '230' alone at its head or foot (block 2811234); the document's folios run at page + 226 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10911-p4.png",
+  "render_sha256": "653257ea2834a09f10c5a2bfab15e049d281c6b68c955ff5d81a563291a1980e"
+ },
+ {
+  "document_id": 10911,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2811243
+  ],
+  "match_text": "initiated, jurisdiction or powers exercised under the provisions of",
+  "before_text": "initiated, jurisdiction or powers exercised under the provisions of",
+  "after_text": "initiated, jurisdiction or powers exercised under the provisions of",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 5 prints its folio '231' alone at its head or foot (block 2811243); the document's folios run at page + 226 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10911-p5.png",
+  "render_sha256": "502030117a8bda475d47abe51316d69cd2f08b5453c4a2164dc3afbc6a90019b"
+ }
+]

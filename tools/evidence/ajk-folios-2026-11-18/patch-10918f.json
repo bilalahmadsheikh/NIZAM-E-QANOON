@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 10918,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2812032
+  ],
+  "match_text": "assent of the President on the 18th of July, 1977, and is hereby",
+  "before_text": "assent of the President on the 18th of July, 1977, and is hereby",
+  "after_text": "assent of the President on the 18th of July, 1977, and is hereby",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '1211' alone at its head or foot (block 2812032); the document's folios run at page + 1210 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10918-p1.png",
+  "render_sha256": "6be6eba6c7556284cbcbd9b29db784ef0849174c76a1c9cd445f2aa8d15f3e38"
+ },
+ {
+  "document_id": 10918,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2812047
+  ],
+  "match_text": "Section 3 shall be liable to pay the penalty, not exceeding",
+  "before_text": "Section 3 shall be liable to pay the penalty, not exceeding",
+  "after_text": "Section 3 shall be liable to pay the penalty, not exceeding",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '1212' alone at its head or foot (block 2812047); the document's folios run at page + 1210 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10918-p2.png",
+  "render_sha256": "b8d50f886776c41dd87881e25bdcc9899dbf6390799f135d0bc88142ddc742c1"
+ },
+ {
+  "document_id": 10918,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2812057
+  ],
+  "match_text": "Saving.- Government may, by notification in the official",
+  "before_text": "Saving.- Government may, by notification in the official",
+  "after_text": "Saving.- Government may, by notification in the official",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '1213' alone at its head or foot (block 2812057); the document's folios run at page + 1210 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10918-p3.png",
+  "render_sha256": "8272f8187f73a4cc413912b156ce9fe75bbc164b4e6b595242b96eb40cddd470"
+ }
+]

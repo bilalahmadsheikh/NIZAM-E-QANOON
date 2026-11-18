@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 10612,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2790051
+  ],
+  "match_text": "received the assent of the President on the 6th day of March, 1986, is",
+  "before_text": "received the assent of the President on the 6th day of March, 1986, is",
+  "after_text": "received the assent of the President on the 6th day of March, 1986, is",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '282' alone at its head or foot (block 2790051); the document's folios run at page + 281 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10612-p1.png",
+  "render_sha256": "bb31f3a0886cfde51801f07e7d52625cc13cf4dea5f96f6c0e356fb9d67e754b"
+ },
+ {
+  "document_id": 10612,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2790065
+  ],
+  "match_text": "land, resumed land, private land for the purpose of setting up of a",
+  "before_text": "land, resumed land, private land for the purpose of setting up of a",
+  "after_text": "land, resumed land, private land for the purpose of setting up of a",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '283' alone at its head or foot (block 2790065); the document's folios run at page + 281 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10612-p2.png",
+  "render_sha256": "e98687b33245d203533d427a017b5e08c4261ea49f2b2b46c6ff86e4901cd7d2"
+ },
+ {
+  "document_id": 10612,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2790074
+  ],
+  "match_text": "court, including High court, every thing done, all actions taken,",
+  "before_text": "court, including High court, every thing done, all actions taken,",
+  "after_text": "court, including High court, every thing done, all actions taken,",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '284' alone at its head or foot (block 2790074); the document's folios run at page + 281 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10612-p3.png",
+  "render_sha256": "a9b52e250fa38d94d665145ffc4bbdd6367bc316da4b5975c567a15d9f070503"
+ }
+]

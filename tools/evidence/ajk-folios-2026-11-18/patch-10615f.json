@@ -1,0 +1,77 @@
+[
+ {
+  "document_id": 10615,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2790131
+  ],
+  "match_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "before_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "after_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '398' alone at its head or foot (block 2790131); the document's folios run at page + 397 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10615-p1.png",
+  "render_sha256": "8f86cf23e6407b472ab8068b286dbcb1b819b5246ba768b198763f47999d082b"
+ },
+ {
+  "document_id": 10615,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2790145
+  ],
+  "match_text": "the control of the authority and shall be held and applied by it for",
+  "before_text": "the control of the authority and shall be held and applied by it for",
+  "after_text": "the control of the authority and shall be held and applied by it for",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '399' alone at its head or foot (block 2790145); the document's folios run at page + 397 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10615-p2.png",
+  "render_sha256": "ab420ba98a5b3b8199cb53fe8e407b8219349328da9d8cace28e6dd3bf700606"
+ },
+ {
+  "document_id": 10615,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2790156
+  ],
+  "match_text": "Substitution of Section 48, Ordinance IV of 1974.- In the said",
+  "before_text": "Substitution of Section 48, Ordinance IV of 1974.- In the said",
+  "after_text": "Substitution of Section 48, Ordinance IV of 1974.- In the said",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '400' alone at its head or foot (block 2790156); the document's folios run at page + 397 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10615-p3.png",
+  "render_sha256": "cfc38eee0b83e0e3e00f79b68bba1457ea146ae0ab679862e581aee04afa6e79"
+ },
+ {
+  "document_id": 10615,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2790164
+  ],
+  "match_text": "sub-section (1) above, the Authority shall exercise all the",
+  "before_text": "sub-section (1) above, the Authority shall exercise all the",
+  "after_text": "sub-section (1) above, the Authority shall exercise all the",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 4 prints its folio '401' alone at its head or foot (block 2790164); the document's folios run at page + 397 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10615-p4.png",
+  "render_sha256": "6a072423b063429a48dafc3c073d23f119909e55501f92ab8979104de3f402bf"
+ },
+ {
+  "document_id": 10615,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2790176
+  ],
+  "match_text": "initiated, jurisdiction or powers exercised under the provisions of",
+  "before_text": "initiated, jurisdiction or powers exercised under the provisions of",
+  "after_text": "initiated, jurisdiction or powers exercised under the provisions of",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 5 prints its folio '402' alone at its head or foot (block 2790176); the document's folios run at page + 397 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10615-p5.png",
+  "render_sha256": "f2bfaa8dc3f930f6efe126e3a88778437ce76a38503f8557ac5216c0dc6c065b"
+ }
+]

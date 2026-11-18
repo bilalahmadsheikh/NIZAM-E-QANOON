@@ -1136,6 +1136,77 @@ Area: client · Status: Superseded by D-084 (the whole-page cloth; the hem, the 
   design/heritage_art.dart, presentation/discover.dart, presentation/heritage.dart; test/heritage_test.dart
   (golden embroidery.png, a review sheet at 3x).
 
+### D-086 · 2026-11-18 · Duplicate links advance after re-materialization; 18 Nov prune and transfer
+Area: L2 storage/process · Status: standing
+- Decision:
+  1. **A new post-replay step 2-dup** (tools/advance_duplicate_links.sql). Step 2 re-materializes the
+     multi-expression documents after step 1 has re-linked exact duplicates. That left 44 active duplicate rows
+     (docs 1970, 3392, 4497) naming the retired canonical of their own expression, and the retired-revision prune
+     refused to run ("retained instrument references a prune target", caught by its isolated proof on a restored
+     copy, before anything live was touched).
+     - Each such link now advances to the active canonical of the same observation and expression ordinal.
+     - The step is idempotent and fails if a stale link would remain. Today's 44 were advanced with
+       tools/evidence/advance-duplicate-links-2026-11-18.sql.
+  2. **The 18 Nov prune** followed the standing workflow:
+     - archive dump nizam_clean-20261118T111616Z.dump, copied with its sha256 to archives/prune-2026-11-18/ outside
+       snapshot rotation;
+     - an isolated proof on a restored copy: the source, evidence and release signature were unchanged and the audit
+       passed;
+     - the live prune: 2,631 retired revisions archived and removed, 1,634 kept because evidence names them;
+     - VACUUM FULL: 6,028 → 4,881 MB.
+     Afterwards: audit 41/41, 2,162 tests pass, 10,342 released.
+  3. **Snapshot files outside the database** (E:\nizam-data\snapshots, 15.5 GB) are not deleted by the assistant;
+     deletion waits for the owner. Safe to delete, about 11.7 GB:
+     - the incomplete `.partial-*` dumps;
+     - the retired `nizam` database's 3–6 Sep dumps and their empty pointer files;
+     - the superseded 17 Nov dumps.
+     The two Sept pre-prune archives that revision_archive_batch rows name stay.
+- Where: tools/advance_duplicate_links.sql, tools/post_replay_sequence.sh (step 2-dup),
+  tools/evidence/advance-duplicate-links-2026-11-18.sql, docs/CORPUS-STATE-2026-11-17.md.
+
+### D-085 · 2026-11-18 · Page furniture batches: Sindh running heads and AJK folios, each law proven by its own tree
+Area: L1 corpus · Status: standing (closes the D-083 measured-not-repaired item and the AJK folio item)
+- Decision:
+  1. **Sindh running heads.** tools/recrawl/sindh_title_patch.py, companion to the 15 Nov citation-line tool, reads
+     the law's running head: its title, and the citation and folio lines printed with it. A top block is taken only
+     when all of these hold:
+     - it is on a page after the earliest one where its head line appears (the law's own heading is never touched);
+     - its leading capital lines repeat at the head of two or more pages;
+     - each of those lines is part of the law's recorded title (display, short or catalogue; "The" and the
+       province's name folded).
+     A loose first rule took a schedule's "TABLE-II" (doc 4698) and was replaced before anything was recorded.
+     - Whole-head blocks are set aside, and head lines fused with law text are cut. There is one reading per page,
+       with a 60-dpi render.
+     - Generated: 223 laws and 1,915 pages.
+  2. **AJK folios.** tools/recrawl/ajk_folio_patch.py sets aside a page number read into released AJK text ("any 202
+     movable antiquity", doc 10935). A digits-only block at a page's head or foot qualifies only when its number
+     minus its page is the law's folio offset, shared by at least three blocks.
+     - Generated: 380 laws and 3,703 folios.
+  3. **Every law proven by its own tree** (tools/recrawl/sindh_title_proof.py, on the release gate's dry-run tree
+     dumps). A law passes only when:
+     - no path is added or removed;
+     - no kind, label, parent or heading changes;
+     - every text change is a pure deletion of words its readings name as page furniture.
+     Failing laws had this batch's readings retired unreplayed.
+     - Sindh: 206 pass, 17 fail. Most failures would have regrouped sub-sections or clauses under a set-aside
+       block, or deleted words outside the head ("Omitted.", "ORDINANCE NO. XII OF").
+     - AJK: 374 pass, 6 fail (dry runs that failed or came out unchanged).
+  4. **Applied:** about 1,750 Sindh page readings in 206 laws and about 3,100 AJK folio readings in 374 laws.
+     - Both batches were held, replayed, re-verified and released again.
+     - OCR-lane laws 4687 and 9664 were re-verified by verify_ocr and their holds lifted (the 15 Nov lift).
+     - Doc 3330's run-only contents gap "45" kept its reviewed "found_elsewhere" decision, re-anchored to the
+       active instrument (tools/evidence/reattach-toc-run-only-3330-2026-11-18.sql). The post-replay re-attach tool
+       carries entry gaps only.
+     - 10,342 released, none held.
+- **Left, and why:**
+  - The 17 Sindh and 6 AJK laws that failed the proof keep their furniture until each is read: a block that opens a
+    provision or carries law words is not furniture.
+  - Pages whose reading was refused for an ambiguous locator also keep theirs.
+  - No Gilgit-Baltistan heritage law is held. None was found in the catalogue or in searches of the Assembly's
+    legislation (18 Nov 2026), so there is nothing to land.
+- Where: tools/recrawl/{sindh_title_patch.py, ajk_folio_patch.py, sindh_title_proof.py},
+  tools/evidence/{sindh-titles-2026-11-18, ajk-folios-2026-11-18}/, tools/evidence/reattach-toc-run-only-3330-2026-11-18.sql.
+
 ### D-084 · 2026-11-18 · Embroidered patches in the layout's margins, and a stitched seam between pages
 Area: client · Status: standing (supersedes D-082's whole-page cloth)
 - Decision: the owner found the whole-page cloth too prominent and too basic. They asked for a few complex patches
@@ -1229,12 +1300,11 @@ These were found and deliberately left open. Each will become an entry when it i
   measuring on a phone. On 18 Nov the emulator itself degraded (D-070), so its raster numbers no longer judge the app.
 - **Later constitutional amendments.** The 23rd and 24th Amendment Acts are not held as separate laws (D-074): no
   official Act text was found. The 25th–27th are landed (D-076).
-- **Heritage law: what remains after D-083.**
-  - No Gilgit-Baltistan heritage law is held.
-  - AJK 1986 carries page numbers read into its text: "202" inside s.6(1) and "205" at the end of s.12(2), as stored
-    before D-083. The 15 Nov folio batch did not reach them.
-- **The Sindh Code's running title line in released text** (measured under D-083): about 1,069 blocks in 321
-  documents, to be confirmed title-exact. This needs a corpus batch proved document by document.
+- **Page furniture left after D-085.** The 17 Sindh and 6 AJK laws that failed the batch proof (listed in
+  .artifacts/heritage-2026-11-18/{sindh,ajk}-batch/proof.json), and pages whose reading was refused for an ambiguous
+  locator, still carry running heads or folios. Each needs a page-read reading.
+- **No Gilgit-Baltistan heritage law exists to land** (catalogue and Assembly searches, 18 Nov 2026). Revisit if the
+  Assembly enacts one.
 - **Rebuild drift found by the D-080 A/B.** Docs 2491 (a reviewed reparent no longer resolves), 9868 (conflicting
   contents-region readings), 4702 and 8743 fail or differ on the committed code as well. Each needs its own review
   before its next replay.

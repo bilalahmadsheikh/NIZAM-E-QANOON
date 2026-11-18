@@ -1,0 +1,26 @@
+[
+ {
+  "document_id": 1157,
+  "page_no": 2,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1157-p2.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 2 prints the running head 'THE AGRICULTURAL PRODUCE MARKETS (AMENDMENT) ORDINANCE, 1983' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE AGRICULTURAL PRODUCE MARKETS (AMENDMENT) ORDINANCE, 1983",
+  "before_text": "THE AGRICULTURAL PRODUCE MARKETS (AMENDMENT) ORDINANCE, 1983",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "8b35211f265b66e3f8a9eef5221baf0c1af0c6531b820f0785c564cd1c2e8527"
+ },
+ {
+  "document_id": 1157,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1157-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head 'THE AGRICULTURAL PRODUCE MARKETS (AMENDMENT) ORDINANCE, 1983' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE AGRICULTURAL PRODUCE MARKETS (AMENDMENT) ORDINANCE, 1983",
+  "before_text": "THE AGRICULTURAL PRODUCE MARKETS (AMENDMENT) ORDINANCE, 1983",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "cdaff66c0fd0c79f34428aaaa15fea53c3bbddc1ebbb6945dfd2959e9fa3705d"
+ }
+]

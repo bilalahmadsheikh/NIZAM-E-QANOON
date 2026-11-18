@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 678,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc678-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head 'THE SINDH CHILD MARRIAGES RESTRAINT ACT, 2013' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "contravention of this Act is going to be arranged or is about to",
+  "before_text": "contravention of this Act is going to be arranged or is about to",
+  "after_text": "contravention of this Act is going to be arranged or is about to",
+  "source_apparatus_blocks": [
+   28512
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "8d42992fb389d1418585ec209cbfe78d1b3c2355372485fbdc8544a1d822c613"
+ },
+ {
+  "document_id": 678,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc678-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head 'THE SINDH CHILD MARRIAGES RESTRAINT ACT, 2013' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "10.     Government may, by notification in the official Gazette,",
+  "before_text": "10.     Government may, by notification in the official Gazette,",
+  "after_text": "10.     Government may, by notification in the official Gazette,",
+  "source_apparatus_blocks": [
+   28528
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "9d68fff7f80e2156a6455c5d510726bc007cc1c7a8153cca0b677302a17b69de"
+ }
+]

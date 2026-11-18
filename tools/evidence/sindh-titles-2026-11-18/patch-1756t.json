@@ -1,0 +1,53 @@
+[
+ {
+  "document_id": 1756,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1756-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head 'THE SIND GOTH-ABAD (HOUSING SCHEME) ACT, 1987' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "3 The words “Sind Local Government Ordinance, 1979”, substituted by amendment Sindh Act No:VII of 2008 (21-",
+  "before_text": "3 The words “Sind Local Government Ordinance, 1979”, substituted by amendment Sindh Act No:VII of 2008 (21-",
+  "after_text": "3 The words “Sind Local Government Ordinance, 1979”, substituted by amendment Sindh Act No:VII of 2008 (21-",
+  "source_apparatus_blocks": [
+   115380
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "8001484c2d6e36c580290d7038ac159beb86e5c49578e44fb5224ac296c754a9"
+ },
+ {
+  "document_id": 1756,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1756-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head 'THE SIND GOTH-ABAD (HOUSING SCHEME) ACT, 1987' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SIND GOTH-ABAD (HOUSING SCHEME) ACT, 1987",
+  "before_text": "THE SIND GOTH-ABAD (HOUSING SCHEME) ACT, 1987",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "7aad2dad3d2321729e85cc451efeec9697268d1c78e83c3bca6e73839bb9cb9b"
+ },
+ {
+  "document_id": 1756,
+  "page_no": 5,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1756-p5.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 5 prints the running head 'THE SIND GOTH-ABAD (HOUSING SCHEME) ACT, 1987' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SIND GOTH-ABAD (HOUSING SCHEME) ACT, 1987",
+  "before_text": "THE SIND GOTH-ABAD (HOUSING SCHEME) ACT, 1987",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "5df6d1b04090d201c616d56d81fa4f9984c598aa60ce8e9c4d42a74fd5293882"
+ },
+ {
+  "document_id": 1756,
+  "page_no": 6,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1756-p6.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 6 prints the running head 'THE SIND GOTH-ABAD (HOUSING SCHEME) ACT, 1987' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SIND GOTH-ABAD (HOUSING SCHEME) ACT, 1987",
+  "before_text": "THE SIND GOTH-ABAD (HOUSING SCHEME) ACT, 1987",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "636ca62d5ff61d5c36a7b8fe54c1c16329fd093cc14289ea031bfd8595cde98d"
+ }
+]

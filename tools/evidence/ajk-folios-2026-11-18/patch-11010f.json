@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 11010,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2824854
+  ],
+  "match_text": "1991 and The Special Courts for Speedy trials Ordinance, 1991 issued under the",
+  "before_text": "1991 and The Special Courts for Speedy trials Ordinance, 1991 issued under the",
+  "after_text": "1991 and The Special Courts for Speedy trials Ordinance, 1991 issued under the",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '674' alone at its head or foot (block 2824854); the document's folios run at page + 673 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11010-p1.png",
+  "render_sha256": "159fafc0dae601fec11a4f655dfe4808d8176dfdff4e22f6966c3840c250a3c3"
+ },
+ {
+  "document_id": 11010,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2824857
+  ],
+  "match_text": "affected persons entitled to get Relief out of the fund referred to",
+  "before_text": "affected persons entitled to get Relief out of the fund referred to",
+  "after_text": "affected persons entitled to get Relief out of the fund referred to",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '675' alone at its head or foot (block 2824857); the document's folios run at page + 673 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11010-p2.png",
+  "render_sha256": "129bb0a07128fd7786dc7a75cdf5d068975057c84af182734146be683fa84d33"
+ },
+ {
+  "document_id": 11010,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2824860
+  ],
+  "match_text": "initiated, jurisdiction or powers exercised under the provisions of",
+  "before_text": "initiated, jurisdiction or powers exercised under the provisions of",
+  "after_text": "initiated, jurisdiction or powers exercised under the provisions of",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '676' alone at its head or foot (block 2824860); the document's folios run at page + 673 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11010-p3.png",
+  "render_sha256": "7a99a80f4fe7ca589950fe3afad107de4e846cc3df8029b053cd7a933c429230"
+ }
+]

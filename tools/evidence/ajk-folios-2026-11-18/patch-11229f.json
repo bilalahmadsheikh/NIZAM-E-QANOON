@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 11229,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2840391
+  ],
+  "match_text": "to provide for law relating to the grant of proprietary rights to eligible",
+  "before_text": "to provide for law relating to the grant of proprietary rights to eligible",
+  "after_text": "to provide for law relating to the grant of proprietary rights to eligible",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '524' alone at its head or foot (block 2840391); the document's folios run at page + 523 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11229-p1.png",
+  "render_sha256": "588259b215cec9fe94ad40057162359bae3e6a3e62a76449a051cc6d00b72901"
+ },
+ {
+  "document_id": 11229,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2840405
+  ],
+  "match_text": "with the perior sanction of the Government, appoint such officers",
+  "before_text": "with the perior sanction of the Government, appoint such officers",
+  "after_text": "with the perior sanction of the Government, appoint such officers",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '525' alone at its head or foot (block 2840405); the document's folios run at page + 523 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11229-p2.png",
+  "render_sha256": "a1750a060058dbc45b888567ba13495ea595db2c4f512346dca8fdddee74b276"
+ },
+ {
+  "document_id": 11229,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2840417
+  ],
+  "match_text": "settled in Tariqabad, Muzaffarabad in respect of the land in their",
+  "before_text": "settled in Tariqabad, Muzaffarabad in respect of the land in their",
+  "after_text": "settled in Tariqabad, Muzaffarabad in respect of the land in their",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '526' alone at its head or foot (block 2840417); the document's folios run at page + 523 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11229-p3.png",
+  "render_sha256": "329741496e6bcb6c78e84f635c1b57fe57e14c5895608532161c4bc717314701"
+ },
+ {
+  "document_id": 11229,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2840431
+  ],
+  "match_text": "have the power to control the construction of private buildings in",
+  "before_text": "have the power to control the construction of private buildings in",
+  "after_text": "have the power to control the construction of private buildings in",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 4 prints its folio '527' alone at its head or foot (block 2840431); the document's folios run at page + 523 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11229-p4.png",
+  "render_sha256": "19298a63e9fea9132b13f4a6d66401d1b3b10b37055b89509abe796fdabc81b0"
+ }
+]

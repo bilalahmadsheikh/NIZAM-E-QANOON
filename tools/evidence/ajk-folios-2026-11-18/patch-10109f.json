@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 10109,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2751416
+  ],
+  "match_text": "2002) , hereinafter referred to as the said Act, Section 4, shall be",
+  "before_text": "2002) , hereinafter referred to as the said Act, Section 4, shall be",
+  "after_text": "2002) , hereinafter referred to as the said Act, Section 4, shall be",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '2' alone at its head or foot (block 2751416); the document's folios run at page + 0 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10109-p2.png",
+  "render_sha256": "0e08cacc0d566cf8a0b2224dadbe313ac515f429d18167cf2a8fe74afed309db"
+ },
+ {
+  "document_id": 10109,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2751419
+  ],
+  "match_text": "Amendment of Section 8, (Act VI of 2002).-   In the said Act,",
+  "before_text": "Amendment of Section 8, (Act VI of 2002).-   In the said Act,",
+  "after_text": "Amendment of Section 8, (Act VI of 2002).-   In the said Act,",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '3' alone at its head or foot (block 2751419); the document's folios run at page + 0 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10109-p3.png",
+  "render_sha256": "4ee2e64a13c29ecdc627cbc30fadc124344fd06be2ef521c9892753cdd17993a"
+ },
+ {
+  "document_id": 10109,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2751422
+  ],
+  "match_text": "Addition of Section 8-A, (Act VI of 2002).-  In the said Act after",
+  "before_text": "Addition of Section 8-A, (Act VI of 2002).-  In the said Act after",
+  "after_text": "Addition of Section 8-A, (Act VI of 2002).-  In the said Act after",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 4 prints its folio '4' alone at its head or foot (block 2751422); the document's folios run at page + 0 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10109-p4.png",
+  "render_sha256": "284eddb1d2ae2b2cf8c474b31b1b3ef56e69220382ea5eedb5849b8d40a21644"
+ }
+]

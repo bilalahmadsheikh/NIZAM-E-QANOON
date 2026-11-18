@@ -1,0 +1,18 @@
+[
+ {
+  "document_id": 1048,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1048-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head '3 / THE STAMP (SINDH AMENDMENT) ACT, 2023 / SINDH ACT NO. XXVI OF 2023' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "16 or Article 18 or Article 20”, the words and figures “Articles 11,",
+  "before_text": "16 or Article 18 or Article 20”, the words and figures “Articles 11,",
+  "after_text": "16 or Article 18 or Article 20”, the words and figures “Articles 11,",
+  "source_apparatus_blocks": [
+   49707,
+   49708
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "34271a5956ba3b683b88fd5a3a1fc72208e79bf35a01dc84501490738ccc34cd"
+ }
+]

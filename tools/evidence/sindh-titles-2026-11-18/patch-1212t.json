@@ -1,0 +1,14 @@
+[
+ {
+  "document_id": 1212,
+  "page_no": 6,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1212-p6.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 6 prints the running head 'THE SINDH FREEDOM OF INFORMATION ACT, 2006' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH FREEDOM OF INFORMATION ACT, 2006",
+  "before_text": "THE SINDH FREEDOM OF INFORMATION ACT, 2006",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "f1d2cc75816600a7dac0ef73aba387c599db85196b3c5bd7340f9cba555d70ff"
+ }
+]

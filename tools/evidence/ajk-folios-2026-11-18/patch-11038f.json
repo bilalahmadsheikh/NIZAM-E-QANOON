@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 11038,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2826295
+  ],
+  "match_text": "October, 1985 and assented by the President on 21st October, 1985, is",
+  "before_text": "October, 1985 and assented by the President on 21st October, 1985, is",
+  "after_text": "October, 1985 and assented by the President on 21st October, 1985, is",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '24' alone at its head or foot (block 2826295); the document's folios run at page + 23 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11038-p1.png",
+  "render_sha256": "7cc21b141347a476414ac30fbe2b7b029a613491e77a8b4e401e65e414ae15d6"
+ },
+ {
+  "document_id": 11038,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2826307
+  ],
+  "match_text": "whipping.- the following provisions shall apply to the execution",
+  "before_text": "whipping.- the following provisions shall apply to the execution",
+  "after_text": "whipping.- the following provisions shall apply to the execution",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '25' alone at its head or foot (block 2826307); the document's folios run at page + 23 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11038-p2.png",
+  "render_sha256": "e504b779aa1b8b7274a1af51b3e90675f2ca96eba5542b4170890043095d8cc4"
+ },
+ {
+  "document_id": 11038,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2826318
+  ],
+  "match_text": "initiated, jurisdiction or powers exercised under the provisions of",
+  "before_text": "initiated, jurisdiction or powers exercised under the provisions of",
+  "after_text": "initiated, jurisdiction or powers exercised under the provisions of",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '26' alone at its head or foot (block 2826318); the document's folios run at page + 23 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11038-p3.png",
+  "render_sha256": "8130ff239668842717563c72ff318b8e7805ff55541af5b50dda845d3128e7ae"
+ }
+]

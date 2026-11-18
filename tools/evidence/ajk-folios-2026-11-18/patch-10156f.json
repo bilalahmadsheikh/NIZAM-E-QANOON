@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 10156,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2755503
+  ],
+  "match_text": "Constitution Act, 1974 the President is pleased to make and promulgate",
+  "before_text": "Constitution Act, 1974 the President is pleased to make and promulgate",
+  "after_text": "Constitution Act, 1974 the President is pleased to make and promulgate",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '281' alone at its head or foot (block 2755503); the document's folios run at page + 280 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10156-p1.png",
+  "render_sha256": "89e43f4104b1464b161c5f1d73805573ae12f27105f3b2e669ac8a02d504917b"
+ },
+ {
+  "document_id": 10156,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2755518
+  ],
+  "match_text": "person entitled to get relief out of the fund referred to in Section",
+  "before_text": "person entitled to get relief out of the fund referred to in Section",
+  "after_text": "person entitled to get relief out of the fund referred to in Section",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '282' alone at its head or foot (block 2755518); the document's folios run at page + 280 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10156-p2.png",
+  "render_sha256": "bbf673422b8bd8b5872ae560ecd8cf237b3b8f9606709662b8381f34252bd8a9"
+ },
+ {
+  "document_id": 10156,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2755533
+  ],
+  "match_text": "initiated, jurisdiction or powers exercised under the provisions of",
+  "before_text": "initiated, jurisdiction or powers exercised under the provisions of",
+  "after_text": "initiated, jurisdiction or powers exercised under the provisions of",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '283' alone at its head or foot (block 2755533); the document's folios run at page + 280 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10156-p3.png",
+  "render_sha256": "332af559dd72bc7f008ebbb27306240eaacbae617ba951b03a6e5e2c845ba81d"
+ }
+]

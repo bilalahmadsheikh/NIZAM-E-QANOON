@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 10929,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2813868
+  ],
+  "match_text": "received the assent of the President on 21st day of February, 1989, is",
+  "before_text": "received the assent of the President on 21st day of February, 1989, is",
+  "after_text": "received the assent of the President on 21st day of February, 1989, is",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '23' alone at its head or foot (block 2813868); the document's folios run at page + 22 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10929-p1.png",
+  "render_sha256": "341c558658cb7ffc4c578bf4d1bf8abe2f5c6520200b8dca2dff136d2defc99f"
+ },
+ {
+  "document_id": 10929,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2813881
+  ],
+  "match_text": "granted only when it is proved before the collector of the",
+  "before_text": "granted only when it is proved before the collector of the",
+  "after_text": "granted only when it is proved before the collector of the",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '24' alone at its head or foot (block 2813881); the document's folios run at page + 22 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10929-p2.png",
+  "render_sha256": "5be87961da15865baec920bf0b32d478a99f3d6c28242762eb66d22958e3d182"
+ },
+ {
+  "document_id": 10929,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2813887
+  ],
+  "match_text": "holding of a Nautor Kunindah shall be regularized in any",
+  "before_text": "holding of a Nautor Kunindah shall be regularized in any",
+  "after_text": "holding of a Nautor Kunindah shall be regularized in any",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '25' alone at its head or foot (block 2813887); the document's folios run at page + 22 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10929-p3.png",
+  "render_sha256": "0293104f41a3ff18cb0b937d388a67ff764bd4ee1fc42a9897764abe89c06a37"
+ }
+]

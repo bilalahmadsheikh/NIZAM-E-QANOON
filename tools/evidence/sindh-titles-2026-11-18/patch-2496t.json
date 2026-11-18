@@ -1,0 +1,29 @@
+[
+ {
+  "document_id": 2496,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2496-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head 'ORDINANCE, 2005.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "3.   (1)     Government may, by notification in the official gazette",
+  "before_text": "3.   (1)     Government may, by notification in the official gazette",
+  "after_text": "3.   (1)     Government may, by notification in the official gazette",
+  "source_apparatus_blocks": [
+   208122
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "c98e8d69ea26ee99a422342bba0c9b5d33ab10f4e45515814f90486ec5146fe1"
+ },
+ {
+  "document_id": 2496,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2496-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head 'ORDINANCE, 2005.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "ORDINANCE, 2005.",
+  "before_text": "ORDINANCE, 2005.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "5813e70fe222e25fcdd442473c4e553cbbc394a913abba82f28f6b2469d8a080"
+ }
+]

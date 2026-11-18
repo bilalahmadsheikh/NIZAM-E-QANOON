@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 10789,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2801977
+  ],
+  "match_text": "the 9th day of June, 1992, is hereby Published for general information:-",
+  "before_text": "the 9th day of June, 1992, is hereby Published for general information:-",
+  "after_text": "the 9th day of June, 1992, is hereby Published for general information:-",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '753' alone at its head or foot (block 2801977); the document's folios run at page + 752 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10789-p1.png",
+  "render_sha256": "9328277427e3835b5a8d637f9e64c8375aa8b8afac609a3b4fc5e3f944fd02f4"
+ },
+ {
+  "document_id": 10789,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2801988
+  ],
+  "match_text": "Insertion of Section 5-A Act I of 1894.- In the said Act, after",
+  "before_text": "Insertion of Section 5-A Act I of 1894.- In the said Act, after",
+  "after_text": "Insertion of Section 5-A Act I of 1894.- In the said Act, after",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '754' alone at its head or foot (block 2801988); the document's folios run at page + 752 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10789-p2.png",
+  "render_sha256": "8d19fef4b8e396136b8f8d194479f0ba826c01f80175c329f991ad50c9b8ae02"
+ },
+ {
+  "document_id": 10789,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2801997
+  ],
+  "match_text": "giving to the occupier thereof at least forty eight hours notice of",
+  "before_text": "giving to the occupier thereof at least forty eight hours notice of",
+  "after_text": "giving to the occupier thereof at least forty eight hours notice of",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '755' alone at its head or foot (block 2801997); the document's folios run at page + 752 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10789-p3.png",
+  "render_sha256": "8c30ffcc3cf088b64085c62df8bf8428055d776489d05fc1407509a8d04f33f1"
+ },
+ {
+  "document_id": 10789,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2802009
+  ],
+  "match_text": "made under Section 6 in respect of the land at any time after the",
+  "before_text": "made under Section 6 in respect of the land at any time after the",
+  "after_text": "made under Section 6 in respect of the land at any time after the",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 4 prints its folio '756' alone at its head or foot (block 2802009); the document's folios run at page + 752 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10789-p4.png",
+  "render_sha256": "e9c29f0c28841b0e8d9871005415780976de94c049487b59478dac31b46a43a3"
+ }
+]

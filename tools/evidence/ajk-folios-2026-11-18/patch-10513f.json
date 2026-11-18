@@ -1,0 +1,77 @@
+[
+ {
+  "document_id": 10513,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2779143
+  ],
+  "match_text": "20th day of February, 1982, is hereby published for general information:-",
+  "before_text": "20th day of February, 1982, is hereby published for general information:-",
+  "after_text": "20th day of February, 1982, is hereby published for general information:-",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '344' alone at its head or foot (block 2779143); the document's folios run at page + 343 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10513-p1.png",
+  "render_sha256": "9df57be4a9e181605e2f1c195b945aa83168dc6d73ab43f2b375e1d0825e26f7"
+ },
+ {
+  "document_id": 10513,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2779159
+  ],
+  "match_text": "the entries relating to Section 298, the following entries shall be",
+  "before_text": "the entries relating to Section 298, the following entries shall be",
+  "after_text": "the entries relating to Section 298, the following entries shall be",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '345' alone at its head or foot (block 2779159); the document's folios run at page + 343 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10513-p2.png",
+  "render_sha256": "09466d1f6eaffd3e5f673f105208caa1a721977c82bb1aed54f04c0ebea834e2"
+ },
+ {
+  "document_id": 10513,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2779166
+  ],
+  "match_text": "Schedule, for the heading ‘Offences Against other Laws’ and the",
+  "before_text": "Schedule, for the heading ‘Offences Against other Laws’ and the",
+  "after_text": "Schedule, for the heading ‘Offences Against other Laws’ and the",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '346' alone at its head or foot (block 2779166); the document's folios run at page + 343 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10513-p3.png",
+  "render_sha256": "ce7d7202b7a4c346bc386a1a1c88fad93b9bc93e2bf84398c420ec1bd78c39cd"
+ },
+ {
+  "document_id": 10513,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2779191
+  ],
+  "match_text": "Offences against Tazeerate Islami, Hudood and Qasas.",
+  "before_text": "Offences against Tazeerate Islami, Hudood and Qasas.",
+  "after_text": "Offences against Tazeerate Islami, Hudood and Qasas.",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 4 prints its folio '347' alone at its head or foot (block 2779191); the document's folios run at page + 343 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10513-p4.png",
+  "render_sha256": "6cfd1d226086ba2dfe67a9928dd3dc6935a443e7533f9e864a7dbf1adcc61054"
+ },
+ {
+  "document_id": 10513,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2779195
+  ],
+  "match_text": "Volume VII (1981 to 1984)",
+  "before_text": "Volume VII (1981 to 1984)",
+  "after_text": "Volume VII (1981 to 1984)",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 5 prints its folio '348' alone at its head or foot (block 2779195); the document's folios run at page + 343 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10513-p5.png",
+  "render_sha256": "76b5eb6df11f9c48558e953f51cdd00ac75fbf9477cb6ac1ae103fe5655a0878"
+ }
+]

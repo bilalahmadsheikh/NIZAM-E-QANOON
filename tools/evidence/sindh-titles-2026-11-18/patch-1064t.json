@@ -1,0 +1,18 @@
+[
+ {
+  "document_id": 1064,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1064-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head 'THE SINDH REGULATION AND CONTROL (USE OF PLOTS AND / CONSTRUCTION OF BUILDINGS) ORDINANCE, 2002.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "commencement of this ordinance in violation of the provisions of the Ordinance",
+  "before_text": "commencement of this ordinance in violation of the provisions of the Ordinance",
+  "after_text": "commencement of this ordinance in violation of the provisions of the Ordinance",
+  "source_apparatus_blocks": [
+   50201,
+   50202
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "2dae33444de57c92a718c981f271365e20a7f89814e1d56e9ce13b3185fc07e0"
+ }
+]

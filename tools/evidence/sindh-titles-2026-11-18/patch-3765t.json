@@ -1,0 +1,146 @@
+[
+ {
+  "document_id": 3765,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc3765-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head '3 / THE PROVINCIAL MOTOR VEHICLES (AMENDMENT) ACT, 2023. / SINDH ACT NO. XLIII OF 2023.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "(3) If the person failed to pay or deposit the fine at the spot or in",
+  "before_text": "(3) If the person failed to pay or deposit the fine at the spot or in",
+  "after_text": "(3) If the person failed to pay or deposit the fine at the spot or in",
+  "source_apparatus_blocks": [
+   470197,
+   470198
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "167e9424b696d29d236451791d130e0d50ec342f8e4c1265da66acd6fb21952a"
+ },
+ {
+  "document_id": 3765,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc3765-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head '4 / THE PROVINCIAL MOTOR VEHICLES (AMENDMENT) ACT, 2023. / SINDH ACT NO. XLIII OF 2023.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "Over loading by public transport vehicle (good carriers).",
+  "before_text": "Over loading by public transport vehicle (good carriers).",
+  "after_text": "Over loading by public transport vehicle (good carriers).",
+  "source_apparatus_blocks": [
+   470207,
+   470208
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "87238e4e9824572a0d50cce4327903aba95cda508d9c0990e9d4bc69b2887769"
+ },
+ {
+  "document_id": 3765,
+  "page_no": 5,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc3765-p5.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 5 prints the running head '5 / THE PROVINCIAL MOTOR VEHICLES (AMENDMENT) ACT, 2023. / SINDH ACT NO. XLIII OF 2023.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "Driving with tinted/covered glasses obstructing visibility",
+  "before_text": "Driving with tinted/covered glasses obstructing visibility",
+  "after_text": "Driving with tinted/covered glasses obstructing visibility",
+  "source_apparatus_blocks": [
+   470241,
+   470242
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "ec243ec37a6a3de77eaaf643e0a9d3f8bb13deb5f3f1d1d1ffb7d34fc0ba34dd"
+ },
+ {
+  "document_id": 3765,
+  "page_no": 6,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc3765-p6.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 6 prints the running head '6 / THE PROVINCIAL MOTOR VEHICLES (AMENDMENT) ACT, 2023. / SINDH ACT NO. XLIII OF 2023.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "Improper loading of goods / improper loaded goods.",
+  "before_text": "Improper loading of goods / improper loaded goods.",
+  "after_text": "Improper loading of goods / improper loaded goods.",
+  "source_apparatus_blocks": [
+   470274,
+   470275
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "90953e3967154d058eec7e240ca6a65dec27bd81e520468c5ea58ab0059093f2"
+ },
+ {
+  "document_id": 3765,
+  "page_no": 7,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc3765-p7.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 7 prints the running head '7 / THE PROVINCIAL MOTOR VEHICLES (AMENDMENT) ACT, 2023. / SINDH ACT NO. XLIII OF 2023.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "Carrying passengers in dangerous position in a transport",
+  "before_text": "Carrying passengers in dangerous position in a transport",
+  "after_text": "Carrying passengers in dangerous position in a transport",
+  "source_apparatus_blocks": [
+   470305,
+   470306
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "5fb17c270a77b37d0ccb8d6a4b7938bed735490253c8f071974611c6485f0f4c"
+ },
+ {
+  "document_id": 3765,
+  "page_no": 8,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc3765-p8.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 8 prints the running head '8 / THE PROVINCIAL MOTOR VEHICLES (AMENDMENT) ACT, 2023. / SINDH ACT NO. XLIII OF 2023.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "Driving vehicle in violation of laws / rules not otherwise",
+  "before_text": "Driving vehicle in violation of laws / rules not otherwise",
+  "after_text": "Driving vehicle in violation of laws / rules not otherwise",
+  "source_apparatus_blocks": [
+   470338,
+   470339
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "fa150b8879aa962eafa6ef31789f4a245431b4f07d43ebc69f438f1b2c3de266"
+ },
+ {
+  "document_id": 3765,
+  "page_no": 9,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc3765-p9.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 9 prints the running head '9 / THE PROVINCIAL MOTOR VEHICLES (AMENDMENT) ACT, 2023. / SINDH ACT NO. XLIII OF 2023.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "Intercity) or school vehicles in contravention of Ban with",
+  "before_text": "Intercity) or school vehicles in contravention of Ban with",
+  "after_text": "Intercity) or school vehicles in contravention of Ban with",
+  "source_apparatus_blocks": [
+   470373,
+   470374
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "44d3d7964d20e2edba42a5a359e985c99d758422150cbef0e42b12680e49d6a2"
+ },
+ {
+  "document_id": 3765,
+  "page_no": 10,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc3765-p10.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 10 prints the running head '10 / THE PROVINCIAL MOTOR VEHICLES (AMENDMENT) ACT, 2023. / SINDH ACT NO. XLIII OF 2023.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "Place or rest feet on seats or sleep in stations",
+  "before_text": "Place or rest feet on seats or sleep in stations",
+  "after_text": "Place or rest feet on seats or sleep in stations",
+  "source_apparatus_blocks": [
+   470407,
+   470408
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "d788f0ae682f69e6bf7244418ce393396c6b69a98a041eaec46319082931f853"
+ },
+ {
+  "document_id": 3765,
+  "page_no": 11,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc3765-p11.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 11 prints the running head '11 / THE PROVINCIAL MOTOR VEHICLES (AMENDMENT) ACT, 2023. / SINDH ACT NO. XLIII OF 2023.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "toilets, or at ticket office facility without prior",
+  "before_text": "toilets, or at ticket office facility without prior",
+  "after_text": "toilets, or at ticket office facility without prior",
+  "source_apparatus_blocks": [
+   470439,
+   470440
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "d23367ee479ff5008251b35962ef4795db7668f6bc5ef9b396c0242b41c571f3"
+ }
+]

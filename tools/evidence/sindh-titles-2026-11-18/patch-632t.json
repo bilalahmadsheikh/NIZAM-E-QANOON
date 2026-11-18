@@ -1,0 +1,14 @@
+[
+ {
+  "document_id": 632,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc632-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head 'THE SIND MEDICAL COLLEGES ORDINANCE, 1987' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SIND MEDICAL COLLEGES ORDINANCE, 1987",
+  "before_text": "THE SIND MEDICAL COLLEGES ORDINANCE, 1987",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "f6750e6187a1788abd89b1a5feb530566ee0067c78dbe8ef4c9507ecd53bc6b8"
+ }
+]

@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 10525,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2780182
+  ],
+  "match_text": "to provide for measures to observe the sanctity of the month of Ramzan.",
+  "before_text": "to provide for measures to observe the sanctity of the month of Ramzan.",
+  "after_text": "to provide for measures to observe the sanctity of the month of Ramzan.",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '321' alone at its head or foot (block 2780182); the document's folios run at page + 320 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10525-p1.png",
+  "render_sha256": "0bfa2aefbc7cf565427f03a1971746bdbacb935a613bfa12fbeee4f31ff99160"
+ },
+ {
+  "document_id": 10525,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2780193
+  ],
+  "match_text": "forwarded the person arrested to the nearest police station, with a",
+  "before_text": "forwarded the person arrested to the nearest police station, with a",
+  "after_text": "forwarded the person arrested to the nearest police station, with a",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '322' alone at its head or foot (block 2780193); the document's folios run at page + 320 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10525-p2.png",
+  "render_sha256": "b5425c3555ba617c9719ba832d0aa99c252fc0d1e90b2105994ad99ae486def8"
+ },
+ {
+  "document_id": 10525,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2780204
+  ],
+  "match_text": "(1) of that Section or by the officer incharge of the police station",
+  "before_text": "(1) of that Section or by the officer incharge of the police station",
+  "after_text": "(1) of that Section or by the officer incharge of the police station",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '323' alone at its head or foot (block 2780204); the document's folios run at page + 320 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10525-p3.png",
+  "render_sha256": "6aab0ff4007b0ec7d7bd7e3fd40fcae2a2462fdbeaa07605498499572ed9c68d"
+ }
+]

@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 10279,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2763136
+  ],
+  "match_text": "WHEREAS it is expedient in the public interest to provide for the",
+  "before_text": "WHEREAS it is expedient in the public interest to provide for the",
+  "after_text": "WHEREAS it is expedient in the public interest to provide for the",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '1207' alone at its head or foot (block 2763136); the document's folios run at page + 1206 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10279-p1.png",
+  "render_sha256": "eb296dfe039c5e38246367d906b8d567343c539a52ae2887445cac981c52ef2b"
+ },
+ {
+  "document_id": 10279,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2763145
+  ],
+  "match_text": "except as provided in this Act, all obligations or liabilities",
+  "before_text": "except as provided in this Act, all obligations or liabilities",
+  "after_text": "except as provided in this Act, all obligations or liabilities",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '1208' alone at its head or foot (block 2763145); the document's folios run at page + 1206 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10279-p2.png",
+  "render_sha256": "3e52501e5a627145f8344f67022ec3d39abd9aa7284a94d5b13e0d7c596759a1"
+ },
+ {
+  "document_id": 10279,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2763158
+  ],
+  "match_text": "Removal of difficulties.- If any difficulty arises in giving",
+  "before_text": "Removal of difficulties.- If any difficulty arises in giving",
+  "after_text": "Removal of difficulties.- If any difficulty arises in giving",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '1209' alone at its head or foot (block 2763158); the document's folios run at page + 1206 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10279-p3.png",
+  "render_sha256": "d1c299bb557462942c58a25fb12ddc47aa8100e48f3fc619b02cf372575eccb3"
+ },
+ {
+  "document_id": 10279,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2763164
+  ],
+  "match_text": "Azad Government of the State of",
+  "before_text": "Azad Government of the State of",
+  "after_text": "Azad Government of the State of",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 4 prints its folio '1210' alone at its head or foot (block 2763164); the document's folios run at page + 1206 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10279-p4.png",
+  "render_sha256": "895e5209cde1bad00bfa99a1f9d76fb8e52a704a6ca639a3387459526958c77b"
+ }
+]

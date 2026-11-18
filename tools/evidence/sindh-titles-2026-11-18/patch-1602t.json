@@ -1,0 +1,19 @@
+[
+ {
+  "document_id": 1602,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1602-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head '3 / THE SINDH (REGULARIZATION OF CONTINGENT PAID OR / WORK-CHARGED EMPLOYEES OF LEFT BANK OUTFALL / SINDH ACT NO. XL OF 2018' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "(2) The orders of regularization under sub-section (1) shall not",
+  "before_text": "(2) The orders of regularization under sub-section (1) shall not",
+  "after_text": "(2) The orders of regularization under sub-section (1) shall not",
+  "source_apparatus_blocks": [
+   99245,
+   99246,
+   99248
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "ddb5237b711e2d44ce4d561931b9560b07599aea12f976889d5eb5773a27ef65"
+ }
+]

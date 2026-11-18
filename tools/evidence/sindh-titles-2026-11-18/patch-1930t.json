@@ -1,0 +1,14 @@
+[
+ {
+  "document_id": 1930,
+  "page_no": 6,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1930-p6.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 6 prints the running head 'THE LAND REFORMS REGULATION (SIND AMENDMENT) ORDINANCE, 1982.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE LAND REFORMS REGULATION (SIND AMENDMENT) ORDINANCE, 1982.",
+  "before_text": "THE LAND REFORMS REGULATION (SIND AMENDMENT) ORDINANCE, 1982.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "47f31c752a2bc14245ff3a26c2533b1680640f05bf20653773081b6df49c24ab"
+ }
+]

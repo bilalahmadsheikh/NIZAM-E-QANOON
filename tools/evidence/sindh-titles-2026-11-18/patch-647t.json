@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 647,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc647-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head 'THE SIND CITY SURVEY ACT, 1987' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "a sanad if he applies for such sanad not later than six months of",
+  "before_text": "a sanad if he applies for such sanad not later than six months of",
+  "after_text": "a sanad if he applies for such sanad not later than six months of",
+  "source_apparatus_blocks": [
+   27086
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "b8d8e66367d40044eb9142b2cb60b6d8823f6500b807809634bc17161b2fa323"
+ }
+]

@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 11092,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2831588
+  ],
+  "match_text": "to provide for law relating to imposition of restrictions on constructions",
+  "before_text": "to provide for law relating to imposition of restrictions on constructions",
+  "after_text": "to provide for law relating to imposition of restrictions on constructions",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '91' alone at its head or foot (block 2831588); the document's folios run at page + 90 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11092-p1.png",
+  "render_sha256": "320f260f73ceb7113a6ed79768316bdd120cdc79f2878630aca9eafddbfe9c2e"
+ },
+ {
+  "document_id": 11092,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2831598
+  ],
+  "match_text": "owner may sell his hand or a portion of land with the prior approval",
+  "before_text": "owner may sell his hand or a portion of land with the prior approval",
+  "after_text": "owner may sell his hand or a portion of land with the prior approval",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '92' alone at its head or foot (block 2831598); the document's folios run at page + 90 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11092-p2.png",
+  "render_sha256": "60605506f1b0519d0bab9cc004ce08905452321e484439e830e0bd9757aaaab8"
+ },
+ {
+  "document_id": 11092,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2831607
+  ],
+  "match_text": "such alternation, in the site as may be specified in the notice and",
+  "before_text": "such alternation, in the site as may be specified in the notice and",
+  "after_text": "such alternation, in the site as may be specified in the notice and",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '93' alone at its head or foot (block 2831607); the document's folios run at page + 90 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11092-p3.png",
+  "render_sha256": "b77b460a09e4ad0b3833236dadada88df6c9fee9d9c55e16a01648cdb297264c"
+ },
+ {
+  "document_id": 11092,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2831610
+  ],
+  "match_text": "Sd/- (Syed Atta Mohy-Ud-Din Qadri)",
+  "before_text": "Sd/- (Syed Atta Mohy-Ud-Din Qadri)",
+  "after_text": "Sd/- (Syed Atta Mohy-Ud-Din Qadri)",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 4 prints its folio '94' alone at its head or foot (block 2831610); the document's folios run at page + 90 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11092-p4.png",
+  "render_sha256": "8157d3997ec0fc36c36759cff614b619f3b37645071b5d25b1a76c308a49fcff"
+ }
+]

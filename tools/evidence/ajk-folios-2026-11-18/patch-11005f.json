@@ -1,0 +1,77 @@
+[
+ {
+  "document_id": 11005,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2824689
+  ],
+  "match_text": "Assembly received the assent of the President on the 8th of April,",
+  "before_text": "Assembly received the assent of the President on the 8th of April,",
+  "after_text": "Assembly received the assent of the President on the 8th of April,",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '1163' alone at its head or foot (block 2824689); the document's folios run at page + 1162 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11005-p1.png",
+  "render_sha256": "327b4b097ea5e4610433a1734d352803017b0eb82f916605e67e44539baeadd8"
+ },
+ {
+  "document_id": 11005,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2824703
+  ],
+  "match_text": "entry in the record of rights, no person shall be entitled to",
+  "before_text": "entry in the record of rights, no person shall be entitled to",
+  "after_text": "entry in the record of rights, no person shall be entitled to",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '1164' alone at its head or foot (block 2824703); the document's folios run at page + 1162 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11005-p2.png",
+  "render_sha256": "b6d31170b285f693687c0f0f8d98854c91370f9e2c702f774769d1f2af31f284"
+ },
+ {
+  "document_id": 11005,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2824714
+  ],
+  "match_text": "and allottee or to have any right or title of land allotted to",
+  "before_text": "and allottee or to have any right or title of land allotted to",
+  "after_text": "and allottee or to have any right or title of land allotted to",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '1165' alone at its head or foot (block 2824714); the document's folios run at page + 1162 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11005-p3.png",
+  "render_sha256": "8995bceae761b8bb95fb65d4565fd76e6837b850aae81d4b16e738e5eb571370"
+ },
+ {
+  "document_id": 11005,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2824728
+  ],
+  "match_text": "section (1) shall be thirty days from the date of the order",
+  "before_text": "section (1) shall be thirty days from the date of the order",
+  "after_text": "section (1) shall be thirty days from the date of the order",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 4 prints its folio '1166' alone at its head or foot (block 2824728); the document's folios run at page + 1162 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11005-p4.png",
+  "render_sha256": "775508533b8338d5bf7810b6ba65d07c01d3e36cac952c2e3ab4543766571344"
+ },
+ {
+  "document_id": 11005,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2824738
+  ],
+  "match_text": "notification in the official Gazette, make rules for carrying",
+  "before_text": "notification in the official Gazette, make rules for carrying",
+  "after_text": "notification in the official Gazette, make rules for carrying",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 5 prints its folio '1167' alone at its head or foot (block 2824738); the document's folios run at page + 1162 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11005-p5.png",
+  "render_sha256": "c06bcb4f69db93e8721520e7b9ce1e8ecc465620847303ccc3c2f8f556f35b97"
+ }
+]

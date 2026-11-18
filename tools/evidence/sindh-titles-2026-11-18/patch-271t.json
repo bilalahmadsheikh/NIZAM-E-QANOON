@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 271,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc271-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head 'THE SIND PUBLIC SERVICE COMMISSION ORDINANCE, 1973' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "and the actions taken and orders passed by them individually",
+  "before_text": "and the actions taken and orders passed by them individually",
+  "after_text": "and the actions taken and orders passed by them individually",
+  "source_apparatus_blocks": [
+   12131
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "d26c6c742a9c73839c754a20d13417281c8eb30dd4f5aecba887619cb2783de4"
+ }
+]

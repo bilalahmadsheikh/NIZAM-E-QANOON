@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 11272,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2843591
+  ],
+  "match_text": "The following shall be substituted for subjection (v) of Section 5",
+  "before_text": "The following shall be substituted for subjection (v) of Section 5",
+  "after_text": "The following shall be substituted for subjection (v) of Section 5",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '414' alone at its head or foot (block 2843591); the document's folios run at page + 413 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11272-p1.png",
+  "render_sha256": "29b6ec82cc6259e5598bde275ff944b2946e558769876fd1f8aa2e81562bf63d"
+ },
+ {
+  "document_id": 11272,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2843592
+  ],
+  "match_text": "(ii)  No case other than those referred to in sub-section (i) of this",
+  "before_text": "(ii)  No case other than those referred to in sub-section (i) of this",
+  "after_text": "(ii)  No case other than those referred to in sub-section (i) of this",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '415' alone at its head or foot (block 2843592); the document's folios run at page + 413 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11272-p2.png",
+  "render_sha256": "8b914f260bdec473aa874f72de2e4f589c22db2f58f0b513c7a0d62b7a637550"
+ },
+ {
+  "document_id": 11272,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2843597
+  ],
+  "match_text": "(ii)  No case other than those referred to in sub-section (i) of this",
+  "before_text": "(ii)  No case other than those referred to in sub-section (i) of this",
+  "after_text": "(ii)  No case other than those referred to in sub-section (i) of this",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '415' alone at its head or foot (block 2843597); the document's folios run at page + 413 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11272-p2.png",
+  "render_sha256": "8b914f260bdec473aa874f72de2e4f589c22db2f58f0b513c7a0d62b7a637550"
+ }
+]

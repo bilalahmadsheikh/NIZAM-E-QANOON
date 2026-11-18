@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 10492,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2777670
+  ],
+  "match_text": "Muslims in the Azad Jammu and Kashmir State,, it is hereby enacted as",
+  "before_text": "Muslims in the Azad Jammu and Kashmir State,, it is hereby enacted as",
+  "after_text": "Muslims in the Azad Jammu and Kashmir State,, it is hereby enacted as",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '59' alone at its head or foot (block 2777670); the document's folios run at page + 58 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10492-p1.png",
+  "render_sha256": "6ac271ce214d6b2c074eb56f8c01eb4ed4344e06fe0530b3aa1d3cbd6f0f7a3d"
+ },
+ {
+  "document_id": 10492,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2777671
+  ],
+  "match_text": "or the provisions of section 7 of this Act shall, on conviction be-",
+  "before_text": "or the provisions of section 7 of this Act shall, on conviction be-",
+  "after_text": "or the provisions of section 7 of this Act shall, on conviction be-",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '60' alone at its head or foot (block 2777671); the document's folios run at page + 58 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10492-p2.png",
+  "render_sha256": "0845fbd6cb99ca1ae8797182f7d663c63c0a6a1584881b67234769d4bd21f626"
+ },
+ {
+  "document_id": 10492,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2777675
+  ],
+  "match_text": "or the provisions of section 7 of this Act shall, on conviction be-",
+  "before_text": "or the provisions of section 7 of this Act shall, on conviction be-",
+  "after_text": "or the provisions of section 7 of this Act shall, on conviction be-",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '60' alone at its head or foot (block 2777675); the document's folios run at page + 58 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10492-p2.png",
+  "render_sha256": "0845fbd6cb99ca1ae8797182f7d663c63c0a6a1584881b67234769d4bd21f626"
+ }
+]

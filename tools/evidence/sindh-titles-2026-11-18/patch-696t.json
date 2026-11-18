@@ -1,0 +1,29 @@
+[
+ {
+  "document_id": 696,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc696-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head 'THE  SINDH REGISTRATION OF GODOWNS ORDINANCE, 1995.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "that the information furnished by the owner is not correct or the",
+  "before_text": "that the information furnished by the owner is not correct or the",
+  "after_text": "that the information furnished by the owner is not correct or the",
+  "source_apparatus_blocks": [
+   30450
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "103dfd7c38f88f31480cacb1d58f58f2bc8cd29c7a66e5d5b3469b01c88d92b7"
+ },
+ {
+  "document_id": 696,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc696-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head 'THE  SINDH REGISTRATION OF GODOWNS ORDINANCE, 1995.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE  SINDH REGISTRATION OF GODOWNS ORDINANCE, 1995.",
+  "before_text": "THE  SINDH REGISTRATION OF GODOWNS ORDINANCE, 1995.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "4f2a1754258853a0ca0b0d9c47e98d331b444695ad72dc3980f929c427bd8170"
+ }
+]

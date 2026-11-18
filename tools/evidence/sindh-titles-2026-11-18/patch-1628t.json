@@ -1,0 +1,38 @@
+[
+ {
+  "document_id": 1628,
+  "page_no": 10,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1628-p10.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 10 prints the running head 'THE KARACHI DIVISION (TRAFFIC ENGINEERING) ORDINANCE, 1985.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE KARACHI DIVISION (TRAFFIC ENGINEERING) ORDINANCE, 1985.",
+  "before_text": "THE KARACHI DIVISION (TRAFFIC ENGINEERING) ORDINANCE, 1985.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "d9ef3b34491f2a238ecac89f79696b2ed562498deebce2a5b3e7cd79a314f220"
+ },
+ {
+  "document_id": 1628,
+  "page_no": 12,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1628-p12.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 12 prints the running head 'THE KARACHI DIVISION (TRAFFIC ENGINEERING) ORDINANCE, 1985.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE KARACHI DIVISION (TRAFFIC ENGINEERING) ORDINANCE, 1985.",
+  "before_text": "THE KARACHI DIVISION (TRAFFIC ENGINEERING) ORDINANCE, 1985.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "d37eb7b47a6e9fb4e50e77a5223b88f950138b1f8b3cbc8fad76f8d4cabf2af9"
+ },
+ {
+  "document_id": 1628,
+  "page_no": 15,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1628-p15.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 15 prints the running head 'THE KARACHI DIVISION (TRAFFIC ENGINEERING) ORDINANCE, 1985.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE KARACHI DIVISION (TRAFFIC ENGINEERING) ORDINANCE, 1985.",
+  "before_text": "THE KARACHI DIVISION (TRAFFIC ENGINEERING) ORDINANCE, 1985.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "8d8e40fd1abde0e2605862652d7d03670c084ca3906a7a8a04dfbb94a702717e"
+ }
+]

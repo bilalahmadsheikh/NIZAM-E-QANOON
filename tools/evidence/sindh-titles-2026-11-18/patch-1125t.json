@@ -1,0 +1,34 @@
+[
+ {
+  "document_id": 1125,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1125-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head '3 / THE SINDH NEW CAPTIVE POWER PLANTS SUBSIDY ACT, 2017 / SINDH ACT NO. XXVI OF 2017' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "(1) After receipt of payment of an invoice issued pursuant to an",
+  "before_text": "(1) After receipt of payment of an invoice issued pursuant to an",
+  "after_text": "(1) After receipt of payment of an invoice issued pursuant to an",
+  "source_apparatus_blocks": [
+   54683,
+   54684
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "943a55b163753e4d763e472094ec1cbccb8850fbde51845d0ba82a48afb1eed0"
+ },
+ {
+  "document_id": 1125,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1125-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head '4 / THE SINDH NEW CAPTIVE POWER PLANTS SUBSIDY ACT, 2017 / SINDH ACT NO. XXVI OF 2017' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "If any difficulty arises in giving effect to the provisions of this Act,",
+  "before_text": "If any difficulty arises in giving effect to the provisions of this Act,",
+  "after_text": "If any difficulty arises in giving effect to the provisions of this Act,",
+  "source_apparatus_blocks": [
+   54688,
+   54689
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "08e02a71ab5cf33219cb5de03139e4f41caabad1679719777318108e9e529c15"
+ }
+]

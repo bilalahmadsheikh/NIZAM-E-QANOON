@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 1620,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1620-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head 'THE SINDH EYE SURGERY (RESTRICTION) ORDINANCE, 2013' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "implication, as practicing, or a being prepared to practice, eye",
+  "before_text": "implication, as practicing, or a being prepared to practice, eye",
+  "after_text": "implication, as practicing, or a being prepared to practice, eye",
+  "source_apparatus_blocks": [
+   100835
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "cc836eafa05c5221d0154e70612f25744c9f47c215da6da198dd9c84bef7b17a"
+ }
+]

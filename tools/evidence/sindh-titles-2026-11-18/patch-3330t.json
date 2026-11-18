@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 3330,
+  "page_no": 6,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc3330-p6.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 6 prints the running head 'THE DOW UNIVERSITY OF HEALTH SCIENCES ORDINANCE, 2003' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE DOW UNIVERSITY OF HEALTH SCIENCES ORDINANCE, 2003",
+  "before_text": "THE DOW UNIVERSITY OF HEALTH SCIENCES ORDINANCE, 2003",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "40557892b1590306e46a68586f5fc0733f9fc7304efbdd44c9763a46e523e6f9"
+ },
+ {
+  "document_id": 3330,
+  "page_no": 10,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc3330-p10.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 10 prints the running head 'THE DOW UNIVERSITY OF HEALTH SCIENCES ORDINANCE, 2003' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE DOW UNIVERSITY OF HEALTH SCIENCES ORDINANCE, 2003",
+  "before_text": "THE DOW UNIVERSITY OF HEALTH SCIENCES ORDINANCE, 2003",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "59af707a4a1e1ac448ebfbf85cafb651d5481d450543ae86c25e0dc85541381b"
+ },
+ {
+  "document_id": 3330,
+  "page_no": 11,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc3330-p11.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 11 prints the running head 'THE DOW UNIVERSITY OF HEALTH SCIENCES ORDINANCE, 2003' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE DOW UNIVERSITY OF HEALTH SCIENCES ORDINANCE, 2003",
+  "before_text": "THE DOW UNIVERSITY OF HEALTH SCIENCES ORDINANCE, 2003",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "0e4b88bfab4709135f08161c277435da495c859d6d63fff0eb0e2fb6e34fc7cd"
+ },
+ {
+  "document_id": 3330,
+  "page_no": 13,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc3330-p13.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 13 prints the running head 'THE DOW UNIVERSITY OF HEALTH SCIENCES ORDINANCE, 2003' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE DOW UNIVERSITY OF HEALTH SCIENCES ORDINANCE, 2003",
+  "before_text": "THE DOW UNIVERSITY OF HEALTH SCIENCES ORDINANCE, 2003",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "95773d5b525eabda026799d20eaaa4cda2c53b8a3dce6ae1b370bafc9df0d2f1"
+ },
+ {
+  "document_id": 3330,
+  "page_no": 21,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc3330-p21.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 21 prints the running head 'THE DOW UNIVERSITY OF HEALTH SCIENCES ORDINANCE, 2003' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE DOW UNIVERSITY OF HEALTH SCIENCES ORDINANCE, 2003",
+  "before_text": "THE DOW UNIVERSITY OF HEALTH SCIENCES ORDINANCE, 2003",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "c6d1ec564e7ef23f99b29ee25368b9b468f3d4b2718d614d6e59f6070c4b32b6"
+ }
+]

@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 10888,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2809792
+  ],
+  "match_text": "3rd day of October, 1983, is hereby published for general information:-",
+  "before_text": "3rd day of October, 1983, is hereby published for general information:-",
+  "after_text": "3rd day of October, 1983, is hereby published for general information:-",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '557' alone at its head or foot (block 2809792); the document's folios run at page + 556 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10888-p1.png",
+  "render_sha256": "35240c568c7dd1d9c14525494b586f76e464ec8b0829ef042e9ac27cb853c2b7"
+ },
+ {
+  "document_id": 10888,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2809806
+  ],
+  "match_text": "committee, may, at its discretion nominate any other non person",
+  "before_text": "committee, may, at its discretion nominate any other non person",
+  "after_text": "committee, may, at its discretion nominate any other non person",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '558' alone at its head or foot (block 2809806); the document's folios run at page + 556 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10888-p2.png",
+  "render_sha256": "978d9df243d2569eaccec3c9dcbb36db230fe8d3cd81fd42dcaeca7c338056d3"
+ },
+ {
+  "document_id": 10888,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2809824
+  ],
+  "match_text": "after such enquiry as it deem fit, is of the opinion that the adult",
+  "before_text": "after such enquiry as it deem fit, is of the opinion that the adult",
+  "after_text": "after such enquiry as it deem fit, is of the opinion that the adult",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '559' alone at its head or foot (block 2809824); the document's folios run at page + 556 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10888-p3.png",
+  "render_sha256": "a1c4518eeb3b9851f918c9568b291c9501cd0a04f64c007ad7660243771fc94f"
+ }
+]

@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 10756,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2799156
+  ],
+  "match_text": "to give effect to the Financial Proposals of Azad Government of the State",
+  "before_text": "to give effect to the Financial Proposals of Azad Government of the State",
+  "after_text": "to give effect to the Financial Proposals of Azad Government of the State",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '351' alone at its head or foot (block 2799156); the document's folios run at page + 350 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10756-p1.png",
+  "render_sha256": "9ad921d8513d87c87ced8be210546b4fc479b13a70856e33cf4dfa7dc2890c89"
+ },
+ {
+  "document_id": 10756,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2799163
+  ],
+  "match_text": "time on or after the 7th July, 2006, (hereinafter referred to as the",
+  "before_text": "time on or after the 7th July, 2006, (hereinafter referred to as the",
+  "after_text": "time on or after the 7th July, 2006, (hereinafter referred to as the",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '352' alone at its head or foot (block 2799163); the document's folios run at page + 350 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10756-p2.png",
+  "render_sha256": "8af8dfd0c4ace556300ea4d79fc3cd7c2b673dc202843e9e67be8ff8df02b446"
+ },
+ {
+  "document_id": 10756,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2799193
+  ],
+  "match_text": "sheet of size and colour tabulated  below, containing the words",
+  "before_text": "sheet of size and colour tabulated  below, containing the words",
+  "after_text": "sheet of size and colour tabulated  below, containing the words",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '353' alone at its head or foot (block 2799193); the document's folios run at page + 350 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10756-p3.png",
+  "render_sha256": "cf1680ed127562643db53a7a01f27816c99cc80735c1cf032a486822c6f5d048"
+ },
+ {
+  "document_id": 10756,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2799208
+  ],
+  "match_text": "prescribed Form “N” as set forth in first Schedule of the",
+  "before_text": "prescribed Form “N” as set forth in first Schedule of the",
+  "after_text": "prescribed Form “N” as set forth in first Schedule of the",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 4 prints its folio '354' alone at its head or foot (block 2799208); the document's folios run at page + 350 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10756-p4.png",
+  "render_sha256": "acb530e5df65856bd4ac85f01a87fa0bf70c87d4f2acd12de9e41c55b3ef1a74"
+ }
+]

@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 731,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc731-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head 'THE SINDH PROHIBITION ON MANUFACTURE, SALE AND USE OF POLYTHENE BAGS' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "under   this   Act   except   upon   a Compliant in writing by the",
+  "before_text": "under   this   Act   except   upon   a Compliant in writing by the",
+  "after_text": "under   this   Act   except   upon   a Compliant in writing by the",
+  "source_apparatus_blocks": [
+   32027
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "59f3f26cbc80b43977fecfc621aadcd27bb542b2bf1ae2829377843e9baaa5f8"
+ }
+]

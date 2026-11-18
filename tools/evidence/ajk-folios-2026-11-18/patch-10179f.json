@@ -1,0 +1,77 @@
+[
+ {
+  "document_id": 10179,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2756870
+  ],
+  "match_text": "22nd day of February, 1982, is hereby published for general information:-",
+  "before_text": "22nd day of February, 1982, is hereby published for general information:-",
+  "after_text": "22nd day of February, 1982, is hereby published for general information:-",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '349' alone at its head or foot (block 2756870); the document's folios run at page + 348 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10179-p1.png",
+  "render_sha256": "7fd7509d08356be8bf154957bda0de4e1550597ae818c4021eea5ddba1784b81"
+ },
+ {
+  "document_id": 10179,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2756880
+  ],
+  "match_text": "hereinafter referred to as the said Act, in Section 18 sub-section",
+  "before_text": "hereinafter referred to as the said Act, in Section 18 sub-section",
+  "after_text": "hereinafter referred to as the said Act, in Section 18 sub-section",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '350' alone at its head or foot (block 2756880); the document's folios run at page + 348 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10179-p2.png",
+  "render_sha256": "d0db70d56100f25ab42b27a389f67037589d090e95c0e9f896d82680e9becafd"
+ },
+ {
+  "document_id": 10179,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2756893
+  ],
+  "match_text": "shall be liable to pay the rent to the alloottee as provided therein.",
+  "before_text": "shall be liable to pay the rent to the alloottee as provided therein.",
+  "after_text": "shall be liable to pay the rent to the alloottee as provided therein.",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '351' alone at its head or foot (block 2756893); the document's folios run at page + 348 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10179-p3.png",
+  "render_sha256": "8f918c59d208e4197d38524ea8be9dcb5efd07587d4d4de7ce45c0bff3f55f9e"
+ },
+ {
+  "document_id": 10179,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2756906
+  ],
+  "match_text": "section (3) of Section 18-A except as provided by sub-section (4)",
+  "before_text": "section (3) of Section 18-A except as provided by sub-section (4)",
+  "after_text": "section (3) of Section 18-A except as provided by sub-section (4)",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 4 prints its folio '352' alone at its head or foot (block 2756906); the document's folios run at page + 348 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10179-p4.png",
+  "render_sha256": "8602e567d9fd14637484eec6a3911eaaa53ce4088d0e71922f35d5c20feea88b"
+ },
+ {
+  "document_id": 10179,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2756915
+  ],
+  "match_text": "been validly done, taken,        issued, made initiated or exercised",
+  "before_text": "been validly done, taken,        issued, made initiated or exercised",
+  "after_text": "been validly done, taken,        issued, made initiated or exercised",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 5 prints its folio '353' alone at its head or foot (block 2756915); the document's folios run at page + 348 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10179-p5.png",
+  "render_sha256": "1cc05eac52c9f99d07363c76ca951363f6c18c1d59d746e7879817bcc5de39af"
+ }
+]

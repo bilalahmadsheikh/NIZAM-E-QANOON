@@ -1,0 +1,77 @@
+[
+ {
+  "document_id": 10137,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2753887
+  ],
+  "match_text": "WHERE AS it is expedient to facilitate the collection of statistics",
+  "before_text": "WHERE AS it is expedient to facilitate the collection of statistics",
+  "after_text": "WHERE AS it is expedient to facilitate the collection of statistics",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '999' alone at its head or foot (block 2753887); the document's folios run at page + 998 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10137-p1.png",
+  "render_sha256": "ebf14319de9f30f9e3f80fac02ed2c6dccd014d45bd184e74f8f08f731cbe971"
+ },
+ {
+  "document_id": 10137,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2753902
+  ],
+  "match_text": "factory as define in clause (j) of section 2 of the Factories",
+  "before_text": "factory as define in clause (j) of section 2 of the Factories",
+  "after_text": "factory as define in clause (j) of section 2 of the Factories",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '1000' alone at its head or foot (block 2753902); the document's folios run at page + 998 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10137-p2.png",
+  "render_sha256": "d3908ff52c0ef8b62dad470f18d728bf84d9f4bb211b676ce5bfd29f94cc7f8d"
+ },
+ {
+  "document_id": 10137,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2753909
+  ],
+  "match_text": "cause to be served on any person a notice requiring him to",
+  "before_text": "cause to be served on any person a notice requiring him to",
+  "after_text": "cause to be served on any person a notice requiring him to",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '1001' alone at its head or foot (block 2753909); the document's folios run at page + 998 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10137-p3.png",
+  "render_sha256": "169fc607960796cce87a65529b98ae4b68c7ad8be9df569ad139b3bb414b4518"
+ },
+ {
+  "document_id": 10137,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2753917
+  ],
+  "match_text": "collection of statistics under this Act willfully discloses any",
+  "before_text": "collection of statistics under this Act willfully discloses any",
+  "after_text": "collection of statistics under this Act willfully discloses any",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 4 prints its folio '1002' alone at its head or foot (block 2753917); the document's folios run at page + 998 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10137-p4.png",
+  "render_sha256": "438bdbf2b5795b23399a1a5ca442b9fa80c51ca2a12f555a69848832efc7d258"
+ },
+ {
+  "document_id": 10137,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2753925
+  ],
+  "match_text": "publication by notification in the official Gazette, make",
+  "before_text": "publication by notification in the official Gazette, make",
+  "after_text": "publication by notification in the official Gazette, make",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 5 prints its folio '1003' alone at its head or foot (block 2753925); the document's folios run at page + 998 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10137-p5.png",
+  "render_sha256": "da5304740463cb9a7176e7d6e0cafcc86b98b28dc6d9bdc6375006d41a93f6fb"
+ }
+]

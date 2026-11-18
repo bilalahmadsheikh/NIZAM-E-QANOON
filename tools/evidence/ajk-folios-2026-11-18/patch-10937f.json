@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 10937,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2815135
+  ],
+  "match_text": "membership of any elective body or for election to the office of the",
+  "before_text": "membership of any elective body or for election to the office of the",
+  "after_text": "membership of any elective body or for election to the office of the",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '367' alone at its head or foot (block 2815135); the document's folios run at page + 366 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10937-p1.png",
+  "render_sha256": "61c32a29fb7c42a5dd2dfb8bffcb8c348d95d556c76ec24f73f8cf61ba769f58"
+ },
+ {
+  "document_id": 10937,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2815144
+  ],
+  "match_text": "This Act applies to all persons who, on or after 24th day of",
+  "before_text": "This Act applies to all persons who, on or after 24th day of",
+  "after_text": "This Act applies to all persons who, on or after 24th day of",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '368' alone at its head or foot (block 2815144); the document's folios run at page + 366 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10937-p2.png",
+  "render_sha256": "949808f192230afb8dcdc889637831b6fd93d0dc9124cbaacf922582c4a50af9"
+ },
+ {
+  "document_id": 10937,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2815157
+  ],
+  "match_text": "elective body or for election to the office of the President or",
+  "before_text": "elective body or for election to the office of the President or",
+  "after_text": "elective body or for election to the office of the President or",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '369' alone at its head or foot (block 2815157); the document's folios run at page + 366 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10937-p3.png",
+  "render_sha256": "d5bd4fceebc4b9f47e12e301320f4b40354690ed31c21d8053aee0325aa99c2e"
+ },
+ {
+  "document_id": 10937,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2815161
+  ],
+  "match_text": "and punishment of any person under any other such law.",
+  "before_text": "and punishment of any person under any other such law.",
+  "after_text": "and punishment of any person under any other such law.",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 4 prints its folio '370' alone at its head or foot (block 2815161); the document's folios run at page + 366 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10937-p4.png",
+  "render_sha256": "2029261cfb810ca3f3f31c3da1c6e07357c7754281d4b2cc7218889a23e07ab1"
+ }
+]

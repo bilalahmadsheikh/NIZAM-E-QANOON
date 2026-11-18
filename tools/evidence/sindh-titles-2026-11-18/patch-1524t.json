@@ -1,0 +1,18 @@
+[
+ {
+  "document_id": 1524,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1524-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head '3 / THE SINDH GOTH-ABAD (HOUSING SCHEME) (AMENDMENT) / SINDH ACT NO. LIII OF 2023.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "condonation in filing of, an appeal or an application for revision",
+  "before_text": "condonation in filing of, an appeal or an application for revision",
+  "after_text": "condonation in filing of, an appeal or an application for revision",
+  "source_apparatus_blocks": [
+   91788,
+   91790
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "a0ca085c10bd850789e18e753be958bed6cf13ea81ff79c53a307285027a7600"
+ }
+]

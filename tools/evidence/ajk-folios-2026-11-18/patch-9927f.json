@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 9927,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2738708
+  ],
+  "match_text": "or civil forces or other official agencies and the maintenance by private",
+  "before_text": "or civil forces or other official agencies and the maintenance by private",
+  "after_text": "or civil forces or other official agencies and the maintenance by private",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '217' alone at its head or foot (block 2738708); the document's folios run at page + 216 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc9927-p1.png",
+  "render_sha256": "0317acc5e9d416e8c0d771eace3dcaf8a82f1967db2a553aee76585f30e4f7b2"
+ },
+ {
+  "document_id": 9927,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2738720
+  ],
+  "match_text": "discussion of matters of public interest or for the purpose of the",
+  "before_text": "discussion of matters of public interest or for the purpose of the",
+  "after_text": "discussion of matters of public interest or for the purpose of the",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '218' alone at its head or foot (block 2738720); the document's folios run at page + 216 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc9927-p2.png",
+  "render_sha256": "541b5925db581acf7aab31d2696821eb412476d3c20adca097df16bd40818fa6"
+ },
+ {
+  "document_id": 9927,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2738731
+  ],
+  "match_text": "distinctive uniforms to assist in the preservation of order at any",
+  "before_text": "distinctive uniforms to assist in the preservation of order at any",
+  "after_text": "distinctive uniforms to assist in the preservation of order at any",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '219' alone at its head or foot (block 2738731); the document's folios run at page + 216 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc9927-p3.png",
+  "render_sha256": "71a35294dc8786ff70ac24d58b7286d1b330bb8c831a6d8fa04cbe3fd579b4d0"
+ }
+]

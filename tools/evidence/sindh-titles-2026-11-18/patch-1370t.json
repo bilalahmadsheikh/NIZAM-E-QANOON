@@ -1,0 +1,38 @@
+[
+ {
+  "document_id": 1370,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1370-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head 'PUBLIC PARKS ORDINANCE, 2002' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "PUBLIC PARKS ORDINANCE, 2002",
+  "before_text": "PUBLIC PARKS ORDINANCE, 2002",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "1577cbcc36f2e6c4440aa75a8f1401405b0d2bbf9bb75354b9adcaa4e49b8474"
+ },
+ {
+  "document_id": 1370,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1370-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head 'PUBLIC PARKS ORDINANCE, 2002' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "PUBLIC PARKS ORDINANCE, 2002",
+  "before_text": "PUBLIC PARKS ORDINANCE, 2002",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "e333d33cc4b05f8d5067b0175b8763237c73a109349ebb6822f3c45690e4c7ec"
+ },
+ {
+  "document_id": 1370,
+  "page_no": 5,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1370-p5.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 5 prints the running head 'PUBLIC PARKS ORDINANCE, 2002' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "PUBLIC PARKS ORDINANCE, 2002",
+  "before_text": "PUBLIC PARKS ORDINANCE, 2002",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "e64abea5813c1d0271e4a154416066c4941ffe1d90ccb3ee6ba631d6460e5a44"
+ }
+]

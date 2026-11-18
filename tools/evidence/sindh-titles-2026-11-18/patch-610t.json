@@ -1,0 +1,18 @@
+[
+ {
+  "document_id": 610,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc610-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head 'THE PEOPLE’S MEDICAL COLLEGE AND HOSPITAL NAWABSHAH / (REPEAL) ORDINANCE, 1997' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "3. Government may, for the purpose of removing any difficulty",
+  "before_text": "3. Government may, for the purpose of removing any difficulty",
+  "after_text": "3. Government may, for the purpose of removing any difficulty",
+  "source_apparatus_blocks": [
+   24843,
+   24844
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "4d18bdefcc8ebdfb21248a7b0af93e1a1ab51f9052706315467da550898f5997"
+ }
+]

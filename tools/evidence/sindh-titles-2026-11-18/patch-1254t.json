@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 1254,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1254-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head 'THE SINDH PROVICE PENSION FUND ORDINANCE, 2002.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "sub-section (6) of section 3, shall be kept in a scheduled Bank determined by the",
+  "before_text": "sub-section (6) of section 3, shall be kept in a scheduled Bank determined by the",
+  "after_text": "sub-section (6) of section 3, shall be kept in a scheduled Bank determined by the",
+  "source_apparatus_blocks": [
+   66304
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "74ed1a10cfed0ca8392ceddb9b0f700f2a8bb94d1d2bc10725c0e6d08711cb2c"
+ },
+ {
+  "document_id": 1254,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1254-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head 'THE SINDH PROVICE PENSION FUND ORDINANCE, 2002.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "(3) The Fund shall be audited in the prescribed manner and the Audit Report",
+  "before_text": "(3) The Fund shall be audited in the prescribed manner and the Audit Report",
+  "after_text": "(3) The Fund shall be audited in the prescribed manner and the Audit Report",
+  "source_apparatus_blocks": [
+   66316
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "9266128661363c78c7a5547bf59896d801637ce5a68dbe0544c50d0258f6f19e"
+ }
+]

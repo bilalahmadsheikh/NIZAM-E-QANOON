@@ -1,0 +1,41 @@
+[
+ {
+  "document_id": 912,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc912-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head 'THE  SIND CIVIL SERVANTS WELFARE FUND ORDINANCE, 1979' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "2 In section 3 word \"grade\" where ever occurring substituted vide Sind Ordinance No.XIV of 1984. Dated September  17, 1984",
+  "before_text": "2 In section 3 word \"grade\" where ever occurring substituted vide Sind Ordinance No.XIV of 1984. Dated September  17, 1984",
+  "after_text": "2 In section 3 word \"grade\" where ever occurring substituted vide Sind Ordinance No.XIV of 1984. Dated September  17, 1984",
+  "source_apparatus_blocks": [
+   42446
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "955bdef567574128a8037e1c285f0379cecf8660c4d7b8cb0124cb81a0716adb"
+ },
+ {
+  "document_id": 912,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc912-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head 'THE  SIND CIVIL SERVANTS WELFARE FUND ORDINANCE, 1979' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE  SIND CIVIL SERVANTS WELFARE FUND ORDINANCE, 1979",
+  "before_text": "THE  SIND CIVIL SERVANTS WELFARE FUND ORDINANCE, 1979",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "b9cd13c1863d627dc1b2d8d279d7beaea43b28676510fc621011f9e7b7d7afbe"
+ },
+ {
+  "document_id": 912,
+  "page_no": 5,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc912-p5.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 5 prints the running head 'THE  SIND CIVIL SERVANTS WELFARE FUND ORDINANCE, 1979' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE  SIND CIVIL SERVANTS WELFARE FUND ORDINANCE, 1979",
+  "before_text": "THE  SIND CIVIL SERVANTS WELFARE FUND ORDINANCE, 1979",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "f2241e148244d7750a171fdbf5f43d7d936fe260b86c1a675c3bbb219d608e98"
+ }
+]

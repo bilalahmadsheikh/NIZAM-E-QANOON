@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 10526,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2780226
+  ],
+  "match_text": "the assent of the President on 18th day of June, 2008, is hereby published",
+  "before_text": "the assent of the President on 18th day of June, 2008, is hereby published",
+  "after_text": "the assent of the President on 18th day of June, 2008, is hereby published",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '395' alone at its head or foot (block 2780226); the document's folios run at page + 394 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10526-p1.png",
+  "render_sha256": "e53c22ee5be1e42b9200d768f2cecc4527afd13cddfafeaba109bc2e88b4ecac"
+ },
+ {
+  "document_id": 10526,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2780245
+  ],
+  "match_text": "in sub-article (a), the words and brackets “The same duty",
+  "before_text": "in sub-article (a), the words and brackets “The same duty",
+  "after_text": "in sub-article (a), the words and brackets “The same duty",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '396' alone at its head or foot (block 2780245); the document's folios run at page + 394 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10526-p2.png",
+  "render_sha256": "4313f07c7a17b7c9cbc1788af066bf889a7ba79d441f2963118e8f281ceeadbc"
+ },
+ {
+  "document_id": 10526,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2780262
+  ],
+  "match_text": "in sub-article (c), in clauses (i) and (ii ), the words and",
+  "before_text": "in sub-article (c), in clauses (i) and (ii ), the words and",
+  "after_text": "in sub-article (c), in clauses (i) and (ii ), the words and",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '397' alone at its head or foot (block 2780262); the document's folios run at page + 394 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10526-p3.png",
+  "render_sha256": "a81bb08fc860bda26d5e6b66858dad963799c0e72a5f30fdf5ea0eee7a82f36c"
+ },
+ {
+  "document_id": 10526,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2780279
+  ],
+  "match_text": "is leviable on Conveyance (No.23) for a” shall be substituted by",
+  "before_text": "is leviable on Conveyance (No.23) for a” shall be substituted by",
+  "after_text": "is leviable on Conveyance (No.23) for a” shall be substituted by",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 4 prints its folio '398' alone at its head or foot (block 2780279); the document's folios run at page + 394 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10526-p4.png",
+  "render_sha256": "1f9b6a7eba874d7501947bf1ab4e9a1f03c386462ccdcb635b5b8ed75663ac80"
+ }
+]

@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 10854,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2807411
+  ],
+  "match_text": "member, shall hold office for a term of one year but the Deputy",
+  "before_text": "member, shall hold office for a term of one year but the Deputy",
+  "after_text": "member, shall hold office for a term of one year but the Deputy",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '131' alone at its head or foot (block 2807411); the document's folios run at page + 129 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10854-p2.png",
+  "render_sha256": "9737fe0b68bf9396bc7982046590a4ae9c5206f17e8253f5389f5a1d1173833b"
+ },
+ {
+  "document_id": 10854,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2807435
+  ],
+  "match_text": "Establishment and it shall be the responsibility of the Manager to",
+  "before_text": "Establishment and it shall be the responsibility of the Manager to",
+  "after_text": "Establishment and it shall be the responsibility of the Manager to",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 4 prints its folio '133' alone at its head or foot (block 2807435); the document's folios run at page + 129 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10854-p4.png",
+  "render_sha256": "e586d66adf71ad0c940c6da818f7c0139f30fdd8d5eef3c90ab05b1c5a5be34a"
+ },
+ {
+  "document_id": 10854,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   2807459
+  ],
+  "match_text": "the official Gazette, make rules for carrying out the purposes of",
+  "before_text": "the official Gazette, make rules for carrying out the purposes of",
+  "after_text": "the official Gazette, make rules for carrying out the purposes of",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 6 prints its folio '135' alone at its head or foot (block 2807459); the document's folios run at page + 129 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10854-p6.png",
+  "render_sha256": "ed50566afb80f27831e125c33a1158ce539f98475a8a033d067a48038b798b4e"
+ }
+]

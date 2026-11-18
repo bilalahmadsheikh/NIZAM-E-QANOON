@@ -1,0 +1,14 @@
+[
+ {
+  "document_id": 3210,
+  "page_no": 11,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc3210-p11.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 11 prints the running head 'THE SIND BUILDING CONTROL (AMENDMENT) ORDINANCE, 1982' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SIND BUILDING CONTROL (AMENDMENT) ORDINANCE, 1982",
+  "before_text": "THE SIND BUILDING CONTROL (AMENDMENT) ORDINANCE, 1982",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "9a31a931e70ed65ff70b310e8894c7582d576e61b48acb03993ce3aa478f7f09"
+ }
+]

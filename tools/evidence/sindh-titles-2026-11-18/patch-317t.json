@@ -1,0 +1,18 @@
+[
+ {
+  "document_id": 317,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc317-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head 'THE SIND UNLAWFUL SALE AND STOCKING FOR SALE OF MEDICAL / EQUIPMENT AND DRUGS ACT, 1974.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "mark, shall be punished with imprisonment of either description",
+  "before_text": "mark, shall be punished with imprisonment of either description",
+  "after_text": "mark, shall be punished with imprisonment of either description",
+  "source_apparatus_blocks": [
+   15072,
+   15073
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "1229a3068167553b40d31e1193d92dfb05b8801309a95203db78d22d61add6ab"
+ }
+]

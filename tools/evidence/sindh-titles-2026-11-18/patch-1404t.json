@@ -1,0 +1,66 @@
+[
+ {
+  "document_id": 1404,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1404-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head '3 / THE SINDH PREVENTION OF GAMBLING ORDINANCE, 1978 / SINDH ORDINANCE NO. V OF 1978' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "any house, room, tent, enclosure, vehicle, vessel or",
+  "before_text": "any house, room, tent, enclosure, vehicle, vessel or",
+  "after_text": "any house, room, tent, enclosure, vehicle, vessel or",
+  "source_apparatus_blocks": [
+   80879,
+   80880
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "afb18c68006162d40dbd558292c7783f4c2fbd30452fb53b39486b4f6c365dac"
+ },
+ {
+  "document_id": 1404,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1404-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head '4 / THE SINDH PREVENTION OF GAMBLING ORDINANCE, 1978 / SINDH ORDINANCE NO. V OF 1978' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "1 Inserted new section by Sindh Ordinance No. XIII of 1979, dated 20th August, 1979.",
+  "before_text": "1 Inserted new section by Sindh Ordinance No. XIII of 1979, dated 20th August, 1979.",
+  "after_text": "1 Inserted new section by Sindh Ordinance No. XIII of 1979, dated 20th August, 1979.",
+  "source_apparatus_blocks": [
+   80885,
+   80886
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "4e057482ffe22294864d2765d02e1d8bf9c13c26b97ee9ffb661780d9e02f9f1"
+ },
+ {
+  "document_id": 1404,
+  "page_no": 5,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1404-p5.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 5 prints the running head '5 / THE SINDH PREVENTION OF GAMBLING ORDINANCE, 1978 / SINDH ORDINANCE NO. V OF 1978' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "1 Omitted words by Sindh Ordinance No. XXXVI of 2001, dated 28th November, 2001.",
+  "before_text": "1 Omitted words by Sindh Ordinance No. XXXVI of 2001, dated 28th November, 2001.",
+  "after_text": "1 Omitted words by Sindh Ordinance No. XXXVI of 2001, dated 28th November, 2001.",
+  "source_apparatus_blocks": [
+   80897,
+   80898
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "0fe17111aa5d1cbba7f3f67056921f2735199e6a50fd34ec6fc3b8f58be0a8c9"
+ },
+ {
+  "document_id": 1404,
+  "page_no": 6,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1404-p6.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 6 prints the running head '6 / THE SINDH PREVENTION OF GAMBLING ORDINANCE, 1978 / SINDH ORDINANCE NO. V OF 1978' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "rules for the purpose of carrying into effect the provisions of this",
+  "before_text": "rules for the purpose of carrying into effect the provisions of this",
+  "after_text": "rules for the purpose of carrying into effect the provisions of this",
+  "source_apparatus_blocks": [
+   80906,
+   80907
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "67fd6ab669e1e593d51d996cb419cc6623245f63a822986502f02783aebde2bf"
+ }
+]

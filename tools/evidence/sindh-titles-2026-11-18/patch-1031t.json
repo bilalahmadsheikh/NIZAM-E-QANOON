@@ -1,0 +1,19 @@
+[
+ {
+  "document_id": 1031,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1031-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head '3 / THE SINDH (REGULARIZATION OF CONTRACT EMPLOYEES OF / KHAIRPUR MEDICAL COLLEGE, KHAIRPUR) ACT, 2018 / SINDH ACT NO. XLIV OF 2018' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "(2) The orders of regularization under sub-section (1) shall not be",
+  "before_text": "(2) The orders of regularization under sub-section (1) shall not be",
+  "after_text": "(2) The orders of regularization under sub-section (1) shall not be",
+  "source_apparatus_blocks": [
+   48330,
+   48331,
+   48332
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "1bbc9620c39218b6c6da39c19290bc578939e9389b8ee68ce6a37e47bcf3e017"
+ }
+]

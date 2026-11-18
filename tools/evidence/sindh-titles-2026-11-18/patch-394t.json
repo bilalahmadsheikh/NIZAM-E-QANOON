@@ -1,0 +1,38 @@
+[
+ {
+  "document_id": 394,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc394-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head 'ORDINANCE, 2001' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "ORDINANCE, 2001",
+  "before_text": "ORDINANCE, 2001",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "35a03da3f0ebd640ce557e169970da3e9983b91e7d0a000df5e0c33532df49ad"
+ },
+ {
+  "document_id": 394,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc394-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head 'ORDINANCE, 2001' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "ORDINANCE, 2001",
+  "before_text": "ORDINANCE, 2001",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "ee017bc7b346f862c0d60acc13c6f6bd62cdf14479e9dbbedb493821e61f213d"
+ },
+ {
+  "document_id": 394,
+  "page_no": 5,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc394-p5.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 5 prints the running head 'ORDINANCE, 2001' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "ORDINANCE, 2001",
+  "before_text": "ORDINANCE, 2001",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "bd49f31cfffd2eef4108cf25ca60b09fc66e4f6093c5290101861dc0620055a9"
+ }
+]

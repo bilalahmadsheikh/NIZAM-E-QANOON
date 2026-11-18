@@ -1,0 +1,53 @@
+[
+ {
+  "document_id": 2022,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2022-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head 'THE SINDH HINDUS MARRIAGE ACT, 2016' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH HINDUS MARRIAGE ACT, 2016",
+  "before_text": "THE SINDH HINDUS MARRIAGE ACT, 2016",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "249140531cab9f32dd949354b1a5df046aa45e1e4e8da81c5485d24e66509494"
+ },
+ {
+  "document_id": 2022,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2022-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head 'THE SINDH HINDUS MARRIAGE ACT, 2016' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH HINDUS MARRIAGE ACT, 2016",
+  "before_text": "THE SINDH HINDUS MARRIAGE ACT, 2016",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "45b5e44b4697ab0f1c9a0829dce9d78e8f44165014b6729684cd1565045dbcd0"
+ },
+ {
+  "document_id": 2022,
+  "page_no": 5,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2022-p5.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 5 prints the running head 'THE SINDH HINDUS MARRIAGE ACT, 2016' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "__________________, Tehsil/Town______________, District _______________",
+  "before_text": "__________________, Tehsil/Town______________, District _______________",
+  "after_text": "__________________, Tehsil/Town______________, District _______________",
+  "source_apparatus_blocks": [
+   149520
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "ad0220bc7d13d996b2cb1bbd2fa4bd266df22f3dbf8ef4c54c1f7ef6f4f99321"
+ },
+ {
+  "document_id": 2022,
+  "page_no": 6,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2022-p6.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 6 prints the running head 'THE SINDH HINDUS MARRIAGE ACT, 2016' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH HINDUS MARRIAGE ACT, 2016",
+  "before_text": "THE SINDH HINDUS MARRIAGE ACT, 2016",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "f6c2d197807c183bc27edf17ed1a35dc1d6f387e3e191b1043c8466532d3374f"
+ }
+]

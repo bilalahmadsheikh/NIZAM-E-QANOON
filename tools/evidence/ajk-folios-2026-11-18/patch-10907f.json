@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 10907,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2810748
+  ],
+  "match_text": "4th  day of October, 1981, is hereby published for general information.",
+  "before_text": "4th  day of October, 1981, is hereby published for general information.",
+  "after_text": "4th  day of October, 1981, is hereby published for general information.",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '245' alone at its head or foot (block 2810748); the document's folios run at page + 244 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10907-p1.png",
+  "render_sha256": "95b7c673be077c0e2699c69adbc5205c6b21cc6438ead86723a82bea8cc14d25"
+ },
+ {
+  "document_id": 10907,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2810762
+  ],
+  "match_text": "in contravention of any rules and regulation cancel the allotment",
+  "before_text": "in contravention of any rules and regulation cancel the allotment",
+  "after_text": "in contravention of any rules and regulation cancel the allotment",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '246' alone at its head or foot (block 2810762); the document's folios run at page + 244 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10907-p2.png",
+  "render_sha256": "c4118c6e5430c9e596b3011f8fb310c711437b45146c1e065b266eba62cf2e80"
+ },
+ {
+  "document_id": 10907,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2810771
+  ],
+  "match_text": "preferred under sub-section (2) of this section in such manner as",
+  "before_text": "preferred under sub-section (2) of this section in such manner as",
+  "after_text": "preferred under sub-section (2) of this section in such manner as",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '247' alone at its head or foot (block 2810771); the document's folios run at page + 244 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10907-p3.png",
+  "render_sha256": "09ea0fe36529a18b097047ca9e88ba10729feb7f36cb4f11e1d40158318983d0"
+ }
+]

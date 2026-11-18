@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 10987,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2822931
+  ],
+  "match_text": "assent on 31st, March, 1952 to the Azad Kashmir Courts and Laws Code",
+  "before_text": "assent on 31st, March, 1952 to the Azad Kashmir Courts and Laws Code",
+  "after_text": "assent on 31st, March, 1952 to the Azad Kashmir Courts and Laws Code",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '126' alone at its head or foot (block 2822931); the document's folios run at page + 125 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10987-p1.png",
+  "render_sha256": "46305d6e63e3ee37903dbea3d7d0f560077093ad5c70b8e3262c6e7abcfc1324"
+ },
+ {
+  "document_id": 10987,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2822932
+  ],
+  "match_text": "Laws Code of 1949 shall be the tenth day of June of the year",
+  "before_text": "Laws Code of 1949 shall be the tenth day of June of the year",
+  "after_text": "Laws Code of 1949 shall be the tenth day of June of the year",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '127' alone at its head or foot (block 2822932); the document's folios run at page + 125 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10987-p2.png",
+  "render_sha256": "2654c04d552316470322a3aec666f7f65d2a0bda0cea5e822df7f26025cba389"
+ },
+ {
+  "document_id": 10987,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2822935
+  ],
+  "match_text": "Laws Code of 1949 shall be the tenth day of June of the year",
+  "before_text": "Laws Code of 1949 shall be the tenth day of June of the year",
+  "after_text": "Laws Code of 1949 shall be the tenth day of June of the year",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '127' alone at its head or foot (block 2822935); the document's folios run at page + 125 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10987-p2.png",
+  "render_sha256": "2654c04d552316470322a3aec666f7f65d2a0bda0cea5e822df7f26025cba389"
+ }
+]

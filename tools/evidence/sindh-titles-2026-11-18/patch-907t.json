@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 907,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc907-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head 'THE SINDH ADVISORS (APPOINTMENT, POWERS, FUNCTIONS, SALARIES, / ALLOWANCES AND PRIVILEGES) ACT, 2003' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "ALLOWANCES AND PRIVILEGES) ACT, 2003",
+  "before_text": "ALLOWANCES AND PRIVILEGES) ACT, 2003",
+  "after_text": " ",
+  "source_apparatus_blocks": [
+   42274
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside; parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "ea696246ef3e94664e10c525fe03abbdb18a057b109a873e23f50d45e19d0704"
+ }
+]

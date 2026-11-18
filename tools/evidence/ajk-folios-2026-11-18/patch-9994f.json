@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 9994,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2743709
+  ],
+  "match_text": "Omitted by Ibid. The original context of cl. b) of Sec. 2 is reproduced as",
+  "before_text": "Omitted by Ibid. The original context of cl. b) of Sec. 2 is reproduced as",
+  "after_text": "Omitted by Ibid. The original context of cl. b) of Sec. 2 is reproduced as",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '209' alone at its head or foot (block 2743709); the document's folios run at page + 208 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc9994-p1.png",
+  "render_sha256": "215c7cd1aaa73b042f1b5872d92511bd21f895c51bbfb4e48e9a69c940efeb0e"
+ },
+ {
+  "document_id": 9994,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2743723
+  ],
+  "match_text": "Act, 2006 (Act IV of 2006) dt. 31.01.2006. The original context of cl. g) of",
+  "before_text": "Act, 2006 (Act IV of 2006) dt. 31.01.2006. The original context of cl. g) of",
+  "after_text": "Act, 2006 (Act IV of 2006) dt. 31.01.2006. The original context of cl. g) of",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '210' alone at its head or foot (block 2743723); the document's folios run at page + 208 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc9994-p2.png",
+  "render_sha256": "7a4fea3a78f85f71f3033a64ebf51e4d1914d3b56cd4ef3c89b2e0bf627f8245"
+ },
+ {
+  "document_id": 9994,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2743731
+  ],
+  "match_text": "amount of such contribution, as far as possible, be deducted at",
+  "before_text": "amount of such contribution, as far as possible, be deducted at",
+  "after_text": "amount of such contribution, as far as possible, be deducted at",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '211' alone at its head or foot (block 2743731); the document's folios run at page + 208 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc9994-p3.png",
+  "render_sha256": "c702dcb932b132d32d76f511720af8038ed4ce8ecdc41f6e7c39a737ebe6245a"
+ },
+ {
+  "document_id": 9994,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2743738
+  ],
+  "match_text": "Act, 2006 (Act IV of 2006) dt. 31.01.2006. The original extract of Sec. 7 is",
+  "before_text": "Act, 2006 (Act IV of 2006) dt. 31.01.2006. The original extract of Sec. 7 is",
+  "after_text": "Act, 2006 (Act IV of 2006) dt. 31.01.2006. The original extract of Sec. 7 is",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 4 prints its folio '212' alone at its head or foot (block 2743738); the document's folios run at page + 208 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc9994-p4.png",
+  "render_sha256": "6116b02b99718ffa1a70e054b145b7436208f90967fa82d624f7e394288c3f3c"
+ }
+]

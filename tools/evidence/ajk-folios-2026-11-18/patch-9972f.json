@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 9972,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2741948
+  ],
+  "match_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "before_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "after_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '550' alone at its head or foot (block 2741948); the document's folios run at page + 549 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc9972-p1.png",
+  "render_sha256": "95bd44574c9112c8c2aa3d26aa018386632c374f8a81f4e62b55beb429b91a4a"
+ },
+ {
+  "document_id": 9972,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2741965
+  ],
+  "match_text": "rolls of more than one electoral units he shall be eligible to vote",
+  "before_text": "rolls of more than one electoral units he shall be eligible to vote",
+  "after_text": "rolls of more than one electoral units he shall be eligible to vote",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '551' alone at its head or foot (block 2741965); the document's folios run at page + 549 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc9972-p2.png",
+  "render_sha256": "f9776ca17226e2d31035970cc195acfa31cca4e05fe160eedb192ae085fbd71f"
+ },
+ {
+  "document_id": 9972,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2741976
+  ],
+  "match_text": "office be eligible for re-election to the said office of any local",
+  "before_text": "office be eligible for re-election to the said office of any local",
+  "after_text": "office be eligible for re-election to the said office of any local",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '552' alone at its head or foot (block 2741976); the document's folios run at page + 549 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc9972-p3.png",
+  "render_sha256": "d5cebd584662e472dba418178530f82e663a42fdd2458d5bf5458073878d5516"
+ },
+ {
+  "document_id": 9972,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2741985
+  ],
+  "match_text": "in clause (j) for the word “Five” the word “three” shall",
+  "before_text": "in clause (j) for the word “Five” the word “three” shall",
+  "after_text": "in clause (j) for the word “Five” the word “three” shall",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 4 prints its folio '553' alone at its head or foot (block 2741985); the document's folios run at page + 549 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc9972-p4.png",
+  "render_sha256": "132b2a3e34513b4817182c508bc5220d5fdab56d9c35b7ecd1dd0394cdab5a82"
+ }
+]

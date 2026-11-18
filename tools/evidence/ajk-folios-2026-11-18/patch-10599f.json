@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 10599,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2788430
+  ],
+  "match_text": "28th day of the May, 1984, is hereby published for general information:-",
+  "before_text": "28th day of the May, 1984, is hereby published for general information:-",
+  "after_text": "28th day of the May, 1984, is hereby published for general information:-",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '653' alone at its head or foot (block 2788430); the document's folios run at page + 652 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10599-p1.png",
+  "render_sha256": "04b7ad4ced65b93697e7391877b8a73b0bd486c843c14942f379b8680ba551cc"
+ },
+ {
+  "document_id": 10599,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2788443
+  ],
+  "match_text": "willfully offer or serve or cause to offered or served any eatables",
+  "before_text": "willfully offer or serve or cause to offered or served any eatables",
+  "after_text": "willfully offer or serve or cause to offered or served any eatables",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '654' alone at its head or foot (block 2788443); the document's folios run at page + 652 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10599-p2.png",
+  "render_sha256": "0ea0dccecfab8f2fe91f8832fe4205085dc8e2f18889e0074e11f3bcc46843ff"
+ },
+ {
+  "document_id": 10599,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2788454
+  ],
+  "match_text": "canteen, restaurant or dining-car referred to in clause (a), (b), (c),",
+  "before_text": "canteen, restaurant or dining-car referred to in clause (a), (b), (c),",
+  "after_text": "canteen, restaurant or dining-car referred to in clause (a), (b), (c),",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '655' alone at its head or foot (block 2788454); the document's folios run at page + 652 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10599-p3.png",
+  "render_sha256": "b0f3c38cbef2c465ef716f9f20846c452d7b076084852bdba3bbcb4ea4256206"
+ },
+ {
+  "document_id": 10599,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2788460
+  ],
+  "match_text": "Repeal.- The Azad Jammu and Kashmir Sanctity of Ramzan",
+  "before_text": "Repeal.- The Azad Jammu and Kashmir Sanctity of Ramzan",
+  "after_text": "Repeal.- The Azad Jammu and Kashmir Sanctity of Ramzan",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 4 prints its folio '656' alone at its head or foot (block 2788460); the document's folios run at page + 652 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10599-p4.png",
+  "render_sha256": "d6bdb3d84a6a997e0fe1d4e9d4c369ebf0f2d766f6659dde62561717279c11ba"
+ }
+]

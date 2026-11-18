@@ -1,0 +1,82 @@
+[
+ {
+  "document_id": 1517,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1517-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head '3 / THE SINDH DISPOSAL OF PLOTS ORDINANCE, 1980 / SINDH ORDINANCE NO. VII OF 1980' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "shall be divided into the categories specified in the Schedule and",
+  "before_text": "shall be divided into the categories specified in the Schedule and",
+  "after_text": "shall be divided into the categories specified in the Schedule and",
+  "source_apparatus_blocks": [
+   91112,
+   91113
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "c94da29feed91f97d8ee3db8392d277c1c7de6956ade9c48174b49e438232b3c"
+ },
+ {
+  "document_id": 1517,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1517-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head '4 / THE SINDH DISPOSAL OF PLOTS ORDINANCE, 1980 / SINDH ORDINANCE NO. VII OF 1980' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "(1) No person shall be eligible to apply for a residential plot under",
+  "before_text": "(1) No person shall be eligible to apply for a residential plot under",
+  "after_text": "(1) No person shall be eligible to apply for a residential plot under",
+  "source_apparatus_blocks": [
+   91120,
+   91121
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "dc1c96212645ec6abc20521e26ebe590e959f73385a57055d5200767221e69a9"
+ },
+ {
+  "document_id": 1517,
+  "page_no": 5,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1517-p5.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 5 prints the running head '5 / THE SINDH DISPOSAL OF PLOTS ORDINANCE, 1980 / SINDH ORDINANCE NO. VII OF 1980' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "(2) The flat sites remaining to be disposed of after allotment under",
+  "before_text": "(2) The flat sites remaining to be disposed of after allotment under",
+  "after_text": "(2) The flat sites remaining to be disposed of after allotment under",
+  "source_apparatus_blocks": [
+   91132,
+   91133
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "e43a1dd485baf51c23c05a0da69a3fb39e269f1a89a2c02e8ab00b700abb1ad5"
+ },
+ {
+  "document_id": 1517,
+  "page_no": 6,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1517-p6.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 6 prints the running head '6 / THE SINDH DISPOSAL OF PLOTS ORDINANCE, 1980 / SINDH ORDINANCE NO. VII OF 1980' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "The categories of residential plots and reservations in respect thereof.",
+  "before_text": "The categories of residential plots and reservations in respect thereof.",
+  "after_text": "The categories of residential plots and reservations in respect thereof.",
+  "source_apparatus_blocks": [
+   91146,
+   91147
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "2bf6ec70b09909681877589cf46cbecbe2278d58c86cdc6cd5f032e75c7f76cc"
+ },
+ {
+  "document_id": 1517,
+  "page_no": 7,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1517-p7.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 7 prints the running head '7 / THE SINDH DISPOSAL OF PLOTS ORDINANCE, 1980 / SINDH ORDINANCE NO. VII OF 1980' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "Pakistanis living abroad, if they make the payment",
+  "before_text": "Pakistanis living abroad, if they make the payment",
+  "after_text": "Pakistanis living abroad, if they make the payment",
+  "source_apparatus_blocks": [
+   91176,
+   91177
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "deaae4ad0e4c8a1047d030de3ebc4a4217daec2ea8cc7ca53f97c2925cba048c"
+ }
+]

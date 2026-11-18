@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 1820,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1820-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head 'THE SINDH (PROHIBITION OF TAKING MINERALS INCLUDING RETI (SAND) / AND BAJRI FROM ANY LAND) ACT, 2003.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "AND BAJRI FROM ANY LAND) ACT, 2003.",
+  "before_text": "AND BAJRI FROM ANY LAND) ACT, 2003.",
+  "after_text": " ",
+  "source_apparatus_blocks": [
+   122327
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside; parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "3e4e4400f3149ba6261c5f30ce85752ef3b2d6bd0bf87a826de8f7cfc20fbffc"
+ }
+]

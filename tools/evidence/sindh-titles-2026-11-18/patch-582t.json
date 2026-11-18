@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 582,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc582-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head 'THE SINDH CIVIL SERVANTS / (REGULARIZATION OF ABSORPTION) ORDINANCE, 2011.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "post in Government shall, for the purpose of determining his",
+  "before_text": "post in Government shall, for the purpose of determining his",
+  "after_text": "post in Government shall, for the purpose of determining his",
+  "source_apparatus_blocks": [
+   23624
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "b92fa4e1cdf45e4ca7d044f0ce7fd233490602c3fcc96299d989ed64e9d1b3fd"
+ }
+]

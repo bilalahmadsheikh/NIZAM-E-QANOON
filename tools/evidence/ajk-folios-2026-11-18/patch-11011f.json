@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 11011,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2824874
+  ],
+  "match_text": "Resolution No. 540:- Resolved that the Alcoholic Drink Prohibition Act,",
+  "before_text": "Resolution No. 540:- Resolved that the Alcoholic Drink Prohibition Act,",
+  "after_text": "Resolution No. 540:- Resolved that the Alcoholic Drink Prohibition Act,",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '25' alone at its head or foot (block 2824874); the document's folios run at page + 24 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11011-p1.png",
+  "render_sha256": "eb9698797feb514c726716519c19da4b5b9f0927a40b802445588cb040671b69"
+ },
+ {
+  "document_id": 11011,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2824875
+  ],
+  "match_text": "investigation before a case, is brought in a court of law and shall",
+  "before_text": "investigation before a case, is brought in a court of law and shall",
+  "after_text": "investigation before a case, is brought in a court of law and shall",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '26' alone at its head or foot (block 2824875); the document's folios run at page + 24 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11011-p2.png",
+  "render_sha256": "7b29b76c48241610045f469c1d98b1860a0ea700821d522626b6c70dce39a7ca"
+ },
+ {
+  "document_id": 11011,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2824879
+  ],
+  "match_text": "investigation before a case, is brought in a court of law and shall",
+  "before_text": "investigation before a case, is brought in a court of law and shall",
+  "after_text": "investigation before a case, is brought in a court of law and shall",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '26' alone at its head or foot (block 2824879); the document's folios run at page + 24 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11011-p2.png",
+  "render_sha256": "7b29b76c48241610045f469c1d98b1860a0ea700821d522626b6c70dce39a7ca"
+ }
+]

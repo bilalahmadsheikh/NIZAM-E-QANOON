@@ -1,0 +1,50 @@
+[
+ {
+  "document_id": 2949,
+  "page_no": 16,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2949-p16.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 16 prints the running head 'THE PRESTON UNIVERSITY ACT, 1999.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE PRESTON UNIVERSITY ACT, 1999.",
+  "before_text": "THE PRESTON UNIVERSITY ACT, 1999.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "aa6414db073f0f6ab42415c6d7502415f3b2b3ea575b4077c77b95616260b1bf"
+ },
+ {
+  "document_id": 2949,
+  "page_no": 17,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2949-p17.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 17 prints the running head 'THE PRESTON UNIVERSITY ACT, 1999.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE PRESTON UNIVERSITY ACT, 1999.",
+  "before_text": "THE PRESTON UNIVERSITY ACT, 1999.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "4a13411f759f4060fccb09fe66849227a7d1cf21e491ac5f3af14d0c6ea9a481"
+ },
+ {
+  "document_id": 2949,
+  "page_no": 22,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2949-p22.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 22 prints the running head 'THE PRESTON UNIVERSITY ACT, 1999.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE PRESTON UNIVERSITY ACT, 1999.",
+  "before_text": "THE PRESTON UNIVERSITY ACT, 1999.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "bf2f42a1638d1c476a5c62325fd0bd09f3a7bcc7e6915b6b14f3b723585c6231"
+ },
+ {
+  "document_id": 2949,
+  "page_no": 27,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2949-p27.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 27 prints the running head 'THE PRESTON UNIVERSITY ACT, 1999.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE PRESTON UNIVERSITY ACT, 1999.",
+  "before_text": "THE PRESTON UNIVERSITY ACT, 1999.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "4666cf0d02bb49ab2a6209383eebb7e7dac2fda5b4d63be06336f878c7e23a13"
+ }
+]

@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 801,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc801-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head 'THE SINDH REGULATION AND CONTROL OF DISPOSABLE SYRINGES ACT, 2010.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "Act shall be non-bailable and triable under the provisions of",
+  "before_text": "Act shall be non-bailable and triable under the provisions of",
+  "after_text": "Act shall be non-bailable and triable under the provisions of",
+  "source_apparatus_blocks": [
+   36171
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "bf3c1d21ec2a5a35dbcec8efa75940ba57d4a86a82dd93ac18326061aaf9c04a"
+ }
+]

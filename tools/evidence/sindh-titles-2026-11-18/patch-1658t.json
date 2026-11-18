@@ -1,0 +1,34 @@
+[
+ {
+  "document_id": 1658,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1658-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head '3 / THE ANTI-TERRORISM (SINDH AMENDMENT) ACT, 2025. / SINDH ACT NO. XXIII OF 2025.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "Provided  also  that  in  case  of appointment  of  a retired  Judge",
+  "before_text": "Provided  also  that  in  case  of appointment  of  a retired  Judge",
+  "after_text": "Provided  also  that  in  case  of appointment  of  a retired  Judge",
+  "source_apparatus_blocks": [
+   104291,
+   104292
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "54687c6f1485f0b5c903471453eb284db612d90d349a85daa76596d2cc0fa5cd"
+ },
+ {
+  "document_id": 1658,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1658-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head '4 / THE ANTI-TERRORISM (SINDH AMENDMENT) ACT, 2025. / SINDH ACT NO. XXIII OF 2025.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "the this Act in respect of the existing Courts in the Province of",
+  "before_text": "the this Act in respect of the existing Courts in the Province of",
+  "after_text": "the this Act in respect of the existing Courts in the Province of",
+  "source_apparatus_blocks": [
+   104300,
+   104301
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "c596c2ea6f7334c1da2deb9df59fc491ef14afead107e046aa6266fada9cf74a"
+ }
+]

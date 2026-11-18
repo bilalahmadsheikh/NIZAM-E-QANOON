@@ -1,0 +1,19 @@
+[
+ {
+  "document_id": 1578,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1578-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head '3 / THE REGULARIZATION OF DOCTORS APPOINTED ON CONTRACT / OR ADHOC BASIS ACT, 2018 / SINDH ACT NO. XLII OF 2018' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "verification   of   his   or   her   required   qualifications   by",
+  "before_text": "verification   of   his   or   her   required   qualifications   by",
+  "after_text": "verification   of   his   or   her   required   qualifications   by",
+  "source_apparatus_blocks": [
+   96231,
+   96232,
+   96233
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "f603745b2842a12ea39a73d854c97721ec355176893dfcb63dec784503de9e9c"
+ }
+]

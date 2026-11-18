@@ -1,0 +1,38 @@
+[
+ {
+  "document_id": 1005,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1005-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head 'THE SINDH FINANCE ACT, 1995.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH FINANCE ACT, 1995.",
+  "before_text": "THE SINDH FINANCE ACT, 1995.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "8f95dae9fe2617b6aadd5cdd33e8ee2674ce449fd0173932ac0995c6c2a1c2fc"
+ },
+ {
+  "document_id": 1005,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1005-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head 'THE SINDH FINANCE ACT, 1995.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH FINANCE ACT, 1995.",
+  "before_text": "THE SINDH FINANCE ACT, 1995.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "e859dc50099edc3af8ef495e7bdef1351286a49bc8945616c48ce8cf27ef9efe"
+ },
+ {
+  "document_id": 1005,
+  "page_no": 5,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1005-p5.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 5 prints the running head 'THE SINDH FINANCE ACT, 1995.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH FINANCE ACT, 1995.",
+  "before_text": "THE SINDH FINANCE ACT, 1995.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "153bdebc369b18f8926c160a66b22ac1db03b617b53c21558c4885bffb4737b4"
+ }
+]

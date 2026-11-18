@@ -1,0 +1,82 @@
+[
+ {
+  "document_id": 2746,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2746-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head '3 / THE SINDH ARMS (AMENDMENT) ACT, 2023 / SINDH ACT NO. XXXV OF 2023' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "notified by the government in the official gazette”",
+  "before_text": "notified by the government in the official gazette”",
+  "after_text": "notified by the government in the official gazette”",
+  "source_apparatus_blocks": [
+   241953,
+   241954
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "7430cc719d9299d3a63a2f21f8ac1782ae205cb46e759b74e77fd9ebb4ef27e5"
+ },
+ {
+  "document_id": 2746,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2746-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head '4 / THE SINDH ARMS (AMENDMENT) ACT, 2023 / SINDH ACT NO. XXXV OF 2023' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "in sub-section (2), in the first line, after the words",
+  "before_text": "in sub-section (2), in the first line, after the words",
+  "after_text": "in sub-section (2), in the first line, after the words",
+  "source_apparatus_blocks": [
+   241962,
+   241963
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "68e202c41661ae0559fbccf2121daaeaec9b89de43f08941800fd24f97f793e1"
+ },
+ {
+  "document_id": 2746,
+  "page_no": 5,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2746-p5.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 5 prints the running head '5 / THE SINDH ARMS (AMENDMENT) ACT, 2023 / SINDH ACT NO. XXXV OF 2023' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "In the said Act, in section 16, after sub-section (8), the following",
+  "before_text": "In the said Act, in section 16, after sub-section (8), the following",
+  "after_text": "In the said Act, in section 16, after sub-section (8), the following",
+  "source_apparatus_blocks": [
+   241973,
+   241974
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "9ee9e330d94927d5956fdf5966532677d776f1122cc6cd2e6d13a82ca8848c75"
+ },
+ {
+  "document_id": 2746,
+  "page_no": 6,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2746-p6.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 6 prints the running head '6 / THE SINDH ARMS (AMENDMENT) ACT, 2023 / SINDH ACT NO. XXXV OF 2023' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "In the said Act, in section 23, after clause (b), the following new",
+  "before_text": "In the said Act, in section 23, after clause (b), the following new",
+  "after_text": "In the said Act, in section 23, after clause (b), the following new",
+  "source_apparatus_blocks": [
+   241989,
+   241990
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "f5ac5cf3de3449b3c0f87949eebc16e60cffea7215ccc0dd11e085b87baceb19"
+ },
+ {
+  "document_id": 2746,
+  "page_no": 7,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2746-p7.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 7 prints the running head '7 / THE SINDH ARMS (AMENDMENT) ACT, 2023 / SINDH ACT NO. XXXV OF 2023' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "In the said Act, after section 24, the following new Section shall",
+  "before_text": "In the said Act, after section 24, the following new Section shall",
+  "after_text": "In the said Act, after section 24, the following new Section shall",
+  "source_apparatus_blocks": [
+   242001,
+   242002
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "dfa3330caa4fd62f69a0c791349aa718e8c31c3bf6e17584def9a4ddb4a1da98"
+ }
+]

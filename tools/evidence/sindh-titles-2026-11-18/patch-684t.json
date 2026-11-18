@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 684,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc684-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head 'THE SINDH CIVIL SERVANTS (REGULARIZATION OF ADHOC APPOINTMENTS) ACT, 1989' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "Provided that where the dates of their continuous",
+  "before_text": "Provided that where the dates of their continuous",
+  "after_text": "Provided that where the dates of their continuous",
+  "source_apparatus_blocks": [
+   29450
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "500be9d24cbcb155aabdee808ae2936664700473325423b2b3362f7ef4173e34"
+ }
+]

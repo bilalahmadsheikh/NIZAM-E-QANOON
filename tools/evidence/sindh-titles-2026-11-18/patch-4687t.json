@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 4687,
+  "page_no": 14,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc4687-p14.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 14 prints the running head 'THE SINDH ESSENTIAL COMMODITIES PRICE CONTROL AND PREVENTION OF / - PROFITEERING AND HOARDING ACT, 2005' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "32. Cotton seed all sorts and other seeds of all sorts",
+  "before_text": "32. Cotton seed all sorts and other seeds of all sorts",
+  "after_text": "32. Cotton seed all sorts and other seeds of all sorts",
+  "source_apparatus_blocks": [
+   973669
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "8f6ae7f5c8b8ce937524166edbc9c34e1a2216fcb6bcb2d79c132c201ec4e263"
+ }
+]

@@ -1,0 +1,34 @@
+[
+ {
+  "document_id": 1184,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1184-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head '3 / THE SINDH MATERNITY BENEFITS ACT, 2018 / SINDH ACT NO. XXXIX OF 2018' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "(2) Still-born: In case of still-born, there shall be paid leave of 4-",
+  "before_text": "(2) Still-born: In case of still-born, there shall be paid leave of 4-",
+  "after_text": "(2) Still-born: In case of still-born, there shall be paid leave of 4-",
+  "source_apparatus_blocks": [
+   59315,
+   59316
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "403d7fe5008def8b4f635a16325fb0cc1154628819070e2733317dc13cf0593b"
+ },
+ {
+  "document_id": 1184,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1184-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head '4 / THE SINDH MATERNITY BENEFITS ACT, 2018 / SINDH ACT NO. XXXIX OF 2018' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "to the legal heirs of the employee along with all the other benefits",
+  "before_text": "to the legal heirs of the employee along with all the other benefits",
+  "after_text": "to the legal heirs of the employee along with all the other benefits",
+  "source_apparatus_blocks": [
+   59331,
+   59332
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "84f27150c8bea0301776d0a32cf45d75596bb311dc936096fc54ec42d7f4b9d0"
+ }
+]

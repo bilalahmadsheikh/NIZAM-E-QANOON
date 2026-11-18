@@ -1,0 +1,29 @@
+[
+ {
+  "document_id": 1788,
+  "page_no": 2,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1788-p2.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 2 prints the running head 'THE SIND BOARD OF TECHNICAL EDUCATION (AMENDMENT) ORDINANCE, 1974' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "12, after clause (i), the following shall be inserted as clause",
+  "before_text": "12, after clause (i), the following shall be inserted as clause",
+  "after_text": "12, after clause (i), the following shall be inserted as clause",
+  "source_apparatus_blocks": [
+   118490
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "d1ef94849c3324d4c209a46af313a0f8b0a457353fcd8b2d4b58a54fa4c44af7"
+ },
+ {
+  "document_id": 1788,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1788-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head 'THE SIND BOARD OF TECHNICAL EDUCATION (AMENDMENT) ORDINANCE, 1974' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SIND BOARD OF TECHNICAL EDUCATION (AMENDMENT) ORDINANCE, 1974",
+  "before_text": "THE SIND BOARD OF TECHNICAL EDUCATION (AMENDMENT) ORDINANCE, 1974",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "faa552ea7e121ec37ba130a6846827bbe7ba08a276aac2e72453eea0272907bd"
+ }
+]

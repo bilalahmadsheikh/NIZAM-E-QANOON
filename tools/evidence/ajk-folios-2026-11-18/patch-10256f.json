@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 10256,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2760773
+  ],
+  "match_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "before_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "after_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '172' alone at its head or foot (block 2760773); the document's folios run at page + 171 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10256-p1.png",
+  "render_sha256": "957e37c8743fe704d760c0e76beafc57942fdbad533434276166472c2e2b82e1"
+ },
+ {
+  "document_id": 10256,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2760787
+  ],
+  "match_text": "signed by the person presiding at the meeting and also by other",
+  "before_text": "signed by the person presiding at the meeting and also by other",
+  "after_text": "signed by the person presiding at the meeting and also by other",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '173' alone at its head or foot (block 2760787); the document's folios run at page + 171 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10256-p2.png",
+  "render_sha256": "e149a385788a2108e0b285ba67411b88d662978c7abe01ec1617f03e69f78d51"
+ },
+ {
+  "document_id": 10256,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2760799
+  ],
+  "match_text": "or any other made there under shall be recoverable as arrears of",
+  "before_text": "or any other made there under shall be recoverable as arrears of",
+  "after_text": "or any other made there under shall be recoverable as arrears of",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '174' alone at its head or foot (block 2760799); the document's folios run at page + 171 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10256-p3.png",
+  "render_sha256": "0fc29fa5ecf58b8654044437de5ea68828703e53fedd83edb3ef5e3c90a327dc"
+ },
+ {
+  "document_id": 10256,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2760810
+  ],
+  "match_text": "initiated, jurisdiction or powers exercised under the provisions of",
+  "before_text": "initiated, jurisdiction or powers exercised under the provisions of",
+  "after_text": "initiated, jurisdiction or powers exercised under the provisions of",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 4 prints its folio '175' alone at its head or foot (block 2760810); the document's folios run at page + 171 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10256-p4.png",
+  "render_sha256": "a9b4987c20fc1ed865476269a251425bcb40b6163bd9d5ed2ec8bfbebfae9aa1"
+ }
+]

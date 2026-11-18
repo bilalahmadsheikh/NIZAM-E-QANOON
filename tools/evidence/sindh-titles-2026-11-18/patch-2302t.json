@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 2302,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2302-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head 'THE SIND CIVIL SERVANTS (APPEAL) RULES, 1980' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "no Head of the Attached Department then Secretary of",
+  "before_text": "no Head of the Attached Department then Secretary of",
+  "after_text": "no Head of the Attached Department then Secretary of",
+  "source_apparatus_blocks": [
+   183636
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "4b3c422013ee7117b8142e14552615740ac0ad994cfa19a907946fc654378680"
+ }
+]

@@ -1,0 +1,50 @@
+[
+ {
+  "document_id": 4105,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc4105-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head '3 / THE SINDH ASSEMBLY MEMBERS (SALARIES AND ALLOWANCES) / SINDH ACT NO. XVIII OF 2025.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "3.      (1) There shall be a Parliamentary Committee constituted by the",
+  "before_text": "3.      (1) There shall be a Parliamentary Committee constituted by the",
+  "after_text": "3.      (1) There shall be a Parliamentary Committee constituted by the",
+  "source_apparatus_blocks": [
+   583727,
+   583729
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "37203b032ee4a2bddd4d19bd54ebab69ea4e46e70e2fe565ab3982bf469239d7"
+ },
+ {
+  "document_id": 4105,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc4105-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head '4 / THE SINDH ASSEMBLY MEMBERS (SALARIES AND ALLOWANCES) / SINDH ACT NO. XVIII OF 2025.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "5.        A member shall be entitled to a consolidated salary at the rate as",
+  "before_text": "5.        A member shall be entitled to a consolidated salary at the rate as",
+  "after_text": "5.        A member shall be entitled to a consolidated salary at the rate as",
+  "source_apparatus_blocks": [
+   583740,
+   583742
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "b4d6df7c889b11aef178883ae3e49f63f4b53e55fb9cdadefb6edac2ad20ba0b"
+ },
+ {
+  "document_id": 4105,
+  "page_no": 5,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc4105-p5.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 5 prints the running head '5 / THE SINDH ASSEMBLY MEMBERS (SALARIES AND ALLOWANCES) / SINDH ACT NO. XVIII OF 2025.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "10.     Notwithstanding the repeal under section 8, during the transition",
+  "before_text": "10.     Notwithstanding the repeal under section 8, during the transition",
+  "after_text": "10.     Notwithstanding the repeal under section 8, during the transition",
+  "source_apparatus_blocks": [
+   583760,
+   583762
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "c57c42ca9d58c4707b2102519d76e51cdc474e0e6588d917b0100ca54b5b235f"
+ }
+]

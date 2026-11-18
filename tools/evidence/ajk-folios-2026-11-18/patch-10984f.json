@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 10984,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2822860
+  ],
+  "match_text": "to provide for participation of workers in the profits of the Companies",
+  "before_text": "to provide for participation of workers in the profits of the Companies",
+  "after_text": "to provide for participation of workers in the profits of the Companies",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '361' alone at its head or foot (block 2822860); the document's folios run at page + 360 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10984-p1.png",
+  "render_sha256": "607563b80672c98c0f77d90d3e6fd47569327b242da1235a784dd2501498239b"
+ },
+ {
+  "document_id": 10984,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2822883
+  ],
+  "match_text": "the opinion of the majority of the trustees and in the event of the",
+  "before_text": "the opinion of the majority of the trustees and in the event of the",
+  "after_text": "the opinion of the majority of the trustees and in the event of the",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '363' alone at its head or foot (block 2822883); the document's folios run at page + 360 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10984-p3.png",
+  "render_sha256": "2c53e5c71512a1cec1882cfe0511b520cc2371509dec8f0f4f62818d00ce6472"
+ },
+ {
+  "document_id": 10984,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2822903
+  ],
+  "match_text": "be imposed and the Company shall not be liable to pay interest as",
+  "before_text": "be imposed and the Company shall not be liable to pay interest as",
+  "after_text": "be imposed and the Company shall not be liable to pay interest as",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 5 prints its folio '365' alone at its head or foot (block 2822903); the document's folios run at page + 360 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10984-p5.png",
+  "render_sha256": "0d69621281fe23732b8ce2b6e7fcaa40293ea6f92386aefcd65370b4f56e9373"
+ }
+]

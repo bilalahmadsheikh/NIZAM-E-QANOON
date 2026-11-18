@@ -1,0 +1,18 @@
+[
+ {
+  "document_id": 1159,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1159-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head '3 / THE SINDH FINANCE ORDINANCE, 1971 / SINDH ORDINANCE NO. VII OF 1971' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "collection and payment of any tax levied or the imposition of any",
+  "before_text": "collection and payment of any tax levied or the imposition of any",
+  "after_text": "collection and payment of any tax levied or the imposition of any",
+  "source_apparatus_blocks": [
+   57213,
+   57214
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "e9c0e1f2a8796b757fc545f23671283cd6530eb9caf0d58cf344bfc2731d1ca6"
+ }
+]

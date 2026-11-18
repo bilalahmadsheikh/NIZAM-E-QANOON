@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 10735,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2797863
+  ],
+  "match_text": "powers to control the production, acquisition, prices, keeping, storage,",
+  "before_text": "powers to control the production, acquisition, prices, keeping, storage,",
+  "after_text": "powers to control the production, acquisition, prices, keeping, storage,",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '263' alone at its head or foot (block 2797863); the document's folios run at page + 262 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10735-p1.png",
+  "render_sha256": "bffaf4af222dec7115acc86decfe9a7cbc05b2d56bf6183147881ceb15b963bc"
+ },
+ {
+  "document_id": 10735,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2797884
+  ],
+  "match_text": "relation to such matters and subject to such conditions, if any, as",
+  "before_text": "relation to such matters and subject to such conditions, if any, as",
+  "after_text": "relation to such matters and subject to such conditions, if any, as",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '265' alone at its head or foot (block 2797884); the document's folios run at page + 262 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10735-p3.png",
+  "render_sha256": "1755277644ff9d2d9b0de1a1b0793f8bc18e894ba84f80fa722c4156fe369ca8"
+ },
+ {
+  "document_id": 10735,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2797902
+  ],
+  "match_text": "prosecution or other legal proceeding shall lie against any person",
+  "before_text": "prosecution or other legal proceeding shall lie against any person",
+  "after_text": "prosecution or other legal proceeding shall lie against any person",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 5 prints its folio '267' alone at its head or foot (block 2797902); the document's folios run at page + 262 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10735-p5.png",
+  "render_sha256": "2d55a7313ecc2432077098b33adfc425b22f46eceee6eaacc99a8e6d40a91763"
+ },
+ {
+  "document_id": 10735,
+  "page_no": 7,
+  "source_apparatus_blocks": [
+   2797948
+  ],
+  "match_text": "Cotton, woolen and hand-made fibre textile including",
+  "before_text": "Cotton, woolen and hand-made fibre textile including",
+  "after_text": "Cotton, woolen and hand-made fibre textile including",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 7 prints its folio '269' alone at its head or foot (block 2797948); the document's folios run at page + 262 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10735-p7.png",
+  "render_sha256": "59a8e129160ed07da1d6901cc17b2de1031464ada98471f2fc4e60b17e7f90d2"
+ }
+]

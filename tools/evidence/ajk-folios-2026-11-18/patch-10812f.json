@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 10812,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2803821
+  ],
+  "match_text": "No. 277-81/LD/Leg/93. The following Act of the Assembly received the",
+  "before_text": "No. 277-81/LD/Leg/93. The following Act of the Assembly received the",
+  "after_text": "No. 277-81/LD/Leg/93. The following Act of the Assembly received the",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '248' alone at its head or foot (block 2803821); the document's folios run at page + 247 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10812-p1.png",
+  "render_sha256": "f3271b086c1de3cb99f527a8d5cf3df3d2ddc80452266b40eb160a5b67de0512"
+ },
+ {
+  "document_id": 10812,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2803825
+  ],
+  "match_text": "notification, object to the acquisition of the land or of any land in",
+  "before_text": "notification, object to the acquisition of the land or of any land in",
+  "after_text": "notification, object to the acquisition of the land or of any land in",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '249' alone at its head or foot (block 2803825); the document's folios run at page + 247 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10812-p2.png",
+  "render_sha256": "098e1bc29df8ad2c8075f68184ea8f6af4aa9298cde04080ee9c2ddc711301cf"
+ },
+ {
+  "document_id": 10812,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2803832
+  ],
+  "match_text": "giving to the occupier thereof at least fourty eight hours notice of",
+  "before_text": "giving to the occupier thereof at least fourty eight hours notice of",
+  "after_text": "giving to the occupier thereof at least fourty eight hours notice of",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '250' alone at its head or foot (block 2803832); the document's folios run at page + 247 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10812-p3.png",
+  "render_sha256": "0e99b26ad400323c8255789be20016786101fbc9863db59b4934d4abcf167a6f"
+ },
+ {
+  "document_id": 10812,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2803841
+  ],
+  "match_text": "after the publication of the notification under sub-section (1) of",
+  "before_text": "after the publication of the notification under sub-section (1) of",
+  "after_text": "after the publication of the notification under sub-section (1) of",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 4 prints its folio '251' alone at its head or foot (block 2803841); the document's folios run at page + 247 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10812-p4.png",
+  "render_sha256": "bb20c5d7b89c7fcec4dce37fd119f2510206ed0660973b0d142596247df47f49"
+ }
+]

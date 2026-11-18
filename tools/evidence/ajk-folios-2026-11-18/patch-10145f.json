@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 10145,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2754945
+  ],
+  "match_text": "Government of the State of Jammu and Kashmir is pleased to make the",
+  "before_text": "Government of the State of Jammu and Kashmir is pleased to make the",
+  "after_text": "Government of the State of Jammu and Kashmir is pleased to make the",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '647' alone at its head or foot (block 2754945); the document's folios run at page + 646 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10145-p1.png",
+  "render_sha256": "1889f9e03efc4e20019c56f91229c2b047d44292698a9cdc21a1613ad840972c"
+ },
+ {
+  "document_id": 10145,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2754946
+  ],
+  "match_text": "(b)  by order, in writing, require trader to place the whole or any",
+  "before_text": "(b)  by order, in writing, require trader to place the whole or any",
+  "after_text": "(b)  by order, in writing, require trader to place the whole or any",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '648' alone at its head or foot (block 2754946); the document's folios run at page + 646 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10145-p2.png",
+  "render_sha256": "5b359c6e031c13c249bec1e65aaa3bea8ec7c770663146c8dd0b2c12d5cb398c"
+ },
+ {
+  "document_id": 10145,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2754955
+  ],
+  "match_text": "(b)  by order, in writing, require trader to place the whole or any",
+  "before_text": "(b)  by order, in writing, require trader to place the whole or any",
+  "after_text": "(b)  by order, in writing, require trader to place the whole or any",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '648' alone at its head or foot (block 2754955); the document's folios run at page + 646 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10145-p2.png",
+  "render_sha256": "5b359c6e031c13c249bec1e65aaa3bea8ec7c770663146c8dd0b2c12d5cb398c"
+ }
+]

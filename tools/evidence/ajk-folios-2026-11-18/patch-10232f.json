@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 10232,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2759535
+  ],
+  "match_text": "President shall specify in the notification the class' or classes of",
+  "before_text": "President shall specify in the notification the class' or classes of",
+  "after_text": "President shall specify in the notification the class' or classes of",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '258' alone at its head or foot (block 2759535); the document's folios run at page + 257 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10232-p1.png",
+  "render_sha256": "94f16550447907a16bf3f2fe7d8a9e11cbc13d1bc318851094d4898b993c469a"
+ },
+ {
+  "document_id": 10232,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2759549
+  ],
+  "match_text": "Substitution of Section 4, Act XXII of 1975.- In the said Act,",
+  "before_text": "Substitution of Section 4, Act XXII of 1975.- In the said Act,",
+  "after_text": "Substitution of Section 4, Act XXII of 1975.- In the said Act,",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '259' alone at its head or foot (block 2759549); the document's folios run at page + 257 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10232-p2.png",
+  "render_sha256": "23ae128d17c590f59cdf0ce9a73514f7570e35a5893299df5649eb7d62504948"
+ },
+ {
+  "document_id": 10232,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2759566
+  ],
+  "match_text": "arguments, if any shall be considered by the tribunal as a whole",
+  "before_text": "arguments, if any shall be considered by the tribunal as a whole",
+  "after_text": "arguments, if any shall be considered by the tribunal as a whole",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '260' alone at its head or foot (block 2759566); the document's folios run at page + 257 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10232-p3.png",
+  "render_sha256": "de0455e926675b24a6d687dda722dcb6f620abc08c91017e12552dd6cb0c0c64"
+ },
+ {
+  "document_id": 10232,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2759576
+  ],
+  "match_text": "is, for any reason absent or unable to take part in the proceedings",
+  "before_text": "is, for any reason absent or unable to take part in the proceedings",
+  "after_text": "is, for any reason absent or unable to take part in the proceedings",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 4 prints its folio '261' alone at its head or foot (block 2759576); the document's folios run at page + 257 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10232-p4.png",
+  "render_sha256": "3514fd08c18888213e4d76ca8eafff7f5dc31e1396a83d71baf0b11da42ffb32"
+ }
+]

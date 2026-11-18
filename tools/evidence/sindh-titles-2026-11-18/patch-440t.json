@@ -1,0 +1,18 @@
+[
+ {
+  "document_id": 440,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc440-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head 'THE SIND (TEACHING, PROMOTION AND USE OF SINDHI LANGUAGE) / (APPLICATION) ACT, 1972.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "Application of the Sind (Teaching, Promotion and Use",
+  "before_text": "Application of the Sind (Teaching, Promotion and Use",
+  "after_text": "Application of the Sind (Teaching, Promotion and Use",
+  "source_apparatus_blocks": [
+   17723,
+   17724
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "c846f0909921a875325e0c54afd1bf0782a37f073703414cd51cd3a8f2c426ee"
+ }
+]

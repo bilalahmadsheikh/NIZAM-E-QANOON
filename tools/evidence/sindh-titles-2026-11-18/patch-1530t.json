@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 1530,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1530-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head '3 / THE SINDH MASS TRANSIT AUTHORITY (AMENDMENT) ACT,' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "vehicle or insularly facilities or travels or attempts to travel on a",
+  "before_text": "vehicle or insularly facilities or travels or attempts to travel on a",
+  "after_text": "vehicle or insularly facilities or travels or attempts to travel on a",
+  "source_apparatus_blocks": [
+   92111
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "837a2acbb4b3c9c0caf1ca728ac7fcdb853b6c073f774e0b8e29d326094d9226"
+ }
+]

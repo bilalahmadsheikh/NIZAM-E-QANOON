@@ -1,0 +1,34 @@
+[
+ {
+  "document_id": 2617,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2617-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head '3 / THE SINDH SAFE CITIES AUTHORITY (AMENDMENT) ACT, 2025. / SINDH ACT NO. II OF 2026.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "(i)          for the words “Management Committee”, wherever",
+  "before_text": "(i)          for the words “Management Committee”, wherever",
+  "after_text": "(i)          for the words “Management Committee”, wherever",
+  "source_apparatus_blocks": [
+   223920,
+   223921
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "2d21b990c0dc3143fa155a221e04bea348af5d1b026899bc46a0d99a44a3c1a2"
+ },
+ {
+  "document_id": 2617,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2617-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head '4 / THE SINDH SAFE CITIES AUTHORITY (AMENDMENT) ACT, 2025. / SINDH ACT NO. II OF 2026.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "In the said Act, after section 6, the following new section shall be",
+  "before_text": "In the said Act, after section 6, the following new section shall be",
+  "after_text": "In the said Act, after section 6, the following new section shall be",
+  "source_apparatus_blocks": [
+   223927,
+   223928
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "c95c880eece62e39608bcb191fd333d1c92fac029deed7fb8e8e2d29df806ea6"
+ }
+]

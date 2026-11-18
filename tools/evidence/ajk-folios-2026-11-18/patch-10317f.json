@@ -1,0 +1,77 @@
+[
+ {
+  "document_id": 10317,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2765367
+  ],
+  "match_text": "26th day of January, 1982, is hereby published for general information.",
+  "before_text": "26th day of January, 1982, is hereby published for general information.",
+  "after_text": "26th day of January, 1982, is hereby published for general information.",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '309' alone at its head or foot (block 2765367); the document's folios run at page + 308 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10317-p1.png",
+  "render_sha256": "ffe28de35473d3c5a55bba2df4b93e55ecf7b4dbcd1bb6de4c17213a47590df6"
+ },
+ {
+  "document_id": 10317,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2765380
+  ],
+  "match_text": "Qazi, one non-official member from each Tehsil in the District to",
+  "before_text": "Qazi, one non-official member from each Tehsil in the District to",
+  "after_text": "Qazi, one non-official member from each Tehsil in the District to",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '310' alone at its head or foot (block 2765380); the document's folios run at page + 308 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10317-p2.png",
+  "render_sha256": "19a3000a8b1c787e585b1768c60f98a61fb332562d35275a68df4e1f54e6a5f0"
+ },
+ {
+  "document_id": 10317,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2765392
+  ],
+  "match_text": "equal number of votes, the result of the election shall be",
+  "before_text": "equal number of votes, the result of the election shall be",
+  "after_text": "equal number of votes, the result of the election shall be",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '311' alone at its head or foot (block 2765392); the document's folios run at page + 308 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10317-p3.png",
+  "render_sha256": "f68e21f6d294128c79ad81994c5ec7ebe3ad455920500bfa0c4c9ebb21184dc2"
+ },
+ {
+  "document_id": 10317,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2765407
+  ],
+  "match_text": "said Ordinance, in Section 19, for clauses (a), (b) and (c) the",
+  "before_text": "said Ordinance, in Section 19, for clauses (a), (b) and (c) the",
+  "after_text": "said Ordinance, in Section 19, for clauses (a), (b) and (c) the",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 4 prints its folio '312' alone at its head or foot (block 2765407); the document's folios run at page + 308 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10317-p4.png",
+  "render_sha256": "87629766fcc47dbf365ccb3c65c8cc144e3cf94cc84e90c86cab97bcbaa5a544"
+ },
+ {
+  "document_id": 10317,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2765414
+  ],
+  "match_text": "occurring the words” Tehsil Committee” shall be substituted.",
+  "before_text": "occurring the words” Tehsil Committee” shall be substituted.",
+  "after_text": "occurring the words” Tehsil Committee” shall be substituted.",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 5 prints its folio '313' alone at its head or foot (block 2765414); the document's folios run at page + 308 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10317-p5.png",
+  "render_sha256": "7aed55888a3b7e65607ca4b78e105668438e746d097a4f0e45f37df16e1aafc4"
+ }
+]

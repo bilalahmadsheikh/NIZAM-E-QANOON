@@ -1,0 +1,74 @@
+[
+ {
+  "document_id": 1844,
+  "page_no": 5,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1844-p5.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 5 prints the running head 'THE ZULFIKARABAD DEVELOPMENT AUTHORITY ORDINANCE, 2010.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE ZULFIKARABAD DEVELOPMENT AUTHORITY ORDINANCE, 2010.",
+  "before_text": "THE ZULFIKARABAD DEVELOPMENT AUTHORITY ORDINANCE, 2010.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "146959b9a0d8a44039276ae37c780f30a4627dc173e28e0f5dac617536db0d7b"
+ },
+ {
+  "document_id": 1844,
+  "page_no": 6,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1844-p6.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 6 prints the running head 'THE ZULFIKARABAD DEVELOPMENT AUTHORITY ORDINANCE, 2010.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE ZULFIKARABAD DEVELOPMENT AUTHORITY ORDINANCE, 2010.",
+  "before_text": "THE ZULFIKARABAD DEVELOPMENT AUTHORITY ORDINANCE, 2010.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "2f835b1f1c5b27570f41006f1837cfc1947d5f6367e350908912afc257272ce0"
+ },
+ {
+  "document_id": 1844,
+  "page_no": 10,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1844-p10.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 10 prints the running head 'THE ZULFIKARABAD DEVELOPMENT AUTHORITY ORDINANCE, 2010.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE ZULFIKARABAD DEVELOPMENT AUTHORITY ORDINANCE, 2010.",
+  "before_text": "THE ZULFIKARABAD DEVELOPMENT AUTHORITY ORDINANCE, 2010.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "5a2824ceb1636301eb7880887aa3d261777a19f8030e6817c6395a150cf47791"
+ },
+ {
+  "document_id": 1844,
+  "page_no": 13,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1844-p13.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 13 prints the running head 'THE ZULFIKARABAD DEVELOPMENT AUTHORITY ORDINANCE, 2010.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE ZULFIKARABAD DEVELOPMENT AUTHORITY ORDINANCE, 2010.",
+  "before_text": "THE ZULFIKARABAD DEVELOPMENT AUTHORITY ORDINANCE, 2010.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "db7126b6c87de3f8c5fd686651cbf88e5e84e5b37aae7349ae1b8c7c494ee75b"
+ },
+ {
+  "document_id": 1844,
+  "page_no": 15,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1844-p15.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 15 prints the running head 'THE ZULFIKARABAD DEVELOPMENT AUTHORITY ORDINANCE, 2010.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE ZULFIKARABAD DEVELOPMENT AUTHORITY ORDINANCE, 2010.",
+  "before_text": "THE ZULFIKARABAD DEVELOPMENT AUTHORITY ORDINANCE, 2010.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "16d7f6d4971d5bd7fc28b021b8407889f5455719899ca35788ebe67c5bad3cc9"
+ },
+ {
+  "document_id": 1844,
+  "page_no": 17,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1844-p17.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 17 prints the running head 'THE ZULFIKARABAD DEVELOPMENT AUTHORITY ORDINANCE, 2010.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE ZULFIKARABAD DEVELOPMENT AUTHORITY ORDINANCE, 2010.",
+  "before_text": "THE ZULFIKARABAD DEVELOPMENT AUTHORITY ORDINANCE, 2010.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "0b6f6801805186358fd77abbfa332b7bc85a19253cb8ae5be7b579d63343e246"
+ }
+]

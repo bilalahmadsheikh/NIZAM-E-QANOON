@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 10717,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2797146
+  ],
+  "match_text": "all sarais within his jurisdiction, and the situation of every",
+  "before_text": "all sarais within his jurisdiction, and the situation of every",
+  "after_text": "all sarais within his jurisdiction, and the situation of every",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '153' alone at its head or foot (block 2797146); the document's folios run at page + 152 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10717-p1.png",
+  "render_sha256": "726adf4e2e9bc6dddd1157e1aadc43f129bc9ae3edcc3e755d7170e3f626157f"
+ },
+ {
+  "document_id": 10717,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2797160
+  ],
+  "match_text": "may, if he shall think fit, refuse to register as the keeper of",
+  "before_text": "may, if he shall think fit, refuse to register as the keeper of",
+  "after_text": "may, if he shall think fit, refuse to register as the keeper of",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '154' alone at its head or foot (block 2797160); the document's folios run at page + 152 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10717-p2.png",
+  "render_sha256": "4b4c600646f29d7f20412f34512e87f9129507a347c402ecd3dffa1aa47bc626"
+ },
+ {
+  "document_id": 10717,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2797170
+  ],
+  "match_text": "District to be in a ruinous state, or likely to fall, or in any",
+  "before_text": "District to be in a ruinous state, or likely to fall, or in any",
+  "after_text": "District to be in a ruinous state, or likely to fall, or in any",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '155' alone at its head or foot (block 2797170); the document's folios run at page + 152 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10717-p3.png",
+  "render_sha256": "2076ca08e7240f3d6abc4ba075e8fcf8ecf8a2fa3062b2e65921f72afb4386d9"
+ },
+ {
+  "document_id": 10717,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2797180
+  ],
+  "match_text": "be liable to the penalties provided in section 14 of this Act:",
+  "before_text": "be liable to the penalties provided in section 14 of this Act:",
+  "after_text": "be liable to the penalties provided in section 14 of this Act:",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 4 prints its folio '156' alone at its head or foot (block 2797180); the document's folios run at page + 152 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10717-p4.png",
+  "render_sha256": "c8b3c7523bb13b38fbe57f8a244c01af8cacc3a08be181f6a12638901b92ab82"
+ }
+]

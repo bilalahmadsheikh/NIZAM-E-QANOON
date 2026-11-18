@@ -1,0 +1,34 @@
+[
+ {
+  "document_id": 1302,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1302-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head '3 / THE SINDH SPECIAL TRIBUNAL ORDINANCE, 1970 / SINDH ORDINANCE NO. III OF 1970' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "1 Substituted sub-section by Sindh Ordinance No. VII of 1970, dated 19th September, 1970; and then repealed by",
+  "before_text": "1 Substituted sub-section by Sindh Ordinance No. VII of 1970, dated 19th September, 1970; and then repealed by",
+  "after_text": "1 Substituted sub-section by Sindh Ordinance No. VII of 1970, dated 19th September, 1970; and then repealed by",
+  "source_apparatus_blocks": [
+   71519,
+   71520
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "873f98ab4ef6d5e21829cb407f53b9c657ad7402f8b7e2e2ba3cd74972628207"
+ },
+ {
+  "document_id": 1302,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1302-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head '4 / THE SINDH SPECIAL TRIBUNAL ORDINANCE, 1970 / SINDH ORDINANCE NO. III OF 1970' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "1 Substituted schedule by Sindh Ordinance No. VII of 1970, dated 19th September, 1970; and then repealed by",
+  "before_text": "1 Substituted schedule by Sindh Ordinance No. VII of 1970, dated 19th September, 1970; and then repealed by",
+  "after_text": "1 Substituted schedule by Sindh Ordinance No. VII of 1970, dated 19th September, 1970; and then repealed by",
+  "source_apparatus_blocks": [
+   71527,
+   71528
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "f3f265db23a5f927a551813d347cd4616b6ba8de303bd3c458e843311475fc65"
+ }
+]

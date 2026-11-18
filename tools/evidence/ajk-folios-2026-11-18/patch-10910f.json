@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 10910,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2811150
+  ],
+  "match_text": "rendering financial assistance in the rehabilitation of refugees, it",
+  "before_text": "rendering financial assistance in the rehabilitation of refugees, it",
+  "after_text": "rendering financial assistance in the rehabilitation of refugees, it",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '275' alone at its head or foot (block 2811150); the document's folios run at page + 274 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10910-p1.png",
+  "render_sha256": "6ca4d04b287b9c680cfaa457a95132f9dd606a465e69d2f78fe68304125a0af7"
+ },
+ {
+  "document_id": 10910,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2811164
+  ],
+  "match_text": "provisions of this Act the Board shall take steps to render",
+  "before_text": "provisions of this Act the Board shall take steps to render",
+  "after_text": "provisions of this Act the Board shall take steps to render",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '276' alone at its head or foot (block 2811164); the document's folios run at page + 274 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10910-p2.png",
+  "render_sha256": "221368986a52057054ab5ce59d146980c396957816563316de64d5987ce9f50b"
+ },
+ {
+  "document_id": 10910,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2811179
+  ],
+  "match_text": "that it is desirable to effect any change in the constitution",
+  "before_text": "that it is desirable to effect any change in the constitution",
+  "after_text": "that it is desirable to effect any change in the constitution",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '277' alone at its head or foot (block 2811179); the document's folios run at page + 274 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10910-p3.png",
+  "render_sha256": "625721274be6619f3e0ad86897db98f9ff902319020937db8aec39b03374a73a"
+ },
+ {
+  "document_id": 10910,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2811183
+  ],
+  "match_text": "together with a descriptive report of its activities.",
+  "before_text": "together with a descriptive report of its activities.",
+  "after_text": "together with a descriptive report of its activities.",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 4 prints its folio '278' alone at its head or foot (block 2811183); the document's folios run at page + 274 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10910-p4.png",
+  "render_sha256": "7afd7e780b611668a6979d297bb5f8daadc437203a49b59c5b1edad050803338"
+ }
+]

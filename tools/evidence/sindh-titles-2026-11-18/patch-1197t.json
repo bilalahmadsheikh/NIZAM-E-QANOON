@@ -1,0 +1,41 @@
+[
+ {
+  "document_id": 1197,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1197-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head 'THE SINDH INFORMATION TECHNOLOGY BOARD ORDINANCE 2002' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH INFORMATION TECHNOLOGY BOARD ORDINANCE 2002",
+  "before_text": "THE SINDH INFORMATION TECHNOLOGY BOARD ORDINANCE 2002",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "d483275ee2fae09b9eacec2bbc33e9e584b9967c1d4a752a5139b028166faef8"
+ },
+ {
+  "document_id": 1197,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1197-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head 'THE SINDH INFORMATION TECHNOLOGY BOARD ORDINANCE 2002' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "such time and place, as may be prescribed by regulations, provided that until",
+  "before_text": "such time and place, as may be prescribed by regulations, provided that until",
+  "after_text": "such time and place, as may be prescribed by regulations, provided that until",
+  "source_apparatus_blocks": [
+   60811
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "4b213ed5671a670726c45b1137a58337b71f4a52774feb16dde76edcf4a6c4eb"
+ },
+ {
+  "document_id": 1197,
+  "page_no": 5,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1197-p5.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 5 prints the running head 'THE SINDH INFORMATION TECHNOLOGY BOARD ORDINANCE 2002' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH INFORMATION TECHNOLOGY BOARD ORDINANCE 2002",
+  "before_text": "THE SINDH INFORMATION TECHNOLOGY BOARD ORDINANCE 2002",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "9d43cb965dd8eac73eac921481b9faf8c39339292f37ce37217ef687e1ce8f12"
+ }
+]

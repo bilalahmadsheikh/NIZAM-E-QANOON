@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 690,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc690-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head 'THE PREVENTION OF DEFACEMENT OF PROPERTY ORDINANCE, 2013' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "commencement of this Ordinance, every Council shall",
+  "before_text": "commencement of this Ordinance, every Council shall",
+  "after_text": "commencement of this Ordinance, every Council shall",
+  "source_apparatus_blocks": [
+   29618
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "49ed629a8937c528068bb3fbfde9e98475bf2af7befab2db2a2ddc18c6605753"
+ }
+]

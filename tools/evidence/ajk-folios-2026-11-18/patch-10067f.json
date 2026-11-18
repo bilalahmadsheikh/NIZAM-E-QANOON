@@ -1,0 +1,77 @@
+[
+ {
+  "document_id": 10067,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2749001
+  ],
+  "match_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "before_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "after_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '712' alone at its head or foot (block 2749001); the document's folios run at page + 711 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10067-p1.png",
+  "render_sha256": "052468739d1956923390dd85045ab2aa0d3a7e93422fb3fa3e156c0fd452d87d"
+ },
+ {
+  "document_id": 10067,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2749010
+  ],
+  "match_text": "of condition .- (1) If the Deputy Administrator is satisfied that a",
+  "before_text": "of condition .- (1) If the Deputy Administrator is satisfied that a",
+  "after_text": "of condition .- (1) If the Deputy Administrator is satisfied that a",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '713' alone at its head or foot (block 2749010); the document's folios run at page + 711 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10067-p2.png",
+  "render_sha256": "255b41e48c0d0cfa241113ff34b45153ef7e75405e59faaf1b5a5a741da87af5"
+ },
+ {
+  "document_id": 10067,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2749019
+  ],
+  "match_text": "reasonable time, not being less than thirty days to be stated in the",
+  "before_text": "reasonable time, not being less than thirty days to be stated in the",
+  "after_text": "reasonable time, not being less than thirty days to be stated in the",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '714' alone at its head or foot (block 2749019); the document's folios run at page + 711 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10067-p3.png",
+  "render_sha256": "8e040e6b5552edfa76afeefddde9effda2083cae85c0d1344a3002bef22f76cd"
+ },
+ {
+  "document_id": 10067,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2749028
+  ],
+  "match_text": "no such petition shall lie in respect of any interest in the income,",
+  "before_text": "no such petition shall lie in respect of any interest in the income,",
+  "after_text": "no such petition shall lie in respect of any interest in the income,",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 4 prints its folio '715' alone at its head or foot (block 2749028); the document's folios run at page + 711 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10067-p4.png",
+  "render_sha256": "344c07f23b59abaed3ea73620bb3273ae27ff0d09c97291654ed37372618b55e"
+ },
+ {
+  "document_id": 10067,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2749036
+  ],
+  "match_text": "(Amendment) Ordinance, 1991 (Ordinance LXXVIII of 1991) is",
+  "before_text": "(Amendment) Ordinance, 1991 (Ordinance LXXVIII of 1991) is",
+  "after_text": "(Amendment) Ordinance, 1991 (Ordinance LXXVIII of 1991) is",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 5 prints its folio '716' alone at its head or foot (block 2749036); the document's folios run at page + 711 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10067-p5.png",
+  "render_sha256": "8fa32d9e763b829dce6c9ec57eb71322480522d3772e1b58267c6ae9f8a12056"
+ }
+]

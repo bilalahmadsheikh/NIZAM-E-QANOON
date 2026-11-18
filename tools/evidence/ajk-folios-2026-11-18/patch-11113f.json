@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 11113,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2832611
+  ],
+  "match_text": "or is presumed to have, entered into an agreement with",
+  "before_text": "or is presumed to have, entered into an agreement with",
+  "after_text": "or is presumed to have, entered into an agreement with",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '367' alone at its head or foot (block 2832611); the document's folios run at page + 365 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11113-p2.png",
+  "render_sha256": "39c501aacb30f20624d619f558ef85e5097f9114e10ce3d2915683a89810fea2"
+ },
+ {
+  "document_id": 11113,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2832632
+  ],
+  "match_text": "after giving the creditor a reasonable opportunity of being heard,",
+  "before_text": "after giving the creditor a reasonable opportunity of being heard,",
+  "after_text": "after giving the creditor a reasonable opportunity of being heard,",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 4 prints its folio '369' alone at its head or foot (block 2832632); the document's folios run at page + 365 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11113-p4.png",
+  "render_sha256": "b8d7a6f8652c74a269f9522c2eb598710cc6fc528ea6faef08d1fd451887c8ef"
+ },
+ {
+  "document_id": 11113,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   2832649
+  ],
+  "match_text": "the provisions of this Act are properly carried out and the District",
+  "before_text": "the provisions of this Act are properly carried out and the District",
+  "after_text": "the provisions of this Act are properly carried out and the District",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 6 prints its folio '371' alone at its head or foot (block 2832649); the document's folios run at page + 365 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11113-p6.png",
+  "render_sha256": "6a720ea36958e23beef16ef9c51cfe8e169d87745241a5cdf01bcc0e42c4f41b"
+ },
+ {
+  "document_id": 11113,
+  "page_no": 8,
+  "source_apparatus_blocks": [
+   2832673
+  ],
+  "match_text": "other officer shall be deemed to be guilty of that offence and shall",
+  "before_text": "other officer shall be deemed to be guilty of that offence and shall",
+  "after_text": "other officer shall be deemed to be guilty of that offence and shall",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 8 prints its folio '373' alone at its head or foot (block 2832673); the document's folios run at page + 365 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11113-p8.png",
+  "render_sha256": "7229f866fdd287ec9da12dde084e506d894c529940769feed7ef30b7783e0a19"
+ }
+]

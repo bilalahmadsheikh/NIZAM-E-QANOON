@@ -1,0 +1,18 @@
+[
+ {
+  "document_id": 2531,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2531-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head '3 / THE THAR COAL AND ENERGY BOARD (AMENDMENT) ACT, 2025. / SINDH ACT NO.III OF 2026.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "from the date of enactment of this Act i.e. 6th July, 2011, shall be",
+  "before_text": "from the date of enactment of this Act i.e. 6th July, 2011, shall be",
+  "after_text": "from the date of enactment of this Act i.e. 6th July, 2011, shall be",
+  "source_apparatus_blocks": [
+   212401,
+   212402
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "1ba47e6e9410c85c6f2765b38ba90f1db30261a603f5f5aab95d2939915a5819"
+ }
+]

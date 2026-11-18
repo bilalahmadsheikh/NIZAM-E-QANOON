@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 9944,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2739323
+  ],
+  "match_text": "to provide for measures to observe the sanctity of the month of Ramzan.",
+  "before_text": "to provide for measures to observe the sanctity of the month of Ramzan.",
+  "after_text": "to provide for measures to observe the sanctity of the month of Ramzan.",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '392' alone at its head or foot (block 2739323); the document's folios run at page + 391 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc9944-p1.png",
+  "render_sha256": "fe0766454ccc57c05dbb3ca78b9e7485fdbab7dbc9e165bb2edf936849872434"
+ },
+ {
+  "document_id": 9944,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2739334
+  ],
+  "match_text": "institution contravenes the provisions of sub-section (1), he shall",
+  "before_text": "institution contravenes the provisions of sub-section (1), he shall",
+  "after_text": "institution contravenes the provisions of sub-section (1), he shall",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '393' alone at its head or foot (block 2739334); the document's folios run at page + 391 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc9944-p2.png",
+  "render_sha256": "01e00be13fbb1293fc15ebf9cdce7cc87da8ec85d6fa34f52307329d7b45e40c"
+ },
+ {
+  "document_id": 9944,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2739345
+  ],
+  "match_text": "canteen, restaurant or dining-car referred to in Clause (a), (b), (c)",
+  "before_text": "canteen, restaurant or dining-car referred to in Clause (a), (b), (c)",
+  "after_text": "canteen, restaurant or dining-car referred to in Clause (a), (b), (c)",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '394' alone at its head or foot (block 2739345); the document's folios run at page + 391 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc9944-p3.png",
+  "render_sha256": "5899cf1a8e377ded3700fbb6a58699f00f6e19fa09bb287fdd32e32b6ef57140"
+ },
+ {
+  "document_id": 9944,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2739353
+  ],
+  "match_text": "Ordinance shall have effect notwithstanding anything contained",
+  "before_text": "Ordinance shall have effect notwithstanding anything contained",
+  "after_text": "Ordinance shall have effect notwithstanding anything contained",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 4 prints its folio '395' alone at its head or foot (block 2739353); the document's folios run at page + 391 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc9944-p4.png",
+  "render_sha256": "049786f0c81d5b12ca9d50fb7b756b3dd5ec606e47989adb8b9e367739c13b84"
+ }
+]

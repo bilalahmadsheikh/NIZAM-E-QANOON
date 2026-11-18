@@ -1,0 +1,14 @@
+[
+ {
+  "document_id": 3259,
+  "page_no": 11,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc3259-p11.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 11 prints the running head 'THE METROPOLITAN UNIVERSITY, KARACHI ACT, 2015' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE METROPOLITAN UNIVERSITY, KARACHI ACT, 2015",
+  "before_text": "THE METROPOLITAN UNIVERSITY, KARACHI ACT, 2015",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "b1604ceb5f02693fc49b7f5f4d473524a26d710ff624c8bb60db4e6c49782f8c"
+ }
+]

@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 10576,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2785943
+  ],
+  "match_text": "of the organ of the human body which impairs or injures or",
+  "before_text": "of the organ of the human body which impairs or injures or",
+  "after_text": "of the organ of the human body which impairs or injures or",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '2' alone at its head or foot (block 2785943); the document's folios run at page + 0 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10576-p2.png",
+  "render_sha256": "b33c741a9e039c74f94a78914428db68fdcab53f79ef121bdc7d787a09afa617"
+ },
+ {
+  "document_id": 10576,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2785949
+  ],
+  "match_text": "exclusively for the trial of offences relating to price control under",
+  "before_text": "exclusively for the trial of offences relating to price control under",
+  "after_text": "exclusively for the trial of offences relating to price control under",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '3' alone at its head or foot (block 2785949); the document's folios run at page + 0 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10576-p3.png",
+  "render_sha256": "3ada84c18a7a3beab060e5362d699c5bc08f5ebb465dffb8419ca72481c342bf"
+ },
+ {
+  "document_id": 10576,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2785958
+  ],
+  "match_text": "accused or any other person acting on his behalf, direct that",
+  "before_text": "accused or any other person acting on his behalf, direct that",
+  "after_text": "accused or any other person acting on his behalf, direct that",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 4 prints its folio '4' alone at its head or foot (block 2785958); the document's folios run at page + 0 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10576-p4.png",
+  "render_sha256": "21aab20ae9506e5e4de0cdcec5c4564d787f9bb6ec577fd9d8f73f1aa533e404"
+ },
+ {
+  "document_id": 10576,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2785966
+  ],
+  "match_text": "visualized by this Act, shall be deemed to have been validly taken, made,",
+  "before_text": "visualized by this Act, shall be deemed to have been validly taken, made,",
+  "after_text": "visualized by this Act, shall be deemed to have been validly taken, made,",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 5 prints its folio '5' alone at its head or foot (block 2785966); the document's folios run at page + 0 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10576-p5.png",
+  "render_sha256": "f11a9574e9b3df659fc047d7b6f495faae0aab3f5ed41f7fd43217d153891d1f"
+ }
+]

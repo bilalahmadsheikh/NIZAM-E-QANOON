@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 10194,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2757891
+  ],
+  "match_text": "of the subordinate Rehabilitation. Authorities who are directed to ensure",
+  "before_text": "of the subordinate Rehabilitation. Authorities who are directed to ensure",
+  "after_text": "of the subordinate Rehabilitation. Authorities who are directed to ensure",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '800' alone at its head or foot (block 2757891); the document's folios run at page + 799 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10194-p1.png",
+  "render_sha256": "ca1bcd19c27a27c87278f37ca0e0cbdd8d122ba2a9cfda47c66215fd27d5fe2e"
+ },
+ {
+  "document_id": 10194,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2757892
+  ],
+  "match_text": "(e)  'Old tenant' would mean such tenants as are recorded to have",
+  "before_text": "(e)  'Old tenant' would mean such tenants as are recorded to have",
+  "after_text": "(e)  'Old tenant' would mean such tenants as are recorded to have",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '801' alone at its head or foot (block 2757892); the document's folios run at page + 799 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10194-p2.png",
+  "render_sha256": "889052db04bf030322fe54b77ddf10d0e31e8394aaf9d0833821835e36aeaf34"
+ },
+ {
+  "document_id": 10194,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2757899
+  ],
+  "match_text": "(e)  'Old tenant' would mean such tenants as are recorded to have",
+  "before_text": "(e)  'Old tenant' would mean such tenants as are recorded to have",
+  "after_text": "(e)  'Old tenant' would mean such tenants as are recorded to have",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '801' alone at its head or foot (block 2757899); the document's folios run at page + 799 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10194-p2.png",
+  "render_sha256": "889052db04bf030322fe54b77ddf10d0e31e8394aaf9d0833821835e36aeaf34"
+ }
+]

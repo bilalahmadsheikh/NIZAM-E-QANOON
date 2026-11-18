@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 11039,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2826342
+  ],
+  "match_text": "This Act shall extend to the whole of the liberated territory",
+  "before_text": "This Act shall extend to the whole of the liberated territory",
+  "after_text": "This Act shall extend to the whole of the liberated territory",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '58' alone at its head or foot (block 2826342); the document's folios run at page + 57 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11039-p1.png",
+  "render_sha256": "e8cc86a8777edcd976ac484120ecad1b9e33f358f7c6c760e5a4711357ac76e9"
+ },
+ {
+  "document_id": 11039,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2826357
+  ],
+  "match_text": "the behalf shall keep in view the interests of dependants of",
+  "before_text": "the behalf shall keep in view the interests of dependants of",
+  "after_text": "the behalf shall keep in view the interests of dependants of",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '59' alone at its head or foot (block 2826357); the document's folios run at page + 57 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11039-p2.png",
+  "render_sha256": "4a6f039da65fbabef52b34259c953a59a030ab0c885c431a11a31e3ac827bcbb"
+ },
+ {
+  "document_id": 11039,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2826371
+  ],
+  "match_text": "be kept in abeyance by the authority passing the orders or",
+  "before_text": "be kept in abeyance by the authority passing the orders or",
+  "after_text": "be kept in abeyance by the authority passing the orders or",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '60' alone at its head or foot (block 2826371); the document's folios run at page + 57 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11039-p3.png",
+  "render_sha256": "2bc223d78d4a01505362f42dd09a1d90aff7e065f6c17a2a3243224c7f24319e"
+ },
+ {
+  "document_id": 11039,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2826376
+  ],
+  "match_text": "Nothing in this Act shall invalidate any act done under the",
+  "before_text": "Nothing in this Act shall invalidate any act done under the",
+  "after_text": "Nothing in this Act shall invalidate any act done under the",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 4 prints its folio '61' alone at its head or foot (block 2826376); the document's folios run at page + 57 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11039-p4.png",
+  "render_sha256": "af2964c32ff02e706d5a7d056c0f3b1a603b8fe6aceb615454041587f98af0bd"
+ }
+]

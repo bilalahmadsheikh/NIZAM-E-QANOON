@@ -1,0 +1,41 @@
+[
+ {
+  "document_id": 850,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc850-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head 'CONTROL) ORDINANCE, 1994.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE  SINDH PRIVATE TEACHERS’ TRAINING INSTITUTIONS (REGISTRATION AND",
+  "before_text": "THE  SINDH PRIVATE TEACHERS’ TRAINING INSTITUTIONS (REGISTRATION AND",
+  "after_text": "THE  SINDH PRIVATE TEACHERS’ TRAINING INSTITUTIONS (REGISTRATION AND",
+  "source_apparatus_blocks": [
+   38290
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "d84a62e7eed4bbc897b49da8dc79d683be7425fbbe23181d208b447d50913279"
+ },
+ {
+  "document_id": 850,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc850-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head 'CONTROL) ORDINANCE, 1994.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "CONTROL) ORDINANCE, 1994.",
+  "before_text": "CONTROL) ORDINANCE, 1994.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "d742f0bee698373e3df6e05a6cdf6e37d8c542108f1cb187906e73c9a3d131d2"
+ },
+ {
+  "document_id": 850,
+  "page_no": 5,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc850-p5.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 5 prints the running head 'CONTROL) ORDINANCE, 1994.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "CONTROL) ORDINANCE, 1994.",
+  "before_text": "CONTROL) ORDINANCE, 1994.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "872b24723779cd895bdda712f196c7115687a558000301c1ddca1a64c8f3a19c"
+ }
+]

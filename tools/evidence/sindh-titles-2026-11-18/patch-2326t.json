@@ -1,0 +1,140 @@
+[
+ {
+  "document_id": 2326,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2326-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head 'THE SIND SPORTS BOARD ORDINANCE, 1980' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "the provisions of this Ordinance, to acquire and hold property",
+  "before_text": "the provisions of this Ordinance, to acquire and hold property",
+  "after_text": "the provisions of this Ordinance, to acquire and hold property",
+  "source_apparatus_blocks": [
+   186347
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "78a7de0bab62f45626c90ee91b2d96c5f3ce59cee79a7543cd6c39fbb608c748"
+ },
+ {
+  "document_id": 2326,
+  "page_no": 5,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2326-p5.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 5 prints the running head 'THE SIND SPORTS BOARD ORDINANCE, 1980' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SIND SPORTS BOARD ORDINANCE, 1980",
+  "before_text": "THE SIND SPORTS BOARD ORDINANCE, 1980",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "f50a2bd85d85443e3e5bc4e6ccbf7f0260ea44572e5eba94cf0d5982d6d027e0"
+ },
+ {
+  "document_id": 2326,
+  "page_no": 6,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2326-p6.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 6 prints the running head 'THE SIND SPORTS BOARD ORDINANCE, 1980' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SIND SPORTS BOARD ORDINANCE, 1980",
+  "before_text": "THE SIND SPORTS BOARD ORDINANCE, 1980",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "6d71db0484999c5ea717e9f94a0b9f1ad0a3916d1681e89bcf99509e843fb1e2"
+ },
+ {
+  "document_id": 2326,
+  "page_no": 7,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2326-p7.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 7 prints the running head 'THE SIND SPORTS BOARD ORDINANCE, 1980' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SIND SPORTS BOARD ORDINANCE, 1980",
+  "before_text": "THE SIND SPORTS BOARD ORDINANCE, 1980",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "bba4c1d8642cedace6c2e44aaf30cf0651d8e2d1bb39d7edab44fa6c31ad1e0e"
+ },
+ {
+  "document_id": 2326,
+  "page_no": 8,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2326-p8.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 8 prints the running head 'THE SIND SPORTS BOARD ORDINANCE, 1980' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SIND SPORTS BOARD ORDINANCE, 1980",
+  "before_text": "THE SIND SPORTS BOARD ORDINANCE, 1980",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "a7e225f7fb98ec231d3d355008706b4b96348803e09ad16847ae51ede55eba60"
+ },
+ {
+  "document_id": 2326,
+  "page_no": 9,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2326-p9.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 9 prints the running head 'THE SIND SPORTS BOARD ORDINANCE, 1980' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SIND SPORTS BOARD ORDINANCE, 1980",
+  "before_text": "THE SIND SPORTS BOARD ORDINANCE, 1980",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "d08f2724de94b0f4f0eed686f52b159d0281271d24afc602bbb9ffd711ae0aa6"
+ },
+ {
+  "document_id": 2326,
+  "page_no": 10,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2326-p10.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 10 prints the running head 'THE SIND SPORTS BOARD ORDINANCE, 1980' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SIND SPORTS BOARD ORDINANCE, 1980",
+  "before_text": "THE SIND SPORTS BOARD ORDINANCE, 1980",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "2a9f70d8a9da9dba95beb7a042f96453dcafe6c607cfd1039cd039284826d121"
+ },
+ {
+  "document_id": 2326,
+  "page_no": 11,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2326-p11.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 11 prints the running head 'THE SIND SPORTS BOARD ORDINANCE, 1980' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SIND SPORTS BOARD ORDINANCE, 1980",
+  "before_text": "THE SIND SPORTS BOARD ORDINANCE, 1980",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "3a9d0dc630f8a810882cc5dfeb5c2dad4369a29e4076f0f68adf910c8458f95a"
+ },
+ {
+  "document_id": 2326,
+  "page_no": 12,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2326-p12.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 12 prints the running head 'THE SIND SPORTS BOARD ORDINANCE, 1980' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "any other purpose incidental or ancillary to the purposes of this",
+  "before_text": "any other purpose incidental or ancillary to the purposes of this",
+  "after_text": "any other purpose incidental or ancillary to the purposes of this",
+  "source_apparatus_blocks": [
+   186471
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "7014144426834aa871b2a469c89d9667cf4c6e4405428ce9c6e93fed58cedbc0"
+ },
+ {
+  "document_id": 2326,
+  "page_no": 13,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2326-p13.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 13 prints the running head 'THE SIND SPORTS BOARD ORDINANCE, 1980' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SIND SPORTS BOARD ORDINANCE, 1980",
+  "before_text": "THE SIND SPORTS BOARD ORDINANCE, 1980",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "0ac647da2ff5bd95cb94f1927054e27a3e172c7e7dee8091c68aca23d5359ef5"
+ },
+ {
+  "document_id": 2326,
+  "page_no": 14,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2326-p14.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 14 prints the running head 'THE SIND SPORTS BOARD ORDINANCE, 1980' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SIND SPORTS BOARD ORDINANCE, 1980",
+  "before_text": "THE SIND SPORTS BOARD ORDINANCE, 1980",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "94b898cc6c07673b6142b61043f698943e68deaee3e450af7e50c44d8544fccf"
+ }
+]

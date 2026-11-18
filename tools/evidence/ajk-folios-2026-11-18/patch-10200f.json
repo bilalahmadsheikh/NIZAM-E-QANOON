@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 10200,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2758175
+  ],
+  "match_text": "the assent of the President on 5th day of March, 1986 is hereby published",
+  "before_text": "the assent of the President on 5th day of March, 1986 is hereby published",
+  "after_text": "the assent of the President on 5th day of March, 1986 is hereby published",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '261' alone at its head or foot (block 2758175); the document's folios run at page + 260 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10200-p1.png",
+  "render_sha256": "9fdd090be56503b5f0f951dabaafca186807c23ffe3861be6ca7a373325204ef"
+ },
+ {
+  "document_id": 10200,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2758189
+  ],
+  "match_text": "officers and servants as it considers necessary for the efficient",
+  "before_text": "officers and servants as it considers necessary for the efficient",
+  "after_text": "officers and servants as it considers necessary for the efficient",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '262' alone at its head or foot (block 2758189); the document's folios run at page + 260 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10200-p2.png",
+  "render_sha256": "d1f216e610a249f2945b619dbe16ff8e91d265444c0a8196da5b531e715c0759"
+ },
+ {
+  "document_id": 10200,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2758201
+  ],
+  "match_text": "from any person in pursuance of the provisions of this Act or any",
+  "before_text": "from any person in pursuance of the provisions of this Act or any",
+  "after_text": "from any person in pursuance of the provisions of this Act or any",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '263' alone at its head or foot (block 2758201); the document's folios run at page + 260 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10200-p3.png",
+  "render_sha256": "ce1377713a498a68ca428b35f263fd9f35d389a3695cfa415da315b08a4996e6"
+ },
+ {
+  "document_id": 10200,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2758212
+  ],
+  "match_text": "provision its necessary or expedient for carrying out the purposes",
+  "before_text": "provision its necessary or expedient for carrying out the purposes",
+  "after_text": "provision its necessary or expedient for carrying out the purposes",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 4 prints its folio '264' alone at its head or foot (block 2758212); the document's folios run at page + 260 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10200-p4.png",
+  "render_sha256": "ad5572c3a9fc7a6f82ca964e184c7af9a318f7415ec00fb509c28159b9e79797"
+ }
+]

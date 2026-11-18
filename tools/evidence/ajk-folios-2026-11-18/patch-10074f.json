@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 10074,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2749255
+  ],
+  "match_text": "received the assent of the President on 4th December, 2002, is hereby",
+  "before_text": "received the assent of the President on 4th December, 2002, is hereby",
+  "after_text": "received the assent of the President on 4th December, 2002, is hereby",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '168' alone at its head or foot (block 2749255); the document's folios run at page + 167 on 6 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10074-p1.png",
+  "render_sha256": "6efaa5900fe036a2c49df594a911cb0a8aeb6f9bf1a26bcc430d46d79fec9adb"
+ },
+ {
+  "document_id": 10074,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2749264
+  ],
+  "match_text": "Section shall, if he does not want to contest the charge,",
+  "before_text": "Section shall, if he does not want to contest the charge,",
+  "after_text": "Section shall, if he does not want to contest the charge,",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '169' alone at its head or foot (block 2749264); the document's folios run at page + 167 on 6 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10074-p2.png",
+  "render_sha256": "3eaa06a45e166f237a5a55880a2db3b40089077d1be4671fabbe32a815f076fb"
+ },
+ {
+  "document_id": 10074,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2749290
+  ],
+  "match_text": "note: (1) The amount of fine specified in this ticket is to be deposited",
+  "before_text": "note: (1) The amount of fine specified in this ticket is to be deposited",
+  "after_text": "note: (1) The amount of fine specified in this ticket is to be deposited",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '170' alone at its head or foot (block 2749290); the document's folios run at page + 167 on 6 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10074-p3.png",
+  "render_sha256": "dd1d3a9a70ad66807f94641ccc9051eaebdb379f28a6eef8742c2b1a31ca9a9b"
+ },
+ {
+  "document_id": 10074,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   2749374
+  ],
+  "match_text": "(Amendment) Ordinance XV of 2002 is hereby repealed.",
+  "before_text": "(Amendment) Ordinance XV of 2002 is hereby repealed.",
+  "after_text": "(Amendment) Ordinance XV of 2002 is hereby repealed.",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 6 prints its folio '173' alone at its head or foot (block 2749374); the document's folios run at page + 167 on 6 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10074-p6.png",
+  "render_sha256": "b1af95123b559dbc4db77f5b006bd78d415adf1e523cb45ced20ebfccd67b1f9"
+ }
+]

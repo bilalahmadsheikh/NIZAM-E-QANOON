@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 10993,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2823215
+  ],
+  "match_text": "29th day of January, 1984, is hereby published for general information:-",
+  "before_text": "29th day of January, 1984, is hereby published for general information:-",
+  "after_text": "29th day of January, 1984, is hereby published for general information:-",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '598' alone at its head or foot (block 2823215); the document's folios run at page + 597 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10993-p1.png",
+  "render_sha256": "bb4666318d691b5f1d40f516eaef3c17b5bcb294f3370bf9ab15f70436dea2d1"
+ },
+ {
+  "document_id": 10993,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2823227
+  ],
+  "match_text": "Section 7, after sub-section (4) the following new sub-section (5)",
+  "before_text": "Section 7, after sub-section (4) the following new sub-section (5)",
+  "after_text": "Section 7, after sub-section (4) the following new sub-section (5)",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '599' alone at its head or foot (block 2823227); the document's folios run at page + 597 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10993-p2.png",
+  "render_sha256": "3c9d1293ddddb5c98d2956c8d47bc40b3e90cef98513fe8089f9693ec2df05b4"
+ },
+ {
+  "document_id": 10993,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2823234
+  ],
+  "match_text": "initiated jurisdiction or powers exercised under the provisions of",
+  "before_text": "initiated jurisdiction or powers exercised under the provisions of",
+  "after_text": "initiated jurisdiction or powers exercised under the provisions of",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '600' alone at its head or foot (block 2823234); the document's folios run at page + 597 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10993-p3.png",
+  "render_sha256": "a3d4abdfe33784da45bc4ec671e3f071e6c0a99e4aa16c1736be8e84979ccd17"
+ }
+]

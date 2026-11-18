@@ -1,0 +1,53 @@
+[
+ {
+  "document_id": 1703,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1703-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head '(REGULATION AND CONTROL) ORDINANCE 2001.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "No institution shall be established or continued except in accordance with",
+  "before_text": "No institution shall be established or continued except in accordance with",
+  "after_text": "No institution shall be established or continued except in accordance with",
+  "source_apparatus_blocks": [
+   109579
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "34ff0f91416f7b8a6f8bfc2846fb5d99d522a2991a8d83273383988725279767"
+ },
+ {
+  "document_id": 1703,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1703-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head '(REGULATION AND CONTROL) ORDINANCE 2001.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "(REGULATION AND CONTROL) ORDINANCE 2001.",
+  "before_text": "(REGULATION AND CONTROL) ORDINANCE 2001.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "3e30488ee751ed004895c3f5508e90cb4f4639a00b2e40153fc7e627957de5ed"
+ },
+ {
+  "document_id": 1703,
+  "page_no": 5,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1703-p5.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 5 prints the running head '(REGULATION AND CONTROL) ORDINANCE 2001.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "(REGULATION AND CONTROL) ORDINANCE 2001.",
+  "before_text": "(REGULATION AND CONTROL) ORDINANCE 2001.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "61041e05ca6ee27e12893ca7f298371367a31e8d2cc1fa9a15c6613d81f206d0"
+ },
+ {
+  "document_id": 1703,
+  "page_no": 6,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1703-p6.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 6 prints the running head '(REGULATION AND CONTROL) ORDINANCE 2001.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "(REGULATION AND CONTROL) ORDINANCE 2001.",
+  "before_text": "(REGULATION AND CONTROL) ORDINANCE 2001.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "b1b2a513d1277b0fc2b2cece36e3179238810610089b12caed0bdcc1e4f34035"
+ }
+]

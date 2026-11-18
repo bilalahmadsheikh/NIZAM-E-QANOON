@@ -1,0 +1,18 @@
+[
+ {
+  "document_id": 1724,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1724-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head 'THE PEOPLE’S MEDICAL COLLEGE AND HOSPITAL / NAWABSHAH (REPEAL) ACT, 1997' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "and given effect to, as part of the provisions of this Act.",
+  "before_text": "and given effect to, as part of the provisions of this Act.",
+  "after_text": "and given effect to, as part of the provisions of this Act.",
+  "source_apparatus_blocks": [
+   111431,
+   111432
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "bd92fce5269f06d891ef93c93d05a873b8e5753c2a27edbb418784aa21daf6f2"
+ }
+]

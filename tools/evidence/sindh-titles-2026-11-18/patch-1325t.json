@@ -1,0 +1,82 @@
+[
+ {
+  "document_id": 1325,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1325-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head '3 / THE SINDH FORENSIC SCIENCE AGENCY ACT, 2017 / SINDH ACT NO. XXVIII OF 2017' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "(3) The Government may, by a notification in the official Gazette,",
+  "before_text": "(3) The Government may, by a notification in the official Gazette,",
+  "after_text": "(3) The Government may, by a notification in the official Gazette,",
+  "source_apparatus_blocks": [
+   73312,
+   73313
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "458931420fbf9d64a18e8b5e80b394ccc5849e35b8fc5261026758c4476011b0"
+ },
+ {
+  "document_id": 1325,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1325-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head '4 / THE SINDH FORENSIC SCIENCE AGENCY ACT, 2017 / SINDH ACT NO. XXVIII OF 2017' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "(i) promote general awareness on matters relating to forensics; and",
+  "before_text": "(i) promote general awareness on matters relating to forensics; and",
+  "after_text": "(i) promote general awareness on matters relating to forensics; and",
+  "source_apparatus_blocks": [
+   73318,
+   73319
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "86b6b2b6487b974ae398bf027a7ce16f19f45452ce66e1b61b3d46961b7e0ad5"
+ },
+ {
+  "document_id": 1325,
+  "page_no": 5,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1325-p5.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 5 prints the running head '5 / THE SINDH FORENSIC SCIENCE AGENCY ACT, 2017 / SINDH ACT NO. XXVIII OF 2017' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "(2) No person shall be appointed as an expert unless he is qualified",
+  "before_text": "(2) No person shall be appointed as an expert unless he is qualified",
+  "after_text": "(2) No person shall be appointed as an expert unless he is qualified",
+  "source_apparatus_blocks": [
+   73338,
+   73339
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "9de0a1bc24f757a4b1fe4f69ce2eb7296e70d1858ac71b38d01054b8aae7ecab"
+ },
+ {
+  "document_id": 1325,
+  "page_no": 6,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1325-p6.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 6 prints the running head '6 / THE SINDH FORENSIC SCIENCE AGENCY ACT, 2017 / SINDH ACT NO. XXVIII OF 2017' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "(1) If an expert opinion is not clear, the Court, tribunal or authority",
+  "before_text": "(1) If an expert opinion is not clear, the Court, tribunal or authority",
+  "after_text": "(1) If an expert opinion is not clear, the Court, tribunal or authority",
+  "source_apparatus_blocks": [
+   73345,
+   73346
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "9d065c162436a87d1c51c59a73eec45d3096f6fd9013562020184ac2556aa7b9"
+ },
+ {
+  "document_id": 1325,
+  "page_no": 7,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1325-p7.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 7 prints the running head '7 / THE SINDH FORENSIC SCIENCE AGENCY ACT, 2017 / SINDH ACT NO. XXVIII OF 2017' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "tribunal or authority, or intentionally destroys forensic material,",
+  "before_text": "tribunal or authority, or intentionally destroys forensic material,",
+  "after_text": "tribunal or authority, or intentionally destroys forensic material,",
+  "source_apparatus_blocks": [
+   73353,
+   73354
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "e2937515d271ccf2481636387b9beb92af96f46e4d33b84a430e21ac7efd2395"
+ }
+]

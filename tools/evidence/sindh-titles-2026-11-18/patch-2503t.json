@@ -1,0 +1,176 @@
+[
+ {
+  "document_id": 2503,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2503-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head 'THE SINDH PAYMENT OF WAGES ACT, 2015.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "“factory\" means a factory as defined in clause (j) of section",
+  "before_text": "“factory\" means a factory as defined in clause (j) of section",
+  "after_text": "“factory\" means a factory as defined in clause (j) of section",
+  "source_apparatus_blocks": [
+   209408
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "0590f489830b52da4deacde45fe007863f58f615b4e29fca691abc1f5adcd3e7"
+ },
+ {
+  "document_id": 2503,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2503-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head 'THE SINDH PAYMENT OF WAGES ACT, 2015.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH PAYMENT OF WAGES ACT, 2015.",
+  "before_text": "THE SINDH PAYMENT OF WAGES ACT, 2015.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "7c71aa85a29c019dce956571b5f81ed2e84f2e987b87ee438c6211442e524b68"
+ },
+ {
+  "document_id": 2503,
+  "page_no": 5,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2503-p5.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 5 prints the running head 'THE SINDH PAYMENT OF WAGES ACT, 2015.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH PAYMENT OF WAGES ACT, 2015.",
+  "before_text": "THE SINDH PAYMENT OF WAGES ACT, 2015.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "214a74f2a15df2a142bde189273e8cf97ba212da59e63a5c90ab8edf58e922f8"
+ },
+ {
+  "document_id": 2503,
+  "page_no": 6,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2503-p6.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 6 prints the running head 'THE SINDH PAYMENT OF WAGES ACT, 2015.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH PAYMENT OF WAGES ACT, 2015.",
+  "before_text": "THE SINDH PAYMENT OF WAGES ACT, 2015.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "d97f75838e558adf706d9486c4510e8274f6e8d1265277aebb88afbd13cf1d5e"
+ },
+ {
+  "document_id": 2503,
+  "page_no": 7,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2503-p7.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 7 prints the running head 'THE SINDH PAYMENT OF WAGES ACT, 2015.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "railway (otherwise than in a factory), at the prescribed place or places.",
+  "before_text": "railway (otherwise than in a factory), at the prescribed place or places.",
+  "after_text": "railway (otherwise than in a factory), at the prescribed place or places.",
+  "source_apparatus_blocks": [
+   209458
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "6cf2356768fb7b126eb56cbeb78048e48872160f815b4dd27dbffb1ff3198a29"
+ },
+ {
+  "document_id": 2503,
+  "page_no": 8,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2503-p8.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 8 prints the running head 'THE SINDH PAYMENT OF WAGES ACT, 2015.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH PAYMENT OF WAGES ACT, 2015.",
+  "before_text": "THE SINDH PAYMENT OF WAGES ACT, 2015.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "2aecadd90821bf8f1c5d1da72d93d627c4d9f35ae18dfe05d0e830fb847acd3f"
+ },
+ {
+  "document_id": 2503,
+  "page_no": 9,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2503-p9.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 9 prints the running head 'THE SINDH PAYMENT OF WAGES ACT, 2015.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH PAYMENT OF WAGES ACT, 2015.",
+  "before_text": "THE SINDH PAYMENT OF WAGES ACT, 2015.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "c433b464f265fcab77f2adb4da7907229aa9e20b9bfbde5ffbdea29abe817231"
+ },
+ {
+  "document_id": 2503,
+  "page_no": 10,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2503-p10.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 10 prints the running head 'THE SINDH PAYMENT OF WAGES ACT, 2015.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH PAYMENT OF WAGES ACT, 2015.",
+  "before_text": "THE SINDH PAYMENT OF WAGES ACT, 2015.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "d3206918c9621c7ef33c7f1f4c948926bec8570245fb7a46b7e3f2e5dff3a1c9"
+ },
+ {
+  "document_id": 2503,
+  "page_no": 11,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2503-p11.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 11 prints the running head 'THE SINDH PAYMENT OF WAGES ACT, 2015.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH PAYMENT OF WAGES ACT, 2015.",
+  "before_text": "THE SINDH PAYMENT OF WAGES ACT, 2015.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "9d4f231018bbdba1a1f7d4ded4a51f114c5be6e31599ed8f74f5b80d1ccd6a48"
+ },
+ {
+  "document_id": 2503,
+  "page_no": 12,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2503-p12.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 12 prints the running head 'THE SINDH PAYMENT OF WAGES ACT, 2015.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH PAYMENT OF WAGES ACT, 2015.",
+  "before_text": "THE SINDH PAYMENT OF WAGES ACT, 2015.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "3eb34abee8b9c0364780ee2e53fc0049a505e73eee5089f7d9eb1cc79f2f0757"
+ },
+ {
+  "document_id": 2503,
+  "page_no": 13,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2503-p13.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 13 prints the running head 'THE SINDH PAYMENT OF WAGES ACT, 2015.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH PAYMENT OF WAGES ACT, 2015.",
+  "before_text": "THE SINDH PAYMENT OF WAGES ACT, 2015.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "0c54d5cb5f9de05d1cfe51e45a6294a7f65bc9981f8a8e3225b8b96f68afefa0"
+ },
+ {
+  "document_id": 2503,
+  "page_no": 14,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2503-p14.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 14 prints the running head 'THE SINDH PAYMENT OF WAGES ACT, 2015.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH PAYMENT OF WAGES ACT, 2015.",
+  "before_text": "THE SINDH PAYMENT OF WAGES ACT, 2015.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "f6b53db5e641ef7ea8510647db1a194a2a277b01c772daf45ebc07401111689c"
+ },
+ {
+  "document_id": 2503,
+  "page_no": 15,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2503-p15.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 15 prints the running head 'THE SINDH PAYMENT OF WAGES ACT, 2015.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH PAYMENT OF WAGES ACT, 2015.",
+  "before_text": "THE SINDH PAYMENT OF WAGES ACT, 2015.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "ee9fa6c68033904b3ec88ad69f7363d0d84ef1a99f28b8a6f7310b5358d39ec6"
+ },
+ {
+  "document_id": 2503,
+  "page_no": 16,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2503-p16.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 16 prints the running head 'THE SINDH PAYMENT OF WAGES ACT, 2015.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH PAYMENT OF WAGES ACT, 2015.",
+  "before_text": "THE SINDH PAYMENT OF WAGES ACT, 2015.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "25d983d25f7a9652e7bf30ffc18b606f73b1b92e010142158b563b51ab7ac039"
+ }
+]

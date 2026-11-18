@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 1725,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1725-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head 'THE SINDH (REGULARIZATION OF ADHOC AND CONTRACT EMPLOYEES) ACT, 2013' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "post and is in service in the Government department and it’s",
+  "before_text": "post and is in service in the Government department and it’s",
+  "after_text": "post and is in service in the Government department and it’s",
+  "source_apparatus_blocks": [
+   111464
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "5c3a06469b4e5754cfc08158ae8cea5a46b5ffe82125cc3e246596fb9b0c1ae5"
+ }
+]

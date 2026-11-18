@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 1735,
+  "page_no": 9,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1735-p9.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 9 prints the running head 'THE SIND CIVIL SERVANTS (ADVANCE INCREMENTS) RULES, 1976' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "(b) All Administrative Secretaries     Members",
+  "before_text": "(b) All Administrative Secretaries     Members",
+  "after_text": "(b) All Administrative Secretaries     Members",
+  "source_apparatus_blocks": [
+   113100
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "c8ae511b0db66bc791f3e85a8a873b5d71635a1a9c4fa2e453683115d64f18d9"
+ },
+ {
+  "document_id": 1735,
+  "page_no": 10,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1735-p10.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 10 prints the running head 'THE SIND CIVIL SERVANTS (ADVANCE INCREMENTS) RULES, 1976' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "Divisional Committee consisting of______",
+  "before_text": "Divisional Committee consisting of______",
+  "after_text": "Divisional Committee consisting of______",
+  "source_apparatus_blocks": [
+   113131
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "bde0057796ac23233d1add6f922567b392a07834eb5306dad5d908587c620c46"
+ }
+]

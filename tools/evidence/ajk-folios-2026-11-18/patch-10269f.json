@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 10269,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2762368
+  ],
+  "match_text": "(i)  certifies that the case is a fit one for appeal to the Division",
+  "before_text": "(i)  certifies that the case is a fit one for appeal to the Division",
+  "after_text": "(i)  certifies that the case is a fit one for appeal to the Division",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '388' alone at its head or foot (block 2762368); the document's folios run at page + 387 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10269-p1.png",
+  "render_sha256": "959287e844d5987d6710760698f8863177850bf33e090d9d148b4355ebe8bdbd"
+ },
+ {
+  "document_id": 10269,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2762369
+  ],
+  "match_text": "the judgment, decree, order, or sentence referred to in clause (iii)",
+  "before_text": "the judgment, decree, order, or sentence referred to in clause (iii)",
+  "after_text": "the judgment, decree, order, or sentence referred to in clause (iii)",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '389' alone at its head or foot (block 2762369); the document's folios run at page + 387 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10269-p2.png",
+  "render_sha256": "6d64a0984ce7925bebe321d8219cf5a4297ec5a821c391e1af7f98297d0cb00d"
+ },
+ {
+  "document_id": 10269,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2762375
+  ],
+  "match_text": "the judgment, decree, order, or sentence referred to in clause (iii)",
+  "before_text": "the judgment, decree, order, or sentence referred to in clause (iii)",
+  "after_text": "the judgment, decree, order, or sentence referred to in clause (iii)",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '389' alone at its head or foot (block 2762375); the document's folios run at page + 387 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10269-p2.png",
+  "render_sha256": "6d64a0984ce7925bebe321d8219cf5a4297ec5a821c391e1af7f98297d0cb00d"
+ }
+]

@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 1861,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1861-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head '3 / THE SINDH PUBLIC-PRIVATE PARTNERSHIP (AMENDMENT) ACT,' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "after clause (vii), the following shall be inserted:-",
+  "before_text": "after clause (vii), the following shall be inserted:-",
+  "after_text": "after clause (vii), the following shall be inserted:-",
+  "source_apparatus_blocks": [
+   128646
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "1ab55a25c4fa203fce5f964f0b041786f152958e18f92cdc81ba00267158e60c"
+ },
+ {
+  "document_id": 1861,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1861-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head '4 / THE SINDH PUBLIC-PRIVATE PARTNERSHIP (AMENDMENT) ACT,' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "In the said Act, in section 7, in sub-section (2), in clause (II) for",
+  "before_text": "In the said Act, in section 7, in sub-section (2), in clause (II) for",
+  "after_text": "In the said Act, in section 7, in sub-section (2), in clause (II) for",
+  "source_apparatus_blocks": [
+   128667
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "c0a93f768b0e4f09880379181e737e7a05852b92832db065f24f283d5432ee5e"
+ },
+ {
+  "document_id": 1861,
+  "page_no": 5,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1861-p5.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 5 prints the running head '5 / THE SINDH PUBLIC-PRIVATE PARTNERSHIP (AMENDMENT) ACT,' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "contained in the Act and any other law, for the time being in force,",
+  "before_text": "contained in the Act and any other law, for the time being in force,",
+  "after_text": "contained in the Act and any other law, for the time being in force,",
+  "source_apparatus_blocks": [
+   128678
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "84ee8fc3ace90f24002cbe8d18bfb79c8833377c15ec1e72d6e280f46ba4cbad"
+ }
+]

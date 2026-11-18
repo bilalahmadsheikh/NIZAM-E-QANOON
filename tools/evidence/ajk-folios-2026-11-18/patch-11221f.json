@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 11221,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2839997
+  ],
+  "match_text": "Kashmir for giving effect to the provisions of Section 31 of the Interim",
+  "before_text": "Kashmir for giving effect to the provisions of Section 31 of the Interim",
+  "after_text": "Kashmir for giving effect to the provisions of Section 31 of the Interim",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '603' alone at its head or foot (block 2839997); the document's folios run at page + 602 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11221-p1.png",
+  "render_sha256": "7d04a94581fa448f8bfcfdf028170b2f09d1893f95eae1ea29840a0d6323e414"
+ },
+ {
+  "document_id": 11221,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2840013
+  ],
+  "match_text": "referred to in clause (b) of sub-section (3) to be the Chairman of",
+  "before_text": "referred to in clause (b) of sub-section (3) to be the Chairman of",
+  "after_text": "referred to in clause (b) of sub-section (3) to be the Chairman of",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '604' alone at its head or foot (block 2840013); the document's folios run at page + 602 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11221-p2.png",
+  "render_sha256": "e2c7bfa50a9a3656964cd9ebfb4ba2ae44ac612014f37f538e7dafb7b1016773"
+ },
+ {
+  "document_id": 11221,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2840024
+  ],
+  "match_text": "interim report. The report, whether interim or final, shall be laid",
+  "before_text": "interim report. The report, whether interim or final, shall be laid",
+  "after_text": "interim report. The report, whether interim or final, shall be laid",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '605' alone at its head or foot (block 2840024); the document's folios run at page + 602 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11221-p3.png",
+  "render_sha256": "e391719943b02081099ca7be853e8ec3a35deabaff4752fcbba9896f388fea7f"
+ },
+ {
+  "document_id": 11221,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2840035
+  ],
+  "match_text": "initiated, jurisdiction or powers exercised under the provisions of",
+  "before_text": "initiated, jurisdiction or powers exercised under the provisions of",
+  "after_text": "initiated, jurisdiction or powers exercised under the provisions of",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 4 prints its folio '606' alone at its head or foot (block 2840035); the document's folios run at page + 602 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11221-p4.png",
+  "render_sha256": "02cd927a4f18ec6566c9a9be8260c95718b75ec3d9e677e3a0ae56cbc9f7820f"
+ }
+]

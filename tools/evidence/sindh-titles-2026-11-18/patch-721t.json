@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 721,
+  "page_no": 2,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc721-p2.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 2 prints the running head 'THE SIND SECURITIES CONTRACTS CONTROL ACT, 1925' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "under sub-section (I) shall be published in the 2[Official Gazette] one",
+  "before_text": "under sub-section (I) shall be published in the 2[Official Gazette] one",
+  "after_text": "under sub-section (I) shall be published in the 2[Official Gazette] one",
+  "source_apparatus_blocks": [
+   31524
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "6f0900403dd9f5275587d8d87ef086e1f0c1dc77b12701c18c236e713ce57b32"
+ },
+ {
+  "document_id": 721,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc721-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head 'THE SIND SECURITIES CONTRACTS CONTROL ACT, 1925' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "a ready delivery contract, entered into after a date to be notified in",
+  "before_text": "a ready delivery contract, entered into after a date to be notified in",
+  "after_text": "a ready delivery contract, entered into after a date to be notified in",
+  "source_apparatus_blocks": [
+   31539
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "1fbc8b249038a629618baf69373e6c2fb015822b3e556560a168d0d6e6ed9aff"
+ }
+]

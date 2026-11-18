@@ -1,0 +1,18 @@
+[
+ {
+  "document_id": 1160,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1160-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head 'THE SINDH URBAN STATE LAND (CANCELLATION) OF ALLOTMENTS, / CONVERSIONS AND EXCHANGES) ORDINANCE, 2000.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "laser then the market value in violation of law or ban form 1st January, 1985 shall",
+  "before_text": "laser then the market value in violation of law or ban form 1st January, 1985 shall",
+  "after_text": "laser then the market value in violation of law or ban form 1st January, 1985 shall",
+  "source_apparatus_blocks": [
+   57245,
+   57246
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "f7152ba1adb4398320795eecc9686d0584988a733a7b30b608e5144d91e44a55"
+ }
+]

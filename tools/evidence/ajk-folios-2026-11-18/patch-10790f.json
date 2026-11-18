@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 10790,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2802014
+  ],
+  "match_text": "Azad Kashmir so as to make it conform to the Shariat in its application to",
+  "before_text": "Azad Kashmir so as to make it conform to the Shariat in its application to",
+  "after_text": "Azad Kashmir so as to make it conform to the Shariat in its application to",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '131' alone at its head or foot (block 2802014); the document's folios run at page + 130 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10790-p1.png",
+  "render_sha256": "fcb43ed7db677c881249c3a131e1436217aeb1e65c3ec6b76bba713fa43a4a62"
+ },
+ {
+  "document_id": 10790,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2802015
+  ],
+  "match_text": "(b)  failing such descendants, on his widow, if any, until she dies",
+  "before_text": "(b)  failing such descendants, on his widow, if any, until she dies",
+  "after_text": "(b)  failing such descendants, on his widow, if any, until she dies",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '132' alone at its head or foot (block 2802015); the document's folios run at page + 130 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10790-p2.png",
+  "render_sha256": "b4ab4a93d19034426395738fc740c050d28336629cc4b4c2a391794cbbc1e502"
+ },
+ {
+  "document_id": 10790,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2802022
+  ],
+  "match_text": "(b)  failing such descendants, on his widow, if any, until she dies",
+  "before_text": "(b)  failing such descendants, on his widow, if any, until she dies",
+  "after_text": "(b)  failing such descendants, on his widow, if any, until she dies",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '132' alone at its head or foot (block 2802022); the document's folios run at page + 130 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10790-p2.png",
+  "render_sha256": "b4ab4a93d19034426395738fc740c050d28336629cc4b4c2a391794cbbc1e502"
+ }
+]

@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 10743,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2798373
+  ],
+  "match_text": "section (1) the President is pleased to make and promulgate the following",
+  "before_text": "section (1) the President is pleased to make and promulgate the following",
+  "after_text": "section (1) the President is pleased to make and promulgate the following",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '516' alone at its head or foot (block 2798373); the document's folios run at page + 515 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10743-p1.png",
+  "render_sha256": "55b6f8a72610112f36a656c0b435f4d064d66586694b03492002b3bc944fd61e"
+ },
+ {
+  "document_id": 10743,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2798380
+  ],
+  "match_text": "section 71, in sub-section, (1) in the proviso, for the full stop at",
+  "before_text": "section 71, in sub-section, (1) in the proviso, for the full stop at",
+  "after_text": "section 71, in sub-section, (1) in the proviso, for the full stop at",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '517' alone at its head or foot (block 2798380); the document's folios run at page + 515 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10743-p2.png",
+  "render_sha256": "974d00bd2c60b89cfa30ff85eceeafcd46349d11cf24f5952805cc317465640f"
+ },
+ {
+  "document_id": 10743,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2798388
+  ],
+  "match_text": "Document or act in respect of which the fee Maximum fees is",
+  "before_text": "Document or act in respect of which the fee Maximum fees is",
+  "after_text": "Document or act in respect of which the fee Maximum fees is",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '518' alone at its head or foot (block 2798388); the document's folios run at page + 515 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10743-p3.png",
+  "render_sha256": "6540f67f1a0a91a5d02b3a7f587ee3915b568d3d8fb9ea46ebde5d22ad0980f5"
+ }
+]

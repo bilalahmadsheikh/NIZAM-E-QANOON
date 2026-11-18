@@ -1,0 +1,34 @@
+[
+ {
+  "document_id": 1061,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1061-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head '3 / THE SINDH CIVIL SERVANTS (AMENDMENT) ACT, 2024 / SINDH ACT NO. VII OF 2024' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "of the date of his retirement or death, he or his family, as the case",
+  "before_text": "of the date of his retirement or death, he or his family, as the case",
+  "after_text": "of the date of his retirement or death, he or his family, as the case",
+  "source_apparatus_blocks": [
+   50117,
+   50118
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "71028bac66b8e3a8f9b4af8ea5fafb88aac254e7827998f9a7f59f9568835b35"
+ },
+ {
+  "document_id": 1061,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1061-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head '4 / THE SINDH CIVIL SERVANTS (AMENDMENT) ACT, 2024 / SINDH ACT NO. VII OF 2024' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "shall, in lieu of pension and gratuity, be entitled to receive such",
+  "before_text": "shall, in lieu of pension and gratuity, be entitled to receive such",
+  "after_text": "shall, in lieu of pension and gratuity, be entitled to receive such",
+  "source_apparatus_blocks": [
+   50124,
+   50125
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "916d7c3230a1a1512cfde6f49c4eea1de46102f38990a6ed4471e7e684ff45a2"
+ }
+]

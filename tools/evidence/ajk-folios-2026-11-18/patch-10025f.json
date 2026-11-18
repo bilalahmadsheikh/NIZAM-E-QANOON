@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 10025,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2745744
+  ],
+  "match_text": "(c)  is inefficient or has ceased to be efficient and is not likely to",
+  "before_text": "(c)  is inefficient or has ceased to be efficient and is not likely to",
+  "after_text": "(c)  is inefficient or has ceased to be efficient and is not likely to",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '670' alone at its head or foot (block 2745744); the document's folios run at page + 669 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10025-p1.png",
+  "render_sha256": "393eb300754ff20c3de4feb4aad4fe9eaea451fccd293163d6b8d269bd43659b"
+ },
+ {
+  "document_id": 10025,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2745745
+  ],
+  "match_text": "appeal, it any, the appointing authority shall forthwith either pass",
+  "before_text": "appeal, it any, the appointing authority shall forthwith either pass",
+  "after_text": "appeal, it any, the appointing authority shall forthwith either pass",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '671' alone at its head or foot (block 2745745); the document's folios run at page + 669 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10025-p2.png",
+  "render_sha256": "6d8fc39695cd3fd8a358a67bc72dfc6a3e545631d5989827f4d10b68585ba384"
+ },
+ {
+  "document_id": 10025,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2745748
+  ],
+  "match_text": "appeal, it any, the appointing authority shall forthwith either pass",
+  "before_text": "appeal, it any, the appointing authority shall forthwith either pass",
+  "after_text": "appeal, it any, the appointing authority shall forthwith either pass",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '671' alone at its head or foot (block 2745748); the document's folios run at page + 669 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10025-p2.png",
+  "render_sha256": "6d8fc39695cd3fd8a358a67bc72dfc6a3e545631d5989827f4d10b68585ba384"
+ }
+]

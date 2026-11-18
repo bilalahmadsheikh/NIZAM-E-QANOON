@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 11019,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2825281
+  ],
+  "match_text": "the assent of the President on 22nd day of September, 2007, is hereby",
+  "before_text": "the assent of the President on 22nd day of September, 2007, is hereby",
+  "after_text": "the assent of the President on 22nd day of September, 2007, is hereby",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '359' alone at its head or foot (block 2825281); the document's folios run at page + 358 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11019-p1.png",
+  "render_sha256": "c138c6595fbe1f1d5acbb763175aad028799ce04e80292e4bec47a866f439abf"
+ },
+ {
+  "document_id": 11019,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2825296
+  ],
+  "match_text": "increased automatically at par with an equal to the increase in",
+  "before_text": "increased automatically at par with an equal to the increase in",
+  "after_text": "increased automatically at par with an equal to the increase in",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '360' alone at its head or foot (block 2825296); the document's folios run at page + 358 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11019-p2.png",
+  "render_sha256": "0f581e29c864f0222450292c08e0f585446fa4c4b3c7d2cff8e0bac7fdaecea0"
+ },
+ {
+  "document_id": 11019,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2825302
+  ],
+  "match_text": "Act, in Section 14, between the words “Minister”, and “shall”",
+  "before_text": "Act, in Section 14, between the words “Minister”, and “shall”",
+  "after_text": "Act, in Section 14, between the words “Minister”, and “shall”",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '361' alone at its head or foot (block 2825302); the document's folios run at page + 358 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11019-p3.png",
+  "render_sha256": "30c2096be77cfbbcffc98b47eba76c0647a0b259f2de9e79198094b46048df17"
+ }
+]

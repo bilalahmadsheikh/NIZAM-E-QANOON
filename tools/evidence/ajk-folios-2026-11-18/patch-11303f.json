@@ -1,0 +1,77 @@
+[
+ {
+  "document_id": 11303,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2845528
+  ],
+  "match_text": "8th day of October, 1982, is hereby published for general information:-",
+  "before_text": "8th day of October, 1982, is hereby published for general information:-",
+  "after_text": "8th day of October, 1982, is hereby published for general information:-",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '422' alone at its head or foot (block 2845528); the document's folios run at page + 421 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11303-p1.png",
+  "render_sha256": "18c7a98d8b14f9cf9b6539e246572ff74caa180acb9f7824bbdc704e9054dcee"
+ },
+ {
+  "document_id": 11303,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2845539
+  ],
+  "match_text": "Section 20, for sub-section (1) the following shall be substituted,",
+  "before_text": "Section 20, for sub-section (1) the following shall be substituted,",
+  "after_text": "Section 20, for sub-section (1) the following shall be substituted,",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '423' alone at its head or foot (block 2845539); the document's folios run at page + 421 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11303-p2.png",
+  "render_sha256": "9a62727fcae65781b9f8691cab010daf4be0079a884f594df64eb384d1cc9824"
+ },
+ {
+  "document_id": 11303,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2845554
+  ],
+  "match_text": "research institution at the disposal of the University in the public",
+  "before_text": "research institution at the disposal of the University in the public",
+  "after_text": "research institution at the disposal of the University in the public",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '424' alone at its head or foot (block 2845554); the document's folios run at page + 421 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11303-p3.png",
+  "render_sha256": "4019510108e3bc95f6d7720a6b174d2c863791b72d5ea311e8fa60c7d6868cf3"
+ },
+ {
+  "document_id": 11303,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2845564
+  ],
+  "match_text": "college shall consist of five senior most teachers including the",
+  "before_text": "college shall consist of five senior most teachers including the",
+  "after_text": "college shall consist of five senior most teachers including the",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 4 prints its folio '425' alone at its head or foot (block 2845564); the document's folios run at page + 421 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11303-p4.png",
+  "render_sha256": "9162c1a07ae6901fc8fa2f8ec427a92e87e8b1357fca1f8ae37c8dba885d9283"
+ },
+ {
+  "document_id": 11303,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2845575
+  ],
+  "match_text": "“Annexure I to VI” the words and figures “Annexure I-VII” shall",
+  "before_text": "“Annexure I to VI” the words and figures “Annexure I-VII” shall",
+  "after_text": "“Annexure I to VI” the words and figures “Annexure I-VII” shall",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 5 prints its folio '426' alone at its head or foot (block 2845575); the document's folios run at page + 421 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11303-p5.png",
+  "render_sha256": "1b24f11a2d520427449d7a7276f32b3c47fc9d038a7e8acd97001078fbdfaffa"
+ }
+]

@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 10391,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2770498
+  ],
+  "match_text": "Azad Kashmir Recovery of Abducted Persons (Amdt.) Act, 1956 dt.12-7-1956.",
+  "before_text": "Azad Kashmir Recovery of Abducted Persons (Amdt.) Act, 1956 dt.12-7-1956.",
+  "after_text": "Azad Kashmir Recovery of Abducted Persons (Amdt.) Act, 1956 dt.12-7-1956.",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '126' alone at its head or foot (block 2770498); the document's folios run at page + 125 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10391-p1.png",
+  "render_sha256": "ac704e5955e4714155c84bb9db60ddc77a1988abef88e08a55382bf1529df583"
+ },
+ {
+  "document_id": 10391,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2770510
+  ],
+  "match_text": "and for the maintenance of health and good order in the",
+  "before_text": "and for the maintenance of health and good order in the",
+  "after_text": "and for the maintenance of health and good order in the",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '127' alone at its head or foot (block 2770510); the document's folios run at page + 125 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10391-p2.png",
+  "render_sha256": "b3740552d3930f0eef8ca9610d24bf9e7cc6d89f3b423d8b87e0799eda0ea933"
+ },
+ {
+  "document_id": 10391,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2770523
+  ],
+  "match_text": "to be as valid and effectual for all purposes as if the order",
+  "before_text": "to be as valid and effectual for all purposes as if the order",
+  "after_text": "to be as valid and effectual for all purposes as if the order",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '128' alone at its head or foot (block 2770523); the document's folios run at page + 125 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10391-p3.png",
+  "render_sha256": "3304b44dbf5047c1dffed68ae3062591a2107ea70026d0c2f808ee43e5a30d50"
+ },
+ {
+  "document_id": 10391,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2770526
+  ],
+  "match_text": "review or revise any decision of the tribunal",
+  "before_text": "review or revise any decision of the tribunal",
+  "after_text": "review or revise any decision of the tribunal",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 4 prints its folio '129' alone at its head or foot (block 2770526); the document's folios run at page + 125 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10391-p4.png",
+  "render_sha256": "8206bdd6d401919ec8050c5471e4089f06ceba047c43d60a44d3b00414eda7c3"
+ }
+]

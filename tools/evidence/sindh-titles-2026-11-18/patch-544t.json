@@ -1,0 +1,19 @@
+[
+ {
+  "document_id": 544,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc544-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head 'THE SINDH (REPEAL OF THE SINDH LOCAL GOVERNMENT / ORDINANCE, 2001 AND REVIVAL OF THE SINDH LOCAL / GOVERNMENT ORDINANCE, 1979) ORDINANCE, 2011.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "regulations and notifications and other legal instruments),",
+  "before_text": "regulations and notifications and other legal instruments),",
+  "after_text": "regulations and notifications and other legal instruments),",
+  "source_apparatus_blocks": [
+   21114,
+   21115,
+   21116
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "77f4b7aa6612b23255bcd26ba767626874937d5babb9d67ad08bf236984aa61d"
+ }
+]

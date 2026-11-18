@@ -1,0 +1,77 @@
+[
+ {
+  "document_id": 10853,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2807344
+  ],
+  "match_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "before_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "after_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '578' alone at its head or foot (block 2807344); the document's folios run at page + 577 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10853-p1.png",
+  "render_sha256": "9b5d875da7ac5da51fa0a217921e565732b285b37045bbef559daf9fbffdb704"
+ },
+ {
+  "document_id": 10853,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2807352
+  ],
+  "match_text": "(Rasmoomat) referred to in sub-section (1) except with the prior",
+  "before_text": "(Rasmoomat) referred to in sub-section (1) except with the prior",
+  "after_text": "(Rasmoomat) referred to in sub-section (1) except with the prior",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '579' alone at its head or foot (block 2807352); the document's folios run at page + 577 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10853-p2.png",
+  "render_sha256": "add86b9ebec20663772d8fab7cfebbd5cd05ca6a9b1c48622b61ccc8956cd76b"
+ },
+ {
+  "document_id": 10853,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2807361
+  ],
+  "match_text": "section7, in subsection (I) the full-stop occurring at the end shall",
+  "before_text": "section7, in subsection (I) the full-stop occurring at the end shall",
+  "after_text": "section7, in subsection (I) the full-stop occurring at the end shall",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '580' alone at its head or foot (block 2807361); the document's folios run at page + 577 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10853-p3.png",
+  "render_sha256": "031fe98419114f28a2644c9adc457e39f3bcc1ab8e5f805c739b4a81cc92e438"
+ },
+ {
+  "document_id": 10853,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2807372
+  ],
+  "match_text": "offerings, subscriptions or articles referred to in Explanation 4 to",
+  "before_text": "offerings, subscriptions or articles referred to in Explanation 4 to",
+  "after_text": "offerings, subscriptions or articles referred to in Explanation 4 to",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 4 prints its folio '581' alone at its head or foot (block 2807372); the document's folios run at page + 577 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10853-p4.png",
+  "render_sha256": "b00007d5021a587b8e9f6f447fcc6deecff6f43bdb770b4abb5ffe88258e4639"
+ },
+ {
+  "document_id": 10853,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2807380
+  ],
+  "match_text": "issued from time to time shall be deemed to have been validly",
+  "before_text": "issued from time to time shall be deemed to have been validly",
+  "after_text": "issued from time to time shall be deemed to have been validly",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 5 prints its folio '582' alone at its head or foot (block 2807380); the document's folios run at page + 577 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10853-p5.png",
+  "render_sha256": "30ee4f16fa33a0797fd6ab631c02d2b49cdc2843dd9d35c72d85d67971202ad6"
+ }
+]

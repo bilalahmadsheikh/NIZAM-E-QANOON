@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 1057,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1057-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head 'THE SINDH JUDICIAL ACADEMY ACT, 1993' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH JUDICIAL ACADEMY ACT, 1993",
+  "before_text": "THE SINDH JUDICIAL ACADEMY ACT, 1993",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "4c134e66a7c283262f83feaf8d10cb8e9b33d9f61d7ee43bcd1e0e8da7fa346b"
+ },
+ {
+  "document_id": 1057,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1057-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head 'THE SINDH JUDICIAL ACADEMY ACT, 1993' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH JUDICIAL ACADEMY ACT, 1993",
+  "before_text": "THE SINDH JUDICIAL ACADEMY ACT, 1993",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "1172025f7ddc8b309d8a8089113413574130dd1ff41fd8cc5d796027b872c54b"
+ },
+ {
+  "document_id": 1057,
+  "page_no": 5,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1057-p5.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 5 prints the running head 'THE SINDH JUDICIAL ACADEMY ACT, 1993' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH JUDICIAL ACADEMY ACT, 1993",
+  "before_text": "THE SINDH JUDICIAL ACADEMY ACT, 1993",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "286136a0dbabd5b3b2dd4a5d944163f69e9bdf59269bb2ff1a05d47c14b98257"
+ },
+ {
+  "document_id": 1057,
+  "page_no": 6,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1057-p6.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 6 prints the running head 'THE SINDH JUDICIAL ACADEMY ACT, 1993' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH JUDICIAL ACADEMY ACT, 1993",
+  "before_text": "THE SINDH JUDICIAL ACADEMY ACT, 1993",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "b5f603cf66122663e24f1b603d97c9fb47b3d6885c37567862f8945fdaa8b50f"
+ },
+ {
+  "document_id": 1057,
+  "page_no": 7,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1057-p7.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 7 prints the running head 'THE SINDH JUDICIAL ACADEMY ACT, 1993' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH JUDICIAL ACADEMY ACT, 1993",
+  "before_text": "THE SINDH JUDICIAL ACADEMY ACT, 1993",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "4acea14e4ccc9e0346ca44f2cf9e022fac32e3467ec92905931c3f43f574765c"
+ }
+]

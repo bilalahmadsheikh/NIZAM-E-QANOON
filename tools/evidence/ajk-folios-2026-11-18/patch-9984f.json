@@ -1,0 +1,77 @@
+[
+ {
+  "document_id": 9984,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2742944
+  ],
+  "match_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "before_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "after_text": "Constitution Act, 1974, the President is pleased to make and promulgate",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '836' alone at its head or foot (block 2742944); the document's folios run at page + 835 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc9984-p1.png",
+  "render_sha256": "23af5541580b08bde55990bf3a9766b8b66c5afe407a637ce81a524a5a855cda"
+ },
+ {
+  "document_id": 9984,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2742966
+  ],
+  "match_text": "1990), for Section 44, the following shall be substituted namely:-",
+  "before_text": "1990), for Section 44, the following shall be substituted namely:-",
+  "after_text": "1990), for Section 44, the following shall be substituted namely:-",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '837' alone at its head or foot (block 2742966); the document's folios run at page + 835 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc9984-p2.png",
+  "render_sha256": "b3d20f2b88af2d0b237b86c7920bf2fbc348e2797fb44e3d85295384258af0ad"
+ },
+ {
+  "document_id": 9984,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2742980
+  ],
+  "match_text": "liable to such disciplinary action and penalties and in accordance",
+  "before_text": "liable to such disciplinary action and penalties and in accordance",
+  "after_text": "liable to such disciplinary action and penalties and in accordance",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '838' alone at its head or foot (block 2742980); the document's folios run at page + 835 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc9984-p3.png",
+  "render_sha256": "2c3d3721f88b98a4361948d29e75cc65bc5409336360d3b391a2d6121c6a488f"
+ },
+ {
+  "document_id": 9984,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2742983
+  ],
+  "match_text": "Insertion of Section 42 -A, Act VII of 1990.- In the said Act,",
+  "before_text": "Insertion of Section 42 -A, Act VII of 1990.- In the said Act,",
+  "after_text": "Insertion of Section 42 -A, Act VII of 1990.- In the said Act,",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 4 prints its folio '839' alone at its head or foot (block 2742983); the document's folios run at page + 835 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc9984-p4.png",
+  "render_sha256": "ad3a937c676a4348a37831c764cef5ee5473eac7b3fa5066f3b2e7cebf0c6457"
+ },
+ {
+  "document_id": 9984,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2742993
+  ],
+  "match_text": "in Section 61, in sub-section (4), in clauses (b) and (c) for the",
+  "before_text": "in Section 61, in sub-section (4), in clauses (b) and (c) for the",
+  "after_text": "in Section 61, in sub-section (4), in clauses (b) and (c) for the",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 5 prints its folio '840' alone at its head or foot (block 2742993); the document's folios run at page + 835 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc9984-p5.png",
+  "render_sha256": "7a5d991d01089aa2cb12b1acdd2491a5496911fd350b3bf9dc8a7fc3f4859c03"
+ }
+]

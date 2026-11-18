@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 10005,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2744226
+  ],
+  "match_text": "and Functions) Act, 2001 (Act XV of 2001), hereinafter referred to",
+  "before_text": "and Functions) Act, 2001 (Act XV of 2001), hereinafter referred to",
+  "after_text": "and Functions) Act, 2001 (Act XV of 2001), hereinafter referred to",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '2' alone at its head or foot (block 2744226); the document's folios run at page + 0 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10005-p2.png",
+  "render_sha256": "af4d9856025bf994db5981e89793780093d0c6f7fb7f974df01a06a0d7123fa5"
+ },
+ {
+  "document_id": 10005,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2744231
+  ],
+  "match_text": "of the general object set out in the first schedule shall",
+  "before_text": "of the general object set out in the first schedule shall",
+  "after_text": "of the general object set out in the first schedule shall",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '3' alone at its head or foot (block 2744231); the document's folios run at page + 0 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10005-p3.png",
+  "render_sha256": "b0667a7ba52486d87369dca7a7232da27e7ae9080b177d51f5d1d969b4d41d59"
+ },
+ {
+  "document_id": 10005,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2744234
+  ],
+  "match_text": "Kashmir subject to modifications, if any, made by the President in",
+  "before_text": "Kashmir subject to modifications, if any, made by the President in",
+  "after_text": "Kashmir subject to modifications, if any, made by the President in",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 4 prints its folio '4' alone at its head or foot (block 2744234); the document's folios run at page + 0 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10005-p4.png",
+  "render_sha256": "e117a65dfe69291a2555045356bae91249200c181b9dea95f7f7ba9544bed77b"
+ }
+]

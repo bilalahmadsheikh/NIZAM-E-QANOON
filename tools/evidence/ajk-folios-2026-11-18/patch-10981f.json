@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 10981,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2822765
+  ],
+  "match_text": "No. 679-83/LD/Leg/92. The following Act of the Assembly received the",
+  "before_text": "No. 679-83/LD/Leg/92. The following Act of the Assembly received the",
+  "after_text": "No. 679-83/LD/Leg/92. The following Act of the Assembly received the",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '170' alone at its head or foot (block 2822765); the document's folios run at page + 169 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10981-p1.png",
+  "render_sha256": "592f58ca63272a629324b72f641d4785aa6d12a738548af2a42415ec37871d1a"
+ },
+ {
+  "document_id": 10981,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2822784
+  ],
+  "match_text": "then the Court shall decide the case according to his admission.",
+  "before_text": "then the Court shall decide the case according to his admission.",
+  "after_text": "then the Court shall decide the case according to his admission.",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '171' alone at its head or foot (block 2822784); the document's folios run at page + 169 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10981-p2.png",
+  "render_sha256": "7e23f687c34e6498f72985a764070b953311a93a9ff2ccb34ca516fb3c472734"
+ },
+ {
+  "document_id": 10981,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2822793
+  ],
+  "match_text": "in Articles 152 to 154, for the words “thirty days” the",
+  "before_text": "in Articles 152 to 154, for the words “thirty days” the",
+  "after_text": "in Articles 152 to 154, for the words “thirty days” the",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '172' alone at its head or foot (block 2822793); the document's folios run at page + 169 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10981-p3.png",
+  "render_sha256": "cf004dd28462a1511e70b1f25b43d2a3394b0f5b4827bfada2907d98b9efa52a"
+ }
+]

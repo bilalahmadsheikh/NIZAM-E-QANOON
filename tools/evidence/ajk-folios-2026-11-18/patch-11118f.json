@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 11118,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2832885
+  ],
+  "match_text": "associate them in the election of the President and members of",
+  "before_text": "associate them in the election of the President and members of",
+  "after_text": "associate them in the election of the President and members of",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '348' alone at its head or foot (block 2832885); the document's folios run at page + 347 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11118-p1.png",
+  "render_sha256": "7aab3da3741912cd12d20011ac0a7d7e7b04566e55dc9a5a70f8d47d599cfd47"
+ },
+ {
+  "document_id": 11118,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2832898
+  ],
+  "match_text": "For the purpose of election of Representatives, the Election",
+  "before_text": "For the purpose of election of Representatives, the Election",
+  "after_text": "For the purpose of election of Representatives, the Election",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '349' alone at its head or foot (block 2832898); the document's folios run at page + 347 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11118-p2.png",
+  "render_sha256": "c1ee5f09e8f385218c669bf5bac1c4110f8480627b2df7351c2b30644f4b68cf"
+ },
+ {
+  "document_id": 11118,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2832909
+  ],
+  "match_text": "electoral rolls for the election of Representatives,",
+  "before_text": "electoral rolls for the election of Representatives,",
+  "after_text": "electoral rolls for the election of Representatives,",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '350' alone at its head or foot (block 2832909); the document's folios run at page + 347 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11118-p3.png",
+  "render_sha256": "6887e1bee5b09921c8d8856eb4c73c4e389a9a087a1c9604baf18a69d1c257d9"
+ },
+ {
+  "document_id": 11118,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2832917
+  ],
+  "match_text": "If any difficulty or question arises in giving effect to the",
+  "before_text": "If any difficulty or question arises in giving effect to the",
+  "after_text": "If any difficulty or question arises in giving effect to the",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 4 prints its folio '351' alone at its head or foot (block 2832917); the document's folios run at page + 347 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11118-p4.png",
+  "render_sha256": "902809d440a185e33da5b60bcdbee3a508fb59c1ab0ca56c73533bb0f78e40bd"
+ }
+]

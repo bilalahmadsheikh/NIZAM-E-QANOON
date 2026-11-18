@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 10414,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2772302
+  ],
+  "match_text": "Assembly received the assent of the President on the 16th day of",
+  "before_text": "Assembly received the assent of the President on the 16th day of",
+  "after_text": "Assembly received the assent of the President on the 16th day of",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '1084' alone at its head or foot (block 2772302); the document's folios run at page + 1083 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10414-p1.png",
+  "render_sha256": "75f0cbd5aab72d2a26d23f01f7926fe84e90db4af31b70e44ffb427d9e80e736"
+ },
+ {
+  "document_id": 10414,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2772329
+  ],
+  "match_text": "Four white stripes represent the rivers of the State.",
+  "before_text": "Four white stripes represent the rivers of the State.",
+  "after_text": "Four white stripes represent the rivers of the State.",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '1086' alone at its head or foot (block 2772329); the document's folios run at page + 1083 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10414-p3.png",
+  "render_sha256": "b788c2f1aaa41278962e9fcef71df78eb7835c09fd466f598594e63eacc2d291"
+ }
+]

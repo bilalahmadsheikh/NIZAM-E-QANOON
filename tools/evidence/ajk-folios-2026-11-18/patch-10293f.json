@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 10293,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2763873
+  ],
+  "match_text": "Kashmir” , and to provide for matters connected therewith or ancillary",
+  "before_text": "Kashmir” , and to provide for matters connected therewith or ancillary",
+  "after_text": "Kashmir” , and to provide for matters connected therewith or ancillary",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '335' alone at its head or foot (block 2763873); the document's folios run at page + 333 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10293-p2.png",
+  "render_sha256": "ab85f1ed834cad065fd69d39d18b32837a20db7d6d23c49fad508b22fae7e730"
+ },
+ {
+  "document_id": 10293,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2763903
+  ],
+  "match_text": "regularized through this Act or otherwise, shall not be terminated",
+  "before_text": "regularized through this Act or otherwise, shall not be terminated",
+  "after_text": "regularized through this Act or otherwise, shall not be terminated",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 4 prints its folio '337' alone at its head or foot (block 2763903); the document's folios run at page + 333 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10293-p4.png",
+  "render_sha256": "6a09944ca9cae456a6410c310005f1ecf967fb3cadba0a955ddc4097c74566b4"
+ },
+ {
+  "document_id": 10293,
+  "page_no": 6,
+  "source_apparatus_blocks": [
+   2763923
+  ],
+  "match_text": "Removal of difficulties.- If any difficulty arises in giving effect",
+  "before_text": "Removal of difficulties.- If any difficulty arises in giving effect",
+  "after_text": "Removal of difficulties.- If any difficulty arises in giving effect",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 6 prints its folio '339' alone at its head or foot (block 2763923); the document's folios run at page + 333 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10293-p6.png",
+  "render_sha256": "05e29340167d91163ee00771e629a66b29b49684ee243275a3d98b293e99549a"
+ }
+]

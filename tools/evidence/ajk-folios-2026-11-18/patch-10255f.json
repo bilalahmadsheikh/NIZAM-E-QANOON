@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 10255,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2760714
+  ],
+  "match_text": "18th day of January, 1992, is hereby published for general information:-",
+  "before_text": "18th day of January, 1992, is hereby published for general information:-",
+  "after_text": "18th day of January, 1992, is hereby published for general information:-",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '717' alone at its head or foot (block 2760714); the document's folios run at page + 716 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10255-p1.png",
+  "render_sha256": "3eec11becd38fdc2bc64e1e76a521bac7e62c4585208066b16a45a9176321513"
+ },
+ {
+  "document_id": 10255,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2760740
+  ],
+  "match_text": "The poor will be exempted from the above fee and the fee on the",
+  "before_text": "The poor will be exempted from the above fee and the fee on the",
+  "after_text": "The poor will be exempted from the above fee and the fee on the",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '718' alone at its head or foot (block 2760740); the document's folios run at page + 716 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10255-p2.png",
+  "render_sha256": "09315b745f513a4c1ed2ecd74d0cecfb5f473de4a60dc28d5dbfabc5afbef16b"
+ },
+ {
+  "document_id": 10255,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2760750
+  ],
+  "match_text": "studying in same institution, he will only pay the tuition fee of",
+  "before_text": "studying in same institution, he will only pay the tuition fee of",
+  "after_text": "studying in same institution, he will only pay the tuition fee of",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '719' alone at its head or foot (block 2760750); the document's folios run at page + 716 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10255-p3.png",
+  "render_sha256": "6c607667cb9200e09327292fdc7f4da88bdfdf24c5fb2ad5fd6a373798c46040"
+ }
+]

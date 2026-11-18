@@ -1,0 +1,18 @@
+[
+ {
+  "document_id": 1688,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1688-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head '3 / THE EDUCATION CITY (AMENDMENT) ACT, 2020 / SINDH ACT NO. XIX OF 2020' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "(xiii) Five persons to be appointed by",
+  "before_text": "(xiii) Five persons to be appointed by",
+  "after_text": "(xiii) Five persons to be appointed by",
+  "source_apparatus_blocks": [
+   108659,
+   108660
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "a45e9e707d1f6ee0e1e21d3453b6e2ed0353df43eb9f1dcb30fc78c44e2d221d"
+ }
+]

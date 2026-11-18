@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 10085,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2750026
+  ],
+  "match_text": "assent of the President on 24th day of June, 1992, is hereby published for",
+  "before_text": "assent of the President on 24th day of June, 1992, is hereby published for",
+  "after_text": "assent of the President on 24th day of June, 1992, is hereby published for",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '164' alone at its head or foot (block 2750026); the document's folios run at page + 163 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10085-p1.png",
+  "render_sha256": "0c49c85d1a0d334df29e64b4920958db9b237e867ef48689d08228f07cca6427"
+ },
+ {
+  "document_id": 10085,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2750035
+  ],
+  "match_text": "shall be liable to forfeiture and any building or other construction",
+  "before_text": "shall be liable to forfeiture and any building or other construction",
+  "after_text": "shall be liable to forfeiture and any building or other construction",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '165' alone at its head or foot (block 2750035); the document's folios run at page + 163 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10085-p2.png",
+  "render_sha256": "7e12233ad2d1ae73f504d11ae4d7f7418cf9394db9b6baea9497689709c8f08a"
+ },
+ {
+  "document_id": 10085,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2750038
+  ],
+  "match_text": "no such petition shall lie in respect of any interest in the income,",
+  "before_text": "no such petition shall lie in respect of any interest in the income,",
+  "after_text": "no such petition shall lie in respect of any interest in the income,",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '166' alone at its head or foot (block 2750038); the document's folios run at page + 163 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10085-p3.png",
+  "render_sha256": "64a3dc974e3c87417a39b3d4f5ee636f0c19bc540fc59291e6132e4f26cc1465"
+ },
+ {
+  "document_id": 10085,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2750042
+  ],
+  "match_text": "proceedings initiated, jurisdiction or powers exercised under the",
+  "before_text": "proceedings initiated, jurisdiction or powers exercised under the",
+  "after_text": "proceedings initiated, jurisdiction or powers exercised under the",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 4 prints its folio '167' alone at its head or foot (block 2750042); the document's folios run at page + 163 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10085-p4.png",
+  "render_sha256": "d078b5e0337acb6361f9d2ff8b7038c39022b84c737da253237aa0c5b7cfcae9"
+ }
+]

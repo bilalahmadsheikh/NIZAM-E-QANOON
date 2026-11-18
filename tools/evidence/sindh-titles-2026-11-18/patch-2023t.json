@@ -1,0 +1,34 @@
+[
+ {
+  "document_id": 2023,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2023-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head 'THE SINDH SENIOR CITIZEN WELFARE (AMENDMENT) ACT, 2023 / SINDH ACT NO. XXIV OF 2023.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "day to day administrative and financial affairs of the Senior Citizen",
+  "before_text": "day to day administrative and financial affairs of the Senior Citizen",
+  "after_text": "day to day administrative and financial affairs of the Senior Citizen",
+  "source_apparatus_blocks": [
+   149577,
+   149578
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "97a6cd50033ca771a08db1f8124e322cbd02685999f8cec642dcfa9d58fef86b"
+ },
+ {
+  "document_id": 2023,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2023-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head 'THE SINDH SENIOR CITIZEN WELFARE (AMENDMENT) ACT, 2023 / SINDH ACT NO. XXIV OF 2023.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "not less than one year but not more than three years or\" shall be",
+  "before_text": "not less than one year but not more than three years or\" shall be",
+  "after_text": "not less than one year but not more than three years or\" shall be",
+  "source_apparatus_blocks": [
+   149589,
+   149590
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "67d663284a47801a8aa78de80cae82d5f9973dc9cfd5a3328d2ff436035870d8"
+ }
+]

@@ -1,0 +1,41 @@
+[
+ {
+  "document_id": 1828,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1828-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head 'THE SINDH PROHIBITION OF CORPORAL PUNISHMENT ACT, 2016.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "rehabilitation centers and any other alternative care settings, both public",
+  "before_text": "rehabilitation centers and any other alternative care settings, both public",
+  "after_text": "rehabilitation centers and any other alternative care settings, both public",
+  "source_apparatus_blocks": [
+   122924
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "3eb7db18ed99132115c620c3e7309d0c80ce4e9e6f679c54fbe6a9a6cfeab0cf"
+ },
+ {
+  "document_id": 1828,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1828-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head 'THE SINDH PROHIBITION OF CORPORAL PUNISHMENT ACT, 2016.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH PROHIBITION OF CORPORAL PUNISHMENT ACT, 2016.",
+  "before_text": "THE SINDH PROHIBITION OF CORPORAL PUNISHMENT ACT, 2016.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "2e4901a0092c461ae1aecc3786e3746f5495ab193cc32c6a00d7ec8a1e62061f"
+ },
+ {
+  "document_id": 1828,
+  "page_no": 5,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1828-p5.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 5 prints the running head 'THE SINDH PROHIBITION OF CORPORAL PUNISHMENT ACT, 2016.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH PROHIBITION OF CORPORAL PUNISHMENT ACT, 2016.",
+  "before_text": "THE SINDH PROHIBITION OF CORPORAL PUNISHMENT ACT, 2016.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "96ba1fe288cab74e3bcaf0480a9e2fb09a3eb969b096ea7d0c706b956a251d48"
+ }
+]

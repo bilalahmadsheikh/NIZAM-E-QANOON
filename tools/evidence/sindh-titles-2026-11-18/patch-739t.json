@@ -1,0 +1,29 @@
+[
+ {
+  "document_id": 739,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc739-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head 'THE SINDH SHOPS AND ESTABLISHMENT (SECURITY) ORDINANCE, 2009.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "4.   The employer of the respective establishment shall report",
+  "before_text": "4.   The employer of the respective establishment shall report",
+  "after_text": "4.   The employer of the respective establishment shall report",
+  "source_apparatus_blocks": [
+   32847
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "be8c4df47dcbff1365f0dbf44724191de26123d7f87eff27a2afb0451d3f5eb2"
+ },
+ {
+  "document_id": 739,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc739-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head 'THE SINDH SHOPS AND ESTABLISHMENT (SECURITY) ORDINANCE, 2009.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH SHOPS AND ESTABLISHMENT (SECURITY) ORDINANCE, 2009.",
+  "before_text": "THE SINDH SHOPS AND ESTABLISHMENT (SECURITY) ORDINANCE, 2009.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "5c10db7a8e807137180d27c475a41acb8f1ebfaef8d62f2ad8fb559ef014722e"
+ }
+]

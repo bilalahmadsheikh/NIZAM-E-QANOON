@@ -1,0 +1,74 @@
+[
+ {
+  "document_id": 9664,
+  "page_no": 13,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc9664-p13.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 13 prints the running head 'WEST PAKISTAN MOTOR VEHICLES ORDINANCE, 1965.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "WEST PAKISTAN MOTOR VEHICLES ORDINANCE, 1965.",
+  "before_text": "WEST PAKISTAN MOTOR VEHICLES ORDINANCE, 1965.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "ee4d3328949398268e6e317dc4582fa344dd7dec993d254d590bace59e7f10b2"
+ },
+ {
+  "document_id": 9664,
+  "page_no": 35,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc9664-p35.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 35 prints the running head '35 / WEST PAKISTAN MOTOR VEHICLES ORDINANCE, 1965.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "WEST PAKISTAN MOTOR VEHICLES ORDINANCE, 1965.",
+  "before_text": "35\nWEST PAKISTAN MOTOR VEHICLES ORDINANCE, 1965.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "8f2433513f065266b26dd236a4c656d281ce585d262c4047727a6236685c7c5a"
+ },
+ {
+  "document_id": 9664,
+  "page_no": 75,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc9664-p75.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 75 prints the running head '75 / WEST PAKISTAN MOTOR VEHICLES ORDINANCE, 1965.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "WEST PAKISTAN MOTOR VEHICLES ORDINANCE, 1965.",
+  "before_text": "75\nWEST PAKISTAN MOTOR VEHICLES ORDINANCE, 1965.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "7d0a6b38eef22de20fc6603c6328b2ba66d469a1c1d8528c4dfb300d137a1890"
+ },
+ {
+  "document_id": 9664,
+  "page_no": 78,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc9664-p78.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 78 prints the running head '78 / WEST PAKISTAN MOTOR VEHICLES ORDINANCE, 1965.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "WEST PAKISTAN MOTOR VEHICLES ORDINANCE, 1965.",
+  "before_text": "78\nWEST PAKISTAN MOTOR VEHICLES ORDINANCE, 1965.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "d433b50622bdbe096352d10376084466024131e14d44fb13165aab1657d95fc9"
+ },
+ {
+  "document_id": 9664,
+  "page_no": 83,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc9664-p83.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 83 prints the running head '83 / WEST PAKISTAN MOTOR VEHICLES ORDINANCE, 1965.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "WEST PAKISTAN MOTOR VEHICLES ORDINANCE, 1965.",
+  "before_text": "83\nWEST PAKISTAN MOTOR VEHICLES ORDINANCE, 1965.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "fd2f7e45a2ac1db071f8b2a95b548652ffdb37edf5ef969d3a4e653eea6d8716"
+ },
+ {
+  "document_id": 9664,
+  "page_no": 91,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc9664-p91.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 91 prints the running head 'WEST PAKISTAN MOTOR VEHICLES ORDINANCE, 1965.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "WEST PAKISTAN MOTOR VEHICLES ORDINANCE, 1965.",
+  "before_text": "WEST PAKISTAN MOTOR VEHICLES ORDINANCE, 1965.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "c98884372c35c9cec4f2614a77768d8a0d47cea35daefaf0869ec479152f89d6"
+ }
+]

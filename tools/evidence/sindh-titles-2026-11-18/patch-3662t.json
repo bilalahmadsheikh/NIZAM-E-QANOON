@@ -1,0 +1,18 @@
+[
+ {
+  "document_id": 3662,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc3662-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head '3 / THE SINDH SPORTS BOARD (AMENDMENT) ACT, 2018. / SINDH ACT NO. XXVII OF 2018.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "for sub-section (2), the following shall be substituted:-",
+  "before_text": "for sub-section (2), the following shall be substituted:-",
+  "after_text": "for sub-section (2), the following shall be substituted:-",
+  "source_apparatus_blocks": [
+   439607,
+   439608
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "9a26643db8ddcb62872bddad69eb13521689e3a5e6f96da86bbd73888e41e0c5"
+ }
+]

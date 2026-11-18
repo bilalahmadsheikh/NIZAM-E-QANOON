@@ -1,0 +1,66 @@
+[
+ {
+  "document_id": 1798,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1798-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head '3 / THE AGA KHAN PROPERTIES (SUCCESSION AND TRANSFER) / SINDH ACT NO. IX OF 2025.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "certificate, letters of administration, court order, registration of",
+  "before_text": "certificate, letters of administration, court order, registration of",
+  "after_text": "certificate, letters of administration, court order, registration of",
+  "source_apparatus_blocks": [
+   119219,
+   119221
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "931ffa1b016d4bcda37643f105b18d7759f877f89c65a8db890d857dba21e771"
+ },
+ {
+  "document_id": 1798,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1798-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head '4 / THE AGA KHAN PROPERTIES (SUCCESSION AND TRANSFER) / SINDH ACT NO. IX OF 2025.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "(3) Nothing in this section shall affect the operation of automatic",
+  "before_text": "(3) Nothing in this section shall affect the operation of automatic",
+  "after_text": "(3) Nothing in this section shall affect the operation of automatic",
+  "source_apparatus_blocks": [
+   119227,
+   119229
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "fc3d703be2c622eb28b8241d59760717ecdc6a420df8a63cfc232f17dbaff1a3"
+ },
+ {
+  "document_id": 1798,
+  "page_no": 5,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1798-p5.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 5 prints the running head '5 / THE AGA KHAN PROPERTIES (SUCCESSION AND TRANSFER) / SINDH ACT NO. IX OF 2025.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "If any difficulty arises in giving effect to any provision of this",
+  "before_text": "If any difficulty arises in giving effect to any provision of this",
+  "after_text": "If any difficulty arises in giving effect to any provision of this",
+  "source_apparatus_blocks": [
+   119235,
+   119237
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "9f3f78e9e4b32d45eb33ccadee3eea046e82e86c13cda5fec8c12b451e611e21"
+ },
+ {
+  "document_id": 1798,
+  "page_no": 6,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1798-p6.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 6 prints the running head '6 / THE AGA KHAN PROPERTIES (SUCCESSION AND TRANSFER) / SINDH ACT NO. IX OF 2025.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "other law for the time being in force, all Properties, as defined in",
+  "before_text": "other law for the time being in force, all Properties, as defined in",
+  "after_text": "other law for the time being in force, all Properties, as defined in",
+  "source_apparatus_blocks": [
+   119248,
+   119250
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "d10b092f60aef256092f06b92633fe42d07c0337281baa685f2fddf4bfb4a5a7"
+ }
+]

@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 11181,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2837241
+  ],
+  "match_text": "public office or representative capacity or in any matter relating thereto :-",
+  "before_text": "public office or representative capacity or in any matter relating thereto :-",
+  "after_text": "public office or representative capacity or in any matter relating thereto :-",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '96' alone at its head or foot (block 2837241); the document's folios run at page + 95 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11181-p1.png",
+  "render_sha256": "c2ca2bda17f1c25f294787f7bdf99e8c3487d3a0fb0581c368e27aed51e1b3bb"
+ },
+ {
+  "document_id": 11181,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2837242
+  ],
+  "match_text": "disqualified as provided in section 2, his office seat or place as",
+  "before_text": "disqualified as provided in section 2, his office seat or place as",
+  "after_text": "disqualified as provided in section 2, his office seat or place as",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '97' alone at its head or foot (block 2837242); the document's folios run at page + 95 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11181-p2.png",
+  "render_sha256": "aad79cc02d4f4bef6afb5b81de54e86f838f950fbc7b2e5a0ef367cab07805bd"
+ },
+ {
+  "document_id": 11181,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2837246
+  ],
+  "match_text": "disqualified as provided in section 2, his office seat or place as",
+  "before_text": "disqualified as provided in section 2, his office seat or place as",
+  "after_text": "disqualified as provided in section 2, his office seat or place as",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '97' alone at its head or foot (block 2837246); the document's folios run at page + 95 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc11181-p2.png",
+  "render_sha256": "aad79cc02d4f4bef6afb5b81de54e86f838f950fbc7b2e5a0ef367cab07805bd"
+ }
+]

@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 10934,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2814767
+  ],
+  "match_text": "assent of the President on 8th July, 1992, is hereby published for general",
+  "before_text": "assent of the President on 8th July, 1992, is hereby published for general",
+  "after_text": "assent of the President on 8th July, 1992, is hereby published for general",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '230' alone at its head or foot (block 2814767); the document's folios run at page + 229 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10934-p1.png",
+  "render_sha256": "f141e018a63bd2ac74cabc35f3bc13f0ff8d3aa193a3244c87445577f87044fc"
+ },
+ {
+  "document_id": 10934,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2814786
+  ],
+  "match_text": "Tribunal, within thirty days of such decision, declaration, order,",
+  "before_text": "Tribunal, within thirty days of such decision, declaration, order,",
+  "after_text": "Tribunal, within thirty days of such decision, declaration, order,",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '231' alone at its head or foot (block 2814786); the document's folios run at page + 229 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10934-p2.png",
+  "render_sha256": "2813a8636053ebefe3920658e761a6a24306ecee379f7df947d8437d412203d6"
+ },
+ {
+  "document_id": 10934,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2814799
+  ],
+  "match_text": "Amendment of Section 14, Act IX of 1987. - In the said Act, in",
+  "before_text": "Amendment of Section 14, Act IX of 1987. - In the said Act, in",
+  "after_text": "Amendment of Section 14, Act IX of 1987. - In the said Act, in",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '232' alone at its head or foot (block 2814799); the document's folios run at page + 229 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10934-p3.png",
+  "render_sha256": "25b87864d652f9aea9b344cdd0dd39feacd01afe63f34ce59cdabda847b22048"
+ }
+]

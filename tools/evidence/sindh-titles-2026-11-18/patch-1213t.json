@@ -1,0 +1,14 @@
+[
+ {
+  "document_id": 1213,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1213-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head 'THE COSTAL DEVELOPMENT AUTHORITY ORDINANCE, 1994' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE COSTAL DEVELOPMENT AUTHORITY ORDINANCE, 1994",
+  "before_text": "THE COSTAL DEVELOPMENT AUTHORITY ORDINANCE, 1994",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "89755b0d7dcc910c5eab407d803b37428a785ad5b3557bf3d14a21a7c46817c3"
+ }
+]

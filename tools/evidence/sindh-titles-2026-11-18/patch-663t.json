@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 663,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc663-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head 'THE SINDH INSURANCE OF PUBLIC PROPERTY ACT, 2015' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "recorded in writing, it shall be exempted from the application of",
+  "before_text": "recorded in writing, it shall be exempted from the application of",
+  "after_text": "recorded in writing, it shall be exempted from the application of",
+  "source_apparatus_blocks": [
+   27864
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "bd5807eae48ae6e670920e3fd29debe4dfb608528afda8ba7ecd939a8fb53571"
+ },
+ {
+  "document_id": 663,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc663-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head 'THE SINDH INSURANCE OF PUBLIC PROPERTY ACT, 2015' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "be applicable to public property and liabilities which are the",
+  "before_text": "be applicable to public property and liabilities which are the",
+  "after_text": "be applicable to public property and liabilities which are the",
+  "source_apparatus_blocks": [
+   27883
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "fbceda6e918c8dd85ae99e968f553951e542540415ef91895bf019447707665b"
+ }
+]

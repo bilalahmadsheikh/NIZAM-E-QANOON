@@ -1,0 +1,50 @@
+[
+ {
+  "document_id": 1962,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1962-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head '(REGISTRATION AND CONTROL) ACT, 1994.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "(REGISTRATION AND CONTROL) ACT, 1994.",
+  "before_text": "(REGISTRATION AND CONTROL) ACT, 1994.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "b0c584bd95c215a832329621d1fe178af9075c1eb433d84c7560fa8f031f29ba"
+ },
+ {
+  "document_id": 1962,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1962-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head '(REGISTRATION AND CONTROL) ACT, 1994.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "(REGISTRATION AND CONTROL) ACT, 1994.",
+  "before_text": "(REGISTRATION AND CONTROL) ACT, 1994.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "25de8795253cadd03f21a10d6bed014f3fb21d10d595ec7c3d9cb427e0912914"
+ },
+ {
+  "document_id": 1962,
+  "page_no": 5,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1962-p5.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 5 prints the running head '(REGISTRATION AND CONTROL) ACT, 1994.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "(REGISTRATION AND CONTROL) ACT, 1994.",
+  "before_text": "(REGISTRATION AND CONTROL) ACT, 1994.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "bff71087a5e5914f2eefbaee2f5c2cef3704efec56badd68dbd31c26a0bfc5d6"
+ },
+ {
+  "document_id": 1962,
+  "page_no": 6,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1962-p6.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 6 prints the running head '(REGISTRATION AND CONTROL) ACT, 1994.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "(REGISTRATION AND CONTROL) ACT, 1994.",
+  "before_text": "(REGISTRATION AND CONTROL) ACT, 1994.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "c965e0271c1702cb8f685af49024f2aceb121c10c28829300d37d4f6ff1c45a7"
+ }
+]

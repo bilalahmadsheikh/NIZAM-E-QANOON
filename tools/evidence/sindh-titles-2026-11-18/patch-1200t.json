@@ -1,0 +1,14 @@
+[
+ {
+  "document_id": 1200,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1200-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head 'THE SINDH FINANCE ACT, 2005' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH FINANCE ACT, 2005",
+  "before_text": "THE SINDH FINANCE ACT, 2005",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "e0f2523e9b6b39be355d356f28aa343f5393902fb3ab60898e4d6ff557214879"
+ }
+]

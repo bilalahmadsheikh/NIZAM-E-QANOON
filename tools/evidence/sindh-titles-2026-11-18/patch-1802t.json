@@ -1,0 +1,70 @@
+[
+ {
+  "document_id": 1802,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1802-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head '3 / THE CONSTITUTIONAL BENCHES OF HIGH COURT OF SINDH / (PRACTICE AND PROCEDURE) ACT, 2025 / SINDH ACT NO. I OF 2026' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "perform his functions due to leave, vacation, illness, absence, or",
+  "before_text": "perform his functions due to leave, vacation, illness, absence, or",
+  "after_text": "perform his functions due to leave, vacation, illness, absence, or",
+  "source_apparatus_blocks": [
+   119519,
+   119520,
+   119521
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "1ce9da82cc440f4b572cf4ee0926517d2d3196ad82919ea83e977abcb668bf38"
+ },
+ {
+  "document_id": 1802,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1802-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head '4 / THE CONSTITUTIONAL BENCHES OF HIGH COURT OF SINDH / (PRACTICE AND PROCEDURE) ACT, 2025 / SINDH ACT NO. I OF 2026' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "(4) Where a Bench, during hearing, advises constitution of a larger",
+  "before_text": "(4) Where a Bench, during hearing, advises constitution of a larger",
+  "after_text": "(4) Where a Bench, during hearing, advises constitution of a larger",
+  "source_apparatus_blocks": [
+   119529,
+   119530,
+   119531
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "effe8129b0cc289dec2c72aa19f207f94363041aea64b8b1b036a3e5d5a6554a"
+ },
+ {
+  "document_id": 1802,
+  "page_no": 5,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1802-p5.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 5 prints the running head '5 / THE CONSTITUTIONAL BENCHES OF HIGH COURT OF SINDH / (PRACTICE AND PROCEDURE) ACT, 2025 / SINDH ACT NO. I OF 2026' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "(1) Where a stay order has been passed in a constitutional petition,",
+  "before_text": "(1) Where a stay order has been passed in a constitutional petition,",
+  "after_text": "(1) Where a stay order has been passed in a constitutional petition,",
+  "source_apparatus_blocks": [
+   119541,
+   119542,
+   119543
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "1b02cb18f56fbb9e6f86c855b5030a4a7d58ec75e72359f52d7fd6b1fee04163"
+ },
+ {
+  "document_id": 1802,
+  "page_no": 6,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1802-p6.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 6 prints the running head '6 / THE CONSTITUTIONAL BENCHES OF HIGH COURT OF SINDH / (PRACTICE AND PROCEDURE) ACT, 2025 / SINDH ACT NO. I OF 2026' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "and where any inconsistency arises, the Constitution shall prevail.",
+  "before_text": "and where any inconsistency arises, the Constitution shall prevail.",
+  "after_text": "and where any inconsistency arises, the Constitution shall prevail.",
+  "source_apparatus_blocks": [
+   119555,
+   119556,
+   119557
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "05aeec59c6dacbe6884aaa62e5d51a45360609e6ee82331877656abcdb7f512d"
+ }
+]

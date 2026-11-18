@@ -1,0 +1,18 @@
+[
+ {
+  "document_id": 2428,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2428-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head '3 / THE SINDH SOCIAL PROTECTION AUTHORITY (AMENDMENT) / SINDH ACT NO. LII OF 2023.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "in sub-section (6), in clause (i) for the words and brackets",
+  "before_text": "in sub-section (6), in clause (i) for the words and brackets",
+  "after_text": "in sub-section (6), in clause (i) for the words and brackets",
+  "source_apparatus_blocks": [
+   199421,
+   199423
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "0c98abe9edf2b128a448206c183f8f8f7ebc8f0130aea560ce9709fc5adbd267"
+ }
+]

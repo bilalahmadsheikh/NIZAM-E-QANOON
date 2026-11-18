@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 10387,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2770185
+  ],
+  "match_text": "in certain kinds of trees and forests it is hereby enacted as follows :-",
+  "before_text": "in certain kinds of trees and forests it is hereby enacted as follows :-",
+  "after_text": "in certain kinds of trees and forests it is hereby enacted as follows :-",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '206' alone at its head or foot (block 2770185); the document's folios run at page + 205 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10387-p1.png",
+  "render_sha256": "89bdcad65f87b965cd393d10923e1d1e9b22c185d3388247d036dff0adc05594"
+ },
+ {
+  "document_id": 10387,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2770186
+  ],
+  "match_text": "(ii)  The Government may, by notification, order that trees of any",
+  "before_text": "(ii)  The Government may, by notification, order that trees of any",
+  "after_text": "(ii)  The Government may, by notification, order that trees of any",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '207' alone at its head or foot (block 2770186); the document's folios run at page + 205 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10387-p2.png",
+  "render_sha256": "7a37403188ba972d497fd72b139709cac237f436c7b8d458859afff0aaa68fa2"
+ },
+ {
+  "document_id": 10387,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2770191
+  ],
+  "match_text": "(ii)  The Government may, by notification, order that trees of any",
+  "before_text": "(ii)  The Government may, by notification, order that trees of any",
+  "after_text": "(ii)  The Government may, by notification, order that trees of any",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '207' alone at its head or foot (block 2770191); the document's folios run at page + 205 on 4 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10387-p2.png",
+  "render_sha256": "7a37403188ba972d497fd72b139709cac237f436c7b8d458859afff0aaa68fa2"
+ }
+]

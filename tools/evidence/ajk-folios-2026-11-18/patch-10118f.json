@@ -1,0 +1,77 @@
+[
+ {
+  "document_id": 10118,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2751929
+  ],
+  "match_text": "to regulate the business of real Estate Agents and Motor Vehicles dealers",
+  "before_text": "to regulate the business of real Estate Agents and Motor Vehicles dealers",
+  "after_text": "to regulate the business of real Estate Agents and Motor Vehicles dealers",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '141' alone at its head or foot (block 2751929); the document's folios run at page + 140 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10118-p1.png",
+  "render_sha256": "c2544ebe11bfc30a4f201fb3810df14cd4e4c69784289a247ab8f63cfc7925d9"
+ },
+ {
+  "document_id": 10118,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2751940
+  ],
+  "match_text": "shall engage in or carry on the business of a real estate agent or a",
+  "before_text": "shall engage in or carry on the business of a real estate agent or a",
+  "after_text": "shall engage in or carry on the business of a real estate agent or a",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '142' alone at its head or foot (block 2751940); the document's folios run at page + 140 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10118-p2.png",
+  "render_sha256": "7085e87a91f45ade8dd7084556ec81105039746c0bf2f4c24ec37ef1aa7f42ff"
+ },
+ {
+  "document_id": 10118,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2751954
+  ],
+  "match_text": "wishes to get his certificate of registration renewed shall, within",
+  "before_text": "wishes to get his certificate of registration renewed shall, within",
+  "after_text": "wishes to get his certificate of registration renewed shall, within",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '143' alone at its head or foot (block 2751954); the document's folios run at page + 140 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10118-p3.png",
+  "render_sha256": "2df8d72931472c1b0d626e8b0c11d6a546becbb5f440e858b629517767ad1e6b"
+ },
+ {
+  "document_id": 10118,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   2751964
+  ],
+  "match_text": "apply for the renewal of his certificate of registration within the",
+  "before_text": "apply for the renewal of his certificate of registration within the",
+  "after_text": "apply for the renewal of his certificate of registration within the",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 4 prints its folio '144' alone at its head or foot (block 2751964); the document's folios run at page + 140 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10118-p4.png",
+  "render_sha256": "4380c342b83a29d58befef01e512d99484d8680e08c85e054cdd1511d5f7ef10"
+ },
+ {
+  "document_id": 10118,
+  "page_no": 5,
+  "source_apparatus_blocks": [
+   2751978
+  ],
+  "match_text": "initiated, jurisdiction or powers exercised under the provisions of",
+  "before_text": "initiated, jurisdiction or powers exercised under the provisions of",
+  "after_text": "initiated, jurisdiction or powers exercised under the provisions of",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 5 prints its folio '145' alone at its head or foot (block 2751978); the document's folios run at page + 140 on 5 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10118-p5.png",
+  "render_sha256": "1e92eecfb6b84171d845c7a6ff5b4990d4776a4eb90bdea23f4571243e89ed44"
+ }
+]

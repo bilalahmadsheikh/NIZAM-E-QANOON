@@ -1,0 +1,47 @@
+[
+ {
+  "document_id": 10871,
+  "page_no": 1,
+  "source_apparatus_blocks": [
+   2809361
+  ],
+  "match_text": "respectively and before those renumbered cl. a new cl. (a) has been added",
+  "before_text": "respectively and before those renumbered cl. a new cl. (a) has been added",
+  "after_text": "respectively and before those renumbered cl. a new cl. (a) has been added",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its folio '80' alone at its head or foot (block 2809361); the document's folios run at page + 79 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10871-p1.png",
+  "render_sha256": "e5811177e03ea660916b8b5c635f74a42b18b4422fb3590fcfcdcce5d44f5357"
+ },
+ {
+  "document_id": 10871,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   2809369
+  ],
+  "match_text": "cognizable and the relevant provisions of the Cr. P.C shall apply mutatis",
+  "before_text": "cognizable and the relevant provisions of the Cr. P.C shall apply mutatis",
+  "after_text": "cognizable and the relevant provisions of the Cr. P.C shall apply mutatis",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its folio '81' alone at its head or foot (block 2809369); the document's folios run at page + 79 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10871-p2.png",
+  "render_sha256": "e8f65ba79d5b1ddea9c526372a3f299100bd4e101405b4fd07594f5f1933a338"
+ },
+ {
+  "document_id": 10871,
+  "page_no": 3,
+  "source_apparatus_blocks": [
+   2809376
+  ],
+  "match_text": "an offence under the said Act in accordance with the provisions",
+  "before_text": "an offence under the said Act in accordance with the provisions",
+  "after_text": "an offence under the said Act in accordance with the provisions",
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its folio '82' alone at its head or foot (block 2809376); the document's folios run at page + 79 on 3 pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/ajk-folio/doc10871-p3.png",
+  "render_sha256": "d90b8d98a6e5e91f127cd2338bf8f09e5ff55efd22ba783f5f239ef7e1fb07cc"
+ }
+]

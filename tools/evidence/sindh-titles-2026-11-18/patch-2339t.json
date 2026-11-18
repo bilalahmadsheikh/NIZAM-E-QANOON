@@ -1,0 +1,104 @@
+[
+ {
+  "document_id": 2339,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2339-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head 'THE SINDH SENIOR CITIZENS WELFARE ACT, 2014' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH SENIOR CITIZENS WELFARE ACT, 2014",
+  "before_text": "THE SINDH SENIOR CITIZENS WELFARE ACT, 2014",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "12204a5c32ef4f81bc4b1eb9182c92ef458a0ff348548d8fe40683966b5d18a4"
+ },
+ {
+  "document_id": 2339,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2339-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head 'THE SINDH SENIOR CITIZENS WELFARE ACT, 2014' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH SENIOR CITIZENS WELFARE ACT, 2014",
+  "before_text": "THE SINDH SENIOR CITIZENS WELFARE ACT, 2014",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "2faee235321f7046698bc535c7cc7d047e7100e2bf06ca8b317c090ef5827bfd"
+ },
+ {
+  "document_id": 2339,
+  "page_no": 5,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2339-p5.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 5 prints the running head 'THE SINDH SENIOR CITIZENS WELFARE ACT, 2014' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH SENIOR CITIZENS WELFARE ACT, 2014",
+  "before_text": "THE SINDH SENIOR CITIZENS WELFARE ACT, 2014",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "6570e63b72f900c5acdfc8e3402470e5bb34be5f741a4916c9804d5cfdf459c6"
+ },
+ {
+  "document_id": 2339,
+  "page_no": 6,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2339-p6.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 6 prints the running head 'THE SINDH SENIOR CITIZENS WELFARE ACT, 2014' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "carrying out any activity being essential and beneficial for development",
+  "before_text": "carrying out any activity being essential and beneficial for development",
+  "after_text": "carrying out any activity being essential and beneficial for development",
+  "source_apparatus_blocks": [
+   187693
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "c366f9eb3993e29521ecac4ef6e6737453b9522486101f176d64883df2a08916"
+ },
+ {
+  "document_id": 2339,
+  "page_no": 7,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2339-p7.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 7 prints the running head 'THE SINDH SENIOR CITIZENS WELFARE ACT, 2014' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "(xiii) to make provisions of Benevolent Funds for special needs",
+  "before_text": "(xiii) to make provisions of Benevolent Funds for special needs",
+  "after_text": "(xiii) to make provisions of Benevolent Funds for special needs",
+  "source_apparatus_blocks": [
+   187706
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "5fb5bcd333247371df48ceea5c5553ed15e6868e746418c4b01a68044f3b40eb"
+ },
+ {
+  "document_id": 2339,
+  "page_no": 8,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2339-p8.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 8 prints the running head 'THE SINDH SENIOR CITIZENS WELFARE ACT, 2014' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH SENIOR CITIZENS WELFARE ACT, 2014",
+  "before_text": "THE SINDH SENIOR CITIZENS WELFARE ACT, 2014",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "814c573a44348f11b4ce8dfac5668d206e225a973980702ba0b191524f275bf8"
+ },
+ {
+  "document_id": 2339,
+  "page_no": 9,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2339-p9.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 9 prints the running head 'THE SINDH SENIOR CITIZENS WELFARE ACT, 2014' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH SENIOR CITIZENS WELFARE ACT, 2014",
+  "before_text": "THE SINDH SENIOR CITIZENS WELFARE ACT, 2014",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "50c13dfedeb909e6ed23d52c5246db67046dc541d833a6d41b9552f090f9bd23"
+ },
+ {
+  "document_id": 2339,
+  "page_no": 10,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2339-p10.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 10 prints the running head 'THE SINDH SENIOR CITIZENS WELFARE ACT, 2014' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "THE SINDH SENIOR CITIZENS WELFARE ACT, 2014",
+  "before_text": "THE SINDH SENIOR CITIZENS WELFARE ACT, 2014",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "7aab27b0cf8c6dcfa3efe93a22e9d10a0e356f22d4a0f022ca51955a626aba44"
+ }
+]
