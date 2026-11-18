@@ -1,0 +1,72 @@
+{
+ "schema": "nizam.decision_review.v1",
+ "reviewer_name": "lead under owner chat delegation (standing since 25 Oct 2026)",
+ "source": "chat-delegation",
+ "chat_quote": "release fast what u can release making the decisons for me in that numbering the question u ask me and choose the recommended choice in it without asking me not also don't choose keep it unreleased or release only specific part",
+ "exported_at": "2026-11-18T12:30:00+00:00",
+ "answer_count": 2,
+ "answers": [
+  {
+   "document_id": 1336,
+   "question_id": "q1",
+   "card": {
+    "document_id": 1336,
+    "question_id": "q1",
+    "question": "Document 1336 (Sindh Cultural Heritage (Preservation) Act, 1994) prints its contents one row behind its body from row 7: the body prints a bare \"7.\" after s.6(1) and s.6(2)-(4) under it, so contents row 7 is printed as the margin note of s.8 and row 21 as that of s.22. The stored tree heads every section from s.8 with the contents row of its own number (s.19 \"Overriding effect\" over the penalty). How are the contents rows linked?",
+    "options": [
+     "body: link each row to the body section whose own printed margin note repeats it (rows 1-6 to ss.1-6, rows 7-21 to ss.8-22; s.7 and s.11 print no note and take no row)",
+     "number: keep linking each row to the section of its own number"
+    ],
+    "recommended": "body",
+    "card_sha256": "baa557088cf0e3855daf5d63b56f6fda8fd48787868fdf78c317cf11c617ffc6"
+   },
+   "card_sha256": "baa557088cf0e3855daf5d63b56f6fda8fd48787868fdf78c317cf11c617ffc6",
+   "choice": "body",
+   "reviewed_page_images": true,
+   "note": "The lead read the renders of p1 (contents: 21 rows, row 10 blank, rows 14-15 a rule), p3 (s.6(1) then a bare \"7.\"), p4 (s.6(2)-(4); s.8 margin \"Acquisition of right in or guardianship of a protected heritage of the government.\"; s.9 margin \"Preservation of protected heritage.\") and p8 (s.18 \"Right of access to certain Protected heritage.\", s.19 \"Penalty.\", s.20 \"Overriding effect.\", s.21 \"Rules.\", s.22 \"Protection to the Person; acting under this Act.\"). The recommended option links each row to the section printing its words.",
+   "renders": {
+    "1": {
+     "path": ".artifacts/heritage-2026-11-18/renders/doc1336-p1.png",
+     "sha256": "eda2b2a095a2c2dc2f82515a48c0b40fff80299774b8c7f7d0dc774ea231b3fc"
+    },
+    "3": {
+     "path": ".artifacts/heritage-2026-11-18/renders/doc1336-p3.png",
+     "sha256": "7abfa2370d1a0616e5ab6334cfe36cb4efc9b6ec7116028435cbd801d762ce95"
+    },
+    "4": {
+     "path": ".artifacts/heritage-2026-11-18/renders/doc1336-p4.png",
+     "sha256": "8318dacdd3517da3ba26fc80783de9b60ca21d27f035f806fb82ea9816b76d05"
+    },
+    "8": {
+     "path": ".artifacts/heritage-2026-11-18/renders/doc1336-p8.png",
+     "sha256": "5cfd934afcee891ba8dd86e75acc4b114b5ceba603b1c4bbd45d585e736c97ee"
+    }
+   }
+  },
+  {
+   "document_id": 1336,
+   "question_id": "q2",
+   "card": {
+    "document_id": 1336,
+    "question_id": "q2",
+    "question": "Contents row 7 of document 1336 wraps onto a second line and its stored words stop at \"...of a protected heritage of the\". Section 8 prints its margin note in full on p4: \"Acquisition of right in or guardianship of a protected heritage of the government.\" Which heading does s.8 take?",
+    "options": [
+     "printed: the margin note as printed beside s.8 (block 74276)",
+     "contents: the stored contents words, cut at \"of the\""
+    ],
+    "recommended": "printed",
+    "card_sha256": "f8c63a5330f2b493e302ec2de16e27fd1f7e209d4ec7f5e9f129cebeb7944d4c"
+   },
+   "card_sha256": "f8c63a5330f2b493e302ec2de16e27fd1f7e209d4ec7f5e9f129cebeb7944d4c",
+   "choice": "printed",
+   "reviewed_page_images": true,
+   "note": "The lead read p4: the margin beside s.8(1) prints \"Acquisition of right in / or guardianship of a / protected heritage / of the government.\" in four lines; the recommended option heads s.8 with it.",
+   "renders": {
+    "4": {
+     "path": ".artifacts/heritage-2026-11-18/renders/doc1336-p4.png",
+     "sha256": "8318dacdd3517da3ba26fc80783de9b60ca21d27f035f806fb82ea9816b76d05"
+    }
+   }
+  }
+ ]
+}

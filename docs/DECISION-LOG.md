@@ -929,6 +929,70 @@ Area: L6/client · Status: standing
   presentation/catalogue.dart, design/components.dart; apps/mobile/test/heritage_test.dart (goldens heritage.png,
   heritage_art.png, discover_tall.png); integration_test/scroll_perf_test.dart; docs/MOBILE-LIBRARY-PREVIEW.md.
 
+### D-078 · 2026-11-18 · Each region's heritage questions are answered by its own law, read in its territory
+Area: L6/client/corpus · Status: standing (closes the D-077 open question on per-region heritage questions)
+- Decision:
+  1. **Each region asks its own law.** `HeritageRegion.questions` replaces the page-wide `questions` list. A
+     region's units are read from its own heritage law's section index at as_of AND in its territory
+     (`section_index(..., territory=)`), so a label, or a law, not served there drops out (INV-5). Every pairing
+     was read against the served text, section by section:
+
+     | Region | Law (doc) | found object | build near | repair | declared | damage/signs | export | visit |
+     |---|---|---|---|---|---|---|---|---|
+     | Federal, ICT | Antiquities Act 1975 (3468) | 5A, 13A | 22 | 20 | 10, 11 | 19, 23 | 26 | 31 |
+     | Punjab | its copy of the 1975 Act (3157) | 5-A, 13A | 22 | 20 | 10, 11 | 19, 23 | 26 | 31 |
+     | Sindh | Cultural Heritage (Preservation) Act 1994 (1336) | 5 | 11 | none | 6, 7 | 19 | none | 18 |
+     | KP | Antiquities Act 2016 (5133) | 10, 22, 61 | 55 | 16 | 15, 19 | 18, 24 | 66 | 54 |
+     | Balochistan | Antiquities Act 2014 (4986) | 6, 15 | 24 | 22 | 11, 12 | 21, 25 | 28 | 33 |
+     | AJK | Antiquities Act 1986 (10935) | 6 | 23 | 21 | 11, 12 | 20, 24 | 27 | 32 |
+
+     - A region whose law has no section for a question does not ask it, and none borrows another region's law.
+       Gilgit-Baltistan asks nothing.
+     - "Can the public visit a protected site?" (`visit`) is new: every antiquities law here has a right-of-access
+       section.
+     - KP s.66 sends export to the federal laws, and the card shows it saying so.
+     - The Constitution's Art. 28 is asked wherever the Constitution is served: the four provinces, ICT and federal.
+       It is not asked in AJK or GB.
+     - `HeritageUnit.preview` carries the section index's served opening words. The client quotes them where the
+       source prints no heading (Balochistan's and AJK's units), so a card never shows only "s. 6".
+  2. **Doc 1336 repaired: the contents runs one row behind its body.**
+     - Defect: the Sindh Cultural Heritage (Preservation) Act, 1994 prints a bare "7." after s.6(1) (p3) and s.6(2)–(4)
+       under it (p4). Contents row n therefore names body section n+1 from row 7. The released tree linked the rows by
+       number, so every section from s.8 carried the heading of the section before it: s.19, the penalty, was headed
+       "Overriding effect". The margin notes of ss.9–20 were also read into the close of the section above.
+     - Repair: following the owner's standing delegation (decision-review-2026-11-18-delegated-1336 q1, q2; page renders
+       p1, p3, p4, p8 read), the document was held with a truthful review row
+       (tools/evidence/hold-1336-contents-offset-2026-11-18.sql) and pinned to `unreleased-v4`. It was then replayed
+       with two reviewed readings: `source_contents_row_links`, which links rows 1–6 to ss.1–6 and rows 7–21 to ss.8–22
+       (s.7 and s.11 print no note and take no row), and a `source_printed_headings` entry giving s.8 its full margin
+       note (the contents row wraps, and its stored words stop at "of the").
+     - Proved by dry run, then by tree diff and the served text:
+       - 72 → 71 provisions, the only path removed being a false s.7(1) opened at "sub-section (1)" mid-sentence,
+         whose words rejoin s.7(2);
+       - 15 headings now match their printed side notes;
+       - leakscan hits fell from 11 to 4.
+     - Re-verified, released again (10,342), post-replay sequence run in full, census recorded, audit 41/41.
+     - Residuals, left as served: s.8(1) still ends with its margin note, because the note and s.8(2)'s first words
+       are one block and no reviewed rule cuts a note that opens a block. The Sindh running head inside ss.7, 9, 12
+       and 17 belongs to the known 190-document class. s.22's note is in a full-width block.
+  3. **A territorial repeal "as applicable to the extent of" its own province is read.**
+     - The Balochistan Antiquities Act, 2014 s.41(1) repeals "The Antiquities Act, 1975 ... as applicable to the extent
+       of the Province of Balochistan". The `as applicable to` branch of tools/record_territorial_repeals.py took
+       "the extent of the Province of Balochistan" as the place and skipped the clause, so the federal Act was still
+       served in Balochistan.
+     - The branch now admits an optional "the extent of", as the `in its application to` branch already did.
+       tests/test_territorial_repeal_clause.py covers the shapes that must not change.
+     - One row is recorded (47 → 48). The federal Act now serves 0 sections in Balochistan.
+     - KP's 2016 Act repeals KP's own 1997 Act, not the federal one; nothing is claimed for KP.
+- Why: the owner asked for the D-077 open item to be done. A reader in Sindh or Balochistan asking "I found an old
+  object" was shown the federal Act, which in Balochistan has been repealed since 2014. Pairing each region's own law
+  exposed the doc 1336 heading shift, which every reader of that law saw. It is fixed at the source rather than
+  hidden at the API.
+- Where: nizam/api/collections.py (HERITAGE_QUESTIONS by region, HERITAGE_CONSTITUTION_QUESTIONS), nizam/api/library.py,
+  tests/test_library_api.py, tools/record_territorial_repeals.py, tests/test_territorial_repeal_clause.py,
+  tools/evidence/hold-1336-contents-offset-2026-11-18.sql, tools/evidence/heritage-2026-11-18/ (readings, builder);
+  apps/mobile/lib/presentation/heritage.dart, domain/heritage.dart, test/heritage_test.dart (golden heritage.png).
+
 ---
 
 ## Open questions (not yet decided)
@@ -958,9 +1022,13 @@ These were found and deliberately left open. Each will become an entry when it i
   measuring on a phone. On 18 Nov the emulator itself degraded (D-070), so its raster numbers no longer judge the app.
 - **Later constitutional amendments.** The 23rd and 24th Amendment Acts are not held as separate laws (D-074): no
   official Act text was found. The 25th–27th are landed (D-076).
-- **Heritage questions per region (D-077).** The questions open the federal Antiquities Act, 1975 only. Punjab, KP,
-  Balochistan and AJK have their own antiquities laws with their own sections; mapping each question to each region's
-  sections needs a page-checked pairing, law by law. No Gilgit-Baltistan heritage law is held.
+- **Heritage law: what remains after D-078.**
+  - No Gilgit-Baltistan heritage law is held.
+  - Balochistan's two Acts (4788, 4986) print their side notes as a left margin column. Its line blocks interleave
+    with the body (`Short title,` / `extent and` / `commencement.`), so no section has a heading and the note words
+    sit inside the text. This needs a geometric margin-column repair with its own whole-corpus measurement.
+  - AJK's 1986 Act prints its headings inline, so most heading fields are empty.
+  - KP 2016 s.10's heading keeps a stray editorial "]".
 - **Title-region recorders read raw OCR.** `record_instrument_numbers`, `record_long_titles` and
   `record_enacted_dates` read `text_block` without page-read corrections. That is harmless for text-layer laws and wrong
   for scans read by hand (D-076 recorded those values by assertion). Applying the corrections inside the recorders

@@ -212,7 +212,7 @@ every active law except 147 linked duplicates is inside it.
 | legal release scope | 10,339 instruments and 1,172,566 provisions; 0 held |
 | currency (served directly) | 8,243 current, 1,369 not current, 676 historical |
 | serving snapshot | `mv_instrument_serving` 10,288 laws, `mv_provision_text_known_from` 1,156,469 provisions; A16 fresh |
-| territory | extent clauses read and 47 territorial repeals recorded; A17 0 inconsistent |
+| territory | extent clauses read and 48 territorial repeals recorded (18 Nov, D-078); A17 0 inconsistent |
 | partial repeals | 34 repealed units in 12 laws (sections, sub-sections, clauses, Articles), 16 units in 2 laws a whole repeal excepts; A18 0 unresolved |
 | boundary evidence | 315 citations by active expression manifests, 0 missing (A19, 18 Nov) |
 | corpus audit | **41/41 pass** |

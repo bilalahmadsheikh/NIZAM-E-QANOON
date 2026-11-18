@@ -48,7 +48,8 @@ PLACE = {
 TERRITORIAL = re.compile(
     r"(?:in\s+(?:its|their)\s+application\s+(?:to\s+)?(?:the\s+extent\s+of\s+)?|to\s+the\s+extent\s+of\s+|"
     r"in\s+so\s+far\s+as\s+it\s+(?:applies|extends)\s+to\s+|so\s+far\s+as\s+it\s+(?:applies|extends)\s+to\s+|"
-    r"in\s+relation\s+to\s+|as\s+applicable\s+to\s+)(?P<place>[^.;,:]{3,80})", re.I)
+    # 'as applicable to the extent of the Province of Balochistan' (Balochistan Antiquities Act, 2014 s.41(1); D-078)
+    r"in\s+relation\s+to\s+|as\s+applicable\s+to\s+(?:the\s+extent\s+of\s+)?)(?P<place>[^.;,:]{3,80})", re.I)
 OTHER_QUALIFIER = re.compile(r"\bexcept\b|\bsave\s+as\b|\bsection\b|\bclause\b|\bschedule\b|\brule\s+\d|\barticle\b|"
                              r"so\s+far\s+as\s+it\s+relates", re.I)
 

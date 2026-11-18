@@ -145,14 +145,16 @@ HeritageRegion? heritageRegion(String jurisdiction) {
 }
 
 /// The questions the server sends as codes (nizam/api/collections.py HERITAGE_QUESTIONS), in the words shown. The
-/// answer is always the law's own units, opened in the reader -- never a summary written here.
+/// answer is always the law's own units, opened in the reader -- never a summary written here. Each region asks its
+/// own law (D-078), so the words name no law and no place.
 String heritageQuestion(String key) => const {
       'found_object': 'Found an old object while digging or building?',
       'build_near': 'Planning to build near a protected monument?',
       'repair': 'Repairing or altering a protected old building?',
       'declared_protected': 'How does a place become protected, and can its owner object?',
       'damage_signs': 'Damage, graffiti or signboards on a monument?',
-      'export': 'Taking an antiquity out of Pakistan?',
+      'export': 'Taking an antiquity out of the country?',
+      'visit': 'Can the public visit a protected site?',
       'culture_right': 'The right to preserve a language, script and culture',
     }[key] ??
     key;

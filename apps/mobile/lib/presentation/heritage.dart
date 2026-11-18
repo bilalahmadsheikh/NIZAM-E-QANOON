@@ -75,7 +75,11 @@ class _HeritageScreenState extends ConsumerState<HeritageScreen> {
               child: page.when(
                 loading: () => const LoadingStructure(),
                 error: (e, s) => const SizedBox.shrink(), // the region panel above already offers the retry
-                data: (p) => _Questions(questions: p.questions),
+                // the chosen region's own law answers (D-078); switches with the region
+                data: (p) => _Questions(
+                  key: ValueKey('questions-$region'),
+                  region: p.regions.where((r) => r.jurisdiction == region).firstOrNull,
+                ),
               ),
             ),
             const SizedBox(height: 36),
@@ -343,15 +347,22 @@ class _LawRow extends StatelessWidget {
   }
 }
 
-/// Questions people bring to heritage law, each answered by the law's own sections. The culture right is the
-/// Constitution's, shown last under its own head.
+/// Questions people bring to heritage law, each answered by the chosen region's own law, read in that region
+/// (D-078). The culture right is the Constitution's, shown last under its own head where it is served. A region
+/// whose law has no section on a question does not ask it; one with no heritage law asks nothing.
 class _Questions extends StatelessWidget {
-  final List<law.HeritageQuestion> questions;
-  const _Questions({required this.questions});
+  final law.HeritageRegion? region;
+  const _Questions({super.key, required this.region});
   @override
   Widget build(BuildContext context) {
+    final questions = region?.questions ?? const <law.HeritageQuestion>[];
     final antiquities = questions.where((q) => q.key != 'culture_right').toList();
     final culture = questions.where((q) => q.key == 'culture_right').firstOrNull;
+    // every antiquities question of a region comes from one law; name it once, by its record ('the' is the
+    // sentence's own: 'in the Balochistan Antiquities Act, 2014', never 'in the The ...')
+    final laws = {
+      for (final q in antiquities) (q.instrument.title ?? '').replaceFirst(RegExp(r'^the\s+', caseSensitive: false), '')
+    }..remove('');
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -359,9 +370,12 @@ class _Questions extends StatelessWidget {
           Text('Questions people ask', style: Theme.of(context).textTheme.titleLarge),
           const SizedBox(height: 6),
           Text(
-            'Each opens the sections that deal with it in the ${antiquities.first.instrument.title ?? 'Antiquities Act'}, '
-            'the federal law. A region\'s own heritage law, listed above, may provide differently: read the one that '
-            'applies where you are.',
+            [
+              'Each opens the sections that deal with it',
+              if (laws.length == 1) ' in the ${laws.first}',
+              if (region!.laws_from != region!.jurisdiction) ', the federal law that runs here',
+              '. Read the section itself: a heading is only its name.',
+            ].join(),
             style: const TextStyle(height: 1.45),
           ),
           const SizedBox(height: 14),
@@ -418,7 +432,13 @@ class _QuestionCard extends StatelessWidget {
                             Text('${String.fromCharCode(0x2068)}${u.citation ?? ''}${String.fromCharCode(0x2069)}',
                                 style: TextStyle(fontSize: 12, color: scheme.secondary, fontWeight: FontWeight.w600)),
                             if (u.heading != null)
-                              Text(u.heading!, style: const TextStyle(fontSize: 14, height: 1.35)),
+                              Text(u.heading!, style: const TextStyle(fontSize: 14, height: 1.35))
+                            // no printed heading (the Balochistan and AJK Acts): the section's own opening words,
+                            // served text, set as a quotation so they are not read as a name
+                            else if (u.preview != null)
+                              Text('“${u.preview!}”', maxLines: 2, overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(fontSize: 13, height: 1.4, fontFamily: 'Spectral',
+                                      color: scheme.onSurface.withValues(alpha: .8))),
                           ],
                         ),
                       ),

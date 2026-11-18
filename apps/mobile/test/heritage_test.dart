@@ -28,11 +28,51 @@ Map<String, dynamic> _instrument(int doc, String title, String jurisdiction, int
       'currency_reason': 'commences_at_once', 'year_display': '$year',
     };
 
-/// The page the server sends (nizam/api/collections.py heritage_page), as recorded on 18 Nov 2026, trimmed.
+/// The page the server sends (nizam/api/collections.py heritage_page), as recorded on 18 Nov 2026, trimmed: each
+/// region carries the questions its own law answers (D-078).
 Map<String, dynamic> _page() {
   final federal = [
     {'short_name': 'Antiquities Act', 'instrument': _instrument(3468, 'Antiquities Act, 1975', 'fed', 1975)},
   ];
+  final culture = {
+    'key': 'culture_right',
+    'instrument': _instrument(4419, 'Constitution of the Islamic Republic of Pakistan', 'fed', 1973),
+    'units': [
+      {'id': '00000000-0000-0000-0000-000000000028', 'kind': 'section', 'label': '28',
+       'heading': 'Preservation of language, script and culture',
+       'citation': 'Constitution of the Islamic Republic of Pakistan, 1973, Art. 28', 'preview': null},
+    ],
+  };
+  Map<String, dynamic> found(int doc, String title, String j, String label, String? heading, String? preview) => {
+        'key': 'found_object',
+        'instrument': _instrument(doc, title, j, 1975),
+        'units': [
+          {'id': '00000000-0000-0000-0000-0000000000${doc % 100}', 'kind': 'section', 'label': label,
+           'heading': heading, 'citation': '$title, s. $label', 'preview': preview},
+        ],
+      };
+  List<Map<String, dynamic>> questions(String j) => switch (j) {
+        'fed' || 'ict' => [
+            found(3468, 'Antiquities Act, 1975', 'fed', '5A',
+                'Accidental discovery of antiquity to be reported, to Director-General', null),
+            culture,
+          ],
+        'punjab' => [
+            found(3157, 'Antiquities Act, 1975', 'punjab', '5-A',
+                'Accidental discovery of antiquity to be reported to Director-General', null),
+            culture,
+          ],
+        // the Balochistan Act prints no headings: the card quotes the section's opening words
+        'balochistan' => [
+            found(4986, 'The Balochistan Antiquities Act, 2014', 'balochistan', '6', null,
+                '(1) Whoever discovers, or finds accidentally any movable antiquity shall inform the Director'),
+            culture,
+          ],
+        'gb' => [],
+        // AJK: its own law answers; the Constitution is not served there
+        'ajk' => [found(10935, 'Antiquites Act, 1986', 'ajk', '6', null, 'Accidental discovery of antiquity')],
+        _ => [culture],
+      };
   return {
     'as_of': '2026-11-18', 'mode': 'research_preview', 'notice': 'Fixture',
     'regions': [
@@ -47,27 +87,8 @@ Map<String, dynamic> _page() {
                   : [
                       {'short_name': 'Antiquities Act', 'instrument': _instrument(5000, 'Antiquities Act, 1975', j, 1975)},
                     ],
+          'questions': questions(j),
         },
-    ],
-    'questions': [
-      {
-        'key': 'found_object',
-        'instrument': _instrument(3468, 'Antiquities Act, 1975', 'fed', 1975),
-        'units': [
-          {'id': '00000000-0000-0000-0000-000000000051', 'kind': 'section', 'label': '5A',
-           'heading': 'Accidental discovery of antiquity to be reported, to Director-General',
-           'citation': 'Antiquities Act, 1975, s. 5A'},
-        ],
-      },
-      {
-        'key': 'culture_right',
-        'instrument': _instrument(4419, 'Constitution of the Islamic Republic of Pakistan', 'fed', 1973),
-        'units': [
-          {'id': '00000000-0000-0000-0000-000000000028', 'kind': 'section', 'label': '28',
-           'heading': 'Preservation of language, script and culture',
-           'citation': 'Constitution of the Islamic Republic of Pakistan, 1973, Art. 28'},
-        ],
-      },
     ],
   };
 }
@@ -109,7 +130,7 @@ void main() {
     }
     // every code the server sends is worded; an unknown code is shown as itself, never as a guessed question
     for (final key in ['found_object', 'build_near', 'repair', 'declared_protected', 'damage_signs', 'export',
-        'culture_right']) {
+        'visit', 'culture_right']) {
       expect(heritageQuestion(key), isNot(key));
     }
     expect(heritageQuestion('unheard_of'), 'unheard_of');
@@ -171,21 +192,39 @@ void main() {
     expect(find.text('Pakistan,\nregion by region.'), findsOneWidget);
     expect(find.text('Badshahi Mosque'), findsOneWidget); // Punjab first when no territory is chosen
     expect(find.text('Found an old object while digging or building?'), findsOneWidget);
-    expect(find.text('Accidental discovery of antiquity to be reported, to Director-General'), findsOneWidget);
+    // Punjab's own copy of the Act answers in Punjab (D-078), named once
+    expect(find.text('Accidental discovery of antiquity to be reported to Director-General'), findsOneWidget);
+    expect(find.textContaining('in the Antiquities Act, 1975.'), findsOneWidget);
     expect(find.text('The Constitution on culture'), findsOneWidget);
     await expectLater(find.byType(MaterialApp), matchesGoldenFile('goldens/heritage.png'));
 
     final picker = find.byType(ListView).at(1);
+    // Balochistan: its 2014 Act answers; no heading is printed, so the section's opening words are quoted
+    await tester.dragUntilVisible(find.text('Balochistan'), picker, const Offset(-80, 0));
+    await tester.tap(find.text('Balochistan'));
+    await tester.pumpAndSettle();
+    expect(find.textContaining('in the Balochistan Antiquities Act, 2014.'), findsOneWidget); // never 'the The'
+    expect(find.textContaining('“(1) Whoever discovers'), findsOneWidget);
+
     await tester.dragUntilVisible(find.text('Gilgit-Baltistan'), picker, const Offset(-160, 0));
     await tester.tap(find.text('Gilgit-Baltistan'));
     await tester.pumpAndSettle();
     expect(find.text('Baltit Fort'), findsOneWidget);
     expect(find.textContaining('does not yet hold a heritage law of Gilgit-Baltistan'), findsOneWidget);
+    expect(find.text('Questions people ask'), findsNothing); // no law, no questions -- never another region's
+    expect(find.text('The Constitution on culture'), findsNothing);
+
+    await tester.dragUntilVisible(find.text('AJK'), picker, const Offset(80, 0));
+    await tester.tap(find.text('AJK'));
+    await tester.pumpAndSettle();
+    expect(find.text('Questions people ask'), findsOneWidget);
+    expect(find.text('The Constitution on culture'), findsNothing); // not served in AJK
 
     await tester.dragUntilVisible(find.text('Islamabad'), picker, const Offset(80, 0));
     await tester.tap(find.text('Islamabad'));
     await tester.pumpAndSettle();
     expect(find.textContaining('is served federal law'), findsOneWidget);
+    expect(find.textContaining('the federal law that runs here'), findsOneWidget);
     expect(tester.takeException(), isNull);
   });
 

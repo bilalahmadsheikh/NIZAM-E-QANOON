@@ -213,10 +213,17 @@ eight regions shows:
 - the heritage laws the library holds for that jurisdiction (`GET /v1/law/collections/heritage`, pinned by document
   id and title pattern).
 
-Below the regions are questions people bring to heritage law. Each is answered only by opening the sections of the
-federal Antiquities Act, 1975, and Article 28 of the Constitution; the headings and citations are database records.
-Islamabad lists the federal laws, which are what it is served. Gilgit-Baltistan says it holds none rather than borrowing
-another jurisdiction's. The 1956/1962/1973 notes stay, citing the
+Below the chosen region are the questions people bring to heritage law, answered only by opening sections of **that
+region's own law**, read in its territory (D-078). Each region answers from its own Act:
+- Punjab from its copy of the 1975 Act;
+- Sindh from its 1994 Act;
+- KP, Balochistan and AJK from their own Antiquities Acts;
+- Islamabad from the federal 1975 Act.
+
+Article 28 of the Constitution is shown wherever the Constitution is served. Headings, citations and the quoted
+opening words of a headingless section are database records. A region whose law has no section on a question does
+not ask it. Islamabad lists the federal laws, which are what it is served. Gilgit-Baltistan says it holds none rather
+than borrowing another jurisdiction's. The 1956/1962/1973 notes stay, citing the
 [National Assembly's parliamentary history](https://na.gov.pk/en/content.php?id=75). None of the editorial context
 determines operative law.
 

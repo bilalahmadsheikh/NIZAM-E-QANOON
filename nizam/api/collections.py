@@ -185,29 +185,91 @@ HERITAGE_LAWS = {
     ],
 }
 # Questions people bring to heritage law, each answered by opening units of a law -- never by a summary. `key` is a
-# code the client words (docs/13). The units are read from the law's served section index at as_of (INV-5) by
-# their printed label; a label that is not served drops out. Each pairing was checked against the served text on
-# 18 Nov 2026 (the federal Antiquities Act, 1975, doc 3468; the Constitution, doc 4419).
-HERITAGE_QUESTIONS = [
-    ('found_object', 3468, r'^(the )?antiquities act, 1975', ['5A', '13A']),
-    ('build_near', 3468, r'^(the )?antiquities act, 1975', ['22']),
-    ('repair', 3468, r'^(the )?antiquities act, 1975', ['20']),
-    ('declared_protected', 3468, r'^(the )?antiquities act, 1975', ['10', '11']),
-    ('damage_signs', 3468, r'^(the )?antiquities act, 1975', ['19', '23']),
-    ('export', 3468, r'^(the )?antiquities act, 1975', ['26']),
-    ('culture_right', CONSTITUTION_DOCUMENT, CONSTITUTION_TITLE, ['28']),
-]
+# code the client words (docs/13). Each region asks its OWN law (D-078): the units are read from that law's served
+# section index at as_of and in the region's territory (INV-5), by their printed label, so a label -- or a law --
+# not served there drops out. Islamabad asks the federal law, read in ICT; Gilgit-Baltistan has no heritage law in
+# the corpus and asks none. Every pairing was read against the served text on 18 Nov 2026 (doc 1336 after its
+# contents-alignment repair). A region without a section for a question simply does not ask it (Sindh's 1994 Act
+# has no repair or export section).
+_ANTIQUITIES_1975 = r'^(the )?antiquities act, 1975'
+HERITAGE_QUESTIONS = {
+    'fed': [
+        ('found_object', 3468, _ANTIQUITIES_1975, ['5A', '13A']),
+        ('build_near', 3468, _ANTIQUITIES_1975, ['22']),
+        ('repair', 3468, _ANTIQUITIES_1975, ['20']),
+        ('declared_protected', 3468, _ANTIQUITIES_1975, ['10', '11']),
+        ('damage_signs', 3468, _ANTIQUITIES_1975, ['19', '23']),
+        ('export', 3468, _ANTIQUITIES_1975, ['26']),
+        ('visit', 3468, _ANTIQUITIES_1975, ['31']),
+    ],
+    # the Antiquities Act, 1975 as the Punjab Code holds it (doc 3157); its printed label is '5-A', not '5A'
+    'punjab': [
+        ('found_object', 3157, _ANTIQUITIES_1975, ['5-A', '13A']),
+        ('build_near', 3157, _ANTIQUITIES_1975, ['22']),
+        ('repair', 3157, _ANTIQUITIES_1975, ['20']),
+        ('declared_protected', 3157, _ANTIQUITIES_1975, ['10', '11']),
+        ('damage_signs', 3157, _ANTIQUITIES_1975, ['19', '23']),
+        ('export', 3157, _ANTIQUITIES_1975, ['26']),
+        ('visit', 3157, _ANTIQUITIES_1975, ['31']),
+    ],
+    # Sindh Cultural Heritage (Preservation) Act, 1994: s.5 premises or objects found with no owner; s.11(1) an order
+    # against building on or near a protected site against its agreement; s.6 declaration, with its objection
+    # procedure printed under the stray '7.'; s.19 the penalty for destroying or defacing; s.18 public access
+    'sindh': [
+        ('found_object', 1336, r'sindh cultural heritage', ['5']),
+        ('build_near', 1336, r'sindh cultural heritage', ['11']),
+        ('declared_protected', 1336, r'sindh cultural heritage', ['6', '7']),
+        ('damage_signs', 1336, r'sindh cultural heritage', ['19']),
+        ('visit', 1336, r'sindh cultural heritage', ['18']),
+    ],
+    # Khyber Pakhtunkhwa Antiquities Act, 2016: s.66 sends export to the federal laws, and says so
+    'kp': [
+        ('found_object', 5133, r'khyber pakhtunkhwa antiquities act', ['10', '22', '61']),
+        ('build_near', 5133, r'khyber pakhtunkhwa antiquities act', ['55']),
+        ('repair', 5133, r'khyber pakhtunkhwa antiquities act', ['16']),
+        ('declared_protected', 5133, r'khyber pakhtunkhwa antiquities act', ['15', '19']),
+        ('damage_signs', 5133, r'khyber pakhtunkhwa antiquities act', ['18', '24']),
+        ('export', 5133, r'khyber pakhtunkhwa antiquities act', ['66']),
+        ('visit', 5133, r'khyber pakhtunkhwa antiquities act', ['54']),
+    ],
+    # Balochistan Antiquities Act, 2014 (its s.41 repeals the 1975 Act in Balochistan; territorial_repeal, D-078)
+    'balochistan': [
+        ('found_object', 4986, r'balochistan antiquities act', ['6', '15']),
+        ('build_near', 4986, r'balochistan antiquities act', ['24']),
+        ('repair', 4986, r'balochistan antiquities act', ['22']),
+        ('declared_protected', 4986, r'balochistan antiquities act', ['11', '12']),
+        ('damage_signs', 4986, r'balochistan antiquities act', ['21', '25']),
+        ('export', 4986, r'balochistan antiquities act', ['28']),
+        ('visit', 4986, r'balochistan antiquities act', ['33']),
+    ],
+    # Azad Jammu and Kashmir Antiquities Act, 1986 (printed 'Antiquites')
+    'ajk': [
+        ('found_object', 10935, r'^(the )?antiquit[a-z]* act, 1986', ['6']),
+        ('build_near', 10935, r'^(the )?antiquit[a-z]* act, 1986', ['23']),
+        ('repair', 10935, r'^(the )?antiquit[a-z]* act, 1986', ['21']),
+        ('declared_protected', 10935, r'^(the )?antiquit[a-z]* act, 1986', ['11', '12']),
+        ('damage_signs', 10935, r'^(the )?antiquit[a-z]* act, 1986', ['20', '24']),
+        ('export', 10935, r'^(the )?antiquit[a-z]* act, 1986', ['27']),
+        ('visit', 10935, r'^(the )?antiquit[a-z]* act, 1986', ['32']),
+    ],
+}
+# Asked in every region, answered only where the Constitution is served in that region's territory (not AJK or GB,
+# by the corpus's territorial model, 0095)
+HERITAGE_CONSTITUTION_QUESTIONS = [('culture_right', CONSTITUTION_DOCUMENT, CONSTITUTION_TITLE, ['28'])]
 HERITAGE_DOCUMENTS = sorted({d for laws in HERITAGE_LAWS.values() for _s, d, _p in laws}
-                            | {d for _k, d, _p, _l in HERITAGE_QUESTIONS})
+                            | {d for qs in HERITAGE_QUESTIONS.values() for _k, d, _p, _l in qs}
+                            | {d for _k, d, _p, _l in HERITAGE_CONSTITUTION_QUESTIONS})
 
 
 def heritage_page(rows: list[dict], sections_of) -> dict:
-    """The Heritage tab from released rows of HERITAGE_DOCUMENTS. `sections_of(instrument_id)` returns that law's
-    served section index items (each with id, kind, label, heading, citation) at the page's as_of, or None.
+    """The Heritage tab from released rows of HERITAGE_DOCUMENTS. `sections_of(instrument_id, territory)` returns
+    that law's served section index items (each with id, kind, label, heading, citation) at the page's as_of in that
+    territory (None: no territorial filter), or None.
 
-    Returns {regions, questions}: each region {jurisdiction, laws_from, laws: [{short_name, instrument}]}, where
-    `laws_from` names the jurisdiction whose laws are listed ('fed' for Islamabad); each question {key, instrument,
-    units} with units in the order HERITAGE_QUESTIONS gives. A question none of whose units is served is left out."""
+    Returns {regions}: each region {jurisdiction, laws_from, laws: [{short_name, instrument}], questions: [{key,
+    instrument, units}]}, where `laws_from` names the jurisdiction whose laws are listed and asked ('fed' for
+    Islamabad). A region's questions come from its own law, then the Constitution's; units keep the order
+    HERITAGE_QUESTIONS gives, and a question none of whose units is served in the region is left out."""
     def pick(doc, pattern):
         return next((r for r in rows if r['document_id'] == doc
                      and re.search(pattern, (r.get('title') or '').lower())), None)
@@ -216,20 +278,28 @@ def heritage_page(rows: list[dict], sections_of) -> dict:
         return [dict(short_name=short, instrument=hit) for short, doc, pattern in HERITAGE_LAWS.get(jurisdiction, [])
                 if (hit := pick(doc, pattern)) is not None]
 
+    indexes = {}
+
+    def questions_of(source, territory):
+        out = []
+        for key, doc, pattern, labels in HERITAGE_QUESTIONS.get(source, []) + HERITAGE_CONSTITUTION_QUESTIONS:
+            law = pick(doc, pattern)
+            if law is None:
+                continue
+            if (law['id'], territory) not in indexes:
+                indexes[law['id'], territory] = sections_of(law['id'], territory) or []
+            by_label = {s['label']: s for s in indexes[law['id'], territory]}
+            units = [dict(id=by_label[l]['id'], kind=by_label[l]['kind'], label=l,
+                          heading=by_label[l].get('heading') or None, citation=by_label[l].get('citation'),
+                          preview=by_label[l].get('preview') or None)
+                     for l in labels if l in by_label]
+            if units:
+                out.append(dict(key=key, instrument=law, units=units))
+        return out
+
     regions = []
     for j in HERITAGE_REGIONS:
         source = 'fed' if j == 'ict' else j
-        regions.append(dict(jurisdiction=j, laws_from=source, laws=laws_of(source)))
-    questions, indexes = [], {}
-    for key, doc, pattern, labels in HERITAGE_QUESTIONS:
-        law = pick(doc, pattern)
-        if law is None:
-            continue
-        if law['id'] not in indexes:
-            indexes[law['id']] = sections_of(law['id']) or []
-        by_label = {s['label']: s for s in indexes[law['id']]}
-        units = [dict(id=by_label[l]['id'], kind=by_label[l]['kind'], label=l, heading=by_label[l].get('heading'),
-                      citation=by_label[l].get('citation')) for l in labels if l in by_label]
-        if units:
-            questions.append(dict(key=key, instrument=law, units=units))
-    return dict(regions=regions, questions=questions)
+        regions.append(dict(jurisdiction=j, laws_from=source, laws=laws_of(source),
+                            questions=questions_of(source, None if j == 'fed' else j)))
+    return dict(regions=regions)

@@ -26,14 +26,14 @@ versions (docs/03 §3, docs/04), measured against golden sets 1–4.
 
 | | |
 |---|---|
-| Laws released | **10,342** — none held (the 25th–27th Constitution Amendment Acts added 18 Nov, D-076). 147 more active rows are exact duplicates linked by `duplicate_of` |
-| Released provisions | 1,172,566 |
+| Laws released | **10,342** — none held (the 25th–27th Constitution Amendment Acts added 18 Nov, D-076; doc 1336, the Sindh Cultural Heritage Act 1994, held, repaired and released again 18 Nov, D-078). 147 more active rows are exact duplicates linked by `duplicate_of` |
+| Released provisions | 1,172,566 (17 Nov count; doc 1336's repair, D-078, removed one false sub-section) |
 | Released pages | 134,982 |
 | Active documents / characters | 10,188 / 270,129,040 |
 | Source observations | 10,394; 66 catalogue items are declared acquisition exceptions with dated evidence |
 | Active provisions (incl. linked duplicates) | 1,197,584 from 202,604 sections — tree expansion 5.91× |
 | Amendment references | 15,184 |
-| Statutory repeals / territorial repeals | 215 rows, 180 standing / 47 (three are whole repeals that except units, 17 Nov) |
+| Statutory repeals / territorial repeals | 215 rows, 180 standing / 48 (three are whole repeals that except units, 17 Nov; the 48th, the 1975 Antiquities Act in Balochistan, 18 Nov, D-078) |
 | Partial repeals / units a repeal excepts | 34 units in 12 laws / 16 units in 2 laws (0102, 0103) |
 | Migrations applied | 103 (last 0103) |
 | Database size | 4.8 GB after the 17 Nov cleanup |

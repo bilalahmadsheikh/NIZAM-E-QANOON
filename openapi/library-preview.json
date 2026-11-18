@@ -1120,23 +1120,15 @@
             },
             "type": "array",
             "title": "Regions"
-          },
-          "questions": {
-            "items": {
-              "$ref": "#/components/schemas/HeritageQuestion"
-            },
-            "type": "array",
-            "title": "Questions"
           }
         },
         "type": "object",
         "required": [
           "as_of",
-          "regions",
-          "questions"
+          "regions"
         ],
         "title": "HeritagePage",
-        "description": "Pakistan's heritage law region by region, and questions answered by sections (collections.py, D-077)."
+        "description": "Pakistan's heritage law region by region, each with the questions its own law answers (D-077, D-078)."
       },
       "HeritageQuestion": {
         "properties": {
@@ -1180,16 +1172,24 @@
             },
             "type": "array",
             "title": "Laws"
+          },
+          "questions": {
+            "items": {
+              "$ref": "#/components/schemas/HeritageQuestion"
+            },
+            "type": "array",
+            "title": "Questions"
           }
         },
         "type": "object",
         "required": [
           "jurisdiction",
           "laws_from",
-          "laws"
+          "laws",
+          "questions"
         ],
         "title": "HeritageRegion",
-        "description": "One region of the Heritage tab. `laws_from` is the jurisdiction whose laws are listed: 'fed' for Islamabad\nCapital Territory, which is served federal law. An empty `laws` means the library holds none for it yet."
+        "description": "One region of the Heritage tab. `laws_from` is the jurisdiction whose laws are listed and asked: 'fed' for\nIslamabad Capital Territory, which is served federal law. An empty `laws` means the library holds none for it\nyet. `questions` are answered by the region's own law, read in its territory (D-078), then the Constitution's\nwhere it is served there; empty when nothing is."
       },
       "HeritageUnit": {
         "properties": {
@@ -1234,6 +1234,17 @@
               }
             ],
             "title": "Citation"
+          },
+          "preview": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Preview"
           }
         },
         "type": "object",
@@ -1244,7 +1255,8 @@
           "heading",
           "citation"
         ],
-        "title": "HeritageUnit"
+        "title": "HeritageUnit",
+        "description": "`preview` is the opening of the unit's served text (the section index's own preview): the client shows it\nwhere the source prints no heading (the Balochistan and AJK Acts print theirs in the margin or inline)."
       },
       "Instrument": {
         "properties": {

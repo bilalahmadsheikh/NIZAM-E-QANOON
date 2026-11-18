@@ -251,12 +251,20 @@ def _heritage_rows():
     ]
 
 
-def _heritage_sections(instrument_id):
+# Which territories serve each fixture law, as the corpus's territorial model does (None: no filter). The federal
+# Antiquities Act is repealed in Balochistan by its 2014 Act (D-078) and, like the Constitution, does not reach AJK/GB.
+_HERITAGE_SERVED = {3468: {None, 'punjab', 'sindh', 'kp', 'ict'}, 3157: {None, 'punjab'}, 1336: {None, 'sindh'},
+                    4419: {None, 'punjab', 'sindh', 'kp', 'balochistan', 'ict'}}
+
+
+def _heritage_sections(instrument_id, territory=None):
     doc = instrument_id.int
-    labels = {3468: ['2', '5A', '13A', '20', '22', '26'], 4419: ['1', '28']}.get(doc)
-    return None if labels is None else [
-        dict(id=UUID(int=doc * 1000 + i), kind='section', label=l, heading=f'Heading {l}', citation=f'law {doc} s. {l}')
-        for i, l in enumerate(labels)]
+    if territory not in _HERITAGE_SERVED.get(doc, set()):
+        return None
+    labels = {3468: ['2', '5A', '13A', '20', '22', '26'], 3157: ['5-A', '13A', '31'], 1336: ['5', '6', '7', '19'],
+              4419: ['1', '28']}[doc]
+    return [dict(id=UUID(int=doc * 1000 + i), kind='section', label=l, heading='' if l == '7' else f'Heading {l}',
+                 citation=f'law {doc} s. {l}', preview=f'(2) words of {l}') for i, l in enumerate(labels)]
 
 
 def test_heritage_page_lists_each_regions_own_law_and_answers_by_units():
@@ -269,29 +277,50 @@ def test_heritage_page_lists_each_regions_own_law_and_answers_by_units():
     assert regions['ict']['laws_from'] == 'fed'              # Islamabad is served federal law
     assert regions['ict']['laws'] == regions['fed']['laws']
     assert regions['gb']['laws_from'] == 'gb' and regions['gb']['laws'] == []   # none held: never another region's
-    questions = {q['key']: q for q in page['questions']}
-    assert [u['label'] for u in questions['found_object']['units']] == ['5A', '13A']
-    assert questions['culture_right']['units'][0]['citation'] == 'law 4419 s. 28'
+
+    def asked(j):
+        return {q['key']: q for q in regions[j]['questions']}
+    # each region asks its own law: the federal Act for fed, Punjab's own copy (label '5-A') for Punjab
+    assert [u['label'] for u in asked('fed')['found_object']['units']] == ['5A', '13A']
+    assert asked('fed')['found_object']['instrument']['document_id'] == 3468
+    assert [u['label'] for u in asked('punjab')['found_object']['units']] == ['5-A', '13A']
+    assert asked('punjab')['visit']['instrument']['document_id'] == 3157
+    # Sindh's 1994 Act: s.7 carries no printed heading, and it is null, not ''
+    assert [(u['label'], u['heading']) for u in asked('sindh')['declared_protected']['units']] == [
+        ('6', 'Heading 6'), ('7', None)]
+    # ...so the client can show its served opening words instead
+    assert asked('sindh')['declared_protected']['units'][1]['preview'] == '(2) words of 7'
+    assert 'repair' not in asked('sindh') and 'export' not in asked('sindh')   # Sindh's Act has no such section
+    # Islamabad asks the federal law, read in ICT
+    assert asked('ict')['found_object']['units'] == asked('fed')['found_object']['units']
     # a question whose units are not served (s.10/11, s.19/23 absent from the fixture index) is left out
-    assert 'declared_protected' not in questions and 'damage_signs' not in questions
+    assert 'declared_protected' not in asked('fed') and 'damage_signs' not in asked('fed')
+    # the Constitution's culture question is asked where the Constitution is served -- not AJK or GB
+    assert asked('punjab')['culture_right']['units'][0]['citation'] == 'law 4419 s. 28'
+    assert 'culture_right' in asked('balochistan') and 'found_object' not in asked('balochistan')  # its law: unheld
+    assert regions['ajk']['questions'] == [] and regions['gb']['questions'] == []
 
 
-def test_heritage_endpoint_reads_units_at_the_page_date():
+def test_heritage_endpoint_reads_units_at_the_page_date_in_each_regions_territory():
     seen = []
 
     class Heritage(Repository):
         def instruments_by_document(self, document_ids, **kwargs):
-            assert 3468 in document_ids and 4419 in document_ids
+            assert {3468, 3157, 1336, 4986, 10935, 4419} <= set(document_ids)
             return _heritage_rows()
 
         def section_index(self, instrument_id, **kwargs):
-            seen.append(kwargs['as_of'])
-            return dict(sections=_heritage_sections(instrument_id) or [])
+            seen.append((kwargs['as_of'], instrument_id.int, kwargs['territory']))
+            return dict(sections=_heritage_sections(instrument_id, kwargs['territory']) or [])
     with TestClient(create_app(Heritage())) as client:
         body = client.get('/v1/law/collections/heritage?as_of=2026-11-18').json()
-    assert body['as_of'] == '2026-11-18' and set(seen) == {date(2026, 11, 18)}
-    assert body['questions'][0]['key'] == 'found_object'
-    assert body['questions'][0]['units'][0]['heading'] == 'Heading 5A'
+    assert body['as_of'] == '2026-11-18' and {d for d, _, _ in seen} == {date(2026, 11, 18)}
+    assert (3468, None) in {(d, t) for _, d, t in seen} and (3468, 'ict') in {(d, t) for _, d, t in seen}
+    assert (1336, 'sindh') in {(d, t) for _, d, t in seen}
+    assert 'questions' not in body
+    sindh = next(r for r in body['regions'] if r['jurisdiction'] == 'sindh')
+    assert sindh['questions'][0]['key'] == 'found_object'
+    assert sindh['questions'][0]['units'][0]['heading'] == 'Heading 5'
 
 
 def test_neighbours_follow_the_printed_index_and_never_borrow_another_law():

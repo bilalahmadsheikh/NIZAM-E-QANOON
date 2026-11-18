@@ -235,20 +235,15 @@ class HeritageLaw(BaseModel):
     instrument: Instrument
 
 
-class HeritageRegion(BaseModel):
-    """One region of the Heritage tab. `laws_from` is the jurisdiction whose laws are listed: 'fed' for Islamabad
-    Capital Territory, which is served federal law. An empty `laws` means the library holds none for it yet."""
-    jurisdiction: str
-    laws_from: str
-    laws: list[HeritageLaw]
-
-
 class HeritageUnit(BaseModel):
+    """`preview` is the opening of the unit's served text (the section index's own preview): the client shows it
+    where the source prints no heading (the Balochistan and AJK Acts print theirs in the margin or inline)."""
     id: UUID
     kind: str
     label: str | None
     heading: str | None
     citation: str | None
+    preview: str | None = None
 
 
 class HeritageQuestion(BaseModel):
@@ -259,10 +254,20 @@ class HeritageQuestion(BaseModel):
     units: list[HeritageUnit]
 
 
-class HeritagePage(Meta):
-    """Pakistan's heritage law region by region, and questions answered by sections (collections.py, D-077)."""
-    regions: list[HeritageRegion]
+class HeritageRegion(BaseModel):
+    """One region of the Heritage tab. `laws_from` is the jurisdiction whose laws are listed and asked: 'fed' for
+    Islamabad Capital Territory, which is served federal law. An empty `laws` means the library holds none for it
+    yet. `questions` are answered by the region's own law, read in its territory (D-078), then the Constitution's
+    where it is served there; empty when nothing is."""
+    jurisdiction: str
+    laws_from: str
+    laws: list[HeritageLaw]
     questions: list[HeritageQuestion]
+
+
+class HeritagePage(Meta):
+    """Pakistan's heritage law region by region, each with the questions its own law answers (D-077, D-078)."""
+    regions: list[HeritageRegion]
 
 
 class SectionPage(Meta):
@@ -444,8 +449,8 @@ def create_app(repository=None):
         day = resolved(as_of)
         rows = repo.instruments_by_document(collections.HERITAGE_DOCUMENTS, as_of=day)
 
-        def sections_of(instrument_id):
-            index = repo.section_index(instrument_id, as_of=day)
+        def sections_of(instrument_id, territory):
+            index = repo.section_index(instrument_id, as_of=day, territory=territory)
             return index['sections'] if index else None
         return dict(collections.heritage_page(rows, sections_of), as_of=day)
 

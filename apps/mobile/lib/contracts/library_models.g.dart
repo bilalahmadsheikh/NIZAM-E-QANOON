@@ -459,11 +459,13 @@ class HeritageRegion {
   final String jurisdiction;
   final String laws_from;
   final List<HeritageLaw> laws;
-  const HeritageRegion({required this.jurisdiction, required this.laws_from, required this.laws});
+  final List<HeritageQuestion> questions;
+  const HeritageRegion({required this.jurisdiction, required this.laws_from, required this.laws, required this.questions});
   factory HeritageRegion.fromJson(Map<String, dynamic> json) => HeritageRegion(
     jurisdiction: json['jurisdiction'] as String,
     laws_from: json['laws_from'] as String,
     laws: (json['laws'] as List).map((v) => HeritageLaw.fromJson(v as Map<String, dynamic>)).toList(),
+    questions: (json['questions'] as List).map((v) => HeritageQuestion.fromJson(v as Map<String, dynamic>)).toList(),
   );
 }
 
@@ -473,13 +475,15 @@ class HeritageUnit {
   final String? label;
   final String? heading;
   final String? citation;
-  const HeritageUnit({required this.id, required this.kind, required this.label, required this.heading, required this.citation});
+  final String? preview;
+  const HeritageUnit({required this.id, required this.kind, required this.label, required this.heading, required this.citation, required this.preview});
   factory HeritageUnit.fromJson(Map<String, dynamic> json) => HeritageUnit(
     id: json['id'] as String,
     kind: json['kind'] as String,
     label: json['label'] == null ? null : json['label'] as String,
     heading: json['heading'] == null ? null : json['heading'] as String,
     citation: json['citation'] == null ? null : json['citation'] as String,
+    preview: json['preview'] == null ? null : json['preview'] as String,
   );
 }
 
@@ -500,13 +504,11 @@ class HeritagePage {
   final String mode;
   final String notice;
   final List<HeritageRegion> regions;
-  final List<HeritageQuestion> questions;
-  const HeritagePage({required this.as_of, required this.mode, required this.notice, required this.regions, required this.questions});
+  const HeritagePage({required this.as_of, required this.mode, required this.notice, required this.regions});
   factory HeritagePage.fromJson(Map<String, dynamic> json) => HeritagePage(
     as_of: json['as_of'] as String,
     mode: json['mode'] as String,
     notice: json['notice'] as String,
     regions: (json['regions'] as List).map((v) => HeritageRegion.fromJson(v as Map<String, dynamic>)).toList(),
-    questions: (json['questions'] as List).map((v) => HeritageQuestion.fromJson(v as Map<String, dynamic>)).toList(),
   );
 }

@@ -1,0 +1,27 @@
+[
+ {
+  "document_id": 1336,
+  "page_no": 4,
+  "match_text": "Acquisition of right in",
+  "before_text": "Acquisition of right in",
+  "after_text": "Acquisition of right in",
+  "defect": "s.8 headed by contents row 7, whose stored words stop at \"of the\" (the row wraps onto a second line)",
+  "fixes": "rule printed_heading_override: s.8 takes the margin note printed beside it in full (block 74276)",
+  "observed": "Contents row 7 of document 1336 wraps onto a second line and its stored words stop at \"...of a protected heritage of the\". Section 8 prints its margin note in full on p4: \"Acquisition of right in or guardianship of a protected heritage of the government.\" Which heading does s.8 take? The lead read p4: the margin beside s.8(1) prints \"Acquisition of right in / or guardianship of a / protected heritage / of the government.\" in four lines; the recommended option heads s.8 with it.",
+  "render": ".artifacts/heritage-2026-11-18/renders/doc1336-p4.png",
+  "render_sha256": "8318dacdd3517da3ba26fc80783de9b60ca21d27f035f806fb82ea9816b76d05",
+  "source_printed_headings": [
+   {
+    "label": "8",
+    "source_block_id": 74276,
+    "heading": "Acquisition of right in or guardianship of a protected heritage of the government.",
+    "use": "heading",
+    "owner_decision": {
+     "export": ".artifacts/decision-review/exports/decision-review-2026-11-18-delegated-1336.json",
+     "document_id": 1336,
+     "question_id": "q2"
+    }
+   }
+  ]
+ }
+]
