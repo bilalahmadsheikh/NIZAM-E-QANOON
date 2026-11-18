@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../contracts/library_models.g.dart' as law;
 import '../design/components.dart';
 import '../design/heritage_art.dart';
+import '../domain/heritage.dart' show Motif;
 import '../domain/law_status.dart';
 import '../state/library_state.dart';
 import 'library.dart';
@@ -65,6 +66,7 @@ class _CatalogueScreenState extends ConsumerState<CatalogueScreen> {
     final scheme = Theme.of(context).colorScheme;
     return LibraryScaffold(
       title: 'The legal library',
+      backdrop: Motif.kashi, // Multani blue pottery at the library's corner (D-081)
       body: ReadingWidth(
         child: CustomScrollView(
           slivers: [

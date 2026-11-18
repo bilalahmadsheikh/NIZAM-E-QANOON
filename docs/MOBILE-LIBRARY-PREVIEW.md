@@ -233,6 +233,14 @@ The same landmarks and motifs mark each region across the app:
 - the reader's jurisdiction line;
 - the Heritage tab icon (the Minar-e-Pakistan).
 
+**Craft backdrops (D-081).** A faint craft medallion sits behind the top corner of the browsing pages:
+- truck art on Discover;
+- Multani blue pottery on the Library;
+- the chosen region's own craft on Heritage.
+
+A blue-pottery rosette sits behind the Constitution card's button, with a truck-art band along its foot, and an
+embroidered stitch rule divides Home's sections. Pages whose body is law text carry none.
+
 **Crafts and makers (D-079).** Each region names two or three crafts, each with its own motif, town and source:
 - truck art; Multani blue pottery, Sialkot footballs, Chiniot carving;
 - ajrak and ralli, Hala kashi and lacquer;

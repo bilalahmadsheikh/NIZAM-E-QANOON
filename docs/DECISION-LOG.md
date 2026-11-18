@@ -1051,6 +1051,64 @@ Area: L6/client · Status: standing
   craftOfDay, giFirst), design/heritage_art.dart, design/components.dart (Eyebrow), presentation/heritage.dart,
   presentation/discover.dart, presentation/reader.dart, main.dart; apps/mobile/test/heritage_test.dart and goldens.
 
+### D-080 · 2026-11-18 · Printed margin headings repaired in four heritage laws; leading margin notes become a reviewed rule
+Area: L1 corpus · Status: standing (closes the D-078 residuals and the "Heritage law: what remains" open item)
+- Decision:
+  1. **New reviewed rule `reviewed_leading_margin_note`** (`source_leading_margin_notes` [{block_id, note, label}]).
+     A page-read margin note that a text layer set at the head of a law block leaves the text. It becomes the
+     marginal note of the top-level section named by `label`, which must hold the block. The rule is data-gated in
+     every profile and fails closed.
+  2. **`reviewed_margin_note_pieces` is widened.** A note printed across a page break may have pieces on the next page
+     in reading order. A piece may also be a law block whose head carried part of the note.
+     - Released A/B: every released document whose readings use the pieces or printed-heading keys was dry-run.
+     - 61 of 65 rebuilt identically. 4367 and 4497 are multi-instrument documents the plain segmenter refuses by
+       design. 2491, 4702, 8743 and 9868 fail or differ identically on the committed code: pre-existing drift.
+  3. **Four released laws repaired.** Each was held with a truthful review row, replayed with page-read readings
+     (tools/evidence/heritage-2026-11-18/patch-{4788n,4986n,5133h,1336n}.json), re-verified and released again (10,342).
+     - **4788,** Balochistan Cultural Heritage Preservation Act 2010. The notes stand in a table's left column, read
+       line by line into the text. All 18 sections now carry the printed headings: 14 from pieces, 4 from notes at
+       the head of their block.
+     - **4986,** Balochistan Antiquities Act 2014. Pinned to unreleased-v4, whose margin rule heads 37 sections; the
+       readings head ss.4, 14, 20, 24 and 41. Two notes run across a page break.
+       - Three false sub-sections opened mid-sentence ("sub-section (1)", "(2) of section 18") are gone: 199 → 196
+         provisions.
+       - s.24 now reads "...shall be undertaken or executed..." without the note breaking the sentence.
+     - **5133,** KP Antiquities Act 2016 s.10. It is now headed "Accidental discovery of antiquity to be reported to
+       the Director." instead of the contents row "...Director.]" with the Code's bracket, and its (1) opens as a
+       sub-section. Owner delegation decision-review-2026-11-18-delegated-5133 q1.
+     - **1336** s.8(1) no longer ends with its margin note.
+  4. **Every reading was made from the page renders:** 4788 pp1–5 and 7–10; 4986 pp4, 8, 10, 11 and 16; 5133 p11;
+     1336 p4.
+     - The release gate's field-by-field dry-run diff showed only note words leaving the text and the three false
+       sub-sections removed.
+     - The served text was read after release.
+     - Post-replay sequence run, census recorded, audit 41/41.
+- Why: the owner asked for the items left unfixed after D-078 to be fixed. A Balochistan reader saw every section of
+  both laws without a heading, with margin words broken into the law's sentences.
+- Where: nizam/corpus/segment.py (rule and widening), nizam/workers/segment.py, tools/record_curation_patch.py,
+  tools/materialize_multi_instrument.py, tests/test_leading_margin_note.py, docs/SEGMENTATION-PROFILES.md,
+  tools/evidence/hold-margin-notes-d080-2026-11-18.sql, tools/evidence/heritage-2026-11-18/.
+
+### D-081 · 2026-11-18 · Craft medallions behind the pages, never behind law text
+Area: client · Status: standing (refines D-077's "ornament does semantic work" for the owner's backdrop request)
+- Decision:
+  - The owner asked for blue pottery, truck art and embroidery as backdrops: in a top corner, behind buttons.
+  - **Page corners:** `LibraryScaffold(backdrop:)` places a faint craft medallion (`CraftCorner`: two rings of the
+    craft's motif round a centre unit, as a tile rosette or a painted wheel-boss is laid out) behind the page's top
+    corner.
+    - Discover: truck art.
+    - Library: Multani blue pottery.
+    - Heritage: the chosen region's own craft.
+  - **The Constitution card:** a blue-pottery rosette behind its button, and a truck-art band along its foot.
+  - **Home sections** are divided by an embroidered running-stitch rule with mirrors (`StitchRule`).
+  - **No backdrop where the body is law text:** the reader, a law's page, the Constitution page. docs/12's rule that
+    the reading surface stays plain holds.
+- Performance: each medallion is painted once outside the scrolling body, behind a RepaintBoundary, and never animates.
+  - Two emulator runs: Heritage build p50 2.5 ms; Home 3.9–6.1 ms (5.0 before); reader 1.6–2.3 ms.
+  - All within the emulator's run-to-run spread.
+- Where: apps/mobile/lib/design/heritage_art.dart (CraftCorner, StitchRule), design/components.dart,
+  presentation/discover.dart, presentation/catalogue.dart, presentation/heritage.dart; goldens.
+
 ---
 
 ## Open questions (not yet decided)
@@ -1080,13 +1138,15 @@ These were found and deliberately left open. Each will become an entry when it i
   measuring on a phone. On 18 Nov the emulator itself degraded (D-070), so its raster numbers no longer judge the app.
 - **Later constitutional amendments.** The 23rd and 24th Amendment Acts are not held as separate laws (D-074): no
   official Act text was found. The 25th–27th are landed (D-076).
-- **Heritage law: what remains after D-078.**
+- **Heritage law: what remains after D-080.**
   - No Gilgit-Baltistan heritage law is held.
-  - Balochistan's two Acts (4788, 4986) print their side notes as a left margin column. Its line blocks interleave
-    with the body (`Short title,` / `extent and` / `commencement.`), so no section has a heading and the note words
-    sit inside the text. This needs a geometric margin-column repair with its own whole-corpus measurement.
-  - AJK's 1986 Act prints its headings inline, so most heading fields are empty.
-  - KP 2016 s.10's heading keeps a stray editorial "]".
+  - AJK's 1986 Act prints its headings inline ("Definitions.- In this Act ..."), so most heading fields are empty.
+    The Heritage cards quote the opening words instead.
+  - Doc 1336 s.22's note is in a full-width block, and the Sindh running head inside ss.7, 9, 12 and 17 belongs to
+    the 190-document class.
+- **Rebuild drift found by the D-080 A/B.** Docs 2491 (a reviewed reparent no longer resolves), 9868 (conflicting
+  contents-region readings), 4702 and 8743 fail or differ on the committed code as well. Each needs its own review
+  before its next replay.
 - **Title-region recorders read raw OCR.** `record_instrument_numbers`, `record_long_titles` and
   `record_enacted_dates` read `text_block` without page-read corrections. That is harmless for text-layer laws and wrong
   for scans read by hand (D-076 recorded those values by assertion). Applying the corrections inside the recorders

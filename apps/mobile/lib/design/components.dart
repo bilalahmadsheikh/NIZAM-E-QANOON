@@ -41,12 +41,17 @@ class LibraryScaffold extends ConsumerWidget {
   final String title;
   final int selected;
   final List<Widget> actions;
+  /// A craft medallion behind the page's top corner (D-081): the page's craft -- truck art on Discover, Multani blue
+  /// pottery on the Library, the chosen region's own on Heritage. Painted once outside the scrolling body (no frame
+  /// cost when scrolling); never on a page whose body is law text.
+  final Motif? backdrop;
   const LibraryScaffold({
     super.key,
     required this.body,
     required this.title,
     this.selected = 1,
     this.actions = const [],
+    this.backdrop,
   });
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -87,7 +92,24 @@ class LibraryScaffold extends ConsumerWidget {
     ),
     body: SafeArea(
       bottom: false,
-      child: Column(children: [const ScopeBand(), Expanded(child: body)]),
+      child: Column(children: [
+        const ScopeBand(),
+        Expanded(
+          child: backdrop == null
+              ? body
+              : Stack(
+                  children: [
+                    Positioned(
+                      top: -70,
+                      right: -70,
+                      child: CraftCorner(backdrop!, size: 230,
+                          opacity: Theme.of(context).brightness == Brightness.dark ? .13 : .1),
+                    ),
+                    Positioned.fill(child: body),
+                  ],
+                ),
+        ),
+      ]),
     ),
     bottomNavigationBar: SafeArea(
       child: Padding(

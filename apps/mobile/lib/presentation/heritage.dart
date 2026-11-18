@@ -38,6 +38,8 @@ class _HeritageScreenState extends ConsumerState<HeritageScreen> {
     return LibraryScaffold(
       title: 'Heritage',
       selected: 2,
+      // the chosen region's own craft at the page's corner (D-081)
+      backdrop: chosen.crafts.isEmpty ? chosen.motif : chosen.crafts.first.motif,
       body: ReadingWidth(
         child: ListView(
           padding: const EdgeInsets.fromLTRB(0, 24, 0, 120),

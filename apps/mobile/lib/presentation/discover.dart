@@ -15,6 +15,7 @@ class DiscoverScreen extends StatelessWidget {
   Widget build(BuildContext context) => LibraryScaffold(
     title: 'Nizam-e-Qanoon',
     selected: 0,
+    backdrop: Motif.truckArt, // the national folk art, at the corner of the first page (D-081)
     body: ReadingWidth(
       child: ListView(
         padding: const EdgeInsets.all(24),
@@ -37,7 +38,11 @@ class DiscoverScreen extends StatelessWidget {
               color: Stamp.pine,
               borderRadius: BorderRadius.circular(28),
             ),
-            child: Column(
+            child: Stack(
+             children: [
+              // behind the button: a Multani tile rosette, faint on the pine (D-081)
+              const Positioned(right: -80, bottom: -60, child: CraftCorner(Motif.kashi, size: 240, opacity: .16)),
+              Column(
               children: [
                 const SizedBox(
                   height: 230,
@@ -93,14 +98,22 @@ class DiscoverScreen extends StatelessWidget {
                     ],
                   ),
                 ),
+                // a painted bumper along the card's foot: truck art's phool patti
+                const MotifBand(Motif.truckArt, height: 10),
               ],
+            ),
+             ],
             ),
           ),
           const SizedBox(height: 32),
           const PopularCarousel(),
-          const SizedBox(height: 36),
+          const SizedBox(height: 26),
+          const StitchRule(),
+          const SizedBox(height: 26),
           const _FindByTitle(),
-          const SizedBox(height: 36),
+          const SizedBox(height: 26),
+          const StitchRule(),
+          const SizedBox(height: 26),
           Text('Browse by jurisdiction', style: Theme.of(context).textTheme.titleLarge),
           const SizedBox(height: 6),
           const Text(
@@ -133,7 +146,9 @@ class DiscoverScreen extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           const _CraftOfTheDay(),
-          const SizedBox(height: 36),
+          const SizedBox(height: 26),
+          const StitchRule(),
+          const SizedBox(height: 26),
           Text('Browse by kind of law', style: Theme.of(context).textTheme.titleLarge),
           const SizedBox(height: 14),
           Wrap(
