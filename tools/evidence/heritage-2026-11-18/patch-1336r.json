@@ -1,0 +1,81 @@
+[
+ {
+  "document_id": 1336,
+  "page_no": 3,
+  "match_text": "THE SINDH CULTURAL HERITAGE (PERSERVATION) ACT, 1994",
+  "before_text": "THE SINDH CULTURAL HERITAGE (PERSERVATION) ACT, 1994",
+  "after_text": "THE SINDH CULTURAL HERITAGE (PERSERVATION) ACT, 1994",
+  "source_apparatus_blocks": [
+   74257
+  ],
+  "defect": "the Sindh Code's running head (the law's title under its citation at the head of each page) read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the running-head block is set aside",
+  "observed": "Page 3 prints the running head 'SINDH ACT No.XII OF 1994 / THE SINDH CULTURAL HERITAGE (PERSERVATION) ACT, 1994' at its head",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1336-p3.png",
+  "render_sha256": "0d5781d6b6ecba781d3674b8623775e2815c3df359187cb36bae37cf1b67ef4c"
+ },
+ {
+  "document_id": 1336,
+  "page_no": 8,
+  "match_text": "THE SINDH CULTURAL HERITAGE (PERSERVATION) ACT, 1994",
+  "before_text": "THE SINDH CULTURAL HERITAGE (PERSERVATION) ACT, 1994",
+  "after_text": "THE SINDH CULTURAL HERITAGE (PERSERVATION) ACT, 1994",
+  "source_apparatus_blocks": [
+   74325,
+   74339
+  ],
+  "defect": "the Sindh Code's running head (the law's title under its citation at the head of each page) read into a provision's text and s.22's margin note read into its text",
+  "fixes": "rule reviewed_apparatus_block: the running-head block and s.22's margin-note block are set aside",
+  "observed": "Page 8 prints the running head 'SINDH ACT No.XII OF 1994 / THE SINDH CULTURAL HERITAGE (PERSERVATION) ACT, 1994' at its head; and beside s.22 the margin note 'Protection to the Person; acting under this Act.', which the contents give s.22 as its heading",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1336-p8.png",
+  "render_sha256": "1933cb349f57ae5e278f4601b609ebdb262c12b278ae7ba660fcea9bed908d6d"
+ },
+ {
+  "document_id": 1336,
+  "page_no": 4,
+  "match_text": "THE SINDH CULTURAL HERITAGE (PERSERVATION) ACT, 1994",
+  "before_text": "THE SINDH CULTURAL HERITAGE (PERSERVATION) ACT, 1994",
+  "after_text": " ",
+  "defect": "the Sindh Code's running head (the law's title under its citation at the head of each page) read into a provision's text, in the same block as the law below it",
+  "fixes": "parser-input correction: the running-head line is cut from the block; the law after it is kept as printed",
+  "observed": "Page 4 prints the running head 'SINDH ACT No.XII OF 1994 / THE SINDH CULTURAL HERITAGE (PERSERVATION) ACT, 1994' at its head; the same head opens the document's other pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1336-p4.png",
+  "render_sha256": "d872ddbf8f46df0e3d6d03e4b0df2a8141a1f4df9552d9e3da17761a3fd90ca0"
+ },
+ {
+  "document_id": 1336,
+  "page_no": 5,
+  "match_text": "THE SINDH CULTURAL HERITAGE (PERSERVATION) ACT, 1994",
+  "before_text": "THE SINDH CULTURAL HERITAGE (PERSERVATION) ACT, 1994",
+  "after_text": " ",
+  "defect": "the Sindh Code's running head (the law's title under its citation at the head of each page) read into a provision's text, in the same block as the law below it",
+  "fixes": "parser-input correction: the running-head line is cut from the block; the law after it is kept as printed",
+  "observed": "Page 5 prints the running head 'SINDH ACT No.XII OF 1994 / THE SINDH CULTURAL HERITAGE (PERSERVATION) ACT, 1994' at its head; the same head opens the document's other pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1336-p5.png",
+  "render_sha256": "255a6596e1edba0403d9f7ae378b7299113d8fff8e84138740f5495ea62cfccb"
+ },
+ {
+  "document_id": 1336,
+  "page_no": 6,
+  "match_text": "THE SINDH CULTURAL HERITAGE (PERSERVATION) ACT, 1994",
+  "before_text": "THE SINDH CULTURAL HERITAGE (PERSERVATION) ACT, 1994",
+  "after_text": " ",
+  "defect": "the Sindh Code's running head (the law's title under its citation at the head of each page) read into a provision's text, in the same block as the law below it",
+  "fixes": "parser-input correction: the running-head line is cut from the block; the law after it is kept as printed",
+  "observed": "Page 6 prints the running head 'SINDH ACT No.XII OF 1994 / THE SINDH CULTURAL HERITAGE (PERSERVATION) ACT, 1994' at its head; the same head opens the document's other pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1336-p6.png",
+  "render_sha256": "308300b381e5d5c8d11798597f3dad8ac85e522101430d70074eadce23895794"
+ },
+ {
+  "document_id": 1336,
+  "page_no": 7,
+  "match_text": "THE SINDH CULTURAL HERITAGE (PERSERVATION) ACT, 1994",
+  "before_text": "THE SINDH CULTURAL HERITAGE (PERSERVATION) ACT, 1994",
+  "after_text": " ",
+  "defect": "the Sindh Code's running head (the law's title under its citation at the head of each page) read into a provision's text, in the same block as the law below it",
+  "fixes": "parser-input correction: the running-head line is cut from the block; the law after it is kept as printed",
+  "observed": "Page 7 prints the running head 'SINDH ACT No.XII OF 1994 / THE SINDH CULTURAL HERITAGE (PERSERVATION) ACT, 1994' at its head; the same head opens the document's other pages",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc1336-p7.png",
+  "render_sha256": "a98e49ffd31fc778cebc7f733cede71142f61d4ab623aec23fa8eb5a5b97c87b"
+ }
+]

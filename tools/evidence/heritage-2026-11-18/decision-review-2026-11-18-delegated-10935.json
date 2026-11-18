@@ -1,0 +1,59 @@
+{
+ "schema": "nizam.decision_review.v1",
+ "reviewer_name": "lead under owner chat delegation (standing since 25 Oct 2026)",
+ "source": "chat-delegation",
+ "chat_quote": "release fast what u can release making the decisons for me in that numbering the question u ask me and choose the recommended choice in it without asking me not also don't choose keep it unreleased or release only specific part",
+ "exported_at": "2026-11-18T18:00:00+00:00",
+ "answer_count": 1,
+ "answers": [
+  {
+   "document_id": 10935,
+   "question_id": "q1",
+   "card": {
+    "document_id": 10935,
+    "question_id": "q1",
+    "question": "The AJK Antiquities Act 1986 (doc 10935) prints each heading inline, bold and underlined, closed by \".-\". Ten sections are left without it or with a line break inside it. Which heading does each take?",
+    "options": [
+     "printed: the bold heading as printed, without its closing \".-\"",
+     "none: leave them headingless"
+    ],
+    "recommended": "printed",
+    "card_sha256": "e7a30c0242f510897a50bfed813cf284cbfc1d02bbff1f85aed8050da108a083"
+   },
+   "card_sha256": "e7a30c0242f510897a50bfed813cf284cbfc1d02bbff1f85aed8050da108a083",
+   "choice": "printed",
+   "reviewed_page_images": true,
+   "note": "The lead read pages [4, 6, 9, 12, 13, 14, 18]: each heading is bold, underlined and closed by \".-\".",
+   "renders": {
+    "4": {
+     "path": ".artifacts/release-work-2026-09-24/claude/renders/doc10935-p4.png",
+     "sha256": "c5e0372568c69b3b4fdf08a025153f981ece9c7db0c63d032fab7951d9027cc6"
+    },
+    "6": {
+     "path": ".artifacts/release-work-2026-09-24/claude/renders/doc10935-p6.png",
+     "sha256": "1d3e6c9853a3514d75f88e7f75bccf287549ef709a182b7cb394d978c541d0ae"
+    },
+    "9": {
+     "path": ".artifacts/release-work-2026-09-24/claude/renders/doc10935-p9.png",
+     "sha256": "29ee2dc522574454fdbac6f3d437d8a0ccf0a1bb3ec9b5f948c9b602ccf2dbd2"
+    },
+    "12": {
+     "path": ".artifacts/release-work-2026-09-24/claude/renders/doc10935-p12.png",
+     "sha256": "41962a14d93b086e7adfa006ebe4ead432db477e550536773cef2f0443ebb601"
+    },
+    "13": {
+     "path": ".artifacts/release-work-2026-09-24/claude/renders/doc10935-p13.png",
+     "sha256": "302bec24cbb2af4fe36c9e3ef6f23f00a70473a8a1f45e6540211dc2e5ce6b9e"
+    },
+    "14": {
+     "path": ".artifacts/release-work-2026-09-24/claude/renders/doc10935-p14.png",
+     "sha256": "3e21ac1d63d07997cc87488f169c21d445c25eabfad071a496719354b0865cfb"
+    },
+    "18": {
+     "path": ".artifacts/release-work-2026-09-24/claude/renders/doc10935-p18.png",
+     "sha256": "b25179a93a5ffbc65af2a99acf22a88af385802056e228183d61a30a6265afd8"
+    }
+   }
+  }
+ ]
+}

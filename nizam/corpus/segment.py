@@ -16697,13 +16697,18 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
         _k3c_block = next((blk for blk in blocks if blk.get("id") == _k3c_spec.get("source_block_id")), None)
         _k3c_head = _norm(_k3c_spec.get("heading") or "")
         _k3c_text = _norm(" ".join(_k3c_hits[0].text_parts)) if len(_k3c_hits) == 1 else ""
+        # D-083: the printed heading may close with its terminator ('Custody, preservation, etc. of certain
+        # antiquities.-', AJK doc 10935): the terminator is print furniture, as the parser drops it after any heading
+        # it splits itself; the heading is the words before it
+        _k3c_term = (re.match(r"(?:\.-|\.—|\.--|-|—)(?=\s|$)", _k3c_text[len(_k3c_head):])
+                     if _k3c_head and _k3c_text.startswith(_k3c_head) else None)
         if (len(_k3c_hits) != 1 or _k3c_block is None or not _k3c_head
                 or not _owner_decision_citation(_k3c_spec.get("owner_decision"))
                 or _k3c_head not in _norm(_k3c_block.get("text") or "")
-                or not (_k3c_text == _k3c_head or _k3c_text.startswith(_k3c_head + " "))):
+                or not (_k3c_text == _k3c_head or _k3c_text.startswith(_k3c_head + " ") or _k3c_term)):
             raise ValueError(f"source heading line {_k3c_spec.get('label')!r} lacks exact source evidence: "
                              f"{len(_k3c_hits)} target(s), text {_k3c_text[:80]!r}")
-        _k3c_rest = _k3c_text[len(_k3c_head):].strip()
+        _k3c_rest = _k3c_text[len(_k3c_head) + (_k3c_term.end() if _k3c_term else 0):].strip()
         _k3c_hits[0].heading = _k3c_head
         _k3c_hits[0].text_parts = [_k3c_rest] if _k3c_rest else []
         reviews_enacted.append({"resolution": "heading_line", "printed_label": _k3c_spec["label"],

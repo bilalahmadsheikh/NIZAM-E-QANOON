@@ -1136,6 +1136,41 @@ Area: client · Status: standing (supersedes D-081's corner medallion and flat b
   design/heritage_art.dart, presentation/discover.dart, presentation/heritage.dart; test/heritage_test.dart
   (golden embroidery.png, a review sheet at 3x).
 
+### D-083 · 2026-11-18 · AJK's inline headings and Sindh 1336's running heads repaired; a heading may close with ".-"
+Area: L1 corpus · Status: standing (closes two of the D-080 "what remains" items)
+- Decision:
+  1. **`reviewed_heading_line` (agK3 rule C) is widened.** The printed heading may close with its terminator (".-",
+     ".—", ".--", "-" or "—") before the text. The terminator is print furniture, as the parser drops it after any
+     heading it splits itself, and the heading is the words before it. Readings that matched before are unchanged.
+     tests/test_heading_line_terminator.py covers it.
+  2. **AJK Antiquities Act 1986 (doc 10935)** prints every heading inline, bold and underlined ("5. Custody,
+     preservation, etc. of certain antiquities.- (1) where ..."). It was held, pinned to `unreleased-v4` (whose
+     split heads most sections) and replayed with page-read readings (patch-10935h.json, pages 4, 6, 9, 12, 13, 14
+     and 18):
+     - ss.4, 5, 6, 9, 20, 21, 25 and 36 by the widened heading-line rule. The v4 split stops at "etc." or at an
+       amendment marker such as "4[Director General]", which is kept as printed.
+     - ss.15 and 22 by their printed headings, whole, because v4's heading kept a line break.
+     - Every section is now headed. Three false sub-sections opened mid-sentence at "sub-section (1)" are gone
+       (187 → 184 provisions), and their words rejoin s.6(4), s.12(2) and s.16(2).
+     - Owner delegation: decision-review-2026-11-18-delegated-10935 q1.
+  3. **Sindh Cultural Heritage (Preservation) Act 1994 (doc 1336)** had its running-head title line read into ss.2,
+     7, 9, 12 and 17. Following patch-1336r.json (pages 3–8):
+     - where the line stands alone in its block it is set aside, and where it is fused with the law below it is cut,
+       the law kept as printed;
+     - s.22's margin-note block is set aside, and s.22 keeps the same words as its heading from the contents.
+  4. Both laws were re-verified and released again (10,342). The post-replay sequence was run and the census
+     recorded.
+- **Measured, not repaired:** the same running-title leak across the Sindh Code. A first measure (a capitalised
+  first line repeating at the head of two or more pages, read into provision text) finds 1,069 blocks in 321
+  released Sindh documents: 366 fused with law text and 703 alone. The measure has not been checked against each
+  law's own title, so it overstates. A corpus batch needs a title-exact rule and a tree diff per document (the
+  15 Nov citation-line batch lost law text in nine documents until a diff caught it).
+- Why: the owner asked for the D-080 remainders "AJK prints its headings inline" and "Sindh s.22's note and running
+  heads" to be fixed.
+- Where: nizam/corpus/segment.py (rule C), tests/test_heading_line_terminator.py,
+  tools/evidence/heritage-2026-11-18/{build_d083_readings.py, patch-10935h.json, patch-1336r.json},
+  tools/evidence/hold-d083-2026-11-18.sql, docs/SEGMENTATION-PROFILES.md.
+
 ---
 
 ## Open questions (not yet decided)
@@ -1165,12 +1200,12 @@ These were found and deliberately left open. Each will become an entry when it i
   measuring on a phone. On 18 Nov the emulator itself degraded (D-070), so its raster numbers no longer judge the app.
 - **Later constitutional amendments.** The 23rd and 24th Amendment Acts are not held as separate laws (D-074): no
   official Act text was found. The 25th–27th are landed (D-076).
-- **Heritage law: what remains after D-080.**
+- **Heritage law: what remains after D-083.**
   - No Gilgit-Baltistan heritage law is held.
-  - AJK's 1986 Act prints its headings inline ("Definitions.- In this Act ..."), so most heading fields are empty.
-    The Heritage cards quote the opening words instead.
-  - Doc 1336 s.22's note is in a full-width block, and the Sindh running head inside ss.7, 9, 12 and 17 belongs to
-    the 190-document class.
+  - AJK 1986 carries page numbers read into its text: "202" inside s.6(1) and "205" at the end of s.12(2), as stored
+    before D-083. The 15 Nov folio batch did not reach them.
+- **The Sindh Code's running title line in released text** (measured under D-083): about 1,069 blocks in 321
+  documents, to be confirmed title-exact. This needs a corpus batch proved document by document.
 - **Rebuild drift found by the D-080 A/B.** Docs 2491 (a reviewed reparent no longer resolves), 9868 (conflicting
   contents-region readings), 4702 and 8743 fail or differ on the committed code as well. Each needs its own review
   before its next replay.
