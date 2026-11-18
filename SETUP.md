@@ -5,10 +5,24 @@ pick the one that matches what you need.
 
 | | You want | Time | You need |
 |---|---|---|---|
+| **Kit** | Everything set up for you, from one file | ~30 min, mostly downloads | `nizam-kit-<date>.zip` and `SETUP-NIZAM.ps1` from a teammate |
 | **A** | The database, to build against | ~30 min | An export folder from a teammate (624 MB dump, or 1.3 GB exact copy) |
 | **B** | To build the corpus from source | many hours | The source archives and recrawl captures |
 
-Almost everyone wants **A**. Doc 09a §1.1 is explicit that the corpus travels as
+**The kit** (D-087) does all of path A unattended. Put the two files in one folder, open PowerShell
+there (not as administrator) and run:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\SETUP-NIZAM.ps1
+```
+
+If it says to restart, restart and run it again; every step is skipped once done. It installs WSL and
+Ubuntu 24.04 onto the data drive, writes `.wslconfig`, creates your Linux account, places the code
+(from a git bundle in the zip, so no GitHub access is needed) and the database copy, installs Docker
+Engine and `uv`, restores the exact copy, checks the corpus signature and runs the audit. The sender
+builds the kit with `bash tools/teammate-kit/build_kit.sh` after `./nz export` and `./nz export --physical`.
+
+Almost everyone wants **A** or the kit. Doc 09a §1.1 is explicit that the corpus travels as
 a restorable backup, not as something each person parses. As built it travels
 as either a logical `pg_dump` or a byte-exact cluster copy (09a §1.1, as-built
 note). Only the person rebuilding the corpus needs the PDFs.
@@ -25,13 +39,15 @@ note). Only the person rebuilding the corpus needs the PDFs.
 ### 1. WSL2 with Ubuntu 24.04
 
 ```powershell
-wsl --install -d Ubuntu
+wsl --install -d Ubuntu-24.04
+[Environment]::SetEnvironmentVariable('NIZAM_WSL_DISTRO', 'Ubuntu-24.04', 'User')
 ```
 
-`-d Ubuntu` (not `Ubuntu-24.04`) installs the current LTS **and registers it
-under the name `Ubuntu`**, which is what every command below and `nz.ps1` expect.
-If you already have it under another name, either use that name in place of
-`Ubuntu` or set `NIZAM_WSL_DISTRO` before running `nz.ps1`.
+**Name the version.** Plain `-d Ubuntu` installs the current LTS, and since Ubuntu 26.04 that is no
+longer 24.04 (Microsoft's distribution list, checked 18 Nov 2026). `infra/wsl/setup-docker.sh`
+refuses anything but 24.04 (noble). `nz.ps1` uses the distro named in `NIZAM_WSL_DISTRO`, or
+`Ubuntu` when it is unset; an older install registered as `Ubuntu` that reports 24.04 is fine as it
+is. In the commands below, read `Ubuntu` as your distro's name.
 
 Reboot if asked, then open Ubuntu once and create your user. Check it:
 
@@ -168,7 +184,7 @@ before touching anything. It then stops Postgres and pgAdmin, swaps in the copy,
 starts them, and sets the login password back to the one in *your*
 `infra/.env` (the copy carries the sender's). Last, it compares the signature.
 
-Either way, `./nz audit` afterwards should report all 40 criteria passing.
+Either way, `./nz audit` afterwards should report all 41 criteria passing.
 
 Done. You have the corpus without parsing a single PDF. The source PDFs (23 GB
 under `E:\nizam-data\raw`) are only needed for re-extraction and for the page

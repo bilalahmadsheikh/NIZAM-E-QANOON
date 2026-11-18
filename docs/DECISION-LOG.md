@@ -1136,6 +1136,36 @@ Area: client · Status: Superseded by D-084 (the whole-page cloth; the hem, the 
   design/heritage_art.dart, presentation/discover.dart, presentation/heritage.dart; test/heritage_test.dart
   (golden embroidery.png, a review sheet at 3x).
 
+### D-087 · 2026-11-18 · The teammate kit: one zip and one script make an exact replica on a new laptop
+Area: process/deploy · Status: standing (extends the D-086 transfer; corrects SETUP.md's WSL step)
+- Decision:
+  1. **The kit.** `tools/teammate-kit/build_kit.sh` packs one zip, with entries stored rather than deflated:
+     - the exact copy (`./nz export --physical`), which is the copy that gets restored;
+     - the logical dump of the same database. Both must carry the same signature. The dump is used only when the
+       exact copy cannot be, as on a non-x86 laptop, where its CPU check refuses;
+     - a git bundle of HEAD, so the laptop needs no GitHub access;
+     - `observations.csv`;
+     - `kit.json` (commit, export names, signature).
+     The builder refuses uncommitted infra or code, and a HEAD not yet on origin/main.
+  2. **One script, `SETUP-NIZAM.ps1`, resumable.** Each step is skipped when already done:
+     - WSL on (one UAC prompt, one restart);
+     - `.wslconfig` with vmIdleTimeout, and memory set to half the laptop's RAM (capped at 10 GB; the owner's laptop
+       crashed at 10 of 15 GB);
+     - Ubuntu 24.04 installed `--location` on the data drive;
+     - a Linux account made as root, with its password asked once;
+     - code cloned inside WSL, so the checkout has LF endings;
+     - `infra/wsl/setup-docker.sh` as root, then `uv sync --extra api` and a fresh `infra/.env` whose CORPUS_ROOT
+       follows the chosen drive;
+     - the physical restore. It ends with the signature compared, `./nz up`, the 41-criterion audit and the API.
+     Windows PowerShell 5.1 runs it with ErrorAction Continue and explicit exit-code checks, because under Stop any
+     native stderr line aborts the script.
+  3. **Ubuntu is named by version.** `wsl --install -d Ubuntu` now installs 26.04: Microsoft's
+     DistributionInfo.json, read 18 Nov 2026, maps `Ubuntu` to ubuntu-26.04.1. `setup-docker.sh` requires noble. The
+     kit and SETUP.md install `Ubuntu-24.04` and set NIZAM_WSL_DISTRO, which `nz.ps1` already reads.
+- Why: the owner asked for "a zip and a single file that i run on his laptop with that zip [and] everything is set up
+  perfectly". SETUP.md path A took nine manual steps, one of which had silently gone stale.
+- Where: tools/teammate-kit/{SETUP-NIZAM.ps1, build_kit.sh}, SETUP.md ("The kit", step 1).
+
 ### D-086 · 2026-11-18 · Duplicate links advance after re-materialization; 18 Nov prune and transfer
 Area: L2 storage/process · Status: standing
 - Decision:
