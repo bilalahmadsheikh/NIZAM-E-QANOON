@@ -1136,6 +1136,62 @@ Area: client · Status: Superseded by D-084 (the whole-page cloth; the hem, the 
   design/heritage_art.dart, presentation/discover.dart, presentation/heritage.dart; test/heritage_test.dart
   (golden embroidery.png, a review sheet at 3x).
 
+### D-097 · 2026-11-19 · L3's first slice: fused lexical units, place territory and the citation fast path
+Area: L3 retrieval (and L2 reads) · Status: standing (docs/04 R0 and R1's lexical half, as built)
+- Decision:
+  1. **`nizam/retrieval/`**, L3's first code. It calls only L2's `nizam/storage/unit_search.py`; import-linter keeps
+     all six contracts.
+     - The INV-4 contract named a module that does not exist (`nizam.storage.chunks`); it now names
+       `nizam.storage.chunking` and `nizam.workers.chunk`.
+     - The driver contract now allows indirect imports, so it catches a raw driver import above L2, which is what it
+       says it guards.
+  2. **Query understanding** (`query.py`):
+     - **Citations** (`citations.py`) are resolved from records only (INV-1).
+       - The law is a served law matched by its recorded title, federal first, then the most relied-on (D-075).
+       - The label is looked up in that law and its same-titled copies only. A territorial copy is returned as an
+         alternate; a different law is never consulted.
+       - A missing law, or "Article 199" or "the Act" alone, is a typed ambiguity. So are CPC Orders and Rules, which
+         this grammar does not read as sections.
+     - **The territory** a place names (`places.py`) applies only when the caller gave no scope. It draws on 170
+       districts and the province names, read from Wikipedia's district lists on 18 Nov. Two territories in one
+       question set none.
+     - **The question frame is stripped only from a sentence.**
+  3. **Fused candidates** (`lexical.py`):
+     - Resolved citations go first.
+     - Then RRF (k = 60) of body units and heading units (max + 0.15 × second best, docs/04 §5), plus a title term.
+     - Then the INV-5 gate: `operative_provision` is asked only about the top units, in batches, until k remain.
+       Filtering never reorders, so the result equals filter-then-rank.
+     - The cheap windows are pre-filtered to active provisions in the asked jurisdictions. The view check on a whole
+       2,000-id window took 1.3 s; on the top units it takes milliseconds.
+     - Per-stage timings go into the trace for INV-3.
+  4. **pg_search 0.25.6 drops its match filter under a generic plan.** psycopg prepares a statement after 5 runs, and
+     Postgres switches to a generic plan after 5 more.
+     - Reproduced: a title matching nothing returned 0 rows ten times, then 5 arbitrary rows.
+     - Every pg_search session now sets `plan_cache_mode = force_custom_plan` (both unit_search and the lexical port).
+       A regression test holds it.
+     - The BM25-stage experiment's E3 (evals/lexical_experiments.py, commit 02a82bc) ran on one long connection, so
+       its title term was affected and its 0.564 is not reliable. The shipped figures below come from a fresh
+       session per question.
+- Measured, provisional (golden sets 1–4, 180 questions, drafts, κ not measured; evals/results/*-2026-11-19.json):
+  - **Scoped** (the case's jurisdiction):
+    - recall@50: 0.383 → 0.528, a gain of +0.144 (95% CI +0.081 to +0.208);
+    - recall@10: 0.219 → 0.394;
+    - MRR@10: 0.114 → 0.235;
+    - by group, citizen 0.20 → 0.45 and professional 0.73 → 0.81;
+    - latency p50 606 → 674 ms, p95 711 → 864 ms.
+  - **Unscoped** (places only): recall@50 0.283 → 0.494, a gain of +0.211 (CI +0.147 to +0.275).
+  - **Golden citations** (evals/citation_resolution.py, 224 queries): 220 exact, 4 with their territorial alternate,
+    0 unresolved, 0 wrong. That meets R0's "100% resolution or typed ambiguity".
+  - **Urdu script** is unchanged at 0.10: the lexical index is English, and that gap is the dense slice's.
+- Why: the owner asked to ship the measured fusion and the first query-understanding step without hurting the
+  non-functionals much. Recall rose by 14–21 points; latency rose by 9% at p50 and 22% at p95.
+- Where:
+  - nizam/retrieval/{query.py, citations.py, places.py, lexical.py}; nizam/storage/unit_search.py;
+  - nizam/storage/lexical.py (custom plans); .importlinter;
+  - evals/{lexical_benchmark.py (fused, --unscoped), citation_resolution.py};
+  - tests/{test_query_understanding.py, test_retrieval_db.py};
+  - docs/04 §4.1 (as built).
+
 ### D-096 · 2026-11-18 · The AJK Interim Constitution Act, 1974 is acquired and staged, not yet landed
 Area: L1 corpus/acquisition · Status: standing (replaces the open question's "not landed" with what is held and why)
 - Decision:

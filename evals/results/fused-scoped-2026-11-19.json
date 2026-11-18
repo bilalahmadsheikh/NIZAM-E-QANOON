@@ -1,0 +1,3283 @@
+{
+ "provisional": "golden sets 1-4 are drafts; kappa not measured (D-095)",
+ "k": 50,
+ "unscoped": false,
+ "summary": {
+  "bm25": {
+   "cases": 180,
+   "recall@10": 0.2194,
+   "recall@50": 0.3833,
+   "mrr@10": 0.114,
+   "no_result_cases": 0,
+   "latency_ms_p50": 606,
+   "latency_ms_p95": 711,
+   "recall@50 by stratum": {
+    "citizen": 0.2,
+    "procedural": 0.5,
+    "professional": 0.729,
+    "urdu": 0.1
+   }
+  },
+  "fused": {
+   "cases": 180,
+   "recall@10": 0.3944,
+   "recall@50": 0.5278,
+   "mrr@10": 0.2353,
+   "no_result_cases": 0,
+   "latency_ms_p50": 674,
+   "latency_ms_p95": 864,
+   "recall@50 by stratum": {
+    "citizen": 0.45,
+    "procedural": 0.562,
+    "professional": 0.812,
+    "urdu": 0.1
+   }
+  }
+ },
+ "cases": {
+  "bm25": [
+   {
+    "case": "S1-C01",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 656,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C02",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 599,
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C03",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 573,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C04",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 613,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C05",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 699,
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C06",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 708,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C07",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 716,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C08",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 605,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C09",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 632,
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C10",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 630,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.16666666666666666
+   },
+   {
+    "case": "S1-C11",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 610,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C12",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 715,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C13",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 593,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C14",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 646,
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C15",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 640,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C16",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 675,
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C17",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 652,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C18",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 708,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C19",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 661,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C20",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 640,
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-P01",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 626,
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-P02",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 622,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-P03",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 628,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S1-P04",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 598,
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-P05",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 610,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.2
+   },
+   {
+    "case": "S1-P06",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 621,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-P07",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 614,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S1-P08",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 594,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-P09",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 590,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-P10",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 596,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-P11",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 609,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-P12",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 563,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-R01",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 583,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-R02",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 578,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-R03",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 597,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-R04",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 589,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S1-R05",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 656,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-R06",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 594,
+    "recall10": 0.5,
+    "recall50": 0.5,
+    "mrr10": 0.1111111111111111
+   },
+   {
+    "case": "S1-R07",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 578,
+    "recall10": 0.5,
+    "recall50": 0.5,
+    "mrr10": 0.1111111111111111
+   },
+   {
+    "case": "S1-R08",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 594,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-U01",
+    "stratum": "urdu",
+    "results": 50,
+    "ms": 650,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S1-U02",
+    "stratum": "urdu",
+    "results": 50,
+    "ms": 641,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-U03",
+    "stratum": "urdu",
+    "results": 50,
+    "ms": 299,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-U04",
+    "stratum": "urdu",
+    "results": 5,
+    "ms": 221,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-U05",
+    "stratum": "urdu",
+    "results": 50,
+    "ms": 368,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C01",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 582,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C02",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 640,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C03",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 609,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C04",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 610,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C05",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 608,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C06",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 587,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C07",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 600,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C08",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 585,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C09",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 592,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C10",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 596,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C11",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 585,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C12",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 616,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C13",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 603,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C14",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 647,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C15",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 604,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C16",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 607,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C17",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 569,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C18",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 583,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C19",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 608,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C20",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 569,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-P01",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 601,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P02",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 583,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-P03",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 586,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.16666666666666666
+   },
+   {
+    "case": "S2-P04",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 598,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-P05",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 584,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S2-P06",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 610,
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-P07",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 651,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.2
+   },
+   {
+    "case": "S2-P08",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 587,
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-P09",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 581,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-P10",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 593,
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-P11",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 600,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-P12",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 596,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S2-R01",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 1583,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.1
+   },
+   {
+    "case": "S2-R02",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 657,
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-R03",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 592,
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-R04",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 619,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-R05",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 597,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-R06",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 705,
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-R07",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 626,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-R08",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 607,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.2
+   },
+   {
+    "case": "S2-U01",
+    "stratum": "urdu",
+    "results": 50,
+    "ms": 118,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-U02",
+    "stratum": "urdu",
+    "results": 7,
+    "ms": 268,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-U03",
+    "stratum": "urdu",
+    "results": 50,
+    "ms": 193,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-U04",
+    "stratum": "urdu",
+    "results": 6,
+    "ms": 220,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-U05",
+    "stratum": "urdu",
+    "results": 50,
+    "ms": 570,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C01",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 589,
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C02",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 597,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C03",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 648,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C04",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 185,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C05",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 605,
+    "recall10": 0.5,
+    "recall50": 0.5,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C06",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 607,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C07",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 625,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C08",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 181,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C09",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 623,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C10",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 612,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C11",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 611,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C12",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 590,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C13",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 644,
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C14",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 629,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.16666666666666666
+   },
+   {
+    "case": "S3-C15",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 616,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C16",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 614,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C17",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 600,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C18",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 590,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C19",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 643,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C20",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 605,
+    "recall10": 0.0,
+    "recall50": 0.5,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-P01",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 598,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S3-P02",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 479,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-P03",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 743,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-P04",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 623,
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-P05",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 570,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-P06",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 589,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.1
+   },
+   {
+    "case": "S3-P07",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 580,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S3-P08",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 585,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.2
+   },
+   {
+    "case": "S3-P09",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 642,
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-P10",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 598,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-P11",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 593,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-P12",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 622,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-R01",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 656,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S3-R02",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 671,
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-R03",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 666,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.2
+   },
+   {
+    "case": "S3-R04",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 711,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-R05",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 672,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-R06",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 737,
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-R07",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 609,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.1
+   },
+   {
+    "case": "S3-R08",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 599,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-U01",
+    "stratum": "urdu",
+    "results": 7,
+    "ms": 259,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-U02",
+    "stratum": "urdu",
+    "results": 50,
+    "ms": 653,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-U03",
+    "stratum": "urdu",
+    "results": 9,
+    "ms": 287,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-U04",
+    "stratum": "urdu",
+    "results": 50,
+    "ms": 493,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-U05",
+    "stratum": "urdu",
+    "results": 9,
+    "ms": 292,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C01",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 610,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C02",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 597,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C03",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 608,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C04",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 580,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-C05",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 603,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C06",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 605,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C07",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 706,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C08",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 582,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C09",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 606,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C10",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 606,
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C11",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 648,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S4-C12",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 614,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C13",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 605,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C14",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 587,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C15",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 624,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C16",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 673,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C17",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 611,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C18",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 633,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C19",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 580,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C20",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 585,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-P01",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 593,
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-P02",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 595,
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-P03",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 589,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S4-P04",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 576,
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-P05",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 692,
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-P06",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 618,
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-P07",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 591,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S4-P08",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 583,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S4-P09",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 584,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-P10",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 604,
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-P11",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 650,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P12",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 584,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-R01",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 647,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-R02",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 641,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S4-R03",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 632,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-R04",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 756,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S4-R05",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 694,
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-R06",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 730,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-R07",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 737,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-R08",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 714,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-U01",
+    "stratum": "urdu",
+    "results": 50,
+    "ms": 622,
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-U02",
+    "stratum": "urdu",
+    "results": 5,
+    "ms": 196,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-U03",
+    "stratum": "urdu",
+    "results": 50,
+    "ms": 634,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-U04",
+    "stratum": "urdu",
+    "results": 6,
+    "ms": 267,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-U05",
+    "stratum": "urdu",
+    "results": 50,
+    "ms": 622,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   }
+  ],
+  "fused": [
+   {
+    "case": "S1-C01",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 737,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-C02",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 541,
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C03",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 663,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C04",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 632,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C05",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 628,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S1-C06",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 861,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C07",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 805,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S1-C08",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 689,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C09",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 728,
+    "recall10": 0.0,
+    "recall50": 0.5,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C10",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 732,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.14285714285714285
+   },
+   {
+    "case": "S1-C11",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 652,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C12",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 755,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S1-C13",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 810,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C14",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 635,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S1-C15",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 901,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C16",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 756,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C17",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 874,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C18",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 590,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C19",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 687,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C20",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 515,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.16666666666666666
+   },
+   {
+    "case": "S1-P01",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 667,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.1111111111111111
+   },
+   {
+    "case": "S1-P02",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 710,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.2
+   },
+   {
+    "case": "S1-P03",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 734,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-P04",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 663,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-P05",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 608,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-P06",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 603,
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-P07",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 754,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-P08",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 600,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-P09",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 831,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-P10",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 898,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-P11",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 814,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-P12",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 705,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.125
+   },
+   {
+    "case": "S1-R01",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 687,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-R02",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 616,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-R03",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 677,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.16666666666666666
+   },
+   {
+    "case": "S1-R04",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 493,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-R05",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 673,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-R06",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 567,
+    "recall10": 0.5,
+    "recall50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S1-R07",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 603,
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-R08",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 750,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-U01",
+    "stratum": "urdu",
+    "results": 50,
+    "ms": 628,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-U02",
+    "stratum": "urdu",
+    "results": 50,
+    "ms": 718,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-U03",
+    "stratum": "urdu",
+    "results": 50,
+    "ms": 215,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-U04",
+    "stratum": "urdu",
+    "results": 2,
+    "ms": 125,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-U05",
+    "stratum": "urdu",
+    "results": 50,
+    "ms": 600,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C01",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 815,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C02",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 753,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C03",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 809,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C04",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 635,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C05",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 555,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C06",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 616,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C07",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 698,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C08",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 703,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C09",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 691,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C10",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 698,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.2
+   },
+   {
+    "case": "S2-C11",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 540,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C12",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 602,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.1
+   },
+   {
+    "case": "S2-C13",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 699,
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C14",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 787,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C15",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 674,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C16",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 653,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C17",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 567,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C18",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 722,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.2
+   },
+   {
+    "case": "S2-C19",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 685,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C20",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 672,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-P01",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 635,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P02",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 560,
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-P03",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 615,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S2-P04",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 726,
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-P05",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 589,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-P06",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 732,
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-P07",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 602,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S2-P08",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 614,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P09",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 689,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-P10",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 586,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.16666666666666666
+   },
+   {
+    "case": "S2-P11",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 688,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P12",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 645,
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-R01",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 992,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S2-R02",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 628,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-R03",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 679,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-R04",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 743,
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-R05",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 863,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-R06",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 559,
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-R07",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 611,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-R08",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 674,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.2
+   },
+   {
+    "case": "S2-U01",
+    "stratum": "urdu",
+    "results": 50,
+    "ms": 464,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-U02",
+    "stratum": "urdu",
+    "results": 2,
+    "ms": 134,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-U03",
+    "stratum": "urdu",
+    "results": 50,
+    "ms": 476,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-U04",
+    "stratum": "urdu",
+    "results": 3,
+    "ms": 128,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-U05",
+    "stratum": "urdu",
+    "results": 50,
+    "ms": 716,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C01",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 614,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C02",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 618,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C03",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 747,
+    "recall10": 0.5,
+    "recall50": 0.5,
+    "mrr10": 0.1111111111111111
+   },
+   {
+    "case": "S3-C04",
+    "stratum": "citizen",
+    "results": 33,
+    "ms": 457,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C05",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 536,
+    "recall10": 0.5,
+    "recall50": 0.5,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-C06",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 636,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-C07",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 781,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C08",
+    "stratum": "citizen",
+    "results": 30,
+    "ms": 462,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C09",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 888,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C10",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 673,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C11",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 711,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C12",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 708,
+    "recall10": 0.5,
+    "recall50": 0.5,
+    "mrr10": 0.14285714285714285
+   },
+   {
+    "case": "S3-C13",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 743,
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C14",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 674,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C15",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 663,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C16",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 708,
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C17",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 623,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.14285714285714285
+   },
+   {
+    "case": "S3-C18",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 748,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C19",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 744,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C20",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 555,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-P01",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 643,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-P02",
+    "stratum": "professional",
+    "results": 33,
+    "ms": 485,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-P03",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 690,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-P04",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 587,
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-P05",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 656,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-P06",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 640,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-P07",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 560,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-P08",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 643,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-P09",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 568,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-P10",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 721,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-P11",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 711,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-P12",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 640,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-R01",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 735,
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-R02",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 726,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S3-R03",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 743,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S3-R04",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 769,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S3-R05",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 751,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-R06",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 709,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-R07",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 557,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-R08",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 765,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-U01",
+    "stratum": "urdu",
+    "results": 2,
+    "ms": 135,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-U02",
+    "stratum": "urdu",
+    "results": 50,
+    "ms": 755,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-U03",
+    "stratum": "urdu",
+    "results": 4,
+    "ms": 148,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-U04",
+    "stratum": "urdu",
+    "results": 50,
+    "ms": 592,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-U05",
+    "stratum": "urdu",
+    "results": 4,
+    "ms": 146,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C01",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 835,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.2
+   },
+   {
+    "case": "S4-C02",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 575,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C03",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 714,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C04",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 618,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-C05",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 631,
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C06",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 656,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-C07",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 775,
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C08",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 818,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C09",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 660,
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C10",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 755,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C11",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 580,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S4-C12",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 715,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C13",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 588,
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C14",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 781,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C15",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 685,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S4-C16",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 739,
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C17",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 864,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-C18",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 663,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S4-C19",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 618,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C20",
+    "stratum": "citizen",
+    "results": 50,
+    "ms": 767,
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-P01",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 890,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.1111111111111111
+   },
+   {
+    "case": "S4-P02",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 778,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.14285714285714285
+   },
+   {
+    "case": "S4-P03",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 755,
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-P04",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 640,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P05",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 911,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.125
+   },
+   {
+    "case": "S4-P06",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 604,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.2
+   },
+   {
+    "case": "S4-P07",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 658,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P08",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 578,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S4-P09",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 757,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-P10",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 730,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.14285714285714285
+   },
+   {
+    "case": "S4-P11",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 608,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P12",
+    "stratum": "professional",
+    "results": 50,
+    "ms": 621,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-R01",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 663,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-R02",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 705,
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-R03",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 762,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-R04",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 965,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-R05",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 726,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S4-R06",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 998,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-R07",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 739,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-R08",
+    "stratum": "procedural",
+    "results": 50,
+    "ms": 690,
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S4-U01",
+    "stratum": "urdu",
+    "results": 50,
+    "ms": 573,
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-U02",
+    "stratum": "urdu",
+    "results": 2,
+    "ms": 126,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-U03",
+    "stratum": "urdu",
+    "results": 50,
+    "ms": 752,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-U04",
+    "stratum": "urdu",
+    "results": 2,
+    "ms": 137,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-U05",
+    "stratum": "urdu",
+    "results": 50,
+    "ms": 741,
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   }
+  ]
+ }
+}

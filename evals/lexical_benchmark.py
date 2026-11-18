@@ -35,6 +35,17 @@ from nizam.storage.lexical import (Bm25LexicalSearch, Filters, TsRankAnyLexicalS
                                    TsRankLexicalSearch)
 
 
+class FusedSearch:
+    """L3's fused lexical candidates (nizam.retrieval.lexical, D-097), shaped like the port's candidates"""
+    name = "fused"
+
+    def search(self, q, filters, k):
+        from types import SimpleNamespace
+        from nizam.retrieval.lexical import lexical_candidates
+        r = lexical_candidates(q, filters, k)
+        return [SimpleNamespace(provision_id=c.unit_id, score=c.score, rank=c.rank) for c in r.candidates]
+
+
 def cases():
     for f in sorted(glob.glob(str(ROOT / "evals/golden/golden-pk-v1-set*.draft.jsonl"))):
         for line in open(f, encoding="utf-8"):
@@ -48,14 +59,18 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--k", type=int, default=50)
     ap.add_argument("--out", default=str(ROOT / f"evals/results/lexical-{date.today().isoformat()}.json"))
+    ap.add_argument("--impls", default="bm25,ts_rank_cd,ts_rank_cd_any,fused")
+    ap.add_argument("--unscoped", action="store_true",
+                    help="no jurisdiction from the case: only what the question itself says (place recognition)")
     a = ap.parse_args()
-    impls = [Bm25LexicalSearch(), TsRankLexicalSearch(), TsRankAnyLexicalSearch()]
+    every = [Bm25LexicalSearch(), TsRankLexicalSearch(), TsRankAnyLexicalSearch(), FusedSearch()]
+    impls = [i for i in every if i.name in a.impls.split(",")]
     per = {i.name: [] for i in impls}
     with connect() as conn, conn.cursor() as cur:
         for d, units in cases():
             j = d["scope"]["jurisdiction"]
             juris = ("fed",) if j in ("fed", "foreign") else (j, "fed")
-            f = Filters(as_of=date.fromisoformat(d["scope"]["asOf"]), jurisdictions=juris)
+            f = Filters(as_of=date.fromisoformat(d["scope"]["asOf"]), jurisdictions=None if a.unscoped else juris)
             gold = {u["provisionId"]: u["path"] for u in units}
             for impl in impls:
                 t = time.time()
@@ -86,10 +101,14 @@ def main() -> int:
             "no_result_cases": sum(1 for r in rows if r["results"] == 0),
             "latency_ms_p50": round(statistics.median(r["ms"] for r in rows)),
             "latency_ms_p95": round(sorted(r["ms"] for r in rows)[int(0.95 * (len(rows) - 1))]),
+            f"recall@{a.k} by stratum": {st: round(statistics.mean(r[f"recall{a.k}"] for r in rows
+                                                                   if r["stratum"] == st), 3)
+                                         for st in sorted({r["stratum"] for r in rows})},
         }
     Path(a.out).parent.mkdir(parents=True, exist_ok=True)
     Path(a.out).write_text(json.dumps({"provisional": "golden sets 1-4 are drafts; kappa not measured (D-095)",
-                                       "k": a.k, "summary": summary, "cases": per}, indent=1), encoding="utf-8")
+                                       "k": a.k, "unscoped": a.unscoped, "summary": summary, "cases": per},
+                                      indent=1), encoding="utf-8")
     print(json.dumps(summary, indent=1))
     print(f"wrote {a.out}")
     return 0

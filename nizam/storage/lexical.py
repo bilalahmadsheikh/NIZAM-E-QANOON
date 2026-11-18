@@ -72,6 +72,9 @@ def _check(filters: Filters, q: str, k: int) -> str | None:
 
 
 def _as_of(cur, filters: Filters) -> None:
+    # custom plans only: pg_search 0.25.6 drops its match filter under a generic plan (from the 11th execution of a
+    # statement on one connection; reproduced 18 Nov 2026, D-097, nizam/storage/unit_search.py)
+    cur.execute("SET LOCAL plan_cache_mode = force_custom_plan")
     cur.execute("SELECT set_config('nzq.as_of', %s, true), set_config('nzq.territory', %s, true)",
                 (filters.as_of.isoformat(), filters.territory or ""))
 

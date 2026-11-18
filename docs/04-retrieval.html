@@ -119,6 +119,27 @@
   </figure>
   <h3><span class="mk">4.1</span>Lexical</h3>
   <p>Use ParadeDB BM25 behind <code>ILexicalSearch</code>, with fields for title, heading, provision label, body, citation tokens and case metadata. Phrase matches and exact section labels receive field boosts. Pin the extension version: current ParadeDB SQL is version-sensitive. PostgreSQL <code>ts_rank_cd</code> is a supported fallback, <em>not</em> “equivalent BM25”; flag 32 is <code>rank/(rank+1)</code>, not length normalization. Benchmark the fallback independently. Use fixed expression indexes per script/configuration&mdash;<code>english</code> for English and <code>simple</code> plus normalized aliases for Urdu/Roman Urdu&mdash;because a single English dictionary silently damages recall.</p>
+  <div class="note blue"><h4>As built (18&ndash;19 Nov 2026): fused lexical units, place territory and the citation fast path (D-097)</h4>
+  <p><code>nizam/retrieval/</code> is L3's first code. It calls only L2 (<code>nizam/storage/unit_search.py</code>); import-linter keeps all six contracts.</p>
+  <p style="margin-top:.5rem"><b>Query understanding</b> (<code>query.py</code>) yields a QuerySpec:</p>
+  <ul>
+    <li><b>Citations</b> (<code>citations.py</code>), in the forms people write: "s. 302 PPC", "302 PPC", "PPC 302", "section 15 of the Punjab Rented Premises Act, 2009", "Article 199 of the Constitution". They are resolved from records only: a served law by its recorded title (federal first, then the most relied-on) and the unit by its recorded label. Only same-titled copies of that law are checked, never a different law, and a territorial copy is returned beside the federal one as an alternate. A citation that names no law ("Article 199" alone, "the Act"), and CPC Orders and Rules, are typed ambiguities, never guesses.</li>
+    <li><b>The territory</b> a place names (<code>places.py</code>): 170 districts and the province names, from Wikipedia's district lists, read 18 Nov. It applies only when the caller gave no scope. Two territories in one question mean a comparison, and none is set.</li>
+    <li><b>The lexical words.</b> The question frame (pronouns, question words) is stripped only from a sentence, of seven or more words or with a question mark.</li>
+  </ul>
+  <p style="margin-top:.5rem"><b>Candidates</b> (<code>lexical.py</code>):</p>
+  <ol>
+    <li>Resolved citations go first.</li>
+    <li>Then RRF (k = 60) of body BM25 units and heading/marginal-note units, each collapsed with max + 0.15 &times; second best, plus a title term.</li>
+    <li>Then the INV-5 gate: <code>operative_provision</code> is asked only about the top units, in batches, until k remain.</li>
+  </ol>
+  <p style="margin-top:.5rem"><b>Measured, provisional</b> (golden sets 1&ndash;4, 180 questions, drafts, &kappa; not measured):</p>
+  <table>
+    <tr><th>Scope</th><th>Recall@50</th><th>Recall@10</th></tr>
+    <tr><td>The case's jurisdiction given</td><td>0.383 &rarr; 0.528</td><td>0.219 &rarr; 0.394</td></tr>
+    <tr><td>No scope (places only)</td><td>0.283 &rarr; 0.494</td><td>0.175 &rarr; 0.339</td></tr>
+  </table>
+  <p style="margin-top:.5rem">Golden citations, 224 queries: 220 exact and 4 with their territorial alternate, 0 unresolved, 0 wrong (R0's bar). Latency p50 rose about 80 ms. <b>pg_search 0.25.6 drops its match filter under a generic plan</b> (from a statement's 11th execution on one connection), so every pg_search session forces custom plans.</p></div>
   <h3><span class="mk">4.2</span>Dense</h3>
   <p>Embed the original multilingual query directly. HNSW over the inherited <code>bit(1024)</code> representation returns a broad pool; retain the 10&times; overfetch and rerank with the full-precision query/candidate representation where available. Start <code>hnsw.ef_search</code> at 100, then tune from measured recall. For selective filters, use pgvector iterative scans and an adaptive planner: exact search over a small prefiltered set; HNSW otherwise.</p>
   <div class="note"><p><strong>Required L2 correction.</strong> ANN predicates hidden behind joins may be applied after index traversal. Materialize a denormalized <code>search_projection</code> carrying legal-unit ID, jurisdiction, validity, publication/status, territory key and embedding on the indexed row. This is a migration owned by Document 03, not an excuse for L3 to post-filter invalid results. Judgment dense retrieval likewise requires a paragraph projection/embedding before the precedent phase can ship.</p></div>

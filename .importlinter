@@ -100,7 +100,8 @@ source_modules =
     nizam.domain
     nizam.api
 forbidden_modules =
-    nizam.storage.chunks
+    nizam.storage.chunking
+    nizam.workers.chunk
 
 
 # ── 6. Database drivers stay in storage ───────────────────────────────────
@@ -110,6 +111,9 @@ forbidden_modules =
 [importlinter:contract:db-in-storage]
 name = Database drivers only inside storage
 type = forbidden
+# a RAW driver import is the violation; reaching the database through a storage repository (which itself imports
+# psycopg) is the design (18 Nov 2026: without this, every L3/L6 import of nizam.storage counted as a driver import)
+allow_indirect_imports = True
 source_modules =
     nizam.corpus
     nizam.retrieval
