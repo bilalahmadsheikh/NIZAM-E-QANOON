@@ -2,7 +2,7 @@
 # Round N (Sindh): regenerate every page with fresh locators, drop the pages the latest dumps show offending, prove,
 # release the passes (round.sh -> batch_stage2.sh).
 cd /mnt/e/Nizam_e_Qanoon; export PYTHONPATH=. PYTHONIOENCODING=utf-8
-C=.artifacts/close-2026-11-19; N=$1; SD=$2; W=$C/sindh-r$N
+C=.artifacts/close-2026-11-18; N=$1; SD=$2; W=$C/sindh-r$N
 rm -rf $W; mkdir -p $W/prevdump
 .venv/bin/python tools/recrawl/sindh_title_patch.py $W/all $SD
 for d in $(echo $SD | tr , ' '); do       # the newest dump of each document

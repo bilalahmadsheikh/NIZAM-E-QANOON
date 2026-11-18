@@ -1397,6 +1397,47 @@ First run, 12 Nov 2026: 34 links.
 `status` is not copied across, because audit A14 requires each `repealed` to
 rest on its own statutory repeal row.
 
+### `chunk` and the lexical indexes — retrieval's storage (0108, D-095)
+
+**`chunk`** holds ordered character offsets (`char_start`, `char_end`) into **one** `provision_version.text_normalised`
+(docs/03 §3). It never holds a copy of the text.
+
+| column | |
+|---|---|
+| `version_id`, `seq` | unique; `ON DELETE CASCADE` from the version |
+| `char_start`, `char_end` | checked `0 <= start < end`; a trigger refuses an end past the version's text |
+| `context_prefix` | `title \| chapter heading \| unit + section heading \| qualifies: <the rule's opening words>`, ≤ 240 chars. Embedded beside the span, never altering it (docs/02 §5.3) |
+| `embedding` | `bit(1024)`, **NULL until the dense slice** fills it and adds NOT NULL |
+| `chunker` | the splitting rule (`nizam.chunking/1`); a change of rule or model is TRUNCATE plus rebuild |
+
+As built, a version holds only its own node's words. A clause does not contain its sub-section's lead-in, and a
+proviso or Explanation is its own version. So a chunk spans within one version. Grouping a unit's chunks is
+retrieval's collapse (docs/04 §5), and the rule a node qualifies rides in `context_prefix`.
+- `nizam/storage/chunking.py` cuts spans of at most 1,200 chars. Within [400, 1,200] it prefers, in order: a sentence
+  end (never after 's.', 'No.', 'Rs.'), then ';' or ':', then ',', then a space.
+- Chunks exist **only for released versions**. `python -m nizam.workers.chunk --apply` (`./nz chunk`) adds, removes
+  and rebuilds stale context. It is post-replay step 4c, and audit A20 asserts the boundary.
+- Measured 18 Nov: 1,132,245 chunks over 1,114,427 versions; 9,699 versions are split. The 275 versions with no text
+  get none.
+
+**Lexical indexes.** pg_search is pinned at 0.25.6; the migration refuses any other version (docs/04 §4.1).
+
+| index | over | read by |
+|---|---|---|
+| `ix_provision_version_bm25` | `text_normalised`, stemmed English | `Bm25LexicalSearch.search` |
+| `ix_provision_bm25` | `heading`, `marginal_note` (stemmed), `replace(label,' ','')` as a lowercased literal | `.headings`, `.labels` ('462I' finds '462 I') |
+| `ix_instrument_bm25` | `short_title`, `display_title`, `long_title` | titles, for retrieval's field boosts |
+| `ix_provision_version_fts` | GIN over the `to_tsvector('english', text_normalised)` **expression** | the portable fallback |
+
+Every index covers all rows. `nizam/storage/lexical.py` reads candidates **through `operative_provision`** in two
+steps, then a widening window:
+1. It takes the index's best window of version ids.
+2. It asks the view about exactly those ids. A one-statement join made the planner expand the whole view (27 s).
+3. The window widens until k operative candidates are found. Retired revisions repeat operative text: 12 of the top
+   80 BM25 matches were operative.
+
+Sizes: body BM25 295 MB, provision BM25 141 MB, titles 4 MB, GIN 93 MB. The chunk table is 299 MB.
+
 ### `operative_provision` — the view retrieval reads (INV-5)
 
 Migration 0071, redefined by 0075, 0077, 0086, 0093–0100, 0102 and 0103; docs/03b §6.2 as built. Set the date

@@ -91,6 +91,7 @@ reachable, each with its reason recorded.
 | **A14** | A repealed status is a statutory repeal the corpus prints, and every one is reflected | (a) standing repeals (0066 `v_statutory_repeal_current`) not reflected on their active canonical instrument -- dated: status `repealed`, that `repealed_on`, that `repealed_by_id`; undated: `repealed_by_id` only, status `unknown` (ck_repeal); (b) active instruments `repealed` or carrying `repealed_by_id` with no standing repeal. Repealed and dated counts are reported | 0 / 0; counts reported, never a threshold |
 | **A16** | The serving snapshot `operative_provision` reads matches the live derivation | `mv_instrument_serving` (0094) compared both ways with `v_instrument_currency` over released canonical laws (as-made twins excluded): currency, reason, cut-off date, territorial reach, status and (0095) territory exits; and (0096) `mv_provision_text_known_from` holds exactly the active provisions of the served laws. A difference means `tools/refresh_serving.py` was not run after a change | 0 differ; count reported |
 | **A19** | The boundary evidence every active expression manifest cites is held | Every `candidate_id` an active `instrument_expression_manifest` names exists in `segmentation_boundary_candidate` (0106). The 11 Nov prune deleted 226 such rows with the revisions they were keyed to; they were restored from its archive records (D-071). The number of citations is reported | 0 missing; count reported |
+| **A20** | Retrieval chunks are exactly the release, covering each version in order | (a) chunks whose version is not in `v_release_provision_version` (a replay retired it); (b) released versions with text and no chunk; (c) a version whose chunks do not run seq 0..n-1, overlap, leave anything but whitespace between or around them; (d) more than one `chunker` in the table, which would mean two splitting rules in one index. Migration 0108, D-095; post-replay step 4c keeps it. Chunks and versions are reported | 0 / 0 / 0; one chunker |
 | **A17** | Where a law runs is read from its own text, consistently | A standing territorial repeal (0095) removes a **federal-text** law from the repealing law's own province, or from ICT for a federal repealer; a standing `territorial_extent` assertion sits only on a federal-text law. Counts of extent clauses and territorial repeals are reported | 0 inconsistent; counts reported |
 | **A18** | A partial repeal, or a unit a whole repeal excepts, is a unit the repealing law names, and it is served as one | (a) standing `provision_repeal` rows (0102) and `provision_survival` rows (0103) that do not resolve to exactly one held provision of the active repealed law; (b) a territory on a row that is not a province's law repealing part of a federal-text law for that province, or a cross-jurisdiction row with no territory; (c) `mv_provision_repeal` compared both ways with the live derivation. Repealed units and laws are reported | 0 / 0 / 0; counts reported |
 | **A15** | Instrument names, numbers, dates, language and in-force status are recorded evidence, and every one is reflected | (a) standing metadata assertions (0070 `v_instrument_metadata_current`) not reflected on their active canonical instrument -- `display_title`, `text_language`, `enacted_on`, `commenced_on` equal to the value; `number` written (fill-only: a segmenter number is kept, except where a `printed_number_corrects_stored` assertion replaces a body-cited number, which must then be the number); `long_title` (0083) equal to the value; `status` `in_force` or `lapsed` (0082, 0085) unless a repeal now links the instrument; (b) active canonical instruments carrying `display_title`, `text_language`, `enacted_on`, `commenced_on`, `long_title` or status `in_force`/`lapsed` with no standing assertion. Standing counts per field are reported | 0 / 0; counts reported, never a threshold |
@@ -191,7 +192,7 @@ never failed has not been tested.
 The command prints every result and exits non-zero if any row is `FAIL`, so CI
 cannot mistake a complete report for permission to release.
 
-`./nz audit` prints all 41 criteria including A1, A2 and A6, which it cannot
+`./nz audit` prints all 42 criteria including A1, A2 and A6, which it cannot
 compute: A1 and A2 need an independent extractor, and A6 is enforced by an
 `EXCLUDE` constraint rather than measured. They appear in the table anyway, with
 where their answer comes from. A table that silently omits what it cannot check
@@ -215,7 +216,7 @@ every active law except 147 linked duplicates is inside it.
 | territory | extent clauses read and 48 territorial repeals recorded (18 Nov, D-078); A17 0 inconsistent |
 | partial repeals | 34 repealed units in 12 laws (sections, sub-sections, clauses, Articles), 16 units in 2 laws a whole repeal excepts; A18 0 unresolved |
 | boundary evidence | 315 citations by active expression manifests, 0 missing (A19, 18 Nov) |
-| corpus audit | **41/41 pass** |
+| corpus audit | **42/42 pass** |
 
 `review`, `pending` and `unverifiable` remain evidence states, not euphemisms
 for pass; a law in one of them is not released. The current state, and what to

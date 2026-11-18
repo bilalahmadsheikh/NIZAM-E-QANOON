@@ -1136,7 +1136,88 @@ Area: client · Status: Superseded by D-084 (the whole-page cloth; the hem, the 
   design/heritage_art.dart, presentation/discover.dart, presentation/heritage.dart; test/heritage_test.dart
   (golden embroidery.png, a review sheet at 3x).
 
-### D-094 · 2026-11-19 · Open questions closed by decision: word amendments, repeals by subject, undated amendments, "462 I", the 23rd–24th Amendments, Gilgit-Baltistan heritage
+### D-096 · 2026-11-18 · The AJK Interim Constitution Act, 1974 is acquired and staged, not yet landed
+Area: L1 corpus/acquisition · Status: standing (replaces the open question's "not landed" with what is held and why)
+- Decision:
+  - **Acquired.** The Act is acquired from the AJK Law Department's own file
+    (https://law.gok.pk/wp-content/uploads/2023/10/AJK-interim-constitution.pdf).
+    - The host refused connections on 18 Nov, so the bytes come from the Internet Archive's capture of that URL
+      (20260512192307) through tools/acquire/stage_wayback.py.
+    - They were accepted only because their SHA-1 equals the archive's recorded digest (JJYCI6B5…). Three captures
+      from Aug 2024 to May 2026 share it, so the official file has not changed.
+    - sha256 5901ea06…, 115 pages.
+  - **No OCR is needed for the law.** Pages 12–115 carry the Act in a text layer ("THE AZAD JAMMU AND KASHMIR INTERIM
+    CONSTITUTION, 1974 [31st AUGUST, 1974] ACT VIII OF 1974 PREAMBLE…"). Pages 1–11 are scanned front matter (cover,
+    Preface, contents) and are not law.
+  - **The title** is set from what page 12 prints, because the file name says only "AJK interim constitution".
+  - **Not landed.** preflight_segment predicts `blocked`:
+    - 33 repeated-label units the default segmenter leaves unsettled;
+    - character recall and precision 1.0, quality passed.
+    The owner's rule lands nothing that would sit held, so the law waits for its structure to be read.
+- Why: it is AJK's constitution and its most important law. The earlier note said only "not landed"; it is now held
+  as evidence, and the step left is named exactly.
+- Where: tools/evidence/close-2026-11-18/ajk-ic/{staged.csv, preflight.csv} (the bytes: .artifacts/close-2026-11-18/ajk-ic/stage/files/, re-fetchable from the capture); open question below.
+
+### D-095 · 2026-11-18 · Retrieval storage: the chunk table, the lexical indexes and the lexical port
+Area: L2 storage · Status: standing (the next slice CLAUDE.md named; docs/03 §3 and §5 as built)
+- Decision:
+  1. **`chunk`** (0108), as docs/03 §3: offsets into one `provision_version.text_normalised`, `context_prefix`,
+     `bit(1024)` embedding.
+     - `embedding` is nullable until the dense slice backfills it.
+     - A `chunker` column names the splitting rule.
+     - A trigger refuses a span past its text.
+     - Rows exist for released versions only. `nizam.workers.chunk` builds and keeps them (`./nz chunk`, post-replay
+       step 4c), and audit A20 asserts the boundary, span order and coverage.
+     - Built: 1,132,245 chunks over 1,114,427 versions, 299 MB, 103 s. A second run writes nothing.
+  2. **Chunking as built.** A version holds its own node's words only, so a chunk spans within one version.
+     - docs/02 §5.3's "group of adjacent clauses" becomes retrieval's collapse to the unit (docs/04 §5).
+     - "Never split a proviso … from the rule it qualifies" becomes `qualifies: <the parent's opening words>` in the
+       embedded prefix, never in the quoted text.
+     - Spans are at most 1,200 chars, cut at a sentence end, then ';'/':', then ',', then a space. Citation
+       abbreviations ('s.', 'No.', 'Rs.') are not sentence ends. Text is single-line (schedule rows flattened), so
+       "row-aware" means cutting at the punctuation between rows.
+  3. **Lexical indexes**, pg_search pinned at 0.25.6 (the migration refuses another version):
+     - body BM25, stemmed English;
+     - heading, marginal note and space-folded label;
+     - instrument titles;
+     - the portable GIN over the tsvector expression.
+     They cover every row, and reads filter through the release and operative views.
+  4. **The lexical port** (`nizam/storage/lexical.py`, docs/03 §5): `search(q, filters, k)` with as_of mandatory.
+     - Implementation A is BM25, B is ts_rank_cd as written, and B′ is ts_rank_cd over any term.
+     - BM25 also offers `headings` and `labels`; '462I' finds the printed '462 I' (D-094).
+     - Candidates are read through `operative_provision` in two steps: the index's window, then the view asked about
+       those ids. A one-statement join planned the whole view (27 s); two steps take about 0.1–1 s.
+     - The window widens until k operative candidates are found. Candidates are provisions, never chunk ids (INV-4).
+  5. **The benchmark docs/03 §5 requires**, provisional (drafts, κ not measured). Golden sets 1–4, 180 answerable
+     cases, raw questions, k = 50:
+     - BM25: recall@50 0.383, recall@10 0.219.
+     - B as written: 0.022 (no result for 159 of 180 questions, since every word is required).
+     - B′: 0.061 (p50 2.5 s, p95 6.2 s).
+     The large delta justifies self-hosting pg_search, by docs/03 §5's own rule.
+  6. **Reviewed by schema-reviewer before commit; every finding fixed or recorded:**
+     - B′ re-stemmed its query, so 'provisions' became 'provi' and the term was silently dropped. It now casts
+       instead of re-parsing (regression test) and was re-measured: 0.056 became 0.061.
+     - The subtree cap now counts nodes, not version rows: a much-amended node could otherwise fill it.
+     - `labels()` came back in arbitrary uuid order. It is now in instrument and printed order, with an optional
+       instrument filter.
+     - Results carry `truncated` when the window cap is hit (INV-3).
+     - A datetime is refused as `as_of`.
+     - Chunk whitespace is ASCII-only, the same class A20 checks. Measured: 0 versions hold other spaces, so the
+       output is unchanged.
+     - LIMIT is a bound parameter.
+     - Recorded for production: build the indexes CONCURRENTLY in their own files (checking that pg_search
+       supports it first), and REVOKE writes from the application role. That role does not exist yet.
+- Why: CLAUDE.md named "the chunk table and BM25 index" as the next slice. Dense embeddings, fusion, the gate and L3's
+  query understanding follow in their own slices (docs/04 §11 R1), against the recall floor measured here.
+- Where:
+  - infra/postgres/migrations/0108_chunk_and_lexical.sql;
+  - nizam/storage/{chunking.py, lexical.py}; nizam/workers/chunk.py;
+  - tools/audit/criteria.sql (A20); tools/post_replay_sequence.sh (4c); nz (`chunk`);
+  - evals/lexical_benchmark.py, evals/results/lexical-2026-11-18.json;
+  - tests/{test_chunking.py, test_chunk_and_lexical_db.py};
+  - docs/03 §3 and §5 (as built), docs/SCHEMA.md, docs/CORPUS-CRITERIA.md (A20).
+
+### D-094 · 2026-11-18 · Open questions closed by decision: word amendments, repeals by subject, undated amendments, "462 I", the 23rd–24th Amendments, Gilgit-Baltistan heritage
 Area: corpus/legal model · Status: standing
 - Decision:
   1. **Amendments of words are amendments, not repeals.** "For the word X, the word Y shall be substituted" changes a
@@ -1151,7 +1232,7 @@ Area: corpus/legal model · Status: standing
   4. **"462 I" is kept as printed.** PPC p159 (doc 4441) prints "462 I." with a space; "462J." follows without one.
      docs/01 keeps labels verbatim ("365 A"). Matching "462I" to it belongs to retrieval's citation lookup
      (docs/04), which normalises spacing.
-  5. **The 23rd and 24th Amendment Acts are not landed.** Searched 19 Nov:
+  5. **The 23rd and 24th Amendment Acts are not landed.** Searched 18 Nov:
      - The only official copy of the 23rd is the National Assembly's upload of the Bill (na.gov.pk 1490160955_216.pdf,
        22 Mar 2017). It is a scan with an OCR text layer, not the assented Act, so the owner's rule on scans applies.
      - No official copy of the 24th was found.
@@ -1169,7 +1250,7 @@ Area: corpus/legal model · Status: standing
   rules and invariants, not by new corpus work.
 - Where: tools/released_count_guard.py; .artifacts/release-work-2026-09-24/claude-baseline-90/; this entry.
 
-### D-093 · 2026-11-19 · The local S3 stand-in is SeaweedFS
+### D-093 · 2026-11-18 · The local S3 stand-in is SeaweedFS
 Area: L2 storage/deploy · Status: standing (closes D-088's open question)
 - Decision: the compose service `blobstore` runs `chrislusf/seaweedfs:4.51`, pinned by digest (sha256:f7a49e3f…,
   26 Oct 2026). It sits under the `blobstore` profile until code uses it, on localhost:9000.
@@ -1178,7 +1259,7 @@ Area: L2 storage/deploy · Status: standing (closes D-088's open question)
   - The S3 identity file is written inside the container at start, from those variables.
   - The healthcheck requires that an unsigned request be refused.
 - Why:
-  - **Candidates, checked 19 Nov on Docker Hub and GitHub, not recalled.** All four are active and pull anonymously:
+  - **Candidates, checked 18 Nov on Docker Hub and GitHub, not recalled.** All four are active and pull anonymously:
     - SeaweedFS: Apache-2.0, 43.6M pulls, pushed 18 Nov.
     - RustFS: Apache-2.0.
     - versitygw: Apache-2.0.
@@ -1188,9 +1269,9 @@ Area: L2 storage/deploy · Status: standing (closes D-088's open question)
     - unsigned and wrong-secret requests are refused (403);
     - the compose service comes up healthy with the .env credentials, and `./nz status` and the selftest see it.
 - Where: infra/compose.yaml (`blobstore`), infra/scripts/selftest.sh, nz, infra/README.md, SETUP.md,
-  docs/09a (as built, 19 Nov), tools/evidence/close-2026-11-19/{s3_roundtrip.sh, blobstore_up.sh}.
+  docs/09a (as built, 18 Nov), tools/evidence/close-2026-11-18/{s3_roundtrip.sh, blobstore_up.sh}.
 
-### D-092 · 2026-11-19 · Title-region recorders read the law as page-read
+### D-092 · 2026-11-18 · Title-region recorders read the law as page-read
 Area: L1 corpus · Status: standing (closes the open question "Title-region recorders read raw OCR")
 - Decision: `record_instrument_numbers`, `record_long_titles` and `record_enacted_dates` read their window with the
   observation's active page-read corrections applied (tools/title_region_text.py). It uses the segmenter's own
@@ -1210,13 +1291,13 @@ Area: L1 corpus · Status: standing (closes the open question "Title-region reco
     re-derivation updated 1 instrument. Serving was refreshed; the audit passes 41/41.
 - Why: the page reading is the authority for a scan read by hand (the owner rule, D-076). The raw OCR is not.
 - Where: tools/title_region_text.py; the three recorders (`--raw-text`, and `--dump` on long titles);
-  tools/evidence/close-2026-11-19/{recorders_ab.sh, recorders/, recorders_apply.sh}.
+  tools/evidence/close-2026-11-18/{recorders_ab.sh, recorders/, recorders_apply.sh}.
 
-### D-091 · 2026-11-19 · Rebuild drift reviewed law by law, and the verdicts enforced
+### D-091 · 2026-11-18 · Rebuild drift reviewed law by law, and the verdicts enforced
 Area: L1 corpus/process · Status: standing (closes the open questions "Older rebuild drift" and "Rebuild drift found by the D-080 A/B")
 - Decision: every law the open questions named was dry-run as it stands, multi-instrument documents through the
   materializer's own `prepare()`, node by node. Each now carries a verdict in
-  tools/evidence/drift-review-2026-11-19.json.
+  tools/evidence/drift-review-2026-11-18.json.
   - **Closed (4).**
     - 2772 rebuilds identically.
     - 8743 differed only in its path prefix and is identical since D-090.
@@ -1237,10 +1318,10 @@ Area: L1 corpus/process · Status: standing (closes the open questions "Older re
 - Why: the questions said each law "needs its own review before its next replay". The replay gate already refuses
   unapproved changes. What was missing was the review and a guard against approving through it.
 - Consequence: the furniture of 1101, 1977 and 2904 (D-089) waits for their regressions to be fixed.
-- Where: tools/evidence/drift-review-2026-11-19.json; nizam/storage/legal_write.py (`_refuse_reviewed_drift`);
-  tests/test_drift_guard.py; tools/evidence/close-2026-11-19/{baseline.sh, diffsum.py, prefixdiff.py, multi_compare.py}.
+- Where: tools/evidence/drift-review-2026-11-18.json; nizam/storage/legal_write.py (`_refuse_reviewed_drift`);
+  tests/test_drift_guard.py; tools/evidence/close-2026-11-18/{baseline.sh, diffsum.py, prefixdiff.py, multi_compare.py}.
 
-### D-090 · 2026-11-19 · A rebuild keeps its released path prefix (INV-4)
+### D-090 · 2026-11-18 · A rebuild keeps its released path prefix (INV-4)
 Area: L1/L2 · Status: standing
 - Decision: `build()` gives an expression that already has an active tree that tree's path prefix
   (`legal_write.released_path_prefix`).
@@ -1252,7 +1333,7 @@ Area: L1/L2 · Status: standing
 - Where: nizam/workers/segment.py (`build`), nizam/storage/legal_write.py; tests/test_path_prefix_stability.py;
   docs/SEGMENTATION-PROFILES.md.
 
-### D-089 · 2026-11-19 · The furniture left after D-085: 16 of 23 laws cleaned, and set-aside heads that still end a sentence
+### D-089 · 2026-11-18 · The furniture left after D-085: 16 of 23 laws cleaned, and set-aside heads that still end a sentence
 Area: L1 corpus · Status: standing (closes most of the open question "Page furniture left after D-085")
 - Decision:
   1. **AJK (6 laws: 10482, 10499, 10524, 10861, 10870, 10977): all cleaned.**
@@ -1284,7 +1365,7 @@ Area: L1 corpus · Status: standing (closes most of the open question "Page furn
 - Where: tools/recrawl/{sindh_title_patch.py, ajk_folio_patch.py, furniture_rounds.py}; nizam/corpus/segment.py
   (`reviewed_head_boundary`); nizam/workers/segment.py, tools/record_curation_patch.py,
   tools/materialize_multi_instrument.py (key registered); tests/test_head_boundary.py;
-  tools/evidence/close-2026-11-19/ (round.sh, run_r1-r4.sh, residual-pages.json, every round's readings and proof).
+  tools/evidence/close-2026-11-18/ (round.sh, run_r1-r4.sh, residual-pages.json, every round's readings and proof).
 
 ### D-088 · 2026-11-18 · MinIO becomes opt-in: its public image can no longer be pulled
 Area: L2 storage/deploy · Status: Superseded by D-093 (the service is now SeaweedFS; still opt-in)
@@ -1485,6 +1566,9 @@ Area: L1 corpus · Status: standing (closes two of the D-080 "what remains" item
 
 These were found and deliberately left open. Each will become an entry when it is decided.
 
+- **The AJK Interim Constitution Act, 1974 (D-096).** Acquired, digest-verified and staged; no OCR needed for the law.
+  The preflight predicts 33 unsettled repeated-label units, so it waits for its structure to be read before it is
+  landed released. Its 7 amendment Acts are released and carry no `amends` edges to it until then.
 - **Page furniture, the residue of D-089 (14 pages in 7 laws).** 1245 pp3–4, 2206 p3, 2505 p4, 2765 pp4–6, 2902 pp3–5,
   3919 pp5–6, 3992 pp33, 35. Removing each head changes the reviewed structure through a mechanism other than
   sentence continuation (in 1245 the folio text read into s.3(2) kept '(4)' a sub-section). Each page needs reading.
@@ -1493,7 +1577,7 @@ These were found and deliberately left open. Each will become an entry when it i
   release, and an approved replay is now refused until each is fixed: wrapped amendment headings (1101, 1977), a
   footnote taken for s.1's heading (2904), item 14 folded into 13 (2491), lost Parts (8213, 9310, 9659), a lifted
   clause (5494), a renumbered duplicate suffix (8173), 'Part I' read as '1' (4347 e3), damaged Gazette text (6576,
-  6784). tools/evidence/drift-review-2026-11-19.json has each finding.
+  6784). tools/evidence/drift-review-2026-11-18.json has each finding.
 - **Preamble ordinals, the remainder (38).** After D-068 and D-072, 38 released laws still number a "preamble"
   after sections printed below it. The law page lists the preamble first regardless (D-065). They fall into four
   groups:

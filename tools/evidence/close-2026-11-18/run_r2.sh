@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Round 2 (Sindh): fresh locators, then the same readings dry-run under the current profile, v4 and v5, each proven.
 cd /mnt/e/Nizam_e_Qanoon; export PYTHONPATH=. PYTHONIOENCODING=utf-8
-C=.artifacts/close-2026-11-19; W=$C/sindh-r2; P=$W/patches
+C=.artifacts/close-2026-11-18; W=$C/sindh-r2; P=$W/patches
 SD=1245,2022,2206,2339,2505,2765,2902,3243,3919,3992
 rm -rf $W; mkdir -p $W; date -u +%Y-%m-%dT%H:%M:%SZ > $W/started_at
 .venv/bin/python tools/recrawl/sindh_title_patch.py $P $SD

@@ -176,7 +176,7 @@ STRUCTURAL_KEYS = frozenset({
     "source_fused_margin_tails",
     # D-080 (18 Nov): rule reviewed_leading_margin_note
     "source_leading_margin_notes",
-    # D-089 (19 Nov): rule reviewed_head_boundary
+    # D-089 (18 Nov): rule reviewed_head_boundary
     "source_head_boundary_blocks",
     # group 19-20 (16 Oct): agent K4 Q, U, V; agent K6 C
     "source_part_line_blocks",
@@ -290,7 +290,7 @@ GENERIC_STRUCTURAL_KEYS = frozenset({
     "source_fused_margin_tails",
     # D-080 (18 Nov): rule reviewed_leading_margin_note
     "source_leading_margin_notes",
-    # D-089 (19 Nov): rule reviewed_head_boundary
+    # D-089 (18 Nov): rule reviewed_head_boundary
     "source_head_boundary_blocks",
     # group 19-20 (16 Oct): agent K4 Q, U, V; agent K6 C
     "source_part_line_blocks",

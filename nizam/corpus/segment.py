@@ -11220,7 +11220,7 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
             if k in toc:
                 boundary_seen.add(k)
 
-    # Rule `reviewed_head_boundary` (D-089, 19 Nov 2026, doc 3243 p5). A page-read running head that a reading sets
+    # Rule `reviewed_head_boundary` (D-089, 18 Nov 2026, doc 3243 p5). A page-read running head that a reading sets
     # aside (source_apparatus_blocks) and ALSO names here still ends the sentence before it, as the printed header did
     # in the released tree: the first unit after it on its page sees a finished sentence, so a PART/CHAPTER line or a
     # sub-section opener there opens its unit instead of reading as the run-on of a colon or comma on the page before.

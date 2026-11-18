@@ -237,6 +237,14 @@ if [ "$APPLY" = "1" ]; then
     uv run python tools/refresh_serving.py
 fi
 
+# ---------------------------------------------------------------- step 4c (0108, D-095)
+say "4c. retrieval chunks follow the release (audit A20 fails while they do not)"
+if [ "$APPLY" = "1" ]; then
+    uv run python -m nizam.workers.chunk --apply
+else
+    uv run python -m nizam.workers.chunk
+fi
+
 # ---------------------------------------------------------------- step 5
 say "5. re-measure -- every pre-replay figure is now suspect"
 run ./nz s7-citability

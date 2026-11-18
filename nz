@@ -43,6 +43,7 @@
 #                      (same rule: run after EVERY replay, before reading the queue)
 #   ./nz disposition-review  render omitted/repealed TOC evidence (read-only)
 #   ./nz disposition-materialize  exact-tree omitted-section revisions
+#   ./nz chunk         retrieval chunks follow the release (dry run; --apply writes; --rebuild from nothing)
 #   ./nz browse        read the corpus in a browser, PDF beside extracted text
 #   ./nz test          tests + the self test
 #   ./nz test-clean    tests + environment self-test against nizam_clean
@@ -192,6 +193,8 @@ cmd_verify_clean() {
     uv run python -m nizam.workers.verify_text_quality --all || failed=1
   return "$failed"
 }
+cmd_chunk()    { need_docker; need_uv
+                 POSTGRES_DB="${NIZAM_CLEAN_DB:-nizam_clean}" uv run python -m nizam.workers.chunk "$@"; }
 cmd_browse()   { need_docker; need_uv
                  echo "corpus browser -> http://localhost:${1:-5055}"
                  uv run python tools/corpus-browser/serve.py --port "${1:-5055}"; }
@@ -428,6 +431,7 @@ case "${1:-}" in
   second-parser-run) shift; cmd_second_parser_run "$@" ;;
   disposition-review) shift; cmd_disposition_review "$@" ;;
   disposition-materialize) shift; cmd_disposition_materialize "$@" ;;
+  chunk)     shift; cmd_chunk "$@" ;;
   browse)    shift; cmd_browse "$@" ;;
   snapshot)  shift; cmd_snapshot "$@" ;;
   restore)   shift; cmd_restore "$@" ;;

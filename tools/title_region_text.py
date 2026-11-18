@@ -1,6 +1,6 @@
 """Title-region text as the law is READ: extracted blocks with the observation's page-read corrections applied.
 
-D-092 (19 Nov 2026). record_instrument_numbers, record_long_titles and record_enacted_dates read `text_block`
+D-092 (18 Nov 2026). record_instrument_numbers, record_long_titles and record_enacted_dates read `text_block`
 directly, so a law whose title page was read by hand (an OCR scan corrected page by page, D-076) had its number,
 long title and enactment date taken from the raw OCR instead of from the reading. This module applies the same
 approved parser-input corrections the segmenter applies (segmentation_curation_patch, through the segmenter's own

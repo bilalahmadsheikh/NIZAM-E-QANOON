@@ -5,10 +5,13 @@ statutory corpus and judicial precedent of the federation and four provinces, an
 14 Nov 2026) Islamabad Capital Territory, Azad Jammu & Kashmir and Gilgit-Baltistan — docs/02 §2.2
 already listed the AJK and GB assemblies as P1 sources. Final Year Project, GIKI FCSE, four developers.
 
-**Current state (17 Nov 2026): L1 and the L2 legal data layer are done; L2 retrieval storage and L3 upward have not started.** The live continuation point is `docs/CORPUS-STATE-2026-11-17.md`; read it before any corpus mutation. **10,342 laws are released and none is held**, across federal, the four provinces, ICT, AJK and Gilgit-Baltistan. Every one is served through `operative_provision` as at a date (`nzq.as_of`) and in a territory (`nzq.territory`), with status, dates, extent and repeals recorded. `./nz audit` runs 41 criteria and all pass (A19, boundary evidence held, added 18 Nov). Sixteen documents
+**Current state (18 Nov 2026): L1 and the L2 legal data layer are done, and L2 retrieval storage has begun: the `chunk` table and the lexical indexes are built (D-095). L3 upward has not started.** The live continuation point is `docs/CORPUS-STATE-2026-11-17.md`; read it before any corpus mutation. **10,342 laws are released and none is held**, across federal, the four provinces, ICT, AJK and Gilgit-Baltistan. Every one is served through `operative_provision` as at a date (`nzq.as_of`) and in a territory (`nzq.territory`), with status, dates, extent and repeals recorded. `./nz audit` runs 42 criteria and all pass (A20, retrieval chunks are exactly the release, added 18 Nov). Sixteen documents
 in `docs/` fix the architecture, and where implementation has diverged the docs carry an "as built"
-correction rather than a quiet edit. Acquisition is fully accounted: every catalogued item either landed or carries a declared, evidence-backed exception. Laws that need OCR (874 AJK and 151 GB scans) are not landed, by owner rule; the one exception is the 25th–27th Constitution Amendment Acts, read page by page with a Kaggle GPU cross-check (D-076). There is no
-`chunk`, `embedding`, facet or judgment table yet — the `chunk` table and BM25 index are the next slice. `legal_edge` exists
+correction rather than a quiet edit. Acquisition is fully accounted: every catalogued item either landed or carries a declared, evidence-backed exception. Laws that need OCR (874 AJK and 151 GB scans) are not landed, by owner rule; the one exception is the 25th–27th Constitution Amendment Acts, read page by page with a Kaggle GPU cross-check (D-076). `chunk` (0108)
+holds offsets into every released version (1,132,245 chunks; embeddings NULL until the dense slice), and the lexical port
+(`nizam/storage/lexical.py`: pg_search BM25 plus the portable fallback, both read through `operative_provision`) is
+benchmarked provisionally (BM25 recall@50 0.383 on raw golden questions; the fallback far lower, D-095). There is no
+embedding model, facet or judgment table yet; the dense slice is next. `legal_edge` exists
 as a view (0079, 0089: `amends`, `repeals` and `empowers`, resolved from source-keyed records; docs/SCHEMA.md).
 Golden sets 1–4 (200 of the 500 target cases) are built and text-checked; their review sheets are not yet annotated.
 
@@ -73,7 +76,7 @@ Layer rule: a layer calls **only** the layer immediately below it, plus the shar
 | Doc | Covers |
 |---|---|
 | `01-master-architecture` | Layers, domain model, interface contracts, 20 UML/C4 views, ADR index |
-| `02-corpus-and-ingestion` | Sources, extraction, segmentation, enrichment, quality gates (§8 as built: 41 criteria, docs/CORPUS-CRITERIA.md) |
+| `02-corpus-and-ingestion` | Sources, extraction, segmentation, enrichment, quality gates (§8 as built: 42 criteria, docs/CORPUS-CRITERIA.md) |
 | `03-data-and-storage` | Schema, extensions, indexes, publish transaction, migrations |
 | `03a-capacity-plan` | Measured corpus sizing, free-tier analysis, hosting ladder |
 | `03b-legal-data-model` | 14 legal edge types, 9 facets, schedules as tables, SQLite projection |

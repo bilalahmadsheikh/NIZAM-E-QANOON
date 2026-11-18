@@ -354,7 +354,7 @@ def build(document_id: int, sha256: str, source_observation_id: int,
     # An owner-declared undated expression carries 'yundated' (migration 0063).
     prefix = f"{jur}.{kind}.y{year if year is not None else 'undated'}_{ident}"
     # D-090 (INV-4): an expression that already has a tree keeps that tree's prefix. Inference of the number or year
-    # from the head can drift as the parser changes (19 Nov 2026: 'Act VI of 1874' rebuilt as 'y1874_o12229', every
+    # from the head can drift as the parser changes (18 Nov 2026: 'Act VI of 1874' rebuilt as 'y1874_o12229', every
     # path renamed). A reviewed identity is a deliberate re-identification and builds its own prefix.
     if reviewed_identity is None and keep_path_prefix:
         kept = legal_write.released_path_prefix(source_observation_id, expression_ordinal)
@@ -854,7 +854,7 @@ def owner_decision_answer(citation: dict, document_id: int) -> dict:
 _BZ_FLAG_KEYS = frozenset({"source_statute_row_headings", "source_explanation_of_heading", "source_chapter_over_part"})
 _BZ_BLOCK_LIST_KEYS = frozenset({"source_no_cut_blocks", "source_form_text_blocks", "source_lettered_part_blocks",
                                  "source_unheaded_section_blocks",
-                                 # D-089 (19 Nov 2026): rule reviewed_head_boundary
+                                 # D-089 (18 Nov 2026): rule reviewed_head_boundary
                                  "source_head_boundary_blocks",
                                  # agent JD (group 5): rules roman_chapter_line, marked_dash_section_cut, subsection_line_cut
                                  "source_chapter_line_blocks", "source_marked_dash_section_blocks",

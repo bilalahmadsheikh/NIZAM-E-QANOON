@@ -1,6 +1,6 @@
 """D-090 (INV-4): a rebuild keeps the path prefix its existing tree was given.
 
-19 Nov 2026: four released laws (docs 6576, 6784, 8173, 8743) rebuilt with every path renamed, because the Act number
+18 Nov 2026: four released laws (docs 6576, 6784, 8173, 8743) rebuilt with every path renamed, because the Act number
 inferred from the page head drifted ('fed.act.y1874_VI_o12229' -> 'fed.act.y1874_o12229') although the catalogue still
 records Act VI of 1874. Citations are rendered from the instrument's recorded number and year (INV-1); the path is an
 identifier and must not move with an inference. Pure: build() with the database lookups stubbed."""

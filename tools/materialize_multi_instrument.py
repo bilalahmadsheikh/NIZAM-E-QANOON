@@ -561,7 +561,7 @@ STRUCTURAL_PATCH_KEYS = (
     "source_fused_margin_tails",
     # D-080: rule reviewed_leading_margin_note
     "source_leading_margin_notes",
-    # D-089 (19 Nov 2026): rule reviewed_head_boundary
+    # D-089 (18 Nov 2026): rule reviewed_head_boundary
     "source_head_boundary_blocks",
     # group 19-20 (agent K4 Q, U, V; agent K6 C)
     "source_part_line_blocks",

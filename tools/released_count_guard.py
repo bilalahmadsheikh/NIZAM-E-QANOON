@@ -77,8 +77,8 @@ def main() -> int:
     with connect() as conn, conn.cursor() as cur:
         docs_file = base / "released_counts.json"
         if docs_file.exists():
-            # released_counts.json, {document: released expressions}, recorded when the baseline was signed (19 Nov 2026). Resolving the
-            # baseline's instrument ids through `instrument` breaks once a prune deletes retired revisions: on 19 Nov
+            # released_counts.json, {document: released expressions}, recorded when the baseline was signed (18 Nov 2026). Resolving the
+            # baseline's instrument ids through `instrument` breaks once a prune deletes retired revisions: on 18 Nov
             # some 1,100 ids of claude-baseline-89 no longer resolved and 959 laws read as undeclared rises.
             before = {int(d): int(n) for d, n in json.loads(docs_file.read_text(encoding="utf-8")).items()}
         else:

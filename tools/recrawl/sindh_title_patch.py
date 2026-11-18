@@ -71,7 +71,7 @@ def title_lines(text: str, title: str) -> int:
             k += 1
             titled += 1
         elif titled and CITE.match(fold(line)):
-            # the citation printed under the title is the head too (19 Nov 2026, doc 3243 p5: '5 / title / SINDH ACT
+            # the citation printed under the title is the head too (18 Nov 2026, doc 3243 p5: '5 / title / SINDH ACT
             # NO. XXXIX OF 2023'). Stopping at the title cut two lines and left the citation in the block, and the
             # leftover line broke the chapter that followed.
             k += 1
@@ -216,7 +216,7 @@ def main() -> int:
         for d in docs:
             # the document's active readings: their locators (page-scoped) and what each page's readings already cut
             # Locators: every reading ever recorded on the page, retired or not -- the evidence is append-only and the
-            # recorder refuses an identical patch even when the earlier one was withdrawn (19 Nov 2026). What a page
+            # recorder refuses an identical patch even when the earlier one was withdrawn (18 Nov 2026). What a page
             # already cuts: the active readings only.
             cur.execute("""SELECT DISTINCT c.page_no, c.match_text, c.before_text, c.retired_at IS NULL
                              FROM segmentation_curation_patch c

@@ -1,6 +1,6 @@
 {
-  "review": "Rebuild drift, every law listed in the decision log's open questions (D-091). Each law was dry-run as it stands on 19 Nov 2026 with the release gate's tree dumps (multi-instrument documents through tools/materialize_multi_instrument.py's own prepare(), node by node). Verdict = which tree is right, from the printed page or the tree's own evidence, and what a replay must do.",
-  "method": ".artifacts/close-2026-11-19/{baseline.sh, diffsum.py, prefixdiff.py, multi_compare.py}",
+  "review": "Rebuild drift, every law listed in the decision log's open questions (D-091). Each law was dry-run as it stands on 18 Nov 2026 with the release gate's tree dumps (multi-instrument documents through tools/materialize_multi_instrument.py's own prepare(), node by node). Verdict = which tree is right, from the printed page or the tree's own evidence, and what a replay must do.",
+  "method": ".artifacts/close-2026-11-18/{baseline.sh, diffsum.py, prefixdiff.py, multi_compare.py}",
   "laws": {
     "2772": {"verdict": "closed", "finding": "rebuilds identically today"},
     "8743": {"verdict": "closed", "finding": "differed only in its path prefix ('y1874_VI' rebuilt as 'y1874': the number inferred from the head drifted); rebuilds identically since D-090 keeps the released prefix"},

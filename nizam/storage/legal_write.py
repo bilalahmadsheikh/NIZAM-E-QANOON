@@ -173,7 +173,7 @@ def released_path_prefix(source_observation_id: int, expression_ordinal: int = 0
     """The path prefix ('fed.act.y1874_VI_o12229') of the active tree this observation's expression already has, or
     None when it has none.
 
-    D-090 (19 Nov 2026), INV-4: a rebuild keeps the prefix its released tree was given, so a later change in what the
+    D-090 (18 Nov 2026), INV-4: a rebuild keeps the prefix its released tree was given, so a later change in what the
     title or head infers (the Act number, the year) cannot rename every provision of a law. Citations are rendered
     from the instrument's recorded number and year (INV-1); the path is an identifier, and identifiers stay put.
     """

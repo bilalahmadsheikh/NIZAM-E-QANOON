@@ -460,6 +460,13 @@ provision_version                                          <b>INV-5, law as at a
 
     <p>Re-embedding is therefore a full rebuild of <code>chunk</code> rather than an in-place update &mdash; which is correct, because a new embedding model produces a differently-shaped space and mixing two generations in one index would be silently wrong. The rebuild is a <code>TRUNCATE</code> plus a batch pass, and it never touches <code>provision_version</code>.</p>
 
+
+    <div class="note blue" style="margin-top:1rem">
+      <h4>As built (18 Nov 2026): the chunk table, with offsets into one version (0108, D-095)</h4>
+      <p>The table is as above, with three differences. <code>embedding</code> is nullable until the dense slice fills it and adds NOT NULL, in the usual add-column, backfill, add-constraint order. A <code>chunker</code> column names the splitting rule (<code>nizam.chunking/1</code>), so a corpus version can be replayed (INV-3). A trigger refuses a span that ends past its version's text.</p>
+      <p style="margin-top:.55rem">As built, a version holds only its own node's words: a clause does not contain its sub-section's lead-in. So a chunk covers part or all of <b>one</b> version, and docs/02 &sect;5.3's grouping of adjacent clauses is retrieval's collapse to the legal unit (docs/04 &sect;5). The rule a proviso, Explanation or illustration qualifies travels in <code>context_prefix</code> ("qualifies: &hellip;"), which is embedded with it and never alters the quoted text. Chunks exist only for released versions; audit A20 asserts it, and post-replay step 4c keeps it. Measured 18 Nov: 1,132,245 chunks over 1,114,427 versions, 299 MB. The 21.5 MB estimate above assumed about 158,000 section-level chunks; node-level text makes about seven times as many.</p>
+    </div>
+
     <h3><span class="mk">3.1</span>Glossary, definitions and the answer tier</h3>
 <pre><b>CREATE TABLE</b> glossary_concept (
   id            uuid <b>PRIMARY KEY DEFAULT</b> gen_random_uuid(),
@@ -659,6 +666,17 @@ provision_version                                          <b>INV-5, law as at a
           <tr><td class="k">Measured NDCG@10 delta</td><td colspan="2">To be filled from the golden set. Report it in the thesis whichever way it falls &mdash; a small delta justifies the managed path, a large one justifies self-hosting</td></tr>
         </tbody>
       </table>
+    </div>
+    <div class="note blue" style="margin-top:1rem">
+      <h4>As built and measured (18 Nov 2026, provisional): the delta is large</h4>
+      <p>Both implementations exist in <code>nizam/storage/lexical.py</code> behind one <code>search(q, filters, k)</code>. Each reads its candidates through <code>operative_provision</code>, as at the date and in the territory asked. <code>evals/lexical_benchmark.py</code> ran them on golden sets 1&ndash;4: 180 answerable cases, the raw question as typed, its jurisdiction plus federal law, k = 50.</p>
+      <table>
+        <tr><th>Implementation</th><th>Recall@10</th><th>Recall@50</th><th>No result</th><th>p50 latency</th></tr>
+        <tr><td><b>A, BM25</b></td><td>0.219</td><td>0.383</td><td>0 / 180</td><td>0.60 s</td></tr>
+        <tr><td>B as written (<code>websearch_to_tsquery</code>)</td><td>0.017</td><td>0.022</td><td>159 / 180</td><td>0.04 s</td></tr>
+        <tr><td>B&prime;, any term (<code>plainto_tsquery</code>, &amp; &rarr; |)</td><td>0.006</td><td>0.061</td><td>0 / 180</td><td>2.54 s</td></tr>
+      </table>
+      <p style="margin-top:.55rem">B as written requires every word of a natural-language question, so it found nothing for most of them. B&prime; finds matches, but it ranks far worse and is slower, because the tsvector is computed per matched row. By this table's own rule the large delta justifies self-hosting pg_search, and the managed path is not a like-for-like substitute. <b>Provisional:</b> the golden sets are drafts with &kappa; not yet measured (docs/10), and the metric is recall over necessary units, not NDCG over graded relevance. The thesis figure waits for the frozen, &kappa;-checked split.</p>
     </div>
   </div>
 </section>

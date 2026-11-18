@@ -101,7 +101,7 @@ services:
 
   blobstore:
     # S3-compatible stand-in for Cloudflare R2 so the blob code path is the same
-    # locally as in production (09a §2). SeaweedFS since 19 Nov 2026 (D-093):
+    # locally as in production (09a §2). SeaweedFS since 18 Nov 2026 (D-093):
     # MinIO's public images were withdrawn (D-088). SeaweedFS is Apache-2.0,
     # pulls anonymously, and was proven on this pin with a SigV4-signed S3
     # round trip -- create bucket, put, get, list; unsigned and wrong-secret

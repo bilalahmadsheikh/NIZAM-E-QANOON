@@ -659,6 +659,28 @@ m AS (
          AND NOT EXISTS (SELECT 1 FROM segmentation_boundary_candidate bc
                           WHERE bc.id = (em.evidence->>'candidate_id')::uuid))            AS boundary_missing
 -- <<< A19 measures
+    -- (0108, D-095) the retrieval chunks are exactly the release: none outside it, every released version with
+    -- text chunked, each version's spans in order and covering every non-space character, one chunker throughout
+    ,(SELECT count(*) FROM chunk)                                                       AS chunks
+    ,(SELECT count(DISTINCT version_id) FROM chunk)                                     AS chunk_versions
+    ,(SELECT count(*) FROM chunk c
+       WHERE NOT EXISTS (SELECT 1 FROM v_release_provision_version r WHERE r.id = c.version_id))
+                                                                                        AS chunk_outside_release
+    ,(SELECT count(*) FROM v_release_provision_version r
+       WHERE r.text_normalised !~ '^\s*$'
+         AND NOT EXISTS (SELECT 1 FROM chunk c WHERE c.version_id = r.id))              AS chunk_missing
+    ,(SELECT count(*) FROM (
+        SELECT c.version_id, c.seq, c.char_start, c.char_end, v.text_normalised AS t,
+               lag(c.char_end) OVER w AS prev_end, row_number() OVER w - 1 AS expect_seq,
+               lead(c.seq) OVER w IS NULL AS last
+          FROM chunk c JOIN provision_version v ON v.id = c.version_id
+        WINDOW w AS (PARTITION BY c.version_id ORDER BY c.seq)) s
+       WHERE s.seq <> s.expect_seq
+          OR substr(s.t, coalesce(s.prev_end, 0) + 1, s.char_start - coalesce(s.prev_end, 0)) !~ '^\s*$'
+          OR (s.prev_end IS NOT NULL AND s.char_start < s.prev_end)
+          OR (s.last AND substr(s.t, s.char_end + 1) !~ '^\s*$'))                       AS chunk_spans_bad
+    ,(SELECT count(DISTINCT chunker) FROM chunk)                                        AS chunkers
+-- <<< A20 measures
 )
 SELECT * FROM (
   SELECT 'C1' AS id, 'every acquired file becomes a blob'      AS criterion,
@@ -829,6 +851,12 @@ SELECT * FROM (
   UNION ALL SELECT 'A19','the boundary evidence every active expression manifest cites is held',
          boundary_cited||' citations (reported); '||boundary_missing||' missing', '0 missing; count reported',
          CASE WHEN boundary_missing=0 THEN 'PASS' ELSE 'FAIL' END FROM m
+  UNION ALL SELECT 'A20','retrieval chunks are exactly the release, covering each version in order',
+         chunks||' chunks over '||chunk_versions||' versions (reported); '||chunk_outside_release||' outside release; '||
+         chunk_missing||' unchunked; '||chunk_spans_bad||' bad spans; '||chunkers||' chunker(s)',
+         '0 / 0 / 0; one chunker',
+         CASE WHEN chunk_outside_release=0 AND chunk_missing=0 AND chunk_spans_bad=0 AND chunkers<=1
+              THEN 'PASS' ELSE 'FAIL' END FROM m
   UNION ALL SELECT 'A6','no overlapping law (enforced, not tested)',
          CASE WHEN excl_present=1 THEN 'EXCLUDE constraint present'
               ELSE 'CONSTRAINT MISSING' END, 'enforced',
