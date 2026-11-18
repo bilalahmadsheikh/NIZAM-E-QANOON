@@ -1,0 +1,368 @@
+[
+ {
+  "document_id": 4788,
+  "page_no": 1,
+  "match_text": "This Act may be called the Balochistan",
+  "before_text": "This Act may be called the Balochistan",
+  "after_text": "This Act may be called the Balochistan",
+  "defect": "margin side notes read into the provision text, and the sections left without the heading the page prints beside them",
+  "fixes": "rules reviewed_margin_note_pieces (pieces set aside as apparatus, joined as the heading) and reviewed_leading_margin_note (a note heading the law block is lifted out of the text) (D-080)",
+  "observed": "Page 1 prints, in the margin beside each section: s.1 'Short title, extent and commencement.'. Read from the render.",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4788-p1.png",
+  "render_sha256": "0d424a01a2c2ad1a702f27b15a6684c66255f054034a0d6d23b536b7411d5189",
+  "source_apparatus_blocks": [
+   987086,
+   987088,
+   987090
+  ],
+  "source_margin_note_pieces": [
+   {
+    "label": "1",
+    "target_block_id": 987085,
+    "source_block_ids": [
+     987086,
+     987088,
+     987090
+    ],
+    "heading": "Short title, extent and commencement."
+   }
+  ]
+ },
+ {
+  "document_id": 4788,
+  "page_no": 2,
+  "match_text": "Definitions.",
+  "before_text": "Definitions.",
+  "after_text": "Definitions.",
+  "defect": "margin side notes read into the provision text, and the sections left without the heading the page prints beside them",
+  "fixes": "rules reviewed_margin_note_pieces (pieces set aside as apparatus, joined as the heading) and reviewed_leading_margin_note (a note heading the law block is lifted out of the text) (D-080)",
+  "observed": "Page 2 prints, in the margin beside each section: s.2 'Definitions.'. Read from the render.",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4788-p2.png",
+  "render_sha256": "1afed9f553814b56c5a092c1c6224e246afa3daf40084df1f25787f969a829f7",
+  "source_leading_margin_notes": [
+   {
+    "block_id": 987094,
+    "note": "Definitions.",
+    "label": "2"
+   }
+  ]
+ },
+ {
+  "document_id": 4788,
+  "page_no": 3,
+  "match_text": "(1)      For the purpose of this Act the",
+  "before_text": "(1)      For the purpose of this Act the",
+  "after_text": "(1)      For the purpose of this Act the",
+  "defect": "margin side notes read into the provision text, and the sections left without the heading the page prints beside them",
+  "fixes": "rules reviewed_margin_note_pieces (pieces set aside as apparatus, joined as the heading) and reviewed_leading_margin_note (a note heading the law block is lifted out of the text) (D-080)",
+  "observed": "Page 3 prints, in the margin beside each section: s.3 'Advisory Committee.'; s.4 'Reference to Government on an issue of historical interest.'; s.5 'Custody preservation etc, of premises'. Read from the render.",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4788-p3.png",
+  "render_sha256": "b9d246ff33a21e67517b624095f4ee2f3250f8567387c4e7a9fdd4b4b299a761",
+  "source_apparatus_blocks": [
+   987120,
+   987122,
+   987142,
+   987144,
+   987146,
+   987148,
+   987150,
+   987152,
+   987154,
+   987156
+  ],
+  "source_margin_note_pieces": [
+   {
+    "label": "3",
+    "target_block_id": 987119,
+    "source_block_ids": [
+     987120,
+     987122
+    ],
+    "heading": "Advisory Committee."
+   },
+   {
+    "label": "4",
+    "target_block_id": 987141,
+    "source_block_ids": [
+     987142,
+     987144,
+     987146,
+     987148,
+     987150
+    ],
+    "heading": "Reference to Government on an issue of historical interest."
+   },
+   {
+    "label": "5",
+    "target_block_id": 987151,
+    "source_block_ids": [
+     987152,
+     987154,
+     987156
+    ],
+    "heading": "Custody preservation etc, of premises"
+   }
+  ]
+ },
+ {
+  "document_id": 4788,
+  "page_no": 4,
+  "match_text": "Government may, by notification in the o",
+  "before_text": "Government may, by notification in the o",
+  "after_text": "Government may, by notification in the o",
+  "defect": "margin side notes read into the provision text, and the sections left without the heading the page prints beside them",
+  "fixes": "rules reviewed_margin_note_pieces (pieces set aside as apparatus, joined as the heading) and reviewed_leading_margin_note (a note heading the law block is lifted out of the text) (D-080)",
+  "observed": "Page 4 prints, in the margin beside each section: s.6 'Declaration of Protected Heritage.'; s.7 'Acquisition of right or guardianship of a protected heritage of the Government.'. Read from the render.",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4788-p4.png",
+  "render_sha256": "d69c3510d42c73a984709d6cc977249f06f606693d003c3906c132dd22b4f7ac",
+  "source_apparatus_blocks": [
+   987163,
+   987165,
+   987167,
+   987185,
+   987187,
+   987189,
+   987191,
+   987193,
+   987194
+  ],
+  "source_margin_note_pieces": [
+   {
+    "label": "6",
+    "target_block_id": 987162,
+    "source_block_ids": [
+     987163,
+     987165,
+     987167
+    ],
+    "heading": "Declaration of Protected Heritage."
+   },
+   {
+    "label": "7",
+    "target_block_id": 987184,
+    "source_block_ids": [
+     987185,
+     987187,
+     987189,
+     987191,
+     987193,
+     987194
+    ],
+    "heading": "Acquisition of right or guardianship of a protected heritage of the Government."
+   }
+  ]
+ },
+ {
+  "document_id": 4788,
+  "page_no": 5,
+  "match_text": "The Committee may, with the previous",
+  "before_text": "The Committee may, with the previous",
+  "after_text": "The Committee may, with the previous",
+  "defect": "margin side notes read into the provision text, and the sections left without the heading the page prints beside them",
+  "fixes": "rules reviewed_margin_note_pieces (pieces set aside as apparatus, joined as the heading) and reviewed_leading_margin_note (a note heading the law block is lifted out of the text) (D-080)",
+  "observed": "Page 5 prints, in the margin beside each section: s.8 'Agreement for Preservation of a Protected Heritage.'. Read from the render.",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4788-p5.png",
+  "render_sha256": "98728f92eb8a3c090458bce1901c8033f9796934b49a117b435fdb607e1adae2",
+  "source_apparatus_blocks": [
+   987211,
+   987213,
+   987215,
+   987217
+  ],
+  "source_margin_note_pieces": [
+   {
+    "label": "8",
+    "target_block_id": 987210,
+    "source_block_ids": [
+     987211,
+     987213,
+     987215,
+     987217
+    ],
+    "heading": "Agreement for Preservation of a Protected Heritage."
+   }
+  ]
+ },
+ {
+  "document_id": 4788,
+  "page_no": 7,
+  "match_text": "If the owner is unable by reason of infa",
+  "before_text": "If the owner is unable by reason of infa",
+  "after_text": "If the owner is unable by reason of infa",
+  "defect": "margin side notes read into the provision text, and the sections left without the heading the page prints beside them",
+  "fixes": "rules reviewed_margin_note_pieces (pieces set aside as apparatus, joined as the heading) and reviewed_leading_margin_note (a note heading the law block is lifted out of the text) (D-080)",
+  "observed": "Page 7 prints, in the margin beside each section: s.9 'Owners under Disability.'; s.10 'Application of agreement endowment to repair of a Protected Heritage.'. Read from the render.",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4788-p7.png",
+  "render_sha256": "71c88b943900e221ec4e58ff40c83ded998b61f67614e9f7172a91b821d96527",
+  "source_apparatus_blocks": [
+   987258,
+   987260,
+   987284,
+   987286,
+   987288,
+   987290,
+   987292,
+   987294
+  ],
+  "source_margin_note_pieces": [
+   {
+    "label": "9",
+    "target_block_id": 987257,
+    "source_block_ids": [
+     987258,
+     987260
+    ],
+    "heading": "Owners under Disability."
+   },
+   {
+    "label": "10",
+    "target_block_id": 987283,
+    "source_block_ids": [
+     987284,
+     987286,
+     987288,
+     987290,
+     987292,
+     987294
+    ],
+    "heading": "Application of agreement endowment to repair of a Protected Heritage."
+   }
+  ]
+ },
+ {
+  "document_id": 4788,
+  "page_no": 8,
+  "match_text": "If Government apprehends that a Protecte",
+  "before_text": "If Government apprehends that a Protecte",
+  "after_text": "If Government apprehends that a Protecte",
+  "defect": "margin side notes read into the provision text, and the sections left without the heading the page prints beside them",
+  "fixes": "rules reviewed_margin_note_pieces (pieces set aside as apparatus, joined as the heading) and reviewed_leading_margin_note (a note heading the law block is lifted out of the text) (D-080)",
+  "observed": "Page 8 prints, in the margin beside each section: s.11 'Compulsory acquisition of Protected Heritage.'; s.12 'Maintenance of Protected Heritage.'. Read from the render.",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4788-p8.png",
+  "render_sha256": "b60b737ba8b63ddc7a788827d61a83d9a180fcbb8c6fdc586c0346b34326d759",
+  "source_apparatus_blocks": [
+   987305,
+   987307,
+   987309,
+   987311,
+   987319,
+   987321,
+   987323
+  ],
+  "source_margin_note_pieces": [
+   {
+    "label": "11",
+    "target_block_id": 987304,
+    "source_block_ids": [
+     987305,
+     987307,
+     987309,
+     987311
+    ],
+    "heading": "Compulsory acquisition of Protected Heritage."
+   },
+   {
+    "label": "12",
+    "target_block_id": 987318,
+    "source_block_ids": [
+     987319,
+     987321,
+     987323
+    ],
+    "heading": "Maintenance of Protected Heritage."
+   }
+  ]
+ },
+ {
+  "document_id": 4788,
+  "page_no": 9,
+  "match_text": "Where rights have been acquired by Gover",
+  "before_text": "Where rights have been acquired by Gover",
+  "after_text": "Where rights have been acquired by Gover",
+  "defect": "margin side notes read into the provision text, and the sections left without the heading the page prints beside them",
+  "fixes": "rules reviewed_margin_note_pieces (pieces set aside as apparatus, joined as the heading) and reviewed_leading_margin_note (a note heading the law block is lifted out of the text) (D-080)",
+  "observed": "Page 9 prints, in the margin beside each section: s.13 'Relinquishment of Government right in a Protected Heritage.'; s.14 'Right of access to certain Protected Heritage'. Read from the render.",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4788-p9.png",
+  "render_sha256": "e81ad04ae4af7b197844a4049629aa2e6740edc7a1ed8edd547438c64fc97500",
+  "source_apparatus_blocks": [
+   987336,
+   987338,
+   987340,
+   987342,
+   987344,
+   987350,
+   987352,
+   987354,
+   987356
+  ],
+  "source_margin_note_pieces": [
+   {
+    "label": "13",
+    "target_block_id": 987335,
+    "source_block_ids": [
+     987336,
+     987338,
+     987340,
+     987342,
+     987344
+    ],
+    "heading": "Relinquishment of Government right in a Protected Heritage."
+   },
+   {
+    "label": "14",
+    "target_block_id": 987349,
+    "source_block_ids": [
+     987350,
+     987352,
+     987354,
+     987356
+    ],
+    "heading": "Right of access to certain Protected Heritage"
+   }
+  ]
+ },
+ {
+  "document_id": 4788,
+  "page_no": 10,
+  "match_text": "The provision of this Act shall have eff",
+  "before_text": "The provision of this Act shall have eff",
+  "after_text": "The provision of this Act shall have eff",
+  "defect": "margin side notes read into the provision text, and the sections left without the heading the page prints beside them",
+  "fixes": "rules reviewed_margin_note_pieces (pieces set aside as apparatus, joined as the heading) and reviewed_leading_margin_note (a note heading the law block is lifted out of the text) (D-080)",
+  "observed": "Page 10 prints, in the margin beside each section: s.16 'Overriding effect.'; s.15 'Penalty.'; s.17 'Rules'; s.18 'Indemnity.'. Read from the render.",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4788-p10.png",
+  "render_sha256": "723eb39cf70e69d294cf1fb935670d3b5d660e0c40b16a2e82beb7b7f81bf9fa",
+  "source_apparatus_blocks": [
+   987369,
+   987371
+  ],
+  "source_margin_note_pieces": [
+   {
+    "label": "16",
+    "target_block_id": 987368,
+    "source_block_ids": [
+     987369,
+     987371
+    ],
+    "heading": "Overriding effect."
+   }
+  ],
+  "source_leading_margin_notes": [
+   {
+    "block_id": 987361,
+    "note": "Penalty.",
+    "label": "15"
+   },
+   {
+    "block_id": 987373,
+    "note": "Rules",
+    "label": "17"
+   },
+   {
+    "block_id": 987375,
+    "note": "Indemnity.",
+    "label": "18"
+   }
+  ]
+ }
+]

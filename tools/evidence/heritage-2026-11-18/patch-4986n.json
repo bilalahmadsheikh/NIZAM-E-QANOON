@@ -1,0 +1,149 @@
+[
+ {
+  "document_id": 4986,
+  "page_no": 4,
+  "match_text": "If any question arises whether any produ",
+  "before_text": "If any question arises whether any produ",
+  "after_text": "If any question arises whether any produ",
+  "defect": "margin side notes read into the provision text, and the sections left without the heading the page prints beside them",
+  "fixes": "rules reviewed_margin_note_pieces (pieces set aside as apparatus, joined as the heading) and reviewed_leading_margin_note (a note heading the law block is lifted out of the text) (D-080)",
+  "observed": "Page 4 prints, in the margin beside each section: s.4 'Dispute as to whether any product, etc. is an antiquity.'. Read from the render.",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4986-p4.png",
+  "render_sha256": "05c6d9d9d54e024c1442c8709b855177e29f8dc5d058f8a87e76c1da5965c07e",
+  "source_apparatus_blocks": [
+   1009763
+  ],
+  "source_margin_note_pieces": [
+   {
+    "label": "4",
+    "target_block_id": 1009762,
+    "source_block_ids": [
+     1009763
+    ],
+    "heading": "Dispute as to whether any product, etc. is an antiquity."
+   }
+  ]
+ },
+ {
+  "document_id": 4986,
+  "page_no": 8,
+  "match_text": "Purchasers at",
+  "before_text": "Purchasers at",
+  "after_text": "Purchasers at",
+  "defect": "margin side notes read into the provision text, and the sections left without the heading the page prints beside them",
+  "fixes": "rules reviewed_margin_note_pieces (pieces set aside as apparatus, joined as the heading) and reviewed_leading_margin_note (a note heading the law block is lifted out of the text) (D-080)",
+  "observed": "Page 8 prints, in the margin beside each section: s.14 'Purchasers at certain sales and persons claiming through owner bound by agreement entered into by owner.'. Read from the render.",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4986-p8.png",
+  "render_sha256": "1f3fd6da9dbbb242075c83eed244c662c69a589bec9bfc2fc70871b679b51e12",
+  "source_apparatus_blocks": [
+   1009812
+  ],
+  "source_margin_note_pieces": [
+   {
+    "label": "14",
+    "target_block_id": 1009811,
+    "source_block_ids": [
+     1009812
+    ],
+    "heading": "Purchasers at certain sales and persons claiming through owner bound by agreement entered into by owner."
+   }
+  ]
+ },
+ {
+  "document_id": 4986,
+  "page_no": 10,
+  "match_text": "Restriction on",
+  "before_text": "Restriction on",
+  "after_text": "Restriction on",
+  "defect": "margin side notes read into the provision text, and the sections left without the heading the page prints beside them",
+  "fixes": "rules reviewed_margin_note_pieces (pieces set aside as apparatus, joined as the heading) and reviewed_leading_margin_note (a note heading the law block is lifted out of the text) (D-080)",
+  "observed": "Page 10 prints, in the margin beside each section: s.20 'Restriction on use of protected immovable antiquity.'; s.20 'Restriction on'. Read from the render.",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4986-p10.png",
+  "render_sha256": "b1082b9686e0490efed4659bdd82649d2b23ce6cb4b6baad2ea8ee3da8bd769a",
+  "source_margin_note_pieces": [
+   {
+    "label": "20",
+    "target_block_id": 1009843,
+    "source_block_ids": [
+     1009843,
+     1009845
+    ],
+    "heading": "Restriction on use of protected immovable antiquity."
+   }
+  ],
+  "source_leading_margin_notes": [
+   {
+    "block_id": 1009843,
+    "note": "Restriction on",
+    "label": "20"
+   }
+  ]
+ },
+ {
+  "document_id": 4986,
+  "page_no": 11,
+  "match_text": "Notwithstanding anything contained in an",
+  "before_text": "Notwithstanding anything contained in an",
+  "after_text": "Notwithstanding anything contained in an",
+  "defect": "margin side notes read into the provision text, and the sections left without the heading the page prints beside them",
+  "fixes": "rules reviewed_margin_note_pieces (pieces set aside as apparatus, joined as the heading) and reviewed_leading_margin_note (a note heading the law block is lifted out of the text) (D-080)",
+  "observed": "Page 11 prints, in the margin beside each section: s.24 'Execution of development schemes and new constructions in proximity to immovable antiquity.'. Read from the render.",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4986-p11.png",
+  "render_sha256": "80d9592c370835af0d6311d6cf6073449e52c72c11d7240a304d14d83216da24",
+  "source_apparatus_blocks": [
+   1009845,
+   1009859
+  ],
+  "source_margin_note_pieces": [
+   {
+    "label": "24",
+    "target_block_id": 1009858,
+    "source_block_ids": [
+     1009859,
+     1009861
+    ],
+    "heading": "Execution of development schemes and new constructions in proximity to immovable antiquity."
+   }
+  ]
+ },
+ {
+  "document_id": 4986,
+  "page_no": 12,
+  "match_text": "constructions in",
+  "before_text": "constructions in",
+  "after_text": "constructions in",
+  "defect": "margin side notes read into the provision text, and the sections left without the heading the page prints beside them",
+  "fixes": "rules reviewed_margin_note_pieces (pieces set aside as apparatus, joined as the heading) and reviewed_leading_margin_note (a note heading the law block is lifted out of the text) (D-080)",
+  "observed": "Page 12 prints, in the margin beside each section: the rest of a note begun on the page before (1009861). Read from the render.",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4986-p12.png",
+  "render_sha256": "48edc7df0438a2750ca60d5dd50916c271389eefa780f4d8594d33dc159ee79f",
+  "source_apparatus_blocks": [
+   1009861
+  ]
+ },
+ {
+  "document_id": 4986,
+  "page_no": 16,
+  "match_text": "The Antiquities Act, 1975 (Act No.VII of",
+  "before_text": "The Antiquities Act, 1975 (Act No.VII of",
+  "after_text": "The Antiquities Act, 1975 (Act No.VII of",
+  "defect": "margin side notes read into the provision text, and the sections left without the heading the page prints beside them",
+  "fixes": "rules reviewed_margin_note_pieces (pieces set aside as apparatus, joined as the heading) and reviewed_leading_margin_note (a note heading the law block is lifted out of the text) (D-080)",
+  "observed": "Page 16 prints, in the margin beside each section: s.41 'Repeal and saving'. Read from the render.",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc4986-p16.png",
+  "render_sha256": "8993a73e1ad56f57f3449fc23064996c329a08efa5c66f447f0947ff752752da",
+  "source_apparatus_blocks": [
+   1009929
+  ],
+  "source_margin_note_pieces": [
+   {
+    "label": "41",
+    "target_block_id": 1009928,
+    "source_block_ids": [
+     1009929
+    ],
+    "heading": "Repeal and saving"
+   }
+  ]
+ }
+]

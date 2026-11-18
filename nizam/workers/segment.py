@@ -1010,6 +1010,14 @@ def _bz_digit_led_clause_ok(item) -> bool:
             and _re.fullmatch(r"[a-z]{1,2}|[ivxlc]{1,6}", item["label"]) is not None)
 
 
+def _leading_margin_note_ok(item) -> bool:
+    """Rule `reviewed_leading_margin_note` (D-080, doc 1336 p4): {block_id, note, label} -- the exact margin words a
+    text layer set at the head of a law block (two words or more), and the top-level section they are printed beside."""
+    return (isinstance(item, dict) and set(item) == {"block_id", "note", "label"} and type(item["block_id"]) is int
+            and item["block_id"] > 0 and isinstance(item["note"], str) and len(item["note"].strip()) >= 4
+            and isinstance(item["label"], str) and re.fullmatch(r"\d{1,3}[A-Z]?", item["label"]) is not None)
+
+
 def _bz_fused_margin_tail_ok(item) -> bool:
     """Agent K6's rule D (group 22, doc 4645): {block_id, tail} -- the exact margin words fused onto the end of a law
     line of that block (>= 4 characters)."""
@@ -1069,6 +1077,8 @@ _BZ_KEYED_LIST_KEYS = {"source_margin_heading_owners": (_bz_margin_heading_owner
                        "source_heading_lines": (_bz_heading_line_ok, "label"),
                        # agent K6 rule D (group 22, doc 4645): keyed by block
                        "source_fused_margin_tails": (_bz_fused_margin_tail_ok, "block_id"),
+                       # rule reviewed_leading_margin_note (D-080, doc 1336): keyed by block
+                       "source_leading_margin_notes": (_leading_margin_note_ok, "block_id"),
                        # agent K6 rule E (group 23, doc 4649): keyed by block
                        "source_digit_led_clause_labels": (_bz_digit_led_clause_ok, "block_id"),
                        # agent JF rule D (group 27, doc 3949): keyed by the row's block

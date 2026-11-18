@@ -1,0 +1,35 @@
+{
+ "schema": "nizam.decision_review.v1",
+ "reviewer_name": "lead under owner chat delegation (standing since 25 Oct 2026)",
+ "source": "chat-delegation",
+ "chat_quote": "release fast what u can release making the decisons for me in that numbering the question u ask me and choose the recommended choice in it without asking me not also don't choose keep it unreleased or release only specific part",
+ "exported_at": "2026-11-18T15:00:00+00:00",
+ "answer_count": 1,
+ "answers": [
+  {
+   "document_id": 5133,
+   "question_id": "q1",
+   "card": {
+    "document_id": 5133,
+    "question_id": "q1",
+    "question": "KP Antiquities Act 2016 s.10 prints \"2[10. Accidental discovery of antiquity to be reported to the Director.---(1) Whoever ...\" (p11, substituted by KP Act XIV of 2022). The stored heading is the contents row \"...to Director.]\" with the Code's closing bracket, and the body heading stays in the text. Which heading does s.10 take?",
+    "options": [
+     "printed: the body's own heading, out of the text",
+     "contents: keep \"...to Director.]\""
+    ],
+    "recommended": "printed",
+    "card_sha256": "2c1f5cff0de677e08ab0b2c5be82296f8c6e4483e18cd7565aa1d437356e7c0b"
+   },
+   "card_sha256": "2c1f5cff0de677e08ab0b2c5be82296f8c6e4483e18cd7565aa1d437356e7c0b",
+   "choice": "printed",
+   "reviewed_page_images": true,
+   "note": "The lead read p11: the bold heading, then \"---(1) Whoever\"; the recommended option heads s.10 with it.",
+   "renders": {
+    "11": {
+     "path": ".artifacts/release-work-2026-09-24/claude/renders/doc5133-p11.png",
+     "sha256": "ce5284482bd524785acc1805f0660fd0446aede569a92eeea67188b2131cfbde"
+    }
+   }
+  }
+ ]
+}

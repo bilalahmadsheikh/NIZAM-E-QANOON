@@ -9710,6 +9710,44 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
         if _k6_found != set(_k6_by_block):
             raise ValueError(f"source fused margin tail blocks not found: {sorted(set(_k6_by_block) - _k6_found)}")
         blocks = _k6_new
+    # Rule `reviewed_leading_margin_note` (D-080, doc 1336 p4): a page-read margin note the text layer set at the HEAD of
+    # a law block, ahead of the law words that follow it ('Acquisition of right in / or guardianship of a / protected /
+    # heritage / of the government. / (2) The Committee, may accept ...'). The block's text must open with exactly the
+    # note's words (whitespace-tolerant) and law text must follow; the note leaves the text and is carried as
+    # `_lm_note` on the block, given below to the top-level section `label` it is printed beside. Data-gated in every
+    # profile; fails closed.
+    _lm_specs = list(overrides.get("source_leading_margin_notes") or [])
+    _lm_by_block: dict = {}
+    for _lm_s in _lm_specs:
+        if not (isinstance(_lm_s, dict) and set(_lm_s) == {"block_id", "note", "label"}
+                and type(_lm_s["block_id"]) is int and _lm_s["block_id"] > 0
+                and isinstance(_lm_s["note"], str) and len(_lm_s["note"].strip()) >= 4
+                and isinstance(_lm_s["label"], str) and re.fullmatch(r"\d{1,3}[A-Z]?", _lm_s["label"])
+                and _lm_s["block_id"] not in _lm_by_block):
+            raise ValueError(f"source leading margin note {_lm_s!r} is malformed")
+        _lm_by_block[_lm_s["block_id"]] = _lm_s
+    if _lm_by_block:
+        _lm_new, _lm_found = [], set()
+        for _lm_b in blocks:
+            _lm_s = _lm_by_block.get(_lm_b.get("id"))
+            if _lm_s is None or _lm_b.get("_lm_note") is not None:
+                _lm_new.append(_lm_b)
+                if _lm_s is not None:
+                    _lm_found.add(_lm_b.get("id"))
+                continue
+            # the note ends its line, or is followed on the same line by the law ('Definitions. 2. In this Act ...')
+            _lm_rx = re.compile(r"\A\s*" + r"\s+".join(re.escape(w) for w in _lm_s["note"].split())
+                                + r"(?:[ \t]*(?:\n|$)|[ \t]+(?=\S))")
+            _lm_m = _lm_rx.match(_lm_b["text"])
+            _lm_rest = _lm_b["text"][_lm_m.end():] if _lm_m else ""
+            if _lm_m is None or not _lm_rest.strip():
+                raise ValueError(f"source leading margin note {_lm_s['note']!r} does not open block "
+                                 f"{_lm_b.get('id')} ahead of law text")
+            _lm_new.append(dict(_lm_b, text=_lm_rest, _lm_note=_norm(_lm_s["note"]), _lm_label=_lm_s["label"]))
+            _lm_found.add(_lm_b.get("id"))
+        if _lm_found != set(_lm_by_block):
+            raise ValueError(f"source leading margin note blocks not found: {sorted(set(_lm_by_block) - _lm_found)}")
+        blocks = _lm_new
     # agK6 rule H `reviewed_inline_margin_note` (doc 4529): margin notes the OCR wrote into the law block
     _k6h_specs = list(overrides.get("source_inline_margin_notes") or [])
     if _k6h_specs:
@@ -16394,15 +16432,27 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
         _mp_block = {b.get("id"): b for b in blocks}
         _mp_ids = list(_mp_spec.get("source_block_ids") or [])
         _mp_tgt = _mp_block.get(_mp_spec.get("target_block_id"))
-        _mp_join = _norm(" ".join(_norm((_mp_block.get(i) or {}).get("text") or "") for i in _mp_ids))
+        # D-080: a piece may be a law block whose head carried a margin note a reviewed reading lifted (rule
+        # reviewed_leading_margin_note, doc 4986 s.20 'Restriction on'); its lifted words are the piece
+        def _mp_words(i):
+            b = _mp_block.get(i) or {}
+            return b["_lm_note"] if b.get("_lm_note") is not None else _norm(b.get("text") or "")
+        _mp_join = _norm(" ".join(_mp_words(i) for i in _mp_ids))
+        # D-080: a note printed across a page break (doc 4986 ss.20, 24) has pieces on the target's page and the next,
+        # in reading order
+        _mp_pages = [(_mp_block.get(i) or {}).get("page_no") for i in _mp_ids]
+        _mp_tpage = (_mp_tgt or {}).get("page_no")
+        _mp_page_ok = (_mp_tpage is not None and all(p in (_mp_tpage, _mp_tpage + 1) for p in _mp_pages)
+                       and _mp_pages == sorted(_mp_pages) and _mp_tpage in _mp_pages)
         def _mp_walk(node):
             for child in node.children:
                 yield child
                 yield from _mp_walk(child)
         _mp_hits = [n for n in _mp_walk(root) if n.first_block == _mp_spec.get("target_block_id")
                     and n.label == _mp_spec.get("label") and n.kind in ("section", "article")]
-        if (not _mp_ids or _mp_tgt is None or not set(_mp_ids) <= _mp_apparatus
-                or any((_mp_block.get(i) or {}).get("page_no") != _mp_tgt.get("page_no") for i in _mp_ids)
+        if (not _mp_ids or _mp_tgt is None
+                or not {i for i in _mp_ids if (_mp_block.get(i) or {}).get("_lm_note") is None} <= _mp_apparatus
+                or not _mp_page_ok
                 or _mp_join != _norm(_mp_spec.get("heading") or "") or len(_mp_hits) != 1):
             raise ValueError(f"margin note pieces for {_mp_spec.get('label')!r} at block "
                              f"{_mp_spec.get('target_block_id')} lack exact source evidence ({len(_mp_hits)} target(s))")
@@ -16425,6 +16475,27 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
                 elif not _k6_n.marginal_note:
                     _k6_n.marginal_note = _norm(_k6_b["marginal_note"])
                 marginal_note_blocks_attached.add(_k6_b.get("id"))
+    # Rule `reviewed_leading_margin_note` (D-080): each lifted note is the marginal note of the one top-level section
+    # its reading names, which must contain the block.
+    for _lm_b in blocks:
+        if _lm_b.get("_lm_note") is None:
+            continue
+        _lm_hits = [n for n in _k6_walk(root) if n.kind in ("section", "article") and n.label == _lm_b["_lm_label"]
+                    and n.parent is root]
+        if (len(_lm_hits) != 1 or _lm_b.get("id") not in {bid for n in [_lm_hits[0], *_k6_walk(_lm_hits[0])]
+                                                          for bid in n.blocks}
+                or (_lm_hits[0].marginal_note and _lm_hits[0].marginal_note != _lm_b["_lm_note"])):
+            raise ValueError(f"source leading margin note of block {_lm_b.get('id')} has no owner section "
+                             f"{_lm_b['_lm_label']!r} holding it ({len(_lm_hits)} candidate(s))")
+        # a lifted note that is one piece of a heading the margin-note pieces already gave the section is that
+        # heading's, not a separate note (doc 4986 s.20: 'Restriction on' + 'use of protected immovable antiquity.')
+        if _lm_b["_lm_note"] in _norm(_lm_hits[0].heading or "") and _lm_b["_lm_note"] != _norm(_lm_hits[0].heading):
+            reviews_enacted.append({"resolution": "leading_margin_note", "printed_label": _lm_b["_lm_label"],
+                                    "source_block_id": _lm_b.get("id"), "piece_of_heading": True})
+            continue
+        _lm_hits[0].marginal_note = _lm_b["_lm_note"]
+        reviews_enacted.append({"resolution": "leading_margin_note", "printed_label": _lm_b["_lm_label"],
+                                "source_block_id": _lm_b.get("id")})
     # agK6 rule H `reviewed_inline_margin_note`: each removed note is the marginal note of the one section/article
     # whose text holds its anchor
     def _k6h_text(node):
@@ -16572,7 +16643,10 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
                     or _ay_spec.get("use") not in ("heading", "marginal_note")
                     or not _owner_decision_citation(_ay_spec.get("owner_decision"))
                     or not _norm(_ay_spec.get("heading") or "")
-                    or _norm(_ay_spec["heading"]) not in _norm(_ay_block.get("text") or "")):
+                    # the words are printed in the block: in its text, or in a margin note a reviewed reading lifted
+                    # from its head (rule reviewed_leading_margin_note, D-080)
+                    or _norm(_ay_spec["heading"]) not in _norm((_ay_block.get("text") or "") + " "
+                                                               + (_ay_block.get("_lm_note") or ""))):
                 raise ValueError(f"source printed heading {_ay_spec.get('label')!r} lacks exact source evidence: "
                                  f"{len(_ay_targets)} target(s), block "
                                  f"{'absent' if _ay_block is None else repr(_norm(_ay_block.get('text') or '')[:200])}")

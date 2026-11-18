@@ -1,0 +1,21 @@
+[
+ {
+  "document_id": 1336,
+  "page_no": 4,
+  "match_text": "may accept the gift or bequest",
+  "before_text": "may accept the gift or bequest",
+  "after_text": "may accept the gift or bequest",
+  "defect": "s.8's margin note heads the block holding s.8(2)'s first words, so it closed s.8(1)'s text",
+  "fixes": "rule reviewed_leading_margin_note (D-080): the note leaves the text and marks s.8",
+  "observed": "Page 4 prints \"Acquisition of right in / or guardianship of a / protected heritage / of the government.\" in the margin beside s.8(1); the text layer set it at the head of the block that opens with \"(2) The Committee, may accept the gift or bequest\". Read from the render.",
+  "render": ".artifacts/heritage-2026-11-18/renders/doc1336-p4.png",
+  "render_sha256": "8318dacdd3517da3ba26fc80783de9b60ca21d27f035f806fb82ea9816b76d05",
+  "source_leading_margin_notes": [
+   {
+    "block_id": 74276,
+    "label": "8",
+    "note": "Acquisition of right in or guardianship of a protected heritage of the government."
+   }
+  ]
+ }
+]

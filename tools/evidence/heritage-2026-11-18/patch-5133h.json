@@ -1,0 +1,38 @@
+[
+ {
+  "document_id": 5133,
+  "page_no": 11,
+  "match_text": "the Director.---(1) Whoever",
+  "before_text": "the Director.---(1) Whoever",
+  "after_text": "the Director.\n(1) Whoever",
+  "defect": "the bold heading of s.10 and its sub-section (1) are one line, so (1) did not open and the heading stayed text",
+  "fixes": "parser-input correction: the \"---\" separator the parser drops after every other heading becomes a line break",
+  "observed": "KP Antiquities Act 2016 s.10 prints \"2[10. Accidental discovery of antiquity to be reported to the Director.---(1) Whoever ...\" (p11, substituted by KP Act XIV of 2022). The stored heading is the contents row \"...to Director.]\" with the Code's closing bracket, and the body heading stays in the text. Which heading does s.10 take? The page prints the heading in bold, then \"---(1)\".",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc5133-p11.png",
+  "render_sha256": "ce5284482bd524785acc1805f0660fd0446aede569a92eeea67188b2131cfbde"
+ },
+ {
+  "document_id": 5133,
+  "page_no": 11,
+  "match_text": "Accidental discovery of antiquity to be",
+  "before_text": "Accidental discovery of antiquity to be",
+  "after_text": "Accidental discovery of antiquity to be",
+  "defect": "s.10 headed by the contents row with the Code's closing bracket; its printed heading in its text",
+  "fixes": "rule reviewed_heading_line: the printed heading leaves the text and becomes the heading",
+  "observed": "KP Antiquities Act 2016 s.10 prints \"2[10. Accidental discovery of antiquity to be reported to the Director.---(1) Whoever ...\" (p11, substituted by KP Act XIV of 2022). The stored heading is the contents row \"...to Director.]\" with the Code's closing bracket, and the body heading stays in the text. Which heading does s.10 take? Read from the render of p11.",
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/doc5133-p11.png",
+  "render_sha256": "ce5284482bd524785acc1805f0660fd0446aede569a92eeea67188b2131cfbde",
+  "source_heading_lines": [
+   {
+    "label": "10",
+    "source_block_id": 1039081,
+    "heading": "Accidental discovery of antiquity to be reported to the Director.",
+    "owner_decision": {
+     "export": ".artifacts/decision-review/exports/decision-review-2026-11-18-delegated-5133.json",
+     "document_id": 5133,
+     "question_id": "q1"
+    }
+   }
+  ]
+ }
+]
