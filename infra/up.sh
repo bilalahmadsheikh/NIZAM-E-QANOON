@@ -39,7 +39,7 @@ mkdir -p "${CORPUS_ROOT}/snapshots"
 echo "corpus: $(find "${CORPUS_ROOT}/raw" -type f | wc -l) blobs at ${CORPUS_ROOT}"
 
 # --- 1. start ----------------------------------------------------------------
-say "1. starting postgres, pgadmin and minio"
+say "1. starting postgres and pgadmin (minio is opt-in: --profile blobstore, D-088)"
 docker compose up -d --quiet-pull
 
 say "2. waiting for postgres to be healthy"

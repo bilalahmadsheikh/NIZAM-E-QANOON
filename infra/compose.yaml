@@ -104,6 +104,14 @@ services:
     # locally as in production (09a §2). Newest tag on Docker Hub is 2025-09-07;
     # the public image has not moved since -- re-check before choosing object
     # storage for production (09b).
+    #
+    # OPT-IN since 18 Nov 2026 (D-088): minio/minio is gone from Docker Hub
+    # (the Hub API returns 404 for the repository) and quay.io/minio/minio
+    # refuses anonymous pulls (401), so a fresh machine cannot pull this image.
+    # No code reads the blob store yet. A machine that already has the image
+    # starts it with:  docker compose -f infra/compose.yaml --profile blobstore up -d
+    # The replacement S3 stand-in is an open question in the decision log.
+    profiles: ["blobstore"]
     image: minio/minio:RELEASE.2025-09-07T16-13-09Z@sha256:14cea493d9a34af32f524e538b8346cf79f3321eff8e708c1e2960462bd8936e
     container_name: nizam-minio
     restart: unless-stopped

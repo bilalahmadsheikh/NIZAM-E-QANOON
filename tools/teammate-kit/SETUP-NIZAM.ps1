@@ -156,7 +156,7 @@ PY
     [ -n "${!k:-}" ] || die "infra/.env has no $k"
   done
 
-  say "starting the containers (first time downloads about 1.5 GB of images)"
+  say "starting the containers (first time downloads about 1 GB of images)"
   docker compose -f infra/compose.yaml up -d --quiet-pull
   for i in $(seq 1 100); do
     [ "$(docker inspect -f '{{.State.Health.Status}}' nizam-postgres 2>/dev/null || echo x)" = healthy ] && break
@@ -224,13 +224,28 @@ Note "installing into $Root  (code: $Repo, database copy: $Data)"
 
 # ================================================================ 1. unpack the kit
 $KitJson = Join-Path $Kit 'payload\kit.json'
+Add-Type -AssemblyName System.IO.Compression.FileSystem
+if ((Test-Path $KitJson) -and $Zip -and (Test-Path $Zip)) {
+    # a newer kit than the one unpacked here: unpack it again
+    try {
+        $za = [IO.Compression.ZipFile]::OpenRead($Zip)
+        $e = $za.GetEntry('payload/kit.json')
+        $sr = New-Object IO.StreamReader($e.Open())
+        $zipCommit = ($sr.ReadToEnd() | ConvertFrom-Json).commit
+        $sr.Close(); $za.Dispose()
+        $hereCommit = (Get-Content -Raw -Encoding UTF8 $KitJson | ConvertFrom-Json).commit
+        if ($zipCommit -ne $hereCommit) {
+            Note "the zip is a different kit ($($zipCommit.Substring(0,12))) from the one unpacked ($($hereCommit.Substring(0,12)))"
+            Remove-Item -Recurse -Force $Kit -ErrorAction Stop
+        }
+    } catch { Stop-Setup "Reading $Zip failed: $($_.Exception.Message)" }
+}
 if (-not (Test-Path $KitJson)) {
     if (-not $Zip -or -not (Test-Path $Zip)) { Stop-Setup "No nizam-kit-*.zip found next to this file. Put it here, or pass -Zip <path>." }
     $zipGB = [math]::Ceiling((Get-Item $Zip).Length / 1GB)
     if ((FreeGB $Root) -lt ($NeedGB + $zipGB)) { Stop-Setup "$Root needs $($NeedGB + $zipGB) GB free to unpack and install; it has $(FreeGB $Root) GB." }
     Say "unpacking $(Split-Path $Zip -Leaf) (about a minute)"
     try {
-        Add-Type -AssemblyName System.IO.Compression.FileSystem
         if (Test-Path $Kit) { Remove-Item -Recurse -Force $Kit -ErrorAction Stop }
         [IO.Compression.ZipFile]::ExtractToDirectory($Zip, $Kit)
     } catch { Stop-Setup "Unpacking failed: $($_.Exception.Message). Is the zip complete? Copy it again." }
@@ -402,6 +417,7 @@ Write-Host @"
    Database   Postgres on localhost:5433, database nizam_clean, user nizam
               password: POSTGRES_PASSWORD in $Repo\infra\.env
    pgAdmin    http://localhost:5050   (login in infra\.env: PGADMIN_EMAIL / PGADMIN_PASSWORD)
+   MinIO      not started: its public image was withdrawn and nothing uses it yet (D-088)
    API        http://localhost:8080/v1/law/collections/popular
 
    Every day:  cd $Repo ;  .\nz.ps1 up      (or inside Ubuntu: cd $(ToWsl $Repo) && ./nz up)

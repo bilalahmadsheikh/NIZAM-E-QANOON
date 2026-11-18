@@ -24,10 +24,17 @@ dc()    { docker compose -f "$(pwd)/compose.yaml" "$@"; }
 psql_() { dc exec -T postgres psql -U "$USER_" -d "$DB" -tAc "$1" 2>/dev/null | tr -d '[:space:]'; }
 
 echo "== containers"
-for c in nizam-postgres nizam-pgadmin nizam-minio; do
+for c in nizam-postgres nizam-pgadmin; do
   s=$(docker inspect -f '{{.State.Status}}' "$c" 2>/dev/null || echo missing)
   [ "$s" = running ] && ok "$c running" || no "$c" "state=$s"
 done
+# MinIO is opt-in (compose profile "blobstore", D-088): checked only where it exists.
+s=$(docker inspect -f '{{.State.Status}}' nizam-minio 2>/dev/null || echo missing)
+case "$s" in
+  running) ok "nizam-minio running (optional)"; MINIO_UP=1 ;;
+  missing) echo "  -- nizam-minio not created (optional, profile blobstore)"; MINIO_UP=0 ;;
+  *)       no "nizam-minio" "state=$s"; MINIO_UP=0 ;;
+esac
 
 echo "== database contract (doc 03 §1)"
 v=$(psql_ "SELECT current_setting('server_version_num')::int >= 170000")
@@ -127,7 +134,9 @@ else
 fi
 
 echo "== reachability"
-for p in "${POSTGRES_PORT:-5433}" "${PGADMIN_PORT:-5050}" "${MINIO_CONSOLE_PORT:-9001}"; do
+ports=("${POSTGRES_PORT:-5433}" "${PGADMIN_PORT:-5050}")
+[ "${MINIO_UP:-0}" = 1 ] && ports+=("${MINIO_CONSOLE_PORT:-9001}")
+for p in "${ports[@]}"; do
   (exec 3<>/dev/tcp/127.0.0.1/"$p") 2>/dev/null && { ok "port $p listening"; exec 3<&- ; } || no "port $p"
 done
 code=$(curl -s -o /dev/null -w '%{http_code}' "http://127.0.0.1:${PGADMIN_PORT:-5050}/misc/ping" 2>/dev/null)

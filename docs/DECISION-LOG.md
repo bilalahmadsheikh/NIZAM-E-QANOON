@@ -1136,6 +1136,25 @@ Area: client · Status: Superseded by D-084 (the whole-page cloth; the hem, the 
   design/heritage_art.dart, presentation/discover.dart, presentation/heritage.dart; test/heritage_test.dart
   (golden embroidery.png, a review sheet at 3x).
 
+### D-088 · 2026-11-18 · MinIO becomes opt-in: its public image can no longer be pulled
+Area: L2 storage/deploy · Status: standing (amends 09a §2's local stack; the replacement is an open question)
+- Decision:
+  1. The `minio` service in infra/compose.yaml moves behind the Compose profile `blobstore`. `./nz up`,
+     `infra/up.sh` and the teammate kit start Postgres and pgAdmin only.
+  2. The self-test checks MinIO only where its container exists. `./nz status` names it only then.
+  3. The image pin is kept, so a machine that still holds the image can start it with `--profile blobstore`.
+- Why: the D-087 kit's first end-to-end run, into a fresh Ubuntu 24.04 on 18 Nov 2026, stopped at
+  `pull access denied for minio/minio`.
+  - Docker Hub's API returns 404 for the repository.
+  - `quay.io/minio/minio` at the pinned digest returns 401 to an anonymous pull.
+  - Public reports put the Hub withdrawal in September 2026 and quay's login requirement from about 24 September.
+    These are secondary sources (GitHub issues in milvus-io/milvus #53430 and xtdb/xtdb #6061, and blog posts); no
+    MinIO statement was found.
+  - No code reads or writes the blob store: grep finds MinIO only in selftest.sh. So no machine set up after
+    September could run `./nz up`, and the owner's worked only because the image was already cached.
+- Where: infra/compose.yaml (minio service comment), infra/scripts/selftest.sh, nz (status), infra/up.sh; open
+  question "The local S3 stand-in after MinIO".
+
 ### D-087 · 2026-11-18 · The teammate kit: one zip and one script make an exact replica on a new laptop
 Area: process/deploy · Status: standing (extends the D-086 transfer; corrects SETUP.md's WSL step)
 - Decision:
@@ -1306,6 +1325,11 @@ Area: L1 corpus · Status: standing (closes two of the D-080 "what remains" item
 ## Open questions (not yet decided)
 
 These were found and deliberately left open. Each will become an entry when it is decided.
+
+- **The local S3 stand-in after MinIO (D-088).** MinIO is opt-in because its public image can no longer be pulled.
+  Before any code writes blobs, choose a replacement that pulls anonymously and speaks the S3 API R2 will.
+  Candidates others name are Garage and SeaweedFS, which are unverified here. Check their licences and images with
+  vendor-verifier first.
 
 - **Preamble ordinals, the remainder (38).** After D-068 and D-072, 38 released laws still number a "preamble"
   after sections printed below it. The law page lists the preamble first regardless (D-065). They fall into four
