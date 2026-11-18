@@ -1,0 +1,5459 @@
+{
+ "provisional": "golden drafts, kappa not measured; nothing tuned on them",
+ "summary": {
+  "B0 nodes": {
+   "recall@10": 0.2194,
+   "recall@50": 0.3833,
+   "mrr@10": 0.114,
+   "recall@50 by stratum": {
+    "citizen": 0.2,
+    "procedural": 0.5,
+    "professional": 0.729,
+    "urdu": 0.1
+   }
+  },
+  "E1 units": {
+   "recall@10": 0.2444,
+   "recall@50": 0.4056,
+   "mrr@10": 0.1255,
+   "recall@50 by stratum": {
+    "citizen": 0.225,
+    "procedural": 0.531,
+    "professional": 0.75,
+    "urdu": 0.1
+   }
+  },
+  "E2 units-frame": {
+   "recall@10": 0.2667,
+   "recall@50": 0.4472,
+   "mrr@10": 0.1409,
+   "recall@50 by stratum": {
+    "citizen": 0.325,
+    "procedural": 0.641,
+    "professional": 0.667,
+    "urdu": 0.1
+   }
+  },
+  "E3 fused": {
+   "recall@10": 0.3778,
+   "recall@50": 0.5639,
+   "mrr@10": 0.2246,
+   "recall@50 by stratum": {
+    "citizen": 0.494,
+    "procedural": 0.625,
+    "professional": 0.833,
+    "urdu": 0.1
+   }
+  }
+ },
+ "cases": {
+  "B0 nodes": [
+   {
+    "case": "S1-C01",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 11500
+   },
+   {
+    "case": "S1-C02",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0,
+    "ms": 9361
+   },
+   {
+    "case": "S1-C03",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7333
+   },
+   {
+    "case": "S1-C04",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7311
+   },
+   {
+    "case": "S1-C05",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0,
+    "ms": 7385
+   },
+   {
+    "case": "S1-C06",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 9089
+   },
+   {
+    "case": "S1-C07",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 9587
+   },
+   {
+    "case": "S1-C08",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7239
+   },
+   {
+    "case": "S1-C09",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0,
+    "ms": 9441
+   },
+   {
+    "case": "S1-C10",
+    "stratum": "citizen",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.16666666666666666,
+    "ms": 7232
+   },
+   {
+    "case": "S1-C11",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7163
+   },
+   {
+    "case": "S1-C12",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7653
+   },
+   {
+    "case": "S1-C13",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7425
+   },
+   {
+    "case": "S1-C14",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0,
+    "ms": 8875
+   },
+   {
+    "case": "S1-C15",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7322
+   },
+   {
+    "case": "S1-C16",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0,
+    "ms": 7244
+   },
+   {
+    "case": "S1-C17",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 8429
+   },
+   {
+    "case": "S1-C18",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 8866
+   },
+   {
+    "case": "S1-C19",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7130
+   },
+   {
+    "case": "S1-C20",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0,
+    "ms": 8682
+   },
+   {
+    "case": "S1-P01",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0,
+    "ms": 7151
+   },
+   {
+    "case": "S1-P02",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7062
+   },
+   {
+    "case": "S1-P03",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.5,
+    "ms": 7055
+   },
+   {
+    "case": "S1-P04",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0,
+    "ms": 7514
+   },
+   {
+    "case": "S1-P05",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.2,
+    "ms": 7203
+   },
+   {
+    "case": "S1-P06",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7122
+   },
+   {
+    "case": "S1-P07",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.3333333333333333,
+    "ms": 7129
+   },
+   {
+    "case": "S1-P08",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7039
+   },
+   {
+    "case": "S1-P09",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7225
+   },
+   {
+    "case": "S1-P10",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0,
+    "ms": 6999
+   },
+   {
+    "case": "S1-P11",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7443
+   },
+   {
+    "case": "S1-P12",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7203
+   },
+   {
+    "case": "S1-R01",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7036
+   },
+   {
+    "case": "S1-R02",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7132
+   },
+   {
+    "case": "S1-R03",
+    "stratum": "procedural",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0,
+    "ms": 9067
+   },
+   {
+    "case": "S1-R04",
+    "stratum": "procedural",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.5,
+    "ms": 7359
+   },
+   {
+    "case": "S1-R05",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 8894
+   },
+   {
+    "case": "S1-R06",
+    "stratum": "procedural",
+    "recall10": 0.5,
+    "recall50": 0.5,
+    "mrr10": 0.1111111111111111,
+    "ms": 7165
+   },
+   {
+    "case": "S1-R07",
+    "stratum": "procedural",
+    "recall10": 0.5,
+    "recall50": 0.5,
+    "mrr10": 0.1111111111111111,
+    "ms": 8841
+   },
+   {
+    "case": "S1-R08",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7155
+   },
+   {
+    "case": "S1-U01",
+    "stratum": "urdu",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.5,
+    "ms": 7245
+   },
+   {
+    "case": "S1-U02",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7152
+   },
+   {
+    "case": "S1-U03",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 286
+   },
+   {
+    "case": "S1-U04",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 223
+   },
+   {
+    "case": "S1-U05",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 375
+   },
+   {
+    "case": "S2-C01",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7040
+   },
+   {
+    "case": "S2-C02",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7489
+   },
+   {
+    "case": "S2-C03",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7231
+   },
+   {
+    "case": "S2-C04",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7075
+   },
+   {
+    "case": "S2-C05",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7504
+   },
+   {
+    "case": "S2-C06",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7114
+   },
+   {
+    "case": "S2-C07",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7547
+   },
+   {
+    "case": "S2-C08",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7212
+   },
+   {
+    "case": "S2-C09",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7026
+   },
+   {
+    "case": "S2-C10",
+    "stratum": "citizen",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0,
+    "ms": 7135
+   },
+   {
+    "case": "S2-C11",
+    "stratum": "citizen",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0,
+    "ms": 7068
+   },
+   {
+    "case": "S2-C12",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7321
+   },
+   {
+    "case": "S2-C13",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7059
+   },
+   {
+    "case": "S2-C14",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7086
+   },
+   {
+    "case": "S2-C15",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7044
+   },
+   {
+    "case": "S2-C16",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7318
+   },
+   {
+    "case": "S2-C17",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7167
+   },
+   {
+    "case": "S2-C18",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 6974
+   },
+   {
+    "case": "S2-C19",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 8417
+   },
+   {
+    "case": "S2-C20",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 8349
+   },
+   {
+    "case": "S2-P01",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0,
+    "ms": 9591
+   },
+   {
+    "case": "S2-P02",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 9380
+   },
+   {
+    "case": "S2-P03",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.16666666666666666,
+    "ms": 8750
+   },
+   {
+    "case": "S2-P04",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 8597
+   },
+   {
+    "case": "S2-P05",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.5,
+    "ms": 8264
+   },
+   {
+    "case": "S2-P06",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0,
+    "ms": 7577
+   },
+   {
+    "case": "S2-P07",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.2,
+    "ms": 7415
+   },
+   {
+    "case": "S2-P08",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0,
+    "ms": 7199
+   },
+   {
+    "case": "S2-P09",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7235
+   },
+   {
+    "case": "S2-P10",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0,
+    "ms": 7234
+   },
+   {
+    "case": "S2-P11",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7123
+   },
+   {
+    "case": "S2-P12",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.5,
+    "ms": 7262
+   },
+   {
+    "case": "S2-R01",
+    "stratum": "procedural",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.1,
+    "ms": 7194
+   },
+   {
+    "case": "S2-R02",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0,
+    "ms": 7150
+   },
+   {
+    "case": "S2-R03",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0,
+    "ms": 7189
+   },
+   {
+    "case": "S2-R04",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7108
+   },
+   {
+    "case": "S2-R05",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 8514
+   },
+   {
+    "case": "S2-R06",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0,
+    "ms": 7084
+   },
+   {
+    "case": "S2-R07",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7160
+   },
+   {
+    "case": "S2-R08",
+    "stratum": "procedural",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.2,
+    "ms": 9975
+   },
+   {
+    "case": "S2-U01",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 138
+   },
+   {
+    "case": "S2-U02",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 278
+   },
+   {
+    "case": "S2-U03",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 211
+   },
+   {
+    "case": "S2-U04",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 235
+   },
+   {
+    "case": "S2-U05",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 1173
+   },
+   {
+    "case": "S3-C01",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0,
+    "ms": 7198
+   },
+   {
+    "case": "S3-C02",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 8664
+   },
+   {
+    "case": "S3-C03",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 9640
+   },
+   {
+    "case": "S3-C04",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 1225
+   },
+   {
+    "case": "S3-C05",
+    "stratum": "citizen",
+    "recall10": 0.5,
+    "recall50": 0.5,
+    "mrr10": 1.0,
+    "ms": 7132
+   },
+   {
+    "case": "S3-C06",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 8546
+   },
+   {
+    "case": "S3-C07",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 9182
+   },
+   {
+    "case": "S3-C08",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 858
+   },
+   {
+    "case": "S3-C09",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7045
+   },
+   {
+    "case": "S3-C10",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 8370
+   },
+   {
+    "case": "S3-C11",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 8137
+   },
+   {
+    "case": "S3-C12",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7009
+   },
+   {
+    "case": "S3-C13",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0,
+    "ms": 9141
+   },
+   {
+    "case": "S3-C14",
+    "stratum": "citizen",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.16666666666666666,
+    "ms": 9117
+   },
+   {
+    "case": "S3-C15",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7104
+   },
+   {
+    "case": "S3-C16",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 8926
+   },
+   {
+    "case": "S3-C17",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 9126
+   },
+   {
+    "case": "S3-C18",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 8178
+   },
+   {
+    "case": "S3-C19",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 9227
+   },
+   {
+    "case": "S3-C20",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.5,
+    "mrr10": 0.0,
+    "ms": 8929
+   },
+   {
+    "case": "S3-P01",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.3333333333333333,
+    "ms": 7242
+   },
+   {
+    "case": "S3-P02",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0,
+    "ms": 5488
+   },
+   {
+    "case": "S3-P03",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 12119
+   },
+   {
+    "case": "S3-P04",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0,
+    "ms": 9597
+   },
+   {
+    "case": "S3-P05",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0,
+    "ms": 8143
+   },
+   {
+    "case": "S3-P06",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.1,
+    "ms": 8603
+   },
+   {
+    "case": "S3-P07",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.3333333333333333,
+    "ms": 8474
+   },
+   {
+    "case": "S3-P08",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.2,
+    "ms": 8143
+   },
+   {
+    "case": "S3-P09",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0,
+    "ms": 9629
+   },
+   {
+    "case": "S3-P10",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0,
+    "ms": 9532
+   },
+   {
+    "case": "S3-P11",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.5,
+    "ms": 9414
+   },
+   {
+    "case": "S3-P12",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0,
+    "ms": 8134
+   },
+   {
+    "case": "S3-R01",
+    "stratum": "procedural",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.3333333333333333,
+    "ms": 8759
+   },
+   {
+    "case": "S3-R02",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0,
+    "ms": 7657
+   },
+   {
+    "case": "S3-R03",
+    "stratum": "procedural",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.2,
+    "ms": 8380
+   },
+   {
+    "case": "S3-R04",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 9352
+   },
+   {
+    "case": "S3-R05",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7167
+   },
+   {
+    "case": "S3-R06",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0,
+    "ms": 9329
+   },
+   {
+    "case": "S3-R07",
+    "stratum": "procedural",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.1,
+    "ms": 9182
+   },
+   {
+    "case": "S3-R08",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 9185
+   },
+   {
+    "case": "S3-U01",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 258
+   },
+   {
+    "case": "S3-U02",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 9315
+   },
+   {
+    "case": "S3-U03",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 356
+   },
+   {
+    "case": "S3-U04",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 653
+   },
+   {
+    "case": "S3-U05",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 318
+   },
+   {
+    "case": "S4-C01",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 9568
+   },
+   {
+    "case": "S4-C02",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 9230
+   },
+   {
+    "case": "S4-C03",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 9474
+   },
+   {
+    "case": "S4-C04",
+    "stratum": "citizen",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0,
+    "ms": 8987
+   },
+   {
+    "case": "S4-C05",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 8895
+   },
+   {
+    "case": "S4-C06",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7202
+   },
+   {
+    "case": "S4-C07",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 9250
+   },
+   {
+    "case": "S4-C08",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 9870
+   },
+   {
+    "case": "S4-C09",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7108
+   },
+   {
+    "case": "S4-C10",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0,
+    "ms": 7134
+   },
+   {
+    "case": "S4-C11",
+    "stratum": "citizen",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.5,
+    "ms": 7366
+   },
+   {
+    "case": "S4-C12",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 9149
+   },
+   {
+    "case": "S4-C13",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7050
+   },
+   {
+    "case": "S4-C14",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7113
+   },
+   {
+    "case": "S4-C15",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 8734
+   },
+   {
+    "case": "S4-C16",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7173
+   },
+   {
+    "case": "S4-C17",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7276
+   },
+   {
+    "case": "S4-C18",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7100
+   },
+   {
+    "case": "S4-C19",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7085
+   },
+   {
+    "case": "S4-C20",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7307
+   },
+   {
+    "case": "S4-P01",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0,
+    "ms": 7159
+   },
+   {
+    "case": "S4-P02",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0,
+    "ms": 7082
+   },
+   {
+    "case": "S4-P03",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.3333333333333333,
+    "ms": 7258
+   },
+   {
+    "case": "S4-P04",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0,
+    "ms": 8031
+   },
+   {
+    "case": "S4-P05",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0,
+    "ms": 7304
+   },
+   {
+    "case": "S4-P06",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0,
+    "ms": 7245
+   },
+   {
+    "case": "S4-P07",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.3333333333333333,
+    "ms": 7192
+   },
+   {
+    "case": "S4-P08",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.25,
+    "ms": 7961
+   },
+   {
+    "case": "S4-P09",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7241
+   },
+   {
+    "case": "S4-P10",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0,
+    "ms": 8678
+   },
+   {
+    "case": "S4-P11",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0,
+    "ms": 8915
+   },
+   {
+    "case": "S4-P12",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 10270
+   },
+   {
+    "case": "S4-R01",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 13182
+   },
+   {
+    "case": "S4-R02",
+    "stratum": "procedural",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.25,
+    "ms": 12058
+   },
+   {
+    "case": "S4-R03",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 12350
+   },
+   {
+    "case": "S4-R04",
+    "stratum": "procedural",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.5,
+    "ms": 10832
+   },
+   {
+    "case": "S4-R05",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0,
+    "ms": 7191
+   },
+   {
+    "case": "S4-R06",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7368
+   },
+   {
+    "case": "S4-R07",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 9482
+   },
+   {
+    "case": "S4-R08",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 9337
+   },
+   {
+    "case": "S4-U01",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0,
+    "ms": 9619
+   },
+   {
+    "case": "S4-U02",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 215
+   },
+   {
+    "case": "S4-U03",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 9166
+   },
+   {
+    "case": "S4-U04",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 359
+   },
+   {
+    "case": "S4-U05",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 9238
+   }
+  ],
+  "E1 units": [
+   {
+    "case": "S1-C01",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C02",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C03",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C04",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C05",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C06",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C07",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C08",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C09",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C10",
+    "stratum": "citizen",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.14285714285714285
+   },
+   {
+    "case": "S1-C11",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C12",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C13",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C14",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C15",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C16",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C17",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C18",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C19",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C20",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-P01",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-P02",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-P03",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-P04",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-P05",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S1-P06",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-P07",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S1-P08",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-P09",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-P10",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.2
+   },
+   {
+    "case": "S1-P11",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-P12",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-R01",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-R02",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-R03",
+    "stratum": "procedural",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-R04",
+    "stratum": "procedural",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S1-R05",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-R06",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-R07",
+    "stratum": "procedural",
+    "recall10": 0.5,
+    "recall50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S1-R08",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-U01",
+    "stratum": "urdu",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S1-U02",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-U03",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-U04",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-U05",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C01",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C02",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C03",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C04",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C05",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C06",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C07",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C08",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C09",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C10",
+    "stratum": "citizen",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C11",
+    "stratum": "citizen",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C12",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C13",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C14",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C15",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C16",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C17",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C18",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C19",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C20",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-P01",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P02",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-P03",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P04",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-P05",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S2-P06",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-P07",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S2-P08",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-P09",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-P10",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-P11",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-P12",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S2-R01",
+    "stratum": "procedural",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.14285714285714285
+   },
+   {
+    "case": "S2-R02",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-R03",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-R04",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-R05",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-R06",
+    "stratum": "procedural",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.125
+   },
+   {
+    "case": "S2-R07",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-R08",
+    "stratum": "procedural",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S2-U01",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-U02",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-U03",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-U04",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-U05",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C01",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C02",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C03",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C04",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C05",
+    "stratum": "citizen",
+    "recall10": 0.5,
+    "recall50": 0.5,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C06",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C07",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C08",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C09",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C10",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C11",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C12",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C13",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C14",
+    "stratum": "citizen",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.16666666666666666
+   },
+   {
+    "case": "S3-C15",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C16",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C17",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C18",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C19",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C20",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.5,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-P01",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-P02",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-P03",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-P04",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-P05",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-P06",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.1
+   },
+   {
+    "case": "S3-P07",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-P08",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S3-P09",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-P10",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-P11",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-P12",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-R01",
+    "stratum": "procedural",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-R02",
+    "stratum": "procedural",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.1
+   },
+   {
+    "case": "S3-R03",
+    "stratum": "procedural",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S3-R04",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-R05",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-R06",
+    "stratum": "procedural",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.14285714285714285
+   },
+   {
+    "case": "S3-R07",
+    "stratum": "procedural",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.2
+   },
+   {
+    "case": "S3-R08",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-U01",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-U02",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-U03",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-U04",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-U05",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C01",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C02",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C03",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C04",
+    "stratum": "citizen",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-C05",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C06",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C07",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C08",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C09",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C10",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C11",
+    "stratum": "citizen",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S4-C12",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C13",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C14",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C15",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C16",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C17",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C18",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C19",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C20",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-P01",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-P02",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.125
+   },
+   {
+    "case": "S4-P03",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.14285714285714285
+   },
+   {
+    "case": "S4-P04",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.16666666666666666
+   },
+   {
+    "case": "S4-P05",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-P06",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-P07",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S4-P08",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S4-P09",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-P10",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-P11",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P12",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-R01",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-R02",
+    "stratum": "procedural",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S4-R03",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-R04",
+    "stratum": "procedural",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S4-R05",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-R06",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-R07",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-R08",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-U01",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-U02",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-U03",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-U04",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-U05",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   }
+  ],
+  "E2 units-frame": [
+   {
+    "case": "S1-C01",
+    "stratum": "citizen",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.25,
+    "ms": 10564
+   },
+   {
+    "case": "S1-C02",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0,
+    "ms": 9324
+   },
+   {
+    "case": "S1-C03",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7602
+   },
+   {
+    "case": "S1-C04",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7924
+   },
+   {
+    "case": "S1-C05",
+    "stratum": "citizen",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.5,
+    "ms": 8427
+   },
+   {
+    "case": "S1-C06",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 9871
+   },
+   {
+    "case": "S1-C07",
+    "stratum": "citizen",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.3333333333333333,
+    "ms": 10519
+   },
+   {
+    "case": "S1-C08",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7772
+   },
+   {
+    "case": "S1-C09",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0,
+    "ms": 9820
+   },
+   {
+    "case": "S1-C10",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0,
+    "ms": 7801
+   },
+   {
+    "case": "S1-C11",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7996
+   },
+   {
+    "case": "S1-C12",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7833
+   },
+   {
+    "case": "S1-C13",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0,
+    "ms": 8151
+   },
+   {
+    "case": "S1-C14",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0,
+    "ms": 9112
+   },
+   {
+    "case": "S1-C15",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7658
+   },
+   {
+    "case": "S1-C16",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7786
+   },
+   {
+    "case": "S1-C17",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7935
+   },
+   {
+    "case": "S1-C18",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 8792
+   },
+   {
+    "case": "S1-C19",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7652
+   },
+   {
+    "case": "S1-C20",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7869
+   },
+   {
+    "case": "S1-P01",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0,
+    "ms": 7635
+   },
+   {
+    "case": "S1-P02",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0,
+    "ms": 7638
+   },
+   {
+    "case": "S1-P03",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0,
+    "ms": 7464
+   },
+   {
+    "case": "S1-P04",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7628
+   },
+   {
+    "case": "S1-P05",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0,
+    "ms": 7403
+   },
+   {
+    "case": "S1-P06",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7520
+   },
+   {
+    "case": "S1-P07",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.3333333333333333,
+    "ms": 7646
+   },
+   {
+    "case": "S1-P08",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7642
+   },
+   {
+    "case": "S1-P09",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7758
+   },
+   {
+    "case": "S1-P10",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.1111111111111111,
+    "ms": 9406
+   },
+   {
+    "case": "S1-P11",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7607
+   },
+   {
+    "case": "S1-P12",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7717
+   },
+   {
+    "case": "S1-R01",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7551
+   },
+   {
+    "case": "S1-R02",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7808
+   },
+   {
+    "case": "S1-R03",
+    "stratum": "procedural",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0,
+    "ms": 10266
+   },
+   {
+    "case": "S1-R04",
+    "stratum": "procedural",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.25,
+    "ms": 7629
+   },
+   {
+    "case": "S1-R05",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0,
+    "ms": 9471
+   },
+   {
+    "case": "S1-R06",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0,
+    "ms": 7550
+   },
+   {
+    "case": "S1-R07",
+    "stratum": "procedural",
+    "recall10": 0.5,
+    "recall50": 0.5,
+    "mrr10": 0.1111111111111111,
+    "ms": 9086
+   },
+   {
+    "case": "S1-R08",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7671
+   },
+   {
+    "case": "S1-U01",
+    "stratum": "urdu",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.5,
+    "ms": 7460
+   },
+   {
+    "case": "S1-U02",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7459
+   },
+   {
+    "case": "S1-U03",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 287
+   },
+   {
+    "case": "S1-U04",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 207
+   },
+   {
+    "case": "S1-U05",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 536
+   },
+   {
+    "case": "S2-C01",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7757
+   },
+   {
+    "case": "S2-C02",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7655
+   },
+   {
+    "case": "S2-C03",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7732
+   },
+   {
+    "case": "S2-C04",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7542
+   },
+   {
+    "case": "S2-C05",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.5,
+    "mrr10": 0.0,
+    "ms": 7557
+   },
+   {
+    "case": "S2-C06",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 8593
+   },
+   {
+    "case": "S2-C07",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0,
+    "ms": 7312
+   },
+   {
+    "case": "S2-C08",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7448
+   },
+   {
+    "case": "S2-C09",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7730
+   },
+   {
+    "case": "S2-C10",
+    "stratum": "citizen",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0,
+    "ms": 7250
+   },
+   {
+    "case": "S2-C11",
+    "stratum": "citizen",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.5,
+    "ms": 7672
+   },
+   {
+    "case": "S2-C12",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0,
+    "ms": 7771
+   },
+   {
+    "case": "S2-C13",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0,
+    "ms": 7565
+   },
+   {
+    "case": "S2-C14",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7846
+   },
+   {
+    "case": "S2-C15",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 8101
+   },
+   {
+    "case": "S2-C16",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 8020
+   },
+   {
+    "case": "S2-C17",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7547
+   },
+   {
+    "case": "S2-C18",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7982
+   },
+   {
+    "case": "S2-C19",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 9067
+   },
+   {
+    "case": "S2-C20",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 9119
+   },
+   {
+    "case": "S2-P01",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.5,
+    "ms": 9636
+   },
+   {
+    "case": "S2-P02",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 9437
+   },
+   {
+    "case": "S2-P03",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.3333333333333333,
+    "ms": 9576
+   },
+   {
+    "case": "S2-P04",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 9205
+   },
+   {
+    "case": "S2-P05",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 8739
+   },
+   {
+    "case": "S2-P06",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0,
+    "ms": 8217
+   },
+   {
+    "case": "S2-P07",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.16666666666666666,
+    "ms": 7745
+   },
+   {
+    "case": "S2-P08",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0,
+    "ms": 7357
+   },
+   {
+    "case": "S2-P09",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7623
+   },
+   {
+    "case": "S2-P10",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0,
+    "ms": 7650
+   },
+   {
+    "case": "S2-P11",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7595
+   },
+   {
+    "case": "S2-P12",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.5,
+    "ms": 7734
+   },
+   {
+    "case": "S2-R01",
+    "stratum": "procedural",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.25,
+    "ms": 7826
+   },
+   {
+    "case": "S2-R02",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0,
+    "ms": 7114
+   },
+   {
+    "case": "S2-R03",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0,
+    "ms": 7921
+   },
+   {
+    "case": "S2-R04",
+    "stratum": "procedural",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.1,
+    "ms": 7689
+   },
+   {
+    "case": "S2-R05",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 8190
+   },
+   {
+    "case": "S2-R06",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0,
+    "ms": 7143
+   },
+   {
+    "case": "S2-R07",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7608
+   },
+   {
+    "case": "S2-R08",
+    "stratum": "procedural",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0,
+    "ms": 9799
+   },
+   {
+    "case": "S2-U01",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 160
+   },
+   {
+    "case": "S2-U02",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 268
+   },
+   {
+    "case": "S2-U03",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 241
+   },
+   {
+    "case": "S2-U04",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 213
+   },
+   {
+    "case": "S2-U05",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 1644
+   },
+   {
+    "case": "S3-C01",
+    "stratum": "citizen",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.16666666666666666,
+    "ms": 7258
+   },
+   {
+    "case": "S3-C02",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 9361
+   },
+   {
+    "case": "S3-C03",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 9913
+   },
+   {
+    "case": "S3-C04",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 877
+   },
+   {
+    "case": "S3-C05",
+    "stratum": "citizen",
+    "recall10": 0.5,
+    "recall50": 0.5,
+    "mrr10": 1.0,
+    "ms": 7643
+   },
+   {
+    "case": "S3-C06",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 8653
+   },
+   {
+    "case": "S3-C07",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 9813
+   },
+   {
+    "case": "S3-C08",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 1161
+   },
+   {
+    "case": "S3-C09",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7356
+   },
+   {
+    "case": "S3-C10",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0,
+    "ms": 8693
+   },
+   {
+    "case": "S3-C11",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 8667
+   },
+   {
+    "case": "S3-C12",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.5,
+    "mrr10": 0.0,
+    "ms": 7471
+   },
+   {
+    "case": "S3-C13",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 9387
+   },
+   {
+    "case": "S3-C14",
+    "stratum": "citizen",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.16666666666666666,
+    "ms": 9699
+   },
+   {
+    "case": "S3-C15",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7419
+   },
+   {
+    "case": "S3-C16",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 9458
+   },
+   {
+    "case": "S3-C17",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0,
+    "ms": 8634
+   },
+   {
+    "case": "S3-C18",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 8622
+   },
+   {
+    "case": "S3-C19",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 9700
+   },
+   {
+    "case": "S3-C20",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.5,
+    "mrr10": 0.0,
+    "ms": 9297
+   },
+   {
+    "case": "S3-P01",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.5,
+    "ms": 7934
+   },
+   {
+    "case": "S3-P02",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0,
+    "ms": 6409
+   },
+   {
+    "case": "S3-P03",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 11151
+   },
+   {
+    "case": "S3-P04",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0,
+    "ms": 9815
+   },
+   {
+    "case": "S3-P05",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0,
+    "ms": 8818
+   },
+   {
+    "case": "S3-P06",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.16666666666666666,
+    "ms": 8925
+   },
+   {
+    "case": "S3-P07",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0,
+    "ms": 12275
+   },
+   {
+    "case": "S3-P08",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.25,
+    "ms": 9988
+   },
+   {
+    "case": "S3-P09",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0,
+    "ms": 8935
+   },
+   {
+    "case": "S3-P10",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.5,
+    "ms": 8859
+   },
+   {
+    "case": "S3-P11",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.5,
+    "ms": 9270
+   },
+   {
+    "case": "S3-P12",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0,
+    "ms": 8498
+   },
+   {
+    "case": "S3-R01",
+    "stratum": "procedural",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0,
+    "ms": 9314
+   },
+   {
+    "case": "S3-R02",
+    "stratum": "procedural",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.16666666666666666,
+    "ms": 7981
+   },
+   {
+    "case": "S3-R03",
+    "stratum": "procedural",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.5,
+    "ms": 8853
+   },
+   {
+    "case": "S3-R04",
+    "stratum": "procedural",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.25,
+    "ms": 9834
+   },
+   {
+    "case": "S3-R05",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7771
+   },
+   {
+    "case": "S3-R06",
+    "stratum": "procedural",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.16666666666666666,
+    "ms": 9724
+   },
+   {
+    "case": "S3-R07",
+    "stratum": "procedural",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.125,
+    "ms": 9709
+   },
+   {
+    "case": "S3-R08",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 9745
+   },
+   {
+    "case": "S3-U01",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 268
+   },
+   {
+    "case": "S3-U02",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 9306
+   },
+   {
+    "case": "S3-U03",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 367
+   },
+   {
+    "case": "S3-U04",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 831
+   },
+   {
+    "case": "S3-U05",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 332
+   },
+   {
+    "case": "S4-C01",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0,
+    "ms": 10411
+   },
+   {
+    "case": "S4-C02",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 9485
+   },
+   {
+    "case": "S4-C03",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 10006
+   },
+   {
+    "case": "S4-C04",
+    "stratum": "citizen",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.14285714285714285,
+    "ms": 9354
+   },
+   {
+    "case": "S4-C05",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 9038
+   },
+   {
+    "case": "S4-C06",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0,
+    "ms": 7817
+   },
+   {
+    "case": "S4-C07",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 10420
+   },
+   {
+    "case": "S4-C08",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 10513
+   },
+   {
+    "case": "S4-C09",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7675
+   },
+   {
+    "case": "S4-C10",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7674
+   },
+   {
+    "case": "S4-C11",
+    "stratum": "citizen",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0,
+    "ms": 7599
+   },
+   {
+    "case": "S4-C12",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 9802
+   },
+   {
+    "case": "S4-C13",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7139
+   },
+   {
+    "case": "S4-C14",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7797
+   },
+   {
+    "case": "S4-C15",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7720
+   },
+   {
+    "case": "S4-C16",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7701
+   },
+   {
+    "case": "S4-C17",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0,
+    "ms": 7795
+   },
+   {
+    "case": "S4-C18",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0,
+    "ms": 7900
+   },
+   {
+    "case": "S4-C19",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7651
+   },
+   {
+    "case": "S4-C20",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0,
+    "ms": 7704
+   },
+   {
+    "case": "S4-P01",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0,
+    "ms": 8073
+   },
+   {
+    "case": "S4-P02",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.1111111111111111,
+    "ms": 7597
+   },
+   {
+    "case": "S4-P03",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.125,
+    "ms": 8031
+   },
+   {
+    "case": "S4-P04",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0,
+    "ms": 7760
+   },
+   {
+    "case": "S4-P05",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7806
+   },
+   {
+    "case": "S4-P06",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0,
+    "ms": 7215
+   },
+   {
+    "case": "S4-P07",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0,
+    "ms": 7786
+   },
+   {
+    "case": "S4-P08",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.2,
+    "ms": 7702
+   },
+   {
+    "case": "S4-P09",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7736
+   },
+   {
+    "case": "S4-P10",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 9599
+   },
+   {
+    "case": "S4-P11",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0,
+    "ms": 9723
+   },
+   {
+    "case": "S4-P12",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 9711
+   },
+   {
+    "case": "S4-R01",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 12362
+   },
+   {
+    "case": "S4-R02",
+    "stratum": "procedural",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.25,
+    "ms": 13998
+   },
+   {
+    "case": "S4-R03",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 12516
+   },
+   {
+    "case": "S4-R04",
+    "stratum": "procedural",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0,
+    "ms": 11044
+   },
+   {
+    "case": "S4-R05",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0,
+    "ms": 7686
+   },
+   {
+    "case": "S4-R06",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7812
+   },
+   {
+    "case": "S4-R07",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 10070
+   },
+   {
+    "case": "S4-R08",
+    "stratum": "procedural",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.3333333333333333,
+    "ms": 9720
+   },
+   {
+    "case": "S4-U01",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0,
+    "ms": 9345
+   },
+   {
+    "case": "S4-U02",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 173
+   },
+   {
+    "case": "S4-U03",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 9393
+   },
+   {
+    "case": "S4-U04",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 448
+   },
+   {
+    "case": "S4-U05",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0,
+    "ms": 7344
+   }
+  ],
+  "E3 fused": [
+   {
+    "case": "S1-C01",
+    "stratum": "citizen",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-C02",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C03",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C04",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C05",
+    "stratum": "citizen",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S1-C06",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C07",
+    "stratum": "citizen",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S1-C08",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C09",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.5,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C10",
+    "stratum": "citizen",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.14285714285714285
+   },
+   {
+    "case": "S1-C11",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C12",
+    "stratum": "citizen",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S1-C13",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C14",
+    "stratum": "citizen",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S1-C15",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C16",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C17",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C18",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C19",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C20",
+    "stratum": "citizen",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.14285714285714285
+   },
+   {
+    "case": "S1-P01",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-P02",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S1-P03",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-P04",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S1-P05",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-P06",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-P07",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-P08",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-P09",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-P10",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-P11",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-P12",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-R01",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-R02",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-R03",
+    "stratum": "procedural",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.1
+   },
+   {
+    "case": "S1-R04",
+    "stratum": "procedural",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-R05",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-R06",
+    "stratum": "procedural",
+    "recall10": 0.5,
+    "recall50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S1-R07",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-R08",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-U01",
+    "stratum": "urdu",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-U02",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-U03",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-U04",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-U05",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C01",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C02",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C03",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C04",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C05",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C06",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C07",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C08",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C09",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C10",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C11",
+    "stratum": "citizen",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C12",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C13",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C14",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C15",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C16",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C17",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C18",
+    "stratum": "citizen",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.125
+   },
+   {
+    "case": "S2-C19",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C20",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-P01",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P02",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-P03",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S2-P04",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-P05",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-P06",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-P07",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S2-P08",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P09",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-P10",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P11",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S2-P12",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-R01",
+    "stratum": "procedural",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S2-R02",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-R03",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-R04",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-R05",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-R06",
+    "stratum": "procedural",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.1111111111111111
+   },
+   {
+    "case": "S2-R07",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-R08",
+    "stratum": "procedural",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.16666666666666666
+   },
+   {
+    "case": "S2-U01",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-U02",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-U03",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-U04",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-U05",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C01",
+    "stratum": "citizen",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C02",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C03",
+    "stratum": "citizen",
+    "recall10": 0.5,
+    "recall50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S3-C04",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C05",
+    "stratum": "citizen",
+    "recall10": 0.5,
+    "recall50": 0.5,
+    "mrr10": 0.2
+   },
+   {
+    "case": "S3-C06",
+    "stratum": "citizen",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-C07",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C08",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C09",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C10",
+    "stratum": "citizen",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C11",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C12",
+    "stratum": "citizen",
+    "recall10": 0.5,
+    "recall50": 0.5,
+    "mrr10": 0.1
+   },
+   {
+    "case": "S3-C13",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C14",
+    "stratum": "citizen",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C15",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C16",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C17",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C18",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C19",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C20",
+    "stratum": "citizen",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-P01",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-P02",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-P03",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-P04",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-P05",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-P06",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-P07",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-P08",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-P09",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-P10",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-P11",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-P12",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-R01",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-R02",
+    "stratum": "procedural",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S3-R03",
+    "stratum": "procedural",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S3-R04",
+    "stratum": "procedural",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.2
+   },
+   {
+    "case": "S3-R05",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-R06",
+    "stratum": "procedural",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-R07",
+    "stratum": "procedural",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-R08",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-U01",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-U02",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-U03",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-U04",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-U05",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C01",
+    "stratum": "citizen",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S4-C02",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C03",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C04",
+    "stratum": "citizen",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-C05",
+    "stratum": "citizen",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.1111111111111111
+   },
+   {
+    "case": "S4-C06",
+    "stratum": "citizen",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-C07",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C08",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C09",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C10",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C11",
+    "stratum": "citizen",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S4-C12",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C13",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C14",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C15",
+    "stratum": "citizen",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S4-C16",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C17",
+    "stratum": "citizen",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S4-C18",
+    "stratum": "citizen",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S4-C19",
+    "stratum": "citizen",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.125
+   },
+   {
+    "case": "S4-C20",
+    "stratum": "citizen",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-P01",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-P02",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.1111111111111111
+   },
+   {
+    "case": "S4-P03",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-P04",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P05",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.125
+   },
+   {
+    "case": "S4-P06",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S4-P07",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S4-P08",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S4-P09",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-P10",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-P11",
+    "stratum": "professional",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P12",
+    "stratum": "professional",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-R01",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-R02",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-R03",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-R04",
+    "stratum": "procedural",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-R05",
+    "stratum": "procedural",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S4-R06",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-R07",
+    "stratum": "procedural",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-R08",
+    "stratum": "procedural",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.16666666666666666
+   },
+   {
+    "case": "S4-U01",
+    "stratum": "urdu",
+    "recall10": 1.0,
+    "recall50": 1.0,
+    "mrr10": 0.16666666666666666
+   },
+   {
+    "case": "S4-U02",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-U03",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-U04",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-U05",
+    "stratum": "urdu",
+    "recall10": 0.0,
+    "recall50": 0.0,
+    "mrr10": 0.0
+   }
+  ]
+ }
+}
