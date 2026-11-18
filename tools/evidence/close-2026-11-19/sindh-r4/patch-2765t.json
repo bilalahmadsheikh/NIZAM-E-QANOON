@@ -1,0 +1,56 @@
+[
+ {
+  "document_id": 2765,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2765-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head 'SINDH ACT NO. I OF 2025.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "this Chapter shall be in such manner as may be prescribed by the",
+  "before_text": "this Chapter shall be in such manner as may be prescribed by the",
+  "after_text": "this Chapter shall be in such manner as may be prescribed by the",
+  "source_apparatus_blocks": [
+   244641
+  ],
+  "source_head_boundary_blocks": [
+   244641
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside; rule reviewed_head_boundary: the set-aside head still ends the sentence before it, as printed",
+  "render_sha256": "b541b764e8684b731e545954464c8495686df2975fe21a59270d40eb3d37de43"
+ },
+ {
+  "document_id": 2765,
+  "page_no": 5,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2765-p5.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 5 prints the running head 'SINDH ACT NO. I OF 2025.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "seller and purchaser shall report such sale of motor vehicle for",
+  "before_text": "seller and purchaser shall report such sale of motor vehicle for",
+  "after_text": "seller and purchaser shall report such sale of motor vehicle for",
+  "source_apparatus_blocks": [
+   244645
+  ],
+  "source_head_boundary_blocks": [
+   244645
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside; rule reviewed_head_boundary: the set-aside head still ends the sentence before it, as printed",
+  "render_sha256": "0be2a474dac0d7e0d54f64b2d370ab980004505f3891a0befdc47f8453d98813"
+ },
+ {
+  "document_id": 2765,
+  "page_no": 6,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2765-p6.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 6 prints the running head 'SINDH ACT NO. I OF 2025.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "conditions and limitations, which shall be duly recorded in",
+  "before_text": "conditions and limitations, which shall be duly recorded in",
+  "after_text": "conditions and limitations, which shall be duly recorded in",
+  "source_apparatus_blocks": [
+   244672
+  ],
+  "source_head_boundary_blocks": [
+   244672
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside; rule reviewed_head_boundary: the set-aside head still ends the sentence before it, as printed",
+  "render_sha256": "9e86565c4bd44c098d54674ec0947baeba3993f9100c42497888e0a29792f406"
+ }
+]

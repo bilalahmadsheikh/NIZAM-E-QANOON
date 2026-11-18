@@ -1,0 +1,82 @@
+[
+ {
+  "document_id": 2902,
+  "page_no": 6,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2902-p6.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 6 prints the running head '6 / THE M.H. PANHWAR INSTITUTE OF SINDH STUDIES ACT, 2025 / SINDH ACT NO. IV OF 2025' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "(1) The meetings of the Board shall be regulated by regulations",
+  "before_text": "(1) The meetings of the Board shall be regulated by regulations",
+  "after_text": "(1) The meetings of the Board shall be regulated by regulations",
+  "source_apparatus_blocks": [
+   270439,
+   270440
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "3f8922bd31c0c7adbd34988acccfc49123b47a11ac250a872e592089823495f0"
+ },
+ {
+  "document_id": 2902,
+  "page_no": 7,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2902-p7.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 7 prints the running head '7 / THE M.H. PANHWAR INSTITUTE OF SINDH STUDIES ACT, 2025 / SINDH ACT NO. IV OF 2025' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "taken in writing and shall be signed by the Secretary of the",
+  "before_text": "taken in writing and shall be signed by the Secretary of the",
+  "after_text": "taken in writing and shall be signed by the Secretary of the",
+  "source_apparatus_blocks": [
+   270447,
+   270448
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "f98d77ff720b7ca97c55446cfeb7212ccb03015ac4982eb7bbed8a948e37e4ee"
+ },
+ {
+  "document_id": 2902,
+  "page_no": 8,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2902-p8.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 8 prints the running head '8 / THE M.H. PANHWAR INSTITUTE OF SINDH STUDIES ACT, 2025 / SINDH ACT NO. IV OF 2025' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "The Institute may set up administrative, financial, technical and",
+  "before_text": "The Institute may set up administrative, financial, technical and",
+  "after_text": "The Institute may set up administrative, financial, technical and",
+  "source_apparatus_blocks": [
+   270458,
+   270459
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "12a410745dc4cf7062c5238f581e8a6906f40a3c5d85f7002bb7a3605a392104"
+ },
+ {
+  "document_id": 2902,
+  "page_no": 9,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2902-p9.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 9 prints the running head '9 / THE M.H. PANHWAR INSTITUTE OF SINDH STUDIES ACT, 2025 / SINDH ACT NO. IV OF 2025' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "The Institute at the close of every financial year shall prepare",
+  "before_text": "The Institute at the close of every financial year shall prepare",
+  "after_text": "The Institute at the close of every financial year shall prepare",
+  "source_apparatus_blocks": [
+   270472,
+   270473
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "f566c68d71309aa9cea3679d5e7356eb6d63309600903541cbba6d129b43764c"
+ },
+ {
+  "document_id": 2902,
+  "page_no": 10,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2902-p10.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 10 prints the running head '10 / THE M.H. PANHWAR INSTITUTE OF SINDH STUDIES ACT, 2025 / SINDH ACT NO. IV OF 2025' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "Subject to the provisions of this Act, and the rules, the Board",
+  "before_text": "Subject to the provisions of this Act, and the rules, the Board",
+  "after_text": "Subject to the provisions of this Act, and the rules, the Board",
+  "source_apparatus_blocks": [
+   270492,
+   270493
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "1ab5e22a09e14ec311c69de4155eef67106a8afe14c97e8435ba571d8c0dbfa4"
+ }
+]

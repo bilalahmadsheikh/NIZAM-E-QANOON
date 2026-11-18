@@ -1,0 +1,22 @@
+{
+  "review": "Rebuild drift, every law listed in the decision log's open questions (D-091). Each law was dry-run as it stands on 19 Nov 2026 with the release gate's tree dumps (multi-instrument documents through tools/materialize_multi_instrument.py's own prepare(), node by node). Verdict = which tree is right, from the printed page or the tree's own evidence, and what a replay must do.",
+  "method": ".artifacts/close-2026-11-19/{baseline.sh, diffsum.py, prefixdiff.py, multi_compare.py}",
+  "laws": {
+    "2772": {"verdict": "closed", "finding": "rebuilds identically today"},
+    "8743": {"verdict": "closed", "finding": "differed only in its path prefix ('y1874_VI' rebuilt as 'y1874': the number inferred from the head drifted); rebuilds identically since D-090 keeps the released prefix"},
+    "4702": {"verdict": "closed", "finding": "a two-expression document (Service Rules, Gratuity Rules). The worker's single-expression dry run ran expression 0 into the Gratuity Rules; the materializer's rebuild is identical in both expressions (202 and 39 nodes)"},
+    "9868": {"verdict": "closed", "finding": "a two-expression document; its two contents-region readings belong to different expressions (pp7, 94), which the single-expression dry run reported as a conflict. The materializer's rebuild is identical (539 and 30 nodes)"},
+    "4347": {"verdict": "stored_correct", "finding": "materializer rebuild identical in expressions 0-2 and 4-6. Expression 3: the Part printed 'I.' (block 694026, p47) rebuilds as Part '1', renaming 5 paths; labels are kept verbatim (docs/01), so the stored 'I' is right", "replay": "must not be approved while e3's Part rebuilds as '1'"},
+    "1101": {"verdict": "stored_correct", "finding": "the rebuild splits s.4's wrapped amendment heading and opens a root clause on its second line 'of Sindh Act No.VI of 1994.'", "replay": "refuse; the same wrapped-heading regression as 1977"},
+    "1977": {"verdict": "stored_correct", "finding": "wrapped amendment headings ('Amendment of section 7 of / Act No.XVI of 1908.') rebuild as a heading plus stray root clauses 14, 21, 28 (6 nodes lost, 16 added)", "replay": "refuse until the wrapped-heading regression is fixed in the segmenter"},
+    "2904": {"verdict": "stored_correct", "finding": "a footnote of s.15 ('In section 15, for sub-section (1) substituted vide Sind Ordinance No XVIII of 1980') becomes s.1's heading, and s.1's sub-sections move under a root clause", "replay": "refuse"},
+    "2491": {"verdict": "stored_correct", "finding": "p22 prints '14. The Assistant Registrar' as the 14th officer of s.8; today the line before ('13. The Librarian and') reads as unfinished and absorbs it, so the reviewed reparent (reading d7ecbb58, block 207301) matches nothing and the build fails closed", "replay": "fails closed until item 14 is held open by a reading"},
+    "8213": {"verdict": "stored_correct", "finding": "Part I is lost and its sections move to the root (14 nodes removed, 16 added)", "replay": "refuse"},
+    "9310": {"verdict": "stored_correct", "finding": "Part headings are lost ('AMENDMENTS IN THE BANKS NATIONALIZATION ACT, 1974' -> '') and amendment clauses regroup (99 removed, 94 added)", "replay": "refuse"},
+    "9659": {"verdict": "stored_correct", "finding": "the Finance Act, 1994 Gazette: chapters lift out of Part I and Second Schedule rows re-pair (492 removed, 488 added, 162 text changes)", "replay": "refuse"},
+    "5494": {"verdict": "stored_correct", "finding": "clause 2 of s.2(1) and its 75 descendants lift to Part 1 (structure otherwise identical)", "replay": "refuse"},
+    "8173": {"verdict": "stored_correct", "finding": "structure identical; only the duplicate-label suffix of the second Part 1 is renumbered (pt_1_n17_1 -> pt_1_n3_1, 57 paths) -- an identifier change INV-4 forbids", "replay": "refuse until duplicate suffixes are kept like prefixes"},
+    "6576": {"verdict": "stored_correct", "finding": "a Gazette text with a damaged text layer ('The salarr lo bc Pakisran shall hr Rs..43.000'); the rebuild adds 2 nodes split from that text, not printed provisions", "replay": "refuse"},
+    "6784": {"verdict": "stored_correct", "finding": "the same damaged Gazette text layer; the rebuild adds 3 nodes split from it", "replay": "refuse"}
+  }
+}

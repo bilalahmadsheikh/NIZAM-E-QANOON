@@ -149,7 +149,10 @@ def main() -> int:
                     help="instead: check numbers the SEGMENTER stored against the title region; where exactly one "
                          "printed number disagrees, record it with basis printed_number_corrects_stored (the only "
                          "basis tools/apply_instrument_metadata.py lets overwrite a stored number)")
+    ap.add_argument("--raw-text", action="store_true",
+                    help="read the extracted blocks without the page-read corrections (the pre-D-092 behaviour)")
     args = ap.parse_args()
+    from tools.title_region_text import corrected, load_corrections
     dumped = []
     from nizam.storage.db import connect
     counts = dict(considered=0, recorded=0, none_printed=0, ambiguous=0, unchanged=0)
@@ -180,6 +183,7 @@ def main() -> int:
                         WHERE field = 'number'""")
         standing = {(r[0], r[1]): r[2] for r in cur.fetchall()}
         withdrawn = latest_withdrawn(cur, "number")
+        corrections = {} if args.raw_text else load_corrections(cur)      # D-092: the text as page-read
         for iid, obs, ordinal, doc, kind, year, start, end, stored in todo:
             counts["considered"] += 1
             if (obs, ordinal) in withdrawn:      # a person withdrew it; the tool does not re-assert it
@@ -188,7 +192,9 @@ def main() -> int:
             cur.execute("""SELECT t.id, t.page_no, coalesce(t.text, '') FROM text_block t
                             WHERE t.document_id = %s AND t.id >= %s AND t.id <= coalesce(%s, t.id)
                             ORDER BY t.id LIMIT %s""", (doc, start, end, BLOCKS))
-            blocks = cur.fetchall()
+            blocks, n_corr = corrected(cur.fetchall(), corrections.get(obs, []))
+            if n_corr:
+                counts["read_with_corrections"] = counts.get("read_with_corrections", 0) + 1
             region, spans, stop = title_region(blocks)
             found = candidates(region, kind, year)
             numbers = {f[0] for f in found}

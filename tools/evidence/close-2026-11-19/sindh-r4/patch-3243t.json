@@ -1,0 +1,92 @@
+[
+ {
+  "document_id": 3243,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc3243-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head '4 / THE HANDS INSTITUTE OF DEVELOPMENT STUDIES ACT, 2023 / SINDH ACT NO. XXXIX OF 2023' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "(xiii) “Patron” means the Patron of the Institute;",
+  "before_text": "(xiii) “Patron” means the Patron of the Institute;",
+  "after_text": "(xiii) “Patron” means the Patron of the Institute;",
+  "source_apparatus_blocks": [
+   332951
+  ],
+  "source_head_boundary_blocks": [
+   332951
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside; rule reviewed_head_boundary: the set-aside head still ends the sentence before it, as printed",
+  "render_sha256": "0d41a20916dbae57fd076977a64716cfa8ab08358adc0b398ea4d14fe775c6a0"
+ },
+ {
+  "document_id": 3243,
+  "page_no": 5,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc3243-p5.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 5 prints the running head '5 / THE HANDS INSTITUTE OF DEVELOPMENT STUDIES ACT, 2023 / SINDH ACT NO. XXXIX OF 2023' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "(3) The Institute shall take measures to setup campuses, virtual",
+  "before_text": "(3) The Institute shall take measures to setup campuses, virtual",
+  "after_text": "(3) The Institute shall take measures to setup campuses, virtual",
+  "source_apparatus_blocks": [
+   332961
+  ],
+  "source_head_boundary_blocks": [
+   332961
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside; rule reviewed_head_boundary: the set-aside head still ends the sentence before it, as printed",
+  "render_sha256": "e81b43a7409c0855a0699c2b9bf49930c6b22768b49f16547908ebb195c89d44"
+ },
+ {
+  "document_id": 3243,
+  "page_no": 6,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc3243-p6.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 6 prints the running head '6 / THE HANDS INSTITUTE OF DEVELOPMENT STUDIES ACT, 2023 / SINDH ACT NO. XXXIX OF 2023' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "to affiliate and disaffiliate educational institutions",
+  "before_text": "to affiliate and disaffiliate educational institutions",
+  "after_text": "to affiliate and disaffiliate educational institutions",
+  "source_apparatus_blocks": [
+   332968
+  ],
+  "source_head_boundary_blocks": [
+   332968
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside; rule reviewed_head_boundary: the set-aside head still ends the sentence before it, as printed",
+  "render_sha256": "ed2e011ce9c5f2ef54acdb3326191b77d9401a7bd34ed37c9812c7b3616e0b15"
+ },
+ {
+  "document_id": 3243,
+  "page_no": 7,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc3243-p7.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 7 prints the running head '7 / THE HANDS INSTITUTE OF DEVELOPMENT STUDIES ACT, 2023 / SINDH ACT NO. XXXIX OF 2023' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "(xviii) to provide for the printing and publication of",
+  "before_text": "(xviii) to provide for the printing and publication of",
+  "after_text": "(xviii) to provide for the printing and publication of",
+  "source_apparatus_blocks": [
+   332972
+  ],
+  "source_head_boundary_blocks": [
+   332972
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside; rule reviewed_head_boundary: the set-aside head still ends the sentence before it, as printed",
+  "render_sha256": "11598f53b4e0c24e729c0c4df7b6faf00cc556a76203f6c6f5108b4b662bc75f"
+ },
+ {
+  "document_id": 3243,
+  "page_no": 8,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc3243-p8.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 8 prints the running head '8 / THE HANDS INSTITUTE OF DEVELOPMENT STUDIES ACT, 2023 / SINDH ACT NO. XXXIX OF 2023' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "(1) The academic programmes of the Institute shall be conducted",
+  "before_text": "(1) The academic programmes of the Institute shall be conducted",
+  "after_text": "(1) The academic programmes of the Institute shall be conducted",
+  "source_apparatus_blocks": [
+   332983
+  ],
+  "source_head_boundary_blocks": [
+   332983
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside; rule reviewed_head_boundary: the set-aside head still ends the sentence before it, as printed",
+  "render_sha256": "1aeebf0ff0027418958ae216c6662b9d56a7973912c67d9359b5d884d9010126"
+ }
+]

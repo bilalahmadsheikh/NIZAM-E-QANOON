@@ -1,0 +1,26 @@
+[
+ {
+  "document_id": 3992,
+  "page_no": 16,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc3992-p16.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 16 prints the running head 'THE SINDH WORKERS’ COMPENSATION ACT, 2015' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "and vest in the worker, and upon any such transfer the insurers shall have",
+  "before_text": "THE SINDH WORKERS’ COMPENSATION ACT, 2015",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "328cc0528bb170da2057d5e398efccd06442d6937c2a8a2629d54e4a9e81b7f5"
+ },
+ {
+  "document_id": 3992,
+  "page_no": 22,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc3992-p22.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 22 prints the running head 'THE SINDH WORKERS’ COMPENSATION ACT, 2015' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "compensation which he is liable to pay under the provisions of this Act,",
+  "before_text": "THE SINDH WORKERS’ COMPENSATION ACT, 2015",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "4477cd008de3c398e956ea84102b10748579b2f9017d87aa17585873a364c27b"
+ }
+]

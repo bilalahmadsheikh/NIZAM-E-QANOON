@@ -1,0 +1,26 @@
+[
+ {
+  "document_id": 3919,
+  "page_no": 5,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc3919-p5.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 5 prints the running head 'THE SINDH EMPLOYEES’ SOCIAL SECURITY ACT, 2016' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "(7) “disablement” means a condition caused by an employment",
+  "before_text": "THE SINDH EMPLOYEES’ SOCIAL SECURITY ACT, 2016",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "0b8a61ea577b6e71d2f2509f0fcad946a3d05671f85c893f5f4e30f51732c4c8"
+ },
+ {
+  "document_id": 3919,
+  "page_no": 6,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc3919-p6.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 6 prints the running head 'THE SINDH EMPLOYEES’ SOCIAL SECURITY ACT, 2016' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "“establishment” means an organization, whether industrial,",
+  "before_text": "THE SINDH EMPLOYEES’ SOCIAL SECURITY ACT, 2016",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "1998c3c7db1a16fb069a0b9b42c85734cd0608a22ae1ed518cd4ce9cb43081b3"
+ }
+]

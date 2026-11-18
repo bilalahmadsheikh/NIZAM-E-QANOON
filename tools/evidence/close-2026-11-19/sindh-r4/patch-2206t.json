@@ -1,0 +1,14 @@
+[
+ {
+  "document_id": 2206,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2206-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head 'THE INSTITUTE OF BUSINESS AND TECHNOLOGY ACT, 2003.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "“Registrar” means the Registrar of the Institute;",
+  "before_text": "THE INSTITUTE OF BUSINESS AND TECHNOLOGY ACT, 2003.",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "6680d16fa1ee144b9ba19406682f900461485709f55be6aa8de4ea93d57a9134"
+ }
+]

@@ -1,0 +1,20 @@
+{
+ "pass": [
+  1864,
+  3880,
+  3914,
+  986
+ ],
+ "fail": {
+  "1245": "paths removed ['sindh.act.y2022_o4457.s_3.ss_4', 'sindh.act.y2022_o4457.s_3.ss_5', 'sindh.act.y2022_o4457.s_3.ss_6'] added ['sindh.act.y2022_o4457.cl_4', 'sindh.act.y2022_o4457.cl_4.cl_a', 'sindh.act.y2022_o4457.cl_4.cl_b']",
+  "2022": "no tree dump (the dry run failed or the rebuild was identical)",
+  "2206": "no tree dump (the dry run failed or the rebuild was identical)",
+  "2339": "no tree dump (the dry run failed or the rebuild was identical)",
+  "2505": "no tree dump (the dry run failed or the rebuild was identical)",
+  "2765": "no tree dump (the dry run failed or the rebuild was identical)",
+  "2902": "paths removed ['sindh.act.y2025_IV_o4469.ch_II.s_5.ss_6', 'sindh.act.y2025_IV_o4469.ch_II.s_5.ss_7', 'sindh.act.y2025_IV_o4469.ch_II.s_5.ss_8'] added ['sindh.act.y2025_IV_o4469.ch_II.cl_6', 'sindh.act.y2025_IV_o4469.ch_II.cl_6.ss_1', 'sindh.act.y2025_IV_o4469.ch_II.cl_6.ss_2']",
+  "3243": "paths removed ['sindh.act.y2023_XXXIX_o4453.ch_II', 'sindh.act.y2023_XXXIX_o4453.ch_II.s_3', 'sindh.act.y2023_XXXIX_o4453.ch_II.s_3.ss_1'] added ['sindh.act.y2023_XXXIX_o4453.s_3', 'sindh.act.y2023_XXXIX_o4453.s_3.ss_1', 'sindh.act.y2023_XXXIX_o4453.s_3.ss_2']",
+  "3919": "no tree dump (the dry run failed or the rebuild was identical)",
+  "3992": "no tree dump (the dry run failed or the rebuild was identical)"
+ }
+}

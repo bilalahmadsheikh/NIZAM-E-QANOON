@@ -1,4 +1,4 @@
-"""ajk_folio_patch.py OUT_DIR -- readings that set aside page numbers (folios) read into released AJK provisions.
+"""ajk_folio_patch.py OUT_DIR [DOC,DOC,...] -- readings that set aside page numbers (folios) read into released AJK provisions.
 
 The AJK Code prints each page's number at its foot (doc 10935: '202' on p4, '205' on p7, numbered by the volume, not
 the file). Where the text layer gave the number a block of its own inside the law, it ran into the sentence that
@@ -37,6 +37,7 @@ SELECT t.document_id, t.page_no, t.id, btrim(t.text), t.y0, pg.height
 
 def main() -> int:
     out_dir = Path(sys.argv[1])
+    only = {int(x) for x in sys.argv[2].split(",")} if len(sys.argv) > 2 else None   # optional DOC,DOC,...
     out_dir.mkdir(parents=True, exist_ok=True)
     (ROOT / REL).mkdir(parents=True, exist_ok=True)
     totals = collections.Counter()
@@ -51,6 +52,8 @@ def main() -> int:
             if y < .12 * hh or y > .8 * hh:
                 by_doc[d].append((p, bid, int(num), bid in in_law))
         for d, rows in sorted(by_doc.items()):
+            if only is not None and d not in only:
+                continue
             offsets = collections.Counter(n - p for p, _b, n, _l in rows)
             off, count = offsets.most_common(1)[0]
             if count < 3:
@@ -62,17 +65,21 @@ def main() -> int:
             by_page = collections.defaultdict(list)
             for p, b, t in cur.fetchall():
                 by_page[p].append((b, t))
-            # locators the document's active readings already use, page by page (the recorder refuses a repeat)
+            # locators any reading of the document ever used, page by page, retired or not (the recorder refuses an
+            # identical patch even when the earlier one was withdrawn; the evidence is append-only)
             cur.execute("""SELECT DISTINCT c.page_no, c.match_text FROM segmentation_curation_patch c
                              JOIN source_observation o ON o.id=c.source_observation_id
-                             JOIN document x ON x.sha256=o.sha256 WHERE x.id=%s AND c.retired_at IS NULL""", (d,))
+                             JOIN document x ON x.sha256=o.sha256 WHERE x.id=%s""", (d,))
             used = {(p, m) for p, m in cur.fetchall()}
             cur.execute("SELECT b.object_key FROM document x JOIN blob b ON b.sha256=x.sha256 WHERE x.id=%s", (d,))
             pdf = pymupdf.open(Path("/mnt/e/nizam-data") / cur.fetchone()[0])
             out = []
             for p, bid, n in sorted(hits):
-                cands = sorted({ln.strip() for b, t in by_page[p] if b != bid for ln in t.split("\n")
-                                if len(ln.strip()) >= 12}, key=len, reverse=True)
+                # The locator comes from law body text only. A footnote or other apparatus line can be located at
+                # record time and then match nothing at replay, because the segmenter has moved it out of the
+                # provision text first (18 Nov 2026: 6 AJK laws, "curation patch ... matched 0 blocks").
+                cands = sorted({ln.strip() for b, t in by_page[p] if b != bid and b in in_law
+                                for ln in t.split("\n") if len(ln.strip()) >= 12}, key=len, reverse=True)
                 loc = next((ln for ln in cands if sum(t.count(ln) for _b, t in by_page[p]) == 1
                             and sum(ln.casefold() in t.casefold() for _b, t in by_page[p]) == 1
                             and (p, ln) not in used), None)

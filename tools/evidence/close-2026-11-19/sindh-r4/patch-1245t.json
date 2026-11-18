@@ -1,0 +1,42 @@
+[
+ {
+  "document_id": 1245,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1245-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head '3 / THE SINDH HABITUAL OFFENDERS MONITORING ACT, 2022 / SINDH ACT NO. XXX OF 2023' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "Sessions of concerned District within thirty days from the date",
+  "before_text": "Sessions of concerned District within thirty days from the date",
+  "after_text": "Sessions of concerned District within thirty days from the date",
+  "source_apparatus_blocks": [
+   65460,
+   65461
+  ],
+  "source_head_boundary_blocks": [
+   65460,
+   65461
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside; rule reviewed_head_boundary: the set-aside head still ends the sentence before it, as printed",
+  "render_sha256": "ee7ea8a2b679bc42024ec3a81196f8a8dd5d87704bbed7c1a0c9f1f268d1e315"
+ },
+ {
+  "document_id": 1245,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1245-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head '4 / THE SINDH HABITUAL OFFENDERS MONITORING ACT, 2022 / SINDH ACT NO. XXX OF 2023' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "person shall report to the designated police officer or authorized",
+  "before_text": "person shall report to the designated police officer or authorized",
+  "after_text": "person shall report to the designated police officer or authorized",
+  "source_apparatus_blocks": [
+   65466,
+   65467
+  ],
+  "source_head_boundary_blocks": [
+   65466,
+   65467
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside; rule reviewed_head_boundary: the set-aside head still ends the sentence before it, as printed",
+  "render_sha256": "68ca7258f00c731756d4ce6d844fc68af083b3c9934bbe223ab1ce1818c88c90"
+ }
+]

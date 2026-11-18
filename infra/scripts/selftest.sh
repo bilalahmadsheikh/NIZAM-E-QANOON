@@ -28,12 +28,12 @@ for c in nizam-postgres nizam-pgadmin; do
   s=$(docker inspect -f '{{.State.Status}}' "$c" 2>/dev/null || echo missing)
   [ "$s" = running ] && ok "$c running" || no "$c" "state=$s"
 done
-# MinIO is opt-in (compose profile "blobstore", D-088): checked only where it exists.
-s=$(docker inspect -f '{{.State.Status}}' nizam-minio 2>/dev/null || echo missing)
+# The blob store (SeaweedFS, D-093) is opt-in (compose profile "blobstore", D-088): checked only where it exists.
+s=$(docker inspect -f '{{.State.Status}}' nizam-blobstore 2>/dev/null || echo missing)
 case "$s" in
-  running) ok "nizam-minio running (optional)"; MINIO_UP=1 ;;
-  missing) echo "  -- nizam-minio not created (optional, profile blobstore)"; MINIO_UP=0 ;;
-  *)       no "nizam-minio" "state=$s"; MINIO_UP=0 ;;
+  running) ok "nizam-blobstore running (optional)"; MINIO_UP=1 ;;
+  missing) echo "  -- nizam-blobstore not created (optional, profile blobstore)"; MINIO_UP=0 ;;
+  *)       no "nizam-blobstore" "state=$s"; MINIO_UP=0 ;;
 esac
 
 echo "== database contract (doc 03 §1)"
@@ -135,7 +135,7 @@ fi
 
 echo "== reachability"
 ports=("${POSTGRES_PORT:-5433}" "${PGADMIN_PORT:-5050}")
-[ "${MINIO_UP:-0}" = 1 ] && ports+=("${MINIO_CONSOLE_PORT:-9001}")
+[ "${MINIO_UP:-0}" = 1 ] && ports+=("${MINIO_PORT:-9000}")
 for p in "${ports[@]}"; do
   (exec 3<>/dev/tcp/127.0.0.1/"$p") 2>/dev/null && { ok "port $p listening"; exec 3<&- ; } || no "port $p"
 done

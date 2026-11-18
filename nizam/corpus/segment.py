@@ -11220,9 +11220,34 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
             if k in toc:
                 boundary_seen.add(k)
 
+    # Rule `reviewed_head_boundary` (D-089, 19 Nov 2026, doc 3243 p5). A page-read running head that a reading sets
+    # aside (source_apparatus_blocks) and ALSO names here still ends the sentence before it, as the printed header did
+    # in the released tree: the first unit after it on its page sees a finished sentence, so a PART/CHAPTER line or a
+    # sub-section opener there opens its unit instead of reading as the run-on of a colon or comma on the page before.
+    # Only the words leave; the reviewed structure stays. Data-gated in every profile; fails closed on a named block
+    # that is not set aside or not in the document.
+    _hb_ids = {int(v) for v in (overrides.get("source_head_boundary_blocks") or [])}
+    _hb_pos: list[tuple[int, float]] = []
+    if _hb_ids:
+        if _hb_ids - source_apparatus_blocks:
+            raise ValueError(f"source head boundary blocks {sorted(_hb_ids - source_apparatus_blocks)} "
+                             "are not set aside (source_apparatus_blocks)")
+        _hb_pos = [(blk.get("page_no"), float(blk.get("y0") or 0)) for blk in blocks if blk.get("id") in _hb_ids]
+        if len(_hb_pos) != len(_hb_ids):
+            raise ValueError("source head boundary block is not a block of the document")
+
     def previous_content(idx: int) -> str | None:
         """The last unit that was neither a running header nor a footnote.
         Page furniture interrupts the printed line but not the sentence."""
+        if _hb_pos and 0 <= idx < len(units):
+            _hb_b = units[idx][0]
+            _hb_page, _hb_y = _hb_b.get("page_no"), float(_hb_b.get("y0") or 0)
+            _hb_prev = units[idx - 1][0] if idx > 0 else None
+            for _hb_p, _hb_hy in _hb_pos:
+                if (_hb_p == _hb_page and _hb_hy < _hb_y
+                        and (_hb_prev is None or _hb_prev.get("page_no") != _hb_page
+                             or float(_hb_prev.get("y0") or 0) < _hb_hy)):
+                    return "."              # the reviewed page head ended the sentence
         for j in range(idx - 1, max(-1, idx - 10), -1):
             t = units[j][1]
             # Page furniture -- a header, a bare page number, a footnote -- is

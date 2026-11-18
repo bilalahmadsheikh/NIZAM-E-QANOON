@@ -99,34 +99,41 @@ services:
     ports:
       - "127.0.0.1:${PGADMIN_PORT:-5050}:80"
 
-  minio:
+  blobstore:
     # S3-compatible stand-in for Cloudflare R2 so the blob code path is the same
-    # locally as in production (09a §2). Newest tag on Docker Hub is 2025-09-07;
-    # the public image has not moved since -- re-check before choosing object
-    # storage for production (09b).
+    # locally as in production (09a §2). SeaweedFS since 19 Nov 2026 (D-093):
+    # MinIO's public images were withdrawn (D-088). SeaweedFS is Apache-2.0,
+    # pulls anonymously, and was proven on this pin with a SigV4-signed S3
+    # round trip -- create bucket, put, get, list; unsigned and wrong-secret
+    # requests refused (403). R2 itself is re-checked before production (09b).
     #
-    # OPT-IN since 18 Nov 2026 (D-088): minio/minio is gone from Docker Hub
-    # (the Hub API returns 404 for the repository) and quay.io/minio/minio
-    # refuses anonymous pulls (401), so a fresh machine cannot pull this image.
-    # No code reads the blob store yet. A machine that already has the image
-    # starts it with:  docker compose -f infra/compose.yaml --profile blobstore up -d
-    # The replacement S3 stand-in is an open question in the decision log.
+    # Still OPT-IN: no code reads or writes the blob store yet. Start it with
+    #   docker compose -f infra/compose.yaml --profile blobstore up -d
+    # S3 endpoint http://127.0.0.1:${MINIO_PORT:-9000}; access key MINIO_ROOT_USER,
+    # secret MINIO_ROOT_PASSWORD (infra/.env keeps those names so existing .env
+    # files and the bootstrap's generated password still apply).
     profiles: ["blobstore"]
-    image: minio/minio:RELEASE.2025-09-07T16-13-09Z@sha256:14cea493d9a34af32f524e538b8346cf79f3321eff8e708c1e2960462bd8936e
-    container_name: nizam-minio
+    image: chrislusf/seaweedfs:4.51@sha256:f7a49e3f3972ebed5be2ed4befa4a0c68eb7bdddba6e692d42729ceb545134b8
+    container_name: nizam-blobstore
     restart: unless-stopped
     logging: *logging
-    command: server /data --console-address ":9001"
     environment:
-      MINIO_ROOT_USER: ${MINIO_ROOT_USER:-nizam}
-      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:?set MINIO_ROOT_PASSWORD in infra/.env}
+      S3_ACCESS_KEY: ${MINIO_ROOT_USER:-nizam}
+      S3_SECRET_KEY: ${MINIO_ROOT_PASSWORD:?set MINIO_ROOT_PASSWORD in infra/.env}
+    entrypoint: ["/bin/sh", "-c"]
+    # the identity file is written from the environment at start, inside the container, never on disk in the repo
+    command:
+      - >-
+        printf '{"identities":[{"name":"nizam","credentials":[{"accessKey":"%s","secretKey":"%s"}],"actions":["Admin","Read","List","Tagging","Write"]}]}'
+        "$$S3_ACCESS_KEY" "$$S3_SECRET_KEY" > /tmp/s3.json &&
+        exec weed server -dir=/data -s3 -s3.port=8333 -s3.config=/tmp/s3.json
     volumes:
-      - miniodata:/data
+      - blobdata:/data
     ports:
-      - "127.0.0.1:${MINIO_PORT:-9000}:9000"
-      - "127.0.0.1:${MINIO_CONSOLE_PORT:-9001}:9001"
+      - "127.0.0.1:${MINIO_PORT:-9000}:8333"
     healthcheck:
-      test: ["CMD-SHELL", "mc ready local || exit 1"]
+      # an unsigned request must be refused (403): the S3 gateway is up and enforcing credentials
+      test: ["CMD-SHELL", "[ \"$$(curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:8333/)\" = 403 ]"]
       interval: 15s
       timeout: 5s
       retries: 6
@@ -135,4 +142,4 @@ services:
 volumes:
   pgdata:
   pgadmindata:
-  miniodata:
+  blobdata:

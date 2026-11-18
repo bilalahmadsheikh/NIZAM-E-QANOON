@@ -1,0 +1,34 @@
+[
+ {
+  "document_id": 1245,
+  "page_no": 5,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1245-p5.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 5 prints the running head '5 / THE SINDH HABITUAL OFFENDERS MONITORING ACT, 2022 / SINDH ACT NO. XXX OF 2023' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "centralized data base shall also be maintained at provincial level",
+  "before_text": "centralized data base shall also be maintained at provincial level",
+  "after_text": "centralized data base shall also be maintained at provincial level",
+  "source_apparatus_blocks": [
+   65473,
+   65474
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "c87e861f33b24f3c7903e03bf158fee6d6459357cdad8c2a9e9a8019811ac5bb"
+ },
+ {
+  "document_id": 1245,
+  "page_no": 6,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc1245-p6.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 6 prints the running head '6 / THE SINDH HABITUAL OFFENDERS MONITORING ACT, 2022 / SINDH ACT NO. XXX OF 2023' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "Theft of a car or other motor vehicles",
+  "before_text": "Theft of a car or other motor vehicles",
+  "after_text": "Theft of a car or other motor vehicles",
+  "source_apparatus_blocks": [
+   65485,
+   65486
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "4a78b74501cdd14c219d22318dfcd736cac5c4171b527ba839155d0bb3313240"
+ }
+]

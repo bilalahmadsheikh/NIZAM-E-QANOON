@@ -257,6 +257,10 @@ pre u{color:var(--rubric);text-decoration:none}
         <tfoot><tr><td>Docker images total</td><td></td><td class="n">~6.8 GB</td><td></td></tr></tfoot>
       </table>
     </div>
+    <div class="note blue" style="margin-top:1rem">
+      <h4>As built (19 Nov 2026): the S3 stand-in is SeaweedFS, and it is opt-in</h4>
+      <p>MinIO&rsquo;s public images were withdrawn: Docker Hub returns 404 for <code>minio/minio</code> and quay.io refuses anonymous pulls (D-088). The local S3 stand-in is now <code>chrislusf/seaweedfs:4.51</code>, pinned by digest (Apache-2.0, D-093). Its <code>blobstore</code> service runs only under <code>--profile blobstore</code>, because no code reads or writes blobs yet. <code>./nz up</code> starts Postgres and pgAdmin. The endpoint is <code>localhost:9000</code>, and the credentials are <code>MINIO_ROOT_USER</code>/<code>MINIO_ROOT_PASSWORD</code> from <code>infra/.env</code>, names kept so existing files still work. It was proven with SigV4-signed requests, as R2 requires: create a bucket, put, get, list and delete all succeed, and an unsigned or wrong-secret request is refused with 403. There is no web console. R2 itself is re-checked before production (09b).</p>
+    </div>
 
     <h4>On the host</h4>
     <div class="scroll">

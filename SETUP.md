@@ -109,7 +109,7 @@ cd /mnt/e/Nizam_e_Qanoon
 ```
 
 `bootstrap` installs Docker Engine, installs `uv`, generates `infra/.env` with
-fresh passwords, starts Postgres + pgAdmin + MinIO, verifies the cluster against
+fresh passwords, starts Postgres + pgAdmin (the S3 store is opt-in, D-093), verifies the cluster against
 doc 03 §1, and applies the migrations.
 
 It will stop once, after installing Docker, and tell you to run `wsl --shutdown`

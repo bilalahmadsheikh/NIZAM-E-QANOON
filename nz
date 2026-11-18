@@ -143,8 +143,8 @@ cmd_status() {
     echo
     b "open it"
     echo "  pgAdmin    http://localhost:${PGADMIN_PORT:-5050}"
-    docker inspect nizam-minio >/dev/null 2>&1 \
-      && echo "  MinIO      http://localhost:${MINIO_CONSOLE_PORT:-9001}  (optional, profile blobstore)"
+    docker inspect nizam-blobstore >/dev/null 2>&1 \
+      && echo "  S3 store   http://localhost:${MINIO_PORT:-9000}  (SeaweedFS, optional: profile blobstore)"
     echo "  Postgres   localhost:${POSTGRES_PORT:-5433}  db=${POSTGRES_DB:-nizam_clean} user=${POSTGRES_USER:-nizam}"
   fi
 }

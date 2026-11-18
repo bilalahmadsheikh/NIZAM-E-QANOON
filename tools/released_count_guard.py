@@ -64,6 +64,8 @@ def newest_baseline(root: pathlib.Path = BASELINES) -> pathlib.Path | None:
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--baseline", type=pathlib.Path, help="a signed baseline directory (default: the newest)")
+    ap.add_argument("--record-documents", action="store_true",
+                    help="write the baseline's released_counts.json now, while its instrument ids all resolve")
     a = ap.parse_args()
     base = a.baseline or newest_baseline()
     if base is None:
@@ -73,9 +75,33 @@ def main() -> int:
     measured_at = json.loads((base / "manifest.json").read_text(encoding="utf-8"))["measured_at"]
     from nizam.storage.db import connect
     with connect() as conn, conn.cursor() as cur:
-        cur.execute("""SELECT document_id, count(*) FROM instrument WHERE id::text = ANY(%s) GROUP BY 1""",
-                    (released_ids,))
-        before = {int(d): int(n) for d, n in cur.fetchall()}
+        docs_file = base / "released_counts.json"
+        if docs_file.exists():
+            # released_counts.json, {document: released expressions}, recorded when the baseline was signed (19 Nov 2026). Resolving the
+            # baseline's instrument ids through `instrument` breaks once a prune deletes retired revisions: on 19 Nov
+            # some 1,100 ids of claude-baseline-89 no longer resolved and 959 laws read as undeclared rises.
+            before = {int(d): int(n) for d, n in json.loads(docs_file.read_text(encoding="utf-8")).items()}
+        else:
+            cur.execute("""SELECT document_id, count(*) FROM instrument WHERE id::text = ANY(%s) GROUP BY 1""",
+                        (released_ids,))
+            before = {int(d): int(n) for d, n in cur.fetchall()}
+            cur.execute("SELECT count(*) FROM instrument WHERE id::text = ANY(%s)", (released_ids,))
+            unresolved = len(set(released_ids)) - int(cur.fetchone()[0])
+            if unresolved:
+                print(f"released-count guard: {unresolved} of {base.name}'s instrument ids no longer resolve (pruned); "
+                      "sign a new baseline with --record-documents", file=sys.stderr)
+                return 2
+        if a.record_documents:
+            cur.execute("""SELECT document_id, count(*) FROM instrument WHERE id::text = ANY(%s) GROUP BY 1""",
+                        (released_ids,))
+            rec = {str(int(d)): int(n) for d, n in cur.fetchall()}
+            if sum(rec.values()) != len(set(released_ids)):
+                print("released-count guard: cannot record released_counts.json, some baseline ids do not resolve",
+                      file=sys.stderr)
+                return 2
+            docs_file.write_text(json.dumps(rec, indent=0, sort_keys=True), encoding="utf-8")
+            before = {int(d): n for d, n in rec.items()}
+            print(f"released-count guard: recorded {docs_file} ({sum(rec.values())} expressions, {len(rec)} documents)")
         cur.execute("""SELECT i.document_id, count(*) FROM v_release_instrument r
                          JOIN instrument i ON i.id=r.id GROUP BY 1""")
         now = {int(d): int(n) for d, n in cur.fetchall()}

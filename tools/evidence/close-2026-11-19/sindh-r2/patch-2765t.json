@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 2765,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2765-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head 'SINDH ACT NO. I OF 2025.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "categories or numbers and/or series numbers and shall fix fees or",
+  "before_text": "categories or numbers and/or series numbers and shall fix fees or",
+  "after_text": "categories or numbers and/or series numbers and shall fix fees or",
+  "source_apparatus_blocks": [
+   244620
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "703853bffe294caf7b41341ed0eda059e892dcb110cfe227ecbc82832b472f10"
+ },
+ {
+  "document_id": 2765,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2765-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head 'SINDH ACT NO. I OF 2025.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "be, including sponsorship from private sector, in public interest",
+  "before_text": "be, including sponsorship from private sector, in public interest",
+  "after_text": "be, including sponsorship from private sector, in public interest",
+  "source_apparatus_blocks": [
+   244641
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "b541b764e8684b731e545954464c8495686df2975fe21a59270d40eb3d37de43"
+ },
+ {
+  "document_id": 2765,
+  "page_no": 5,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2765-p5.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 5 prints the running head 'SINDH ACT NO. I OF 2025.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "transfer of ownership to the registering authority for issuance of",
+  "before_text": "transfer of ownership to the registering authority for issuance of",
+  "after_text": "transfer of ownership to the registering authority for issuance of",
+  "source_apparatus_blocks": [
+   244645
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "0be2a474dac0d7e0d54f64b2d370ab980004505f3891a0befdc47f8453d98813"
+ },
+ {
+  "document_id": 2765,
+  "page_no": 6,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2765-p6.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 6 prints the running head 'SINDH ACT NO. I OF 2025.' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "vehicles to various Government Offices, subject to specified",
+  "before_text": "vehicles to various Government Offices, subject to specified",
+  "after_text": "vehicles to various Government Offices, subject to specified",
+  "source_apparatus_blocks": [
+   244672
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "9e86565c4bd44c098d54674ec0947baeba3993f9100c42497888e0a29792f406"
+ }
+]

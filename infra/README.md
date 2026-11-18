@@ -27,7 +27,7 @@ corpus, and the snapshots.
                                                  (E:\wsl\Ubuntu\ext4.vhdx)
   browser  ──►  localhost:5050  ──────────────►  nizam-pgadmin
   psql     ──►  localhost:5433  ──────────────►  nizam-postgres  ─► pgdata (ext4)
-  browser  ──►  localhost:9001  ──────────────►  nizam-minio
+  S3 (opt) ──►  localhost:9000  ──────────────►  nizam-blobstore (SeaweedFS, --profile blobstore)
                                                        │
   E:\nizam-data\raw        ── /corpus (ro) ────────────┤   immutable source blobs
   E:\nizam-data\snapshots  ── /snapshots ──────────────┘   auto, every 15 min
@@ -81,8 +81,8 @@ GUI is invisible to git and will not exist on the server, and 09a §7 calls that
 "the most common and most damaging drift". Schema changes go in
 `infra/postgres/migrations/` and nowhere else.
 
-Also available: **MinIO console at [http://localhost:9001](http://localhost:9001)**
-(the local stand-in for Cloudflare R2), and Postgres on **localhost:5433** for
+Also available: an **S3 endpoint at localhost:9000** when started with
+`--profile blobstore` (SeaweedFS, the local stand-in for Cloudflare R2; D-093), and Postgres on **localhost:5433** for
 `psql`, DBeaver, or any client — from Windows or WSL, since WSL2 forwards
 localhost.
 
@@ -221,7 +221,7 @@ Last run: **24 passed, 0 failed.**
 
 | | |
 |---|---|
-| `compose.yaml` | Postgres (ParadeDB), pgAdmin, MinIO — all pinned by digest |
+| `compose.yaml` | Postgres (ParadeDB), pgAdmin, and the opt-in SeaweedFS S3 store — all pinned by digest |
 | `up.sh` | Start, verify, migrate, load, snapshot |
 | `.env.example` | Copy to `.env`, set three passwords |
 | `postgres/postgresql.dev.conf` | Developer profile, computed in 09a §4 for 16 GB / 6 cores |

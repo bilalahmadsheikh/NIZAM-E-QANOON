@@ -83,7 +83,12 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--apply", action="store_true")
     ap.add_argument("--show", type=int, default=20)
+    ap.add_argument("--dump", help="write every recorded (instrument_id, long title) to this JSON file")
+    ap.add_argument("--raw-text", action="store_true",
+                    help="read the extracted blocks without the page-read corrections (the pre-D-092 behaviour)")
     args = ap.parse_args()
+    from tools.title_region_text import corrected, load_corrections
+    dumped = []
     from nizam.storage.db import connect
     counts: dict = {}
     shown = []
@@ -105,13 +110,16 @@ def main() -> int:
                         WHERE assertion = 'withdrawn' AND basis = 'recheck_not_reproduced' AND method = %s""",
                     (METHOD,))
         withdrawn -= {(r[0], r[1]) for r in cur.fetchall()}
+        corrections = {} if args.raw_text else load_corrections(cur)      # D-092: the text as page-read
         for iid, obs, ordinal, doc, kind, start, end in todo:
             if (obs, ordinal) in withdrawn:
                 continue
             cur.execute("""SELECT t.id, t.page_no, coalesce(t.text, '') FROM text_block t
                             WHERE t.document_id = %s AND t.id >= %s AND t.id <= coalesce(%s, t.id)
                             ORDER BY t.id LIMIT %s""", (doc, start, end, WINDOW))
-            blocks = cur.fetchall()
+            blocks, n_corr = corrected(cur.fetchall(), corrections.get(obs, []))
+            if n_corr:
+                counts["read_with_corrections"] = counts.get("read_with_corrections", 0) + 1
             found, text, spans = [], "", []
             # the first BLOCKS blocks decide; the wider WINDOW is read only when they print no long title (a second,
             # OCR-variant print further in must not unsettle a title the title region already prints once)
@@ -129,6 +137,8 @@ def main() -> int:
                 if (obs, ordinal) in standing:
                     withdraw(cur, obs, ordinal, "long_title", METHOD, f"not reproduced: {why}")
                     counts["withdrawn_on_recheck"] = counts.get("withdrawn_on_recheck", 0) + 1
+                    dumped.append({"document_id": doc, "expression_ordinal": ordinal, "withdrawn": why,
+                                   "was": standing[(obs, ordinal)]})
                 continue
             title, s, _e = found[0]
             if standing.get((obs, ordinal)) == title:
@@ -142,10 +152,14 @@ def main() -> int:
                         (obs, ordinal, title, bid, page, title[:300], METHOD,
                          json.dumps({"reviewer_type": "tool", "kind": kind, "printed_times": len(found)})))
             counts["recorded"] = counts.get("recorded", 0) + 1
+            dumped.append({"document_id": doc, "expression_ordinal": ordinal, "long_title": title,
+                           "was": standing.get((obs, ordinal))})
             if len(shown) < args.show:
                 shown.append(f"  {doc} {kind}: {title[:150]}")
         if not args.apply:
             conn.rollback()
+    if args.dump:
+        Path(args.dump).write_text(json.dumps(dumped, ensure_ascii=False, indent=1), encoding="utf-8")
     print(json.dumps(counts, indent=1))
     print("\n".join(shown))
     print("applied" if args.apply else "dry run (rolled back); pass --apply to write")

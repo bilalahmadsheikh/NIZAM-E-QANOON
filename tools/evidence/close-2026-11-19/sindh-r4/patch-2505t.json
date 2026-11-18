@@ -1,0 +1,14 @@
+[
+ {
+  "document_id": 2505,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2505-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head 'TECHNOLOGY, NAWABSHAH ACT, 1996' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "―Government‖ means the Government of Sindh;",
+  "before_text": "TECHNOLOGY, NAWABSHAH ACT, 1996",
+  "after_text": " ",
+  "fixes": "parser-input correction: the running-title lines cut from the block, the law after them kept as printed",
+  "render_sha256": "f7f4c0b16b88905482f7d2ea8ec7b48a1a77d7946704d06be835825196c6242d"
+ }
+]

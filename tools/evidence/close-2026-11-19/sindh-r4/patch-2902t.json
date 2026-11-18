@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 2902,
+  "page_no": 3,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2902-p3.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 3 prints the running head '3 / THE M.H. PANHWAR INSTITUTE OF SINDH STUDIES ACT, 2025 / SINDH ACT NO. IV OF 2025' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "(1) The general directions and administration of the Institute and",
+  "before_text": "(1) The general directions and administration of the Institute and",
+  "after_text": "(1) The general directions and administration of the Institute and",
+  "source_apparatus_blocks": [
+   270413,
+   270414
+  ],
+  "source_head_boundary_blocks": [
+   270413,
+   270414
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside; rule reviewed_head_boundary: the set-aside head still ends the sentence before it, as printed",
+  "render_sha256": "7ff4ccbebb80847635ba84447082704ff45eddd8585d2c1fa1abc37f1ce4ad05"
+ },
+ {
+  "document_id": 2902,
+  "page_no": 4,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2902-p4.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 4 prints the running head '4 / THE M.H. PANHWAR INSTITUTE OF SINDH STUDIES ACT, 2025 / SINDH ACT NO. IV OF 2025' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "Government otherwise direct, hold office for a period of three",
+  "before_text": "Government otherwise direct, hold office for a period of three",
+  "after_text": "Government otherwise direct, hold office for a period of three",
+  "source_apparatus_blocks": [
+   270423,
+   270424
+  ],
+  "source_head_boundary_blocks": [
+   270423,
+   270424
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside; rule reviewed_head_boundary: the set-aside head still ends the sentence before it, as printed",
+  "render_sha256": "06cde8db453ce1b0201883a276f21693b2604f17f0d0398a679865857d0412e6"
+ },
+ {
+  "document_id": 2902,
+  "page_no": 5,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2902-p5.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 5 prints the running head '5 / THE M.H. PANHWAR INSTITUTE OF SINDH STUDIES ACT, 2025 / SINDH ACT NO. IV OF 2025' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "of leave, illness or other cause, the Chief Minister may nominate",
+  "before_text": "of leave, illness or other cause, the Chief Minister may nominate",
+  "after_text": "of leave, illness or other cause, the Chief Minister may nominate",
+  "source_apparatus_blocks": [
+   270430,
+   270431
+  ],
+  "source_head_boundary_blocks": [
+   270430,
+   270431
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside; rule reviewed_head_boundary: the set-aside head still ends the sentence before it, as printed",
+  "render_sha256": "2fe6174cab68e145565e853b292da28f3f2c5d6d2033fc51112194b674af1d13"
+ }
+]

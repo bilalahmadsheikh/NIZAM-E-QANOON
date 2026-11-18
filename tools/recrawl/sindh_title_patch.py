@@ -1,4 +1,4 @@
-"""sindh_title_patch.py OUT_DIR -- readings that take the Sindh Code's running TITLE line out of released provisions.
+"""sindh_title_patch.py OUT_DIR [DOC,DOC,...] -- readings that take the Sindh Code's running TITLE line out of released provisions.
 
 Companion to sindh_head_patch.py (15 Nov 2026), which set aside the running CITATION line ('SINDH ACT NO. XII OF 1994')
 at the head of each page. Under it the Sindh Code prints the law's title ('THE SINDH CULTURAL HERITAGE (PERSERVATION)
@@ -70,12 +70,19 @@ def title_lines(text: str, title: str) -> int:
         elif caps_line(line) and len(tfold(line).split()) >= 2 and f" {tfold(line)} " in f" {title} ":
             k += 1
             titled += 1
+        elif titled and CITE.match(fold(line)):
+            # the citation printed under the title is the head too (19 Nov 2026, doc 3243 p5: '5 / title / SINDH ACT
+            # NO. XXXIX OF 2023'). Stopping at the title cut two lines and left the citation in the block, and the
+            # leftover line broke the chapter that followed.
+            k += 1
         else:
             break
     return k if titled else 0
 
 
-def plan(cur, d, totals, used, in_law_ids):
+def plan(cur, d, totals, used, in_law_ids, pages=None, boundary=False):
+    """pages: only these pages (None: all). boundary: a set-aside head also keeps ending the sentence before it (rule
+    reviewed_head_boundary, D-089) -- for the pages where the batch proof showed the head was load-bearing."""
     cur.execute(BLOCKS, (d,))
     by_page = collections.defaultdict(list)
     for p, bid, text, y0, h in cur.fetchall():
@@ -104,7 +111,7 @@ def plan(cur, d, totals, used, in_law_ids):
             earliest.setdefault(lead(t), p)
     out = []
     for p in sorted(tops):
-        if p == first:
+        if p == first or (pages is not None and p not in pages):
             continue
         aside, cut, words = [], None, []
         for bid, text, in_law in tops[p]:
@@ -150,8 +157,16 @@ def plan(cur, d, totals, used, in_law_ids):
              "observed": f"Page {p} prints the running head {' / '.join(words)!r} at its head; the same lines head the "
                          f"document's other pages, and the title is the law's own recorded title"}
         if cut:
-            loc = next((x.strip() for x in cut[1].split("\n") if len(x.strip()) >= 12), cut[1])
-            if (d, p, loc) in used:
+            # a head line unique on the page; else the whole head, which is checked unique above (doc 986's title
+            # line also opens another block on its page, so the recorder refused it as matching 2 blocks)
+            # Any line of the cut's own block anchors it (the recorder needs only that the locator finds the block and
+            # the cut is once in it): head lines first, then the block's law lines, never one used before on the page.
+            block_text = next(t for b, t, *_ in by_page[p] if b == cut[0])
+            lines_in_block = [x.strip() for x in cut[1].split("\n")] + [x.strip() for x in block_text.split("\n")]
+            loc = next((x for x in lines_in_block if len(x) >= 12 and (d, p, x) not in used
+                        and sum(t.casefold().count(x.casefold()) for _b, t, *_ in by_page[p]) == 1),
+                       None if (d, p, cut[1]) in used else cut[1])
+            if loc is None or (d, p, loc) in used:
                 totals["skipped: locator used"] += 1
                 continue
             e.update(match_text=loc, before_text=cut[1], after_text=" ")
@@ -169,8 +184,13 @@ def plan(cur, d, totals, used, in_law_ids):
         if aside:
             e["source_apparatus_blocks"] = aside
             totals["blocks set aside"] += len(aside)
+            if boundary:
+                e["source_head_boundary_blocks"] = aside
+                totals["heads kept as a sentence boundary"] += len(aside)
         e["fixes"] = ("; ".join(x for x in [
             "rule reviewed_apparatus_block: the running-head block(s) set aside" if aside else "",
+            "rule reviewed_head_boundary: the set-aside head still ends the sentence before it, as printed"
+            if aside and boundary else "",
             "parser-input correction: the running-title lines cut from the block, the law after them kept as printed"
             if cut else ""] if x))
         used[(d, p, e["match_text"])] = True
@@ -180,25 +200,36 @@ def plan(cur, d, totals, used, in_law_ids):
 
 def main() -> int:
     out_dir = Path(sys.argv[1])
+    only = {int(x) for x in sys.argv[2].split(",")} if len(sys.argv) > 2 else None   # optional DOC,DOC,...
+    # optional PAGES.json {"doc": [page, ...]}: only those pages, each head kept as a sentence boundary (D-089)
+    page_map = ({int(k): set(v) for k, v in json.loads(Path(sys.argv[3]).read_text()).items()}
+                if len(sys.argv) > 3 else None)
     out_dir.mkdir(parents=True, exist_ok=True)
     (ROOT / REL).mkdir(parents=True, exist_ok=True)
     totals = collections.Counter()
     with connect() as conn, conn.cursor() as cur:
         cur.execute("SET max_parallel_workers_per_gather = 0")
         cur.execute(DOCS)
-        docs = [r[0] for r in cur.fetchall()]
+        docs = [r[0] for r in cur.fetchall() if only is None or r[0] in only]
         cur.execute(IN_LAW)
         in_law_ids = {r[0] for r in cur.fetchall()}
         for d in docs:
             # the document's active readings: their locators (page-scoped) and what each page's readings already cut
-            cur.execute("""SELECT DISTINCT c.page_no, c.match_text, c.before_text FROM segmentation_curation_patch c
+            # Locators: every reading ever recorded on the page, retired or not -- the evidence is append-only and the
+            # recorder refuses an identical patch even when the earlier one was withdrawn (19 Nov 2026). What a page
+            # already cuts: the active readings only.
+            cur.execute("""SELECT DISTINCT c.page_no, c.match_text, c.before_text, c.retired_at IS NULL
+                             FROM segmentation_curation_patch c
                              JOIN source_observation o ON o.id=c.source_observation_id
-                             JOIN document x ON x.sha256=o.sha256 WHERE x.id=%s AND c.retired_at IS NULL""", (d,))
+                             JOIN document x ON x.sha256=o.sha256 WHERE x.id=%s""", (d,))
             used = {}
-            for page, match, before in cur.fetchall():
+            for page, match, before, active in cur.fetchall():
                 used[(d, page, match)] = True
-                used.setdefault(("page", d, page), []).append(before or "")
-            out = plan(cur, d, totals, used, in_law_ids)
+                if active:
+                    used.setdefault(("page", d, page), []).append(before or "")
+            out = plan(cur, d, totals, used, in_law_ids,
+                       pages=page_map.get(d, set()) if page_map is not None else None,
+                       boundary=page_map is not None)
             if not out:
                 continue
             cur.execute("SELECT b.object_key FROM document x JOIN blob b ON b.sha256=x.sha256 WHERE x.id=%s", (d,))

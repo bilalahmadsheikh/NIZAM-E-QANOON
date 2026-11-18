@@ -1136,8 +1136,158 @@ Area: client · Status: Superseded by D-084 (the whole-page cloth; the hem, the 
   design/heritage_art.dart, presentation/discover.dart, presentation/heritage.dart; test/heritage_test.dart
   (golden embroidery.png, a review sheet at 3x).
 
+### D-094 · 2026-11-19 · Open questions closed by decision: word amendments, repeals by subject, undated amendments, "462 I", the 23rd–24th Amendments, Gilgit-Baltistan heritage
+Area: corpus/legal model · Status: standing
+- Decision:
+  1. **Amendments of words are amendments, not repeals.** "For the word X, the word Y shall be substituted" changes a
+     provision's text. Where the amending law is held, it is served as a provision version (INV-5). It is never a
+     unit repeal (0102 stays unit repeals only).
+  2. **A repeal by subject is not resolved to units.** Clauses such as "any law inconsistent with this Act is
+     repealed" or "all laws relating to X" name no unit. Applying them would be the guess the corpus rules forbid.
+     Such laws keep the owner's presumption that a law is in force (16 Nov), and no `repeals` edge is drawn.
+  3. **Undated amendments stay served from the capture date** (3,856 laws, `text_known_from`, 0096–0099). The rule is
+     "never guess a version boundary"; serving the earlier text as at an earlier date would be that guess. The number
+     falls only as dated amending instruments are held. This is the correct behaviour, not a backlog.
+  4. **"462 I" is kept as printed.** PPC p159 (doc 4441) prints "462 I." with a space; "462J." follows without one.
+     docs/01 keeps labels verbatim ("365 A"). Matching "462I" to it belongs to retrieval's citation lookup
+     (docs/04), which normalises spacing.
+  5. **The 23rd and 24th Amendment Acts are not landed.** Searched 19 Nov:
+     - The only official copy of the 23rd is the National Assembly's upload of the Bill (na.gov.pk 1490160955_216.pdf,
+       22 Mar 2017). It is a scan with an OCR text layer, not the assented Act, so the owner's rule on scans applies.
+     - No official copy of the 24th was found.
+     - Both amendments' effect is in the consolidated Constitution as modified to 22 Dec 2017 (na.gov.pk
+       1515056252_668.pdf).
+  6. **No Gilgit-Baltistan heritage law exists** to land (D-085). The heritage tab shows GB's crafts without a law.
+     Revisit only when the Assembly enacts one.
+  7. **The released-count guard reads counts that a prune cannot invalidate.**
+     - claude-baseline-89 stored instrument ids, which the guard resolved through `instrument`. After the D-086 prune,
+       about 1,100 of those ids were gone, and 959 laws read as undeclared rises.
+     - The guard now prefers a baseline's `released_counts.json` (document → count), written at signing
+       (`--record-documents`). It refuses (exit 2) a baseline whose ids no longer resolve instead of miscounting.
+     - claude-baseline-90 is signed at 10,342: 10,342 → 10,342, with 0 undeclared.
+- Why: the owner asked that every open item except the scans be closed correctly. These are decided by the existing
+  rules and invariants, not by new corpus work.
+- Where: tools/released_count_guard.py; .artifacts/release-work-2026-09-24/claude-baseline-90/; this entry.
+
+### D-093 · 2026-11-19 · The local S3 stand-in is SeaweedFS
+Area: L2 storage/deploy · Status: standing (closes D-088's open question)
+- Decision: the compose service `blobstore` runs `chrislusf/seaweedfs:4.51`, pinned by digest (sha256:f7a49e3f…,
+  26 Oct 2026). It sits under the `blobstore` profile until code uses it, on localhost:9000.
+  - Credentials come from infra/.env MINIO_ROOT_USER and MINIO_ROOT_PASSWORD. The names are kept so existing .env
+    files, the bootstrap and the kit still apply.
+  - The S3 identity file is written inside the container at start, from those variables.
+  - The healthcheck requires that an unsigned request be refused.
+- Why:
+  - **Candidates, checked 19 Nov on Docker Hub and GitHub, not recalled.** All four are active and pull anonymously:
+    - SeaweedFS: Apache-2.0, 43.6M pulls, pushed 18 Nov.
+    - RustFS: Apache-2.0.
+    - versitygw: Apache-2.0.
+    - Garage: AGPL-3.0, a heavier licence obligation for no gain here.
+  - **Proven on the pin with SigV4-signed requests, the signing R2 requires:**
+    - create bucket, put, get, list and delete succeed;
+    - unsigned and wrong-secret requests are refused (403);
+    - the compose service comes up healthy with the .env credentials, and `./nz status` and the selftest see it.
+- Where: infra/compose.yaml (`blobstore`), infra/scripts/selftest.sh, nz, infra/README.md, SETUP.md,
+  docs/09a (as built, 19 Nov), tools/evidence/close-2026-11-19/{s3_roundtrip.sh, blobstore_up.sh}.
+
+### D-092 · 2026-11-19 · Title-region recorders read the law as page-read
+Area: L1 corpus · Status: standing (closes the open question "Title-region recorders read raw OCR")
+- Decision: `record_instrument_numbers`, `record_long_titles` and `record_enacted_dates` read their window with the
+  observation's active page-read corrections applied (tools/title_region_text.py). It uses the segmenter's own
+  `_apply_curation_patches`, one correction at a time.
+  - A correction whose block is outside the window is not applied.
+  - One the window cannot apply whole (a two-block label move) is skipped, never half-applied.
+  - `--raw-text` reproduces the old reading.
+- The corpus-wide dry run the question asked for, raw text against page-read text:
+  - **Numbers:** 42 new (for example "ACT No. XVII OF 1876" in hand-read scans whose raw OCR printed none), 1
+    withdrawn.
+  - **Long titles:** 101 new, and 6 withdrawn (OCR garbage such as "An Act for regula Iu we pepe Sal…").
+    - 9851's raw title came from the wrong text: its reading shows the Indian Tariff Act, 1934.
+    - 9546's reading runs past the window, so its title is left unasserted rather than taken from the raw OCR.
+  - **Enactment dates:** 68 new and 6 withdrawn. 37 of the new dates disagree with the portal's dates, which are
+    known to be unreliable (L2 metadata note, 12 Nov).
+  - Applied. `apply_instrument_metadata` kept the segmenter's number in its 2 conflicts (9583, 9748). The repeal
+    re-derivation updated 1 instrument. Serving was refreshed; the audit passes 41/41.
+- Why: the page reading is the authority for a scan read by hand (the owner rule, D-076). The raw OCR is not.
+- Where: tools/title_region_text.py; the three recorders (`--raw-text`, and `--dump` on long titles);
+  tools/evidence/close-2026-11-19/{recorders_ab.sh, recorders/, recorders_apply.sh}.
+
+### D-091 · 2026-11-19 · Rebuild drift reviewed law by law, and the verdicts enforced
+Area: L1 corpus/process · Status: standing (closes the open questions "Older rebuild drift" and "Rebuild drift found by the D-080 A/B")
+- Decision: every law the open questions named was dry-run as it stands, multi-instrument documents through the
+  materializer's own `prepare()`, node by node. Each now carries a verdict in
+  tools/evidence/drift-review-2026-11-19.json.
+  - **Closed (4).**
+    - 2772 rebuilds identically.
+    - 8743 differed only in its path prefix and is identical since D-090.
+    - 4702 and 9868 are multi-instrument documents that rebuild identically through the materializer. The worker's
+      single-expression dry run was the wrong judge.
+  - **The release is right and the rebuild worse (12).** Laws: 1101, 1977, 2904, 2491, 8213, 9310, 9659, 5494, 8173,
+    6576, 6784, and 4347 expression 3. The rebuilds:
+    - split wrapped amendment headings into stray root clauses;
+    - take a footnote for s.1's heading;
+    - lose Parts;
+    - rename "Part I" (printed "I.") to "1";
+    - renumber duplicate suffixes;
+    - split damaged Gazette text;
+    - fold 2491's "14. The Assistant Registrar" into item 13, so its reviewed reparent fails closed.
+  - **Enforced.** `legal_write.save` and `save_many` now refuse an APPROVED release change for a law whose verdict is
+    `stored_correct`, quoting the finding. An approval can no longer carry a known-worse rebuild in. Lifting it means
+    fixing the regression and recording a new verdict.
+- Why: the questions said each law "needs its own review before its next replay". The replay gate already refuses
+  unapproved changes. What was missing was the review and a guard against approving through it.
+- Consequence: the furniture of 1101, 1977 and 2904 (D-089) waits for their regressions to be fixed.
+- Where: tools/evidence/drift-review-2026-11-19.json; nizam/storage/legal_write.py (`_refuse_reviewed_drift`);
+  tests/test_drift_guard.py; tools/evidence/close-2026-11-19/{baseline.sh, diffsum.py, prefixdiff.py, multi_compare.py}.
+
+### D-090 · 2026-11-19 · A rebuild keeps its released path prefix (INV-4)
+Area: L1/L2 · Status: standing
+- Decision: `build()` gives an expression that already has an active tree that tree's path prefix
+  (`legal_write.released_path_prefix`).
+  - A reviewed identity (multi-instrument plan) still builds its own prefix.
+  - `keep_path_prefix=False` asks for the inferred one.
+- Why: the number and year the head infers can drift as the parser changes. Act VI of 1874 (doc 8743) rebuilt as
+  'y1874_o12229', so every provision was renamed although the catalogue still records VI. Citations are rendered from
+  the instrument's recorded number and year (INV-1). The path is an identifier, and INV-4 forbids moving one.
+- Where: nizam/workers/segment.py (`build`), nizam/storage/legal_write.py; tests/test_path_prefix_stability.py;
+  docs/SEGMENTATION-PROFILES.md.
+
+### D-089 · 2026-11-19 · The furniture left after D-085: 16 of 23 laws cleaned, and set-aside heads that still end a sentence
+Area: L1 corpus · Status: standing (closes most of the open question "Page furniture left after D-085")
+- Decision:
+  1. **AJK (6 laws: 10482, 10499, 10524, 10861, 10870, 10977): all cleaned.**
+     - Each had one reading anchored on a footnote line, which the segmenter moves out before readings apply
+       ("matched 0 blocks").
+     - ajk_folio_patch.py now anchors on law body text only. The 140 folios were re-read, proven and released.
+  2. **Sindh (17 laws), round by round under the D-085 proof (no path, kind, label, parent or heading change; only
+     head words deleted):**
+     - **Clean (7):** 986, 1864, 3880, 3914, 2022, 2339, 3243.
+     - **Clean except named pages (5):** 1245 pp3–4, 2505 p4, 2765 pp4–6, 2902 pp3–5, 3992 pp33, 35.
+     - **Untouched (2):** 2206 p3 and 3919 pp5–6, every page of which is load-bearing.
+     - **Held back by drift (3):** 1101, 1977, 2904 (D-091).
+  3. **Generator fixes (sindh_title_patch.py):**
+     - The citation printed under the title is head too. 3243 p5 had cut two lines and left "SINDH ACT NO. XXXIX OF
+       2023" in the block.
+     - A cut is anchored on a line unique on its page, which fixes 986's two-block refusal.
+     - Locators avoid every reading ever recorded on the page. The evidence is append-only, and the recorder refuses
+       an identical withdrawn reading.
+     - An optional pages file emits boundary readings.
+  4. **Rule `reviewed_head_boundary` (`source_head_boundary_blocks`).** A set-aside running head that a reading also
+     names here still ends the sentence before it, as the printed header did in the released tree.
+     - `previous_content` skips furniture, so with the head gone a chapter line after "…of the Institute:" read as a
+       cross-reference, and Chapter II was swallowed into clause (xxiii) (3243).
+     - Data-gated in every profile. It fails closed on a block not set aside or not in the document.
+     - With it, 3243 is clean.
+  5. **The 14 remaining pages in 7 laws are a different mechanism.** In 1245 the head's folio text, read into
+     s.3(2), was what kept "(4)" a sub-section. The words stay there until each page is read, because removing them
+     changes the reviewed structure.
+- Where: tools/recrawl/{sindh_title_patch.py, ajk_folio_patch.py, furniture_rounds.py}; nizam/corpus/segment.py
+  (`reviewed_head_boundary`); nizam/workers/segment.py, tools/record_curation_patch.py,
+  tools/materialize_multi_instrument.py (key registered); tests/test_head_boundary.py;
+  tools/evidence/close-2026-11-19/ (round.sh, run_r1-r4.sh, residual-pages.json, every round's readings and proof).
+
 ### D-088 · 2026-11-18 · MinIO becomes opt-in: its public image can no longer be pulled
-Area: L2 storage/deploy · Status: standing (amends 09a §2's local stack; the replacement is an open question)
+Area: L2 storage/deploy · Status: Superseded by D-093 (the service is now SeaweedFS; still opt-in)
 - Decision:
   1. The `minio` service in infra/compose.yaml moves behind the Compose profile `blobstore`. `./nz up`,
      `infra/up.sh` and the teammate kit start Postgres and pgAdmin only.
@@ -1335,11 +1485,15 @@ Area: L1 corpus · Status: standing (closes two of the D-080 "what remains" item
 
 These were found and deliberately left open. Each will become an entry when it is decided.
 
-- **The local S3 stand-in after MinIO (D-088).** MinIO is opt-in because its public image can no longer be pulled.
-  Before any code writes blobs, choose a replacement that pulls anonymously and speaks the S3 API R2 will.
-  Candidates others name are Garage and SeaweedFS, which are unverified here. Check their licences and images with
-  vendor-verifier first.
-
+- **Page furniture, the residue of D-089 (14 pages in 7 laws).** 1245 pp3–4, 2206 p3, 2505 p4, 2765 pp4–6, 2902 pp3–5,
+  3919 pp5–6, 3992 pp33, 35. Removing each head changes the reviewed structure through a mechanism other than
+  sentence continuation (in 1245 the folio text read into s.3(2) kept '(4)' a sub-section). Each page needs reading.
+  The furniture of 1101, 1977 and 2904 waits on their drift regressions (next item).
+- **Rebuild regressions found by the D-091 review (12 laws).** Today's segmenter rebuilds these worse than their
+  release, and an approved replay is now refused until each is fixed: wrapped amendment headings (1101, 1977), a
+  footnote taken for s.1's heading (2904), item 14 folded into 13 (2491), lost Parts (8213, 9310, 9659), a lifted
+  clause (5494), a renumbered duplicate suffix (8173), 'Part I' read as '1' (4347 e3), damaged Gazette text (6576,
+  6784). tools/evidence/drift-review-2026-11-19.json has each finding.
 - **Preamble ordinals, the remainder (38).** After D-068 and D-072, 38 released laws still number a "preamble"
   after sections printed below it. The law page lists the preamble first regardless (D-065). They fall into four
   groups:
@@ -1353,26 +1507,5 @@ These were found and deliberately left open. Each will become an entry when it i
     - A scan whose cover or contents pages were read as sections: 4635, 7411, 7434, 9214, 9254, 9315, 9832.
   - Each group needs page reading, law by law.
 - **155 Gazette laws not replayed under D-072.** Their false Gazette Parts stand until a page-read repair, law by law.
-- **Older rebuild drift.** At least 9 released laws (2772, 4347 e3, 5494, 6576, 6784, 8173, 8213, 9310, 9659) no longer rebuild
-  identically under today's segmenter, independent of D-068. For example, catalogue-corrected path prefixes (0101)
-  and changed clause nesting. Their next replay needs its own review.
-- **The label "462 I"** carries a stray space in the PPC; it is kept as stored until the page is read.
-- **Undated amendments** keep past-date serving to the capture date for 3,856 laws.
-- **Repeals by subject** and amendments of words are not modelled as unit repeals.
 - **The section list's frame-time tail** (8–13 of about 790 frames over budget on the emulator) and cold start need
   measuring on a phone. On 18 Nov the emulator itself degraded (D-070), so its raster numbers no longer judge the app.
-- **Later constitutional amendments.** The 23rd and 24th Amendment Acts are not held as separate laws (D-074): no
-  official Act text was found. The 25th–27th are landed (D-076).
-- **Page furniture left after D-085.** The 17 Sindh and 6 AJK laws that failed the batch proof (listed in
-  .artifacts/heritage-2026-11-18/{sindh,ajk}-batch/proof.json), and pages whose reading was refused for an ambiguous
-  locator, still carry running heads or folios. Each needs a page-read reading.
-- **No Gilgit-Baltistan heritage law exists to land** (catalogue and Assembly searches, 18 Nov 2026). Revisit if the
-  Assembly enacts one.
-- **Rebuild drift found by the D-080 A/B.** Docs 2491 (a reviewed reparent no longer resolves), 9868 (conflicting
-  contents-region readings), 4702 and 8743 fail or differ on the committed code as well. Each needs its own review
-  before its next replay.
-- **Title-region recorders read raw OCR.** `record_instrument_numbers`, `record_long_titles` and
-  `record_enacted_dates` read `text_block` without page-read corrections. That is harmless for text-layer laws and wrong
-  for scans read by hand (D-076 recorded those values by assertion). Applying the corrections inside the recorders
-  would re-read every page-read law's metadata, so it needs its own corpus-wide dry run. The AJK
-  Interim Constitution Act, 1974 is not landed, and its amendments carry no `amends` edges.

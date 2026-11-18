@@ -439,7 +439,7 @@ Write-Host @"
    Database   Postgres on localhost:5433, database nizam_clean, user nizam
               password: POSTGRES_PASSWORD in $Repo\infra\.env
    pgAdmin    http://localhost:5050   (login in infra\.env: PGADMIN_EMAIL / PGADMIN_PASSWORD)
-   MinIO      not started: its public image was withdrawn and nothing uses it yet (D-088)
+   S3 store   optional, nothing uses it yet: docker compose -f infra/compose.yaml --profile blobstore up -d (D-093)
    API        $api
 $apiNote
 

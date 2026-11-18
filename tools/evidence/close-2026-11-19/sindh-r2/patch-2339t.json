@@ -1,0 +1,32 @@
+[
+ {
+  "document_id": 2339,
+  "page_no": 6,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2339-p6.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 6 prints the running head 'THE SINDH SENIOR CITIZENS WELFARE ACT, 2014' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "any senior citizen who has not having sufficient means of income as may",
+  "before_text": "any senior citizen who has not having sufficient means of income as may",
+  "after_text": "any senior citizen who has not having sufficient means of income as may",
+  "source_apparatus_blocks": [
+   187693
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "c366f9eb3993e29521ecac4ef6e6737453b9522486101f176d64883df2a08916"
+ },
+ {
+  "document_id": 2339,
+  "page_no": 7,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2339-p7.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 7 prints the running head 'THE SINDH SENIOR CITIZENS WELFARE ACT, 2014' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "availability of special facilities in banks and saving centres",
+  "before_text": "availability of special facilities in banks and saving centres",
+  "after_text": "availability of special facilities in banks and saving centres",
+  "source_apparatus_blocks": [
+   187706
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "5fb5bcd333247371df48ceea5c5553ed15e6868e746418c4b01a68044f3b40eb"
+ }
+]

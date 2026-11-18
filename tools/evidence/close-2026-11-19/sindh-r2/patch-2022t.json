@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 2022,
+  "page_no": 5,
+  "render": ".artifacts/release-work-2026-09-24/claude/renders/sindh-title/doc2022-p5.png",
+  "defect": "the Sindh Code's running head (the law's title, and its citation, printed at the head of each page) was read into a provision's text",
+  "observed": "Page 5 prints the running head 'THE SINDH HINDUS MARRIAGE ACT, 2016' at its head; the same lines head the document's other pages, and the title is the law's own recorded title",
+  "match_text": "Date of Marriage ______________________",
+  "before_text": "Date of Marriage ______________________",
+  "after_text": "Date of Marriage ______________________",
+  "source_apparatus_blocks": [
+   149520
+  ],
+  "fixes": "rule reviewed_apparatus_block: the running-head block(s) set aside",
+  "render_sha256": "ad0220bc7d13d996b2cb1bbd2fa4bd266df22f3dbf8ef4c54c1f7ef6f4f99321"
+ }
+]

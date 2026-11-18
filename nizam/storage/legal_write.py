@@ -169,6 +169,26 @@ def segmentation_profile_for(source_observation_id: int) -> str:
         return row[0] if row else "default"
 
 
+def released_path_prefix(source_observation_id: int, expression_ordinal: int = 0) -> str | None:
+    """The path prefix ('fed.act.y1874_VI_o12229') of the active tree this observation's expression already has, or
+    None when it has none.
+
+    D-090 (19 Nov 2026), INV-4: a rebuild keeps the prefix its released tree was given, so a later change in what the
+    title or head infers (the Act number, the year) cannot rename every provision of a law. Citations are rendered
+    from the instrument's recorded number and year (INV-1); the path is an identifier, and identifiers stay put.
+    """
+    with connect() as conn, conn.cursor() as cur:
+        cur.execute("""
+            SELECT subpath(p.path, 0, 3)::text
+              FROM instrument i JOIN provision p ON p.instrument_id = i.id AND p.is_active
+             WHERE i.source_observation_id=%s AND i.expression_ordinal=%s AND i.is_active
+               AND nlevel(p.path) >= 4
+             ORDER BY p.ordinal LIMIT 1
+        """, (source_observation_id, expression_ordinal))
+        row = cur.fetchone()
+        return row[0] if row else None
+
+
 def toc_dispositions_for(source_observation_id: int,
                          expression_ordinal: int = 0) -> list[dict]:
     """Rendered-source disposition assertions that survive tree revisions."""
@@ -760,6 +780,28 @@ def _release_gate_failure(cur, instrument_id, document_id) -> str | None:
     return f"TOC={toc_pending}, S7={s7_pending}, boundary={boundary_pending}, quality={quality}"
 
 
+def _drift_verdicts() -> dict[int, dict]:
+    """{document_id: verdict} from the newest tools/evidence/drift-review-*.json (D-091). A law whose reviewed verdict
+    is 'stored_correct' rebuilds WORSE than its release under today's segmenter; an approval must not carry that
+    rebuild in. Lifting the refusal means a new reviewed verdict, not a flag."""
+    import json
+    import pathlib
+    files = sorted(pathlib.Path(__file__).resolve().parents[2].glob("tools/evidence/drift-review-*.json"))
+    if not files:
+        return {}
+    laws = json.loads(files[-1].read_text(encoding="utf-8")).get("laws", {})
+    return {int(k): v for k, v in laws.items() if v.get("verdict") == "stored_correct"}
+
+
+def _refuse_reviewed_drift(document_id: int, expression_ordinal: int = 0) -> None:
+    verdict = _drift_verdicts().get(int(document_id))
+    if verdict:
+        raise ValueError(
+            f"document {document_id} expression {expression_ordinal}: the drift review (D-091) found its released "
+            f"tree right and today's rebuild worse ({verdict.get('finding', '')}); an approval cannot carry this "
+            f"rebuild in. Fix the regression, then record a new verdict in tools/evidence/drift-review-*.json")
+
+
 def _approval(approve_release_change: str | None) -> str | None:
     if approve_release_change is None:
         return None
@@ -913,6 +955,7 @@ def save(inst: SegmentedInstrument, segmenter: str = "nizam.corpus.segment/52", 
             if change is not None:
                 if approval is None:
                     _refuse_release_change(inst, change)
+                _refuse_reviewed_drift(inst.document_id, inst.expression_ordinal)
                 if report is not None:
                     report["release_change"] = change
                     report["release_change_approval"] = approval
@@ -1252,6 +1295,7 @@ def save_many(insts: list[SegmentedInstrument], full_blocks: list[dict],
                     continue
                 if approval is None:
                     _refuse_release_change(new_inst or insts[0], change)
+                _refuse_reviewed_drift((new_inst or insts[0]).document_id, ordinal)
                 if report is not None:
                     report.setdefault("release_changes", {})[ordinal] = change
                     report["release_change_approval"] = approval

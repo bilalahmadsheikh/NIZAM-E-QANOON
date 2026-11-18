@@ -166,7 +166,10 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--apply", action="store_true")
     ap.add_argument("--dump")
+    ap.add_argument("--raw-text", action="store_true",
+                    help="read the extracted blocks without the page-read corrections (the pre-D-092 behaviour)")
     args = ap.parse_args()
+    from tools.title_region_text import corrected, load_corrections
     from nizam.storage.db import connect
     counts = dict(considered=0, recorded=0, none_printed=0, ambiguous=0, unchanged=0, portal_agrees=0,
                   portal_disagrees=0)
@@ -192,6 +195,7 @@ def main() -> int:
                         WHERE assertion = 'withdrawn' AND basis = 'recheck_not_reproduced' AND method = %s""",
                     (METHOD,))
         withdrawn -= {(r[0], r[1]) for r in cur.fetchall()}
+        corrections = {} if args.raw_text else load_corrections(cur)      # D-092: the text as page-read
         for iid, obs, ordinal, doc, kind, year, start, end, portal in todo:
             counts["considered"] += 1
             if (obs, ordinal) in withdrawn:
@@ -199,7 +203,9 @@ def main() -> int:
             cur.execute("""SELECT t.id, t.page_no, coalesce(t.text, '') FROM text_block t
                             WHERE t.document_id = %s AND t.id >= %s AND t.id <= coalesce(%s, t.id)
                             ORDER BY t.id LIMIT %s""", (doc, start, end, BLOCKS))
-            blocks = cur.fetchall()
+            blocks, n_corr = corrected(cur.fetchall(), corrections.get(obs, []))
+            if n_corr:
+                counts["read_with_corrections"] = counts.get("read_with_corrections", 0) + 1
             region, spans, stop = title_region(blocks)
             years = number_years(region, kind, year)
             found = printed_dates(region, spans, kind, years)
