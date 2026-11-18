@@ -1183,6 +1183,15 @@ Area: process/deploy · Status: standing (extends the D-086 transfer; corrects S
      kit and SETUP.md install `Ubuntu-24.04` and set NIZAM_WSL_DISTRO, which `nz.ps1` already reads.
 - Why: the owner asked for "a zip and a single file that i run on his laptop with that zip [and] everything is set up
   perfectly". SETUP.md path A took nine manual steps, one of which had silently gone stale.
+  4. **Proven end to end (18 Nov 2026)** on the owner's laptop, into a fresh WSL distro installed by the script
+     from the checksum-verified ubuntu-24.04.5 image, under E:\kit-test.
+     - Run 1 stopped at the MinIO pull (D-088).
+     - Run 2 stopped on a network timeout. Image pulls now retry six times.
+     - Run 3: the exact copy was restored in 60 s, the signature matched, the audit passed 41 of 41 and the API
+       answered 200.
+     - Run 4 skipped every finished step.
+     - Windows' localhost:8080 belonged to another program on that laptop. The closing summary now tests
+       localhost, falls back to WSL's address and names the program holding the port.
 - Where: tools/teammate-kit/{SETUP-NIZAM.ps1, build_kit.sh}, SETUP.md ("The kit", step 1).
 
 ### D-086 · 2026-11-18 · Duplicate links advance after re-materialization; 18 Nov prune and transfer

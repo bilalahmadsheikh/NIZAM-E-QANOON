@@ -157,7 +157,13 @@ PY
   done
 
   say "starting the containers (first time downloads about 1 GB of images)"
-  docker compose -f infra/compose.yaml up -d --quiet-pull
+  # a slow or flaky link times out a layer now and then; pulls resume, so retry rather than stop
+  for t in 1 2 3 4 5 6; do
+    docker compose -f infra/compose.yaml pull -q && break
+    [ "$t" -eq 6 ] && die "the image downloads kept failing; check the internet connection and run SETUP-NIZAM.ps1 again"
+    echo "  download interrupted (attempt $t of 6), retrying in 20 s"; sleep 20
+  done
+  docker compose -f infra/compose.yaml up -d
   for i in $(seq 1 100); do
     [ "$(docker inspect -f '{{.State.Health.Status}}' nizam-postgres 2>/dev/null || echo x)" = healthy ] && break
     [ "$i" -eq 100 ] && die "postgres did not become healthy: docker compose -f infra/compose.yaml logs postgres"
@@ -409,6 +415,22 @@ if ($rc -ne 0 -or -not (Test-Path $log) -or -not (Select-String -Path $log -Patt
     Stop-Setup "Setup stopped (see above, also saved in $log). Fix what it names and run this file again."
 }
 
+# Which address reaches the API from Windows. localhost is forwarded into WSL unless a Windows program already
+# holds the port (on the owner's laptop a background service holds 8080), so test it, and fall back to WSL's address.
+$apiPath = '/v1/law/collections/popular'
+$api = "http://localhost:8080$apiPath"
+$apiNote = ''
+try { $null = Invoke-WebRequest -UseBasicParsing -TimeoutSec 15 $api }
+catch {
+    $ip = (Clean (& wsl.exe -d $Distro -e hostname -I)) -split '\s+' | Select-Object -First 1
+    $api = "http://${ip}:8080$apiPath"
+    $owner = Get-NetTCPConnection -LocalPort 8080 -State Listen -ErrorAction SilentlyContinue | Select-Object -First 1
+    $who = ''
+    if ($owner) { $who = (Get-Process -Id $owner.OwningProcess -ErrorAction SilentlyContinue).ProcessName }
+    if ($who) { $apiNote = "   (localhost:8080 belongs to the Windows program '$who', so use WSL's address; it can change after a restart: .\nz.ps1 api status)" }
+    else { $apiNote = '   (localhost:8080 did not answer from Windows; WSL''s address can change after a restart: .\nz.ps1 api status)' }
+}
+
 Say 'done'
 Write-Host @"
    Nizam-e-Qanoon is set up on this laptop, as an exact replica of the sender's database.
@@ -418,7 +440,8 @@ Write-Host @"
               password: POSTGRES_PASSWORD in $Repo\infra\.env
    pgAdmin    http://localhost:5050   (login in infra\.env: PGADMIN_EMAIL / PGADMIN_PASSWORD)
    MinIO      not started: its public image was withdrawn and nothing uses it yet (D-088)
-   API        http://localhost:8080/v1/law/collections/popular
+   API        $api
+$apiNote
 
    Every day:  cd $Repo ;  .\nz.ps1 up      (or inside Ubuntu: cd $(ToWsl $Repo) && ./nz up)
    Check:      .\nz.ps1 status   .\nz.ps1 audit
