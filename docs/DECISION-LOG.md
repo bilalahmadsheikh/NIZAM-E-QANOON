@@ -865,6 +865,70 @@ Area: corpus · Status: standing · Supersedes D-074 for these three Acts
     tools/materialize_multi_instrument.py; tools/recrawl/blockfix.py; docs/SEGMENTATION-PROFILES.md;
     tools/evidence/hold-amendment-acts-ocr-2026-11-18.sql; tools/evidence/amendment-acts-metadata-2026-11-18.sql.
 
+### D-077 · 2026-11-18 · Heritage is Pakistan's places and the law that protects them; regions carry their culture
+Area: L6/client · Status: standing
+- Decision:
+  1. **The Heritage tab** answers "what does the law say about heritage here?" region by region. It was a single
+     illustration and three notes on the 1956, 1962 and 1973 constitutions.
+     - `GET /v1/law/collections/heritage` (nizam/api/collections.py) lists, for each of the eight jurisdictions, the
+       principal heritage laws the library holds, pinned by document id and title pattern. A replaced document drops
+       out.
+       - Federal: Antiquities Act 1975, National Fund for Cultural Heritage, Lok Virsa, National Archives.
+       - Punjab: Antiquities Act, Special Premises, Walled City of Lahore Act and its Rules, Heritage Foundation.
+       - Sindh: Cultural Heritage (Preservation) Act 1994. KP: Antiquities Act 2016.
+       - Balochistan: Cultural Heritage Preservation Act 2010, Antiquities Act 2014, Archives Act 2014.
+       - AJK: Antiquities Act 1986 and its 2001 amendment.
+       - Islamabad Capital Territory lists the federal laws, which is what it is served (0095).
+       - Gilgit-Baltistan holds none yet and says so; it never borrows another jurisdiction's law.
+     - **Questions people bring to heritage law are answered only by opening units,** never by a summary. Each
+       pairing was checked against the served text:
+       - found an old object: s.5A and s.13A;
+       - building near a monument: s.22;
+       - repairing a protected building: s.20;
+       - how a place is declared protected, and objecting: s.10 and s.11;
+       - damage and signboards: s.19 and s.23;
+       - export: s.26;
+       - culture: Constitution Art. 28.
+       - The units come from the law's served section index at as_of (INV-5); headings and citations are records
+         (INV-1). Question keys are codes the client words (docs/13).
+  2. **Culture across the app, as ornament doing semantic work (docs/12).** Each region has a landmark and a craft:
+
+     | Region | Landmark | Craft |
+     |---|---|---|
+     | Federal | Minar-e-Pakistan | truck art |
+     | Punjab | Badshahi Mosque | Multani blue pottery |
+     | Sindh | Mohenjo-daro | ajrak and ralli |
+     | KP | Takht-i-Bahi | lacquer and metal work |
+     | Balochistan | Ziarat Residency | Balochi mirror embroidery |
+     | Islamabad | Faisal Mosque | none |
+     | AJK | Red Fort, Muzaffarabad | namda and chain stitch |
+     | Gilgit-Baltistan | Baltit Fort | Hunza embroidery |
+
+     - Each landmark is drawn as original vector art (design/heritage_art.dart) with one note, and each craft as a
+       motif band.
+     - They appear on the Heritage tab, the home page's jurisdiction tiles, the library's "Where" chips, and the
+       Heritage tab icon. In each place they name a region; they do not decorate.
+  3. **Every external fact is checked and linked.** Each note and craft line in domain/heritage.dart was verified on
+     18 Nov 2026 against the source it links: UNESCO's inscriptions (1980, 1981, 1997), the Badshahi Mosque's
+     completion in 1673, the Faisal Mosque (Vedat Dalokay; 1969 competition; completed 1986), the Ziarat Residency
+     (1892; national monument), the Red Fort (c.1559–1646), Baltit Fort (AKTC; UNESCO Asia-Pacific award 2004), and
+     Minar-e-Pakistan (1960–1968). Where sources were thin (AJK papier-mâché, a "national" designation for truck
+     art), the claim was narrowed to what the source supports.
+- Why: the owner asked what Heritage is, for it to be useful, and for Pakistan's buildings and culture from every
+  region to run through the app without costing speed. Heritage law (antiquities, special premises, the Walled City)
+  is in the corpus for every jurisdiction but GB, and practical questions such as "I found something while digging"
+  have exact answers in it.
+- Performance, by construction: no image assets and no network. Each landmark's paths are built once (a static
+  cache in a 100 × 100 box) and scaled at paint; each drawing is behind a RepaintBoundary and never animates.
+  Measured on the emulator (scroll_perf_test, segment `heritage`):
+  - build p50 2.3 ms and p90 9.5 ms, against 3.5 and 11.7 ms for home;
+  - raster p50 15.9 ms, against 15.0 ms for the text-only reader. The emulator's raster is over budget on every
+    screen (D-070).
+- Where: nizam/api/collections.py (HERITAGE_*), nizam/api/library.py (`/v1/law/collections/heritage`), tests/test_library_api.py;
+  apps/mobile/lib/domain/heritage.dart, design/heritage_art.dart, presentation/heritage.dart, presentation/discover.dart,
+  presentation/catalogue.dart, design/components.dart; apps/mobile/test/heritage_test.dart (goldens heritage.png,
+  heritage_art.png, discover_tall.png); integration_test/scroll_perf_test.dart; docs/MOBILE-LIBRARY-PREVIEW.md.
+
 ---
 
 ## Open questions (not yet decided)
@@ -894,6 +958,9 @@ These were found and deliberately left open. Each will become an entry when it i
   measuring on a phone. On 18 Nov the emulator itself degraded (D-070), so its raster numbers no longer judge the app.
 - **Later constitutional amendments.** The 23rd and 24th Amendment Acts are not held as separate laws (D-074): no
   official Act text was found. The 25th–27th are landed (D-076).
+- **Heritage questions per region (D-077).** The questions open the federal Antiquities Act, 1975 only. Punjab, KP,
+  Balochistan and AJK have their own antiquities laws with their own sections; mapping each question to each region's
+  sections needs a page-checked pairing, law by law. No Gilgit-Baltistan heritage law is held.
 - **Title-region recorders read raw OCR.** `record_instrument_numbers`, `record_long_titles` and
   `record_enacted_dates` read `text_block` without page-read corrections. That is harmless for text-layer laws and wrong
   for scans read by hand (D-076 recorded those values by assertion). Applying the corrections inside the recorders

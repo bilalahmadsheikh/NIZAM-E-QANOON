@@ -230,6 +230,41 @@ class ConstitutionPage(Meta):
     groups: list[FamilyGroup]
 
 
+class HeritageLaw(BaseModel):
+    short_name: str
+    instrument: Instrument
+
+
+class HeritageRegion(BaseModel):
+    """One region of the Heritage tab. `laws_from` is the jurisdiction whose laws are listed: 'fed' for Islamabad
+    Capital Territory, which is served federal law. An empty `laws` means the library holds none for it yet."""
+    jurisdiction: str
+    laws_from: str
+    laws: list[HeritageLaw]
+
+
+class HeritageUnit(BaseModel):
+    id: UUID
+    kind: str
+    label: str | None
+    heading: str | None
+    citation: str | None
+
+
+class HeritageQuestion(BaseModel):
+    """A question people bring to heritage law, answered by opening `units` of `instrument`. `key` is a code the
+    client words; the units' identity, heading and citation are records (INV-1)."""
+    key: str
+    instrument: Instrument
+    units: list[HeritageUnit]
+
+
+class HeritagePage(Meta):
+    """Pakistan's heritage law region by region, and questions answered by sections (collections.py, D-077)."""
+    regions: list[HeritageRegion]
+    questions: list[HeritageQuestion]
+
+
 class SectionPage(Meta):
     """A page of a law's served sections, in printed order. `total` is the law's served section count at as_of in
     territory (cheap: the index is computed once per law and date); `law` is its serving record."""
@@ -403,6 +438,16 @@ def create_app(repository=None):
                                         title_pattern=collections.FAMILY_TITLE_PATTERN,
                                         constitution_document=collections.CONSTITUTION_DOCUMENT, as_of=day)
         return dict(collections.constitution_page(rows), as_of=day)
+
+    @app.get('/v1/law/collections/heritage', response_model=HeritagePage)
+    def heritage(as_of: date | None = None):
+        day = resolved(as_of)
+        rows = repo.instruments_by_document(collections.HERITAGE_DOCUMENTS, as_of=day)
+
+        def sections_of(instrument_id):
+            index = repo.section_index(instrument_id, as_of=day)
+            return index['sections'] if index else None
+        return dict(collections.heritage_page(rows, sections_of), as_of=day)
 
     @app.get('/v1/law/instruments/{instrument_id}/sections', response_model=SectionPage)
     def sections(instrument_id: UUID, as_of: date | None = None,

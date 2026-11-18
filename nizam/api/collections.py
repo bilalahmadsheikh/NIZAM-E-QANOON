@@ -143,3 +143,93 @@ def resolve(rows: list[dict]) -> list[dict]:
         if hit:
             out.append(dict(short_name=short, instrument=hit))
     return out
+
+
+# ---------------------------------------------------------------- Heritage (18 Nov 2026, D-077)
+# The Heritage tab: Pakistan's places region by region, and the law that protects them. Each region lists the
+# principal heritage statutes the library holds for that jurisdiction, pinned by document id AND title pattern as
+# POPULAR is, so a replaced document drops out instead of silently showing another law. Service rules, museum staff
+# regulations and amending Ordinances are left out: the list is a way in, not every law that touches heritage.
+# Resolved against the corpus on 18 Nov 2026. Islamabad Capital Territory is served federal law (the corpus's
+# territorial model, 0095), so its region lists the federal laws; Gilgit-Baltistan holds no heritage law yet and its
+# region is listed with none -- the client says so rather than borrowing another jurisdiction's law.
+HERITAGE_REGIONS = ['fed', 'punjab', 'sindh', 'kp', 'balochistan', 'ict', 'ajk', 'gb']
+HERITAGE_LAWS = {
+    'fed': [
+        ('Antiquities Act', 3468, r'^(the )?antiquities act, 1975'),
+        ('National Fund for Cultural Heritage', 2704, r'national fund for cultural heritage act'),
+        ('Lok Virsa', 3017, r'lok virsa'),
+        ('National Archives', 2770, r'national archives act'),
+    ],
+    'punjab': [
+        ('Antiquities Act', 3157, r'^(the )?antiquities act, 1975'),
+        ('Special Premises', 3080, r'special premises \(preservation\)'),
+        ('Walled City of Lahore', 6288, r'^(the )?walled city of lahore act'),
+        ('Heritage properties', 1447, r'walled city \(heritage properties\) rules'),
+        ('Heritage Foundation', 6139, r'punjab heritage foundation act'),
+    ],
+    'sindh': [
+        ('Cultural Heritage', 1336, r'sindh cultural heritage'),
+    ],
+    'kp': [
+        ('Antiquities Act', 5133, r'khyber pakhtunkhwa antiquities act'),
+    ],
+    'balochistan': [
+        ('Cultural Heritage', 4788, r'balochistan cultural heritage preservation act'),
+        ('Antiquities Act', 4986, r'balochistan antiquities act'),
+        ('Archives', 5824, r'balochistan archives act'),
+    ],
+    'ajk': [
+        ('Antiquities Act', 10935, r'^(the )?antiquit[a-z]* act, 1986'),
+        ('Its amendment, 2001', 9952, r'antiquities \(amendment\) act, 2001'),
+    ],
+}
+# Questions people bring to heritage law, each answered by opening units of a law -- never by a summary. `key` is a
+# code the client words (docs/13). The units are read from the law's served section index at as_of (INV-5) by
+# their printed label; a label that is not served drops out. Each pairing was checked against the served text on
+# 18 Nov 2026 (the federal Antiquities Act, 1975, doc 3468; the Constitution, doc 4419).
+HERITAGE_QUESTIONS = [
+    ('found_object', 3468, r'^(the )?antiquities act, 1975', ['5A', '13A']),
+    ('build_near', 3468, r'^(the )?antiquities act, 1975', ['22']),
+    ('repair', 3468, r'^(the )?antiquities act, 1975', ['20']),
+    ('declared_protected', 3468, r'^(the )?antiquities act, 1975', ['10', '11']),
+    ('damage_signs', 3468, r'^(the )?antiquities act, 1975', ['19', '23']),
+    ('export', 3468, r'^(the )?antiquities act, 1975', ['26']),
+    ('culture_right', CONSTITUTION_DOCUMENT, CONSTITUTION_TITLE, ['28']),
+]
+HERITAGE_DOCUMENTS = sorted({d for laws in HERITAGE_LAWS.values() for _s, d, _p in laws}
+                            | {d for _k, d, _p, _l in HERITAGE_QUESTIONS})
+
+
+def heritage_page(rows: list[dict], sections_of) -> dict:
+    """The Heritage tab from released rows of HERITAGE_DOCUMENTS. `sections_of(instrument_id)` returns that law's
+    served section index items (each with id, kind, label, heading, citation) at the page's as_of, or None.
+
+    Returns {regions, questions}: each region {jurisdiction, laws_from, laws: [{short_name, instrument}]}, where
+    `laws_from` names the jurisdiction whose laws are listed ('fed' for Islamabad); each question {key, instrument,
+    units} with units in the order HERITAGE_QUESTIONS gives. A question none of whose units is served is left out."""
+    def pick(doc, pattern):
+        return next((r for r in rows if r['document_id'] == doc
+                     and re.search(pattern, (r.get('title') or '').lower())), None)
+
+    def laws_of(jurisdiction):
+        return [dict(short_name=short, instrument=hit) for short, doc, pattern in HERITAGE_LAWS.get(jurisdiction, [])
+                if (hit := pick(doc, pattern)) is not None]
+
+    regions = []
+    for j in HERITAGE_REGIONS:
+        source = 'fed' if j == 'ict' else j
+        regions.append(dict(jurisdiction=j, laws_from=source, laws=laws_of(source)))
+    questions, indexes = [], {}
+    for key, doc, pattern, labels in HERITAGE_QUESTIONS:
+        law = pick(doc, pattern)
+        if law is None:
+            continue
+        if law['id'] not in indexes:
+            indexes[law['id']] = sections_of(law['id']) or []
+        by_label = {s['label']: s for s in indexes[law['id']]}
+        units = [dict(id=by_label[l]['id'], kind=by_label[l]['kind'], label=l, heading=by_label[l].get('heading'),
+                      citation=by_label[l].get('citation')) for l in labels if l in by_label]
+        if units:
+            questions.append(dict(key=key, instrument=law, units=units))
+    return dict(regions=regions, questions=questions)

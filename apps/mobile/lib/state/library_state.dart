@@ -175,6 +175,11 @@ final constitutionProvider = FutureProvider<ConstitutionPage>(
   (ref) => ref.watch(repositoryProvider).constitution(ref.watch(asOfProvider)),
 );
 
+/// The Heritage tab: each region's heritage law and the questions it answers, as at the chosen date (D-077).
+final heritageProvider = FutureProvider<HeritagePage>(
+  (ref) => ref.watch(repositoryProvider).heritage(ref.watch(asOfProvider)),
+);
+
 /// The reader's territory ('' = none chosen: every law is returned, each with its own reach). Part of the scope,
 /// like the date: a Punjab reader must not be served a law that does not run in Punjab (docs/04 §6).
 final territoryProvider = StateProvider<String>((ref) => '');

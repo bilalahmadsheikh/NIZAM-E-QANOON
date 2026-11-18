@@ -444,3 +444,69 @@ class SubjectPage {
     items: (json['items'] as List).map((v) => SubjectHit.fromJson(v as Map<String, dynamic>)).toList(),
   );
 }
+
+class HeritageLaw {
+  final String short_name;
+  final Instrument instrument;
+  const HeritageLaw({required this.short_name, required this.instrument});
+  factory HeritageLaw.fromJson(Map<String, dynamic> json) => HeritageLaw(
+    short_name: json['short_name'] as String,
+    instrument: Instrument.fromJson(json['instrument'] as Map<String, dynamic>),
+  );
+}
+
+class HeritageRegion {
+  final String jurisdiction;
+  final String laws_from;
+  final List<HeritageLaw> laws;
+  const HeritageRegion({required this.jurisdiction, required this.laws_from, required this.laws});
+  factory HeritageRegion.fromJson(Map<String, dynamic> json) => HeritageRegion(
+    jurisdiction: json['jurisdiction'] as String,
+    laws_from: json['laws_from'] as String,
+    laws: (json['laws'] as List).map((v) => HeritageLaw.fromJson(v as Map<String, dynamic>)).toList(),
+  );
+}
+
+class HeritageUnit {
+  final String id;
+  final String kind;
+  final String? label;
+  final String? heading;
+  final String? citation;
+  const HeritageUnit({required this.id, required this.kind, required this.label, required this.heading, required this.citation});
+  factory HeritageUnit.fromJson(Map<String, dynamic> json) => HeritageUnit(
+    id: json['id'] as String,
+    kind: json['kind'] as String,
+    label: json['label'] == null ? null : json['label'] as String,
+    heading: json['heading'] == null ? null : json['heading'] as String,
+    citation: json['citation'] == null ? null : json['citation'] as String,
+  );
+}
+
+class HeritageQuestion {
+  final String key;
+  final Instrument instrument;
+  final List<HeritageUnit> units;
+  const HeritageQuestion({required this.key, required this.instrument, required this.units});
+  factory HeritageQuestion.fromJson(Map<String, dynamic> json) => HeritageQuestion(
+    key: json['key'] as String,
+    instrument: Instrument.fromJson(json['instrument'] as Map<String, dynamic>),
+    units: (json['units'] as List).map((v) => HeritageUnit.fromJson(v as Map<String, dynamic>)).toList(),
+  );
+}
+
+class HeritagePage {
+  final String as_of;
+  final String mode;
+  final String notice;
+  final List<HeritageRegion> regions;
+  final List<HeritageQuestion> questions;
+  const HeritagePage({required this.as_of, required this.mode, required this.notice, required this.regions, required this.questions});
+  factory HeritagePage.fromJson(Map<String, dynamic> json) => HeritagePage(
+    as_of: json['as_of'] as String,
+    mode: json['mode'] as String,
+    notice: json['notice'] as String,
+    regions: (json['regions'] as List).map((v) => HeritageRegion.fromJson(v as Map<String, dynamic>)).toList(),
+    questions: (json['questions'] as List).map((v) => HeritageQuestion.fromJson(v as Map<String, dynamic>)).toList(),
+  );
+}

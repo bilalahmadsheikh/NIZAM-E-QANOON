@@ -205,9 +205,29 @@ WebView or remote model download is used. Reduced motion stops the entrance.
 These are **stylised 2.5D illustrations, not interactive 3D meshes**. Further
 licensed models and device GPU qualification remain future work.
 
-Heritage is separate editorial context, citing the
-[National Assembly's parliamentary history](https://na.gov.pk/en/content.php?id=75)
-for the brief 1956/1962/1973 notes. Those notes never determine operative law.
+**Heritage (18 Nov 2026, D-077)** is Pakistan's places, region by region, and the law that protects them. Each of the
+eight regions shows:
+
+- a landmark drawn as original vector art, with one sourced note;
+- a craft, carried as a motif band and named with its source;
+- the heritage laws the library holds for that jurisdiction (`GET /v1/law/collections/heritage`, pinned by document
+  id and title pattern).
+
+Below the regions are questions people bring to heritage law. Each is answered only by opening the sections of the
+federal Antiquities Act, 1975, and Article 28 of the Constitution; the headings and citations are database records.
+Islamabad lists the federal laws, which are what it is served. Gilgit-Baltistan says it holds none rather than borrowing
+another jurisdiction's. The 1956/1962/1973 notes stay, citing the
+[National Assembly's parliamentary history](https://na.gov.pk/en/content.php?id=75). None of the editorial context
+determines operative law.
+
+The same landmarks and motifs mark each region across the app: the home page's jurisdiction tiles, the library's
+"Where" chips, and the Heritage tab icon (the Minar-e-Pakistan).
+
+- **Cost.** There are no images or network. Each landmark's paths are built once and scaled; each drawing sits behind a
+  RepaintBoundary and never animates.
+- **Measured on the emulator, 18 Nov.** Scrolling Heritage, swiping its picker and switching regions: build p50
+  2.3 ms and p90 9.5 ms (home 3.5 and 11.7 ms); raster p50 15.9 ms, against 15.0 ms for the text-only reader. The raster
+  frames over budget appear on every screen of this emulator.
 Held Urdu text is supported; full Urdu chrome, voice, run-level bidi review and
 native-reader typography qualification are not yet implemented.
 

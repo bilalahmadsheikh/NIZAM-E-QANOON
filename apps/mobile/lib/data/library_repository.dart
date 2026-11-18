@@ -149,6 +149,10 @@ class LibraryRepository {
   Future<ConstitutionPage> constitution(String asOf) async =>
       ConstitutionPage.fromJson(await _get('/v1/law/collections/constitution', {'as_of': asOf}));
 
+  /// Pakistan's heritage law region by region, and questions answered by sections (D-077).
+  Future<HeritagePage> heritage(String asOf) async =>
+      HeritagePage.fromJson(await _get('/v1/law/collections/heritage', {'as_of': asOf}));
+
   /// A unit with everything under it, as operative_provision serves it at [asOf] in [territory] (INV-5): one
   /// request for a whole section instead of one per sub-section.
   Future<UnitText> unitText(String id, String asOf, {String territory = ''}) async => UnitText.fromJson(

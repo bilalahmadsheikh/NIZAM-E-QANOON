@@ -37,6 +37,37 @@ void main() {
       }
     }, 'home_scroll');
 
+    // Heritage (D-077): the landmark art and motif bands must cost no frames -- scroll the page, swipe the region
+    // picker, and switch regions (each switch paints a new scene and band)
+    await tester.tap(find.text('Heritage'));
+    await _waitFor(tester, find.text('The law that protects heritage here'));
+    await _waitFor(tester, find.text('Antiquities Act')); // Punjab's first heritage law, from the live API
+    await _settle(tester);
+    final picker = find.byWidgetPredicate((w) => w is Scrollable && w.axisDirection == AxisDirection.right).last;
+    await _frames(binding, () async {
+      for (final region in ['Sindh', 'Federal', 'Punjab']) {
+        await tester.tap(find.text(region));
+        await tester.pump(const Duration(milliseconds: 500));
+      }
+      for (var i = 0; i < 2; i++) {
+        await tester.fling(picker, const Offset(-400, 0), 2500);
+        await tester.pump(const Duration(milliseconds: 600));
+      }
+      await tester.fling(picker, const Offset(800, 0), 2500);
+      await tester.pump(const Duration(milliseconds: 600));
+      for (var i = 0; i < 4; i++) {
+        await tester.fling(_vertical(), const Offset(0, -900), 2500);
+        await tester.pump(const Duration(milliseconds: 600));
+      }
+      for (var i = 0; i < 4; i++) {
+        await tester.fling(_vertical(), const Offset(0, 900), 2500);
+        await tester.pump(const Duration(milliseconds: 600));
+      }
+    }, 'heritage');
+    await tester.tap(find.text('Discover'));
+    await _waitFor(tester, find.text('Explore constitutional texts'));
+    await _settle(tester);
+
     // the shelf, swiped sideways both ways
     await tester.scrollUntilVisible(find.text('Most consulted laws'), 300, scrollable: _vertical());
     await _waitFor(tester, ppc);

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../state/library_state.dart';
 import 'package:go_router/go_router.dart';
 import '../design/components.dart';
+import '../design/heritage_art.dart';
+import '../domain/heritage.dart';
 import '../design/monument.dart';
 import '../design/theme.dart';
 import 'popular.dart';
@@ -244,124 +244,42 @@ class _Tile extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       child: InkWell(
         onTap: () => context.push('/library?jurisdiction=$jurisdiction'),
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(14, 14, 10, 14),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(jurisdictionName(jurisdiction),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(fontFamily: 'Spectral', fontSize: 19, height: 1.2)),
-              const SizedBox(height: 4),
-              Text(note, maxLines: 2, overflow: TextOverflow.ellipsis,
-                  style: TextStyle(fontSize: 12, height: 1.35, color: scheme.onSurface.withValues(alpha: .75))),
-            ],
-          ),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(14, 14, 10, 12),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // a long name ('Khyber Pakhtunkhwa') shrinks to the tile rather than losing letters
+                  FittedBox(
+                    fit: BoxFit.scaleDown,
+                    alignment: Alignment.centerLeft,
+                    child: Text(jurisdictionName(jurisdiction),
+                        maxLines: 1, style: const TextStyle(fontFamily: 'Spectral', fontSize: 19, height: 1.2)),
+                  ),
+                  const SizedBox(height: 4),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Expanded(
+                        child: Text(note, maxLines: 2, overflow: TextOverflow.ellipsis,
+                            style: TextStyle(fontSize: 12, height: 1.35, color: scheme.onSurface.withValues(alpha: .75))),
+                      ),
+                      const SizedBox(width: 6),
+                      // the region's landmark (D-077): it names the jurisdiction at a glance; decorative to a screen
+                      // reader, which reads the name above
+                      RegionGlyph(jurisdiction, size: 30, color: scheme.secondary.withValues(alpha: .55)),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            if (heritageRegion(jurisdiction) case final region?) MotifBand(region.motif, height: 5),
+          ],
         ),
       ),
     );
   }
 }
 
-class HeritageScreen extends ConsumerWidget {
-  const HeritageScreen({super.key});
-  static final source = Uri.parse('https://na.gov.pk/en/content.php?id=75');
-  @override
-  Widget build(BuildContext context, WidgetRef ref) => LibraryScaffold(
-    title: 'Heritage & the law',
-    selected: 2,
-    body: ReadingWidth(
-      child: ListView(
-        padding: const EdgeInsets.all(24),
-        children: [
-          const Eyebrow('Places, people, institutions'),
-          const SizedBox(height: 16),
-          Text(
-            'A republic,\nwritten over time.',
-            style: Theme.of(context).textTheme.displaySmall,
-          ),
-          const SizedBox(height: 24),
-          Container(
-            height: 260,
-            decoration: BoxDecoration(
-              color: Stamp.pine,
-              borderRadius: BorderRadius.circular(28),
-            ),
-            child: const Center(
-              child: AspectRatio(
-                aspectRatio: 300 / 280,
-                child: MonumentScene(mausoleum: true),
-              ),
-            ),
-          ),
-          const SizedBox(height: 12),
-          const Text(
-            'Mazar-e-Quaid · stylised architectural illustration',
-            style: TextStyle(fontSize: 12),
-          ),
-          const SizedBox(height: 28),
-          const Notice(
-            'Historical context, separate from operative law. These short editorial notes do not determine the legal status of a provision.',
-          ),
-          const SizedBox(height: 24),
-          for (final entry in const [
-            (
-              '1956',
-              'The first Constitution',
-              'Pakistan’s first Constitution established a parliamentary form of government.',
-            ),
-            (
-              '1962',
-              'A different constitutional design',
-              'The 1962 Constitution provided a presidential form of government.',
-            ),
-            (
-              '1973',
-              'A bicameral Parliament',
-              'The 1973 Constitution established a parliamentary system with the National Assembly and Senate.',
-            ),
-          ]) ...[
-            PaperCard(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Eyebrow(entry.$1),
-                  const SizedBox(height: 12),
-                  Text(entry.$2, style: Theme.of(context).textTheme.titleLarge),
-                  const SizedBox(height: 12),
-                  Text(entry.$3, style: const TextStyle(height: 1.6)),
-                ],
-              ),
-            ),
-            const SizedBox(height: 16),
-          ],
-          OutlinedButton.icon(
-            onPressed: () async {
-              if (!await ref
-                      .read(sourceActionsProvider)
-                      .open(source.toString()) &&
-                  context.mounted) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text(
-                      'Unable to open the source. Visit na.gov.pk, Parliamentary History.',
-                    ),
-                  ),
-                );
-              }
-            },
-            icon: const Icon(Icons.open_in_new),
-            label: const Text('Source: National Assembly history'),
-          ),
-          const SizedBox(height: 16),
-          FilledButton(
-            onPressed: () => context.push('/constitution'),
-            child: const Text('Browse constitutional texts'),
-          ),
-          const SizedBox(height: 24),
-        ],
-      ),
-    ),
-  );
-}

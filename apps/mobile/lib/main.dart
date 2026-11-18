@@ -6,6 +6,7 @@ import 'design/theme.dart';
 import 'presentation/catalogue.dart';
 import 'presentation/constitution.dart';
 import 'presentation/discover.dart';
+import 'presentation/heritage.dart';
 import 'presentation/library.dart';
 import 'presentation/reader.dart';
 import 'state/library_state.dart';

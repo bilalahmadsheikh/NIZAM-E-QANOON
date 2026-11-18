@@ -239,6 +239,61 @@ def test_constitution_endpoint_serves_codes_not_prose():
         assert body['groups'][0]['items'][0]['amends_units'] == 1
 
 
+def _heritage_rows():
+    return [
+        _row(3468, 'Antiquities Act, 1975', 1975, 'fed'),
+        _row(3157, 'Antiquities Act, 1975', 1975, 'punjab'),
+        _row(6288, 'Walled City of Lahore Act, 2012', 2012, 'punjab'),
+        _row(1336, 'Sindh Cultural Heritage (Perservation) Act, 1994', 1994, 'sindh'),
+        # a pinned document whose title no longer matches is dropped, never shown as another law
+        _row(5133, 'Something Else Entirely', 2016, 'kp'),
+        _row(4419, 'Constitution of the Islamic Republic of Pakistan', 1973, 'fed'),
+    ]
+
+
+def _heritage_sections(instrument_id):
+    doc = instrument_id.int
+    labels = {3468: ['2', '5A', '13A', '20', '22', '26'], 4419: ['1', '28']}.get(doc)
+    return None if labels is None else [
+        dict(id=UUID(int=doc * 1000 + i), kind='section', label=l, heading=f'Heading {l}', citation=f'law {doc} s. {l}')
+        for i, l in enumerate(labels)]
+
+
+def test_heritage_page_lists_each_regions_own_law_and_answers_by_units():
+    from nizam.api import collections as c
+    page = c.heritage_page(_heritage_rows(), _heritage_sections)
+    regions = {r['jurisdiction']: r for r in page['regions']}
+    assert list(regions) == ['fed', 'punjab', 'sindh', 'kp', 'balochistan', 'ict', 'ajk', 'gb']
+    assert [l['short_name'] for l in regions['punjab']['laws']] == ['Antiquities Act', 'Walled City of Lahore']
+    assert regions['kp']['laws'] == []                       # its document no longer carries the expected title
+    assert regions['ict']['laws_from'] == 'fed'              # Islamabad is served federal law
+    assert regions['ict']['laws'] == regions['fed']['laws']
+    assert regions['gb']['laws_from'] == 'gb' and regions['gb']['laws'] == []   # none held: never another region's
+    questions = {q['key']: q for q in page['questions']}
+    assert [u['label'] for u in questions['found_object']['units']] == ['5A', '13A']
+    assert questions['culture_right']['units'][0]['citation'] == 'law 4419 s. 28'
+    # a question whose units are not served (s.10/11, s.19/23 absent from the fixture index) is left out
+    assert 'declared_protected' not in questions and 'damage_signs' not in questions
+
+
+def test_heritage_endpoint_reads_units_at_the_page_date():
+    seen = []
+
+    class Heritage(Repository):
+        def instruments_by_document(self, document_ids, **kwargs):
+            assert 3468 in document_ids and 4419 in document_ids
+            return _heritage_rows()
+
+        def section_index(self, instrument_id, **kwargs):
+            seen.append(kwargs['as_of'])
+            return dict(sections=_heritage_sections(instrument_id) or [])
+    with TestClient(create_app(Heritage())) as client:
+        body = client.get('/v1/law/collections/heritage?as_of=2026-11-18').json()
+    assert body['as_of'] == '2026-11-18' and set(seen) == {date(2026, 11, 18)}
+    assert body['questions'][0]['key'] == 'found_object'
+    assert body['questions'][0]['units'][0]['heading'] == 'Heading 5A'
+
+
 def test_neighbours_follow_the_printed_index_and_never_borrow_another_law():
     from nizam.storage.library_read import neighbours_in
 

@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../contracts/library_models.g.dart' as law;
 import '../design/components.dart';
+import '../design/heritage_art.dart';
 import '../domain/law_status.dart';
 import '../state/library_state.dart';
 import 'library.dart';
@@ -121,6 +122,7 @@ class _CatalogueScreenState extends ConsumerState<CatalogueScreen> {
                       values: [for (final j in _jurisdictions) (j, j.isEmpty ? 'Everywhere' : jurisdictionName(j))],
                       selected: jurisdiction,
                       onSelected: (v) => setState(() => jurisdiction = v),
+                      avatar: (v) => v.isEmpty ? null : RegionGlyph(v, size: 18),
                     ),
                     const SizedBox(height: 6),
                     _ChipRow(
@@ -244,7 +246,10 @@ class _ChipRow extends StatelessWidget {
   final List<(String, String)> values;
   final String selected;
   final ValueChanged<String> onSelected;
-  const _ChipRow({required this.label, required this.values, required this.selected, required this.onSelected});
+  /// A small mark before a value's name (the region's landmark for 'Where', D-077); none when null.
+  final Widget? Function(String value)? avatar;
+  const _ChipRow({required this.label, required this.values, required this.selected, required this.onSelected,
+      this.avatar});
   @override
   Widget build(BuildContext context) => Row(
         children: [
@@ -262,6 +267,7 @@ class _ChipRow extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(right: 6),
                       child: ChoiceChip(
+                        avatar: avatar?.call(value),
                         label: Text(text, style: const TextStyle(fontSize: 13)),
                         selected: selected == value,
                         visualDensity: VisualDensity.compact,

@@ -557,6 +557,53 @@
         }
       }
     },
+    "/v1/law/collections/heritage": {
+      "get": {
+        "summary": "Heritage",
+        "operationId": "heritage_v1_law_collections_heritage_get",
+        "parameters": [
+          {
+            "name": "as_of",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "As Of"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HeritagePage"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/law/instruments/{instrument_id}/sections": {
       "get": {
         "summary": "Sections",
@@ -1031,6 +1078,173 @@
         },
         "type": "object",
         "title": "HTTPValidationError"
+      },
+      "HeritageLaw": {
+        "properties": {
+          "short_name": {
+            "type": "string",
+            "title": "Short Name"
+          },
+          "instrument": {
+            "$ref": "#/components/schemas/Instrument"
+          }
+        },
+        "type": "object",
+        "required": [
+          "short_name",
+          "instrument"
+        ],
+        "title": "HeritageLaw"
+      },
+      "HeritagePage": {
+        "properties": {
+          "as_of": {
+            "type": "string",
+            "format": "date",
+            "title": "As Of"
+          },
+          "mode": {
+            "type": "string",
+            "const": "research_preview",
+            "title": "Mode",
+            "default": "research_preview"
+          },
+          "notice": {
+            "type": "string",
+            "title": "Notice",
+            "default": "Corpus qualification is ongoing. Check the official source; status may be unknown."
+          },
+          "regions": {
+            "items": {
+              "$ref": "#/components/schemas/HeritageRegion"
+            },
+            "type": "array",
+            "title": "Regions"
+          },
+          "questions": {
+            "items": {
+              "$ref": "#/components/schemas/HeritageQuestion"
+            },
+            "type": "array",
+            "title": "Questions"
+          }
+        },
+        "type": "object",
+        "required": [
+          "as_of",
+          "regions",
+          "questions"
+        ],
+        "title": "HeritagePage",
+        "description": "Pakistan's heritage law region by region, and questions answered by sections (collections.py, D-077)."
+      },
+      "HeritageQuestion": {
+        "properties": {
+          "key": {
+            "type": "string",
+            "title": "Key"
+          },
+          "instrument": {
+            "$ref": "#/components/schemas/Instrument"
+          },
+          "units": {
+            "items": {
+              "$ref": "#/components/schemas/HeritageUnit"
+            },
+            "type": "array",
+            "title": "Units"
+          }
+        },
+        "type": "object",
+        "required": [
+          "key",
+          "instrument",
+          "units"
+        ],
+        "title": "HeritageQuestion",
+        "description": "A question people bring to heritage law, answered by opening `units` of `instrument`. `key` is a code the\nclient words; the units' identity, heading and citation are records (INV-1)."
+      },
+      "HeritageRegion": {
+        "properties": {
+          "jurisdiction": {
+            "type": "string",
+            "title": "Jurisdiction"
+          },
+          "laws_from": {
+            "type": "string",
+            "title": "Laws From"
+          },
+          "laws": {
+            "items": {
+              "$ref": "#/components/schemas/HeritageLaw"
+            },
+            "type": "array",
+            "title": "Laws"
+          }
+        },
+        "type": "object",
+        "required": [
+          "jurisdiction",
+          "laws_from",
+          "laws"
+        ],
+        "title": "HeritageRegion",
+        "description": "One region of the Heritage tab. `laws_from` is the jurisdiction whose laws are listed: 'fed' for Islamabad\nCapital Territory, which is served federal law. An empty `laws` means the library holds none for it yet."
+      },
+      "HeritageUnit": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "kind": {
+            "type": "string",
+            "title": "Kind"
+          },
+          "label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Label"
+          },
+          "heading": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Heading"
+          },
+          "citation": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Citation"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "label",
+          "heading",
+          "citation"
+        ],
+        "title": "HeritageUnit"
       },
       "Instrument": {
         "properties": {

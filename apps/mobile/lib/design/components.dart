@@ -2,7 +2,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import '../domain/heritage.dart';
 import '../state/library_state.dart';
+import 'heritage_art.dart';
 
 /// The navigation surface. A solid panel, not a live blur: on 17 Nov 2026 the
 /// BackdropFilter(blur 12) that was here aborted the Impeller OpenGL ES raster
@@ -110,8 +112,8 @@ class LibraryScaffold extends ConsumerWidget {
                 label: 'Library',
               ),
               NavigationDestination(
-                icon: Icon(Icons.account_balance_outlined),
-                selectedIcon: Icon(Icons.account_balance),
+                // the Minar-e-Pakistan as the tab's mark (D-077), in the navigation's own icon colour
+                icon: LandmarkIcon(Landmark.minar),
                 label: 'Heritage',
               ),
             ],
