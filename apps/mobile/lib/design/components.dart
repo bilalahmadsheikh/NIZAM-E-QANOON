@@ -7,6 +7,24 @@ import '../state/library_state.dart';
 import 'embroidery.dart';
 import 'heritage_art.dart';
 
+/// A page header with an embroidered patch stitched into its corner (D-084): the craft beside the headline, in the
+/// margin the headline leaves, scrolling with the page so no text ever passes over it.
+class PatchedHeader extends StatelessWidget {
+  final Motif motif;
+  final Widget child;
+  final double size;
+  const PatchedHeader({super.key, required this.motif, required this.child, this.size = 132});
+  @override
+  Widget build(BuildContext context) => Stack(
+        clipBehavior: Clip.none,
+        children: [
+          Positioned(top: -14, right: -size * .28, child: EmbroideredPatch(motif, size: size, angle: .14)),
+          // the text keeps clear of the patch's visible part
+          Padding(padding: EdgeInsets.only(right: size * .5), child: child),
+        ],
+      );
+}
+
 /// The navigation surface. A solid panel, not a live blur: on 17 Nov 2026 the
 /// BackdropFilter(blur 12) that was here aborted the Impeller OpenGL ES raster
 /// thread on an Android 16 emulator ("Must be able to encode GL commands
@@ -42,17 +60,12 @@ class LibraryScaffold extends ConsumerWidget {
   final String title;
   final int selected;
   final List<Widget> actions;
-  /// The page's craft, embroidered over the whole page behind its content (D-082, superseding D-081's corner
-  /// medallion): truck art on Discover, Multani blue pottery on the Library, the chosen region's own on Heritage.
-  /// Painted once outside the scrolling body (no frame cost when scrolling); never on a page whose body is law text.
-  final Motif? backdrop;
   const LibraryScaffold({
     super.key,
     required this.body,
     required this.title,
     this.selected = 1,
     this.actions = const [],
-    this.backdrop,
   });
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -95,20 +108,7 @@ class LibraryScaffold extends ConsumerWidget {
       bottom: false,
       child: Column(children: [
         const ScopeBand(),
-        Expanded(
-          child: backdrop == null
-              ? body
-              : Stack(
-                  children: [
-                    // the page as embroidered cloth (D-082): over the page colour, under every card, button and line
-                    Positioned.fill(
-                      child: EmbroideredGround(backdrop!,
-                          opacity: Theme.of(context).brightness == Brightness.dark ? .22 : .26),
-                    ),
-                    Positioned.fill(child: body),
-                  ],
-                ),
-        ),
+        Expanded(child: body),
       ]),
     ),
     bottomNavigationBar: SafeArea(

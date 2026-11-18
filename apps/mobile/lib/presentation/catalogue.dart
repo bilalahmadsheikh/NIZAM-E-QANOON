@@ -66,7 +66,6 @@ class _CatalogueScreenState extends ConsumerState<CatalogueScreen> {
     final scheme = Theme.of(context).colorScheme;
     return LibraryScaffold(
       title: 'The legal library',
-      backdrop: Motif.kashi, // Multani blue pottery at the library's corner (D-081)
       body: ReadingWidth(
         child: CustomScrollView(
           slivers: [
@@ -76,9 +75,20 @@ class _CatalogueScreenState extends ConsumerState<CatalogueScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Eyebrow('Find your way through the law'),
-                    const SizedBox(height: 12),
-                    Text('Every law.\nThe ones that matter, first.', style: Theme.of(context).textTheme.headlineMedium),
+                    // a Multani blue-pottery patch beside the library's headline (D-084)
+                    PatchedHeader(
+                      motif: Motif.kashi,
+                      size: 120,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Eyebrow('Find your way through the law'),
+                          const SizedBox(height: 12),
+                          Text('Every law.\nThe ones that matter, first.',
+                              style: Theme.of(context).textTheme.headlineMedium),
+                        ],
+                      ),
+                    ),
                     const SizedBox(height: 10),
                     const Text(
                       'Search a title, or what a law is about. Lists open with the laws other laws cite most — '

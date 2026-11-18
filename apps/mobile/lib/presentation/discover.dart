@@ -16,16 +16,21 @@ class DiscoverScreen extends StatelessWidget {
   Widget build(BuildContext context) => LibraryScaffold(
     title: 'Nizam-e-Qanoon',
     selected: 0,
-    backdrop: Motif.truckArt, // the national folk art, at the corner of the first page (D-081)
     body: ReadingWidth(
       child: ListView(
         padding: const EdgeInsets.all(24),
         children: [
-          const Eyebrow('A living library of Pakistani law'),
-          const SizedBox(height: 16),
-          Text(
-            'The law.\nA little closer.',
-            style: Theme.of(context).textTheme.displaySmall,
+          // a truck-art patch stitched beside the headline (D-084)
+          PatchedHeader(
+            motif: Motif.truckArt,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Eyebrow('A living library of Pakistani law'),
+                const SizedBox(height: 16),
+                Text('The law.\nA little closer.', style: Theme.of(context).textTheme.displaySmall),
+              ],
+            ),
           ),
           const SizedBox(height: 16),
           Text(
@@ -41,8 +46,8 @@ class DiscoverScreen extends StatelessWidget {
             ),
             child: Stack(
              children: [
-              // the card as cloth (D-082): blue pottery stitched on the pine, under the monument, heading and button
-              const Positioned.fill(child: EmbroideredGround(Motif.kashi, opacity: .26)),
+              // a blue-pottery patch stitched on the card's corner, clear of its heading and button (D-084)
+              const Positioned(right: -26, top: -22, child: EmbroideredPatch(Motif.kashi, size: 116, angle: -.2)),
               Column(
               children: [
                 const SizedBox(

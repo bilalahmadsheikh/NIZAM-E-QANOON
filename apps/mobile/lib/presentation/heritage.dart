@@ -39,8 +39,6 @@ class _HeritageScreenState extends ConsumerState<HeritageScreen> {
     return LibraryScaffold(
       title: 'Heritage',
       selected: 2,
-      // the chosen region's own craft at the page's corner (D-081)
-      backdrop: chosen.crafts.isEmpty ? chosen.motif : chosen.crafts.first.motif,
       body: ReadingWidth(
         child: ListView(
           padding: const EdgeInsets.fromLTRB(0, 24, 0, 120),
@@ -50,9 +48,19 @@ class _HeritageScreenState extends ConsumerState<HeritageScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Eyebrow('Places, crafts and the law that keeps them'),
-                  const SizedBox(height: 14),
-                  Text('Pakistan,\nregion by region.', style: Theme.of(context).textTheme.displaySmall),
+                  // the chosen region's craft as a patch beside the headline; it changes with the region (D-084)
+                  PatchedHeader(
+                    key: ValueKey('patch-$region'),
+                    motif: chosen.crafts.isEmpty ? chosen.motif : chosen.crafts.first.motif,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Eyebrow('Places, crafts and the law that keeps them'),
+                        const SizedBox(height: 14),
+                        Text('Pakistan,\nregion by region.', style: Theme.of(context).textTheme.displaySmall),
+                      ],
+                    ),
+                  ),
                   const SizedBox(height: 12),
                   const Text(
                     'A landmark and a craft of each region, beside the heritage laws the library holds for it, and '

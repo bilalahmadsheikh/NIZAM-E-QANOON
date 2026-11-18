@@ -1110,7 +1110,7 @@ Area: client · Status: Superseded in part by D-082 (the medallion and flat band
   presentation/discover.dart, presentation/catalogue.dart, presentation/heritage.dart; goldens.
 
 ### D-082 · 2026-11-18 · The browsing pages are embroidered cloth; content lies on it
-Area: client · Status: standing (supersedes D-081's corner medallion and flat bands)
+Area: client · Status: Superseded by D-084 (the whole-page cloth; the hem, the stitch rule and opaque tinted panels stand)
 - Decision: the owner found D-081's medallion and flat motifs poor. They asked for the crafts to sit behind every
   overlay, button and text but above the backdrop, looking embroidered on the screen, with content still readable and
   tappable.
@@ -1135,6 +1135,35 @@ Area: client · Status: standing (supersedes D-081's corner medallion and flat b
 - Where: apps/mobile/lib/design/embroidery.dart; design/components.dart (LibraryScaffold, solidTint),
   design/heritage_art.dart, presentation/discover.dart, presentation/heritage.dart; test/heritage_test.dart
   (golden embroidery.png, a review sheet at 3x).
+
+### D-084 · 2026-11-18 · Embroidered patches in the layout's margins, and a stitched seam between pages
+Area: client · Status: standing (supersedes D-082's whole-page cloth)
+- Decision: the owner found the whole-page cloth too prominent and too basic. They asked for a few complex patches
+  stitched at areas of the screen, a page transition related to embroidery, and nothing that overshadows text.
+  - **The patches.** `EmbroideredPatch` is a round of cloth stitched onto the page, built in layers:
+    - a woven ground: the cloth with warp and weft threads;
+    - a merrow edge of dense satin over the rim, with its highlight;
+    - a ring of tacking stitches;
+    - a complex design per stitchwork:
+      - phool: an eight-petal satin flower in two threads, ringed by twelve small flowers on a running-stitch vine
+        with leaves, and French knots;
+      - kashi: interlaced strapwork rings, a sixteen-point rosette, a satin eight-point star over a second star,
+        petals and knots;
+      - shisha: a herringbone ring, six mirrors in satin diamonds round a large mirror, and cross stitch;
+    - a shadow, as if sewn on.
+    It is stitched once into a cached image.
+  - **Placement: in the layout, not the background.** Each patch sits beside a page's headline (`PatchedHeader`, the
+    text kept clear of it) or in a card's empty corner. It scrolls with the page, so text never passes over it.
+    - Discover: truck art beside the headline, blue pottery on the Constitution card's corner.
+    - Library: blue pottery.
+    - Heritage: the chosen region's craft, changing with the region.
+  - **The transition.** Every route comes in through `StitchTransition`: the page fades up while a running-stitch
+    thread is drawn across its top behind a moving needle, then fades (380 ms). It is off under reduced motion.
+  - The satin hems, the stitch rule between Home's sections and the opaque tinted panels stand. Law pages carry no
+    patch.
+- Where: apps/mobile/lib/design/embroidery.dart (EmbroideredPatch, StitchTransition), design/components.dart
+  (PatchedHeader), main.dart (routes), presentation/discover.dart, catalogue.dart, heritage.dart;
+  test/heritage_test.dart (golden embroidery.png at 3x).
 
 ### D-083 · 2026-11-18 · AJK's inline headings and Sindh 1336's running heads repaired; a heading may close with ".-"
 Area: L1 corpus · Status: standing (closes two of the D-080 "what remains" items)

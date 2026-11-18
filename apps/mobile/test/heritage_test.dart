@@ -210,39 +210,37 @@ void main() {
     await expectLater(find.byType(MaterialApp), matchesGoldenFile('goldens/heritage_art.png'));
   });
 
-  testWidgets('embroidery: each stitchwork at full strength and as a page ground under a card (review sheet)',
+  testWidgets('embroidery: each patch large and at page size, the hem, the rule, and a seam mid-stitch (review sheet)',
       (tester) async {
     await _fonts();
     tester.view.physicalSize = const Size(1900, 1500);
     tester.view.devicePixelRatio = 3;
     addTearDown(tester.view.resetPhysicalSize);
     addTearDown(tester.view.resetDevicePixelRatio);
-    Widget panel(Motif m, double opacity) => SizedBox(
-          width: 200,
-          height: 200,
-          child: Stack(children: [
-            Positioned.fill(child: EmbroideredGround(m, opacity: opacity)),
-            if (opacity < 1)
-              const Center(
-                child: Card(
-                  child: Padding(padding: EdgeInsets.all(10), child: Text('A card on the cloth')),
-                ),
-              ),
-          ]),
-        );
+    final seam = AnimationController(vsync: tester, value: .55);
+    addTearDown(seam.dispose);
     await tester.pumpWidget(MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(scaffoldBackgroundColor: const Color(0xFFF3EFE6)),
       home: Scaffold(
         body: Padding(
           padding: const EdgeInsets.all(10),
-          child: Column(children: [
-            Row(children: [for (final m in [Motif.truckArt, Motif.kashi, Motif.mirrorwork]) panel(m, 1)]),
-            Row(children: [for (final m in [Motif.truckArt, Motif.kashi, Motif.mirrorwork]) panel(m, .24)]),
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Row(children: [
+              for (final m in [Motif.truckArt, Motif.kashi, Motif.mirrorwork]) EmbroideredPatch(m, size: 196, angle: 0),
+            ]),
+            Row(children: [
+              for (final m in [Motif.truckArt, Motif.kashi, Motif.mirrorwork]) EmbroideredPatch(m, size: 120),
+            ]),
             const SizedBox(height: 8),
             const SizedBox(width: 400, child: EmbroideredBorder(Motif.truckArt, height: 16)),
             const SizedBox(height: 8),
             const SizedBox(width: 400, child: StitchRule()),
+            SizedBox(
+              width: 400,
+              height: 90,
+              child: StitchTransition(animation: seam, child: const ColoredBox(color: Color(0xFFF3EFE6))),
+            ),
           ]),
         ),
       ),
