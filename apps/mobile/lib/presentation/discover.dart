@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../state/library_state.dart';
 import '../design/components.dart';
+import '../design/embroidery.dart';
 import '../design/heritage_art.dart';
 import '../domain/heritage.dart';
 import '../design/monument.dart';
@@ -40,8 +41,8 @@ class DiscoverScreen extends StatelessWidget {
             ),
             child: Stack(
              children: [
-              // behind the button: a Multani tile rosette, faint on the pine (D-081)
-              const Positioned(right: -80, bottom: -60, child: CraftCorner(Motif.kashi, size: 240, opacity: .16)),
+              // the card as cloth (D-082): blue pottery stitched on the pine, under the monument, heading and button
+              const Positioned.fill(child: EmbroideredGround(Motif.kashi, opacity: .26)),
               Column(
               children: [
                 const SizedBox(
@@ -98,8 +99,8 @@ class DiscoverScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                // a painted bumper along the card's foot: truck art's phool patti
-                const MotifBand(Motif.truckArt, height: 10),
+                // the card's hem: truck art's colours in satin stitch with mirrors (D-082)
+                const EmbroideredBorder(Motif.truckArt, height: 16),
               ],
             ),
              ],
@@ -259,7 +260,7 @@ class _CraftOfTheDay extends ConsumerWidget {
     final scheme = Theme.of(context).colorScheme;
     final where = [if (craft.town != null) craft.town!, jurisdictionName(region.jurisdiction)].join(', ');
     return Material(
-      color: scheme.secondary.withValues(alpha: .07),
+      color: solidTint(context),
       borderRadius: BorderRadius.circular(18),
       clipBehavior: Clip.antiAlias,
       child: InkWell(

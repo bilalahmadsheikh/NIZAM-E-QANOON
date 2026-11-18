@@ -6,6 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 import 'package:nizam_app/data/library_repository.dart';
+import 'package:nizam_app/design/embroidery.dart';
 import 'package:nizam_app/design/heritage_art.dart';
 import 'package:nizam_app/domain/heritage.dart';
 import 'package:nizam_app/main.dart';
@@ -207,6 +208,47 @@ void main() {
       ),
     ));
     await expectLater(find.byType(MaterialApp), matchesGoldenFile('goldens/heritage_art.png'));
+  });
+
+  testWidgets('embroidery: each stitchwork at full strength and as a page ground under a card (review sheet)',
+      (tester) async {
+    await _fonts();
+    tester.view.physicalSize = const Size(1900, 1500);
+    tester.view.devicePixelRatio = 3;
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+    Widget panel(Motif m, double opacity) => SizedBox(
+          width: 200,
+          height: 200,
+          child: Stack(children: [
+            Positioned.fill(child: EmbroideredGround(m, opacity: opacity)),
+            if (opacity < 1)
+              const Center(
+                child: Card(
+                  child: Padding(padding: EdgeInsets.all(10), child: Text('A card on the cloth')),
+                ),
+              ),
+          ]),
+        );
+    await tester.pumpWidget(MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(scaffoldBackgroundColor: const Color(0xFFF3EFE6)),
+      home: Scaffold(
+        body: Padding(
+          padding: const EdgeInsets.all(10),
+          child: Column(children: [
+            Row(children: [for (final m in [Motif.truckArt, Motif.kashi, Motif.mirrorwork]) panel(m, 1)]),
+            Row(children: [for (final m in [Motif.truckArt, Motif.kashi, Motif.mirrorwork]) panel(m, .24)]),
+            const SizedBox(height: 8),
+            const SizedBox(width: 400, child: EmbroideredBorder(Motif.truckArt, height: 16)),
+            const SizedBox(height: 8),
+            const SizedBox(width: 400, child: StitchRule()),
+          ]),
+        ),
+      ),
+    ));
+    expect(tester.takeException(), isNull);
+    await expectLater(find.byType(MaterialApp), matchesGoldenFile('goldens/embroidery.png'));
   });
 
   testWidgets('heritage: region panel, laws, an honest empty region, questions answered by sections',

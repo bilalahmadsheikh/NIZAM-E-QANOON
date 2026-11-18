@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../contracts/library_models.g.dart' as law;
 import '../design/components.dart';
+import '../design/embroidery.dart';
 import '../design/heritage_art.dart';
 import '../domain/heritage.dart';
 import '../state/library_state.dart';
@@ -255,7 +256,7 @@ class _CraftRow extends StatelessWidget {
   Widget build(BuildContext context) => Container(
         padding: const EdgeInsets.all(14),
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.secondary.withValues(alpha: .07),
+          color: solidTint(context),
           borderRadius: BorderRadius.circular(16),
         ),
         child: Row(
@@ -480,18 +481,12 @@ class _Makers extends StatelessWidget {
   const _Makers({required this.makers});
   @override
   Widget build(BuildContext context) {
-    final scheme = Theme.of(context).colorScheme;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(height: 36),
-        Row(
-          children: [
-            // the crafts of every region in one band: what this law protects
-            for (final m in const [Motif.truckArt, Motif.kashi, Motif.ajrak, Motif.football, Motif.rug, Motif.chinar])
-              Expanded(child: MotifBand(m, height: 6)),
-          ],
-        ),
+        // the crafts' threads in one hem: what this law protects (D-082)
+        const EmbroideredBorder(Motif.truckArt, height: 16),
         const SizedBox(height: 16),
         Text('Protecting what Pakistan makes', style: Theme.of(context).textTheme.titleLarge),
         const SizedBox(height: 6),
@@ -504,7 +499,7 @@ class _Makers extends StatelessWidget {
         Container(
           padding: const EdgeInsets.fromLTRB(14, 12, 10, 6),
           decoration: BoxDecoration(
-            color: scheme.secondary.withValues(alpha: .07),
+            color: solidTint(context),
             borderRadius: BorderRadius.circular(14),
           ),
           child: Column(

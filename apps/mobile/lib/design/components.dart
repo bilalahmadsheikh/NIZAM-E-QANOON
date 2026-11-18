@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../domain/heritage.dart';
 import '../state/library_state.dart';
+import 'embroidery.dart';
 import 'heritage_art.dart';
 
 /// The navigation surface. A solid panel, not a live blur: on 17 Nov 2026 the
@@ -41,9 +42,9 @@ class LibraryScaffold extends ConsumerWidget {
   final String title;
   final int selected;
   final List<Widget> actions;
-  /// A craft medallion behind the page's top corner (D-081): the page's craft -- truck art on Discover, Multani blue
-  /// pottery on the Library, the chosen region's own on Heritage. Painted once outside the scrolling body (no frame
-  /// cost when scrolling); never on a page whose body is law text.
+  /// The page's craft, embroidered over the whole page behind its content (D-082, superseding D-081's corner
+  /// medallion): truck art on Discover, Multani blue pottery on the Library, the chosen region's own on Heritage.
+  /// Painted once outside the scrolling body (no frame cost when scrolling); never on a page whose body is law text.
   final Motif? backdrop;
   const LibraryScaffold({
     super.key,
@@ -99,11 +100,10 @@ class LibraryScaffold extends ConsumerWidget {
               ? body
               : Stack(
                   children: [
-                    Positioned(
-                      top: -70,
-                      right: -70,
-                      child: CraftCorner(backdrop!, size: 230,
-                          opacity: Theme.of(context).brightness == Brightness.dark ? .13 : .1),
+                    // the page as embroidered cloth (D-082): over the page colour, under every card, button and line
+                    Positioned.fill(
+                      child: EmbroideredGround(backdrop!,
+                          opacity: Theme.of(context).brightness == Brightness.dark ? .22 : .26),
                     ),
                     Positioned.fill(child: body),
                   ],
@@ -302,6 +302,13 @@ class PaperCard extends StatelessWidget {
   );
 }
 
+/// A brass tint laid OPAQUE on the page colour (D-082): it looks as the translucent tint did on a plain page, and on an
+/// embroidered page the cloth stays under it instead of showing through its text.
+Color solidTint(BuildContext context, [double alpha = .07]) {
+  final theme = Theme.of(context);
+  return Color.alphaBlend(theme.colorScheme.secondary.withValues(alpha: alpha), theme.scaffoldBackgroundColor);
+}
+
 class Notice extends StatelessWidget {
   final String text;
   final IconData icon;
@@ -310,7 +317,7 @@ class Notice extends StatelessWidget {
   Widget build(BuildContext context) => Container(
     padding: const EdgeInsets.all(16),
     decoration: BoxDecoration(
-      color: Theme.of(context).colorScheme.secondary.withValues(alpha: .08),
+      color: solidTint(context, .08),
       borderRadius: BorderRadius.circular(14),
     ),
     child: Row(

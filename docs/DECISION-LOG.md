@@ -1090,7 +1090,7 @@ Area: L1 corpus · Status: standing (closes the D-078 residuals and the "Heritag
   tools/evidence/hold-margin-notes-d080-2026-11-18.sql, tools/evidence/heritage-2026-11-18/.
 
 ### D-081 · 2026-11-18 · Craft medallions behind the pages, never behind law text
-Area: client · Status: standing (refines D-077's "ornament does semantic work" for the owner's backdrop request)
+Area: client · Status: Superseded in part by D-082 (the medallion and flat bands; "never behind law text" stands)
 - Decision:
   - The owner asked for blue pottery, truck art and embroidery as backdrops: in a top corner, behind buttons.
   - **Page corners:** `LibraryScaffold(backdrop:)` places a faint craft medallion (`CraftCorner`: two rings of the
@@ -1108,6 +1108,33 @@ Area: client · Status: standing (refines D-077's "ornament does semantic work" 
   - All within the emulator's run-to-run spread.
 - Where: apps/mobile/lib/design/heritage_art.dart (CraftCorner, StitchRule), design/components.dart,
   presentation/discover.dart, presentation/catalogue.dart, presentation/heritage.dart; goldens.
+
+### D-082 · 2026-11-18 · The browsing pages are embroidered cloth; content lies on it
+Area: client · Status: standing (supersedes D-081's corner medallion and flat bands)
+- Decision: the owner found D-081's medallion and flat motifs poor. They asked for the crafts to sit behind every
+  overlay, button and text but above the backdrop, looking embroidered on the screen, with content still readable and
+  tappable.
+  - **The page is embroidered cloth.** `EmbroideredGround` covers the whole page of Discover (truck art), the
+    Library (blue pottery) and Heritage (the chosen region's craft). It lies over the page colour and under every
+    card, button and line of text.
+    - Opacity is .26 in light mode and .22 in dark.
+    - The Constitution card carries blue pottery on its pine.
+  - **It is stitched, not printed.** design/embroidery.dart has three stitchworks: truck-art phool patti (satin
+    petals on running-stitch vines), kashi (back-stitch stars round satin rosettes) and shisha (satin diamonds round
+    mirrors in buttonhole stitch). Every thread is drawn with an under-shadow, its colour and a highlight.
+  - **Borders and rules are embroidered too.** `EmbroideredBorder` (a satin zigzag with mirrors) hems the
+    Constitution card, each landmark scene and the makers section. `StitchRule`, a double running stitch with
+    mirrors, divides Home's sections.
+  - **Readability:** every tinted panel (notices, craft rows, the craft of the day, the GI note) is laid opaque
+    (`solidTint`), so the cloth runs under it, not through its text. Cards are opaque surfaces.
+  - **The law pages carry no cloth** (D-081 holds).
+- Performance: one tile is stitched once into an image (per stitchwork and pixel ratio) and the page is filled with
+  a repeating image shader: one draw, outside the scrolling body, never animated. Emulator, 18 Nov:
+  - Heritage build p50 2.9 ms, Home 5.0 ms, the unchanged reader 2.9 ms;
+  - raster within the emulator's run-to-run spread.
+- Where: apps/mobile/lib/design/embroidery.dart; design/components.dart (LibraryScaffold, solidTint),
+  design/heritage_art.dart, presentation/discover.dart, presentation/heritage.dart; test/heritage_test.dart
+  (golden embroidery.png, a review sheet at 3x).
 
 ---
 

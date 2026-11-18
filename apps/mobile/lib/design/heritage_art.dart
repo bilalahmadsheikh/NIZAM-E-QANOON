@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import '../domain/heritage.dart';
+import 'embroidery.dart';
 import 'theme.dart';
 
 /// Pakistan's landmarks and craft motifs as original vector art (D-077), drawn in the stamp-paper palette.
@@ -302,7 +303,8 @@ class LandmarkScene extends StatelessWidget {
                     ),
                   ),
                 ),
-                MotifBand(region.motif, height: 14),
+                // the scene's hem, embroidered in the region's craft (D-082)
+                ColoredBox(color: Stamp.pine, child: EmbroideredBorder(region.motif, height: 16)),
               ],
             ),
           ),
@@ -558,107 +560,6 @@ class _MotifPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(_MotifPainter old) => old.motif != motif || old.rows != rows;
-}
-
-// ------------------------------------------------------------------------------------------- craft backdrops
-
-/// A craft medallion (D-081): a disc of the craft's ground with two rings of its motif turned around a centre unit,
-/// as a kashi tile rosette, a truck's painted wheel-boss or an embroidered roundel is laid out. Faint, behind content,
-/// decorative to a screen reader and untouchable; one raster, cached behind its RepaintBoundary.
-class CraftCorner extends StatelessWidget {
-  final Motif motif;
-  final double size;
-  final double opacity;
-  const CraftCorner(this.motif, {super.key, this.size = 220, this.opacity = .1});
-  @override
-  Widget build(BuildContext context) => IgnorePointer(
-        child: ExcludeSemantics(
-          child: RepaintBoundary(
-            child: Opacity(
-              opacity: opacity,
-              child: CustomPaint(size: Size.square(size), painter: _MedallionPainter(motif)),
-            ),
-          ),
-        ),
-      );
-}
-
-class _MedallionPainter extends CustomPainter {
-  final Motif motif;
-  _MedallionPainter(this.motif);
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final c = size.center(Offset.zero);
-    final r = size.shortestSide / 2;
-    final unit = _MotifPainter(motif);
-    canvas.drawCircle(c, r, Paint()..color = _MotifPainter._ground[motif]!);
-    final rule = Paint()
-      ..color = Stamp.brass
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = math.max(1, r * .018);
-    // two rings of the motif, each unit turned to face the centre, the outer one larger
-    for (final (radius, u) in [(r * .78, r * .3), (r * .47, r * .24)]) {
-      final n = math.max(6, (2 * math.pi * radius / (u * 1.15)).floor());
-      for (var j = 0; j < n; j++) {
-        final a = j * 2 * math.pi / n;
-        canvas.save();
-        canvas.translate(c.dx + math.cos(a) * radius, c.dy + math.sin(a) * radius);
-        canvas.rotate(a + math.pi / 2);
-        unit._unit(canvas, Rect.fromCenter(center: Offset.zero, width: u, height: u), j, Paint()..isAntiAlias = true);
-        canvas.restore();
-      }
-      canvas.drawCircle(c, radius + u * .62, rule);
-    }
-    unit._unit(canvas, Rect.fromCenter(center: c, width: r * .4, height: r * .4), 0, Paint()..isAntiAlias = true);
-    canvas.drawCircle(c, r * .24, rule);
-  }
-
-  @override
-  bool shouldRepaint(_MedallionPainter old) => old.motif != motif;
-}
-
-/// An embroidered rule (D-081): a running stitch in brass with a small mirror every few stitches, as Balochi and Sindhi
-/// needlework edge a panel. Separates sections where a plain gap would; static, one raster.
-class StitchRule extends StatelessWidget {
-  final double height;
-  const StitchRule({super.key, this.height = 12});
-  @override
-  Widget build(BuildContext context) => ExcludeSemantics(
-        child: RepaintBoundary(
-          child: CustomPaint(size: Size(double.infinity, height),
-              painter: _StitchPainter(Theme.of(context).colorScheme.secondary)),
-        ),
-      );
-}
-
-class _StitchPainter extends CustomPainter {
-  final Color color;
-  _StitchPainter(this.color);
-  @override
-  void paint(Canvas canvas, Size size) {
-    final cy = size.height / 2;
-    final stitch = Paint()
-      ..color = color.withValues(alpha: .55)
-      ..strokeWidth = 1.6
-      ..strokeCap = StrokeCap.round;
-    final mirror = Paint()..color = color.withValues(alpha: .7);
-    final glass = Paint()..color = const Color(0xFFD9DEE3);
-    const step = 14.0;
-    for (var i = 0, x = 4.0; x < size.width - 4; i++, x += step) {
-      if (i % 6 == 3) {
-        final d = size.height * .42;
-        canvas.drawPath(_poly([x + step / 2, cy - d, x + step / 2 + d, cy, x + step / 2, cy + d, x + step / 2 - d, cy]),
-            mirror);
-        canvas.drawCircle(Offset(x + step / 2, cy), d * .42, glass);
-      } else {
-        canvas.drawLine(Offset(x + 2, cy), Offset(x + step - 4, cy), stitch);
-      }
-    }
-  }
-
-  @override
-  bool shouldRepaint(_StitchPainter old) => old.color != color;
 }
 
 /// A landmark as an icon: it takes its colour and size from the surrounding IconTheme, so a navigation bar's selected
