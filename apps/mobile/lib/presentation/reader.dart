@@ -307,7 +307,8 @@ class _Header extends ConsumerWidget {
         ]),
         const SizedBox(height: 14),
         Eyebrow('${jurisdictionName(item.instrument.jurisdiction)} · ${unitNoun(kind, item.kind)}'
-            '${numbered && item.label != null ? ' ${item.label}' : ''}'),
+            '${numbered && item.label != null ? ' ${item.label}' : ''}',
+            jurisdiction: item.instrument.jurisdiction),
         const SizedBox(height: 10),
         if (numbered)
           Text.rich(

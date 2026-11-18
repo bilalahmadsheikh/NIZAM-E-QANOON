@@ -15,14 +15,20 @@ import 'library.dart';
 /// opening the law's own sections (nizam/api/collections.py). The two are kept visibly apart: the context never says
 /// what the law requires; the law is the database's.
 class HeritageScreen extends ConsumerStatefulWidget {
-  const HeritageScreen({super.key});
+  /// The region to open on (`/heritage?region=sindh`); otherwise the reader's own territory, else Punjab.
+  final String? region;
+  const HeritageScreen({super.key, this.region});
   @override
   ConsumerState<HeritageScreen> createState() => _HeritageScreenState();
 }
 
 class _HeritageScreenState extends ConsumerState<HeritageScreen> {
-  // the reader's own territory first, when they have chosen one
-  late String region = heritageRegion(ref.read(territoryProvider)) == null ? 'punjab' : ref.read(territoryProvider);
+  // a linked region first, then the reader's own territory, when they have chosen one
+  late String region = heritageRegion(widget.region ?? '') != null
+      ? widget.region!
+      : heritageRegion(ref.read(territoryProvider)) == null
+          ? 'punjab'
+          : ref.read(territoryProvider);
 
   @override
   Widget build(BuildContext context) {
@@ -80,6 +86,14 @@ class _HeritageScreenState extends ConsumerState<HeritageScreen> {
                   key: ValueKey('questions-$region'),
                   region: p.regions.where((r) => r.jurisdiction == region).firstOrNull,
                 ),
+              ),
+            ),
+            // the law that protects what Pakistan makes (D-079): federal, the same for every region
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: page.maybeWhen(
+                data: (p) => p.makers.laws.isEmpty ? const SizedBox.shrink() : _Makers(makers: p.makers),
+                orElse: () => const SizedBox.shrink(),
               ),
             ),
             const SizedBox(height: 36),
@@ -189,9 +203,12 @@ class _RegionPanel extends ConsumerWidget {
         const SizedBox(height: 10),
         Text(region.note, style: const TextStyle(height: 1.55)),
         _Sources(urls: region.sources),
-        if (region.craft case final craft?) ...[
-          const SizedBox(height: 14),
-          _CraftRow(motif: region.motif, craft: craft),
+        if (region.crafts.isNotEmpty) ...[
+          const SizedBox(height: 22),
+          Text('Crafts and makers', style: Theme.of(context).textTheme.titleMedium),
+          const SizedBox(height: 10),
+          for (final craft in region.crafts)
+            Padding(padding: const EdgeInsets.only(bottom: 8), child: _CraftRow(craft: craft)),
         ],
         const SizedBox(height: 26),
         Text('The law that protects heritage here', style: Theme.of(context).textTheme.titleLarge),
@@ -228,11 +245,10 @@ class _RegionPanel extends ConsumerWidget {
   }
 }
 
-/// A craft of the region: its motif as a swatch, its name, one line, and where that was checked.
+/// A craft of the region: its motif as a swatch, its name and town, one line, and where that was checked.
 class _CraftRow extends StatelessWidget {
-  final Motif motif;
   final Craft craft;
-  const _CraftRow({required this.motif, required this.craft});
+  const _CraftRow({required this.craft});
   @override
   Widget build(BuildContext context) => Container(
         padding: const EdgeInsets.all(14),
@@ -243,13 +259,13 @@ class _CraftRow extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            MotifSwatch(motif, size: 44),
+            MotifSwatch(craft.motif, size: 44),
             const SizedBox(width: 14),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('CRAFT', style: TextStyle(fontSize: 10, letterSpacing: 1.6,
+                  Text((craft.town ?? 'Craft').toUpperCase(), style: TextStyle(fontSize: 10, letterSpacing: 1.6,
                       color: Theme.of(context).colorScheme.secondary, fontWeight: FontWeight.w700)),
                   const SizedBox(height: 3),
                   Text(craft.name, style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 15)),
@@ -450,6 +466,58 @@ class _QuestionCard extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+/// Protecting what Pakistan makes (D-079): the federal laws a maker of a craft or a regional product relies on, one
+/// sourced fact about the first registered geographical indication, and the questions makers ask, answered by
+/// sections. The fact is editorial context; the laws and sections are the database's.
+class _Makers extends StatelessWidget {
+  final law.HeritageMakers makers;
+  const _Makers({required this.makers});
+  @override
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const SizedBox(height: 36),
+        Row(
+          children: [
+            // the crafts of every region in one band: what this law protects
+            for (final m in const [Motif.truckArt, Motif.kashi, Motif.ajrak, Motif.football, Motif.rug, Motif.chinar])
+              Expanded(child: MotifBand(m, height: 6)),
+          ],
+        ),
+        const SizedBox(height: 16),
+        Text('Protecting what Pakistan makes', style: Theme.of(context).textTheme.titleLarge),
+        const SizedBox(height: 6),
+        const Text(
+          'A craft, a regional product or a workshop’s name can be protected by federal law: geographical '
+          'indications, trade marks, designs and copyright.',
+          style: TextStyle(height: 1.45),
+        ),
+        const SizedBox(height: 10),
+        Container(
+          padding: const EdgeInsets.fromLTRB(14, 12, 10, 6),
+          decoration: BoxDecoration(
+            color: scheme.secondary.withValues(alpha: .07),
+            borderRadius: BorderRadius.circular(14),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(giFirst.note, style: const TextStyle(fontSize: 13, height: 1.45)),
+              _Sources(urls: [giFirst.source]),
+            ],
+          ),
+        ),
+        const SizedBox(height: 14),
+        for (final l in makers.laws) _LawRow(item: l),
+        const SizedBox(height: 10),
+        for (final q in makers.questions) _QuestionCard(question: q),
+      ],
     );
   }
 }

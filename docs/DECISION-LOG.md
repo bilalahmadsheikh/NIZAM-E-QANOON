@@ -993,6 +993,64 @@ Area: L6/client/corpus · Status: standing (closes the D-077 open question on pe
   tools/evidence/hold-1336-contents-offset-2026-11-18.sql, tools/evidence/heritage-2026-11-18/ (readings, builder);
   apps/mobile/lib/presentation/heritage.dart, domain/heritage.dart, test/heritage_test.dart (golden heritage.png).
 
+### D-079 · 2026-11-18 · Crafts and makers per region, and the law that protects what Pakistan makes
+Area: L6/client · Status: standing
+- Decision:
+  1. **Every region names its crafts and makers**: two or three each instead of one. Each craft has its own drawn
+     motif, its town, and one line checked on 18 Nov 2026 against the source it links.
+
+     | Region | Craft, motif and source |
+     |---|---|
+     | Federal | truck art |
+     | Punjab | Multani blue pottery; Sialkot footballs (Dawn: match balls for the 2022 World Cup); Chiniot carved furniture (TDAP furniture report) |
+     | Sindh | ajrak and ralli; Hala and Nasarpur kashi tiles and Hala lacquer (AIC "Clay Culture of Blue Kashi Tiles") |
+     | KP | lacquer and metal work; Peshawari chappal (APP) |
+     | Balochistan | Balochi embroidery; Balochi rugs |
+     | Islamabad | Lok Virsa, the national institute of folk and traditional heritage, founded 1974, a keeper of crafts (its law is in the federal list) |
+     | AJK | namda and chain stitch; Muzaffarabad walnut carving (Express Tribune) |
+     | GB | Hunza embroidery; the Gilgiti cap (Pamir Times) |
+
+     - Claims were narrowed where the sources disagreed or were thin:
+       - the World Cup balls are thermo-bonded, so the line claims no hand-stitching;
+       - "nating", the chappal's "six stages" and a GB cap day were dropped for want of a solid source;
+       - a list of six registered GIs (it included Hyderabad bangles) came from an undated report and is not
+         repeated.
+     - Eight new motifs, the same static painters: football, jaali, Hala tile, chappal braid, rug lozenge, folk
+       vessels, chinar leaf, wool cap. A test proves every craft's motif is its own.
+  2. **"Protecting what Pakistan makes"** is the federal law a maker relies on:
+     - **The laws:** the Geographical Indications (Registration and Protection) Act, 2020 (doc 3433), the Trade
+       Marks Ordinance, 2001 (4338), the Registered Designs Ordinance, 2000 (2722) and the Copyright Ordinance,
+       1962 (3896). They are pinned like the heritage laws (`HeritagePage.makers`).
+     - **The questions,** answered by sections read against the served text:
+       - a product known by its place: s.11 (the Federal Government holds Pakistan's GIs) and s.26;
+       - the national GI logo: s.28;
+       - goods sold under a false place name: ss.30 and 41;
+       - a workshop's mark: Trade Marks ss.22 and 39;
+       - a new pattern or shape: Designs ss.3 and 8;
+       - who owns a painting, song or photograph: Copyright ss.10 and 13.
+     - **One editorial fact,** sourced: Basmati rice was registered as Pakistan's first GI in January 2021
+       (Dawn).
+  3. **Culture in the smaller blocks**, each saying something:
+     - a "From the regions" card on Home shows one craft a day, keyed to the reader's as_of date (no clock, no
+       randomness), and opens its region (`/heritage?region=`);
+     - the reader's jurisdiction line is led by the region's landmark (`Eyebrow(jurisdiction:)`).
+     - Result lists are left lean.
+- Why: the owner asked for culture "deeper": truck art, blue pottery, Sialkot footballs and the like, across the
+  app, intelligently and without cost. Crafts become useful where they meet the law a maker actually uses, and the
+  corpus holds all four federal IP laws.
+- Performance, measured on the emulator on 18 Nov (two runs; the emulator was under host memory pressure and every
+  screen ran slower than on the 17 Nov runs):
+  - Heritage: build p50 3.1 ms, p90 13.2–13.9 ms; raster p50 18–19 ms.
+  - Home: build p50 5.0 ms and p90 19.7 ms in the warm run (8.6 / 27.1 ms in the first, cold-launch run), against
+    3.5 / 11.7 ms before.
+  - Reader (unchanged code): build p50 1.9–2.1 ms; raster p50 19–21 ms, against 15 ms before.
+  - Home's p90 rose a little more than the other screens'. Measuring it on a phone is part of the open frame-budget
+    item.
+- Where: nizam/api/collections.py (MAKER_LAWS, MAKER_QUESTIONS), nizam/api/library.py (HeritageMakers),
+  tests/test_library_api.py, tools/generate_library_contract.py; apps/mobile/lib/domain/heritage.dart (crafts,
+  craftOfDay, giFirst), design/heritage_art.dart, design/components.dart (Eyebrow), presentation/heritage.dart,
+  presentation/discover.dart, presentation/reader.dart, main.dart; apps/mobile/test/heritage_test.dart and goldens.
+
 ---
 
 ## Open questions (not yet decided)

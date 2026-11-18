@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import '../state/library_state.dart';
 import '../design/components.dart';
 import '../design/heritage_art.dart';
 import '../domain/heritage.dart';
@@ -129,6 +131,8 @@ class DiscoverScreen extends StatelessWidget {
               );
             },
           ),
+          const SizedBox(height: 16),
+          const _CraftOfTheDay(),
           const SizedBox(height: 36),
           Text('Browse by kind of law', style: Theme.of(context).textTheme.titleLarge),
           const SizedBox(height: 14),
@@ -228,6 +232,54 @@ class _FindByTitleState extends State<_FindByTitle> {
           ),
         ],
       );
+}
+
+/// From the regions (D-079): one craft a day, in turn through every region, keyed to the reader's date (so the
+/// same card all day, and in a test). It opens its region on the Heritage tab, where its law is.
+class _CraftOfTheDay extends ConsumerWidget {
+  const _CraftOfTheDay();
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final (region, craft) = craftOfDay(ref.watch(asOfProvider));
+    final scheme = Theme.of(context).colorScheme;
+    final where = [if (craft.town != null) craft.town!, jurisdictionName(region.jurisdiction)].join(', ');
+    return Material(
+      color: scheme.secondary.withValues(alpha: .07),
+      borderRadius: BorderRadius.circular(18),
+      clipBehavior: Clip.antiAlias,
+      child: InkWell(
+        onTap: () => context.go('/heritage?region=${region.jurisdiction}'),
+        child: Padding(
+          padding: const EdgeInsets.all(14),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              MotifSwatch(craft.motif, size: 52),
+              const SizedBox(width: 14),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('FROM THE REGIONS · ${where.toUpperCase()}',
+                        style: TextStyle(fontSize: 10, letterSpacing: 1.4, color: scheme.secondary,
+                            fontWeight: FontWeight.w700)),
+                    const SizedBox(height: 4),
+                    Text(craft.name, style: const TextStyle(fontFamily: 'Spectral', fontSize: 19, height: 1.2)),
+                    const SizedBox(height: 4),
+                    Text(craft.note, style: const TextStyle(fontSize: 13, height: 1.45)),
+                    const SizedBox(height: 6),
+                    Text('Its region and the law that protects heritage there',
+                        style: TextStyle(fontSize: 12, color: scheme.secondary, fontWeight: FontWeight.w600)),
+                  ],
+                ),
+              ),
+              const Icon(Icons.chevron_right, size: 20),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 }
 
 /// A jurisdiction: its name and what its laws are, opening the library filtered to it.

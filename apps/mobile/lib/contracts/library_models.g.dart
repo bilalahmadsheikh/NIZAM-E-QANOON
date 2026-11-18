@@ -499,16 +499,28 @@ class HeritageQuestion {
   );
 }
 
+class HeritageMakers {
+  final List<HeritageLaw> laws;
+  final List<HeritageQuestion> questions;
+  const HeritageMakers({required this.laws, required this.questions});
+  factory HeritageMakers.fromJson(Map<String, dynamic> json) => HeritageMakers(
+    laws: (json['laws'] as List).map((v) => HeritageLaw.fromJson(v as Map<String, dynamic>)).toList(),
+    questions: (json['questions'] as List).map((v) => HeritageQuestion.fromJson(v as Map<String, dynamic>)).toList(),
+  );
+}
+
 class HeritagePage {
   final String as_of;
   final String mode;
   final String notice;
   final List<HeritageRegion> regions;
-  const HeritagePage({required this.as_of, required this.mode, required this.notice, required this.regions});
+  final HeritageMakers makers;
+  const HeritagePage({required this.as_of, required this.mode, required this.notice, required this.regions, required this.makers});
   factory HeritagePage.fromJson(Map<String, dynamic> json) => HeritagePage(
     as_of: json['as_of'] as String,
     mode: json['mode'] as String,
     notice: json['notice'] as String,
     regions: (json['regions'] as List).map((v) => HeritageRegion.fromJson(v as Map<String, dynamic>)).toList(),
+    makers: HeritageMakers.fromJson(json['makers'] as Map<String, dynamic>),
   );
 }

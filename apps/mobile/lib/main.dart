@@ -41,7 +41,12 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: '/provision/:id',
         builder: (context, state) => ProvisionScreen(id: state.pathParameters['id']!),
       ),
-      GoRoute(path: '/heritage', builder: (context, state) => const HeritageScreen()),
+      // ?region= opens a region's panel (the home page's craft of the day, D-079)
+      GoRoute(
+        path: '/heritage',
+        builder: (context, state) => HeritageScreen(
+            key: ValueKey(state.uri.queryParameters['region']), region: state.uri.queryParameters['region']),
+      ),
     ],
   );
   ref.onDispose(router.dispose);

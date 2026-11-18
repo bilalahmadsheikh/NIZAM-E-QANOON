@@ -248,13 +248,15 @@ def _heritage_rows():
         # a pinned document whose title no longer matches is dropped, never shown as another law
         _row(5133, 'Something Else Entirely', 2016, 'kp'),
         _row(4419, 'Constitution of the Islamic Republic of Pakistan', 1973, 'fed'),
+        _row(3433, 'Geographical Indications (Registration and Protection) Act, 2020', 2020, 'fed'),
+        _row(4338, 'Trade Marks Ordinance, 2001', 2001, 'fed'),
     ]
 
 
 # Which territories serve each fixture law, as the corpus's territorial model does (None: no filter). The federal
 # Antiquities Act is repealed in Balochistan by its 2014 Act (D-078) and, like the Constitution, does not reach AJK/GB.
 _HERITAGE_SERVED = {3468: {None, 'punjab', 'sindh', 'kp', 'ict'}, 3157: {None, 'punjab'}, 1336: {None, 'sindh'},
-                    4419: {None, 'punjab', 'sindh', 'kp', 'balochistan', 'ict'}}
+                    4419: {None, 'punjab', 'sindh', 'kp', 'balochistan', 'ict'}, 3433: {None}, 4338: {None}}
 
 
 def _heritage_sections(instrument_id, territory=None):
@@ -262,7 +264,7 @@ def _heritage_sections(instrument_id, territory=None):
     if territory not in _HERITAGE_SERVED.get(doc, set()):
         return None
     labels = {3468: ['2', '5A', '13A', '20', '22', '26'], 3157: ['5-A', '13A', '31'], 1336: ['5', '6', '7', '19'],
-              4419: ['1', '28']}[doc]
+              4419: ['1', '28'], 3433: ['11', '26', '28', '30', '41'], 4338: ['22']}[doc]
     return [dict(id=UUID(int=doc * 1000 + i), kind='section', label=l, heading='' if l == '7' else f'Heading {l}',
                  citation=f'law {doc} s. {l}', preview=f'(2) words of {l}') for i, l in enumerate(labels)]
 
@@ -299,6 +301,12 @@ def test_heritage_page_lists_each_regions_own_law_and_answers_by_units():
     assert asked('punjab')['culture_right']['units'][0]['citation'] == 'law 4419 s. 28'
     assert 'culture_right' in asked('balochistan') and 'found_object' not in asked('balochistan')  # its law: unheld
     assert regions['ajk']['questions'] == [] and regions['gb']['questions'] == []
+    # makers (D-079): the federal laws held, in MAKER_LAWS order; a law not held (designs, copyright) is absent, and so
+    # are its questions; a question keeps only its served units (s.39 is not in the fixture index)
+    makers = page['makers']
+    assert [l['short_name'] for l in makers['laws']] == ['Geographical indications', 'Trade marks']
+    asked_makers = {q['key']: [u['label'] for u in q['units']] for q in makers['questions']}
+    assert asked_makers == {'gi_place': ['11', '26'], 'gi_logo': ['28'], 'gi_fake': ['30', '41'], 'brand': ['22']}
 
 
 def test_heritage_endpoint_reads_units_at_the_page_date_in_each_regions_territory():

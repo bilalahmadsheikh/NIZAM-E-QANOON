@@ -375,6 +375,14 @@ class _MotifPainter extends CustomPainter {
     Motif.faisalFolds: Color(0xFF2E4B44),
     Motif.chainStitch: Color(0xFFEADFC8),
     Motif.crossStitch: Color(0xFF2A2A2A),
+    Motif.football: Color(0xFF2F6B3A), // the pitch
+    Motif.jaali: Color(0xFF5A3A22), // sheesham
+    Motif.halaTile: Color(0xFFF1EEE6), // the white tile ground
+    Motif.chappal: Color(0xFF8A5A2B), // tanned leather
+    Motif.rug: Color(0xFF6E1F1F), // madder red
+    Motif.folkVessels: Color(0xFFE2C48A), // sun on a courtyard wall
+    Motif.chinar: Color(0xFF4A3222), // walnut
+    Motif.woolCap: Color(0xFF3B4A57), // mountain slate
   };
 
   @override
@@ -450,8 +458,103 @@ class _MotifPainter extends CustomPainter {
         c.drawPath(_poly([r.left + h * .1, r.bottom - h * .1, cx, r.top + h * .1, cx, r.bottom - h * .1]), p);
         p.color = const Color(0xFFB9B3A3);
         c.drawPath(_poly([cx, r.top + h * .1, r.right - h * .1, r.bottom - h * .1, cx, r.bottom - h * .1]), p);
+      case Motif.football: // Sialkot: a ball, its black pentagon and the seams running from it
+        p.color = const Color(0xFFF4F1EA);
+        c.drawCircle(r.center, h * .38, p);
+        p.color = const Color(0xFF1E1E1E);
+        c.drawPath(_ngon(cx, cy, h * .13, 5, -math.pi / 2), p);
+        p
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = math.max(.6, h * .04);
+        for (var k = 0; k < 5; k++) {
+          final a = -math.pi / 2 + k * 2 * math.pi / 5;
+          c.drawLine(Offset(cx + math.cos(a) * h * .13, cy + math.sin(a) * h * .13),
+              Offset(cx + math.cos(a) * h * .36, cy + math.sin(a) * h * .36), p);
+        }
+        p.style = PaintingStyle.fill;
+      case Motif.jaali: // Chiniot carving: a pierced lattice of a ring through a lozenge, brass-light on sheesham
+        p
+          ..color = const Color(0xFFD9B27A)
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = math.max(.8, h * .07);
+        c.drawCircle(r.center, h * .3, p);
+        c.drawPath(diamond(h * .5, h * .5), p);
+        p.style = PaintingStyle.fill;
+        c.drawCircle(r.center, h * .07, p);
+      case Motif.halaTile: // Hala kashi: a six-petal cobalt flower with a turquoise heart on white
+        p.color = const Color(0xFF1F4E8C);
+        for (var k = 0; k < 6; k++) {
+          final a = k * math.pi / 3;
+          c.drawCircle(Offset(cx + math.cos(a) * h * .2, cy + math.sin(a) * h * .2), h * .12, p);
+        }
+        p.color = const Color(0xFF3FA7B5);
+        c.drawCircle(r.center, h * .1, p);
+      case Motif.chappal: // the chappal's braided strap: cream chevrons with stitch dots between
+        p
+          ..color = const Color(0xFFF0DDB8)
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = math.max(.8, h * .1)
+          ..strokeCap = StrokeCap.round;
+        c.drawPath(
+            Path()
+              ..moveTo(r.left + h * .15, r.top + h * .25)
+              ..lineTo(cx, cy + h * .1)
+              ..lineTo(r.right - h * .15, r.top + h * .25),
+            p);
+        p
+          ..style = PaintingStyle.fill
+          ..strokeCap = StrokeCap.butt;
+        for (final dx in [-.25, 0.0, .25]) {
+          c.drawCircle(Offset(cx + dx * h, r.bottom - h * .2), h * .045, p);
+        }
+      case Motif.rug: // Balochi rug: a stepped navy lozenge with a cream heart, on madder
+        p.color = const Color(0xFF1F2A4F);
+        c.drawPath(
+            _poly([cx, cy - h * .4, cx + h * .14, cy - h * .26, cx + h * .4, cy, cx + h * .14, cy + h * .26, cx,
+              cy + h * .4, cx - h * .14, cy + h * .26, cx - h * .4, cy, cx - h * .14, cy - h * .26]),
+            p);
+        p.color = const Color(0xFFEBDDC2);
+        c.drawPath(diamond(h * .1, h * .1), p);
+      case Motif.folkVessels: // Lok Virsa: a terracotta pot with a painted band, alternating with a small one
+        final big = i.isEven;
+        final rr = h * (big ? .27 : .19);
+        final body = Offset(cx, r.bottom - rr - h * .08);
+        p.color = const Color(0xFFA0482A);
+        c.drawCircle(body, rr, p);
+        c.drawRect(Rect.fromCenter(center: Offset(cx, body.dy - rr * .95), width: rr * .7, height: rr * .5), p);
+        p.color = const Color(0xFFF4EEE0);
+        c.drawRect(Rect.fromCenter(center: body, width: rr * 1.9, height: math.max(.6, h * .045)), p);
+      case Motif.chinar: // walnut carving: a five-lobed chinar leaf and its stem
+        p.color = const Color(0xFFC79A66);
+        c.drawPath(
+            _poly([cx, r.top + h * .1, cx + h * .1, cy - h * .12, cx + h * .36, cy - h * .2, cx + h * .2, cy + h * .02,
+              cx + h * .3, cy + h * .22, cx, cy + h * .14, cx - h * .3, cy + h * .22, cx - h * .2, cy + h * .02,
+              cx - h * .36, cy - h * .2, cx - h * .1, cy - h * .12]),
+            p);
+        p
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = math.max(.6, h * .04);
+        c.drawLine(Offset(cx, cy + h * .1), Offset(cx, r.bottom - h * .08), p);
+        p.style = PaintingStyle.fill;
+      case Motif.woolCap: // the Gilgiti cap: a rolled brim under a soft crown, in undyed wool
+        p.color = const Color(0xFFEDE6D6);
+        c.drawRRect(
+            RRect.fromRectAndRadius(
+                Rect.fromLTWH(r.left + h * .14, cy, h * .72, h * .22), Radius.circular(h * .11)),
+            p);
+        c.drawArc(Rect.fromLTWH(r.left + h * .2, cy - h * .28, h * .6, h * .5), math.pi, math.pi, true, p);
+        p.color = const Color(0xFFBFB4A0);
+        c.drawRect(Rect.fromLTWH(r.left + h * .18, cy + h * .1, h * .64, math.max(.6, h * .03)), p);
     }
   }
+
+  /// A regular n-gon of radius [rad] centred at (cx, cy), its first vertex at angle [start].
+  static Path _ngon(double cx, double cy, double rad, int n, double start) => _poly([
+        for (var k = 0; k < n; k++) ...[
+          cx + math.cos(start + k * 2 * math.pi / n) * rad,
+          cy + math.sin(start + k * 2 * math.pi / n) * rad,
+        ],
+      ]);
 
   @override
   bool shouldRepaint(_MotifPainter old) => old.motif != motif || old.rows != rows;

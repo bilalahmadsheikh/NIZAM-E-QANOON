@@ -256,9 +256,28 @@ HERITAGE_QUESTIONS = {
 # Asked in every region, answered only where the Constitution is served in that region's territory (not AJK or GB,
 # by the corpus's territorial model, 0095)
 HERITAGE_CONSTITUTION_QUESTIONS = [('culture_right', CONSTITUTION_DOCUMENT, CONSTITUTION_TITLE, ['28'])]
+# Protecting what Pakistan makes (D-079): the federal laws a maker of a craft or a regional product relies on, and the
+# questions makers bring to them, answered by sections read against the served text on 18 Nov 2026. Federal law,
+# read without a territorial filter.
+MAKER_LAWS = [
+    ('Geographical indications', 3433, r'^(the )?geographical indications \(registration and protection\) act, 2020'),
+    ('Trade marks', 4338, r'^(the )?trade marks ordinance, 2001'),
+    ('Designs', 2722, r'^(the )?registered designs ordinance, 2000'),
+    ('Copyright', 3896, r'^(the )?copyright ordinance, 1962'),
+]
+MAKER_QUESTIONS = [
+    # s.11 the Federal Government holds Pakistan's geographical indications; s.26 what registration gives
+    ('gi_place', 3433, MAKER_LAWS[0][2], ['11', '26']),
+    ('gi_logo', 3433, MAKER_LAWS[0][2], ['28']),           # the national GI logo on registered products
+    ('gi_fake', 3433, MAKER_LAWS[0][2], ['30', '41']),     # infringement; false geographical indication
+    ('brand', 4338, MAKER_LAWS[1][2], ['22', '39']),       # applying to register a mark; rights conferred
+    ('design', 2722, MAKER_LAWS[2][2], ['3', '8']),        # registerable designs; infringement
+    ('copyright', 3896, MAKER_LAWS[3][2], ['10', '13']),   # works in which copyright subsists; first owner
+]
 HERITAGE_DOCUMENTS = sorted({d for laws in HERITAGE_LAWS.values() for _s, d, _p in laws}
                             | {d for qs in HERITAGE_QUESTIONS.values() for _k, d, _p, _l in qs}
-                            | {d for _k, d, _p, _l in HERITAGE_CONSTITUTION_QUESTIONS})
+                            | {d for _k, d, _p, _l in HERITAGE_CONSTITUTION_QUESTIONS}
+                            | {d for _s, d, _p in MAKER_LAWS})
 
 
 def heritage_page(rows: list[dict], sections_of) -> dict:
@@ -266,10 +285,11 @@ def heritage_page(rows: list[dict], sections_of) -> dict:
     that law's served section index items (each with id, kind, label, heading, citation) at the page's as_of in that
     territory (None: no territorial filter), or None.
 
-    Returns {regions}: each region {jurisdiction, laws_from, laws: [{short_name, instrument}], questions: [{key,
-    instrument, units}]}, where `laws_from` names the jurisdiction whose laws are listed and asked ('fed' for
+    Returns {regions, makers}: each region {jurisdiction, laws_from, laws: [{short_name, instrument}], questions:
+    [{key, instrument, units}]}, where `laws_from` names the jurisdiction whose laws are listed and asked ('fed' for
     Islamabad). A region's questions come from its own law, then the Constitution's; units keep the order
-    HERITAGE_QUESTIONS gives, and a question none of whose units is served in the region is left out."""
+    HERITAGE_QUESTIONS gives, and a question none of whose units is served in the region is left out. `makers` is
+    {laws, questions} from MAKER_LAWS and MAKER_QUESTIONS, read without a territorial filter (D-079)."""
     def pick(doc, pattern):
         return next((r for r in rows if r['document_id'] == doc
                      and re.search(pattern, (r.get('title') or '').lower())), None)
@@ -280,9 +300,10 @@ def heritage_page(rows: list[dict], sections_of) -> dict:
 
     indexes = {}
 
-    def questions_of(source, territory):
+    def questions_of(source, territory, asked=None):
         out = []
-        for key, doc, pattern, labels in HERITAGE_QUESTIONS.get(source, []) + HERITAGE_CONSTITUTION_QUESTIONS:
+        for key, doc, pattern, labels in (asked if asked is not None
+                                          else HERITAGE_QUESTIONS.get(source, []) + HERITAGE_CONSTITUTION_QUESTIONS):
             law = pick(doc, pattern)
             if law is None:
                 continue
@@ -302,4 +323,7 @@ def heritage_page(rows: list[dict], sections_of) -> dict:
         source = 'fed' if j == 'ict' else j
         regions.append(dict(jurisdiction=j, laws_from=source, laws=laws_of(source),
                             questions=questions_of(source, None if j == 'fed' else j)))
-    return dict(regions=regions)
+    makers = dict(laws=[dict(short_name=short, instrument=hit) for short, doc, pattern in MAKER_LAWS
+                        if (hit := pick(doc, pattern)) is not None],
+                  questions=questions_of('fed', None, MAKER_QUESTIONS))
+    return dict(regions=regions, makers=makers)

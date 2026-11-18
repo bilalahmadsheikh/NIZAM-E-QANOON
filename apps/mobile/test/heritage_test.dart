@@ -75,6 +75,24 @@ Map<String, dynamic> _page() {
       };
   return {
     'as_of': '2026-11-18', 'mode': 'research_preview', 'notice': 'Fixture',
+    // D-079: the federal laws a maker relies on, and a question answered by its sections
+    'makers': {
+      'laws': [
+        {'short_name': 'Geographical indications',
+         'instrument': _instrument(3433, 'Geographical Indications (Registration and Protection) Act, 2020', 'fed', 2020)},
+      ],
+      'questions': [
+        {
+          'key': 'gi_logo',
+          'instrument': _instrument(3433, 'Geographical Indications (Registration and Protection) Act, 2020', 'fed', 2020),
+          'units': [
+            {'id': '00000000-0000-0000-0000-000000003428', 'kind': 'section', 'label': '28',
+             'heading': 'National logo for certifying geographical indication products.',
+             'citation': 'Geographical Indications (Registration and Protection) Act, 2020, s. 28', 'preview': null},
+          ],
+        },
+      ],
+    },
     'regions': [
       for (final j in _jurisdictions)
         {
@@ -124,13 +142,23 @@ void main() {
     expect(heritageRegions.map((r) => r.jurisdiction), _jurisdictions);
     for (final r in heritageRegions) {
       expect(r.sources, isNotEmpty, reason: r.place);
-      for (final url in [...r.sources, if (r.craft != null) r.craft!.source]) {
+      // every region names at least one craft, maker or keeper of crafts (D-079)
+      expect(r.crafts, isNotEmpty, reason: r.jurisdiction);
+      for (final url in [...r.sources, for (final c in r.crafts) c.source, giFirst.source]) {
         expect(Uri.parse(url).scheme, 'https', reason: url);
       }
     }
+    // every craft has a motif of its own: no two crafts share one, and every motif drawn is some craft's or a landmark's
+    final motifs = [for (final (_, c) in allCrafts) c.motif];
+    expect(motifs.toSet().length, motifs.length);
+    expect({...motifs, Motif.faisalFolds}, Motif.values.toSet());
+    // the craft of the day turns through every craft, one a day, the same all day
+    expect({for (var d = 0; d < allCrafts.length; d++) craftOfDay(DateTime(2026, 3, 1).add(Duration(days: d))
+        .toIso8601String().substring(0, 10)).$2.name}.length, allCrafts.length);
+    expect(craftOfDay('2026-11-18'), craftOfDay('2026-11-18'));
     // every code the server sends is worded; an unknown code is shown as itself, never as a guessed question
     for (final key in ['found_object', 'build_near', 'repair', 'declared_protected', 'damage_signs', 'export',
-        'visit', 'culture_right']) {
+        'visit', 'culture_right', 'gi_place', 'gi_logo', 'gi_fake', 'brand', 'design', 'copyright']) {
       expect(heritageQuestion(key), isNot(key));
     }
     expect(heritageQuestion('unheard_of'), 'unheard_of');
@@ -196,6 +224,15 @@ void main() {
     expect(find.text('Accidental discovery of antiquity to be reported to Director-General'), findsOneWidget);
     expect(find.textContaining('in the Antiquities Act, 1975.'), findsOneWidget);
     expect(find.text('The Constitution on culture'), findsOneWidget);
+    // Punjab's crafts, each with its town; then what protects them
+    expect(find.text('Crafts and makers'), findsOneWidget);
+    for (final name in ['Multani blue pottery', 'Footballs', 'Carved furniture']) {
+      expect(find.text(name), findsOneWidget);
+    }
+    expect(find.text('SIALKOT'), findsOneWidget);
+    expect(find.text('Protecting what Pakistan makes'), findsOneWidget);
+    expect(find.text('How is a registered regional product marked?'), findsOneWidget);
+    expect(find.textContaining('Basmati rice was registered'), findsOneWidget);
     await expectLater(find.byType(MaterialApp), matchesGoldenFile('goldens/heritage.png'));
 
     final picker = find.byType(ListView).at(1);
@@ -241,7 +278,14 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.byType(RegionGlyph), findsNWidgets(8));
     expect(find.byType(MotifBand), findsAtLeastNWidgets(8));
+    // the craft of the day, keyed to the reader's date
+    final (region, craft) = craftOfDay('2026-11-18');
+    expect(find.text(craft.name), findsOneWidget);
     await expectLater(find.byType(MaterialApp), matchesGoldenFile('goldens/discover_tall.png'));
+    // ...opens its own region on the Heritage tab
+    await tester.tap(find.text(craft.name));
+    await tester.pumpAndSettle();
+    expect(find.text(region.place), findsOneWidget);
   });
 
   testWidgets('heritage at 360 dp with large text and reduced motion does not overflow', (tester) async {

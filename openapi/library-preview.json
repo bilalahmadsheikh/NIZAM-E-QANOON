@@ -1096,6 +1096,31 @@
         ],
         "title": "HeritageLaw"
       },
+      "HeritageMakers": {
+        "properties": {
+          "laws": {
+            "items": {
+              "$ref": "#/components/schemas/HeritageLaw"
+            },
+            "type": "array",
+            "title": "Laws"
+          },
+          "questions": {
+            "items": {
+              "$ref": "#/components/schemas/HeritageQuestion"
+            },
+            "type": "array",
+            "title": "Questions"
+          }
+        },
+        "type": "object",
+        "required": [
+          "laws",
+          "questions"
+        ],
+        "title": "HeritageMakers",
+        "description": "Protecting what Pakistan makes (D-079): the federal laws a craft's maker relies on -- geographical indications,\ntrade marks, designs, copyright -- and the questions makers bring to them, answered by sections."
+      },
       "HeritagePage": {
         "properties": {
           "as_of": {
@@ -1120,15 +1145,19 @@
             },
             "type": "array",
             "title": "Regions"
+          },
+          "makers": {
+            "$ref": "#/components/schemas/HeritageMakers"
           }
         },
         "type": "object",
         "required": [
           "as_of",
-          "regions"
+          "regions",
+          "makers"
         ],
         "title": "HeritagePage",
-        "description": "Pakistan's heritage law region by region, each with the questions its own law answers (D-077, D-078)."
+        "description": "Pakistan's heritage law region by region, each with the questions its own law answers (D-077, D-078), and the\nlaw that protects what its makers make (D-079)."
       },
       "HeritageQuestion": {
         "properties": {

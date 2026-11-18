@@ -239,17 +239,26 @@ String _territoryLabel(String key) =>
 
 class Eyebrow extends StatelessWidget {
   final String text;
-  const Eyebrow(this.text, {super.key});
+  /// When the line names a law's jurisdiction, that region's landmark leads it (D-079): a mark that says which
+  /// legislature, decorative to a screen reader, which reads the name.
+  final String? jurisdiction;
+  const Eyebrow(this.text, {super.key, this.jurisdiction});
   @override
-  Widget build(BuildContext context) => Text(
-    text.toUpperCase(),
-    style: TextStyle(
-      fontSize: 11,
-      letterSpacing: 2.1,
-      fontWeight: FontWeight.w700,
-      color: Theme.of(context).colorScheme.secondary,
-    ),
-  );
+  Widget build(BuildContext context) {
+    final color = Theme.of(context).colorScheme.secondary;
+    final label = Text(
+      text.toUpperCase(),
+      style: TextStyle(fontSize: 11, letterSpacing: 2.1, fontWeight: FontWeight.w700, color: color),
+    );
+    if (jurisdiction == null || heritageRegion(jurisdiction!) == null) return label;
+    return Row(
+      children: [
+        RegionGlyph(jurisdiction!, size: 16, color: color),
+        const SizedBox(width: 6),
+        Flexible(child: label),
+      ],
+    );
+  }
 }
 
 class PaperCard extends StatelessWidget {

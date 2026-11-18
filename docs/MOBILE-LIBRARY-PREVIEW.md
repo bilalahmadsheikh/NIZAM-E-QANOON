@@ -227,8 +227,25 @@ than borrowing another jurisdiction's. The 1956/1962/1973 notes stay, citing the
 [National Assembly's parliamentary history](https://na.gov.pk/en/content.php?id=75). None of the editorial context
 determines operative law.
 
-The same landmarks and motifs mark each region across the app: the home page's jurisdiction tiles, the library's
-"Where" chips, and the Heritage tab icon (the Minar-e-Pakistan).
+The same landmarks and motifs mark each region across the app:
+- the home page's jurisdiction tiles;
+- the library's "Where" chips;
+- the reader's jurisdiction line;
+- the Heritage tab icon (the Minar-e-Pakistan).
+
+**Crafts and makers (D-079).** Each region names two or three crafts, each with its own motif, town and source:
+- truck art; Multani blue pottery, Sialkot footballs, Chiniot carving;
+- ajrak and ralli, Hala kashi and lacquer;
+- KP lacquer and metal work, the Peshawari chappal;
+- Balochi embroidery and rugs;
+- Lok Virsa for Islamabad;
+- namda and Muzaffarabad walnut carving;
+- Hunza embroidery and the Gilgiti cap.
+
+"Protecting what Pakistan makes" lists the four federal maker laws: geographical indications, trade marks, designs
+and copyright. Their questions are answered by sections, with one sourced fact: Basmati, Pakistan's first GI in 2021.
+Home carries a "From the regions" card, one craft a day keyed to the reader's date. It opens that region
+(`/heritage?region=`).
 
 - **Cost.** There are no images or network. Each landmark's paths are built once and scaled; each drawing sits behind a
   RepaintBoundary and never animates.

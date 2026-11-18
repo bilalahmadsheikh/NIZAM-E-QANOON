@@ -265,9 +265,18 @@ class HeritageRegion(BaseModel):
     questions: list[HeritageQuestion]
 
 
+class HeritageMakers(BaseModel):
+    """Protecting what Pakistan makes (D-079): the federal laws a craft's maker relies on -- geographical indications,
+    trade marks, designs, copyright -- and the questions makers bring to them, answered by sections."""
+    laws: list[HeritageLaw]
+    questions: list[HeritageQuestion]
+
+
 class HeritagePage(Meta):
-    """Pakistan's heritage law region by region, each with the questions its own law answers (D-077, D-078)."""
+    """Pakistan's heritage law region by region, each with the questions its own law answers (D-077, D-078), and the
+    law that protects what its makers make (D-079)."""
     regions: list[HeritageRegion]
+    makers: HeritageMakers
 
 
 class SectionPage(Meta):
