@@ -28,7 +28,7 @@ die() { echo "build_kit: $*" >&2; exit 1; }
 sig() { sed -n 's/^ *"signature": *"\(.*\)",\{0,1\}$/\1/p' "$1"; }
 [ "$(sig "$EX/$PHYS/manifest.json")" = "$(sig "$EX/$DUMP/manifest.json")" ] \
   || die "$PHYS and $DUMP are not the same database (signatures differ)"
-[ -z "$(git status --porcelain -- infra nz nizam tools/teammate-kit)" ] \
+[ -z "$(git status --porcelain --untracked-files=no -- infra nz nizam tools/teammate-kit)" ] \
   || die "commit infra/, nz, nizam/ and tools/teammate-kit first: the kit ships committed code only"
 COMMIT=$(git rev-parse HEAD)
 [ "${KIT_ALLOW_UNPUSHED:-}" = 1 ] || git merge-base --is-ancestor "$COMMIT" origin/main \
