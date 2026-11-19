@@ -681,19 +681,46 @@ m AS (
           OR (s.last AND substr(s.t, s.char_end + 1) !~ '^\s*$'))                       AS chunk_spans_bad
     ,(SELECT count(DISTINCT chunker) FROM chunk)                                        AS chunkers
 -- <<< A20 measures
--- >>> A21 measures: one embedding space (D-098; docs/03 §3). While a generation is active every chunk carries its
---     vector and the vectors were made from today's chunker; with none active, no chunk carries one.
-    ,(SELECT count(*) FROM embedding_generation WHERE active)                           AS gen_active
-    ,(SELECT coalesce(min(model), 'none') FROM embedding_generation WHERE active)       AS gen_model
+-- >>> A21 measures: one embedding space in chunk.embedding (D-098; docs/03 §3) -- the CPU generation (0112, D-099).
+--     While it is active every chunk carries its vector and the vectors were made from today's chunker; with none
+--     active, no chunk carries one. (The GPU generation's table is A22's.)
+    ,(SELECT count(*) FROM embedding_generation WHERE active AND storage = 'chunk.embedding') AS gen_active
+    ,(SELECT coalesce(min(model), 'none') FROM embedding_generation
+       WHERE active AND storage = 'chunk.embedding')                                    AS gen_model
     ,(SELECT count(*) FROM chunk c
-       WHERE (c.embedding IS NULL) = EXISTS (SELECT 1 FROM embedding_generation g WHERE g.active)) AS emb_wrong
-    ,(SELECT count(*) FROM chunk c JOIN embedding_generation g ON g.active
+       WHERE (c.embedding IS NULL) = EXISTS (SELECT 1 FROM embedding_generation g
+                                              WHERE g.active AND g.storage = 'chunk.embedding')) AS emb_wrong
+    ,(SELECT count(*) FROM chunk c JOIN embedding_generation g ON g.active AND g.storage = 'chunk.embedding'
        WHERE c.chunker <> g.chunker)                                                    AS emb_chunker_differs
     ,(SELECT count(*) FROM chunk WHERE embedding IS NOT NULL)                           AS emb_count
     ,(SELECT count(*) FROM chunk c JOIN provision_version v ON v.id = c.version_id
        JOIN provision p ON p.id = v.provision_id
        WHERE c.jurisdiction IS DISTINCT FROM subltree(p.path, 0, 1)::text)               AS emb_scope_wrong
 -- <<< A21 measures
+-- >>> A22 measures: one embedding space in chunk_embedding_gpu (D-099; 0112, 0113) -- the GPU generation. While one
+--     is active every chunk has exactly one vector of it (a replay's new chunks fail this until topped up on the GPU,
+--     tools/embed_topup.py), made from today's chunker, of the generation's recorded width, in the chunk's own scope;
+--     no vector belongs to any other generation, and with none active the table is empty.
+    ,(SELECT count(*) FROM embedding_generation WHERE active AND storage = 'chunk_embedding_gpu') AS gpu_active
+    ,(SELECT coalesce(min(model), 'none') FROM embedding_generation
+       WHERE active AND storage = 'chunk_embedding_gpu')                                AS gpu_model
+    ,(SELECT count(*) FROM chunk_embedding_gpu)                                         AS gpu_count
+    ,(SELECT count(*) FROM chunk c JOIN embedding_generation g ON g.active AND g.storage = 'chunk_embedding_gpu'
+       WHERE NOT EXISTS (SELECT 1 FROM chunk_embedding_gpu e
+                          WHERE e.chunk_id = c.id AND e.generation_id = g.id))           AS gpu_missing
+    ,(SELECT count(*) FROM chunk_embedding_gpu e
+       WHERE NOT EXISTS (SELECT 1 FROM embedding_generation g
+                          WHERE g.id = e.generation_id AND g.active
+                            AND g.storage = 'chunk_embedding_gpu'))                     AS gpu_foreign
+    ,(SELECT count(*) FROM embedding_generation g
+       WHERE g.active AND g.storage = 'chunk_embedding_gpu'
+         AND g.dims <> (SELECT a.atttypmod FROM pg_attribute a
+                         WHERE a.attrelid = 'chunk_embedding_gpu'::regclass AND a.attname = 'bits')) AS gpu_width_wrong
+    ,(SELECT count(*) FROM chunk c JOIN embedding_generation g ON g.active AND g.storage = 'chunk_embedding_gpu'
+       WHERE c.chunker <> g.chunker)                                                    AS gpu_chunker_differs
+    ,(SELECT count(*) FROM chunk_embedding_gpu e JOIN chunk c ON c.id = e.chunk_id
+       WHERE e.jurisdiction IS DISTINCT FROM c.jurisdiction)                            AS gpu_scope_wrong
+-- <<< A22 measures
 )
 SELECT * FROM (
   SELECT 'C1' AS id, 'every acquired file becomes a blob'      AS criterion,
@@ -870,12 +897,20 @@ SELECT * FROM (
          '0 / 0 / 0; one chunker',
          CASE WHEN chunk_outside_release=0 AND chunk_missing=0 AND chunk_spans_bad=0 AND chunkers<=1
               THEN 'PASS' ELSE 'FAIL' END FROM m
-  UNION ALL SELECT 'A21','one embedding space: every chunk embedded by the active generation (or none without one), in its own scope',
+  UNION ALL SELECT 'A21','one embedding space in chunk.embedding: every chunk embedded by the active CPU generation (or none without one), in its own scope',
          emb_count||' vectors, model '||gen_model||' (reported); '||gen_active||' active; '||emb_wrong||
          ' chunks missing a vector or holding one with no generation; '||emb_chunker_differs||' from another chunker; '||
          emb_scope_wrong||' with a jurisdiction not their provision''s',
          '<= 1 active; 0 / 0 / 0; count reported',
          CASE WHEN gen_active<=1 AND emb_wrong=0 AND emb_chunker_differs=0 AND emb_scope_wrong=0
+              THEN 'PASS' ELSE 'FAIL' END FROM m
+  UNION ALL SELECT 'A22','one embedding space in chunk_embedding_gpu: every chunk embedded once by the active GPU generation (or the table empty without one), at its width, in its own scope',
+         gpu_count||' vectors, model '||gpu_model||' (reported); '||gpu_active||' active; '||gpu_missing||
+         ' chunks missing a vector; '||gpu_foreign||' of another generation; '||gpu_width_wrong||' width mismatch; '||
+         gpu_chunker_differs||' from another chunker; '||gpu_scope_wrong||' with a jurisdiction not their chunk''s',
+         '<= 1 active; 0 / 0 / 0 / 0 / 0; count reported',
+         CASE WHEN gpu_active<=1 AND gpu_missing=0 AND gpu_foreign=0 AND gpu_width_wrong=0
+                   AND gpu_chunker_differs=0 AND gpu_scope_wrong=0
               THEN 'PASS' ELSE 'FAIL' END FROM m
   UNION ALL SELECT 'A6','no overlapping law (enforced, not tested)',
          CASE WHEN excl_present=1 THEN 'EXCLUDE constraint present'

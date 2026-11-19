@@ -1439,7 +1439,7 @@ steps, then a widening window:
 
 Sizes: body BM25 295 MB, provision BM25 141 MB, titles 4 MB, GIN 93 MB. The chunk table is 299 MB.
 
-### `embedding_generation` and the dense index (0109–0111, D-098)
+### `embedding_generation` and the dense indexes (0109–0113, D-098, D-099)
 
 **`embedding_generation`** says which space `chunk.embedding` lives in. A query is encoded only by the active row's
 model, and a replay (INV-3) names it.
@@ -1451,7 +1451,31 @@ model, and a replay (INV-3) names it.
 | `pooling`, `query_template` | `cls` / `mean` / `lasttoken`, read from the model's own config; `{q}` or the instruct form the model card requires |
 | `passage_source`, `max_tokens`, `chunker`, `chunk_count` | what was embedded: `context_prefix + newline + span text`, 512 tokens, the chunk table's rule and size |
 | `selection` | jsonb: the dev-split bake-off numbers, the paired binary-vs-full CI and the encoder validation |
-| `active` | one row at most (partial unique index `uq_embedding_generation_active`) |
+| `active` | one row at most **per encoder device** (partial unique index `uq_embedding_generation_active` on `encoder_device`, 0112; before 0112, one row at most) |
+| `encoder_device` | `cpu` \| `gpu` (0112, D-099): where the query encoder runs. `cpu` = bge-m3 int8 ONNX in-process; `gpu` = Qwen3-Embedding-8B on the GPU host (`nizam.inference.remote`) |
+| `storage` | `chunk.embedding` for the CPU generation, `chunk_embedding_gpu` for the GPU one (checked against `encoder_device`) |
+| `vector_dims`, `rescore_dims` | the model's full output width (1024 / 4096); a stored halfvec prefix that re-ranks the Hamming window, or NULL (NULL today) |
+
+Two generations are active today, each complete over the chunks (A21, A22): **1** BAAI/bge-m3 (cpu, `bit(1024)` in
+`chunk.embedding`) and **2** Qwen/Qwen3-Embedding-8B @ 1d8ad4ca (gpu, `bit(4096)` in `chunk_embedding_gpu`). They never
+share a column or an index; `Session.generation_for(encoder.info)` picks the space by the encoder's model, commit,
+pooling and template, so a query is never compared with another model's passages.
+
+**`chunk_embedding_gpu`** (0113, D-099): the GPU generation's vectors, one row per chunk.
+
+| column | |
+|---|---|
+| `chunk_id` | PK, `REFERENCES chunk(id) ON DELETE CASCADE`: a replay that removes a chunk removes its vector |
+| `generation_id` | the GPU generation that made it |
+| `jurisdiction` | copied from `chunk.jurisdiction` by trigger `tr_chunk_embedding_gpu_jurisdiction`, never by hand: the scope filter inside the HNSW scan |
+| `bits` | `bit(4096)`: the sign of all 4,096 dimensions, `np.packbits(v > 0)` order. The width was chosen on dev by a rule fixed before any vector existed (D-099); the loader reads it from this type |
+
+- `ix_chunk_embedding_gpu_hnsw`: HNSW `bit_hamming_ops`, m = 16, ef_construction = 64; dropped and rebuilt by the
+  loader after a whole load (4 min 54 s, 890 MB; the table is 636 MB).
+- `tools/load_embeddings_gpu.py DS_DIR RUN_DIR... --evidence F... [--apply]` loads a whole shard run under a new active
+  GPU generation in one transaction (the CPU generation untouched); `--topup DS_DIR RUN_DIR` adds a replay's new
+  chunks under the active one. Both refuse unless the shards verify and the chunk ids are exactly the database's.
+  With `--apply` a whole load also writes the GPU encoder's reference bundle (`/mnt/e/nizam-data/models/encoder-gpu`).
 
 - `tools/load_embeddings.py RUN_DIR SLUG ENCODER_DIR [--evidence F] [--apply]` writes a Kaggle run's bits under a new
   active generation, in one transaction. It refuses unless the run's chunk ids are exactly today's and the encoder is

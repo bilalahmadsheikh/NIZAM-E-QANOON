@@ -477,6 +477,15 @@ provision_version                                          <b>INV-5, law as at a
         <li><b>The query encoder</b> (int8 ONNX, 570&nbsp;MB) travels with <code>./nz export</code> and is verified by <code>./nz restore</code>. A restored database without it serves <code>lexical_only</code>, marked as such.</li>
       </ul>
     </div>
+    <div class="note blue" style="margin-top:1rem">
+      <h4>As built (20 Nov 2026): a second space, one per encoder device (0112&ndash;0113, D-099)</h4>
+      <ul>
+        <li><b>Two generations are active, never in one index.</b> The owner kept bge-m3 (its query encoder runs on any CPU, so the offline and laptop paths keep dense search) and added Qwen3-Embedding-8B, whose query encoder needs the GPU host that will serve the answer model. 0112 lets one generation be active <em>per encoder device</em> and records where each one's vectors live. &ldquo;Two generations in one index is silently wrong&rdquo; still holds: the 8B vectors have their own table and their own HNSW index, and a query reaches only the space its own encoder made (<code>Session.generation_for</code>).</li>
+        <li><b><code>chunk_embedding_gpu</code></b> (0113): one row per chunk, <code>bit(4096)</code>, <code>ON DELETE CASCADE</code> from <code>chunk</code>, with its jurisdiction copied from the chunk by trigger. Audit <b>A22</b> is its rule, as A21 is <code>chunk.embedding</code>&rsquo;s. This host cannot run the 8B encoder, so a replay&rsquo;s new chunks fail A22 until they are topped up on Kaggle (<code>tools/embed_topup.py</code>, then <code>tools/load_embeddings_gpu.py --topup</code>). A gap is reported, never silent.</li>
+        <li><b>Still no full-precision corpus vector.</b> The width was chosen on dev by a rule fixed before any 8B vector existed. All 4,096 sign bits scored best, and every halfvec(1024)-rescored form scored lower than the bits alone, so no halfvec column is stored.</li>
+        <li><b>Measured on the load</b> (1,132,245 vectors from 24 Kaggle shards): 8&nbsp;min&nbsp;26&nbsp;s in one transaction including the index; the table is 636&nbsp;MB and the HNSW index 890&nbsp;MB (4&nbsp;min&nbsp;54&nbsp;s); the database is 7.9&nbsp;GB (was 6.3).</li>
+      </ul>
+    </div>
 
     <h3><span class="mk">3.1</span>Glossary, definitions and the answer tier</h3>
 <pre><b>CREATE TABLE</b> glossary_concept (

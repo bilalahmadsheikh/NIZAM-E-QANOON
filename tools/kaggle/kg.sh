@@ -99,6 +99,40 @@ embedpush)
  "dataset_sources": ["$USER/nizam-embed-$3"], "kernel_sources": [], "competition_sources": []}
 EOF3
   $KG kernels push -p $K --accelerator ${KG_ACCEL:-NvidiaTeslaT4} ;;
+e8push)
+  # kg.sh e8push NAME SHARDS : push the Qwen3-Embedding-8B shard kernel (tools/kaggle/embed8b_kernel.py, D-099) over
+  # nizam-embed-v1; SHARDS like 0-11 or 3,7. KG_SMOKE=1 proves it (pipeline vs sentence-transformers, fp16 vs bf16,
+  # throughput) instead; KG_REV=<commit> is required for a full run (the smoke run pins it); KG_TOKBUDGET optional.
+  # Status, logs and output: embedstatus / embedlogs / embedfetch NAME (same kernel naming).
+  # KG_DS=<dataset> (default nizam-embed-v1; a top-up: nizam-topup-<stamp>) and KG_NSHARD=1 for a top-up
+  K=/mnt/e/nizam-data/embed/kernel-$2; mkdir -p $K
+  sed "s/__HOURS__/${KG_HOURS:-11.5}/; s/__SMOKE__/${KG_SMOKE:-0}/; s/__SHARDS__/$3/; s/__REV__/${KG_REV:-}/; s/__TOKBUDGET__/${KG_TOKBUDGET:-}/; s/__NSHARD__/${KG_NSHARD:-}/" \
+    /mnt/e/Nizam_e_Qanoon/tools/kaggle/embed8b_kernel.py > $K/embed8b_kernel.py
+  cat > $K/kernel-metadata.json <<EOF3
+{"id": "$USER/nizam-embed-run-$2", "title": "nizam-embed-run-$2", "code_file": "embed8b_kernel.py", "language": "python",
+ "kernel_type": "script", "is_private": true, "enable_gpu": true, "enable_internet": true,
+ "dataset_sources": ["$USER/${KG_DS:-nizam-embed-v1}"], "kernel_sources": [], "competition_sources": []}
+EOF3
+  grep -n '^HOURS\|^SMOKE\|^SHARDS\|^REV\|^TOKBUDGET' $K/embed8b_kernel.py
+  $KG kernels push -p $K --accelerator ${KG_ACCEL:-NvidiaTeslaT4} ;;
+q8push)
+  # kg.sh q8push NAME DATASET : encode questions.json of private dataset nizam-DATASET with Qwen3-Embedding-8B
+  # (tools/kaggle/query8b_kernel.py, D-099) at KG_REV, timing single-question encodes. Output: embedfetch NAME.
+  K=/mnt/e/nizam-data/embed/kernel-$2; mkdir -p $K
+  sed "s/__REV__/${KG_REV:-}/" /mnt/e/Nizam_e_Qanoon/tools/kaggle/query8b_kernel.py > $K/query8b_kernel.py
+  cat > $K/kernel-metadata.json <<EOF3
+{"id": "$USER/nizam-embed-run-$2", "title": "nizam-embed-run-$2", "code_file": "query8b_kernel.py", "language": "python",
+ "kernel_type": "script", "is_private": true, "enable_gpu": true, "enable_internet": true,
+ "dataset_sources": ["$USER/nizam-$3"], "kernel_sources": [], "competition_sources": []}
+EOF3
+  $KG kernels push -p $K --accelerator ${KG_ACCEL:-NvidiaTeslaT4} ;;
+dsup)
+  # kg.sh dsup NAME DIR : upload DIR (tools/embed_topup.py output) as private dataset nizam-NAME, or a new version
+  cat > $3/dataset-metadata.json <<EOF3
+{"title": "nizam-$2", "id": "$USER/nizam-$2", "licenses": [{"name": "other"}]}
+EOF3
+  if $KG datasets status $USER/nizam-$2 >/dev/null 2>&1; then $KG datasets version -p $3 -m "inputs $(date -u +%F)" -r skip
+  else $KG datasets create -p $3 -r skip; fi ;;
 embedstatus)
   $KG kernels status $USER/nizam-embed-run-$2 ;;
 exportpush)

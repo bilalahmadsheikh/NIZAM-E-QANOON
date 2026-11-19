@@ -142,7 +142,7 @@ def test_only_an_unavailable_embedder_degrades(monkeypatch):
 
     from nizam.retrieval import candidates as C
     from nizam.storage.lexical import Filters
-    monkeypatch.setattr(C, "_load_encoder", lambda: type("E", (), {"info": None})())
+    monkeypatch.setattr(C, "_load_encoder", lambda device="cpu": type("E", (), {"info": None})())
 
     def ok_job(*a, **kw):
         f = Future()

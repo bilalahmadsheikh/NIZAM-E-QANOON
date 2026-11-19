@@ -6,7 +6,7 @@ pick the one that matches what you need.
 | | You want | Time | You need |
 |---|---|---|---|
 | **Kit** | Everything set up for you, from one file | ~30 min, mostly downloads | `nizam-kit-<date>.zip` and `SETUP-NIZAM.ps1` from a teammate |
-| **A** | The database, to build against | ~30 min | An export folder from a teammate (624 MB dump, or 1.3 GB exact copy) |
+| **A** | The database, to build against | ~30 min | An export folder from a teammate (1.6 GB dump, or a larger exact copy) |
 | **B** | To build the corpus from source | many hours | The source archives and recrawl captures |
 
 **The kit** (D-087) does all of path A unattended. Put the two files in one folder, open PowerShell
@@ -126,7 +126,7 @@ restoring into a scratch copy, comparing the corpus signature and passing all
 | | **Dump** (`./nz export`) — recommended | **Exact copy** (`./nz export --physical`) |
 |---|---|---|
 | What it is | A logical `pg_dump` of the `nizam_clean` database | A byte-for-byte copy of the whole PostgreSQL cluster (`pg_basebackup`) |
-| Size | **624 MB** | **1.3 GB** |
+| Size | **1.6 GB** (20 Nov, with both vector spaces; 624 MB on 17 Nov) | **1.3 GB** (17 Nov; larger now) |
 | Restore time | ~6 min (indexes and statistics rebuilt) | **~1 min** (nothing rebuilt) |
 | Indexes | rebuilt on arrival, identical definitions | arrive as built |
 | Exactness | every row and object identical; physical layout fresh | identical down to the disk pages, planner statistics included |

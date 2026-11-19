@@ -44,7 +44,7 @@ DENSE_OVERFETCH = 3          # chunks read per provision wanted (several chunks 
 # a scope holding at most this many chunks is scanned exactly (docs/04 §9.1). Its cost depends on the host's cores
 # (Postgres scans it in parallel), so a deployment may override it: NIZAM_EXACT_SCAN_CHUNKS. Measured, D-098.
 EXACT_SCAN_CHUNKS = int(os.environ.get("NIZAM_EXACT_SCAN_CHUNKS", "120000"))
-_ELIGIBLE: dict = {}         # {generation: id, counts: {jurisdiction: chunks with a vector}}
+_ELIGIBLE: dict = {}         # {generation id: {jurisdiction: chunks with a vector}}
 
 
 @dataclass(frozen=True)
@@ -102,70 +102,104 @@ class Session:
              ORDER BY s DESC, i.id LIMIT %(n)s""", dict(q=q, n=n, j=self.juris))
         return [(r[0], float(r[1])) for r in self.cur.fetchall()]
 
-    def active_generation(self) -> dict | None:
-        """the active embedding_generation (0109): the model a query must be encoded by, or None"""
-        self.cur.execute("""SELECT id, model, revision, pooling, query_template FROM embedding_generation
-                             WHERE active""")
-        r = self.cur.fetchone()
-        return dict(zip(("id", "model", "revision", "pooling", "query_template"), r)) if r else None
+    def generation_for(self, info) -> dict | None:
+        """the ACTIVE embedding generation whose space this query encoder makes -- same model, commit, pooling and
+        query template -- or None. Up to two are active, one per encoder device (0112, D-099): the GPU generation
+        (Qwen3-Embedding-8B, its encoder on the GPU host; vectors in chunk_embedding_gpu) and the CPU generation
+        (bge-m3, in-process; chunk.embedding). The encoder decides which space is searched, so a query can never be
+        compared with another model's passages (docs/03 §3)."""
+        self.cur.execute("""SELECT id, model, revision, pooling, query_template, dims, storage, rescore_dims
+                              FROM embedding_generation WHERE active ORDER BY id""")
+        keys = ("id", "model", "revision", "pooling", "query_template", "dims", "storage", "rescore_dims")
+        for r in self.cur.fetchall():
+            g = dict(zip(keys, r))
+            if (g["model"], g["revision"], g["pooling"], g["query_template"]) == \
+                    (info.model, info.revision, info.pooling, info.query_template):
+                return g
+        return None
 
-    def dense_hits(self, qbits: str, n: int) -> list[Hit]:
-        """nearest chunks by Hamming distance to the question's sign bits, the best provision per chunk, active, best
-        first; score = 1 - distance/512, the cosine between the two +-1 sign vectors (a similarity, higher is better,
-        so retrieval's unitScore = max + 0.15 x second best treats it like any other score). docs/04 §9.1's adaptive
-        execution, on chunk.jurisdiction (0110) so the scope is
-        applied INSIDE the scan, never after it (docs/04 §4.2):
-          * a scope holding few chunks (<= EXACT_SCAN_CHUNKS) is scanned exactly: every chunk in scope, distance
-            computed, deterministic recall;
-          * otherwise HNSW (ix_chunk_hnsw, 0111) with hnsw.iterative_scan = strict_order, which keeps walking the
-            graph until the window holds that many chunks IN SCOPE; ef_search = the window (pgvector caps it at 1000).
+    def dense_hits(self, qvec, n: int, gen: dict) -> list[Hit]:
+        """nearest chunks to the question in generation `gen`'s space, the best provision per chunk, active, best
+        first. `qvec` is the question's unit float vector from that generation's encoder.
+
+        Candidates come by Hamming distance on the stored sign bits (the first gen['dims'] dimensions); the score is
+          * 1 - distance/(dims/2): the cosine between the two +-1 sign vectors, or
+          * with gen['rescore_dims'] (the GPU generation, 0112): the cosine between the float question and the
+            chunk's stored halfvec of the first rescore_dims dimensions -- the Hamming window re-ranked at precision.
+        Either is a similarity, higher is better, so unitScore = max + 0.15 x second best treats it like any score.
+
+        docs/04 §9.1's adaptive execution, with the scope applied INSIDE the scan (docs/04 §4.2: chunk.jurisdiction,
+        0110, or chunk_embedding_gpu.jurisdiction, 0112):
+          * a scope holding few chunks (<= EXACT_SCAN_CHUNKS) is scanned exactly: deterministic recall;
+          * otherwise HNSW with hnsw.iterative_scan = strict_order, which keeps walking the graph until the window
+            holds that many chunks IN SCOPE; ef_search = the window (pgvector caps it at 1000).
         """
         w = min(1000, n * DENSE_OVERFETCH)
-        eligible = self.eligible_chunks()
-        if self.juris is not None and eligible <= EXACT_SCAN_CHUNKS:
+        width, rdims = int(gen["dims"]), gen.get("rescore_dims")
+        gpu = gen["storage"] == "chunk_embedding_gpu"
+        # sign of each dimension, first first (numpy.packbits order; 0 is not positive -- nizam.inference.to_bits)
+        p = dict(q="".join("1" if x > 0 else "0" for x in qvec[:width]), j=self.juris, w=w)
+        if gpu:
+            src, col, cid, jur = "chunk_embedding_gpu e", "e.bits", "e.chunk_id", "e.jurisdiction"
+        else:
+            src, col, cid, jur = "chunk e", "e.embedding", "e.id", "e.jurisdiction"
+        exact = self.juris is not None and self.eligible_chunks(gen) <= EXACT_SCAN_CHUNKS
+        if exact:
             self.last_dense_mode = "exact"
-            self.cur.execute("""
-                SELECT c.version_id, bit_count(c.embedding # %(q)s::bit(1024))::float AS d FROM chunk c
-                 WHERE c.jurisdiction = ANY(%(j)s::text[]) AND c.embedding IS NOT NULL
-                 ORDER BY d, c.id LIMIT %(w)s""", dict(q=qbits, j=self.juris, w=w))
+            order = f"bit_count({col} # %(q)s::bit({width})), {cid}"
+            where = f"WHERE {jur} = ANY(%(j)s::text[]) AND {col} IS NOT NULL"
         else:
             self.last_dense_mode = "hnsw"
             self.cur.execute("SELECT set_config('hnsw.ef_search', %s, true)", (str(max(100, w)),))
             self.cur.execute("SELECT set_config('hnsw.iterative_scan', 'strict_order', true)")
-            scope = "WHERE c.jurisdiction = ANY(%(j)s::text[])" if self.juris is not None else ""
-            self.cur.execute(f"""
-                SELECT c.version_id, (c.embedding <~> %(q)s::bit(1024))::float AS d FROM chunk c {scope}
-                 ORDER BY c.embedding <~> %(q)s::bit(1024) LIMIT %(w)s""", dict(q=qbits, j=self.juris, w=w))
+            order = f"{col} <~> %(q)s::bit({width})"
+            where = f"WHERE {jur} = ANY(%(j)s::text[])" if self.juris is not None else ""
+        if rdims:
+            vec = qvec[:rdims] / max(float((qvec[:rdims] ** 2).sum()) ** 0.5, 1e-12)
+            p["h"] = "[" + ",".join(f"{float(x):.6g}" for x in vec) + "]"
+            score = f"1 - (s.half <=> %(h)s::halfvec({rdims}))"
+            half = ", e.half"
+        else:
+            score = f"1 - s.d / {width / 2.0}"
+            half = ""
+        # the window first (MATERIALIZED keeps the index scan and its LIMIT together), then each chunk's version
+        self.cur.execute(f"""
+            WITH s AS MATERIALIZED (
+              SELECT {cid} AS chunk_id, bit_count({col} # %(q)s::bit({width}))::float AS d{half}
+                FROM {src} {where} ORDER BY {order} LIMIT %(w)s)
+            SELECT c.version_id, ({score})::float FROM s JOIN chunk c ON c.id = s.chunk_id""", p)
         rows = self.cur.fetchall()
         if not rows:
             return []
         best: dict = {}
-        for vid, d in rows:                          # the nearest chunk of each version
-            if vid not in best or d < best[vid]:
-                best[vid] = d
+        for vid, sim in rows:                        # the best chunk of each version
+            if vid not in best or sim > best[vid]:
+                best[vid] = sim
         self.cur.execute("""
             SELECT v.id, p.id::text, p.path::text, p.instrument_id::text FROM provision_version v
               JOIN provision p ON p.id = v.provision_id AND p.is_active
              WHERE v.id = ANY(%s::uuid[])""", (list(best),))
         per: dict = {}
         for vid, pid, path, inst in self.cur.fetchall():
-            d = best[vid]
-            if pid not in per or d < per[pid][0]:
-                per[pid] = (d, path, inst)
-        hits = [Hit(pid, path, inst, 1.0 - d / 512.0) for pid, (d, path, inst) in per.items()]
+            sim = best[vid]
+            if pid not in per or sim > per[pid][0]:
+                per[pid] = (sim, path, inst)
+        hits = [Hit(pid, path, inst, sim) for pid, (sim, path, inst) in per.items()]
         hits.sort(key=lambda h: (-h.score, h.provision_id))
         return hits[:n]
 
-    def eligible_chunks(self) -> int:
-        """chunks with a vector in the session's jurisdictions (all, when unscoped); counted once per embedding
-        generation and process, from ix_chunk_jurisdiction"""
-        gen = self.active_generation()
-        key = (gen or {}).get("id")
-        if _ELIGIBLE.get("generation") != key:
-            self.cur.execute("SELECT jurisdiction, count(*) FROM chunk WHERE embedding IS NOT NULL GROUP BY 1")
-            _ELIGIBLE.clear()
-            _ELIGIBLE.update(generation=key, counts=dict(self.cur.fetchall()))
-        counts = _ELIGIBLE["counts"]
+    def eligible_chunks(self, gen: dict) -> int:
+        """chunks with a vector of generation `gen` in the session's jurisdictions (all, when unscoped); counted
+        once per generation and process"""
+        key = gen["id"]
+        if key not in _ELIGIBLE:
+            if gen["storage"] == "chunk_embedding_gpu":
+                self.cur.execute("""SELECT jurisdiction, count(*) FROM chunk_embedding_gpu
+                                     WHERE generation_id = %s GROUP BY 1""", (key,))
+            else:
+                self.cur.execute("SELECT jurisdiction, count(*) FROM chunk WHERE embedding IS NOT NULL GROUP BY 1")
+            _ELIGIBLE[key] = dict(self.cur.fetchall())
+        counts = _ELIGIBLE[key]
         return sum(counts.values()) if self.juris is None else sum(counts.get(j, 0) for j in self.juris)
 
     def instruments_titled(self, words: str, n: int = 10,

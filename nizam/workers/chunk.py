@@ -11,6 +11,9 @@ context prefix no longer matches the tree (a corrected title or heading) is remo
 released, rebuilt. Idempotent: a second run with nothing changed writes nothing. Spans come from
 nizam.storage.chunking (pure, tested); the bounds trigger on chunk refuses a span past its version's text.
 
+The GPU generation (D-099, chunk_embedding_gpu) cannot be encoded here: a replay's new chunks are counted and topped
+up on Kaggle (tools/embed_topup.py); audit A22 fails until they are, so a gap is never silent.
+
 Embeddings (D-098): while an embedding generation is active, every chunk carries its vector (audit A21). The corpus is
 embedded once on a GPU (tools/kaggle); the few chunks a replay adds are embedded HERE, in the same transaction, by the
 shared inference worker's CPU encoder -- which must be the active generation's model (check_generation refuses
@@ -99,11 +102,17 @@ def main() -> int:
     stats = collections.Counter()
     with connect() as conn, conn.cursor() as cur:
         cur.execute("SET max_parallel_workers_per_gather = 2")
-        cur.execute("SELECT id, model, revision, pooling, query_template FROM embedding_generation WHERE active")
+        # the CPU generation (chunk.embedding) is kept complete here; the GPU generation (chunk_embedding_gpu, D-099)
+        # cannot be encoded on this host -- its new chunks are counted and topped up on the GPU (A22 names the gap)
+        cur.execute("""SELECT id, model, revision, pooling, query_template FROM embedding_generation
+                        WHERE active AND storage = 'chunk.embedding'""")
         g = cur.fetchone()
         generation = dict(zip(("id", "model", "revision", "pooling", "query_template"), g)) if g else None
-        if a.rebuild and generation:
-            raise SystemExit(f"--rebuild refused: embedding generation {generation['id']} ({generation['model']}) is "
+        cur.execute("SELECT id, model FROM embedding_generation WHERE active AND storage = 'chunk_embedding_gpu'")
+        gpu_generation = cur.fetchone()
+        if a.rebuild and (generation or gpu_generation):
+            g_ = generation or {"id": gpu_generation[0], "model": gpu_generation[1]}
+            raise SystemExit(f"--rebuild refused: embedding generation {g_['id']} ({g_['model']}) is "
                              "active; a rebuild is a re-embedding on the GPU (tools/kaggle, tools/load_embeddings.py)")
         prov, titles = _tree(cur)
         openings = _qualified_openings(cur, prov)
@@ -151,6 +160,11 @@ def main() -> int:
                         cp.write_row(row)
         if generation:
             _embed_missing(cur, generation, stats, a.apply)
+        if gpu_generation:      # ON DELETE CASCADE removed the vectors of chunks deleted above
+            cur.execute("""SELECT count(*) FROM chunk c WHERE NOT EXISTS
+                             (SELECT 1 FROM chunk_embedding_gpu e WHERE e.chunk_id = c.id)""")
+            missing = cur.fetchone()[0]
+            stats["chunks without a GPU-generation vector (top up: tools/embed_topup.py)"] = missing
         if not a.apply:
             conn.rollback()
     for k, v in stats.items():

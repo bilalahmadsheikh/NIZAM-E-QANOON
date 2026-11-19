@@ -94,25 +94,25 @@ class DenseUnavailable(Exception):
     another embedding space. The caller serves lexical_only (docs/04 §9.2); nothing else is caught as this."""
 
 
-def dense_units(bits: str, filters: Filters, encoder_info, connect_fn=None) -> tuple[list, dict]:
-    """The dense generator (D-098): the nearest chunks to the question's sign bits, their best provisions, collapsed
-    to legal units exactly as the lexical windows are. It opens its OWN read-only session (same as_of, territory and
-    scope), so it runs beside the lexical generator rather than after it (docs/04 §4: parallel generators). Its units
-    are not operative-checked here: every candidate passes the one INV-5 gate after fusion."""
-    from nizam.inference.encoder import check_generation
+def dense_units(qvec, filters: Filters, encoder_info, connect_fn=None) -> tuple[list, dict]:
+    """The dense generator (D-098, D-099): the nearest chunks to the question vector in the space of the encoder that
+    made it, their best provisions, collapsed to legal units exactly as the lexical windows are. It opens its OWN
+    read-only session (same as_of, territory and scope), so it runs beside the lexical generator rather than after it
+    (docs/04 §4: parallel generators). Its units are not operative-checked here: every candidate passes the one INV-5
+    gate after fusion."""
     kwargs = {"connect_fn": connect_fn} if connect_fn else {}
     t = time.perf_counter()
     with unit_search.session(filters, **kwargs) as s:
-        try:
-            check_generation(s.active_generation(), encoder_info)     # never two embedding spaces (docs/03 §3)
-        except ValueError as exc:
-            raise DenseUnavailable(str(exc)) from exc
-        raw = s.dense_hits(bits, DENSE_HITS)
+        gen = s.generation_for(encoder_info)             # never two embedding spaces (docs/03 §3)
+        if gen is None:
+            raise DenseUnavailable(f"no active embedding generation is {encoder_info.model}@"
+                                   f"{encoder_info.revision[:12]}'s space: its vectors are not loaded")
+        raw = s.dense_hits(qvec, DENSE_HITS, gen)
         mode = s.last_dense_mode
         t1 = time.perf_counter()
         units = _collapse(s, raw)
     return units, {"dense_mode": mode, "dense_window": round((t1 - t) * 1000),
-                   "dense_units_of": round((time.perf_counter() - t1) * 1000)}
+                   "dense_units_of": round((time.perf_counter() - t1) * 1000), "generation": gen["id"]}
 
 
 def lexical_candidates(question, filters: Filters, k: int = 50, connect_fn=None, dense_job=None,
@@ -162,6 +162,9 @@ def lexical_candidates(question, filters: Filters, k: int = 50, connect_fn=None,
         if dense_job is not None:
             dense, dtrace = dense_job.result()       # DenseUnavailable propagates: the caller degrades, marked
             trace["dense_mode"] = dtrace.pop("dense_mode")
+            trace["dense_generation"] = dtrace.pop("generation", None)     # the space searched (INV-3 replay)
+            if "fell_back" in dtrace:
+                trace["dense_fell_back"] = dtrace.pop("fell_back")
             trace["dense_stage_ms"] = dtrace         # measured on the dense job's own clock, overlapping the above
             t = mark("dense_wait", t)                # what the request actually waited for the dense generator
         # the BM25 generator's own fusion (D-097): its body and heading windows and the title term

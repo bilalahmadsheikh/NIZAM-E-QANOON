@@ -1,0 +1,14 @@
+{
+  "written": "2026-11-19T11:45Z, before any Qwen3-Embedding-8B corpus vector existed (shard runs e8a/e8b still running)",
+  "decision": "the stored form of the GPU embedding generation (D-099)",
+  "owner_priority": "best possible accuracy; storage and RAM are secondary (owner, 19 Nov 2026)",
+  "arms": "the servable arms of evals/shard_dense_eval.py on the golden DEV split: bits{4096,2048,1024} and bits{W}>half1024@{1000,3000}; full{4096,2048,1024} are references only (a float corpus column of 4096 dims is not stored)",
+  "rule": [
+    "1. Score each servable arm by dense r50 + MRR@10 on dev (the kernel-style evaluation, top 3,000 chunks).",
+    "2. The best-scoring arm is the candidate.",
+    "3. A cheaper arm (fewer bytes per chunk) replaces it only if it is within 1 point of it on r50 AND on MRR@10.",
+    "4. The chosen form is then measured on the SERVED path (evals/lexical_benchmark.py --split dev, hybrid and dense) against generation 1; the GPU generation is kept only if dev hybrid recall@50 rises.",
+    "5. The test split is scored once, after the configuration is frozen."
+  ],
+  "bytes_per_chunk": {"bits1024": 128, "bits2048": 256, "bits4096": 512, "bits1024+half1024": 2180, "bits2048+half1024": 2308, "bits4096+half1024": 2564}
+}

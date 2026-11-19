@@ -50,6 +50,9 @@ class FusedSearch:
         return [SimpleNamespace(provision_id=c.unit_id, score=c.score, rank=c.rank) for c in r.candidates]
 
 
+ENCODER = None       # --precomputed: GPU-made question vectors replayed (evals/precomputed_encoder.py, D-099)
+
+
 class HybridSearch:
     """L3's hybrid candidates (nizam.retrieval.candidates, D-098): fused lexical + dense units, one RRF"""
     name = "hybrid"
@@ -60,8 +63,8 @@ class HybridSearch:
     def search(self, q, filters, k):
         from types import SimpleNamespace
         from nizam.retrieval.candidates import candidates
-        r = candidates(q, filters, k)
-        if r.degraded:                       # a lexical result must never be scored as hybrid
+        r = candidates(q, filters, k, encoder=ENCODER)
+        if r.degraded:                       # a lexical (or CPU-fallback) result must never be scored as hybrid
             raise SystemExit(f"hybrid degraded to {r.degraded}: {r.trace.get('degraded')}")
         self.last_trace = r.trace
         return [SimpleNamespace(provision_id=c.unit_id, score=c.score, rank=c.rank) for c in r.candidates]
@@ -71,10 +74,14 @@ class DenseOnly:
     """the dense generator alone, collapsed to units and gated -- the ablation's 'dense only' row (docs/10)"""
     name = "dense"
 
+    def __init__(self):
+        self.last_trace = {}
+
     def search(self, q, filters, k):
         from types import SimpleNamespace
         from nizam.retrieval.candidates import dense_only
-        r = dense_only(q, filters, k)
+        r = dense_only(q, filters, k, encoder=ENCODER)
+        self.last_trace = r.trace
         return [SimpleNamespace(provision_id=c.unit_id, score=c.score, rank=c.rank) for c in r.candidates]
 
 
@@ -98,7 +105,16 @@ def main() -> int:
     ap.add_argument("--split", default="all", choices=("dev", "test", "all"))
     ap.add_argument("--unscoped", action="store_true",
                     help="no jurisdiction from the case: only what the question itself says (place recognition)")
+    ap.add_argument("--precomputed", help="a bundle dir of GPU-made question vectors (encoder.json, reference_q.npy, "
+                                          "reference_questions.json): hybrid/dense search the GPU generation (D-099)")
+    ap.add_argument("--vectors", default="reference_q.npy")
+    ap.add_argument("--questions", default="reference_questions.json")
     a = ap.parse_args()
+    if a.precomputed:
+        global ENCODER
+        sys.path.insert(0, str(ROOT / "evals"))
+        from precomputed_encoder import PrecomputedEncoder
+        ENCODER = PrecomputedEncoder.from_bundle(Path(a.precomputed), a.vectors, a.questions)
     every = [Bm25LexicalSearch(), TsRankLexicalSearch(), TsRankAnyLexicalSearch(), FusedSearch(), HybridSearch(),
              DenseOnly()]
     impls = [i for i in every if i.name in a.impls.split(",")]
@@ -126,7 +142,7 @@ def main() -> int:
                 trace = getattr(impl, "last_trace", {}) or {}
                 per[impl.name].append({
                     "case": d["caseId"], "stratum": d["stratum"], "script": d["question"].get("script", "latin"),
-                    "results": len(got), "ms": round(ms),
+                    "results": len(got), "ms": round(ms), "generation": trace.get("dense_generation"),
                     "encode_ms": trace.get("encode_ms"), "dense_ms": (trace.get("dense_stage_ms") or {}).get("dense_window"),
                     "dense_wait_ms": (trace.get("stage_ms") or {}).get("dense_wait"),
                     "recall10": sum(1 for r in ranks.values() if r and r <= 10) / len(gold),
@@ -158,7 +174,8 @@ def main() -> int:
             summary[name]["dense_window_ms_p50"] = round(statistics.median(dn)) if dn else None
     Path(a.out).parent.mkdir(parents=True, exist_ok=True)
     Path(a.out).write_text(json.dumps({"provisional": "golden sets 1-4 are drafts; kappa not measured (D-095)",
-                                       "k": a.k, "unscoped": a.unscoped, "split": a.split, "summary": summary, "cases": per},
+                                       "k": a.k, "unscoped": a.unscoped, "split": a.split,
+                                       "precomputed_encoder": a.precomputed, "summary": summary, "cases": per},
                                       indent=1), encoding="utf-8")
     print(json.dumps(summary, indent=1))
     print(f"wrote {a.out}")

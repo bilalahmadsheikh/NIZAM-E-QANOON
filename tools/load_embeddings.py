@@ -61,7 +61,8 @@ def main() -> int:
         if not a.apply:
             print("dry run (nothing written); pass --apply")
             return 0
-        cur.execute("UPDATE embedding_generation SET active = false WHERE active")
+        # the CPU generation only: the GPU generation (chunk_embedding_gpu, D-099) is another space and stays
+        cur.execute("UPDATE embedding_generation SET active = false WHERE active AND storage = 'chunk.embedding'")
         cur.execute("UPDATE chunk SET embedding = NULL WHERE embedding IS NOT NULL")
         selection = {"bake_off": "tools/kaggle/embed_kernel.py, golden DEV split only (evals/golden/split-v1.json)",
                      "full_precision": metrics["full_precision"]["all"], "binary": metrics["binary"]["all"],

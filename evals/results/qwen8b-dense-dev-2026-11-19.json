@@ -1,0 +1,10095 @@
+{
+ "split": "dev",
+ "cases": 108,
+ "model": "Qwen/Qwen3-Embedding-8B",
+ "revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+ "query_template": "Instruct: Given a question about Pakistani law, retrieve the statutory provisions that answer it\nQuery:{q}",
+ "k_chunks": 3000,
+ "shards": 24,
+ "partial": false,
+ "agreement": {
+  "dev_questions_cos_min": 0.9999998807907104,
+  "probes_cos_min": 0.9999998807907104
+ },
+ "results": {
+  "full4096": {
+   "all": {
+    "r10": 0.8426,
+    "r50": 0.9398,
+    "mrr10": 0.6271,
+    "n": 108
+   },
+   "stratum:citizen": {
+    "r10": 0.75,
+    "r50": 0.9062,
+    "mrr10": 0.4833,
+    "n": 48
+   },
+   "stratum:procedural": {
+    "r10": 0.9211,
+    "r50": 0.9211,
+    "mrr10": 0.765,
+    "n": 19
+   },
+   "stratum:professional": {
+    "r10": 0.931,
+    "r50": 1.0,
+    "mrr10": 0.7262,
+    "n": 29
+   },
+   "stratum:urdu": {
+    "r10": 0.875,
+    "r50": 0.9583,
+    "mrr10": 0.7444,
+    "n": 12
+   },
+   "script:arabic": {
+    "r10": 0.9286,
+    "r50": 0.9286,
+    "mrr10": 0.7048,
+    "n": 7
+   },
+   "script:latin": {
+    "r10": 0.8385,
+    "r50": 0.9375,
+    "mrr10": 0.6125,
+    "n": 96
+   },
+   "script:roman_urdu": {
+    "r10": 0.8,
+    "r50": 1.0,
+    "mrr10": 0.8,
+    "n": 5
+   }
+  },
+  "full2048": {
+   "all": {
+    "r10": 0.8333,
+    "r50": 0.9259,
+    "mrr10": 0.6216,
+    "n": 108
+   },
+   "stratum:citizen": {
+    "r10": 0.75,
+    "r50": 0.875,
+    "mrr10": 0.4916,
+    "n": 48
+   },
+   "stratum:procedural": {
+    "r10": 0.9211,
+    "r50": 0.9211,
+    "mrr10": 0.729,
+    "n": 19
+   },
+   "stratum:professional": {
+    "r10": 0.8966,
+    "r50": 1.0,
+    "mrr10": 0.7155,
+    "n": 29
+   },
+   "stratum:urdu": {
+    "r10": 0.875,
+    "r50": 0.9583,
+    "mrr10": 0.7444,
+    "n": 12
+   },
+   "script:arabic": {
+    "r10": 0.7857,
+    "r50": 0.9286,
+    "mrr10": 0.6905,
+    "n": 7
+   },
+   "script:latin": {
+    "r10": 0.8281,
+    "r50": 0.9219,
+    "mrr10": 0.6062,
+    "n": 96
+   },
+   "script:roman_urdu": {
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.82,
+    "n": 5
+   }
+  },
+  "full1024": {
+   "all": {
+    "r10": 0.8241,
+    "r50": 0.9352,
+    "mrr10": 0.6103,
+    "n": 108
+   },
+   "stratum:citizen": {
+    "r10": 0.7292,
+    "r50": 0.875,
+    "mrr10": 0.4836,
+    "n": 48
+   },
+   "stratum:procedural": {
+    "r10": 0.8684,
+    "r50": 0.9474,
+    "mrr10": 0.6594,
+    "n": 19
+   },
+   "stratum:professional": {
+    "r10": 0.931,
+    "r50": 1.0,
+    "mrr10": 0.7153,
+    "n": 29
+   },
+   "stratum:urdu": {
+    "r10": 0.875,
+    "r50": 1.0,
+    "mrr10": 0.7861,
+    "n": 12
+   },
+   "script:arabic": {
+    "r10": 0.7857,
+    "r50": 1.0,
+    "mrr10": 0.7619,
+    "n": 7
+   },
+   "script:latin": {
+    "r10": 0.8177,
+    "r50": 0.9271,
+    "mrr10": 0.5884,
+    "n": 96
+   },
+   "script:roman_urdu": {
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.82,
+    "n": 5
+   }
+  },
+  "bits4096": {
+   "all": {
+    "r10": 0.8657,
+    "r50": 0.9676,
+    "mrr10": 0.626,
+    "n": 108
+   },
+   "stratum:citizen": {
+    "r10": 0.7812,
+    "r50": 0.9583,
+    "mrr10": 0.5104,
+    "n": 48
+   },
+   "stratum:procedural": {
+    "r10": 0.9211,
+    "r50": 0.9211,
+    "mrr10": 0.7452,
+    "n": 19
+   },
+   "stratum:professional": {
+    "r10": 0.9655,
+    "r50": 1.0,
+    "mrr10": 0.708,
+    "n": 29
+   },
+   "stratum:urdu": {
+    "r10": 0.875,
+    "r50": 1.0,
+    "mrr10": 0.7014,
+    "n": 12
+   },
+   "script:arabic": {
+    "r10": 0.9286,
+    "r50": 1.0,
+    "mrr10": 0.7262,
+    "n": 7
+   },
+   "script:latin": {
+    "r10": 0.8646,
+    "r50": 0.9635,
+    "mrr10": 0.6166,
+    "n": 96
+   },
+   "script:roman_urdu": {
+    "r10": 0.8,
+    "r50": 1.0,
+    "mrr10": 0.6667,
+    "n": 5
+   }
+  },
+  "bits2048": {
+   "all": {
+    "r10": 0.838,
+    "r50": 0.963,
+    "mrr10": 0.614,
+    "n": 108
+   },
+   "stratum:citizen": {
+    "r10": 0.7396,
+    "r50": 0.9375,
+    "mrr10": 0.5068,
+    "n": 48
+   },
+   "stratum:procedural": {
+    "r10": 0.9211,
+    "r50": 0.9474,
+    "mrr10": 0.7334,
+    "n": 19
+   },
+   "stratum:professional": {
+    "r10": 0.931,
+    "r50": 1.0,
+    "mrr10": 0.6978,
+    "n": 29
+   },
+   "stratum:urdu": {
+    "r10": 0.875,
+    "r50": 1.0,
+    "mrr10": 0.6508,
+    "n": 12
+   },
+   "script:arabic": {
+    "r10": 0.7857,
+    "r50": 1.0,
+    "mrr10": 0.6905,
+    "n": 7
+   },
+   "script:latin": {
+    "r10": 0.8333,
+    "r50": 0.9583,
+    "mrr10": 0.6094,
+    "n": 96
+   },
+   "script:roman_urdu": {
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5952,
+    "n": 5
+   }
+  },
+  "bits1024": {
+   "all": {
+    "r10": 0.8056,
+    "r50": 0.9444,
+    "mrr10": 0.5906,
+    "n": 108
+   },
+   "stratum:citizen": {
+    "r10": 0.6875,
+    "r50": 0.9167,
+    "mrr10": 0.4707,
+    "n": 48
+   },
+   "stratum:procedural": {
+    "r10": 0.9211,
+    "r50": 0.9474,
+    "mrr10": 0.7246,
+    "n": 19
+   },
+   "stratum:professional": {
+    "r10": 0.931,
+    "r50": 0.9655,
+    "mrr10": 0.6756,
+    "n": 29
+   },
+   "stratum:urdu": {
+    "r10": 0.7917,
+    "r50": 1.0,
+    "mrr10": 0.6528,
+    "n": 12
+   },
+   "script:arabic": {
+    "r10": 0.7857,
+    "r50": 1.0,
+    "mrr10": 0.7143,
+    "n": 7
+   },
+   "script:latin": {
+    "r10": 0.8073,
+    "r50": 0.9375,
+    "mrr10": 0.5829,
+    "n": 96
+   },
+   "script:roman_urdu": {
+    "r10": 0.8,
+    "r50": 1.0,
+    "mrr10": 0.5667,
+    "n": 5
+   }
+  },
+  "bits1024>half1024@1000": {
+   "all": {
+    "r10": 0.8241,
+    "r50": 0.9398,
+    "mrr10": 0.6104,
+    "n": 108
+   },
+   "stratum:citizen": {
+    "r10": 0.7292,
+    "r50": 0.8854,
+    "mrr10": 0.4836,
+    "n": 48
+   },
+   "stratum:procedural": {
+    "r10": 0.8684,
+    "r50": 0.9474,
+    "mrr10": 0.6594,
+    "n": 19
+   },
+   "stratum:professional": {
+    "r10": 0.931,
+    "r50": 1.0,
+    "mrr10": 0.7153,
+    "n": 29
+   },
+   "stratum:urdu": {
+    "r10": 0.875,
+    "r50": 1.0,
+    "mrr10": 0.787,
+    "n": 12
+   },
+   "script:arabic": {
+    "r10": 0.7857,
+    "r50": 1.0,
+    "mrr10": 0.7619,
+    "n": 7
+   },
+   "script:latin": {
+    "r10": 0.8177,
+    "r50": 0.9323,
+    "mrr10": 0.5884,
+    "n": 96
+   },
+   "script:roman_urdu": {
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.8222,
+    "n": 5
+   }
+  },
+  "bits1024>half1024@3000": {
+   "all": {
+    "r10": 0.8241,
+    "r50": 0.9352,
+    "mrr10": 0.6103,
+    "n": 108
+   },
+   "stratum:citizen": {
+    "r10": 0.7292,
+    "r50": 0.875,
+    "mrr10": 0.4836,
+    "n": 48
+   },
+   "stratum:procedural": {
+    "r10": 0.8684,
+    "r50": 0.9474,
+    "mrr10": 0.6594,
+    "n": 19
+   },
+   "stratum:professional": {
+    "r10": 0.931,
+    "r50": 1.0,
+    "mrr10": 0.7153,
+    "n": 29
+   },
+   "stratum:urdu": {
+    "r10": 0.875,
+    "r50": 1.0,
+    "mrr10": 0.7861,
+    "n": 12
+   },
+   "script:arabic": {
+    "r10": 0.7857,
+    "r50": 1.0,
+    "mrr10": 0.7619,
+    "n": 7
+   },
+   "script:latin": {
+    "r10": 0.8177,
+    "r50": 0.9271,
+    "mrr10": 0.5884,
+    "n": 96
+   },
+   "script:roman_urdu": {
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.82,
+    "n": 5
+   }
+  },
+  "bits2048>half1024@1000": {
+   "all": {
+    "r10": 0.8241,
+    "r50": 0.9398,
+    "mrr10": 0.6104,
+    "n": 108
+   },
+   "stratum:citizen": {
+    "r10": 0.7292,
+    "r50": 0.8854,
+    "mrr10": 0.4836,
+    "n": 48
+   },
+   "stratum:procedural": {
+    "r10": 0.8684,
+    "r50": 0.9474,
+    "mrr10": 0.6594,
+    "n": 19
+   },
+   "stratum:professional": {
+    "r10": 0.931,
+    "r50": 1.0,
+    "mrr10": 0.7153,
+    "n": 29
+   },
+   "stratum:urdu": {
+    "r10": 0.875,
+    "r50": 1.0,
+    "mrr10": 0.787,
+    "n": 12
+   },
+   "script:arabic": {
+    "r10": 0.7857,
+    "r50": 1.0,
+    "mrr10": 0.7619,
+    "n": 7
+   },
+   "script:latin": {
+    "r10": 0.8177,
+    "r50": 0.9323,
+    "mrr10": 0.5884,
+    "n": 96
+   },
+   "script:roman_urdu": {
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.8222,
+    "n": 5
+   }
+  },
+  "bits2048>half1024@3000": {
+   "all": {
+    "r10": 0.8241,
+    "r50": 0.9352,
+    "mrr10": 0.6104,
+    "n": 108
+   },
+   "stratum:citizen": {
+    "r10": 0.7292,
+    "r50": 0.875,
+    "mrr10": 0.4836,
+    "n": 48
+   },
+   "stratum:procedural": {
+    "r10": 0.8684,
+    "r50": 0.9474,
+    "mrr10": 0.6594,
+    "n": 19
+   },
+   "stratum:professional": {
+    "r10": 0.931,
+    "r50": 1.0,
+    "mrr10": 0.7153,
+    "n": 29
+   },
+   "stratum:urdu": {
+    "r10": 0.875,
+    "r50": 1.0,
+    "mrr10": 0.787,
+    "n": 12
+   },
+   "script:arabic": {
+    "r10": 0.7857,
+    "r50": 1.0,
+    "mrr10": 0.7619,
+    "n": 7
+   },
+   "script:latin": {
+    "r10": 0.8177,
+    "r50": 0.9271,
+    "mrr10": 0.5884,
+    "n": 96
+   },
+   "script:roman_urdu": {
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.8222,
+    "n": 5
+   }
+  },
+  "bits4096>half1024@1000": {
+   "all": {
+    "r10": 0.8241,
+    "r50": 0.9398,
+    "mrr10": 0.6106,
+    "n": 108
+   },
+   "stratum:citizen": {
+    "r10": 0.7292,
+    "r50": 0.8854,
+    "mrr10": 0.4836,
+    "n": 48
+   },
+   "stratum:procedural": {
+    "r10": 0.8684,
+    "r50": 0.9474,
+    "mrr10": 0.6601,
+    "n": 19
+   },
+   "stratum:professional": {
+    "r10": 0.931,
+    "r50": 1.0,
+    "mrr10": 0.7153,
+    "n": 29
+   },
+   "stratum:urdu": {
+    "r10": 0.875,
+    "r50": 1.0,
+    "mrr10": 0.787,
+    "n": 12
+   },
+   "script:arabic": {
+    "r10": 0.7857,
+    "r50": 1.0,
+    "mrr10": 0.7619,
+    "n": 7
+   },
+   "script:latin": {
+    "r10": 0.8177,
+    "r50": 0.9323,
+    "mrr10": 0.5885,
+    "n": 96
+   },
+   "script:roman_urdu": {
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.8222,
+    "n": 5
+   }
+  }
+ },
+ "per_case": {
+  "full4096": [
+   {
+    "case": "S1-C01",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S1-C03",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-C05",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-C06",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.5,
+    "r50": 0.5,
+    "mrr10": 0.1111111111111111
+   },
+   {
+    "case": "S1-C08",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.16666666666666666
+   },
+   {
+    "case": "S1-C11",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-C12",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-C13",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S1-C15",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C16",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C17",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C19",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C20",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S1-P02",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-P06",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-P08",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-P09",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.1111111111111111
+   },
+   {
+    "case": "S1-P10",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-P12",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-R03",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-R04",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-R06",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-U02",
+    "stratum": "urdu",
+    "script": "roman_urdu",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-U03",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-U04",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.1
+   },
+   {
+    "case": "S1-U05",
+    "stratum": "urdu",
+    "script": "roman_urdu",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C01",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.16666666666666666
+   },
+   {
+    "case": "S2-C02",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C03",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C05",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.5,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C08",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C09",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.1111111111111111
+   },
+   {
+    "case": "S2-C10",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C11",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.2
+   },
+   {
+    "case": "S2-C12",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C14",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S2-C17",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.16666666666666666
+   },
+   {
+    "case": "S2-C18",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S2-P01",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P02",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.2
+   },
+   {
+    "case": "S2-P04",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P05",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P06",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P07",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P08",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S2-P10",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S2-P11",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P12",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S2-R01",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-R03",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-R05",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-R06",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-R07",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S2-U02",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 0.5,
+    "r50": 0.5,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-U03",
+    "stratum": "urdu",
+    "script": "roman_urdu",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-U04",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-U05",
+    "stratum": "urdu",
+    "script": "roman_urdu",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C02",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.2
+   },
+   {
+    "case": "S3-C03",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C05",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.5,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C06",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-C07",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C08",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C10",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C11",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C13",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C14",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-C17",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S3-C18",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C19",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S3-C20",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.5,
+    "r50": 1.0,
+    "mrr10": 0.16666666666666666
+   },
+   {
+    "case": "S3-P02",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-P03",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-P04",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-P08",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-P12",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-R03",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-R04",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-R05",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-R06",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-R07",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.14285714285714285
+   },
+   {
+    "case": "S3-U03",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S3-U04",
+    "stratum": "urdu",
+    "script": "roman_urdu",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-U05",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-C02",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S4-C06",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.14285714285714285
+   },
+   {
+    "case": "S4-C10",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.1
+   },
+   {
+    "case": "S4-C12",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C14",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-C15",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-C16",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-C17",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C18",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P01",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S4-P02",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P04",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P06",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P07",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P08",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P10",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S4-P11",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-R01",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-R02",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-R03",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S4-R05",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-R06",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.14285714285714285
+   },
+   {
+    "case": "S4-R07",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 0.5,
+    "r50": 0.5,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-U04",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   }
+  ],
+  "full2048": [
+   {
+    "case": "S1-C01",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S1-C03",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-C05",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-C06",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.5,
+    "r50": 0.5,
+    "mrr10": 0.1
+   },
+   {
+    "case": "S1-C08",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.125
+   },
+   {
+    "case": "S1-C11",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-C12",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-C13",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S1-C15",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C16",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C17",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C19",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C20",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S1-P02",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-P06",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-P08",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-P09",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-P10",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-P12",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-R03",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-R04",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-R06",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-U02",
+    "stratum": "urdu",
+    "script": "roman_urdu",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.1
+   },
+   {
+    "case": "S1-U03",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-U04",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-U05",
+    "stratum": "urdu",
+    "script": "roman_urdu",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C01",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.1111111111111111
+   },
+   {
+    "case": "S2-C02",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C03",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C05",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.5,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C08",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C09",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.1
+   },
+   {
+    "case": "S2-C10",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C11",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.2
+   },
+   {
+    "case": "S2-C12",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C14",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S2-C17",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.2
+   },
+   {
+    "case": "S2-C18",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S2-P01",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P02",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.16666666666666666
+   },
+   {
+    "case": "S2-P04",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P05",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P06",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P07",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P08",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S2-P10",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S2-P11",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P12",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S2-R01",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-R03",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-R05",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-R06",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-R07",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S2-U02",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 0.5,
+    "r50": 0.5,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-U03",
+    "stratum": "urdu",
+    "script": "roman_urdu",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-U04",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-U05",
+    "stratum": "urdu",
+    "script": "roman_urdu",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C02",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.2
+   },
+   {
+    "case": "S3-C03",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C05",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.5,
+    "r50": 0.5,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C06",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S3-C07",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C08",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C10",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C11",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C13",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C14",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C17",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S3-C18",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C19",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S3-C20",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.5,
+    "r50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S3-P02",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-P03",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-P04",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-P08",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-P12",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-R03",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-R04",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-R05",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-R06",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-R07",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.125
+   },
+   {
+    "case": "S3-U03",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S3-U04",
+    "stratum": "urdu",
+    "script": "roman_urdu",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-U05",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-C02",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S4-C06",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.2
+   },
+   {
+    "case": "S4-C10",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C12",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C14",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-C15",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-C16",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-C17",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.1111111111111111
+   },
+   {
+    "case": "S4-C18",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P01",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S4-P02",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P04",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P06",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P07",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P08",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P10",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S4-P11",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-R01",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-R02",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-R03",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S4-R05",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-R06",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.14285714285714285
+   },
+   {
+    "case": "S4-R07",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 0.5,
+    "r50": 0.5,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-U04",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   }
+  ],
+  "full1024": [
+   {
+    "case": "S1-C01",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S1-C03",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-C05",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-C06",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.5,
+    "r50": 0.5,
+    "mrr10": 0.1
+   },
+   {
+    "case": "S1-C08",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.1
+   },
+   {
+    "case": "S1-C11",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-C12",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S1-C13",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S1-C15",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C16",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C17",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C19",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C20",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S1-P02",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-P06",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-P08",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-P09",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S1-P10",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-P12",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-R03",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-R04",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-R06",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-U02",
+    "stratum": "urdu",
+    "script": "roman_urdu",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.1
+   },
+   {
+    "case": "S1-U03",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-U04",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-U05",
+    "stratum": "urdu",
+    "script": "roman_urdu",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C01",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C02",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C03",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C05",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.5,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C08",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C09",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.125
+   },
+   {
+    "case": "S2-C10",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C11",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.2
+   },
+   {
+    "case": "S2-C12",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C14",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S2-C17",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S2-C18",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S2-P01",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P02",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.14285714285714285
+   },
+   {
+    "case": "S2-P04",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P05",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P06",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P07",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P08",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.2
+   },
+   {
+    "case": "S2-P10",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.2
+   },
+   {
+    "case": "S2-P11",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P12",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.2
+   },
+   {
+    "case": "S2-R01",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-R03",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S2-R05",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S2-R06",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-R07",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S2-U02",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 0.5,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-U03",
+    "stratum": "urdu",
+    "script": "roman_urdu",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-U04",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-U05",
+    "stratum": "urdu",
+    "script": "roman_urdu",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C02",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.2
+   },
+   {
+    "case": "S3-C03",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C05",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.5,
+    "r50": 0.5,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C06",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-C07",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C08",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-C10",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C11",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C13",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C14",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-C17",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-C18",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C19",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S3-C20",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.5,
+    "r50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S3-P02",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-P03",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-P04",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-P08",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-P12",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-R03",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-R04",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-R05",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-R06",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-R07",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-U03",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S3-U04",
+    "stratum": "urdu",
+    "script": "roman_urdu",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-U05",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-C02",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-C06",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.125
+   },
+   {
+    "case": "S4-C10",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C12",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C14",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-C15",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-C16",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-C17",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.1111111111111111
+   },
+   {
+    "case": "S4-C18",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P01",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S4-P02",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P04",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P06",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P07",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P08",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P10",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S4-P11",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-R01",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-R02",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-R03",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S4-R05",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-R06",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.1111111111111111
+   },
+   {
+    "case": "S4-R07",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 0.5,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-U04",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   }
+  ],
+  "bits4096": [
+   {
+    "case": "S1-C01",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-C03",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-C05",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-C06",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.5,
+    "r50": 1.0,
+    "mrr10": 0.1
+   },
+   {
+    "case": "S1-C08",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.1111111111111111
+   },
+   {
+    "case": "S1-C11",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-C12",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S1-C13",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S1-C15",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C16",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.1111111111111111
+   },
+   {
+    "case": "S1-C17",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C19",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C20",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S1-P02",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-P06",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-P08",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-P09",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.1
+   },
+   {
+    "case": "S1-P10",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-P12",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.2
+   },
+   {
+    "case": "S1-R03",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S1-R04",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-R06",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-U02",
+    "stratum": "urdu",
+    "script": "roman_urdu",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-U03",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-U04",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S1-U05",
+    "stratum": "urdu",
+    "script": "roman_urdu",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C01",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S2-C02",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C03",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C05",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.5,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C08",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C09",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.1111111111111111
+   },
+   {
+    "case": "S2-C10",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C11",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S2-C12",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C14",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S2-C17",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.16666666666666666
+   },
+   {
+    "case": "S2-C18",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S2-P01",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P02",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.16666666666666666
+   },
+   {
+    "case": "S2-P04",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P05",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P06",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S2-P07",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P08",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.2
+   },
+   {
+    "case": "S2-P10",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S2-P11",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P12",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S2-R01",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-R03",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-R05",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-R06",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-R07",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S2-U02",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 0.5,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-U03",
+    "stratum": "urdu",
+    "script": "roman_urdu",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-U04",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-U05",
+    "stratum": "urdu",
+    "script": "roman_urdu",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S3-C02",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.2
+   },
+   {
+    "case": "S3-C03",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.5,
+    "r50": 1.0,
+    "mrr10": 0.125
+   },
+   {
+    "case": "S3-C05",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.5,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C06",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C07",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C08",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C10",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C11",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C13",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C14",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-C17",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S3-C18",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C19",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S3-C20",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.5,
+    "r50": 1.0,
+    "mrr10": 0.2
+   },
+   {
+    "case": "S3-P02",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-P03",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-P04",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-P08",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-P12",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-R03",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-R04",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-R05",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-R06",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-R07",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.2
+   },
+   {
+    "case": "S3-U03",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S3-U04",
+    "stratum": "urdu",
+    "script": "roman_urdu",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-U05",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S4-C02",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S4-C06",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.16666666666666666
+   },
+   {
+    "case": "S4-C10",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.125
+   },
+   {
+    "case": "S4-C12",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C14",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-C15",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-C16",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-C17",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C18",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P01",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.2
+   },
+   {
+    "case": "S4-P02",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P04",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P06",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P07",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P08",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P10",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S4-P11",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-R01",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-R02",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-R03",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S4-R05",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-R06",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.125
+   },
+   {
+    "case": "S4-R07",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 0.5,
+    "r50": 0.5,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-U04",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   }
+  ],
+  "bits2048": [
+   {
+    "case": "S1-C01",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-C03",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-C05",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-C06",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C08",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.125
+   },
+   {
+    "case": "S1-C11",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-C12",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-C13",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S1-C15",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C16",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C17",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C19",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C20",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S1-P02",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-P06",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-P08",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-P09",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-P10",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-P12",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.14285714285714285
+   },
+   {
+    "case": "S1-R03",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S1-R04",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-R06",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-U02",
+    "stratum": "urdu",
+    "script": "roman_urdu",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.14285714285714285
+   },
+   {
+    "case": "S1-U03",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-U04",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-U05",
+    "stratum": "urdu",
+    "script": "roman_urdu",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C01",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S2-C02",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C03",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C05",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.5,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C08",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C09",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.125
+   },
+   {
+    "case": "S2-C10",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C11",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S2-C12",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C14",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.1111111111111111
+   },
+   {
+    "case": "S2-C17",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.125
+   },
+   {
+    "case": "S2-C18",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S2-P01",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P02",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.14285714285714285
+   },
+   {
+    "case": "S2-P04",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P05",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P06",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S2-P07",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P08",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S2-P10",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.2
+   },
+   {
+    "case": "S2-P11",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P12",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S2-R01",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-R03",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S2-R05",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-R06",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-R07",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S2-U02",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 0.5,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-U03",
+    "stratum": "urdu",
+    "script": "roman_urdu",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S2-U04",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-U05",
+    "stratum": "urdu",
+    "script": "roman_urdu",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S3-C02",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S3-C03",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C05",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.5,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C06",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C07",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C08",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C10",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C11",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C13",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C14",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-C17",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.2
+   },
+   {
+    "case": "S3-C18",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C19",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S3-C20",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.5,
+    "r50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S3-P02",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-P03",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-P04",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-P08",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-P12",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-R03",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-R04",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-R05",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-R06",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-R07",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.14285714285714285
+   },
+   {
+    "case": "S3-U03",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S3-U04",
+    "stratum": "urdu",
+    "script": "roman_urdu",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-U05",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S4-C02",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S4-C06",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.125
+   },
+   {
+    "case": "S4-C10",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C12",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C14",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-C15",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-C16",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-C17",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.1
+   },
+   {
+    "case": "S4-C18",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P01",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S4-P02",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P04",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P06",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P07",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P08",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P10",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S4-P11",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-R01",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-R02",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-R03",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S4-R05",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-R06",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.125
+   },
+   {
+    "case": "S4-R07",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 0.5,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-U04",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   }
+  ],
+  "bits1024": [
+   {
+    "case": "S1-C01",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S1-C03",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-C05",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-C06",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C08",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.1111111111111111
+   },
+   {
+    "case": "S1-C11",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-C12",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S1-C13",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S1-C15",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C16",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C17",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C19",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C20",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S1-P02",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-P06",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-P08",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-P09",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-P10",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-P12",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S1-R03",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S1-R04",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-R06",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-U02",
+    "stratum": "urdu",
+    "script": "roman_urdu",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-U03",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-U04",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-U05",
+    "stratum": "urdu",
+    "script": "roman_urdu",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C01",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.16666666666666666
+   },
+   {
+    "case": "S2-C02",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C03",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C05",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C08",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C09",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.1
+   },
+   {
+    "case": "S2-C10",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C11",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S2-C12",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C14",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C17",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C18",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S2-P01",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P02",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.14285714285714285
+   },
+   {
+    "case": "S2-P04",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P05",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P06",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S2-P07",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P08",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.16666666666666666
+   },
+   {
+    "case": "S2-P10",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S2-P11",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P12",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.16666666666666666
+   },
+   {
+    "case": "S2-R01",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-R03",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S2-R05",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-R06",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-R07",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.16666666666666666
+   },
+   {
+    "case": "S2-U02",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 0.5,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-U03",
+    "stratum": "urdu",
+    "script": "roman_urdu",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S2-U04",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-U05",
+    "stratum": "urdu",
+    "script": "roman_urdu",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-C02",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.16666666666666666
+   },
+   {
+    "case": "S3-C03",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C05",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.5,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C06",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C07",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C08",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C10",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C11",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C13",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C14",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-C17",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.2
+   },
+   {
+    "case": "S3-C18",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C19",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.16666666666666666
+   },
+   {
+    "case": "S3-C20",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.5,
+    "r50": 1.0,
+    "mrr10": 0.14285714285714285
+   },
+   {
+    "case": "S3-P02",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-P03",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-P04",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-P08",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-P12",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-R03",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-R04",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-R05",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-R06",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-R07",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.16666666666666666
+   },
+   {
+    "case": "S3-U03",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-U04",
+    "stratum": "urdu",
+    "script": "roman_urdu",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-U05",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S4-C02",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S4-C06",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.125
+   },
+   {
+    "case": "S4-C10",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C12",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C14",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-C15",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-C16",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-C17",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C18",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P01",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.2
+   },
+   {
+    "case": "S4-P02",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S4-P04",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P06",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P07",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P08",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P10",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S4-P11",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-R01",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-R02",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-R03",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S4-R05",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-R06",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.1
+   },
+   {
+    "case": "S4-R07",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 0.5,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-U04",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   }
+  ],
+  "bits1024>half1024@1000": [
+   {
+    "case": "S1-C01",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S1-C03",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-C05",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-C06",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.5,
+    "r50": 0.5,
+    "mrr10": 0.1
+   },
+   {
+    "case": "S1-C08",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.1
+   },
+   {
+    "case": "S1-C11",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-C12",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S1-C13",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S1-C15",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C16",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C17",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C19",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C20",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S1-P02",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-P06",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-P08",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-P09",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S1-P10",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-P12",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-R03",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-R04",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-R06",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-U02",
+    "stratum": "urdu",
+    "script": "roman_urdu",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.1111111111111111
+   },
+   {
+    "case": "S1-U03",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-U04",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-U05",
+    "stratum": "urdu",
+    "script": "roman_urdu",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C01",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C02",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C03",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C05",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.5,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C08",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C09",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.125
+   },
+   {
+    "case": "S2-C10",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C11",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.2
+   },
+   {
+    "case": "S2-C12",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C14",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S2-C17",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S2-C18",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S2-P01",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P02",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.14285714285714285
+   },
+   {
+    "case": "S2-P04",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P05",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P06",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P07",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P08",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.2
+   },
+   {
+    "case": "S2-P10",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.2
+   },
+   {
+    "case": "S2-P11",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P12",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.2
+   },
+   {
+    "case": "S2-R01",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-R03",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S2-R05",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S2-R06",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-R07",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S2-U02",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 0.5,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-U03",
+    "stratum": "urdu",
+    "script": "roman_urdu",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-U04",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-U05",
+    "stratum": "urdu",
+    "script": "roman_urdu",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C02",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.2
+   },
+   {
+    "case": "S3-C03",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C05",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.5,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C06",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-C07",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C08",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-C10",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C11",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C13",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C14",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-C17",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-C18",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C19",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S3-C20",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.5,
+    "r50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S3-P02",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-P03",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-P04",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-P08",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-P12",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-R03",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-R04",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-R05",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-R06",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-R07",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-U03",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S3-U04",
+    "stratum": "urdu",
+    "script": "roman_urdu",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-U05",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-C02",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-C06",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.125
+   },
+   {
+    "case": "S4-C10",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C12",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C14",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-C15",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-C16",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-C17",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.1111111111111111
+   },
+   {
+    "case": "S4-C18",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P01",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S4-P02",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P04",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P06",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P07",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P08",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P10",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S4-P11",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-R01",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-R02",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-R03",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S4-R05",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-R06",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.1111111111111111
+   },
+   {
+    "case": "S4-R07",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 0.5,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-U04",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   }
+  ],
+  "bits1024>half1024@3000": [
+   {
+    "case": "S1-C01",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S1-C03",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-C05",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-C06",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.5,
+    "r50": 0.5,
+    "mrr10": 0.1
+   },
+   {
+    "case": "S1-C08",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.1
+   },
+   {
+    "case": "S1-C11",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-C12",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S1-C13",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S1-C15",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C16",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C17",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C19",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C20",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S1-P02",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-P06",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-P08",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-P09",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S1-P10",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-P12",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-R03",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-R04",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-R06",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-U02",
+    "stratum": "urdu",
+    "script": "roman_urdu",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.1
+   },
+   {
+    "case": "S1-U03",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-U04",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-U05",
+    "stratum": "urdu",
+    "script": "roman_urdu",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C01",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C02",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C03",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C05",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.5,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C08",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C09",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.125
+   },
+   {
+    "case": "S2-C10",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C11",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.2
+   },
+   {
+    "case": "S2-C12",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C14",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S2-C17",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S2-C18",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S2-P01",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P02",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.14285714285714285
+   },
+   {
+    "case": "S2-P04",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P05",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P06",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P07",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P08",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.2
+   },
+   {
+    "case": "S2-P10",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.2
+   },
+   {
+    "case": "S2-P11",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P12",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.2
+   },
+   {
+    "case": "S2-R01",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-R03",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S2-R05",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S2-R06",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-R07",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S2-U02",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 0.5,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-U03",
+    "stratum": "urdu",
+    "script": "roman_urdu",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-U04",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-U05",
+    "stratum": "urdu",
+    "script": "roman_urdu",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C02",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.2
+   },
+   {
+    "case": "S3-C03",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C05",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.5,
+    "r50": 0.5,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C06",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-C07",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C08",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-C10",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C11",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C13",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C14",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-C17",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-C18",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C19",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S3-C20",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.5,
+    "r50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S3-P02",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-P03",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-P04",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-P08",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-P12",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-R03",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-R04",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-R05",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-R06",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-R07",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-U03",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S3-U04",
+    "stratum": "urdu",
+    "script": "roman_urdu",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-U05",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-C02",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-C06",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.125
+   },
+   {
+    "case": "S4-C10",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C12",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C14",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-C15",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-C16",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-C17",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.1111111111111111
+   },
+   {
+    "case": "S4-C18",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P01",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S4-P02",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P04",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P06",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P07",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P08",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P10",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S4-P11",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-R01",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-R02",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-R03",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S4-R05",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-R06",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.1111111111111111
+   },
+   {
+    "case": "S4-R07",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 0.5,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-U04",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   }
+  ],
+  "bits2048>half1024@1000": [
+   {
+    "case": "S1-C01",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S1-C03",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-C05",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-C06",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.5,
+    "r50": 0.5,
+    "mrr10": 0.1
+   },
+   {
+    "case": "S1-C08",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.1
+   },
+   {
+    "case": "S1-C11",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-C12",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S1-C13",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S1-C15",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C16",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C17",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C19",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C20",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S1-P02",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-P06",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-P08",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-P09",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S1-P10",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-P12",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-R03",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-R04",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-R06",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-U02",
+    "stratum": "urdu",
+    "script": "roman_urdu",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.1111111111111111
+   },
+   {
+    "case": "S1-U03",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-U04",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-U05",
+    "stratum": "urdu",
+    "script": "roman_urdu",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C01",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C02",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C03",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C05",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.5,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C08",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C09",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.125
+   },
+   {
+    "case": "S2-C10",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C11",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.2
+   },
+   {
+    "case": "S2-C12",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C14",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S2-C17",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S2-C18",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S2-P01",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P02",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.14285714285714285
+   },
+   {
+    "case": "S2-P04",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P05",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P06",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P07",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P08",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.2
+   },
+   {
+    "case": "S2-P10",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.2
+   },
+   {
+    "case": "S2-P11",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P12",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.2
+   },
+   {
+    "case": "S2-R01",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-R03",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S2-R05",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S2-R06",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-R07",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S2-U02",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 0.5,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-U03",
+    "stratum": "urdu",
+    "script": "roman_urdu",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-U04",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-U05",
+    "stratum": "urdu",
+    "script": "roman_urdu",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C02",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.2
+   },
+   {
+    "case": "S3-C03",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C05",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.5,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C06",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-C07",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C08",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-C10",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C11",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C13",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C14",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-C17",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-C18",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C19",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S3-C20",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.5,
+    "r50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S3-P02",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-P03",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-P04",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-P08",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-P12",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-R03",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-R04",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-R05",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-R06",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-R07",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-U03",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S3-U04",
+    "stratum": "urdu",
+    "script": "roman_urdu",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-U05",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-C02",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-C06",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.125
+   },
+   {
+    "case": "S4-C10",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C12",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C14",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-C15",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-C16",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-C17",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.1111111111111111
+   },
+   {
+    "case": "S4-C18",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P01",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S4-P02",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P04",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P06",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P07",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P08",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P10",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S4-P11",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-R01",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-R02",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-R03",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S4-R05",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-R06",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.1111111111111111
+   },
+   {
+    "case": "S4-R07",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 0.5,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-U04",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   }
+  ],
+  "bits2048>half1024@3000": [
+   {
+    "case": "S1-C01",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S1-C03",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-C05",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-C06",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.5,
+    "r50": 0.5,
+    "mrr10": 0.1
+   },
+   {
+    "case": "S1-C08",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.1
+   },
+   {
+    "case": "S1-C11",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-C12",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S1-C13",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S1-C15",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C16",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C17",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C19",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C20",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S1-P02",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-P06",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-P08",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-P09",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S1-P10",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-P12",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-R03",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-R04",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-R06",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-U02",
+    "stratum": "urdu",
+    "script": "roman_urdu",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.1111111111111111
+   },
+   {
+    "case": "S1-U03",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-U04",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-U05",
+    "stratum": "urdu",
+    "script": "roman_urdu",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C01",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C02",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C03",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C05",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.5,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C08",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C09",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.125
+   },
+   {
+    "case": "S2-C10",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C11",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.2
+   },
+   {
+    "case": "S2-C12",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C14",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S2-C17",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S2-C18",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S2-P01",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P02",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.14285714285714285
+   },
+   {
+    "case": "S2-P04",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P05",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P06",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P07",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P08",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.2
+   },
+   {
+    "case": "S2-P10",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.2
+   },
+   {
+    "case": "S2-P11",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P12",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.2
+   },
+   {
+    "case": "S2-R01",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-R03",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S2-R05",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S2-R06",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-R07",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S2-U02",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 0.5,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-U03",
+    "stratum": "urdu",
+    "script": "roman_urdu",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-U04",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-U05",
+    "stratum": "urdu",
+    "script": "roman_urdu",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C02",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.2
+   },
+   {
+    "case": "S3-C03",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C05",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.5,
+    "r50": 0.5,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C06",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-C07",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C08",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-C10",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C11",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C13",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C14",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-C17",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-C18",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C19",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S3-C20",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.5,
+    "r50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S3-P02",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-P03",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-P04",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-P08",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-P12",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-R03",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-R04",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-R05",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-R06",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-R07",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-U03",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S3-U04",
+    "stratum": "urdu",
+    "script": "roman_urdu",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-U05",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-C02",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-C06",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.125
+   },
+   {
+    "case": "S4-C10",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C12",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C14",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-C15",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-C16",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-C17",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.1111111111111111
+   },
+   {
+    "case": "S4-C18",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P01",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S4-P02",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P04",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P06",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P07",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P08",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P10",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S4-P11",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-R01",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-R02",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-R03",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S4-R05",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-R06",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.1111111111111111
+   },
+   {
+    "case": "S4-R07",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 0.5,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-U04",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   }
+  ],
+  "bits4096>half1024@1000": [
+   {
+    "case": "S1-C01",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S1-C03",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-C05",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-C06",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.5,
+    "r50": 0.5,
+    "mrr10": 0.1
+   },
+   {
+    "case": "S1-C08",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.1
+   },
+   {
+    "case": "S1-C11",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-C12",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S1-C13",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S1-C15",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C16",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C17",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C19",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-C20",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S1-P02",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-P06",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-P08",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-P09",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S1-P10",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-P12",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-R03",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-R04",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-R06",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-U02",
+    "stratum": "urdu",
+    "script": "roman_urdu",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.1111111111111111
+   },
+   {
+    "case": "S1-U03",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S1-U04",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S1-U05",
+    "stratum": "urdu",
+    "script": "roman_urdu",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C01",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C02",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S2-C03",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C05",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.5,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C08",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C09",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.125
+   },
+   {
+    "case": "S2-C10",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C11",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.2
+   },
+   {
+    "case": "S2-C12",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-C14",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S2-C17",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S2-C18",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S2-P01",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P02",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.14285714285714285
+   },
+   {
+    "case": "S2-P04",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P05",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P06",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P07",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P08",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.2
+   },
+   {
+    "case": "S2-P10",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.2
+   },
+   {
+    "case": "S2-P11",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-P12",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.2
+   },
+   {
+    "case": "S2-R01",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-R03",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S2-R05",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S2-R06",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-R07",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S2-U02",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 0.5,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-U03",
+    "stratum": "urdu",
+    "script": "roman_urdu",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-U04",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S2-U05",
+    "stratum": "urdu",
+    "script": "roman_urdu",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C02",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.2
+   },
+   {
+    "case": "S3-C03",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C05",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.5,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C06",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-C07",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C08",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-C10",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C11",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C13",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-C14",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-C17",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-C18",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-C19",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S3-C20",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.5,
+    "r50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S3-P02",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-P03",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-P04",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-P08",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-P12",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-R03",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-R04",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S3-R05",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-R06",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-R07",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S3-U03",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.3333333333333333
+   },
+   {
+    "case": "S3-U04",
+    "stratum": "urdu",
+    "script": "roman_urdu",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S3-U05",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-C02",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-C06",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.125
+   },
+   {
+    "case": "S4-C10",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 1.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C12",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 0.0,
+    "r50": 0.0,
+    "mrr10": 0.0
+   },
+   {
+    "case": "S4-C14",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-C15",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-C16",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-C17",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.1111111111111111
+   },
+   {
+    "case": "S4-C18",
+    "stratum": "citizen",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P01",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S4-P02",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P04",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P06",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P07",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P08",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-P10",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.5
+   },
+   {
+    "case": "S4-P11",
+    "stratum": "professional",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-R01",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-R02",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-R03",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.25
+   },
+   {
+    "case": "S4-R05",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-R06",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 0.125
+   },
+   {
+    "case": "S4-R07",
+    "stratum": "procedural",
+    "script": "latin",
+    "r10": 0.5,
+    "r50": 1.0,
+    "mrr10": 1.0
+   },
+   {
+    "case": "S4-U04",
+    "stratum": "urdu",
+    "script": "arabic",
+    "r10": 1.0,
+    "r50": 1.0,
+    "mrr10": 1.0
+   }
+  ]
+ },
+ "seconds": 282
+}

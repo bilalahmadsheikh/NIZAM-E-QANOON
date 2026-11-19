@@ -15,6 +15,8 @@
 #                     encoder and SHA256SUMS (scripts/encoder-bundle.sh) -- the
 #                     vectors are in the cluster, the model that reads questions
 #                     into their space is not
+#   encoder-gpu/      when the GPU generation is active (D-099): the bundle its
+#                     GPU-host encoder service is validated against
 #
 # pg_basebackup takes it online: the database keeps running and the copy is
 # consistent as of the end of the backup (-X stream carries the WAL).  The
@@ -59,6 +61,7 @@ dc exec -T "$SERVICE" mv "/snapshots/exports/.partial-${NAME}" "/snapshots/expor
 # restore says so rather than passing quietly.
 SIG=$(dc exec -T "$SERVICE" psql -U "$USER_" -d "$DB" -tA < scripts/corpus-signature.sql | tr -d '\r')
 GEN=$(bundle_encoder "$OUT")        # refuses if a generation is active and its encoder is not installed
+GEN_GPU=$(bundle_encoder_gpu "$OUT")  # the GPU generation's validation bundle (D-099)
 ( cd "$OUT" && sha256sum base.tar.gz pg_wal.tar.gz backup_manifest > SHA256SUMS )
 IMAGE=$(awk '/image: paradedb/ {print $2; exit}' compose.yaml)
 COMMIT=$(git -C .. rev-parse HEAD 2>/dev/null || echo unknown)
@@ -79,7 +82,8 @@ cat > "$OUT/manifest.json" <<JSON
   "git_commit": "${COMMIT}",
   "git_branch": "${BRANCH}",
   "signature": "${SIG}",
-  "embedding_generation": "${GEN}"
+  "embedding_generation": "${GEN}",
+  "embedding_generation_gpu": "${GEN_GPU}"
 }
 JSON
 

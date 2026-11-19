@@ -1136,6 +1136,127 @@ Area: client · Status: Superseded by D-084 (the whole-page cloth; the hem, the 
   design/heritage_art.dart, presentation/discover.dart, presentation/heritage.dart; test/heritage_test.dart
   (golden embroidery.png, a review sheet at 3x).
 
+### D-100 · 2026-11-19 · New source drops and every leftover scan wait until retrieval is finished
+Area: owner ruling, corpus, process · Status: standing
+- Decision: the owner ruled that the source drops of 16 Nov in `E:\nizam-data`, and everything else left over, are
+  written down and decided only when L3 retrieval is finished.
+  - The 16 Nov drops are: FBR codes and Customs SROs, SECP, PSX, and the Supreme Court, Lahore, Peshawar and Sindh
+    High Court judgments.
+  - The leftovers are: the 26 GB Assembly Acts, the 874 AJK and 151 GB scans, and the 66 acquisition exceptions.
+  - "Finished" means the reranker, the calibrated gate and context assembly (docs/04), with the golden set scored on
+    the frozen test split.
+  - Until then nothing from them is landed.
+- What was measured first, so the decisions start from facts:
+  - every file's SHA-256 against `blob`;
+  - its title and year against the 10,342 released laws (federal-only for FBR, SECP, PSX and Customs);
+  - each PDF's text layer.
+- Findings:
+
+  | Source | Distinct files | Text / scan | Against the corpus |
+  |---|---:|---|---|
+  | FBR codes | 178 | 153 / 25 | 132 files are other versions of 39 held laws (24 Customs Act consolidations); 34 new |
+  | FBR Customs SROs | 89 | 78 / 11 | 80 new |
+  | SECP | 1,322 | 925 / 383 | 105 files of 53 held laws; 1,177 new, including 214 circulars, guidelines and directives |
+  | PSX | 150 | 115 / 26 | all new |
+  | GB code (12 Sep) | 19 | 3 / 16 | covers the 26 GB exceptions (official links 404); 2 text laws are new |
+
+  - **Judgments:** about 69,000 files, none held: SCP 3,750, LHC 4,557, PHC 5,713, SHC 55,123 HTML.
+  - **The Peshawar zip is a bundle.** It holds byte-identical copies of the other zips; only its Peshawar judgments
+    and an SRO folder (the same 89 files as `fbr_Customs.zip`) are unique.
+- Why: the build order (CLAUDE.md; the `nizam-workflow` skill).
+  - New laws, regulator material and OCR'd scans would move the golden-set numbers while the reranker and gate are
+    being tuned against them.
+  - Judgments need a pipeline docs/03 and docs/06 plan but nothing has built: judgment tables, citator,
+    `invalidated_by`.
+  - Two questions need design first and are not settled by the docs: how a dated whole-law consolidation becomes
+    provision versions without breaking citations (INV-4, INV-5); and whether non-binding regulator guidance belongs
+    in the corpus at all.
+- Where: docs/DEFERRED-SOURCES.md (each item, its counts, the decision needed and a recommended option);
+  `tools/evidence/source-drops-2026-11-19/` (per-file verdicts, text-layer results, the scripts); this log's open questions.
+  Entry D-099 is reserved for the GPU embedding generation, in progress the same day.
+
+### D-099 · 2026-11-20 · A second dense space: Qwen3-Embedding-8B sign bits for the GPU host, bge-m3 kept for the CPU
+Area: owner ruling, L2 storage, L3 retrieval, evaluation · Status: standing (docs/03 §3, docs/04 §4.2, as built)
+- Decision: the owner asked for Qwen3-Embedding-8B "end to end", keeping the current embeddings: "we would have diff
+  online and offline". Both spaces are now active, one per encoder device:
+  - **cpu**, generation 1: bge-m3, `bit(1024)` in `chunk.embedding`, int8 ONNX query encoder on any CPU (D-098,
+    unchanged). It serves laptops, a restored teammate database and the offline path.
+  - **gpu**, generation 2: Qwen/Qwen3-Embedding-8B @ 1d8ad4ca, `bit(4096)` in `chunk_embedding_gpu`. Its query encoder
+    runs on the GPU host that will serve the answer model (`nizam.inference.remote`).
+  - `NIZAM_DENSE_PROFILE = gpu | cpu | auto` picks the space; a GPU encoder that cannot load or answer falls back to
+    the CPU space, marked `dense_cpu` (docs/04 §9.2). The encoder decides the space, so the two are never compared
+    (docs/03 §3: two generations never share a column or an index).
+- How it was done:
+  1. **Embedded on Kaggle** (`tools/kaggle/embed8b_kernel.py`): two T4s per run, fp16, 512 tokens, last-token pooling,
+     the model card's instruct template for questions only. 24 shards of about 47,177 chunks over two accounts (runs
+     e8a and e8b), each shard 386 MB of float16.
+  2. **Verified before use** (`tools/kaggle/shards.py`): every shard's row count, first and last chunk id and id hash
+     match the export; no non-finite row; unit norm; one revision; the dev questions and 256 probe chunks agree across
+     the runs and four GPU processes (cosine 1.000000).
+  3. **Storage form chosen by a rule written before any 8B corpus vector existed**
+     (`evals/results/qwen8b-storage-rule-2026-11-19.json`; owner priority: accuracy first). Kernel-style dense
+     evaluation on dev, top 3,000 chunks (`evals/shard_dense_eval.py`):
+
+     | dev, 108 cases | r10 | r50 | MRR@10 | bytes/chunk |
+     |---|---|---|---|---:|
+     | full float, 4,096 (reference, not stored) | .843 | .940 | .627 | — |
+     | **bits4096 (chosen)** | **.866** | **.968** | **.626** | 512 |
+     | bits2048 | .838 | .963 | .614 | 256 |
+     | bits1024 | .806 | .944 | .591 | 128 |
+     | bits1024 → halfvec(1024) rescore @1,000 | .824 | .940 | .610 | 2,180 |
+
+     - bits2048 is within 1 point on r50 but not on MRR@10 (−1.2), so the rule keeps 4,096. Every halfvec-rescored
+       arm scored below the bits alone, so no float column is stored (docs/03's "do not retain full precision" holds).
+     - Against the other spaces' binary bake-off rows (same cases, same scoring; paired bootstrap, 10,000 resamples):
+       r50 +25.5 [17.1, 34.3] over bge-m3 (28 better, 1 worse) and +19.9 [12.0, 28.2] over Qwen3-0.6B. The Urdu
+       stratum goes .333 → 1.000 over bge-m3.
+  4. **Schema:** 0112 (one active generation per `encoder_device`, `storage`, `vector_dims`, `rescore_dims`) and 0113
+     (`chunk_embedding_gpu`: `bit(4096)`, `ON DELETE CASCADE` from `chunk`, jurisdiction copied from the chunk by
+     trigger, HNSW `bit_hamming_ops` m = 16, ef_construction = 64). Audit **A22** is its rule: with a GPU generation
+     active, every chunk has exactly one vector of it, of its width, from today's chunker, in its chunk's scope; none
+     belongs to another generation. 44/44 pass.
+  5. **Loaded** by `tools/load_embeddings_gpu.py` in one transaction: 1,132,245 vectors in 8 min 26 s including the
+     index (4 min 54 s). Table 636 MB, index 890 MB; the database is 7.9 GB (was 6.3). The loader's COPY named a
+     `half` column even when the table has none; fixed before the load.
+  6. **Replays:** this host cannot run the 8B encoder. The chunk worker counts a replay's new chunks without a GPU
+     vector; A22 fails until they are embedded on Kaggle (`tools/embed_topup.py`, `kg.sh`) and loaded with
+     `--topup`, which refuses unless the run is the active generation's model, commit and template and its dev
+     questions reproduce the generation's.
+- Measured on the served path (`evals/lexical_benchmark.py`, question vectors made by the corpus run and replayed by
+  `evals/precomputed_encoder.py`; provisional, golden sets are drafts, κ not measured):
+
+  | | dev r10 / r50 / MRR@10 | test (run once) r10 / r50 / MRR@10 |
+  |---|---|---|
+  | bge-m3 hybrid | .616 / .764 / .412 | .535 / .743 / .330 |
+  | **8B hybrid** | **.745 / .958 / .525** | **.750 / .951 / .471** |
+  | 8B dense alone | .889 / .991 / .659 | .826 / .972 / .629 |
+
+  - 8B hybrid − bge-m3 hybrid, r50: dev +19.4 [12.0, 27.3], 22 better / 1 worse; test +20.8 [12.5, 29.9], 17 / 0.
+    The rule's last step (keep the GPU generation only if dev hybrid r50 rises) is met.
+  - Arabic-script Urdu and Roman Urdu reach 1.0 on both splits (dev 7 + 5, test 2 + 6 cases). Roman Urdu was 0 with
+    bge-m3 because no generator read it; the 8B space does without transliteration.
+  - **Equal-vote RRF now costs accuracy.** 8B hybrid − 8B dense: r50 −3.2 [−6.9, −0.5] dev, −2.1 [−6.9, +1.4] test;
+    MRR@10 −13.4 [−21.7, −5.2] dev, −15.8 [−24.7, −6.7] test. Fusion is left as built (D-098 item 9) and recorded as
+    an open question for the reranker slice, which sees the fused slate: tuning it now on 108 dev cases would fit
+    noise twice.
+  - The test vectors were encoded once, after the configuration was frozen (`kg.sh q8push`, run q8t1); its
+    re-encoded dev questions match the corpus run's at cosine 0.999997, so they are the same space. Query encoding is
+    88 ms p50 on a T4, batch 1. Served latency above excludes it: hybrid p50 761 ms dev / 970 ms test, p95 1.4–2.0 s.
+- Why: accuracy first (owner). Recall@50 rose by about 20 points on both splits with intervals clear of zero, the
+  Urdu and Roman Urdu gaps closed, and the cost is 1.5 GB of disk and a GPU at query time, which the answer model
+  needs anyway. bge-m3 is kept because a CPU-only host must still have dense search.
+- Where:
+  - infra/postgres/migrations/0112–0113; tools/audit/criteria.sql (A22); tools/load_embeddings_gpu.py,
+    tools/embed_topup.py;
+  - tools/kaggle/{embed8b_kernel.py, query8b_kernel.py, shards.py, kg.sh};
+  - nizam/inference/remote.py; nizam/storage/unit_search.py; nizam/retrieval/candidates.py; nizam/workers/chunk.py;
+  - infra/scripts/{encoder-bundle.sh, export.sh, export-physical.sh} (the GPU encoder's reference bundle travels with
+    SHA256SUMS);
+  - evals/{shard_dense_eval.py, precomputed_encoder.py, lexical_benchmark.py}; evals/results/qwen8b-*,
+    *-gpu-2026-11-20.json, *-paired-*-2026-11-20.json;
+  - tests/{test_gpu_generation_db.py, test_dense_profiles.py, test_remote_encoder.py, test_shard_dense_eval.py};
+  - docs/03 §3 and docs/04 §4.2, §5 (as built), docs/SCHEMA.md, docs/CORPUS-CRITERIA.md (A22).
+
 ### D-098 · 2026-11-19 · The dense slice: bge-m3 sign bits, HNSW, and hybrid candidates fused across generators
 Area: L2 storage, L3 retrieval, evaluation · Status: standing (docs/04 §4.2, §5, R1's dense half, as built)
 - Decision:
@@ -1739,6 +1860,13 @@ Area: L1 corpus · Status: standing (closes two of the D-080 "what remains" item
 
 These were found and deliberately left open. Each will become an entry when it is decided.
 
+- **Fusion with the 8B space (D-099).** With Qwen3-Embedding-8B, equal-vote RRF puts the hybrid below dense alone
+  (MRR@10 −13.4 dev, −15.8 test; recall@50 −3.2 / −2.1). Whether lexical keeps a full vote, a weight, or only reserved
+  slate places (docs/04 §5) is decided with the reranker slice, on dev, because the reranker sees the fused slate. The
+  CPU profile (bge-m3) is measured separately: there the hybrid helped on test (+6.9 r50, D-098).
+- **ADR-1d for the 8B space.** The binary-vs-full check after reranking (D-098 item 4) now also covers 8B. Dense-only,
+  its sign bits did not cost accuracy (bits4096 r50 .968 vs full .940); it is re-run after the cross-encoder.
+
 - **The AJK Interim Constitution Act, 1974 (D-096).** Acquired, digest-verified and staged; no OCR needed for the law.
   The preflight predicts 33 unsettled repeated-label units, so it waits for its structure to be read before it is
   landed released. Its 7 amendment Acts are released and carry no `amends` edges to it until then.
@@ -1774,3 +1902,15 @@ These were found and deliberately left open. Each will become an entry when it i
   lexical windows dominate, and they predate the dense slice. The query encoder's 57 ms is over docs/04's 20 ms
   budget, mostly hidden by running the generators in parallel.
 - **Roman Urdu retrieval** is 0 on dev (5 cases) for every generator. docs/04's transliteration step is not built.
+- **Deferred sources, to decide when retrieval is finished (D-100; docs/DEFERRED-SOURCES.md).** Each becomes an entry
+  when decided:
+  1. **FBR codes:** land the dated consolidations of the federal tax laws, and the 34 new laws? This first needs a
+     rule for turning a whole-law snapshot into provision versions.
+  2. **FBR Customs SROs:** land the 89 SROs, as `amends` edges to the Customs Rules?
+  3. **SECP:** land the binding categories (Acts, Rules, Regulations, SRO notifications)? And do the 214 circulars,
+     guidelines and directives belong at all?
+  4. **PSX:** do the exchange rule books belong?
+  5. **GB:** land the 2 new text laws from `GB_code.zip`, and OCR its 16 scans?
+  6. **OCR:** run the OCR lane on the 874 AJK and 151 GB scans?
+  7. **Judgments:** when to build the judgment pipeline for about 69,000 SCP, LHC, PHC and SHC judgments?
+  8. **Acquisition exceptions:** re-check the remaining 40 against the new drops and Internet Archive?
