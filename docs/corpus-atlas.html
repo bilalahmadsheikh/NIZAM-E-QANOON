@@ -1,0 +1,763 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Nizam-e-Qanoon Corpus Atlas</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=Karla:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: one reading column on stamp paper (docs/12); each section = a question someone asks about the project, answered by a figure and a few plain sentences. */
+:root{
+  --parchment:#F3EFE6; --parchment-2:#EAE4D6; --card:#FBF8F1;
+  --pine:#17352E; --pine-3:#2C5F54;
+  --brass:#B8873C; --brass-deep:#8A6216; --brass-tint:#F0E4CB;
+  --oxide:#A0392C; --oxide-tint:#F6E3DE;
+  --ink:#1A1F1C; --ink-2:#5A625C; --ink-3:#8E958E;
+  --rule:#DFD8C8; --rule-2:#CFC6B2;
+  /* chart series: validated (dataviz validate_palette.js, light on --card) */
+  --s-cur:#138A68; --s-hist:#B8873C; --s-nc:#A0392C; --s-one:#2C5F54; --s-soft:#CFC6B2;
+  --done:#138A68; --part:#B8873C; --todo:#CFC6B2;
+  --display:"Spectral",Georgia,"Times New Roman",serif;
+  --body:"Karla",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --parchment:#121916; --parchment-2:#0C110F; --card:#1A2320;
+  --pine:#D9E4DF; --pine-3:#8FAFA4;
+  --brass:#D4A557; --brass-deep:#E0B76F; --brass-tint:#2A2416;
+  --oxide:#E0897B; --oxide-tint:#2C1B18;
+  --ink:#EDE8DC; --ink-2:#A8A79A; --ink-3:#767A72;
+  --rule:#28312D; --rule-2:#3A443F;
+  --s-cur:#24A27E; --s-hist:#B88A2C; --s-nc:#C2453F; --s-one:#8FAFA4; --s-soft:#3A443F;
+  --done:#24A27E; --part:#B88A2C; --todo:#3A443F;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --parchment:#121916; --parchment-2:#0C110F; --card:#1A2320;
+  --pine:#D9E4DF; --pine-3:#8FAFA4;
+  --brass:#D4A557; --brass-deep:#E0B76F; --brass-tint:#2A2416;
+  --oxide:#E0897B; --oxide-tint:#2C1B18;
+  --ink:#EDE8DC; --ink-2:#A8A79A; --ink-3:#767A72;
+  --rule:#28312D; --rule-2:#3A443F;
+  --s-cur:#24A27E; --s-hist:#B88A2C; --s-nc:#C2453F; --s-one:#8FAFA4; --s-soft:#3A443F;
+  --done:#24A27E; --part:#B88A2C; --todo:#3A443F;
+  color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--parchment);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+.wrap{max-width:1040px;margin:0 auto}
+h1,h2,h3{font-family:var(--display);font-weight:500;color:var(--pine);text-wrap:balance;margin:0}
+h1{font-size:clamp(2rem,5vw,3.1rem);line-height:1.1}
+h2{font-size:clamp(1.45rem,3vw,1.9rem);line-height:1.2}
+h3{font-size:1.15rem;line-height:1.3}
+p{margin:0;max-width:68ch}
+.eyebrow{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--brass-deep);font-weight:700}
+.muted{color:var(--ink-2)}
+.small{font-size:.875rem}
+code{font-family:ui-monospace,"Cascadia Mono",Consolas,monospace;font-size:.86em;background:var(--parchment-2);padding:.05em .35em;border-radius:4px;overflow-wrap:anywhere}
+.num{font-variant-numeric:tabular-nums}
+
+header.top{padding-block:56px 36px;border-bottom:1px solid var(--rule-2);display:grid;gap:18px}
+header.top p{font-size:1.1rem;color:var(--ink-2)}
+.stamp{display:inline-flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:.85rem;color:var(--ink-2)}
+.stamp b{color:var(--ink);font-weight:600}
+.seal{border:1.5px solid var(--brass);color:var(--brass-deep);border-radius:999px;padding:2px 12px;font-weight:700;letter-spacing:.06em;font-size:.75rem;text-transform:uppercase}
+
+.figures{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:14px;overflow:hidden;margin-top:28px}
+.fig{background:var(--card);padding:18px 18px 16px;display:grid;gap:2px;min-width:0}
+.fig .v{font-family:var(--display);font-size:clamp(1.6rem,3.4vw,2.2rem);color:var(--pine);line-height:1.1;font-variant-numeric:tabular-nums}
+.fig .k{font-size:.9rem;font-weight:600}
+.fig .d{font-size:.82rem;color:var(--ink-2)}
+@media (max-width:720px){.figures{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+section{padding-block:48px 8px;display:grid;gap:18px}
+section > .lede{display:grid;gap:10px}
+.panel{background:var(--card);border:1px solid var(--rule);border-radius:14px;padding:22px;min-width:0}
+.grid2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px}
+@media (max-width:820px){.grid2{grid-template-columns:minmax(0,1fr)}}
+.panel h3{margin-bottom:4px}
+.panel .cap{font-size:.85rem;color:var(--ink-2);margin-bottom:14px}
+
+/* layer ladder */
+.ladder{display:grid;gap:8px}
+.rung{display:grid;grid-template-columns:52px minmax(0,1fr) 170px;gap:14px;align-items:center;padding:10px 14px;background:var(--card);border:1px solid var(--rule);border-radius:10px}
+.rung .id{font-family:var(--display);font-size:1.3rem;color:var(--pine)}
+.rung .nm{font-weight:600}
+.rung .ds{font-size:.86rem;color:var(--ink-2)}
+.meter{height:8px;border-radius:999px;background:var(--parchment-2);overflow:hidden;display:flex}
+.meter i{display:block;height:100%;border-radius:999px}
+.rung .st{display:grid;gap:6px;font-size:.8rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.st.done{color:var(--done)} .st.part{color:var(--brass-deep)} .st.todo{color:var(--ink-3)}
+@media (max-width:620px){.rung{grid-template-columns:40px minmax(0,1fr)}.rung .st{grid-column:2}}
+
+/* pipeline */
+.pipe{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:10px;counter-reset:s}
+.stage{background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:14px 12px;display:grid;gap:6px;align-content:start;position:relative;min-width:0}
+.stage .n{font-size:.72rem;font-weight:700;color:var(--brass-deep);letter-spacing:.08em}
+.stage .t{font-weight:700;font-size:.95rem}
+.stage .c{font-family:var(--display);font-size:1.35rem;color:var(--pine);font-variant-numeric:tabular-nums;line-height:1.1}
+.stage .u{font-size:.78rem;color:var(--ink-2)}
+.stage .tb{font-size:.74rem;color:var(--ink-3);overflow-wrap:anywhere}
+.stage:not(:last-child)::after{content:"";position:absolute;right:-9px;top:50%;width:8px;height:8px;border-top:2px solid var(--brass);border-right:2px solid var(--brass);transform:translateY(-50%) rotate(45deg)}
+@media (max-width:980px){.pipe{grid-template-columns:repeat(2,minmax(0,1fr))}.stage::after{display:none}}
+
+/* charts */
+.chart{width:100%;overflow-x:auto}
+.chart svg{display:block;width:100%;height:auto}
+.chart text{fill:var(--ink-2);font-family:var(--body);font-size:12px}
+.chart .lbl{fill:var(--ink);font-size:12.5px}
+.chart .val{fill:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
+.chart .grid{stroke:var(--rule);stroke-width:1}
+.chart .base{stroke:var(--rule-2);stroke-width:1}
+.chart .target{stroke:var(--oxide);stroke-width:1.5;stroke-dasharray:5 4}
+.chart rect[data-tip]{cursor:default}
+.chart rect[data-tip]:hover{filter:brightness(1.08)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.85rem;color:var(--ink-2);margin-bottom:10px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:12px;height:12px;border-radius:3px;display:inline-block}
+details{margin-top:12px;font-size:.88rem}
+details summary{cursor:pointer;color:var(--brass-deep);font-weight:600}
+details summary:focus-visible{outline:2px solid var(--brass);outline-offset:2px;border-radius:4px}
+.tbl{overflow-x:auto;margin-top:8px}
+table{border-collapse:collapse;width:100%;font-size:.86rem;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:6px 10px;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-weight:700;color:var(--ink-2);font-size:.78rem;letter-spacing:.04em;text-transform:uppercase}
+td.r,th.r{text-align:right}
+
+/* schema map */
+.schema{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.col{display:grid;gap:8px;align-content:start;min-width:0}
+.col .hd{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--brass-deep);padding-left:2px}
+.tbox{background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:10px 12px;display:grid;gap:2px;min-width:0}
+.tbox.view{border-style:dashed;border-color:var(--pine-3)}
+.tbox .nm{font-family:ui-monospace,"Cascadia Mono",Consolas,monospace;font-size:.84rem;font-weight:600;color:var(--pine);overflow-wrap:anywhere}
+.tbox .rw{font-size:.78rem;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.tbox .ds{font-size:.82rem;color:var(--ink-2)}
+.down{justify-self:center;color:var(--brass);font-size:.9rem;line-height:1}
+@media (max-width:820px){.schema{grid-template-columns:minmax(0,1fr)}}
+
+/* invariants */
+.inv{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.inv div{background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:14px;display:grid;gap:6px;align-content:start;min-width:0}
+.inv b{font-family:var(--display);color:var(--oxide);font-weight:600;font-size:1.05rem}
+.inv span{font-size:.86rem;color:var(--ink-2)}
+@media (max-width:900px){.inv{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:480px){.inv{grid-template-columns:minmax(0,1fr)}}
+
+.tree{font-family:ui-monospace,"Cascadia Mono",Consolas,monospace;font-size:.82rem;line-height:1.75;background:var(--parchment-2);border-radius:10px;padding:14px 16px;overflow-x:auto;white-space:pre;color:var(--ink)}
+.tree .k{color:var(--brass-deep)}
+.tree .m{color:var(--ink-3)}
+
+.next{display:grid;gap:8px;counter-reset:n;padding:0;margin:0;list-style:none}
+.next li{counter-increment:n;display:grid;grid-template-columns:34px minmax(0,1fr);gap:10px;padding:12px 14px;background:var(--card);border:1px solid var(--rule);border-radius:10px}
+.next li::before{content:counter(n);font-family:var(--display);font-size:1.2rem;color:var(--brass-deep)}
+.next b{font-weight:700}
+.note{border-left:3px solid var(--brass);background:var(--brass-tint);padding:12px 16px;border-radius:0 10px 10px 0;font-size:.92rem}
+.pill{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:2px 9px;border-radius:999px;border:1px solid currentColor}
+.pill.ok{color:var(--done)} .pill.wip{color:var(--brass-deep)} .pill.no{color:var(--ink-3)}
+
+/* schema graph */
+:root{--g1:#2a78d6;--g2:#eb6834;--g3:#1baf7a;--g4:#eda100;--g5:#e87ba4;--g6:#6250d6}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--g1:#3987e5;--g2:#d95926;--g3:#199e70;--g4:#c98500;--g5:#d55181;--g6:#9085e9}}
+:root[data-theme="dark"]{--g1:#3987e5;--g2:#d95926;--g3:#199e70;--g4:#c98500;--g5:#d55181;--g6:#9085e9}
+.breakout{width:min(1440px,calc(100vw - 48px));margin-left:calc(50% - min(720px, 50vw - 24px));display:grid;gap:0}
+@media (max-width:1088px){.breakout{width:100%;margin-left:0}}
+.gwrap{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:14px}
+@media (max-width:900px){.gwrap{grid-template-columns:minmax(0,1fr)}}
+.gkeyrow{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:.8rem;color:var(--ink-2);margin-top:8px;align-items:center}
+.gkeyrow svg{display:inline-block;vertical-align:middle}
+.gtools{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin-bottom:10px;font-size:.86rem}
+.gtools input[type=search]{font:inherit;padding:6px 10px;border:1px solid var(--rule-2);border-radius:8px;background:var(--card);color:var(--ink);min-width:0;width:220px;max-width:100%}
+.gtools label{display:inline-flex;gap:6px;align-items:center;color:var(--ink-2);cursor:pointer}
+.gbtn{font:inherit;font-size:.85rem;padding:5px 11px;border:1px solid var(--rule-2);border-radius:8px;background:var(--card);color:var(--ink);cursor:pointer}
+.gbtn:hover{border-color:var(--brass)}
+.gbtn:focus-visible,.gtools input:focus-visible,.glegend button:focus-visible{outline:2px solid var(--brass);outline-offset:2px}
+.glegend{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.glegend button{font:inherit;font-size:.8rem;display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;border:1px solid var(--rule-2);background:var(--card);color:var(--ink);cursor:pointer}
+.glegend button[aria-pressed="false"]{opacity:.45}
+.glegend i{width:10px;height:10px;border-radius:50%;display:inline-block}
+.gcanvas{position:relative;height:760px;border:1px solid var(--rule);border-radius:12px;background:var(--card);overflow:hidden;touch-action:none}
+@media (max-width:620px){.gcanvas{height:480px}}
+.gcanvas svg{width:100%;height:100%;display:block;cursor:grab;user-select:none}
+.gcanvas svg.panning{cursor:grabbing}
+.gcanvas .e-fk{stroke:var(--rule-2);stroke-width:1.2;fill:none}
+.gcanvas .e-rd{stroke:var(--pine-3);stroke-width:1.2;stroke-dasharray:4 3;fill:none;opacity:.7}
+.gcanvas .e-hot{stroke:var(--ink);opacity:1;stroke-width:1.8}
+.gcanvas .dim{opacity:.12}
+.gcanvas .node{cursor:pointer}
+.gcanvas .node text{font-family:var(--body);font-size:16px;fill:var(--ink);paint-order:stroke;stroke:var(--card);stroke-width:3px;stroke-linejoin:round}
+.gcanvas .node .ring{fill:none;stroke:var(--card);stroke-width:2}
+.gcanvas .node.sel circle.body,.gcanvas .node.sel rect.body{stroke:var(--ink);stroke-width:2.5}
+.gzoom{position:absolute;right:10px;top:10px;display:grid;gap:6px}
+.gzoom .gbtn{width:34px;height:34px;padding:0;font-size:1.1rem;line-height:1}
+.gkey{position:absolute;left:10px;bottom:10px;background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:6px 10px;font-size:.75rem;color:var(--ink-2);display:grid;gap:3px}
+.gkey svg{width:auto;height:auto;display:inline-block;vertical-align:middle;cursor:default}
+.gside{background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:16px;display:grid;gap:10px;align-content:start;min-width:0;max-height:760px;overflow:auto}
+.gside h4{margin:0;font-family:ui-monospace,"Cascadia Mono",Consolas,monospace;font-size:.95rem;color:var(--pine);overflow-wrap:anywhere}
+.gside .meta{display:flex;flex-wrap:wrap;gap:6px;font-size:.78rem}
+.gside .meta span{border:1px solid var(--rule-2);border-radius:999px;padding:1px 8px;color:var(--ink-2)}
+.gside p{font-size:.88rem}
+.gside .lst{font-size:.82rem;display:grid;gap:3px}
+.gside .lst b{font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+.gside .lst a{color:var(--pine-3);cursor:pointer;text-decoration:underline;text-underline-offset:2px;font-family:ui-monospace,"Cascadia Mono",Consolas,monospace;font-size:.8rem;overflow-wrap:anywhere}
+.gside .lst small{color:var(--ink-3)}
+
+#tip{position:fixed;pointer-events:none;z-index:20;background:var(--ink);color:var(--parchment);font-size:.8rem;padding:6px 10px;border-radius:6px;max-width:260px;line-height:1.35;font-variant-numeric:tabular-nums}
+footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--rule-2);font-size:.85rem;color:var(--ink-2);display:grid;gap:6px}
+@media (prefers-reduced-motion:no-preference){.meter i{transition:width .6s ease}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+<header class="top">
+  <div class="eyebrow">Nizam-e-Qanoon · GIKI FCSE Final Year Project</div>
+  <h1>What we have built: Pakistan's law, as a database you can ask questions of</h1>
+  <p>Every statute of the federation, the four provinces, Islamabad, Azad Jammu &amp; Kashmir and Gilgit-Baltistan that we could fetch with a clean text, cut into citable provisions, dated, and indexed for search. This page explains what is in the database, how it is shaped, and what is left to do.</p>
+  <div class="stamp"><span class="seal">Measured 19 Nov 2026</span><span>from the live database <b>nizam_clean</b></span><span>·</span><span><b>43 of 43</b> audit criteria pass</span></div>
+  <div class="figures">
+    <div class="fig"><span class="v">10,342</span><span class="k">laws released</span><span class="d">across 8 territories, none held back</span></div>
+    <div class="fig"><span class="v">1,172,523</span><span class="k">provisions</span><span class="d">sections, sub-sections, clauses, provisos, schedules</span></div>
+    <div class="fig"><span class="v">135,025</span><span class="k">printed pages</span><span class="d">270 million characters of law</span></div>
+    <div class="fig"><span class="v">1,132,245</span><span class="k">search chunks</span><span class="d">each with a meaning vector, for search</span></div>
+  </div>
+</header>
+
+<section id="layers">
+  <div class="lede">
+    <div class="eyebrow">Where the project stands</div>
+    <h2>Seven layers, built bottom-up</h2>
+    <p class="muted">Each layer only talks to the one below it. We build in that order because a search engine over an untrustworthy corpus gives numbers that mean nothing. The bottom two layers are done; the third is about a third of the way.</p>
+  </div>
+  <div class="ladder" id="ladder"></div>
+</section>
+
+<section id="pipeline">
+  <div class="lede">
+    <div class="eyebrow">How a PDF becomes a citable provision</div>
+    <h2>From an official portal to a search result, in seven steps</h2>
+    <p class="muted">Each step's output is stored, so any answer can be traced back to the exact printed page it came from. Counts are what the database holds now.</p>
+  </div>
+  <div class="pipe">
+    <div class="stage"><span class="n">STEP 1</span><span class="t">Observe</span><span class="c">10,397</span><span class="u">source observations: what each government portal listed, when</span><span class="tb">source_observation</span></div>
+    <div class="stage"><span class="n">STEP 2</span><span class="t">Store bytes</span><span class="c">10,191</span><span class="u">distinct files, fingerprinted by SHA-256</span><span class="tb">blob</span></div>
+    <div class="stage"><span class="n">STEP 3</span><span class="t">Extract</span><span class="c">135,025</span><span class="u">pages · 2.85 M text blocks with their position on the page</span><span class="tb">document · page · text_block</span></div>
+    <div class="stage"><span class="n">STEP 4</span><span class="t">Identify the law</span><span class="c">10,342</span><span class="u">laws, with name, number, year, dates, status, territory</span><span class="tb">instrument</span></div>
+    <div class="stage"><span class="n">STEP 5</span><span class="t">Segment</span><span class="c">1,172,523</span><span class="u">provisions in a tree: Part › Chapter › Section › Clause</span><span class="tb">provision</span></div>
+    <div class="stage"><span class="n">STEP 6</span><span class="t">Date the text</span><span class="c">1,114,702</span><span class="u">versions: which words were law between which dates</span><span class="tb">provision_version</span></div>
+    <div class="stage"><span class="n">STEP 7</span><span class="t">Index for search</span><span class="c">1,132,245</span><span class="u">chunks with keyword indexes and meaning vectors</span><span class="tb">chunk</span></div>
+  </div>
+  <p class="note">Quality gates sit between the steps. A law is released only when its text matches an independent extractor at 99.9% or better, its printed table of contents agrees with its parsed sections, and nothing on its pages is left unplaced. Laws that fail stay out. Today none fails.</p>
+</section>
+
+<section id="laws">
+  <div class="lede">
+    <div class="eyebrow">What is in the corpus</div>
+    <h2>Laws by place, and whether each is still law</h2>
+    <p class="muted"><b>Current</b> laws are served as operative law. <b>Not current</b> laws were repealed, lapsed (an Ordinance not passed in time) or replaced; they are kept and served for dates before they ended. <b>Historical</b> laws are pre-1947 texts or laws of places outside Pakistan, served only for history.</p>
+  </div>
+  <div class="panel">
+    <h3>Laws per place</h3>
+    <div class="cap">10,342 released laws. Federal includes Islamabad Capital Territory. Hover a bar for counts.</div>
+    <div class="legend"><span><i style="background:var(--s-cur)"></i>Current</span><span><i style="background:var(--s-hist)"></i>Historical</span><span><i style="background:var(--s-nc)"></i>Not current</span></div>
+    <div class="chart" id="c-place"></div>
+    <details><summary>Show the numbers</summary><div class="tbl" id="t-place"></div></details>
+  </div>
+  <div class="grid2">
+    <div class="panel">
+      <h3>Laws by kind</h3>
+      <div class="cap">Acts are passed by a legislature; Ordinances are made by a governor or president and lapse unless passed; Rules and Regulations are made under an Act.</div>
+      <div class="chart" id="c-kind"></div>
+      <details><summary>Show the numbers</summary><div class="tbl" id="t-kind"></div></details>
+    </div>
+    <div class="panel">
+      <h3>Why 2,073 laws are not current</h3>
+      <div class="cap">Not current and historical together. Each law carries one recorded reason.</div>
+      <div class="chart" id="c-why"></div>
+      <details><summary>Show the numbers</summary><div class="tbl" id="t-why"></div></details>
+    </div>
+  </div>
+  <div class="panel">
+    <h3>When the laws were made</h3>
+    <div class="cap">Laws per decade, from the year printed in the law itself. The oldest are Bengal Regulations of 1812 and 1818. The 2010s are the busiest decade, the first after the 18th Amendment (2010) moved many subjects to the provinces.</div>
+    <div class="chart" id="c-decade"></div>
+    <details><summary>Show the numbers</summary><div class="tbl" id="t-decade"></div></details>
+  </div>
+</section>
+
+<section id="inside">
+  <div class="lede">
+    <div class="eyebrow">Inside one law</div>
+    <h2>A law is a tree of provisions, and the provision is what gets cited</h2>
+    <p class="muted">We never cite a "chunk" or a page. We cite a provision: section 302(b), Article 25(2), clause (iii) of a proviso. Each provision has a stable address in the tree, so re-processing a law never breaks a citation that was already given.</p>
+  </div>
+  <div class="grid2">
+    <div class="panel">
+      <h3>The shape of a law</h3>
+      <div class="cap">Section 302 of the Pakistan Penal Code as our database stores it, with the kind of each node.</div>
+<div class="tree"><span class="k">law</span>        Pakistan Penal Code (1860)
+ └ <span class="k">chapter</span>  XVI
+    └ <span class="k">section</span>  302  Punishment of qatl-i-amd
+       ├ <span class="k">clause</span>   (a)  <span class="m">…</span>
+       ├ <span class="k">clause</span>   (b)  <span class="m">…</span>
+       └ <span class="k">clause</span>   (c)  <span class="m">…</span>
+          └ <span class="k">proviso</span>    <span class="m">Provided that …</span>
+  each node → <span class="k">versions</span>: the words in force from date A to date B</div>
+      <p class="small muted" style="margin-top:12px">A version is the wording valid over a date range. The database makes overlapping ranges for one provision impossible to store, so "what did section 302 say on 1 Jan 2010?" has exactly one answer.</p>
+    </div>
+    <div class="panel">
+      <h3>Provisions by kind</h3>
+      <div class="cap">1,172,523 released provisions. Clauses outnumber sections three to one.</div>
+      <div class="chart" id="c-prov"></div>
+      <details><summary>Show the numbers</summary><div class="tbl" id="t-prov"></div></details>
+    </div>
+  </div>
+</section>
+
+<section id="links">
+  <div class="lede">
+    <div class="eyebrow">How laws connect</div>
+    <h2>Laws amend, repeal and empower each other</h2>
+    <p class="muted">An Act says "as prescribed", and the prescription is in Rules made years later. Answering from the Act alone gives a confidently incomplete answer, so links between laws are stored as data.</p>
+  </div>
+  <div class="grid2">
+    <div class="panel">
+      <h3>Typed links, resolved to the law they point at</h3>
+      <div class="cap">From the <code>legal_edge</code> view. 3 of the 14 link types in docs/03b are built so far.</div>
+      <div class="chart" id="c-edge"></div>
+      <details><summary>Show the numbers</summary><div class="tbl" id="t-edge"></div></details>
+    </div>
+    <div class="panel">
+      <h3>The evidence behind status and dates</h3>
+      <div class="cap">Every status and date is a recorded claim with its source line on the page, not a guess.</div>
+      <div class="tbl"><table>
+        <tr><th>Record</th><th class="r">Rows</th><th>What it says</th></tr>
+        <tr><td>Amendment footnotes</td><td class="r">15,184</td><td>"Subs. by Act X of 2016": which law changed which provision</td></tr>
+        <tr><td>Metadata claims</td><td class="r">57,948</td><td>a name, number, date, status or extent, each with its page and quote</td></tr>
+        <tr><td>Whole-law repeals</td><td class="r">220</td><td>a held Act that repeals another held law</td></tr>
+        <tr><td>Territorial repeals</td><td class="r">48</td><td>a federal law repealed in one province only</td></tr>
+        <tr><td>Units repealed</td><td class="r">34</td><td>sections repealed while the rest of the law stands</td></tr>
+        <tr><td>As-made twins</td><td class="r">51</td><td>Gazette texts served through their consolidated version</td></tr>
+      </table></div>
+    </div>
+  </div>
+</section>
+
+<section id="schema">
+  <div class="lede">
+    <div class="eyebrow">The database structure</div>
+    <h2>56 tables, 54 views, 113 migrations, one Postgres</h2>
+    <p class="muted">Every table comes from a migration file in git, so a teammate's laptop and the server cannot drift. The tables fall into three groups: what the government published, what the law says, and what search reads. Dashed boxes are views: safe windows onto the tables.</p>
+  </div>
+  <div class="schema">
+    <div class="col">
+      <div class="hd">1 · What was published</div>
+      <div class="tbox"><span class="nm">source_observation</span><span class="rw">10,397 rows</span><span class="ds">a portal listing: URL, date seen, HTTP result</span></div><div class="down">▼</div>
+      <div class="tbox"><span class="nm">blob</span><span class="rw">10,191 rows</span><span class="ds">the PDF's bytes, keyed by fingerprint</span></div><div class="down">▼</div>
+      <div class="tbox"><span class="nm">document</span><span class="rw">10,191 active</span><span class="ds">one extraction of those bytes</span></div><div class="down">▼</div>
+      <div class="tbox"><span class="nm">page · text_block</span><span class="rw">135,025 · 2.85 M</span><span class="ds">each printed line with its position, font and size</span></div>
+    </div>
+    <div class="col">
+      <div class="hd">2 · What the law says</div>
+      <div class="tbox"><span class="nm">instrument</span><span class="rw">10,342 released</span><span class="ds">the law: title, kind, number, year, dates, status</span></div><div class="down">▼</div>
+      <div class="tbox"><span class="nm">provision</span><span class="rw">1,172,523 released</span><span class="ds">a node in the law's tree, with its address</span></div><div class="down">▼</div>
+      <div class="tbox"><span class="nm">provision_version</span><span class="rw">1,114,702 released</span><span class="ds">its words, valid over a date range</span></div><div class="down">▲</div>
+      <div class="tbox"><span class="nm">provision_block</span><span class="rw">3.4 M rows</span><span class="ds">ties every printed line to its provision: the trail back to the page</span></div>
+    </div>
+    <div class="col">
+      <div class="hd">3 · What search reads</div>
+      <div class="tbox view"><span class="nm">operative_provision</span><span class="rw">view</span><span class="ds">only the law in force on a date, in a territory. Search reads nothing else</span></div><div class="down">▼</div>
+      <div class="tbox"><span class="nm">chunk</span><span class="rw">1,132,245 rows</span><span class="ds">a window into a version (offsets, never a copy of the text) + its vector</span></div><div class="down">▼</div>
+      <div class="tbox"><span class="nm">embedding_generation</span><span class="rw">1 active (CPU)</span><span class="ds">which model made the vectors; a GPU one is being added</span></div>
+      <div class="tbox view"><span class="nm">legal_edge</span><span class="rw">view · 6,263 links</span><span class="ds">amends, repeals, empowers</span></div>
+    </div>
+  </div>
+  <div class="panel">
+    <h3>Where the 6.2 GB goes</h3>
+    <div class="cap">Size on disk of each table with its indexes, in MB. The nine largest hold 94% of the database.</div>
+    <div class="chart" id="c-size"></div>
+    <details><summary>Show the numbers</summary><div class="tbl" id="t-size"></div></details>
+  </div>
+</section>
+
+<section id="graph">
+  <div class="lede">
+    <div class="eyebrow">The database as a graph</div>
+    <h2>Every table, and every link between them</h2>
+    <p class="muted">Each circle is a table; its size shows how much disk it uses. A solid arrow is a foreign key: the table holds an id that points at the other. A dashed arrow means a view reads that table. The six colours group the tables by the job they do, in roughly the order data flows. Click a table to see what it holds and what it links to; drag to move, scroll or use the buttons to zoom.</p>
+  </div>
+  <div class="gtools">
+    <input type="search" id="g-find" placeholder="Find a table, e.g. provision" aria-label="Find a table" list="g-names">
+    <datalist id="g-names"></datalist>
+    <label><input type="checkbox" id="g-fk" checked> Foreign keys</label>
+    <label><input type="checkbox" id="g-rd" checked> View reads</label>
+    <button class="gbtn" id="g-clear" type="button">Clear selection</button>
+  </div>
+  <div class="glegend" id="g-legend"></div>
+  <div class="breakout">
+  <div class="gwrap">
+    <div style="min-width:0">
+      <div class="gcanvas" id="g-canvas">
+        <svg id="g-svg" role="img" aria-label="Graph of the database tables and the links between them"></svg>
+        <div class="gzoom"><button class="gbtn" id="g-in" type="button" aria-label="Zoom in">+</button><button class="gbtn" id="g-out" type="button" aria-label="Zoom out">−</button><button class="gbtn" id="g-fit" type="button" aria-label="Fit to view">⤢</button></div>
+      </div>
+      <div class="gkeyrow">
+        <span><svg width="28" height="8"><line x1="0" y1="4" x2="28" y2="4" stroke="var(--ink-3)" stroke-width="1.4"></line></svg> foreign key, arrow at the parent table</span>
+        <span><svg width="28" height="8"><line x1="0" y1="4" x2="28" y2="4" stroke="var(--pine-3)" stroke-width="1.4" stroke-dasharray="4 3"></line></svg> a view reads that table</span>
+        <span>● table · ◉ materialized view · ▢ view · circle size = disk used</span>
+      </div>
+    </div>
+    <aside class="gside" id="g-side" aria-live="polite"></aside>
+  </div>
+  </div>
+  <p class="small muted">59 tables and materialized views, plus the 8 views that matter most to serving. Of the 121 foreign keys, 107 are drawn. The other 14 point back at their own table: a revision chain such as <code>supersedes_id</code>, or <code>provision.parent_id</code>, which is what makes provisions a tree. They are listed in the side panel. A dashed arrow marked "through" passes via an intermediate <code>*_current</code> view that picks the latest record. <code>schema_migration</code>, the migration ledger, links to nothing and is left out. Read from the live catalogue on 19 Nov 2026.</p>
+</section>
+
+<section id="rules">
+  <div class="lede">
+    <div class="eyebrow">The five rules nothing may break</div>
+    <h2>Invariants: a design that breaks one is wrong, however well it scores</h2>
+  </div>
+  <div class="inv">
+    <div><b>No made-up citations</b><span>Section numbers, dates and links come from the database. The language model only names identifiers.</span></div>
+    <div><b>No answer without proof</b><span>Search returns either grounding or "I can't answer this". There is no third option, and no fallback to the model's memory.</span></div>
+    <div><b>Every answer replayable</b><span>The question, filters, results, scores, prompt and model version are kept for every answer.</span></div>
+    <div><b>Cite provisions</b><span>Above the storage layer nothing refers to a chunk. Re-chunking never breaks a stored citation.</span></div>
+    <div><b>Law as at a date</b><span>Every search carries a date and reads the operative view, never the raw table.</span></div>
+  </div>
+</section>
+
+<section id="search">
+  <div class="lede">
+    <div class="eyebrow">Search, the layer we are building now</div>
+    <h2>Keyword search plus meaning search finds three-quarters of the right law</h2>
+    <p class="muted">We measure on golden questions with known answers: 200 so far, split into a <b>dev</b> half we tune on and a <b>test</b> half scored once. Recall@50 is the share of the right provisions that appear in the top 50 results. The reranker, next, decides which of the 50 reach the answer.</p>
+  </div>
+  <div class="grid2">
+    <div class="panel">
+      <h3>Recall@50, before and after adding meaning search</h3>
+      <div class="cap">Dashed line: the docs/10 target of 0.90. Provisional until two annotators agree on the golden set.</div>
+      <div class="legend"><span><i style="background:var(--s-soft)"></i>Keyword only</span><span><i style="background:var(--s-one)"></i>Keyword + meaning</span></div>
+      <div class="chart" id="c-recall"></div>
+      <details><summary>Show the numbers</summary><div class="tbl" id="t-recall"></div></details>
+    </div>
+    <div class="panel">
+      <h3>What a search does today</h3>
+      <div class="tbl"><table>
+        <tr><th>Stage</th><th>What happens</th><th>Status</th></tr>
+        <tr><td>Citation fast path</td><td>"s. 302 PPC" goes straight to the provision: 224 of 224 golden citations resolved, none wrong</td><td><span class="pill ok">done</span></td></tr>
+        <tr><td>Keyword</td><td>BM25 over titles, headings and text, fused across fields</td><td><span class="pill ok">done</span></td></tr>
+        <tr><td>Meaning (offline)</td><td>bge-m3 vectors on any CPU, also for the phone pack</td><td><span class="pill ok">done</span></td></tr>
+        <tr><td>Meaning (online)</td><td>Qwen3-Embedding-8B on a GPU, kept only if it beats bge-m3</td><td><span class="pill wip">running</span></td></tr>
+        <tr><td>Reranker</td><td>reads question and provision together, reorders the top 50</td><td><span class="pill no">next</span></td></tr>
+        <tr><td>Gate</td><td>answer or abstain, at a calibrated threshold</td><td><span class="pill no">to do</span></td></tr>
+      </table></div>
+      <p class="small muted" style="margin-top:12px">Typical search time 0.8–1.0 s (p50), 1.0–1.5 s at p95. Urdu-script questions went from 0 to 0.571 recall once meaning search was added.</p>
+    </div>
+  </div>
+</section>
+
+<section id="next">
+  <div class="lede">
+    <div class="eyebrow">What is left</div>
+    <h2>The road from here, in the order it has to happen</h2>
+  </div>
+  <ol class="next">
+    <li><div><b>Finish the GPU embedding.</b> 24 slices of Qwen3-Embedding-8B are running on Kaggle; then load, measure against bge-m3, keep it only if it wins.</div></li>
+    <li><div><b>Reranker and gate.</b> A cross-encoder over the top 50, then the abstention gate with thresholds calibrated on dev. Target recall@50 0.90, NDCG@10 0.75.</div></li>
+    <li><div><b>Finish the golden set.</b> 300 more questions, including the 10% that our corpus cannot answer, annotated by two people with agreement (κ) reported.</div></li>
+    <li><div><b>Answer generation.</b> The self-hosted, fine-tuned 27–32B model, citing identifiers only, with every claim checked against its source.</div></li>
+    <li><div><b>Services, API, apps.</b> Limitation periods, court-fee and stamp-duty calculators, drafting; the HTTP contract; the offline phone pack and answer screens.</div></li>
+    <li><div><b>Corpus growth.</b> Case law (no judgments yet), 1,025 scanned AJK and GB laws that need OCR, and the other 11 link types.</div></li>
+  </ol>
+</section>
+
+<section id="register">
+  <div class="lede">
+    <div class="eyebrow">Every law, by name</div>
+    <h2>The law register</h2>
+    <p class="muted">All 10,342 laws are listed in the repository at <code>docs/law-register/</code>: one readable table per place, and <code>laws.csv</code> with 35 columns per law. The columns cover name and its evidence, kind, number, year, enacted and commenced dates with their basis, status, currency and reason, territorial reach, repeals, provision count, page count, source URL and file fingerprint. It is generated from the database by <code>tools/law_register.py</code>, so it never drifts from what the system serves.</p>
+  </div>
+</section>
+
+<footer>
+  <span>Figures read from the live database on 19 Nov 2026 (views <code>v_release_instrument</code>, <code>mv_instrument_serving</code>, <code>v_release_provision</code>, <code>legal_edge</code>; table sizes from <code>pg_total_relation_size</code>). Retrieval figures are from D-097 and D-098 in docs/DECISION-LOG.md.</span>
+  <span>Retrieval numbers are provisional: the golden set's review sheets are not yet annotated and agreement is not measured.</span>
+</footer>
+</div>
+<div id="tip" hidden></div>
+
+<script>
+const D = {
+  place: [["Federal",2452,671,439],["Sindh",1713,0,291],["AJK",808,0,634],["Punjab",1346,4,16],["Balochistan",1020,1,9],["KP",903,0,8],["GB",27,0,0]],
+  kind: [["Act",5115],["Ordinance",2622],["Rules",1655],["Regulation",521],["Order",353],["Notification",72],["Constitution",4]],
+  why: [["Ordinance lapsed",1063],["Pre-1947 text, not in an official code",549],["Replaced by a later Act",144],["Law of a place outside Pakistan",117],["Repealed (dated)",98],["Repealed, date not established",67],["Portal marks it repealed",23],["Parent law historical",10],["Superseded or repealed in each territory",2]],
+  decade: [["1810",3],["1820",3],["1830",2],["1840",2],["1850",19],["1860",76],["1870",171],["1880",133],["1890",95],["1900",90],["1910",116],["1920",146],["1930",201],["1940",287],["1950",764],["1960",744],["1970",1512],["1980",901],["1990",824],["2000",1137],["2010",1918],["2020",1192]],
+  prov: [["Clause",582207],["Sub-section",317387],["Section",198028],["Proviso",33400],["Chapter",11079],["Part",9507],["Explanation",6737],["Schedule",4260],["Preamble",3824],["Form",3327],["Other (illustration, appendix, annexure, article, order)",2767]],
+  edge: [["Amends",5039],["Empowers (Act → its Rules)",1042],["Repeals",182]],
+  size: [["provision_version",1416,"the dated words of every provision, plus keyword indexes"],["chunk",913,"search windows, vectors and the vector index"],["provision",850,"the provision tree"],["text_block",822,"every printed line with its position"],["provision_ancestor",740,"a speed-up for tree queries"],["provision_block",533,"line-to-provision links"],["segmentation_curation_patch",331,"audited source corrections"],["instrument_revision_archive_manifest",226,"proof of what earlier revisions held"],["mv_provision_text_known_from",134,"how far back each text is known to be law"],["everything else (51 more)",386,""]],
+  recall: [["Dev split",0.519,0.764],["Test split (once)",0.542,0.743]]
+};
+const NS="http://www.w3.org/2000/svg";
+const fmt=n=>n.toLocaleString("en-US");
+function el(tag,attrs,parent,text){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(text!=null)e.textContent=text;if(parent)parent.appendChild(e);return e}
+function niceMax(v){const p=Math.pow(10,Math.floor(Math.log10(v)));for(const m of [1,2,2.5,5,10]){if(m*p>=v)return m*p}return 10*p}
+function ticks(max){const step=max/4;return [0,1,2,3,4].map(i=>i*step)}
+
+/* horizontal bars; rows = [label, ...values]; series = [{name,color}] stacked */
+function hbars(id,rows,series,opt={}){
+  const host=document.getElementById(id);const W=opt.width||640,lw=opt.labelW||150,rowH=opt.rowH||30,bh=opt.barH||18,top=8,bottom=26,pr=64;
+  const H=top+rows.length*rowH+bottom;const tot=rows.map(r=>r.slice(1,1+series.length).reduce((a,b)=>a+b,0));
+  const max=niceMax(Math.max(...tot));const x=v=>lw+(W-lw-pr)*v/max;
+  const s=el("svg",{viewBox:`0 0 ${W} ${H}`,role:"img","aria-label":opt.aria||""},host);
+  for(const t of ticks(max)){el("line",{x1:x(t),x2:x(t),y1:top,y2:H-bottom,class:"grid"},s);el("text",{x:x(t),y:H-8,"text-anchor":"middle"},s,opt.tickFmt?opt.tickFmt(t):fmt(t))}
+  rows.forEach((r,i)=>{const y=top+i*rowH+(rowH-bh)/2;el("text",{x:lw-10,y:y+bh/2+4,"text-anchor":"end",class:"lbl"},s,r[0]);
+    let acc=0;series.forEach((se,j)=>{const v=r[1+j];if(!v)return;const x0=x(acc),x1=x(acc+v);const w=Math.max(x1-x0-(j<series.length-1?2:0),1.5);
+      el("rect",{x:x0,y:y,width:w,height:bh,rx:3,fill:se.color,"data-tip":`${r[0]} · ${se.name}: ${fmt(v)}`+(series.length>1?` of ${fmt(tot[i])}`:"")+(opt.tipExtra&&opt.tipExtra(r)?` · ${opt.tipExtra(r)}`:"")},s);acc+=v});
+    el("text",{x:x(tot[i])+6,y:y+bh/2+4,class:"val"},s,opt.valFmt?opt.valFmt(tot[i]):fmt(tot[i]))});
+  el("line",{x1:lw,x2:lw,y1:top,y2:H-bottom,class:"base"},s);
+}
+function vbars(id,rows,opt={}){
+  const host=document.getElementById(id);const W=760,H=260,pl=44,pr=8,top=14,bottom=30;const n=rows.length;const max=niceMax(Math.max(...rows.map(r=>r[1])));
+  const bw=(W-pl-pr)/n;const y=v=>top+(H-top-bottom)*(1-v/max);const s=el("svg",{viewBox:`0 0 ${W} ${H}`,role:"img","aria-label":opt.aria||""},host);
+  for(const t of ticks(max)){el("line",{x1:pl,x2:W-pr,y1:y(t),y2:y(t),class:"grid"},s);el("text",{x:pl-6,y:y(t)+4,"text-anchor":"end"},s,fmt(t))}
+  rows.forEach((r,i)=>{const x0=pl+i*bw+1;el("rect",{x:x0,y:y(r[1]),width:bw-2,height:Math.max(y(0)-y(r[1]),1),rx:3,fill:"var(--s-one)","data-tip":`${r[0]}s: ${fmt(r[1])} laws`},s);
+    if(i%2===0)el("text",{x:x0+(bw-2)/2,y:H-10,"text-anchor":"middle"},s,r[0]);
+    if(r[1]===Math.max(...rows.map(q=>q[1])))el("text",{x:x0+(bw-2)/2,y:y(r[1])-5,"text-anchor":"middle",class:"val"},s,fmt(r[1]))});
+  el("line",{x1:pl,x2:W-pr,y1:y(0),y2:y(0),class:"base"},s);
+}
+function recall(id,rows){
+  const host=document.getElementById(id);const W=560,H=260,pl=40,pr=10,top=16,bottom=34;const y=v=>top+(H-top-bottom)*(1-v);
+  const s=el("svg",{viewBox:`0 0 ${W} ${H}`,role:"img","aria-label":"Recall at 50 by split"},host);
+  for(const t of [0,.25,.5,.75,1]){el("line",{x1:pl,x2:W-pr,y1:y(t),y2:y(t),class:"grid"},s);el("text",{x:pl-6,y:y(t)+4,"text-anchor":"end"},s,t.toFixed(2))}
+  el("line",{x1:pl,x2:W-pr,y1:y(.9),y2:y(.9),class:"target"},s);el("text",{x:W-pr,y:y(.9)-6,"text-anchor":"end",style:"fill:var(--oxide)"},s,"target 0.90");
+  const gw=(W-pl-pr)/rows.length,bw=56;
+  rows.forEach((r,i)=>{const cx=pl+gw*i+gw/2;[[r[1],"var(--s-soft)","Keyword only"],[r[2],"var(--s-one)","Keyword + meaning"]].forEach(([v,c,nm],j)=>{const x0=cx-bw-1+j*(bw+2);
+      el("rect",{x:x0,y:y(v),width:bw,height:y(0)-y(v),rx:3,fill:c,"data-tip":`${r[0]} · ${nm}: ${v.toFixed(3)}`},s);el("text",{x:x0+bw/2,y:y(v)-6,"text-anchor":"middle",class:"val"},s,v.toFixed(3))});
+    el("text",{x:cx,y:H-12,"text-anchor":"middle",class:"lbl"},s,r[0])});
+  el("line",{x1:pl,x2:W-pr,y1:y(0),y2:y(0),class:"base"},s);
+}
+function table(id,head,rows){const t=document.createElement("table");t.innerHTML="<tr>"+head.map((h,i)=>`<th${i?' class="r"':''}>${h}</th>`).join("")+"</tr>"+rows.map(r=>"<tr>"+r.map((c,i)=>`<td${i?' class="r"':''}>${typeof c==="number"?(Number.isInteger(c)?fmt(c):c.toFixed(3)):c}</td>`).join("")+"</tr>").join("");document.getElementById(id).appendChild(t)}
+
+/* layers */
+const L=[["L1","Corpus","fetch, extract, segment, date and release the law","done",100,"10,342 laws, 43/43 audits"],
+ ["L2","Storage","Postgres schema, the as-at-date view, search indexes","done",100,"113 migrations"],
+ ["L3","Retrieval","citation path, keyword + meaning search, reranker, gate","part",35,"candidates done; reranker and gate next"],
+ ["L4","Generation","the 27–32B model, grounded answers, verifier","todo",0,"not started"],
+ ["L5","Services","citator, limitation, calculators, drafting","todo",0,"not started"],
+ ["L6","API","HTTP contract, identity, audit, sync","part",5,"a dev API serves the reader"],
+ ["L7","Clients","mobile app, web, offline pack","part",15,"reader + heritage tab on Android"]];
+const lad=document.getElementById("ladder");
+L.forEach(([id,nm,ds,st,pc,note])=>{const d=document.createElement("div");d.className="rung";const col=st==="done"?"var(--done)":st==="part"?"var(--part)":"var(--todo)";
+  d.innerHTML=`<span class="id">${id}</span><div style="min-width:0"><div class="nm">${nm}</div><div class="ds">${ds}</div></div><div class="st ${st}"><span>${st==="done"?"Done":st==="part"?"In progress":"Not started"} · <span style="text-transform:none;letter-spacing:0;font-weight:500;color:var(--ink-2)">${note}</span></span><span class="meter" role="img" aria-label="${pc}% complete"><i style="width:${Math.max(pc,0)}%;background:${col}"></i></span></div>`;lad.appendChild(d)});
+
+const SC=[{name:"Current",color:"var(--s-cur)"},{name:"Historical",color:"var(--s-hist)"},{name:"Not current",color:"var(--s-nc)"}];
+hbars("c-place",D.place,SC,{labelW:100,aria:"Laws per place, stacked by currency"});
+table("t-place",["Place","Current","Historical","Not current","Total"],D.place.map(r=>[r[0],r[1],r[2],r[3],r[1]+r[2]+r[3]]));
+const one=[{name:"Laws",color:"var(--s-one)"}];
+hbars("c-kind",D.kind,one,{labelW:100,rowH:28,aria:"Laws by kind"});table("t-kind",["Kind","Laws"],D.kind);
+hbars("c-why",D.why,[{name:"Laws",color:"var(--s-nc)"}],{labelW:250,rowH:28,aria:"Reasons laws are not current"});table("t-why",["Reason","Laws"],D.why);
+vbars("c-decade",D.decade,{aria:"Laws per decade"});table("t-decade",["Decade","Laws"],D.decade.map(r=>[r[0]+"s",r[1]]));
+hbars("c-prov",D.prov,one,{labelW:150,rowH:26,barH:16,aria:"Provisions by kind",tickFmt:t=>t>=1000?(t/1000)+"k":t});table("t-prov",["Kind","Provisions"],D.prov);
+hbars("c-edge",D.edge,one,{labelW:190,rowH:34,aria:"Links between laws by type"});table("t-edge",["Link","Count"],D.edge);
+hbars("c-size",D.size.map(r=>[r[0],r[1],r[2]]),[{name:"MB",color:"var(--s-one)"}],{labelW:260,rowH:28,aria:"Table sizes in MB",valFmt:v=>fmt(v)+" MB",tipExtra:r=>r[2]});
+table("t-size",["Table","MB","Holds"],D.size.map(r=>[r[0],r[1],r[2]]));
+recall("c-recall",D.recall);table("t-recall",["Split","Keyword only","Keyword + meaning"],D.recall);
+
+/* ---------- schema graph (no library: a small deterministic force layout) ---------- */
+(function(){
+const GROUPS=[["S","Published sources","--g1",250,230],["E","Extraction & archives","--g2",760,200],["Q","Segmentation & QA","--g5",1290,230],
+              ["F","Legal facts & evidence","--g4",250,860],["L","The law","--g3",760,820],["R","Serving & search","--g6",1290,880]];
+const GI={};GROUPS.forEach((g,i)=>GI[g[0]]=i);
+// [name, kind r|m|v, group, rows, bytes, what it holds]
+const N=[
+["source_observation","r","S",10397,15745024,"What a government portal listed at a point in time: the URL, when it was seen, the HTTP result. An observation, not the law's identity."],
+["blob","r","S",10191,3432448,"The bytes of a downloaded file, identified by its SHA-256 fingerprint."],
+["acquisition_attempt","r","S",220,163840,"Each retry to fetch a source that failed, with the HTTP evidence."],
+["acquisition_exception","r","S",66,106496,"A source we could not get, declared with its dated attempts and the error seen."],
+["source_incompleteness","r","S",54,270336,"A landed file that is only a partial copy of its law, and where the complete copy is."],
+["source_non_authoritative_copy","r","S",2,114688,"A landed file that is not the law's text (an unofficial translation or a Bill), pointing at the real one."],
+["source_same_text_copy","r","S",6,155648,"A second file printing the same law, differing only in page furniture."],
+["document","r","E",11329,10051584,"One extraction of a file's bytes: bytes plus language plus publication role."],
+["page","r","E",153972,29466624,"One printed page of a document, with its size and extraction lane."],
+["text_block","r","E",2849425,861929472,"Every printed line, with its position, font and size on the page."],
+["extraction_attempt","r","E",12201,4833280,"Every extraction try, successful or not. The OCR backlog is a query on this table."],
+["extraction_verification","r","E",103874,44449792,"Character-level checks against an independent extractor (recall and precision of at least 0.999)."],
+["extraction_assertion","r","E",253,491520,"Recorded findings about one file's extraction."],
+["page_ocr_candidate","r","E",7995,35037184,"Alternative OCR readings of a scanned page."],
+["page_ocr_adjudication","r","E",4685,5758976,"A reviewer's choice between OCR readings. Rejected readings are kept."],
+["revision_archive_batch","r","E",7,32768,"A restore-tested archive dump made before old revisions were pruned."],
+["document_revision_archive_manifest","r","E",0,24576,"Proof of what a pruned document revision held."],
+["instrument_revision_archive_manifest","r","E",56085,237174784,"Proof of what pruned law-tree revisions held before they were deleted."],
+["block_assignment_set","r","Q",12595,3137536,"An immutable segmentation revision: which text blocks went to which law."],
+["segmentation_run","r","Q",69294,45629440,"Each segmentation of a law. Agreement with the printed contents is its acceptance test."],
+["segmentation_curation_patch","r","Q",181410,347144192,"Audited corrections to the parser's input, each with a page locator. text_block itself is never edited."],
+["segmentation_profile_pin","r","Q",1391,1564672,"Which parser profile a source is built with."],
+["segmentation_structural_candidate","r","Q",5119,4521984,"A parser proposal where two provisions collide (criterion S7)."],
+["segmentation_structural_adjudication","r","Q",4023,8224768,"The decision on a structural candidate."],
+["segmentation_boundary_candidate","r","Q",289,557056,"A proposal that one PDF holds the start of another law."],
+["segmentation_boundary_adjudication","r","Q",245,237568,"The decision on a boundary candidate."],
+["instrument_toc_entry","r","Q",177448,86032384,"Each line of a law's printed contents, linked to the provision it names."],
+["toc_gap_adjudication","r","Q",1971,6725632,"A page-evidenced decision on a contents entry with no matching section."],
+["toc_disposition_assertion","r","Q",289,376832,"Proof that a contents entry prints [Omitted] or [Repealed]."],
+["toc_disposition_withdrawal","r","Q",1,81920,"A disposition that no longer applies. The assertion stays on record."],
+["heading_mislabel_census","r","Q",48,90112,"One run of the heading-mislabel census."],
+["heading_mislabel_finding","r","Q",360,245760,"A provision whose heading differs from what its printed block says."],
+["instrument_expression_manifest","r","Q",2607,10731520,"Reviewed boundaries of the laws inside one PDF."],
+["instrument_expression_span","r","Q",2779,450560,"The exact block ranges a manifest owns."],
+["instrument","r","L",12142,16113664,"The law: title, kind, number, year, dates, status, territory. 10,342 are released."],
+["provision","r","L",1658120,891650048,"A node in a law's tree: section, sub-section, clause. The citable unit (INV-4)."],
+["provision_version","r","L",1580377,1484251136,"A provision's words, valid over a date range. Overlapping ranges are impossible to store (INV-5)."],
+["provision_ancestor","r","L",3231885,775634944,"A speed-up table: every provision paired with each of its ancestors."],
+["provision_block","r","L",3431404,558374912,"Ties every printed line to the provision it belongs to: the trail back to the page."],
+["instrument_source","r","L",12123,1286144,"Which source observations an instrument came from."],
+["instrument_identity_resolution","r","L",640,540672,"Proof that two law revisions have identical text and structure, for de-duplication."],
+["instrument_metadata_assertion","r","F",57724,36478976,"One fact about a law (title, number, date, status, extent) with its page and the quote it was read from."],
+["instrument_status_assertion","r","F",0,24576,"An earlier table for status claims, now empty; status lives in instrument_metadata_assertion."],
+["statutory_repeal","r","F",220,237568,"A held Act repealing a whole held law, with the clause verbatim."],
+["territorial_repeal","r","F",48,73728,"A federal law repealed in one province only."],
+["provision_repeal","r","F",35,73728,"A section repealed while the rest of its law stands."],
+["provision_survival","r","F",16,57344,"A section a repeal expressly keeps alive, e.g. Part VIIIA of the Companies Ordinance, 1984."],
+["instrument_supersession","r","F",374,311296,"An Ordinance replaced by a later Act of the same name."],
+["amendment_reference","r","F",15184,7364608,"A printed amendment footnote: which law changed which provision, and from when."],
+["citation_abbreviation","r","F",2,32768,"A printed abbreviation and the law it stands for."],
+["delegation_record","r","F",1042,729088,"Rules or a notification, and the Act section it was made under (the empowers link)."],
+["consolidated_twin","r","F",51,90112,"An as-made Gazette text linked to its consolidated version, which is the one served."],
+["law_citation_count","r","F",10342,1318912,"How many other laws cite this one. A ranking signal, never law."],
+["mv_instrument_serving","m","R",10291,6152192,"Each law's currency, reach and territory exits, computed once so every search reads them fast."],
+["mv_provision_repeal","m","R",34,49152,"Repealed units and the date each stops being served."],
+["mv_provision_survival","m","R",16,49152,"Units served after their law has gone."],
+["mv_provision_text_known_from","m","R",1156433,140017664,"How far back each provision's held text is known to be the law."],
+["chunk","r","R",1132245,956882944,"Search windows into provision versions (offsets only, never a copy of the text), each with a bge-m3 vector."],
+["embedding_generation","r","R",1,49152,"Which model made the vectors. One active per device: CPU now, a GPU one being added. Chunks follow the active generation; there is no foreign key."],
+["operative_provision","v","R",null,0,"The only door search uses: provisions in force on a date, in a territory (INV-5)."],
+["legal_edge","v","R",null,0,"Typed links between laws: 5,039 amends, 1,042 empowers, 182 repeals."],
+["v_release_instrument","v","R",null,0,"The release boundary: laws that passed every quality gate (10,342)."],
+["v_release_provision","v","R",null,0,"Provisions of released laws (1,172,523)."],
+["v_release_provision_version","v","R",null,0,"Versions of released provisions."],
+["v_instrument_currency","v","R",null,0,"Each law's currency and the reason: current, not current or historical."],
+["v_release_document","v","R",null,0,"Documents whose newest quality evidence all passes."],
+["v_release_page","v","R",null,0,"Pages of released documents."]];
+// foreign keys: child, parent, column
+const FK=`acquisition_attempt source_observation source_observation_id|acquisition_exception acquisition_exception supersedes_id|acquisition_exception source_observation source_observation_id|amendment_reference source_observation source_observation_id|block_assignment_set block_assignment_set supersedes_set_id|block_assignment_set document document_id|block_assignment_set instrument instrument_id|block_assignment_set source_observation source_observation_id|chunk provision_version version_id|consolidated_twin source_observation as_made_observation_id|consolidated_twin source_observation consolidated_observation_id|delegation_record source_observation delegated_observation_id|delegation_record source_observation enabling_observation_id|document blob sha256|document document supersedes_document_id|document_revision_archive_manifest blob sha256|document_revision_archive_manifest revision_archive_batch batch_id|extraction_assertion blob sha256|extraction_attempt document document_id|extraction_verification document document_id|heading_mislabel_finding heading_mislabel_census census_id|instrument blob source_sha256|instrument document document_id|instrument instrument duplicate_of|instrument instrument repealed_by_id|instrument instrument supersedes_instrument_id|instrument source_observation source_observation_id|instrument text_block source_end_block_id|instrument text_block source_start_block_id|instrument_expression_manifest document document_id|instrument_expression_manifest instrument materialized_instrument_id|instrument_expression_manifest instrument_expression_manifest supersedes_manifest_id|instrument_expression_manifest source_observation current_source_observation_id|instrument_expression_manifest source_observation source_observation_id|instrument_expression_manifest text_block end_block_id|instrument_expression_manifest text_block start_block_id|instrument_expression_span instrument_expression_manifest manifest_id|instrument_expression_span text_block end_block_id|instrument_expression_span text_block start_block_id|instrument_identity_resolution blob source_sha256|instrument_identity_resolution instrument canonical_instrument_id|instrument_identity_resolution instrument duplicate_instrument_id|instrument_metadata_assertion source_observation source_observation_id|instrument_revision_archive_manifest revision_archive_batch batch_id|instrument_revision_archive_manifest source_observation source_observation_id|instrument_source instrument instrument_id|instrument_source source_observation source_observation_id|instrument_status_assertion instrument instrument_id|instrument_status_assertion source_observation source_observation_id|instrument_supersession source_observation superseded_observation_id|instrument_supersession source_observation superseding_observation_id|instrument_toc_entry instrument instrument_id|instrument_toc_entry provision provision_id|instrument_toc_entry text_block source_block_id|law_citation_count document document_id|page document document_id|page_ocr_adjudication page_ocr_candidate candidate_id|page_ocr_candidate document document_id|page_ocr_candidate page document_id,page_no|provision instrument instrument_id|provision provision parent_id|provision text_block first_block|provision_ancestor provision provision_id|provision_block block_assignment_set assignment_set_id|provision_block document document_id|provision_block provision provision_id|provision_block text_block block_id|provision_repeal source_observation repealed_observation_id|provision_repeal source_observation repealing_observation_id|provision_survival source_observation repealing_observation_id|provision_survival source_observation survived_observation_id|provision_version instrument amended_by_id|provision_version provision provision_id|provision_version toc_disposition_assertion source_toc_disposition_assertion_id|segmentation_boundary_adjudication segmentation_boundary_adjudication supersedes_adjudication_id|segmentation_boundary_adjudication segmentation_boundary_candidate candidate_id|segmentation_boundary_candidate document document_id|segmentation_boundary_candidate instrument instrument_id|segmentation_boundary_candidate source_observation source_observation_id|segmentation_boundary_candidate text_block start_block_id|segmentation_curation_patch source_observation source_observation_id|segmentation_profile_pin segmentation_profile_pin supersedes_id|segmentation_profile_pin source_observation source_observation_id|segmentation_run document document_id|segmentation_run instrument instrument_id|segmentation_run source_observation source_observation_id|segmentation_structural_adjudication segmentation_structural_adjudication supersedes_adjudication_id|segmentation_structural_adjudication segmentation_structural_candidate candidate_id|segmentation_structural_candidate document document_id|segmentation_structural_candidate instrument instrument_id|segmentation_structural_candidate provision candidate_provision_id|segmentation_structural_candidate provision canonical_provision_id|segmentation_structural_candidate provision parent_provision_id|segmentation_structural_candidate source_observation source_observation_id|segmentation_structural_candidate text_block canonical_source_block_id|segmentation_structural_candidate text_block source_block_id|source_incompleteness document complete_document_id|source_incompleteness document document_id|source_incompleteness source_incompleteness supersedes_id|source_incompleteness source_observation source_observation_id|source_non_authoritative_copy document authoritative_document_id|source_non_authoritative_copy document document_id|source_non_authoritative_copy source_observation source_observation_id|source_same_text_copy document canonical_document_id|source_same_text_copy document document_id|source_same_text_copy source_observation source_observation_id|statutory_repeal source_observation repealed_observation_id|statutory_repeal source_observation repealing_observation_id|territorial_repeal source_observation repealed_observation_id|territorial_repeal source_observation repealing_observation_id|text_block page document_id,page_no|toc_disposition_assertion instrument amending_instrument_id|toc_disposition_assertion instrument_toc_entry reviewed_toc_entry_id|toc_disposition_assertion source_observation source_observation_id|toc_disposition_assertion text_block source_block_id|toc_disposition_assertion toc_disposition_assertion supersedes_id|toc_disposition_withdrawal toc_disposition_assertion assertion_id|toc_gap_adjudication document document_id|toc_gap_adjudication instrument instrument_id|toc_gap_adjudication instrument_toc_entry toc_entry_id|toc_gap_adjudication toc_gap_adjudication supersedes_id`;
+// view reads: view, table, via (intermediate view, or "")
+const RD=`legal_edge provision|legal_edge amendment_reference v_amendment_reference_current|legal_edge delegation_record v_delegation_current|legal_edge statutory_repeal v_statutory_repeal_current|mv_instrument_serving instrument|mv_instrument_serving v_instrument_currency|mv_instrument_serving v_release_instrument|mv_instrument_serving consolidated_twin v_consolidated_twin_current|mv_instrument_serving instrument_supersession v_instrument_supersession_current|mv_instrument_serving instrument_expression_manifest v_instrument_historical|mv_provision_repeal provision_repeal v_provision_repeal_current|mv_provision_survival provision_survival v_provision_survival_current|mv_provision_text_known_from instrument|mv_provision_text_known_from mv_instrument_serving|mv_provision_text_known_from provision|mv_provision_text_known_from provision_version|mv_provision_text_known_from v_release_instrument|mv_provision_text_known_from amendment_reference v_amendment_reference_current|operative_provision mv_instrument_serving|operative_provision mv_provision_repeal|operative_provision mv_provision_survival|operative_provision mv_provision_text_known_from|operative_provision provision|operative_provision provision_version|v_instrument_currency instrument|v_instrument_currency source_observation|v_instrument_currency v_release_instrument|v_instrument_currency instrument_metadata_assertion v_instrument_metadata_current|v_instrument_currency instrument_supersession v_instrument_supersession_current|v_instrument_currency territorial_repeal v_territorial_repeal_current|v_release_document document v_document|v_release_document blob v_document|v_release_document source_observation v_document|v_release_document extraction_verification v_document_quality_status|v_release_document text_block v_document_quality_status|v_release_instrument instrument|v_release_instrument segmentation_run|v_release_instrument extraction_verification v_document_quality_status|v_release_instrument instrument_toc_entry v_toc_gap_pending|v_release_page page|v_release_page extraction_verification v_document_quality_status|v_release_provision provision|v_release_provision v_release_instrument|v_release_provision_version provision_version|v_release_provision_version v_release_provision`;
+
+const nodes=N.map(([id,k,g,rows,bytes,desc])=>({id,k,g,rows,bytes,desc,self:[]}));
+const byId={};nodes.forEach(n=>byId[n.id]=n);
+const edges=[];const ekey={};
+FK.split("|").forEach(s=>{const [a,b,c]=s.split(" ");if(!byId[a]||!byId[b])return;if(a===b){byId[a].self.push(c);return}
+  const k=a+">"+b+">fk";if(ekey[k]){ekey[k].cols.push(c);return}const e={s:byId[a],t:byId[b],type:"fk",cols:[c]};ekey[k]=e;edges.push(e)});
+RD.split("|").forEach(s=>{const [a,b,v]=s.split(" ");if(!byId[a]||!byId[b])return;edges.push({s:byId[a],t:byId[b],type:"rd",via:v||""})});
+
+// radius by disk use; label width estimate
+nodes.forEach(n=>{n.r=n.k==="v"?10:7+2.5*Math.log(Math.max(n.bytes,24576)/24576);n.lw=n.id.length*8.4+10});
+// deterministic layout
+let seed=7;const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
+nodes.forEach(n=>{const g=GROUPS[GI[n.g]];n.x=g[3]+(rnd()-.5)*260;n.y=g[4]+(rnd()-.5)*260;n.vx=0;n.vy=0});
+function step(alpha,collide){
+  for(let i=0;i<nodes.length;i++)for(let j=i+1;j<nodes.length;j++){const a=nodes[i],b=nodes[j];let dx=b.x-a.x,dy=b.y-a.y,d2=dx*dx+dy*dy||1;const d=Math.sqrt(d2);
+    const f=Math.min(5200/d2,4)*alpha;dx/=d;dy/=d;a.vx-=dx*f;a.vy-=dy*f;b.vx+=dx*f;b.vy+=dy*f}
+  edges.forEach(e=>{const a=e.s,b=e.t;let dx=b.x-a.x,dy=b.y-a.y;const d=Math.sqrt(dx*dx+dy*dy)||1;const L=a.g===b.g?110:220;const f=(d-L)*(a.g===b.g?.012:.003)*alpha;
+    dx/=d;dy/=d;a.vx+=dx*f;a.vy+=dy*f;b.vx-=dx*f;b.vy-=dy*f});
+  nodes.forEach(n=>{const g=GROUPS[GI[n.g]];n.vx+=(g[3]-n.x)*.02*alpha;n.vy+=(g[4]-n.y)*.02*alpha;n.vx*=.82;n.vy*=.82;n.x+=n.vx;n.y+=n.vy});
+  if(collide){for(let i=0;i<nodes.length;i++)for(let j=i+1;j<nodes.length;j++){const a=nodes[i],b=nodes[j];
+    const wa=Math.max(2*a.r,a.lw)/2+5,wb=Math.max(2*b.r,b.lw)/2+5,ha=a.r+13,hb=b.r+13;const dx=b.x-a.x,dy=b.y-a.y;
+    const ox=wa+wb-Math.abs(dx),oy=ha+hb-Math.abs(dy);if(ox>0&&oy>0){if(ox<oy){const s=(dx<0?-1:1)*ox/2;a.x-=s;b.x+=s}else{const s=(dy<0?-1:1)*oy/2;a.y-=s;b.y+=s}}}}
+}
+for(let i=0;i<500;i++)step(1-i/600,false);
+for(let i=0;i<220;i++)step(.15,true);
+
+// draw
+const svg=document.getElementById("g-svg");const S="http://www.w3.org/2000/svg";
+const mk=(t,a,p)=>{const e=document.createElementNS(S,t);for(const k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e};
+const defs=mk("defs",{},svg);
+[["a-fk","var(--rule-2)"],["a-rd","var(--pine-3)"],["a-hot","var(--ink)"]].forEach(([id,c])=>{const m=mk("marker",{id,viewBox:"0 0 10 10",refX:"9",refY:"5",markerWidth:"7",markerHeight:"7",orient:"auto-start-reverse"},defs);mk("path",{d:"M0,0 L10,5 L0,10 z",fill:c},m)});
+const vp=mk("g",{},svg);const gE=mk("g",{},vp);const gH=mk("g",{},vp);const gN=mk("g",{},vp);
+GROUPS.forEach(g=>{const m=nodes.filter(n=>n.g===g[0]);const top=Math.min(...m.map(n=>n.y-n.r));const cx=m.reduce((a,n)=>a+n.x,0)/m.length;
+  const t=mk("text",{x:cx,y:top-18,"text-anchor":"middle",style:`font-family:var(--display);font-size:24px;font-weight:600;fill:var(${g[2]});paint-order:stroke;stroke:var(--card);stroke-width:5px`},gH);t.textContent=g[1];g.head=t});
+edges.forEach(e=>{e.el=mk("line",{class:e.type==="fk"?"e-fk":"e-rd","marker-end":`url(#a-${e.type})`},gE)});
+nodes.forEach(n=>{const gg=mk("g",{class:"node",tabindex:"0",role:"button","aria-label":n.id},gN);n.el=gg;const col=`var(${GROUPS[GI[n.g]][2]})`;
+  if(n.k==="v"){mk("rect",{class:"body",x:-9,y:-9,width:18,height:18,rx:4,fill:"var(--card)",stroke:col,"stroke-width":2.2,"stroke-dasharray":"3 2"},gg)}
+  else{mk("circle",{class:"body",r:n.r,fill:col},gg);if(n.k==="m")mk("circle",{class:"ring",r:Math.max(n.r-3.5,2)},gg)}
+  const tx=mk("text",{y:n.r+17,"text-anchor":"middle"},gg);tx.textContent=n.id;
+  gg.addEventListener("click",ev=>{ev.stopPropagation();if(!moved)select(n)});
+  gg.addEventListener("keydown",ev=>{if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();select(n)}});
+  gg.addEventListener("pointerenter",()=>{if(!sel)focus(n)});gg.addEventListener("pointerleave",()=>{if(!sel)focus(null)});
+  gg.addEventListener("pointerdown",ev=>{ev.stopPropagation();drag={n,x:ev.clientX,y:ev.clientY,ox:n.x,oy:n.y};moved=false;gg.setPointerCapture(ev.pointerId)});
+  gg.addEventListener("pointermove",ev=>{if(!drag||drag.n!==n)return;const k=1/view.k*scale();const dx=(ev.clientX-drag.x)*k,dy=(ev.clientY-drag.y)*k;if(Math.abs(dx)+Math.abs(dy)>3)moved=true;n.x=drag.ox+dx;n.y=drag.oy+dy;place()});
+  gg.addEventListener("pointerup",()=>{drag=null});
+});
+function place(){
+  edges.forEach(e=>{const a=e.s,b=e.t;const dx=b.x-a.x,dy=b.y-a.y,d=Math.sqrt(dx*dx+dy*dy)||1;const ra=(a.k==="v"?11:a.r+2),rb=(b.k==="v"?12:b.r+4);
+    e.el.setAttribute("x1",a.x+dx/d*ra);e.el.setAttribute("y1",a.y+dy/d*ra);e.el.setAttribute("x2",b.x-dx/d*rb);e.el.setAttribute("y2",b.y-dy/d*rb)});
+  nodes.forEach(n=>n.el.setAttribute("transform",`translate(${n.x},${n.y})`));
+}
+place();
+// view box, pan, zoom
+let view={x:0,y:0,k:1},drag=null,moved=false,pan=null;
+let B;function bounds(){let x0=1e9,y0=1e9,x1=-1e9,y1=-1e9;nodes.forEach(n=>{if(n.hidden)return;x0=Math.min(x0,n.x-n.lw/2);x1=Math.max(x1,n.x+n.lw/2);y0=Math.min(y0,n.y-n.r-48);y1=Math.max(y1,n.y+n.r+24)});return {x0,y0,x1,y1}}
+function scale(){const r=svg.getBoundingClientRect();return B?Math.max((B.x1-B.x0)/r.width,(B.y1-B.y0)/r.height):1}
+function apply(){B=B||bounds();const w=B.x1-B.x0,h=B.y1-B.y0;svg.setAttribute("viewBox",`${B.x0-20} ${B.y0-10} ${w+40} ${h+20}`);svg.setAttribute("preserveAspectRatio","xMidYMid meet");
+  vp.setAttribute("transform",`translate(${view.x},${view.y}) scale(${view.k})`)}
+function zoomAt(f,cx,cy){const nk=Math.min(Math.max(view.k*f,.5),5);cx=cx??(B.x0+B.x1)/2;cy=cy??(B.y0+B.y1)/2;view.x=cx-(cx-view.x)*nk/view.k;view.y=cy-(cy-view.y)*nk/view.k;view.k=nk;apply()}
+function toWorld(ev){const pt=svg.createSVGPoint();pt.x=ev.clientX;pt.y=ev.clientY;return pt.matrixTransform(svg.getScreenCTM().inverse())}
+svg.addEventListener("wheel",ev=>{ev.preventDefault();const p=toWorld(ev);zoomAt(ev.deltaY<0?1.15:1/1.15,p.x,p.y)},{passive:false});
+svg.addEventListener("pointerdown",ev=>{pan={x:ev.clientX,y:ev.clientY,vx:view.x,vy:view.y,moved:false};svg.classList.add("panning");svg.setPointerCapture(ev.pointerId)});
+svg.addEventListener("pointermove",ev=>{if(!pan)return;const k=scale();const dx=(ev.clientX-pan.x)*k,dy=(ev.clientY-pan.y)*k;if(Math.abs(dx)+Math.abs(dy)>3)pan.moved=true;view.x=pan.vx+dx;view.y=pan.vy+dy;apply()});
+svg.addEventListener("pointerup",()=>{if(pan&&!pan.moved)select(null);pan=null;svg.classList.remove("panning")});
+document.getElementById("g-in").onclick=()=>zoomAt(1.3);document.getElementById("g-out").onclick=()=>zoomAt(1/1.3);
+document.getElementById("g-fit").onclick=()=>{view={x:0,y:0,k:1};B=bounds();apply()};
+apply();
+
+// focus + selection
+let sel=null;const side=document.getElementById("g-side");
+function visible(e){return !e.s.hidden&&!e.t.hidden&&(e.type==="fk"?fkOn:rdOn)}
+function focus(n){
+  const near=new Set();if(n){near.add(n);edges.forEach(e=>{if(!visible(e))return;if(e.s===n)near.add(e.t);if(e.t===n)near.add(e.s)})}
+  nodes.forEach(m=>m.el.classList.toggle("dim",!!n&&!near.has(m)));
+  edges.forEach(e=>{const hot=n&&visible(e)&&(e.s===n||e.t===n);e.el.classList.toggle("e-hot",!!hot);e.el.setAttribute("marker-end",`url(#a-${hot?"hot":e.type})`);e.el.classList.toggle("dim",!!n&&!hot)});
+}
+const fmtB=b=>b>=1048576?(b/1048576).toFixed(b>=104857600?0:1)+" MB":Math.round(b/1024)+" kB";
+const link=id=>`<a data-go="${id}">${id}</a>`;
+function select(n){
+  sel=n;nodes.forEach(m=>m.el.classList.toggle("sel",m===n));focus(n);
+  if(!n){side.innerHTML=`<h3 style="font-size:1.05rem">How to read this</h3><p>Start at <a data-go="source_observation" style="color:var(--pine-3);cursor:pointer;text-decoration:underline">source_observation</a> (top left): what a portal published. Data flows right and down, from bytes to pages, from pages to the law's tree, and from the law to <a data-go="operative_provision" style="color:var(--pine-3);cursor:pointer;text-decoration:underline">operative_provision</a> (bottom right), the one view search reads.</p><p class="small muted">The biggest circles are the law itself: <b>provision_version</b> (1.4 GB), <b>chunk</b>, <b>provision</b> and <b>text_block</b>. Most yellow tables are small but crucial: each row is a recorded legal fact, with its page and quote.</p><div class="lst"><b>In this graph</b><span>${nodes.filter(m=>m.k==="r").length} tables · ${nodes.filter(m=>m.k==="m").length} materialized views · ${nodes.filter(m=>m.k==="v").length} views</span><span>${edges.filter(e=>e.type==="fk").length} foreign-key links (${edges.filter(e=>e.type==="fk").reduce((a,e)=>a+e.cols.length,0)} constraints) · ${edges.filter(e=>e.type==="rd").length} view reads</span></div>`;return}
+  const g=GROUPS[GI[n.g]];const out=edges.filter(e=>e.s===n&&e.type==="fk"),inn=edges.filter(e=>e.t===n&&e.type==="fk"),rds=edges.filter(e=>e.s===n&&e.type==="rd"),rdBy=edges.filter(e=>e.t===n&&e.type==="rd");
+  const kind=n.k==="r"?"table":n.k==="m"?"materialized view":"view";
+  let h=`<h4>${n.id}</h4><div class="meta"><span style="border-color:var(${g[2]});color:var(--ink)">${g[1]}</span><span>${kind}</span>${n.rows!=null?`<span>${n.rows.toLocaleString("en-US")} rows</span>`:""}${n.bytes?`<span>${fmtB(n.bytes)}</span>`:""}</div><p>${n.desc}</p>`;
+  if(out.length)h+=`<div class="lst"><b>Points at (foreign keys)</b>${out.map(e=>`<span>${link(e.t.id)} <small>via ${e.cols.join(", ")}</small></span>`).join("")}</div>`;
+  if(inn.length)h+=`<div class="lst"><b>Pointed at by</b>${inn.map(e=>`<span>${link(e.s.id)} <small>${e.cols.join(", ")}</small></span>`).join("")}</div>`;
+  if(rds.length)h+=`<div class="lst"><b>Reads</b>${rds.map(e=>`<span>${link(e.t.id)}${e.via?` <small>through ${e.via}</small>`:""}</span>`).join("")}</div>`;
+  if(rdBy.length)h+=`<div class="lst"><b>Read by</b>${rdBy.map(e=>`<span>${link(e.s.id)}${e.via?` <small>through ${e.via}</small>`:""}</span>`).join("")}</div>`;
+  if(n.self.length)h+=`<div class="lst"><b>Points at itself</b><span><small>${n.self.join(", ")}: a revision or identity chain inside the table</small></span></div>`;
+  if(!out.length&&!inn.length&&!rds.length&&!rdBy.length)h+=`<p class="small muted">No foreign keys or view reads.</p>`;
+  side.innerHTML=h;
+}
+side.addEventListener("click",ev=>{const a=ev.target.closest("[data-go]");if(a){select(byId[a.dataset.go]);}});
+// controls
+let fkOn=true,rdOn=true;
+function refresh(){nodes.forEach(n=>{n.el.style.display=n.hidden?"none":""});GROUPS.forEach(g=>{g.head.style.display=nodes.some(n=>n.g===g[0]&&!n.hidden)?"":"none"});edges.forEach(e=>{e.el.style.display=visible(e)?"":"none"});focus(sel)}
+document.getElementById("g-fk").onchange=ev=>{fkOn=ev.target.checked;refresh()};
+document.getElementById("g-rd").onchange=ev=>{rdOn=ev.target.checked;refresh()};
+document.getElementById("g-clear").onclick=()=>select(null);
+const lg=document.getElementById("g-legend");
+GROUPS.forEach(g=>{const b=document.createElement("button");b.type="button";b.setAttribute("aria-pressed","true");b.innerHTML=`<i style="background:var(${g[2]})"></i>${g[1]} <span class="muted">${nodes.filter(n=>n.g===g[0]).length}</span>`;
+  b.onclick=()=>{const on=b.getAttribute("aria-pressed")!=="true";b.setAttribute("aria-pressed",String(on));nodes.forEach(n=>{if(n.g===g[0])n.hidden=!on});if(sel&&sel.hidden)select(null);refresh()};lg.appendChild(b)});
+const dl=document.getElementById("g-names");nodes.forEach(n=>{const o=document.createElement("option");o.value=n.id;dl.appendChild(o)});
+document.getElementById("g-find").addEventListener("input",ev=>{const v=ev.target.value.trim().toLowerCase();if(!v)return;const n=byId[v]||nodes.find(m=>m.id.startsWith(v))||nodes.find(m=>m.id.includes(v));if(n&&!n.hidden)select(n)});
+select(null);
+})();
+
+/* tooltip */
+const tip=document.getElementById("tip");
+document.addEventListener("pointermove",e=>{const t=e.target.closest&&e.target.closest("[data-tip]");if(!t){tip.hidden=true;return}
+  tip.textContent=t.getAttribute("data-tip");tip.hidden=false;const r=tip.getBoundingClientRect();let x=e.clientX+14,y=e.clientY+14;
+  if(x+r.width>innerWidth-8)x=e.clientX-r.width-14;if(y+r.height>innerHeight-8)y=e.clientY-r.height-14;tip.style.left=x+"px";tip.style.top=y+"px"});
+document.addEventListener("pointerleave",()=>tip.hidden=true);
+</script>
+</body>
+</html>

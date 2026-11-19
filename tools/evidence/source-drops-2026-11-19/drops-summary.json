@@ -1,0 +1,139 @@
+{
+ "FBR codes": {
+  "files": 179,
+  "distinct_files": 178,
+  "verdicts": {
+   "new": 34,
+   "same law, different file": 132,
+   "same file already held": 8,
+   "possible match (check)": 5
+  },
+  "by_category": {
+   "Acts": {
+    "new": 11,
+    "same law, different file": 79,
+    "same file already held": 7,
+    "possible match (check)": 1
+   },
+   "Ordinance": {
+    "same law, different file": 26,
+    "possible match (check)": 2,
+    "new": 11,
+    "same file already held": 1
+   },
+   "Rules": {
+    "possible match (check)": 2,
+    "same law, different file": 27,
+    "new": 12
+   }
+  }
+ },
+ "SECP": {
+  "files": 1454,
+  "distinct_files": 1322,
+  "verdicts": {
+   "same law, different file": 105,
+   "possible match (check)": 171,
+   "new": 1177,
+   "same file already held": 1
+  },
+  "by_category": {
+   "Acts": {
+    "same law, different file": 10,
+    "possible match (check)": 4,
+    "new": 6
+   },
+   "Circulars": {
+    "new": 110,
+    "possible match (check)": 1
+   },
+   "Directives": {
+    "new": 51
+   },
+   "Guidelines": {
+    "new": 52
+   },
+   "Notifications": {
+    "new": 782,
+    "same law, different file": 24,
+    "possible match (check)": 128
+   },
+   "Ordinances": {
+    "same file already held": 1,
+    "same law, different file": 3
+   },
+   "Regulations": {
+    "new": 125,
+    "possible match (check)": 33,
+    "same law, different file": 53
+   },
+   "Rules": {
+    "new": 51,
+    "same law, different file": 15,
+    "possible match (check)": 5
+   }
+  }
+ },
+ "PSX": {
+  "files": 154,
+  "distinct_files": 150,
+  "verdicts": {
+   "new": 152,
+   "possible match (check)": 2
+  },
+  "by_category": {
+   "PSX document": {
+    "new": 70,
+    "possible match (check)": 2
+   },
+   "rule book archive": {
+    "new": 82
+   }
+  }
+ },
+ "FBR Customs SROs": {
+  "files": 89,
+  "distinct_files": 89,
+  "verdicts": {
+   "new": 80,
+   "possible match (check)": 6,
+   "same law, different file": 3
+  },
+  "by_category": {
+   "Customs SRO/notification": {
+    "new": 80,
+    "possible match (check)": 6,
+    "same law, different file": 3
+   }
+  }
+ },
+ "FBR SRO folder (bundle only)": {
+  "files": 89,
+  "distinct_files": 89,
+  "verdicts": {
+   "new": 80,
+   "possible match (check)": 6,
+   "same law, different file": 3
+  },
+  "by_category": {
+   "Customs SRO/notification": {
+    "new": 80,
+    "possible match (check)": 6,
+    "same law, different file": 3
+   }
+  }
+ },
+ "GB code (Sep)": {
+  "files": 24,
+  "distinct_files": 19,
+  "verdicts": {
+   "new": 24
+  },
+  "by_category": {
+   "GB law": {
+    "new": 24
+   }
+  }
+ },
+ "sro_folder_vs_customs_zip_same_bytes": 89
+}
