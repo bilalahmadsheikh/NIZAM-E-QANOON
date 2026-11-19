@@ -1,0 +1,37 @@
+{
+ "cosine_mean": 0.988571286201477,
+ "cosine_min": 0.9782602787017822,
+ "sign_bits_agree_mean": 0.9497612847222222,
+ "sign_bits_agree_min": 0.92578125,
+ "kaggle_cpu_ms_per_query": 95,
+ "dev_recall_fp32_query": [
+  0.6296,
+  0.7083
+ ],
+ "dev_recall_int8_query": [
+  0.6111,
+  0.7361
+ ],
+ "quantization": "per_channel",
+ "variants": {
+  "per_tensor": {
+   "cosine_mean": 0.9856559038162231,
+   "sign_bits_agree_mean": 0.943115234375,
+   "dev_recall": [
+    0.6296,
+    0.7222
+   ],
+   "cpu_ms": 92
+  },
+  "per_channel": {
+   "cosine_mean": 0.988571286201477,
+   "sign_bits_agree_mean": 0.9497612847222222,
+   "dev_recall": [
+    0.6111,
+    0.7361
+   ],
+   "cpu_ms": 95
+  }
+ },
+ "int8_mb": 570
+}

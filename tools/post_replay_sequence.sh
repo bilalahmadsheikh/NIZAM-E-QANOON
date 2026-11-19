@@ -237,8 +237,8 @@ if [ "$APPLY" = "1" ]; then
     uv run python tools/refresh_serving.py
 fi
 
-# ---------------------------------------------------------------- step 4c (0108, D-095)
-say "4c. retrieval chunks follow the release (audit A20 fails while they do not)"
+# ---------------------------------------------------------------- step 4c (0108, D-095; 0109-0111, D-098)
+say "4c. retrieval chunks follow the release, and new chunks are embedded by the active generation (A20, A21)"
 if [ "$APPLY" = "1" ]; then
     uv run python -m nizam.workers.chunk --apply
 else

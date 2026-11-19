@@ -10,11 +10,16 @@
 #                             anything
 #   manifest.json             server version, image digest, git commit and the
 #                             corpus signature the restore must reproduce
+#   encoder/                  when an embedding generation is active (D-098): the
+#                             query encoder it needs (model.onnx, tokenizer.json,
+#                             encoder.json, validation evidence) and SHA256SUMS --
+#                             the vectors are in the dump, but a question can only
+#                             be compared with them through this exact model
 #
 # A logical dump rather than a copy of the data directory: the dump is ~0.65 GB
 # against a 6.4 GB data directory, it does not need the receiver's container to
-# be stopped, and indexes are rebuilt on restore (there is no HNSW index yet, so
-# that costs minutes).  Doc 09a §1.1 plans a physical pgBackRest backup for the
+# be stopped, and indexes are rebuilt on restore -- minutes: the HNSW index alone
+# took 3.5 min to build on 19 Nov (D-098).  Doc 09a §1.1 plans a physical pgBackRest backup for the
 # judgment-scale corpus; until then this is the transfer format.
 #
 # Exports live under snapshots/exports/, outside the snapshot timer's
@@ -32,6 +37,7 @@ SNAP_DIR="${CORPUS_ROOT}/snapshots"
 
 dc() { docker compose -f "$(pwd)/compose.yaml" "$@"; }
 psql_() { dc exec -T "$SERVICE" psql -U "$USER_" -d "$DB" -tAc "$1"; }
+. scripts/encoder-bundle.sh
 
 dc ps --status running --services 2>/dev/null | grep -qx "$SERVICE" \
   || { echo "export: postgres is not running (./nz up)"; exit 1; }
@@ -50,6 +56,7 @@ dc exec -T "$SERVICE" mv "/snapshots/exports/${NAME}/.partial-${NAME}.dump" \
   "/snapshots/exports/${NAME}/${NAME}.dump"
 
 SIG=$(dc exec -T "$SERVICE" psql -U "$USER_" -d "$DB" -tA < scripts/corpus-signature.sql | tr -d '\r')
+GEN=$(bundle_encoder "$OUT")        # the query encoder the dump's vectors need (D-098); refuses if it is missing
 ( cd "$OUT" && sha256sum "${NAME}.dump" > "${NAME}.dump.sha256" )
 SHA=$(cut -d' ' -f1 "$OUT/${NAME}.dump.sha256")
 SIZE=$(stat -c%s "$OUT/${NAME}.dump")
@@ -68,7 +75,8 @@ cat > "$OUT/manifest.json" <<JSON
   "postgres_image": "${IMAGE}",
   "git_commit": "${COMMIT}",
   "git_branch": "${BRANCH}",
-  "signature": "${SIG}"
+  "signature": "${SIG}",
+  "embedding_generation": "${GEN:-none}"
 }
 JSON
 
@@ -78,7 +86,7 @@ echo "  signature: ${SIG}"
 cat <<EOF
 
 To give this to a teammate:
-  1. Send the folder ${NAME}/ (all three files).
+  1. Send the folder ${NAME}/ (every file, and encoder/ when present).
   2. They check out commit ${COMMIT:0:12} (${BRANCH}) and run ./nz up.
   3. They copy the folder into \${CORPUS_ROOT}/snapshots/exports/ and run
        ./nz restore exports/${NAME}/${NAME}.dump

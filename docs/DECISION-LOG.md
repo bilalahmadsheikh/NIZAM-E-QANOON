@@ -1136,6 +1136,123 @@ Area: client · Status: Superseded by D-084 (the whole-page cloth; the hem, the 
   design/heritage_art.dart, presentation/discover.dart, presentation/heritage.dart; test/heritage_test.dart
   (golden embroidery.png, a review sheet at 3x).
 
+### D-098 · 2026-11-19 · The dense slice: bge-m3 sign bits, HNSW, and hybrid candidates fused across generators
+Area: L2 storage, L3 retrieval, evaluation · Status: standing (docs/04 §4.2, §5, R1's dense half, as built)
+- Decision:
+  1. **A golden split, frozen before any model was scored** (`evals/golden/split.py`, `split-v1.json`):
+     - dev is 120 cases, 108 of them answerable; test is 80 cases, 72 answerable.
+     - Every choice below was made on dev only. Test ran once, after the configuration was frozen (docs/10).
+  2. **Model: BAAI/bge-m3 at commit 5617a9f6**, chosen on dev from three models. Each embedded all 1,132,245 chunks
+     on a Kaggle T4 (`tools/kaggle/embed_kernel.py`; fp16, 512 tokens, `context_prefix + "\n" + span`):
+
+     | dev, 108 cases | full r10/r50 | binary r10/r50 | binary − full r50, 95% CI | Urdu (Arabic script) binary r50 | GPU time |
+     |---|---|---|---|---|---|
+     | bge-m3 | .653/.768 | .620/.713 | −5.6 [−12.0, +0.5] | .571 | 1.5 h |
+     | multilingual-e5-large-instruct | .634/.745 | .407/.565 | −18.1 [−28.7, −7.9] | .500 | 1.5 h |
+     | Qwen3-Embedding-0.6B | .676/.792 | .662/.769 | −2.3 [−7.4, +2.3] | .429 | 4.0 h |
+
+     - The choice was to be scored on recall and the Urdu–English gap. Qwen's overall lead over bge-m3 in binary is
+       not significant: r50 +5.6 [−2.8, +13.9], paired.
+     - Qwen's Urdu deficit points the same way on the Arabic-script cases and the Urdu stratum (.25 vs .33). It
+       doubles the Latin−Urdu gap (0.40 vs 0.19).
+     - In the hybrid, lexical already serves English, and Urdu-script questions get nothing from it (r50 0.0), so
+       dense is their only path.
+     - multilingual-e5's mean-pooled vectors are anisotropic and lose 18 points as sign bits.
+     - Pooling is read from each model's own `1_Pooling/config.json` at the pinned commit. The first full run died
+       after embedding the corpus on a sentence-transformers method that no longer existed; now every kernel edit is
+       smoke-tested.
+  3. **Storage: the sign bits only** (`bit(1024)`, `np.packbits(v > 0)`), as docs/03 settled. Asymmetric rescoring,
+     the float query against the stored ±1 bits over a Hamming shortlist, was measured
+     (`evals/binary_ablation.py`): it is not consistently better for bge-m3 (r50 .782/.722/.750 at 300/1,000/3,000
+     chunks, r10 .611 vs .630), so it is not built.
+  4. **ADR-1d is not yet decidable, and is recorded as a gate on the reranker slice.**
+     - It allows binary if it costs ≤2 NDCG points *after reranking*, and no reranker exists.
+     - Dense-only, binary costs bge-m3 r50 −5.6 (CI includes 0) and MRR@10 −7.9 [−13.6, −2.4] (a real loss).
+     - When the cross-encoder lands, the ablation re-runs after rerank. If binary still costs more than 2 points,
+       the fallback is halfvec, or Qwen3's binary-friendly space.
+  5. **Schema** (`0109`–`0111`):
+     - `embedding_generation` records model, commit, pooling, query template, quantisation, chunker and the
+       selection evidence. One row is active (partial unique index). The loader writes the bake-off numbers and the
+       paired CIs into `selection`.
+     - `chunk.embedding` stays nullable, refining D-095. The rule is audit **A21**: while a generation is active,
+       every chunk has its vector, none comes from another chunker, and each sits in its provision's scope.
+     - `chunk.jurisdiction` (0110) is set by trigger from the provision path. It is the part of docs/04 §4.2's
+       search projection that the dense scan needs, so the scope filter runs inside the HNSW scan. Validity and
+       territory stay with the INV-5 gate.
+     - `ix_chunk_hnsw` (0111) is HNSW `bit_hamming_ops`, m = 16, ef_construction = 64. It took 3 min 28 s and is
+       464 MB. Loading took 59 s; after VACUUM FULL, chunk is 448 MB and the database 6.3 GB.
+     - 0109's comment says the index "follows in 0110". It is 0111, because 0110 became the jurisdiction column.
+       Applied migrations are not edited.
+  6. **Query encoder** (`nizam.inference`, the shared inference worker, import-linted as a leaf):
+     - bge-m3 exported to int8 ONNX by dynamic per-channel quantisation (`tools/kaggle/export_kernel.py`).
+       Per-channel beat per-tensor on the pre-set rule, r50 first.
+     - Against fp32: cosine .989 mean (.978 min), sign bits 95.0%. Dev recall with int8 query bits is .611/.736,
+       against .630/.708 for fp32.
+     - This host reproduces the export's vectors: cosine >0.999 (`tests/test_encoder_model.py`).
+     - It is 570 MB, loads in 23 s, needs 1.1 GB RSS, and encodes in 57 ms p50 on 2 threads.
+     - **This deviates from docs/04's ≤20 ms query-embedding budget.** It is mostly hidden by item 9: the request
+       waits on the dense job 42 ms p50.
+  7. **Dense execution** (docs/04 §9.1):
+     - HNSW runs with `iterative_scan = strict_order` and `ef_search` = the window (900 chunks for 300 provisions).
+       It returns 0.79 of the exact nearest window (tie-aware, min 0.35) in 39 ms.
+     - The exact scan of the smallest real scope (fed alone, 503,746 chunks) takes 147 ms p50 on 5 processes.
+     - At the unit level HNSW loses nothing: hybrid r50 .759 against .750 exact.
+     - The exact path costs about 0.29 ms per 1,000 chunks, so it breaks even with HNSW near 120,000 chunks.
+       `EXACT_SCAN_CHUNKS` stays 120,000, overridable per host by `NIZAM_EXACT_SCAN_CHUNKS`
+       (`evals/dense_scan_benchmark.py`).
+  8. **Collapse clamps the second best at 0** (docs/04 §5's `max + 0.15 × second best`).
+     - Dense scores had been −Hamming distance, so every unit with a second matching chunk was pushed *down*. Dev
+       dense r50 was .449, against the kernel's .713 on the same vectors.
+     - Dense now scores `1 − d/512`, the cosine of the two sign vectors, and the clamp makes a second match evidence
+       only. Dense r50 is now .782.
+     - BM25 scores are positive, so lexical rankings are unchanged. A regression test holds it.
+  9. **RRF across generators, one vote each.** docs/04 §5 fuses "the four score distributions", meaning the
+     generators. The lexical generator's own fusion (body, heading and title, D-097) is one ranked list and dense is
+     another, fused with k = 60.
+     - Feeding body, heading and title in beside dense gave BM25 three votes, and the hybrid scored below dense
+       alone (r50 .759 vs .782). Fused across generators: r10 .588 → .616, r50 .759 → .764.
+     - **The generators run in parallel.** The dense job (encode, then its own read-only session) starts on a worker
+       thread, and fusion waits for it only once the lexical windows are done.
+     - Hybrid latency on dev fell from 1,191/2,065 ms to 761/1,014 ms (p50/p95) with recall identical.
+  10. **Degradation** (docs/04 §9.2): only a typed `DenseUnavailable` serves `lexical_only`, marked in the result and
+      the trace. That covers a missing encoder, no runtime, no active generation, or an encoder from another space.
+      Any other error is an error (tests).
+  11. **Operations:**
+      - `./nz export` and `./nz restore` ship and verify the encoder (SHA256SUMS).
+      - The chunk worker embeds a replay's new chunks on the CPU in the same transaction, and refuses `--rebuild`
+        while a generation is active (re-embedding is a rebuild, docs/03).
+      - **D-097's "import-linter keeps all six contracts" was measured with a filtered configuration.** The
+        committed `.importlinter` failed as is, on modules not yet built. `./nz layers` (`tools/lint_layers.py`)
+        runs it, leaving out absent modules and naming them: 7 contracts kept, including the new inference-is-leaf.
+- Measured, provisional (drafts, κ not measured; evals/results/*-2026-11-19.json):
+  - **Dev:**
+    - fused lexical → hybrid, r10 .421 → .616 and r50 .519 → .764;
+    - r50 +24.5 [16.7, 32.9], 27 cases better and 0 worse;
+    - Arabic-script Urdu 0/0 → .571/.571, and the Latin−Urdu r50 gap .583 → .247.
+  - **Test, run once:**
+    - r10 .354 → .535 and r50 .542 → .743;
+    - r50 +20.1 [11.1, 29.9], 15 better and 1 worse;
+    - hybrid − dense r50 +6.9 [−0.7, +14.6].
+  - **Roman Urdu stays at 0 on dev (5 cases).** No generator reads it yet (docs/04's transliteration step).
+  - **Latency:**
+    - hybrid p50 761 ms (dev) / 968 ms (test) and p95 1,014 / 1,465 ms;
+    - the lexical path alone measured 792/1,136 and 800/1,278 in the same runs, so the host's run-to-run spread is
+      large;
+    - p50 is under the ~1 s goal and p95 is not. The largest stages are the INV-5 gate (~350 ms p50) and the
+      lexical windows, which the lexical path already had.
+- Why: the owner asked for the dense slice end to end, kept only if dev recall rose and the Urdu gap shrank, with
+  latency re-measured. Recall rose by 20–25 points with intervals clear of zero on both splits, and the Urdu gap
+  more than halved.
+- Where:
+  - infra/postgres/migrations/0109–0111; tools/audit/criteria.sql (A21); tools/load_embeddings.py;
+  - nizam/inference/encoder.py; nizam/storage/{unit_search.py, chunking.py}; nizam/workers/chunk.py;
+  - nizam/retrieval/{lexical.py, candidates.py};
+  - tools/kaggle/{embed_inputs.py, embed_kernel.py, export_kernel.py, query_kernel.py, kg.sh};
+  - evals/{lexical_benchmark.py, binary_ablation.py, paired_bootstrap.py, dense_scan_benchmark.py}, evals/golden/split*;
+  - tests/{test_embeddings.py, test_encoder_model.py}; .importlinter, tools/lint_layers.py, nz (`layers`);
+  - infra/scripts/{export.sh, restore.sh};
+  - docs/03 §3–§4, docs/04 §4.2 and §5 (as built), docs/SCHEMA.md, docs/CORPUS-CRITERIA.md (A21).
+
 ### D-097 · 2026-11-19 · L3's first slice: fused lexical units, place territory and the citation fast path
 Area: L3 retrieval (and L2 reads) · Status: standing (docs/04 R0 and R1's lexical half, as built)
 - Decision:
@@ -1649,3 +1766,11 @@ These were found and deliberately left open. Each will become an entry when it i
 - **155 Gazette laws not replayed under D-072.** Their false Gazette Parts stand until a page-read repair, law by law.
 - **The section list's frame-time tail** (8–13 of about 790 frames over budget on the emulator) and cold start need
   measuring on a phone. On 18 Nov the emulator itself degraded (D-070), so its raster numbers no longer judge the app.
+- **ADR-1d, binary after reranking (D-098).** Binary vectors are acceptable only if they cost ≤2 NDCG points after
+  the cross-encoder, which does not exist yet. Dense-only, bge-m3's sign bits cost r50 −5.6 (CI includes 0) and
+  MRR@10 −7.9 (significant). The ablation re-runs when the reranker lands; the fallback is halfvec, or Qwen3's
+  binary-friendly space.
+- **Retrieval p95 over ~1 s (D-098).** Hybrid p95 is 1.0–1.5 s on this host; the INV-5 gate (~350 ms p50) and the
+  lexical windows dominate, and they predate the dense slice. The query encoder's 57 ms is over docs/04's 20 ms
+  budget, mostly hidden by running the generators in parallel.
+- **Roman Urdu retrieval** is 0 on dev (5 cases) for every generator. docs/04's transliteration step is not built.

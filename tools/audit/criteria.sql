@@ -681,6 +681,19 @@ m AS (
           OR (s.last AND substr(s.t, s.char_end + 1) !~ '^\s*$'))                       AS chunk_spans_bad
     ,(SELECT count(DISTINCT chunker) FROM chunk)                                        AS chunkers
 -- <<< A20 measures
+-- >>> A21 measures: one embedding space (D-098; docs/03 §3). While a generation is active every chunk carries its
+--     vector and the vectors were made from today's chunker; with none active, no chunk carries one.
+    ,(SELECT count(*) FROM embedding_generation WHERE active)                           AS gen_active
+    ,(SELECT coalesce(min(model), 'none') FROM embedding_generation WHERE active)       AS gen_model
+    ,(SELECT count(*) FROM chunk c
+       WHERE (c.embedding IS NULL) = EXISTS (SELECT 1 FROM embedding_generation g WHERE g.active)) AS emb_wrong
+    ,(SELECT count(*) FROM chunk c JOIN embedding_generation g ON g.active
+       WHERE c.chunker <> g.chunker)                                                    AS emb_chunker_differs
+    ,(SELECT count(*) FROM chunk WHERE embedding IS NOT NULL)                           AS emb_count
+    ,(SELECT count(*) FROM chunk c JOIN provision_version v ON v.id = c.version_id
+       JOIN provision p ON p.id = v.provision_id
+       WHERE c.jurisdiction IS DISTINCT FROM subltree(p.path, 0, 1)::text)               AS emb_scope_wrong
+-- <<< A21 measures
 )
 SELECT * FROM (
   SELECT 'C1' AS id, 'every acquired file becomes a blob'      AS criterion,
@@ -856,6 +869,13 @@ SELECT * FROM (
          chunk_missing||' unchunked; '||chunk_spans_bad||' bad spans; '||chunkers||' chunker(s)',
          '0 / 0 / 0; one chunker',
          CASE WHEN chunk_outside_release=0 AND chunk_missing=0 AND chunk_spans_bad=0 AND chunkers<=1
+              THEN 'PASS' ELSE 'FAIL' END FROM m
+  UNION ALL SELECT 'A21','one embedding space: every chunk embedded by the active generation (or none without one), in its own scope',
+         emb_count||' vectors, model '||gen_model||' (reported); '||gen_active||' active; '||emb_wrong||
+         ' chunks missing a vector or holding one with no generation; '||emb_chunker_differs||' from another chunker; '||
+         emb_scope_wrong||' with a jurisdiction not their provision''s',
+         '<= 1 active; 0 / 0 / 0; count reported',
+         CASE WHEN gen_active<=1 AND emb_wrong=0 AND emb_chunker_differs=0 AND emb_scope_wrong=0
               THEN 'PASS' ELSE 'FAIL' END FROM m
   UNION ALL SELECT 'A6','no overlapping law (enforced, not tested)',
          CASE WHEN excl_present=1 THEN 'EXCLUDE constraint present'

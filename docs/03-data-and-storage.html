@@ -466,6 +466,17 @@ provision_version                                          <b>INV-5, law as at a
       <p>The table is as above, with three differences. <code>embedding</code> is nullable until the dense slice fills it and adds NOT NULL, in the usual add-column, backfill, add-constraint order. A <code>chunker</code> column names the splitting rule (<code>nizam.chunking/1</code>), so a corpus version can be replayed (INV-3). A trigger refuses a span that ends past its version's text.</p>
       <p style="margin-top:.55rem">As built, a version holds only its own node's words: a clause does not contain its sub-section's lead-in. So a chunk covers part or all of <b>one</b> version, and docs/02 &sect;5.3's grouping of adjacent clauses is retrieval's collapse to the legal unit (docs/04 &sect;5). The rule a proviso, Explanation or illustration qualifies travels in <code>context_prefix</code> ("qualifies: &hellip;"), which is embedded with it and never alters the quoted text. Chunks exist only for released versions; audit A20 asserts it, and post-replay step 4c keeps it. Measured 18 Nov: 1,132,245 chunks over 1,114,427 versions, 299 MB. The 21.5 MB estimate above assumed about 158,000 section-level chunks; node-level text makes about seven times as many.</p>
     </div>
+    <div class="note blue" style="margin-top:1rem">
+      <h4>As built (19 Nov 2026): the embeddings, their generation and the index (0109&ndash;0111, D-098)</h4>
+      <ul>
+        <li><b><code>embedding</code> stays nullable.</b> Chunks are inserted by COPY before their vector exists, so NOT NULL would be wrong. The rule lives in audit <b>A21</b> instead: while a generation is active, every chunk has a vector; with none active, none has. No vector comes from another chunker, and each chunk sits in its provision's jurisdiction.</li>
+        <li><b><code>embedding_generation</code></b> (0109) is the one place that says which space the vectors live in. It records model, commit, pooling, query template, quantisation (<code>binary_sign</code>), chunker, chunk count and the dev-split selection evidence. A partial unique index keeps one row active. <code>tools/load_embeddings.py</code> refuses unless the run's chunk ids are exactly today's and the query encoder is the run's model, commit, pooling and template. It replaces the previous generation in one transaction. A replay's new chunks are embedded on the CPU by the chunk worker, in the same transaction; <code>--rebuild</code> is refused while a generation is active (re-embedding is a rebuild, as above).</li>
+        <li><b><code>chunk.jurisdiction</code></b> (0110) is set by trigger from the provision path, so the dense scan's scope is applied inside the HNSW scan (docs/04 &sect;4.2).</li>
+        <li><b><code>ix_chunk_hnsw</code></b> (0111) is built as specified (m&nbsp;=&nbsp;16, ef_construction&nbsp;=&nbsp;64), after the load, never row by row.</li>
+        <li><b>Measured on the first load</b> (bge-m3, 1,132,245 vectors): the load took 59&nbsp;s; after <code>VACUUM FULL</code> chunk is 448&nbsp;MB including vectors; the index took 3&nbsp;min&nbsp;28&nbsp;s and is 464&nbsp;MB; the database is 6.3&nbsp;GB.</li>
+        <li><b>The query encoder</b> (int8 ONNX, 570&nbsp;MB) travels with <code>./nz export</code> and is verified by <code>./nz restore</code>. A restored database without it serves <code>lexical_only</code>, marked as such.</li>
+      </ul>
+    </div>
 
     <h3><span class="mk">3.1</span>Glossary, definitions and the answer tier</h3>
 <pre><b>CREATE TABLE</b> glossary_concept (

@@ -1,0 +1,1 @@
+{"model": "Qwen/Qwen3-Embedding-0.6B", "b_minus_a": "per_case_binary - per_case_full", "r10": {"n": 108, "mean": -0.0139, "ci95": [-0.0833, 0.0509], "worse": 8, "better": 9}, "r50": {"n": 108, "mean": -0.0231, "ci95": [-0.0741, 0.0231], "worse": 5, "better": 4}, "mrr10": {"n": 108, "mean": -0.0443, "ci95": [-0.0933, 0.0044], "worse": 29, "better": 17}}

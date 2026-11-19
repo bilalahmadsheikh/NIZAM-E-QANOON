@@ -1,0 +1,1 @@
+{"model": "BAAI/bge-m3", "b_minus_a": "per_case_binary - per_case_full", "r10": {"n": 108, "mean": -0.0324, "ci95": [-0.0972, 0.0324], "worse": 9, "better": 6}, "r50": {"n": 108, "mean": -0.0556, "ci95": [-0.1204, 0.0046], "worse": 11, "better": 6}, "mrr10": {"n": 108, "mean": -0.0787, "ci95": [-0.1364, -0.0238], "worse": 33, "better": 13}}

@@ -1407,7 +1407,8 @@ rest on its own statutory repeal row.
 | `version_id`, `seq` | unique; `ON DELETE CASCADE` from the version |
 | `char_start`, `char_end` | checked `0 <= start < end`; a trigger refuses an end past the version's text |
 | `context_prefix` | `title \| chapter heading \| unit + section heading \| qualifies: <the rule's opening words>`, ≤ 240 chars. Embedded beside the span, never altering it (docs/02 §5.3) |
-| `embedding` | `bit(1024)`, **NULL until the dense slice** fills it and adds NOT NULL |
+| `embedding` | `bit(1024)`, the sign bits of the active generation's vector (`np.packbits(v > 0)`, first dimension first). Nullable by design; audit A21 is the rule (D-098) |
+| `jurisdiction` | (0110) `subltree(path, 0, 1)` of the chunk's provision, set by trigger, NOT NULL. The dense scan's scope filter runs on it inside the HNSW scan (docs/04 §4.2); not a serving filter |
 | `chunker` | the splitting rule (`nizam.chunking/1`); a change of rule or model is TRUNCATE plus rebuild |
 
 As built, a version holds only its own node's words. A clause does not contain its sub-section's lead-in, and a
@@ -1437,6 +1438,31 @@ steps, then a widening window:
    80 BM25 matches were operative.
 
 Sizes: body BM25 295 MB, provision BM25 141 MB, titles 4 MB, GIN 93 MB. The chunk table is 299 MB.
+
+### `embedding_generation` and the dense index (0109–0111, D-098)
+
+**`embedding_generation`** says which space `chunk.embedding` lives in. A query is encoded only by the active row's
+model, and a replay (INV-3) names it.
+
+| column | |
+|---|---|
+| `model`, `revision` | hub id and the exact commit of the weights (bge-m3 @ 5617a9f6 today) |
+| `dims`, `quantization` | 1024; `binary_sign` (the only value allowed) |
+| `pooling`, `query_template` | `cls` / `mean` / `lasttoken`, read from the model's own config; `{q}` or the instruct form the model card requires |
+| `passage_source`, `max_tokens`, `chunker`, `chunk_count` | what was embedded: `context_prefix + newline + span text`, 512 tokens, the chunk table's rule and size |
+| `selection` | jsonb: the dev-split bake-off numbers, the paired binary-vs-full CI and the encoder validation |
+| `active` | one row at most (partial unique index `uq_embedding_generation_active`) |
+
+- `tools/load_embeddings.py RUN_DIR SLUG ENCODER_DIR [--evidence F] [--apply]` writes a Kaggle run's bits under a new
+  active generation, in one transaction. It refuses unless the run's chunk ids are exactly today's and the encoder is
+  the run's model, commit, pooling and template. Dry run by default.
+- **`ix_chunk_hnsw`** (0111): HNSW `bit_hamming_ops`, m = 16, ef_construction = 64, built after the load (3 min 28 s,
+  464 MB). `nizam.storage.unit_search.Session.dense_hits` scans a scope of at most `EXACT_SCAN_CHUNKS` (120,000,
+  `NIZAM_EXACT_SCAN_CHUNKS`) exactly and uses HNSW elsewhere, with `iterative_scan = strict_order`. Dense scores are
+  `1 − hamming/512`.
+- The query encoder (int8 ONNX, `nizam.inference.encoder`, `NIZAM_ENCODER_DIR`, default
+  `/mnt/e/nizam-data/models/encoder`) is not in the database. `./nz export` copies it with SHA256SUMS, and
+  `./nz restore` verifies and installs it.
 
 ### `operative_provision` — the view retrieval reads (INV-5)
 

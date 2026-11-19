@@ -136,3 +136,7 @@ if [ -f "$MANIFEST" ]; then
     exit 1
   fi
 fi
+
+# the query encoder the dump's embedding generation needs (D-098), installed beside the corpus data
+. scripts/encoder-bundle.sh
+install_encoder "$(dirname "$HOST_FILE")" | sed 's/^/restore: /' || die "encoder not installed"

@@ -1,0 +1,1 @@
+{"model": "intfloat/multilingual-e5-large-instruct", "b_minus_a": "per_case_binary - per_case_full", "r10": {"n": 108, "mean": -0.2269, "ci95": [-0.3287, -0.125], "worse": 32, "better": 7}, "r50": {"n": 108, "mean": -0.1806, "ci95": [-0.287, -0.0787], "worse": 30, "better": 10}, "mrr10": {"n": 108, "mean": -0.2077, "ci95": [-0.2865, -0.1321], "worse": 51, "better": 14}}

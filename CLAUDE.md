@@ -5,14 +5,19 @@ statutory corpus and judicial precedent of the federation and four provinces, an
 14 Nov 2026) Islamabad Capital Territory, Azad Jammu & Kashmir and Gilgit-Baltistan — docs/02 §2.2
 already listed the AJK and GB assemblies as P1 sources. Final Year Project, GIKI FCSE, four developers.
 
-**Current state (19 Nov 2026): L1 and the L2 legal data layer are done; L2 retrieval storage has begun (the `chunk` table and lexical indexes, D-095), and L3 has its first slice (`nizam/retrieval/`: fused lexical units, place territory, the citation fast path, D-097). Dense retrieval, the gate and L4 upward have not started.** The live continuation point is `docs/CORPUS-STATE-2026-11-17.md`; read it before any corpus mutation. **10,342 laws are released and none is held**, across federal, the four provinces, ICT, AJK and Gilgit-Baltistan. Every one is served through `operative_provision` as at a date (`nzq.as_of`) and in a territory (`nzq.territory`), with status, dates, extent and repeals recorded. `./nz audit` runs 42 criteria and all pass (A20, retrieval chunks are exactly the release, added 18 Nov). Sixteen documents
+**Current state (19 Nov 2026): L1 and the L2 legal data layer are done; L2 retrieval storage holds the `chunk` table, lexical indexes (D-095) and dense vectors with HNSW (D-098), and L3 serves hybrid candidates (`nizam/retrieval/`: fused lexical units, place territory, the citation fast path, D-097; dense bge-m3 units fused across generators, D-098). The reranker, the gate and L4 upward have not started.** The live continuation point is `docs/CORPUS-STATE-2026-11-17.md`; read it before any corpus mutation. **10,342 laws are released and none is held**, across federal, the four provinces, ICT, AJK and Gilgit-Baltistan. Every one is served through `operative_provision` as at a date (`nzq.as_of`) and in a territory (`nzq.territory`), with status, dates, extent and repeals recorded. `./nz audit` runs 43 criteria and all pass (A20, retrieval chunks are exactly the release, 18 Nov; A21, one embedding space, 19 Nov). Sixteen documents
 in `docs/` fix the architecture, and where implementation has diverged the docs carry an "as built"
 correction rather than a quiet edit. Acquisition is fully accounted: every catalogued item either landed or carries a declared, evidence-backed exception. Laws that need OCR (874 AJK and 151 GB scans) are not landed, by owner rule; the one exception is the 25th–27th Constitution Amendment Acts, read page by page with a Kaggle GPU cross-check (D-076). `chunk` (0108)
-holds offsets into every released version (1,132,245 chunks; embeddings NULL until the dense slice), and the lexical port
+holds offsets into every released version (1,132,245 chunks, each with a bge-m3 sign-bit vector of the one active
+`embedding_generation`, HNSW `ix_chunk_hnsw`, 0109–0111), and the lexical port
 (`nizam/storage/lexical.py`: pg_search BM25 plus the portable fallback, both read through `operative_provision`) is
 benchmarked provisionally (BM25 recall@50 0.383 on raw golden questions; the fallback far lower, D-095). L3's fused lexical
-search lifts that to 0.528 (recall@10 0.394), and golden citations resolve 224/224 with none wrong (D-097). There is no
-embedding model, facet or judgment table yet; the dense slice is next. `legal_edge` exists
+search lifts that to 0.528 (recall@10 0.394), and golden citations resolve 224/224 with none wrong (D-097). Hybrid
+candidates (D-098, golden split v1, provisional): dev recall@50 0.519 → 0.764, test (run once) 0.542 → 0.743; Urdu
+script 0 → 0.571; p50 ~0.8–1.0 s, p95 1.0–1.5 s. The query encoder is int8 ONNX on the CPU
+(`nizam/inference/`, `/mnt/e/nizam-data/models/encoder`, shipped by `./nz export`); without it retrieval serves
+`lexical_only`, marked. The cross-encoder is next; ADR-1d's binary check waits on it. There is no facet or judgment
+table yet. `legal_edge` exists
 as a view (0079, 0089: `amends`, `repeals` and `empowers`, resolved from source-keyed records; docs/SCHEMA.md).
 Golden sets 1–4 (200 of the 500 target cases) are built and text-checked; their review sheets are not yet annotated.
 
@@ -77,7 +82,7 @@ Layer rule: a layer calls **only** the layer immediately below it, plus the shar
 | Doc | Covers |
 |---|---|
 | `01-master-architecture` | Layers, domain model, interface contracts, 20 UML/C4 views, ADR index |
-| `02-corpus-and-ingestion` | Sources, extraction, segmentation, enrichment, quality gates (§8 as built: 42 criteria, docs/CORPUS-CRITERIA.md) |
+| `02-corpus-and-ingestion` | Sources, extraction, segmentation, enrichment, quality gates (§8 as built: 43 criteria, docs/CORPUS-CRITERIA.md) |
 | `03-data-and-storage` | Schema, extensions, indexes, publish transaction, migrations |
 | `03a-capacity-plan` | Measured corpus sizing, free-tier analysis, hosting ladder |
 | `03b-legal-data-model` | 14 legal edge types, 9 facets, schedules as tables, SQLite projection |
@@ -124,7 +129,8 @@ portal recrawls and the territories. `docs/CORPUS-STATE-2026-11-17.md` has the f
 - **10,188 active documents · 134,982 released pages · 270,129,040 extracted characters**
 - **1,172,566 released provisions; 1,197,584 active from 202,604 sections** — tree expansion
   **5.91×**, not the 3.2× estimated
-- **Database on disk: 4.8 GB** after the 17 Nov prune (batch 6) and `VACUUM FULL` (was 5.6 GB).
+- **Database on disk: 6.3 GB on 19 Nov**: the chunk table with vectors is 448 MB, the HNSW index 464 MB, and the
+  lexical indexes about 530 MB. It was 4.8 GB after the 17 Nov prune (batch 6) and `VACUUM FULL` (was 5.6 GB).
   Transfer is `./nz export` (624 MB dump) or `./nz export --physical` (1.3 GB byte-exact cluster
   copy); both were restore-tested to 39/39. **Supabase's 500 MB free tier does not hold it** —
   see 03a §2A

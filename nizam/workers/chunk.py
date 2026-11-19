@@ -2,7 +2,7 @@
 
     python -m nizam.workers.chunk            # dry run: what would be added and removed
     python -m nizam.workers.chunk --apply    # write
-    python -m nizam.workers.chunk --apply --rebuild   # TRUNCATE and build from nothing (a chunker or model change)
+    python -m nizam.workers.chunk --apply --rebuild   # TRUNCATE and build from nothing (a chunker change)
     ./nz chunk [--apply] [--rebuild]
 
 The boundary is the release (docs/04 corpus boundary): chunks are made only from v_release_provision_version, and a
@@ -10,6 +10,13 @@ chunk whose version left the release (a replay retires versions), whose chunker 
 context prefix no longer matches the tree (a corrected title or heading) is removed and, if its version is still
 released, rebuilt. Idempotent: a second run with nothing changed writes nothing. Spans come from
 nizam.storage.chunking (pure, tested); the bounds trigger on chunk refuses a span past its version's text.
+
+Embeddings (D-098): while an embedding generation is active, every chunk carries its vector (audit A21). The corpus is
+embedded once on a GPU (tools/kaggle); the few chunks a replay adds are embedded HERE, in the same transaction, by the
+shared inference worker's CPU encoder -- which must be the active generation's model (check_generation refuses
+otherwise). A --rebuild would leave a million chunks for the CPU, so with an active generation it is refused: a chunker
+change is a re-embedding, done on the GPU and loaded with tools/load_embeddings.py (docs/03 §3: re-embedding is a
+rebuild, never an update).
 """
 from __future__ import annotations
 
@@ -17,7 +24,7 @@ import argparse
 import collections
 import time
 
-from nizam.storage.chunking import CHUNKER, Node, context_prefix, spans
+from nizam.storage.chunking import CHUNKER, Node, context_prefix, passage_text, spans
 from nizam.storage.db import connect
 
 _DIVISIONS = ("chapter", "part")
@@ -64,6 +71,25 @@ def _prefix(pid, prov: dict, titles: dict, openings: dict, memo: dict) -> str:
     return p
 
 
+def _embed_missing(cur, generation: dict, stats, apply: bool) -> None:
+    """vectors for chunks that have none, by the active generation's model on the CPU (nizam.inference.encoder)"""
+    cur.execute("""SELECT c.id, c.context_prefix, substr(v.text_normalised, c.char_start + 1, c.char_end - c.char_start)
+                     FROM chunk c JOIN provision_version v ON v.id = c.version_id
+                    WHERE c.embedding IS NULL ORDER BY c.id""")
+    rows = cur.fetchall()
+    stats["chunks to embed (CPU, active generation)"] = len(rows)
+    if not rows or not apply:
+        return
+    from nizam.inference.encoder import check_generation, encoder
+    enc = encoder()
+    check_generation(generation, enc.info)
+    t = time.time()
+    vecs = [(enc.passage_bits(passage_text(pfx, text)), cid) for cid, pfx, text in rows]
+    cur.executemany("UPDATE chunk SET embedding = %s::bit(1024) WHERE id = %s", vecs)
+    stats["chunks embedded"] = len(vecs)
+    stats["embedding seconds"] = round(time.time() - t)
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("--apply", action="store_true")
@@ -73,6 +99,12 @@ def main() -> int:
     stats = collections.Counter()
     with connect() as conn, conn.cursor() as cur:
         cur.execute("SET max_parallel_workers_per_gather = 2")
+        cur.execute("SELECT id, model, revision, pooling, query_template FROM embedding_generation WHERE active")
+        g = cur.fetchone()
+        generation = dict(zip(("id", "model", "revision", "pooling", "query_template"), g)) if g else None
+        if a.rebuild and generation:
+            raise SystemExit(f"--rebuild refused: embedding generation {generation['id']} ({generation['model']}) is "
+                             "active; a rebuild is a re-embedding on the GPU (tools/kaggle, tools/load_embeddings.py)")
         prov, titles = _tree(cur)
         openings = _qualified_openings(cur, prov)
         memo: dict = {}
@@ -117,6 +149,8 @@ def main() -> int:
                               "FROM STDIN") as cp:
                     for row in rows:
                         cp.write_row(row)
+        if generation:
+            _embed_missing(cur, generation, stats, a.apply)
         if not a.apply:
             conn.rollback()
     for k, v in stats.items():

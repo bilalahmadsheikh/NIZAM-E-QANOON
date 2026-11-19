@@ -44,6 +44,8 @@ field() { sed -n "s/^ *\"$1\": *\"\{0,1\}\([^\",]*\)\"\{0,1\},\{0,1\}$/\1/p" "${
 [ "$(field kind)" = physical ] || die "${TARGET} is not a physical export (use ./nz restore for a dump)"
 echo "restore-physical: checking checksums"
 ( cd "$DIR" && sha256sum --quiet -c SHA256SUMS ) || die "checksum mismatch: the copy is damaged or incomplete"
+. scripts/encoder-bundle.sh
+check_encoder "$DIR" || die "the query encoder in ${TARGET}/encoder is damaged or incomplete"   # D-098
 [ "$(field postgres_image)" = "$IMAGE" ] \
   || die "image differs: backup made with $(field postgres_image), compose.yaml pins ${IMAGE}"
 ARCH=$(docker run --rm --entrypoint uname "$IMAGE" -m)
@@ -122,4 +124,5 @@ wait_ready nizam-postgres
 printf 'ALTER ROLE :"u" PASSWORD :%s;\n' "'pw'" \
   | docker exec -i nizam-postgres psql -U "$USER_" -d postgres -q -v u="$USER_" -v pw="$POSTGRES_PASSWORD"
 echo "restore-physical: cluster replaced in $(( $(date +%s) - started ))s; password set from infra/.env"
+install_encoder "$DIR" | sed 's/^/restore-physical: /' || die "encoder not installed"
 check_signature nizam-postgres

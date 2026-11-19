@@ -11,6 +11,10 @@
 #   backup_manifest   PostgreSQL's own per-file checksums for the backup
 #   SHA256SUMS        sha256 of the three files above
 #   manifest.json     image digest, server version, git commit, corpus signature
+#   encoder/          when an embedding generation is active (D-098): its query
+#                     encoder and SHA256SUMS (scripts/encoder-bundle.sh) -- the
+#                     vectors are in the cluster, the model that reads questions
+#                     into their space is not
 #
 # pg_basebackup takes it online: the database keeps running and the copy is
 # consistent as of the end of the backup (-X stream carries the WAL).  The
@@ -33,6 +37,7 @@ SNAP_DIR="${CORPUS_ROOT}/snapshots"
 
 dc() { docker compose -f "$(pwd)/compose.yaml" "$@"; }
 psql_() { dc exec -T "$SERVICE" psql -U "$USER_" -d "$DB" -tAc "$1" | tr -d '\r'; }
+. scripts/encoder-bundle.sh
 
 dc ps --status running --services 2>/dev/null | grep -qx "$SERVICE" \
   || { echo "export-physical: postgres is not running (./nz up)"; exit 1; }
@@ -53,6 +58,7 @@ dc exec -T "$SERVICE" mv "/snapshots/exports/.partial-${NAME}" "/snapshots/expor
 # If the database was written during the backup the two can differ, and the
 # restore says so rather than passing quietly.
 SIG=$(dc exec -T "$SERVICE" psql -U "$USER_" -d "$DB" -tA < scripts/corpus-signature.sql | tr -d '\r')
+GEN=$(bundle_encoder "$OUT")        # refuses if a generation is active and its encoder is not installed
 ( cd "$OUT" && sha256sum base.tar.gz pg_wal.tar.gz backup_manifest > SHA256SUMS )
 IMAGE=$(awk '/image: paradedb/ {print $2; exit}' compose.yaml)
 COMMIT=$(git -C .. rev-parse HEAD 2>/dev/null || echo unknown)
@@ -72,7 +78,8 @@ cat > "$OUT/manifest.json" <<JSON
   "postgres_image": "${IMAGE}",
   "git_commit": "${COMMIT}",
   "git_branch": "${BRANCH}",
-  "signature": "${SIG}"
+  "signature": "${SIG}",
+  "embedding_generation": "${GEN}"
 }
 JSON
 
@@ -81,7 +88,7 @@ echo "  signature: ${SIG}"
 cat <<EOF
 
 To give this to a teammate:
-  1. Send the folder ${NAME}/ (all five files).
+  1. Send the folder ${NAME}/ (all five files, and encoder/ when present).
   2. They check out commit ${COMMIT:0:12} (${BRANCH}) and run ./nz up once.
   3. They copy the folder into \${CORPUS_ROOT}/snapshots/exports/ and run
        ./nz restore --physical exports/${NAME}

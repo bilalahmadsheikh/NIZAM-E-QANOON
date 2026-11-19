@@ -5,8 +5,10 @@
 #
 #   pip install import-linter && lint-imports
 #
-# NOTE: takes effect once the nizam/ package exists. Until then `lint-imports`
-# reports the modules as missing — that is expected, not a misconfiguration.
+# Run it as `python tools/lint_layers.py` (./nz layers): the contracts name every
+# layer docs/01 defines, and L4/L5 (nizam.generation, nizam.domain) are not built
+# yet, so the wrapper drops modules that do not exist from a temporary copy and
+# runs lint-imports on that. A module appears in the check the day it exists.
 
 [importlinter]
 root_package = nizam
@@ -85,6 +87,8 @@ forbidden_modules =
 ignore_imports =
     nizam.generation.providers.* -> anthropic
     nizam.generation.providers.* -> openai
+# the adapters do not exist until L4 is built: an exemption with nothing to exempt yet is not an error
+unmatched_ignore_imports_alerting = none
 
 
 # ── 5. INV-4: chunk identifiers are private to L2 ─────────────────────────
@@ -125,3 +129,22 @@ forbidden_modules =
     psycopg
     psycopg2
     sqlalchemy
+
+
+# ── 7. The shared inference worker is a leaf (D-098) ──────────────────────
+# docs/01 layer rule: "a layer calls only the layer immediately below it, plus the shared inference worker". Every
+# layer may call it, so it may call none of them: it turns text into vectors and knows nothing of provisions,
+# chunks or the database.
+
+[importlinter:contract:inference-is-leaf]
+name = The inference worker imports nothing from the project's layers
+type = forbidden
+source_modules =
+    nizam.inference
+forbidden_modules =
+    nizam.corpus
+    nizam.storage
+    nizam.retrieval
+    nizam.api
+    nizam.workers
+    psycopg

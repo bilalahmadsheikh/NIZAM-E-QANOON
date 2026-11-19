@@ -16,6 +16,7 @@
 #   ./nz state-clean   report nizam_clean corpus progress
 #   ./nz context       regenerate docs/AGENT-CONTEXT.md -- schema + the rules
 #   ./nz lint          report corpus smells the 30 invariants do not cover
+#   ./nz layers        the import-linter layer contracts over the modules built so far (tools/lint_layers.py)
 #   ./nz drift         what changed since last run, and which worker wrote it
 #   ./nz cluster       rank TOC/S7 defects by role-aware, per-document signatures
 #   ./nz s7            classify unresolved repeated-label collisions
@@ -213,6 +214,7 @@ cmd_drift()   { need_docker; need_uv
 cmd_lint()    { need_docker; need_uv
                  b "corpus lint -- smells, not invariants (the audit is the gate)"
                  POSTGRES_DB="${NIZAM_CLEAN_DB:-nizam_clean}"                    uv run python tools/lint_corpus.py "$@"; }
+cmd_layers()  { need_uv; uv run python tools/lint_layers.py "$@"; }
 cmd_context() { need_docker; need_uv
                  b "regenerating docs/AGENT-CONTEXT.md from the live database"
                  POSTGRES_DB="${NIZAM_CLEAN_DB:-nizam_clean}"                    uv run python tools/gen_context.py "$@"; }
@@ -405,6 +407,7 @@ case "${1:-}" in
   state-clean) shift; cmd_state_clean "$@" ;;
   context)   shift; cmd_context "$@" ;;
   lint)      shift; cmd_lint "$@" ;;
+  layers)    shift; cmd_layers "$@" ;;
   drift)     shift; cmd_drift "$@" ;;
   cluster)   shift; cmd_cluster "$@" ;;
   s7)        shift; cmd_s7 "$@" ;;

@@ -157,3 +157,9 @@ def context_prefix(title: str, division_heading: str | None, chain: list[Node],
         parts.append("qualifies: " + (q[:80].rsplit(" ", 1)[0] + "…" if len(q) > 80 else q))
     s = " | ".join(p for p in parts if p)
     return s if len(s) <= max_len else s[:max_len - 1].rsplit(" ", 1)[0] + "…"
+
+
+def passage_text(prefix: str, span_text: str) -> str:
+    """what an embedding model reads for a chunk (D-098): its context prefix, a newline, its words -- the same string
+    for the GPU corpus run (tools/kaggle/embed_inputs.py) and the CPU top-up (nizam.workers.chunk)"""
+    return prefix + "\n" + span_text

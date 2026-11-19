@@ -6,6 +6,7 @@ connection with as-at and territory set once (INV-5):
   body_hits      BM25 over provision text (ix_provision_version_bm25)
   heading_hits   BM25 over headings and marginal notes (ix_provision_bm25)
   title_hits     BM25 over instrument titles (ix_instrument_bm25)
+  dense_hits     Hamming nearest chunks to the question's sign bits (ix_chunk_hnsw, or exact for a small scope), D-098
   label_units    a printed label in named instruments (space-folded literal: '462I' finds '462 I')
   child_by_label descend from a unit by printed labels ('302' -> '(b)')
   units_of       each provision's legal unit: its innermost section/article/order, else its outermost schedule,
@@ -23,6 +24,7 @@ Nothing here returns text: identifiers and scores only (INV-1, INV-4).
 """
 from __future__ import annotations
 
+import os
 from contextlib import contextmanager
 from dataclasses import dataclass
 from datetime import date
@@ -36,6 +38,13 @@ OUTER_KINDS = ("schedule", "form", "appendix", "annexure", "preamble")
 TERRITORY_JURISDICTIONS = {"punjab": ("punjab", "fed"), "sindh": ("sindh", "fed"), "kp": ("kp", "fed"),
                            "balochistan": ("balochistan", "fed"), "ict": ("fed", "ict"),
                            "ajk": ("ajk",), "gb": ("gb",)}
+
+
+DENSE_OVERFETCH = 3          # chunks read per provision wanted (several chunks of one long provision collapse)
+# a scope holding at most this many chunks is scanned exactly (docs/04 §9.1). Its cost depends on the host's cores
+# (Postgres scans it in parallel), so a deployment may override it: NIZAM_EXACT_SCAN_CHUNKS. Measured, D-098.
+EXACT_SCAN_CHUNKS = int(os.environ.get("NIZAM_EXACT_SCAN_CHUNKS", "120000"))
+_ELIGIBLE: dict = {}         # {generation: id, counts: {jurisdiction: chunks with a vector}}
 
 
 @dataclass(frozen=True)
@@ -61,6 +70,7 @@ class Session:
         if j is None and filters.territory:
             j = TERRITORY_JURISDICTIONS.get(filters.territory)
         self.juris = list(j) if j else None
+        self.last_dense_mode = None
 
     # --- windows (cheap pre-filters: active, in jurisdiction; NOT operative-checked) ----------------------------
     def body_hits(self, q: str, n: int) -> list[Hit]:
@@ -91,6 +101,72 @@ class Session:
                AND (%(j)s::text[] IS NULL OR i.jurisdiction::text = ANY(%(j)s::text[]))
              ORDER BY s DESC, i.id LIMIT %(n)s""", dict(q=q, n=n, j=self.juris))
         return [(r[0], float(r[1])) for r in self.cur.fetchall()]
+
+    def active_generation(self) -> dict | None:
+        """the active embedding_generation (0109): the model a query must be encoded by, or None"""
+        self.cur.execute("""SELECT id, model, revision, pooling, query_template FROM embedding_generation
+                             WHERE active""")
+        r = self.cur.fetchone()
+        return dict(zip(("id", "model", "revision", "pooling", "query_template"), r)) if r else None
+
+    def dense_hits(self, qbits: str, n: int) -> list[Hit]:
+        """nearest chunks by Hamming distance to the question's sign bits, the best provision per chunk, active, best
+        first; score = 1 - distance/512, the cosine between the two +-1 sign vectors (a similarity, higher is better,
+        so retrieval's unitScore = max + 0.15 x second best treats it like any other score). docs/04 §9.1's adaptive
+        execution, on chunk.jurisdiction (0110) so the scope is
+        applied INSIDE the scan, never after it (docs/04 §4.2):
+          * a scope holding few chunks (<= EXACT_SCAN_CHUNKS) is scanned exactly: every chunk in scope, distance
+            computed, deterministic recall;
+          * otherwise HNSW (ix_chunk_hnsw, 0111) with hnsw.iterative_scan = strict_order, which keeps walking the
+            graph until the window holds that many chunks IN SCOPE; ef_search = the window (pgvector caps it at 1000).
+        """
+        w = min(1000, n * DENSE_OVERFETCH)
+        eligible = self.eligible_chunks()
+        if self.juris is not None and eligible <= EXACT_SCAN_CHUNKS:
+            self.last_dense_mode = "exact"
+            self.cur.execute("""
+                SELECT c.version_id, bit_count(c.embedding # %(q)s::bit(1024))::float AS d FROM chunk c
+                 WHERE c.jurisdiction = ANY(%(j)s::text[]) AND c.embedding IS NOT NULL
+                 ORDER BY d, c.id LIMIT %(w)s""", dict(q=qbits, j=self.juris, w=w))
+        else:
+            self.last_dense_mode = "hnsw"
+            self.cur.execute("SELECT set_config('hnsw.ef_search', %s, true)", (str(max(100, w)),))
+            self.cur.execute("SELECT set_config('hnsw.iterative_scan', 'strict_order', true)")
+            scope = "WHERE c.jurisdiction = ANY(%(j)s::text[])" if self.juris is not None else ""
+            self.cur.execute(f"""
+                SELECT c.version_id, (c.embedding <~> %(q)s::bit(1024))::float AS d FROM chunk c {scope}
+                 ORDER BY c.embedding <~> %(q)s::bit(1024) LIMIT %(w)s""", dict(q=qbits, j=self.juris, w=w))
+        rows = self.cur.fetchall()
+        if not rows:
+            return []
+        best: dict = {}
+        for vid, d in rows:                          # the nearest chunk of each version
+            if vid not in best or d < best[vid]:
+                best[vid] = d
+        self.cur.execute("""
+            SELECT v.id, p.id::text, p.path::text, p.instrument_id::text FROM provision_version v
+              JOIN provision p ON p.id = v.provision_id AND p.is_active
+             WHERE v.id = ANY(%s::uuid[])""", (list(best),))
+        per: dict = {}
+        for vid, pid, path, inst in self.cur.fetchall():
+            d = best[vid]
+            if pid not in per or d < per[pid][0]:
+                per[pid] = (d, path, inst)
+        hits = [Hit(pid, path, inst, 1.0 - d / 512.0) for pid, (d, path, inst) in per.items()]
+        hits.sort(key=lambda h: (-h.score, h.provision_id))
+        return hits[:n]
+
+    def eligible_chunks(self) -> int:
+        """chunks with a vector in the session's jurisdictions (all, when unscoped); counted once per embedding
+        generation and process, from ix_chunk_jurisdiction"""
+        gen = self.active_generation()
+        key = (gen or {}).get("id")
+        if _ELIGIBLE.get("generation") != key:
+            self.cur.execute("SELECT jurisdiction, count(*) FROM chunk WHERE embedding IS NOT NULL GROUP BY 1")
+            _ELIGIBLE.clear()
+            _ELIGIBLE.update(generation=key, counts=dict(self.cur.fetchall()))
+        counts = _ELIGIBLE["counts"]
+        return sum(counts.values()) if self.juris is None else sum(counts.get(j, 0) for j in self.juris)
 
     def instruments_titled(self, words: str, n: int = 10,
                            jurisdictions: tuple[str, ...] | None = None) -> list[tuple[str, str, int]]:
