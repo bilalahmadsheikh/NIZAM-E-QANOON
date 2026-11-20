@@ -186,7 +186,9 @@ def test_the_shipped_calibration_is_well_formed():
     rule = json.loads((ROOT / cal["rule"]).read_text(encoding="utf-8"))
     sets = list(rule["candidate_feature_sets"].values())
     for extra in cal.get("addenda", []):
-        sets += list(json.loads((ROOT / extra).read_text(encoding="utf-8"))["candidate_feature_sets_added"].values())
+        # an addendum may add feature sets (agree) or only vetoes and a refit (scope, D-106)
+        sets += list(json.loads((ROOT / extra).read_text(encoding="utf-8")).get("candidate_feature_sets_added", {})
+                     .values())
     assert cal["bundle"] == G.BUNDLE
     for name, m in cal["modes"].items():
         assert m["features"] in sets and set(m["features"]) <= set(G.features(_any_result(), "cpu"))

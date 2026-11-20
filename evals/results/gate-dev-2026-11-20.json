@@ -1,326 +1,109 @@
 {
- "provisional": "golden sets 1-4 are drafts; kappa not measured (D-095)",
+ "provisional": "golden sets 1-10 are drafts; kappa not measured (D-095, D-104)",
  "split": "dev",
- "calibration": "gate-v1-2026-11-20",
+ "calibration": "gate-v2-2026-11-20",
  "features_file": "gate-features-dev-2026-11-20.json",
  "note": "dev decisions use the REFIT model (in-sample); the honest dev figures are the out-of-fold ones in gate-fit-dev",
  "modes": {
   "cpu": {
-   "cases": 120,
-   "passed": 21,
+   "cases": 305,
+   "passed": 98,
    "answered_precision": {
-    "k": 21,
-    "n": 21,
-    "rate": 1.0,
+    "k": 95,
+    "n": 98,
+    "rate": 0.9694,
     "wilson95": [
-     0.8454,
-     1.0
+     0.9138,
+     0.9895
     ]
    },
    "coverage_of_sufficient": {
-    "k": 21,
-    "n": 69,
-    "rate": 0.3043,
+    "k": 95,
+    "n": 173,
+    "rate": 0.5491,
     "wilson95": [
-     0.2085,
-     0.4208
+     0.4747,
+     0.6214
     ]
    },
    "coverage_of_answerable": {
-    "k": 21,
-    "n": 108,
-    "rate": 0.1944,
+    "k": 98,
+    "n": 276,
+    "rate": 0.3551,
     "wilson95": [
-     0.1308,
-     0.279
+     0.301,
+     0.4132
     ]
    },
    "wrong_answers": {
-    "passed_insufficient": 0,
+    "passed_insufficient": 3,
     "passed_expected_abstain": 0,
-    "cases": []
+    "cases": [
+     "S1-C19",
+     "S1-P09",
+     "S9-P10"
+    ]
    },
    "unanswerable": {
     "recall_all": {
-     "k": 12,
-     "n": 12,
+     "k": 29,
+     "n": 29,
      "rate": 1.0,
      "wilson95": [
-      0.7575,
+      0.883,
       1.0
      ]
     },
     "recall_l3_scope": {
-     "k": 11,
-     "n": 11,
+     "k": 25,
+     "n": 25,
      "rate": 1.0,
      "wilson95": [
-      0.7412,
+      0.8668,
       1.0
      ]
     },
     "recall_l6_professional_review": {
-     "k": 1,
-     "n": 1,
+     "k": 4,
+     "n": 4,
      "rate": 1.0,
      "wilson95": [
-      0.2065,
+      0.5101,
       1.0
      ]
     },
     "precision_strict": {
-     "k": 12,
-     "n": 99,
-     "rate": 0.1212,
+     "k": 29,
+     "n": 207,
+     "rate": 0.1401,
      "wilson95": [
-      0.0707,
-      0.2
+      0.0993,
+      0.194
      ]
     },
     "precision_vs_sufficiency": {
-     "k": 51,
-     "n": 99,
-     "rate": 0.5152,
+     "k": 129,
+     "n": 207,
+     "rate": 0.6232,
      "wilson95": [
-      0.418,
-      0.6112
+      0.5555,
+      0.6864
      ]
     },
     "missed": []
    },
    "abstained_by": {
-    "classifier": 90,
-    "veto:place": 5,
-    "veto:source": 3,
-    "veto:time": 1
+    "classifier": 185,
+    "veto:place": 8,
+    "veto:source": 5,
+    "veto:live": 4,
+    "veto:records": 3,
+    "veto:time": 1,
+    "veto:statistics": 1
    },
    "by_script": {
     "arabic": {
-     "cases": 7,
-     "passed": 1,
-     "answered_precision": {
-      "k": 1,
-      "n": 1,
-      "rate": 1.0,
-      "wilson95": [
-       0.2065,
-       1.0
-      ]
-     },
-     "coverage_of_sufficient": {
-      "k": 1,
-      "n": 4,
-      "rate": 0.25,
-      "wilson95": [
-       0.0456,
-       0.6994
-      ]
-     }
-    },
-    "latin": {
-     "cases": 108,
-     "passed": 20,
-     "answered_precision": {
-      "k": 20,
-      "n": 20,
-      "rate": 1.0,
-      "wilson95": [
-       0.8389,
-       1.0
-      ]
-     },
-     "coverage_of_sufficient": {
-      "k": 20,
-      "n": 65,
-      "rate": 0.3077,
-      "wilson95": [
-       0.2089,
-       0.428
-      ]
-     }
-    },
-    "roman_urdu": {
-     "cases": 5,
-     "passed": 0,
-     "answered_precision": {
-      "k": 0,
-      "n": 0,
-      "rate": null,
-      "wilson95": null
-     },
-     "coverage_of_sufficient": {
-      "k": 0,
-      "n": 0,
-      "rate": null,
-      "wilson95": null
-     }
-    }
-   },
-   "ece": 0.0728,
-   "classifier_alone": {
-    "unanswerable_recall": {
-     "k": 11,
-     "n": 12,
-     "rate": 0.9167,
-     "wilson95": [
-      0.6461,
-      0.9851
-     ]
-    },
-    "answered_precision": {
-     "k": 21,
-     "n": 22,
-     "rate": 0.9545,
-     "wilson95": [
-      0.782,
-      0.9919
-     ]
-    }
-   },
-   "vetoes_on_answerable": []
-  },
-  "gpu": {
-   "cases": 120,
-   "passed": 104,
-   "answered_precision": {
-    "k": 101,
-    "n": 104,
-    "rate": 0.9712,
-    "wilson95": [
-     0.9186,
-     0.9901
-    ]
-   },
-   "coverage_of_sufficient": {
-    "k": 101,
-    "n": 106,
-    "rate": 0.9528,
-    "wilson95": [
-     0.8943,
-     0.9797
-    ]
-   },
-   "coverage_of_answerable": {
-    "k": 103,
-    "n": 108,
-    "rate": 0.9537,
-    "wilson95": [
-     0.8962,
-     0.9801
-    ]
-   },
-   "wrong_answers": {
-    "passed_insufficient": 3,
-    "passed_expected_abstain": 1,
-    "cases": [
-     "S3-C08",
-     "S3-P03",
-     "S4-X01"
-    ]
-   },
-   "unanswerable": {
-    "recall_all": {
-     "k": 11,
-     "n": 12,
-     "rate": 0.9167,
-     "wilson95": [
-      0.6461,
-      0.9851
-     ]
-    },
-    "recall_l3_scope": {
-     "k": 10,
-     "n": 11,
-     "rate": 0.9091,
-     "wilson95": [
-      0.6226,
-      0.9838
-     ]
-    },
-    "recall_l6_professional_review": {
-     "k": 1,
-     "n": 1,
-     "rate": 1.0,
-     "wilson95": [
-      0.2065,
-      1.0
-     ]
-    },
-    "precision_strict": {
-     "k": 11,
-     "n": 16,
-     "rate": 0.6875,
-     "wilson95": [
-      0.444,
-      0.8584
-     ]
-    },
-    "precision_vs_sufficiency": {
-     "k": 11,
-     "n": 16,
-     "rate": 0.6875,
-     "wilson95": [
-      0.444,
-      0.8584
-     ]
-    },
-    "missed": [
-     "S4-X01"
-    ]
-   },
-   "abstained_by": {
-    "classifier": 7,
-    "veto:place": 5,
-    "veto:source": 3,
-    "veto:time": 1
-   },
-   "by_script": {
-    "arabic": {
-     "cases": 7,
-     "passed": 7,
-     "answered_precision": {
-      "k": 7,
-      "n": 7,
-      "rate": 1.0,
-      "wilson95": [
-       0.6457,
-       1.0
-      ]
-     },
-     "coverage_of_sufficient": {
-      "k": 7,
-      "n": 7,
-      "rate": 1.0,
-      "wilson95": [
-       0.6457,
-       1.0
-      ]
-     }
-    },
-    "latin": {
-     "cases": 108,
-     "passed": 93,
-     "answered_precision": {
-      "k": 90,
-      "n": 93,
-      "rate": 0.9677,
-      "wilson95": [
-       0.9094,
-       0.989
-      ]
-     },
-     "coverage_of_sufficient": {
-      "k": 90,
-      "n": 94,
-      "rate": 0.9574,
-      "wilson95": [
-       0.8956,
-       0.9833
-      ]
-     }
-    },
-    "roman_urdu": {
-     "cases": 5,
+     "cases": 11,
      "passed": 4,
      "answered_precision": {
       "k": 4,
@@ -333,127 +116,375 @@
      },
      "coverage_of_sufficient": {
       "k": 4,
-      "n": 5,
-      "rate": 0.8,
+      "n": 7,
+      "rate": 0.5714,
       "wilson95": [
-       0.3755,
-       0.9638
+       0.2505,
+       0.8418
+      ]
+     }
+    },
+    "latin": {
+     "cases": 274,
+     "passed": 94,
+     "answered_precision": {
+      "k": 91,
+      "n": 94,
+      "rate": 0.9681,
+      "wilson95": [
+       0.9103,
+       0.9891
+      ]
+     },
+     "coverage_of_sufficient": {
+      "k": 91,
+      "n": 160,
+      "rate": 0.5687,
+      "wilson95": [
+       0.4913,
+       0.643
+      ]
+     }
+    },
+    "roman_urdu": {
+     "cases": 20,
+     "passed": 0,
+     "answered_precision": {
+      "k": 0,
+      "n": 0,
+      "rate": null,
+      "wilson95": null
+     },
+     "coverage_of_sufficient": {
+      "k": 0,
+      "n": 6,
+      "rate": 0.0,
+      "wilson95": [
+       0.0,
+       0.3903
       ]
      }
     }
    },
-   "ece": 0.043,
+   "ece": 0.0649,
    "classifier_alone": {
     "unanswerable_recall": {
-     "k": 9,
-     "n": 12,
-     "rate": 0.75,
+     "k": 27,
+     "n": 29,
+     "rate": 0.931,
      "wilson95": [
-      0.4677,
-      0.9111
+      0.7804,
+      0.9809
      ]
     },
     "answered_precision": {
-     "k": 101,
-     "n": 106,
-     "rate": 0.9528,
+     "k": 95,
+     "n": 100,
+     "rate": 0.95,
      "wilson95": [
-      0.8943,
-      0.9797
+      0.8882,
+      0.9785
+     ]
+    }
+   },
+   "vetoes_on_answerable": []
+  },
+  "gpu": {
+   "cases": 305,
+   "passed": 259,
+   "answered_precision": {
+    "k": 250,
+    "n": 259,
+    "rate": 0.9653,
+    "wilson95": [
+     0.9353,
+     0.9816
+    ]
+   },
+   "coverage_of_sufficient": {
+    "k": 250,
+    "n": 261,
+    "rate": 0.9579,
+    "wilson95": [
+     0.9261,
+     0.9763
+    ]
+   },
+   "coverage_of_answerable": {
+    "k": 257,
+    "n": 276,
+    "rate": 0.9312,
+    "wilson95": [
+     0.895,
+     0.9555
+    ]
+   },
+   "wrong_answers": {
+    "passed_insufficient": 9,
+    "passed_expected_abstain": 2,
+    "cases": [
+     "S10-X02",
+     "S3-C08",
+     "S3-P03",
+     "S5-C13",
+     "S5-R08",
+     "S6-R04",
+     "S6-U05",
+     "S7-X02",
+     "S8-C20"
+    ]
+   },
+   "unanswerable": {
+    "recall_all": {
+     "k": 27,
+     "n": 29,
+     "rate": 0.931,
+     "wilson95": [
+      0.7804,
+      0.9809
+     ]
+    },
+    "recall_l3_scope": {
+     "k": 24,
+     "n": 25,
+     "rate": 0.96,
+     "wilson95": [
+      0.8046,
+      0.9929
+     ]
+    },
+    "recall_l6_professional_review": {
+     "k": 3,
+     "n": 4,
+     "rate": 0.75,
+     "wilson95": [
+      0.3006,
+      0.9544
+     ]
+    },
+    "precision_strict": {
+     "k": 27,
+     "n": 46,
+     "rate": 0.587,
+     "wilson95": [
+      0.4434,
+      0.7171
+     ]
+    },
+    "precision_vs_sufficiency": {
+     "k": 35,
+     "n": 46,
+     "rate": 0.7609,
+     "wilson95": [
+      0.6206,
+      0.8609
+     ]
+    },
+    "missed": [
+     "S10-X02",
+     "S7-X02"
+    ]
+   },
+   "abstained_by": {
+    "classifier": 24,
+    "veto:place": 8,
+    "veto:source": 5,
+    "veto:live": 4,
+    "veto:records": 3,
+    "veto:time": 1,
+    "veto:statistics": 1
+   },
+   "by_script": {
+    "arabic": {
+     "cases": 11,
+     "passed": 10,
+     "answered_precision": {
+      "k": 10,
+      "n": 10,
+      "rate": 1.0,
+      "wilson95": [
+       0.7225,
+       1.0
+      ]
+     },
+     "coverage_of_sufficient": {
+      "k": 10,
+      "n": 11,
+      "rate": 0.9091,
+      "wilson95": [
+       0.6226,
+       0.9838
+      ]
+     }
+    },
+    "latin": {
+     "cases": 274,
+     "passed": 234,
+     "answered_precision": {
+      "k": 226,
+      "n": 234,
+      "rate": 0.9658,
+      "wilson95": [
+       0.934,
+       0.9826
+      ]
+     },
+     "coverage_of_sufficient": {
+      "k": 226,
+      "n": 235,
+      "rate": 0.9617,
+      "wilson95": [
+       0.9288,
+       0.9797
+      ]
+     }
+    },
+    "roman_urdu": {
+     "cases": 20,
+     "passed": 15,
+     "answered_precision": {
+      "k": 14,
+      "n": 15,
+      "rate": 0.9333,
+      "wilson95": [
+       0.7018,
+       0.9881
+      ]
+     },
+     "coverage_of_sufficient": {
+      "k": 14,
+      "n": 15,
+      "rate": 0.9333,
+      "wilson95": [
+       0.7018,
+       0.9881
+      ]
+     }
+    }
+   },
+   "ece": 0.0289,
+   "classifier_alone": {
+    "unanswerable_recall": {
+     "k": 23,
+     "n": 29,
+     "rate": 0.7931,
+     "wilson95": [
+      0.6161,
+      0.9015
+     ]
+    },
+    "answered_precision": {
+     "k": 250,
+     "n": 263,
+     "rate": 0.9506,
+     "wilson95": [
+      0.9173,
+      0.9709
      ]
     }
    },
    "vetoes_on_answerable": []
   },
   "unreranked": {
-   "cases": 120,
-   "passed": 0,
+   "cases": 305,
+   "passed": 21,
    "answered_precision": {
-    "k": 0,
-    "n": 0,
-    "rate": null,
-    "wilson95": null
+    "k": 19,
+    "n": 21,
+    "rate": 0.9048,
+    "wilson95": [
+     0.7109,
+     0.9735
+    ]
    },
    "coverage_of_sufficient": {
-    "k": 0,
-    "n": 69,
-    "rate": 0.0,
+    "k": 19,
+    "n": 173,
+    "rate": 0.1098,
     "wilson95": [
-     0.0,
-     0.0527
+     0.0714,
+     0.1652
     ]
    },
    "coverage_of_answerable": {
-    "k": 0,
-    "n": 108,
-    "rate": 0.0,
+    "k": 20,
+    "n": 276,
+    "rate": 0.0725,
     "wilson95": [
-     0.0,
-     0.0343
+     0.0474,
+     0.1093
     ]
    },
    "wrong_answers": {
-    "passed_insufficient": 0,
-    "passed_expected_abstain": 0,
-    "cases": []
+    "passed_insufficient": 2,
+    "passed_expected_abstain": 1,
+    "cases": [
+     "S3-X05",
+     "S9-R01"
+    ]
    },
    "unanswerable": {
     "recall_all": {
-     "k": 12,
-     "n": 12,
-     "rate": 1.0,
+     "k": 28,
+     "n": 29,
+     "rate": 0.9655,
      "wilson95": [
-      0.7575,
-      1.0
+      0.8282,
+      0.9939
      ]
     },
     "recall_l3_scope": {
-     "k": 11,
-     "n": 11,
+     "k": 25,
+     "n": 25,
      "rate": 1.0,
      "wilson95": [
-      0.7412,
+      0.8668,
       1.0
      ]
     },
     "recall_l6_professional_review": {
-     "k": 1,
-     "n": 1,
-     "rate": 1.0,
+     "k": 3,
+     "n": 4,
+     "rate": 0.75,
      "wilson95": [
-      0.2065,
-      1.0
+      0.3006,
+      0.9544
      ]
     },
     "precision_strict": {
-     "k": 12,
-     "n": 120,
-     "rate": 0.1,
+     "k": 28,
+     "n": 284,
+     "rate": 0.0986,
      "wilson95": [
-      0.0581,
-      0.1667
+      0.0691,
+      0.1388
      ]
     },
     "precision_vs_sufficiency": {
-     "k": 51,
-     "n": 120,
-     "rate": 0.425,
+     "k": 130,
+     "n": 284,
+     "rate": 0.4577,
      "wilson95": [
-      0.3402,
-      0.5144
+      0.4008,
+      0.5159
      ]
     },
-    "missed": []
+    "missed": [
+     "S3-X05"
+    ]
    },
    "abstained_by": {
-    "uncalibrated": 111,
-    "veto:place": 5,
-    "veto:source": 3,
-    "veto:time": 1
+    "classifier": 262,
+    "veto:place": 8,
+    "veto:source": 5,
+    "veto:live": 4,
+    "veto:records": 3,
+    "veto:time": 1,
+    "veto:statistics": 1
    },
    "by_script": {
     "arabic": {
-     "cases": 7,
+     "cases": 11,
      "passed": 0,
      "answered_precision": {
       "k": 0,
@@ -463,35 +494,38 @@
      },
      "coverage_of_sufficient": {
       "k": 0,
-      "n": 4,
+      "n": 7,
       "rate": 0.0,
       "wilson95": [
        0.0,
-       0.4899
+       0.3543
       ]
      }
     },
     "latin": {
-     "cases": 108,
-     "passed": 0,
+     "cases": 274,
+     "passed": 21,
      "answered_precision": {
-      "k": 0,
-      "n": 0,
-      "rate": null,
-      "wilson95": null
+      "k": 19,
+      "n": 21,
+      "rate": 0.9048,
+      "wilson95": [
+       0.7109,
+       0.9735
+      ]
      },
      "coverage_of_sufficient": {
-      "k": 0,
-      "n": 65,
-      "rate": 0.0,
+      "k": 19,
+      "n": 160,
+      "rate": 0.1187,
       "wilson95": [
-       0.0,
-       0.0558
+       0.0774,
+       0.178
       ]
      }
     },
     "roman_urdu": {
-     "cases": 5,
+     "cases": 20,
      "passed": 0,
      "answered_precision": {
       "k": 0,
@@ -501,27 +535,34 @@
      },
      "coverage_of_sufficient": {
       "k": 0,
-      "n": 0,
-      "rate": null,
-      "wilson95": null
+      "n": 6,
+      "rate": 0.0,
+      "wilson95": [
+       0.0,
+       0.3903
+      ]
      }
     }
    },
+   "ece": 0.0533,
    "classifier_alone": {
     "unanswerable_recall": {
-     "k": 12,
-     "n": 12,
-     "rate": 1.0,
+     "k": 28,
+     "n": 29,
+     "rate": 0.9655,
      "wilson95": [
-      0.7575,
-      1.0
+      0.8282,
+      0.9939
      ]
     },
     "answered_precision": {
-     "k": 0,
-     "n": 0,
-     "rate": null,
-     "wilson95": null
+     "k": 19,
+     "n": 21,
+     "rate": 0.9048,
+     "wilson95": [
+      0.7109,
+      0.9735
+     ]
     }
    },
    "vetoes_on_answerable": []

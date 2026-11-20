@@ -324,6 +324,18 @@ authority = matrix.resolve(decidingCourt, forum, subjectMatter, asOf)
    <li><b>Test results, scored once</b> (provisional golden sets): GPU, 72 of 80 pass at .944 precision with 97% of answerable questions answered; CPU, 18 pass at .833, under its target and recorded as open. Abstention precision and recall targets are not yet met, and 8 unanswerable test cases cannot measure them reliably.</li>
    <li>Not built: per-intent or per-language thresholds (too few cases); coverage of several sub-questions; the authority, treatment and delegated-instrument vetoes. Those need the judgment and edge data first.</li>
   </ul></div>
+  <div class="note blue"><h4>As built (20 Nov 2026): gate v2 (D-106, supersedes the D-102 calibration)</h4>
+  <ul>
+   <li><b>Three more vetoes</b>, all <code>CORPUS_GAP</code>: a particular person's or property's <em>record</em> (an FIR against my CNIC), a <em>statistic</em> (how many cases were registered), and a <em>live figure</em> (today's dollar rate). "What is the current minimum wage?" asks the law in force and passes.</li>
+   <li><b>Refit on the 500-case golden split</b> (dev 305) under the same pre-registered rule; calibration <code>gate-v2-2026-11-20</code>.</li>
+   <li><b>Test, scored once</b> (195 cases, provisional):
+    <ul>
+     <li>GPU: 166 pass at .940 [.893, .967] precision, covering 95% of answerable questions;</li>
+     <li>CPU: 55 pass at .909 [.804, .961], still under 0.95;</li>
+     <li>unreranked: 18 pass, all correct.</li>
+    </ul>
+    Unanswerable recall is .95 or better in every mode. Strict abstention precision (GPU .69) is under docs/10's .90. The veto rows are optimistic, because one author wrote both the cases and the patterns.</li>
+  </ul></div>
  </div>
 </section>
 
@@ -341,8 +353,8 @@ authority = matrix.resolve(decidingCourt, forum, subjectMatter, asOf)
   <div class="note blue"><h4>As built (20 Nov 2026): the rerank budget is not met (D-101)</h4>
   <ul>
    <li><b>CPU:</b> 50 passages of about 330 tokens cost 5&nbsp;s even with the smallest multilingual cross-encoder (int8 mMiniLM, 6 cores). The 60&nbsp;ms row assumed far shorter inputs. Serving therefore scores 10 units at 800 characters: rerank p50 about 680&nbsp;ms and p95 about 1.25&nbsp;s, passage read included; the reranked total is p50 about 1.5&nbsp;s.</li>
-   <li><b>GPU:</b> the 8B reranker&rsquo;s latency is not measured. A T4 ran out of memory at 50 pairs in one batch; it is measured on the real GPU host.</li>
-   <li><b>Degradation</b> is marked, never passed off: <code>rerank_cpu</code> when the GPU reranker is down, <code>unreranked</code> when none can score. Until the degraded-mode gate ships, an <code>unreranked</code> result abstains (&sect;9.2).</li>
+   <li><b>GPU:</b> a Kaggle T4 proxy (D-106: fp16, micro-batched, 20 questions) measured the 8B reranker at p50 4.5&nbsp;s for 10 passages and 24.5&nbsp;s for 50, far outside budget. A T4 is not the serving host. An L4/A10-class GPU with TEI or vLLM batching must be measured before the GPU profile is called within budget.</li>
+   <li><b>Degradation</b> is marked, never passed off: <code>rerank_cpu</code> when the GPU reranker is down, <code>unreranked</code> when none can score. An <code>unreranked</code> result is gated by its own calibration (D-106, &sect;9.2).</li>
   </ul></div>
   <h3><span class="mk">9.1</span>Adaptive vector execution</h3>
 <pre><i>// count estimate comes from the denormalized, prefiltered search projection</i>
@@ -358,7 +370,7 @@ else:
   <h3><span class="mk">9.2</span>Degradation</h3>
   <ul>
    <li><strong>Embedder or HNSW unavailable:</strong> lexical + definition + graph path, marked <code>lexical_only</code>; normal gate threshold remains.</li>
-   <li><strong>Reranker unavailable:</strong> RRF order with a separately calibrated degraded-mode gate; if that calibration has not shipped, abstain. <em>As built (D-102): the fused order earned no threshold on dev (out-of-fold precision near .77 against a 0.90 floor), so an <code>unreranked</code> result abstains with <code>RETRIEVAL_DEGRADED</code>.</em></li>
+   <li><strong>Reranker unavailable:</strong> RRF order with a separately calibrated degraded-mode gate; if that calibration has not shipped, abstain. <em>As built (D-102): the fused order earned no threshold on dev (out-of-fold precision near .77 against a 0.90 floor), so an <code>unreranked</code> result abstains with <code>RETRIEVAL_DEGRADED</code>. As built (D-106): on 305 dev cases the fused order reached the 0.90 fallback at 10.4% coverage, so <code>unreranked</code> now answers its clearest questions under its own threshold (test: 18 of 18 correct); everything else still abstains.</em></li>
    <li><strong>Graph incomplete:</strong> provision lookup may continue, but queries requiring definitions, delegated rules, treatment or authority fail the relevant coverage check.</li>
    <li><strong>Database snapshot changes mid-request:</strong> retry the whole retrieval once; never assemble across corpus versions.</li>
   </ul>

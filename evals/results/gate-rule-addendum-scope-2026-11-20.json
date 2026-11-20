@@ -1,0 +1,15 @@
+{
+ "what": "Second addendum to evals/results/gate-rule-2026-11-20.json (D-106), written 20 Nov 2026 BEFORE the features of the 500-case split were computed and before any refit. It adds three scope vetoes and fixes the refit; nothing else in the rule or the first addendum changes.",
+ "why": "D-102's error analysis: the GPU gate passed 'today's dollar rate' (dev S4-X01) and 'how many cases have been registered under ...' (test S3-X04), and the dev set holds record lookups ('is there an FIR against my CNIC'). None is a question the statute book answers, whatever retrieval finds.",
+ "vetoes_added": {
+  "records": "a question about a particular person's, property's or company's record: an FIR, case, complaint or registration 'against/for/of me|my ...'; 'is my name on ...'; 'has anyone registered ... for plot ...'; 'is <Name> registered with ...'; 'does <Name> hold a licence' -> CORPUS_GAP (records are not in the library)",
+  "statistics": "'how many' + a counted noun (cases, FIRs, complaints, applications, people, marriages, divorces, prisoners) + a filing verb (registered, filed, reported, recorded, decided) -> CORPUS_GAP. 'How many days do I have to appeal?' is not a statistic",
+  "live": "a live figure: an exchange, policy or market rate or price, a gold or petrol price, an air quality index, or what something is worth, with 'today', 'now', 'current(ly)' or 'latest' -> CORPUS_GAP. 'What is the current minimum wage?' asks the law in force and is not vetoed"
+ },
+ "authorship_note": "The lead authored every golden case, test included, and the veto patterns. The veto rows of any test report are therefore optimistic (author-written patterns over author-written questions); the classifier rows are the honest measure. Patterns are checked on dev examples and on invented negatives only (tests/test_scope.py).",
+ "refit": {
+  "features": "computed by evals/gate_features.py on the corpus after D-103 and with the alias index (D-105), for all 500 cases, cpu, unreranked and gpu",
+  "rule": "the same selection (F1-F5, leave-one-family-out log loss on dev 305), the same threshold rule (0.95 answered precision, fallback 0.90, 10% coverage floor, at least 5 passing)",
+  "test": "the 195 test cases are scored once for this calibration. The 80 test cases of D-102 were scored once before for that earlier calibration; this is a new decision, scored once"
+ }
+}

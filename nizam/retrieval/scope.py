@@ -141,6 +141,61 @@ def source_veto(text: str) -> ScopeFinding | None:
     return None
 
 
+# --- records, statistics and live figures (D-106): facts about particular people or the world, not law -------------
+_RECORD_NOUN = r"(?:FIR|F\.I\.R|case|cases|complaint|application|registration|sale deed|deed|licen[cs]e|warrant)"
+# "Is a case against my husband maintainable?" is a law question: a record lookup asks whether one EXISTS
+_RECORDS = [
+    re.compile(r"\b(?:is|are)\s+there\s+(?:any\s+|an?\s+)?" + _RECORD_NOUN +
+               r"[^?]{0,40}?\b(?:against|on|for)\s+(?:me|my|him|her|his|us|our)\b", re.I),
+    re.compile(r"\bhas\s+(?:any|an?)\s+" + _RECORD_NOUN + r"\s+been\s+(?:registered|filed|lodged)\s+against\b", re.I),
+    re.compile(r"\bis\s+my\s+name\s+(?:on|in)\s+(?:the\s+)?(?:[\w-]+\s+){0,3}(?:list|roll|record|register|ECL)\b",
+               re.I),
+    re.compile(r"\bhas\s+anyone\s+(?:registered|filed|bought|sold)\b", re.I),
+    re.compile(r"\bis\s+[A-Z][\w&.'-]*(?:\s+[A-Z(][\w&.'()-]*){0,5}\s+registered\s+with\b"),
+    re.compile(r"\bdoes\s+(?:the\s+)?[^?]{0,40}?['\"‘’][^'\"‘’]{2,40}['\"‘’]\s+(?:hold|have)\s+(?:a\s+)?"
+               r"(?:[\w-]+\s+){0,3}licen[cs]e", re.I),
+    re.compile(r"\bwho\s+are\s+its\s+directors\b", re.I),
+]
+_STAT_NOUN = r"(?:cases|FIRs|complaints|applications|people|persons|marriages|divorces|prisoners|petitions|suits)"
+_STATISTICS = re.compile(r"\bhow\s+many\s+(?:[a-z-]+\s+){0,3}?" + _STAT_NOUN + r"\b[^?]{0,60}?\b(?:were|have\s+been|"
+                         r"are|was|has\s+been)?\s*(?:registered|filed|reported|recorded|decided|lodged|instituted)\b",
+                         re.I)
+# market and live readings only: "the current price of stamp paper" or "the current minimum wage" asks the law
+_LIVE_THING = (r"(?:exchange\s+rate|dollar\s+(?:to\s+rupee\s+)?(?:exchange\s+)?rate|policy\s+rate|kibor|"
+               r"gold\s+(?:price|rate)|petrol\s+(?:price|rate)|market\s+(?:value|price|rate)|share\s+price|"
+               r"air\s+quality(?:\s+index)?|\bworth\b)")
+_LIVE_TIME = r"(?:today|today's|now|right\s+now|current|currently|latest|at\s+present|this\s+week)"
+_LIVE = [re.compile(_LIVE_THING + r"[^?]{0,50}?\b" + _LIVE_TIME + r"\b", re.I),
+         re.compile(r"\b" + _LIVE_TIME + r"\b[^?]{0,50}?" + _LIVE_THING, re.I)]
+
+
+def records_veto(text: str) -> ScopeFinding | None:
+    for rx in _RECORDS:
+        m = rx.search(text or "")
+        if m:
+            return ScopeFinding("CORPUS_GAP", "records", "the question asks about a particular record (a case, "
+                                "registration, list or licence); the library holds the law, not records", m.group(0))
+    return None
+
+
+def statistics_veto(text: str) -> ScopeFinding | None:
+    m = _STATISTICS.search(text or "")
+    if m:
+        return ScopeFinding("CORPUS_GAP", "statistics", "the question asks for a count of cases or events; the "
+                            "library holds the law, not statistics", m.group(0))
+    return None
+
+
+def live_veto(text: str) -> ScopeFinding | None:
+    for rx in _LIVE:
+        m = rx.search(text or "")
+        if m:
+            return ScopeFinding("CORPUS_GAP", "live", "the question asks for a live figure (a rate, price or "
+                                "reading); the library holds the law, not market or live data", m.group(0))
+    return None
+
+
 def veto(text: str, as_of: date, cited: bool = False, today: date | None = None) -> ScopeFinding | None:
-    """the first finding in a fixed order (time, source, place) or None"""
-    return time_veto(text, as_of, today) or source_veto(text) or place_veto(text, cited)
+    """the first finding in a fixed order (time, source, place, records, statistics, live) or None"""
+    return (time_veto(text, as_of, today) or source_veto(text) or place_veto(text, cited) or records_veto(text)
+            or statistics_veto(text) or live_veto(text))

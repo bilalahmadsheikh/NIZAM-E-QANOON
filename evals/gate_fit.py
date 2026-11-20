@@ -36,7 +36,7 @@ TARGETS = (0.95, 0.90)
 MIN_PASS = 5
 MIN_COVERAGE = 0.10
 TIE = 0.005
-VERSION = "gate-v1-2026-11-20"
+VERSION = "gate-v2-2026-11-20"     # v1: D-102 (120 dev cases); v2: D-106 (305 dev cases, aliases, D-103 corpus)
 
 
 def fit(X: np.ndarray, y: np.ndarray, lam: float = LAMBDA, iters: int = 100):
@@ -183,8 +183,9 @@ def main() -> int:
               f"oof precision={rep['oof_answered_precision']} coverage={rep['oof_coverage_of_sufficient']} "
               f"passed={rep['oof_passed']}/{len(scored)} (sufficient {int(y.sum())})")
     calib = {"version": VERSION, "rule": "evals/results/gate-rule-2026-11-20.json",
-             "addenda": ["evals/results/gate-rule-addendum-agree-2026-11-20.json"],
-             "provisional": "fitted on draft golden sets 1-4 (D-095); refit when the reviewed split exists",
+             "addenda": ["evals/results/gate-rule-addendum-agree-2026-11-20.json",
+                         "evals/results/gate-rule-addendum-scope-2026-11-20.json"],
+             "provisional": "fitted on draft golden sets 1-10 (D-095, D-104); refit when the reviewed split exists",
              "bundle": data["bundle"], "modes": modes_out}
     a.calibration.write_text(json.dumps(calib, indent=1) + "\n", encoding="utf-8")
     a.report.write_text(json.dumps(report, indent=1), encoding="utf-8")

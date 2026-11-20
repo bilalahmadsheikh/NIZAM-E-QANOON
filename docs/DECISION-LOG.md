@@ -1136,6 +1136,96 @@ Area: client · Status: Superseded by D-084 (the whole-page cloth; the hem, the 
   design/heritage_art.dart, presentation/discover.dart, presentation/heritage.dart; test/heritage_test.dart
   (golden embroidery.png, a review sheet at 3x).
 
+### D-106 · 2026-11-20 · Gate v2: three more scope vetoes, a refit on the 500-case split, and the degraded mode gated
+Area: owner ruling, L3 retrieval (docs/04 §8, §9.2), evaluation · Status: standing (supersedes D-102's calibration
+and its "unreranked abstains" outcome; D-102's decision order is unchanged)
+- Decision: the last of the owner's "do all … end to end" improvements to D-102's gate. A second addendum to the gate
+  rule (`evals/results/gate-rule-addendum-scope-2026-11-20.json`) was written before the 500-case features existed
+  and before any refit. It adds three vetoes and fixes the refit; nothing else in the rule changes.
+  - **Three scope vetoes** (`nizam/retrieval/scope.py`), after time, source and place, all → `CORPUS_GAP` with their
+    own public reason. Each is tied to a legal noun or a counted noun, never to a mention (D-102):
+    - **records:** a particular person's, property's or company's record ("is there an FIR against my CNIC", "is my
+      name on the ECL", "does <Name> hold a licence"). Records are not in the library.
+    - **statistics:** "how many" + a counted noun (cases, FIRs, complaints, marriages…) + a filing verb (registered,
+      filed, reported, decided). "How many days do I have to appeal?" passes.
+    - **live:** a live figure (an exchange, policy or market rate or price; gold, petrol, the air quality index;
+      what something is worth) with today, now, current or latest. "What is the current minimum wage?" asks the law
+      in force and passes.
+  - **The refit.** Features were recomputed for all 500 cases (D-104) in all three modes. That run used the corpus
+    after D-103 and the alias index (D-105). The 8B GPU path now covers every case: 15,971 pairs were scored on
+    Kaggle (`rrg2-8b`, all finite; only questions and passages left the laptop). The same selection was used (F1–F5,
+    leave-one-family-out log loss on dev 305) with the same threshold rule. `gate_calibration.json` is now
+    `gate-v2-2026-11-20`.
+- Dev, out of fold (`evals/results/gate-fit-dev-2026-11-20.json`):
+
+  | mode | features | log loss | τ | target | passed / 305 | answered precision | coverage of sufficient |
+  |---|---|---|---|---|---|---|---|
+  | **gpu** (Qwen3-Reranker-8B) | top | .232 | .671 | .95 | 262 | .950 | .954 (261) |
+  | **cpu** (int8 mMiniLM) | top, margin, agree | .506 | .761 | .95 | 100 | .950 | .549 (173) |
+  | **unreranked** (fused order) | top, margin | .587 | .798 | **.90** (fallback) | 20 | .900 | .104 (173) |
+
+  On 120 dev cases (D-102), unreranked plateaued near .77. On 305 it reaches the 0.90 fallback at 10.4% coverage,
+  just above the rule's 10% floor. So the degraded mode now answers its clearest questions, under its own threshold
+  (docs/04 §9.2), instead of always abstaining.
+- **Test, scored once** after the calibration was frozen (`evals/results/gate-test-2026-11-20.json`, 195 cases: 174
+  answerable, 21 unanswerable). Provisional: golden sets are drafts, κ not measured.
+
+  | test 195 | passed | answered precision (Wilson 95%) | coverage of sufficient | of answerable | unanswerable abstained (L3 scope) | ECE |
+  |---|---|---|---|---|---|---|
+  | **gpu** | 166 | **.940** [.893, .967] | .957 | .948 | 20 / 21 (19 / 19) | .044 |
+  | **cpu** | 55 | **.909** [.804, .961] | .505 | .316 | 21 / 21 (19 / 19) | .067 |
+  | **unreranked** | 18 | **1.0** [.824, 1.0] | .182 | .103 | 21 / 21 (19 / 19) | .094 |
+
+  On D-102's own 80 test cases, for comparison (reporting only):
+
+  | mode | D-102 | gate v2 |
+  |---|---|---|
+  | gpu | 72 at .944 | 71 at .958 |
+  | cpu | 18 at .833 | **29 at .862** |
+  | unreranked | 0 | **10 at 1.0** |
+
+  - **GPU wrong answers (10).** Each is a passed bundle that lacks a necessary unit (S2-C06, S4-C05, S6-C17, S6-R01,
+    S7-C10, S8-C03, S8-R04, S8-U04, S9-R06), plus S4-X05, a guarantee request that is L6's professional-review case.
+    S3-X04, D-102's statistics miss, is now vetoed. The GPU's only unanswerable miss is S4-X05.
+  - **The CPU gate is still under 0.95 on test,** but its interval now contains the target. On the same 80 cases it
+    answers 29 where D-102 answered 18. Urdu on the CPU still passes almost nothing (Roman Urdu 1 of 14).
+  - **Vetoes fired on no answerable case** in dev or test. On test they abstained 13 times with the right code: time
+    3, source 4, place 2, records 2, statistics 2.
+  - **Authorship caveat.** The lead wrote both the golden cases (test included) and the veto patterns, so the veto
+    rows are optimistic. The honest measure is the classifier alone: on test it caught 17 of 21 unanswerable
+    questions on the GPU and 20 of 21 on the CPU.
+  - **docs/10's abstention targets** (precision ≥ .90 and recall ≥ .85 on the unanswerable stratum):
+    - recall is met on test in every mode (GPU .952);
+    - strict abstention precision is not (GPU .690, because 7 of 29 GPU abstentions are on answerable questions whose
+      bundle was sufficient).
+- **8B reranker latency, a proxy** (slice 7; `rrg2-8b` `latency-qwen3-8b.json`; Kaggle T4, fp16, one question's
+  passages micro-batched at 16,384 tokens, 20 questions):
+
+  | passages | p50 | p95 |
+  |---|---|---|
+  | 10 | 4.5 s | 8.5 s |
+  | 50 | 24.5 s | 30.6 s |
+
+  On a T4 the 8B reranker is far outside docs/10's 1.5 s p50, so it is not serveable as measured. A T4 is not the
+  serving host. Whether an L4/A10-class GPU with TEI or vLLM batching meets the budget stays open.
+- Housekeeping:
+  - D-102's gate result files moved to `evals/results/prior/*-d102.json`. The current names hold v2.
+  - The fitted files' "provisional" label wrongly read "golden sets 1-4". It was corrected in `gate_fit.py`,
+    `gate_features.py` and `gate_eval.py`, and fit and eval were re-run: the numbers are identical. The calibration's
+    sha256 is 689639a6….
+  - `gate_features`' MultiReranker reads a grown pairs file only up to each score file's length.
+- Why: D-102's CPU gate fell from .952 out-of-fold on 120 dev cases to .833 on test. Its recorded remedy was more dev
+  cases, never test-driven tuning, and D-104 supplied them. D-102's error analysis also found question kinds no
+  statute answers (live figures, record lookups, statistics), which only a scope rule can refuse honestly.
+- Where:
+  - nizam/retrieval/scope.py (records_veto, statistics_veto, live_veto, veto order);
+  - nizam/retrieval/gate.py (PUBLIC reasons for CORPUS_GAP:records, :statistics, :live);
+  - nizam/retrieval/gate_calibration.json;
+  - evals/{gate_features.py, gate_fit.py, gate_eval.py};
+  - evals/results/gate-rule-addendum-scope-2026-11-20.json, gate-features-{dev,test}-2026-11-20.json,
+    gate-fit-dev-2026-11-20.json, gate-{dev,test}-2026-11-20.json, prior/;
+  - tests/test_scope.py; docs/04 §8, §9.2.
+
 ### D-105 · 2026-11-20 · The legal alias index: Urdu and Roman Urdu questions gain English legal words
 Area: owner ruling, L3 query understanding (docs/04 R0) · Status: standing
 - Decision: `nizam/retrieval/aliases.py` maps about 150 legal concepts to the English words the statute book uses.
@@ -2172,13 +2262,14 @@ These were found and deliberately left open. Each will become an entry when it i
 - **ADR-1d for the 8B space.** The binary-vs-full check after reranking (D-098 item 4) now also covers 8B. Dense-only,
   its sign bits did not cost accuracy (bits4096 r50 .968 vs full .940). After the cross-encoder (D-101) it still needs
   full-precision corpus vectors, which were not stored: a check means re-embedding a sample in float on Kaggle.
-- **The degraded-mode gate (D-101, docs/04 §9.2)** — attempted by D-102: no threshold on the fused order reached
-  0.90 answered precision on dev (out-of-fold precision plateaus near .77), so an `unreranked` result abstains
-  (`RETRIEVAL_DEGRADED`). Revisit with more dev cases.
-- **The CPU gate is under its precision target on test (D-102).** It scored .833 [.608, .942] on 18 passes against
-  the 0.95 target. Recommendation (owner delegation): change nothing on the strength of test. Build golden sets 5–10,
-  refit on the larger dev split under the same rule, and until then treat CPU-profile answers as the lower tier the
-  UI marks. A faster CPU host with bge-v2-m3 (D-101) is the other remedy.
+- **The degraded-mode gate (D-101, docs/04 §9.2)** — decided by D-106. On 305 dev cases the fused order reaches the
+  0.90 fallback at 10.4% coverage, and test passed 18 of 18. An `unreranked` result now answers its clearest questions
+  under its own threshold.
+- **The CPU gate is under its precision target on test (D-102, D-106).** D-102: .833 [.608, .942] on 18 passes. After
+  the refit on 305 dev cases (D-106): .909 [.804, .961] on 55, an interval that now contains 0.95 but a point
+  estimate still under it. Recommendation (owner delegation): change nothing on the strength of test. Treat
+  CPU-profile answers as the lower tier the UI marks. The remedies are annotated gold (stages A1/A2) and a faster CPU
+  host with bge-v2-m3 (D-101).
 - **Definition and cross-reference generators (docs/04 §4), held (20 Nov 2026).** Two of docs/04's four candidate
   generators are not built.
   - **Definitions** belong to context assembly (docs/04 §7: a passing unit's definitions, qualifications and
@@ -2201,18 +2292,40 @@ These were found and deliberately left open. Each will become an entry when it i
   - Evidence found: The Nation (29 May 2026) and ProPakistani (30 May 2026) report the Code enforced across Punjab
     after gazette publication. Neither gives the notification's number or date, and two legal commentaries say no
     commencement notification was verified.
-  - Recommendation (owner delegation): acquire the commencement notification from the Punjab Gazette or the Labour
-    Department before changing the corpus. Then date the s.435 repeals from it with
+  - **Searched further on 20 Nov 2026** (owner: "go ahead u go and get it"). The project's legal-source scout checked
+    the Labour Department site, the Punjab Code and Punjab Laws portals (both timed out), the Assembly site, and
+    English and Urdu sources, and found no commencement notification. The news items reuse the Act's own February
+    enactment wording ("approval by the Governor and publication in the gazette").
+  - **The strongest official evidence found points the other way.** Punjab Gazette (Extraordinary), 11 June 2026,
+    Notification No. 129 of 2026 (p. 6653), publishes Labour Department Notification No. SO(L&P) 11-28/2023 of
+    8 June 2026. In it the Governor makes the Punjab Restriction on Employment of Children Rules 2026 "in exercise of
+    the powers conferred under section 21 of the Punjab Restriction on Employment of Children Act 2016", and defines
+    "certifying surgeon" under the Factories Act, 1934. Section 435 of the Code repeals both Acts. The Government was
+    making rules under them ten days after the news reports, so the Code had not commenced by 8 June 2026 on the
+    Government's own record.
+    - Source: labour.punjab.gov.pk/acts, "Punjab Restriction on Employment of Children Rules 2026.pdf", a 19-page
+      scan read page by page.
+    - Kept at E:\nizam-data\sources\punjab-labour-code-check\ (rules-2026.pdf sha256 af29c322…; the Department's
+      copy of the Code, code-2026-dept.pdf, sha256 15d4bbb7…).
+  - **Decision (owner delegation, the recommended option): the corpus is unchanged.**
+    - The old Punjab labour laws stay served, consistent with the June 2026 gazette.
+    - The s.435 repeals stay undated.
+    - The Code keeps the owner's presumption of force. The presumption does not override evidence, and the evidence
+      speaks only to 8 June, not to today.
+    - Set 4's labour cases stand. The 2026 Rules are not landed: a scan (OCR by owner rule) and a new source (D-100).
+  - Still recommended: obtain any commencement notification issued after June 2026 (Law and Parliamentary Affairs
+    Department, Legis branch, which forwards Gazette notifications to the Labour Department) before changing the
+    corpus. Then date the s.435 repeals from it with
     `tools/record_statutory_repeals.py` and `refresh_serving`, and move set 4's labour cases to the Code's
     provisions as a reviewed gold change. Until then, author no Punjab labour cases (sets 5–10 have none).
-- **The unanswerable stratum is too small to test docs/10's abstention targets (D-102)** — 50 cases since D-104
-  (29 dev, 21 test). There are 20 cases, 8 of them
-  in test. Two kinds the gate misses have no rule: questions about statistics or records ("how many cases have been
-  registered", "is there an FIR against my CNIC"), and requests for a predicted outcome or a guarantee, which are
-  L6's professional-review outcome (docs/07) and not yet built.
-- **8B reranker serving latency (D-101).** Not measured: a T4 ran out of memory at 50 pairs in one batch, and the
-  64-pair smoke took 20.8 s. It needs the real GPU host, with TEI or vLLM batching, before the GPU profile is called
-  within budget.
+- **docs/10's abstention targets (D-102, D-106).** The stratum is 50 cases since D-104 (29 dev, 21 test), and records
+  and statistics questions are vetoed since D-106. On test, recall is met in every mode (GPU .952). Strict abstention
+  precision is not (GPU .690): 7 of the GPU's 29 abstentions decline an answerable question whose bundle was
+  sufficient. Still unbuilt: requests for a predicted outcome or a guarantee, L6's professional-review outcome
+  (docs/07; S4-X05 is the GPU's only unanswerable miss).
+- **8B reranker serving latency (D-101, D-106).** A Kaggle T4 proxy (fp16, micro-batched) measured p50 4.5 s for 10
+  passages and 24.5 s for 50: far outside budget. It needs an L4/A10-class GPU host with TEI or vLLM batching
+  measured before the GPU profile is called within budget.
 - **The CPU reranker on a faster host (D-101).** On this 6-core laptop only int8 mMiniLM at 800 characters × 10 fits
   1 s (+5.8 dev, +7.3 test). bge-v2-m3 gained +14.6 on dev but took 35 s for 50 passages. A production CPU host
   should be measured with `evals/rerank_budget.py` before its configuration is chosen. Fine-tuning the small model
@@ -2252,7 +2365,9 @@ These were found and deliberately left open. Each will become an entry when it i
 - **Retrieval p95 over ~1 s (D-098).** Hybrid p95 is 1.0–1.5 s on this host; the INV-5 gate (~350 ms p50) and the
   lexical windows dominate, and they predate the dense slice. The query encoder's 57 ms is over docs/04's 20 ms
   budget, mostly hidden by running the generators in parallel.
-- **Roman Urdu retrieval** is 0 on dev (5 cases) for every generator. docs/04's transliteration step is not built.
+- **Roman Urdu retrieval** was 0 on dev (5 cases) for every generator (D-098). The GPU path reads it (D-099), and the
+  alias index lifts the CPU path to r@50 .50 on dev and .46 on test (D-105). docs/04's full transliteration step and
+  its 400–600 concepts are not built.
 - **Deferred sources, to decide when retrieval is finished (D-100; docs/DEFERRED-SOURCES.md).** Each becomes an entry
   when decided:
   1. **FBR codes:** land the dated consolidations of the federal tax laws, and the 34 new laws? This first needs a

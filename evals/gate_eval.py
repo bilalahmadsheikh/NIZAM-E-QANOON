@@ -14,7 +14,7 @@ Reported (evals/results/gate-rule-2026-11-20.json, "report"):
                        professional_review_required cases in their own row
   ECE                  10 equal-width bins over the scored cases
   by script, and vetoes apart from the classifier
-PROVISIONAL: golden sets 1-4 are drafts (D-095).
+PROVISIONAL: golden sets 1-10 are drafts (D-095, D-104).
 """
 from __future__ import annotations
 
@@ -155,7 +155,7 @@ def main() -> int:
     res = {"provisional": data["provisional"], "split": a.split, "calibration": cal.get("version"),
            "features_file": f.name, "note": ("dev decisions use the REFIT model (in-sample); the honest dev figures are "
                                              "the out-of-fold ones in gate-fit-dev") if a.split == "dev" else
-           "test: scored once after the calibration was frozen (D-102)",
+           f"test: scored once after the calibration {cal.get('version')} was frozen (D-102, D-106)",
            "modes": {m: summarise(data["cases"], m, cal) for m in a.modes.split(",")}}
     out = a.out or ROOT / f"evals/results/gate-{a.split}-{date.today().isoformat()}.json"
     out.write_text(json.dumps(res, indent=1), encoding="utf-8")

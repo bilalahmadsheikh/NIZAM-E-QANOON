@@ -13,7 +13,7 @@ Per case and mode: the gate's features (nizam.retrieval.gate.features -- the fun
 (sufficient: every proposition's necessary evidence hit in the first BUNDLE units), the hit ranks, the bundle, and
 the scope veto finding (computed, never short-circuiting, so the classifier is measured on every case).
 
-PROVISIONAL: golden sets 1-4 are drafts (D-095).
+PROVISIONAL: golden sets 1-10 are drafts (D-095, D-104).
 """
 from __future__ import annotations
 
@@ -53,7 +53,9 @@ GPU_QUESTIONS = [(DATA / "models/encoder-gpu", "reference_q.npy", "reference_que
 # Qwen3-Reranker-8B scores: (pairs.jsonl, scores.npy) -- dev (rr2), test (rrt-8b), abstain cases (D-102)
 GPU_SCORES = [(DATA / "rerank/ds-dev/pairs.jsonl", DATA / "rerank/out-rr2/out/scores-qwen3-8b.npy"),
               (DATA / "rerank/ds-test-gpu/pairs.jsonl", DATA / "rerank/out-rrt-8b/out/scores-qwen3-8b.npy"),
-              (DATA / "rerank/ds-gate-x/pairs.jsonl", DATA / "rerank/out-rrg-8b/out/scores-qwen3-8b.npy")]
+              (DATA / "rerank/ds-gate-x/pairs.jsonl", DATA / "rerank/out-rrg-8b/out/scores-qwen3-8b.npy"),
+              # the same (grown) pairs file, rescored whole with the 500-case pending pairs (D-106)
+              (DATA / "rerank/ds-gate-x/pairs.jsonl", DATA / "rerank/out-rrg2-8b/out/scores-qwen3-8b.npy")]
 GPU_RERANKER = RerankerInfo("Qwen/Qwen3-Reranker-8B", "77d193c791ed757ca307ee72715aa132723da912", "qwen", 1024,
                             "Given a question about Pakistani law, retrieve the statutory provisions that answer it",
                             "gpu")
@@ -95,12 +97,19 @@ class MultiEncoder(PrecomputedEncoder):
 
 
 class MultiReranker(PrecomputedReranker):
+    """several (pairs, scores) runs replayed together. A pairs file that grew after a run (pending pairs appended,
+    pids continuing) is read only as far as that run's scores reach: each score belongs to the pid it was made for"""
     def __init__(self, info, sources):
+        from precomputed_reranker import _key
         self.info, self._by = info, {}
         for pairs, scores in sources:
-            if pairs.exists() and scores.exists():
-                part = PrecomputedReranker(info, pairs, scores)
-                self._by.update(part._by)
+            if not (pairs.exists() and scores.exists()):
+                continue
+            s = np.load(scores)
+            for line in open(pairs, encoding="utf-8"):
+                row = json.loads(line)
+                if row["pid"] < len(s) and np.isfinite(s[row["pid"]]):
+                    self._by[_key(row["q"], row["p"])] = float(s[row["pid"]])
 
 
 def label_and_hits(d, r, paths) -> tuple[int, dict]:
@@ -217,7 +226,7 @@ def main() -> int:
             for p in rows:
                 fh.write(json.dumps(p, ensure_ascii=False) + "\n")
         print(f"{len(rows)} GPU pairs pending -> {pf} (score on Kaggle, then rerun --modes gpu)")
-    out_path.write_text(json.dumps({"provisional": "golden sets 1-4 are drafts; kappa not measured (D-095)",
+    out_path.write_text(json.dumps({"provisional": "golden sets 1-10 are drafts; kappa not measured (D-095, D-104)",
                                     "rule": "evals/results/gate-rule-2026-11-20.json", "split": a.split,
                                     "bundle": G.BUNDLE, "built": date.today().isoformat(), "cases": out},
                                    ensure_ascii=False, indent=1), encoding="utf-8")

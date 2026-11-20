@@ -1,10 +1,11 @@
 {
- "version": "gate-v1-2026-11-20",
+ "version": "gate-v2-2026-11-20",
  "rule": "evals/results/gate-rule-2026-11-20.json",
  "addenda": [
-  "evals/results/gate-rule-addendum-agree-2026-11-20.json"
+  "evals/results/gate-rule-addendum-agree-2026-11-20.json",
+  "evals/results/gate-rule-addendum-scope-2026-11-20.json"
  ],
- "provisional": "fitted on draft golden sets 1-4 (D-095); refit when the reviewed split exists",
+ "provisional": "fitted on draft golden sets 1-10 (D-095, D-104); refit when the reviewed split exists",
  "bundle": 10,
  "modes": {
   "cpu": {
@@ -14,27 +15,27 @@
     "agree"
    ],
    "mean": [
-    0.42573437,
-    1.57477757,
-    1.18333333
+    -0.26067893,
+    1.73289611,
+    1.13770492
    ],
    "scale": [
-    4.4584007,
-    1.9584377,
-    0.68292671
+    4.75263163,
+    1.97755926,
+    0.6682897
    ],
    "coef": [
-    1.36503183,
-    -0.3927731,
-    0.74470492
+    1.27758955,
+    0.00807346,
+    0.60412917
    ],
-   "intercept": 0.52272872,
-   "tau": 0.895197,
+   "intercept": 0.52747647,
+   "tau": 0.761223,
    "target_precision": 0.95,
    "dense_generation": 1,
-   "fitted_on": "dev, split-v1, 120 scored cases",
-   "oof_answered_precision": 0.9524,
-   "oof_coverage_of_sufficient": 0.2899,
+   "fitted_on": "dev, split-v1, 305 scored cases",
+   "oof_answered_precision": 0.95,
+   "oof_coverage_of_sufficient": 0.5491,
    "reranker": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1@1427fd652930e4ba29e8149678df786c240d8825"
   },
   "gpu": {
@@ -42,22 +43,47 @@
     "top"
    ],
    "mean": [
-    6.06824038
+    6.12866253
    ],
    "scale": [
-    1.94065183
+    1.78386305
    ],
    "coef": [
-    1.75535397
+    2.19726267
    ],
-   "intercept": 2.89032925,
-   "tau": 0.729556,
+   "intercept": 2.84387914,
+   "tau": 0.67117,
    "target_precision": 0.95,
    "dense_generation": 2,
-   "fitted_on": "dev, split-v1, 120 scored cases",
-   "oof_answered_precision": 0.9528,
-   "oof_coverage_of_sufficient": 0.9528,
+   "fitted_on": "dev, split-v1, 305 scored cases",
+   "oof_answered_precision": 0.9504,
+   "oof_coverage_of_sufficient": 0.954,
    "reranker": "Qwen/Qwen3-Reranker-8B@77d193c791ed757ca307ee72715aa132723da912"
+  },
+  "unreranked": {
+   "features": [
+    "top",
+    "margin"
+   ],
+   "mean": [
+    0.02866997,
+    0.00254165
+   ],
+   "scale": [
+    0.00452613,
+    0.00275546
+   ],
+   "coef": [
+    1.04056213,
+    -0.36962949
+   ],
+   "intercept": 0.26774471,
+   "tau": 0.798048,
+   "target_precision": 0.9,
+   "dense_generation": 1,
+   "fitted_on": "dev, split-v1, 305 scored cases",
+   "oof_answered_precision": 0.9,
+   "oof_coverage_of_sufficient": 0.104
   }
  }
 }

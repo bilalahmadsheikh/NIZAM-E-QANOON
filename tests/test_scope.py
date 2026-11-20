@@ -58,6 +58,37 @@ def test_the_veto_stays_silent(q):
     assert scope.veto(q, AS_OF, today=TODAY) is None, q
 
 
+@pytest.mark.parametrize("q,kind", [
+    ("Is there any FIR registered against my CNIC number?", "records"),                 # S2-X04 (dev)
+    ("Is my name on the Exit Control List right now?", "records"),
+    ("Has anyone registered a sale deed for plot 112, Block C, Johar Town in the last year?", "records"),
+    ("Is ABC Traders (Private) Limited registered with the SECP, and who are its directors?", "records"),
+    ("Does the Karachi restaurant 'Spice Garden' hold a valid food licence?", "records"),
+    ("How many FIRs were registered in Lahore last month?", "statistics"),
+    ("How many khula cases were filed in Lahore's family courts this year?", "statistics"),
+    ("What is today's US dollar to rupee exchange rate?", "live"),                     # S4-X01 (dev)
+    ("What is the State Bank's policy rate today?", "live"),
+    ("What is a 10-marla house in DHA Lahore worth right now?", "live"),
+    ("What is Lahore's air quality index right now?", "live"),
+])
+def test_records_statistics_and_live_figures_are_vetoed(q, kind):
+    f = scope.veto(q, AS_OF, today=TODAY)
+    assert f is not None and f.kind == kind and f.code == "CORPUS_GAP", (q, f)
+
+
+@pytest.mark.parametrize("q", [
+    "Is a case against my husband for maintenance maintainable in Karachi?",
+    "How many days do I have to file an appeal against the Rent Controller's order?",
+    "How many witnesses must attest a mortgage deed?",
+    "What is the current minimum wage in Sindh?",
+    "What is the current price of stamp paper for a sale deed?",
+    "Is my name in my father's will enough to inherit?",
+    "Can the police register an FIR against me without evidence?",
+])
+def test_law_questions_that_look_like_lookups_are_not_vetoed(q):
+    assert scope.veto(q, AS_OF, today=TODAY) is None, q
+
+
 def test_a_resolved_citation_or_a_pakistani_place_lifts_the_place_veto():
     q = "What are the rights of a tenant in Dubai?"
     assert scope.place_veto(q) is not None

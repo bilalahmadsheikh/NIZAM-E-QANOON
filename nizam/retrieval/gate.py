@@ -55,6 +55,12 @@ PUBLIC = {   # what a reader is told, and what would let the question be answere
                          ("Ask how Pakistani law treats the matter.",)),
     "CORPUS_GAP:source": ("Court judgments are not in the library yet; it holds statutes, rules and orders only.",
                           ("Ask what the law itself says on the point.",)),
+    "CORPUS_GAP:records": ("The library holds the law, not records about particular people, cases, property or "
+                           "companies.", ("Ask the office that keeps the record; ask here what the law requires.",)),
+    "CORPUS_GAP:statistics": ("The library holds the law, not statistics about cases or events.",
+                              ("Ask what the law says on the matter.",)),
+    "CORPUS_GAP:live": ("The library holds the law, not live rates, prices or readings.",
+                        ("Ask what the law says, for example about how a rate is set.",)),
     "JURISDICTION_UNRESOLVED": ("The answer depends on the province or territory, and the question does not say which.",
                                 ("Name the province or territory, for example Punjab, Sindh or Islamabad.",)),
     "RETRIEVAL_DEGRADED": ("Search is running in a reduced mode that has not been checked for accuracy, so no answer "
