@@ -1136,6 +1136,98 @@ Area: client · Status: Superseded by D-084 (the whole-page cloth; the hem, the 
   design/heritage_art.dart, presentation/discover.dart, presentation/heritage.dart; test/heritage_test.dart
   (golden embroidery.png, a review sheet at 3x).
 
+### D-107 · 2026-11-20 · Evidence assembly: whole units, with their definitions, qualifications and references
+Area: owner ruling, L3 retrieval (docs/04 §7), L2 reads · Status: standing (docs/04 §7 as built)
+- Decision: the owner asked for context assembly "completely end to end", tested for accuracy.
+  `nizam/retrieval/assembly.py: assemble()` runs inside `retrieve()` after the gate passes and changes nothing the
+  gate decided:
+  - `GroundingContext.items` keeps the bundle the gate judged (INV-3). Its type is renamed `BundleItem`: docs/04
+    §7's `EvidenceItem` is the assembled item.
+  - `GroundingContext.evidence` holds the assembled items, in the law's own order.
+  - `GroundingContext.coverage` records what was skipped and why, with step timings and what is not built.
+  - If no bundle unit is law at `as_of` any more (the corpus changed between the two reads), `retrieve()` abstains
+    (`INSUFFICIENT_EVIDENCE`, stage `assembly`). INV-2 holds: still exactly two values.
+- **The reads** (`nizam/storage/evidence_read.py`, L2). Text and law facts come only from `operative_provision`,
+  asked by version ids. Structure (ids, paths, labels, pages, order) comes from the base tables, as a pre-filter that
+  never decides what is law.
+  - The view by ids took 7 ms under a generic plan and 35 ms under a custom one. Per-unit `LATERAL` reads of the
+    view took 20 s (the join trap). So the evidence session plans generically. It reads no `pg_search` index, so
+    D-097's custom-plan rule does not apply.
+  - Amendment footnotes come from `v_amendment_reference_current`, filtered by the laws' source observations, which
+    the view's `DISTINCT ON` takes inside it (170 → 60 ms).
+- **The rules** (docs/04 §7: governing rule first, then what it needs, then corroboration). Each item records its
+  inclusion reason:
+  1. Every bundle unit is admitted **whole**: every operative sub-section, clause, proviso, explanation and
+     illustration, in printed order. Never half a section.
+  2. **A Part or Chapter in the bundle is replaced by its sections.** Retrieval maps a match on its heading to the
+     division itself; 56 dev cases had one. A division is not a citable unit (INV-4), and whole it swallowed the
+     bundle's own sections: it lost 6 necessary units on dev. The replacement takes sections not already in the
+     bundle, in printed order: at most 5, within a quarter of the budget, skipping '[Omitted]' stubs.
+  3. **Qualifications:** up to 3 units of the same law the unit is "subject to", "notwithstanding", "save as / except
+     as provided in" or "without prejudice to".
+  4. **Definitions:** up to 8 per unit, by first use. A definition is a clause of the same law that defines a word
+     the unit uses (means, includes, denotes, signifies, has the meaning). One definition is kept per word: the
+     narrowest scope that reaches the unit.
+     - **Scope comes from the opening words:**
+       - "In this Act" reaches the whole law, so Art. 260 reaches back.
+       - "In this Chapter/Part" reaches the units of that division printed after the definition.
+       - "In this section" stays inside the unit.
+       - A named Chapter the tree lacks reaches no further than the definition's own unit.
+     - **Words that name an instrument** ("Act", "Code", "Rules") count only as "the/this/said Act", never as the
+       last word of another law's title.
+     - **An amending or Finance law contributes no definitions.**
+     - **A definition that stops mid-sentence** ("means--", "namely:__") with no sub-clauses takes its following
+       siblings until the next definition (at most 15 nodes, 3,000 characters). The segmenter often flattens sub-items
+       into siblings. A definition still empty after that is dropped and recorded.
+  5. **References and schedules:** up to 3 more units or schedules of the same law that the unit names. A reference
+     to another law is counted but not followed. Such a reference is one followed by "of the X Act", or with a law
+     title earlier in the same sentence, or any reference in an amending law.
+  6. **What each item carries:**
+     - a citation in the server's form (`library_read.render_citation`, D-070: "…, s. 2(1)(e)", "…, Art. 25" for a
+       constitution's sections);
+     - its Part and Chapter, and the law's facts at `as_of` in the territory;
+     - up to 12 printed amendment footnotes, and up to 5 instruments made under it (`empowers`, 0089);
+     - its source URL, file sha256 and pages.
+  7. **The budget selector** admits in that priority order. It skips an item that does not fit (it never cuts one)
+     and never repeats what an admitted unit already holds. A whole unit replaces a clause of it admitted earlier.
+     The first governing unit is always admitted, and if it alone exceeds the budget that is recorded. At most 20
+     whole units are admitted (docs/04 §7); definitions are bounded by the per-unit cap and the budget.
+- **Budget: 50,000 characters** (about 12.5k tokens). docs/05 §5.2 sets no figure. The rule
+  (`evals/results/assembly-rule-2026-11-20.json`, written before any metric) took the smallest multiple of 5,000 at
+  or above the dev p90 of the unconstrained GPU packet, 48,593 characters.
+- **Measured** (provisional: golden sets are drafts). The arms are `passages` (what the reranker read), `units` (the
+  bundle whole) and `assembled`; answerable questions; GPU bundles; test assembled once on the frozen version (sha256
+  7d0a42c5…):
+
+  | | dev 276: necessary / relevant / text checks | test 174: necessary / relevant / text checks |
+  |---|---|---|
+  | passages | 273/292 · 17/46 · 236/250 | 166/182 · 15/27 · 147/155 |
+  | bundle whole | 273/292 · 17/46 · 237/250 | 166/182 · 15/27 · 147/155 |
+  | **assembled** | **275/292 · 21/46 · 238/250** | **169/182 · 17/27 · 147/155** |
+
+  - **No necessary unit the bundle held was lost** in either split or mode. On the CPU bundles: dev necessary 174 →
+    178, test 100 → 103.
+  - **INV-5:** every node of every packet was re-asked of `operative_provision` independently: 0 violations.
+  - **Additions read against the law** (M4, 40 by a fixed seed; author-checked, not a lawyer's review):
+    - dev round 1: 37/40; round 2, after the first fixes: 38/40; round 3, the final version: 40/40;
+    - **test, once, on the frozen version: 38/40.** Both test errors were flattened definitions (Copyright Ordinance
+      s.2(m), s.2(zf)). The continuation rule above was added after test for exactly that, and was measured on dev
+      only.
+  - **Size:** p50 20k and p90 42k characters per GPU packet; about 13 units and 11 definitions. The CPU bundles run
+    larger, and 4 dev packets exceed the budget on their first unit alone.
+  - **Latency:** assembly p50 about 230 ms and p95 about 400 ms (GPU bundles); CPU p95 0.7–1.5 s. docs/04 §9's
+    "validate / assemble / gate ≤ 25 ms" is not met (open).
+- Why: docs/04 §7, "retrieve narrow; assemble complete". A clause alone can mislead: the proviso, the definition of
+  "employer", or the section "subject to" which it applies sit outside the match.
+- Where:
+  - nizam/retrieval/assembly.py; nizam/storage/evidence_read.py;
+  - nizam/retrieval/gate.py (`BundleItem`, `GroundingContext.evidence` and `coverage`, `retrieve(assemble=)`);
+  - tests/test_assembly.py, tests/test_assembly_db.py;
+  - evals/assembly_eval.py; evals/results/assembly-rule-2026-11-20.json, assembly-dev-sizes-2026-11-20.json,
+    assembly-{dev,test}-2026-11-20.json; evals/golden/review/assembly-additions-dev-2026-11-20-r{1,2,3}.json and
+    assembly-additions-test-2026-11-20.json;
+  - docs/04 §7.
+
 ### D-106 · 2026-11-20 · Gate v2: three more scope vetoes, a refit on the 500-case split, and the degraded mode gated
 Area: owner ruling, L3 retrieval (docs/04 §8, §9.2), evaluation · Status: standing (supersedes D-102's calibration
 and its "unreranked abstains" outcome; D-102's decision order is unchanged)
@@ -2323,6 +2415,27 @@ These were found and deliberately left open. Each will become an entry when it i
   precision is not (GPU .690): 7 of the GPU's 29 abstentions decline an answerable question whose bundle was
   sufficient. Still unbuilt: requests for a predicted outcome or a guarantee, L6's professional-review outcome
   (docs/07; S4-X05 is the GPU's only unanswerable miss).
+- **Corpus defects found by evidence assembly (D-107).** Each needs a page-read repair, law by law:
+  - **The Constitution's Chapter 3A** (Federal Shariat Court, Arts. 203A–203J) is not a node: it sits inside Chapter 3
+    (High Courts). The chapter-order rule keeps Art. 203B's definitions off Arts. 192–203. The tree is still wrong.
+  - **Merged definition nodes.** Two or more clauses sit in one node (Companies Act 2017 s.2(17)–(18), PECA
+    s.2(1)(xxiv)–(xxvi), Land Acquisition Act s.3(c)–(d), and others). The definition is served, but its citation
+    names the first clause.
+  - **Flattened sub-items:** a definition's (i), (ii) stored as its siblings. Assembly reads them back (the
+    continuation rule); the segmenter should nest them.
+  - **The CrPC's s.4 is labelled "1327-A"**, so citations of its definitions read "s. 1327-A(q)".
+  - **Footnotes and Gazette page furniture inside clause text:** MFLO s.7 Explanation; the Electoral Rolls Rules
+    1957, where a page number was read as a label.
+  - **A contents list stored as a section's text:** West Pakistan Money-Lenders Ordinance 1960 s.19.
+- **Assembly latency (D-107).** p50 about 230 ms and p95 about 400 ms (GPU bundles) against docs/04 §9's ≤ 25 ms
+  for validate, assemble and gate. Most of it is the round trips for units, definitions and footnotes. Candidates:
+  one statement per read, or precomputed definition scopes per law (a table built at release).
+- **Assembly not built (D-107):**
+  - sub-question coverage, which needs query decomposition;
+  - conflict sets;
+  - definitions in a General Clauses Act or a parent Act;
+  - following references to another law, which needs a cross-law reference edge;
+  - matched-span offsets, and Urdu-script definitions.
 - **8B reranker serving latency (D-101, D-106).** A Kaggle T4 proxy (fp16, micro-batched) measured p50 4.5 s for 10
   passages and 24.5 s for 50: far outside budget. It needs an L4/A10-class GPU host with TEI or vLLM batching
   measured before the GPU profile is called within budget.

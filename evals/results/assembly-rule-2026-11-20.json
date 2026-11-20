@@ -1,0 +1,20 @@
+{
+ "what": "The evaluation rule for L3 evidence assembly (docs/04 §7; D-107), written 20 Nov 2026 BEFORE any assembly metric was computed. Only bundle sizes were looked at before it, to fix the budget procedure below.",
+ "inputs": "For each golden case in a split and each mode (gpu, cpu), the gate's bundle as served (the first 10 units in evals/results/gate-features-<split>-2026-11-20.json) with the same Filters the gate harness used (as_of from the case; jurisdictions from the case scope, D-097's convention). Assembly runs on every case that expects an answer, and the passing subset (the mode's gate-v2 decision) is reported apart.",
+ "arms": {
+  "passages": "what the reranker read: each bundle unit's first 1,600 characters of operative text (unit_search.unit_passages), no additions",
+  "units": "each bundle unit whole (every operative node), no additions",
+  "assembled": "the full assembly: whole units, then definitions, qualifications, references and schedules, under the budget"
+ },
+ "metrics": {
+  "M1_necessary": "share of the gold necessary units present: a unit is present when an item's unit id, provision id or one of its node ids equals the gold provision id. Reported per arm; the assembled arm must not lose a necessary unit the bundle held (retention), and any it adds is counted",
+  "M2_relevant": "the same, over gold relevant (grade 2) units",
+  "M3_text_checks": "share of answer cases whose every textCheck phrase occurs in the arm's text (case- and whitespace-folded)",
+  "M4_additions_precision": "a sample of 40 dev additions (definitions, qualifications, references, schedules), drawn by a fixed seed, each read by the lead against the law: a definition counts when the clause defines the word as the unit uses it and its scope reaches the unit; a reference counts when it resolves to the unit of the same law that the words name. Author-checked, not a lawyer's review",
+  "M5_inv5": "every node version id in every packet is returned by operative_provision at the case's as_of in its scope, asked again independently after assembly. Required: 100%",
+  "M6_size": "characters per packet (p50, p90, max), items, units, definitions, packets over budget",
+  "M7_latency": "assembly_ms p50 and p95, warm, on this laptop"
+ },
+ "budget": "BUDGET_CHARS is the smallest multiple of 5,000 characters at or above the dev p90 of the UNCONSTRAINED assembled packet size (GPU bundles), and at most 60,000. It is fixed before M1-M4 are computed and never changed after seeing them.",
+ "test": "the test split is assembled once, after the code and the budget are frozen."
+}

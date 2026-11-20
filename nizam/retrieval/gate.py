@@ -20,8 +20,9 @@ The calibration (gate_calibration.json beside this file) is written by evals/gat
 any score existed (evals/results/gate-rule-2026-11-20.json): logistic regression on dev, tau for answered precision
 0.95. The file is data; nothing here chooses a threshold.
 
-What the context carries is identities and scores (INV-1, INV-4: units, never chunks). Assembly into whole provisions
-with definitions and qualifications (docs/04 §7) is the next component; it reads these items.
+The gate judges identities and scores (INV-1, INV-4: units, never chunks): GroundingContext.items. A passing context
+is then assembled (docs/04 §7, nizam.retrieval.assembly, D-107): whole units with their definitions, qualifications,
+references, law facts and sources, in GroundingContext.evidence. Assembly changes nothing the gate decided.
 """
 from __future__ import annotations
 
@@ -72,7 +73,9 @@ PUBLIC = {   # what a reader is told, and what would let the question be answere
 
 
 @dataclass(frozen=True)
-class EvidenceItem:
+class BundleItem:
+    """one unit the gate judged, by identity and score (docs/04 §7's EvidenceItem is the ASSEMBLED item:
+    nizam.retrieval.assembly.EvidenceItem)"""
     unit_id: str
     version_id: str
     instrument_id: str
@@ -86,12 +89,14 @@ class EvidenceItem:
 class GroundingContext:
     query: QuerySpec
     filters: Filters
-    items: tuple                     # EvidenceItem, served order, at most BUNDLE
+    items: tuple                     # BundleItem, served order, at most BUNDLE: what the gate judged (INV-3)
     confidence: float
     threshold: float
     gate: dict                       # mode, calibration version, features, p, tau, decision
     trace: dict                      # the retrieval trace (INV-3)
     degraded: str | None = None
+    evidence: tuple = ()             # assembly.EvidenceItem, legal order: what the generator reads (docs/04 §7)
+    coverage: dict = field(default_factory=dict)   # what assembly admitted, skipped and why, and what it lacks
 
 
 @dataclass(frozen=True)
@@ -118,7 +123,7 @@ def _abstain(code: str, gate: dict, trace: dict | None = None, variant: str | No
 
 
 def _items(cands) -> tuple:
-    return tuple(EvidenceItem(c.unit_id, c.version_id, c.instrument_id, c.rank, c.rerank_score, c.score,
+    return tuple(BundleItem(c.unit_id, c.version_id, c.instrument_id, c.rank, c.rerank_score, c.score,
                               c.via_citation) for c in cands)
 
 
@@ -229,8 +234,10 @@ def pre_veto(spec: QuerySpec, filters: Filters, today: date | None = None) -> sc
 
 
 def retrieve(question, filters: Filters, k: int = 50, connect_fn=None, encoder=None, reranker=None,
-             today: date | None = None, cal: dict | None = None):
-    """THE port (docs/04 §11.1): GroundingContext | Abstention, nothing else"""
+             today: date | None = None, cal: dict | None = None, assemble: bool = True):
+    """THE port (docs/04 §11.1): GroundingContext | Abstention, nothing else. A passing context is assembled
+    (docs/04 §7, nizam.retrieval.assembly) before it is returned; `assemble=False` returns the gate's bare context
+    (evaluation of the gate alone)."""
     from nizam.retrieval.rerank import ranked
     spec = question if isinstance(question, QuerySpec) else parse(question)
     finding = pre_veto(spec, filters, today)
@@ -241,4 +248,12 @@ def retrieve(question, filters: Filters, k: int = 50, connect_fn=None, encoder=N
         variant = finding.kind if finding.code == "CORPUS_GAP" else None
         return _abstain(finding.code, g, {"query": spec.text}, variant=variant)
     r = ranked(spec, filters, k, connect_fn=connect_fn, encoder=encoder, reranker=reranker)
-    return gate(r, cal=cal, connect_fn=connect_fn)
+    out = gate(r, cal=cal, connect_fn=connect_fn)
+    if not assemble or not isinstance(out, GroundingContext):
+        return out
+    from nizam.retrieval.assembly import assemble as _assemble
+    full = _assemble(out, connect_fn=connect_fn)
+    if full is None:      # no bundle unit is law at as_of any more (the corpus changed between the two reads)
+        return _abstain("INSUFFICIENT_EVIDENCE", {**out.gate, "stage": "assembly"}, out.trace,
+                        nearest=out.items[:5])
+    return full

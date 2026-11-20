@@ -283,6 +283,29 @@ authority = matrix.resolve(decidingCourt, forum, subjectMatter, asOf)
   conflicts: ConflictSet[]; corpusVersion; retrievalRunId;
 <b>}</b></pre>
   <p>Choose context by marginal coverage: governing rule first, then a necessary definition/qualification/dependency, then corroborating authority. After reranking about 50 candidates, admit at most about 20 legal units to gate/assembly, subject to token budget and necessary-set coverage. Collapse duplicate quotations and overlapping spans. Order statutes in legal structure, not relevance-score order. A source earns space because it closes a named coverage gap, not because it is the sixth passage saying the same thing.</p>
+  <div class="note blue"><h4>As built (20 Nov 2026): evidence assembly (D-107)</h4>
+  <ul>
+   <li><b>Where:</b> <code>nizam/retrieval/assembly.py: assemble()</code>, called by <code>retrieve()</code> after the gate passes; reads <code>nizam/storage/evidence_read.py</code>, which asks <code>operative_provision</code> by version ids only (INV-5). The gate's bundle stays in <code>GroundingContext.items</code> (INV-3); the assembled items are <code>GroundingContext.evidence</code> and what was skipped, and why, is <code>GroundingContext.coverage</code>.</li>
+   <li><b>Each item</b> is a whole unit (every operative sub-section, clause, proviso and explanation), or a definition clause with its sub-items. It carries a citation rendered by the server's rule (D-070: "…, s. 4", "…, Art. 25"), its Part and Chapter, the law's facts at <code>as_of</code>, its printed amendment footnotes, the instruments made under it (<code>empowers</code>), its source file sha256 and pages, and the reason it was included.</li>
+   <li><b>Additions,</b> in priority order after each bundle unit:
+    <ul>
+     <li><b>Qualifications:</b> units of the same law it is "subject to", "notwithstanding", "save as / except as provided in", or "without prejudice to".</li>
+     <li><b>Definitions</b> of words it uses, in scope: the whole law; a Chapter or Part for the units printed after the definition; or the definition's own unit when the tree lacks the Chapter it names.</li>
+     <li><b>Plain references and schedules</b> of the same law.</li>
+    </ul>
+    References to another law, and all of an amending law's section numbers, are counted but not followed.</li>
+   <li><b>A Part or Chapter in the bundle</b> (retrieval maps a heading match to it) is replaced by up to 5 of its sections, within a quarter of the budget.</li>
+   <li><b>Budget:</b> 50,000 characters (about 12.5k tokens), fixed by a written rule from the dev p90 packet size before any metric. Items are skipped, never cut; the first governing unit is always kept.</li>
+   <li><b>Measured</b> (provisional gold; test assembled once). GPU bundles, answerable questions:
+    <ul>
+     <li>necessary units: dev .935 → .942, test .912 → .929, with none lost;</li>
+     <li>relevant units: dev .370 → .457, test .556 → .630;</li>
+     <li>INV-5 violations: 0;</li>
+     <li>additions correct: 38/40 on test and 40/40 on the final dev sample, author-checked.</li>
+    </ul>
+    Assembly takes p50 ~230 ms and p95 ~400 ms, over the ≤ 25 ms row in §9.</li>
+   <li>Not built: sub-question coverage, conflict sets, General Clauses Act and parent-Act definitions, references to other laws, matched-span offsets, Urdu-script definitions.</li>
+  </ul></div>
  </div>
 </section>
 

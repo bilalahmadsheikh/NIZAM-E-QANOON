@@ -1,0 +1,651 @@
+{
+ "what": "M4 sample: 40 dev GPU additions, seed 20261120; judge each",
+ "items": [
+  {
+   "case": "S4-R03",
+   "question": "A shop in Lahore is breaking consumer law. Can I complain to the Consumer Protection Authority rather than sue?",
+   "role": "definition",
+   "citation": "The Islamabad Capital Territory (Consumers Protection) Rules, 2011, s. 2(1)(f)",
+   "reason": "defines 'ACA', used in Section 6",
+   "text": "(f) \"Area Consumers Association\" or \"ACA\" means an Area Consumers Association constituted for any specified area or sector of Islamabad under rule 7;",
+   "provision": "ad1f00f6-8869-46ed-a77b-ddf1da29738c",
+   "governing": [
+    "Islamabad Consumers Protection Act, 1995, s. 5",
+    "Islamabad Consumers Protection Act, 1995, s. 6",
+    "Islamabad Consumers Protection Act, 1995, s. 8"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S6-C10",
+   "question": "A website in Karachi published the name of a rape victim. Is that allowed?",
+   "role": "reference",
+   "citation": "Pakistan Penal Code, 1860, s. 376",
+   "reason": "Section 376A names 'sections 354A, 376, 376A, 377 and 377B'",
+   "text": "376. Punishment for rape __ (1) Whoever commits rape shall be punished with death or imprisonment of either description for a term which shall not be less than ten years or more than twenty-five years 1[or for imprisonment for the remainder period of his natural life] and shall also be liable to fine.\n  (1A) Whoever commits an offence punishable under sub-section (1) or sub-section (2) or section 377 or section 377B and in the course of such commission causes any hurt punishable as an offence under section 333, section 335, clauses (iv), (v) and (vi) of sub-section (3) of section 337, section 337C, clauses (v) and (vi) of section 337F shall be punished with death or imprisonment for life and fine.]\n  (2) 2[* * * * * * *]]\n  (3) Whoever commits rape of a minor or a person with mental or physical disability shall be punished with death or imprisonment for life and fine.\n  (4) Whoever being a public servant including a police officer, medical officer or jailor, taking advantage of his official position, commits rape shall be punished with death or imprisonment for life and fine.]",
+   "provision": "97c8e754-894f-47f3-bf22-d926e5a37f2c",
+   "governing": [
+    "Pakistan Penal Code, 1860, s. 376A",
+    "Pakistan Penal Code, 1860, s. 499",
+    "Pakistan Penal Code, 1860, s. 500"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S5-P12",
+   "question": "Suit for cancellation of a void or voidable instrument",
+   "role": "reference",
+   "citation": "Contract Act, 1872, s. 30A",
+   "reason": "Section 30B names 'section 30A'",
+   "text": "30A. Agreements collateral to wagering agreements void All agreements knowingly made to further or assist the entering into, effecting or carrying out, or to secure or guarantee the performance, of any agreement void under section 30, are void.",
+   "provision": "5e87d142-9517-4dd0-b159-89b2b42068fc",
+   "governing": [
+    "Specific Relief Act, 1877, s. 31",
+    "Specific Relief Act, 1877, s. 32",
+    "Specific Relief Act, 1877, s. 33"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S4-C12",
+   "question": "Can I keep a pistol at home in Lahore without a licence?",
+   "role": "definition",
+   "citation": "Punjab Police Promotion Rules, 1934, 7",
+   "reason": "defines 'Government', used in Section 6-34",
+   "text": "(7) “Inspector General of Police” means the Inspector General of Punjab Police. (8) “Chief Minster” means the Chief of the Punjab. (9) “Board of Governors” means “The Board of Governors of the Elite Police Force” hereinafter referred to as the Board. (10) “Executive Committee” means a Committee exercising delegated powers of the Board for dealing with the day to day problems of the Force. (11) “School” means the Elite Police Force Training School, Bedian Road, Lahore. (12) “Government” means Government of the Punjab",
+   "provision": "090bbe3e-8553-47c3-955e-42e3cde6b157",
+   "governing": [
+    "Punjab Arms Ordinance, 1965, s. 4",
+    "Punjab Arms Ordinance, 1965, s. 9",
+    "Punjab Arms Ordinance, 1965, s. 11A"
+   ],
+   "verdict": "correct",
+   "note": "correct; merged node (7)-(12), 'Government' is (12): citation names (7)"
+  },
+  {
+   "case": "S3-C02",
+   "question": "I rent a shop in Peshawar and the owner wants me out. What does the law require?",
+   "role": "definition",
+   "citation": "The Displaced Persons (Compensation and Rehabilitation) Act, 1958, s. 2(12)",
+   "reason": "defines 'shop', used in Section 30",
+   "text": "(12) “shop” means evacuee business premises of any value in an urban area or of the value of ten thousand rupees or more in a rural area together with godowns or store-houses, if any, attached or appurtenant to such premises, but does not include any building situated within the premises of an industrial concern, or a building or premises declared under paragraph 15 of the First Schedule to be a big mansion or hotel:\n  Provided that where a building not so declared consists of more than one business premises, and such premises are in the possession of several persons, the premises in the possession of any one of such persons shall be deemed to be a shop ;",
+   "provision": "83b20c23-269b-4ba5-9c30-82b54ca3cd64",
+   "governing": [
+    "The West Pakistan Urban Rent Restriction Ordinance, 1959, s. 13",
+    "Islamabad Rent Restriction Ordinance, 2001, s. 17",
+    "The Khyber Pakhtunkhwa Tenancy Act, 1950, s. 23"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S7-U01",
+   "question": "Mera shohar paanch saal se laapata hai, kya mein Karachi mein nikah khatam karwa sakti hoon?",
+   "role": "definition",
+   "citation": "Parsi Marriage and Divorce Act, 1936, s. 2(5)",
+   "reason": "defines 'husband', 'marriage', used in Section 31",
+   "text": "(5) “husband” means a Parsi husband ; (6) “marriage\" means a marriage between Parsis whether contracted before or after the commencement of this Act ;",
+   "provision": "372d47c2-aef8-4b1c-b595-02521798dcad",
+   "governing": [
+    "Dissolution of Muslim Marriages Act, 1939, s. 1",
+    "Dissolution of Muslim Marriages Act, 1939, s. 2",
+    "Dissolution of Muslim Marriages Act, 1939, s. 3"
+   ],
+   "verdict": "correct",
+   "note": "correct; merged node (5)-(6)"
+  },
+  {
+   "case": "S2-C08",
+   "question": "My husband does not give me any money for household expenses. What can I do?",
+   "role": "reference",
+   "citation": "The West Pakistan Family Courts Act, 1964, s. 5",
+   "reason": "Schedule names 'section 5'",
+   "text": "5. Subject to the provisions of the Muslim Fay * : 2 Laws Ordinance, 1961, and the Conciliation Cou™t* ” 16° nance, 1961, the Family Courts shall have exclusive | pers diction to entertain, ° hear and adjudicate upo? specified in the Schedule. , ders of Place of",
+   "provision": "d70e7de6-f3f3-4114-990c-d6bbce3cd1cc",
+   "governing": [
+    "Muslim Family Laws Ordinance, 1961, s. 9",
+    "Maintenance Orders Enforcement Act, 1921, s. 1",
+    "Domestic Violence (Prevention and Protection) Act, 2026, s. 9"
+   ],
+   "verdict": "correct",
+   "note": "correct; OCR-damaged text (corpus)"
+  },
+  {
+   "case": "S7-R02",
+   "question": "After I file in the Family Court in Islamabad, how soon must my husband be called?",
+   "role": "definition",
+   "citation": "Domestic Violence (Prevention and Protection) Act, 2026, s. 2(xvi)",
+   "reason": "defines 'Protection Officer', used in Section 5",
+   "text": "(xvi) “Protection Officer” means an officer designated by the Ministry of Human Rights under section 19;",
+   "provision": "1b5cf7a4-76ea-4923-bc7f-2106d9399ed5",
+   "governing": [
+    "The Family Courts Act, 1964, s. 8",
+    "The Family Courts Act, 1964, s. 10",
+    "The Family Courts Act, 1964, s. 11"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S10-C15",
+   "question": "How long do I have to complain about a private clinic in Peshawar, and how?",
+   "role": "definition",
+   "citation": "The Khyber Pakhtunkhwa Health Care Commission Act, 2015, s. 2(i)",
+   "reason": "defines 'healthcare establishment', used in Section 13, Section 21",
+   "text": "(i) “healthcare establishment” means a hospital, diagnostic centre, blood banks, medical clinics, nursing home, maternity home, dental clinic, homeopathy clinic, Tibb clinic, acupuncture, physiotherapy clinic or any other premises or conveyance-",
+   "provision": "6a98d650-1d9f-4124-81f6-c3e449f202e9",
+   "governing": [
+    "The Khyber Pakhtunkhwa Health Care Commission Act, 2015, s. 6",
+    "The Khyber Pakhtunkhwa Health Care Commission Act, 2015, s. 13",
+    "The Khyber Pakhtunkhwa Health Care Commission Act, 2015, s. 21"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S4-P02",
+   "question": "What must be filed to incorporate a company?",
+   "role": "definition",
+   "citation": "The Companies Regulations, 2022, s. 2(xviii)",
+   "reason": "defines 'fee', used in Section 8, 2, 3",
+   "text": "(xviii) \"fee\" means fee as specified in Seventh Schedule to the Act;",
+   "provision": "17787e7b-3608-4f5a-81fa-78e56c5263e8",
+   "governing": [
+    "Companies Act, 2017, s. 16",
+    "The Companies Regulations, 2024, s. 8",
+    "The Companies Regulations, 2022, s. 8"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S10-C01",
+   "question": "A company has started building a factory next to our village in Sheikhupura. Did it need environmental approval first?",
+   "role": "definition",
+   "citation": "The Punjab Environmental Protection (Bts) Regulations, 2012, s. 2(1)(h)",
+   "reason": "defines 'IEE Form', used in Schedule –IV",
+   "text": "(h) “IEE Form” means a Form filled in by the proponent or by an authorized agent of the proponent corresponding or explaining details required by the provincial Agency as incorporated in Schedule-I for purposes of review;",
+   "provision": "f0dca0c8-6906-4ab6-8088-f063b1df727b",
+   "governing": [
+    "Pakistan Environmental Protection Act, 1997, s. 1",
+    "Pakistan Environmental Protection Act, 1997, s. 12",
+    "Punjab Environmental Protection Act, 1997, s. 1"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S4-P07",
+   "question": "Reference to ADR before legal proceedings — ICT",
+   "role": "definition",
+   "citation": "Alternative Dispute Resolution Act, 2017, s. 2(d)",
+   "reason": "defines 'award', used in Section 19, Section 10",
+   "text": "(d) ‘award’ means an arbitration award;",
+   "provision": "35209b09-c266-495e-87b7-cbcdbaa4e499",
+   "governing": [
+    "Alternative Dispute Resolution Act, 2017, s. 3",
+    "Alternative Dispute Resolution Act, 2017, s. 6",
+    "Alternative Dispute Resolution Act, 2017, s. 8"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S10-C10",
+   "question": "A school in Multan refused to admit my deaf daughter. Can it?",
+   "role": "reference",
+   "citation": "Punjab Free and Compulsory Education Act, 2014, s. 2",
+   "reason": "Section 3 names 'section 2'",
+   "text": "2. Definitions – In this Act:\n  (a) “child” means a child from the age of five to sixteen years;\n  (b) “capitation fee” means any kind of donation or contribution or payment, by whatever name, other than the fee notified by the Government or the local authority;\n  (c) “disadvantaged child” means a child who belongs to a socially and economically disadvantaged class, or to any other group having disadvantage owing to social, or such other reasons or who belongs to such a parent whose annual income is less than the limit which the Government may, by notification, specify;\n  (d) “education” means teaching and training of mind and character by attendance in regular school education, madrassa education, vocational training and special education in the class room and school setting, or non-formal education or the education prescribed for a child or category of children by the Government;\n  (e) “free education” implies that the Government or a local authority shall not charge any fee or expense for providing education and shall 1This Act was passed by the Punjab Assembly on 27 October 2014; assented to by the Governor of the Punjab on 08 November 2014; and, was published in the Punjab Gazette (Extraordinary), dated 10 November 2014, pages 1699-1705. endeavour to remove financial barriers that may prevent a child from completing ten years’ education;\n  (f) “Government” means Government of the Punjab;\n  (g) “local authority” means a local government, an autonomous or semi- autonomous ",
+   "provision": "cd84c5f9-e6ec-4b70-8c24-9145b27c11ac",
+   "governing": [
+    "Punjab Empowerment of Persons with Disabilities Act, 2022, s. 2",
+    "Punjab Empowerment of Persons with Disabilities Act, 2022, s. 3",
+    "Punjab Empowerment of Persons with Disabilities Act, 2022, s. 8"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S9-C13",
+   "question": "My business partner in Sukkur died. Is our firm automatically over?",
+   "role": "definition",
+   "citation": "Income Tax Ordinance, 2001, s. 2(6)",
+   "reason": "defines 'association of persons', used in Section 98B",
+   "text": "(6) “association of persons” means an association of persons as defined in section 80;",
+   "provision": "2ef28680-2a40-4cb1-b67a-510a6becec06",
+   "governing": [
+    "Partnership Act, 1932, s. 17",
+    "Partnership Act, 1932, s. 34",
+    "Partnership Act, 1932, s. 35"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S10-C09",
+   "question": "Is there a job quota for persons with disabilities in Balochistan?",
+   "role": "definition",
+   "citation": "Balochistan Persons with Disabilities Act, 2017, s. 2(b)",
+   "reason": "defines 'Access', used in Section 3",
+   "text": "(b) “Access” means meaningful and effective access to various physical and intangible means made suitable to fulfill the special needs of the Persons with Disabilities;",
+   "provision": "72ca22a8-0d8e-4862-9b3a-fb6b9964663f",
+   "governing": [
+    "Balochistan Persons with Disabilities Act, 2017, s. 3",
+    "Balochistan Persons with Disabilities Act, 2017, s. 10",
+    "The Balochistan Persons with Disabilities Act, No II of 2017, s. 3"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S3-C11",
+   "question": "In Quetta, can a court stop my abusive husband from contacting me or coming to my workplace?",
+   "role": "definition",
+   "citation": "The Balochistan Protection Against Harassment of Women at Work Place Act, 2016, s. 2(q)",
+   "reason": "defines 'Workplace', used in Section 1",
+   "text": "(q) “Workplace” means the place of work or the premises where an organization or employer operates and includes building, factory, transport, open area or a larger geographical area where the activities of the organization or of employer are carried out and including any situation that is linked to official work, official activity or other activities outside the office.",
+   "provision": "a89b01c0-a7d8-406d-aedb-30fb5e10b562",
+   "governing": [
+    "Balochistan Domestic Violence (Prevention and Protection) Act, 2014, s. 1",
+    "Balochistan Domestic Violence (Prevention and Protection) Act, 2014, s. 4",
+    "Balochistan Domestic Violence (Prevention and Protection) Act, 2014, s. 8"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S2-C10",
+   "question": "Does a nikah have to be registered?",
+   "role": "definition",
+   "citation": "Registration Act, 1908, s. 2(6)",
+   "reason": "defines 'immoveable property', used in Section 49",
+   "text": "(6) “immoveable property” includes land, buildings, benefits to arise out of land and things attached to the earth, or permanently fastened to anything attached to the earth, hereditary allowances, rights to ways, lights, ferries and fisheries but does not Include—\n  (a) standing timber, growing crops or grass whether immediate severance thereof it intended or not;\n  (b) fruit upon and juice in trees whether in existence or to grow in future; and\n  (c) machinery embedded in or attached to the earth, when dealt with apart from the land:]",
+   "provision": "8a9aa716-1a80-41d7-aa62-c7687caf8a0a",
+   "governing": [
+    "Muslim Family Laws Ordinance, 1961, s. 5",
+    "The West Pakistan Family Courts Act, 1964, s. 24",
+    "National Database and Registration Authority Ordinance, 2000, s. 21"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S9-R08",
+   "question": "How do I make sure my life insurance money in Karachi goes to my wife if I die?",
+   "role": "definition",
+   "citation": "Insurance Ordinance, 2000, s. 2(1)(xxxii)",
+   "reason": "defines 'investment contract', used in Section 3",
+   "text": "(xxxii) “investment contract” means a contract of insurance, providing for benefits to be paid on death or on a specified date or dates before death where the benefits paid are calculated by reference to either a running account or units under the contract whether or not the minimum value of that account or those units is guaranteed and providing for the account to be increased during the currency of the contract;",
+   "provision": "22999b6f-ca47-4f49-a0fa-b97f57597ce5",
+   "governing": [
+    "Married Women’s Property Act, 1874, s. 5",
+    "Married Women’s Property Act, 1874, s. 6",
+    "Insurance Ordinance, 2000, s. 3"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S5-C03",
+   "question": "The Ombudsperson in Peshawar ordered my brothers to hand over my share of the land. Can they challenge the order, and by when?",
+   "role": "definition",
+   "citation": "Enforcement of Women’s Property Rights Act, 2020, s. 2(a)",
+   "reason": "defines 'complainant', used in Section 5, Section 4, Section 7",
+   "text": "(a) ‘complainant’ means a woman who files a complaint or for whom proceedings are initiated in respect of the title or possession of her property;",
+   "provision": "6bcc59e4-f171-42c2-a8f9-cbfe3ae3d275",
+   "governing": [
+    "Khyber Pakhtunkhwa Enforcement of Women’s Property Rights Act, 2019, s. 4",
+    "Khyber Pakhtunkhwa Enforcement of Women’s Property Rights Act, 2019, s. 8",
+    "Enforcement of Women’s Property Rights Act, 2020, s. 4"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S3-U05",
+   "question": "آزاد کشمیر میں رینٹ کنٹرولر کے فیصلے کے خلاف اپیل کتنے دن میں کی جا سکتی ہے؟",
+   "role": "definition",
+   "citation": "Karachi Rent Restriction Act, 1953, s. 2(1)",
+   "reason": "defines 'Controller', used in Section 15",
+   "text": "(1) “Controller” means a judicial officer who is appointed by the Provincial Government to perform the functions of a Controller under this Act; ]",
+   "provision": "e06e000e-05cd-43f8-8f97-31208f00fa80",
+   "governing": [
+    "The Azad Jammu and Kashmir Rent Restriction Act, 1986, s. 14",
+    "The Azad Jammu and Kashmir Rent Restriction Act, 1986, s. 18",
+    "Islamabad Rent Restriction Ordinance, 2001, s. 21"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S9-C06",
+   "question": "I signed as guarantor for my friend's loan in Karachi. If he doesn't pay, how much can be claimed from me?",
+   "role": "definition",
+   "citation": "The Banking Companies (Recovery of Loans, Advances, Credits and Finances) Act, 1997, d",
+   "reason": "defines 'loan', used in 1",
+   "text": "(d) “customer” means a person who has obtained finance under a system which is not based on interest from a bankimg company or 15 the real benefictary of such finance, and includes a surety or an inderminifier , “finatice” includes an accommodation or facility under a system fc) which 1s not based on interest but provided on the basis of partici pation in profit and loss, mark-up or mark-down in price, hire purchase, equity support, lease, rent-sharing, licensing, charge or fee of any kind, purchase and sale of any property, including com modities, patents designs trade marks and copy-rights, bills of exchange, promissory notes or other instruments with or without buy-back arrangement by a seller, participation term certificate, musharika or modaraba certificate, term finance certificate or any other mode other than an accommodation or facility based on Interest and also includes credit or charge cards, guarantees, indemmities, letters of credit and any other obligation, whether fund based or non-fund based, and any accommodation or facility the real beneficiary whereof 18 a person other than the person to whom or in whose name it was provided , “loan” means a loan, advance and credit under a system based on",
+   "provision": "4d0da3bb-66a5-43ef-b9f5-4132129d255e",
+   "governing": [
+    "Contract Act, 1872, s. 128",
+    "Contract Act, 1872, s. 200",
+    "Contract Act, 1872, s. 130"
+   ],
+   "verdict": "correct",
+   "note": "correct; merged OCR node, 'loan' defined inside it"
+  },
+  {
+   "case": "S3-P03",
+   "question": "Forum for a workplace harassment complaint in Punjab",
+   "role": "definition",
+   "citation": "Protection Against Harassment of Women at the Work Place Act, 2010, s. 2(k)",
+   "reason": "defines 'Ombudsperson', used in Section 8",
+   "text": "(k) “Ombudsperson” means the Ombudsperson appointed under Section 7;]",
+   "provision": "9b115888-dcd0-4ab3-bdbb-fc6e4c8f46fe",
+   "governing": [
+    "Punjab Labour Code, 2026, s. 50",
+    "Punjab Labour Code, 2026, s. 51",
+    "Punjab Labour Code, 2026, s. 251"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S10-P02",
+   "question": "Penalty under the federal environmental Act",
+   "role": "reference",
+   "citation": "Pakistan Environmental Protection Act, 1997, s. 12",
+   "reason": "Section 17 names 'sections 11, 12, 13'",
+   "text": "12. Initial environmental examination and environmental impact assessment. (1) No proponent of a project shall commence construction or operation unless he has filed with the Federal Agency an initial environmental examination or, where the project is likely to cause an adverse environmental effect, an environmental impact assessment, and has obtained from the Federal Agency approval in respect thereof.\n  (2) The Federal Agency shall—\n    (a) review the initial environmental examination and accord its approval, or require submission of an environmental impact assessment by the proponent; or\n    (b) review the environmental impact assessment and accord its approval subject to such conditions as it may deem fit to impose, or require that the environmental impact assessment be re‑submitted after such modifications as may be stipulated, or reject the project as being contrary to environmental objectives.\n  (3) Every review of an environmental impact assessment shall be carried out with public participation and no information will be disclosed during the course of such public participation which relates to—\n    (i) trade, manufacturing or business activities, processes or techniques of a proprietary nature, or financial, commercial, scientific or technical matters which the proponent has requested should remain confidential, unless for reasons to be recorded in writing, the Director‑General of the Federal Agency is of the opinion that the request for confidentiality is not well‑fo",
+   "provision": "623e7b2c-3124-4f20-b8f5-ea2ac03538ec",
+   "governing": [
+    "Pakistan Environmental Protection Act, 1997, s. 2",
+    "Pakistan Environmental Protection Act, 1997, s. 5",
+    "Pakistan Environmental Protection Act, 1997, s. 7"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S6-C10",
+   "question": "A website in Karachi published the name of a rape victim. Is that allowed?",
+   "role": "definition",
+   "citation": "Pakistan Penal Code, 1860, s. 17",
+   "reason": "defines 'Government', used in Section 499",
+   "text": "17. “Government” The word “Government” denotes the person or persons authorized by law to administer executive Government in 3[Pakistan, or in any part thereof].",
+   "provision": "29eb481b-9208-4d7e-963c-08985eb5392a",
+   "governing": [
+    "Pakistan Penal Code, 1860, s. 376A",
+    "Pakistan Penal Code, 1860, s. 499",
+    "Pakistan Penal Code, 1860, s. 500"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S6-U01",
+   "question": "Police ne mere bhai ko Mardan mein pakra hai, magistrate kitne din tak police hirasat ki ijazat de sakta hai?",
+   "role": "definition",
+   "citation": "Anti-terrorism Act, 1997, s. 2(e)",
+   "reason": "defines 'court', used in Section 21E",
+   "text": "(e) “court” means an Anti-terrorism Court established under section 13;",
+   "provision": "b8582df8-d27a-4d61-8ecc-517c09715d83",
+   "governing": [
+    "Code of Criminal Procedure, 1898, s. 167",
+    "Code of Criminal Procedure, 1898, s. 344",
+    "Anti-terrorism Act, 1997, s. 21E"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S5-U01",
+   "question": "Mere bhai Lahore mein abbu ke ghar mein mera hissa nahi de rahe, court ke ilawa kahan shikayat kar sakti hoon?",
+   "role": "definition",
+   "citation": "Punjab Protection of Ownership of Immovable Property Act, 2025, s. 2(b)",
+   "reason": "defines 'Committee', used in Section 7",
+   "text": "(b) “Committee” means the 3[Scrutiny] Committee provided under section 8 of the Act;",
+   "provision": "79be6a6a-48f3-436c-99a4-710f2b78e8f3",
+   "governing": [
+    "Punjab Enforcement of Women’s Property Rights Act, 2021, s. 4",
+    "Punjab Enforcement of Women’s Property Rights Act, 2021, s. 7",
+    "Enforcement of Women’s Property Rights Act, 2020, s. 4"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S3-C07",
+   "question": "A YouTuber in Lahore made false claims about me. Can I sue him for damages, and do I have to prove a loss?",
+   "role": "definition",
+   "citation": "Pakistan Penal Code, 1860, s. 12",
+   "reason": "defines 'Public', used in Section 499",
+   "text": "12. \"Public\" – The word \"Public\" includes any class of the public or any community.",
+   "provision": "f1b879a0-e08a-4fd3-adaf-0fc77d42ebcb",
+   "governing": [
+    "Punjab Defamation Act, 2024, s. 2",
+    "Punjab Defamation Act, 2024, s. 3",
+    "Punjab Defamation Act, 2024, s. 17"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S1-U03",
+   "question": "پنجاب میں مالک مکان کرایہ دار کو کن وجوہات پر مکان خالی کروا سکتا ہے؟",
+   "role": "definition",
+   "citation": "Punjab Tenancy Act, 1887, s. 4(1)",
+   "reason": "defines 'land', used in Section 39, Section 40, Section 45",
+   "text": "(1) “land” means land which is not occupied as the site of any building in a town or village and is occupied or has been let for agricultural purposes or for purposes subservient to agriculture or for pasture, and includes the sites of buildings and other structures on such land: 6[(1-A) “Government” shall, unless the context otherwise provides, mean the Provincial Government 7[:] ] 8[(1-B) “Commissioner” means a Commissioner of a Division appointed under the Punjab Land Revenue Act, 1967 (XVII of 1967) and includes an Additional Commissioner:]",
+   "provision": "a7e59d15-482e-4ed1-9870-7c642511a916",
+   "governing": [
+    "Punjab Rented Premises Act, 2009, s. 13",
+    "Punjab Rented Premises Act, 2009, s. 15",
+    "Punjab Tenancy Act, 1887, s. 39"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S1-P06",
+   "question": "Constitutional writ jurisdiction of the High Court",
+   "role": "definition",
+   "citation": "Constitution of the Islamic Republic of Pakistan, 1973, Art. 203B(b)",
+   "reason": "defines 'Court', used in Article 199, Article 203D, Article 203H, Article 192",
+   "text": "(b) “Court” means the Federal Shariat Court constituted in pursuance of Article 203C ;",
+   "provision": "8bb4a918-32c7-4380-8736-8a7da043a9c4",
+   "governing": [
+    "Constitution of the Islamic Republic of Pakistan, 1973, Art. 175",
+    "Constitution of the Islamic Republic of Pakistan, 1973, Art. 175E",
+    "Constitution of the Islamic Republic of Pakistan, 1973, Art. 184"
+   ],
+   "verdict": "wrong",
+   "note": "Art. 203B(b) 'Court' (the Federal Shariat Court, 'In this Chapter') reached Arts. 199 and 192: the tree folds Chapter 3A into Chapter 3 (fixed: a Chapter's definitions reach only units printed after them)"
+  },
+  {
+   "case": "S10-C04",
+   "question": "A mining company has begun work near Quetta. Must it have an environmental approval?",
+   "role": "definition",
+   "citation": "The Balochistan Mines and Minerals Act, 2025, s. 4(3)",
+   "reason": "defines 'Title Holder', used in Section 77",
+   "text": "(3) months, during which period the relevant government department or Public Organisation shall apply for the grant of another relevant Mineral Title; “Title Holder” means,-\n  (i) in relation to Large-scale Mining, a Company to whom a Reconnaissance Licence, an Exploration Licence, a Mineral Deposit Retention Licence or a Mining Lease (Large-scale Mining), has been granted or awarded under this Act, or has otherwise been Transferred in accordance with this Act;\n  (ii) in relation to Small-scale Mining, other than in respect of Minor Minerals, a Company or a Firm to whom a Prospecting Licence or a Mining Lease (Small-scale Mining) has been granted or awarded under this Act, or has otherwise been Transferred in accordance with this Act; in relation to Small-scale Mining in respect of Minor Minerals, a Company or a Firm to whom a Mining Lease (Small-scale Mining) in respect of Minor Minerals has been granted or awarded under this Act, or has otherwise been Transferred in accordance with this Act; or",
+   "provision": "c57c61f9-5d73-4610-8c64-c91d9faabb0e",
+   "governing": [
+    "The Balochistan Environmental Protection Act, 2012, s. 2",
+    "The Balochistan Environmental Protection Act, 2012, s. 14",
+    "The Balochistan Environmental Protection Act, 2012, s. 15"
+   ],
+   "verdict": "correct",
+   "note": "correct; merged node, citation names s.4(3)"
+  },
+  {
+   "case": "S7-R06",
+   "question": "The Family Court in Islamabad decreed maintenance but my ex-husband is not paying. How is it enforced?",
+   "role": "definition",
+   "citation": "Muslim Family Laws Ordinance, 1961, s. 2(b)",
+   "reason": "defines 'Chairman', used in Section 9",
+   "text": "(b) ‘Chairman’ means the Chairman of the Union Council or a person appointed by the 7[2[Federal Government] in the Cantonment areas, or by the Provincial Government in other areas,] or by an officer authorized in that behalf by any such Government, to discharge the functions of Chairman under this Ordinance: _________________________________________________________________________________ 1The 15th day of July, 1961, see Gaz. of P., S.R.O. 56 (R), 1961, Ext., p. 1128.a.\n  Provided that where the Chairman of the Union Council is a non- Muslim, or he himself wishes to make an application to the Arbitration Council, or is, owing to illness or any other reason, unable to discharge the functions of Chairman, the Council shall elect one of its Muslim members as Chairman for the purposes of this Ordinance;]",
+   "provision": "452cbbb7-a78a-40b7-8c7a-5c1536c60e4d",
+   "governing": [
+    "The West Pakistan Family Courts Act, 1964, s. 13",
+    "The Family Courts Act, 1964, s. 13",
+    "The Family Courts Act, 1964, s. 17A"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S3-R03",
+   "question": "The Rent Controller in Abbottabad ordered my eviction. Can I appeal?",
+   "role": "definition",
+   "citation": "The West Pakistan Urban Rent Restriction Act, 1957, s. 2(d)",
+   "reason": "defines 'non-residential building', used in Section 13",
+   "text": "(d) “non-residential building” means a_ building being used solely tor the purpose of business or trade ;",
+   "provision": "866275db-2681-42cc-b09d-570b1f05a719",
+   "governing": [
+    "The West Pakistan Urban Rent Restriction Ordinance, 1959, s. 13",
+    "The West Pakistan Urban Rent Restriction Ordinance, 1959, s. 15",
+    "Islamabad Rent Restriction Ordinance, 2001, s. 17"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S6-C08",
+   "question": "My neighbour in Islamabad has threatened to kill me. Is that an offence?",
+   "role": "definition",
+   "citation": "Pakistan Penal Code, 1860, s. 46",
+   "reason": "defines 'death', used in Section 506, Section 387, Section 299, Section 94, Section 115",
+   "text": "46. \"Death\" “Death.” The word “death” denotes the death of a human being, unless the contrary appears from the context.",
+   "provision": "46dcade8-6db2-4f64-bdd6-7481c425f5fe",
+   "governing": [
+    "Pakistan Penal Code, 1860, s. 94",
+    "Pakistan Penal Code, 1860, s. 115",
+    "Pakistan Penal Code, 1860, s. 299"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S9-U04",
+   "question": "Bank ne mere account mein paise hone ke bawajood mera cheque wapas kar diya, kya bank zimmedar hai?",
+   "role": "definition",
+   "citation": "Payment Systems and Electronic Fund Transfers Act, 2007, s. 2(x)",
+   "reason": "defines 'Financial Institution', used in Section 43",
+   "text": "(x) “Financial Institution” means a financial institution as defined in the Financial Institutions (Recovery of Finances) Ordinance, 2001(XLVI of 2001) and includes a banking company or any other Electronic Money Institution or person, authorized by the State Bank in this behalf, that directly or indirectly holds an account belonging to a consumer;",
+   "provision": "3c723b4f-621f-44b4-8c82-e6431aea27cd",
+   "governing": [
+    "Negotiable Instruments Act, 1881, s. 30",
+    "Negotiable Instruments Act, 1881, s. 84",
+    "Negotiable Instruments Act, 1881, s. 122A"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S8-C20",
+   "question": "I am a voter and I think the election in my constituency in Sukkur was rigged. Can I challenge it?",
+   "role": "definition",
+   "citation": "The National and Provincial Assemblies (Elections) Ordinance, 1970, s. 2(iii)",
+   "reason": "defines 'candidate', used in Section 50",
+   "text": "(iii) “ candidate” means a person proposed7as a candidate for election as a member ;",
+   "provision": "4b312073-de72-4ca6-b0b2-d570586010f1",
+   "governing": [
+    "Constitution of the Islamic Republic of Pakistan, 1973, Art. 222",
+    "Constitution of the Islamic Republic of Pakistan, 1973, Art. 225",
+    "The Houses of Parliament and Provincial Assemblies (Elections) Order, 1977, s. 13"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S4-C17",
+   "question": "I am salaried in Karachi. Do I have to file an income tax return?",
+   "role": "definition",
+   "citation": "The Finance Ordinance, 2002, s. 8(13A)(i)",
+   "reason": "defines 'income', 'income year', used in Section 215",
+   "text": "(i) for clause (29) the following shall be substituted, namely:— “(29) “income” includes any amount chargeable to tax under this Ordinance, any amount subject to collection of tax under sections 148, 153, 154 and 156, sub-section (5) of section 234, and any loss of income but does not include, in case of a shareholder of a domestic company, the amount representing the face value of any bonus share or the 246 THE GAZETTE OF PAKISTAN, EXTRA., JUNE 25, 2002 [Part I amount of any bonus declared, issued or paid by the company to the shareholders with a view to increasing its paid-up share capital;”; + q) after clause (29), substituted as aforesaid, the following new clause shall be inserted, namely: — “(29A) “income year” means income year as defined in the repealed Ordinance;”;",
+   "provision": "9a157b28-17f7-4fc8-ad03-e972232b5519",
+   "governing": [
+    "The Income-Tax Ordinance, 1979, s. 55",
+    "Income Tax Ordinance, 2001, s. 1",
+    "Income Tax Ordinance, 2001, s. 114"
+   ],
+   "verdict": "wrong",
+   "note": "a Finance Ordinance 2002 clause substituting ITO s.2(29) was taken as the Finance Ordinance's own definition of 'income' (fixed: an amending law contributes no definitions)"
+  },
+  {
+   "case": "S4-C02",
+   "question": "I was fired from a factory in Karachi. By when must they pay my remaining salary?",
+   "role": "definition",
+   "citation": "Payment of Wages Act, 1936, s. 2(ia)",
+   "reason": "defines 'factory', used in Section 5, Section 1",
+   "text": "(ia) ] “factory” means a factory as defined in clause (j) of section 2 of the Factories Act, 1934 ;",
+   "provision": "b79d3afb-fc57-4df7-9bfe-a166b90f7916",
+   "governing": [
+    "Payment of Wages Act, 1936, s. 1",
+    "Payment of Wages Act, 1936, s. 5",
+    "West Pakistan Shops and Establishments Ordinance, 1969, s. 11"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S3-C17",
+   "question": "Who can file a consumer complaint in KP?",
+   "role": "definition",
+   "citation": "The Khyber Pakhtunkhwa Food Fortification Act, 2022, s. 2(d)",
+   "reason": "defines 'Court', used in Section 28, Section 27",
+   "text": "(d) “Court” means a Court of the Magistrate of First Class;",
+   "provision": "f895e83b-52e6-4bc7-b412-c571efe88266",
+   "governing": [
+    "Consumers Protection Act, 1997, s. 2",
+    "Consumers Protection Act, 1997, s. 11B",
+    "Consumers Protection Act, 1997, s. 13"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S4-C06",
+   "question": "I am a federal government employee in Islamabad expecting my first child. How much maternity leave do I get?",
+   "role": "definition",
+   "citation": "West Pakistan Maternity Benefit Ordinance, 1958, s. 2(c)",
+   "reason": "defines 'employer', used in Section 5",
+   "text": "(c) “employer” means any person who has ultimate control over the appointment of a woman;",
+   "provision": "b6f584df-5b34-47f8-a5d9-e64145eea79f",
+   "governing": [
+    "Revised Leave Rules, 1980, s. 13",
+    "The TDAP Service Rules, 2014, s. 158",
+    "The Competition Commission of Pakistan (Service) Manual, 2007, s. 12"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S7-C17",
+   "question": "We are Christians in Islamabad. Who can lawfully perform our marriage?",
+   "role": "reference",
+   "citation": "Christian Marriage Act, 1872, s. 19",
+   "reason": "Section 60 names 'section 19'",
+   "text": "19. Consent of father, or guardian, or mother The father, if living, of any minor, or, if the father be dead, the guardian of the person of such minor, and, in case there be no such guardian, then the mother of such minor, may give consent to the minor’s marriage, and such consent is hereby required for the same marriage, unless no person authorized to give such consent be resident in 1[Pakistan].",
+   "provision": "e4be0cef-49c0-4706-af73-cb9a26f0af29",
+   "governing": [
+    "Christian Marriage Act, 1872, s. 4",
+    "Christian Marriage Act, 1872, s. 5",
+    "Christian Marriage Act, 1872, s. 6"
+   ],
+   "verdict": "correct",
+   "note": ""
+  }
+ ],
+ "round": "2 (after the first fixes; before the chapter-order and amending-law rules)",
+ "result": {
+  "correct": 38,
+  "of": 40
+ },
+ "checked_by": "the lead (author check, not a lawyer's review), 20 Nov 2026"
+}

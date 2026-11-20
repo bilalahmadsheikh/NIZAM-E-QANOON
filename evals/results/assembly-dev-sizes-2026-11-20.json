@@ -1,0 +1,2780 @@
+{
+ "split": "dev",
+ "what": "unconstrained packet sizes (characters)",
+ "summary": {
+  "gpu": {
+   "cases": 276,
+   "p50": 20986,
+   "p90": 48593,
+   "max": 588295
+  },
+  "cpu": {
+   "cases": 276,
+   "p50": 42172,
+   "p90": 243090,
+   "max": 3126774
+  }
+ },
+ "rows": [
+  {
+   "case": "S1-C01",
+   "mode": "gpu",
+   "chars": 51763
+  },
+  {
+   "case": "S1-C01",
+   "mode": "cpu",
+   "chars": 85289
+  },
+  {
+   "case": "S1-C03",
+   "mode": "gpu",
+   "chars": 14265
+  },
+  {
+   "case": "S1-C03",
+   "mode": "cpu",
+   "chars": 567113
+  },
+  {
+   "case": "S1-C05",
+   "mode": "gpu",
+   "chars": 6781
+  },
+  {
+   "case": "S1-C05",
+   "mode": "cpu",
+   "chars": 8406
+  },
+  {
+   "case": "S1-C06",
+   "mode": "gpu",
+   "chars": 8290
+  },
+  {
+   "case": "S1-C06",
+   "mode": "cpu",
+   "chars": 42308
+  },
+  {
+   "case": "S1-C08",
+   "mode": "gpu",
+   "chars": 20986
+  },
+  {
+   "case": "S1-C08",
+   "mode": "cpu",
+   "chars": 77279
+  },
+  {
+   "case": "S1-C11",
+   "mode": "gpu",
+   "chars": 48130
+  },
+  {
+   "case": "S1-C11",
+   "mode": "cpu",
+   "chars": 61537
+  },
+  {
+   "case": "S1-C12",
+   "mode": "gpu",
+   "chars": 32795
+  },
+  {
+   "case": "S1-C12",
+   "mode": "cpu",
+   "chars": 56695
+  },
+  {
+   "case": "S1-C13",
+   "mode": "gpu",
+   "chars": 18366
+  },
+  {
+   "case": "S1-C13",
+   "mode": "cpu",
+   "chars": 98169
+  },
+  {
+   "case": "S1-C15",
+   "mode": "gpu",
+   "chars": 68075
+  },
+  {
+   "case": "S1-C15",
+   "mode": "cpu",
+   "chars": 81399
+  },
+  {
+   "case": "S1-C16",
+   "mode": "gpu",
+   "chars": 33177
+  },
+  {
+   "case": "S1-C16",
+   "mode": "cpu",
+   "chars": 154151
+  },
+  {
+   "case": "S1-C17",
+   "mode": "gpu",
+   "chars": 3331
+  },
+  {
+   "case": "S1-C17",
+   "mode": "cpu",
+   "chars": 134892
+  },
+  {
+   "case": "S1-C19",
+   "mode": "gpu",
+   "chars": 8842
+  },
+  {
+   "case": "S1-C19",
+   "mode": "cpu",
+   "chars": 9187
+  },
+  {
+   "case": "S1-C20",
+   "mode": "gpu",
+   "chars": 33793
+  },
+  {
+   "case": "S1-C20",
+   "mode": "cpu",
+   "chars": 35613
+  },
+  {
+   "case": "S1-P02",
+   "mode": "gpu",
+   "chars": 36902
+  },
+  {
+   "case": "S1-P02",
+   "mode": "cpu",
+   "chars": 120562
+  },
+  {
+   "case": "S1-P06",
+   "mode": "gpu",
+   "chars": 28040
+  },
+  {
+   "case": "S1-P06",
+   "mode": "cpu",
+   "chars": 52768
+  },
+  {
+   "case": "S1-P08",
+   "mode": "gpu",
+   "chars": 39383
+  },
+  {
+   "case": "S1-P08",
+   "mode": "cpu",
+   "chars": 36621
+  },
+  {
+   "case": "S1-P09",
+   "mode": "gpu",
+   "chars": 262773
+  },
+  {
+   "case": "S1-P09",
+   "mode": "cpu",
+   "chars": 157716
+  },
+  {
+   "case": "S1-P10",
+   "mode": "gpu",
+   "chars": 63908
+  },
+  {
+   "case": "S1-P10",
+   "mode": "cpu",
+   "chars": 392817
+  },
+  {
+   "case": "S1-P12",
+   "mode": "gpu",
+   "chars": 71448
+  },
+  {
+   "case": "S1-P12",
+   "mode": "cpu",
+   "chars": 32145
+  },
+  {
+   "case": "S1-R03",
+   "mode": "gpu",
+   "chars": 26186
+  },
+  {
+   "case": "S1-R03",
+   "mode": "cpu",
+   "chars": 19838
+  },
+  {
+   "case": "S1-R04",
+   "mode": "gpu",
+   "chars": 15002
+  },
+  {
+   "case": "S1-R04",
+   "mode": "cpu",
+   "chars": 18042
+  },
+  {
+   "case": "S1-R06",
+   "mode": "gpu",
+   "chars": 7878
+  },
+  {
+   "case": "S1-R06",
+   "mode": "cpu",
+   "chars": 19848
+  },
+  {
+   "case": "S1-U02",
+   "mode": "gpu",
+   "chars": 40319
+  },
+  {
+   "case": "S1-U02",
+   "mode": "cpu",
+   "chars": 220599
+  },
+  {
+   "case": "S1-U03",
+   "mode": "gpu",
+   "chars": 79903
+  },
+  {
+   "case": "S1-U03",
+   "mode": "cpu",
+   "chars": 28351
+  },
+  {
+   "case": "S1-U04",
+   "mode": "gpu",
+   "chars": 15528
+  },
+  {
+   "case": "S1-U04",
+   "mode": "cpu",
+   "chars": 135782
+  },
+  {
+   "case": "S1-U05",
+   "mode": "gpu",
+   "chars": 10663
+  },
+  {
+   "case": "S1-U05",
+   "mode": "cpu",
+   "chars": 17655
+  },
+  {
+   "case": "S10-C01",
+   "mode": "gpu",
+   "chars": 21873
+  },
+  {
+   "case": "S10-C01",
+   "mode": "cpu",
+   "chars": 44209
+  },
+  {
+   "case": "S10-C02",
+   "mode": "gpu",
+   "chars": 40694
+  },
+  {
+   "case": "S10-C02",
+   "mode": "cpu",
+   "chars": 26350
+  },
+  {
+   "case": "S10-C04",
+   "mode": "gpu",
+   "chars": 112031
+  },
+  {
+   "case": "S10-C04",
+   "mode": "cpu",
+   "chars": 208359
+  },
+  {
+   "case": "S10-C07",
+   "mode": "gpu",
+   "chars": 45962
+  },
+  {
+   "case": "S10-C07",
+   "mode": "cpu",
+   "chars": 122987
+  },
+  {
+   "case": "S10-C08",
+   "mode": "gpu",
+   "chars": 19360
+  },
+  {
+   "case": "S10-C08",
+   "mode": "cpu",
+   "chars": 674148
+  },
+  {
+   "case": "S10-C09",
+   "mode": "gpu",
+   "chars": 39142
+  },
+  {
+   "case": "S10-C09",
+   "mode": "cpu",
+   "chars": 22776
+  },
+  {
+   "case": "S10-C10",
+   "mode": "gpu",
+   "chars": 24150
+  },
+  {
+   "case": "S10-C10",
+   "mode": "cpu",
+   "chars": 17478
+  },
+  {
+   "case": "S10-C11",
+   "mode": "gpu",
+   "chars": 14236
+  },
+  {
+   "case": "S10-C11",
+   "mode": "cpu",
+   "chars": 202106
+  },
+  {
+   "case": "S10-C12",
+   "mode": "gpu",
+   "chars": 16767
+  },
+  {
+   "case": "S10-C12",
+   "mode": "cpu",
+   "chars": 27262
+  },
+  {
+   "case": "S10-C15",
+   "mode": "gpu",
+   "chars": 44888
+  },
+  {
+   "case": "S10-C15",
+   "mode": "cpu",
+   "chars": 39209
+  },
+  {
+   "case": "S10-C18",
+   "mode": "gpu",
+   "chars": 16836
+  },
+  {
+   "case": "S10-C18",
+   "mode": "cpu",
+   "chars": 82389
+  },
+  {
+   "case": "S10-C19",
+   "mode": "gpu",
+   "chars": 12871
+  },
+  {
+   "case": "S10-C19",
+   "mode": "cpu",
+   "chars": 32230
+  },
+  {
+   "case": "S10-C20",
+   "mode": "gpu",
+   "chars": 13977
+  },
+  {
+   "case": "S10-C20",
+   "mode": "cpu",
+   "chars": 167558
+  },
+  {
+   "case": "S10-P01",
+   "mode": "gpu",
+   "chars": 40524
+  },
+  {
+   "case": "S10-P01",
+   "mode": "cpu",
+   "chars": 151860
+  },
+  {
+   "case": "S10-P02",
+   "mode": "gpu",
+   "chars": 42831
+  },
+  {
+   "case": "S10-P02",
+   "mode": "cpu",
+   "chars": 31226
+  },
+  {
+   "case": "S10-P06",
+   "mode": "gpu",
+   "chars": 35472
+  },
+  {
+   "case": "S10-P06",
+   "mode": "cpu",
+   "chars": 38677
+  },
+  {
+   "case": "S10-P09",
+   "mode": "gpu",
+   "chars": 24801
+  },
+  {
+   "case": "S10-P09",
+   "mode": "cpu",
+   "chars": 18143
+  },
+  {
+   "case": "S10-P11",
+   "mode": "gpu",
+   "chars": 8290
+  },
+  {
+   "case": "S10-P11",
+   "mode": "cpu",
+   "chars": 5907
+  },
+  {
+   "case": "S10-R02",
+   "mode": "gpu",
+   "chars": 30203
+  },
+  {
+   "case": "S10-R02",
+   "mode": "cpu",
+   "chars": 16531
+  },
+  {
+   "case": "S10-R03",
+   "mode": "gpu",
+   "chars": 23295
+  },
+  {
+   "case": "S10-R03",
+   "mode": "cpu",
+   "chars": 53419
+  },
+  {
+   "case": "S10-R04",
+   "mode": "gpu",
+   "chars": 8750
+  },
+  {
+   "case": "S10-R04",
+   "mode": "cpu",
+   "chars": 15407
+  },
+  {
+   "case": "S10-R05",
+   "mode": "gpu",
+   "chars": 13623
+  },
+  {
+   "case": "S10-R05",
+   "mode": "cpu",
+   "chars": 24073
+  },
+  {
+   "case": "S10-R06",
+   "mode": "gpu",
+   "chars": 12233
+  },
+  {
+   "case": "S10-R06",
+   "mode": "cpu",
+   "chars": 113280
+  },
+  {
+   "case": "S10-U01",
+   "mode": "gpu",
+   "chars": 24103
+  },
+  {
+   "case": "S10-U01",
+   "mode": "cpu",
+   "chars": 1111422
+  },
+  {
+   "case": "S10-U02",
+   "mode": "gpu",
+   "chars": 23725
+  },
+  {
+   "case": "S10-U02",
+   "mode": "cpu",
+   "chars": 106454
+  },
+  {
+   "case": "S10-U04",
+   "mode": "gpu",
+   "chars": 4456
+  },
+  {
+   "case": "S10-U04",
+   "mode": "cpu",
+   "chars": 19080
+  },
+  {
+   "case": "S2-C01",
+   "mode": "gpu",
+   "chars": 66422
+  },
+  {
+   "case": "S2-C01",
+   "mode": "cpu",
+   "chars": 318948
+  },
+  {
+   "case": "S2-C02",
+   "mode": "gpu",
+   "chars": 15399
+  },
+  {
+   "case": "S2-C02",
+   "mode": "cpu",
+   "chars": 64754
+  },
+  {
+   "case": "S2-C03",
+   "mode": "gpu",
+   "chars": 9770
+  },
+  {
+   "case": "S2-C03",
+   "mode": "cpu",
+   "chars": 582246
+  },
+  {
+   "case": "S2-C05",
+   "mode": "gpu",
+   "chars": 24104
+  },
+  {
+   "case": "S2-C05",
+   "mode": "cpu",
+   "chars": 46661
+  },
+  {
+   "case": "S2-C08",
+   "mode": "gpu",
+   "chars": 16248
+  },
+  {
+   "case": "S2-C08",
+   "mode": "cpu",
+   "chars": 368568
+  },
+  {
+   "case": "S2-C09",
+   "mode": "gpu",
+   "chars": 26606
+  },
+  {
+   "case": "S2-C09",
+   "mode": "cpu",
+   "chars": 87154
+  },
+  {
+   "case": "S2-C10",
+   "mode": "gpu",
+   "chars": 7936
+  },
+  {
+   "case": "S2-C10",
+   "mode": "cpu",
+   "chars": 14479
+  },
+  {
+   "case": "S2-C11",
+   "mode": "gpu",
+   "chars": 10284
+  },
+  {
+   "case": "S2-C11",
+   "mode": "cpu",
+   "chars": 15759
+  },
+  {
+   "case": "S2-C12",
+   "mode": "gpu",
+   "chars": 9200
+  },
+  {
+   "case": "S2-C12",
+   "mode": "cpu",
+   "chars": 32032
+  },
+  {
+   "case": "S2-C14",
+   "mode": "gpu",
+   "chars": 17993
+  },
+  {
+   "case": "S2-C14",
+   "mode": "cpu",
+   "chars": 585900
+  },
+  {
+   "case": "S2-C17",
+   "mode": "gpu",
+   "chars": 49899
+  },
+  {
+   "case": "S2-C17",
+   "mode": "cpu",
+   "chars": 27455
+  },
+  {
+   "case": "S2-C18",
+   "mode": "gpu",
+   "chars": 30628
+  },
+  {
+   "case": "S2-C18",
+   "mode": "cpu",
+   "chars": 29141
+  },
+  {
+   "case": "S2-P01",
+   "mode": "gpu",
+   "chars": 73958
+  },
+  {
+   "case": "S2-P01",
+   "mode": "cpu",
+   "chars": 20433
+  },
+  {
+   "case": "S2-P02",
+   "mode": "gpu",
+   "chars": 25919
+  },
+  {
+   "case": "S2-P02",
+   "mode": "cpu",
+   "chars": 31649
+  },
+  {
+   "case": "S2-P04",
+   "mode": "gpu",
+   "chars": 37722
+  },
+  {
+   "case": "S2-P04",
+   "mode": "cpu",
+   "chars": 27152
+  },
+  {
+   "case": "S2-P05",
+   "mode": "gpu",
+   "chars": 72316
+  },
+  {
+   "case": "S2-P05",
+   "mode": "cpu",
+   "chars": 106352
+  },
+  {
+   "case": "S2-P06",
+   "mode": "gpu",
+   "chars": 20443
+  },
+  {
+   "case": "S2-P06",
+   "mode": "cpu",
+   "chars": 31095
+  },
+  {
+   "case": "S2-P07",
+   "mode": "gpu",
+   "chars": 6309
+  },
+  {
+   "case": "S2-P07",
+   "mode": "cpu",
+   "chars": 100155
+  },
+  {
+   "case": "S2-P08",
+   "mode": "gpu",
+   "chars": 47345
+  },
+  {
+   "case": "S2-P08",
+   "mode": "cpu",
+   "chars": 16964
+  },
+  {
+   "case": "S2-P10",
+   "mode": "gpu",
+   "chars": 12257
+  },
+  {
+   "case": "S2-P10",
+   "mode": "cpu",
+   "chars": 26744
+  },
+  {
+   "case": "S2-P11",
+   "mode": "gpu",
+   "chars": 31487
+  },
+  {
+   "case": "S2-P11",
+   "mode": "cpu",
+   "chars": 23710
+  },
+  {
+   "case": "S2-P12",
+   "mode": "gpu",
+   "chars": 19567
+  },
+  {
+   "case": "S2-P12",
+   "mode": "cpu",
+   "chars": 26168
+  },
+  {
+   "case": "S2-R01",
+   "mode": "gpu",
+   "chars": 39548
+  },
+  {
+   "case": "S2-R01",
+   "mode": "cpu",
+   "chars": 151616
+  },
+  {
+   "case": "S2-R03",
+   "mode": "gpu",
+   "chars": 15370
+  },
+  {
+   "case": "S2-R03",
+   "mode": "cpu",
+   "chars": 130891
+  },
+  {
+   "case": "S2-R05",
+   "mode": "gpu",
+   "chars": 58374
+  },
+  {
+   "case": "S2-R05",
+   "mode": "cpu",
+   "chars": 130629
+  },
+  {
+   "case": "S2-R06",
+   "mode": "gpu",
+   "chars": 14284
+  },
+  {
+   "case": "S2-R06",
+   "mode": "cpu",
+   "chars": 25932
+  },
+  {
+   "case": "S2-R07",
+   "mode": "gpu",
+   "chars": 14929
+  },
+  {
+   "case": "S2-R07",
+   "mode": "cpu",
+   "chars": 12738
+  },
+  {
+   "case": "S2-U02",
+   "mode": "gpu",
+   "chars": 25785
+  },
+  {
+   "case": "S2-U02",
+   "mode": "cpu",
+   "chars": 41072
+  },
+  {
+   "case": "S2-U03",
+   "mode": "gpu",
+   "chars": 15962
+  },
+  {
+   "case": "S2-U03",
+   "mode": "cpu",
+   "chars": 140067
+  },
+  {
+   "case": "S2-U04",
+   "mode": "gpu",
+   "chars": 20986
+  },
+  {
+   "case": "S2-U04",
+   "mode": "cpu",
+   "chars": 21075
+  },
+  {
+   "case": "S2-U05",
+   "mode": "gpu",
+   "chars": 30846
+  },
+  {
+   "case": "S2-U05",
+   "mode": "cpu",
+   "chars": 665690
+  },
+  {
+   "case": "S3-C02",
+   "mode": "gpu",
+   "chars": 88466
+  },
+  {
+   "case": "S3-C02",
+   "mode": "cpu",
+   "chars": 16652
+  },
+  {
+   "case": "S3-C03",
+   "mode": "gpu",
+   "chars": 6677
+  },
+  {
+   "case": "S3-C03",
+   "mode": "cpu",
+   "chars": 18958
+  },
+  {
+   "case": "S3-C05",
+   "mode": "gpu",
+   "chars": 9442
+  },
+  {
+   "case": "S3-C05",
+   "mode": "cpu",
+   "chars": 15375
+  },
+  {
+   "case": "S3-C06",
+   "mode": "gpu",
+   "chars": 5808
+  },
+  {
+   "case": "S3-C06",
+   "mode": "cpu",
+   "chars": 16601
+  },
+  {
+   "case": "S3-C07",
+   "mode": "gpu",
+   "chars": 46003
+  },
+  {
+   "case": "S3-C07",
+   "mode": "cpu",
+   "chars": 32017
+  },
+  {
+   "case": "S3-C08",
+   "mode": "gpu",
+   "chars": 11269
+  },
+  {
+   "case": "S3-C08",
+   "mode": "cpu",
+   "chars": 15179
+  },
+  {
+   "case": "S3-C10",
+   "mode": "gpu",
+   "chars": 12484
+  },
+  {
+   "case": "S3-C10",
+   "mode": "cpu",
+   "chars": 21221
+  },
+  {
+   "case": "S3-C11",
+   "mode": "gpu",
+   "chars": 23896
+  },
+  {
+   "case": "S3-C11",
+   "mode": "cpu",
+   "chars": 32252
+  },
+  {
+   "case": "S3-C13",
+   "mode": "gpu",
+   "chars": 11868
+  },
+  {
+   "case": "S3-C13",
+   "mode": "cpu",
+   "chars": 11409
+  },
+  {
+   "case": "S3-C14",
+   "mode": "gpu",
+   "chars": 12181
+  },
+  {
+   "case": "S3-C14",
+   "mode": "cpu",
+   "chars": 13413
+  },
+  {
+   "case": "S3-C17",
+   "mode": "gpu",
+   "chars": 28479
+  },
+  {
+   "case": "S3-C17",
+   "mode": "cpu",
+   "chars": 18038
+  },
+  {
+   "case": "S3-C18",
+   "mode": "gpu",
+   "chars": 15580
+  },
+  {
+   "case": "S3-C18",
+   "mode": "cpu",
+   "chars": 70738
+  },
+  {
+   "case": "S3-C19",
+   "mode": "gpu",
+   "chars": 22651
+  },
+  {
+   "case": "S3-C19",
+   "mode": "cpu",
+   "chars": 286525
+  },
+  {
+   "case": "S3-C20",
+   "mode": "gpu",
+   "chars": 8934
+  },
+  {
+   "case": "S3-C20",
+   "mode": "cpu",
+   "chars": 10000
+  },
+  {
+   "case": "S3-P02",
+   "mode": "gpu",
+   "chars": 12678
+  },
+  {
+   "case": "S3-P02",
+   "mode": "cpu",
+   "chars": 19241
+  },
+  {
+   "case": "S3-P03",
+   "mode": "gpu",
+   "chars": 18067
+  },
+  {
+   "case": "S3-P03",
+   "mode": "cpu",
+   "chars": 57887
+  },
+  {
+   "case": "S3-P04",
+   "mode": "gpu",
+   "chars": 28128
+  },
+  {
+   "case": "S3-P04",
+   "mode": "cpu",
+   "chars": 32326
+  },
+  {
+   "case": "S3-P08",
+   "mode": "gpu",
+   "chars": 12693
+  },
+  {
+   "case": "S3-P08",
+   "mode": "cpu",
+   "chars": 17403
+  },
+  {
+   "case": "S3-P12",
+   "mode": "gpu",
+   "chars": 22727
+  },
+  {
+   "case": "S3-P12",
+   "mode": "cpu",
+   "chars": 14492
+  },
+  {
+   "case": "S3-R03",
+   "mode": "gpu",
+   "chars": 59524
+  },
+  {
+   "case": "S3-R03",
+   "mode": "cpu",
+   "chars": 101010
+  },
+  {
+   "case": "S3-R04",
+   "mode": "gpu",
+   "chars": 29548
+  },
+  {
+   "case": "S3-R04",
+   "mode": "cpu",
+   "chars": 29549
+  },
+  {
+   "case": "S3-R05",
+   "mode": "gpu",
+   "chars": 40381
+  },
+  {
+   "case": "S3-R05",
+   "mode": "cpu",
+   "chars": 568152
+  },
+  {
+   "case": "S3-R06",
+   "mode": "gpu",
+   "chars": 15633
+  },
+  {
+   "case": "S3-R06",
+   "mode": "cpu",
+   "chars": 9986
+  },
+  {
+   "case": "S3-R07",
+   "mode": "gpu",
+   "chars": 7767
+  },
+  {
+   "case": "S3-R07",
+   "mode": "cpu",
+   "chars": 16829
+  },
+  {
+   "case": "S3-U03",
+   "mode": "gpu",
+   "chars": 8705
+  },
+  {
+   "case": "S3-U03",
+   "mode": "cpu",
+   "chars": 12697
+  },
+  {
+   "case": "S3-U04",
+   "mode": "gpu",
+   "chars": 15368
+  },
+  {
+   "case": "S3-U04",
+   "mode": "cpu",
+   "chars": 116031
+  },
+  {
+   "case": "S3-U05",
+   "mode": "gpu",
+   "chars": 32411
+  },
+  {
+   "case": "S3-U05",
+   "mode": "cpu",
+   "chars": 264009
+  },
+  {
+   "case": "S4-C02",
+   "mode": "gpu",
+   "chars": 25428
+  },
+  {
+   "case": "S4-C02",
+   "mode": "cpu",
+   "chars": 70784
+  },
+  {
+   "case": "S4-C06",
+   "mode": "gpu",
+   "chars": 43352
+  },
+  {
+   "case": "S4-C06",
+   "mode": "cpu",
+   "chars": 33739
+  },
+  {
+   "case": "S4-C10",
+   "mode": "gpu",
+   "chars": 25553
+  },
+  {
+   "case": "S4-C10",
+   "mode": "cpu",
+   "chars": 51081
+  },
+  {
+   "case": "S4-C12",
+   "mode": "gpu",
+   "chars": 16867
+  },
+  {
+   "case": "S4-C12",
+   "mode": "cpu",
+   "chars": 390000
+  },
+  {
+   "case": "S4-C14",
+   "mode": "gpu",
+   "chars": 22766
+  },
+  {
+   "case": "S4-C14",
+   "mode": "cpu",
+   "chars": 96993
+  },
+  {
+   "case": "S4-C15",
+   "mode": "gpu",
+   "chars": 30531
+  },
+  {
+   "case": "S4-C15",
+   "mode": "cpu",
+   "chars": 232505
+  },
+  {
+   "case": "S4-C16",
+   "mode": "gpu",
+   "chars": 25315
+  },
+  {
+   "case": "S4-C16",
+   "mode": "cpu",
+   "chars": 25917
+  },
+  {
+   "case": "S4-C17",
+   "mode": "gpu",
+   "chars": 588295
+  },
+  {
+   "case": "S4-C17",
+   "mode": "cpu",
+   "chars": 867598
+  },
+  {
+   "case": "S4-C18",
+   "mode": "gpu",
+   "chars": 26076
+  },
+  {
+   "case": "S4-C18",
+   "mode": "cpu",
+   "chars": 41376
+  },
+  {
+   "case": "S4-P01",
+   "mode": "gpu",
+   "chars": 94988
+  },
+  {
+   "case": "S4-P01",
+   "mode": "cpu",
+   "chars": 140625
+  },
+  {
+   "case": "S4-P02",
+   "mode": "gpu",
+   "chars": 33801
+  },
+  {
+   "case": "S4-P02",
+   "mode": "cpu",
+   "chars": 52656
+  },
+  {
+   "case": "S4-P04",
+   "mode": "gpu",
+   "chars": 17807
+  },
+  {
+   "case": "S4-P04",
+   "mode": "cpu",
+   "chars": 12094
+  },
+  {
+   "case": "S4-P06",
+   "mode": "gpu",
+   "chars": 18242
+  },
+  {
+   "case": "S4-P06",
+   "mode": "cpu",
+   "chars": 16168
+  },
+  {
+   "case": "S4-P07",
+   "mode": "gpu",
+   "chars": 18348
+  },
+  {
+   "case": "S4-P07",
+   "mode": "cpu",
+   "chars": 12931
+  },
+  {
+   "case": "S4-P08",
+   "mode": "gpu",
+   "chars": 30864
+  },
+  {
+   "case": "S4-P08",
+   "mode": "cpu",
+   "chars": 26948
+  },
+  {
+   "case": "S4-P10",
+   "mode": "gpu",
+   "chars": 43011
+  },
+  {
+   "case": "S4-P10",
+   "mode": "cpu",
+   "chars": 25158
+  },
+  {
+   "case": "S4-P11",
+   "mode": "gpu",
+   "chars": 19864
+  },
+  {
+   "case": "S4-P11",
+   "mode": "cpu",
+   "chars": 15707
+  },
+  {
+   "case": "S4-R01",
+   "mode": "gpu",
+   "chars": 7557
+  },
+  {
+   "case": "S4-R01",
+   "mode": "cpu",
+   "chars": 22774
+  },
+  {
+   "case": "S4-R02",
+   "mode": "gpu",
+   "chars": 25874
+  },
+  {
+   "case": "S4-R02",
+   "mode": "cpu",
+   "chars": 23364
+  },
+  {
+   "case": "S4-R03",
+   "mode": "gpu",
+   "chars": 15140
+  },
+  {
+   "case": "S4-R03",
+   "mode": "cpu",
+   "chars": 16245
+  },
+  {
+   "case": "S4-R05",
+   "mode": "gpu",
+   "chars": 35426
+  },
+  {
+   "case": "S4-R05",
+   "mode": "cpu",
+   "chars": 24964
+  },
+  {
+   "case": "S4-R06",
+   "mode": "gpu",
+   "chars": 49481
+  },
+  {
+   "case": "S4-R06",
+   "mode": "cpu",
+   "chars": 55931
+  },
+  {
+   "case": "S4-R07",
+   "mode": "gpu",
+   "chars": 51498
+  },
+  {
+   "case": "S4-R07",
+   "mode": "cpu",
+   "chars": 41325
+  },
+  {
+   "case": "S4-U04",
+   "mode": "gpu",
+   "chars": 24477
+  },
+  {
+   "case": "S4-U04",
+   "mode": "cpu",
+   "chars": 57118
+  },
+  {
+   "case": "S5-C02",
+   "mode": "gpu",
+   "chars": 8528
+  },
+  {
+   "case": "S5-C02",
+   "mode": "cpu",
+   "chars": 121084
+  },
+  {
+   "case": "S5-C03",
+   "mode": "gpu",
+   "chars": 13471
+  },
+  {
+   "case": "S5-C03",
+   "mode": "cpu",
+   "chars": 87009
+  },
+  {
+   "case": "S5-C04",
+   "mode": "gpu",
+   "chars": 18600
+  },
+  {
+   "case": "S5-C04",
+   "mode": "cpu",
+   "chars": 31474
+  },
+  {
+   "case": "S5-C05",
+   "mode": "gpu",
+   "chars": 18010
+  },
+  {
+   "case": "S5-C05",
+   "mode": "cpu",
+   "chars": 51128
+  },
+  {
+   "case": "S5-C07",
+   "mode": "gpu",
+   "chars": 26350
+  },
+  {
+   "case": "S5-C07",
+   "mode": "cpu",
+   "chars": 64417
+  },
+  {
+   "case": "S5-C09",
+   "mode": "gpu",
+   "chars": 33629
+  },
+  {
+   "case": "S5-C09",
+   "mode": "cpu",
+   "chars": 70562
+  },
+  {
+   "case": "S5-C10",
+   "mode": "gpu",
+   "chars": 20150
+  },
+  {
+   "case": "S5-C10",
+   "mode": "cpu",
+   "chars": 105447
+  },
+  {
+   "case": "S5-C13",
+   "mode": "gpu",
+   "chars": 15249
+  },
+  {
+   "case": "S5-C13",
+   "mode": "cpu",
+   "chars": 94629
+  },
+  {
+   "case": "S5-C17",
+   "mode": "gpu",
+   "chars": 67224
+  },
+  {
+   "case": "S5-C17",
+   "mode": "cpu",
+   "chars": 58033
+  },
+  {
+   "case": "S5-C19",
+   "mode": "gpu",
+   "chars": 13168
+  },
+  {
+   "case": "S5-C19",
+   "mode": "cpu",
+   "chars": 266761
+  },
+  {
+   "case": "S5-C20",
+   "mode": "gpu",
+   "chars": 37517
+  },
+  {
+   "case": "S5-C20",
+   "mode": "cpu",
+   "chars": 35306
+  },
+  {
+   "case": "S5-P02",
+   "mode": "gpu",
+   "chars": 21173
+  },
+  {
+   "case": "S5-P02",
+   "mode": "cpu",
+   "chars": 31174
+  },
+  {
+   "case": "S5-P03",
+   "mode": "gpu",
+   "chars": 29809
+  },
+  {
+   "case": "S5-P03",
+   "mode": "cpu",
+   "chars": 108686
+  },
+  {
+   "case": "S5-P04",
+   "mode": "gpu",
+   "chars": 18689
+  },
+  {
+   "case": "S5-P04",
+   "mode": "cpu",
+   "chars": 129462
+  },
+  {
+   "case": "S5-P07",
+   "mode": "gpu",
+   "chars": 14296
+  },
+  {
+   "case": "S5-P07",
+   "mode": "cpu",
+   "chars": 26801
+  },
+  {
+   "case": "S5-P08",
+   "mode": "gpu",
+   "chars": 13794
+  },
+  {
+   "case": "S5-P08",
+   "mode": "cpu",
+   "chars": 116506
+  },
+  {
+   "case": "S5-P09",
+   "mode": "gpu",
+   "chars": 12122
+  },
+  {
+   "case": "S5-P09",
+   "mode": "cpu",
+   "chars": 12235
+  },
+  {
+   "case": "S5-P10",
+   "mode": "gpu",
+   "chars": 31389
+  },
+  {
+   "case": "S5-P10",
+   "mode": "cpu",
+   "chars": 66570
+  },
+  {
+   "case": "S5-P12",
+   "mode": "gpu",
+   "chars": 13768
+  },
+  {
+   "case": "S5-P12",
+   "mode": "cpu",
+   "chars": 294773
+  },
+  {
+   "case": "S5-R01",
+   "mode": "gpu",
+   "chars": 21155
+  },
+  {
+   "case": "S5-R01",
+   "mode": "cpu",
+   "chars": 91227
+  },
+  {
+   "case": "S5-R02",
+   "mode": "gpu",
+   "chars": 23209
+  },
+  {
+   "case": "S5-R02",
+   "mode": "cpu",
+   "chars": 29154
+  },
+  {
+   "case": "S5-R03",
+   "mode": "gpu",
+   "chars": 14480
+  },
+  {
+   "case": "S5-R03",
+   "mode": "cpu",
+   "chars": 14995
+  },
+  {
+   "case": "S5-R06",
+   "mode": "gpu",
+   "chars": 13126
+  },
+  {
+   "case": "S5-R06",
+   "mode": "cpu",
+   "chars": 22969
+  },
+  {
+   "case": "S5-R07",
+   "mode": "gpu",
+   "chars": 110230
+  },
+  {
+   "case": "S5-R07",
+   "mode": "cpu",
+   "chars": 55986
+  },
+  {
+   "case": "S5-R08",
+   "mode": "gpu",
+   "chars": 13569
+  },
+  {
+   "case": "S5-R08",
+   "mode": "cpu",
+   "chars": 73135
+  },
+  {
+   "case": "S5-U01",
+   "mode": "gpu",
+   "chars": 29429
+  },
+  {
+   "case": "S5-U01",
+   "mode": "cpu",
+   "chars": 42172
+  },
+  {
+   "case": "S5-U04",
+   "mode": "gpu",
+   "chars": 23978
+  },
+  {
+   "case": "S5-U04",
+   "mode": "cpu",
+   "chars": 324126
+  },
+  {
+   "case": "S6-C01",
+   "mode": "gpu",
+   "chars": 25657
+  },
+  {
+   "case": "S6-C01",
+   "mode": "cpu",
+   "chars": 3126774
+  },
+  {
+   "case": "S6-C02",
+   "mode": "gpu",
+   "chars": 21044
+  },
+  {
+   "case": "S6-C02",
+   "mode": "cpu",
+   "chars": 26740
+  },
+  {
+   "case": "S6-C03",
+   "mode": "gpu",
+   "chars": 12442
+  },
+  {
+   "case": "S6-C03",
+   "mode": "cpu",
+   "chars": 110651
+  },
+  {
+   "case": "S6-C04",
+   "mode": "gpu",
+   "chars": 9541
+  },
+  {
+   "case": "S6-C04",
+   "mode": "cpu",
+   "chars": 42963
+  },
+  {
+   "case": "S6-C05",
+   "mode": "gpu",
+   "chars": 14624
+  },
+  {
+   "case": "S6-C05",
+   "mode": "cpu",
+   "chars": 13750
+  },
+  {
+   "case": "S6-C06",
+   "mode": "gpu",
+   "chars": 14271
+  },
+  {
+   "case": "S6-C06",
+   "mode": "cpu",
+   "chars": 146447
+  },
+  {
+   "case": "S6-C07",
+   "mode": "gpu",
+   "chars": 24603
+  },
+  {
+   "case": "S6-C07",
+   "mode": "cpu",
+   "chars": 41247
+  },
+  {
+   "case": "S6-C08",
+   "mode": "gpu",
+   "chars": 22489
+  },
+  {
+   "case": "S6-C08",
+   "mode": "cpu",
+   "chars": 43115
+  },
+  {
+   "case": "S6-C09",
+   "mode": "gpu",
+   "chars": 19112
+  },
+  {
+   "case": "S6-C09",
+   "mode": "cpu",
+   "chars": 47817
+  },
+  {
+   "case": "S6-C10",
+   "mode": "gpu",
+   "chars": 47499
+  },
+  {
+   "case": "S6-C10",
+   "mode": "cpu",
+   "chars": 32183
+  },
+  {
+   "case": "S6-C14",
+   "mode": "gpu",
+   "chars": 14617
+  },
+  {
+   "case": "S6-C14",
+   "mode": "cpu",
+   "chars": 14135
+  },
+  {
+   "case": "S6-C16",
+   "mode": "gpu",
+   "chars": 31291
+  },
+  {
+   "case": "S6-C16",
+   "mode": "cpu",
+   "chars": 37251
+  },
+  {
+   "case": "S6-P01",
+   "mode": "gpu",
+   "chars": 24548
+  },
+  {
+   "case": "S6-P01",
+   "mode": "cpu",
+   "chars": 430462
+  },
+  {
+   "case": "S6-P02",
+   "mode": "gpu",
+   "chars": 113803
+  },
+  {
+   "case": "S6-P02",
+   "mode": "cpu",
+   "chars": 118594
+  },
+  {
+   "case": "S6-P03",
+   "mode": "gpu",
+   "chars": 29264
+  },
+  {
+   "case": "S6-P03",
+   "mode": "cpu",
+   "chars": 56317
+  },
+  {
+   "case": "S6-P04",
+   "mode": "gpu",
+   "chars": 17834
+  },
+  {
+   "case": "S6-P04",
+   "mode": "cpu",
+   "chars": 115380
+  },
+  {
+   "case": "S6-P05",
+   "mode": "gpu",
+   "chars": 15561
+  },
+  {
+   "case": "S6-P05",
+   "mode": "cpu",
+   "chars": 107936
+  },
+  {
+   "case": "S6-P06",
+   "mode": "gpu",
+   "chars": 107129
+  },
+  {
+   "case": "S6-P06",
+   "mode": "cpu",
+   "chars": 116825
+  },
+  {
+   "case": "S6-P07",
+   "mode": "gpu",
+   "chars": 54302
+  },
+  {
+   "case": "S6-P07",
+   "mode": "cpu",
+   "chars": 23806
+  },
+  {
+   "case": "S6-P10",
+   "mode": "gpu",
+   "chars": 18503
+  },
+  {
+   "case": "S6-P10",
+   "mode": "cpu",
+   "chars": 54064
+  },
+  {
+   "case": "S6-P12",
+   "mode": "gpu",
+   "chars": 35561
+  },
+  {
+   "case": "S6-P12",
+   "mode": "cpu",
+   "chars": 151332
+  },
+  {
+   "case": "S6-R03",
+   "mode": "gpu",
+   "chars": 20337
+  },
+  {
+   "case": "S6-R03",
+   "mode": "cpu",
+   "chars": 20054
+  },
+  {
+   "case": "S6-R04",
+   "mode": "gpu",
+   "chars": 48015
+  },
+  {
+   "case": "S6-R04",
+   "mode": "cpu",
+   "chars": 229388
+  },
+  {
+   "case": "S6-R05",
+   "mode": "gpu",
+   "chars": 31775
+  },
+  {
+   "case": "S6-R05",
+   "mode": "cpu",
+   "chars": 124058
+  },
+  {
+   "case": "S6-R07",
+   "mode": "gpu",
+   "chars": 30964
+  },
+  {
+   "case": "S6-R07",
+   "mode": "cpu",
+   "chars": 197791
+  },
+  {
+   "case": "S6-U01",
+   "mode": "gpu",
+   "chars": 33205
+  },
+  {
+   "case": "S6-U01",
+   "mode": "cpu",
+   "chars": 33415
+  },
+  {
+   "case": "S6-U03",
+   "mode": "gpu",
+   "chars": 49297
+  },
+  {
+   "case": "S6-U03",
+   "mode": "cpu",
+   "chars": 89646
+  },
+  {
+   "case": "S6-U04",
+   "mode": "gpu",
+   "chars": 14147
+  },
+  {
+   "case": "S6-U04",
+   "mode": "cpu",
+   "chars": 126918
+  },
+  {
+   "case": "S6-U05",
+   "mode": "gpu",
+   "chars": 21310
+  },
+  {
+   "case": "S6-U05",
+   "mode": "cpu",
+   "chars": 635859
+  },
+  {
+   "case": "S7-C04",
+   "mode": "gpu",
+   "chars": 11299
+  },
+  {
+   "case": "S7-C04",
+   "mode": "cpu",
+   "chars": 12180
+  },
+  {
+   "case": "S7-C05",
+   "mode": "gpu",
+   "chars": 10433
+  },
+  {
+   "case": "S7-C05",
+   "mode": "cpu",
+   "chars": 19970
+  },
+  {
+   "case": "S7-C06",
+   "mode": "gpu",
+   "chars": 20366
+  },
+  {
+   "case": "S7-C06",
+   "mode": "cpu",
+   "chars": 18298
+  },
+  {
+   "case": "S7-C07",
+   "mode": "gpu",
+   "chars": 10133
+  },
+  {
+   "case": "S7-C07",
+   "mode": "cpu",
+   "chars": 14714
+  },
+  {
+   "case": "S7-C08",
+   "mode": "gpu",
+   "chars": 15939
+  },
+  {
+   "case": "S7-C08",
+   "mode": "cpu",
+   "chars": 16605
+  },
+  {
+   "case": "S7-C09",
+   "mode": "gpu",
+   "chars": 26284
+  },
+  {
+   "case": "S7-C09",
+   "mode": "cpu",
+   "chars": 26862
+  },
+  {
+   "case": "S7-C12",
+   "mode": "gpu",
+   "chars": 13127
+  },
+  {
+   "case": "S7-C12",
+   "mode": "cpu",
+   "chars": 29258
+  },
+  {
+   "case": "S7-C14",
+   "mode": "gpu",
+   "chars": 16400
+  },
+  {
+   "case": "S7-C14",
+   "mode": "cpu",
+   "chars": 34735
+  },
+  {
+   "case": "S7-C15",
+   "mode": "gpu",
+   "chars": 7567
+  },
+  {
+   "case": "S7-C15",
+   "mode": "cpu",
+   "chars": 153508
+  },
+  {
+   "case": "S7-C17",
+   "mode": "gpu",
+   "chars": 13979
+  },
+  {
+   "case": "S7-C17",
+   "mode": "cpu",
+   "chars": 10190
+  },
+  {
+   "case": "S7-C19",
+   "mode": "gpu",
+   "chars": 26292
+  },
+  {
+   "case": "S7-C19",
+   "mode": "cpu",
+   "chars": 243090
+  },
+  {
+   "case": "S7-P01",
+   "mode": "gpu",
+   "chars": 17960
+  },
+  {
+   "case": "S7-P01",
+   "mode": "cpu",
+   "chars": 24223
+  },
+  {
+   "case": "S7-P02",
+   "mode": "gpu",
+   "chars": 19654
+  },
+  {
+   "case": "S7-P02",
+   "mode": "cpu",
+   "chars": 17239
+  },
+  {
+   "case": "S7-P03",
+   "mode": "gpu",
+   "chars": 17231
+  },
+  {
+   "case": "S7-P03",
+   "mode": "cpu",
+   "chars": 16346
+  },
+  {
+   "case": "S7-P04",
+   "mode": "gpu",
+   "chars": 20748
+  },
+  {
+   "case": "S7-P04",
+   "mode": "cpu",
+   "chars": 21441
+  },
+  {
+   "case": "S7-P05",
+   "mode": "gpu",
+   "chars": 15742
+  },
+  {
+   "case": "S7-P05",
+   "mode": "cpu",
+   "chars": 12824
+  },
+  {
+   "case": "S7-P06",
+   "mode": "gpu",
+   "chars": 23292
+  },
+  {
+   "case": "S7-P06",
+   "mode": "cpu",
+   "chars": 57166
+  },
+  {
+   "case": "S7-P07",
+   "mode": "gpu",
+   "chars": 12489
+  },
+  {
+   "case": "S7-P07",
+   "mode": "cpu",
+   "chars": 18383
+  },
+  {
+   "case": "S7-P10",
+   "mode": "gpu",
+   "chars": 9975
+  },
+  {
+   "case": "S7-P10",
+   "mode": "cpu",
+   "chars": 11573
+  },
+  {
+   "case": "S7-P11",
+   "mode": "gpu",
+   "chars": 8869
+  },
+  {
+   "case": "S7-P11",
+   "mode": "cpu",
+   "chars": 18727
+  },
+  {
+   "case": "S7-P12",
+   "mode": "gpu",
+   "chars": 14809
+  },
+  {
+   "case": "S7-P12",
+   "mode": "cpu",
+   "chars": 21812
+  },
+  {
+   "case": "S7-R02",
+   "mode": "gpu",
+   "chars": 31795
+  },
+  {
+   "case": "S7-R02",
+   "mode": "cpu",
+   "chars": 43238
+  },
+  {
+   "case": "S7-R06",
+   "mode": "gpu",
+   "chars": 13064
+  },
+  {
+   "case": "S7-R06",
+   "mode": "cpu",
+   "chars": 109105
+  },
+  {
+   "case": "S7-R08",
+   "mode": "gpu",
+   "chars": 22678
+  },
+  {
+   "case": "S7-R08",
+   "mode": "cpu",
+   "chars": 90774
+  },
+  {
+   "case": "S7-U01",
+   "mode": "gpu",
+   "chars": 12356
+  },
+  {
+   "case": "S7-U01",
+   "mode": "cpu",
+   "chars": 27342
+  },
+  {
+   "case": "S7-U02",
+   "mode": "gpu",
+   "chars": 18907
+  },
+  {
+   "case": "S7-U02",
+   "mode": "cpu",
+   "chars": 74214
+  },
+  {
+   "case": "S7-U03",
+   "mode": "gpu",
+   "chars": 16659
+  },
+  {
+   "case": "S7-U03",
+   "mode": "cpu",
+   "chars": 536515
+  },
+  {
+   "case": "S7-U05",
+   "mode": "gpu",
+   "chars": 30646
+  },
+  {
+   "case": "S7-U05",
+   "mode": "cpu",
+   "chars": 37905
+  },
+  {
+   "case": "S8-C01",
+   "mode": "gpu",
+   "chars": 50299
+  },
+  {
+   "case": "S8-C01",
+   "mode": "cpu",
+   "chars": 86941
+  },
+  {
+   "case": "S8-C02",
+   "mode": "gpu",
+   "chars": 71949
+  },
+  {
+   "case": "S8-C02",
+   "mode": "cpu",
+   "chars": 29043
+  },
+  {
+   "case": "S8-C04",
+   "mode": "gpu",
+   "chars": 48593
+  },
+  {
+   "case": "S8-C04",
+   "mode": "cpu",
+   "chars": 113389
+  },
+  {
+   "case": "S8-C05",
+   "mode": "gpu",
+   "chars": 43830
+  },
+  {
+   "case": "S8-C05",
+   "mode": "cpu",
+   "chars": 407166
+  },
+  {
+   "case": "S8-C07",
+   "mode": "gpu",
+   "chars": 41376
+  },
+  {
+   "case": "S8-C07",
+   "mode": "cpu",
+   "chars": 28111
+  },
+  {
+   "case": "S8-C08",
+   "mode": "gpu",
+   "chars": 39730
+  },
+  {
+   "case": "S8-C08",
+   "mode": "cpu",
+   "chars": 111041
+  },
+  {
+   "case": "S8-C10",
+   "mode": "gpu",
+   "chars": 13985
+  },
+  {
+   "case": "S8-C10",
+   "mode": "cpu",
+   "chars": 32149
+  },
+  {
+   "case": "S8-C11",
+   "mode": "gpu",
+   "chars": 32589
+  },
+  {
+   "case": "S8-C11",
+   "mode": "cpu",
+   "chars": 146167
+  },
+  {
+   "case": "S8-C12",
+   "mode": "gpu",
+   "chars": 15609
+  },
+  {
+   "case": "S8-C12",
+   "mode": "cpu",
+   "chars": 56503
+  },
+  {
+   "case": "S8-C14",
+   "mode": "gpu",
+   "chars": 21995
+  },
+  {
+   "case": "S8-C14",
+   "mode": "cpu",
+   "chars": 238942
+  },
+  {
+   "case": "S8-C15",
+   "mode": "gpu",
+   "chars": 9340
+  },
+  {
+   "case": "S8-C15",
+   "mode": "cpu",
+   "chars": 32479
+  },
+  {
+   "case": "S8-C16",
+   "mode": "gpu",
+   "chars": 12618
+  },
+  {
+   "case": "S8-C16",
+   "mode": "cpu",
+   "chars": 137764
+  },
+  {
+   "case": "S8-C17",
+   "mode": "gpu",
+   "chars": 38272
+  },
+  {
+   "case": "S8-C17",
+   "mode": "cpu",
+   "chars": 29419
+  },
+  {
+   "case": "S8-C18",
+   "mode": "gpu",
+   "chars": 17349
+  },
+  {
+   "case": "S8-C18",
+   "mode": "cpu",
+   "chars": 566285
+  },
+  {
+   "case": "S8-C19",
+   "mode": "gpu",
+   "chars": 28291
+  },
+  {
+   "case": "S8-C19",
+   "mode": "cpu",
+   "chars": 70686
+  },
+  {
+   "case": "S8-C20",
+   "mode": "gpu",
+   "chars": 33135
+  },
+  {
+   "case": "S8-C20",
+   "mode": "cpu",
+   "chars": 44741
+  },
+  {
+   "case": "S8-P01",
+   "mode": "gpu",
+   "chars": 43188
+  },
+  {
+   "case": "S8-P01",
+   "mode": "cpu",
+   "chars": 25707
+  },
+  {
+   "case": "S8-P04",
+   "mode": "gpu",
+   "chars": 18209
+  },
+  {
+   "case": "S8-P04",
+   "mode": "cpu",
+   "chars": 21568
+  },
+  {
+   "case": "S8-P07",
+   "mode": "gpu",
+   "chars": 34501
+  },
+  {
+   "case": "S8-P07",
+   "mode": "cpu",
+   "chars": 28121
+  },
+  {
+   "case": "S8-P08",
+   "mode": "gpu",
+   "chars": 36899
+  },
+  {
+   "case": "S8-P08",
+   "mode": "cpu",
+   "chars": 21713
+  },
+  {
+   "case": "S8-P09",
+   "mode": "gpu",
+   "chars": 31881
+  },
+  {
+   "case": "S8-P09",
+   "mode": "cpu",
+   "chars": 68307
+  },
+  {
+   "case": "S8-P10",
+   "mode": "gpu",
+   "chars": 20590
+  },
+  {
+   "case": "S8-P10",
+   "mode": "cpu",
+   "chars": 65219
+  },
+  {
+   "case": "S8-P12",
+   "mode": "gpu",
+   "chars": 24066
+  },
+  {
+   "case": "S8-P12",
+   "mode": "cpu",
+   "chars": 117523
+  },
+  {
+   "case": "S8-R02",
+   "mode": "gpu",
+   "chars": 17824
+  },
+  {
+   "case": "S8-R02",
+   "mode": "cpu",
+   "chars": 739216
+  },
+  {
+   "case": "S8-R03",
+   "mode": "gpu",
+   "chars": 17915
+  },
+  {
+   "case": "S8-R03",
+   "mode": "cpu",
+   "chars": 806931
+  },
+  {
+   "case": "S8-R06",
+   "mode": "gpu",
+   "chars": 21258
+  },
+  {
+   "case": "S8-R06",
+   "mode": "cpu",
+   "chars": 102506
+  },
+  {
+   "case": "S8-R07",
+   "mode": "gpu",
+   "chars": 27954
+  },
+  {
+   "case": "S8-R07",
+   "mode": "cpu",
+   "chars": 36403
+  },
+  {
+   "case": "S8-U01",
+   "mode": "gpu",
+   "chars": 35735
+  },
+  {
+   "case": "S8-U01",
+   "mode": "cpu",
+   "chars": 71462
+  },
+  {
+   "case": "S8-U02",
+   "mode": "gpu",
+   "chars": 25789
+  },
+  {
+   "case": "S8-U02",
+   "mode": "cpu",
+   "chars": 68821
+  },
+  {
+   "case": "S8-U03",
+   "mode": "gpu",
+   "chars": 29002
+  },
+  {
+   "case": "S8-U03",
+   "mode": "cpu",
+   "chars": 63155
+  },
+  {
+   "case": "S9-C01",
+   "mode": "gpu",
+   "chars": 9200
+  },
+  {
+   "case": "S9-C01",
+   "mode": "cpu",
+   "chars": 16856
+  },
+  {
+   "case": "S9-C02",
+   "mode": "gpu",
+   "chars": 10458
+  },
+  {
+   "case": "S9-C02",
+   "mode": "cpu",
+   "chars": 18530
+  },
+  {
+   "case": "S9-C03",
+   "mode": "gpu",
+   "chars": 19106
+  },
+  {
+   "case": "S9-C03",
+   "mode": "cpu",
+   "chars": 33168
+  },
+  {
+   "case": "S9-C04",
+   "mode": "gpu",
+   "chars": 8889
+  },
+  {
+   "case": "S9-C04",
+   "mode": "cpu",
+   "chars": 34674
+  },
+  {
+   "case": "S9-C05",
+   "mode": "gpu",
+   "chars": 12638
+  },
+  {
+   "case": "S9-C05",
+   "mode": "cpu",
+   "chars": 58204
+  },
+  {
+   "case": "S9-C06",
+   "mode": "gpu",
+   "chars": 9139
+  },
+  {
+   "case": "S9-C06",
+   "mode": "cpu",
+   "chars": 541647
+  },
+  {
+   "case": "S9-C07",
+   "mode": "gpu",
+   "chars": 18416
+  },
+  {
+   "case": "S9-C07",
+   "mode": "cpu",
+   "chars": 155767
+  },
+  {
+   "case": "S9-C09",
+   "mode": "gpu",
+   "chars": 11955
+  },
+  {
+   "case": "S9-C09",
+   "mode": "cpu",
+   "chars": 31462
+  },
+  {
+   "case": "S9-C10",
+   "mode": "gpu",
+   "chars": 8320
+  },
+  {
+   "case": "S9-C10",
+   "mode": "cpu",
+   "chars": 57761
+  },
+  {
+   "case": "S9-C12",
+   "mode": "gpu",
+   "chars": 9881
+  },
+  {
+   "case": "S9-C12",
+   "mode": "cpu",
+   "chars": 22376
+  },
+  {
+   "case": "S9-C13",
+   "mode": "gpu",
+   "chars": 12839
+  },
+  {
+   "case": "S9-C13",
+   "mode": "cpu",
+   "chars": 170627
+  },
+  {
+   "case": "S9-C15",
+   "mode": "gpu",
+   "chars": 14219
+  },
+  {
+   "case": "S9-C15",
+   "mode": "cpu",
+   "chars": 49040
+  },
+  {
+   "case": "S9-P02",
+   "mode": "gpu",
+   "chars": 62874
+  },
+  {
+   "case": "S9-P02",
+   "mode": "cpu",
+   "chars": 47149
+  },
+  {
+   "case": "S9-P03",
+   "mode": "gpu",
+   "chars": 5652
+  },
+  {
+   "case": "S9-P03",
+   "mode": "cpu",
+   "chars": 7898
+  },
+  {
+   "case": "S9-P04",
+   "mode": "gpu",
+   "chars": 36731
+  },
+  {
+   "case": "S9-P04",
+   "mode": "cpu",
+   "chars": 33907
+  },
+  {
+   "case": "S9-P05",
+   "mode": "gpu",
+   "chars": 22050
+  },
+  {
+   "case": "S9-P05",
+   "mode": "cpu",
+   "chars": 14390
+  },
+  {
+   "case": "S9-P09",
+   "mode": "gpu",
+   "chars": 25078
+  },
+  {
+   "case": "S9-P09",
+   "mode": "cpu",
+   "chars": 28530
+  },
+  {
+   "case": "S9-P10",
+   "mode": "gpu",
+   "chars": 13388
+  },
+  {
+   "case": "S9-P10",
+   "mode": "cpu",
+   "chars": 18510
+  },
+  {
+   "case": "S9-P11",
+   "mode": "gpu",
+   "chars": 15600
+  },
+  {
+   "case": "S9-P11",
+   "mode": "cpu",
+   "chars": 197749
+  },
+  {
+   "case": "S9-P12",
+   "mode": "gpu",
+   "chars": 13181
+  },
+  {
+   "case": "S9-P12",
+   "mode": "cpu",
+   "chars": 11276
+  },
+  {
+   "case": "S9-R01",
+   "mode": "gpu",
+   "chars": 19297
+  },
+  {
+   "case": "S9-R01",
+   "mode": "cpu",
+   "chars": 16330
+  },
+  {
+   "case": "S9-R04",
+   "mode": "gpu",
+   "chars": 31575
+  },
+  {
+   "case": "S9-R04",
+   "mode": "cpu",
+   "chars": 18381
+  },
+  {
+   "case": "S9-R05",
+   "mode": "gpu",
+   "chars": 15149
+  },
+  {
+   "case": "S9-R05",
+   "mode": "cpu",
+   "chars": 13537
+  },
+  {
+   "case": "S9-R07",
+   "mode": "gpu",
+   "chars": 16542
+  },
+  {
+   "case": "S9-R07",
+   "mode": "cpu",
+   "chars": 22369
+  },
+  {
+   "case": "S9-R08",
+   "mode": "gpu",
+   "chars": 45416
+  },
+  {
+   "case": "S9-R08",
+   "mode": "cpu",
+   "chars": 67833
+  },
+  {
+   "case": "S9-U01",
+   "mode": "gpu",
+   "chars": 6836
+  },
+  {
+   "case": "S9-U01",
+   "mode": "cpu",
+   "chars": 44363
+  },
+  {
+   "case": "S9-U03",
+   "mode": "gpu",
+   "chars": 23715
+  },
+  {
+   "case": "S9-U03",
+   "mode": "cpu",
+   "chars": 446621
+  },
+  {
+   "case": "S9-U04",
+   "mode": "gpu",
+   "chars": 14915
+  },
+  {
+   "case": "S9-U04",
+   "mode": "cpu",
+   "chars": 55658
+  }
+ ]
+}

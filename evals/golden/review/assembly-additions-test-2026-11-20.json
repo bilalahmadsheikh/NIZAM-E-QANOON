@@ -1,0 +1,651 @@
+{
+ "what": "M4 sample: 40 test GPU additions, seed 20261120; judge each",
+ "items": [
+  {
+   "case": "S5-C08",
+   "question": "I could not repay the loan secured on my shop in Sukkur. Can the lender just sell the shop himself?",
+   "role": "definition",
+   "citation": "Regional Development Finance Corporation Ordinance, 1985, s. 2(b)",
+   "reason": "defines 'Borrower', used in Section 21",
+   "text": "(b) \"Borrower\" means an enterprise to which a loan is given by or on the guarantee of, the Corporation;",
+   "provision": "f5ef93ac-b1bd-47c2-826b-77c09388a8dd",
+   "governing": [
+    "Financial Institutions (Recovery of Finances) Ordinance, 2001, s. 15",
+    "Financial Institutions (Recovery of Finances) Ordinance, 2001, s. 19",
+    "Transfer of Property Act, 1882, s. 67"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S7-C16",
+   "question": "I lost my maintenance case in the Family Court in Abbottabad. Where do I appeal?",
+   "role": "qualification",
+   "citation": "Constitution of the Islamic Republic of Pakistan, 1973, Art. 175F",
+   "reason": "Article 185 is qualified by 'Article 175F'",
+   "text": "175F. Appellate jurisdiction of the Federal Constitutional Court\n  (1) The Federal Constitutional Court shall have jurisdiction to hear and determine appeals from judgments, decrees, final orders or sentences of a High Court as provided herein below –\n    (a) where an Act of Majlis-e-Shoora (Parliament) so provides;\n    (b) if the High Court certifies that the case involves a substantial question of law as to the interpretation of the Constitution; or\n    (c) from a judgment or an order of a High Court made under Article 199 only if the Federal Constitutional Court grants leave to appeal:\n      Provided that no appeal shall lie against a judgment or an order of a High Court made under Article 199, in a case which relates to rent and family except guardianship and such other matters as may be determined by law.\n  (2) All petitions for leave to appeal, appeals or review applications, to which clause (1) apply or any other proceedings falling within the jurisdiction of the Federal Constitutional Court, filed or pending before the Supreme Court prior to commencement of the Constitution (Twenty-seventh Amendment) Act, 2025, stand transferred to the Federal Constitutional Court and shall only be heard and decided by that Court.",
+   "provision": "75f7ddd7-04d1-485c-9005-ac0cea1c23ee",
+   "governing": [
+    "The West Pakistan Family Courts Act, 1964, s. 13",
+    "The Family Courts Act, 1964, s. 14",
+    "West Pakistan Civil Courts Ordinance, 1962, s. 17"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S6-C15",
+   "question": "My son told the police in Karachi where a pistol was hidden and they found it. Can that be used in court?",
+   "role": "definition",
+   "citation": "Code of Criminal Procedure, 1898, s. 1327-A(ma)",
+   "reason": "defines 'Magistrate', used in Section 44",
+   "text": "(ma) “Magistrate” means a Judicial Magistrate and includes a Special Judicial Magistrate appointed under sections 12 and 14;]",
+   "provision": "21eb581b-2956-4839-b7b0-4922cfb79dbc",
+   "governing": [
+    "The Qanun-e-Shahadat, 1984, s. 38",
+    "The Qanun-e-Shahadat, 1984, s. 40",
+    "Pakistan Arms Ordinance, 1965, s. 18"
+   ],
+   "verdict": "correct",
+   "note": "correct; the corpus label of CrPC s.4 reads '1327-A' (label defect), so the citation is wrong"
+  },
+  {
+   "case": "S4-R04",
+   "question": "I was paid below minimum wage in Punjab. Who hears my claim and who can file it for me?",
+   "role": "definition",
+   "citation": "West Pakistan Minimum Wages Rules, 1962, s. 2(g)",
+   "reason": "defines 'Inspector', used in Section 23",
+   "text": "(g) “Inspector” means an Inspector appointed under rule 21;",
+   "provision": "94e1f40b-ea2e-48bc-8370-a6892e2906c2",
+   "governing": [
+    "Punjab Minimum Wages Act, 2019, s. 12",
+    "West Pakistan Minimum Wages Rules, 1962, s. 23",
+    "Punjab Labour Code, 2026, s. 153"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S3-R01",
+   "question": "The Rent Controller in Mirpur decided against me. How long do I have to appeal, and to whom?",
+   "role": "reference",
+   "citation": "Land Control (Karachi Division) Act, 1952, s. 7",
+   "reason": "Section 17 names 'section 5, 6, 7, 8, 9 or 11'",
+   "text": "7. Power of removal of un authorized building The Authorised Officer may, by a notice served in the prescribed manner, direct the owner of an unauthorised building erected prior to the date of coming into force of this Act to remove the same within the period mentioned in the notice or within such further period as may be granted by the Authorised Officer.",
+   "provision": "6dcafc80-f32d-4440-a6af-4fb15a9df609",
+   "governing": [
+    "Islamabad Rent Restriction Ordinance, 2001, s. 21",
+    "Islamabad Rent Restriction Ordinance, 2001, s. 25",
+    "Cantonments Rent Restriction Act, 1963, s. 24"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S2-C20",
+   "question": "A neighbour in Hyderabad spread lies about my character. Can he be punished criminally?",
+   "role": "definition",
+   "citation": "Pakistan Penal Code, 1860, s. 11",
+   "reason": "defines 'person', used in Section 499, Section 501",
+   "text": "11. “Person” The word “person” includes any Company or Association, or body of persons, whether incorporated or not.",
+   "provision": "d6239be5-5c42-442a-bfe7-6cfdf8ae0b14",
+   "governing": [
+    "Pakistan Penal Code, 1860, s. 499",
+    "Pakistan Penal Code, 1860, s. 500",
+    "Pakistan Penal Code, 1860, s. 501"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S10-P10",
+   "question": "Registration or licence for a food business in Punjab",
+   "role": "definition",
+   "citation": "Punjab Pure Food Rules, 2011, s. 2(u)",
+   "reason": "defines 'Government', used in Section 31, Section 30",
+   "text": "(u) “Government” means Government of the Punjab;",
+   "provision": "c049bb28-ee66-463e-a64e-850c19bc6e1e",
+   "governing": [
+    "Punjab Food Authority Act, 2011, s. 1",
+    "Punjab Food Authority Act, 2011, s. 7",
+    "Punjab Food Authority Act, 2011, s. 15"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S4-U03",
+   "question": "Kya Punjab mein bachon se workshop mein kaam karwana jurm hai?",
+   "role": "definition",
+   "citation": "Punjab Labour Code, 2026, s. 13(1)(ss)",
+   "reason": "defines 'rules', used in Section 399",
+   "text": "(ss) “rules” means rules made under the Code;",
+   "provision": "8e80c2b3-ec44-4df9-a5d5-2520f2cce4c4",
+   "governing": [
+    "Punjab Labour Code, 2026, s. 23",
+    "Punjab Labour Code, 2026, s. 32",
+    "Punjab Labour Code, 2026, s. 399"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S10-C16",
+   "question": "A restaurant in Faisalabad operates with no food licence. What can it be punished with?",
+   "role": "definition",
+   "citation": "Pakistan Hotels and Restaurants Act, 1976, s. 2(f)",
+   "reason": "defines 'guest', used in Section 22",
+   "text": "(f) “guest” means a person who is in possession or enjoyment of accommodation provided to him in a hotel on monetary consideration ;",
+   "provision": "ad43517f-16e2-4598-bc25-f8c60b4425be",
+   "governing": [
+    "Punjab Food Authority Act, 2011, s. 15",
+    "Punjab Food Authority Act, 2011, s. 29",
+    "Punjab Food Authority Act, 2011, s. 32"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S4-U05",
+   "question": "Trademark kitne saal ke liye register hota hai?",
+   "role": "definition",
+   "citation": "Trade Marks Ordinance, 2001, s. 2(xxvi)",
+   "reason": "defines 'name', used in Section 73, Section 22",
+   "text": "(xxvi) “name” includes any abbreviation of name;",
+   "provision": "4b97a856-a67f-4111-9332-4874dcf5dd46",
+   "governing": [
+    "Trade Marks Ordinance, 2001, s. 22",
+    "Trade Marks Ordinance, 2001, s. 25",
+    "Trade Marks Ordinance, 2001, s. 33"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S10-P10",
+   "question": "Registration or licence for a food business in Punjab",
+   "role": "definition",
+   "citation": "Punjab Food Authority Act, 2011, s. 2(k)",
+   "reason": "defines 'food operator', used in Section 15, Section 7",
+   "text": "(k) “food operator” means a person who manufactures for sale, transports, stores, sells, distributes, imports or exports food;",
+   "provision": "df9c210b-c255-4cdf-a130-a1fa6689dcd5",
+   "governing": [
+    "Punjab Food Authority Act, 2011, s. 1",
+    "Punjab Food Authority Act, 2011, s. 7",
+    "Punjab Food Authority Act, 2011, s. 15"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S10-P05",
+   "question": "Environmental Protection Tribunals in Sindh",
+   "role": "reference",
+   "citation": "Pakistan Environmental Protection Act, 1997, s. 17",
+   "reason": "Section 21 names 'section 17'",
+   "text": "17. Penalties. (1) Whoever contravenes or fails to comply with the provisions of sections 11, 12, 13, or section 16 or any order issued thereunder shall be punishable with fine which may extend to one million rupees, and in the case of a continuing contravention or failure, with an additional fine which may extend to one hundred thousand rupees for everyday during which such contravention or failure continues and where such contravention or failure continues:\n  Provided that if contravention of the provisions of section 11 also constitutes contravention of the provisions of section 15, such contravention shall be punishable under sub-section (2) only.\n  (2) Whoever contravenes or fails to comply with the provisions of section 14 or 15 or any rule or regulation or conditions of any licence, any order or direction issued by the Council or by the Federal Agency or Provincial Agency shall be punishable with fine which may extend to one hundred thousand rupees, and in case of continuing contravention, or failure with an additional fine which extend to one thousand rupees for every day during which such contravention continues.\n  (3) Where an accused has been convicted of an offence under sub-section (1) and (2), the Environmental Tribunal and Environmental Magistrate shall, in passing sentence, take into account the extent and duration of the contravention or failure constituting the offence, and the attendant circumstances.\n  (4) Where an accused has been convicted of an offence ",
+   "provision": "bd343cd5-7870-426f-9d98-2dfcc80d672a",
+   "governing": [
+    "Sindh Environmental Protection Act, 2014, s. 1",
+    "Sindh Environmental Protection Act, 2014, s. 3",
+    "Sindh Environmental Protection Act, 2014, s. 5"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S3-U01",
+   "question": "اسلام آباد میں مالک مکان کرایہ دار کو کن صورتوں میں نکال سکتا ہے؟",
+   "role": "definition",
+   "citation": "Islamabad Rent Restriction Ordinance, 2001, s. 2(b)",
+   "reason": "defines 'building', used in Section 17, Section 18",
+   "text": "(b) “building” means any building or part thereof, together with all fittings and fixtures therein, if any, and includes any vacant land, garden, ground, godown and out‑house attached or appurtenant thereto, but does not include any place of religious worship;",
+   "provision": "04ee6598-e158-450d-829f-cd210022403e",
+   "governing": [
+    "Islamabad Rent Restriction Ordinance, 2001, s. 6",
+    "Islamabad Rent Restriction Ordinance, 2001, s. 17",
+    "Islamabad Rent Restriction Ordinance, 2001, s. 18"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S2-P03",
+   "question": "Which PPC offences may be compounded, and by whom?",
+   "role": "definition",
+   "citation": "Pakistan Penal Code, 1860, s. 299(f)",
+   "reason": "defines 'Government', used in Section 310",
+   "text": "(f) “Government” means the Provincial Government;",
+   "provision": "363dd007-8cf5-41bb-8949-da169e522fa9",
+   "governing": [
+    "Code of Criminal Procedure, 1898, s. 345",
+    "Pakistan Penal Code, 1860, s. 310",
+    "Pakistan Penal Code, 1860, s. 338E"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S5-P01",
+   "question": "Documents of which registration is compulsory",
+   "role": "definition",
+   "citation": "The Companies Regulations, 2022, s. 2(iv)",
+   "reason": "defines 'authorized officer', used in Form",
+   "text": "(iv) \"authorized officer\" includes a chief executive officer, director, company secretary, chief financial officer of the company or a representative authorized by the Board or an authorized intermediary to sign a document or proceeding requiring authentication by the company:\n  Provided that-",
+   "provision": "9875a774-73f8-4dfe-bc95-0fc511ace969",
+   "governing": [
+    "Registration Act, 1908, s. 1",
+    "Registration Act, 1908, s. 17",
+    "Registration Act, 1908, s. 18"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S4-C13",
+   "question": "I wrote a novel. How long will my copyright last?",
+   "role": "definition",
+   "citation": "Copyright Ordinance, 1962, s. 2(m)",
+   "reason": "defines 'Government work', used in Section 22",
+   "text": "(m) “Government work” means a work which is made or published by or under the direction or control of__",
+   "provision": "d366eccd-e10d-48f0-be1c-a72ec6df0fa9",
+   "governing": [
+    "Copyright Ordinance, 1962, s. 1",
+    "Copyright Ordinance, 1962, s. 10",
+    "Copyright Ordinance, 1962, s. 18"
+   ],
+   "verdict": "wrong",
+   "note": "Copyright s.2(m) 'Government work' ... 'control of__': its sub-items (i), (ii) are siblings in the tree, not in the node; the definition is incomplete (addressed after test by the continuation rule)"
+  },
+  {
+   "case": "S4-C03",
+   "question": "I work in a factory in Lahore and I'm pregnant. Am I entitled to paid maternity leave?",
+   "role": "definition",
+   "citation": "Punjab Maternity Benefit Ordinance, 1958, s. 2(c)",
+   "reason": "defines 'employer', used in Section 5, Section 4",
+   "text": "(c) “employer” means any person who has ultimate control over the appointment of a woman;",
+   "provision": "919da524-a5ce-48f0-9184-66c440429f89",
+   "governing": [
+    "West Pakistan Maternity Benefit Ordinance, 1958, s. 1",
+    "West Pakistan Maternity Benefit Ordinance, 1958, s. 4",
+    "West Pakistan Maternity Benefit Ordinance, 1958, s. 5"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S10-R08",
+   "question": "How can the KP environmental agency stop a brick kiln polluting our area in Charsadda?",
+   "role": "definition",
+   "citation": "The Khyber Pakhtunkhwa Environmental Protection Act, 2014, s. 2(1)(oo)",
+   "reason": "defines 'person', used in Section 7, Section 11",
+   "text": "(oo) “person” means any natural person or legal entity and includes an individual, firm, association, partnership, society, group, company, corporation, co-operative society, Government Agency, non- governmental organization, community-based organization, village organization, local council or local authority and, in the case of a vessel, the master or other person having for the time being the charge or control of the vessel; 1[(oo-i) “plastic” means polymer of polyethylene, polypropylene, polystyrene, polyethylene terephthalate;]",
+   "provision": "1a360a9b-017f-44e5-bd58-1d5c2a2c09a9",
+   "governing": [
+    "The Khyber Pakhtunkhwa Environmental Protection Act, 2014, s. 6",
+    "The Khyber Pakhtunkhwa Environmental Protection Act, 2014, s. 7",
+    "The Khyber Pakhtunkhwa Environmental Protection Act, 2014, s. 11"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S7-C13",
+   "question": "To settle a murder case in Swat, the jirga wants to give my 14-year-old cousin in marriage to the other family. Is that legal?",
+   "role": "definition",
+   "citation": "Islamabad Capital Territory Child Marriage Restraint Act, 2025, s. 2(i)",
+   "reason": "defines 'Guardian', used in Section 7",
+   "text": "(i) “Guardian” means a person, other than a biological parent who has parental responsibility for a child, which may include a guardian appointed under the Guardians and Wards Act, 1890 (VIII of 1890); and",
+   "provision": "6f69ac36-0778-472f-8ecb-dc13b66b1f60",
+   "governing": [
+    "Child Marriage Restraint Act, 1929, s. 1",
+    "Child Marriage Restraint Act, 1929, s. 2",
+    "Child Marriage Restraint Act, 1929, s. 6"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S8-U04",
+   "question": "Ek agent ne bahar naukri dilane ke naam par paise le kar dhoka diya, kya yeh jurm hai?",
+   "role": "definition",
+   "citation": "Fee-Charging Employment Agencies (Regulation) Act, 1976, s. 2(a)",
+   "reason": "defines 'competent authority', used in Section 5",
+   "text": "(a) “competent authority” means an officer appointed to be the competent authority under section 4;",
+   "provision": "d9148e57-c6c7-49d0-9735-451dedefef3f",
+   "governing": [
+    "Estacode (Edition-2021), ix",
+    "Emigration Ordinance, 1979, s. 22",
+    "Pakistan Penal Code, 1860, s. 161"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S6-P09",
+   "question": "Security for keeping the peace",
+   "role": "definition",
+   "citation": "Code of Criminal Procedure, 1898, s. 1327-A(q)",
+   "reason": "defines 'place', used in Section 107, Section 144, Section 145",
+   "text": "(q) “Place.” “place” includes also a house, building, tent and vessel:",
+   "provision": "31d2ed1d-9840-4868-96d4-fc7e0dd45ae5",
+   "governing": [
+    "Code of Criminal Procedure, 1898, s. 106",
+    "Code of Criminal Procedure, 1898, s. 107",
+    "Code of Criminal Procedure, 1898, s. 108"
+   ],
+   "verdict": "correct",
+   "note": "correct; same CrPC label defect"
+  },
+  {
+   "case": "S3-R02",
+   "question": "How do I appeal a Rent Controller's order in Islamabad?",
+   "role": "reference",
+   "citation": "Islamabad Capital Territory Waqf Properties Act, 2020, s. 11",
+   "reason": "Section 12 names 'section 11'",
+   "text": "11. Termination of tenancy (1) If the administrator is satisfied that lessee or tenant of any immovable waqf property has committed a breach of the conditions of the lease or tenancy, the administrator may, after giving such lessee or tenant an opportunity of hearing, order the termination of lease or resumption of tenancy:\n  Provided that if the breach is capable of rectification, the administrator shall not order the termination of the lease or resumption of the tenancy unless he has issued a written notice requiring the lessee or tenant to rectify the breach within a reasonable time, not being less than thirty days or more than sixty days, to be stated in the notice and the lessee or tenant has failed to comply with such notice.\n  (2) Where an order terminating the lease or resuming the tenancy has been passed under the provisions of sub-section (1), the administrator may forthwith re-enter upon the waqf property and resume possession of it, subject to the payment of compensation to be fixed by the administrator for un- cut and un-gathered crops or for the improvements, if any, that may have been made by the lessee or tenant under the terms of the lease or tenancy or with the permission of the chief administrator.",
+   "provision": "f7d3f68f-f02e-45c0-aac7-94351732e45a",
+   "governing": [
+    "The West Pakistan Urban Rent Restriction Act, 1957, s. 17",
+    "Islamabad Rent Restriction Ordinance, 2001, s. 16A",
+    "Islamabad Rent Restriction Ordinance, 2001, s. 21"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S10-C13",
+   "question": "My mother was harmed by careless treatment at a private hospital in Lahore. When is that medical negligence in law?",
+   "role": "definition",
+   "citation": "Pakistan Penal Code, 1860, s. 299(l)",
+   "reason": "defines \"ta'zir\", used in Section 337-H",
+   "text": "(l) \"ta'zir\" means purushment other than qisas, diyat, arsh , or daman; and",
+   "provision": "a80d4897-1793-477b-af5e-ae884aeddeb5",
+   "governing": [
+    "Punjab Healthcare Commission Act, 2010, s. 19",
+    "Pakistan Penal Code, 1860, s. 337H",
+    "Pakistan Penal Code, 1860, s. 269"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S1-R05",
+   "question": "The Rent Controller in Karachi ordered my eviction. How long do I have to appeal and to whom?",
+   "role": "definition",
+   "citation": "Sind Rented Premises Ordinance, 1979, s. 2(j)",
+   "reason": "defines 'tenant', used in Section 21",
+   "text": "(j) “tenant” means any person who undertakes or is bound to pay rent as consideration for the possession or occupation of any premises by him or by any other person on his behalf and includes—",
+   "provision": "72e45f42-fff3-4dbe-b00c-a41bc68befb0",
+   "governing": [
+    "Sind Rented Premises Ordinance, 1979, s. 21",
+    "Sindh Rent Restriction Act, 1952, s. 19",
+    "Karachi Rent Restriction Act, 1953, s. 10"
+   ],
+   "verdict": "correct",
+   "note": "correct; 'and includes--' continues outside the node"
+  },
+  {
+   "case": "S10-P04",
+   "question": "Environmental protection order in Punjab",
+   "role": "definition",
+   "citation": "Punjab Environmental Protection Act, 1997, s. 2(v)",
+   "reason": "defines 'Council', used in Section 6",
+   "text": "(v) “Council” means the 5[Punjab] Environmental Protection Council established under section 3; 6[(v-a) “Department” means Environment Protection and Climate Change Department of the Government;]",
+   "provision": "5a0b447c-bf00-4610-9b09-75a6a26a79ab",
+   "governing": [
+    "Punjab Environmental Protection Act, 1997, s. 1",
+    "Punjab Environmental Protection Act, 1997, s. 6",
+    "Punjab Environmental Protection Act, 1997, s. 16"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S4-C07",
+   "question": "Can my employer in Punjab dismiss me while I am on maternity leave?",
+   "role": "definition",
+   "citation": "Punjab Labour Code, 2026, s. 7(2)",
+   "reason": "defines 'principal', used in Section 35",
+   "text": "(2) For the purposes of the Code, “principal” means a person who in connection with any trade, business, profession or undertaking carried on by him, engages any other person otherwise than under an employment agreement, including under a contract for services:\n  (a) to provide any labour for gain or reward; or\n  (b) to do any work for gain or reward; and includes a person that engages a contractor or sub-contractor.",
+   "provision": "fe873b23-276c-4070-ad2d-3dae7c522fe4",
+   "governing": [
+    "Punjab Labour Code, 2026, s. 35",
+    "Punjab Labour Code, 2026, s. 147",
+    "Punjab Labour Code, 2026, s. 197"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S7-C11",
+   "question": "My family in Mardan is forcing me to marry a man I don't want. Is that against the law?",
+   "role": "definition",
+   "citation": "Pakistan Penal Code, 1860, s. 45",
+   "reason": "defines 'life', used in Section 365B, Section 498C, Section 494",
+   "text": "45. \"Life\" “Life.” The word “life” denotes the life of a human being, unless the contrary appears from the context.",
+   "provision": "2f0ac8ae-6b48-401a-a236-263072289dbe",
+   "governing": [
+    "Pakistan Penal Code, 1860, s. 310A",
+    "Pakistan Penal Code, 1860, s. 365B",
+    "Pakistan Penal Code, 1860, s. 366"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S4-U01",
+   "question": "Punjab mein factory mein kaam karne wali aurat ko maternity benefit kitne hafton ka milta hai?",
+   "role": "definition",
+   "citation": "Punjab Maternity Benefit Ordinance, 1958, s. 2(d)",
+   "reason": "defines 'Establishment', used in Section 4, Section 3",
+   "text": "(d) “Establishment” means an organization, whether industrial, commercial, or otherwise;]",
+   "provision": "392b4b11-1002-4177-b463-ba7b3d484aca",
+   "governing": [
+    "West Pakistan Maternity Benefit Ordinance, 1958, s. 4",
+    "West Pakistan Maternity Benefit Ordinance, 1958, s. 5",
+    "Punjab Maternity Benefit Ordinance, 1958, s. 3"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S4-C13",
+   "question": "I wrote a novel. How long will my copyright last?",
+   "role": "definition",
+   "citation": "Copyright Ordinance, 1962, s. 2(zf)",
+   "reason": "defines 'work', used in Section 20, Section 22, Section 18, Section 23, Section 21, Section 19, Section 10, Section 84, Section 28, Section 29, Section 30",
+   "text": "(zf) “work” means any of the following works, namely:__",
+   "provision": "69c132de-e783-4a4a-a5df-eb9347121ab9",
+   "governing": [
+    "Copyright Ordinance, 1962, s. 1",
+    "Copyright Ordinance, 1962, s. 10",
+    "Copyright Ordinance, 1962, s. 18"
+   ],
+   "verdict": "wrong",
+   "note": "Copyright s.2(zf) 'work' means any of the following works, namely:__ -- the same flattening"
+  },
+  {
+   "case": "S3-U01",
+   "question": "اسلام آباد میں مالک مکان کرایہ دار کو کن صورتوں میں نکال سکتا ہے؟",
+   "role": "definition",
+   "citation": "Islamabad Capital Territory Waqf Properties Act, 2020, s. 2(a)",
+   "reason": "defines 'administrator', used in Section 11",
+   "text": "(a) “administrator” means an administrator of auqaf appointed under section 4;",
+   "provision": "715b56d3-8274-4f96-a8d2-b6e4c8475bea",
+   "governing": [
+    "Islamabad Rent Restriction Ordinance, 2001, s. 6",
+    "Islamabad Rent Restriction Ordinance, 2001, s. 17",
+    "Islamabad Rent Restriction Ordinance, 2001, s. 18"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S4-P05",
+   "question": "How does a bank sue a defaulting customer for recovery of finance?",
+   "role": "definition",
+   "citation": "Financial Institutions (Secured Transactions) Act, 2016, s. 2(1)(xxiv)",
+   "reason": "defines 'immovable property', used in Section 58",
+   "text": "(xxiv) * * * * * * *] (xxv) “immovable property” shall include land, benefits to arise out of land, and things attached to the earth, or permanently fastened to anything attached to the earth, and shall, notwithstanding anything inconsistent therewith contained in the General Clauses Act, 1897 (X of 1897), Transfer of Property Act, 1882 (IV of 1882), Registration Act 1908, (XVI of 1908) and any other law for the time being in force, exclude property attached to immovable property as defined in clause (xxxviii) of this sub-section;",
+   "provision": "87f1db72-945f-4cdf-8952-8adb69f74a52",
+   "governing": [
+    "Financial Institutions (Recovery of Finances) Ordinance, 2001, s. 3",
+    "Financial Institutions (Recovery of Finances) Ordinance, 2001, s. 7",
+    "Financial Institutions (Recovery of Finances) Ordinance, 2001, s. 9"
+   ],
+   "verdict": "correct",
+   "note": "correct; merged node (xxiv)-(xxv)"
+  },
+  {
+   "case": "S9-R02",
+   "question": "Where do I complain about a lender charging interest in Gujranwala?",
+   "role": "reference",
+   "citation": "The West Pakistan Money-Lenders Ordinance, 1960, s. 19",
+   "reason": "Section 21 names 'sections 19 and 23'",
+   "text": "19. Punishment for money-lending without registration or licence 20, Punishment for charging high rates of interest, 21, Penalty for use of documents containing false entries.",
+   "provision": "4ef1942b-8b08-4c75-a2e6-e635d1443ab6",
+   "governing": [
+    "Punjab Prohibition of Interest on Private Loans Act, 2022, s. 1",
+    "Punjab Prohibition of Interest on Private Loans Act, 2022, s. 2",
+    "Punjab Prohibition of Interest on Private Loans Act, 2022, s. 3"
+   ],
+   "verdict": "correct",
+   "note": "correct resolution; the corpus's s.19 text is a contents list (corpus defect)"
+  },
+  {
+   "case": "S4-C13",
+   "question": "I wrote a novel. How long will my copyright last?",
+   "role": "definition",
+   "citation": "Copyright Ordinance, 1962, s. 2(h)",
+   "reason": "defines 'cinematographic work', used in Section 20, Section 10",
+   "text": "(h) “cinematographic work” means any sequence of visual images 1[, including video films of every kind,] recorded on material of any description (whether translucent or not), whether silent or accompanied by sound, which, if shown (played back, exhibited) conveys the sensation of motion;",
+   "provision": "2a677ce2-5de7-4e73-b2c3-42be1dc57a86",
+   "governing": [
+    "Copyright Ordinance, 1962, s. 1",
+    "Copyright Ordinance, 1962, s. 10",
+    "Copyright Ordinance, 1962, s. 18"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S1-C07",
+   "question": "My husband beats me. I live in Faisalabad. Can a court order him to stay away from me?",
+   "role": "definition",
+   "citation": "Domestic Violence (Prevention and Protection) Act, 2026, s. 2(xviii)",
+   "reason": "defines 'respondent', used in Section 8, Section 5, Section 7, Section 3",
+   "text": "(xviii) “respondent” means a person who is, or has been, in a domestic relationship with the aggrieved person and against whom relief has been sought under this Act;",
+   "provision": "80c2f3ad-1a59-4bd0-8375-ae8f1213f2fb",
+   "governing": [
+    "Domestic Violence (Prevention and Protection) Act, 2026, s. 3",
+    "Domestic Violence (Prevention and Protection) Act, 2026, s. 5",
+    "Domestic Violence (Prevention and Protection) Act, 2026, s. 7"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S6-P09",
+   "question": "Security for keeping the peace",
+   "role": "reference",
+   "citation": "Code of Criminal Procedure, 1898, s. 114",
+   "reason": "Section 117 names 'section 114'",
+   "text": "114. Summons or warrant in case of person not so present If such person is not present in Court, the Magistrate shall issue a summons requiring him to appear, or, when such person is in custody, a warrant directing the officer in whose custody he is, to bring him before the Court:\n  Provided that whenever it appears to such Magistrate, upon the report of a police-officer or upon other information (the substance of which report or information shall be recorded by the Magistrate), that there is reason to fear the commission of a breach of the peace, and that such breach of the peace cannot be prevented otherwise than by the immediate arrest of such person, the Magistrate may at any time issue a warrant for his arrest.",
+   "provision": "c83785b5-be3a-4fa1-b2de-3075da8098e7",
+   "governing": [
+    "Code of Criminal Procedure, 1898, s. 106",
+    "Code of Criminal Procedure, 1898, s. 107",
+    "Code of Criminal Procedure, 1898, s. 108"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S7-C18",
+   "question": "Our baby was born in Karachi. By when must we register her with NADRA?",
+   "role": "definition",
+   "citation": "National Database and Registration Authority Ordinance, 2000, s. 2(s)",
+   "reason": "defines 'thing', 'things', used in Section 8",
+   "text": "(s) “thing” or “things” means and includes all animate or inanimate things, plants animals, objects, substances, items, concepts, ideas, laws, customs, qualities, signs, symbols, circumstances, affairs, events, acts, deeds, works, transactions, documents, pieces of movable or immovable property, tangible or intangible property, rights, privileges, duties, entities, living or non-living beings other than a human being and anything that can be possessed, or owned, or explained, whether known or unknown. _________",
+   "provision": "189eaf65-2f01-4aeb-a1d3-9f0d80c66350",
+   "governing": [
+    "National Database and Registration Authority Ordinance, 2000, s. 1",
+    "National Database and Registration Authority Ordinance, 2000, s. 8",
+    "National Database and Registration Authority Ordinance, 2000, s. 9"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S2-U01",
+   "question": "Chori ki saza kya hai?",
+   "role": "definition",
+   "citation": "Offences Against Property (Enforcement of Hudood) Ordinance, 1979, s. 2(a)",
+   "reason": "defines 'adult', used in Section 5, Section 7",
+   "text": "(a) “adult” means a person who has attained the age of eighteen years or puberty:",
+   "provision": "bbbd7ed6-a02c-49b8-9100-6a8b933ecbb9",
+   "governing": [
+    "Pakistan Penal Code, 1860, s. 378",
+    "Pakistan Penal Code, 1860, s. 379",
+    "Pakistan Penal Code, 1860, s. 380"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S4-C07",
+   "question": "Can my employer in Punjab dismiss me while I am on maternity leave?",
+   "role": "definition",
+   "citation": "Mines Maternity Benefit Act, 1941, s. 2(a)",
+   "reason": "defines 'child', used in Section 10",
+   "text": "(a) “child” includes a still-born child;",
+   "provision": "7983092e-96e6-47e4-b4cb-d2398caa64e4",
+   "governing": [
+    "Punjab Labour Code, 2026, s. 35",
+    "Punjab Labour Code, 2026, s. 147",
+    "Punjab Labour Code, 2026, s. 197"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S2-R02",
+   "question": "No appeal lies from the trial court's order. Can the High Court still correct it?",
+   "role": "reference",
+   "citation": "Code of Criminal Procedure, 1898, s. 338",
+   "reason": "Section 439 names 'section 338'",
+   "text": "338. Power to grant or tender pardon __ At any time before the judgment is passed, the High Court or the Court of Session trying the case may, with the view of obtaining on the trial the evidence of any person supposed to have been directly or indirectly concerned in, or privy to, any such offence, tender, or order the 7[officer-in-charge of the prosecution in the district] to tender, a pardon on the same condition to such person 8[:]]\n  Provided that no person shall be tendered pardon who is involved in an offence relating to hurt or qatl without permission of the victim or, as the case may be, of the heirs of the victim.]",
+   "provision": "db09bcf6-ba53-4836-8e13-0fa092fb15df",
+   "governing": [
+    "Code of Civil Procedure, 1908, s. 105",
+    "Code of Civil Procedure, 1908, s. 115",
+    "Code of Civil Procedure, 1908, s. 152"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S5-C06",
+   "question": "We signed a written sale deed for a plot in Islamabad but never registered it. Does it give me any right in the plot?",
+   "role": "qualification",
+   "citation": "Registration Act, 1908, s. 18",
+   "reason": "Section 28 is qualified by 'section 18'",
+   "text": "18. Documents of which registration is optional. Any document not required to be registered under section 17 may also be registered under this Act.]",
+   "provision": "946164ee-6cc7-4c94-8d30-b617b4831d14",
+   "governing": [
+    "Registration Act, 1908, s. 28",
+    "Registration Act, 1908, s. 49",
+    "Registration Act, 1908, s. 50"
+   ],
+   "verdict": "correct",
+   "note": ""
+  }
+ ],
+ "round": "test, judged once, on the version frozen before test (nizam/retrieval/assembly.py sha256 7d0a42c5...)",
+ "result": {
+  "correct": 38,
+  "of": 40
+ },
+ "checked_by": "the lead (author check, not a lawyer's review), 20 Nov 2026"
+}
