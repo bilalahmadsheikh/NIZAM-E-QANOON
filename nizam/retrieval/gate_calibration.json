@@ -1,0 +1,63 @@
+{
+ "version": "gate-v1-2026-11-20",
+ "rule": "evals/results/gate-rule-2026-11-20.json",
+ "addenda": [
+  "evals/results/gate-rule-addendum-agree-2026-11-20.json"
+ ],
+ "provisional": "fitted on draft golden sets 1-4 (D-095); refit when the reviewed split exists",
+ "bundle": 10,
+ "modes": {
+  "cpu": {
+   "features": [
+    "top",
+    "margin",
+    "agree"
+   ],
+   "mean": [
+    0.42573437,
+    1.57477757,
+    1.18333333
+   ],
+   "scale": [
+    4.4584007,
+    1.9584377,
+    0.68292671
+   ],
+   "coef": [
+    1.36503183,
+    -0.3927731,
+    0.74470492
+   ],
+   "intercept": 0.52272872,
+   "tau": 0.895197,
+   "target_precision": 0.95,
+   "dense_generation": 1,
+   "fitted_on": "dev, split-v1, 120 scored cases",
+   "oof_answered_precision": 0.9524,
+   "oof_coverage_of_sufficient": 0.2899,
+   "reranker": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1@1427fd652930e4ba29e8149678df786c240d8825"
+  },
+  "gpu": {
+   "features": [
+    "top"
+   ],
+   "mean": [
+    6.06824038
+   ],
+   "scale": [
+    1.94065183
+   ],
+   "coef": [
+    1.75535397
+   ],
+   "intercept": 2.89032925,
+   "tau": 0.729556,
+   "target_precision": 0.95,
+   "dense_generation": 2,
+   "fitted_on": "dev, split-v1, 120 scored cases",
+   "oof_answered_precision": 0.9528,
+   "oof_coverage_of_sufficient": 0.9528,
+   "reranker": "Qwen/Qwen3-Reranker-8B@77d193c791ed757ca307ee72715aa132723da912"
+  }
+ }
+}

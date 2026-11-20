@@ -316,6 +316,14 @@ authority = matrix.resolve(decidingCourt, forum, subjectMatter, asOf)
   confidence; threshold; retrievalRunId;
 <b>}</b></pre>
   <p>Abstention must be actionable: identify the missing jurisdiction/date/Act/forum or say that the official corpus lacks the material. Never say merely “I cannot answer,” and never fill the gap from model memory.</p>
+  <div class="note blue"><h4>As built (20 Nov 2026): the gate and the port (D-102)</h4>
+  <ul>
+   <li><b>Port:</b> <code>nizam.retrieval.gate.retrieve(question, filters) &rarr; GroundingContext | Abstention</code>. A context carries the identities and scores of the first 10 served units; assembly (&sect;7) is the next component.</li>
+   <li><b>Vetoes before search</b> (<code>nizam/retrieval/scope.py</code>). Time: a future <code>as_of</code>, or a question about what the law will be. Source: a court's decision or case law, since there are no judgments yet. Place: the law of a foreign place, unless the question names a Pakistani place. After search, a question with no territory whose leading units are two provinces' laws gets <code>JURISDICTION_UNRESOLVED</code>.</li>
+   <li><b>Calibrated model:</b> logistic regression per reranker (matched by model and revision), fitted on dev under a pre-registered rule. &tau; is set for answered precision 0.95. Features chosen on dev: GPU, the top reranker score; CPU, top score, margin and generator agreement.</li>
+   <li><b>Test results, scored once</b> (provisional golden sets): GPU, 72 of 80 pass at .944 precision with 97% of answerable questions answered; CPU, 18 pass at .833, under its target and recorded as open. Abstention precision and recall targets are not yet met, and 8 unanswerable test cases cannot measure them reliably.</li>
+   <li>Not built: per-intent or per-language thresholds (too few cases); coverage of several sub-questions; the authority, treatment and delegated-instrument vetoes. Those need the judgment and edge data first.</li>
+  </ul></div>
  </div>
 </section>
 
@@ -350,7 +358,7 @@ else:
   <h3><span class="mk">9.2</span>Degradation</h3>
   <ul>
    <li><strong>Embedder or HNSW unavailable:</strong> lexical + definition + graph path, marked <code>lexical_only</code>; normal gate threshold remains.</li>
-   <li><strong>Reranker unavailable:</strong> RRF order with a separately calibrated degraded-mode gate; if that calibration has not shipped, abstain.</li>
+   <li><strong>Reranker unavailable:</strong> RRF order with a separately calibrated degraded-mode gate; if that calibration has not shipped, abstain. <em>As built (D-102): the fused order earned no threshold on dev (out-of-fold precision near .77 against a 0.90 floor), so an <code>unreranked</code> result abstains with <code>RETRIEVAL_DEGRADED</code>.</em></li>
    <li><strong>Graph incomplete:</strong> provision lookup may continue, but queries requiring definitions, delegated rules, treatment or authority fail the relevant coverage check.</li>
    <li><strong>Database snapshot changes mid-request:</strong> retry the whole retrieval once; never assemble across corpus versions.</li>
   </ul>

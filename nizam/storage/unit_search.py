@@ -257,6 +257,15 @@ class Session:
             cur_unit = Unit(*row)
         return cur_unit
 
+    def instrument_jurisdictions(self, instrument_ids: list[str]) -> dict[str, str]:
+        """{instrument id: its jurisdiction (fed, punjab, sindh, kp, balochistan, ajk, gb)} -- the gate's place veto
+        (D-102: a question with no territory whose best units are provincial laws of two provinces)"""
+        if not instrument_ids:
+            return {}
+        self.cur.execute("SELECT id::text, jurisdiction::text FROM instrument WHERE id = ANY(%s::uuid[])",
+                         (list(set(instrument_ids)),))
+        return dict(self.cur.fetchall())
+
     def units_of(self, provision_ids: list[str]) -> dict[str, Unit]:
         if not provision_ids:
             return {}

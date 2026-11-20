@@ -1,0 +1,10 @@
+{
+ "what": "Addendum to evals/results/gate-rule-2026-11-20.json (D-102), written 20 Nov 2026 AFTER the dev fit of F1-F3 and BEFORE the feature below was computed for any case. Dev is the split for choosing and tuning (evals/golden/split.py); test has still not been scored in any mode.",
+ "why": "The first fit (evals/results/gate-fit-dev-2026-11-20.json, first run) left the CPU profile passing 7 of 120 dev cases at the 0.95 target: out-of-fold precision plateaus near 0.90 from 30 to 40 passes. docs/04 §8.1 lists 'generator agreement' among the gate's features and the rule omitted it.",
+ "feature": {
+  "agree": "how many of the generators -- lexical (the BM25 fusion), dense, citation -- place the bundle's top-scored unit in their own first 10 (UnitCandidate.generator_ranks: 'lexical' <= 10, 'dense' <= 10, 'citation' present); 0 to 3. For the GPU slate (citations then dense, no BM25 windows) only dense and citation can agree. Unreranked: the rank-1 unit's"
+ },
+ "candidate_feature_sets_added": {"F4": ["top", "margin", "agree"], "F5": ["top", "margin", "conc", "cited", "agree"]},
+ "unchanged": "model, selection (lowest leave-one-family-out log loss over F1-F5; within 0.005 the set with fewer features wins), threshold rule and its fallback, the label, the bundle, the vetoes, test scored once per mode after the calibration is written",
+ "harness": "evals/gate_features.py now stores each bundle unit's scores and generator ranks, so this and the rule's features are computed by nizam.retrieval.gate.features from the same rows"
+}

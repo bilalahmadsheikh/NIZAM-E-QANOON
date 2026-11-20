@@ -1136,6 +1136,96 @@ Area: client · Status: Superseded by D-084 (the whole-page cloth; the hem, the 
   design/heritage_art.dart, presentation/discover.dart, presentation/heritage.dart; test/heritage_test.dart
   (golden embroidery.png, a review sheet at 3x).
 
+### D-102 · 2026-11-20 · The sufficiency gate: vetoes, a calibrated classifier per reranker, and retrieve()
+Area: owner ruling, L3 retrieval, evaluation · Status: standing (docs/04 §8, §9.2, as built)
+- Decision: the owner asked to "build the gate end to end fully and improve it and test it". L3 now has its port,
+  `nizam.retrieval.gate.retrieve(question, Filters) -> GroundingContext | Abstention`. It has exactly two values
+  (INV-2): no retry at a lower threshold, no fallback, no low-confidence third result. It decides in this order,
+  and each step is recorded in the result's `gate` dict with the retrieval trace (INV-3):
+  1. **Scope vetoes, before any search** (`nizam/retrieval/scope.py`, docs/04 §8 "time / place / source"). Pure
+     rules over the question:
+     - time: `as_of` after today, or a question about what the law *will be* ("What will the slabs be in 2029?")
+       → `NO_VALID_VERSION`;
+     - source: what a court, tribunal or ombudsman decided, case law, or a law-report citation → `CORPUS_GAP` (no
+       judgments yet, D-100);
+     - place: a body of law of a foreign place ("labour laws in Saudi Arabia", "Indian law", "UAE visa") with no
+       Pakistani place in the question → `CORPUS_GAP`.
+     A mention is not a veto. Facts abroad ("my husband lives in Saudi Arabia"), procedure ("appeal the judgment of
+     the civil court") and future facts ("rent due next month") pass. Latin script only for now.
+  2. **The served retrieval** (`ranked()`, D-101). Nothing found → `INSUFFICIENT_EVIDENCE`.
+  3. **Territory veto** (docs/04 §10.3). No territory given or found while the bundle's first 5 units hold
+     provincial laws of two or more provinces → `JURISDICTION_UNRESOLVED`, asking for the province
+     (`unit_search.Session.instrument_jurisdictions`).
+  4. **The calibration of the mode that actually ran.** Reranked modes are matched by the reranker's model and
+     revision; unreranked is matched by its slate's dense space. A mode with none → `RETRIEVAL_DEGRADED`
+     (docs/04 §9.2). No mode borrows another's threshold.
+  5. **p = sigmoid(w·z + b) over the bundle's features; pass iff p ≥ τ.** Below τ → `INSUFFICIENT_EVIDENCE`, with the
+     5 nearest units attached as `nearest`, never as evidence. Every abstention carries a public reason and an
+     actionable suggestion (docs/04 §8.1).
+  A `GroundingContext` holds identities and scores of the first 10 units (the bundle). Assembly into whole provisions
+  with definitions (docs/04 §7) is the next component.
+- How it was fitted: by a rule written before any gate score existed (`evals/results/gate-rule-2026-11-20.json`).
+  - **Label.** "Sufficient" means the case expects an answer and every proposition's necessary unit is in the first
+    10 served units. Abstain cases are always insufficient.
+  - **Model.** Logistic regression in numpy (standardised, L2 λ = 1). Serving needs no library and no model file:
+    `nizam/retrieval/gate_calibration.json` is data.
+  - **Selection.** Leave-one-family-out cross-validation on dev (120 cases), lowest out-of-fold log loss.
+  - **Threshold.** τ is the smallest out-of-fold probability giving answered precision ≥ 0.95 with ≥ 5 passing
+    (fallback 0.90 below 10% coverage; none below that).
+  - **Inputs.** `evals/gate_features.py` runs the served path for answerable and abstain cases alike. The GPU mode
+    replays 8B question vectors and Qwen3-Reranker-8B scores from Kaggle. The 20 abstain questions were encoded
+    (q8x1: dev re-encode cosine 1.0) and their 974 pairs scored (rrg-8b: complete, then OOM in the latency step as in
+    D-101); only questions and passages left the laptop.
+  - **One addendum, on dev, before its feature existed** (`gate-rule-addendum-agree-2026-11-20.json`). The first fit
+    passed 7 of 120 dev cases on the CPU, and the rule had omitted docs/04 §8.1's "generator agreement". The addendum
+    added `agree`: how many generators (lexical, dense, citation) rank the lead unit in their first 10. Test had not
+    been scored in any mode.
+
+  | dev, out-of-fold | chosen features | log loss | τ | passed | answered precision | coverage of sufficient |
+  |---|---|---|---|---|---|---|
+  | **gpu** (Qwen3-Reranker-8B, citations + 8B dense) | top | .225 | .730 | 106 / 120 | .953 | .953 (106) |
+  | **cpu** (int8 mMiniLM, hybrid) | top, margin, agree (F2 alone: .543) | .506 | .895 | 21 / 120 | .952 | .290 (69) |
+  | **unreranked** (hybrid, fused order) | best F3, .616 | — | none | — | plateaus near .77 | ships no calibration |
+
+- Test, scored once after the calibration was frozen (sha256 32d5bbc4…; provisional, golden sets are drafts, κ not
+  measured; `evals/gate_eval.py`):
+
+  | test (80: 72 answerable, 8 unanswerable) | passed | answered precision (Wilson 95%) | coverage of sufficient | of answerable | unanswerable abstained | ECE |
+  |---|---|---|---|---|---|---|
+  | **gpu** | 72 | **.944** [.866, .978] | .986 | .972 | 6 / 8 (L3-scope 5 / 6) | .022 |
+  | **cpu** | 18 | **.833** [.608, .942] | .375 | .236 | 7 / 8 (5 / 6) | .104 |
+  | **unreranked** | 0 | — | 0 | 0 | 8 / 8 | — |
+
+  - **GPU wrong answers (4).** Two answerable cases whose bundle lacks the gold unit (S2-C06, S4-C05). A question
+    about how many cases a law has had (S3-X04). One about a penalty guarantee (S4-X05, an L6 professional-review
+    case, below).
+  - Urdu and Roman Urdu on the GPU: 8 of 8 pass, all sufficient. The CPU passes none (no CPU generator reads Roman
+    Urdu, D-101).
+  - **The CPU gate is below its target on test.** At n = 18 its interval excludes 0.95. Dev's out-of-fold .952 was
+    optimistic. Nothing was changed after seeing test; see the open question.
+  - **docs/10's abstention targets (precision ≥ .90, recall ≥ .85 on the unanswerable stratum) are not met.**
+    - GPU: strict precision .75, recall .75.
+    - CPU: recall .875, but strict precision .11, because it declines most answerable questions.
+    - Eight unanswerable test cases cannot carry those figures; the stratum needs the remaining golden sets.
+  - **Vetoes.** None fired on any answerable case in either split. On test they matched the classifier's recall and
+    added the right reason code (place, time, source). The test unanswerable questions were listed once before the
+    veto rules were written (counting the split), so the veto rows are optimistic; the classifier rows are not.
+- Not the gate's: questions asking for a predicted outcome or a recommendation (golden code
+  `professional_review_required`) are L6's outcome (docs/07). They are reported in their own row and chose nothing.
+- Why: INV-2 needs a gate whose threshold is fitted, not chosen, and docs/04 §9.2 needs the degraded mode gated
+  separately. On the GPU profile the gate holds back almost nothing answerable (97% of answerable test questions
+  pass) while keeping precision near the target. The unreranked mode keeps abstaining because no threshold earned
+  the target.
+- Where:
+  - nizam/retrieval/gate.py (retrieve, gate, features, mode_of, probability, territory_veto; EvidenceItem,
+    GroundingContext, Abstention); nizam/retrieval/scope.py; nizam/retrieval/gate_calibration.json;
+    nizam/storage/unit_search.py (instrument_jurisdictions);
+  - evals/{gate_features.py, gate_fit.py, gate_eval.py};
+  - evals/results/gate-rule-2026-11-20.json, gate-rule-addendum-agree-2026-11-20.json,
+    gate-features-{dev,test}-2026-11-20.json, gate-fit-dev-2026-11-20.json, gate-{dev,test}-2026-11-20.json;
+  - tests/{test_gate.py, test_scope.py, test_gate_db.py};
+  - docs/04 §8 and §9.2 (as built).
+
 ### D-101 · 2026-11-20 · The cross-encoder: Qwen3-Reranker-8B on the GPU host, int8 mMiniLM on the CPU
 Area: owner ruling, L3 retrieval, inference, evaluation · Status: standing (docs/04 §5.1, §9, as built)
 - Decision: the owner asked for "reranker end to end fully and test it". L3's candidates are now reranked
@@ -1965,8 +2055,17 @@ These were found and deliberately left open. Each will become an entry when it i
 - **ADR-1d for the 8B space.** The binary-vs-full check after reranking (D-098 item 4) now also covers 8B. Dense-only,
   its sign bits did not cost accuracy (bits4096 r50 .968 vs full .940). After the cross-encoder (D-101) it still needs
   full-precision corpus vectors, which were not stored: a check means re-embedding a sample in float on Kaggle.
-- **The degraded-mode gate (D-101, docs/04 §9.2).** A result marked `unreranked` must abstain until a gate calibrated
-  for the fused order ships. The gate is the next slice; until it exists nothing answers.
+- **The degraded-mode gate (D-101, docs/04 §9.2)** — attempted by D-102: no threshold on the fused order reached
+  0.90 answered precision on dev (out-of-fold precision plateaus near .77), so an `unreranked` result abstains
+  (`RETRIEVAL_DEGRADED`). Revisit with more dev cases.
+- **The CPU gate is under its precision target on test (D-102).** It scored .833 [.608, .942] on 18 passes against
+  the 0.95 target. Recommendation (owner delegation): change nothing on the strength of test. Build golden sets 5–10,
+  refit on the larger dev split under the same rule, and until then treat CPU-profile answers as the lower tier the
+  UI marks. A faster CPU host with bge-v2-m3 (D-101) is the other remedy.
+- **The unanswerable stratum is too small to test docs/10's abstention targets (D-102).** There are 20 cases, 8 of them
+  in test. Two kinds the gate misses have no rule: questions about statistics or records ("how many cases have been
+  registered", "is there an FIR against my CNIC"), and requests for a predicted outcome or a guarantee, which are
+  L6's professional-review outcome (docs/07) and not yet built.
 - **8B reranker serving latency (D-101).** Not measured: a T4 ran out of memory at 50 pairs in one batch, and the
   64-pair smoke took 20.8 s. It needs the real GPU host, with TEI or vLLM batching, before the GPU profile is called
   within budget.

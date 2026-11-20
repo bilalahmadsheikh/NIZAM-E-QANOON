@@ -1,0 +1,43 @@
+{
+ "what": "Pre-registered rule for L3's sufficiency gate (docs/04 §8, §9.2; D-102). Written 20 Nov 2026 before any gate feature or score was computed. Dev (evals/golden/split-v1.json) fits and chooses; test is scored ONCE per mode after the calibration file is written, and nothing is changed after.",
+ "provisional": "golden sets 1-4 are drafts: text-checked, review sheets not annotated, kappa not measured (D-095). Every figure this rule produces is provisional in the same way.",
+ "decision_unit": "one golden case: its question text, its as_of, its jurisdiction plus federal law ('foreign' and unscoped cases: federal only) -- exactly as evals/lexical_benchmark.py scopes it",
+ "bundle": "the first 10 units of the served order (BUNDLE = 10): what the gate admits to assembly. 10 is the CPU reranker's depth (D-101) and the NDCG@10 cut; docs/04 §7 caps assembly at about 20",
+ "label": {
+  "sufficient": "the case expects an answer (answer or conditional) AND every proposition with necessaryEvidence has at least one of those units hit in the bundle (a hit = the unit or a unit inside it, the benchmark's path rule). A case with no propositions uses retrievalGold.necessaryUnits as one proposition",
+  "insufficient": "everything else, including every case whose expectedOutcome is abstain"
+ },
+ "modes": {
+  "cpu": "the CPU profile as served: hybrid slate (bge-m3 space), cross-encoder/mmarco-mMiniLMv2-L12-H384-v1 int8 per-channel, 800 chars x 10 (D-101)",
+  "gpu": "the GPU profile as served: cited_dense slate (Qwen3-Embedding-8B space, question vectors replayed from Kaggle), Qwen/Qwen3-Reranker-8B 1,600 chars x 50, scores replayed from Kaggle (D-101)",
+  "unreranked": "the degraded mode of docs/04 §9.2: the CPU profile's hybrid slate in fused order, no reranker. Its own calibration; if none qualifies it keeps abstaining"
+ },
+ "features": {
+  "top": "highest reranker score among the bundle's scored units (unreranked: the rank-1 unit's fused RRF score)",
+  "margin": "top minus the second-highest such score (0 with one unit)",
+  "conc": "share of the bundle's first 5 units that come from the top-scored unit's instrument",
+  "cited": "1 if a unit the citation fast path resolved is in the bundle, else 0",
+  "empty": "a case with no candidate at all is not scored: it abstains (INSUFFICIENT_EVIDENCE) and counts as a gate abstention"
+ },
+ "candidate_feature_sets": {"F1": ["top"], "F2": ["top", "margin"], "F3": ["top", "margin", "conc", "cited"]},
+ "model": "logistic regression on standardised features (dev mean and sd), L2 penalty lambda = 1.0 on the weights (not the intercept), fitted by Newton's method in numpy. Serving computes p = sigmoid(w.z + b): no model file, no library",
+ "selection": "leave-one-family-out cross-validation on dev (familyId groups: a family's language variants never sit on both sides). Choose the feature set with the lowest out-of-fold log loss; a set within 0.005 of the best that has fewer features wins",
+ "threshold": {
+  "target_precision": 0.95,
+  "rule": "tau = the smallest out-of-fold probability p* such that, among dev cases with p >= p*, the share sufficient is >= the target and at least 5 cases pass. The final model is refitted on all of dev with the chosen features and served with that tau",
+  "fallback": "if at the 0.95 target fewer than 10% of dev's sufficient cases pass, the target is 0.90 (recorded). If at 0.90 still fewer than 10% pass, the mode ships no calibration and abstains always (RETRIEVAL_DEGRADED for unreranked, INSUFFICIENT_EVIDENCE otherwise)",
+  "never": "tau is never lowered at serving time, never retried lower after an abstention (INV-2), and a mode's tau is never borrowed by another mode"
+ },
+ "vetoes": {
+  "what": "deterministic, before the classifier, docs/04 §8 'legal vetoes: time / place / source / authority'. Written from docs/04 and the DEV unanswerable cases. The test unanswerable questions were listed once (20 Nov, counting the split) before these rules were written: the veto rows of the test report are therefore marked optimistic. The classifier rows are not affected (fitted on dev only)",
+  "time": "as_of after today -> NO_VALID_VERSION; a question about the law at a future date (a year after as_of's year, or 'next <month|year|budget|fiscal year|tax year>', with future tense) -> NO_VALID_VERSION",
+  "place": "a question about the law OF a foreign place (a legal noun then 'in/of/under <foreign place>', or '<foreign place> law|laws|rules|courts|visa|penal code') naming no Pakistani place and no resolved citation -> CORPUS_GAP. No territory given or found while the bundle's first 5 units hold provincial laws of two or more provinces -> JURISDICTION_UNRESOLVED (docs/04 §10.3 'Tenant law with no territory')",
+  "source": "a question about what a court, tribunal, ombudsman or commission decided or held, or a law-report citation (PLD, SCMR, YLR, CLC, PCrLJ, MLD, PTD) -> CORPUS_GAP: the corpus holds no judgments yet (D-100)",
+  "degraded": "a result marked unreranked when the unreranked mode shipped no calibration, or a reranker with no calibration of its own -> RETRIEVAL_DEGRADED"
+ },
+ "not_the_gates": "Requests for a prediction of outcome or a recommendation (golden code professional_review_required) are L6's outcome (docs/07 professional_review_required), not an evidence question; they are reported in their own row and not used to choose anything",
+ "report": {
+  "dev": "out-of-fold: answered precision (sufficient among passed), coverage (passed among sufficient), ECE (10 equal-width bins), risk-coverage curve",
+  "test_once": "the same plus: abstention precision and recall on the unanswerable stratum (docs/10 targets 0.90 / 0.85), reported strictly (against expectedOutcome) and against the sufficiency label; Wilson 95% intervals; by script; vetoes separately from the classifier"
+ }
+}
