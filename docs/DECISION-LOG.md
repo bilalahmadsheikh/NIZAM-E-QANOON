@@ -1136,6 +1136,39 @@ Area: client · Status: Superseded by D-084 (the whole-page cloth; the hem, the 
   design/heritage_art.dart, presentation/discover.dart, presentation/heritage.dart; test/heritage_test.dart
   (golden embroidery.png, a review sheet at 3x).
 
+### D-105 · 2026-11-20 · The legal alias index: Urdu and Roman Urdu questions gain English legal words
+Area: owner ruling, L3 query understanding (docs/04 R0) · Status: standing
+- Decision: `nizam/retrieval/aliases.py` maps about 150 legal concepts to the English words the statute book uses.
+  They cover family, property, criminal, labour, money, procedure and public law, in Roman Urdu spellings and Urdu
+  script. `query.parse` adds those words to the lexical (BM25) query of a question written in Urdu: Urdu script, or
+  Roman Urdu recognised by at least two of its function words (hai, mein, kya, ka, ki, ke…).
+  - **An English question is never changed;** no dev English question was.
+  - **The question's own words stay.** Only an Urdu-script question, which the English index cannot read at all, is
+    searched by its gloss alone.
+  - **Spelling variants meet:** k/q, doubled letters, aa/ee/oo, a trailing h. Phrases match before their parts
+    ("haq mehr", "makan malik"). Urdu script is matched word by word, with diacritics, the zero-width non-joiner and
+    Urdu punctuation removed.
+  - **Dense search and the reranker still read the question as written.** The GPU path's 8B vectors are keyed by
+    exact text, and its slate has no BM25 windows, so the GPU path is unchanged.
+  - `NIZAM_ALIASES=off` is the ablation arm.
+- Why: docs/04 R0, "Roman Urdu is first-class". On the CPU path, Roman Urdu questions found the needed law in the
+  top 50 for only 10% of dev cases: no CPU generator read them (D-101).
+- Measured on the CPU hybrid. The vocabulary is general; dev questions showed gaps (loanwords in Urdu script,
+  pabandi, zimmedar, izzat…) that were filled with general terms. The test split was run once, after:
+
+  | | dev 276 r@10 / r@50 / NDCG@10 | test 174 (once) r@10 / r@50 / NDCG@10 |
+  |---|---|---|
+  | aliases off | .592 / .714 / .434 | .526 / .687 / .377 |
+  | **aliases on** | **.611 / .750 / .445** | **.558 / .707 / .397** |
+  | Roman Urdu | .10 / .10 → .30 / .50 (20) | .21 / .29 → .46 / .46 (14) |
+  | Urdu script | .55 / .64 → .64 / .82 (11) | .40 / .60 → .80 / .80 (5) |
+
+  English rows are identical with and without. Latency is unchanged (dev p50 914 → 842 ms).
+- Not done: docs/04's 400–600 concepts (the table has about 150); Urdu-script place names for territory detection; a
+  paired bootstrap (the Urdu strata are 20 and 14 cases).
+- Where: nizam/retrieval/aliases.py, nizam/retrieval/query.py (QuerySpec.gloss); tests/test_aliases.py;
+  evals/results/{dev,test}-hybrid-aliases-{off,on}-2026-11-20.json.
+
 ### D-104 · 2026-11-20 · Golden sets 5–10: the 500-case set is complete in draft
 Area: owner ruling, evaluation (docs/10 §4) · Status: standing (evals/golden/README.md)
 - Decision: the owner asked for every improvement to D-102's gate, end to end. The first is more cases. The D-102 CPU
@@ -2146,6 +2179,15 @@ These were found and deliberately left open. Each will become an entry when it i
   the 0.95 target. Recommendation (owner delegation): change nothing on the strength of test. Build golden sets 5–10,
   refit on the larger dev split under the same rule, and until then treat CPU-profile answers as the lower tier the
   UI marks. A faster CPU host with bge-v2-m3 (D-101) is the other remedy.
+- **Definition and cross-reference generators (docs/04 §4), held (20 Nov 2026).** Two of docs/04's four candidate
+  generators are not built.
+  - **Definitions** belong to context assembly (docs/04 §7: a passing unit's definitions, qualifications and
+    dependencies are attached to the bundle). As candidates they would add no gold necessary unit, since the gold's
+    necessary units are operative sections, and would crowd the bundle. Recommendation: build them in assembly, the
+    next L3 component.
+  - **Cross-reference expansion** ("s.302 → s.299") needs a refers-to edge that `legal_edge` does not yet hold (it
+    has amends, repeals and empowers). Recommendation: an L2 slice extracting section cross-references, then the
+    generator, measured on dev recall.
 - **Is the Punjab Labour Code 2026 in force? (found 20 Nov 2026, D-104).** Section 435 repeals about 26 Punjab
   labour laws, among them:
   - the Punjab Minimum Wages Act 2019, Maternity Benefit Ordinance 1958, Payment of Wages Act 1936, Shops and

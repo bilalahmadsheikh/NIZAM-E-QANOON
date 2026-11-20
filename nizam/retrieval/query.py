@@ -12,9 +12,11 @@ while stripping short statutory phrases cost professional queries (0.750 -> 0.66
 """
 from __future__ import annotations
 
+import os
 import re
 from dataclasses import dataclass, field
 
+from nizam.retrieval import aliases as _aliases
 from nizam.retrieval import citations as _cit
 from nizam.retrieval import places as _places
 
@@ -35,6 +37,7 @@ class QuerySpec:
     places: list = field(default_factory=list)
     script: str = "latin"
     sentence: bool = False
+    gloss: list = field(default_factory=list)    # English words for the Urdu legal terms it uses (D-105)
 
 
 def strip_frame(q: str) -> str:
@@ -49,5 +52,11 @@ def parse(text: str) -> QuerySpec:
     sentence = len(words) >= SENTENCE_WORDS or "?" in t or "؟" in t
     script = "arabic" if re.search(r"[؀-ۿ]", t) else "latin"
     found = _places.places(t)
-    return QuerySpec(text=t, lexical=strip_frame(t) if sentence else t, citations=_cit.find(t),
-                     territory=_places.territory_of(t), places=found, script=script, sentence=sentence)
+    lexical = strip_frame(t) if sentence else t
+    # an Urdu-language question gains the English words of the legal terms it uses (D-105, nizam.retrieval.aliases):
+    # the English index cannot read Urdu script at all, nor most Roman Urdu. The question's own words stay.
+    g = _aliases.gloss(t) if os.environ.get("NIZAM_ALIASES", "on") != "off" else []   # off: the ablation's arm
+    if g:
+        lexical = " ".join(g) if script == "arabic" else f"{lexical} {' '.join(g)}"
+    return QuerySpec(text=t, lexical=lexical, citations=_cit.find(t), territory=_places.territory_of(t),
+                     places=found, script=script, sentence=sentence, gloss=g)

@@ -138,30 +138,42 @@ for slug in MODELS:
     t_score = time.time() - t1
     bad = int((~np.isfinite(scores)).sum())
     np.save(f"{OUT}/scores-{slug}.npy", scores)
-    # latency: one question's 50 passages as one batch, as a serving GPU would rerank them
+    # latency (D-106): one question's passages, micro-batched by the scoring token budget -- a single 50-pair batch ran
+    # out of memory on a T4 (D-101) -- timed end to end for the first 10 and for all 50 of a question. A proxy: the
+    # serving GPU (TEI or vLLM, continuous batching) is faster than Kaggle's T4s
     by_q: dict = {}
     for p in pairs:
         by_q.setdefault(p["q"], []).append(p)
     groups = [g[:50] for g in by_q.values() if len(g) >= 50][:20] or [pairs[:50]]
-    model.score(groups[0])
-    times = []
-    for g in groups:
+
+    def timed(g):
         torch.cuda.synchronize()
         t = time.perf_counter()
-        model.score(g)
+        for idx in batches(model, g):
+            model.score([g[i] for i in idx])
         torch.cuda.synchronize()
-        times.append((time.perf_counter() - t) * 1000)
-    times.sort()
-    lat = {"n": len(times), "p50_ms": round(times[len(times) // 2], 1), "max_ms": round(times[-1], 1),
-           "note": "50 pairs of one question as one batch, fp16, T4"}
+        return (time.perf_counter() - t) * 1000
+
+    def pct(xs, q):
+        xs = sorted(xs)
+        return round(xs[min(len(xs) - 1, int(q * (len(xs) - 1) + 0.5))], 1)
+    try:
+        timed(groups[0])                                   # warm-up
+        t50 = [timed(g) for g in groups]
+        t10 = [timed(g[:10]) for g in groups]
+        lat = {"n": len(groups), "p50_ms_50": pct(t50, .5), "p95_ms_50": pct(t50, .95), "p50_ms_10": pct(t10, .5),
+               "p95_ms_10": pct(t10, .95), "tokens_per_batch": TOKENS_PER_BATCH,
+               "note": "one question's passages micro-batched by the scoring token budget, fp16, Kaggle T4 (proxy)"}
+    except torch.cuda.OutOfMemoryError as exc:             # the scores above are already saved
+        lat = {"error": f"OutOfMemoryError: {str(exc)[:200]}"}
     json.dump(lat, open(f"{OUT}/latency-{slug}.json", "w"), indent=1)
     run["models"][slug] = {"hub": hub, "revision": rev, "max_tokens": max_len, "kind": kind, "load_s": round(t_load),
                            "score_s": round(t_score), "nonfinite": bad, "latency": lat}
     if slug in REMOTE_CODE:
         from huggingface_hub import HfApi
         run["models"][slug]["remote_code"] = {REMOTE_CODE[slug]: HfApi().model_info(REMOTE_CODE[slug]).sha}
-    print(f"{slug}: {len(pairs)} pairs in {t_score:.0f}s (load {t_load:.0f}s), nonfinite {bad}, rerank-50 p50 "
-          f"{lat['p50_ms']} ms", flush=True)
+    print(f"{slug}: {len(pairs)} pairs in {t_score:.0f}s (load {t_load:.0f}s), nonfinite {bad}, latency {lat}",
+          flush=True)
     json.dump(run, open(f"{OUT}/run.json", "w"), indent=1)
     del model
     torch.cuda.empty_cache()
