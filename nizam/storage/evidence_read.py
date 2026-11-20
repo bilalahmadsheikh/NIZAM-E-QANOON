@@ -1,5 +1,6 @@
-"""L2 reads for L3's evidence assembly (docs/04 §7): whole units, definition clauses, units named by label, the
-ancestors of a node, printed amendment notes, the instruments a section empowers, and each law's facts and source.
+"""L2 reads for L3's evidence assembly (docs/04 §7): whole units, the ancestors of a node, the sections of a Part or
+Chapter, the derived links (provision_reference and provision_definition, D-108), printed amendment notes, the
+instruments a section empowers, and each law's facts and source.
 
 Text and law facts come ONLY from operative_provision, as at the session's date and in its territory (INV-5). The
 view is asked about version ids and nothing else. Structure (ids, paths, labels, pages, order) comes from the base
@@ -13,7 +14,8 @@ Measured 20 Nov 2026 (D-107), 10 sections of the Income Tax Ordinance 2001 (59 v
 So this session plans generically. It reads no pg_search index, so the custom-plan rule of unit_search.session
 (pg_search drops its match filter under a generic plan, D-097) does not apply.
 
-Nothing here decides what is relevant: L3 (nizam.retrieval.assembly) parses and chooses.
+Nothing here decides what is relevant: L3 (nizam.retrieval.assembly) chooses. The links are built from the release
+by nizam.workers.links; operative status of whatever they point at is asked here, at the reader's as_of.
 """
 from __future__ import annotations
 
@@ -26,11 +28,8 @@ from nizam.storage.lexical import Filters
 from nizam.storage.unit_search import OUTER_KINDS, TERRITORY_JURISDICTIONS, UNIT_KINDS
 
 DIVISION_KINDS = ("part", "chapter")
-# a definition clause, as a cheap pre-filter over a law's versions: a closing quote, then a defining verb. The parser
-# in L3 reads the clause properly; this only narrows the rows.
-DEFINITION_WINDOW = (r"[\"“”‘’'`]\s*,?\s*(means|mean|includes|include|shall mean|shall include|denotes?|"
-                     r"signif(y|ies)|ha(s|ve) the (same )?meanings?|shall have the (same )?meanings?|"
-                     r"is deemed to include)\M")
+_GENERAL_CLAUSES: dict[str, str] = {}     # {jurisdiction: General Clauses Act id}, read once per process
+_DELEGATIONS: dict = {}                   # the empowers records, read once per process (they change with a release)
 
 
 @dataclass(frozen=True)
@@ -180,6 +179,8 @@ class EvidenceSession:
 
     # --- whole units and subtrees -----------------------------------------------------------------------------
     def _subtree_rows(self, provision_ids):
+        # measured 21 Nov 2026 (D-108): this form, the provision_ancestor closure and a LATERAL all take 14-18 ms for
+        # a 605-row bundle; the cost is fetching the rows, not the plan
         self.cur.execute("""
             SELECT u.id::text, d.id::text, d.path::text, d.kind::text, d.label, d.first_page, d.last_page,
                    d.ordinal, pv.id::text
@@ -217,28 +218,6 @@ class EvidenceSession:
             out.setdefault(pid, []).append(node)
         return {k: tuple(v) for k, v in out.items()}
 
-    def following(self, provision_ids, limit: int = 15) -> dict[str, tuple]:
-        """{provision id: (Node, ...)}: the operative siblings printed after a node (same parent), in order, up to
-        `limit` -- where a definition's sub-items sit when the segmenter flattened them ('"work" means any of the
-        following works, namely:__' followed by (i), (ii) as its siblings)"""
-        if not provision_ids:
-            return {}
-        self.cur.execute("""
-            SELECT c.id::text, s.id::text, s.path::text, s.kind::text, s.label, s.first_page, s.last_page,
-                   s.ordinal, pv.id::text
-              FROM provision c
-              CROSS JOIN LATERAL (SELECT x.* FROM provision x
-                                   WHERE x.parent_id = c.parent_id AND x.is_active AND x.ordinal > c.ordinal
-                                   ORDER BY x.ordinal LIMIT %s) s
-              JOIN provision_version pv ON pv.provision_id = s.id
-             WHERE c.id = ANY(%s::uuid[]) AND c.parent_id IS NOT NULL
-             ORDER BY c.id, s.ordinal, pv.id""", (int(limit), list(set(provision_ids))))
-        rows = self.cur.fetchall()
-        out: dict[str, list] = {}
-        for pid, node in self._nodes(rows, self._operative(r[8] for r in rows)):
-            out.setdefault(pid, []).append(node)
-        return {k: tuple(v) for k, v in out.items()}
-
     def ancestors(self, provision_ids) -> dict[str, tuple]:
         """{provision id: (Ancestor, ...)} outermost first, the provision itself last: the structure above a node
         (Parts, Chapters, its section, sub-sections), with printed labels and headings"""
@@ -246,59 +225,28 @@ class EvidenceSession:
             return {}
         self.cur.execute("""
             SELECT c.id::text, a.id::text, a.path::text, a.kind::text, a.label, a.heading, nlevel(a.path)
-              FROM provision c JOIN provision a ON a.instrument_id = c.instrument_id AND a.path @> c.path
-             WHERE c.id = ANY(%s::uuid[]) AND a.is_active
+              FROM provision c
+              JOIN provision_ancestor pa ON pa.provision_id = c.id
+              JOIN provision a ON a.instrument_id = c.instrument_id AND a.path = pa.ancestor_path AND a.is_active
+             WHERE c.id = ANY(%s::uuid[])
              ORDER BY c.id, nlevel(a.path)""", (list(set(provision_ids)),))
         out: dict[str, list] = {}
         for cid, *rest in self.cur.fetchall():
             out.setdefault(cid, []).append(Ancestor(*rest))
         return {k: tuple(v) for k, v in out.items()}
 
-    def lead_texts(self, provision_ids) -> dict[str, str]:
-        """{provision id: its own operative words} -- the opening words a definition sits under ('In this
-        Chapter, ...'). A provision with no operative version of its own is absent."""
-        if not provision_ids:
-            return {}
-        self.cur.execute("""SELECT pv.provision_id::text, pv.id::text FROM provision_version pv
-                             WHERE pv.provision_id = ANY(%s::uuid[])""", (list(set(provision_ids)),))
-        pairs = self.cur.fetchall()
-        live = self._operative(v for _p, v in pairs)
-        return {pid: live[vid]["body"] or "" for pid, vid in pairs if vid in live}
-
-    # --- definitions --------------------------------------------------------------------------------------------
-    def definition_nodes(self, instrument_ids) -> list[tuple[str, Node]]:
-        """[(instrument id, node)], printed order, for every OPERATIVE node of these laws whose words look like a
-        definition (DEFINITION_WINDOW). The L3 parser decides which are definitions and of what."""
-        if not instrument_ids:
-            return []
-        self.cur.execute("""
-            SELECT p.instrument_id::text, p.id::text, p.path::text, p.kind::text, p.label, p.first_page,
-                   p.last_page, p.ordinal, pv.id::text
-              FROM provision p JOIN provision_version pv ON pv.provision_id = p.id
-             WHERE p.is_active AND p.instrument_id = ANY(%s::uuid[]) AND pv.text_normalised ~* %s
-             ORDER BY p.instrument_id, p.ordinal, p.path""", (list(set(instrument_ids)), DEFINITION_WINDOW))
-        rows = self.cur.fetchall()
-        return self._nodes(rows, self._operative(r[8] for r in rows))
-
-    # --- units named in a law's own words -------------------------------------------------------------------------
-    def units_labelled(self, instrument_id: str, labels) -> dict[str, str]:
-        """{label as asked: unit id} for sections, articles or orders of one law with that printed label
-        (space-folded, case-folded: '12A' finds '12 A'); the first in printed order when a label repeats"""
-        folded: dict[str, str] = {}
-        for lab in labels:
-            folded.setdefault("".join(lab.split()).lower(), lab)
-        if not folded:
-            return {}
-        self.cur.execute("""
-            SELECT lower(replace(p.label, ' ', '')), p.id::text FROM provision p
-             WHERE p.instrument_id = %s AND p.is_active AND p.kind::text = ANY(%s)
-               AND lower(replace(p.label, ' ', '')) = ANY(%s)
-             ORDER BY p.ordinal, p.id""", (instrument_id, list(UNIT_KINDS), list(folded)))
-        out: dict[str, str] = {}
-        for lab, uid in self.cur.fetchall():
-            out.setdefault(folded[lab], uid)
+    def units_of(self, provision_ids) -> dict[str, tuple[str, str]]:
+        """{provision id: (its unit id, the unit's path)}: the innermost section, article or order above it, else its
+        outermost schedule, form, appendix, annexure or preamble, else itself (unit_search's rule)"""
+        out = {}
+        for pid, chain in self.ancestors(provision_ids).items():
+            inner = [a for a in chain if a.kind in UNIT_KINDS]
+            outer = [a for a in chain if a.kind in OUTER_KINDS]
+            pick = inner[-1] if inner else (outer[0] if outer else chain[-1])
+            out[pid] = (pick.provision_id, pick.path)
         return out
 
+    # --- the sections a Part or Chapter holds -------------------------------------------------------------------
     def units_within(self, instrument_id: str, path: str) -> list[str]:
         """the sections, articles and orders inside a Part or Chapter, printed order: the outermost ones (a rule
         inside an order is part of the order)"""
@@ -313,16 +261,108 @@ class EvidenceSession:
                          (instrument_id, path, path, list(UNIT_KINDS), path, path, list(UNIT_KINDS)))
         return [r[0] for r in self.cur.fetchall()]
 
-    def outer_units(self, instrument_id: str) -> list[tuple[str, str, str, str | None]]:
-        """[(unit id, kind, label, heading)] of one law's top-level schedules, forms, appendices and annexures,
-        printed order (a schedule nested in a schedule is part of it)"""
+    # --- the derived links (0114, D-108): read, never computed per question ---------------------------------------
+    def references_from(self, provision_ids) -> list[tuple]:
+        """[(src provision, kind, target, label, other_law, dst unit, dst law)] for the resolved references made by
+        these provisions (provision_reference); the destination's operative status is the caller's to ask"""
+        if not provision_ids:
+            return []
+        # printed order: the node's place in the law, its heading before its words, then position in the words --
+        # a per-unit cap then keeps the references a reader meets first ('[See section 5]' above a schedule)
         self.cur.execute("""
-            SELECT p.id::text, p.kind::text, p.label, p.heading FROM provision p
-             WHERE p.instrument_id = %s AND p.is_active AND p.kind::text = ANY(%s)
-               AND NOT EXISTS (SELECT 1 FROM provision a WHERE a.instrument_id = p.instrument_id AND a.is_active
-                                 AND a.path @> p.path AND a.path <> p.path AND a.kind::text = ANY(%s))
-             ORDER BY p.ordinal, p.id""", (instrument_id, list(OUTER_KINDS), list(OUTER_KINDS)))
-        return [tuple(r) for r in self.cur.fetchall()]
+            SELECT r.src_provision_id::text, r.kind::text, r.target, r.label, r.other_law, r.dst_unit_id::text,
+                   r.dst_instrument_id::text
+              FROM provision_reference r JOIN provision p ON p.id = r.src_provision_id
+             WHERE r.src_provision_id = ANY(%s::uuid[]) AND r.dst_unit_id IS NOT NULL
+             ORDER BY p.ordinal, NOT r.in_heading, r.char_start, r.id""", (list(set(provision_ids)),))
+        return self.cur.fetchall()
+
+    def prevailing_over(self, unit_ids) -> list[tuple]:
+        """[(unit named, src provision)]: provisions that say 'notwithstanding' a unit -- they prevail over it
+        (docs/03b), so a reader of the unit must see them"""
+        if not unit_ids:
+            return []
+        self.cur.execute("""
+            SELECT r.dst_unit_id::text, r.src_provision_id::text FROM provision_reference r
+             WHERE r.dst_unit_id = ANY(%s::uuid[]) AND r.kind = 'notwithstanding'
+             ORDER BY r.dst_unit_id, r.src_provision_id""", (list(set(unit_ids)),))
+        return self.cur.fetchall()
+
+    def definitions_of(self, instrument_ids) -> list[dict]:
+        """the definitions of these laws (provision_definition), each with its scope's path"""
+        if not instrument_ids:
+            return []
+        self.cur.execute("""
+            SELECT d.provision_id::text, d.version_id::text, d.instrument_id::text, d.unit_id::text, d.term,
+                   d.term_key, d.scope, sp.path::text AS scope_path, d.after_ordinal, d.empty,
+                   d.continuation::text[] AS continuation, p.path::text AS path, p.ordinal
+              FROM provision_definition d
+              JOIN provision p ON p.id = d.provision_id
+              LEFT JOIN provision sp ON sp.id = d.scope_provision_id
+             WHERE d.instrument_id = ANY(%s::uuid[])
+             ORDER BY d.instrument_id, p.ordinal, d.id""", (list(set(instrument_ids)),))
+        cols = [c[0] for c in self.cur.description]
+        return [dict(zip(cols, r)) for r in self.cur.fetchall()]
+
+    def _delegations(self) -> dict:
+        """the empowers records (v_delegation_current, 0089), read once per process: they change only with a
+        release. Whether a delegated instrument is law at as_of is still asked of the view on every call."""
+        if not _DELEGATIONS:
+            self.cur.execute("""
+                SELECT d.enabling_provision_id::text, d.delegated_instrument_id::text, d.enabling_instrument_id::text,
+                       coalesce(nullif(i.display_title, ''), i.short_title), i.kind::text, i.year,
+                       (SELECT array_agg(v.id::text) FROM (
+                           SELECT pv.id FROM provision p JOIN provision_version pv ON pv.provision_id = p.id
+                            WHERE p.instrument_id = i.id AND p.is_active ORDER BY p.ordinal, pv.id LIMIT 8) v)
+                  FROM v_delegation_current d JOIN instrument i ON i.id = d.delegated_instrument_id
+                 WHERE d.assertion = 'recorded' AND i.is_active AND i.duplicate_of IS NULL
+                 ORDER BY i.year DESC NULLS LAST, i.id""")
+            by_section: dict = {}
+            parents: dict = {}
+            for sec, dele, enab, title, kind, year, vids in self.cur.fetchall():
+                if sec:
+                    by_section.setdefault(sec, []).append((dele, title, kind, year, tuple(vids or ())))
+                parents.setdefault(dele, set()).add(enab)
+            _DELEGATIONS.update(by_section=by_section, parents=parents)
+        return _DELEGATIONS
+
+    def parent_laws(self, instrument_ids) -> dict[str, str]:
+        """{subordinate instrument: the one released law its enacting formula names} (empowers, 0089)"""
+        parents = self._delegations()["parents"]
+        return {i: next(iter(parents[i])) for i in set(instrument_ids) if len(parents.get(i, ())) == 1}
+
+    def general_clauses(self) -> dict[str, str]:
+        """{jurisdiction: its own General Clauses Act} among released laws (not an amending Act): defaults_from
+        (docs/03b) where the law does not define a word. Only where the corpus holds the jurisdiction's own Act
+        (D-108): fed -> the General Clauses Act, 1897; a province -> its copy of the 1956 Act; none is guessed.
+        Read once per process: it changes only with a release (a stale id only finds no definitions)."""
+        if _GENERAL_CLAUSES:
+            return dict(_GENERAL_CLAUSES)
+        self.cur.execute("""
+            SELECT jurisdiction::text, id::text, year FROM v_release_instrument
+             WHERE duplicate_of IS NULL
+               AND coalesce(nullif(display_title, ''), short_title)
+                   ~* '^(the )?((punjab|sindh|west pakistan|khyber pakhtunkhwa|balochistan) )?general clauses act'
+               AND coalesce(nullif(display_title, ''), short_title) !~* '(amendment|extension)'""")
+        best: dict[str, tuple] = {}
+        for juris, iid, year in self.cur.fetchall():
+            if juris == "fed" and year != 1897:
+                continue                       # federal law: the 1897 Act (the 1887 text is historical)
+            best.setdefault(juris, (iid, year))
+        _GENERAL_CLAUSES.update({j: v[0] for j, v in best.items()})
+        return dict(_GENERAL_CLAUSES)
+
+    def nodes_of(self, provision_ids) -> dict[str, "Node"]:
+        """{provision id: its operative node}, the node alone (no subtree)"""
+        if not provision_ids:
+            return {}
+        self.cur.execute("""
+            SELECT p.id::text, p.id::text, p.path::text, p.kind::text, p.label, p.first_page, p.last_page,
+                   p.ordinal, pv.id::text
+              FROM provision p JOIN provision_version pv ON pv.provision_id = p.id
+             WHERE p.id = ANY(%s::uuid[]) AND p.is_active""", (list(set(provision_ids)),))
+        rows = self.cur.fetchall()
+        return {k: n for k, n in self._nodes(rows, self._operative(r[8] for r in rows))}
 
     # --- notes and links ----------------------------------------------------------------------------------------
     def amendment_notes(self, provision_ids, instrument_ids) -> dict[str, tuple]:
@@ -353,23 +393,14 @@ class EvidenceSession:
         """{enabling provision id: (Delegated, ...)}: instruments made under these sections (v_delegation_current,
         0089) that are law at the session's date and place -- checked through the view by each instrument's first
         versions -- up to `limit` per section, most recent first"""
-        if not provision_ids:
+        by_section = self._delegations()["by_section"]
+        rows = [(pid, *r) for pid in set(provision_ids or ()) for r in by_section.get(pid, ())]
+        if not rows:
             return {}
-        self.cur.execute("""
-            SELECT d.enabling_provision_id::text, i.id::text, coalesce(nullif(i.display_title, ''), i.short_title),
-                   i.kind::text, i.year,
-                   (SELECT array_agg(v.id::text) FROM (
-                       SELECT pv.id FROM provision p JOIN provision_version pv ON pv.provision_id = p.id
-                        WHERE p.instrument_id = i.id AND p.is_active ORDER BY p.ordinal, pv.id LIMIT 8) v)
-              FROM v_delegation_current d JOIN instrument i ON i.id = d.delegated_instrument_id
-             WHERE d.enabling_provision_id = ANY(%s::uuid[]) AND d.assertion = 'recorded'
-               AND i.is_active AND i.duplicate_of IS NULL
-             ORDER BY d.enabling_provision_id, i.year DESC NULLS LAST, i.id""", (list(set(provision_ids)),))
-        rows = self.cur.fetchall()
-        live = set(self._operative(v for r in rows for v in (r[5] or [])))
+        live = set(self._operative(v for r in rows for v in r[5]))
         out: dict[str, list] = {}
         for pid, iid, title, kind, year, vids in rows:
-            if live.intersection(vids or ()) and len(out.setdefault(pid, [])) < limit:
+            if live.intersection(vids) and len(out.setdefault(pid, [])) < limit:
                 out[pid].append(Delegated(pid, iid, title, kind, year))
         return {k: tuple(v) for k, v in out.items() if v}
 

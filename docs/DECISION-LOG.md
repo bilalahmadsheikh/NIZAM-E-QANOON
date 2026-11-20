@@ -1136,6 +1136,130 @@ Area: client · Status: Superseded by D-084 (the whole-page cloth; the hem, the 
   design/heritage_art.dart, presentation/discover.dart, presentation/heritage.dart; test/heritage_test.dart
   (golden embroidery.png, a review sheet at 3x).
 
+### D-109 · 2026-11-21 · Urdu query understanding: Urdu-script places, 26 more concepts, the Roman Urdu frame
+Area: owner ruling, L3 query understanding (docs/04 R0) · Status: standing
+- Decision: three changes to how an Urdu-language question is read. English questions are unchanged.
+  1. **Places** (`nizam/retrieval/places.py`). Urdu-script names of the provinces, territories, capitals and largest
+     cities: پنجاب, سندھ, اسلام آباد, آزاد کشمیر, گلگت بلتستان, لاہور, کراچی, پشاور … In a longer name the longer
+     match wins: میرپور خاص is Sindh, not AJK's Mirpur. Plain "KP" is added; "KPK" was already there. Before this, an
+     Urdu question set no territory, so a Punjab question was searched in every jurisdiction.
+  2. **The alias index** (`nizam/retrieval/aliases.py`) gains 26 concepts found missing on dev (general vocabulary,
+     not tuned to one question):
+     - possession and dispossession (qabza, قبضہ), girl and boy, age words and number words ("solah saal" → sixteen
+       years);
+     - ECL, grounds, lawful and unlawful, swara/wanni and jirga (PPC s.310A prints "swara" and "wanni");
+     - birth, magistrate, deprived, online → electronic information system, dishonour, and fraud in its oblique Urdu
+       forms (دھوکے).
+     - "zamin" alone is land; "ka/ki/ke zamin" is a surety. They had folded together.
+  3. **The Roman Urdu frame.** A Roman Urdu question's function words (hai, mein, ka, ke, ne, kya …) leave its lexical
+     query, as English frame words already do. `NIZAM_ROMAN_FRAME=off` is the ablation.
+- Measured, CPU hybrid (scoped like D-105), dev:
+  - Urdu script (11 cases): r@10 .636 → .773, r@50 .818 → 1.000;
+  - Roman Urdu (20 cases): .30 → .35 and .50 → .60;
+  - English (245 cases): identical;
+  - overall: r@50 .750 → .765, NDCG@10 .445 → .453.
+  The frame alone was neutral (identical recall, NDCG +.0003); it is kept because it is cheap and keeps rare words
+  from being diluted.
+- **Test, once: no gain.**
+  - Urdu script (5 cases) was unchanged at .80 / .80.
+  - Roman Urdu (14 cases): r@10 .464 → .393, which is one question leaving the top 10; r@50 unchanged at .464.
+  - Overall NDCG .397 → .395.
+
+  The dev gain did not carry over to 19 test Urdu questions, and at that size neither direction is distinguishable
+  from noise. The places change is right by construction for serving. The harness scopes each question by its gold
+  jurisdiction, so it cannot show that change.
+- **The gate was not refitted.** The CPU features of the 31 dev and 19 test Urdu questions shift slightly with the
+  new lexical queries. The calibration stays gate-v2 until the next refit (open).
+- Where: nizam/retrieval/places.py, aliases.py, query.py; tests/test_aliases.py, tests/test_query_understanding.py;
+  evals/results/dev-hybrid-d109{-base,-noframe,}-2026-11-21.json, test-hybrid-d109-2026-11-21.json.
+
+### D-108 · 2026-11-21 · The links a provision's words make, as derived tables; assembly reads them
+Area: owner ruling, L2 storage (docs/03b §1.1, §10), L3 retrieval (docs/04 §4, §7) · Status: standing
+(docs/SCHEMA.md "provision_reference …"; docs/03b, docs/04 as built)
+- Decision: the owner asked to "complete retrieval end to end … research intelligently and improve". The first
+  dependency was the edges docs/03b names as extractable from text: `defines`, `refers_to`, `subject_to`,
+  `notwithstanding`.
+  - **Built as derived index tables**, rebuilt from the release under one named rule (`linker`, `nizam.links/7`), as
+    `chunk` is (0108), and not as source-keyed evidence. They are a deterministic parse of released text: a replay
+    re-derives them, and nothing is decided there that a person must review. Migrations 0114 (provision_reference,
+    provision_definition, provision_link_state; legal_edge gains the four kinds) and 0115 (in_heading).
+  - **Built by** `nizam/workers/links.py` from the pure rules in `nizam/storage/linking.py`. They are rebuilt whole in
+    about 5 minutes, or relinked law by law when a law's versions change or a row points outside the release.
+  - **Audit A23** asserts they are exactly the release under one linker, with nothing pointing outside it. Its first
+    form, NOT EXISTS against the release views, ran over 30 minutes; set differences take about 100 seconds.
+- **The rules** are in docs/SCHEMA.md. Each came from reading samples on dev, through seven linker versions:
+  - **Edge kinds.** The phrase is the edge kind; it governs only what it names, and stops at a new clause.
+  - **The word printed.** Rules number their own units as rules, so a bare "section 25" in a subordinate instrument
+    is its parent Act's.
+  - **Other laws.**
+    - A reference to another law resolves only when exactly one released law matches the printed title and year.
+    - "The Ordinance" means the parent only if the parent is an Ordinance.
+    - A run of references shares its trailing law.
+    - Footnote markers before a title are tolerated ("the 2Guardian and Wards Act").
+  - **Labels.** "Article 23" is never a section; decimal ("12.1"), spaced ("295 C") and hyphenated ("4-A") labels are
+    read; "sub-section 4" is not section 4.
+  - **Headings.** A schedule's heading "[See section 5]" is read (0115).
+  - **Amending laws.** An amending law (Amendment, Adaptation, Repealing, Finance Act) contributes no definitions, and
+    its section numbers name the law it amends.
+  - **Definition scope.** "In this Act" is the law. "In this Chapter/Part" is that division, for the units printed
+    after the definition. A Chapter the tree lacks keeps the definition to its own unit.
+  - **Flattened definitions.** A definition stopping at a dash or colon takes its following siblings ("namely:__"
+    followed by (i), (ii)); the dashes statutes print are all read.
+- **First build** (21 Nov 2026), 10,342 laws:
+  - **References:** 166,321. Same law: 67,459 resolved, 22,108 not. Another law: 14,491 resolved, 62,263 not (laws not
+    held, OCR damage, amending text).
+  - **Definitions:** 72,030 (69,772 whole-law, 462 division, 1,796 unit), 1,977 continued into their siblings.
+- **Precision**, read against the text on random samples (author-checked, not a lawyer's review):
+  - same-law references: 28/30 on a fresh seed after the third linker, 19/20 on a third seed;
+  - cross-law references: 28/30, then 19/20;
+  - definition scopes: 25/25.
+  Each error found was fixed in the next linker version and is covered by tests/test_linking.py.
+- **Graph expansion is not a candidate generator.** On dev, of the necessary gold units the top 50 missed, 1 of 13 on
+  the GPU path and 3 of 76 on the CPU path were one link from the top 10. A generator would add 9–27 neighbours per
+  question to the reranker slate for at most that. So docs/04 §4's graph and definition generators are the
+  completeness pass of assembly (docs/04 §7), which now reads the tables:
+  - qualifications and references, in printed order, into the same law and into others;
+  - **provisions that say "notwithstanding" a bundle unit**, which prevail over it (up to 3);
+  - definitions from the law, then the parent Act (empowers), then the jurisdiction's own General Clauses Act
+    (`defaults_from`, at most 3 per unit). The Act is federal 1897 or the Punjab/KP 1956 copies; Sindh, Balochistan,
+    AJK and GB hold none, and none is guessed.
+  - Drafting words ("section", "year") and too-general words ("person", place names) are never attached from a
+    General Clauses Act.
+- **Assembly measured.** The rule is D-107's; the budget is unchanged at 50,000 characters.
+
+  | | necessary | relevant | text checks | p50 / p95 |
+  |---|---|---|---|---|
+  | dev, GPU bundles | 275/292 (=) | 21/46 (=) | 238/250 (=) | 233/398 → 145/236 ms |
+  | dev, CPU bundles | 178 → 179/292 | 10 → 9/46 | 171/250 → 172/250 | p95 1,472 → 893 ms |
+  | test (once), GPU | 169/182 (=) | 17/27 (=) | 147 → 146/155 | 227/376 → 154/248 ms |
+  | test (once), CPU | 103/182 (=) | 8/27 (=) | 95/155 (=) | p95 725 → 783 ms |
+
+  - No necessary unit the bundle held was lost; 0 INV-5 violations in either split.
+  - **The lost test text check** (S9-U05) and the dev relevant unit (S5-C02) are budget trade-offs. The packet filled
+    (49,947 characters, 25 items skipped) and a bundle unit holding the text was crowded out by earlier units' new
+    additions.
+  - A dev attempt to defer each unit's definitions past every unit's references cost two necessary units and was
+    reverted.
+  - **New kinds of addition, read on dev** (10 per kind):
+    - cross-law references 10/10;
+    - prevailing provisions 8/10, one fixed in linker 7, one unreadable OCR;
+    - parent-law definitions 9/10, fixed in linker 7;
+    - General Clauses Act definitions 10/10.
+  - **All additions on test** (final version, once): 39/40. The error was a "company" definition of s.404 of the
+    Punjab Labour Code reaching s.165; the section's own scope words are in a sibling Explanation the rule does not
+    read.
+- **Latency.** The view by version ids is 47 ms of the ~150 ms, and the delegation records and the General Clauses
+  Acts are now read once per process. The rest is row fetching. The subtree closure (provision_ancestor), LATERAL
+  and ltree forms all took 14–18 ms for a 605-row bundle on this laptop.
+- Where:
+  - infra/postgres/migrations/0114_provision_links.sql, 0115_provision_reference_in_heading.sql;
+  - nizam/storage/linking.py, nizam/workers/links.py, nizam/storage/evidence_read.py, nizam/retrieval/assembly.py;
+  - tools/audit/criteria.sql (A23);
+  - tests/test_linking.py, tests/test_links_db.py, tests/test_assembly*.py;
+  - evals/results/assembly-{dev,test}-2026-11-21.json;
+  - evals/golden/review/assembly-additions-test-2026-11-21.json, assembly-new-kinds-dev-2026-11-21.json;
+  - docs/SCHEMA.md, docs/03b, docs/04 §4.
+
 ### D-107 · 2026-11-20 · Evidence assembly: whole units, with their definitions, qualifications and references
 Area: owner ruling, L3 retrieval (docs/04 §7), L2 reads · Status: standing (docs/04 §7 as built)
 - Decision: the owner asked for context assembly "completely end to end", tested for accuracy.
@@ -2427,15 +2551,23 @@ These were found and deliberately left open. Each will become an entry when it i
   - **Footnotes and Gazette page furniture inside clause text:** MFLO s.7 Explanation; the Electoral Rolls Rules
     1957, where a page number was read as a label.
   - **A contents list stored as a section's text:** West Pakistan Money-Lenders Ordinance 1960 s.19.
-- **Assembly latency (D-107).** p50 about 230 ms and p95 about 400 ms (GPU bundles) against docs/04 §9's ≤ 25 ms
-  for validate, assemble and gate. Most of it is the round trips for units, definitions and footnotes. Candidates:
-  one statement per read, or precomputed definition scopes per law (a table built at release).
-- **Assembly not built (D-107):**
+- **Assembly latency (D-107, D-108).** After D-108: p50 about 150 ms and p95 about 240 ms on GPU bundles, against
+  docs/04 §9's ≤ 25 ms for validate, assemble and gate. The rest is row fetching on this laptop. It must be measured
+  on the serving host before any further rework.
+- **Assembly not built (D-107, D-108):**
   - sub-question coverage, which needs query decomposition;
-  - conflict sets;
-  - definitions in a General Clauses Act or a parent Act;
-  - following references to another law, which needs a cross-law reference edge;
-  - matched-span offsets, and Urdu-script definitions.
+  - conflict sets (the `notwithstanding` edges now exist to build them from);
+  - the General Clauses Acts of Sindh, Balochistan, AJK and GB (not held);
+  - matched-span offsets;
+  - Urdu-script definitions.
+- **Budget for every gated unit (D-108).** A bundle unit holding the answer's text can be crowded out by earlier
+  units' additions (test S9-U05). Should every gated unit be admitted before any unit's additions? One variant tried
+  on dev cost necessary units; another needs measuring on fresh cases.
+- **A definition's scope printed in a sibling Explanation (D-108)** ('Explanation.—For the purposes of this section')
+  is not read, so such a definition counts as whole-law (test: Punjab Labour Code s.404).
+- **Refit the gate after D-109.** The CPU features of the Urdu questions changed slightly.
+- **The General Clauses Act 1897's clause labels are damaged** ('s. 3CI(38)', 's. 1I(50)'), so citations of its
+  definitions read wrongly. It needs a page-read repair like the CrPC s.4 label.
 - **8B reranker serving latency (D-101, D-106).** A Kaggle T4 proxy (fp16, micro-batched) measured p50 4.5 s for 10
   passages and 24.5 s for 50: far outside budget. It needs an L4/A10-class GPU host with TEI or vLLM batching
   measured before the GPU profile is called within budget.

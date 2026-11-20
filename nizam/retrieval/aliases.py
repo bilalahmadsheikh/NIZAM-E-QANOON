@@ -42,7 +42,31 @@ heir heirs                       <- waris, warisan                            | 
 share                            <- hissa                                     | حصہ
 daughter sister women            <- beti, behan, aurat, khawatin              | بیٹی, بہن, عورت, خواتین
 property                         <- jaidad, jaedad, milkiyat                  | جائیداد, ملکیت
-land guarantor surety            <- zamin                                     | زمین
+land                             <- zamin                                     | زمین
+guarantor surety                 <- ka zamin, ki zamin, ke zamin, zamin bana, zamin hun | ضامن
+possession dispossession         <- kabza, najaiz kabza                       | قبضہ, ناجائز قبضہ
+girl female minor                <- larki, larkiyan                           | لڑکی, لڑکیوں
+boy male minor                   <- larka, larke                              | لڑکا, لڑکے
+age years                        <- umar, umr, sal                            | عمر, سال
+ten years                        <- das sal                                   | دس سال
+twelve years                     <- barah sal, bara sal                       | بارہ سال
+fourteen years                   <- chaudah sal, chauda sal                   | چودہ سال
+fifteen years                    <- pandrah sal, pandra sal                   | پندرہ سال
+sixteen years                    <- solah sal, sola sal                       | سولہ سال
+seventeen years                  <- satrah sal, satra sal                     | سترہ سال
+eighteen years                   <- athara sal, atharah sal                   | اٹھارہ سال
+exit control                     <- ecl, exit control list                    | ای سی ایل
+grounds reasons                  <- wajah, wajuhat                            | وجہ, وجوہات
+lawful                           <- jaiz                                      | جائز
+unlawful illegal                 <- najaiz, na-jaiz                           | ناجائز, غیر قانونی
+badla-e-sulh wanni swara         <- swara, vani, wani, wanni                  | سوارہ, ونی
+jirga panchayat                  <- jirga, panchayat                          | جرگہ, پنچایت
+birth                            <- paidaish, paidaesh                        | پیدائش
+magistrate                       <- majistret                                 | مجسٹریٹ
+produced before                  <- pesh                                      | پیش
+deprived depriving               <- mehrum                                    | محروم
+electronic information system    <- online, internet, social media, facebook  | آن لائن, انٹرنیٹ, سوشل میڈیا
+dishonour                        <- bauns, bounce                             | باؤنس
 ban prohibition                  <- pabandi, mumaniat                         | پابندی, ممانعت
 liable liability responsible     <- zimedar, zimedari                         | ذمہ دار, ذمہ داری
 reputation defamation            <- izat, badnami, izat kharab                | عزت, بدنامی
@@ -92,7 +116,7 @@ offence crime                    <- jurm, jurum                               | 
 murder qatl                      <- katl                                      | قتل
 theft                            <- chori                                     | چوری
 robbery dacoity                  <- dakaiti                                   | ڈکیتی
-cheating fraud                   <- dhoka, dhokha                             | دھوکہ
+cheating fraud                   <- dhoka, dhokha, dhoke, dhokhe              | دھوکہ, دھوکے, دھوکا, دھوکہ دہی
 forgery forged                   <- jali, jalsazi                             | جعلی, جعلسازی
 signature                        <- dastakhat, dastkhat                       | دستخط
 threat intimidation              <- dhamki                                    | دھمکی
@@ -111,7 +135,7 @@ dowry                            <- jahez, jahaiz                             | 
 loan debt                        <- karz, karza                               | قرض
 interest                         <- sud                                       | سود
 guarantor surety                 <- zamin dar                                 | ضامن
-cheque                           <- chaik, chek                               | چیک
+cheque                          <- chaik, chek                               | چیک
 salary wages                     <- tankhwa, tankha, ujrat                    | تنخواہ, اجرت
 employment worker                <- naukri, mulazmat, mulazim, mazdur         | ملازمت, ملازم, مزدور, نوکری
 minimum wage                     <- kam az kam ujrat                          | کم از کم اجرت
@@ -141,6 +165,19 @@ protest assembly                 <- ehtijaj                                   | 
 _ROMAN_MARKERS = frozenset("""hai hain mein mujhe mera meri mere hum humara kya kia ka ki ke ko se ne kar karna karein
 karoon karun kaise kahan kab kitne kitna nahi nahin aur ya agar lekin bhi tak wala wali wale sakta sakti sakte hoon
 hun raha rahi rahe diya diye gaya gayi tha thi apna apni apne unka unki iska uski koi kuch""".split())
+
+
+# Roman Urdu function words beyond the markers: the frame of a Roman Urdu sentence, as query.FRAME is of an English
+# one. They match nothing in the English statute book, so in the lexical query they only dilute its content words
+# (D-109); the markers and these are dropped from a Roman Urdu question's lexical query, never from its text.
+_ROMAN_FRAME = _ROMAN_MARKERS | frozenset("""yeh ye woh wo us is un in jo jab tab phir sirf bas abhi ab pehle baad
+liye lie wala wali wale par pe per ka ki ke ko ki kis kisi kaun kon kyun kyon kyunke kaisa kaisi hota hoti hote hua
+hui hue karta karti karte kiya kiye kartay de dena deta deti dete le lena leta leti mil milta milti milna sak saka
+saki chahiye chahye zaroori zaruri hona hoga hogi honge tou to ji sahab""".split())
+
+
+def roman_frame(word: str) -> bool:
+    return word.lower() in _ROMAN_FRAME
 
 
 def _fold(word: str) -> str:

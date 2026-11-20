@@ -7,7 +7,11 @@ already listed the AJK and GB assemblies as P1 sources. Final Year Project, GIKI
 
 **Current state (20 Nov 2026): L1 and the L2 legal data layer are done; L2 retrieval storage holds the `chunk` table, lexical indexes (D-095) and two dense spaces with HNSW — bge-m3 for the CPU (D-098) and Qwen3-Embedding-8B for the GPU host (D-099) — and L3 serves hybrid candidates (`nizam/retrieval/`: fused lexical units, place territory, the citation fast path, D-097; dense units fused across generators, D-098) and reranks them (`nizam/retrieval/rerank.py: ranked()`, D-101: Qwen3-Reranker-8B on the GPU host, int8 mMiniLM on the CPU), and gates them (`nizam/retrieval/gate.py: retrieve() -> GroundingContext | Abstention`, D-102, D-106: scope vetoes, then a logistic gate per reranker calibrated on dev for 0.95 answered precision), and assembles a passing bundle (`nizam/retrieval/assembly.py`, D-107:
 whole units with their in-scope definitions, qualifications and references, law facts, footnotes and sources, under a
-50,000-character budget, in `GroundingContext.evidence`). L4 upward has not started.** The live continuation point is `docs/CORPUS-STATE-2026-11-17.md`; read it before any corpus mutation. **10,342 laws are released and none is held**, across federal, the four provinces, ICT, AJK and Gilgit-Baltistan. Every one is served through `operative_provision` as at a date (`nzq.as_of`) and in a territory (`nzq.territory`), with status, dates, extent and repeals recorded. `./nz audit` runs 44 criteria and all pass (A20, retrieval chunks are exactly the release, 18 Nov; A21 and A22, one embedding space per encoder device, 19–20 Nov). Sixteen documents
+50,000-character budget, in `GroundingContext.evidence`). The links a provision's words make — `defines`,
+`refers_to`, `subject_to`, `notwithstanding` — are derived tables rebuilt from the release (`nizam/workers/links.py`,
+0114–0115, audit A23, D-108): 166k references (82k resolved, 14k into another law) and 72k scoped definitions.
+Assembly reads them, adding cross-law references, prevailing provisions, and parent-Act and General Clauses Act
+definitions. L4 upward has not started.** The live continuation point is `docs/CORPUS-STATE-2026-11-17.md`; read it before any corpus mutation. **10,342 laws are released and none is held**, across federal, the four provinces, ICT, AJK and Gilgit-Baltistan. Every one is served through `operative_provision` as at a date (`nzq.as_of`) and in a territory (`nzq.territory`), with status, dates, extent and repeals recorded. `./nz audit` runs 44 criteria and all pass (A20, retrieval chunks are exactly the release, 18 Nov; A21 and A22, one embedding space per encoder device, 19–20 Nov). Sixteen documents
 in `docs/` fix the architecture, and where implementation has diverged the docs carry an "as built"
 correction rather than a quiet edit. Acquisition is fully accounted: every catalogued item either landed or carries a declared, evidence-backed exception. Laws that need OCR (874 AJK and 151 GB scans) are not landed, by owner rule; the one exception is the 25th–27th Constitution Amendment Acts, read page by page with a Kaggle GPU cross-check (D-076). `chunk` (0108)
 holds offsets into every released version (1,132,245 chunks, each with a bge-m3 sign-bit vector of the one active
@@ -33,7 +37,10 @@ Strict abstention precision is .69 on the GPU, under docs/10's .90. On a Kaggle 
 passages and 24.5 s for 50 (a proxy, not the serving host). Assembly (D-107; test assembled once) loses no necessary
 unit the bundle held and adds some: GPU test necessary 166 → 169 of 182, relevant 15 → 17 of 27. Its additions were
 read against the law: 38/40 correct on test, 40/40 on the final dev sample (author-checked). INV-5 violations: 0.
-Assembly takes p50 ~230 ms, over docs/04 §9's 25 ms. There is no facet or judgment table yet. `legal_edge` exists
+With the link tables (D-108, test once), necessary and relevant units are unchanged, additions read 39/40 correct,
+and assembly takes p50 ~150 ms (still over docs/04 §9's 25 ms). Urdu query understanding (D-109: Urdu-script places,
+26 more concepts, the Roman Urdu frame) lifted dev Urdu-script r@50 from .82 to 1.0 and Roman Urdu from .50 to .60,
+but showed no gain on test (19 questions). There is no facet or judgment table yet. `legal_edge` exists
 as a view (0079, 0089: `amends`, `repeals` and `empowers`, resolved from source-keyed records; docs/SCHEMA.md).
 Golden sets 1–10 (all 500 target cases, D-104) are built and text-checked; their review sheets are not yet annotated.
 

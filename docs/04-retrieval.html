@@ -173,6 +173,12 @@
   <p>Arabic-script Urdu and Roman Urdu reach 1.0 on both splits (7 + 5 dev, 2 + 6 test cases: too few to claim parity, but the direction is unambiguous). <b>With 8B, dense alone beats the hybrid</b> (dev recall@50 0.991, MRR@10 0.659; test 0.972, 0.629): equal-vote RRF now lets the weaker lexical list displace good dense units, MRR@10 &minus;13.4 [&minus;21.7, &minus;5.2] on dev and &minus;15.8 [&minus;24.7, &minus;6.7] on test. Fusion is left as built, an open question for the reranker slice (&sect;5). Query encoding on a T4 is 88&nbsp;ms p50 (batch 1), over the &le;20&nbsp;ms budget in &sect;9 as bge-m3&rsquo;s 57&nbsp;ms is; it runs beside the lexical windows. Served latency here replays the GPU-made question vectors, so it excludes encoding: hybrid p50 761&nbsp;ms (dev) / 970&nbsp;ms (test).</p></div>
   <h3><span class="mk">4.3</span>Definitions and graph</h3>
   <p>The definition generator resolves English, Urdu and Roman aliases to concepts, then retrieves the definition provision and provisions inside its effective scope. The graph generator starts independently from explicit citation, forum, subject and controlled-term seeds; after fusion, a second deterministic completeness pass expands the winning units. It traverses an allow-list of typed edges&mdash;<code>defines</code>, <code>subject_to</code>, <code>notwithstanding</code>, <code>empowers</code>, <code>amends</code>, <code>repeals</code>, <code>cites</code>, <code>followed</code>, <code>distinguished</code>, <code>overruled</code>&mdash;for at most two hops. Every hop is time-filtered, direction-aware, and recorded. It expands evidence; it never manufactures relevance from an untyped co-occurrence.</p>
+  <div class="note blue"><h4>As built (21 Nov 2026): the links, and where graph expansion runs (D-108)</h4>
+  <ul>
+   <li><b>The edges exist.</b> <code>defines</code>, <code>refers_to</code>, <code>subject_to</code> and <code>notwithstanding</code> are read from every released provision's words, and from its heading and marginal note. They live in <code>provision_reference</code> and <code>provision_definition</code> (0114, 0115; audit A23) and in <code>legal_edge</code>. 166k references were read; 82k resolved, 14k of them into another law, and 72k definitions with their scope. On random samples read against the text, 28&ndash;29 of 30 same-law and 29 of 30 cross-law resolutions were correct.</li>
+   <li><b>Expansion is the completeness pass, in assembly (&sect;7), not a candidate generator.</b> On dev, of the necessary gold units the top 50 missed, 1 of 13 (GPU) and 3 of 76 (CPU) were one link from the top 10. That would cost 9&ndash;27 neighbours per question in the reranker slate. So the edges are followed after the gate, where they add the definitions, qualifications, prevailing provisions and named sections of the units that passed.</li>
+   <li><b>The definition generator</b> is likewise the definition pass of assembly. Its alias half is the alias index (D-105, D-109).</li>
+  </ul></div>
   <h3><span class="mk">4.4</span>Contents-derived aliases and coverage</h3>
   <p>The statute&rsquo;s printed contents list is a high-precision vocabulary source, not answer evidence. Build per-instrument aliases from resolved <code>v_toc</code> rows so a query containing the official marginal heading can recall the linked provision even when OCR or typography weakened its body heading. Exact citation resolution may use the printed label as a consistency check, and context assembly may use neighbouring resolved entries to detect a missing necessary unit. Never index the contents block as substantive body text, never quote it as the governing rule, and never auto-resolve an unmatched <code>v_toc_gap</code>; a gap lowers structural confidence and enters curation. Retrieval traces record whether a candidate came from a body match, a contents-derived alias, or both.</p>
  </div>
@@ -305,6 +311,18 @@ authority = matrix.resolve(decidingCourt, forum, subjectMatter, asOf)
     </ul>
     Assembly takes p50 ~230 ms and p95 ~400 ms, over the ≤ 25 ms row in §9.</li>
    <li>Not built: sub-question coverage, conflict sets, General Clauses Act and parent-Act definitions, references to other laws, matched-span offsets, Urdu-script definitions.</li>
+  </ul></div>
+  <div class="note blue"><h4>As built (21 Nov 2026): assembly reads the link tables (D-108)</h4>
+  <ul>
+   <li><b>Read, not parsed per question.</b> References and definitions come from <code>provision_reference</code> and <code>provision_definition</code> (&sect;4 note).</li>
+   <li><b>What is new in the packet:</b>
+    <ul>
+     <li>references into <em>other</em> laws ("section 188 of the Pakistan Penal Code");</li>
+     <li>provisions that say "notwithstanding" a bundle unit, because they prevail over it;</li>
+     <li>a Rules instrument's parent-Act definitions (empowers);</li>
+     <li>the jurisdiction's own General Clauses Act (<code>defaults_from</code>), for words the law does not define.</li>
+    </ul></li>
+   <li><b>Measured</b> (test once, GPU bundles): necessary and relevant units unchanged; additions 39/40 correct (author-checked). Assembly takes p50 154&nbsp;ms and p95 248&nbsp;ms, down from 227 and 376. One test text check was lost to the budget, recorded as open.</li>
   </ul></div>
  </div>
 </section>

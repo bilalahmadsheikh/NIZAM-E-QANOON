@@ -20,7 +20,7 @@ import re
 PROVINCE_NAMES = {
     "punjab": ["Punjab"],
     "sindh": ["Sindh", "Sind"],
-    "kp": ["Khyber Pakhtunkhwa", "Khyber-Pakhtunkhwa", "KPK", "NWFP", "North-West Frontier Province"],
+    "kp": ["Khyber Pakhtunkhwa", "Khyber-Pakhtunkhwa", "KPK", "KP", "NWFP", "North-West Frontier Province"],
     "balochistan": ["Balochistan", "Baluchistan"],
     "ict": ["Islamabad", "Islamabad Capital Territory", "ICT"],
     "ajk": ["Azad Jammu and Kashmir", "Azad Jammu & Kashmir", "Azad Kashmir", "AJK", "AJ&K"],
@@ -71,6 +71,18 @@ _MULTI = {"Dera Ghazi Khan", "Mandi Bahauddin", "Nankana Sahib", "Rahim Yar Khan
           "Dera Allahyar", "Jhal Magsi", "Dera Murad Jamali", "Usta Muhammad", "Dera Bugti", "Qila Abdullah",
           "Jungle Pir Alizai", "Qilla Saifullah", "Hattian Bala", "Gupis-Yasin"}
 
+# Urdu-script names (D-109): the provinces and territories, and their capitals and largest cities, in their common
+# Urdu spellings. A question written in Urdu names its place in Urdu ('پنجاب میں مالک مکان ...').
+URDU_NAMES = {
+    "punjab": "پنجاب لاہور راولپنڈی فیصل_آباد ملتان گوجرانوالہ سیالکوٹ سرگودھا بہاولپور",
+    "sindh": "سندھ کراچی حیدرآباد حیدر_آباد سکھر لاڑکانہ میرپور_خاص",
+    "kp": "خیبر_پختونخوا خیبر_پختونخواہ کے_پی پشاور مردان ایبٹ_آباد سوات کوہاٹ بنوں",
+    "balochistan": "بلوچستان کوئٹہ گوادر تربت",
+    "ict": "اسلام_آباد",
+    "ajk": "آزاد_کشمیر آزاد_جموں_و_کشمیر مظفرآباد مظفر_آباد میرپور",
+    "gb": "گلگت_بلتستان گلگت سکردو ہنزہ",
+}
+
 GAZETTEER: dict[str, str] = {}
 for _t, _ns in PROVINCE_NAMES.items():
     for _n in _ns:
@@ -78,14 +90,19 @@ for _t, _ns in PROVINCE_NAMES.items():
 for _t, _spec in DISTRICTS.items():
     for _n in _names(_spec):
         GAZETTEER.setdefault(_n, _t)
+URDU_GAZETTEER = {n.replace("_", " "): t for t, spec in URDU_NAMES.items() for n in spec.split()}
 # Mirpur is AJK's district and also part of Sindh's 'Mirpur Khas'/'Mirpur Mathelo' (those longer names win)
 _PATTERN = re.compile(r"(?<![A-Za-z&-])(" + "|".join(sorted((re.escape(n) for n in GAZETTEER), key=len, reverse=True))
                       + r")(?![A-Za-z&-])")
+_URDU_PATTERN = re.compile(r"(?<![؀-ۿ])(" + "|".join(sorted((re.escape(n) for n in URDU_GAZETTEER), key=len,
+                                                               reverse=True)) + r")(?![؀-ۿ])")
 
 
 def places(text: str) -> list[tuple[str, str]]:
     """[(name as written, territory)] in order of appearance"""
-    return [(m.group(1), GAZETTEER[m.group(1)]) for m in _PATTERN.finditer(text or "")]
+    found = [(m.start(), m.group(1), GAZETTEER[m.group(1)]) for m in _PATTERN.finditer(text or "")]
+    found += [(m.start(), m.group(1), URDU_GAZETTEER[m.group(1)]) for m in _URDU_PATTERN.finditer(text or "")]
+    return [(n, t) for _s, n, t in sorted(found)]
 
 
 def territory_of(text: str) -> str | None:

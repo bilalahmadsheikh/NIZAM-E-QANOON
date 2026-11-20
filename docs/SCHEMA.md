@@ -1362,11 +1362,84 @@ the record behind each edge.
   repeal-and-re-enactment. So it stays `current_unverified`, with the reason
   `…_enabling_law_not_current`.
 
+- **`refers_to`, `subject_to`, `notwithstanding` and `defines` (0114,
+  0115, 21 Nov 2026, D-108).** Built from the two derived tables below.
+  Resolved references only: an unresolved one is kept in its table, but it
+  is not an edge.
+
 An edge appears only when both ends resolve. First measured, 14 Nov 2026: 4,620
 `amends` edges (3,242 to a provision) and 129 `repeals` edges, all from a
 clause. `contains` is the ltree. Supersession and consolidated twins relate
-versions of one law, so they are not edges. The other ten kinds have no
-recorded relation yet.
+versions of one law, so they are not edges. Six kinds have no recorded relation
+yet: `saves` beyond 0103, `commences`, `defaults_from` (applied at read time,
+below), `interpreted_by`, `invalidated_by` and `attracts`.
+
+### `provision_reference`, `provision_definition`, `provision_link_state` — the links a provision's words make
+
+Migrations 0114 and 0115 (D-108). These are **derived index artefacts**, like
+`chunk` (0108), not evidence. `nizam.workers.links` builds them from the
+release, using the pure rules of `nizam.storage.linking`, under one named rule
+(`linker`, `nizam.links/7` on 21 Nov 2026). A rule change is a rebuild
+(`--rebuild`). An ordinary run relinks only the laws that need it: a law with a
+new or retired version, or with a row pointing at something that has left the
+release. Audit **A23** asserts that the tables are exactly the release under one
+linker, and that nothing they point at is outside it. Operative status is never
+decided here: readers ask `operative_provision` at their own `as_of`.
+
+- **`provision_reference`.** One row is one printed naming of a unit or
+  schedule.
+  - `kind` is the phrase: `notwithstanding`; `subject_to` ("subject to", "save
+    as / except as provided", "without prejudice to"); otherwise `refers_to`.
+    The phrase governs a reference only when nothing else is named between them
+    and no new clause starts.
+  - `label` is the label as printed, with "295 C" folded to `295C`, "4-A" to
+    `4A`, and decimals like `12.1` kept.
+  - `other_law` is the other law as printed, when the words name one.
+  - `dst_unit_id` and `dst_instrument_id` give the resolved destination.
+  - `in_heading` marks a reference read from the heading or marginal note
+    ("[See section 5]" above a schedule); its offsets are then into the heading.
+
+  **Resolution.**
+  - **Same law.** A unit with that label; "Article N" asks only for articles (a
+    constitution's or an Order's sections count); a schedule by its printed
+    number, or the law's only schedule.
+  - **Subordinate instruments** (Rules, Regulations, Notifications). A bare
+    "section N" names the parent law (empowers, 0089); "rule N" names their own
+    unit, as does "section N of these rules".
+  - **Another law.**
+    - "the Act" / "the Ordinance" is the parent, when its kind matches.
+    - A title resolves by `instrument_title_key` and year: a title naming its
+      province in that province; AJK and GB own copies first; otherwise federal
+      first. Exactly one law must match.
+    - A run of references ("sections 161, 164, 165 of the Azad Kashmir Penal
+      Code") shares its trailing law.
+    - An amending law's section numbers always name another law.
+
+  First full build: 166,321 rows. 67,459 resolve within their own law and 14,491
+  to another law; 22,108 within a law and 62,263 to another law do not resolve
+  (laws not held, OCR damage, amending text).
+- **`provision_definition`.** One row is one word a clause defines ("means",
+  "includes", "denotes", "has the meaning").
+  - `scope` is read from the opening words. "In this Act" gives `law`. "In this
+    Chapter/Part" gives `division`, reaching the units printed after
+    `after_ordinal`. "In this section" gives `unit`. A Chapter the tree lacks
+    gives `unit`, never the whole law.
+  - `empty` marks a definition with nothing after its verb in its node.
+  - `continuation` lists the following siblings that carry a flattened
+    definition's sub-items.
+  - An amending law contributes no definitions.
+
+  72,030 rows: 69,772 law-wide, 462 division-scoped and 1,796 unit-scoped.
+- **`provision_link_state`.** Every released version the linker read (A23's
+  coverage).
+
+`defaults_from` is applied at read time (nizam.retrieval.assembly). A word a law
+does not define takes its parent law's whole-law definition (for a subordinate
+instrument), then its jurisdiction's own General Clauses Act's. That Act exists
+only where the corpus holds one: federal law the 1897 Act; Punjab and KP their
+copies of the 1956 Act. Sindh, Balochistan, AJK and GB have none held, and none
+is guessed. Drafting words ("section", "year") and words too general ("person",
+place names) are not attached from a General Clauses Act.
 
 ### `consolidated_twin` — a law's text as made, linked to its consolidated text
 

@@ -56,6 +56,10 @@ def parse(text: str) -> QuerySpec:
     # an Urdu-language question gains the English words of the legal terms it uses (D-105, nizam.retrieval.aliases):
     # the English index cannot read Urdu script at all, nor most Roman Urdu. The question's own words stay.
     g = _aliases.gloss(t) if os.environ.get("NIZAM_ALIASES", "on") != "off" else []   # off: the ablation's arm
+    if (script == "latin" and _aliases.is_urdu(t) and os.environ.get("NIZAM_ROMAN_FRAME", "on") != "off"):
+        # a Roman Urdu question's own function words match nothing in the English statute book and dilute its
+        # content words ('swara', 'ECL', 'cheque'): they leave the lexical query, never the text (D-109)
+        lexical = " ".join(w for w in lexical.split() if not _aliases.roman_frame(w.strip("?,.!;:'\""))) or lexical
     if g:
         lexical = " ".join(g) if script == "arabic" else f"{lexical} {' '.join(g)}"
     return QuerySpec(text=t, lexical=lexical, citations=_cit.find(t), territory=_places.territory_of(t),

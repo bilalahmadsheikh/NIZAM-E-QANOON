@@ -721,6 +721,27 @@ m AS (
     ,(SELECT count(*) FROM chunk_embedding_gpu e JOIN chunk c ON c.id = e.chunk_id
        WHERE e.jurisdiction IS DISTINCT FROM c.jurisdiction)                            AS gpu_scope_wrong
 -- <<< A22 measures
+-- >>> A23 measures: the derived link tables (0114, D-108) are exactly the release under one linker -- every released
+--     version read, no row from a version outside it, and nothing they point at (a unit, a scope, a sub-item, a law)
+--     outside it. Counts are reported; the rule is asserted.
+    ,(SELECT count(*) FROM provision_reference)                                          AS link_refs
+    ,(SELECT count(*) FROM provision_definition)                                         AS link_defs
+    -- set differences (hashed once), not per-row NOT EXISTS against the release views: that form ran 30+ minutes
+    ,(SELECT count(*) FROM (SELECT id FROM v_release_provision_version
+                            EXCEPT SELECT version_id FROM provision_link_state) x)            AS link_unread
+    ,(SELECT count(*) FROM (SELECT version_id FROM provision_link_state
+                            UNION SELECT src_version_id FROM provision_reference
+                            UNION SELECT version_id FROM provision_definition
+                            EXCEPT SELECT id FROM v_release_provision_version) x)              AS link_outside_release
+    ,(SELECT count(*) FROM (SELECT dst_unit_id FROM provision_reference WHERE dst_unit_id IS NOT NULL
+                            UNION SELECT u FROM provision_definition,
+                                         unnest(continuation || unit_id || scope_provision_id) u WHERE u IS NOT NULL
+                            EXCEPT SELECT id FROM v_release_provision) x)
+     + (SELECT count(*) FROM (SELECT dst_instrument_id FROM provision_reference WHERE dst_instrument_id IS NOT NULL
+                              EXCEPT SELECT id FROM v_release_instrument) x)                 AS link_dst_outside
+    ,(SELECT count(*) FROM (SELECT linker FROM provision_link_state UNION SELECT linker FROM provision_reference
+                            UNION SELECT linker FROM provision_definition) l)              AS linkers
+-- <<< A23 measures
 )
 SELECT * FROM (
   SELECT 'C1' AS id, 'every acquired file becomes a blob'      AS criterion,
@@ -911,6 +932,13 @@ SELECT * FROM (
          '<= 1 active; 0 / 0 / 0 / 0 / 0; count reported',
          CASE WHEN gpu_active<=1 AND gpu_missing=0 AND gpu_foreign=0 AND gpu_width_wrong=0
                    AND gpu_chunker_differs=0 AND gpu_scope_wrong=0
+              THEN 'PASS' ELSE 'FAIL' END FROM m
+  UNION ALL SELECT 'A23','links are exactly the release: every released version read by one linker, nothing outside it',
+         link_refs||' references, '||link_defs||' definitions (reported); '||link_unread||' versions unread; '||
+         link_outside_release||' rows outside release; '||link_dst_outside||' pointing outside it; '||linkers||
+         ' linker(s)',
+         '0 / 0 / 0; one linker',
+         CASE WHEN link_unread=0 AND link_outside_release=0 AND link_dst_outside=0 AND linkers<=1
               THEN 'PASS' ELSE 'FAIL' END FROM m
   UNION ALL SELECT 'A6','no overlapping law (enforced, not tested)',
          CASE WHEN excl_present=1 THEN 'EXCLUDE constraint present'

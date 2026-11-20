@@ -301,6 +301,17 @@ pre u{color:var(--rubric);text-decoration:none}
     </div>
 
     <div class="note blue">
+      <h4>As built (21 Nov 2026): defines, refers_to, subject_to, notwithstanding (D-108)</h4>
+      <p>These four come from the statute text, as &sect;10 foresaw. They are <em>derived</em> tables, rebuilt from the release under one named rule, like the chunk index, rather than source-keyed evidence. A replay re-derives them, and audit A23 asserts they match the release exactly.</p>
+      <ul>
+        <li><code>provision_reference</code> keeps the phrase as the edge kind, so &ldquo;notwithstanding section 5&rdquo; and &ldquo;subject to section 5&rdquo; stay opposite. It resolves into the same law, and into another law when the words name exactly one.</li>
+        <li><code>provision_definition</code> keeps each defined word with its scope: the law, a Part or Chapter, or its own unit.</li>
+        <li><code>defaults_from</code> is applied at read time from the jurisdiction&rsquo;s own General Clauses Act, where the corpus holds one.</li>
+      </ul>
+      <p>All four kinds appear in <code>legal_edge</code>. See docs/SCHEMA.md.</p>
+    </div>
+
+    <div class="note blue">
       <h4>As built (migration 0064, 13 Oct 2026): &ldquo;historical expression of&rdquo; is not a fifteenth edge</h4>
       <p>Document 4434&rsquo;s expression 0 prints the Constitution as amended to the Twenty-second Amendment Act, 2016. Document 4419 prints it as amended to the Twenty-seventh, 2025. The owner released the first as a dated historical text (export k, 4434 q3 <code>historical-expression</code>). The link between them, &ldquo;an earlier expression of the same work&rdquo;, relates two <em>expressions</em> of one work. None of the fourteen kinds above does that: <code>amends</code> relates an amending instrument to what it changes, not two consolidated texts of one work. The vocabulary is therefore not extended, and plan relations stay <code>{amends, empowers}</code>. Until <code>legal_edge</code> exists, the link is recorded in typed columns on <code>instrument_expression_manifest</code>: <code>historical_validity</code> and the current expression&rsquo;s stable key <code>(current_source_observation_id, current_expression_ordinal)</code>, enforced by deferred triggers and audit criterion A13. <strong>Decision needed when <code>legal_edge</code> is built:</strong> keep this as manifest columns, or add an expression-level edge kind beside the fourteen instrument and provision edges.</p>
     </div>

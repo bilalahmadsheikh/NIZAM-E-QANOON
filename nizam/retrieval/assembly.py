@@ -47,6 +47,8 @@ MAX_UNITS = 20              # docs/04 §7: "admit at most about 20 legal units"
 DEFS_PER_UNIT = 8           # definitions attached for one unit, by first use in its words
 QUALS_PER_UNIT = 3
 REFS_PER_UNIT = 3
+PREVAILS_PER_UNIT = 3       # provisions that say 'notwithstanding' a unit (they prevail over it)
+GENERAL_PER_UNIT = 3        # General Clauses Act definitions for words the law does not define (defaults_from)
 NOTES_PER_ITEM = 12         # printed amendment footnotes carried per item
 RANGE_MAX = 6               # "sections 4 to 9" is expanded when it names at most this many
 DIVISION_SHARE = 0.25       # of the budget, for the sections standing for one bundle Part or Chapter
@@ -54,217 +56,17 @@ DIVISION_UNITS = 5          # sections standing for one Part or Chapter, at most
 DIVISION_READ = 60          # sections read from one Part or Chapter, at most
 STUB_CHARS = 40             # a section this short ('3A. [Omitted]') does not stand for its Chapter
 
-NOT_BUILT = ("sub-question coverage", "conflict sets", "General Clauses Act and parent-Act definitions",
-             "references to other laws", "matched-span offsets", "Urdu-script definitions")
+NOT_BUILT = ("sub-question coverage", "conflict sets", "matched-span offsets", "Urdu-script definitions",
+             "General Clauses Acts of Sindh, Balochistan, AJK and GB (not held)")
 
 ROLE_RANK = {"governing": 0, "qualification": 1, "definition": 2, "reference": 3, "schedule": 3}
 
 
-# ====================================================================================================================
-# pure parsing
-# ====================================================================================================================
-_TERM_SRC = r"(?:[\"“”]\s*([^\"“”]{1,80}?)\s*[\"“”]|[‘'`]\s*([^‘’'`\"“”]{1,80}?)\s*[’'`])"
-_TERM = re.compile(_TERM_SRC)
-_VERB = re.compile(r"\b(?:shall\s+)?(?:means?|includes?|denotes?|signif(?:y|ies)|"
-                   r"ha(?:s|ve)\s+the\s+(?:same\s+)?meanings?|have\s+the\s+(?:same\s+)?meanings?|"
-                   r"is\s+deemed\s+to\s+include)\b", re.I)
-# the run of quoted terms right before the verb: '"child" and "minor"', '"Court" or "court"', '"bank" (or "banker")'
-_RUN = re.compile(_TERM_SRC + r"(?:\s*(?:,|and|or|/|\([^()]{0,30}\))\s*(?:the\s+)?(?:" + _TERM_SRC + r"))*"
-                  r"\s*,?\s*(?:\([^()]{0,40}\)\s*)?$")
-
-
-def _clean_term(t: str) -> str | None:
-    t = " ".join((t or "").split()).strip(" ,.;:-–—")
-    if not (2 <= len(t) <= 60) or not re.search(r"[A-Za-z]", t):
-        return None
-    return t
-
-
-def definitions_in(text: str) -> list[tuple[str, bool]]:
-    """[(word, empty)] for the words a clause defines, in printed order. `empty` is True when nothing follows the
-    defining verb in this node ('"voter" means--' whose sub-clauses the segmenter did not place under it)."""
-    out: list[tuple[str, bool]] = []
-    for m in _VERB.finditer(text or ""):
-        before = text[max(0, m.start() - 300):m.start()]
-        run = _RUN.search(before)
-        if not run:
-            continue
-        empty = not text[m.end():].strip(" \t\n—–―-:_.;,")
-        for t in _TERM.finditer(run.group(0)):
-            term = _clean_term(t.group(1) or t.group(2))
-            if term and term.lower() not in (x[0].lower() for x in out):
-                out.append((term, empty))
-    return out
-
-
-# a dash, a colon, underscores or a word that cannot end a definition; '; and' / '; or' end a list item and are not
-_CONTINUES = re.compile(r"(?:[—–―:-]|_{2,}|\b(?:namely|of|includes?|means?|following))[\s_—–―:,-]*$", re.I)
-CONTINUATION_NODES = 15
-CONTINUATION_CHARS = 3000
-
-
-def continues(text: str) -> bool:
-    """does a definition's node stop mid-definition ('means--', 'namely:__', 'under the control of__')?"""
-    return bool(_CONTINUES.search((text or "").rstrip()))
-
-
-def continuation(nodes) -> list:
-    """the siblings that carry a flattened definition's sub-items: in printed order, until a node that itself
-    defines a word (the next definition), CONTINUATION_NODES nodes or CONTINUATION_CHARS characters"""
-    out, size = [], 0
-    for n in nodes:
-        if defined_terms(n.text) or len(out) >= CONTINUATION_NODES or size + len(n.text or "") > CONTINUATION_CHARS:
-            break
-        out.append(n)
-        size += len(n.text or "")
-    return out
-
-
-def defined_terms(text: str) -> list[str]:
-    """the words a clause defines, in printed order: '"employer" means ...' -> ['employer'];
-    'the words "public servant" denote ...' -> ['public servant']; '"child" and "minor" mean ...' -> both.
-    A quoted word NOT followed by a defining verb is not a definition."""
-    return [t for t, _empty in definitions_in(text)]
-
-
-def term_pattern(term: str) -> re.Pattern:
-    """a defined word as used in a unit: whole words, any case, a plain plural ('employer' finds 'employers')"""
-    words = r"\s+".join(re.escape(w) for w in term.split())
-    return re.compile(r"(?<![\w-])" + words + r"(?:s|es)?(?![\w-])", re.I)
-
-
-# words that name a kind of instrument: '"Act" means the Punjab ... Act, 2019' defines the law's own name for itself
-# (or, in Rules, the parent Act). Such a word is used only as "the Act", "this Act", "the said Act" -- never as the
-# last word of another law's title ("the Punjab Rented Premises Act, 2009")
-_INSTRUMENT_WORDS = {"act", "ordinance", "order", "code", "regulation", "regulations", "rules", "rule",
-                     "constitution", "schedule", "statute", "president's order"}
-
-
-def term_use(term: str, text: str) -> int | None:
-    """where a unit first USES a defined word, or None"""
-    pat = term_pattern(term)
-    if term.lower() not in _INSTRUMENT_WORDS:
-        m = pat.search(text or "")
-        return m.start() if m else None
-    for m in pat.finditer(text or ""):
-        before = text[max(0, m.start() - 16):m.start()]
-        after = text[m.end():m.end() + 8]
-        if re.search(r"\b(?:the|this|said|that)\s+$", before, re.I) and not re.match(r"\s*,?\s*(?:\d{4}|\()", after):
-            return m.start()
-    return None
-
-
-_SCOPE = re.compile(r"\b(?:in|for\s+the\s+purposes?\s+of|under|throughout)\s+this\s+(Act|Ordinance|Order|Code|"
-                    r"Regulations?|Rules?|Constitution|Statute|Bye?-?laws?|Part|Chapter|section|sub-?section|"
-                    r"article|clause|paragraph|rule|Schedule)\b", re.I)
-
-
-def scope_word(texts) -> str | None:
-    """the first 'In this <X>' among `texts` (the definition's own opening words first, then the words of the
-    nodes above it, nearest first), lowercased; None when none says"""
-    for t in texts:
-        m = _SCOPE.search(t or "")
-        if m:
-            return m.group(1).lower().replace("-", "")
-    return None
-
-
-# "section 4", "sections 4, 8 and 9", "sections 10 to 12", "Article 25(1)", "section 9A"; the word part is
-# case-free, the label's letter suffix is capitals only
-_LAB = r"\d{1,4}[A-Z]{0,3}(?:\s*\(\s*[0-9a-zA-Z]{1,5}\s*\))*"
-_REF = re.compile(r"\b(?i:(sections?|articles?))\s+(" + _LAB + r"(?:\s*(?:,|and|or|to|-|–|&)\s*" + _LAB + r")*)")
-_SCHED = re.compile(r"\b(?:the\s+)?(?:(First|Second|Third|Fourth|Fifth|Sixth|Seventh|Eighth|Ninth|Tenth|Eleventh|"
-                    r"Twelfth)\s+)?Schedule(?:\s+([IVXL]{1,5}|\d{1,2})\b)?")
-_EXTERNAL = re.compile(r"\s*,?\s*(?:\(\s*[0-9a-zA-Z]{1,5}\s*\)\s*)*(?:of|in|under|to)\s+(?:the\s+)?"
-                       r"(?:said\s+|that\s+|above\s+|aforesaid\s+|principal\s+)?"
-                       r"(?!this\b|these\b|Chapter\b|Part\b|Schedule\b|Sub-?section\b|Clause\b|Article\b|Section\b)"
-                       r"(?:[A-Z][\w’'.()-]*|Act\b|Ordinance\b|Code\b|Order\b|Regulation)")
-_QUAL = re.compile(r"\b(subject\s+to|notwithstanding|save\s+as|except\s+as|without\s+prejudice\s+to)\b", re.I)
-# a law named earlier in the same sentence: 'In the Profession Tax Limitation Act, 1941 (XX of 1941), for section 2'
-_TITLE_BEFORE = re.compile(r"\b[A-Z][A-Za-z’'&(),.\- ]{2,120}?\b(?:Act|Ordinance|Code|Order|Rules|Regulations)\b"
-                           r",?\s*(?:\d{4}|\([IVXLC]+ of \d{4}\))")
-# an amending law's section numbers name the law it amends ('In section 4, for the words ...')
-AMENDING_TITLE = re.compile(r"\b(?:amendment|amending)\b|\bfinance\s+(?:act|ordinance|bill)\b", re.I)
-_ORDINAL = {w: i for i, w in enumerate(("first second third fourth fifth sixth seventh eighth ninth tenth eleventh "
-                                        "twelfth").split(), 1)}
-_ROMAN = {"i": 1, "v": 5, "x": 10, "l": 50}
-
-
-def _roman(s: str) -> int | None:
-    s = s.lower()
-    if not s or any(c not in _ROMAN for c in s):
-        return None
-    total = 0
-    for i, c in enumerate(s):
-        v = _ROMAN[c]
-        total += -v if i + 1 < len(s) and _ROMAN[s[i + 1]] > v else v
-    return total
-
-
-@dataclass(frozen=True)
-class Reference:
-    kind: str                 # "unit" (section/article) or "schedule"
-    labels: tuple             # unit labels; or (schedule number,) / () for "the Schedule"
-    qualifies: bool           # inside a "subject to / notwithstanding / save as ..." phrase
-    external: bool            # names another law
-    printed: str
-
-
-def _sentence_head(text: str, pos: int) -> str:
-    start = max(text.rfind(c, 0, pos) for c in ".;:\n")
-    return text[max(start + 1, pos - 200):pos]
-
-
-def _labels(group: str) -> tuple:
-    toks = re.findall(r"\d{1,4}[A-Z]{0,3}|\([^)]*\)|\bto\b|[-–]", group)
-    out: list[str] = []
-    pending_range = False
-    for t in toks:
-        if t.startswith("("):
-            continue
-        if t in ("to", "-", "–"):
-            pending_range = True
-            continue
-        if pending_range and out and out[-1].isdigit() and t.isdigit() and 0 < int(t) - int(out[-1]) <= RANGE_MAX:
-            out.extend(str(n) for n in range(int(out[-1]) + 1, int(t) + 1))
-        else:
-            out.append(t)
-        pending_range = False
-    return tuple(dict.fromkeys(out))
-
-
-def references(text: str) -> list[Reference]:
-    """the units and schedules a unit's words name, in printed order"""
-    text = text or ""
-    out = []
-    for m in _REF.finditer(text):
-        head = _sentence_head(text, m.start())
-        ext = bool(_EXTERNAL.match(text, m.end())) or bool(_TITLE_BEFORE.search(head))
-        out.append(Reference("unit", _labels(m.group(2)), bool(_QUAL.search(head)), ext, m.group(0)))
-    for m in _SCHED.finditer(text):
-        n = None
-        if m.group(1):
-            n = _ORDINAL[m.group(1).lower()]
-        elif m.group(2):
-            n = int(m.group(2)) if m.group(2).isdigit() else _roman(m.group(2))
-        ext = bool(_EXTERNAL.match(text, m.end()))
-        out.append(Reference("schedule", (n,) if n else (), bool(_QUAL.search(_sentence_head(text, m.start()))),
-                             ext, m.group(0)))
-    return out
-
-
-def schedule_number(label: str, heading: str | None) -> int | None:
-    """the number a schedule prints for itself: 'FIRST SCHEDULE' -> 1, 'Schedule II' -> 2, 'SCHEDULE 3' -> 3"""
-    for s in (label or "", heading or ""):
-        m = re.search(r"\b(first|second|third|fourth|fifth|sixth|seventh|eighth|ninth|tenth|eleventh|twelfth)\b",
-                      s, re.I)
-        if m:
-            return _ORDINAL[m.group(1).lower()]
-        m = re.search(r"schedule\s*[-–]?\s*([IVXL]{1,5}|\d{1,2})\b", s, re.I)
-        if m:
-            g = m.group(1)
-            return int(g) if g.isdigit() else _roman(g)
-    return None
+# What a provision defines and names is read once, at build time, into the link tables (nizam.storage.linking via
+# nizam.workers.links, D-108); assembly reads the tables and applies only the read-time rules: does a definition's
+# scope reach this unit, and does this unit use the word.
+from nizam.storage.linking import DRAFTING_WORDS, GENERAL_TOO_BROAD, term_use  # noqa: E402
+from nizam.storage.linking import roman as _roman  # noqa: E402
 
 
 # ====================================================================================================================
@@ -449,31 +251,6 @@ def _unit_text(u: ER.Unit) -> str:
     return " ".join(x for n in u.nodes for x in (n.heading or "", n.text or "") if x)
 
 
-def _unit_of(chain) -> ER.Ancestor | None:
-    inner = [a for a in chain if a.kind in UNIT_KINDS]
-    if inner:
-        return inner[-1]
-    outer = [a for a in chain if a.kind in OUTER_KINDS]
-    return outer[0] if outer else (chain[-1] if chain else None)
-
-
-def _scope_path(word: str | None, chain, unit: ER.Ancestor, law_kind: str | None) -> tuple[str, str | None]:
-    """('law', None) | ('division', path) | ('unit', path)"""
-    if word in ("part", "chapter"):
-        # the named division, as the tree holds it; when the tree lacks it (a Chapter the segmenter did not make a
-        # node), the definition reaches no further than its own unit: never the whole law
-        div = [a for a in chain if a.kind == word]
-        return ("division", div[-1].path) if div else ("unit", unit.path)
-    if word == "order":
-        order = [a for a in chain if a.kind == "order"]
-        if order and "order" not in (law_kind or "").lower():
-            return "division", order[-1].path
-        return "law", None
-    if word in ("section", "subsection", "article", "clause", "paragraph", "rule", "schedule"):
-        return "unit", unit.path
-    return "law", None
-
-
 def _applies(scope: tuple, unit_path: str, unit_ordinal: int | None = None) -> bool:
     """does a definition's scope reach a unit? ('law', None) reaches the whole law; ('division', path[, ordinal])
     the units inside that Part or Chapter printed AFTER the definition -- a Chapter's definitions open it, so a unit
@@ -578,169 +355,149 @@ def assemble(ctx, connect_fn=None, budget: int | None = None, max_units: int = M
             return unit_head(u.kind, u.label, lf.kind if lf else None)
         lap("units")
 
-        # --- references named by the bundle's words: one label lookup per law -------------------------------
-        def amending(u) -> bool:
-            lf = s._facts.get(u.instrument_id)
-            return bool(lf and AMENDING_TITLE.search(lf.title or ""))
-
-        parsed = {b.unit_id: [replace(r, external=True) if r.kind == "unit" and amending(units[b.unit_id]) else r
-                              for r in references(text_of[b.unit_id])] for b in live}
-        cov["references"]["other_law"] = sum(1 for rs in parsed.values() for r in rs if r.external)
-        labels_by_law: dict[str, set] = {}
-        sched_laws = set()
-        for b in live:
-            u = units[b.unit_id]
-            for r in parsed[b.unit_id]:
-                if r.external:
-                    continue
-                if r.kind == "unit":
-                    labels_by_law.setdefault(u.instrument_id, set()).update(r.labels)
-                else:
-                    sched_laws.add(u.instrument_id)
-        found = {iid: s.units_labelled(iid, sorted(labs)) for iid, labs in labels_by_law.items()}
-        scheds = {iid: [x for x in s.outer_units(iid) if x[1] == "schedule"] for iid in sched_laws}
+        # --- references the bundle's words make (provision_reference, D-108): same law or another --------------
+        node_unit = {n.provision_id: b.unit_id for b in live for n in units[b.unit_id].nodes}
+        out_rows = s.references_from(list(node_unit))
+        prevail_rows = s.prevailing_over([b.unit_id for b in live])
+        prevail_units = s.units_of([src for _dst, src in prevail_rows])
         per_unit_refs: dict[str, list[tuple[str, str, str]]] = {}
         ref_ids: list[str] = []
         for b in live:
             u = units[b.unit_id]
-            wanted: list[tuple[Reference, str]] = []
-            for r in parsed[b.unit_id]:
-                if r.external:
-                    continue
-                if r.kind == "unit":
-                    for lab in r.labels:
-                        uid = found.get(u.instrument_id, {}).get(lab)
-                        if uid is None:
-                            cov["references"]["unresolved"].append(f"{head(u)}: {lab}")
-                        elif uid != u.unit_id:
-                            wanted.append((r, uid))
-                else:
-                    pool = scheds.get(u.instrument_id, [])
-                    hits = ([x for x in pool if schedule_number(x[2], x[3]) == r.labels[0]] if r.labels
-                            else (pool if len(pool) == 1 else []))
-                    if hits:
-                        wanted.append((r, hits[0][0]))
-                    else:
-                        cov["references"]["unresolved"].append(f"{head(u)}: {r.printed}")
             seen, lst = {u.unit_id}, []
-            for qualifying, cap in ((True, QUALS_PER_UNIT), (False, REFS_PER_UNIT)):
+            mine = [r for r in out_rows if node_unit.get(r[0]) == b.unit_id]
+            for kinds, cap, role in ((("notwithstanding", "subject_to"), QUALS_PER_UNIT, "qualification"),
+                                     (("refers_to",), REFS_PER_UNIT, None)):
                 n = 0
-                for r, uid in wanted:
-                    if r.qualifies != qualifying or uid in seen or n >= cap:
+                for _src, kind, target, label, other_law, dst, dst_law in mine:
+                    if kind not in kinds or dst in seen or n >= cap:
                         continue
-                    seen.add(uid)
+                    seen.add(dst)
                     n += 1
-                    role = "qualification" if r.qualifies else ("schedule" if r.kind == "schedule" else "reference")
-                    lst.append((uid, role, r.printed))
-                    ref_ids.append(uid)
+                    printed = (f"{'section' if target == 'unit' else 'Schedule'} {label}".strip()
+                               + (f" of {other_law}" if other_law else ""))
+                    phrase = {"notwithstanding": "prevails over", "subject_to": "is subject to"}.get(kind, "names")
+                    lst.append((dst, role or ("schedule" if target == "schedule" else "reference"),
+                                f"{head(u)} {phrase} '{printed}'"))
+                    ref_ids.append(dst)
+                    cov["references"]["other_law"] += dst_law != u.instrument_id
+            # a provision that says 'notwithstanding' this unit prevails over it: a reader of the unit must see it
+            n = 0
+            for dst, src in prevail_rows:
+                pu = prevail_units.get(src)
+                if dst != b.unit_id or pu is None or pu[0] in seen or n >= PREVAILS_PER_UNIT:
+                    continue
+                seen.add(pu[0])
+                n += 1
+                lst.append((pu[0], "qualification", f"prevails over {head(u)} ('notwithstanding')"))
+                ref_ids.append(pu[0])
             per_unit_refs[b.unit_id] = lst
         units.update(s.units([uid for uid in dict.fromkeys(ref_ids) if uid not in units]))
         cov["references"]["followed"] = len({uid for uid in ref_ids if uid in units})
         cov["references"]["not_operative"] = sorted({uid for uid in ref_ids if uid not in units})
         lap("references")
 
-        # --- definitions: parse every definition clause of the bundle's laws, keep those a unit uses ----------
-        dnodes, empty = [], set()
-        # an amending law's quoted words are new text for the law it amends, not definitions of its own
-        own = [iid for iid in laws if not AMENDING_TITLE.search(getattr(s._facts.get(iid), "title", "") or "")]
-        for iid, n in s.definition_nodes(own):
-            found_terms = definitions_in(n.text)
-            empty |= {(n.provision_id, t.lower()) for t, e in found_terms if e}
-            dnodes.append((iid, n, [t for t, _e in found_terms]))
+        # --- definitions (provision_definition, D-108): the law's own, then its parent Act's, then its General
+        #     Clauses Act's (defaults_from, docs/03b) for a word the law does not define -----------------------
+        parents = s.parent_laws(laws)
+        gca = s.general_clauses()
+        juris = {iid: getattr(s._facts.get(iid), "jurisdiction", None) for iid in laws}
+        default_of = {iid: gca.get(juris[iid]) for iid in laws if gca.get(juris[iid]) not in (None, iid)}
+        rows = s.definitions_of(set(laws) | set(parents.values()) | set(default_of.values()))
+        by_law: dict[str, list[dict]] = {}
+        for d in rows:
+            by_law.setdefault(d["instrument_id"], []).append(d)
         lap("definition_read")
-        uses: dict[str, list] = {}           # bundle unit id -> [(pos, term, node)]
-        for iid, n, terms in dnodes:
-            for b in live:
-                u = units[b.unit_id]
-                if u.instrument_id != iid or n.path == u.path or n.path.startswith(u.path + "."):
-                    continue
-                for t in terms:
-                    pos = term_use(t, text_of[b.unit_id])
+        def_wanted: dict[str, list] = {}
+        chosen_by_unit: dict[str, list] = {}
+        for b in live:
+            u = units[b.unit_id]
+            text = text_of[b.unit_id]
+            best: dict[str, tuple] = {}
+            sources = [(0, by_law.get(u.instrument_id, []))]
+            if parents.get(u.instrument_id):
+                sources.append((1, by_law.get(parents[u.instrument_id], [])))
+            if default_of.get(u.instrument_id):
+                sources.append((2, by_law.get(default_of[u.instrument_id], [])))
+            for tier, defs in sources:
+                for d in defs:
+                    if tier == 0:
+                        if d["path"] == u.path or d["path"].startswith(u.path + "."):
+                            continue                  # inside the unit: already whole
+                        if not _applies((d["scope"], d["scope_path"], d["after_ordinal"]), u.path, u.ordinal):
+                            continue
+                    elif d["scope"] != "law":
+                        continue                      # another law's definition reaches only as a whole-law one
+                    key = d["term_key"]
+                    if key in DRAFTING_WORDS or (tier == 2 and key in GENERAL_TOO_BROAD):
+                        continue                      # a word of the statute's own structure, or too general
+                    rank = (tier, ("unit", "division", "law").index(d["scope"]), d["ordinal"])
+                    if key in best and best[key][0] <= rank:
+                        continue
+                    pos = term_use(d["term"], text)
                     if pos is not None:
-                        uses.setdefault(b.unit_id, []).append((pos, t, n))
-        used_nodes = list({n.provision_id: n for lst in uses.values() for _p, _t, n in lst}.values())
-        chains = s.ancestors([n.provision_id for n in used_nodes])
-        scope_of: dict[str, tuple] = {}
-        unit_anc: dict[str, ER.Ancestor] = {}
-        leads_wanted = []
-        for n in used_nodes:
-            chain = chains.get(n.provision_id, ())
-            unit = _unit_of(chain)
-            if unit is not None:
-                unit_anc[n.provision_id] = unit
-                leads_wanted += [a.provision_id for a in chain if a.depth >= unit.depth and a.provision_id != n.provision_id]
-        leads = s.lead_texts(leads_wanted)
-        for n in used_nodes:
-            unit = unit_anc.get(n.provision_id)
-            if unit is None:
-                continue
-            chain = chains[n.provision_id]
-            first_quote = re.search(r"[\"“”‘'`]", n.text or "")
-            own_head = (n.text or "")[: first_quote.start()] if first_quote else ""
-            above = [leads.get(a.provision_id, "") for a in reversed(chain)
-                     if a.depth >= unit.depth and a.provision_id != n.provision_id]
-            sc = _scope_path(scope_word([own_head] + above), chain, unit, None)
-            scope_of[n.provision_id] = (sc[0], sc[1], n.ordinal) if sc[0] == "division" else sc
+                        best[key] = (rank, pos, d)
+            ordered = sorted(best.values(), key=lambda x: (x[1], -len(x[2]["term"])))
+            own = [x for x in ordered if x[0][0] < 2][:DEFS_PER_UNIT]
+            general = [x for x in ordered if x[0][0] == 2][:GENERAL_PER_UNIT]
+            chosen_by_unit[b.unit_id] = own + general
+            for rank, _pos, d in own + general:
+                def_wanted.setdefault(d["provision_id"], []).append((u, d, rank[0]))
+        subs = s.subtrees(list(def_wanted))
+        cont_ids = [c for wants in def_wanted.values() for c in (wants[0][1]["continuation"] or [])]
+        cont_nodes = s.nodes_of(cont_ids)
+        chains = s.ancestors(list(def_wanted))
         lap("definition_scope")
 
         # --- candidates, in priority order: each bundle unit, then what it needs ------------------------------
         bundle_rank = {b.unit_id: b for b in live}
+        def_cand: dict[str, _Cand] = {}
+        for pid, wants in def_wanted.items():
+            sub = subs.get(pid)
+            if not sub:
+                continue
+            d = wants[0][1]
+            more = [cont_nodes[c] for c in (d["continuation"] or []) if c in cont_nodes]
+            if more:
+                sub = tuple(sub) + tuple(more)
+                cov.setdefault("continued_definitions", []).append({"provision": pid, "siblings": len(more)})
+            if len(sub) == 1 and all(w[1]["empty"] for w in wants):
+                # '"voter" means--' with nothing under it or after it: its words are not in the corpus's nodes
+                cov["omitted"].append({"provision": pid, "role": "definition", "reason": "definition text not in node"})
+                continue
+            chain = chains.get(pid, ())
+            depth = next((a.depth for a in chain if a.provision_id == d["unit_id"]), 0)
+            terms = sorted({w[1]["term"] for w in wants}, key=str.lower)
+            users = list(dict.fromkeys(head(w[0]) for w in wants))
+            tier = min(w[2] for w in wants)
+            where = {0: "", 1: " in the parent law (empowers)", 2: " in the General Clauses Act (defaults_from)"}[tier]
+            def_cand[pid] = _Cand(pid, d["unit_id"], d["instrument_id"], "definition",
+                                  f"defines {', '.join(repr(t) for t in terms)}{where}, used in {', '.join(users)}",
+                                  sub, d["path"], chain=tuple((a.kind, a.label) for a in chain if a.depth > depth))
         cands: list = []
         late: list[_Cand] = []
-        def_wanted: dict[str, list] = {}
+        placed: set = set()
         for b in live:
             u = units[b.unit_id]
             cands.append(_Cand(u.unit_id, u.unit_id, u.instrument_id, "governing", b.note, u.nodes, u.path,
                                rank=b.rank, rerank=b.rerank_score))
-            for uid, role, printed in per_unit_refs.get(b.unit_id, []):
+            for uid, role, reason in per_unit_refs.get(b.unit_id, []):
                 if uid not in units:
                     continue
                 r = units[uid]
                 also = bundle_rank.get(uid)
                 c = _Cand(uid, uid, r.instrument_id, role,
-                          f"{head(u)} {'is qualified by' if role == 'qualification' else 'names'}"
-                          f" '{printed}'" + (f" (also bundle rank {also.rank})" if also else ""), r.nodes, r.path,
+                          reason + (f" (also bundle rank {also.rank})" if also else ""), r.nodes, r.path,
                           rank=also.rank if also else None, rerank=also.rerank_score if also else None)
                 (cands if role == "qualification" else late).append(c)
-            # one definition per word: the narrowest scope that reaches this unit, then the earliest clause
-            best: dict[str, tuple] = {}
-            for pos, term, n in uses.get(b.unit_id, []):
-                scope = scope_of.get(n.provision_id)
-                if scope is None or not _applies(scope, u.path, u.ordinal):
-                    continue
-                rank = (("unit", "division", "law").index(scope[0]), n.ordinal)
-                key = term.lower()
-                if key not in best or rank < best[key][0]:
-                    best[key] = (rank, pos, term, n)
-            for _rank, _pos, term, n in sorted(best.values(), key=lambda x: (x[1], -len(x[2])))[:DEFS_PER_UNIT]:
-                def_wanted.setdefault(n.provision_id, []).append((u, term, n, len(cands)))
-                cands.append(None)            # filled below, once the definition's subtree is read
-        subs = s.subtrees(list(def_wanted))
-        # a definition that stops mid-sentence with nothing under it: its sub-items are its following siblings
-        flat = [pid for pid, sub in subs.items() if len(sub) == 1 and continues(sub[0].text)]
-        nexts = s.following(flat, CONTINUATION_NODES) if flat else {}
-        for pid, wants in def_wanted.items():
-            sub = subs.get(pid)
-            if not sub:
-                continue
-            u, _term, n, idx = wants[0]
-            if pid in nexts:
-                more = continuation(nexts[pid])
-                if more:
-                    sub = tuple(sub) + tuple(more)
-                    cov.setdefault("continued_definitions", []).append({"provision": pid, "siblings": len(more)})
-            if len(sub) == 1 and all((pid, w[1].lower()) in empty for w in wants):
-                # '"voter" means--' with nothing under it or after it: its words are not in the corpus's nodes
-                cov["omitted"].append({"provision": pid, "role": "definition", "reason": "definition text not in node"})
-                continue
-            unit = unit_anc[pid]
-            chain = chains[pid]
-            terms = sorted({w[1] for w in wants}, key=str.lower)
-            users = list(dict.fromkeys(head(w[0]) for w in wants))
-            cands[idx] = _Cand(pid, unit.provision_id, u.instrument_id, "definition",
-                               f"defines {', '.join(repr(t) for t in terms)}, used in {', '.join(users)}",
-                               sub, n.path, chain=tuple((a.kind, a.label) for a in chain if a.depth > unit.depth))
-        cands = [c for c in cands if c is not None] + late
+            # a unit's definitions come with it (measured 21 Nov 2026, D-108: deferring all but its first 3 until
+            # after every unit's references cost the CPU bundles two necessary units on dev and gained nothing)
+            for _rank, _pos, d in chosen_by_unit.get(b.unit_id, []):
+                c = def_cand.get(d["provision_id"])
+                if c is not None and d["provision_id"] not in placed:
+                    placed.add(d["provision_id"])
+                    cands.append(c)
+        cands = cands + late
         for c in cands:
             if c.role != "definition" and c.unit_id in units:
                 c.head_line = unit_line(units[c.unit_id])

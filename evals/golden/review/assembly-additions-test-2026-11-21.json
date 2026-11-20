@@ -1,0 +1,651 @@
+{
+ "what": "M4 sample: 40 test GPU additions, seed 20261120; judge each",
+ "items": [
+  {
+   "case": "S4-C09",
+   "question": "I work as a maid in Islamabad. Is my employer bound to pay me a minimum wage?",
+   "role": "definition",
+   "citation": "Islamabad Capital Territory Domestic Workers Act, 2022, s. 2(s)",
+   "reason": "defines 'Wages', used in Section 19, Section 8, Section 16, Section 4, Section 5, Section 17",
+   "text": "(s) “Wages” means all amounts paid for labor performed by employees of every description which would if the terms and conditions of employment, express or implied, were fulfilled, be payable to a person employed in respect of his employment or of work done in such employment, and includes fixed amount or conditional on time, task commission basis or any method of calculation but does not include__\n(i) any contribution paid by the employer in respect of such person under any scheme of social insurance or to a pension fund or provident fund; and\n(ii) gift or anything given in kind.",
+   "provision": "ebf12546-cd03-46b2-8a4e-44178d9f4c19",
+   "governing": [
+    "Islamabad Capital Territory Domestic Workers Act, 2022, s. 4",
+    "Islamabad Capital Territory Domestic Workers Act, 2022, s. 5",
+    "Islamabad Capital Territory Domestic Workers Act, 2022, s. 8"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S5-R04",
+   "question": "How do I complain to the Ombudsperson in Mardan that my in-laws took my land?",
+   "role": "definition",
+   "citation": "Khyber Pakhtunkhwa Enforcement of Women’s Property Rights Act, 2019, s. 2(e)",
+   "reason": "defines 'property', used in Section 4, Section 7",
+   "text": "(e) “property” includes any moveable and immoveable property; and",
+   "provision": "f4eee7d6-8c98-412a-a830-1cd34d6e5623",
+   "governing": [
+    "Khyber Pakhtunkhwa Enforcement of Women’s Property Rights Act, 2019, s. 4",
+    "Khyber Pakhtunkhwa Enforcement of Women’s Property Rights Act, 2019, s. 7",
+    "Enforcement of Women’s Property Rights Act, 2020, s. 4"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S4-U05",
+   "question": "Trademark kitne saal ke liye register hota hai?",
+   "role": "reference",
+   "citation": "Trade Marks Ordinance, 2001, s. 14",
+   "reason": "Section 44 names 'section 14'",
+   "text": "14. Absolute grounds for refusal of registration\n  (1) The following shall not be registered, namely: ___\n    (a) marks which do not satisfy the requirements of clause (xlvii) of section 2;\n    (b) trade marks which are devoid of any distinctive character;\n    (c) trade marks which consist exclusively of marks or indications which may serve, in trade, to designate the kind, quality, quantity, intended purpose, value, geographical origin, the time of production of goods or of rendering of services, or other characteristics of goods or services; and\n    (d) trade mark which consist exclusively of marks or indications which have become customary in the current language or in the bone fide and established practices of the trade;\n      Provided that a trade mark shall not be refused registration by virtue of clause (b), (c) or (d) if, before the date of application for registration, it has, in fact, acquired a distinctive character as a result of the use made of it or is a well known trade mark.\n  (2) A mark shall not be registered as a trade mark if it consists exclusively of___\n    (a) the shape which results from the nature of the goods themselves;\n    (b) the shape of goods which is necessary to obtain a technical result; or\n    (c) the shape of which gives substantial value to the goods.\n  (3) No trade mark on any part thereof in respect of any goods or services shall be registered which consists of, or contains, any scandalous design, or any matter the use of which would___\n",
+   "provision": "d3adae4d-76f2-4554-b081-6ba5a1d83f50",
+   "governing": [
+    "Trade Marks Ordinance, 2001, s. 22",
+    "Trade Marks Ordinance, 2001, s. 25",
+    "Trade Marks Ordinance, 2001, s. 33"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S3-R08",
+   "question": "My father died and left agricultural land in Punjab. How do I get it entered in my name?",
+   "role": "definition",
+   "citation": "Punjab Land Records Authority Act, 2017, s. 2(t)",
+   "reason": "defines 'rules', used in Section 31",
+   "text": "(t) “rules” mean the rules made under the Act.",
+   "provision": "76f35b4b-422a-4001-a5a8-3fdc2b8f702f",
+   "governing": [
+    "Punjab Land Revenue Rules, 1968, s. 9",
+    "Punjab Land Revenue Rules, 1968, s. 37-C",
+    "West Pakistan Land-Revenue Act, 1967, s. 42"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S2-R04",
+   "question": "My cousin denies that I own my share of our family house. How do I get the court to declare my right?",
+   "role": "reference",
+   "citation": "West Pakistan Land-Revenue Act, 1967, s. 143",
+   "reason": "Section 147 names 'section 143'",
+   "text": "143. Administration of property excluded from partition When any such property as is referred to in clause (b) of section 136 is excluded from partition, the Revenue Officer may determine the extent to and the manner in which the co-sharers and other persons interested therein may make use thereof, and the proportion in which expenditure incurred thereon and profits derived therefrom are, respectively, to be borne by and divided among those persons or any of them.",
+   "provision": "9aa04b55-c0ee-4b4c-89f5-697ab8fa945b",
+   "governing": [
+    "Specific Relief Act, 1877, s. 42",
+    "Succession Act, 1925, s. 192",
+    "Succession Act, 1925, s. 212"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S7-C13",
+   "question": "To settle a murder case in Swat, the jirga wants to give my 14-year-old cousin in marriage to the other family. Is that legal?",
+   "role": "definition",
+   "citation": "Pakistan Penal Code, 1860, s. 10",
+   "reason": "defines 'woman', used in Section 498B",
+   "text": "10. “Man” “Woman” The word “man” denotes a male human being of any age : the word “woman” denotes a female human being of any age.",
+   "provision": "c1bc7108-744f-4835-87df-f9f89f6b53aa",
+   "governing": [
+    "Child Marriage Restraint Act, 1929, s. 1",
+    "Child Marriage Restraint Act, 1929, s. 2",
+    "Child Marriage Restraint Act, 1929, s. 6"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S10-U03",
+   "question": "Lahore ke private hospital ki laparwahi se meri ammi ko nuqsan hua, qanoon mein medical negligence kya hai?",
+   "role": "definition",
+   "citation": "Islamabad Healthcare Regulation Act, 2018, s. 2(xv)",
+   "reason": "defines 'healthcare establishment', used in Section 33, Section 26, Section 30",
+   "text": "(xv) “healthcare establishment” means any premises used or intended to be used for the provision of healthcare services, including but not limited to a hospital, teaching hospitals, surgical centers, maternity homes, nursing homes, clinics, dispensaries, dentistries, dental clinics, clinical laboratories, x-ray laboratories, diagnostic centers, ambulatories, cosmetic centers, psychiatric hospitals, burn units, psychiatric nursing home, community mental health center, hemodialysis center, dialysis center, patient rehabilitation center, slimming clinic or centre, hair transplant clinic, domiciliary care, home based services and such other healthcare or health-related premises as the Federal Government may, by notification in the official Gazette, specify;",
+   "provision": "d1df07ae-c728-4386-a885-de0897b44a75",
+   "governing": [
+    "Punjab Healthcare Commission Act, 2010, s. 18",
+    "Punjab Healthcare Commission Act, 2010, s. 19",
+    "Allied Health Professionals Council Act, 2022, s. 28"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S7-C10",
+   "question": "My brothers in Sukkur forged papers so that I got nothing from our father's estate. Is that a crime?",
+   "role": "definition",
+   "citation": "Pakistan Penal Code, 1860, s. 45",
+   "reason": "defines 'life', used in Section 464, Section 467, Section 477",
+   "text": "45. \"Life\" “Life.” The word “life” denotes the life of a human being, unless the contrary appears from the context.",
+   "provision": "2f0ac8ae-6b48-401a-a236-263072289dbe",
+   "governing": [
+    "Pakistan Penal Code, 1860, s. 463",
+    "Pakistan Penal Code, 1860, s. 464",
+    "Pakistan Penal Code, 1860, s. 465"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S10-C17",
+   "question": "In Gilgit a family is marrying off their 16-year-old daughter. Is that an offence there?",
+   "role": "definition",
+   "citation": "General Clauses Act, 1897, s. 3(36)",
+   "reason": "defines 'offence' in the General Clauses Act (defaults_from), used in Section 9",
+   "text": "(36) “Oath.” “oath” shall include affirmation and declaration in the case of persons by law allowed to affirm or declare instead of swearing: (37) “Offence.” “offence” shall mean any act or omission made punishable by any law for the time being in force:",
+   "provision": "eb78e2da-0a0a-44ea-8f21-3ec8a19fbade",
+   "governing": [
+    "Child Marriage Restraint Act, 1929, s. 1",
+    "Child Marriage Restraint Act, 1929, s. 2",
+    "Child Marriage Restraint Act, 1929, s. 6"
+   ],
+   "verdict": "correct",
+   "note": "correct; merged node (36)-(37)"
+  },
+  {
+   "case": "S4-C04",
+   "question": "How much maternity leave must an employer in Sindh give?",
+   "role": "definition",
+   "citation": "Maternity Benefits Act, 2018, s. 2(b)",
+   "reason": "defines 'Delivery', used in Section 3",
+   "text": "(b) “Delivery” means the birth of a child;",
+   "provision": "82175532-5489-4acc-9fab-55b34fc4a1db",
+   "governing": [
+    "Sindh Shops and Commercial Establishment Act, 2016, s. 14",
+    "Sindh Shops and Commercial Establishment Act, 2015, s. 14",
+    "The Sindh Workers Welfare Board Employees (Service) Rules, 2021, s. 73"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S10-C06",
+   "question": "Buses in Lahore blow out thick black smoke. Is that against the law?",
+   "role": "definition",
+   "citation": "Punjab Environmental Protection Act, 1997, s. 2(xvi)",
+   "reason": "defines 'Government' in the parent law (empowers), used in Section 9",
+   "text": "(xvi) “Government” means Government of the Punjab;]",
+   "provision": "8f1e985b-fc4c-4934-af08-9dcd9efd7b15",
+   "governing": [
+    "Pakistan Environmental Protection Act, 1997, s. 11",
+    "Pakistan Environmental Protection Act, 1997, s. 15",
+    "Punjab Motor Vehicles Rules, 1965, s. 163"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S4-C05",
+   "question": "Is maternity pay a legal right for women workers in Peshawar?",
+   "role": "definition",
+   "citation": "The Khyber Pakhtunkhwa Employees Social Security Act, 2021, s. 2(ad)",
+   "reason": "defines 'regulations', used in Section 36",
+   "text": "(ad) “regulations” mean regulations made under this Act;",
+   "provision": "d674065f-4557-4fb5-998a-13a833bfafce",
+   "governing": [
+    "West Pakistan Maternity Benefit Ordinance, 1958, s. 1",
+    "West Pakistan Maternity Benefit Ordinance, 1958, s. 2",
+    "West Pakistan Maternity Benefit Ordinance, 1958, s. 4"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S10-C16",
+   "question": "A restaurant in Faisalabad operates with no food licence. What can it be punished with?",
+   "role": "definition",
+   "citation": "General Clauses Act, 1897, s. 1I(55)(b)",
+   "reason": "defines 'vessel' in the General Clauses Act (defaults_from), used in Section 6",
+   "text": "(b) the States of Amb, Chitral, Dir and Swat.] 1(56) “Vessel”. “vessel” shall include any ship or boat or any other description of vessel used in navigation. 2[* * * * * * *] 3(57) “Will”. “will” shall include a codicil and every writing making a voluntary posthumous disposition of property: 1Cf. s. 742 of the Merchant Shipping Act, 1894 (57 & 58 Vict., c. 60). This definition supplements the definition of ship in clause (51), supra. See also definition of vessel in s. 48 of the Pakistan Penal Code (Act 45 of 1860), and in s. 3 (4) of the Canal and Drainage Act, 1873 (8 of 1873) and ins. 2 (g) of the Customs Act, 1969 (4 of 1969). 2CIs. (56a) and (56aa) which were ins. by G.G.O. 20 of 1947 and Ord. 21 of 1960 respectively, have been omitted by Ord. 27 of 1981, s. 3 and 2nd Sch. 3Cf. the definition of “will “ in section 2 of the Succession Act, 1925 (39 of 1925). 1(58) “Writing.” expressions referring to “writing” shall be construed as including references to printing, lithography, photography and other modes of representing or reproducing words in a visible form: and",
+   "provision": "f5c1d599-93da-42ba-8241-153eadf39c67",
+   "governing": [
+    "Punjab Food Authority Act, 2011, s. 15",
+    "Punjab Food Authority Act, 2011, s. 29",
+    "Punjab Food Authority Act, 2011, s. 32"
+   ],
+   "verdict": "correct",
+   "note": "correct; General Clauses Act labels damaged ('1I(55)(b)')"
+  },
+  {
+   "case": "S9-P08",
+   "question": "Effect of not presenting a cheque within a reasonable time",
+   "role": "definition",
+   "citation": "The Pakistan Cantonments Account Code, 1955, s. 1(467)(xv)",
+   "reason": "defines 'Treasury', used in Section 33, Section 31",
+   "text": "(xv) “running payment” means a payment for work, supplies services made to a contractor at intervals subject to final settle- ment of the account on the completion or determination of his contract 5 xvi) “Treasury” means a Government treasury OF sub-treasury © ie the State Bank of Pakistan or the National Bank of Pakistan any other Bank in which the Cantonment Fund may ve <A with the sanction of Government ; and includes a : rund i person acting as a banker with whom a Cantonmen deposited under section 107(2) of the Act; * ¢ » 3 ting as 4",
+   "provision": "bc7747d9-2897-434a-bf7a-f5775c2be903",
+   "governing": [
+    "Negotiable Instruments Act, 1881, s. 64",
+    "Negotiable Instruments Act, 1881, s. 72",
+    "Negotiable Instruments Act, 1881, s. 73"
+   ],
+   "verdict": "correct",
+   "note": "correct; label damaged ('1(467)(xv)'), merged node"
+  },
+  {
+   "case": "S10-C14",
+   "question": "A clinic in Karachi botched my surgery. Can the Healthcare Commission act?",
+   "role": "definition",
+   "citation": "Islamabad Healthcare Regulation Act, 2018, s. 2(xvi)",
+   "reason": "defines 'healthcare professional', used in Section 33",
+   "text": "(xvi) “healthcare professional” means a medical practitioner and dentist registered with the Pakistan Medical and Dental Council, nurse, midwife, community midwife, female family workers or lady health visitor registered with the Pakistan Nursing Council, a tabib registered with the National Council for Tibb or homeopathic practitioner registered with the National Council for Homeopathy or pharmacist registered under the Pharmacy Council of Pakistan Act, 1967 (XI of 1967) or paramedic, allied health professional or physiotherapist, psychologist or any other person qualified and permitted by law to provide any medical, surgical treatment or other healthcare service as well as any person qualified to perform any health related test on human body or test any body fluid under a laboratory process and provide results of such test to confirm or determine any health condition or physical or mental ailment;",
+   "provision": "4c8e91b8-07e9-4f59-9680-f999d5c19329",
+   "governing": [
+    "Sindh Healthcare Commission Act, 2013, s. 4",
+    "Sindh Healthcare Commission Act, 2013, s. 19",
+    "Sindh Healthcare Commission Act, 2013, s. 22"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S3-C01",
+   "question": "My landlord in Islamabad says I must vacate. When can he legally evict me?",
+   "role": "definition",
+   "citation": "General Clauses Act, 1897, s. 3(31)",
+   "reason": "defines 'Magistrate' in the General Clauses Act (defaults_from), used in Section 49",
+   "text": "(31) “Magistrate.” “Magistrate” shall include every person exercising all or any of the powers of a Magistrate under the Code of Criminal Procedure for the time being in force:\n(32) “Master” (of a ship). “master”, used with reference to a ship, shall mean any person (except a pilot or harbour-master) having for the time being control or charge of the ship:",
+   "provision": "2ea6c6f9-4d10-4479-bc39-7e34b5672d2d",
+   "governing": [
+    "Islamabad Rent Restriction Ordinance, 2001, s. 17",
+    "The West Pakistan Urban Rent Restriction Act, 1957, s. 13",
+    "Cantonments Rent Restriction Act, 1963, s. 17"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S10-U03",
+   "question": "Lahore ke private hospital ki laparwahi se meri ammi ko nuqsan hua, qanoon mein medical negligence kya hai?",
+   "role": "definition",
+   "citation": "Punjab General Clauses Act, 1956, s. 2(32)",
+   "reason": "defines 'imprisonment' in the General Clauses Act (defaults_from), used in Section 11",
+   "text": "(32) “imprisonment” shall mean imprisonment of either description as defined in the Pakistan Penal Code, 1860 9;",
+   "provision": "decc7d57-662a-4392-b129-1b3009ff2d1d",
+   "governing": [
+    "Punjab Healthcare Commission Act, 2010, s. 18",
+    "Punjab Healthcare Commission Act, 2010, s. 19",
+    "Allied Health Professionals Council Act, 2022, s. 28"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S4-P12",
+   "question": "First step in compulsory acquisition of land",
+   "role": "definition",
+   "citation": "Land Acquisition Act, 1894, s. 3(a)",
+   "reason": "defines 'land', used in Section 6, Section 4, Section 1",
+   "text": "(a) the expression “land” includes benefits to arise out of land, and things attached to the earth or permanently fastened to anything attached to the earth:",
+   "provision": "f7114df7-272d-491e-8d96-e86730a6c35c",
+   "governing": [
+    "The Land Acquisition Regulation, 1961, s. 1",
+    "The Land Acquisition Regulation, 1961, s. 3",
+    "Land Acquisition Act, 1894, s. 1"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S3-R01",
+   "question": "The Rent Controller in Mirpur decided against me. How long do I have to appeal, and to whom?",
+   "role": "definition",
+   "citation": "The Azad Jammu and Kashmir Rent Restriction Act, 1986, s. 2(g)",
+   "reason": "defines 'rented land', used in Section 18",
+   "text": "(g) “rented land” means any land let separately for the purpose of being used principally for business or trade;",
+   "provision": "b649eac7-e9cc-4560-90b3-5dd3972f291d",
+   "governing": [
+    "Islamabad Rent Restriction Ordinance, 2001, s. 21",
+    "Islamabad Rent Restriction Ordinance, 2001, s. 25",
+    "Cantonments Rent Restriction Act, 1963, s. 24"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S9-C20",
+   "question": "My bank in Islamabad refused to pay my cheque though I had enough money in my account. Is the bank liable?",
+   "role": "definition",
+   "citation": "General Clauses Act, 1897, s. 3(36)",
+   "reason": "defines 'offence' in the General Clauses Act (defaults_from), used in Section 4, Section 97",
+   "text": "(36) “Oath.” “oath” shall include affirmation and declaration in the case of persons by law allowed to affirm or declare instead of swearing: (37) “Offence.” “offence” shall mean any act or omission made punishable by any law for the time being in force:",
+   "provision": "eb78e2da-0a0a-44ea-8f21-3ec8a19fbade",
+   "governing": [
+    "Negotiable Instruments Act, 1881, s. 30",
+    "Negotiable Instruments Act, 1881, s. 31",
+    "Negotiable Instruments Act, 1881, s. 32"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S3-C16",
+   "question": "A Karachi shop sold me a faulty fridge. How do I bring a claim?",
+   "role": "definition",
+   "citation": "Sindh Consumer Protection Act, 2015, ii",
+   "reason": "defines 'Consumer', used in Section 29, Section 129, Section 26",
+   "text": "(ii) 118 \"Consumer\" means a person or entity who- buys or obtain on lease any product for a consideration and includes any user of such product but does not include a persor who obtains any product for resale or fo- any commercial purpose: or hires any service for a consideration and includes any beneficiary of such services, -\n  Explanation For the purpose of sub-clause (i) \"Commercial purpose\" does not include use by a consumer of products bought and used by him only for the purpose of his livelihood as a self employed person.",
+   "provision": "b5601de3-6f76-4a38-aaef-4a023ec3db76",
+   "governing": [
+    "Sindh Consumer Protection Act, 2015, b",
+    "Sindh Consumer Protection Act, 2015, s. 129",
+    "Sindh Consumer Protection Act, 2015, s. 26"
+   ],
+   "verdict": "correct",
+   "note": "correct; citation label 'ii'"
+  },
+  {
+   "case": "S10-P04",
+   "question": "Environmental protection order in Punjab",
+   "role": "schedule",
+   "citation": "Punjab Environmental Protection (Smog Prevention and Control) Rules, 2023, Schedule",
+   "reason": "Section 12 names 'Schedule'",
+   "text": "Schedule Amount of administrative penalty ( in Rupees) Sr. No. Nature of Violations 1st Occurrence on each subsequent occurrence of Rs.100,000/- to Demolition of the brick kiln Rs. 500,000/- violation\n  (1) Operating brick kiln on technology other than zigzag Rs. 100,000/- to Rs.500,000/- Demolition of the brick kiln\n  (2) Non- conversation of brick kiln to zigzag technology Rs. 2000/- Rs. 4000/-\n  (3) Operating smoke emitting vehicles on road Rs. 5000/- Rs. 10,000/-\n  (4) Burning solid, litter or other waste material in open space Rs. 100,000/- to Rs.500,000/- Rs. 600,000/- to 1,000,000/-\n  (5) Operating excessive smoke emitting factory, unit, project, business concerns, which makes the air unclean or impure or smoggy or health hazard Rs. 200,000/- to Rs.500,000/- Demolition of the object emitting\n  (6) Emitting toxic & poisonous gases in atmosphere Rs. 200,000/- to Rs.500,000/- Rs. 600,000/- to Rs.1,000,000/- toxic & poisonous gases\n  (7) Causing damage to human health, safety, biodiversity & to natural environment Rs. 100,000/- to Rs.500,000/- Rs. 600,000/- to\n  (8) Operating tyre pyrolysis plant Rs.1,000,000/- double of the penalty\n  (9) Stubble Burning or toxic agricultural waste burning 0 - 1 acre Rs. 15,000/- 1 - 2 acres Rs. 30,000/- 2 - 3 acres Rs. 45,000/- 3 - 4 acres Rs. 60,000/- 4 - 5 acres Rs. 75,000/- 5 - 6 acres Rs. 90,000/- 6 - 7 acres Rs. 105,000/- 7 - 8 acres Rs. 120,000/- 8 - 9 acres Rs. 135,000/- 9 - 10 acres Rs. 150,000/- Per acre rate of penalty from 10 -",
+   "provision": "a4b2ff09-5965-40ff-aac1-196d713668b3",
+   "governing": [
+    "Punjab Environmental Protection Act, 1997, s. 1",
+    "Punjab Environmental Protection Act, 1997, s. 6",
+    "Punjab Environmental Protection Act, 1997, s. 16"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S5-P11",
+   "question": "Definition and kinds of mortgage",
+   "role": "definition",
+   "citation": "Companies Act, 2017, s. 2(17)",
+   "reason": "defines 'company' in the parent law (empowers), used in Form",
+   "text": "(17) “company” means a company formed and registered under this Act or the company law; (18) “company law” means the repealed Companies Act, 1913 (VII of 1913), Companies Ordinance, 1984(XLVII of 1984), Companies Ordinance, 2016 (VI of 2016) and also includes this Act unless the context provides otherwise;",
+   "provision": "c960a050-9242-4fb0-ba17-343580da9b46",
+   "governing": [
+    "Transfer of Property Act, 1882, s. 58",
+    "Transfer of Property Act, 1882, s. 59",
+    "Transfer of Property Act, 1882, s. 59A"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S6-C20",
+   "question": "My son spent a year in jail in Karachi before his trial ended. Will that year count in his sentence?",
+   "role": "definition",
+   "citation": "General Clauses Act, 1897, s. 3(31)",
+   "reason": "defines 'Magistrate' in the General Clauses Act (defaults_from), used in Section 7",
+   "text": "(31) “Magistrate.” “Magistrate” shall include every person exercising all or any of the powers of a Magistrate under the Code of Criminal Procedure for the time being in force:\n(32) “Master” (of a ship). “master”, used with reference to a ship, shall mean any person (except a pilot or harbour-master) having for the time being control or charge of the ship:",
+   "provision": "2ea6c6f9-4d10-4479-bc39-7e34b5672d2d",
+   "governing": [
+    "Code of Criminal Procedure, 1898, s. 382-A",
+    "Code of Criminal Procedure, 1898, s. 382-B",
+    "Code of Criminal Procedure, 1898, s. 397"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S5-C14",
+   "question": "The fard (land record) in Sheikhupura shows someone else's name on land I possess. What can I do?",
+   "role": "definition",
+   "citation": "Punjab Land Reforms (Procedure for Grant of Land) Rules, 1978, s. 2(1)(e)",
+   "reason": "defines 'Deputy Land Commissioner', used in Section 11",
+   "text": "(e) “Deputy Land Commissioner” means an officer appointed as such for any district by the Commission and shall include any person for the time being performing the functions as such;",
+   "provision": "0065602b-1960-4537-a5d8-4d6a8bc87c3a",
+   "governing": [
+    "West Pakistan Land-Revenue Act, 1967, s. 43",
+    "West Pakistan Land-Revenue Act, 1967, s. 52",
+    "West Pakistan Land-Revenue Act, 1967, s. 53"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S2-R08",
+   "question": "My maintenance case in the family court will take months. Can I get money in the meantime?",
+   "role": "definition",
+   "citation": "General Clauses Act, 1897, s. 3(16)",
+   "reason": "defines 'document' in the General Clauses Act (defaults_from), used in Section 13",
+   "text": "(16) “Document.” “document” shall include any matter written, expressed or described upon any substance by means of letters, figures or marks, or by more than one of those means which is intended to be used, or which may be used, for the purpose of recording that matter: 10[* * * * * * *]",
+   "provision": "f656c35f-8876-451d-9a72-af1144e65168",
+   "governing": [
+    "Family Courts Act, 1964, s. 13",
+    "Family Courts Act, 1964, s. 17-A",
+    "Family Courts Act, 1964, Schedule"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S1-R08",
+   "question": "My 15-year-old son has been arrested. Which court will try him?",
+   "role": "definition",
+   "citation": "Code of Criminal Procedure, 1898, s. 4(c)",
+   "reason": "defines 'charge', used in Section 28",
+   "text": "(c) “Charge.” “charge” includes any head of charge when the charge contains more heads than one:\n(d) 4[* * * * * * *]\n(e) 5[* * * * * * *]",
+   "provision": "6bf58402-ee6e-43e6-9e1a-c47972a41f71",
+   "governing": [
+    "Code of Criminal Procedure, 1898, s. 6",
+    "Code of Criminal Procedure, 1898, s. 28",
+    "Code of Criminal Procedure, 1898, s. 29B"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S1-P05",
+   "question": "Measure of damages for breach of contract",
+   "role": "definition",
+   "citation": "Limitation Act, 1908, s. 2(9)",
+   "reason": "defines 'promissory note', used in Section 65",
+   "text": "(9) ] “promissory note” has the same meaning as in the Negotiable Instruments Act, 1881 (XXVI of 1881);]",
+   "provision": "f42ca2a6-00fc-441d-9885-b4c866fd8bd4",
+   "governing": [
+    "Contract Act, 1872, s. 1",
+    "Contract Act, 1872, s. 55",
+    "Contract Act, 1872, s. 73"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S10-C13",
+   "question": "My mother was harmed by careless treatment at a private hospital in Lahore. When is that medical negligence in law?",
+   "role": "definition",
+   "citation": "Pakistan Penal Code, 1860, s. 299(b)",
+   "reason": "defines 'arsh', used in Section 337-H, Section 337-I",
+   "text": "(b) \"arsh\" means the compensation specified in this Chapter to be paid to the victim or his heirs under this Chapter;",
+   "provision": "9cc22a18-221e-4d81-9588-74437e21fc03",
+   "governing": [
+    "Punjab Healthcare Commission Act, 2010, s. 19",
+    "Pakistan Penal Code, 1860, s. 337H",
+    "Pakistan Penal Code, 1860, s. 269"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S7-C11",
+   "question": "My family in Mardan is forcing me to marry a man I don't want. Is that against the law?",
+   "role": "definition",
+   "citation": "General Clauses Act, 1897, s. 3(26)",
+   "reason": "defines 'imprisonment' in the General Clauses Act (defaults_from), used in Section 498B, Section 365B, Section 310A, Section 6, Section 498C, Section 12, Section 493A, Section 494, Section 495, Section 496, Section 9",
+   "text": "(26) “Imprisonment.” “imprisonment” shall mean imprisonment of either description as defined in the Pakistan Penal Code (Act XLV of 1860): 8[(27) “India.” “India” shall mean—\n  (a) as respects any period before the establishment of the Federation of Pakistan, British India together with all territories of any Indian ruler then under the suzerainty of His Majesty, all territories under the suzerainty of such an Indian ruler, and the tribal areas; and\n  (b) as respects any period after the establishment of the Federation of Pakistan all territories for the time being included in the Dominion of India 9[or the Union of India] :] 1The word “Madras” omitted by G.G.O. 20 of 1947, Sch. 1[* * * * * * *] 2[* * * * * * *]",
+   "provision": "795458cb-1c6b-4d7f-836e-cc25b22a7f34",
+   "governing": [
+    "Pakistan Penal Code, 1860, s. 310A",
+    "Pakistan Penal Code, 1860, s. 365B",
+    "Pakistan Penal Code, 1860, s. 366"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S3-P07",
+   "question": "Offence and punishment of trafficking in persons",
+   "role": "definition",
+   "citation": "Prevention of Trafficking In Persons Act, 2018, s. 2(c)",
+   "reason": "defines 'Government' in the parent law (empowers), used in Section 2",
+   "text": "(c) “Government” means the Federal Government;",
+   "provision": "92aa9169-f7a3-47e4-b46e-13d651f7b5a5",
+   "governing": [
+    "Prevention of Trafficking In Persons Act, 2018, s. 1",
+    "Prevention of Trafficking In Persons Act, 2018, s. 3",
+    "Prevention of Trafficking In Persons Act, 2018, s. 5"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S5-P06",
+   "question": "Formalities for a gift of immovable property under the Transfer of Property Act",
+   "role": "reference",
+   "citation": "The Gift-tax Act, 1963, s. 8",
+   "reason": "Section 2 names 'section 8'",
+   "text": "8. Appellate Assistant Commissioners of Gift-tax.—_The Board may empower as many persons as it thinks fit to exercise under this Act the functions of the Appellate Assistant Commissioner of Gift-tax, and on being so empowered the Appellate Assistant Commissioners shall per- form their functions in respect of such areas or such persons or such classes of persons as the Board may direct, and where such directions have assigned to two or more Appellate Assistant Commissioners the same areas, or the same persons or the same classes of persons they shall perform their functions in accordance with such orders as the Board may make for the distribution and allocation of the work to be performed.",
+   "provision": "e603db66-4690-4bb6-8751-ebf4bcd05ca2",
+   "governing": [
+    "Transfer of Property Act, 1882, s. 74",
+    "Transfer of Property Act, 1882, s. 75",
+    "Transfer of Property Act, 1882, s. 122"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S8-P05",
+   "question": "How is a candidate nominated?",
+   "role": "definition",
+   "citation": "The Basic Democracies (Federal Capital) Election Rules, 1959, s. 2",
+   "reason": "defines 'Basic Area', used in Section 8",
+   "text": "2. Definitions.—In these rules, unless there is anything repugnant in the subject or context,— (1) “ Administrator ’? means the Administrator of Karach ; (2) “appointed date or dates” means the date or dates specified in the Election Programme , (3) “Article? means Article of the Order ; (4) “Basic Area” means the area for whic to be constituted ; cil, Union Committee “ i » means a Union Coun ©) Basic Den Committee to be constituted under the Basic Democracies Order, 1959 ;\n  (6) “candidate” means a person yin nas) - candidate, whether his nomination\n  (7) “clause”? means 2 clause of an Article ; ; , can (8) “ contesting candidate ” means a Care his candidature ; validly nominated, 28 pas Oe appointed to assist & Tyictri i er’? means @n officer a as 6 ® District ee the conduct of elections in the district ; ( 1955 ) Price; Annas 10. h a Basic Democracy is has been nominated as a valid or not; didate who has been —_ — 7 2 8 ; ° » 99 thicer ap oint “ Divisional Election Officer” means an 0 pointed ty\n  (10) assist the Administrator in the conduct of elections in tp, Federal Capital ; (11) “election”? means an election to a Basic Democracy ;\n  (12) “ Election Programme ” means the programme of election Made under rule 5;\n  (13) “electoral roll” means the electoral roll of persons. entitled to vote at an election under these rules ;\n  (14) “Form” means a form given in the Schedule to these rules ;\n  (15) “material irregularity ” means any non-compliance with the provisions of the",
+   "provision": "7765fc81-6982-48d4-bc55-8047a508ff77",
+   "governing": [
+    "Elections Act, 2017, s. 60",
+    "Elections Act, 2017, s. 110",
+    "The National and Provincial Assemblies (Elections) Act, 1964, s. 12"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S4-C01",
+   "question": "My employer in Faisalabad pays me less than the government minimum wage. Is that allowed?",
+   "role": "definition",
+   "citation": "Punjab Labour Code, 2026, s. 404(2)(a)",
+   "reason": "defines 'company', used in Section 165",
+   "text": "(a) “company” means a body corporate, and includes a firm or other association of individuals; and",
+   "provision": "4568d05e-794c-4284-a45f-cbb44358ac3a",
+   "governing": [
+    "Minimum Wages Ordinance, 1961, s. 9",
+    "Punjab Minimum Wages Act, 2019, s. 11",
+    "Punjab Labour Code, 2026, s. 165"
+   ],
+   "verdict": "wrong",
+   "note": "Punjab Labour Code s.404(2)(a) 'company' reached s.165 as a whole-law definition; it is most likely the section's own (offences by companies), but its scope words, if printed, are not in its ancestors"
+  },
+  {
+   "case": "S3-R01",
+   "question": "The Rent Controller in Mirpur decided against me. How long do I have to appeal, and to whom?",
+   "role": "definition",
+   "citation": "Land Control (Karachi Division) Act, 1952, s. 2(iii)",
+   "reason": "defines 'Commissioner', used in Section 17",
+   "text": "(iii) “building” includes any structure of any kind temporary or permanent, whether used or intended to be used for the purpose of human habitation or otherwise; 3[(iiia) “Commissioner” means the Commissioner of the Karachi Division;]",
+   "provision": "8aff6c83-3b82-4722-830a-6b0843e06ac9",
+   "governing": [
+    "Islamabad Rent Restriction Ordinance, 2001, s. 21",
+    "Islamabad Rent Restriction Ordinance, 2001, s. 25",
+    "Cantonments Rent Restriction Act, 1963, s. 24"
+   ],
+   "verdict": "correct",
+   "note": "correct; merged node (iii)-(iiia)"
+  },
+  {
+   "case": "S3-C01",
+   "question": "My landlord in Islamabad says I must vacate. When can he legally evict me?",
+   "role": "definition",
+   "citation": "Land Control (Karachi Division) Act, 1952, s. 2(iv)",
+   "reason": "defines 'controlled area', used in Section 11",
+   "text": "(iv) “controlled area” means an area declared to be a controlled area under section 3 of the Act;",
+   "provision": "9e4f7ff8-cb06-4b0d-a84d-511738421c91",
+   "governing": [
+    "Islamabad Rent Restriction Ordinance, 2001, s. 17",
+    "The West Pakistan Urban Rent Restriction Act, 1957, s. 13",
+    "Cantonments Rent Restriction Act, 1963, s. 17"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S3-R02",
+   "question": "How do I appeal a Rent Controller's order in Islamabad?",
+   "role": "definition",
+   "citation": "Karachi Rent Restriction Act, 1953, s. 2(1)",
+   "reason": "defines 'Controller', used in Section 15",
+   "text": "(1) “Controller” means a judicial officer who is appointed by the Provincial Government to perform the functions of a Controller under this Act; ]",
+   "provision": "e06e000e-05cd-43f8-8f97-31208f00fa80",
+   "governing": [
+    "The West Pakistan Urban Rent Restriction Act, 1957, s. 17",
+    "Islamabad Rent Restriction Ordinance, 2001, s. 16A",
+    "Islamabad Rent Restriction Ordinance, 2001, s. 21"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S6-R06",
+   "question": "Can the Peshawar High Court revise an order passed in my criminal case?",
+   "role": "qualification",
+   "citation": "Code of Criminal Procedure, 1898, s. 106",
+   "reason": "Section 423 is subject to 'section 106'",
+   "text": "106. Security for keeping the peace on conviction\n  (1) Whenever any person accused of 4[any offence punishable under Chapter VIII of the Pakistan Penal Code (XLV of 1860), other than an offence punishable under section 143, section 149, section 153A or section 154 thereof, or of] assault or other offence involving a breach of the peace, or of abetting the same, 1[* * *] or any person accused of committing criminal intimidation, is convicted of such offence before a High Court, a Court of Session, or the Court of 2[* * *] 3[* * *] a Magistrate of the first class, and such Court is of opinion that it is necessary to require such person to execute a bond for keeping the peace, such Court may, at the time of passing sentence on such person, order him to execute a bond for a sum proportionate to his means, with or without sureties, for keeping the peace during such period, not exceeding three years, as it thinks fit to fix.\n  (2) If the conviction is set aside on appeal or otherwise, the bond so executed shall become void.\n  (3) An order under this section may also be made by an Appellate Court 4[or by a Court] exercising its powers of revision. B.__ Security for keeping the Peace in other Cases and security for Good Behaviour.",
+   "provision": "e8806e35-45bf-4dd5-afb8-cc3c990140b3",
+   "governing": [
+    "Code of Criminal Procedure, 1898, s. 411A",
+    "Code of Criminal Procedure, 1898, s. 423",
+    "Code of Criminal Procedure, 1898, s. 435"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S3-R01",
+   "question": "The Rent Controller in Mirpur decided against me. How long do I have to appeal, and to whom?",
+   "role": "definition",
+   "citation": "The Azad Jammu and Kashmir Rent Restriction Act, 1986, s. 2(c)",
+   "reason": "defines 'Controller', used in Section 18",
+   "text": "(c) “Controller” means a judicial officer who is appointed by the Government to perform the function of a Controller under this Act;",
+   "provision": "21ebaf3a-c47a-43d0-b1f4-efe7db41d12c",
+   "governing": [
+    "Islamabad Rent Restriction Ordinance, 2001, s. 21",
+    "Islamabad Rent Restriction Ordinance, 2001, s. 25",
+    "Cantonments Rent Restriction Act, 1963, s. 24"
+   ],
+   "verdict": "correct",
+   "note": ""
+  },
+  {
+   "case": "S1-C04",
+   "question": "My husband says he has divorced me. Does he have to inform anyone for it to count?",
+   "role": "definition",
+   "citation": "S.R.O. 247 (I)-2021 - The National Database and Registration Authority (Alien Registration Card) Rules, 2021, s. 2(1)(g)",
+   "reason": "defines 'registered foreigner', used in Section 6",
+   "text": "(g) “registered foreigner” means a foreigner eligible to be registered under these rules;",
+   "provision": "57d9f176-c1e6-4342-962c-d94625e12462",
+   "governing": [
+    "Muslim Family Laws Ordinance, 1961, s. 5",
+    "Muslim Family Laws Ordinance, 1961, s. 7",
+    "Dissolution of Muslim Marriages Act, 1939, Preamble"
+   ],
+   "verdict": "correct",
+   "note": ""
+  }
+ ],
+ "round": "test, judged once, on the frozen D-108 version (link tables, nizam.links/7)",
+ "result": {
+  "correct": 39,
+  "of": 40
+ },
+ "checked_by": "the lead (author check, not a lawyer's review), 21 Nov 2026"
+}

@@ -20,6 +20,19 @@ def test_a_place_names_its_territory(q, terr):
     assert territory_of(q) == terr
 
 
+@pytest.mark.parametrize("q,terr", [
+    ("پنجاب میں مالک مکان کرایہ دار کو کن وجوہات پر مکان خالی کروا سکتا ہے؟", "punjab"),
+    ("کیا سندھ میں بچوں کی تعلیم مفت اور لازمی ہے؟", "sindh"),
+    ("کیا اسلام آباد میں کوئی کمپنی مجھے نوکری دینے سے انکار کر سکتی ہے؟", "ict"),
+    ("آزاد کشمیر میں رینٹ کنٹرولر کے فیصلے کے خلاف اپیل کتنے دن میں کی جا سکتی ہے؟", "ajk"),
+    ("میرپور خاص میں زمین کا مقدمہ", "sindh"),                 # the longer name wins over AJK's Mirpur
+    ("KP mein ghar mein aurat par tashaddud ki saza kya hai?", "kp"),
+])
+def test_an_urdu_script_place_and_kp_name_their_territory(q, terr):
+    # D-109: a question written in Urdu names its place in Urdu
+    assert territory_of(q) == terr
+
+
 def test_no_place_or_two_places_is_no_territory():
     assert territory_of("can my employer fire me") is None
     assert territory_of("a case in Karachi South and Quetta") is None      # a comparison: never guessed
