@@ -25,6 +25,7 @@ from __future__ import annotations
 import argparse
 import glob
 import json
+import math
 import statistics
 import sys
 import time
@@ -70,6 +71,26 @@ class HybridSearch:
         return [SimpleNamespace(provision_id=c.unit_id, score=c.score, rank=c.rank) for c in r.candidates]
 
 
+RERANKER = None      # --rerank-scores: GPU-made reranker scores replayed (evals/precomputed_reranker.py, D-101)
+
+
+class RankedSearch:
+    """L3's reranked candidates (nizam.retrieval.rerank.ranked, D-101): the profile's slate, then the cross-encoder"""
+    name = "ranked"
+
+    def __init__(self):
+        self.last_trace = {}
+
+    def search(self, q, filters, k):
+        from types import SimpleNamespace
+        from nizam.retrieval.rerank import ranked
+        r = ranked(q, filters, k, encoder=ENCODER, reranker=RERANKER)
+        if r.degraded:                       # unreranked or a fallback must never be scored as the reranked path
+            raise SystemExit(f"ranked degraded to {r.degraded}: {r.trace.get('degraded_stages') or r.trace.get('degraded')}")
+        self.last_trace = r.trace
+        return [SimpleNamespace(provision_id=c.unit_id, score=c.score, rank=c.rank) for c in r.candidates]
+
+
 class DenseOnly:
     """the dense generator alone, collapsed to units and gated -- the ablation's 'dense only' row (docs/10)"""
     name = "dense"
@@ -109,14 +130,26 @@ def main() -> int:
                                           "reference_questions.json): hybrid/dense search the GPU generation (D-099)")
     ap.add_argument("--vectors", default="reference_q.npy")
     ap.add_argument("--questions", default="reference_questions.json")
+    ap.add_argument("--rerank-pairs", help="pairs.jsonl the reranker scores were made for (evals/rerank_slates.py)")
+    ap.add_argument("--rerank-scores", help="scores-<model>.npy from tools/kaggle/rerank_kernel.py: the 'ranked' row "
+                                            "replays them instead of running the CPU reranker")
+    ap.add_argument("--rerank-model", help="hub id@revision@kind of those scores, for the trace")
     a = ap.parse_args()
     if a.precomputed:
         global ENCODER
         sys.path.insert(0, str(ROOT / "evals"))
         from precomputed_encoder import PrecomputedEncoder
         ENCODER = PrecomputedEncoder.from_bundle(Path(a.precomputed), a.vectors, a.questions)
+    if a.rerank_scores:
+        global RERANKER
+        sys.path.insert(0, str(ROOT / "evals"))
+        from precomputed_reranker import PrecomputedReranker
+        from nizam.inference.reranker import RerankerInfo
+        hub, rev, kind = (a.rerank_model or "replayed@?@cls").split("@")
+        RERANKER = PrecomputedReranker(RerankerInfo(hub, rev, kind, 1024, "", "gpu"), Path(a.rerank_pairs),
+                                       Path(a.rerank_scores))
     every = [Bm25LexicalSearch(), TsRankLexicalSearch(), TsRankAnyLexicalSearch(), FusedSearch(), HybridSearch(),
-             DenseOnly()]
+             DenseOnly(), RankedSearch()]
     impls = [i for i in every if i.name in a.impls.split(",")]
     per = {i.name: [] for i in impls}
     with connect() as conn, conn.cursor() as cur:
@@ -145,9 +178,14 @@ def main() -> int:
                     "results": len(got), "ms": round(ms), "generation": trace.get("dense_generation"),
                     "encode_ms": trace.get("encode_ms"), "dense_ms": (trace.get("dense_stage_ms") or {}).get("dense_window"),
                     "dense_wait_ms": (trace.get("stage_ms") or {}).get("dense_wait"),
+                    "rerank_ms": ((trace.get("rerank") or {}).get("passages_ms", 0) +
+                                  (trace.get("rerank") or {}).get("score_ms", 0)) if trace.get("rerank") else None,
                     "recall10": sum(1 for r in ranks.values() if r and r <= 10) / len(gold),
                     f"recall{a.k}": sum(1 for r in ranks.values() if r) / len(gold),
-                    "mrr10": (1 / first) if first and first <= 10 else 0.0})
+                    "mrr10": (1 / first) if first and first <= 10 else 0.0,
+                    # binary NDCG@10, each gold unit credited once at its first hit (as evals/rerank_eval.py)
+                    "ndcg10": sum(1 / math.log2(r + 1) for r in set(ranks.values()) if r and r <= 10)
+                              / sum(1 / math.log2(i + 1) for i in range(1, min(len(gold), 10) + 1))})
     summary = {}
     for name, rows in per.items():
         summary[name] = {
@@ -172,10 +210,16 @@ def main() -> int:
             dn = [r["dense_ms"] for r in rows if r.get("dense_ms") is not None]
             summary[name]["encode_ms_p50"] = round(statistics.median(enc))
             summary[name]["dense_window_ms_p50"] = round(statistics.median(dn)) if dn else None
+        rr = [r["rerank_ms"] for r in rows if r.get("rerank_ms") is not None]
+        if rr:
+            summary[name]["rerank_ms_p50"] = round(statistics.median(rr))
+            summary[name]["rerank_ms_p95"] = round(sorted(rr)[int(0.95 * (len(rr) - 1))])
+        summary[name]["ndcg@10"] = round(statistics.mean(r["ndcg10"] for r in rows), 4)
     Path(a.out).parent.mkdir(parents=True, exist_ok=True)
     Path(a.out).write_text(json.dumps({"provisional": "golden sets 1-4 are drafts; kappa not measured (D-095)",
                                        "k": a.k, "unscoped": a.unscoped, "split": a.split,
-                                       "precomputed_encoder": a.precomputed, "summary": summary, "cases": per},
+                                       "precomputed_encoder": a.precomputed, "precomputed_reranker": a.rerank_scores,
+                                       "summary": summary, "cases": per},
                                       indent=1), encoding="utf-8")
     print(json.dumps(summary, indent=1))
     print(f"wrote {a.out}")

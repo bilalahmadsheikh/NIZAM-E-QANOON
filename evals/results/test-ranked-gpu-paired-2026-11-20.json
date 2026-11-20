@@ -1,0 +1,75 @@
+{
+ "run": "evals/results/test-ranked-gpu-2026-11-20.json",
+ "split": "test",
+ "b_minus_a": "ranked - hybrid",
+ "summary": {
+  "hybrid": {
+   "cases": 72,
+   "recall@10": 0.75,
+   "recall@50": 0.9514,
+   "mrr@10": 0.4708,
+   "no_result_cases": 0,
+   "latency_ms_p50": 1216,
+   "latency_ms_p95": 7348,
+   "encode_ms_p50": 0,
+   "dense_window_ms_p50": 668,
+   "ndcg@10": 0.5313
+  },
+  "ranked": {
+   "cases": 72,
+   "recall@10": 0.9306,
+   "recall@50": 0.9722,
+   "mrr@10": 0.7378,
+   "no_result_cases": 0,
+   "latency_ms_p50": 826,
+   "latency_ms_p95": 1667,
+   "encode_ms_p50": 0,
+   "dense_window_ms_p50": 222,
+   "rerank_ms_p50": 157,
+   "rerank_ms_p95": 724,
+   "ndcg@10": 0.7751
+  }
+ },
+ "paired": {
+  "ndcg10": {
+   "n": 72,
+   "mean": 0.2438,
+   "ci95": [
+    0.1623,
+    0.3285
+   ],
+   "worse": 8,
+   "better": 41
+  },
+  "mrr10": {
+   "n": 72,
+   "mean": 0.2671,
+   "ci95": [
+    0.1769,
+    0.3585
+   ],
+   "worse": 7,
+   "better": 41
+  },
+  "recall10": {
+   "n": 72,
+   "mean": 0.1806,
+   "ci95": [
+    0.0833,
+    0.2847
+   ],
+   "worse": 2,
+   "better": 15
+  },
+  "recall50": {
+   "n": 72,
+   "mean": 0.0208,
+   "ci95": [
+    -0.0139,
+    0.0694
+   ],
+   "worse": 1,
+   "better": 2
+  }
+ }
+}

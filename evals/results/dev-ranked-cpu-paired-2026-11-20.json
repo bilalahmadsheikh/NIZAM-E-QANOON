@@ -1,0 +1,75 @@
+{
+ "run": "evals/results/dev-ranked-cpu-2026-11-20.json",
+ "split": "dev",
+ "b_minus_a": "ranked - hybrid",
+ "summary": {
+  "hybrid": {
+   "cases": 108,
+   "recall@10": 0.6157,
+   "recall@50": 0.7639,
+   "mrr@10": 0.4122,
+   "no_result_cases": 0,
+   "latency_ms_p50": 1150,
+   "latency_ms_p95": 4153,
+   "encode_ms_p50": 75,
+   "dense_window_ms_p50": 487,
+   "ndcg@10": 0.4544
+  },
+  "ranked": {
+   "cases": 108,
+   "recall@10": 0.6157,
+   "recall@50": 0.7639,
+   "mrr@10": 0.4906,
+   "no_result_cases": 0,
+   "latency_ms_p50": 1470,
+   "latency_ms_p95": 2315,
+   "encode_ms_p50": 56,
+   "dense_window_ms_p50": 261,
+   "rerank_ms_p50": 682,
+   "rerank_ms_p95": 1283,
+   "ndcg@10": 0.5123
+  }
+ },
+ "paired": {
+  "ndcg10": {
+   "n": 108,
+   "mean": 0.0579,
+   "ci95": [
+    0.0108,
+    0.1058
+   ],
+   "worse": 12,
+   "better": 29
+  },
+  "mrr10": {
+   "n": 108,
+   "mean": 0.0783,
+   "ci95": [
+    0.0154,
+    0.1415
+   ],
+   "worse": 12,
+   "better": 29
+  },
+  "recall10": {
+   "n": 108,
+   "mean": 0.0,
+   "ci95": [
+    0.0,
+    0.0
+   ],
+   "worse": 0,
+   "better": 0
+  },
+  "recall50": {
+   "n": 108,
+   "mean": 0.0,
+   "ci95": [
+    0.0,
+    0.0
+   ],
+   "worse": 0,
+   "better": 0
+  }
+ }
+}

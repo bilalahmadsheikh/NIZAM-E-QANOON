@@ -1,0 +1,23 @@
+{
+  "written": "2026-11-20, after the int8 exports and the host latency measurement, BEFORE any score of the configurations below existed",
+  "amends": "evals/results/rerank-rule-2026-11-20.json, step 4 (CPU profile), which did not say what happens when no allowed model is under 1,000 ms",
+  "why": {
+    "measured_on_this_host": "6 cores (WSL, 5 GB), onnxruntime CPU, the served path nizam.inference.reranker.OnnxReranker, batch 16, the dev cpu/hybrid slates at 1,600-character passages (median 330 tokens a pair): rerank-50 p50 int8 bge-v2-m3 35,133 ms (6 threads, 3 queries); int8 mMiniLM per channel 5,274 ms (4 threads) / 4,956 ms (6 threads, 10 queries). gte-ml int8 fails step 4's 1-point condition (per tensor 0.457 against 0.546; per channel 0.070).",
+    "consequence": "no allowed model is under 1,000 ms at the bake-off's configuration, so step 4 has no model to take. Cost scales with the tokens scored, so the remaining levers are passage length and rerank depth -- both change what the reranker reads and so need a dev score."
+  },
+  "search": {
+    "model": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1 int8, per-channel graph (the variant within 1 point of its fp16 bake-off: 0.501 against 0.496). bge-v2-m3 is not searched: at 35 s for 50 passages it is over 1,000 ms even at an eighth of the tokens.",
+    "slate": "cpu/hybrid, the CPU profile's chosen slate (rule step 1); held fixed",
+    "passage_chars": [400, 800, 1600],
+    "depth": [10, 20, 30, 50],
+    "depth_meaning": "the first `depth` units of the fused slate are scored; cited units among them stay first (the rule's citations clause); the scored rest are reordered by score; units beyond `depth` keep their fused order below",
+    "scoring": "on this host, through OnnxReranker exactly as served (batch 16 within the query; the int8 graph's activation quantisation is per batch, so scores depend on batch-mates -- measured 0.17 mean absolute difference between batch 16 and batch 1 -- and serving's batching is what is scored)",
+    "latency": "per configuration, the time of OnnxReranker.score over that query's `depth` passages, every dev case; p50 and p95 reported"
+  },
+  "rule": [
+    "A. Among the configurations whose dev p50 latency is at most 1,000 ms on this host, the one with the highest NDCG@10 + MRR@10 is chosen (ties: lower p50).",
+    "B. It ships only if its dev NDCG@10 beats the un-reranked cpu/hybrid slate with a paired bootstrap 95% CI (10,000 resamples) excluding zero -- rule step 3 unchanged.",
+    "C. If none qualifies, the CPU profile ships no reranker: it serves the fused order marked 'unreranked' (docs/04 §9.2), and bge-v2-m3 (the step-1 choice, +14.0 NDCG points int8) is recorded as what a CPU host fast enough for it would serve.",
+    "D. The test split is scored once, after the freeze (rule step 6 unchanged)."
+  ]
+}

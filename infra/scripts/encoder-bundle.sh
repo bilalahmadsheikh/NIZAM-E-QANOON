@@ -58,10 +58,38 @@ PY
   echo "$id"
 }
 
-# check_encoder DIR : verify DIR/encoder and DIR/encoder-gpu against their SHA256SUMS (absent folders: nothing to check)
+# bundle_rerankers OUT_DIR : the cross-encoders (D-101) are not database state, so they travel beside it when installed:
+# the CPU reranker (int8 ONNX, ${NIZAM_RERANKER_DIR:-${CORPUS_ROOT}/models/reranker}) into OUT_DIR/reranker, and the
+# GPU reranker's validation bundle (${NIZAM_GPU_RERANKER_DIR:-${CORPUS_ROOT}/models/reranker-gpu}) into
+# OUT_DIR/reranker-gpu, each with SHA256SUMS. Prints what it bundled ("cpu gpu", either, or "none"). A copy without a
+# reranker serves the fused order marked "unreranked" (docs/04 §9.2), so a missing one is reported, not refused.
+bundle_rerankers() {
+  local out="$1" src got="" f
+  src="${NIZAM_RERANKER_DIR:-${CORPUS_ROOT}/models/reranker}"
+  if [ -f "$src/model.onnx" ] && [ -f "$src/reranker.json" ] && [ -f "$src/tokenizer.json" ]; then
+    mkdir -p "$out/reranker"
+    for f in model.onnx tokenizer.json reranker.json validation.json reference_pairs.jsonl scores-fp32-first256.npy; do
+      [ -f "$src/$f" ] && cp "$src/$f" "$out/reranker/"
+    done
+    ( cd "$out/reranker" && sha256sum model.onnx tokenizer.json reranker.json \
+        $(ls validation.json reference_pairs.jsonl scores-fp32-first256.npy 2>/dev/null) > SHA256SUMS )
+    got="cpu"
+  fi
+  src="${NIZAM_GPU_RERANKER_DIR:-${CORPUS_ROOT}/models/reranker-gpu}"
+  if [ -f "$src/reranker.json" ] && [ -f "$src/reference.json" ]; then
+    mkdir -p "$out/reranker-gpu"
+    cp "$src/reranker.json" "$src/reference.json" "$out/reranker-gpu/"
+    ( cd "$out/reranker-gpu" && sha256sum reranker.json reference.json > SHA256SUMS )
+    got="${got:+$got }gpu"
+  fi
+  echo "${got:-none}"
+}
+
+# check_encoder DIR : verify DIR/encoder, DIR/encoder-gpu, DIR/reranker and DIR/reranker-gpu against their SHA256SUMS
+# (absent folders: nothing to check)
 check_encoder() {
   local sub src
-  for sub in encoder encoder-gpu; do
+  for sub in encoder encoder-gpu reranker reranker-gpu; do
     src="$1/$sub"
     [ -f "$src/SHA256SUMS" ] || continue
     ( cd "$src" && sha256sum -c --quiet SHA256SUMS ) || { echo "encoder: ${src} fails its SHA256SUMS" >&2; return 1; }
@@ -83,5 +111,17 @@ install_encoder() {
     mkdir -p "$dst"
     cp "$1/encoder-gpu"/* "$dst/"
     echo "GPU encoder bundle installed at ${dst} (served by the GPU host: set NIZAM_GPU_ENCODER_URL)"
+  fi
+  if [ -f "$1/reranker/SHA256SUMS" ]; then
+    dst="${NIZAM_RERANKER_DIR:-${CORPUS_ROOT}/models/reranker}"
+    mkdir -p "$dst"
+    cp "$1/reranker"/* "$dst/"
+    echo "reranker installed at ${dst} ($(sed -n 's/^ *"model": *"\(.*\)",$/\1/p' "$dst/reranker.json"))"
+  fi
+  if [ -f "$1/reranker-gpu/SHA256SUMS" ]; then
+    dst="${NIZAM_GPU_RERANKER_DIR:-${CORPUS_ROOT}/models/reranker-gpu}"
+    mkdir -p "$dst"
+    cp "$1/reranker-gpu"/* "$dst/"
+    echo "GPU reranker bundle installed at ${dst} (served by the GPU host: set NIZAM_GPU_RERANKER_URL)"
   fi
 }

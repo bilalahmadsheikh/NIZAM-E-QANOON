@@ -62,6 +62,7 @@ dc exec -T "$SERVICE" mv "/snapshots/exports/.partial-${NAME}" "/snapshots/expor
 SIG=$(dc exec -T "$SERVICE" psql -U "$USER_" -d "$DB" -tA < scripts/corpus-signature.sql | tr -d '\r')
 GEN=$(bundle_encoder "$OUT")        # refuses if a generation is active and its encoder is not installed
 GEN_GPU=$(bundle_encoder_gpu "$OUT")  # the GPU generation's validation bundle (D-099)
+RERANK=$(bundle_rerankers "$OUT")     # the cross-encoders (D-101), when installed
 ( cd "$OUT" && sha256sum base.tar.gz pg_wal.tar.gz backup_manifest > SHA256SUMS )
 IMAGE=$(awk '/image: paradedb/ {print $2; exit}' compose.yaml)
 COMMIT=$(git -C .. rev-parse HEAD 2>/dev/null || echo unknown)
@@ -83,7 +84,8 @@ cat > "$OUT/manifest.json" <<JSON
   "git_branch": "${BRANCH}",
   "signature": "${SIG}",
   "embedding_generation": "${GEN}",
-  "embedding_generation_gpu": "${GEN_GPU}"
+  "embedding_generation_gpu": "${GEN_GPU}",
+  "rerankers": "${RERANK}"
 }
 JSON
 
@@ -92,7 +94,7 @@ echo "  signature: ${SIG}"
 cat <<EOF
 
 To give this to a teammate:
-  1. Send the folder ${NAME}/ (all five files, and encoder/ when present).
+  1. Send the folder ${NAME}/ (all five files, and encoder/, encoder-gpu/, reranker/, reranker-gpu/ when present).
   2. They check out commit ${COMMIT:0:12} (${BRANCH}) and run ./nz up once.
   3. They copy the folder into \${CORPUS_ROOT}/snapshots/exports/ and run
        ./nz restore --physical exports/${NAME}

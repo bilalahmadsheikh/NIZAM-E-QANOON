@@ -90,7 +90,7 @@ def test_the_audit_restricts_a7_and_adds_a13():
                  "historical_target_unresolved", "historical_overlaps"):
         assert re.search(rf"AS {name}\b", a13), name
     assert "UNION ALL SELECT 'A13'" in sql
-    assert len(re.findall(r"SELECT '([A-Z][0-9]+)'", sql)) == 43   # A21 19 Nov (0109); A14 20 Oct 2026 (0066); A15 11 Nov (0070); A16 16 Nov (0094); A17 16 Nov (0095); A18 17 Nov (0102); A19 18 Nov (0106); A20 18 Nov (0108)
+    assert len(re.findall(r"SELECT '([A-Z][0-9]+)'", sql)) == 44   # A22 20 Nov (0113); A21 19 Nov (0109); A14 20 Oct 2026 (0066); A15 11 Nov (0070); A16 16 Nov (0094); A17 16 Nov (0095); A18 17 Nov (0102); A19 18 Nov (0106); A20 18 Nov (0108)
 
 
 # --- pure: the writer --------------------------------------------------------------

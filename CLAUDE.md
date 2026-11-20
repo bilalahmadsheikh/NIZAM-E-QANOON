@@ -5,7 +5,7 @@ statutory corpus and judicial precedent of the federation and four provinces, an
 14 Nov 2026) Islamabad Capital Territory, Azad Jammu & Kashmir and Gilgit-Baltistan — docs/02 §2.2
 already listed the AJK and GB assemblies as P1 sources. Final Year Project, GIKI FCSE, four developers.
 
-**Current state (20 Nov 2026): L1 and the L2 legal data layer are done; L2 retrieval storage holds the `chunk` table, lexical indexes (D-095) and two dense spaces with HNSW — bge-m3 for the CPU (D-098) and Qwen3-Embedding-8B for the GPU host (D-099) — and L3 serves hybrid candidates (`nizam/retrieval/`: fused lexical units, place territory, the citation fast path, D-097; dense units fused across generators, D-098). The reranker, the gate and L4 upward have not started.** The live continuation point is `docs/CORPUS-STATE-2026-11-17.md`; read it before any corpus mutation. **10,342 laws are released and none is held**, across federal, the four provinces, ICT, AJK and Gilgit-Baltistan. Every one is served through `operative_provision` as at a date (`nzq.as_of`) and in a territory (`nzq.territory`), with status, dates, extent and repeals recorded. `./nz audit` runs 44 criteria and all pass (A20, retrieval chunks are exactly the release, 18 Nov; A21 and A22, one embedding space per encoder device, 19–20 Nov). Sixteen documents
+**Current state (20 Nov 2026): L1 and the L2 legal data layer are done; L2 retrieval storage holds the `chunk` table, lexical indexes (D-095) and two dense spaces with HNSW — bge-m3 for the CPU (D-098) and Qwen3-Embedding-8B for the GPU host (D-099) — and L3 serves hybrid candidates (`nizam/retrieval/`: fused lexical units, place territory, the citation fast path, D-097; dense units fused across generators, D-098) and reranks them (`nizam/retrieval/rerank.py: ranked()`, D-101: Qwen3-Reranker-8B on the GPU host, int8 mMiniLM on the CPU). The gate and L4 upward have not started.** The live continuation point is `docs/CORPUS-STATE-2026-11-17.md`; read it before any corpus mutation. **10,342 laws are released and none is held**, across federal, the four provinces, ICT, AJK and Gilgit-Baltistan. Every one is served through `operative_provision` as at a date (`nzq.as_of`) and in a territory (`nzq.territory`), with status, dates, extent and repeals recorded. `./nz audit` runs 44 criteria and all pass (A20, retrieval chunks are exactly the release, 18 Nov; A21 and A22, one embedding space per encoder device, 19–20 Nov). Sixteen documents
 in `docs/` fix the architecture, and where implementation has diverged the docs carry an "as built"
 correction rather than a quiet edit. Acquisition is fully accounted: every catalogued item either landed or carries a declared, evidence-backed exception. Laws that need OCR (874 AJK and 151 GB scans) are not landed, by owner rule; the one exception is the 25th–27th Constitution Amendment Acts, read page by page with a Kaggle GPU cross-check (D-076). `chunk` (0108)
 holds offsets into every released version (1,132,245 chunks, each with a bge-m3 sign-bit vector of the one active
@@ -18,7 +18,13 @@ script 0 → 0.571; p50 ~0.8–1.0 s, p95 1.0–1.5 s. The query encoder is int8
 (`nizam/inference/`, `/mnt/e/nizam-data/models/encoder`, shipped by `./nz export`); without it retrieval serves
 `lexical_only`, marked. The GPU space (D-099, `chunk_embedding_gpu`, `bit(4096)`, encoder on the GPU host via
 `NIZAM_GPU_ENCODER_URL`) lifts hybrid recall@50 to 0.958 dev / 0.951 test (test run once), Urdu and Roman Urdu to
-1.0; with it, dense alone beats the hybrid, so fusion is an open question for the reranker slice. The cross-encoder is next; ADR-1d's binary check waits on it. There is no facet or judgment
+1.0; with it, dense alone beats the hybrid. The cross-encoder (D-101; rule fixed before any score; test run once)
+lifts NDCG@10 from the unreranked hybrid's 0.531 to 0.775 on test with the 8B reranker, which reads citations then
+8B dense without BM25 windows. On the CPU, mMiniLM reranks the first 10 units at 800 characters, the most that fits
+1 s on a 6-core host: 0.376 → 0.449 test, rerank p50 ~680 ms. bge-v2-m3 scored best on the CPU but took 35 s for 50
+passages. The CPU model ships in `models/reranker` with `./nz export`; without a reranker retrieval serves
+`unreranked`, marked. The 8B reranker's serving latency is not measured. The gate is next; it must abstain on
+`unreranked` until its degraded calibration exists. There is no facet or judgment
 table yet. `legal_edge` exists
 as a view (0079, 0089: `amends`, `repeals` and `empowers`, resolved from source-keyed records; docs/SCHEMA.md).
 Golden sets 1–4 (200 of the 500 target cases) are built and text-checked; their review sheets are not yet annotated.

@@ -194,7 +194,7 @@ candidate = { unitId, bestSpan, generatorRanks, matchedTerms, graphPaths }</pre>
    <li><b>One vote per generator.</b> The lexical generator's own fusion of body, heading and title (D-097) is one ranked list, and dense is another. RRF (k&nbsp;=&nbsp;60) runs across those two. Feeding body, heading and title in beside dense gave BM25 three votes, and the hybrid then scored below dense alone.</li>
    <li><b>The collapse clamps the second best at zero:</b> <code>max + 0.15 &times; max(secondBest, 0)</code>. A second matching chunk is evidence and can only raise a unit. With dense scored as &minus;Hamming distance, the unclamped form pushed down every unit that had a second match (dev dense recall@50 0.449, against 0.782 after the fix). Dense now scores <code>1 &minus; d/512</code>, the cosine of the two sign vectors.</li>
    <li><b>Not yet built:</b> the per-instrument cap, the reserved generator places and the two-chunks-per-unit limit. They belong with the reranker slate.</li>
-   <li><b>Open (20 Nov, D-099):</b> with the 8B space, one vote each is no longer right. The hybrid scores below dense alone on both splits (recall@50 &minus;3.2 dev / &minus;2.1 test; MRR@10 &minus;13.4 / &minus;15.8). Whether lexical keeps a vote, a weight or only reserved places is decided with the reranker, which sees the fused slate, and tuned on dev.</li>
+   <li><b>Open (20 Nov, D-099):</b> with the 8B space, one vote each is no longer right. The hybrid scores below dense alone on both splits (recall@50 &minus;3.2 dev / &minus;2.1 test; MRR@10 &minus;13.4 / &minus;15.8). Whether lexical keeps a vote, a weight or only reserved places is decided with the reranker, which sees the fused slate, and tuned on dev. <em>Decided 20 Nov (D-101): the GPU profile&rsquo;s slate is citations then dense, without the BM25 windows. The CPU profile keeps the hybrid.</em></li>
   </ul></div>
   <h3><span class="mk">5.1</span>Cross-encoder contract</h3>
   <ul>
@@ -203,6 +203,18 @@ candidate = { unitId, bestSpan, generatorRanks, matchedTerms, graphPaths }</pre>
    <li>Fine-tune on Pakistani lawyer relevance labels with hard negatives from the same Act, adjacent section, neighbouring jurisdiction, expired version, lower court and later adverse treatment.</li>
    <li>Version model, tokenizer, prompt template and training-set digest. Calibrate separately for English, Urdu, Roman Urdu and mixed queries where sample size permits.</li>
   </ul>
+  <div class="note blue"><h4>As built (20 Nov 2026): one cross-encoder per dense profile (D-101)</h4>
+  <ul>
+   <li><b>GPU host: Qwen3-Reranker-8B</b> (yes/no logit, with the instruction &ldquo;Given a question about Pakistani law, retrieve the statutory provisions that answer it&rdquo;). It reranks a <b>citations-then-dense</b> slate of 50 from the 8B space, with no BM25 windows. That settles D-099&rsquo;s fusion question for this profile. It runs as a service, refused unless it ranks a reference bundle as the bake-off did.</li>
+   <li><b>CPU: int8 ONNX mMiniLM-L12</b> (mmarco). It reranks the hybrid slate&rsquo;s <b>first 10 units</b>, reading 800-character passages; deeper units keep the fused order. bge-reranker-v2-m3 scored best among models of 600M parameters or fewer (+14.6 dev NDCG@10), but it took 35&nbsp;s for 50 passages on the build host. The configuration was chosen under a 1&nbsp;s ceiling by a rule written before its scores existed.</li>
+   <li><b>The input</b> is the question plus the unit&rsquo;s chunk context prefix (title, division, unit and heading) and its operative words in printed order, read through <code>operative_provision</code> at the request&rsquo;s date and territory. This is the whole unit up to the length limit, not a matched span. Cited units stay first; the model orders the rest.</li>
+   <li><b>Measured</b> on the served path (provisional; test run once), NDCG@10 from unreranked hybrid to reranked:
+    <ul>
+     <li>GPU: .573 &rarr; .832 dev, .531 &rarr; .775 test (+24.4, CI [16.2, 32.9]).</li>
+     <li>CPU: .454 &rarr; .512 dev, .376 &rarr; .449 test (+7.3, CI [2.0, 12.6]).</li>
+    </ul></li>
+   <li><b>Not yet built:</b> the fine-tuned reranker (labels first) and per-language calibration. The model, revision, kind and instruction are versioned in <code>reranker.json</code> beside each model.</li>
+  </ul></div>
   <p>Cross-encoders are slower but stronger pair scorers, which is why they are a second stage rather than an index. BEIR also cautions against assuming a dense retriever generalizes: BM25 is a strong robust baseline and reranking tends to improve quality at a compute cost. Both findings justify this cascade, not a dense-only design.</p>
  </div>
 </section>
@@ -318,6 +330,12 @@ authority = matrix.resolve(decidingCourt, forum, subjectMatter, asOf)
    <tr><td class="k">Rerank 50</td><td>&le; 60 ms</td><td>ONNX int8, bounded batch; fewer candidates only by measured latency policy</td></tr>
    <tr><td class="k">Validate / assemble / gate</td><td>&le; 25 ms</td><td>Batch fetch and graph lookup; no N+1 queries</td></tr>
   </tbody></table></div>
+  <div class="note blue"><h4>As built (20 Nov 2026): the rerank budget is not met (D-101)</h4>
+  <ul>
+   <li><b>CPU:</b> 50 passages of about 330 tokens cost 5&nbsp;s even with the smallest multilingual cross-encoder (int8 mMiniLM, 6 cores). The 60&nbsp;ms row assumed far shorter inputs. Serving therefore scores 10 units at 800 characters: rerank p50 about 680&nbsp;ms and p95 about 1.25&nbsp;s, passage read included; the reranked total is p50 about 1.5&nbsp;s.</li>
+   <li><b>GPU:</b> the 8B reranker&rsquo;s latency is not measured. A T4 ran out of memory at 50 pairs in one batch; it is measured on the real GPU host.</li>
+   <li><b>Degradation</b> is marked, never passed off: <code>rerank_cpu</code> when the GPU reranker is down, <code>unreranked</code> when none can score. Until the degraded-mode gate ships, an <code>unreranked</code> result abstains (&sect;9.2).</li>
+  </ul></div>
   <h3><span class="mk">9.1</span>Adaptive vector execution</h3>
 <pre><i>// count estimate comes from the denormalized, prefiltered search projection</i>
 if estimatedEligible &lt;= EXACT_SCAN_LIMIT:

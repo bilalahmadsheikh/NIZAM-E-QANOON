@@ -18,6 +18,8 @@
 #   encoder-gpu/              when the GPU generation is active (D-099): the bundle
 #                             its GPU-host encoder service is validated against
 #                             (encoder.json, reference question vectors) and SHA256SUMS
+#   reranker/, reranker-gpu/  when installed (D-101): the CPU cross-encoder (int8 ONNX) and the GPU reranker's
+#                             validation bundle, each with SHA256SUMS; without them a copy serves "unreranked"
 #
 # A logical dump rather than a copy of the data directory: the dump is ~0.65 GB
 # against a 6.4 GB data directory, it does not need the receiver's container to
@@ -61,6 +63,7 @@ dc exec -T "$SERVICE" mv "/snapshots/exports/${NAME}/.partial-${NAME}.dump" \
 SIG=$(dc exec -T "$SERVICE" psql -U "$USER_" -d "$DB" -tA < scripts/corpus-signature.sql | tr -d '\r')
 GEN=$(bundle_encoder "$OUT")        # the query encoder the dump's vectors need (D-098); refuses if it is missing
 GEN_GPU=$(bundle_encoder_gpu "$OUT")  # the GPU generation's validation bundle (D-099); refuses if it is missing
+RERANK=$(bundle_rerankers "$OUT")     # the cross-encoders (D-101): cpu model / gpu validation bundle, when installed
 ( cd "$OUT" && sha256sum "${NAME}.dump" > "${NAME}.dump.sha256" )
 SHA=$(cut -d' ' -f1 "$OUT/${NAME}.dump.sha256")
 SIZE=$(stat -c%s "$OUT/${NAME}.dump")
@@ -81,7 +84,8 @@ cat > "$OUT/manifest.json" <<JSON
   "git_branch": "${BRANCH}",
   "signature": "${SIG}",
   "embedding_generation": "${GEN:-none}",
-  "embedding_generation_gpu": "${GEN_GPU:-none}"
+  "embedding_generation_gpu": "${GEN_GPU:-none}",
+  "rerankers": "${RERANK:-none}"
 }
 JSON
 
@@ -91,7 +95,7 @@ echo "  signature: ${SIG}"
 cat <<EOF
 
 To give this to a teammate:
-  1. Send the folder ${NAME}/ (every file, and encoder/ and encoder-gpu/ when present).
+  1. Send the folder ${NAME}/ (every file, and encoder/, encoder-gpu/, reranker/, reranker-gpu/ when present).
   2. They check out commit ${COMMIT:0:12} (${BRANCH}) and run ./nz up.
   3. They copy the folder into \${CORPUS_ROOT}/snapshots/exports/ and run
        ./nz restore exports/${NAME}/${NAME}.dump

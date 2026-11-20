@@ -38,7 +38,7 @@ def wired(monkeypatch):
         return [], {"dense_mode": "hnsw", "dense_window": 1, "dense_units_of": 1,
                     "generation": 2 if info.model.startswith("Qwen") else 1}
 
-    def fake_lexical(spec, filters, k, connect_fn=None, dense_job=None, lexical=True):
+    def fake_lexical(spec, filters, k, connect_fn=None, dense_job=None, lexical=True, windows=None):
         trace = {}
         if dense_job is not None:
             _units, dtrace = dense_job.result()

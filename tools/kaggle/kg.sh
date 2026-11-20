@@ -10,6 +10,7 @@
 set -euo pipefail
 # kg.sh embeddata|embedpush|embedstatus|embedlogs|embedfetch : the embedding run (D-098, tools/kaggle/embed_kernel.py)
 # kg.sh exportpush|exportstatus|exportfetch : the int8 ONNX query encoder (D-098, tools/kaggle/export_kernel.py)
+# kg.sh rrpush|rrstatus|rrfetch : the reranker bake-off (D-101, tools/kaggle/rerank_kernel.py)
 # KG_ACCOUNT=2 : the second account (darashikohbodla, token in C:/Users/bilaa/.kaggle2) -- its own weekly GPU quota
 export KAGGLE_CONFIG_DIR=/mnt/c/Users/bilaa/.kaggle${KG_ACCOUNT:-}
 [ "${KG_ACCOUNT:-}" = 2 ] && export KAGGLE_USERNAME=darashikohbodla
@@ -126,6 +127,35 @@ q8push)
  "dataset_sources": ["$USER/nizam-$3"], "kernel_sources": [], "competition_sources": []}
 EOF3
   $KG kernels push -p $K --accelerator ${KG_ACCEL:-NvidiaTeslaT4} ;;
+rrpush)
+  # kg.sh rrpush NAME DATASET MODELS : score pairs.jsonl of private dataset nizam-DATASET (evals/rerank_slates.py, then
+  # kg.sh dsup) with the rerankers MODELS (comma-separated slugs of tools/kaggle/rerank_kernel.py). KG_SMOKE=1: 64 pairs.
+  K=/mnt/e/nizam-data/rerank/kernel-$2; mkdir -p $K
+  sed "s/__MODELS__/$4/; s/__SMOKE__/${KG_SMOKE:-0}/" /mnt/e/Nizam_e_Qanoon/tools/kaggle/rerank_kernel.py > $K/rerank_kernel.py
+  cat > $K/kernel-metadata.json <<EOF3
+{"id": "$USER/nizam-rerank-run-$2", "title": "nizam-rerank-run-$2", "code_file": "rerank_kernel.py", "language": "python",
+ "kernel_type": "script", "is_private": true, "enable_gpu": true, "enable_internet": true,
+ "dataset_sources": ["$USER/nizam-$3"], "kernel_sources": [], "competition_sources": []}
+EOF3
+  $KG kernels push -p $K --accelerator ${KG_ACCEL:-NvidiaTeslaT4} ;;
+rrexportpush)
+  # kg.sh rrexportpush NAME DATASET SLUG : export reranker SLUG to int8 ONNX and score every pair of nizam-DATASET on
+  # the Kaggle CPU (tools/kaggle/rerank_export_kernel.py, D-101). Status/fetch: rrstatus/rrfetch NAME.
+  K=/mnt/e/nizam-data/rerank/kernel-$2; mkdir -p $K
+  sed "s/__SLUG__/$4/" /mnt/e/Nizam_e_Qanoon/tools/kaggle/rerank_export_kernel.py > $K/rerank_export_kernel.py
+  cat > $K/kernel-metadata.json <<EOF3
+{"id": "$USER/nizam-rerank-run-$2", "title": "nizam-rerank-run-$2", "code_file": "rerank_export_kernel.py",
+ "language": "python", "kernel_type": "script", "is_private": true, "enable_gpu": false, "enable_internet": true,
+ "dataset_sources": ["$USER/nizam-$3"], "kernel_sources": [], "competition_sources": []}
+EOF3
+  $KG kernels push -p $K ;;
+rrstatus)
+  $KG kernels status $USER/nizam-rerank-run-$2 ;;
+rrfetch)
+  # no --force: files already here are skipped and a partial one resumes (an 8B fetch restarted from zero, D-099)
+  O=/mnt/e/nizam-data/rerank/out-$2; mkdir -p $O
+  $KG kernels output $USER/nizam-rerank-run-$2 -p $O >/dev/null || true
+  ls -la $O/out 2>/dev/null; cat $O/out/run.json 2>/dev/null | head -60 || true ;;
 dsup)
   # kg.sh dsup NAME DIR : upload DIR (tools/embed_topup.py output) as private dataset nizam-NAME, or a new version
   cat > $3/dataset-metadata.json <<EOF3

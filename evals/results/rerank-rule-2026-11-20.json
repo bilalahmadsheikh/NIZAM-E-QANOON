@@ -1,0 +1,43 @@
+{
+  "written": "2026-11-20, before any reranker score on a golden case existed",
+  "decision": "the cross-encoder reranker of each dense profile and its candidate slate (D-101; docs/04 §5.1, §9)",
+  "owner_priority": "best possible accuracy first; latency is measured and reported against docs/04 §9",
+  "cases": "the golden DEV split's answerable cases (expectedOutcome answer|conditional with necessary units): 108. TEST is not read until the configuration is frozen, then scored once.",
+  "models": {
+    "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1": {"revision": "1427fd652930", "params": 117641603, "max_tokens": 512, "kind": "sequence-classification"},
+    "Alibaba-NLP/gte-multilingual-reranker-base": {"revision": "8215cf04918b", "params": 305959681, "max_tokens": 1024, "kind": "sequence-classification"},
+    "BAAI/bge-reranker-v2-m3": {"revision": "953dc6f6f85a", "params": 567755777, "max_tokens": 1024, "kind": "sequence-classification"},
+    "Qwen/Qwen3-Reranker-0.6B": {"revision": "e61197ed4502", "params": 595776512, "max_tokens": 1024, "kind": "yes-no causal LM"},
+    "Qwen/Qwen3-Reranker-4B": {"revision": "22e683669bc0", "params": 4021784576, "max_tokens": 1024, "kind": "yes-no causal LM"},
+    "Qwen/Qwen3-Reranker-8B": {"revision": "77d193c791ed", "params": 8188548096, "max_tokens": 1024, "kind": "yes-no causal LM"}
+  },
+  "full_revisions": {
+    "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1": "1427fd652930e4ba29e8149678df786c240d8825",
+    "Alibaba-NLP/gte-multilingual-reranker-base": "8215cf04918ba6f7b6a62bb44238ce2953d8831c (its modelling code: Alibaba-NLP/new-impl, revision recorded by the kernel; 40ced75c3017 on 20 Nov)",
+    "BAAI/bge-reranker-v2-m3": "953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e",
+    "Qwen/Qwen3-Reranker-0.6B": "e61197ed45024b0ed8a2d74b80b4d909f1255473",
+    "Qwen/Qwen3-Reranker-4B": "22e683669bc0f0bd69640a1354a6d0aebcfeede5",
+    "Qwen/Qwen3-Reranker-8B": "77d193c791ed757ca307ee72715aa132723da912"
+  },
+  "excluded": {"jinaai/jina-reranker-v2-base-multilingual": "CC-BY-NC-4.0, non-commercial (Hugging Face card, 20 Nov 2026)"},
+  "passage": "nizam.storage.unit_search.Session.unit_passages: the unit's chunk context prefix, a newline, its operative nodes in printed order ('label heading text'), cut at 1,600 characters; read at the case's as_of and scope",
+  "qwen_instruction": "Given a question about Pakistani law, retrieve the statutory provisions that answer it",
+  "slates": {
+    "hybrid": "nizam.retrieval.candidates.candidates(k=50): citations, then RRF of the lexical fusion and the dense units, INV-5 gated (as built, D-098/D-099)",
+    "cited_dense": "candidates(k=50, windows=False): citations, then the dense units, INV-5 gated -- no BM25 windows"
+  },
+  "profiles": {
+    "gpu": "slates from the 8B space (question vectors replayed, evals/precomputed_encoder.py); any model",
+    "cpu": "slates from the bge-m3 space; models of at most 600M parameters only (an int8 ONNX export must run on a CPU host)"
+  },
+  "citations": "units the citation fast path resolved (UnitCandidate.via_citation) keep their place first, in their order: a cited section is the user's own identifier, never a model's guess (docs/04 §2.2); the reranker orders the rest. Added before any score existed.",
+  "metrics": "per case over the reranked slate: NDCG@10 with binary gains (a hit is the gold unit or a unit inside it, as in evals/lexical_benchmark.py; ideal DCG over min(|gold|, 10)), MRR@10, recall@10; recall@50 of the slate is reported (reranking 50 does not change it)",
+  "rule": [
+    "1. For each profile, score every allowed (model, slate) pair by dev NDCG@10 + MRR@10. The best pair is the candidate.",
+    "2. A cheaper pair (fewer parameters; for the same model, either slate) replaces it only if within 1 point of it on NDCG@10 AND on MRR@10.",
+    "3. A profile ships a reranker only if its chosen pair's dev NDCG@10 beats that profile's un-reranked hybrid slate with a paired bootstrap 95% CI (10,000 resamples) excluding zero; otherwise that profile serves the fused order.",
+    "4. CPU profile: the chosen model is exported to int8 ONNX; it ships if its int8 dev NDCG@10 is within 1 point of the full-precision scores. Its rerank-50 latency on this host is measured and reported against docs/04's 60 ms; if p50 exceeds 1,000 ms, the best allowed model under 1,000 ms is taken instead, by the same steps.",
+    "5. The slate chosen for the gpu profile also settles D-099's open fusion question for that profile.",
+    "6. The test split is scored once, after the configuration is frozen."
+  ]
+}

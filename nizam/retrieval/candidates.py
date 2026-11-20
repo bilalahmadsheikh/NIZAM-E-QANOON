@@ -44,11 +44,13 @@ _POOL = ThreadPoolExecutor(max_workers=4, thread_name_prefix="nizam-dense")
 
 
 def candidates(question, filters: Filters, k: int = 50, dense: bool = True, connect_fn=None,
-               encoder=None) -> LexicalResult:
+               encoder=None, windows: bool = True) -> LexicalResult:
+    """`windows=False`: the citation fast path and the dense units, no BM25 windows (D-101). If the dense generator
+    cannot run, the full lexical fusion is served instead, marked lexical_only -- never citations alone."""
     spec = question if isinstance(question, QuerySpec) else parse(question)
     if not dense:
         return lexical_candidates(spec, filters, k, connect_fn)
-    return _with_dense(spec, filters, k, connect_fn, lexical=True, encoder=encoder)
+    return _with_dense(spec, filters, k, connect_fn, lexical=True, encoder=encoder, windows=windows)
 
 
 def dense_only(question, filters: Filters, k: int = 50, connect_fn=None, encoder=None) -> LexicalResult:
@@ -101,7 +103,8 @@ def _dense_job(text: str, filters: Filters, enc, connect_fn, fallback=None):
         return units, tr | {"fell_back": f"{enc.info.model}: {exc}"}
 
 
-def _with_dense(spec: QuerySpec, filters: Filters, k: int, connect_fn, lexical: bool, encoder=None) -> LexicalResult:
+def _with_dense(spec: QuerySpec, filters: Filters, k: int, connect_fn, lexical: bool, encoder=None,
+                windows: bool | None = None) -> LexicalResult:
     fell_back = None
     try:
         if encoder is not None:
@@ -115,7 +118,7 @@ def _with_dense(spec: QuerySpec, filters: Filters, k: int, connect_fn, lexical: 
         else:
             enc, fallback = _load_encoder("cpu"), None
         job = _POOL.submit(_dense_job, spec.text, effective_filters(spec, filters), enc, connect_fn, fallback)
-        r = lexical_candidates(spec, filters, k, connect_fn, dense_job=job, lexical=lexical)
+        r = lexical_candidates(spec, filters, k, connect_fn, dense_job=job, lexical=lexical, windows=windows)
     except DenseUnavailable as exc:                    # no model files / no runtime / not the active space
         if not lexical:
             raise                                      # the dense-only ablation has nothing to fall back to

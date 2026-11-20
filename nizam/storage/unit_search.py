@@ -45,6 +45,10 @@ DENSE_OVERFETCH = 3          # chunks read per provision wanted (several chunks 
 # (Postgres scans it in parallel), so a deployment may override it: NIZAM_EXACT_SCAN_CHUNKS. Measured, D-098.
 EXACT_SCAN_CHUNKS = int(os.environ.get("NIZAM_EXACT_SCAN_CHUNKS", "120000"))
 _ELIGIBLE: dict = {}         # {generation id: {jurisdiction: chunks with a vector}}
+# what the reranker reads per unit (docs/04 §5.1): ~400 tokens of the unit's words after its prefix, inside a
+# 512-token cross-encoder with the question; a unit's first nodes in printed order carry its rule (D-101)
+PASSAGE_CHARS = 1600
+PASSAGE_NODES = 40
 
 
 @dataclass(frozen=True)
@@ -304,6 +308,56 @@ class Session:
             if vid in operative:
                 live.setdefault(uid, vid)
         return live
+
+    def unit_passages(self, cands: list[tuple[str, str]], max_chars: int = PASSAGE_CHARS,
+                      max_nodes: int = PASSAGE_NODES) -> dict[str, str]:
+        """{unit id: what the reranker reads for it} for [(unit id, version id)] -- the gated candidates (docs/04
+        §5.1: the question with the unit's heading, hierarchical prefix and words). The passage is the context prefix
+        the unit's first operative version was embedded with (chunk.context_prefix: title | division | unit and
+        heading), a newline, then the unit's OPERATIVE nodes in printed order -- read through operative_provision at
+        this session's as_of and territory (INV-5), so a repealed or not-yet-commenced sub-section never reaches the
+        reranker -- each as 'label heading text', cut at a word boundary after max_chars. A unit whose nodes are all
+        unserved yields its prefix alone (the gate already required one operative node, so this is rare)."""
+        if not cands:
+            return {}
+        uids = [c[0] for c in cands]
+        self.cur.execute("""
+            SELECT u.uid::text, c.context_prefix, coalesce(o.instrument_title, '')
+              FROM unnest(%s::uuid[], %s::uuid[]) AS u(uid, vid)
+              LEFT JOIN chunk c ON c.version_id = u.vid AND c.seq = 0
+              LEFT JOIN LATERAL (SELECT op.instrument_title FROM operative_provision op
+                                  WHERE op.version_id = u.vid LIMIT 1) o ON true""",
+                         (uids, [c[1] for c in cands]))
+        prefix = {uid: (pfx or title) for uid, pfx, title in self.cur.fetchall()}
+        self.cur.execute("""
+            SELECT u.uid::text, n.label, n.heading, n.body
+              FROM unnest(%s::uuid[]) WITH ORDINALITY AS u(uid, i)
+              JOIN provision p ON p.id = u.uid
+              CROSS JOIN LATERAL (
+                SELECT o.label, o.heading, coalesce(nullif(o.text_en, ''), o.text_ur, '') AS body, o.ordinal, o.path
+                  FROM operative_provision o
+                 WHERE o.instrument_id = p.instrument_id AND o.path <@ p.path
+                   AND (%s::text[] IS NULL OR o.jurisdiction = ANY(%s::text[]))
+                 ORDER BY o.ordinal, o.path LIMIT %s) n
+             ORDER BY u.i, n.ordinal, n.path""", (uids, self.juris, self.juris, int(max_nodes)))
+        body: dict[str, list[str]] = {uid: [] for uid in uids}
+        size = dict.fromkeys(uids, 0)
+        for uid, label, heading, text in self.cur.fetchall():
+            if size[uid] >= max_chars:
+                continue
+            line = " ".join(" ".join(x.split()) for x in (label or "", heading or "", text or "") if x and x.strip())
+            if not line:
+                continue
+            body[uid].append(line)
+            size[uid] += len(line) + 1
+        out = {}
+        for uid in uids:
+            words = "\n".join(body[uid])
+            if len(words) > max_chars:
+                cut = words.rfind(" ", 0, max_chars)
+                words = words[: cut if cut > max_chars // 2 else max_chars]
+            out[uid] = (prefix.get(uid) or "") + "\n" + words
+        return out
 
 
 @contextmanager

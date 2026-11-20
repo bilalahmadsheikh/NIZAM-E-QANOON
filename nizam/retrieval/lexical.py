@@ -49,6 +49,7 @@ class UnitCandidate:
     rank: int
     generator_ranks: dict
     via_citation: bool = False
+    rerank_score: float | None = None    # the cross-encoder's relevance logit, once reranked (D-101); else None
 
 
 @dataclass
@@ -116,14 +117,19 @@ def dense_units(qvec, filters: Filters, encoder_info, connect_fn=None) -> tuple[
 
 
 def lexical_candidates(question, filters: Filters, k: int = 50, connect_fn=None, dense_job=None,
-                       lexical: bool = True) -> LexicalResult:
+                       lexical: bool = True, windows: bool | None = None) -> LexicalResult:
     """The fused candidates. `dense_job` is a running dense generator (a concurrent.futures.Future resolving to
     dense_units' result; nizam.retrieval.candidates starts it): its ranked units join the fusion as a second
     generator, and it is awaited only when the lexical generator is done. Without it the result is the lexical
     fusion alone. `lexical=False` (with a dense job) is the ablation's dense-only row: no citations, no lexical
-    windows."""
+    windows. `windows=False` (with a dense job) keeps the citation fast path but not the BM25 windows: the cited
+    units first, then the dense units -- the slate D-101 measures for the 8B space, where equal-vote fusion lost to
+    dense alone (D-099)."""
+    windows = lexical if windows is None else windows
     if not lexical and dense_job is None:
         raise ValueError("lexical=False needs a dense generator: nothing would generate candidates")
+    if not windows and dense_job is None:
+        raise ValueError("windows=False needs a dense generator: only citations would generate candidates")
     spec = question if isinstance(question, QuerySpec) else parse(question)
     f = effective_filters(spec, filters)
     t0 = time.perf_counter()
@@ -148,15 +154,15 @@ def lexical_candidates(question, filters: Filters, k: int = 50, connect_fn=None,
         trace["citations"] = [{"raw": c.raw, "law": c.resolved_law, "alternates": c.alternate_laws,
                                "unresolved": c.unresolved} for c in spec.citations]
         t = mark("citations", t)
-        body_raw = s.body_hits(spec.lexical, BODY_HITS) if lexical else []
+        body_raw = s.body_hits(spec.lexical, BODY_HITS) if windows else []
         t = mark("body_window", t)
-        head_raw = s.heading_hits(spec.lexical, HEADING_HITS) if lexical else []
+        head_raw = s.heading_hits(spec.lexical, HEADING_HITS) if windows else []
         t = mark("heading_window", t)
         body, heads = _collapse(s, body_raw), _collapse(s, head_raw)
         t = mark("units_of", t)
         windows_full = len(body_raw) >= BODY_HITS or len(head_raw) >= HEADING_HITS
         titles = ({iid: r for r, (iid, _s) in enumerate(s.title_hits(spec.lexical, TITLE_HITS), 1)}
-                  if lexical else {})
+                  if windows else {})
         t = mark("title_window", t)
         dense = []
         if dense_job is not None:

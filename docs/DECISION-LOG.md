@@ -1136,6 +1136,106 @@ Area: client · Status: Superseded by D-084 (the whole-page cloth; the hem, the 
   design/heritage_art.dart, presentation/discover.dart, presentation/heritage.dart; test/heritage_test.dart
   (golden embroidery.png, a review sheet at 3x).
 
+### D-101 · 2026-11-20 · The cross-encoder: Qwen3-Reranker-8B on the GPU host, int8 mMiniLM on the CPU
+Area: owner ruling, L3 retrieval, inference, evaluation · Status: standing (docs/04 §5.1, §9, as built)
+- Decision: the owner asked for "reranker end to end fully and test it". L3's candidates are now reranked
+  (`nizam/retrieval/rerank.py: ranked()`), one model per dense profile:
+
+  | profile | reranker | slate | reads | where it runs |
+  |---|---|---|---|---|
+  | **gpu** | Qwen/Qwen3-Reranker-8B @ 77d193c7 (yes/no logit, the bake-off's instruction) | citations, then 8B dense (no BM25 windows) | 1,600 characters × 50 units | a service on the GPU host (`NIZAM_GPU_RERANKER_URL`, TEI or vLLM), refused unless it ranks 6 reference groups as the bake-off did (Spearman ≥ 0.98) |
+  | **cpu** | cross-encoder/mmarco-mMiniLMv2-L12-H384-v1 @ 1427fd65, int8 ONNX, per-channel | the hybrid (citations, then RRF of lexical and bge-m3) | 800 characters × 10 units; deeper units keep the fused order | in process (`nizam.inference.reranker.OnnxReranker`, `models/reranker`) |
+
+  - **Cited units stay first, in their order.** A section the user named is their own identifier (docs/04 §2.2).
+    The reranker orders the rest, and ties keep the fused order.
+  - **The passage is read through `operative_provision`** at the request's `as_of` and territory
+    (`unit_search.Session.unit_passages`). It is the unit's chunk context prefix, then its operative nodes in
+    printed order, so a repealed or uncommenced sub-section never reaches the model (INV-5).
+  - **Every unit's score goes in the trace (INV-3),** with the model, revision, device, passage length, depth and
+    stage times. `UnitCandidate.rerank_score` carries it. No chunk id leaves L3 (INV-4).
+  - **Degradation is marked (docs/04 §9.2).** A GPU reranker that cannot load or answer falls back to the CPU one,
+    marked `rerank_cpu`. No reranker, `NIZAM_RERANK_PROFILE=off`, or a mid-request failure (OSError or ValueError)
+    serves the fused order marked `unreranked`. Any other error is an error.
+  - **The GPU slate settles D-099's fusion question for that profile.** With the 8B space, lexical keeps only the
+    citation fast path ahead of dense; BM25 windows are not in its slate. The reranker scores 8B's citations-then-
+    dense slate higher than the hybrid one (dev .832 against .824 NDCG@10), and the unreranked dense-led slate is
+    better too (.704 against .573).
+- How it was chosen: by a rule written before any reranker score existed (`evals/results/rerank-rule-2026-11-20.json`;
+  owner priority, accuracy first).
+  1. **Bake-off on dev** (108 answerable cases). Six models, both slates, both profiles: 11,346 pairs scored on
+     Kaggle T4s in fp16 (`tools/kaggle/rerank_kernel.py`). Only questions and passages left the laptop; the gold
+     stayed in `slates.json`. Scored by `evals/rerank_eval.py` (binary NDCG@10, each gold unit credited once, MRR@10).
+     jina-reranker-v2 was excluded (CC-BY-NC-4.0).
+
+     | dev NDCG@10 / MRR@10 | unreranked | mMiniLM | gte-ml | bge-v2-m3 | Qwen3-0.6B | Qwen3-4B | Qwen3-8B |
+     |---|---|---|---|---|---|---|---|
+     | gpu / citations + dense | .704 / .659 | worse than unreranked (small models) | | | | .782 / .739 | **.832 / .802** |
+     | gpu / hybrid | .573 / .524 | | | | | | .824 / .797 |
+     | cpu / hybrid | .454 / .412 | .496 / .450 | .546 / .499 | **.601 / .567** | .567 / .527 | (not allowed) | |
+     | cpu / citations + dense | .469 / .433 | .501 / .452 | .567 / .518 | .600 / .562 | .564 / .523 | | |
+
+     - GPU: 8B on citations + dense, +25.9 NDCG@10 [18.7, 33.0] over the unreranked hybrid (56 better, 9 worse).
+       It ships.
+     - CPU (≤ 600M parameters): bge-v2-m3 on the hybrid, +14.6 [8.8, 20.7].
+  2. **The CPU choice failed its latency step.** int8 ONNX exports were made on the Kaggle CPU
+     (`tools/kaggle/rerank_export_kernel.py`, per-tensor and per-channel), and int8 bge-v2-m3 kept its accuracy
+     (per tensor .594 against .601). But rerank-50 on this 6-core host took **35 s** p50 for bge-v2-m3 and **5.0 s**
+     for mMiniLM, the smallest model. gte-ml's int8 lost its accuracy (.457; per channel .070). The rule's step 4
+     ("if p50 exceeds 1,000 ms, the best allowed model under 1,000 ms") had no model to take.
+  3. **An addendum, written before any of its scores existed**
+     (`evals/results/rerank-rule-addendum-cpu-2026-11-20.json`). Cost scales with tokens scored, so it searched
+     int8 mMiniLM over passage length {400, 800, 1,600} × depth {10, 20, 30, 50}, on this host, through the served
+     reranker. It takes the best NDCG@10 + MRR@10 with p50 ≤ 1,000 ms, shipping only if its CI against unreranked
+     clears zero (`evals/rerank_budget.py`). Under the ceiling: 400 × 10/20/30 and 800 × 10. Chosen: **800 × 10**,
+     .512 / .491 at p50 589 ms, p95 912 ms; +5.8 NDCG@10 [1.1, 10.6] (29 better, 12 worse). 400 × 20 was .509 / .464.
+- Measured on the served path (`evals/lexical_benchmark.py --impls hybrid,ranked`, paired by `evals/served_paired.py`;
+  GPU question vectors and reranker scores replayed from the Kaggle runs; provisional, golden sets are drafts, κ not
+  measured). The test split was scored once, after the freeze:
+
+  | | dev NDCG@10 / MRR@10 | test NDCG@10 / MRR@10 | test Δ NDCG@10 (ranked − hybrid) |
+  |---|---|---|---|
+  | cpu hybrid → ranked | .454 / .412 → **.512 / .491** | .376 / .330 → **.449 / .431** | +7.3 [2.0, 12.6], 19 better / 6 worse |
+  | gpu hybrid → ranked | .573 / .524 → **.832 / .802** | .531 / .471 → **.775 / .738** | +24.4 [16.2, 32.9], 41 / 8 |
+
+  - GPU test recall@10 goes .750 → .931 (the citations + dense slate), and recall@50 .951 → .972. Roman Urdu NDCG@10
+    goes .455 → .759 (6 cases). On the CPU, Roman Urdu stays 0 (no CPU generator reads it).
+  - The served results equal the slate evaluation's to the fourth decimal (dev CPU .5123, test GPU .7751). The
+    reranker the eval scored is the one serving runs.
+  - **Latency.** CPU rerank p50 682 ms dev and 684 ms test (p95 1.2–1.3 s), passage read included; ranked total
+    p50 1.5 s. The 8B model's own serving latency is **not measured**:
+    - on a T4 at 50 pairs in one batch, the kernel's latency step ran out of memory (after the scores were saved);
+    - a 64-pair smoke run took 20.8 s;
+    - it needs measuring on the real GPU host, with TEI or vLLM batching.
+    The served GPU rows replay scores, so their 157 ms rerank time is only the passage read. docs/04's 60 ms budget
+    for rerank-50 is not met by any model here. At these passage lengths (median 330 tokens a pair), even a
+    MiniLM-class model is about 100 ms a pair on a CPU core group.
+  - **int8 scores depend on their batch-mates.** Dynamic quantisation scales activations per batch: batch 16 against
+    batch 1 differ by 0.17 mean absolute (logit units). The dev numbers were scored with serving's own batching
+    (16 within a question). `tests/test_reranker_model.py` checks agreement with fp32 (correlation > 0.98), not
+    equality.
+  - A first served GPU run on a cold cache gave p95 6.2 s; the warm rerun is the one kept. The first arm of each
+    test run still shows the cold start: hybrid p95 7.3 s on the GPU test run.
+- Why: accuracy first (owner). The GPU profile gains about 25 NDCG@10 points on both splits with intervals well clear
+  of zero; the CPU profile gains about 6–7 within a 1 s budget. bge-v2-m3 (+14) is what a CPU host fast enough for it
+  would serve: about 35× this host's throughput, or a GPU. Fine-tuning (docs/04 §5.1, ADR-2) waits for annotated
+  golden-set labels.
+- Not done here, recorded as open: the gate's degraded-mode calibration (an `unreranked` result must abstain until
+  it ships, docs/04 §9.2: the gate is the next slice); ADR-1d after reranking; 8B serving latency.
+- Where:
+  - nizam/retrieval/rerank.py (ranked, rerank, SLATE_WINDOWS, RERANK_INPUT); nizam/inference/reranker.py
+    (OnnxReranker, RemoteReranker); nizam/retrieval/lexical.py (`rerank_score`, `windows`);
+    nizam/retrieval/candidates.py; nizam/storage/unit_search.py (unit_passages);
+  - tools/kaggle/{rerank_kernel.py, rerank_export_kernel.py, kg.sh}; tools/rerank_bundle.py (the GPU reference
+    bundle, `models/reranker-gpu`);
+  - infra/scripts/{encoder-bundle.sh, export.sh, export-physical.sh} (both rerankers travel with SHA256SUMS;
+    restore installs them);
+  - evals/{rerank_slates.py, rerank_eval.py, rerank_budget.py, precomputed_reranker.py, served_paired.py,
+    lexical_benchmark.py};
+  - evals/results/rerank-rule-*.json, rerank-dev-2026-11-20.json, rerank-test-gpu-2026-11-20.json,
+    rerank-cpu-budget-dev-2026-11-20.json, {dev,test}-ranked-{cpu,gpu}-*.json;
+  - tests/{test_rerank.py, test_rerank_eval.py, test_reranker_model.py};
+  - docs/04 §5 and §9 (as built).
+
 ### D-100 · 2026-11-19 · New source drops and every leftover scan wait until retrieval is finished
 Area: owner ruling, corpus, process · Status: standing
 - Decision: the owner ruled that the source drops of 16 Nov in `E:\nizam-data`, and everything else left over, are
@@ -1860,12 +1960,20 @@ Area: L1 corpus · Status: standing (closes two of the D-080 "what remains" item
 
 These were found and deliberately left open. Each will become an entry when it is decided.
 
-- **Fusion with the 8B space (D-099).** With Qwen3-Embedding-8B, equal-vote RRF puts the hybrid below dense alone
-  (MRR@10 −13.4 dev, −15.8 test; recall@50 −3.2 / −2.1). Whether lexical keeps a full vote, a weight, or only reserved
-  slate places (docs/04 §5) is decided with the reranker slice, on dev, because the reranker sees the fused slate. The
-  CPU profile (bge-m3) is measured separately: there the hybrid helped on test (+6.9 r50, D-098).
+- **Fusion with the 8B space (D-099)** — decided for the GPU profile by D-101: its reranker reads citations then
+  dense, without the BM25 windows. The CPU profile keeps the hybrid.
 - **ADR-1d for the 8B space.** The binary-vs-full check after reranking (D-098 item 4) now also covers 8B. Dense-only,
-  its sign bits did not cost accuracy (bits4096 r50 .968 vs full .940); it is re-run after the cross-encoder.
+  its sign bits did not cost accuracy (bits4096 r50 .968 vs full .940). After the cross-encoder (D-101) it still needs
+  full-precision corpus vectors, which were not stored: a check means re-embedding a sample in float on Kaggle.
+- **The degraded-mode gate (D-101, docs/04 §9.2).** A result marked `unreranked` must abstain until a gate calibrated
+  for the fused order ships. The gate is the next slice; until it exists nothing answers.
+- **8B reranker serving latency (D-101).** Not measured: a T4 ran out of memory at 50 pairs in one batch, and the
+  64-pair smoke took 20.8 s. It needs the real GPU host, with TEI or vLLM batching, before the GPU profile is called
+  within budget.
+- **The CPU reranker on a faster host (D-101).** On this 6-core laptop only int8 mMiniLM at 800 characters × 10 fits
+  1 s (+5.8 dev, +7.3 test). bge-v2-m3 gained +14.6 on dev but took 35 s for 50 passages. A production CPU host
+  should be measured with `evals/rerank_budget.py` before its configuration is chosen. Fine-tuning the small model
+  (ADR-2) waits for annotated labels.
 
 - **The AJK Interim Constitution Act, 1974 (D-096).** Acquired, digest-verified and staged; no OCR needed for the law.
   The preflight predicts 33 unsettled repeated-label units, so it waits for its structure to be read before it is
@@ -1895,7 +2003,7 @@ These were found and deliberately left open. Each will become an entry when it i
 - **The section list's frame-time tail** (8–13 of about 790 frames over budget on the emulator) and cold start need
   measuring on a phone. On 18 Nov the emulator itself degraded (D-070), so its raster numbers no longer judge the app.
 - **ADR-1d, binary after reranking (D-098).** Binary vectors are acceptable only if they cost ≤2 NDCG points after
-  the cross-encoder, which does not exist yet. Dense-only, bge-m3's sign bits cost r50 −5.6 (CI includes 0) and
+  the cross-encoder (built 20 Nov, D-101; the check needs float corpus vectors, which are not stored). Dense-only, bge-m3's sign bits cost r50 −5.6 (CI includes 0) and
   MRR@10 −7.9 (significant). The ablation re-runs when the reranker lands; the fallback is halfvec, or Qwen3's
   binary-friendly space.
 - **Retrieval p95 over ~1 s (D-098).** Hybrid p95 is 1.0–1.5 s on this host; the INV-5 gate (~350 ms p50) and the
