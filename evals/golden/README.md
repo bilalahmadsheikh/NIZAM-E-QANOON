@@ -7,7 +7,7 @@ Nothing in retrieval (L3) or generation (L4) can be tuned or claimed without it.
 
 | File | What it is |
 |---|---|
-| `golden-pk-v1-setN.draft.jsonl` | **Sets 1–4**: 50 cases each (200 in all), one `LegalEvalCase` record per line (docs/10 §5) |
+| `golden-pk-v1-setN.draft.jsonl` | **Sets 1–10**: 50 cases each (500 in all, the docs/10 target; sets 5–10 added 20 Nov 2026, D-104), one `LegalEvalCase` record per line (docs/10 §5) |
 | `golden-pk-v1-setN.draft.md` | The same cases in readable form: question, propositions, every expected provision with its text excerpt, status and official PDF link; at the end, what the system currently gets wrong on that set |
 | `build_setN.py` | The cases of set N, written as data; running it rebuilds the set from the database and checks every case |
 | `golden_common.py` | The shared builder and its checks (below) |
@@ -36,8 +36,14 @@ Every set has the same mix of strata:
 | 2 | The core codes (PPC, CrPC, CPC, Contract Act, Qanun-e-Shahadat, Limitation Act, TPA, Specific Relief Act), personal law and online offences |
 | 3 | Provinces, territories and time: the same question in different provinces, and the same question at two dates (below) |
 | 4 | Work, money, business, rights and regulation, including subordinate Rules (Family Courts Rules, the Punjab RTI and consumer Rules, the ICT consumer Rules) |
+| 5 | Property and land: sale, mortgage, lease, gift, registration, stamp duty, easements, the Punjab land record and tenancy, women's property rights by place |
+| 6 | Criminal law and procedure II: hurt, diyat, kidnapping, extortion, forgery, narcotics by province, remand, confessions, habeas corpus, the complaint case |
+| 7 | Family II: dissolution grounds, dower, delegated divorce, guardianship, offences against women, Family Court procedure, Sikh and Christian marriage, NADRA |
+| 8 | Public law: the rights articles, elections, the Exit Control List, emigration, civil service and tribunals |
+| 9 | Commerce and money: the private-loan interest bans by place, guarantee, bailment, agency, partnership, insurance, competition, e-transactions, cheques |
+| 10 | Welfare and regulation by place (environment, disability, healthcare commissions, food) and Gilgit-Baltistan's own Acts |
 
-Together the sets cover the federation, Punjab, Sindh, KP, Balochistan, ICT and AJK.
+Together the sets cover the federation, Punjab, Sindh, KP, Balochistan, ICT, AJK and (set 10) Gilgit-Baltistan.
 
 **Traps.** Many cases name hard negatives: laws a system must not serve for
 that question. These are laws that have ended, another province's law, or
@@ -206,8 +212,9 @@ family between splits afterwards.
 
 ## Adding sets 5 to 10
 
-The target is **500** independently authored scenarios (docs/10 §4); 200 are
-done.
+The target is **500** independently authored scenarios (docs/10 §4); all 500
+are done in draft (sets 1–10, D-104). Further sets (11 onward) follow the same
+rules and widen the unanswerable and Urdu strata first.
 
 For each new set:
 - copy `build_set4.py` to `build_set5.py` and write new cases without looking

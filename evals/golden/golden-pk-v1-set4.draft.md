@@ -2,7 +2,7 @@
 
 Set 4: work, money, business, rights and regulation — labour across provinces, tax and company filings, IP, banking, ombudsmen, constitutional rights, and Rules.
 
-Corpus revision b51dc79. Strata: citizen 20, professional 12, procedural 8, urdu 5, unanswerable 5.
+Corpus revision b47bde1. Strata: citizen 20, professional 12, procedural 8, urdu 5, unanswerable 5.
 Status: **draft** — A0 authoring and A3 identity resolution only. Not gold until two legal annotators (A1) and a senior advocate (A2) have reviewed it; do not tune or report on it before then.
 
 ## S4-C01 · citizen · punjab/punjab · as of 2026-11-16 · expect **answer**
@@ -20,7 +20,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** I was fired from a factory in Karachi. By when must they pay my remaining salary?
 
 - *Proposition:* Wages earned by a person whose employment is terminated must be paid before the expiry of the second working day after termination; ordinary wages are due within seven days of the wage period (ten in larger establishments).
-- **Necessary (grade 3)** — Sindh Payment of Wages Act, 2015, s./art. 5 (current: commences_at_once; served in sindh) · `30ca57ac-9d31-4aa7-a6a1-3272f927646b` · [source](https://sindhlaws.gov.pk/setup/publications_SindhCode/PUB-NEW-18-000186.pdf)
+- **Necessary (grade 3)** — Sindh Payment of Wages Act, 2015, s./art. 5 (current: commences_at_once; served in sindh) · `fa7aaf8d-418c-4608-97c0-492ce8a4226e` · [source](https://sindhlaws.gov.pk/setup/publications_SindhCode/PUB-NEW-18-000186.pdf)
   > Time of payment of wages. The wages of every person employed upon or in – wages. any railway, factory or industrial establishment upon or in which less than one thousand persons are employed, shall be paid before the expiry of seventh day; and; any other railw
 
 ## S4-C03 · citizen · punjab/punjab · as of 2026-11-16 · expect **conditional**
@@ -36,9 +36,9 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** How much maternity leave must an employer in Sindh give?
 
 - *Proposition:* An employer must grant mandatory maternity leave of four weeks before the expected delivery date and twelve weeks after delivery.
-- **Necessary (grade 3)** — Maternity Benefits Act, 2018, s./art. 3 (current: commences_at_once; served in sindh) · `fe89ff6c-d5c8-48cf-832d-4ae3ea206efe` · [source](https://sindhlaws.gov.pk/setup/publications_SindhCode/PUB-NEW-26-000089.pdf)
+- **Necessary (grade 3)** — Maternity Benefits Act, 2018, s./art. 3 (current: commences_at_once; served in sindh) · `b56a168a-95a7-4509-bb32-f378956952c2` · [source](https://sindhlaws.gov.pk/setup/publications_SindhCode/PUB-NEW-26-000089.pdf)
   > Mandatory maternal leave. An employer must grant a mandatory maternity leave to a working women during pregnancy in the following order: Four weeks before the expected date of delivery. Twelve-weeks after the delivery.
-- **Relevant (grade 1)** — Maternity Benefits Act, 2018, s./art. 4 (current: commences_at_once; served in sindh) · `04e384b0-3ea3-455b-9067-eaa6bfcdce0c` · [source](https://sindhlaws.gov.pk/setup/publications_SindhCode/PUB-NEW-26-000089.pdf)
+- **Relevant (grade 1)** — Maternity Benefits Act, 2018, s./art. 4 (current: commences_at_once; served in sindh) · `ae353392-3afe-4cb6-a066-bc2b4ea918c4` · [source](https://sindhlaws.gov.pk/setup/publications_SindhCode/PUB-NEW-26-000089.pdf)
   > Additional maternity leave. Miscarriage: In case of miscarriage, there shall be a 1-week of paid leave. Still-born: In case of still-born, there shall be paid leave of 4- weeks. Premature delivery: There shall be a paid leave of 16-weeks in case of a premature
 
 ## S4-C05 · citizen · kp/kp · as of 2026-11-16 · expect **conditional**
@@ -368,7 +368,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** سندھ میں نوکری ختم ہونے کے بعد بقایا تنخواہ کب تک ملنی چاہیے؟
 
 - *Proposition:* Before the end of the second working day after termination.
-- **Necessary (grade 3)** — Sindh Payment of Wages Act, 2015, s./art. 5 (current: commences_at_once; served in sindh) · `30ca57ac-9d31-4aa7-a6a1-3272f927646b` · [source](https://sindhlaws.gov.pk/setup/publications_SindhCode/PUB-NEW-18-000186.pdf)
+- **Necessary (grade 3)** — Sindh Payment of Wages Act, 2015, s./art. 5 (current: commences_at_once; served in sindh) · `fa7aaf8d-418c-4608-97c0-492ce8a4226e` · [source](https://sindhlaws.gov.pk/setup/publications_SindhCode/PUB-NEW-18-000186.pdf)
   > Time of payment of wages. The wages of every person employed upon or in – wages. any railway, factory or industrial establishment upon or in which less than one thousand persons are employed, shall be paid before the expiry of seventh day; and; any other railw
 
 ## S4-U05 · urdu · fed/sindh · as of 2026-11-16 · expect **answer**

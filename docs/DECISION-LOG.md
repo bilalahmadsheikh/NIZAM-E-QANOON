@@ -1136,6 +1136,51 @@ Area: client · Status: Superseded by D-084 (the whole-page cloth; the hem, the 
   design/heritage_art.dart, presentation/discover.dart, presentation/heritage.dart; test/heritage_test.dart
   (golden embroidery.png, a review sheet at 3x).
 
+### D-104 · 2026-11-20 · Golden sets 5–10: the 500-case set is complete in draft
+Area: owner ruling, evaluation (docs/10 §4) · Status: standing (evals/golden/README.md)
+- Decision: the owner asked for every improvement to D-102's gate, end to end. The first is more cases. The D-102 CPU
+  gate was fitted on 120 dev cases (12 unanswerable), and its out-of-fold .952 fell to .833 on test. Six new sets of
+  50 bring the golden set to its 500-case target:
+
+  | set | area |
+  |---|---|
+  | 5 | property and land |
+  | 6 | criminal law and procedure II |
+  | 7 | family and personal status II |
+  | 8 | public law |
+  | 9 | commerce, money and private lending |
+  | 10 | welfare and regulation by place, and Gilgit-Baltistan |
+
+  - **Built the same way as sets 1–4.** Cases were authored from the law's own text read with `peek.py`, never from
+    system output (stage A0). Every provision is resolved and checked served on the case's date in its territory
+    (A3). Every answer case has `check` phrases found in its necessary text. Each set keeps the strata mix: 20
+    citizen, 12 professional, 8 procedural, 5 Urdu/Roman Urdu, 5 unanswerable. Families stay inside their set and do
+    not reuse sets 1–4's topics.
+  - **New traps.** Each case names the law a system must not serve for it, where there is one:
+    - the ICT women's-property Act for a Punjab question;
+    - the federal narcotics Act in Sindh (repealed there by Sindh's own 2024 Act);
+    - each province's private-loan interest ban for the others;
+    - the federal environmental penalty in KP (repealed there, D-103).
+  - **New unanswerable kinds,** from D-102's error analysis: market and live figures, register lookups, a false
+    premise (an Act that does not exist), outcome predictions, future budgets, and foreign law in several forms.
+  - **Built clean.** All ten sets report problems 0, and none fails an existing check. Set 3 keeps its two known
+    observations: the Punjab texts of the Child Marriage Restraint Act 1929 and the Defamation Ordinance 2002 are
+    correctly refused before their capture.
+  - **Split** (`evals/golden/split.py`, D-098's rule, unchanged; no existing case moved):
+    - dev 305 cases (254 answer, 22 conditional, 29 unanswerable);
+    - test 195 (161, 13, 21).
+- Deliberately left out of the new sets, each recorded in its builder's docstring:
+  - articles changed by the 26th and 27th Amendments' court provisions;
+  - the Transgender Persons Act (parts declared repugnant by the Federal Shariat Court; appeal status unverified);
+  - the Christian marriage ages and the Divorce Act 1869 (their amendment status is unverified);
+  - Sindh's disability Act (mis-segmented);
+  - GB pre-emption after s.6 (labels shifted);
+  - Punjab labour law (below).
+- Still draft: stages A1 and A2 (two legal annotators, κ, a senior advocate) are not done. Every figure measured on
+  these sets stays provisional (D-095).
+- Where: evals/golden/build_set{5..10}.py, golden-pk-v1-set{5..10}.draft.{jsonl,md}, split-v1.json, README.md;
+  evals/golden/review/gate-error-notes-2026-11-20.md (two cases where the draft gold may be narrower than the law).
+
 ### D-103 · 2026-11-20 · Repeal recorders read plurals and own-province wordings: 32 missed repeals recorded
 Area: L1/L2 corpus rule (repeals, INV-5) · Status: standing (docs/SCHEMA.md "Where a law runs")
 - Found by the gate's error analysis (D-102). Test case S4-C05 asks about maternity pay in Peshawar. The system
@@ -2101,7 +2146,25 @@ These were found and deliberately left open. Each will become an entry when it i
   the 0.95 target. Recommendation (owner delegation): change nothing on the strength of test. Build golden sets 5–10,
   refit on the larger dev split under the same rule, and until then treat CPU-profile answers as the lower tier the
   UI marks. A faster CPU host with bge-v2-m3 (D-101) is the other remedy.
-- **The unanswerable stratum is too small to test docs/10's abstention targets (D-102).** There are 20 cases, 8 of them
+- **Is the Punjab Labour Code 2026 in force? (found 20 Nov 2026, D-104).** Section 435 repeals about 26 Punjab
+  labour laws, among them:
+  - the Punjab Minimum Wages Act 2019, Maternity Benefit Ordinance 1958, Payment of Wages Act 1936, Shops and
+    Establishments Ordinance 1969 and Factories Act 1934;
+  - the Bonded Labour System (Abolition) Act 1992;
+  - the Punjab child-labour, domestic-worker and industrial-relations Acts.
+
+  But s.1 brings the Code into force only "on such date as the Government may, by notification … specify". The
+  corpus now serves both the Code (presumed in force) and the laws it repeals (the repeal is recorded undated). That
+  is contradictory, and golden set 4 relies on three of the repealed laws (S4-C01, C03, C07, C08, U01, U03).
+  - Evidence found: The Nation (29 May 2026) and ProPakistani (30 May 2026) report the Code enforced across Punjab
+    after gazette publication. Neither gives the notification's number or date, and two legal commentaries say no
+    commencement notification was verified.
+  - Recommendation (owner delegation): acquire the commencement notification from the Punjab Gazette or the Labour
+    Department before changing the corpus. Then date the s.435 repeals from it with
+    `tools/record_statutory_repeals.py` and `refresh_serving`, and move set 4's labour cases to the Code's
+    provisions as a reviewed gold change. Until then, author no Punjab labour cases (sets 5–10 have none).
+- **The unanswerable stratum is too small to test docs/10's abstention targets (D-102)** — 50 cases since D-104
+  (29 dev, 21 test). There are 20 cases, 8 of them
   in test. Two kinds the gate misses have no rule: questions about statistics or records ("how many cases have been
   registered", "is there an FIR against my CNIC"), and requests for a predicted outcome or a guarantee, which are
   L6's professional-review outcome (docs/07) and not yet built.

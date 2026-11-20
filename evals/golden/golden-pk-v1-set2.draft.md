@@ -2,7 +2,7 @@
 
 Set 2: the core codes (PPC, CrPC, CPC, Contract, Qanun-e-Shahadat, Limitation, TPA, Specific Relief), personal law and online offences.
 
-Corpus revision b51dc79. Strata: citizen 20, professional 12, procedural 8, urdu 5, unanswerable 5.
+Corpus revision b47bde1. Strata: citizen 20, professional 12, procedural 8, urdu 5, unanswerable 5.
 Status: **draft** — A0 authoring and A3 identity resolution only. Not gold until two legal annotators (A1) and a senior advocate (A2) have reviewed it; do not tune or report on it before then.
 
 ## S2-C01 · citizen · fed/kp · as of 2026-11-16 · expect **answer**
@@ -98,7 +98,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 - *Proposition:* Both parties must be of sound mind and able to consent, not below eighteen, outside the prohibited degrees, and neither may have a living spouse (with the stated exception).
 - **Necessary (grade 3)** — Hindu Marriage Act, 2017, s./art. 4 (current: commenced_on_established; served in ict) · `35106aa0-8967-42c8-b3dc-f25f1a8f176c` · [source](https://pakistancode.gov.pk/pdffiles/administrator8cf3b3c8dbef7ea138cd39d37850f2fc.pdf)
   > Conditions for a Hindu marriage. A Hindu marriage shall be solemnized, if the following conditions are fulfilled, namely: — at the time of marriage, the parties are of sound mind and capable of giving a valid consent; both the parties are not below the age of 
-- **Hard negative (grade 0)** — Sindh Hindus Marriage Act, 2016, s./art. 4 (current: commences_at_once; not served in ict) · `4cbb57c4-7b6e-4637-951d-c64ca8a5c835` · [source](https://sindhlaws.gov.pk/setup/publications_SindhCode/PUB-NEW-18-000106.pdf)
+- **Hard negative (grade 0)** — Sindh Hindus Marriage Act, 2016, s./art. 4 (current: commences_at_once; not served in ict) · `2065506d-e3a5-42bf-aa53-7b35342f93b1` · [source](https://sindhlaws.gov.pk/setup/publications_SindhCode/PUB-NEW-18-000106.pdf)
   > Conditions for a hindu marriage. A marriage may be solemnized under this Act, if the following conditions are fulfilled, namely: parties to the marriage are of 18 years of age or above; parties to the marriage are able to give consent; parties to the marriage 
 
 ## S2-C12 · citizen · fed/sindh · as of 2026-11-16 · expect **conditional**

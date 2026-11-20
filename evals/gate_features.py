@@ -48,7 +48,8 @@ DATA = Path(os.environ.get("CORPUS_ROOT", "/mnt/e/nizam-data"))
 # the GPU question vectors: dev answerable (the corpus run's bundle), test answerable (D-101), abstain cases (D-102)
 GPU_QUESTIONS = [(DATA / "models/encoder-gpu", "reference_q.npy", "reference_questions.json"),
                  (DATA / "embed/out-q8t1/out", "q.npy", "questions.json"),
-                 (DATA / "embed/out-q8x1/out", "q.npy", "questions.json")]
+                 (DATA / "embed/out-q8x1/out", "q.npy", "questions.json"),
+                 (DATA / "embed/out-q8n1/out", "q.npy", "questions.json")]   # golden sets 5-10 (D-104)
 # Qwen3-Reranker-8B scores: (pairs.jsonl, scores.npy) -- dev (rr2), test (rrt-8b), abstain cases (D-102)
 GPU_SCORES = [(DATA / "rerank/ds-dev/pairs.jsonl", DATA / "rerank/out-rr2/out/scores-qwen3-8b.npy"),
               (DATA / "rerank/ds-test-gpu/pairs.jsonl", DATA / "rerank/out-rrt-8b/out/scores-qwen3-8b.npy"),

@@ -2,7 +2,7 @@
 
 Set 3: provinces, territories and time — jurisdiction pairs across Punjab, Sindh, KP, Balochistan, ICT and AJK, and temporal pairs at two dates.
 
-Corpus revision b51dc79. Strata: citizen 20, professional 12, procedural 8, urdu 5, unanswerable 5.
+Corpus revision b47bde1. Strata: citizen 20, professional 12, procedural 8, urdu 5, unanswerable 5.
 Status: **draft** — A0 authoring and A3 identity resolution only. Not gold until two legal annotators (A1) and a senior advocate (A2) have reviewed it; do not tune or report on it before then.
 
 ## S3-C01 · citizen · fed/ict · as of 2026-11-16 · expect **answer**
@@ -216,9 +216,9 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** We are Hindus in Mirpurkhas. What are the conditions for our marriage and must it be registered?
 
 - *Proposition:* Both parties must be eighteen or above, able to and freely consenting, outside the prohibited degrees, with no living spouse, and two witnesses present; the marriage must be registered with the Union Council or municipal authority within 45 days.
-- **Necessary (grade 3)** — Sindh Hindus Marriage Act, 2016, s./art. 4 (current: commences_at_once; served in sindh) · `4cbb57c4-7b6e-4637-951d-c64ca8a5c835` · [source](https://sindhlaws.gov.pk/setup/publications_SindhCode/PUB-NEW-18-000106.pdf)
+- **Necessary (grade 3)** — Sindh Hindus Marriage Act, 2016, s./art. 4 (current: commences_at_once; served in sindh) · `2065506d-e3a5-42bf-aa53-7b35342f93b1` · [source](https://sindhlaws.gov.pk/setup/publications_SindhCode/PUB-NEW-18-000106.pdf)
   > Conditions for a hindu marriage. A marriage may be solemnized under this Act, if the following conditions are fulfilled, namely: parties to the marriage are of 18 years of age or above; parties to the marriage are able to give consent; parties to the marriage 
-- **Necessary (grade 3)** — Sindh Hindus Marriage Act, 2016, s./art. 6 (current: commences_at_once; served in sindh) · `9b95b70f-d32b-42c1-9ba7-7c59f55dddb4` · [source](https://sindhlaws.gov.pk/setup/publications_SindhCode/PUB-NEW-18-000106.pdf)
+- **Necessary (grade 3)** — Sindh Hindus Marriage Act, 2016, s./art. 6 (current: commences_at_once; served in sindh) · `69711fb3-0676-4fd6-a274-5cd92bbb79b4` · [source](https://sindhlaws.gov.pk/setup/publications_SindhCode/PUB-NEW-18-000106.pdf)
   > Registration of marriages. Every marriage solemnized under this Act shall be registered with the Union Council/Ward or any other Municipal Authority, where the marriage ceremony took place, within 45 days of the solemnization.
 - **Hard negative (grade 0)** — Hindu Marriage Act, 2017, s./art. 4 (current: commenced_on_established; not served in sindh) · `35106aa0-8967-42c8-b3dc-f25f1a8f176c` · [source](https://pakistancode.gov.pk/pdffiles/administrator8cf3b3c8dbef7ea138cd39d37850f2fc.pdf)
   > Conditions for a Hindu marriage. A Hindu marriage shall be solemnized, if the following conditions are fulfilled, namely: — at the time of marriage, the parties are of sound mind and capable of giving a valid consent; both the parties are not below the age of 
@@ -258,7 +258,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** Inquiry procedure for a workplace harassment complaint in Azad Kashmir
 
 - *Proposition:* Within three days of a written complaint the Inquiry Committee communicates the charges to the accused, who must file a written defence within seven days, failing which the Committee proceeds ex parte.
-- **Necessary (grade 3)** — Azad Jammu and Kashmir protection against harassment of Women at the Workplace Act, 2014, s./art. 4 (current: commenced_on_established; served in ajk) · `a5ad76af-52c3-423e-b6ad-86b696eb6be0` · [source](https://law.gok.pk/wp-content/uploads/2020/10/2002014-1.pdf)
+- **Necessary (grade 3)** — Azad Jammu and Kashmir protection against harassment of Women at the Workplace Act, 2014, s./art. 4 (current: commenced_on_established; served in ajk) · `3f6c33cc-fb8b-466e-b76f-6a9ffc02d2a9` · [source](https://law.gok.pk/wp-content/uploads/2020/10/2002014-1.pdf)
   > Procedure for holding inquiry.– (1) The Inquiry Committee, within three days of receipt of a written complaint , shall,- Communicate to the accused formal written receipt of charges and statement of allegations leveled against him; require the accused within s
 - **Relevant (grade 3)** — The Azad Jammu and Kashmir protection against harassment of Women at the Workplace Act, 2014, s./art. 4 (current: commenced_on_established; served in ajk) · `801d9eb9-cde5-4a2f-82b4-4a27706be4a0` · [source](https://law.gok.pk/wp-content/uploads/2024/03/The-Azad-Jammu-and-Kashmir-protection-against-harassment-of-Women-at-the-Workplace-Act-2014-ACT-XX-OF-2014.pdf)
   > Procedure for holding inquiry.– (1) The Inquiry Committee, within three days of receipt of a written complaint , shall,- Communicate to the accused formal written receipt of charges and statement of allegations leveled against him; require the accused within s
@@ -338,11 +338,11 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** The Rent Controller in Mirpur decided against me. How long do I have to appeal, and to whom?
 
 - *Proposition:* An appeal lies to the District Judge within thirty days of the Controller's final order; no appeal lies from an interlocutory order.
-- **Necessary (grade 3)** — The Azad Jammu and Kashmir Rent Restriction Act, 1986, s./art. 18 (current: commenced_on_established; served in ajk) · `37a53b61-b619-40c8-8b3c-83e1e079ce63` · [source](https://law.gok.pk/wp-content/uploads/2024/03/The-Azad-Jammu-and-Kashmir-Rent-Restriction-Act-1986-ACT-XIII-OF-1986.pdf)
+- **Necessary (grade 3)** — The Azad Jammu and Kashmir Rent Restriction Act, 1986, s./art. 18 (current: commenced_on_established; served in ajk) · `8e400414-6089-46b9-8052-6b7a063a15ee` · [source](https://law.gok.pk/wp-content/uploads/2024/03/The-Azad-Jammu-and-Kashmir-Rent-Restriction-Act-1986-ACT-XIII-OF-1986.pdf)
   > Appeal.- Any party aggrieved by an order of the Controller finally disposing of an application made under this Act may, within thirty days of the date of such order, prefer an appeal in writing to the District Judge having jurisdiction over the area where the 
-- **Hard negative (grade 0)** — The Azad Kashmir Rent Restriction Act, 1952, s./art. 13 (not_current: repealed; not served in ajk) · `f4a4ee4b-068a-4c45-ab7c-8bd34df11ebf` · [source](https://law.gok.pk/wp-content/uploads/2023/04/The-Azad-Kashmir-Rent-Restriction-Act-1952.pdf)
+- **Hard negative (grade 0)** — The Azad Kashmir Rent Restriction Act, 1952, s./art. 13 (not_current: repealed; not served in ajk) · `a89856f4-3dad-44f6-9f57-800e443ad5fa` · [source](https://law.gok.pk/wp-content/uploads/2023/04/The-Azad-Kashmir-Rent-Restriction-Act-1952.pdf)
   > Eviction of tenants :- A tenant in possession of a building or rented land shall not be evicted therefrom in execution of a decree passed before or after the commencement of this Act or otherwise and whether before or after the termination of the tenancy, exce
-- **Hard negative (grade 0)** — THE AZAD KASHMIR RENT RESTRICTION ACT, 1952, s./art. 13 (not_current: repealed; not served in ajk) · `4884f943-c3ac-4f72-8a0b-c5876e1316f9` · [source](https://law.gok.pk/wp-content/uploads/2024/03/THE-AZAD-KASHMIR-RENT-RESTRICTION-ACT-1952.pdf)
+- **Hard negative (grade 0)** — THE AZAD KASHMIR RENT RESTRICTION ACT, 1952, s./art. 13 (not_current: repealed; not served in ajk) · `32c46b6c-945d-4336-9bba-1f59d2d13b67` · [source](https://law.gok.pk/wp-content/uploads/2024/03/THE-AZAD-KASHMIR-RENT-RESTRICTION-ACT-1952.pdf)
   > Eviction of tenants :- A tenant in possession of a building or rented land shall not be evicted therefrom in execution of a decree passed before or after the commencement of this Act or otherwise and whether before or after the termination of the tenancy, exce
 
 ## S3-R02 · procedural · fed/ict · as of 2026-11-16 · expect **answer**
@@ -444,7 +444,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** آزاد کشمیر میں رینٹ کنٹرولر کے فیصلے کے خلاف اپیل کتنے دن میں کی جا سکتی ہے؟
 
 - *Proposition:* Within thirty days, to the District Judge.
-- **Necessary (grade 3)** — The Azad Jammu and Kashmir Rent Restriction Act, 1986, s./art. 18 (current: commenced_on_established; served in ajk) · `37a53b61-b619-40c8-8b3c-83e1e079ce63` · [source](https://law.gok.pk/wp-content/uploads/2024/03/The-Azad-Jammu-and-Kashmir-Rent-Restriction-Act-1986-ACT-XIII-OF-1986.pdf)
+- **Necessary (grade 3)** — The Azad Jammu and Kashmir Rent Restriction Act, 1986, s./art. 18 (current: commenced_on_established; served in ajk) · `8e400414-6089-46b9-8052-6b7a063a15ee` · [source](https://law.gok.pk/wp-content/uploads/2024/03/The-Azad-Jammu-and-Kashmir-Rent-Restriction-Act-1986-ACT-XIII-OF-1986.pdf)
   > Appeal.- Any party aggrieved by an order of the Controller finally disposing of an application made under this Act may, within thirty days of the date of such order, prefer an appeal in writing to the District Judge having jurisdiction over the area where the 
 
 ## S3-X01 · unanswerable · foreign/None · as of 2026-11-16 · expect **abstain**

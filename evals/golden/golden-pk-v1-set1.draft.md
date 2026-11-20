@@ -2,7 +2,7 @@
 
 Set 1: the first 50 cases — citizen scenarios, professional lookups, procedure, Urdu/Roman Urdu and deliberately unanswerable questions.
 
-Corpus revision b51dc79. Strata: citizen 20, professional 12, procedural 8, urdu 5, unanswerable 5.
+Corpus revision b47bde1. Strata: citizen 20, professional 12, procedural 8, urdu 5, unanswerable 5.
 Status: **draft** — A0 authoring and A3 identity resolution only. Not gold until two legal annotators (A1) and a senior advocate (A2) have reviewed it; do not tune or report on it before then.
 
 ## S1-C01 · citizen · punjab/punjab · as of 2026-11-16 · expect **answer**
@@ -58,9 +58,9 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** My cousin's family in Hyderabad wants to marry her off at 16. Is that allowed in Sindh?
 
 - *Proposition:* In Sindh a child is a person under eighteen, a marriage to which a child is party is a child marriage, and a male adult who contracts one is punishable.
-- **Necessary (grade 3)** — Sindh Child Marriages Restraint Act, 2013, s./art. 2 (current: commences_at_once; served in sindh) · `d4a9b96c-23ef-45fb-96e9-eb9c2a3dfcc0` · [source](https://sindhlaws.gov.pk/setup/publications_SindhCode/PUB-15-000083.pdf)
+- **Necessary (grade 3)** — Sindh Child Marriages Restraint Act, 2013, s./art. 2 (current: commences_at_once; served in sindh) · `3422d60d-327d-4f21-92ff-cf153a0e5c45` · [source](https://sindhlaws.gov.pk/setup/publications_SindhCode/PUB-15-000083.pdf)
   > Definitions. In this Act, unless there is anything repugnant in the subject or context – "child” means a person male or female who is under eighteen years of age; “child marriage” means a marriage to which either of the contracting party is a child; “Code” mea
-- **Necessary (grade 2)** — Sindh Child Marriages Restraint Act, 2013, s./art. 3 (current: commences_at_once; served in sindh) · `2c2c03fe-b8ba-4166-89f1-2a5144399002` · [source](https://sindhlaws.gov.pk/setup/publications_SindhCode/PUB-15-000083.pdf)
+- **Necessary (grade 2)** — Sindh Child Marriages Restraint Act, 2013, s./art. 3 (current: commences_at_once; served in sindh) · `6026c084-15df-40d5-a5fe-44701a85fd22` · [source](https://sindhlaws.gov.pk/setup/publications_SindhCode/PUB-15-000083.pdf)
   > Punishment for male contracting party. Whoever, being a male above eighteen years of age, contracts a child marriage shall be punished with rigorous imprisonment which may extend to three years but shall not be less than two years and shall be liable to fine.
 
 ## S1-C07 · citizen · punjab/punjab · as of 2026-11-16 · expect **answer**
@@ -130,9 +130,9 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** Who decides the minimum wage in Sindh and how is it announced?
 
 - *Proposition:* The Minimum Wages Board recommends rates, and Government declares them by notification in the official Gazette.
-- **Necessary (grade 3)** — Sindh Minimum Wages Act, 2015, s./art. 6 (current: commences_at_once; served in sindh) · `37817d6e-b564-4957-b56c-200ba0bc062a` · [source](https://sindhlaws.gov.pk/setup/publications_SindhCode/PUB-NEW-18-000105.pdf)
+- **Necessary (grade 3)** — Sindh Minimum Wages Act, 2015, s./art. 6 (current: commences_at_once; served in sindh) · `a10e16e6-c9f8-47b0-838b-b9bbb2da4c32` · [source](https://sindhlaws.gov.pk/setup/publications_SindhCode/PUB-NEW-18-000105.pdf)
   > Power to declare minimum rates of wages. Upon receipt of a recommendation of the Board under section 4 or section 5, Government may – by notification in the official Gazette, declare that the minimum rates of wages recommended by the Board for the various work
-- **Relevant (grade 2)** — Sindh Minimum Wages Act, 2015, s./art. 4 (current: commences_at_once; served in sindh) · `1e1299b4-705b-42e3-a87a-3b882326bbda` · [source](https://sindhlaws.gov.pk/setup/publications_SindhCode/PUB-NEW-18-000105.pdf)
+- **Relevant (grade 2)** — Sindh Minimum Wages Act, 2015, s./art. 4 (current: commences_at_once; served in sindh) · `2e47cdde-faa0-4d72-ae8e-f63f35f04016` · [source](https://sindhlaws.gov.pk/setup/publications_SindhCode/PUB-NEW-18-000105.pdf)
   > Recommendation of minimum rates of wages for workers. The Board shall, upon a reference made to it by Government, recommend to Government, after such enquiry as the Board may deem fit, the minimum rates of wages for adult, skilled and unskilled workers and juv
 
 ## S1-C15 · citizen · fed/punjab · as of 2026-11-16 · expect **answer**
@@ -190,11 +190,11 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** My landlord in Muzaffarabad wants to evict me. What is the procedure in Azad Kashmir?
 
 - *Proposition:* A tenant may be evicted only in accordance with section 14 of the AJK Rent Restriction Act, 1986: the landlord applies to the Controller, who may direct eviction on the grounds it lists (e.g. rent not paid within fifteen days after the time fixed in the tenancy agreement).
-- **Necessary (grade 3)** — The Azad Jammu and Kashmir Rent Restriction Act, 1986, s./art. 14 (current: commenced_on_established; served in ajk) · `5817c12e-d37a-40e4-bdcc-f7a839d11d60` · [source](https://law.gok.pk/wp-content/uploads/2024/03/The-Azad-Jammu-and-Kashmir-Rent-Restriction-Act-1986-ACT-XIII-OF-1986.pdf)
+- **Necessary (grade 3)** — The Azad Jammu and Kashmir Rent Restriction Act, 1986, s./art. 14 (current: commenced_on_established; served in ajk) · `27514abd-49ec-4dcf-850e-42c04c5cc77c` · [source](https://law.gok.pk/wp-content/uploads/2024/03/The-Azad-Jammu-and-Kashmir-Rent-Restriction-Act-1986-ACT-XIII-OF-1986.pdf)
   > A tenant in possession of a building or rented land shall not be evicted them from in execution of a decree passed before or after the commencement of the Act or otherwise, and whether before or after the termination of the tenancy except in accordance with th
-- **Hard negative (grade 0)** — THE AZAD KASHMIR RENT RESTRICTION ACT, 1952, s./art. 13 (not_current: repealed; not served in ajk) · `4884f943-c3ac-4f72-8a0b-c5876e1316f9` · [source](https://law.gok.pk/wp-content/uploads/2024/03/THE-AZAD-KASHMIR-RENT-RESTRICTION-ACT-1952.pdf)
+- **Hard negative (grade 0)** — THE AZAD KASHMIR RENT RESTRICTION ACT, 1952, s./art. 13 (not_current: repealed; not served in ajk) · `32c46b6c-945d-4336-9bba-1f59d2d13b67` · [source](https://law.gok.pk/wp-content/uploads/2024/03/THE-AZAD-KASHMIR-RENT-RESTRICTION-ACT-1952.pdf)
   > Eviction of tenants :- A tenant in possession of a building or rented land shall not be evicted therefrom in execution of a decree passed before or after the commencement of this Act or otherwise and whether before or after the termination of the tenancy, exce
-- **Hard negative (grade 0)** — The Azad Kashmir Rent Restriction Act, 1952, s./art. 13 (not_current: repealed; not served in ajk) · `f4a4ee4b-068a-4c45-ab7c-8bd34df11ebf` · [source](https://law.gok.pk/wp-content/uploads/2023/04/The-Azad-Kashmir-Rent-Restriction-Act-1952.pdf)
+- **Hard negative (grade 0)** — The Azad Kashmir Rent Restriction Act, 1952, s./art. 13 (not_current: repealed; not served in ajk) · `a89856f4-3dad-44f6-9f57-800e443ad5fa` · [source](https://law.gok.pk/wp-content/uploads/2023/04/The-Azad-Kashmir-Rent-Restriction-Act-1952.pdf)
   > Eviction of tenants :- A tenant in possession of a building or rented land shall not be evicted therefrom in execution of a decree passed before or after the commencement of this Act or otherwise and whether before or after the termination of the tenancy, exce
 - **Hard negative (grade 0)** — Punjab Rented Premises Act, 2009, s./art. 15 (current: commenced_on_established; not served in ajk) · `874d4c34-6c75-478d-982d-ea3e4d0acb9c` · [source](https://punjabcode.punjab.gov.pk/uploads/articles/THE_PUNJAB_RENTED_PREMISES_ACT_2009.doc.pdf)
   > Grounds for eviction – A landlord may seek eviction of the tenant if– the period of tenancy has expired; the tenant has failed to pay or tender the rent within a period of thirty days after the expiry of the period stipulated in section 7; the tenant has commi

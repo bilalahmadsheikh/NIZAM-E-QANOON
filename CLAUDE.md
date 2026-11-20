@@ -29,7 +29,7 @@ On the CPU, 18 pass at .833, under its 0.95 target (open). `unreranked` earned n
 (`RETRIEVAL_DEGRADED`). The abstention targets of docs/10 are not met, and 8 unanswerable test cases are too few to
 measure them. There is no facet or judgment table yet. `legal_edge` exists
 as a view (0079, 0089: `amends`, `repeals` and `empowers`, resolved from source-keyed records; docs/SCHEMA.md).
-Golden sets 1–4 (200 of the 500 target cases) are built and text-checked; their review sheets are not yet annotated.
+Golden sets 1–10 (all 500 target cases, D-104) are built and text-checked; their review sheets are not yet annotated.
 
 ---
 
@@ -154,7 +154,7 @@ portal recrawls and the territories. `docs/CORPUS-STATE-2026-11-17.md` has the f
   (`text_known_from`, 0096–0099)
 - **A1/A2 hold for every comparable document** (character recall and precision ≥ 0.999 against
   an independent extractor)
-- **Golden sets 1–4: 200 cases, text-checked, 0 build problems; κ not yet measured**
+- **Golden sets 1–10: 500 cases (dev 305 / test 195), text-checked, 0 build problems; κ not yet measured**
 - Production needs **~14 GB RAM**, well under one core at 50k MAU. RAM buys latency, not
   correctness. These are 09b planning figures, computed before the corpus doubled
 - A single €21–40 VPS carries **50,000–100,000 MAU**; at scale infrastructure is ~3% of the
