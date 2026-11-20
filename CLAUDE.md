@@ -130,8 +130,9 @@ portal recrawls and the territories. `docs/CORPUS-STATE-2026-11-17.md` has the f
 - **10,342 laws released, 0 held**: federal 3,562 · Sindh 2,004 · AJK 1,442 · Punjab 1,366 ·
   Balochistan 1,030 · KP 911 · GB 27. Another 147 active rows are exact duplicates linked by
   `duplicate_of`. The 51 federal as-made Gazette texts are served through their consolidated twin
-- **Currency of the 10,291 laws served directly: 8,246 current, 1,369 not current (repealed,
-  lapsed, replaced or superseded), 676 historical** (pre-1947 archive texts and laws of places outside Pakistan).
+- **Currency of the 10,291 laws served directly: 8,242 current, 1,373 not current (repealed,
+  lapsed, replaced or superseded), 676 historical** (20 Nov, D-103; plus 23 laws newly not served in the one
+  province that repealed them) (pre-1947 archive texts and laws of places outside Pakistan).
   Laws whose force could not be verified are presumed in force (owner decision, 16 Nov). The presumption never
   covers a pre-1947 archive text of any kind
 - **Repeals at unit level:** 34 units in 12 laws repealed by a later law (0102), and 16 units in 2 laws that a

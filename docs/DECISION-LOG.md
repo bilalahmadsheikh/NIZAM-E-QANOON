@@ -1136,6 +1136,45 @@ Area: client · Status: Superseded by D-084 (the whole-page cloth; the hem, the 
   design/heritage_art.dart, presentation/discover.dart, presentation/heritage.dart; test/heritage_test.dart
   (golden embroidery.png, a review sheet at 3x).
 
+### D-103 · 2026-11-20 · Repeal recorders read plurals and own-province wordings: 32 missed repeals recorded
+Area: L1/L2 corpus rule (repeals, INV-5) · Status: standing (docs/SCHEMA.md "Where a law runs")
+- Found by the gate's error analysis (D-102). Test case S4-C05 asks about maternity pay in Peshawar. The system
+  served the West Pakistan Maternity Benefit Ordinance, 1958, which the KP Maternity Benefits Act, 2013 s.18
+  repeals "in its application to the province of the Khyber Pakhtunkhwa". 62 of the Ordinance's provisions were
+  operative in KP. That is repealed law served as in force, the failure INV-5 exists to prevent. Two misses
+  compounded:
+  - the clause names "Maternity Benefit**s** Ordinance" (the held title is singular);
+  - the KP place pattern did not take "the province **of the** Khyber Pakhtunkhwa" (Punjab's did).
+- Decision. Both recorders keep their rules and gain three narrow readings, each tested
+  (tests/test_territorial_repeal_clause.py, tests/test_statutory_repeal.py):
+  1. **Plural fallback.** When the exact title and year find no law, a title equal but for plural endings
+     (`fold_plural`) may match, still requiring a single law (or twins) and recording "title equal but for a
+     plural".
+  2. **Own-province wordings** (territorial):
+     - "the province of the …" for every province;
+     - "Balochistan Province";
+     - "its applicability to …";
+     - footnote brackets ("the 2[Khyber Pakhtunkhwa]");
+     - a provincial Act's "the province" / "this province" for itself.
+     Also fixed: the `||` the clause reader joins its two halves with was left on the place.
+  3. **A qualifier naming only the repealer's own province** (statutory). It repeals the whole of that province's
+     own copy (the Balochistan copy of the 1958 Ordinance); any other qualifier is still skipped.
+- Recorded, every clause read before applying:
+  - **23 territorial repeals.** Among them: the Pakistan Environmental Protection Act 1997, Payment of Wages Act
+    1936, Mental Health Ordinance 2001, Employment of Children Act 1991 (KP and Sindh), Explosive Substances Act
+    1908 and Zakat and Ushr Ordinance 1980 in KP; the Maternity Benefit Ordinance 1958 in KP and Balochistan; the
+    Probation of Offenders Ordinance 1960 in Balochistan; the Glanders and Farcy Act 1899 in Punjab.
+  - **9 statutory repeals.** Among them: the Punjab Agricultural Produce Markets Ordinance 1978, the Sind Drug
+    Advertisement Control Act 1948, and Balochistan's and KP's own copies of two pre-1970 laws.
+  - Then `apply_statutory_repeals`, `refresh_serving`, and the audit: **44 of 44 pass**. Current laws went from
+    8,246 to 8,242. The 1958 Ordinance's provisions operative in KP went from 62 to 0.
+- Still unread, reported by the recorder: 16 qualifiers name places it does not read (Turbat University campuses,
+  Karachi lists, "the tribal areas of the province of Balochistan"). Each needs a page read, not a rule.
+- The gate's features (D-102) were measured before this fix; the next refit measures the corrected corpus.
+- Where: tools/record_territorial_repeals.py (PLACE, OWN_PROVINCE, LEAD, place_of, the plural fallback);
+  tools/record_statutory_repeals.py (fold_plural, the own-province copy rule); tests above;
+  docs/CORPUS-STATE-2026-11-17.md; CLAUDE.md.
+
 ### D-102 · 2026-11-20 · The sufficiency gate: vetoes, a calibrated classifier per reranker, and retrieve()
 Area: owner ruling, L3 retrieval, evaluation · Status: standing (docs/04 §8, §9.2, as built)
 - Decision: the owner asked to "build the gate end to end fully and improve it and test it". L3 now has its port,

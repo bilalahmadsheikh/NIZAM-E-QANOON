@@ -32,19 +32,27 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from record_statutory_repeals import (PART_BEFORE, REPEAL, norm, printed_commencement,  # noqa: E402
-                                      resolve_hits, title_key)
+from record_statutory_repeals import (PART_BEFORE, REPEAL, fold_plural, norm,  # noqa: E402
+                                      printed_commencement, resolve_hits, title_key)
 
 METHOD = "nizam.territorial_repeal_text/1"
 PROVINCES = {"punjab", "sindh", "kp", "balochistan"}
+# (20 Nov 2026, D-103) 'the province of THE Khyber Pakhtunkhwa' was read only for Punjab: the KP Maternity Benefits
+# Act, 2013 s.18 repeal went unrecorded and the 1958 Ordinance stayed served in KP. Every province now takes it.
 PLACE = {
     "punjab": r"(?:the\s+)?(?:province\s+of\s+(?:the\s+)?)?punjab(?:\s+province)?",
-    "sindh": r"(?:the\s+)?(?:province\s+of\s+)?sindh?(?:\s+province)?",
-    "kp": r"(?:the\s+)?(?:province\s+of\s+)?(?:khyber\s+pakhtunkhwa|north\W*west\W*frontier\s+province|n\.?w\.?f\.?p\.?)"
-          r"(?:\s+province)?",
-    "balochistan": r"(?:the\s+)?(?:province\s+of\s+)?ba[lu]ochistan(?:\s+province)?",
+    "sindh": r"(?:the\s+)?(?:province\s+of\s+(?:the\s+)?)?sindh?(?:\s+province)?",
+    "kp": r"(?:the\s+)?(?:province\s+of\s+(?:the\s+)?)?(?:khyber\s+pakhtunkhwa|north\W*west\W*frontier\s+province|"
+          r"n\.?w\.?f\.?p\.?)(?:\s+province)?",
+    "balochistan": r"(?:the\s+)?(?:province\s+of\s+(?:the\s+)?)?ba[lu]ochistan(?:\s+province)?",
     "ict": r"(?:the\s+)?islamabad\s+capital\s+territory",
 }
+# a provincial Act's own 'the province' / 'this province' is that province (D-103)
+OWN_PROVINCE = re.compile(r"(?:the|this)\s+province")
+# the qualifier's lead words the TERRITORIAL capture can still carry ('its application to ...', 'its applicability
+# to ...'), the join marker between the clause's two halves, and footnote brackets ('the 2[Khyber Pakhtunkhwa]')
+LEAD = re.compile(r"^(?:in\s+)?(?:its|their)\s+(?:application|applicability)s?\s+(?:to|over|in)\s+"
+                  r"(?:the\s+extent\s+of\s+)?")
 TERRITORIAL = re.compile(
     r"(?:in\s+(?:its|their)\s+application\s+(?:to\s+)?(?:the\s+extent\s+of\s+)?|to\s+the\s+extent\s+of\s+|"
     r"in\s+so\s+far\s+as\s+it\s+(?:applies|extends)\s+to\s+|so\s+far\s+as\s+it\s+(?:applies|extends)\s+to\s+|"
@@ -54,12 +62,17 @@ OTHER_QUALIFIER = re.compile(r"\bexcept\b|\bsave\s+as\b|\bsection\b|\bclause\b|\
                              r"so\s+far\s+as\s+it\s+relates", re.I)
 
 
-def place_of(text: str) -> str | None:
-    t = " ".join(text.lower().split()).strip(" ,")
-    t = re.sub(r"\s+(?:and|with)\b.*$", "", t)
+def place_of(text: str, own: str | None = None) -> str | None:
+    t = " ".join(text.lower().split())
+    t = t.split("||")[0].strip(" ,")                         # the join marker of clause_territory's two halves
+    t = re.sub(r"\d{1,2}\[|[\[\]]", "", t)                    # footnote markers
+    t = LEAD.sub("", t)
+    t = re.sub(r"\s+(?:and|with)\b.*$", "", t).strip(" ,")
     for terr, rx in PLACE.items():
         if re.fullmatch(rx, t):
             return terr
+    if own in PROVINCES and OWN_PROVINCE.fullmatch(t):
+        return own
     return None
 
 
@@ -75,7 +88,7 @@ def clause_territory(qual: str, after: str, repealer_territory: str | None) -> t
         if repealer_territory in PROVINCES:
             return repealer_territory, "a provincial Act repeals for its own province"
         return None, "skipped: a federal repeal not confined to ICT (whole repeal: 0066's record)"
-    places = {place_of(h.group("place")) for h in hits}
+    places = {place_of(h.group("place"), repealer_territory) for h in hits}
     if len(places) != 1 or None in places:
         return None, "skipped: the qualifier names a place not read"
     place = places.pop()
@@ -88,6 +101,7 @@ def plan(instruments, provisions, revival_texts, twins, reach) -> tuple[list[dic
     """instruments: (id, jurisdiction, kind, title, year, observation, ordinal, display title);
     provisions: (instrument id, relative path, first block, text); reach: instrument id -> territories."""
     fed_by_key = collections.defaultdict(list)
+    fed_by_fold = collections.defaultdict(list)
     meta = {}
     for iid, jur, kind, title, year, obs, ordinal, display in instruments:
         meta[iid] = (jur, kind, title, obs, ordinal)
@@ -95,6 +109,8 @@ def plan(instruments, provisions, revival_texts, twins, reach) -> tuple[list[dic
             for t in {title_key(title), title_key(display) if display else ""}:
                 if t and iid not in fed_by_key[(t, year)]:
                     fed_by_key[(t, year)].append(iid)
+                if t and iid not in fed_by_fold[(fold_plural(t), year)]:
+                    fed_by_fold[(fold_plural(t), year)].append(iid)
     revived = " ".join(norm(t) for t in revival_texts)
     stats, rows, seen = collections.Counter(), [], set()
     for iid, rel_path, block, text in provisions:
@@ -117,6 +133,10 @@ def plan(instruments, provisions, revival_texts, twins, reach) -> tuple[list[dic
                 stats[why] += 1; continue
             title, year = m.group("title").strip(), int(m.group("year"))
             hits = [h for h in fed_by_key.get((norm(title), year), []) if h != iid]
+            how = "exact title"
+            if not hits:
+                hits = [h for h in fed_by_fold.get((fold_plural(norm(title)), year), []) if h != iid]
+                how = "title equal but for a plural"
             targets = resolve_hits(hits, title, meta, twins)
             if not targets:
                 stats["skipped: no federal-text law of that title and year" if not hits
@@ -136,7 +156,8 @@ def plan(instruments, provisions, revival_texts, twins, reach) -> tuple[list[dic
                                  repealing_observation_id=obs, repealing_expression_ordinal=ordinal,
                                  repealing_source_block_id=block, repealing_relative_path=rel_path, territory=terr,
                                  clause_text=" ".join(m.group(0).split() + after.split())[:600],
-                                 matched_title=t_title, matched_year=year, why=why,
+                                 matched_title=t_title, matched_year=year,
+                                 why=why if how == "exact title" else f"{why}; {how}",
                                  repealed_instrument_id=target, repealing_instrument_id=iid))
     return rows, dict(stats)
 

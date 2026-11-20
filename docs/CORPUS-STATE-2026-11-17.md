@@ -33,7 +33,7 @@ versions (docs/03 §3, docs/04), measured against golden sets 1–4.
 | Source observations | 10,394; 66 catalogue items are declared acquisition exceptions with dated evidence |
 | Active provisions (incl. linked duplicates) | 1,197,584 from 202,604 sections — tree expansion 5.91× |
 | Amendment references | 15,184 |
-| Statutory repeals / territorial repeals | 215 rows, 180 standing / 48 (three are whole repeals that except units, 17 Nov; the 48th, the 1975 Antiquities Act in Balochistan, 18 Nov, D-078) |
+| Statutory repeals / territorial repeals | 229 rows / 71 (three statutory rows are whole repeals that except units, 17 Nov; the 1975 Antiquities Act in Balochistan, 18 Nov, D-078). **20 Nov, D-103:** 23 territorial and 9 statutory repeals the recorders had missed (titles differing by a plural, 'the province of the Khyber Pakhtunkhwa', 'this province', a qualifier naming the repealer's own province), found by the gate's error analysis; current laws 8,246 → 8,242 |
 | Partial repeals / units a repeal excepts | 34 units in 12 laws / 16 units in 2 laws (0102, 0103) |
 | Migrations applied | 103 (last 0103) |
 | Database size | 4.9 GB after the 18 Nov prune (2,631 retired revisions archived to archives/prune-2026-11-18/, 1,634 kept as evidence names them) and VACUUM FULL, from 6.0 GB |

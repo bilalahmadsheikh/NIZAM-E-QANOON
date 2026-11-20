@@ -170,7 +170,9 @@ def _single_clauses(text: str) -> list[dict]:
         found.append({"title": m.group("title").strip(), "year": int(m.group("year")),
                       "clause": " ".join(m.group(0).split()),
                       "qualified": bool(QUALIFIER.search(m.group("qual") or "") or PART_BEFORE.search(before)
-                                        or AFTER_QUALIFIER.search(after))})
+                                        or AFTER_QUALIFIER.search(after)),
+                      "qual": m.group("qual") or "", "after": after,
+                      "part": bool(PART_BEFORE.search(before))})
     return found
 
 
@@ -193,12 +195,21 @@ def resolve_hits(hits: list[str], clause_title: str, meta: dict, twins: frozense
     return same_kind if len(same_kind) == 1 else []
 
 
+def fold_plural(key: str) -> str:
+    """a normalised title with each word's plural 's' folded ('maternity benefits ordinance' -> 'maternity benefit
+    ordinance'). Used only when the exact title finds nothing, and only to a single law (D-103, 20 Nov 2026: the KP
+    and Balochistan Maternity Benefits Acts repeal 'the West Pakistan Maternity Benefits Ordinance, 1958', held as
+    '... Benefit Ordinance, 1958', which stayed served where it was repealed)."""
+    return " ".join(w[:-1] if len(w) > 3 and w.endswith("s") and not w.endswith("ss") else w for w in key.split())
+
+
 def plan(instruments: list[tuple], provisions: list[tuple], revival_texts: list[str],
          twins: frozenset = frozenset()) -> tuple[list[dict], dict]:
     """Decide the rows. instruments: (id, jurisdiction, kind, title, year, observation, ordinal[, display title]);
     provisions: (instrument id, relative path, first block, text); twins: frozenset of {instrument id, instrument id}
     pairs that are standing consolidated twins."""
     by_key: dict = collections.defaultdict(list)
+    by_fold: dict = collections.defaultdict(list)
     meta = {}
     for iid, jur, kind, title, year, obs, ordinal, *display in instruments:
         # the stored short title and (16 Nov 2026) the display title verified in the law's own print: either may be
@@ -206,19 +217,39 @@ def plan(instruments: list[tuple], provisions: list[tuple], revival_texts: list[
         for t in {title_key(title), *(title_key(d) for d in display if d)}:
             if t and iid not in by_key[(jur, t, year)]:
                 by_key[(jur, t, year)].append(iid)
+            if t and iid not in by_fold[(jur, fold_plural(t), year)]:
+                by_fold[(jur, fold_plural(t), year)].append(iid)
         meta[iid] = (jur, kind, title, obs, ordinal)
     revived = " ".join(norm(t) for t in revival_texts)
     stats: collections.Counter = collections.Counter()
     rows, seen = [], set()
+    try:                                         # lazy: that module imports this one; run as a script or as tools.*
+        from record_territorial_repeals import PROVINCES, clause_territory
+    except ImportError:
+        from tools.record_territorial_repeals import PROVINCES, clause_territory
     for iid, rel_path, block, text in provisions:
         jur, kind, _title, obs, ordinal = meta[iid]
         for c in repeal_clauses(text):
             stats["clauses"] += 1
-            if c["qualified"]:
+            own_copy = False
+            if c["qualified"] and jur in PROVINCES and "qual" in c and not c["part"]:
+                # (D-103) 'The West Pakistan Maternity Benefits Ordinance, 1958 ... is hereby repealed in its
+                # application to the Balochistan Province' (Balochistan Maternity Benefits Act, 2022): a qualifier
+                # that only names the repealer's own province repeals the whole of that province's own copy
+                # (targets are looked up in the repealer's own jurisdiction, so this is that province's copy)
+                terr, why = clause_territory(c["qual"], c["after"], jur)
+                own_copy = terr == jur and why == "the clause confines the repeal to the repealer's territory"
+                if own_copy:
+                    stats["qualifier names only the repealer's own province"] += 1
+            if c["qualified"] and not own_copy:
                 stats["skipped: partial or qualified"] += 1; continue
             if kind != "act":
                 stats["skipped: repealing instrument is not an Act"] += 1; continue
             hits = by_key.get((jur, norm(c["title"]), c["year"]), [])
+            if not hits:
+                hits = by_fold.get((jur, fold_plural(norm(c["title"])), c["year"]), [])
+                if hits:
+                    stats["matched but for a plural"] += 1
             targets = resolve_hits(hits, c["title"], meta, twins)
             if not targets:
                 stats["skipped: not held" if not hits else "skipped: ambiguous"] += 1; continue

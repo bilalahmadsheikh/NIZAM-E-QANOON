@@ -124,6 +124,32 @@ def test_only_an_act_repeals_and_only_an_exact_unique_same_jurisdiction_match():
     assert stats["skipped: not held"] == 1
 
 
+def test_a_title_equal_but_for_a_plural_matches_only_when_the_exact_title_does_not():
+    # D-103: the Balochistan Maternity Benefits Act, 2022 repeals 'the West Pakistan Maternity Benefits Ordinance,
+    # 1958', held as '... Maternity Benefit Ordinance 1958' -- it stayed served where it was repealed
+    inst = [("A", "balochistan", "act", "The Balochistan Maternity Benifits Act, 2022", 2022, 1, 0),
+            ("B", "balochistan", "ordinance", "The West Pakistan Maternity Benefit Ordinance 1958", 1958, 2, 0)]
+    rows, stats = plan(inst, [("A", "s_20", 10, "The West Pakistan Maternity Benefits Ordinance, 1958 (Ordinance No. "
+                                                "XXXII of 1958) is hereby repealed.")], [])
+    assert [(r["repealed_instrument_id"], r["repealing_instrument_id"]) for r in rows] == [("B", "A")]
+    assert stats["matched but for a plural"] == 1
+
+
+def test_a_qualifier_naming_only_the_repealers_own_province_repeals_its_own_copy():
+    inst = [("A", "balochistan", "act", "The Balochistan Maternity Benifits Act, 2022", 2022, 1, 0),
+            ("B", "balochistan", "ordinance", "The West Pakistan Maternity Benefit Ordinance 1958", 1958, 2, 0)]
+    own = ("The West Pakistan Maternity Benefits Ordinance, 1958 (Ordinance No. XXXII of 1958) is hereby repealed in "
+           "its application to the Balochistan Province.")
+    rows, stats = plan(inst, [("A", "s_20", 10, own)], [])
+    assert [r["repealed_instrument_id"] for r in rows] == ["B"]
+    assert stats["qualifier names only the repealer's own province"] == 1
+    # another province, or a non-territorial qualifier, is still skipped
+    for other in (own.replace("the Balochistan Province", "the Province of Sindh"),
+                  own.replace("in its application to the Balochistan Province", "except section 4")):
+        rows, stats = plan(inst, [("A", "s_20", 10, other)], [])
+        assert rows == [] and stats["skipped: partial or qualified"] == 1, other
+
+
 def test_a_revived_enactment_is_not_marked_repealed():
     provisions = [("A", "s_3", 10, "The Sindh Local Government Ordinance, 1979 is hereby repealed.")]
     rows, stats = plan(INST, provisions, ["the Sindh Local Government Ordinance, 1979 shall stand revived"])
