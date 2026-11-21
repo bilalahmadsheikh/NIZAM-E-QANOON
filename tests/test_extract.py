@@ -241,3 +241,18 @@ def test_pdf_metadata_nul_characters_are_removed():
 def test_pdf_metadata_none_is_empty():
     assert clean_pdf_metadata(None) == {}
     assert clean_pdf_metadata({"producer": "\x00\x00"}) == {}
+
+
+def test_a_media_box_with_a_fractional_origin_does_not_refuse_the_page():
+    """D-113 (FBR Customs SROs): '/MediaBox [0 .02 598.3 846.72]' with no CropBox -- PyMuPDF refused to widen the crop
+    box to a media box that rounding put a hair beyond it, and 29 SROs were refused. Boxes within a point are the same
+    page: the text is extracted; a real crop still marks text outside it."""
+    import pymupdf
+    doc = pymupdf.open()
+    page = doc.new_page(width=598.3, height=846.7)
+    page.insert_text((72, 100), "S.R.O. 1082(I)/2026 notification text")
+    doc.xref_set_key(page.xref, "MediaBox", "[0 .02 598.3 846.72]")
+    data = doc.tobytes()
+    doc.close()
+    result = extract_pdf(data, "5" * 64)
+    assert any("S.R.O. 1082(I)/2026" in b.text for b in result.blocks)

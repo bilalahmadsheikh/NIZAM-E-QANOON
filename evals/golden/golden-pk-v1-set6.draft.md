@@ -2,7 +2,7 @@
 
 Set 6: criminal law and procedure II -- hurt, qatl-i-khata and diyat, kidnapping, extortion, breach of trust, forgery, intimidation, trespass, narcotics by province, remand, confessions, evidence, habeas corpus, appeals and the complaint case.
 
-Corpus revision 3e5ae3c. Strata: citizen 20, professional 12, procedural 8, urdu 5, unanswerable 5.
+Corpus revision f9ec0a1. Strata: citizen 20, professional 12, procedural 8, urdu 5, unanswerable 5.
 Status: **draft** — A0 authoring and A3 identity resolution only. Not gold until two legal annotators (A1) and a senior advocate (A2) have reviewed it; do not tune or report on it before then.
 
 ## S6-C01 · citizen · fed/sindh · as of 2026-11-16 · expect **answer**

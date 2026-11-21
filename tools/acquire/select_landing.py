@@ -82,7 +82,9 @@ def main() -> int:
                        **({"archived_capture": {"url": r["archive_url"], "timestamp": r["archive_timestamp"],
                                                 "sha1_base32": r["archive_digest"],
                                                 "verified": "sha1 of the staged bytes equals the archive's digest"}}
-                          if r.get("archive_url") else {})})
+                          if r.get("archive_url") else {}),
+                       # a file from a source drop carries its zip, member and scraper run (tools/acquire/stage_drops.py)
+                       **({"drop": json.loads(r["drop"])} if r.get("drop") else {})})
     with open(a.out, "w", encoding="utf-8") as f:
         for c in chosen:
             f.write(json.dumps(c, ensure_ascii=False) + "\n")

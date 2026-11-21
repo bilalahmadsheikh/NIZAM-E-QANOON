@@ -275,7 +275,15 @@ def extract_pdf(
             original_crop = pymupdf.Rect(page.cropbox)
             media_box = pymupdf.Rect(page.mediabox)
             if original_crop != media_box:
-                page.set_cropbox(media_box)
+                try:
+                    page.set_cropbox(media_box)
+                except ValueError:
+                    # A media box with a fractional origin ('[0 .02 598.3 846.72]', FBR SROs, 21 Nov 2026, D-113):
+                    # PyMuPDF refuses a crop box that rounding puts a hair outside it. Boxes that agree within a point
+                    # are the same page, so the declared crop box is kept; a real disagreement still refuses.
+                    gap = max(abs(a - b) for a, b in zip(original_crop, media_box))
+                    if gap >= 1.0:
+                        raise
 
             # sort=True asks PyMuPDF for blocks in reading order rather than in
             # the order the content stream happens to place them. Legal PDFs

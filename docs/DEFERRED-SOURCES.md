@@ -1,5 +1,40 @@
 # Deferred sources: decide when retrieval is finished
 
+## Taken up 21 Nov 2026 (DECISION-LOG D-113): what landed, what is left
+
+**Landed and released: 230 laws.** 251 landed. 21 were then found not to be law (19 drafts, a circular, a press
+release) and are recorded in `source_not_law` (0116).
+
+| Source | Released | Left: scans (OCR) | Left: text, not yet structurable | Not landed by rule |
+|---|---:|---:|---:|---|
+| FBR codes | 9 | 7 | 9 | 142 versions of held laws, incl. six 2026 consolidations |
+| FBR Customs SROs | 21 | 11 | 46 | 2 drafts, 9 held |
+| SECP | 198 | 248 (+2 Urdu) | 354 | 214 guidance, 170 drafts, 148 held, 47 older copies, 14 .docx |
+| PSX | 0 | — | 1 (the Rule Book: S7 = 20) | 62 notices, forms and policies |
+| GB drop | 2 | 16 (the 2020–24 Acts and Rules) | — | the PEC Act (held as federal) |
+
+The released counts are after the 21 not-law files came out: 6 FBR SROs, 15 SECP.
+
+**Left, in the order of value per effort:**
+1. **The six FBR 2026 consolidations of laws held** (Customs Act, Sales Tax Act, Federal Excise Act, the Income Tax
+   Ordinance twice, the Finance Act 2026). They carry the Finance Act 2026 amendments. They need a newer-consolidation
+   rule, a sibling of the 0075 twin link that serves the newer text, plus a golden-set re-point for the tax cases.
+2. **About 290 unnumbered notifications**, mostly SECP amending SROs. Their operative lead-in falls outside every unit.
+   They need a rule serving an unnumbered notification as one unit with its paragraphs, as the released notifications
+   already are; then they land through the ordinary gates.
+3. **About 120 other blocked text files:** repeated labels (S7), evidence failures, and Gazette mastheads read as
+   Parts. These are per-document readings.
+4. **29 released new laws flagged by leakscan:** notes, heads, page furniture. These are the established repair
+   batches. The GB Civil Servants Act carries a Gazette price line as a false sub-section.
+5. **Scans: 282 here** (FBR 7, Customs 11, SECP 248, GB 16), plus the 874 AJK and 151 GB scans of item 6. That is
+   1,307 laws, on the Kaggle OCR route with page-read verification (D-076).
+6. **Judgments (item 7)** and the **acquisition exceptions (item 8)** are untouched.
+
+The per-file lists are in `E:/nizam-data/acquire/drops-2026-11-21/<drop>/` (staged.csv, excluded.csv, preflight.csv,
+select-excluded.csv).
+
+---
+
 **Owner ruling, 19 Nov 2026 (D-100):** everything below is held, not landed, until L3 retrieval is finished:
 - the reranker, the calibrated gate and context assembly (docs/04);
 - the golden-set evaluation on the frozen test split.

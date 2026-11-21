@@ -301,6 +301,23 @@ Closed 21 Nov (D-110): **footnotes that opened false sections**, found while mea
   - In 1992, 2840, 3717, 3958 and 4301, only the notes block that opened the false section was set aside. Their other
     pages' notes are still read into the text of correctly placed provisions: text noise, not structure.
 
+Closed later on 21 Nov (D-113): **the regulators' text-layer instruments landed.**
+- 230 laws released from the September FBR, SECP and GB drops (FBR 9, Customs SROs 21, SECP 198, GB 2), all
+  `pk-federal` except GB. The release went from 10,342 to 10,572.
+- Each carries its official URL from the drop manifest and the scraper's fetch date. Staging, preflight and
+  selection are in `tools/acquire/stage_drops.py` and `E:/nizam-data/acquire/drops-2026-11-21/`.
+- 21 more landed and were taken back out as not law (19 drafts for consultation, an SECP circular, a press release):
+  migration 0116 `source_not_law`, `tools/record_not_law.py`.
+- 62 amending SROs had their kind corrected to notification or sro (`tools/record_drop_kinds.py`, 0101 assertions).
+- **Before the next landing from a drop:** read every landed law's first page for drafts (titles rarely say so), and
+  run leakscan. 29 of the 230 are flagged (notes, Gazette heads, page furniture) and wait for the usual repair
+  batches.
+- **Left:** see docs/DEFERRED-SOURCES.md, "Taken up 21 Nov 2026":
+  - the six FBR 2026 consolidations of held laws;
+  - about 290 unnumbered notifications awaiting a notification-unit rule;
+  - about 120 other blocked texts;
+  - 1,307 scans.
+
 Still open:
 - Golden sets 5–10, and annotation of sets 1–4.
 - No Urdu statute text is landed. Sindh Urdu PDFs exist, but their text layer is

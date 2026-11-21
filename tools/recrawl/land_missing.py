@@ -176,7 +176,11 @@ def land_one(it: dict, cur, conn, report: dict, scraper_version: str = None, sta
                               # bytes from the Internet Archive's capture of the official URL (16 Nov 2026): the
                               # capture, its timestamp and the digest the staged bytes were verified against
                               "archived_capture": it.get("archived_capture"),
+                              # a file from a source drop (21 Nov 2026, tools/acquire/stage_drops.py): the zip, its
+                              # member, the scraper run that fetched it and the manifest row naming the official URL
+                              "drop": it.get("drop"),
                               "staged_fetch": ({"tool": ("tools/acquire/stage_wayback.py" if it.get("archived_capture")
+                                                         else "tools/acquire/stage_drops.py" if it.get("drop")
                                                          else "tools/acquire/stage_candidates.py"),
                                                 "fetched_at": fetched_at}
                                                if fetched_at else None)}.items() if v}

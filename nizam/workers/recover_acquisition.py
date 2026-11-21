@@ -55,6 +55,11 @@ ALLOWED_HOSTS = {
     # only official source found for the 25th-27th Constitution Amendment Acts, which Pakistan Code folds into the
     # Constitution (18 Nov 2026, DECISION-LOG D-076). Its certificate chain omits the GoGetSSL intermediate.
     "na.gov.pk", "www.na.gov.pk",
+    # the federal regulators' own publications (21 Nov 2026, DECISION-LOG D-113): the Federal Board of Revenue (its tax
+    # Acts, Ordinances, Rules and SROs), the Securities and Exchange Commission of Pakistan (its Acts, Rules,
+    # Regulations and SRO notifications) and the Pakistan Stock Exchange (its Rule Book). Their files land from the
+    # September source drops (tools/acquire/stage_drops.py) under these official URLs as canonical_url
+    "download1.fbr.gov.pk", "www.fbr.gov.pk", "www.secp.gov.pk", "www.psx.com.pk", "psx.com.pk",
 }
 # generic client name: requests to outside services never carry the project's or a person's name
 USER_AGENT = "Mozilla/5.0 (compatible; legal-research-crawler/1.0)"

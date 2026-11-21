@@ -1136,6 +1136,73 @@ Area: client · Status: Superseded by D-084 (the whole-page cloth; the hem, the 
   design/heritage_art.dart, presentation/discover.dart, presentation/heritage.dart; test/heritage_test.dart
   (golden embroidery.png, a review sheet at 3x).
 
+### D-113 · 2026-11-21 · The held-back regulator sources: the binding text-layer instruments landed; drafts, guidance and scans not
+Area: owner ruling, L1 acquisition and release (docs/02 §2, §8; docs/DEFERRED-SOURCES.md items 1–5) · Status: standing
+- Decision: the owner said "add data of these all as much as u can". This takes up D-100's held list, apart from
+  judgments, which wait for their own pipeline. Five drops were taken; the bytes come from the September zips in
+  E:/nizam-data:
+  - FBR codes;
+  - FBR Customs SROs (the copy in the Peshawar bundle, whose manifest names each file's URL);
+  - SECP;
+  - PSX;
+  - GB.
+
+  Each landed file carries:
+  - its official URL from the drop's manifest (`canonical_url`);
+  - its zip member and scraper run (`source_metadata.drop`);
+  - the date the scraper fetched it (`fetched_at`), which opens provision validity.
+
+  FBR, SECP and PSX land as `pk-federal`, as the Ministry of Law's DRS files did. Their hosts join the allow-list.
+  - **The two GB laws** (Civil Servants Act 2011; Government of Gilgit-Baltistan Order 2018) have no manifest. They
+    were fetched live from gilgitbaltistan.gov.pk on 21 Nov and are byte-identical to the zip, so they carry that URL.
+- **What counts as law** (the recommendations in DEFERRED-SOURCES, taken):
+  - **Landed:** Acts, Ordinances, Rules, Regulations, SRO notifications, and the PSX Rule Book.
+  - **Not landed:** SECP circulars, guidelines and directives, and every other PSX file (notices, forms, policies,
+    schedules of charges). These are regulator guidance, not legislation.
+  - **Drafts are never law.** 172 drafts were left out on their titles before landing.
+  - **Held laws are left out** on the 19 Nov comparison. A "possible match" counts as held unless its title amends
+    something, because an amending instrument is a different instrument from the one it amends.
+- **The same file twice, or an older dated consolidation:** only the newest of each instrument is staged
+  (`tools/acquire/stage_drops.py`).
+- **The gates were unchanged:** stage, then `preflight_segment.py`, then `select_landing.py` (text layer; clean or
+  leaky), then `land_missing.py --staged`, then `tools/recrawl/pipeline.sh`.
+  - **251 landed:** 9 FBR, 27 Customs SROs, 213 SECP, 2 GB. PSX's Rule Book was blocked: its rules repeat labels
+    (S7 = 20).
+  - All 251 passed verification: 248 character-perfect, the worst precision .99917, and none for text review.
+  - All 251 segmented and were released; the release rose from 10,342 to 10,593. Two fixes were needed on the way:
+    - **Extraction:** a media box with a fractional origin ('[0 .02 598.3 846.72]') made PyMuPDF refuse the crop box,
+      and 29 SROs failed. Boxes agreeing within a point are now treated as the same page (`nizam/corpus/extract.py`).
+      Only files that used to fail can change.
+    - **Staging:** "Amended upto" no longer reads as an amending instrument.
+- **Not law after all: 21 taken back out** (migration 0116 `source_not_law`). A first-page sweep of every landed law
+  found:
+  - 19 drafts published for consultation, whose titles do not say so ("The following draft of the X Regulations …
+    proposed to be made … objections or suggestions");
+  - one SECP circular;
+  - one press release.
+
+  Each is recorded with the printed words and their block, and `v_release_instrument` leaves them out. A hold would
+  have been untruthful, and 0065 needs an authoritative counterpart the corpus does not have. The release stands at
+  10,572: +230 laws.
+- **Kinds.** The title outranks the catalogue, so amending SROs were typed `rules` or `regulation`, and one
+  `constitution`. 62 were corrected to `notification` or `sro` by 0101 assertions, each quoting the printed
+  NOTIFICATION or S.R.O. line (`tools/record_drop_kinds.py`). A principal "X Regulations, 2015" made by SRO keeps
+  its kind.
+- **Left (docs/DEFERRED-SOURCES.md, updated):**
+  - **Scans:** 266 in these drops (FBR 7, Customs 11, SECP 248) plus the 16 GB Act scans, and the earlier 874 AJK
+    and 151 GB scans.
+  - **Text-layer files the segmenter cannot yet structure:** 410.
+    - 290 are notifications with no numbered sections. Their operative lead-in falls outside every unit, so they need
+      a rule serving an unnumbered notification as one unit with its paragraphs.
+    - The rest repeat labels (S7) or fail evidence.
+  - **The six FBR 2026 consolidations of laws held** (Customs, Sales Tax, Federal Excise, the Income Tax Ordinance
+    twice, the Finance Act 2026). These need the newer-consolidation rule docs/03 lacks.
+- Where:
+  - tools/acquire/stage_drops.py, select_landing.py (drop provenance); tools/recrawl/land_missing.py;
+  - nizam/workers/recover_acquisition.py (allow-list); nizam/corpus/extract.py;
+  - infra/postgres/migrations/0116_source_not_law.sql; tools/record_not_law.py, tools/record_drop_kinds.py;
+  - E:/nizam-data/acquire/drops-2026-11-21/ (staged, preflight, select and excluded files per drop).
+
 ### D-112 · 2026-11-21 · ADR-1d after reranking: the CPU generation keeps its sign bits
 Area: architecture (ADR-1d, D-005), L2 vectors, L3 dense generator · Status: standing; settles D-098 item 4 for bge-m3
 - Decision: the CPU generation (bge-m3, `bit(1024)` in `chunk.embedding`) keeps binary storage. Measured after
