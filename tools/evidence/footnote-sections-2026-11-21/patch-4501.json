@@ -1,0 +1,23 @@
+[
+ {
+  "document_id": 4501,
+  "page_no": 28,
+  "source_set_aside_units": [
+   {
+    "source_block_id": 919949,
+    "source_prefix": "1Omitted by Ord. No. XXXVII of 2001"
+   },
+   {
+    "source_block_id": 919949,
+    "source_prefix": "1327-A. \nEnforced in Baluchistan"
+   }
+  ],
+  "observed": "Page 28 prints s.4(1)(h) 'Complaint' ending '...but it does not include the report of a police-officer:' above the footnote rule. Below the rule are footnotes 1-7, among them 'Enforced in Sind, w.e.f. 23-12-75, see, Sind Govt. Notifin. ... Ext. p. 1327-A.' and 'Enforced in Baluchistan, w.e.f. 23-12-75 ...'. Extracted block 919949 carries those footnotes after clause (h): they were read into clause (h) and opened a false section '1327-A' (heading 'Enforced in Baluchistan ...') under which clauses (i) onward of s.4(1) were placed. Set aside from the first footnote.",
+  "render": "tools/evidence/footnote-sections-2026-11-21/crpc-p28.png",
+  "render_sha256": "8d7c7d4a692a5b1986fd57d225e58bd87c066f75ab06e402b45831e0465e08e4",
+  "match_text": "Enforced in Baluchistan, w.e.f. 23-12-75",
+  "before_text": "Enforced in Baluchistan, w.e.f. 23-12-75",
+  "after_text": "Enforced in Baluchistan, w.e.f. 23-12-75",
+  "defect": "footnote text below the page rule read into law text"
+ }
+]

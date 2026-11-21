@@ -40,12 +40,19 @@ from nizam.storage import linking as L
 from nizam.storage.db import connect
 from nizam.storage.unit_search import OUTER_KINDS, UNIT_KINDS
 
-LINKER = "nizam.links/7"     # /7: a phrase stops at a new clause; the dashes statutes print continue a definition     # /5: hyphenated labels ('4-A'), a run of references shares its trailing law; /6: headings
-                             # and marginal notes are read too ('[See section 5]', 0115)     # /2: the word printed (section | rule | regulation), a subordinate instrument's implicit
-BATCH = 150                  # parent, a title straight after the number; /3: 'Article' asks for articles only, the
-                             # phrase governs only what it names, past-a-division titles, AJK/GB own copies; /4:
-                             # decimal rule numbers, footnote markers before a title, never 'sub-section N', the
-                             # parent named by its kind (D-108)
+# The linker's version, recorded on every row it writes. History (D-108 unless noted):
+#   /2  the word printed (section | rule | regulation); a subordinate instrument's implicit parent; a title straight
+#       after the number
+#   /3  'Article' asks for articles only; the phrase governs only what it names; past-a-division titles; AJK/GB own
+#       copies
+#   /4  decimal rule numbers; footnote markers before a title; never 'sub-section N'; the parent named by its kind
+#   /5  hyphenated labels ('4-A'); a run of references shares its trailing law
+#   /6  headings and marginal notes are read too ('[See section 5]', 0115)
+#   /7  a phrase stops at a new clause; the dashes statutes print continue a definition
+#   /8  a definition's scope from a flattened lead-in sibling (D-110)
+#   /9  'subject to the penalties provided in section N' is a reference (a liability), not precedence (D-110)
+LINKER = "nizam.links/9"
+BATCH = 150
 SUBORDINATE_KINDS = ("rules", "regulation", "notification")
 _PROVINCE = re.compile(r"\b(punjab|sindh|sind|khyber|pakhtunkhwa|n\.?w\.?f\.?p|balochistan|baluchistan|islamabad|"
                        r"azad|kashmir|gilgit)\b", re.I)
@@ -256,6 +263,11 @@ def _link_law(law: Law, parent_id, parent_kind, titles: TitleIndex, stats) -> tu
             unit_depth = chain.index(unit) if unit in chain else 0
             above = [law.text_of(a) for a in reversed(chain[unit_depth:-1])]
             word = L.scope_word([L.opening(text)] + above)
+            if word is None and parent is not None:
+                # a flattened lead-in: 'Explanation.--For the purposes of this section:' printed as the sibling
+                # before the definitions it introduces (D-110)
+                before = [law.text_of(s) for o, s in reversed(law.children.get(parent, [])) if o < ordinal]
+                word = L.scope_word([L.lead_in(before)])
             scope, scope_pid = L.definition_scope(word, [(a, law.nodes[a][2]) for a in chain], unit, law.kind)
             after = ordinal if scope == "division" else None
             if word in ("part", "chapter") and scope == "unit":
@@ -329,17 +341,37 @@ def _stale_laws(cur, released_laws) -> set:
          WHERE NOT EXISTS (SELECT 1 FROM provision_link_state s WHERE s.version_id = v.id AND s.linker = %s)""",
                 (LINKER,))
     stale = {r[0] for r in cur.fetchall()}
+    # The release's ids are read ONCE into indexed temp tables, and each NOT EXISTS stands alone in its own UNION
+    # branch. A NOT EXISTS inside an OR cannot become a hash anti-join: it runs as a subplan per row, and against the
+    # v_release_* views (or an unindexed copy) that ran past 20 minutes (21 Nov, D-110; audit A23 met the same trap,
+    # D-108). Same laws selected.
+    cur.execute("CREATE TEMP TABLE _rel_v AS SELECT id FROM v_release_provision_version")
+    cur.execute("CREATE TEMP TABLE _rel_p AS SELECT id FROM v_release_provision")
+    cur.execute("CREATE INDEX ON _rel_v (id)")
+    cur.execute("CREATE INDEX ON _rel_p (id)")
+    cur.execute("ANALYZE _rel_v")
+    cur.execute("ANALYZE _rel_p")
     cur.execute("""
-        SELECT DISTINCT r.src_instrument_id FROM provision_reference r
-         WHERE NOT EXISTS (SELECT 1 FROM v_release_provision_version v WHERE v.id = r.src_version_id)
-            OR (r.dst_unit_id IS NOT NULL AND NOT EXISTS (SELECT 1 FROM v_release_provision p WHERE p.id = r.dst_unit_id))
+        SELECT r.src_instrument_id FROM provision_reference r
+         WHERE NOT EXISTS (SELECT 1 FROM _rel_v v WHERE v.id = r.src_version_id)
         UNION
-        SELECT DISTINCT d.instrument_id FROM provision_definition d
-         WHERE NOT EXISTS (SELECT 1 FROM v_release_provision_version v WHERE v.id = d.version_id)
-            OR EXISTS (SELECT 1 FROM unnest(d.continuation || d.unit_id || d.scope_provision_id) x(pid)
-                        WHERE x.pid IS NOT NULL AND NOT EXISTS (SELECT 1 FROM v_release_provision p WHERE p.id = x.pid))
+        SELECT r.src_instrument_id FROM provision_reference r
+         WHERE r.dst_unit_id IS NOT NULL AND NOT EXISTS (SELECT 1 FROM _rel_p p WHERE p.id = r.dst_unit_id)
+        UNION
+        SELECT d.instrument_id FROM provision_definition d
+         WHERE NOT EXISTS (SELECT 1 FROM _rel_v v WHERE v.id = d.version_id)
+        UNION
+        SELECT d.instrument_id FROM provision_definition d
+         CROSS JOIN LATERAL unnest(d.continuation || d.unit_id || d.scope_provision_id) x(pid)
+         WHERE x.pid IS NOT NULL AND NOT EXISTS (SELECT 1 FROM _rel_p p WHERE p.id = x.pid)
+        UNION
+        -- a version read that has left the release, though it made no reference or definition row (A23, D-110)
+        SELECT p.instrument_id FROM provision_link_state s
+          JOIN provision_version v ON v.id = s.version_id JOIN provision p ON p.id = v.provision_id
+         WHERE NOT EXISTS (SELECT 1 FROM _rel_v r WHERE r.id = s.version_id)
     """)
     stale |= {r[0] for r in cur.fetchall()}
+    cur.execute("DROP TABLE _rel_v, _rel_p")
     return stale                    # a law that left the release is in it too: its rows are deleted, none written
 
 

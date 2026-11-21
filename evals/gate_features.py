@@ -55,7 +55,9 @@ GPU_SCORES = [(DATA / "rerank/ds-dev/pairs.jsonl", DATA / "rerank/out-rr2/out/sc
               (DATA / "rerank/ds-test-gpu/pairs.jsonl", DATA / "rerank/out-rrt-8b/out/scores-qwen3-8b.npy"),
               (DATA / "rerank/ds-gate-x/pairs.jsonl", DATA / "rerank/out-rrg-8b/out/scores-qwen3-8b.npy"),
               # the same (grown) pairs file, rescored whole with the 500-case pending pairs (D-106)
-              (DATA / "rerank/ds-gate-x/pairs.jsonl", DATA / "rerank/out-rrg2-8b/out/scores-qwen3-8b.npy")]
+              (DATA / "rerank/ds-gate-x/pairs.jsonl", DATA / "rerank/out-rrg2-8b/out/scores-qwen3-8b.npy"),
+              # the passages the D-110 repairs and re-materialisations changed (new text, new pairs; D-111)
+              (DATA / "rerank/ds-gate-y/pairs.jsonl", DATA / "rerank/out-rrg3-8b/out/scores-qwen3-8b.npy")]
 GPU_RERANKER = RerankerInfo("Qwen/Qwen3-Reranker-8B", "77d193c791ed757ca307ee72715aa132723da912", "qwen", 1024,
                             "Given a question about Pakistani law, retrieve the statutory provisions that answer it",
                             "gpu")

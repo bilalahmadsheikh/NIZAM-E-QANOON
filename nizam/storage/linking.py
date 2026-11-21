@@ -172,6 +172,18 @@ def definition_scope(word: str | None, chain, unit, law_kind: str | None) -> tup
     return "law", None
 
 
+def lead_in(preceding) -> str:
+    """the words that introduce a run of definitions printed as siblings ('Explanation.--For the purposes of this
+    section:' before '(a) "company" means ...', '(b) "director" means ...'): walking back from the nearest preceding
+    sibling over those that themselves define a word, the first that does not, if it ends as a lead-in (a colon,
+    a dash, 'namely'); else ''"""
+    for t in preceding:
+        if defined_terms(t):
+            continue
+        return t if _CONTINUES.search((t or "").rstrip()) else ""
+    return ""
+
+
 def opening(text: str) -> str:
     """a definition's own opening words: everything before its first quotation mark ('In this Chapter, ')"""
     m = re.search(r"[\"“”‘'`]", text or "")
@@ -284,7 +296,18 @@ def _edge(head: str, own_law: str | None = None) -> str:
     clause = re.search(r",\s+(?:the|a|an|any|no|every|such|all|it|he|she|they|where|when|if)\b", gap, re.I)
     if len(gap) > 90 or (names_law and not own) or clause:
         return "refers_to"
-    return "notwithstanding" if m.group(1).lower().startswith("notwithstanding") else "subject_to"
+    if m.group(1).lower().startswith("notwithstanding"):
+        return "notwithstanding"
+    # 'shall be subject to the penalties provided in sections 494 and 495 of the Pakistan Penal Code': a liability the
+    # reference imposes, not which provision prevails (D-110, read in a dev conflict sample: Parsi Marriage Act s.5,
+    # Special Marriage Act s.16)
+    if _LIABILITY.match(gap):
+        return "refers_to"
+    return "subject_to"
+
+
+_LIABILITY = re.compile(r"\s*(?:the\s+|such\s+|a\s+|any\s+)?(?:penalt|punishment|fine|imprisonment|liabilit|forfeiture)",
+                        re.I)
 
 
 def _labels(group: str) -> tuple:

@@ -38,12 +38,30 @@ class QuerySpec:
     script: str = "latin"
     sentence: bool = False
     gloss: list = field(default_factory=list)    # English words for the Urdu legal terms it uses (D-105)
+    sub_questions: list = field(default_factory=list)   # [] for one question; else each asked question (D-110)
 
 
 def strip_frame(q: str) -> str:
     words = re.findall(r"[A-Za-z0-9][A-Za-z0-9'-]*", q)
     kept = [w for w in words if w.lower().strip("'") not in FRAME]
     return " ".join(kept) or q
+
+
+# a sentence ends at '?', '؟', '.', '!' before a capital, an Urdu letter, a quote or a bracket -- never inside 's. 302',
+# 'Art. 184(3)' or 'etc. and'
+_SENTENCE_END = re.compile(r"(?<=[?؟.!])\s+(?=[A-Z؀-ۿ\"“(])")
+
+
+def sub_questions(text: str) -> list[str]:
+    """The questions a text asks, when it asks more than one (docs/04 §7 coverage, D-110): each sentence ending in '?'
+    or '؟' is one, and the statements before the first question are context every sub-question carries ('After our
+    divorce, who gets custody? What does the court look at?'). One question, or none, is not split: []."""
+    sentences = [s.strip() for s in _SENTENCE_END.split(" ".join((text or "").split())) if s.strip()]
+    asked = [i for i, s in enumerate(sentences) if s.endswith(("?", "؟"))]
+    if len(asked) < 2:
+        return []
+    context = " ".join(sentences[:asked[0]])
+    return [f"{context} {sentences[i]}".strip() for i in asked]
 
 
 def parse(text: str) -> QuerySpec:
@@ -63,4 +81,4 @@ def parse(text: str) -> QuerySpec:
     if g:
         lexical = " ".join(g) if script == "arabic" else f"{lexical} {' '.join(g)}"
     return QuerySpec(text=t, lexical=lexical, citations=_cit.find(t), territory=_places.territory_of(t),
-                     places=found, script=script, sentence=sentence, gloss=g)
+                     places=found, script=script, sentence=sentence, gloss=g, sub_questions=sub_questions(t))

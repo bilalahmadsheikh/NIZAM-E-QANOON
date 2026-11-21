@@ -2,7 +2,7 @@
 
 Set 1: the first 50 cases — citizen scenarios, professional lookups, procedure, Urdu/Roman Urdu and deliberately unanswerable questions.
 
-Corpus revision b47bde1. Strata: citizen 20, professional 12, procedural 8, urdu 5, unanswerable 5.
+Corpus revision 3e5ae3c. Strata: citizen 20, professional 12, procedural 8, urdu 5, unanswerable 5.
 Status: **draft** — A0 authoring and A3 identity resolution only. Not gold until two legal annotators (A1) and a senior advocate (A2) have reviewed it; do not tune or report on it before then.
 
 ## S1-C01 · citizen · punjab/punjab · as of 2026-11-16 · expect **answer**
@@ -204,9 +204,9 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** CrPC provision on bail in non-bailable offences
 
 - *Proposition:* Section 497 CrPC: a person accused of a non-bailable offence may be released on bail, but not where there are reasonable grounds to believe him guilty of an offence punishable with death or life imprisonment or ten years, subject to the provisos.
-- **Necessary (grade 3)** — Code of Criminal Procedure, 1898, s./art. 497 (current: owner_presumption_in_force; served in punjab) · `2a4c810f-26e3-4fd4-98d3-8dc72d6aec78` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
+- **Necessary (grade 3)** — Code of Criminal Procedure, 1898, s./art. 497 (current: owner_presumption_in_force; served in punjab) · `f96ede93-e18a-46a8-875a-f0a91ca3d7da` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
   > When bail may be taken in case of non-bailable offence __ (1) When any person accused of any non-bailable offence is arrested or detained without warrant by an officer in charge of a police station, or appears or is brought before a Court, he may be released o
-- **Hard negative (grade 0)** — Code of Criminal Procedure, 1898, s./art. 496 (current: owner_presumption_in_force; served in punjab) · `7544018d-bfe4-40e0-bc7d-894264540f18` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
+- **Hard negative (grade 0)** — Code of Criminal Procedure, 1898, s./art. 496 (current: owner_presumption_in_force; served in punjab) · `63b1d8e5-b5ee-4884-9df8-6a929ea8aa79` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
   > In what cases bail to be taken When any person other than a person accused of a non-bailable offence is arrested or detained without warrant by an officer in charge of a police-station, or appears or is brought before a Court, and is prepared at any time while
 
 ## S1-P02 · professional · fed/sindh · as of 2026-11-16 · expect **answer**
@@ -214,7 +214,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** Section on recording information in cognizable cases (FIR)
 
 - *Proposition:* Every information relating to a cognizable offence given to an officer in charge of a police station must be reduced to writing, read over and signed, and its substance entered in the prescribed book.
-- **Necessary (grade 3)** — Code of Criminal Procedure, 1898, s./art. 154 (current: owner_presumption_in_force; served in sindh) · `13090eca-815b-43e7-a6ea-3e32024e5705` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
+- **Necessary (grade 3)** — Code of Criminal Procedure, 1898, s./art. 154 (current: owner_presumption_in_force; served in sindh) · `4f99424c-dbf7-48e3-9060-05386246a6c7` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
   > Information in cognizable cases Every information relating to the commission of a cognizable offence if given orally to an officer in charge of a police-station, shall be reduced to writing by him or under his direction, and be read over to the informant ; and
 
 ## S1-P03 · professional · fed/kp · as of 2026-11-16 · expect **answer**
@@ -400,7 +400,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** Na-qabil-e-zamanat jurm mein zamanat kab mil sakti hai?
 
 - *Proposition:* Section 497 CrPC governs bail in non-bailable offences.
-- **Necessary (grade 3)** — Code of Criminal Procedure, 1898, s./art. 497 (current: owner_presumption_in_force; served in sindh) · `2a4c810f-26e3-4fd4-98d3-8dc72d6aec78` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
+- **Necessary (grade 3)** — Code of Criminal Procedure, 1898, s./art. 497 (current: owner_presumption_in_force; served in sindh) · `f96ede93-e18a-46a8-875a-f0a91ca3d7da` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
   > When bail may be taken in case of non-bailable offence __ (1) When any person accused of any non-bailable offence is arrested or detained without warrant by an officer in charge of a police station, or appears or is brought before a Court, he may be released o
 
 ## S1-U03 · urdu · punjab/punjab · as of 2026-11-16 · expect **answer**

@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 3717,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   455179
+  ],
+  "match_text": "1I.e. the 16th day of May, 1977, see Gaz",
+  "before_text": "1I.e. the 16th day of May, 1977, see Gaz",
+  "after_text": "1I.e. the 16th day of May, 1977, see Gaz",
+  "defect": "footnotes below the page rule read as law; they opened a false section",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 4 prints footnote 1 ('1I.e. the 16th day of May, 1977, see Gaz. of P., 1977 ...') below the page rule. Block 455179 holds only those notes; read as law, the note number opened a false section '1I' that took the provisions printed after it. It is apparatus, not law.",
+  "render": "tools/evidence/footnote-sections-2026-11-21/doc3717-p4.png",
+  "render_sha256": "0d2d45c59238afd6d50df27e08c683c328e3b2995377fbc2f562869cd6b1fc10"
+ }
+]

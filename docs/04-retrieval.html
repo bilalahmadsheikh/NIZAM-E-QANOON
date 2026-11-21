@@ -310,7 +310,7 @@ authority = matrix.resolve(decidingCourt, forum, subjectMatter, asOf)
      <li>additions correct: 38/40 on test and 40/40 on the final dev sample, author-checked.</li>
     </ul>
     Assembly takes p50 ~230 ms and p95 ~400 ms, over the ≤ 25 ms row in §9.</li>
-   <li>Not built: sub-question coverage, conflict sets, General Clauses Act and parent-Act definitions, references to other laws, matched-span offsets, Urdu-script definitions.</li>
+   <li>Not built (20 Nov): sub-question coverage, conflict sets, General Clauses Act and parent-Act definitions, references to other laws, matched-span offsets, Urdu-script definitions. General Clauses Act and parent-Act definitions and references to other laws came with D-108; conflict sets and sub-question coverage with D-110. Offsets and Urdu-script definitions remain.</li>
   </ul></div>
   <div class="note blue"><h4>As built (21 Nov 2026): assembly reads the link tables (D-108)</h4>
   <ul>
@@ -323,6 +323,13 @@ authority = matrix.resolve(decidingCourt, forum, subjectMatter, asOf)
      <li>the jurisdiction's own General Clauses Act (<code>defaults_from</code>), for words the law does not define.</li>
     </ul></li>
    <li><b>Measured</b> (test once, GPU bundles): necessary and relevant units unchanged; additions 39/40 correct (author-checked). Assembly takes p50 154&nbsp;ms and p95 248&nbsp;ms, down from 227 and 376. One test text check was lost to the budget, recorded as open.</li>
+  </ul></div>
+  <div class="note blue"><h4>As built (21 Nov 2026): conflicts and coverage per sub-question (D-110)</h4>
+  <ul>
+   <li><b>Conflicts.</b> When one admitted item says &ldquo;notwithstanding&rdquo; another admitted item, or is &ldquo;subject to&rdquo; it, <code>GroundingContext.conflicts</code> records <code>{prevails, over, kind, said_by}</code> from <code>provision_reference</code>. These are ids only: a client renders the units' own words from their records (INV-1).</li>
+   <li><b>Sub-questions, split and traced.</b> <code>query.sub_questions()</code> splits a text that asks two or more questions (sentences ending in &ldquo;?&rdquo; or &ldquo;؟&rdquo;), each carrying the statements before the first. <code>coverage.sub_questions</code> records, for each, the admitted units carrying two of its own content terms (<code>lexical_support</code>). No coverage verdict is drawn from it: on dev, word overlap called both real multi-question cases partial, and both were answered in other words. A verdict waits for a calibrated judge. One search serves all sub-questions, and the gate is unchanged.</li>
+   <li><b>Measured and rejected:</b> holding budget room for every gated unit ahead of the additions. It cost a CPU necessary unit on dev and gained nothing.</li>
+   <li><b>Definition scope from a lead-in sibling</b> (&ldquo;In this Part, unless the context otherwise requires,—&rdquo;; &ldquo;Explanation.—For the purposes of this section,—&rdquo;): linker <code>nizam.links/8</code> (&sect;4 note).</li>
   </ul></div>
  </div>
 </section>
@@ -363,7 +370,7 @@ authority = matrix.resolve(decidingCourt, forum, subjectMatter, asOf)
    <li><b>Vetoes before search</b> (<code>nizam/retrieval/scope.py</code>). Time: a future <code>as_of</code>, or a question about what the law will be. Source: a court's decision or case law, since there are no judgments yet. Place: the law of a foreign place, unless the question names a Pakistani place. After search, a question with no territory whose leading units are two provinces' laws gets <code>JURISDICTION_UNRESOLVED</code>.</li>
    <li><b>Calibrated model:</b> logistic regression per reranker (matched by model and revision), fitted on dev under a pre-registered rule. &tau; is set for answered precision 0.95. Features chosen on dev: GPU, the top reranker score; CPU, top score, margin and generator agreement.</li>
    <li><b>Test results, scored once</b> (provisional golden sets): GPU, 72 of 80 pass at .944 precision with 97% of answerable questions answered; CPU, 18 pass at .833, under its target and recorded as open. Abstention precision and recall targets are not yet met, and 8 unanswerable test cases cannot measure them reliably.</li>
-   <li>Not built: per-intent or per-language thresholds (too few cases); coverage of several sub-questions; the authority, treatment and delegated-instrument vetoes. Those need the judgment and edge data first.</li>
+   <li>Not built: per-intent or per-language thresholds (too few cases); the authority, treatment and delegated-instrument vetoes. Those need the judgment and edge data first. Sub-questions are split and traced in assembly (D-110), but no coverage verdict is drawn: word overlap was wrong on both real dev cases, and only 3 of 305 dev cases ask more than one question.</li>
   </ul></div>
   <div class="note blue"><h4>As built (20 Nov 2026): gate v2 (D-106, supersedes the D-102 calibration)</h4>
   <ul>

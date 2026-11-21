@@ -2,7 +2,7 @@
 
 Set 6: criminal law and procedure II -- hurt, qatl-i-khata and diyat, kidnapping, extortion, breach of trust, forgery, intimidation, trespass, narcotics by province, remand, confessions, evidence, habeas corpus, appeals and the complaint case.
 
-Corpus revision b47bde1. Strata: citizen 20, professional 12, procedural 8, urdu 5, unanswerable 5.
+Corpus revision 3e5ae3c. Strata: citizen 20, professional 12, procedural 8, urdu 5, unanswerable 5.
 Status: **draft** — A0 authoring and A3 identity resolution only. Not gold until two legal annotators (A1) and a senior advocate (A2) have reviewed it; do not tune or report on it before then.
 
 ## S6-C01 · citizen · fed/sindh · as of 2026-11-16 · expect **answer**
@@ -122,7 +122,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** Police arrested my brother in Mardan. How long can the Magistrate let them keep him in custody?
 
 - *Proposition:* If investigation cannot finish in twenty-four hours, the Magistrate may authorise detention for a term not exceeding fifteen days in the whole.
-- **Necessary (grade 3)** — Code of Criminal Procedure, 1898, s./art. 167 (current: owner_presumption_in_force; served in kp) · `3bea83f9-d76c-43a2-998f-93a00749b379` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
+- **Necessary (grade 3)** — Code of Criminal Procedure, 1898, s./art. 167 (current: owner_presumption_in_force; served in kp) · `72c5570a-50e3-46ef-929c-b32d65ecfbf1` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
   > Procedure when investigation cannot be completed in twenty-four hours __ (1) Whenever 5[any person is arrested and detained in custody, and it appears that the] investigation 6[* * *] cannot be completed within the period of twenty-four hours fixed by section 
 
 ## S6-C14 · citizen · fed/balochistan · as of 2026-11-16 · expect **answer**
@@ -158,7 +158,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** My husband was picked up in Islamabad and has not been produced anywhere. Can a court order his release?
 
 - *Proposition:* The High Court may direct that a person illegally or improperly detained in public or private custody within its limits be set at liberty, or be brought before it.
-- **Necessary (grade 3)** — Code of Criminal Procedure, 1898, s./art. 491 (current: owner_presumption_in_force; served in ict) · `dafcace5-ed12-4be1-b1c8-d9b8645cf5ac` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
+- **Necessary (grade 3)** — Code of Criminal Procedure, 1898, s./art. 491 (current: owner_presumption_in_force; served in ict) · `4d9c2d67-5c8c-48ff-8b6e-d9488a4ec5d9` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
   > Power to issue directions of the nature of a habeas carpus Power to issue directions of the nature of a habeas corpus.__ (1) 9[Any High Court] may, whenever it thinks fit, direct__ that a person within the limits of its 10[appellate criminal jurisdiction] be b
 
 ## S6-C18 · citizen · fed/sindh · as of 2026-11-16 · expect **answer**
@@ -166,7 +166,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** Our dispute with another family over a field boundary in Badin may turn violent. Can a Magistrate step in?
 
 - *Proposition:* A first-class Magistrate satisfied that a dispute over land, water or boundaries is likely to cause a breach of the peace may require the parties to state their claims and decide who is in possession, who keeps it until lawfully evicted.
-- **Necessary (grade 3)** — Code of Criminal Procedure, 1898, s./art. 145 (current: owner_presumption_in_force; served in sindh) · `2d220615-8ae9-4b07-81a7-230dc4785bd1` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
+- **Necessary (grade 3)** — Code of Criminal Procedure, 1898, s./art. 145 (current: owner_presumption_in_force; served in sindh) · `c290c363-24b3-4fcd-b82b-707ec39e76b2` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
   > Procedure where dispute concerning land, etc, is likely to cause breach of peace Inquiry as to possession Party in possession to retain possession until legally evicted Procedure where dispute concerning land, etc., is likely to cause breach of peace.__ (1) Wh
 
 ## S6-C19 · citizen · fed/kp · as of 2026-11-16 · expect **answer**
@@ -174,7 +174,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** My brother was convicted by the Sessions Judge in Abbottabad. Where can he appeal?
 
 - *Proposition:* A person convicted at a trial held by a Sessions Judge or Additional Sessions Judge may appeal to the High Court.
-- **Necessary (grade 3)** — Code of Criminal Procedure, 1898, s./art. 410 (current: owner_presumption_in_force; served in kp) · `80f52269-777a-40da-b453-e349bafa2f0a` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
+- **Necessary (grade 3)** — Code of Criminal Procedure, 1898, s./art. 410 (current: owner_presumption_in_force; served in kp) · `fa6ea1fb-9222-4b15-b5cd-494549d863a2` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
   > Appeal from sentence of Court of Session Any person convicted on a trial held by a Sessions Judge, or an Additional Sessions Judge, may appeal to the High Court.
 
 ## S6-C20 · citizen · fed/sindh · as of 2026-11-16 · expect **answer**
@@ -182,7 +182,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** My son spent a year in jail in Karachi before his trial ended. Will that year count in his sentence?
 
 - *Proposition:* When passing a sentence of imprisonment the court shall take into consideration the period the accused was detained in custody for that offence.
-- **Necessary (grade 3)** — Code of Criminal Procedure, 1898, s./art. 382-B (current: owner_presumption_in_force; served in sindh) · `869190f8-184f-49d6-a5a1-9b5dd8a3129f` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
+- **Necessary (grade 3)** — Code of Criminal Procedure, 1898, s./art. 382-B (current: owner_presumption_in_force; served in sindh) · `d824869b-a087-47c1-91ad-5ef4bd94a8bb` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
   > Period of detention to be considered while awarding sentence of imprisonment Period of detention to be considered while awarding sentence of imprisonment.__ Where a Court decides to pass a sentence of imprisonment on an accused for an offence, it 4[shall] take
 
 ## S6-P01 · professional · fed/ict · as of 2026-11-16 · expect **answer**
@@ -190,7 +190,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** Who may record a confession during investigation?
 
 - *Proposition:* A first-class Magistrate, or a specially empowered second-class Magistrate, who is not a police officer, may record a statement or confession during investigation or before the inquiry or trial begins.
-- **Necessary (grade 3)** — Code of Criminal Procedure, 1898, s./art. 164 (current: owner_presumption_in_force; served in ict) · `0058920d-088c-4bc2-a7c4-603b87749e13` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
+- **Necessary (grade 3)** — Code of Criminal Procedure, 1898, s./art. 164 (current: owner_presumption_in_force; served in ict) · `e501cf89-e67a-4009-a1d5-cf7be1c30a19` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
   > Power to record statements and confessions __ (1) 1[2[* * *], any Magistrate of the first class and any Magistrate of the second class specially empowered in this behalf by the 3[Provincial Government] may, if he is not a police-officer] record any statement o
 
 ## S6-P02 · professional · fed/kp · as of 2026-11-16 · expect **answer**
@@ -198,7 +198,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** Powers of the High Court and Court of Session to grant or reduce bail
 
 - *Proposition:* Bail bonds must not be excessive; the High Court or Court of Session may in any case direct admission to bail or reduce bail required by police or a Magistrate.
-- **Necessary (grade 3)** — Code of Criminal Procedure, 1898, s./art. 498 (current: owner_presumption_in_force; served in kp) · `8ef12f27-9a2b-45e0-972b-7f9b11f5c4e4` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
+- **Necessary (grade 3)** — Code of Criminal Procedure, 1898, s./art. 498 (current: owner_presumption_in_force; served in kp) · `4c636654-5a75-45cb-addd-fb45a81bb640` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
   > Power to direct admission to bail or reduction of bail The amount of every bond executed under this Chapter shall be fixed with due regard to the circumstances of the case, and shall not be excessive ; and the High Court or Court of Session may, in any case, w
 
 ## S6-P03 · professional · fed/sindh · as of 2026-11-16 · expect **answer**
@@ -206,7 +206,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** Report on completion of investigation
 
 - *Proposition:* Investigation is completed without unnecessary delay and the officer in charge forwards a report, through the Public Prosecutor, to the Magistrate empowered to take cognizance.
-- **Necessary (grade 3)** — Code of Criminal Procedure, 1898, s./art. 173 (current: owner_presumption_in_force; served in sindh) · `0105d45a-d076-4d8f-b3f0-7a05ed6f4387` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
+- **Necessary (grade 3)** — Code of Criminal Procedure, 1898, s./art. 173 (current: owner_presumption_in_force; served in sindh) · `bcd1c632-0de6-4de2-a452-eb2d36a87a72` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
   > Report of police-officer __1[(1) Every investigation under this Chapter shall be completed without unnecessary delay, and, as soon as it is completed, the officer in charge of the police-station shall 2[,through the Public Prosecutor,]__ forward to a Magistrat
 
 ## S6-P04 · professional · fed/balochistan · as of 2026-11-16 · expect **answer**
@@ -214,7 +214,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** Examination of the complainant in a complaint case
 
 - *Proposition:* A Magistrate taking cognizance on a complaint examines the complainant on oath at once and the substance is reduced to writing and signed.
-- **Necessary (grade 3)** — Code of Criminal Procedure, 1898, s./art. 200 (current: owner_presumption_in_force; served in balochistan) · `3d791c93-0dfd-4017-afe5-d11580a9a214` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
+- **Necessary (grade 3)** — Code of Criminal Procedure, 1898, s./art. 200 (current: owner_presumption_in_force; served in balochistan) · `b5d74b2d-633e-41b1-be2b-9583ba5f1b6b` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
   > Examination of complainant __ 6[(1)] 7[* * *], a Magistrate taking cognizance of an offence on complaint shall at once examine the complainant upon oath, and the substance of the examination shall be reduced to writing and shall be signed by the complainant, a
 
 ## S6-P05 · professional · fed/sindh · as of 2026-11-16 · expect **answer**
@@ -222,7 +222,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** Magistrate's power to acquit at any stage
 
 - *Proposition:* After hearing the prosecutor and accused, and for recorded reasons, a Magistrate may acquit at any stage if the charge is groundless or conviction improbable.
-- **Necessary (grade 3)** — Code of Criminal Procedure, 1898, s./art. 249A (current: owner_presumption_in_force; served in sindh) · `d0790adc-f0d6-47bc-9320-5d5b92fea0ab` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
+- **Necessary (grade 3)** — Code of Criminal Procedure, 1898, s./art. 249A (current: owner_presumption_in_force; served in sindh) · `a8477c46-5595-44fb-a430-20bf5b4e141b` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
   > Power of magistrate to acquit accused at any stage Nothing in this Chapter shall be deemed to prevent a Magistrate from acquitting an accused at any stage of the case if, after hearing the prosecutor and the accused and for reasons to be recorded, he considers
 
 ## S6-P06 · professional · fed/kp · as of 2026-11-16 · expect **answer**
@@ -230,7 +230,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** Court of Session's power to acquit at any stage
 
 - *Proposition:* A Court may acquit at any stage, after hearing both sides and for recorded reasons, if there is no probability of conviction.
-- **Necessary (grade 3)** — Code of Criminal Procedure, 1898, s./art. 265K (current: owner_presumption_in_force; served in kp) · `9e68d22c-9d9c-4bfc-8642-a796b86ed92e` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
+- **Necessary (grade 3)** — Code of Criminal Procedure, 1898, s./art. 265K (current: owner_presumption_in_force; served in kp) · `9cb5c3d7-933c-457c-add5-d575746f98f3` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
   > Power of Court to acquit accused at any stage __ Nothing in this Chapter shall be deemed to prevent a Court from acquitting an accused at any stage of the case, if, after hearing the prosecutor and the accused and for reasons to be recorded, it considers that 
 
 ## S6-P07 · professional · fed/ict · as of 2026-11-16 · expect **answer**
@@ -238,7 +238,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** Suspension of sentence and bail pending appeal
 
 - *Proposition:* Pending an appeal by a convicted person, the Appellate Court may for recorded reasons suspend the sentence and release the appellant on bail.
-- **Necessary (grade 3)** — Code of Criminal Procedure, 1898, s./art. 426 (current: owner_presumption_in_force; served in ict) · `946e5aec-c15f-4bdb-872e-74e427eb07ce` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
+- **Necessary (grade 3)** — Code of Criminal Procedure, 1898, s./art. 426 (current: owner_presumption_in_force; served in ict) · `b26b6273-902c-4ae0-b84d-d5e5b194e28a` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
   > Suspension of sentence pending appeal Release of appellant on bail.__ (1) Pending any appeal by a convicted person, the Appellate Court may, for reasons to be recorded by it in writing, order that the execution of the sentence or order appealed against be susp
 
 ## S6-P08 · professional · fed/sindh · as of 2026-11-16 · expect **answer**
@@ -254,7 +254,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** Security for keeping the peace
 
 - *Proposition:* A first-class Magistrate informed that a person is likely to commit a breach of the peace may require him to show cause why he should not execute a bond for keeping the peace.
-- **Necessary (grade 3)** — Code of Criminal Procedure, 1898, s./art. 107 (current: owner_presumption_in_force; served in ict) · `7c5940de-74cb-4f22-b38f-6a296af0ae4c` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
+- **Necessary (grade 3)** — Code of Criminal Procedure, 1898, s./art. 107 (current: owner_presumption_in_force; served in ict) · `415d86f7-5ac6-4283-8faf-01312c2bcbf0` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
   > Security for keeping the peace in other cases Procedure of Magistrate not empowered to act under sub-section (1) Security for keeping the peace in other cases.__ (1) Whenever a 2[* *], 3[Magistrate of the first class] is informed that any person is likely to c
 
 ## S6-P10 · professional · fed/sindh · as of 2026-11-16 · expect **answer**
@@ -286,7 +286,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** I reported a minor offence at a police station in Karachi and they told me to go to the Magistrate. Is that right?
 
 - *Proposition:* For a non-cognizable offence the officer enters the substance of the information and refers the informant to the Magistrate; police may not investigate it without a Magistrate's order.
-- **Necessary (grade 3)** — Code of Criminal Procedure, 1898, s./art. 155 (current: owner_presumption_in_force; served in sindh) · `dd3937ef-ee25-4981-96c6-47176c577181` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
+- **Necessary (grade 3)** — Code of Criminal Procedure, 1898, s./art. 155 (current: owner_presumption_in_force; served in sindh) · `e086234e-bafb-4004-bba3-d87327ea8343` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
   > Information in non-cognizable cases Investigation into non-cognizable cases Information in non-cognizable cases.__ (1) When information is given to an officer incharge of a police-station of the commission within the limits of such station of a non-cognizable 
 
 ## S6-R02 · procedural · fed/kp · as of 2026-11-16 · expect **answer**
@@ -294,7 +294,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** Police want to search my house in Charsadda. What must they do first?
 
 - *Proposition:* Before searching, the officer must call two or more respectable inhabitants of the locality to attend and witness the search, which is made in their presence.
-- **Necessary (grade 3)** — Code of Criminal Procedure, 1898, s./art. 103 (current: owner_presumption_in_force; served in kp) · `e5e37f1e-57ce-4591-a038-13a037009f3a` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
+- **Necessary (grade 3)** — Code of Criminal Procedure, 1898, s./art. 103 (current: owner_presumption_in_force; served in kp) · `68b5bad0-c0d1-4890-a2a2-a4fac555d001` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
   > Search to be made in presence of witnesses Occupant of place searched may attend Search to be made in presence of witnesses.__ (1) Before making a search under this Chapter, the officer or other person about to make it shall call upon two or more respectable i
 
 ## S6-R03 · procedural · fed/ict · as of 2026-11-16 · expect **answer**
@@ -302,7 +302,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** I filed a private criminal complaint in Islamabad. Can the court look into it before summoning the accused?
 
 - *Proposition:* The court may, for recorded reasons, postpone issuing process and inquire into the case itself or direct an inquiry or investigation.
-- **Necessary (grade 3)** — Code of Criminal Procedure, 1898, s./art. 202 (current: owner_presumption_in_force; served in ict) · `02535571-3035-462a-896e-62a2c1e852b9` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
+- **Necessary (grade 3)** — Code of Criminal Procedure, 1898, s./art. 202 (current: owner_presumption_in_force; served in ict) · `2958c193-cb29-4dfd-9c82-f4a52cdaefae` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
   > Postponement of issue of process __ (1) Any Court, on receipt of a complaint of an offence of which it is authorised to take cognizance, or which has been sent to it under section 190, sub-section (3), or transferred to it under section 191 or section 192, may
 
 ## S6-R04 · procedural · fed/balochistan · as of 2026-11-16 · expect **answer**
@@ -310,7 +310,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** If the court in Quetta finds my complaint has substance, how is the accused brought to court?
 
 - *Proposition:* Where there is sufficient ground, the court issues a summons or, where the second schedule says so, a warrant for the accused's attendance.
-- **Necessary (grade 3)** — Code of Criminal Procedure, 1898, s./art. 204 (current: owner_presumption_in_force; served in balochistan) · `bbd3dbd4-3797-4b8f-92cf-ad0874dbacc3` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
+- **Necessary (grade 3)** — Code of Criminal Procedure, 1898, s./art. 204 (current: owner_presumption_in_force; served in balochistan) · `d022d7cf-e23e-4105-a480-182c52a6ce02` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
   > Issues of process Issus of process.__ (1) If in the opinion of a 2[Court] taking cognizance of an offence there is sufficient ground for proceeding, and the case appears to be one in which, according to the fourth column of the second schedule, a summons shoul
 
 ## S6-R05 · procedural · fed/sindh · as of 2026-11-16 · expect **answer**
@@ -318,7 +318,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** The man accused in my complaint case in Hyderabad was acquitted. Can I appeal?
 
 - *Proposition:* The Government may direct the Public Prosecutor to appeal to the High Court; in a case instituted on complaint the complainant may appeal if the High Court grants special leave.
-- **Necessary (grade 3)** — Code of Criminal Procedure, 1898, s./art. 417 (current: owner_presumption_in_force; served in sindh) · `a0be5353-8469-41ef-ad4c-ce13a79a5678` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
+- **Necessary (grade 3)** — Code of Criminal Procedure, 1898, s./art. 417 (current: owner_presumption_in_force; served in sindh) · `35c3f4da-216e-4caa-80ea-4824caeec15c` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
   > Appeal in case of acquittal __ (1) Subject to the provisions of sub-section (4), the Provincial Government may, in any case, direct the Public Prosecutor to present an appeal to the High Court from an original or appellate order of acquittal passed by any Cour
 
 ## S6-R06 · procedural · fed/kp · as of 2026-11-16 · expect **answer**
@@ -326,7 +326,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** Can the Peshawar High Court revise an order passed in my criminal case?
 
 - *Proposition:* In revision the High Court may exercise an appellate court's powers and may enhance the sentence.
-- **Necessary (grade 3)** — Code of Criminal Procedure, 1898, s./art. 439 (current: owner_presumption_in_force; served in kp) · `9a320df0-89d7-4587-a6e7-4ae2803c1e04` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
+- **Necessary (grade 3)** — Code of Criminal Procedure, 1898, s./art. 439 (current: owner_presumption_in_force; served in kp) · `a61bb555-9f77-4c1d-b78d-66770531f1d9` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
   > High Court's powers of revision High Court’s powers of revision.__ (1) In the case of any proceeding the record of which has been called for by itself 6[* * *] or which otherwise comes to its knowledge, the High Court may, in its discretion, exercise any of th
 
 ## S6-R07 · procedural · fed/ict · as of 2026-11-16 · expect **answer**
@@ -334,7 +334,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** Can the trial court in Islamabad call a witness that neither side has called?
 
 - *Proposition:* Any court may at any stage summon or recall a witness, and must do so if the evidence appears essential to the just decision of the case.
-- **Necessary (grade 3)** — Code of Criminal Procedure, 1898, s./art. 540 (current: owner_presumption_in_force; served in ict) · `02ea864c-2f19-480d-ad0b-bf94ee465783` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
+- **Necessary (grade 3)** — Code of Criminal Procedure, 1898, s./art. 540 (current: owner_presumption_in_force; served in ict) · `6214f0ff-7a9f-465e-995a-94cf50448e9c` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
   > Power to summon material witness or examine person present Any Court may, at any stage of any inquiry, trial or other proceeding under this Code, summon any person as a witness, or examine any person in attendance, though not summoned as a witness, or recall a
 
 ## S6-R08 · procedural · fed/sindh · as of 2026-11-16 · expect **answer**
@@ -342,7 +342,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** In my trial in Karachi, when will the judge question me himself?
 
 - *Proposition:* The court may question the accused at any stage, and shall question him generally after the prosecution witnesses are examined and before he is called on for his defence.
-- **Necessary (grade 3)** — Code of Criminal Procedure, 1898, s./art. 342 (current: owner_presumption_in_force; served in sindh) · `356da7d9-e48a-4e43-b9c5-f730f30fba5a` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
+- **Necessary (grade 3)** — Code of Criminal Procedure, 1898, s./art. 342 (current: owner_presumption_in_force; served in sindh) · `8f5d399a-dfa2-454b-ae11-79ad661a04c4` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
   > Power to examine the accused __ (1) For the purpose of enabling the accused to explain any circumstances appearing in the evidence against him, the Court may, at any stage of any inquiry or trial without previously warning the accused, put such questions to hi
 
 ## S6-U01 · urdu · fed/kp · as of 2026-11-16 · expect **answer**
@@ -350,7 +350,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** Police ne mere bhai ko Mardan mein pakra hai, magistrate kitne din tak police hirasat ki ijazat de sakta hai?
 
 - *Proposition:* Not more than fifteen days in the whole.
-- **Necessary (grade 3)** — Code of Criminal Procedure, 1898, s./art. 167 (current: owner_presumption_in_force; served in kp) · `3bea83f9-d76c-43a2-998f-93a00749b379` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
+- **Necessary (grade 3)** — Code of Criminal Procedure, 1898, s./art. 167 (current: owner_presumption_in_force; served in kp) · `72c5570a-50e3-46ef-929c-b32d65ecfbf1` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
   > Procedure when investigation cannot be completed in twenty-four hours __ (1) Whenever 5[any person is arrested and detained in custody, and it appears that the] investigation 6[* * *] cannot be completed within the period of twenty-four hours fixed by section 
 
 ## S6-U02 · urdu · fed/balochistan · as of 2026-11-16 · expect **answer**

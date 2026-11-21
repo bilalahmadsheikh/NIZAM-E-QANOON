@@ -274,6 +274,33 @@ Closed later on 18 Nov:
   - Release 10,342 (federal 3,562), served directly 10,291, current 8,246. Audit 41/41; golden sets 0 problems.
   - 38 `amends` edges now resolve into the Constitution. The 23rd and 24th stay unlanded: no official Act text.
 
+Closed 21 Nov (D-110): **footnotes that opened false sections**, found while measuring retrieval assembly.
+- **Code of Criminal Procedure (doc 4501):** the p28 notes "… Ext. p. 1327-A" opened a section "1327-A" that held
+  s.4(1)(i)–(w) and s.4(2). Now s.4 holds them again, and s.4(1)(h) no longer ends in seven footnotes.
+- **General Clauses Act, 1897 (doc 4392):** every page's notes block was read as law. "1CI", "3CI" and "1I" (note
+  numbers glued to "Cl." and "I.e.") held s.3(37a)–(59), and 23 inserted definitions ran on inside the one before them.
+  - Those definitions now open as their own sub-sections: (3c), (8), (8aa), (8ab) Federal Government, (8ac), (9),
+    (9a), (13a), (14), (20), (21), (27), (34a1), (34a), (37), (37a), (37b), (43ai), (43a) Provincial Government,
+    (55a), (56)–(58).
+  - The new segmenter variant is `reviewed_lettered_insertion_subsection`, a data-gated form of
+    `reviewed_printed_rule_opener`.
+- **Five more laws** had one false section each, opened by a notes block ("1I.e.", "1CI."): 1992, 2840, 3717 (it held
+  s.2(1)(b)–(h)), 3958 and 4301.
+- **Proof:** every changed law was proved by a tree diff plus word conservation.
+  - Every lost word was note text, or an opener's own label and marker. No word was gained except s.1's heading in
+    1992, where the real s.1 had been demoted to a clause.
+  - The laws were held (`tools/evidence/hold-footnote-sections-2026-11-21.sql`), replayed and re-verified (character
+    recall and precision 1.00000), then the full post-replay sequence ran.
+  - The golden sets were rebuilt: 457 units, 0 problems.
+- **Left as a queue** (D-110; the query is in the decision log):
+  - 6625 (Sales Tax Special Procedure Rules): its notes print "17." … "23." in the rules' own style, so several
+    false rules are likely.
+  - 3712 (Sale of Goods Act, Punjab print): the print itself typesets a footnote as "15. The words and comma.–", so
+    its numbering is off by one from there.
+  - 7416, 8481, 9315: OCR misread section labels ("3I" for "31").
+  - In 1992, 2840, 3717, 3958 and 4301, only the notes block that opened the false section was set aside. Their other
+    pages' notes are still read into the text of correctly placed provisions: text noise, not structure.
+
 Still open:
 - Golden sets 5–10, and annotation of sets 1–4.
 - No Urdu statute text is landed. Sindh Urdu PDFs exist, but their text layer is

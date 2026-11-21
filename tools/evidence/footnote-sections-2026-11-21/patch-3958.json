@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 3958,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   532904
+  ],
+  "match_text": "1I.e. 15th April, 1979, by S.R.O. No. 31",
+  "before_text": "1I.e. 15th April, 1979, by S.R.O. No. 31",
+  "after_text": "1I.e. 15th April, 1979, by S.R.O. No. 31",
+  "defect": "footnotes below the page rule read as law; they opened a false section",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 2 prints footnote 1 ('1I.e. 15th April, 1979, by S.R.O. No. 317 (I)/79 ...') below the page rule. Block 532904 holds only those notes; read as law, the note number opened a false section '1I' that took the provisions printed after it. It is apparatus, not law.",
+  "render": "tools/evidence/footnote-sections-2026-11-21/doc3958-p2.png",
+  "render_sha256": "c28b39bb07e5b9600010ae8b8be55237581d8eb84ce0f1a69be13f153c6f2614"
+ }
+]

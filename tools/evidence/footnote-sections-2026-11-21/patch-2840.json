@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 2840,
+  "page_no": 2,
+  "source_apparatus_blocks": [
+   257904
+  ],
+  "match_text": "1I.e., the 7th October, 1960, see Gaz. o",
+  "before_text": "1I.e., the 7th October, 1960, see Gaz. o",
+  "after_text": "1I.e., the 7th October, 1960, see Gaz. o",
+  "defect": "footnotes below the page rule read as law; they opened a false section",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 2 prints footnotes 1-3 ('1I.e., the 7th October, 1960, see Gaz. of P., 1960 ...') below the page rule. Block 257904 holds only those notes; read as law, the note number opened a false section '1I' that took the provisions printed after it. It is apparatus, not law.",
+  "render": "tools/evidence/footnote-sections-2026-11-21/doc2840-p2.png",
+  "render_sha256": "33b1f69d61c6bbd863aecf9517c582d6cfe9c314948e8d6b9334037376419657"
+ }
+]

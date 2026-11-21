@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 4301,
+  "page_no": 4,
+  "source_apparatus_blocks": [
+   668207
+  ],
+  "match_text": "1CI. (c) omitted by the Agricultural Pes",
+  "before_text": "1CI. (c) omitted by the Agricultural Pes",
+  "after_text": "1CI. (c) omitted by the Agricultural Pes",
+  "defect": "footnotes below the page rule read as law; they opened a false section",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 4 prints footnotes 1-3 ('1CI. (c) omitted by the Agricultural Pesticides (Amdt.) Act, 1992 ...') below the page rule. Block 668207 holds only those notes; read as law, the note number opened a false section '1CI' that took the provisions printed after it. It is apparatus, not law.",
+  "render": "tools/evidence/footnote-sections-2026-11-21/doc4301-p4.png",
+  "render_sha256": "5ccc7b4e06cc840a4c57e92e2e81f0401d5f7951dd78105361f74ca4af7fcecc"
+ }
+]

@@ -2,7 +2,7 @@
 
 Set 5: property and land -- sale, mortgage, lease, gift, registration, stamp duty, easements, the Punjab land record and tenancy, and the women's property rights Acts.
 
-Corpus revision b47bde1. Strata: citizen 20, professional 12, procedural 8, urdu 5, unanswerable 5.
+Corpus revision 3e5ae3c. Strata: citizen 20, professional 12, procedural 8, urdu 5, unanswerable 5.
 Status: **draft** — A0 authoring and A3 identity resolution only. Not gold until two legal annotators (A1) and a senior advocate (A2) have reviewed it; do not tune or report on it before then.
 
 ## S5-C01 · citizen · punjab/punjab · as of 2026-11-16 · expect **answer**

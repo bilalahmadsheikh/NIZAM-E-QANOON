@@ -23,6 +23,17 @@ def test_the_phrase_is_the_edge_kind():
         [("unit", ("12",), "notwithstanding", False, None)]
 
 
+def test_subject_to_a_penalty_is_a_liability_not_precedence():
+    # D-110 (dev conflict sample): 'shall be subject to the penalties provided in sections 494 and 495' says the
+    # person is liable to them; it does not make section 494 prevail over the provision that says it
+    assert [e for *_, e, _x, _o in _r("shall be subject to the penalties provided in sections 494 and 495 of this "
+                                       "Code for the offence")] in (["refers_to"], ["refers_to", "refers_to"])
+    assert _r("shall be subject to the punishment provided in section 10") == [("unit", ("10",), "refers_to", False, None)]
+    # precedence is kept where the words name the provisions
+    assert _r("shall, subject to the provisions of section 122, be released") == \
+        [("unit", ("122",), "subject_to", False, None)]
+
+
 def test_another_law_is_kept_as_printed():
     assert _r("an offence under section 302 of the Pakistan Penal Code") == \
         [("unit", ("302",), "refers_to", True, "Pakistan Penal Code")]
@@ -105,6 +116,15 @@ def test_a_phrase_stops_at_a_new_clause_and_any_dash_continues():
         {"refers_to"}
     assert L.continues("(g) “drug” includes ⎯") and L.definitions_in("(g) “drug” includes ⎯") == [("drug", True)]
     assert L.continues("“Government work” means a work made under the control of⸺")
+
+
+def test_a_flattened_lead_in_gives_its_scope():
+    # Punjab Labour Code s.404(2): 'Explanation - For the purposes of this section:' then (a) "company", (b) "director"
+    before_b = ["“company” means a body corporate, and includes a firm;", "– For the purposes of this section:",
+                "Notwithstanding anything contained in sub-section (1), where an offence ..."]
+    assert L.scope_word([L.lead_in(before_b)]) == "section"
+    # a preceding sibling that is ordinary text, not a lead-in, gives nothing
+    assert L.lead_in(["The Board may make regulations.", "– For the purposes of this section:"]) == ""
 
 
 def test_another_law_past_a_division_name():

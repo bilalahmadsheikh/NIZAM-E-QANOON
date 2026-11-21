@@ -36,7 +36,7 @@ from nizam.storage.lexical import Filters  # noqa: E402
 sys.path.insert(0, str(ROOT / "evals"))
 from gate_eval import decide, rate  # noqa: E402
 
-FEATURES = "evals/results/gate-features-{split}-2026-11-20.json"
+FEATURES = "evals/results/gate-features-{split}-*.json"     # the newest: bundles follow the corpus (D-110)
 MODES = ("gpu", "cpu")
 
 
@@ -78,8 +78,11 @@ def main() -> int:
     ap.add_argument("--modes", default=",".join(MODES))
     ap.add_argument("--limit", type=int, default=0)
     ap.add_argument("--out", type=Path)
+    ap.add_argument("--features", type=Path, help="a gate-features file (default: the split's newest)")
     a = ap.parse_args()
-    feats = json.loads((ROOT / FEATURES.format(split=a.split)).read_text(encoding="utf-8"))["cases"]
+    fpath = a.features or Path(sorted(glob.glob(str(ROOT / FEATURES.format(split=a.split))))[-1])
+    print(f"bundles from {fpath.name}")
+    feats = json.loads(fpath.read_text(encoding="utf-8"))["cases"]
     cal = G.calibration()
     modes = a.modes.split(",")
     rows = []
@@ -158,7 +161,9 @@ def main() -> int:
                               ("governing", "qualification", "definition", "reference", "schedule")},
                        omitted=len(cov.get("omitted") or []), budget_omitted=sum(
                            1 for o in cov.get("omitted") or [] if o["reason"] == "budget"),
-                       refs=cov.get("references"))
+                       refs=cov.get("references"),
+                       conflicts=[dict(c) for c in (out.conflicts if out else ())],   # D-110: prevails/over/kind/said_by
+                       sub_questions=cov.get("sub_questions"))                                       # D-110
             rows.append(row)
             if mode == "gpu":
                 gov = {it.unit_id: it for it in ev if it.role == "governing"}
@@ -209,7 +214,12 @@ def main() -> int:
                             "definitions_mean": round(statistics.mean(r["n_definitions"] or 0 for r in rs), 2),
                             "roles": {k: sum(r["roles"][k] for r in rs) for k in rs[0]["roles"]},
                             "over_budget": sum(1 for r in rs if r["over_budget"]),
-                            "budget_omitted": sum(r["budget_omitted"] for r in rs)}
+                            "budget_omitted": sum(r["budget_omitted"] for r in rs),
+                            "conflicts": sum(len(r.get("conflicts") or []) for r in rs),
+                            "cases_with_conflicts": sum(1 for r in rs if r.get("conflicts")),
+                            "cases_split": sum(1 for r in rs if r.get("sub_questions")),
+                            "sub_questions_without_lexical_support": sum(
+                                1 for r in rs for s in (r.get("sub_questions") or []) if s["lexical_support"] == [])}
             s["M7_latency_ms"] = {"p50": pct(ms, .5), "p95": pct(ms, .95)}
             summary[f"{mode}:{subset}"] = s
             a1 = s["assembled"]
@@ -229,7 +239,7 @@ def main() -> int:
     # M4: 40 GPU additions by a fixed seed, read against the law (on test: once, after the code is frozen)
     random.seed(20261120)
     sample = random.sample(additions, min(40, len(additions)))
-    review = ROOT / f"evals/golden/review/assembly-additions-{a.split}-2026-11-20.json"
+    review = ROOT / f"evals/golden/review/assembly-additions-{a.split}-{date.today().isoformat()}.json"
     if not (a.split == "test" and review.exists()):
         review.write_text(json.dumps({"what": f"M4 sample: 40 {a.split} GPU additions, seed 20261120; judge each",
                                       "items": sample}, ensure_ascii=False, indent=1), encoding="utf-8")

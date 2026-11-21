@@ -80,3 +80,28 @@ def test_only_a_sentence_loses_its_frame():
     short = parse("grounds for eviction")
     assert not short.sentence and short.lexical == "grounds for eviction"
     assert parse("talaq کب واقع ہوتی ہے").script == "arabic"
+
+
+# --- sub-questions (D-110, docs/04 §7 coverage) ---------------------------------------------------------------------
+from nizam.retrieval.query import sub_questions  # noqa: E402
+
+
+def test_two_questions_split_and_carry_their_context():
+    subs = sub_questions("We divorced last year. Who gets custody of our children? What does the court look at?")
+    assert subs == ["We divorced last year. Who gets custody of our children?",
+                    "We divorced last year. What does the court look at?"]
+    # a clause before the first question mark is part of that question, not shared context
+    assert parse("After our divorce, who gets custody? What does the court look at?").sub_questions == [
+        "After our divorce, who gets custody?", "What does the court look at?"]
+
+
+def test_one_question_or_a_citation_is_not_split():
+    assert sub_questions("My landlord wants me out. On what grounds can he evict me?") == []
+    assert sub_questions("What is the punishment under s. 302 PPC?") == []
+    # 's. 9' and 'Art. 184(3)' are not sentence ends
+    assert sub_questions("Is bail allowed under s. 9 CNSA? Can Art. 184(3) be used?") == [
+        "Is bail allowed under s. 9 CNSA?", "Can Art. 184(3) be used?"]
+
+
+def test_urdu_question_marks_split():
+    assert len(sub_questions("طلاق کیسے ہوتی ہے؟ عدت کتنی ہے؟")) == 2

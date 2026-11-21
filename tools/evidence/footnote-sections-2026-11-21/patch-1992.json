@@ -1,0 +1,17 @@
+[
+ {
+  "document_id": 1992,
+  "page_no": 8,
+  "source_apparatus_blocks": [
+   145239
+  ],
+  "match_text": "1. The words \"or a Chief Presidency Magi",
+  "before_text": "1. The words \"or a Chief Presidency Magi",
+  "after_text": "1. The words \"or a Chief Presidency Magi",
+  "defect": "footnotes below the page rule read as law; they opened a false section",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 8 prints footnotes 1-9 ('1. The words \"or a Chief Presidency Magistrate\" omitted by A. O., 1949.' ...) below the page rule. Block 145239 holds only those notes; read as law, the note number opened a false section '1' that took the provisions printed after it. It is apparatus, not law.",
+  "render": "tools/evidence/footnote-sections-2026-11-21/doc1992-p8.png",
+  "render_sha256": "5ee0692c287751378952fefb14c7160c8821b12da86635ed5a662d1ac4b78223"
+ }
+]

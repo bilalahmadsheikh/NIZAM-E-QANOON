@@ -2,7 +2,7 @@
 
 Set 2: the core codes (PPC, CrPC, CPC, Contract, Qanun-e-Shahadat, Limitation, TPA, Specific Relief), personal law and online offences.
 
-Corpus revision b47bde1. Strata: citizen 20, professional 12, procedural 8, urdu 5, unanswerable 5.
+Corpus revision 3e5ae3c. Strata: citizen 20, professional 12, procedural 8, urdu 5, unanswerable 5.
 Status: **draft** — A0 authoring and A3 identity resolution only. Not gold until two legal annotators (A1) and a senior advocate (A2) have reviewed it; do not tune or report on it before then.
 
 ## S2-C01 · citizen · fed/kp · as of 2026-11-16 · expect **answer**
@@ -44,7 +44,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 - *Proposition:* A person arrested must be produced before a magistrate within twenty-four hours of arrest, excluding travel time, and may not be detained beyond that without a magistrate's authority; he must be told the grounds of arrest and may consult a lawyer of his choice.
 - **Necessary (grade 3)** — Constitution of the Islamic Republic of Pakistan, s./art. 10 (current: owner_presumption_in_force; served in sindh) · `f91aa1ac-0d60-44b9-90ee-e8bfa14c7ca0` · [source](https://pakistancode.gov.pk/pdffiles/administrator9d8e2ecc414c6d3371ac41114b61a2c4.pdf)
   > Safeguards as to arrest and detention No person who is arrested shall be detained in custody without being informed, as soon as may be, of the grounds for such arrest, nor shall he be denied the right to consult and be defended by a legal practitioner of his c
-- **Necessary (grade 3)** — Code of Criminal Procedure, 1898, s./art. 61 (current: owner_presumption_in_force; served in sindh) · `69d81863-0c19-423d-a66e-052715975a29` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
+- **Necessary (grade 3)** — Code of Criminal Procedure, 1898, s./art. 61 (current: owner_presumption_in_force; served in sindh) · `1825bf79-3e3a-463d-80a6-7a0673b0e67e` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
   > Person arrested not to be detained more than twenty-four hours No police-officer shall detain in custody a person arrested without warrant for a longer period than under all the circumstances of the case is reasonable, and such period shall not, in the absence
 
 ## S2-C06 · citizen · fed/punjab · as of 2026-11-16 · expect **answer**
@@ -52,7 +52,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** The police station in Multan refuses to register my complaint. Who can I go to?
 
 - *Proposition:* A Justice of the Peace may, on a complaint, issue appropriate directions to the police concerned on non-registration of a criminal case.
-- **Necessary (grade 3)** — Code of Criminal Procedure, 1898, s./art. 22A (current: owner_presumption_in_force; served in punjab) · `4b3ab164-70a9-4847-98e9-d1725fbcda6b` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
+- **Necessary (grade 3)** — Code of Criminal Procedure, 1898, s./art. 22A (current: owner_presumption_in_force; served in punjab) · `09996e31-ae66-44a8-b151-7cceec722fcb` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
   > Powers of Justices of the peace __ (1) A Justice of the Peace for any local area shall, for the purpose of making an arrest, have within such area all the powers of a police-officer referred to in section 54 and of an officer in charge of a police-station refe
 
 ## S2-C07 · citizen · fed/sindh · as of 2026-11-16 · expect **answer**
@@ -190,7 +190,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** When may police arrest without a warrant?
 
 - *Proposition:* Section 54 CrPC lets police arrest without a warrant, among others, a person concerned in a cognizable offence or against whom a reasonable complaint, credible information or reasonable suspicion exists.
-- **Necessary (grade 3)** — Code of Criminal Procedure, 1898, s./art. 54 (current: owner_presumption_in_force; served in sindh) · `16b00b22-e322-46e1-9150-3feabdee8269` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
+- **Necessary (grade 3)** — Code of Criminal Procedure, 1898, s./art. 54 (current: owner_presumption_in_force; served in sindh) · `9477dd5a-684b-4c2f-b933-9e3f3c6b4cd6` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
   > When police may arrest without warrant __ (1) Any police-officer may, without an order from a Magistrate and without a warrant, arrest— first, any person who has been concerned in any cognizable offence or against whom a reasonable complaint has been made or c
 
 ## S2-P03 · professional · fed/kp · as of 2026-11-16 · expect **answer**
@@ -198,7 +198,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** Which PPC offences may be compounded, and by whom?
 
 - *Proposition:* Section 345 CrPC lists, in its tables, the PPC offences that may be compounded and the person by whom each may be compounded.
-- **Necessary (grade 3)** — Code of Criminal Procedure, 1898, s./art. 345 (current: owner_presumption_in_force; served in kp) · `46ca0ce7-7d24-4114-830d-ee2d022dbac5` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
+- **Necessary (grade 3)** — Code of Criminal Procedure, 1898, s./art. 345 (current: owner_presumption_in_force; served in kp) · `e5965417-8d38-466a-9450-7aa310f50ebd` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
   > Compounding offences __ (1) The offences punishable under the sections of the Pakistan Penal Code (XLV of 1860) 5[specified] in the first two columns of the table next following may be compounded by the persons mentioned in the third column of that table:__ Pe
 
 ## S2-P04 · professional · fed/ict · as of 2026-11-16 · expect **answer**
@@ -358,7 +358,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 - *Proposition:* Within twenty-four hours of arrest, excluding travel time.
 - **Necessary (grade 3)** — Constitution of the Islamic Republic of Pakistan, s./art. 10 (current: owner_presumption_in_force; served in punjab) · `f91aa1ac-0d60-44b9-90ee-e8bfa14c7ca0` · [source](https://pakistancode.gov.pk/pdffiles/administrator9d8e2ecc414c6d3371ac41114b61a2c4.pdf)
   > Safeguards as to arrest and detention No person who is arrested shall be detained in custody without being informed, as soon as may be, of the grounds for such arrest, nor shall he be denied the right to consult and be defended by a legal practitioner of his c
-- **Necessary (grade 3)** — Code of Criminal Procedure, 1898, s./art. 61 (current: owner_presumption_in_force; served in punjab) · `69d81863-0c19-423d-a66e-052715975a29` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
+- **Necessary (grade 3)** — Code of Criminal Procedure, 1898, s./art. 61 (current: owner_presumption_in_force; served in punjab) · `1825bf79-3e3a-463d-80a6-7a0673b0e67e` · [source](https://pakistancode.gov.pk/pdffiles/administrator7db1e56f0f1d39a6e67573ec6b0944e2.pdf)
   > Person arrested not to be detained more than twenty-four hours No police-officer shall detain in custody a person arrested without warrant for a longer period than under all the circumstances of the case is reasonable, and such period shall not, in the absence
 
 ## S2-U03 · urdu · fed/sindh · as of 2026-11-16 · expect **answer**

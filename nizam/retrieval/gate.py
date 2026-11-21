@@ -97,6 +97,7 @@ class GroundingContext:
     degraded: str | None = None
     evidence: tuple = ()             # assembly.EvidenceItem, legal order: what the generator reads (docs/04 §7)
     coverage: dict = field(default_factory=dict)   # what assembly admitted, skipped and why, and what it lacks
+    conflicts: tuple = ()            # {prevails, over, kind, said_by} unit ids: one prevails over another (docs/04 §7)
 
 
 @dataclass(frozen=True)

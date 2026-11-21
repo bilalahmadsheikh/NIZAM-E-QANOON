@@ -1,0 +1,57 @@
+[
+ {
+  "document_id": 4392,
+  "page_no": 9,
+  "source_set_aside_units": [
+   {
+    "source_block_id": 730959,
+    "source_prefix": "1CI. (27a) relating to"
+   },
+   {
+    "source_block_id": 730959,
+    "source_prefix": "3CI. (29) defining"
+   }
+  ],
+  "observed": "Page 9 of the General Clauses Act, 1897 prints footnotes 1-7 below the rule after clauses (36) and (37); '1CI. (27a)' and '3CI. (29)' (footnote marker + 'Cl.') opened false sections '1CI' and '3CI' that took clauses (29)-(40) of s.3. The extracted block 730959 carries that footnote text; it is not law. Set aside from the footnote start.",
+  "render": "tools/evidence/footnote-sections-2026-11-21/gca-p9.png",
+  "render_sha256": "2e7361f8f7eb967f4571450df28c3a8c575c05d9f99f9f79825f61224af74703",
+  "match_text": "3CI. (29) defining",
+  "before_text": "3CI. (29) defining",
+  "after_text": "3CI. (29) defining",
+  "defect": "footnote text below the page rule read into law text"
+ },
+ {
+  "document_id": 4392,
+  "page_no": 11,
+  "source_set_aside_units": [
+   {
+    "source_block_id": 730979,
+    "source_prefix": "1CI. (41) defining"
+   }
+  ],
+  "observed": "Page 11 of the General Clauses Act, 1897 prints the footnote rule and footnotes 1-12 of the page; '1CI. (41)' opened a false section. The extracted block 730979 carries that footnote text; it is not law. Set aside from the footnote start.",
+  "render": "tools/evidence/footnote-sections-2026-11-21/gca-p11.png",
+  "render_sha256": "8f911174f6bbfcde555b97695c6fdc98ba0215e3ee2fbf764f588941654573c7",
+  "match_text": "Clauses (42) and (43) which were amended",
+  "before_text": "Clauses (42) and (43) which were amended",
+  "after_text": "Clauses (42) and (43) which were amended",
+  "defect": "footnote text below the page rule read into law text"
+ },
+ {
+  "document_id": 4392,
+  "page_no": 12,
+  "source_set_aside_units": [
+   {
+    "source_block_id": 730989,
+    "source_prefix": "1I.e., the 1st April, 1937."
+   }
+  ],
+  "observed": "Page 12 of the General Clauses Act, 1897 prints footnotes 1-10 of the page; '1I.e.' (footnote 1 'I.e.') opened a false section '1I' (heading 'e., the 1st April, 1937'). The extracted block 730989 carries that footnote text; it is not law. Set aside from the footnote start.",
+  "render": "tools/evidence/footnote-sections-2026-11-21/gca-p12.png",
+  "render_sha256": "a21193ea0a8705351dacf8ec96d347522f9ddfd9ca0e56a9869e31bdd6676bd3",
+  "match_text": "C1s. (44al) and (44a)",
+  "before_text": "C1s. (44al) and (44a)",
+  "after_text": "C1s. (44al) and (44a)",
+  "defect": "footnote text below the page rule read into law text"
+ }
+]

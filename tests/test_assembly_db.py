@@ -131,6 +131,22 @@ def test_a_flattened_definition_carries_its_sub_items(db):
     assert "department of the Government" in gw[0].text and len(gw[0].nodes) >= 3
 
 
+def test_a_conflict_is_recorded_when_one_item_prevails_over_another(db):
+    # Pakistan Citizenship Act 1951 s.7: 'Notwithstanding anything in sections 3, 4 and 6 ...' (D-110)
+    (s7,) = _one(db, """SELECT p.id::text FROM provision p JOIN instrument i ON i.id = p.instrument_id
+                         WHERE i.is_active AND i.duplicate_of IS NULL AND i.short_title ~* '^Pakistan Citizenship Act'
+                           AND i.year = 1951 AND p.is_active AND p.kind = 'section' AND p.label = '7' LIMIT 1""")
+    (s6,) = _one(db, """SELECT p.id::text FROM provision p WHERE p.is_active AND p.kind = 'section' AND p.label = '6'
+                         AND p.instrument_id = (SELECT instrument_id FROM provision WHERE id = %s)""", (s7,))
+    out = assemble(_ctx([s6, s7], Filters(as_of=AS_OF, jurisdictions=("fed",))))
+    if out is None:
+        pytest.skip("the Citizenship Act is not law in this scope in this corpus")
+    _check_packet(db, out, [s6, s7])
+    found = [c for c in out.conflicts if c["prevails"] == s7 and c["over"] == s6]
+    assert found and found[0]["kind"] == "notwithstanding" and found[0]["said_by"] == s7
+    assert set(found[0]) == {"prevails", "over", "kind", "said_by"}          # ids only: no composed words (INV-1)
+
+
 def test_a_chapter_in_the_bundle_is_replaced_by_its_sections(db):
     # retrieval maps a match on a Chapter's heading to the Chapter; INV-4: its sections are the citable units
     (chap,) = _one(db, """SELECT p.id::text FROM provision p JOIN instrument i ON i.id = p.instrument_id

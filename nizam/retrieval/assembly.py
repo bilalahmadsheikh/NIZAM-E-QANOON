@@ -56,7 +56,8 @@ DIVISION_UNITS = 5          # sections standing for one Part or Chapter, at most
 DIVISION_READ = 60          # sections read from one Part or Chapter, at most
 STUB_CHARS = 40             # a section this short ('3A. [Omitted]') does not stand for its Chapter
 
-NOT_BUILT = ("sub-question coverage", "conflict sets", "matched-span offsets", "Urdu-script definitions",
+NOT_BUILT = ("a coverage verdict per sub-question (split and traced only, D-110)", "matched-span offsets",
+             "Urdu-script definitions",
              "General Clauses Acts of Sindh, Balochistan, AJK and GB (not held)")
 
 ROLE_RANK = {"governing": 0, "qualification": 1, "definition": 2, "reference": 3, "schedule": 3}
@@ -209,7 +210,11 @@ def select(cands: list[_Cand], budget: int, max_units: int):
     """admit in priority order: skip an item already inside an admitted one, an item that would pass the unit cap,
     or one that does not fit the budget (it is skipped, never cut). The first governing unit is always admitted
     (an answer never lacks its governing rule); if it alone passes the budget, that is recorded. A whole unit
-    admitted after one of its own clauses replaces the clause."""
+    admitted after one of its own clauses replaces the clause.
+
+    Holding room for every gated governing unit ahead of the additions was measured and rejected (D-110: dev CPU
+    lost a necessary unit and a check, GPU unchanged): the additions it pushed out carried more than the low-ranked
+    units it let in."""
     admitted: list[_Cand] = []
     omitted: list[dict] = []
     used = 0
@@ -506,6 +511,19 @@ def assemble(ctx, connect_fn=None, budget: int | None = None, max_units: int = M
         cov["omitted"] = cov["omitted"] + omitted
         lap("select")
 
+        # --- conflicts (docs/04 §7 ConflictSet, D-110): one item of the packet prevails over another ----------
+        unit_of_item = {n.provision_id: c.unit_id for c in admitted for n in c.nodes}
+        in_packet = {c.unit_id for c in admitted}
+        conflicts = []
+        for src, kind, _t, _label, _other_law, dst, _dl in s.references_from(list(unit_of_item)):
+            a = unit_of_item.get(src)
+            if kind == "refers_to" or dst not in in_packet or a == dst:
+                continue
+            # ids and the edge only: the words are the units' own, rendered from their records (INV-1)
+            prevails, over = (a, dst) if kind == "notwithstanding" else (dst, a)
+            conflicts.append({"prevails": prevails, "over": over, "kind": kind, "said_by": a})
+        conflicts = list({(x["prevails"], x["over"]): x for x in conflicts}.values())
+
         # --- what each admitted item carries ------------------------------------------------------------------
         divs = s.ancestors(list({c.unit_id for c in admitted}))
         notes = s.amendment_notes([nd.provision_id for c in admitted for nd in c.nodes],
@@ -547,10 +565,47 @@ def assemble(ctx, connect_fn=None, budget: int | None = None, max_units: int = M
             order=(law_order[c.instrument_id], c.nodes[0].ordinal if c.nodes else 0, c.base_path)))
     items.sort(key=lambda it: it.order)
     lap("build")
+    subs = sub_question_coverage(list(getattr(ctx.query, "sub_questions", None) or []), items)
+    if subs:
+        # recorded, not judged: no `partial` verdict is drawn from word overlap. On dev it called both real
+        # multi-question cases partial, and both were answered in other words (D-110: 'what does the court look at'
+        # -> the minor's welfare; 'do I have to say why' -> need not give reasons)
+        cov.update(sub_questions=subs)
     cov.update(used_chars=used, units=sum(1 for c in admitted if c.role != "definition"),
                definitions=sum(1 for c in admitted if c.role == "definition"), over_budget=used > budget,
-               timings_ms=laps, assembly_ms=round((time.perf_counter() - t0) * 1000, 1))
-    return replace(ctx, evidence=tuple(items), coverage=cov)
+               conflicts=len(conflicts), timings_ms=laps, assembly_ms=round((time.perf_counter() - t0) * 1000, 1))
+    return replace(ctx, evidence=tuple(items), coverage=cov, conflicts=tuple(conflicts))
+
+
+_TERM = re.compile(r"[a-z][a-z'-]{2,}")
+STEM = 5          # 'evicted' and 'eviction' share 'evict': a crude stem, enough to see that a unit speaks to a question
+
+
+def _stems(text: str) -> set[str]:
+    return {w[:STEM] for w in _TERM.findall((text or "").lower())}
+
+
+def sub_question_coverage(sub_questions: list[str], items) -> list[dict]:
+    """docs/04 §7 coverage (D-110): for each question a text asks, the admitted units (not definitions) that carry at
+    least two of the asked sentence's content terms (all of them, when it has fewer) -- `lexical_support`, a trace,
+    NOT a verdict: a law answers in its own words ('welfare of the minor' for 'what does the court look at'), so an
+    empty list does not mean the question is unanswered. The context the sub-questions share is left out, or every
+    one would look supported by the same unit. No Latin content terms (Urdu script, unglossed): None."""
+    from nizam.retrieval import aliases as _aliases
+    from nizam.retrieval.query import _SENTENCE_END, strip_frame
+    units = [(it.unit_id, _stems(f"{it.heading or ''} {it.text}")) for it in items if it.role != "definition"]
+    out = []
+    for sq in sub_questions:
+        asked = _SENTENCE_END.split(sq)[-1]
+        words = [w for w in strip_frame(asked).split() if not _aliases.roman_frame(w.lower().strip("?,.!;:'\"؟"))]
+        terms = sorted(_stems(" ".join(words + list(_aliases.gloss(asked)))))
+        if not terms:
+            out.append({"text": sq, "terms": [], "lexical_support": None})
+            continue
+        need = min(2, len(terms))
+        out.append({"text": sq, "terms": terms,
+                    "lexical_support": [u for u, st in units if len(st.intersection(terms)) >= need]})
+    return out
 
 
 def _law_dict(lf: ER.LawFacts | None) -> dict:

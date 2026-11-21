@@ -1136,6 +1136,128 @@ Area: client · Status: Superseded by D-084 (the whole-page cloth; the hem, the 
   design/heritage_art.dart, presentation/discover.dart, presentation/heritage.dart; test/heritage_test.dart
   (golden embroidery.png, a review sheet at 3x).
 
+### D-111 · 2026-11-21 · Gate refit on the repaired corpus (gate v2 rule, unchanged)
+Area: L3 gate (docs/04 §8), evaluation (docs/10) · Status: standing; supersedes D-106's calibration only, not its rule
+- Decision: the gate is refitted, because D-109 shifted the Urdu questions' CPU features and D-110 changed the corpus
+  and the bundles. Nothing in the rule changed: gate-rule-2026-11-20 and its D-106 addenda, the same F1–F4 candidate
+  sets, leave-one-family-out, the 0.95 target with the 0.90 fallback. Dev was fitted and test scored once.
+- **Features were recomputed for all 500 cases in all three modes.**
+  - The D-110 replays and post-replay re-materialisations re-identify units. The 8B vectors of the 17,635
+    re-chunked passages were topped up on Kaggle (A22), and 2,300 GPU pairs with new passage text were scored by
+    Qwen3-Reranker-8B (`rerank/out-rrg3-8b`).
+  - Two runs writing one features file each keep only their own modes, so the GPU modes ran into their own file
+    and were joined by `evals/merge_gate_features.py`.
+- **The fit** (dev, out of fold) chose the same sets as D-106:
+
+  | mode | set | τ (was) | precision | pass | sufficient (was) |
+  |---|---|---|---|---|---|
+  | CPU | F4 | .766 (.761) | .951 | 101 | 177 (173) |
+  | GPU | F1 | .744 (.671) | .957 | 253 | 261 |
+  | unreranked | F2, the .90 fallback | .792 | .905 | 21 | — |
+- **Test, scored once with the frozen calibration (gate v2 → now):**
+
+  | mode | passed | answered precision | coverage of answerable | wrong passes |
+  |---|---|---|---|---|
+  | GPU | 166 → 162 | .940 → .944 [.898, .971] | .948 → .925 | 10 → 9 |
+  | CPU | 55 → 55 | .909 → .909 [.804, .961] | — | — |
+  | unreranked | 18 → 20 | 1.0 → 1.0 | — | 0 |
+
+  - GPU unanswerable recall is .952 (L3 scope 1.0). Strict abstention precision fell from .69 to .61: the higher τ
+    abstains on four more answerable questions.
+  - All of these moves are inside the intervals. The CPU gate still misses 0.95 on test by its point estimate (open
+    since D-102).
+- Where: nizam/retrieval/gate_calibration.json; evals/results/gate-features-{dev,test}-2026-11-21.json,
+  gate-fit-dev-2026-11-21.json, gate-{dev,test}-2026-11-21.json; evals/gate_features.py (GPU_SCORES gains
+  ds-gate-y / out-rrg3-8b), evals/merge_gate_features.py.
+
+### D-110 · 2026-11-21 · Retrieval close-out, part 1: conflicts, coverage per sub-question, lead-in scope, held room rejected, footnote false sections repaired
+Area: owner ruling, L3 assembly (docs/04 §7), L2 links (docs/03b), L1 corpus repair · Status: standing
+- Decision: the owner asked to "do till before held back sources … fix everything fully end to end and check too". The
+  order was the plan given beforehand: conflicts, room for every gated unit, Explanation scope, corpus repairs,
+  sub-questions, the gate refit, ADR-1d, then the close report. This entry covers the first five; D-111 and D-112
+  cover the rest.
+  1. **Conflicts in the packet** (docs/04 §7 `ConflictSet`). When one admitted item says "notwithstanding" another
+     admitted item, or is "subject to" one, `GroundingContext.conflicts` records
+     `{prevails, over, kind, said_by}`, read from `provision_reference`. It carries ids and the edge only. The words
+     are the units' own and are rendered from their records (INV-1), so no composed "section N" string is built.
+     (The first draft built one; it hard-coded "section", which is wrong for Articles.)
+     - **Read on dev.** A fixed-seed sample of 12 recorded conflicts was read against the law: 10 were right. The 2
+       errors were one pattern, "shall be subject to the penalties provided in sections 494 and 495 of the Pakistan
+       Penal Code" (Parsi Marriage Act s.5, Special Marriage Act s.16). That is a liability, not precedence, so
+       linker `nizam.links/9` reads it as `refers_to`. After the rebuild, GPU dev records 183 conflicts in 91 of
+       276 cases (CPU: 144 in 75).
+  2. **Room held for every gated unit: measured and rejected.** The variant held room for every governing unit of up
+     to 8,000 characters ahead of the additions. On dev, GPU results did not change at all. On CPU, one necessary unit
+     (S1-P09) and one text check (S5-U04) were lost, because the additions pushed out carried more than the low-ranked
+     units let in. The case that motivated it (S5-C02) did not change. `select()` admits in priority order, as before.
+  3. **Lead-in scope** (`linking.lead_in`, linker `nizam.links/8`). "In this Part, unless the context otherwise
+     requires,—", or an "Explanation.—For the purposes of this section,—", is printed as its own sibling before the
+     definitions it governs. A definition whose own words name no scope now takes the scope from that lead-in. The walk
+     skips sibling definitions, never other words. This closes the open question from D-108's one test error: Punjab
+     Labour Code s.404's "company" was whole-law and is now scoped to s.404. After the rebuild: 469 definitions
+     scoped to a division, 69,696 to the law, 1,865 to the unit.
+  4. **Footnotes that opened false sections: seven laws repaired.** The notes printed below a page rule were read as
+     law, and a note number opened a section:
+     - CrPC "1327-A" held s.4(1)(i)–(w) and s.4(2);
+     - in the General Clauses Act, "1CI", "3CI" and "1I" held s.3(37a)–(59);
+     - five more laws had one each.
+     - **Readings, all page-read.** Every page's notes block in the GCA is apparatus. A no-cut and set-aside reading
+       handles p9's mixed block. A line-wrap reading fixes p5's "(3) of section 94". Openers cover 23 inserted
+       definitions that had run on inside their neighbours, among them (8ab) "Federal Government" and (43a)
+       "Provincial Government". Neither had its own unit, so neither had a `provision_definition` row; assembly offers
+       GCA definitions as defaults to every federal law.
+     - **The segmenter variant.** `reviewed_lettered_insertion_subsection` is data-gated and acts only through a
+       reading. `reviewed_printed_rule_opener` accepts a lower-case lettered sub-section label (`8ab`, `43ai`,
+       `34a1`). It also accepts an opening quote after a sub-section label ("(8) “British possession.”"), a bare note
+       marker before "(N)" for sub-sections ("4(20)"), and a starred marker before a lettered insertion ("*5[(43a)").
+       No recorded reading could have used these forms (each would have raised), so no other tree changes.
+     - **Proof and procedure.** Each law was proved by a tree diff and word conservation. Every lost word was note text
+       or an opener's own label and marker, and none was gained except 1992's s.1 heading. Then: a hold, a replay
+       with `--approve-release-change`, the verifiers (character recall and precision 1.00000), and the full
+       post-replay sequence. All ten golden sets were rebuilt from the live corpus (457 units, 0 problems), because a
+       replay re-identifies provisions (D-069). 27 CrPC gold units had pointed at retired rows.
+     - **Queued, not repaired:**
+       - 6625: its notes use the rules' own "N." style, so more false rules are likely;
+       - 3712: the print typesets a note as "15. The words and comma.–";
+       - 7416, 8481 and 9315: OCR label misreads;
+       - other pages' notes inside the text of 1992, 2840, 3717, 3958 and 4301.
+
+       The detection query: released sections whose label is `^\d{1,2}(CI|Cl|C1)$`, or `^\d{1,2}I$` with an empty or
+       "e., …" heading, or whose heading opens "The words" or "Enforced in". ATA s.21I and the like are real.
+  5. **Coverage per sub-question** (docs/04 §7; the gate's "coverage of several sub-questions").
+     - **Splitting.** `query.sub_questions()` splits a text only when two or more of its sentences end in "?" or "؟".
+       The statements before the first question are context every sub-question carries. A sentence ends only before a
+       capital, an Urdu letter, a quote or a bracket, so "s. 302" and "Art. 184(3)" never split.
+     - **Lexical support, recorded but not judged.** Assembly records, for each sub-question, the admitted units (not
+       definitions) that carry at least two of the asked sentence's own content terms (5-letter stems; shared context
+       left out). The first build drew a `coverage.partial` verdict from it.
+     - **Dev withdrew that verdict.** Of 305 dev cases, 3 ask more than one question, and 2 of them reach assembly.
+       Both split correctly, and both were called partial. Both were wrong, because the bundle answers each second
+       question in other words:
+       - "What does the court look at?" is answered by the minor's welfare;
+       - "Do I have to say why I want it?" is answered by "need not give reasons".
+
+       Word overlap cannot see a paraphrase, so `partial` is not emitted. A coverage verdict needs a calibrated judge
+       (a cross-encoder per sub-question, with multi-issue gold to fit it on), and both are open.
+     - The mechanism is unit-tested, and the dev run checks that no single question splits. It does not change the
+       gate, and it retrieves nothing per sub-question.
+- Measured on dev (`evals/results/assembly-dev-2026-11-21d.json`: linker /9, the bundles rebuilt from the repaired
+  corpus, the D-111 gate). The test split is spent for assembly (D-107, D-108), so it was not re-scored.
+  - **GPU, answerable:** necessary units .935 in the bundle, .942 assembled; relevant .370 → .457; text checks .952.
+    None lost, 0 INV-5 violations, p50 155 ms, p95 243 ms.
+  - **CPU:** necessary units .610 → .620 assembled, i.e. 181 of 292, against 178–179 before D-110; checks .688
+    (was .684).
+  - **The gate's passing cases:** GPU necessary .966 (249 cases); CPU .951 (99 cases).
+  - **Sub-questions:** 2 dev questions split (above). No single question split.
+- Where:
+  - nizam/retrieval/assembly.py (conflicts, sub_question_coverage), gate.py (GroundingContext.conflicts),
+    query.py (sub_questions);
+  - nizam/storage/linking.py (lead_in), nizam/workers/links.py (nizam.links/8);
+  - nizam/corpus/segment.py (`reviewed_lettered_insertion_subsection`);
+  - tools/evidence/footnote-sections-2026-11-21/ (readings, renders), tools/evidence/hold-footnote-sections-2026-11-21.sql;
+  - tests/test_assembly*.py, test_linking.py, test_lettered_insertion_subsection.py, test_query_understanding.py;
+  - evals/golden/golden-pk-v1-set1..10 (rebuilt); docs/CORPUS-STATE-2026-11-17.md.
+
 ### D-109 · 2026-11-21 · Urdu query understanding: Urdu-script places, 26 more concepts, the Roman Urdu frame
 Area: owner ruling, L3 query understanding (docs/04 R0) · Status: standing
 - Decision: three changes to how an Urdu-language question is read. English questions are unchanged.
@@ -2547,27 +2669,31 @@ These were found and deliberately left open. Each will become an entry when it i
     names the first clause.
   - **Flattened sub-items:** a definition's (i), (ii) stored as its siblings. Assembly reads them back (the
     continuation rule); the segmenter should nest them.
-  - **The CrPC's s.4 is labelled "1327-A"**, so citations of its definitions read "s. 1327-A(q)".
   - **Footnotes and Gazette page furniture inside clause text:** MFLO s.7 Explanation; the Electoral Rolls Rules
     1957, where a page number was read as a label.
   - **A contents list stored as a section's text:** West Pakistan Money-Lenders Ordinance 1960 s.19.
 - **Assembly latency (D-107, D-108).** After D-108: p50 about 150 ms and p95 about 240 ms on GPU bundles, against
   docs/04 §9's ≤ 25 ms for validate, assemble and gate. The rest is row fetching on this laptop. It must be measured
   on the serving host before any further rework.
-- **Assembly not built (D-107, D-108):**
-  - sub-question coverage, which needs query decomposition;
-  - conflict sets (the `notwithstanding` edges now exist to build them from);
+- **Assembly not built (D-107, D-108, D-110):**
+  - retrieval per sub-question (D-110 judges coverage per sub-question, but searches once);
   - the General Clauses Acts of Sindh, Balochistan, AJK and GB (not held);
   - matched-span offsets;
   - Urdu-script definitions.
-- **Budget for every gated unit (D-108).** A bundle unit holding the answer's text can be crowded out by earlier
-  units' additions (test S9-U05). Should every gated unit be admitted before any unit's additions? One variant tried
-  on dev cost necessary units; another needs measuring on fresh cases.
-- **A definition's scope printed in a sibling Explanation (D-108)** ('Explanation.—For the purposes of this section')
-  is not read, so such a definition counts as whole-law (test: Punjab Labour Code s.404).
-- **Refit the gate after D-109.** The CPU features of the Urdu questions changed slightly.
-- **The General Clauses Act 1897's clause labels are damaged** ('s. 3CI(38)', 's. 1I(50)'), so citations of its
-  definitions read wrongly. It needs a page-read repair like the CrPC s.4 label.
+- **A bundle unit crowded out by earlier units' additions (D-108, test S9-U05).** Holding room for every gated unit
+  was measured and rejected (D-110). Any further variant needs fresh cases: the test split is spent for assembly.
+- **Footnote false sections, the remaining queue (D-110):**
+  - 6625: false rules likely, because its notes print in the rules' own "N." style;
+  - 3712: the print typesets a note as a section;
+  - 7416, 8481, 9315: OCR label misreads;
+  - other pages' notes inside the text of 1992, 2840, 3717, 3958 and 4301.
+
+  D-110 gives the detection query.
+- **A coverage verdict per sub-question (D-110).** Sub-questions are split and traced, but word overlap was wrong on
+  both real dev cases, so no verdict is drawn. A verdict needs:
+  - a calibrated judge, for example the cross-encoder scoring each sub-question against the admitted units;
+  - multi-issue gold to fit it on. Only 3 of 305 dev cases ask more than one question, so the next golden batch
+    should hold multi-issue questions.
 - **8B reranker serving latency (D-101, D-106).** A Kaggle T4 proxy (fp16, micro-batched) measured p50 4.5 s for 10
   passages and 24.5 s for 50: far outside budget. It needs an L4/A10-class GPU host with TEI or vLLM batching
   measured before the GPU profile is called within budget.

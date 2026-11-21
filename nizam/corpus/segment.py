@@ -11457,10 +11457,19 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
                     + label + r"\s*\))")
         if re.fullmatch(r"\d{1,3}(?:[A-Z]{2}|-[A-Z])", label):
             return r"\s*(?:(?:\d{1,3}\s*)?\[\s*)?\(?" + label + r"\)?"   # reviewed bare bracket after pointer removal, too
+        # `reviewed_lettered_insertion_subsection` (D-110, General Clauses Act 1897 s.3): an inserted definition
+        # numbered with lower-case letters, '3[(8ab) “Federal Government.”', '(43ai)', '4[(34a1)' -- parenthesised,
+        # optionally behind its note marker and bracket
+        # ('*5[(43a)': the asterisk is the page's starred note; a bare marker '1(8b)' has no bracket)
+        if kind == "subsection" and re.fullmatch(r"\d{1,3}[a-z]{1,3}\d?", label):
+            return r"\s*\*?(?:\d{1,3}\s*\[?\s*)?\(\s*" + label + r"\s*\)"
         if re.fullmatch(r"[IVX]{1,4}", label):
             return r"\s*\(?" + label + r"\)?"   # agent K2 (doc 4431 p99 'I.')
         _m = re.fullmatch(r"(\d{1,3})([A-Z]?)", label)
-        return (r"\s*(?:(?:\d{1,3}\s*)?\[\s*)?\(?" + _m.group(1) + r"\)?\]?"
+        # D-110: a bare note marker glued before a parenthesised number, '4(20) “Good faith.”' (GCA 1897 s.3), is the
+        # note's; it is read only when '(N)' follows at once, so no other printed form changes
+        _bare = r"(?:\d{1,3}(?=\(" + _m.group(1) + r"\)))?" if kind == "subsection" else ""
+        return (r"\s*" + _bare + r"(?:(?:\d{1,3}\s*)?\[\s*)?\(?" + _m.group(1) + r"\)?\]?"
                 + (r"\s*[-\u2013.]?\s*\(?" + _m.group(2) + r"\)?" if _m.group(2) else ""))
     for _ro_e in (overrides.get("source_printed_rule_openers") or []):
         # optional "kind": "subsection" -- a sub-rule printed '2)' on its own line ('2)  / The decision of ...', 4431
@@ -11474,7 +11483,8 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
                                  else r"[A-Z]|[IVXL]{1,6}" if _ro_kind == "part"
                                  else r"Explanation|Exception" if _ro_kind == "explanation"
                                  else r"I|II|III|IV|V|VI|VII" if _ro_kind == "article"
-                                 else r"\d{1,3}(?:[A-Z]{0,2}|-[A-Z])|[IVX]{1,4}|[A-Z]" if _ro_kind == "subsection"
+                                 # D-110 `reviewed_lettered_insertion_subsection`: '(8ab)', '(43ai)', '(34a1)'
+                                 else r"\d{1,3}(?:[A-Z]{0,2}|-[A-Z])|[IVX]{1,4}|[A-Z]|\d{1,3}[a-z]{1,3}\d?" if _ro_kind == "subsection"
                                  else r"\d{1,3}(?:[A-Z]{0,2}|-[A-Z])|[IVX]{1,4}|" + _SERIES_LABEL.pattern, _ro_e["label"])
                 and isinstance(_ro_e["source_prefix"], str)
                 and (len(_ro_e["source_prefix"].strip()) >= 8
@@ -11498,6 +11508,10 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
                                       _ro_e["source_prefix"]))
                      or (_ro_e.get("kind") == "subsection"
                          and re.match(r"\s*(?:\d{1,3}\s*\[\s*)?\(" + re.escape(_ro_e["label"]) + r"\)(?:,|\s+(?=[A-Z]))",
+                                      _ro_e["source_prefix"]))
+                     # D-110: a definition sub-section opens on its quoted term, '(8) “British possession.”'
+                     or (_ro_e.get("kind") == "subsection"
+                         and re.match(r"\s*\*?(?:\d{1,3}\s*\[?\s*)?\(" + re.escape(_ro_e["label"]) + r"\)\s+[“\"][A-Z]",
                                       _ro_e["source_prefix"]))
                      or (re.fullmatch(r"\d{1,3}(?:[A-Z]{2}|-[A-Z])", _ro_e["label"])
                          and re.match(r"\s*(?:\d{1,3}\s*\[\s*)?\(?" + re.escape(_ro_e["label"]) + r"\)?\s+(?=[A-Z(])",

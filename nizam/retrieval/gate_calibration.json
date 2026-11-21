@@ -15,27 +15,27 @@
     "agree"
    ],
    "mean": [
-    -0.26067893,
-    1.73289611,
+    -0.29718237,
+    1.72107327,
     1.13770492
    ],
    "scale": [
-    4.75263163,
-    1.97755926,
-    0.6682897
+    4.77876031,
+    1.96783142,
+    0.66336547
    ],
    "coef": [
-    1.27758955,
-    0.00807346,
-    0.60412917
+    1.29903407,
+    -0.09389058,
+    0.56794575
    ],
-   "intercept": 0.52747647,
-   "tau": 0.761223,
+   "intercept": 0.58859156,
+   "tau": 0.765608,
    "target_precision": 0.95,
    "dense_generation": 1,
    "fitted_on": "dev, split-v1, 305 scored cases",
-   "oof_answered_precision": 0.95,
-   "oof_coverage_of_sufficient": 0.5491,
+   "oof_answered_precision": 0.9505,
+   "oof_coverage_of_sufficient": 0.5424,
    "reranker": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1@1427fd652930e4ba29e8149678df786c240d8825"
   },
   "gpu": {
@@ -43,21 +43,21 @@
     "top"
    ],
    "mean": [
-    6.12866253
+    6.13276175
    ],
    "scale": [
-    1.78386305
+    1.78009489
    ],
    "coef": [
-    2.19726267
+    2.15481481
    ],
-   "intercept": 2.84387914,
-   "tau": 0.67117,
+   "intercept": 2.80811736,
+   "tau": 0.744165,
    "target_precision": 0.95,
    "dense_generation": 2,
    "fitted_on": "dev, split-v1, 305 scored cases",
-   "oof_answered_precision": 0.9504,
-   "oof_coverage_of_sufficient": 0.954,
+   "oof_answered_precision": 0.9565,
+   "oof_coverage_of_sufficient": 0.9272,
    "reranker": "Qwen/Qwen3-Reranker-8B@77d193c791ed757ca307ee72715aa132723da912"
   },
   "unreranked": {
@@ -66,24 +66,24 @@
     "margin"
    ],
    "mean": [
-    0.02866997,
-    0.00254165
+    0.02863152,
+    0.0024761
    ],
    "scale": [
-    0.00452613,
-    0.00275546
+    0.00453145,
+    0.00269018
    ],
    "coef": [
-    1.04056213,
-    -0.36962949
+    0.95749871,
+    -0.31754903
    ],
-   "intercept": 0.26774471,
-   "tau": 0.798048,
+   "intercept": 0.33575631,
+   "tau": 0.791857,
    "target_precision": 0.9,
    "dense_generation": 1,
    "fitted_on": "dev, split-v1, 305 scored cases",
-   "oof_answered_precision": 0.9,
-   "oof_coverage_of_sufficient": 0.104
+   "oof_answered_precision": 0.9048,
+   "oof_coverage_of_sufficient": 0.1073
   }
  }
 }
