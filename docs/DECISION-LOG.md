@@ -1136,6 +1136,54 @@ Area: client · Status: Superseded by D-084 (the whole-page cloth; the hem, the 
   design/heritage_art.dart, presentation/discover.dart, presentation/heritage.dart; test/heritage_test.dart
   (golden embroidery.png, a review sheet at 3x).
 
+### D-112 · 2026-11-21 · ADR-1d after reranking: the CPU generation keeps its sign bits
+Area: architecture (ADR-1d, D-005), L2 vectors, L3 dense generator · Status: standing; settles D-098 item 4 for bge-m3
+- Decision: the CPU generation (bge-m3, `bit(1024)` in `chunk.embedding`) keeps binary storage. Measured after
+  reranking, as D-005 requires, binary costs 0.6 NDCG@10 points, inside the 2-point allowance.
+- **The float arm is exact.** D-098 stored no float vectors, and a sample would only approximate float retrieval, so
+  the whole corpus (1,132,254 chunks) was re-embedded in float on a Kaggle T4.
+  - `tools/kaggle/embed_kernel.py` gained `KG_KEEPFLOAT=1` and `KG_REV`. The revision is pinned to the generation's
+    own commit 5617a9f6, because the kernel had embedded the hub head before.
+  - It took 1.52 h. It returns, per dev question, the served window (900 chunks) nearest by float cosine and by
+    Hamming on the same vectors' sign bits.
+  - The questions went without gold (`evals/adr1d_export.py`). A smoke run proved the space first: 0.99998 bit
+    agreement with `chunk.embedding` over 20,000 chunks.
+- **The two arms** (`evals/adr1d_eval.py`, dev, 276 answerable questions):
+  - **binary** is the served `dense_units` over the stored bits;
+  - **float** is the float window collapsed by the same rule.
+
+  Both pass serving's INV-5 gate, keep 50 units, and are reranked as served on the CPU profile (int8 mMiniLM over the
+  first 10 units at 800 characters).
+  - **Same space:** the run's Hamming window against an exact scan of the stored bits has Jaccard .985 on average
+    (min .946, 28 questions). The few differences are passages that replays added, embedded by the CPU int8 encoder.
+
+  | (float − binary, paired bootstrap) | float | binary | difference [95% CI] |
+  |---|---|---|---|
+  | dense NDCG@10 | .451 | .416 | +3.5 [+1.1, +6.0] |
+  | dense recall@50 | .750 | .703 | +4.7 [+1.5, +8.2] |
+  | **reranked NDCG@10** | .461 | .455 | **+0.6 [−1.7, +2.9]** |
+  | reranked MRR@10 | .437 | .434 | +0.3 [−1.9, +2.6] |
+- **Reading it honestly.**
+  - Before reranking, the sign bits cost real ranking quality, a significant 3.5 NDCG and 4.7 recall@50 points,
+    confirming D-098's dense-only finding.
+  - The reranker recovers almost all of the NDCG. The rule is met on the point estimate, but the interval's upper end
+    (2.9) does not exclude a cost above 2 points.
+  - The recall@50 loss stays in the dense generator. In serving it is partly carried by the hybrid's lexical side,
+    which this dense-only arm leaves out.
+  - docs/10 §7.1 also asks that "Recall@50 passes" (≥ 0.90). The CPU profile misses it with float vectors too: dense
+    alone .750, the served hybrid .764 on dev (D-098). That is a limit of the CPU profile, not of the storage. Binary's
+    own share is the 4.7 points above.
+  - Consequences: binary stays, and the halfvec fallback is not built. If the CPU reranker's depth grows beyond 10
+    (a faster host, D-101), the check re-runs: the deeper the reranker reads, the more the dense window's recall
+    matters.
+- **The GPU generation (Qwen3-Embedding-8B) is not re-measured here.**
+  - Its served path already re-ranks the Hamming window against stored halfvecs at precision (`rescore_dims`, 0112).
+  - Dense-only, its sign bits lost nothing (D-099: bits r50 .968 against float .940).
+  - A float re-embedding of the corpus would take about 11 GPU-hours. It is recorded as not measured, and low risk.
+- Where: evals/adr1d_export.py, evals/adr1d_eval.py, evals/results/adr1d-dev-2026-11-21.json;
+  tools/kaggle/embed_kernel.py, tools/kaggle/kg.sh (KG_KEEPFLOAT, KG_REV); run nizam-embed-run-adr1dfull (account 2),
+  data /mnt/e/nizam-data/embed/{ds-adr1d-20261121, out-adr1dfull}.
+
 ### D-111 · 2026-11-21 · Gate refit on the repaired corpus (gate v2 rule, unchanged)
 Area: L3 gate (docs/04 §8), evaluation (docs/10) · Status: standing; supersedes D-106's calibration only, not its rule
 - Decision: the gate is refitted, because D-109 shifted the Urdu questions' CPU features and D-110 changed the corpus
@@ -2597,9 +2645,9 @@ These were found and deliberately left open. Each will become an entry when it i
 
 - **Fusion with the 8B space (D-099)** — decided for the GPU profile by D-101: its reranker reads citations then
   dense, without the BM25 windows. The CPU profile keeps the hybrid.
-- **ADR-1d for the 8B space.** The binary-vs-full check after reranking (D-098 item 4) now also covers 8B. Dense-only,
-  its sign bits did not cost accuracy (bits4096 r50 .968 vs full .940). After the cross-encoder (D-101) it still needs
-  full-precision corpus vectors, which were not stored: a check means re-embedding a sample in float on Kaggle.
+- **ADR-1d for the 8B space (D-112: not measured, low risk).** Dense-only, its sign bits cost nothing (bits4096 r50
+  .968 against full .940), and the served path re-ranks the Hamming window against halfvecs at precision. A check
+  after the cross-encoder needs a float re-embedding of the corpus, about 11 GPU-hours.
 - **The degraded-mode gate (D-101, docs/04 §9.2)** — decided by D-106. On 305 dev cases the fused order reaches the
   0.90 fallback at 10.4% coverage, and test passed 18 of 18. An `unreranked` result now answers its clearest questions
   under its own threshold.
@@ -2729,10 +2777,9 @@ These were found and deliberately left open. Each will become an entry when it i
 - **155 Gazette laws not replayed under D-072.** Their false Gazette Parts stand until a page-read repair, law by law.
 - **The section list's frame-time tail** (8–13 of about 790 frames over budget on the emulator) and cold start need
   measuring on a phone. On 18 Nov the emulator itself degraded (D-070), so its raster numbers no longer judge the app.
-- **ADR-1d, binary after reranking (D-098).** Binary vectors are acceptable only if they cost ≤2 NDCG points after
-  the cross-encoder (built 20 Nov, D-101; the check needs float corpus vectors, which are not stored). Dense-only, bge-m3's sign bits cost r50 −5.6 (CI includes 0) and
-  MRR@10 −7.9 (significant). The ablation re-runs when the reranker lands; the fallback is halfvec, or Qwen3's
-  binary-friendly space.
+- **ADR-1d for bge-m3: re-run if the CPU reranker reads deeper (D-112).** After reranking, binary costs +0.6 NDCG@10
+  [−1.7, +2.9], so it stays. Dense-only it costs 4.7 recall@50 points, so a reranker that reads more than 10 units
+  makes the window's recall matter more.
 - **Retrieval p95 over ~1 s (D-098).** Hybrid p95 is 1.0–1.5 s on this host; the INV-5 gate (~350 ms p50) and the
   lexical windows dominate, and they predate the dense slice. The query encoder's 57 ms is over docs/04's 20 ms
   budget, mostly hidden by running the generators in parallel.

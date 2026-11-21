@@ -45,6 +45,13 @@ MODELS = [  # (slug, hub id, query template, max tokens)
     ("qwen3-emb-0.6b", "Qwen/Qwen3-Embedding-0.6B", "Instruct: " + TASK + "\nQuery:{q}", 512),
 ]
 ONLY = [x for x in "__ONLY__".split(",") if x] or None     # kg.sh KG_MODELS: a subset of the slugs, else all
+# ADR-1d after reranking (D-110): KG_KEEPFLOAT=1 also saves the query vectors (q.npy) and, per dev question, the TOPW
+# nearest chunks in its scope by FLOAT cosine (topf_ids.npy, topf_sims.npy) and by Hamming on the same vectors' sign
+# bits (topb_ids.npy) -- what the dense window of each arm holds; KG_REV pins the commit embedded (the active
+# generation's own), so the floats are that generation's space
+KEEP_FLOAT = "__KEEPFLOAT__" == "1"
+PIN_REV = "__REV__" or None
+TOPW = 900          # the served dense window: min(1000, 300 provisions x 3 chunks), nizam.storage.unit_search
 
 
 def model_pooling(hub, rev):
@@ -144,7 +151,7 @@ for slug, hub, qtemplate, maxlen in MODELS:
     if os.path.exists(f"{OUT}/{slug}/metrics.json"):
         continue
     from huggingface_hub import HfApi  # noqa: E402
-    rev = HfApi().model_info(hub).sha        # the exact commit embedded; the query encoder is exported from it
+    rev = PIN_REV or HfApi().model_info(hub).sha   # the exact commit embedded; the query encoder is exported from it
     log(f"== {slug}: loading {hub}@{rev}")
     dtype = torch.float16
     m = SentenceTransformer(hub, device="cuda", revision=rev, model_kwargs={"torch_dtype": dtype})
@@ -174,6 +181,28 @@ for slug, hub, qtemplate, maxlen in MODELS:
     qtexts = [qtemplate.format(q=c["q"]) for c in dev]
     qv = m.encode(qtexts, batch_size=32, normalize_embeddings=True, convert_to_numpy=True)[:, :1024]
     qsecs = (time.time() - tq) / len(qtexts)
+    if KEEP_FLOAT:
+        np.save(f"{OUT}/{slug}/q.npy", qv.astype(np.float16))
+        E = torch.from_numpy(emb).cuda()
+        qb = np.packbits(qv > 0, axis=1)
+        tf_ids = np.full((len(dev), TOPW), -1, dtype=np.int64)
+        tf_sims = np.zeros((len(dev), TOPW), dtype=np.float32)
+        tb_ids = np.full((len(dev), TOPW), -1, dtype=np.int64)
+        for qi, case in enumerate(dev):
+            cand = np.nonzero(np.isin(jidx, [jnames.index(j) for j in case["juris"] if j in jnames]))[0]
+            k = min(TOPW, len(cand))
+            s = (E[torch.from_numpy(cand).cuda()] @ torch.from_numpy(qv[qi].astype(np.float16)).cuda()).float().cpu().numpy()
+            top = np.argpartition(-s, k - 1)[:k]
+            top = top[np.argsort(-s[top], kind="stable")]
+            tf_ids[qi, :k], tf_sims[qi, :k] = ids[cand[top]], s[top]
+            h = POP[np.bitwise_xor(bits[cand], qb[qi][None, :])].sum(axis=1)
+            topb = np.lexsort((ids[cand], h))[:k]          # Hamming, ties by chunk id (serving's ORDER BY)
+            tb_ids[qi, :k] = ids[cand[topb]]
+        del E; torch.cuda.empty_cache()
+        np.save(f"{OUT}/{slug}/topf_ids.npy", tf_ids)
+        np.save(f"{OUT}/{slug}/topf_sims.npy", tf_sims)
+        np.save(f"{OUT}/{slug}/topb_ids.npy", tb_ids)
+        log(f"{slug}: kept float and binary top-{TOPW} for {len(dev)} questions")
     full, full_rows = evaluate(qv.astype(np.float16), emb, binary=False)
     binr, bin_rows = evaluate(np.packbits(qv > 0, axis=1), bits, binary=True)
     if not np.isfinite(emb).all():

@@ -226,7 +226,7 @@
   <h3><span class="mk">7.1</span>Mandatory ablations</h3>
   <ul>
    <li>BM25, dense, definitions and graph independently; then RRF, cross-encoder and completeness expansion.</li>
-   <li><code>float32</code>, <code>halfvec(384)</code> and <code>bit(1024)</code>; binary ships only if Recall@50 passes and reranked NDCG loses no more than two points.</li>
+   <li><code>float32</code>, <code>halfvec(384)</code> and <code>bit(1024)</code>; binary ships only if Recall@50 passes and reranked NDCG loses no more than two points. <em>As built (21 Nov 2026, D-112):</em> on the CPU profile (bge-m3), reranked NDCG@10 is +0.6 [−1.7, +2.9] points better with float than with binary, so binary ships. Dense recall@50 is .750 with float against .703 with binary; neither reaches the 0.90 target, so the recall condition is a CPU-profile limit, not a storage one. The GPU profile's 8B space was not re-measured: dense-only its bits lost nothing (D-099).</li>
    <li>Approximate versus exact search by filter selectivity; shadow exact recall reported per jurisdiction and date mode.</li>
    <li>Direct multilingual retrieval versus any translation proposal; compare citation-token fidelity, not just semantic score.</li>
    <li>Current versus historical law, each enabled jurisdiction, precedent coverage, Roman Urdu and degraded paths.</li>

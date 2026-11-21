@@ -93,7 +93,8 @@ embedpush)
   # kg.sh embedpush NAME VERSION : push the embedding kernel (tools/kaggle/embed_kernel.py) over nizam-embed-VERSION;
   # KG_SMOKE=1 embeds the first 20,000 chunks only; KG_MODELS=slug,slug runs a subset (e.g. one model per account)
   K=/mnt/e/nizam-data/embed/kernel-$2; mkdir -p $K
-  sed "s/__HOURS__/${KG_HOURS:-11}/; s/__SMOKE__/${KG_SMOKE:-0}/; s/__ONLY__/${KG_MODELS:-}/" /mnt/e/Nizam_e_Qanoon/tools/kaggle/embed_kernel.py > $K/embed_kernel.py
+  # KG_KEEPFLOAT=1 KG_REV=<hub commit>: keep the float vectors of that pinned commit (ADR-1d after reranking, D-110)
+  sed "s/__HOURS__/${KG_HOURS:-11}/; s/__SMOKE__/${KG_SMOKE:-0}/; s/__ONLY__/${KG_MODELS:-}/; s/__KEEPFLOAT__/${KG_KEEPFLOAT:-0}/; s/__REV__/${KG_REV:-}/" /mnt/e/Nizam_e_Qanoon/tools/kaggle/embed_kernel.py > $K/embed_kernel.py
   cat > $K/kernel-metadata.json <<EOF3
 {"id": "$USER/nizam-embed-run-$2", "title": "nizam-embed-run-$2", "code_file": "embed_kernel.py", "language": "python",
  "kernel_type": "script", "is_private": true, "enable_gpu": true, "enable_internet": true,
