@@ -5,16 +5,21 @@ statutory corpus and judicial precedent of the federation and four provinces, an
 14 Nov 2026) Islamabad Capital Territory, Azad Jammu & Kashmir and Gilgit-Baltistan — docs/02 §2.2
 already listed the AJK and GB assemblies as P1 sources. Final Year Project, GIKI FCSE, four developers.
 
-**Current state (20 Nov 2026): L1 and the L2 legal data layer are done; L2 retrieval storage holds the `chunk` table, lexical indexes (D-095) and two dense spaces with HNSW — bge-m3 for the CPU (D-098) and Qwen3-Embedding-8B for the GPU host (D-099) — and L3 serves hybrid candidates (`nizam/retrieval/`: fused lexical units, place territory, the citation fast path, D-097; dense units fused across generators, D-098) and reranks them (`nizam/retrieval/rerank.py: ranked()`, D-101: Qwen3-Reranker-8B on the GPU host, int8 mMiniLM on the CPU), and gates them (`nizam/retrieval/gate.py: retrieve() -> GroundingContext | Abstention`, D-102, D-106: scope vetoes, then a logistic gate per reranker calibrated on dev for 0.95 answered precision), and assembles a passing bundle (`nizam/retrieval/assembly.py`, D-107:
+**Current state (21 Nov 2026): L1 and the L2 legal data layer are done, and L3 is closed for the statute book
+(`docs/RETRIEVAL-STATE-2026-11-21.md`: what L4 receives, every test-once figure, what is open). The owner's decision
+on the held-back sources (D-100) comes next, then L4. L2 and L3 as built: L2 retrieval storage holds the `chunk` table, lexical indexes (D-095) and two dense spaces with HNSW — bge-m3 for the CPU (D-098) and Qwen3-Embedding-8B for the GPU host (D-099) — and L3 serves hybrid candidates (`nizam/retrieval/`: fused lexical units, place territory, the citation fast path, D-097; dense units fused across generators, D-098) and reranks them (`nizam/retrieval/rerank.py: ranked()`, D-101: Qwen3-Reranker-8B on the GPU host, int8 mMiniLM on the CPU), and gates them (`nizam/retrieval/gate.py: retrieve() -> GroundingContext | Abstention`, D-102, D-106: scope vetoes, then a logistic gate per reranker calibrated on dev for 0.95 answered precision), and assembles a passing bundle (`nizam/retrieval/assembly.py`, D-107:
 whole units with their in-scope definitions, qualifications and references, law facts, footnotes and sources, under a
 50,000-character budget, in `GroundingContext.evidence`). The links a provision's words make — `defines`,
 `refers_to`, `subject_to`, `notwithstanding` — are derived tables rebuilt from the release (`nizam/workers/links.py`,
 0114–0115, audit A23, D-108): 166k references (82k resolved, 14k into another law) and 72k scoped definitions.
 Assembly reads them, adding cross-law references, prevailing provisions, and parent-Act and General Clauses Act
-definitions. L4 upward has not started.** The live continuation point is `docs/CORPUS-STATE-2026-11-17.md`; read it before any corpus mutation. **10,342 laws are released and none is held**, across federal, the four provinces, ICT, AJK and Gilgit-Baltistan. Every one is served through `operative_provision` as at a date (`nzq.as_of`) and in a territory (`nzq.territory`), with status, dates, extent and repeals recorded. `./nz audit` runs 44 criteria and all pass (A20, retrieval chunks are exactly the release, 18 Nov; A21 and A22, one embedding space per encoder device, 19–20 Nov). Sixteen documents
+definitions. Since 21 Nov (D-110–D-112), the packet also records conflicts ("notwithstanding" and "subject to"
+between admitted units) and sub-questions; seven laws whose footnotes opened false sections were repaired, the CrPC
+and the General Clauses Act 1897 among them; the gate was refitted on the repaired corpus; and ADR-1d is met after
+reranking. L4 upward has not started.** The live continuation point is `docs/CORPUS-STATE-2026-11-17.md`; read it before any corpus mutation. **10,342 laws are released and none is held**, across federal, the four provinces, ICT, AJK and Gilgit-Baltistan. Every one is served through `operative_provision` as at a date (`nzq.as_of`) and in a territory (`nzq.territory`), with status, dates, extent and repeals recorded. `./nz audit` runs 45 criteria and all pass. The newest are A20 (retrieval chunks are exactly the release, 18 Nov), A21 and A22 (one embedding space per encoder device, 19–20 Nov), and A23 (the link tables are exactly the release, 21 Nov). Sixteen documents
 in `docs/` fix the architecture, and where implementation has diverged the docs carry an "as built"
 correction rather than a quiet edit. Acquisition is fully accounted: every catalogued item either landed or carries a declared, evidence-backed exception. Laws that need OCR (874 AJK and 151 GB scans) are not landed, by owner rule; the one exception is the 25th–27th Constitution Amendment Acts, read page by page with a Kaggle GPU cross-check (D-076). `chunk` (0108)
-holds offsets into every released version (1,132,245 chunks, each with a bge-m3 sign-bit vector of the one active
+holds offsets into every released version (1,132,254 chunks on 21 Nov, each with a bge-m3 sign-bit vector of the one active
 `embedding_generation`, HNSW `ix_chunk_hnsw`, 0109–0111), and the lexical port
 (`nizam/storage/lexical.py`: pg_search BM25 plus the portable fallback, both read through `operative_provision`) is
 benchmarked provisionally (BM25 recall@50 0.383 on raw golden questions; the fallback far lower, D-095). L3's fused lexical
@@ -33,7 +38,9 @@ passages. The CPU model ships in `models/reranker` with `./nz export`; without a
 live-figure vetoes; refit on dev 305; test 195 scored once): on the GPU, 166 pass at answered precision .940
 [.893, .967], covering 95% of answerable questions. On the CPU, 55 pass at .909 [.804, .961], still under 0.95 (open).
 `unreranked` now earns the 0.90 fallback: 18 pass, all correct. Unanswerable recall is .95 or better in every mode.
-Strict abstention precision is .69 on the GPU, under docs/10's .90. On a Kaggle T4 the 8B reranker takes 4.5 s for 10
+Strict abstention precision is .69 on the GPU, under docs/10's .90. Refit on the repaired corpus (D-111, test once):
+GPU 162 pass at .944 [.898, .971], CPU 55 at .909, unreranked 20, all correct, strict abstention precision .61.
+ADR-1d (D-112): for bge-m3, binary costs +0.6 NDCG@10 [−1.7, +2.9] after reranking, so the sign bits stay. On a Kaggle T4 the 8B reranker takes 4.5 s for 10
 passages and 24.5 s for 50 (a proxy, not the serving host). Assembly (D-107; test assembled once) loses no necessary
 unit the bundle held and adds some: GPU test necessary 166 → 169 of 182, relevant 15 → 17 of 27. Its additions were
 read against the law: 38/40 correct on test, 40/40 on the final dev sample (author-checked). INV-5 violations: 0.
@@ -121,6 +128,7 @@ Layer rule: a layer calls **only** the layer immediately below it, plus the shar
 | `12-design-system` | Stamp-paper palette, Spectral/Karla, spacing, components |
 | `13-ux-and-interaction-architecture` | Journeys, answer anatomy, uncertainty, voice, content system |
 | `DECISION-LOG.md` | Every decision so far (D-001 onwards) with why and where it is recorded; append on every new one |
+| `RETRIEVAL-STATE-2026-11-21.md` | L3 closed: what L4 receives from `retrieve()`, every test-once figure against docs/10, what is open, how to re-measure |
 | `DEFERRED-SOURCES.md` | Everything held until retrieval is finished (D-100): FBR, SECP, PSX and GB drops, the AJK/GB scans, ~69k judgments, the acquisition exceptions; each with counts, the decision needed and a recommendation |
 | `corpus-atlas.html` | The project explained with charts (corpus, database structure, search results, what is left), figures as measured 19 Nov 2026; open in a browser |
 | `law-register/` | Every released law by name, one table per place, and `laws.csv` (35 columns per law); generated by `tools/law_register.py`, never edited by hand |
