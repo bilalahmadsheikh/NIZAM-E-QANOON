@@ -148,6 +148,7 @@
   reviewStatus: "machine_candidate" | "lawyer_verified" | "contested";
   evidenceQuoteOffsets[]; sourceVersionId;
 <b>}</b></pre>
+  <div class="note"><p><strong>As decided, 22 Nov 2026 (D-117).</strong> <code>affirmed</code> and <code>reversed</code> describe the same case on appeal. They move to <code>judgment_lineage</code>, and <code>per_incuriam</code> joins the treatments. <code>polarity</code> is a fixed map from the treatment, not a stored field. Provisions have their own vocabulary (<code>upheld</code>, <code>read_down</code>, <code>struck_down</code>, <code>declared_repugnant</code>). See <a href="PRECEDENT-MODEL.md">PRECEDENT-MODEL.md</a> &sect;2.</p></div>
   <figure><span class="fignum">Figure 2 &middot; precedent signal computation</span>
    <svg class="dg" viewBox="0 0 940 330" role="img" aria-labelledby="f2t f2d"><title id="f2t">Precedent signal computation</title><desc id="f2d">A target judgment is split into propositions. Forward treatment edges are filtered by source identity, majority status, court domain, query date and territorial reach. Negative and positive evidence remains separate. Coverage and conflicts are attached before a qualified signal is released.</desc>
     <rect class="acc" x="20" y="120" width="125" height="70" rx="4"/><text class="ta" x="82" y="147" text-anchor="middle">Target case</text><text class="tm" x="82" y="167" text-anchor="middle">opinion + paragraphs</text>

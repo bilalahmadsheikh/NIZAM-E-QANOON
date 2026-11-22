@@ -187,9 +187,32 @@ release, as D-076 did. Do it after retrieval, because about 1,000 new laws chang
 | Peshawar High Court (`judgments_peshawar_high_court.zip`) | 5,713 | 2000–2026 | PDF |
 | Sindh High Court (`judgments_sorted/`) | 55,123 | 1966–2026 | HTML, sorted by year, with `mapping.csv` |
 
+**As measured 22 Nov 2026** (all archives are in `/mnt/e/nizam-data/`, not `data/`):
+- The 55,075 Sindh HTML files are each an ~8 KB empty search-result page from the Sindh caselaw portal, holding
+  no judgment text. Only the filename carries facts: case number, year, single or division bench, and seat. Sindh
+  needs a recrawl.
+- Lahore's folders run 2011–2026 and Peshawar's 2009–2026, not 2000.
+- In a sample of 150 first pages per court:
+  - the Supreme Court has 10% image-only (needing OCR), Lahore 3% and Peshawar 36%;
+  - law-reporter reprints carrying editorial headnotes are 0% of the Supreme Court sample, 8% of Lahore's and 9% of
+    Peshawar's.
+- Only the Supreme Court set has a manifest of source URLs (`scp_judgments/manifest.csv`).
+- About 14,000 judgments are usable today, not 69,000.
+
 `judgments_peshawar_high_court.zip` (6 GB) is a bundle. Besides the Peshawar judgments, it holds byte-identical
 copies of `GB_code`, `fbr_code`, `psx_legal_framework`, `scp_judgments` and `secp_code` (CRCs compared). Only its
 Peshawar folder and the SRO folder of item 2 are unique.
+
+**Decided 22 Nov 2026:** the data model, court hierarchy, links and build order are in
+[PRECEDENT-MODEL.md](PRECEDENT-MODEL.md) (D-116–D-122).
+
+**Supreme Court landed 22 Nov 2026 (D-123):** 2,778 judgments released, linked to the law they cite, and searchable.
+On 23 Nov (D-124) the 327 with no usable decision date were released marked undated: 13 were dated after reader
+fixes, and 314 are undated. That makes 3,105. What is left of the SC archive:
+- 193 held with the gate they fail (court not resolved 70, no heading 63, no case number 59, unreadable 1);
+- 438 scans and Urdu texts waiting for the OCR lane (D-114).
+
+Lahore, Peshawar, Sindh (recrawl) and the courts not held come next, in that order (PRECEDENT-MODEL.md §7).
 
 **What it needs.** None of this can land today:
 - docs/03 plans partitioned judgment tables;

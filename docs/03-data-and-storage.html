@@ -365,6 +365,19 @@ pre u{color:var(--rubric);text-decoration:none}
   <b>CONSTRAINT</b> ck_one_dst <b>CHECK</b> (
     (dst_provision_id <b>IS NOT NULL</b>)::int + (dst_judgment_id <b>IS NOT NULL</b>)::int = 1)
 );</pre>
+    <div class="note">
+      <h4>As decided, 22 Nov 2026 (DECISION-LOG D-116&ndash;D-122)</h4>
+      <p>This sketch is superseded by <a href="PRECEDENT-MODEL.md">PRECEDENT-MODEL.md</a>, which changes it in seven ways:</p>
+      <ul>
+        <li>The <code>court</code> enum of &sect;1.1 becomes court tables with dated <code>authority_rule</code> rows, each read from the Constitution&rsquo;s text (D-116).</li>
+        <li><code>treatment</code> splits into <code>case_treatment</code> and <code>provision_treatment</code>, and appeal outcomes move to <code>judgment_lineage</code> (D-117).</li>
+        <li>A judgment gains opinions, translations, lineage and a case-type table. Paragraphs cite by printed number only (D-118).</li>
+        <li><code>citation_edge</code> becomes <code>judgment_statute_reference</code> and <code>judgment_case_reference</code>. Statute references resolve to the version in force on the decision date (D-119).</li>
+        <li>Reporter reprints are not landed (D-120).</li>
+        <li>Judgment chunks live in their own tables (D-121).</li>
+        <li>Coverage and privacy rules are added (D-122).</li>
+      </ul>
+    </div>
   </div>
 </section>
 

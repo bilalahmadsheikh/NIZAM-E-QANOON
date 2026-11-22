@@ -1722,6 +1722,47 @@ required before superseded derived rows may be pruned.
 
 ---
 
+### Courts and binding authority (0118, D-116)
+
+`court`, `court_alias`, `court_superintendence`, `court_jurisdiction` and `authority_rule` hold no fact without its
+source. Each row names (source observation, expression ordinal, unit label) and the exact words (`source_quote`), a
+key that survives a replay of the law. `law_unit_quote_found()` checks that the words are still printed in a
+released version, `v_court_record_source` lists every record with the result, and audit A24 fails on a miss.
+
+- **Append-only:** rows are never edited or deleted. A mistaken row is withdrawn once (`withdrawn_at`,
+  `withdrawn_reason`), and the trigger refuses anything else.
+- **`authority_rule`** stores binding rules only. Each has a validity under `EXCLUDE` (no two rules for one decider,
+  receiver and subject overlap) and exactly one source: a provision's words, or, for case-law rules, a judgment
+  paragraph.
+- **The resolver** is `nizam/storage/authority.py`.
+
+### Judgments (0119–0121, D-117–D-119, D-123)
+
+A ladder of its own beside the statute ladder:
+`judgment_source` (an archive member and its portal URL) → `judgment_document` (one reading of the bytes and its
+outcome: parsed, held with the gate, needs_ocr, reporter_reprint or duplicate) → `judgment_block` → `judgment` →
+`judgment_opinion` → `judgment_paragraph`.
+
+- **Partitions and keys:** `judgment` and `judgment_paragraph` are partitioned by `decided_on` (before 2010, then
+  yearly to 2027), with `PRIMARY KEY (id, decided_on)`.
+- **Undated judgments (0122, D-124):** `decided_on_basis = 'undated'`, with `undated_reason`, and
+  `decided_on_printed` NULL. `decided_on` then holds the latest possible day (the archive's first observation of
+  the file) and is only a filter. Display reads `v_release_judgment.decision_date`, which is NULL for these.
+  `decided_not_before` (with its basis, `hearing` or `case_year`) is the earliest day the judgment allows.
+- **Paragraphs:** a paragraph's `kind` is header, body, footnote, closing or furniture. `printed_no` is the number the
+  judgment prints, or NULL (INV-1). A body paragraph always belongs to an opinion.
+- **History:** `judgment_lineage` records the case below (the court, case and date as printed), with an outcome
+  read only when unambiguous. `case_type` maps a court's printed case names to a kind.
+- **Links:** `judgment_statute_reference` and `judgment_case_reference` are derived by `nizam.judgment_links/1`
+  (state in `judgment_link_state`, audit A26).
+  - A statute reference records the unit, the version served on the decision date (or `version_basis =
+    'not_dated'`), the role (charge, quoted, challenged, interpreted, cited), and whether its law was named or
+    `inherited` (0121).
+- **Search (0120):** BM25 on `judgment_paragraph`; `judgment_chunk` holds offsets plus the CPU generation's sign bits
+  under HNSW (audit A27).
+- **What to read:** `v_release_judgment` and `v_release_judgment_paragraph` are the release. `v_judgment_coverage`
+  is what is held, per court and year; undated judgments are its rows with year NULL.
+
 ## Views — what you should actually query
 
 | view | why |

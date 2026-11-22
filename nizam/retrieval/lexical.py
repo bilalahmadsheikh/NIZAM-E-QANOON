@@ -27,7 +27,7 @@ import collections
 import time
 from dataclasses import dataclass, field, replace
 
-from nizam.retrieval import citations as _citations
+from nizam.storage import citations as _citations
 from nizam.retrieval.query import QuerySpec, parse
 from nizam.storage import unit_search
 from nizam.storage.lexical import Filters

@@ -24,7 +24,7 @@ def db():
 
 
 def _resolve(q, territory=None):
-    from nizam.retrieval import citations as C
+    from nizam.storage import citations as C
     from nizam.storage import unit_search
     from nizam.storage.lexical import Filters
     with unit_search.session(Filters(as_of=TODAY, territory=territory)) as s:

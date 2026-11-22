@@ -4,7 +4,7 @@
 
 For every distinct necessary unit of golden sets 1-4 that is a section, article or order, the unit is cited in the
 forms people write, built from the database's own records (its recorded label and title), and resolved by
-nizam.retrieval.citations through the storage session:
+nizam.storage.citations through the storage session:
   full     "section <label> of the <recorded title>"       ("article" for an article)
   alias    "s. <label> <ALIAS>"   when the unit's law is one an alias names (PPC, CrPC, CPC, QSO, MFLO, ...)
   bare     "<label> <ALIAS>"      likewise
@@ -25,7 +25,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from nizam.retrieval import citations as C  # noqa: E402
+from nizam.storage import citations as C  # noqa: E402
 from nizam.storage import unit_search  # noqa: E402
 from nizam.storage.lexical import Filters  # noqa: E402
 

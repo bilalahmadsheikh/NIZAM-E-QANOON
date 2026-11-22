@@ -71,6 +71,8 @@ class Citation:
     # not record, so both are returned, federal first -- typed ambiguity, never a guess (D-097)
     alternates: list = field(default_factory=list)
     alternate_laws: list = field(default_factory=list)
+    start: int = -1                 # where `raw` is printed in the text given to find()
+    end: int = -1
 
 
 def _norm_title(t: str) -> str:
@@ -114,7 +116,9 @@ def find(text: str) -> list[Citation]:
         seen.add(span)
         label = re.sub(r"\s+", " ", m.group("label")).strip()
         subs = re.findall(r"\(\s*([0-9A-Za-z]{1,4})\s*\)", m.group("subs") or "")
-        out.append(Citation(m.group(0).strip(), label, subs, law))
+        raw = m.group(0).strip()
+        lead = len(m.group(0)) - len(m.group(0).lstrip())
+        out.append(Citation(raw, label, subs, law, start=m.start() + lead, end=m.start() + lead + len(raw)))
 
     for m in _P_FULL.finditer(text or ""):
         alias = m.group("alias")

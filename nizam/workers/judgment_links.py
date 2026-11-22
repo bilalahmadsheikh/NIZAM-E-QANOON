@@ -1,0 +1,222 @@
+"""Link released judgments to the law they cite and the cases they cite (docs/PRECEDENT-MODEL.md §4, D-119).
+
+    uv run python -m nizam.workers.judgment_links [--rebuild] [--apply]
+
+`judgment_statute_reference` and `judgment_case_reference` are derived tables, rebuilt from the released judgments
+by one named linker (LINKER), as provision_reference is from the release (D-108). An ordinary run links the
+judgments not yet linked by this linker; --rebuild relinks all. Without --apply nothing is written.
+
+For each body or footnote paragraph:
+1. **The provisions it names.** The citation grammar is nizam.storage.citations, the same one retrieval uses
+   (D-097). A named law is resolved by its recorded title or alias, and the unit by its printed label, descending
+   into the sub-section the citation names.
+   - The version linked is the one in force on the decision date: the text the court read. When the corpus does
+     not hold the text on that date (the law is served only from its capture, `text_known_from`), the unit is
+     linked with version_basis 'not_dated' and no version.
+   - Role: charge, challenged or interpreted from the words around the citation; 'quoted' when a quotation printed
+     after it is found in the unit's own words.
+2. **The cases it cites.** Reporter references are kept as identifiers ('not_held': no reporter index is held). A
+   case number resolves to a released judgment of this court when exactly one matches its type, number and year,
+   and is 'ambiguous' when several do (orders and the final judgment of one case).
+"""
+from __future__ import annotations
+
+import argparse
+import collections
+import datetime as dt
+import sys
+import time
+
+from nizam.corpus.judgment import fold
+from nizam.storage import citations as C
+from nizam.storage import judgment_linking as JL
+from nizam.storage import unit_search
+from nizam.storage.db import connect
+from nizam.storage.lexical import Filters
+
+LINKER = "nizam.judgment_links/1"
+
+
+def _todo(cur, rebuild: bool) -> list[tuple]:
+    cur.execute("""SELECT j.id, j.decided_on, j.court_code, j.decided_on_basis = 'undated' FROM v_release_judgment j
+                    WHERE %s OR NOT EXISTS (SELECT 1 FROM judgment_link_state s
+                                            WHERE s.judgment_id = j.id AND s.decided_on = j.decided_on
+                                              AND s.linker = %s)
+                    ORDER BY j.decided_on, j.id""", (rebuild, LINKER))
+    return cur.fetchall()
+
+
+def _case_types(cur) -> dict[str, list[tuple[str, str]]]:
+    cur.execute("SELECT court_code, code, printed_forms FROM case_type")
+    out = collections.defaultdict(list)
+    for court, code, forms in cur.fetchall():
+        for f in forms:
+            out[court].append((f, code))
+    for v in out.values():
+        v.sort(key=lambda x: -len(x[0]))
+    return out
+
+
+class Resolver:
+    """Citation -> (unit, law title, alternates), cached per (law, label, subs); versions cached per (unit, day)."""
+
+    def __init__(self, cur):
+        self.cur = cur
+        self.session = unit_search.Session(cur, Filters(as_of=dt.date.today()))
+        self.units: dict[tuple, C.Citation] = {}
+        self.versions: dict[tuple, str | None] = {}
+        self.texts: dict[str, str] = {}
+
+    def resolve(self, c: JL.StatuteCitation) -> C.Citation:
+        key = (c.law, c.label, tuple(c.subs))
+        if key not in self.units:
+            self.units[key] = C.resolve(self.session, C.Citation(c.raw, c.label, list(c.subs), c.law))
+        return self.units[key]
+
+    def version_on(self, unit: "unit_search.Unit", day: dt.date) -> tuple[str | None, bool]:
+        """(the unit's own served version on `day`, whether the unit or a unit inside it is served on `day`).
+
+        Read through operative_provision as at the decision date (INV-5), never the base table: a law's held text
+        is served before its capture date where its text_known_from allows (0096-0099). The version rows alone
+        would call every such citation undated. A heading-only unit (Art. 189: its words are in its clauses) has no
+        version of its own, and is dated through its clauses."""
+        key = (unit.unit_id, day)
+        if key not in self.versions:
+            self.cur.execute("SELECT set_config('nzq.as_of', %s, true)", (day.isoformat(),))
+            self.cur.execute("""SELECT op.version_id::text, op.provision_id = %s::uuid FROM operative_provision op
+                                 WHERE op.instrument_id = %s::uuid AND op.path <@ %s::ltree
+                                 ORDER BY op.provision_id = %s::uuid DESC, op.path LIMIT 1""",
+                             (unit.unit_id, unit.instrument_id, unit.path, unit.unit_id))
+            r = self.cur.fetchone()
+            self.versions[key] = ((r[0] if r[1] else None), True) if r else (None, False)
+        return self.versions[key]
+
+    def unit_text(self, unit_id: str) -> str:
+        if unit_id not in self.texts:
+            self.cur.execute("""SELECT string_agg(v.text_normalised, ' ' ORDER BY c.ordinal)
+                                  FROM provision p JOIN provision c ON c.instrument_id = p.instrument_id
+                                                                  AND c.path <@ p.path AND c.is_active
+                                  JOIN provision_version v ON v.provision_id = c.id
+                                 WHERE p.id = %s""", (unit_id,))
+            self.texts[unit_id] = fold(self.cur.fetchone()[0] or "")
+        return self.texts[unit_id]
+
+
+def link_one(cur, res: Resolver, types, jid, day, court, undated: bool = False) -> tuple[list, list]:
+    """`undated` (D-124): `day` is only the latest possible decision day, so no version is claimed as the text the
+    court read; the unit is linked 'not_dated'."""
+    cur.execute("""SELECT id, text FROM judgment_paragraph WHERE judgment_id = %s AND decided_on = %s
+                     AND kind IN ('body', 'footnote') ORDER BY ordinal""", (jid, day))
+    statute_rows, case_rows = [], []
+    last_law: dict[str, tuple[str, str]] = {}       # unit word -> (law, the citation that named it)
+    for pid, text in cur.fetchall():
+        for c in JL.statute_citations(text):
+            word = "article" if c.raw.lower().startswith("art") else "section"
+            law_basis, inherited_from = "named", None
+            if c.law:
+                last_law[word] = (c.law, c.raw)
+            elif word in last_law:
+                # a bare citation takes the law this judgment last named for this kind of unit (0121)
+                c = JL.StatuteCitation(c.start, c.end, c.raw, c.label, c.subs, last_law[word][0], c.role)
+                law_basis, inherited_from = "inherited", last_law[word][1][:300]
+            r = res.resolve(c)
+            role = c.role
+            dst_unit = r.resolved_unit.unit_id if r.resolved_unit else None
+            dst_inst = r.resolved_unit.instrument_id if r.resolved_unit else None
+            version = basis = None
+            if dst_unit:
+                if undated:
+                    version, basis = None, "not_dated"
+                else:
+                    version, served = res.version_on(r.resolved_unit, day)
+                    basis = "dated" if served else "not_dated"
+                q = JL.quotation_after(text, c.end)
+                if q and fold(q)[:120] and fold(q)[:120] in res.unit_text(dst_unit):
+                    role = "quoted"
+                resolution = "resolved"
+            elif not c.law:
+                resolution = "no_law_named"
+            elif r.unresolved and r.unresolved.startswith("no served law"):
+                resolution = "law_not_held"
+            else:
+                resolution = "unit_not_found"
+            alternates = [u.unit_id for u in (r.alternates or [])]
+            statute_rows.append((pid, day, jid, c.start, c.end, c.raw[:500], c.label, c.subs,
+                                 (c.law if c.law not in C.ALIASES else None), (c.law if c.law in C.ALIASES else None),
+                                 dst_inst, dst_unit, version, basis, resolution, alternates, role, LINKER,
+                                 law_basis, inherited_from))
+        for k in JL.case_citations(text):
+            dst, resolution = None, "not_held"
+            if k.case_type:
+                code = next((cd for f, cd in types.get(court, []) if fold(k.case_type).startswith(f)), None)
+                if code:
+                    cur.execute("""SELECT id FROM v_release_judgment WHERE court_code = %s AND case_type_code = %s
+                                     AND case_number = %s AND case_year = %s AND id <> %s""",
+                                (court, code, k.case_number, k.case_year, jid))
+                    hits = [h[0] for h in cur.fetchall()]
+                    if len(hits) == 1:
+                        dst, resolution = hits[0], "resolved"
+                    elif hits:
+                        resolution = "ambiguous"
+            case_rows.append((pid, day, jid, k.start, k.end, k.raw[:300], k.series, k.year, k.court, k.page,
+                              (f"{k.case_type} {k.case_number}/{k.case_year}" if k.case_type else None), dst,
+                              resolution, LINKER))
+    return statute_rows, case_rows
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser(description="link judgments to statutes and cases (D-119)")
+    ap.add_argument("--rebuild", action="store_true")
+    ap.add_argument("--apply", action="store_true")
+    ap.add_argument("--limit", type=int)
+    a = ap.parse_args()
+    t0 = time.time()
+    totals = collections.Counter()
+    with connect() as conn, conn.cursor() as cur:
+        todo = _todo(cur, a.rebuild)[: a.limit or None]
+        types = _case_types(cur)
+        res = Resolver(cur)
+        print(f"judgments to link: {len(todo)} ({LINKER})")
+        for n, (jid, day, court, undated) in enumerate(todo, 1):
+            srows, crows = link_one(cur, res, types, jid, day, court, undated)
+            for r in srows:
+                totals[f"statute:{r[14]}"] += 1
+                totals[f"role:{r[16]}"] += 1
+                if r[13] == "not_dated":
+                    totals["version:not_dated"] += 1
+            for r in crows:
+                totals[f"case:{r[12]}"] += 1
+            if a.apply:
+                cur.execute("DELETE FROM judgment_statute_reference WHERE judgment_id = %s", (jid,))
+                cur.execute("DELETE FROM judgment_case_reference WHERE judgment_id = %s", (jid,))
+                if srows:
+                    with cur.copy("COPY judgment_statute_reference (paragraph_id, decided_on, judgment_id, "
+                                  "char_start, char_end, raw, label, subs, law_printed, alias, dst_instrument_id, "
+                                  "dst_provision_id, dst_version_id, version_basis, resolution, alternates, role, "
+                                  "linker, law_basis, inherited_from) FROM STDIN") as cp:
+                        for r in srows:
+                            cp.write_row(r)
+                if crows:
+                    with cur.copy("COPY judgment_case_reference (paragraph_id, decided_on, judgment_id, char_start, "
+                                  "char_end, raw, reporter_series, reporter_year, reporter_court, reporter_page, "
+                                  "case_printed, dst_judgment_id, resolution, linker) FROM STDIN") as cp:
+                        for r in crows:
+                            cp.write_row(r)
+                cur.execute("""INSERT INTO judgment_link_state (judgment_id, decided_on, linker) VALUES (%s,%s,%s)
+                               ON CONFLICT (judgment_id, decided_on) DO UPDATE SET linker = EXCLUDED.linker,
+                                                                                   linked_at = now()""",
+                            (jid, day, LINKER))
+                if n % 100 == 0:
+                    conn.commit()
+            if n % 250 == 0:
+                print(f"  {n}/{len(todo)} {time.time() - t0:.0f}s", flush=True)
+        if not a.apply:
+            conn.rollback()
+    for k in sorted(totals):
+        print(f"  {k:28} {totals[k]:>8,}")
+    print(f"done in {time.time() - t0:.0f}s" + ("" if a.apply else " (dry run: nothing written; add --apply)"))
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

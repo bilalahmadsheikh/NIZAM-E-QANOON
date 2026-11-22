@@ -742,6 +742,64 @@ m AS (
     ,(SELECT count(*) FROM (SELECT linker FROM provision_link_state UNION SELECT linker FROM provision_reference
                             UNION SELECT linker FROM provision_definition) l)              AS linkers
 -- <<< A23 measures
+-- >>> A24 measures: every court, superintendence, jurisdiction and authority record (0118, D-116) rests on words that
+--     are still printed in a released version of the unit it names. A replay that changes those words fails here.
+    ,(SELECT count(*) FROM v_court_record_source)                                       AS court_records
+    ,(SELECT count(*) FROM v_court_record_source s WHERE NOT s.found)                   AS court_records_unfound
+-- <<< A24 measures
+-- >>> A25 measures: the judgment ladder (0119, D-118, D-123) -- every file read, every parsed reading one released
+--     judgment with a body, nothing released dated after today
+    ,(SELECT count(DISTINCT s.sha256) FROM judgment_source s
+       WHERE NOT EXISTS (SELECT 1 FROM judgment_document d WHERE d.sha256 = s.sha256 AND d.is_active))  AS jsrc_unread
+    ,(SELECT count(*) FROM judgment_document d WHERE d.is_active AND d.outcome = 'parsed'
+       AND (SELECT count(*) FROM judgment j WHERE j.document_id = d.id AND j.is_active) <> 1)          AS jdoc_not_one
+    ,(SELECT count(*) FROM judgment j WHERE j.is_active
+       AND NOT EXISTS (SELECT 1 FROM judgment_document d WHERE d.id = j.document_id AND d.is_active
+                                                          AND d.outcome = 'parsed'))                   AS j_orphan
+    ,(SELECT count(*) FROM v_release_judgment j
+       WHERE NOT EXISTS (SELECT 1 FROM judgment_paragraph p WHERE p.judgment_id = j.id
+                                                             AND p.decided_on = j.decided_on AND p.kind = 'body')
+          OR j.decided_on > current_date)                                                              AS j_bodyless
+    ,(SELECT count(*) FROM v_release_judgment)                                                         AS j_released
+    -- an undated judgment (0122, D-124): its latest-possible day is the archive's first observation of its bytes,
+    -- never an invented date, and no link of it claims the version the court read
+    ,(SELECT count(*) FROM v_release_judgment j WHERE j.decided_on_basis = 'undated')                  AS j_undated
+    ,(SELECT count(*) FROM v_release_judgment j JOIN judgment_document d ON d.id = j.document_id
+       WHERE j.decided_on_basis = 'undated'
+         AND j.decided_on IS DISTINCT FROM (SELECT min(s.observed_at)::date FROM judgment_source s
+                                             WHERE s.sha256 = d.sha256))
+     + (SELECT count(*) FROM judgment_statute_reference r JOIN judgment j ON j.id = r.judgment_id
+                                                        AND j.decided_on = r.decided_on
+         WHERE j.decided_on_basis = 'undated' AND (r.version_basis = 'dated' OR r.dst_version_id IS NOT NULL))
+                                                                                                       AS j_undated_bad
+-- <<< A25 measures
+-- >>> A26 measures: judgment links (0119/0121, D-119) are exactly the release under one linker
+    ,(SELECT count(*) FROM v_release_judgment j WHERE NOT EXISTS (
+        SELECT 1 FROM judgment_link_state s WHERE s.judgment_id = j.id AND s.decided_on = j.decided_on))  AS jl_unlinked
+    ,(SELECT count(*) FROM (SELECT judgment_id FROM judgment_statute_reference
+                            UNION SELECT judgment_id FROM judgment_case_reference
+                            EXCEPT SELECT id FROM v_release_judgment) x)                               AS jl_outside
+    ,(SELECT count(*) FROM (SELECT dst_provision_id FROM judgment_statute_reference
+                             WHERE dst_provision_id IS NOT NULL
+                            EXCEPT SELECT id FROM v_release_provision) x)                              AS jl_dst_outside
+    ,(SELECT count(*) FROM (SELECT linker FROM judgment_link_state UNION SELECT linker FROM judgment_statute_reference
+                            UNION SELECT linker FROM judgment_case_reference) l)                       AS jl_linkers
+    ,(SELECT count(*) FROM judgment_statute_reference WHERE resolution = 'resolved')                   AS jl_resolved
+    ,(SELECT count(*) FROM judgment_statute_reference)                                                 AS jl_refs
+-- <<< A26 measures
+-- >>> A27 measures: judgment chunks (0120, D-121) are exactly the released body and footnote paragraphs, each with
+--     a vector of the active CPU generation, under one chunker
+    ,(SELECT count(*) FROM judgment_chunk c WHERE NOT EXISTS (
+        SELECT 1 FROM v_release_judgment j WHERE j.id = c.judgment_id AND j.decided_on = c.decided_on))  AS jc_outside
+    ,(SELECT count(*) FROM v_release_judgment_paragraph p WHERE p.kind IN ('body', 'footnote')
+       AND length(btrim(p.text)) > 0
+       AND NOT EXISTS (SELECT 1 FROM judgment_chunk c WHERE c.paragraph_id = p.id AND c.decided_on = p.decided_on))
+                                                                                                       AS jc_missing
+    ,(SELECT count(*) FROM judgment_chunk c WHERE c.generation_id IS DISTINCT FROM (
+        SELECT g.id FROM embedding_generation g WHERE g.active AND g.storage = 'chunk.embedding'))     AS jc_foreign
+    ,(SELECT count(DISTINCT chunker) FROM judgment_chunk)                                              AS jc_chunkers
+    ,(SELECT count(*) FROM judgment_chunk)                                                             AS jc_chunks
+-- <<< A27 measures
 )
 SELECT * FROM (
   SELECT 'C1' AS id, 'every acquired file becomes a blob'      AS criterion,
@@ -940,6 +998,29 @@ SELECT * FROM (
          '0 / 0 / 0; one linker',
          CASE WHEN link_unread=0 AND link_outside_release=0 AND link_dst_outside=0 AND linkers<=1
               THEN 'PASS' ELSE 'FAIL' END FROM m
+  UNION ALL SELECT 'A24','court and authority records rest on words printed in a released law',
+         court_records||' records (reported); '||court_records_unfound||' whose words are not found',
+         '0',
+         CASE WHEN court_records_unfound=0 THEN 'PASS' ELSE 'FAIL' END FROM m
+  UNION ALL SELECT 'A25','every judgment file read; every parsed reading one released judgment with a body',
+         j_released||' released (reported); '||jsrc_unread||' files unread; '||jdoc_not_one||' parsed readings without '
+         ||'exactly one judgment; '||j_orphan||' judgments of no parsed reading; '||j_bodyless||' bodyless or future; '
+         ||j_undated||' undated (reported), '||j_undated_bad||' with an invented bound or a claimed version',
+         '0 / 0 / 0 / 0 / 0',
+         CASE WHEN jsrc_unread=0 AND jdoc_not_one=0 AND j_orphan=0 AND j_bodyless=0 AND j_undated_bad=0
+              THEN 'PASS' ELSE 'FAIL' END FROM m
+  UNION ALL SELECT 'A26','judgment links are exactly the release under one linker',
+         jl_resolved||' of '||jl_refs||' statute citations resolved (reported); '||jl_unlinked||' judgments unlinked; '
+         ||jl_outside||' rows outside the release; '||jl_dst_outside||' pointing at unreleased law; '||jl_linkers||
+         ' linker(s)',
+         '0 / 0 / 0; one linker',
+         CASE WHEN jl_unlinked=0 AND jl_outside=0 AND jl_dst_outside=0 AND jl_linkers<=1 THEN 'PASS' ELSE 'FAIL' END
+    FROM m
+  UNION ALL SELECT 'A27','judgment chunks are exactly the released paragraphs, in the CPU generation',
+         jc_chunks||' chunks (reported); '||jc_outside||' outside the release; '||jc_missing||' paragraphs unchunked; '
+         ||jc_foreign||' not of the active CPU generation; '||jc_chunkers||' chunker(s)',
+         '0 / 0 / 0; one chunker',
+         CASE WHEN jc_outside=0 AND jc_missing=0 AND jc_foreign=0 AND jc_chunkers<=1 THEN 'PASS' ELSE 'FAIL' END FROM m
   UNION ALL SELECT 'A6','no overlapping law (enforced, not tested)',
          CASE WHEN excl_present=1 THEN 'EXCLUDE constraint present'
               ELSE 'CONSTRAINT MISSING' END, 'enforced',

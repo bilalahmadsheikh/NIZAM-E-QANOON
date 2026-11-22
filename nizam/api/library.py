@@ -330,8 +330,10 @@ class Cursor:
 SHELF = [doc for _s, doc, _p in collections.POPULAR]   # the editorial shelf stays on top of ranked lists
 
 
-def create_app(repository=None):
+def create_app(repository=None, judgments=None):
     repo = repository or LibraryRead()
+    from nizam.storage.judgment_read import JudgmentRead
+    jrepo = judgments or (JudgmentRead() if repository is None else None)
     cursor = Cursor(os.environ.get('NIZAM_CURSOR_SECRET', secrets.token_hex(32)).encode())
 
     def warm():
@@ -348,11 +350,15 @@ def create_app(repository=None):
     @asynccontextmanager
     async def lifespan(app):
         repo.open()
+        if jrepo is not None:
+            jrepo.open()
         if isinstance(repo, LibraryRead) and os.environ.get('NIZAM_WARM', '1') != '0':
             import threading
             threading.Thread(target=warm, name='warm-popular', daemon=True).start()
         yield
         repo.close()
+        if jrepo is not None:
+            jrepo.close()
 
     app = FastAPI(title='Nizam Library — research preview', version='0.1.0', lifespan=lifespan)
     # Explicit development origin. Never a wildcard public/authenticated policy.
@@ -499,5 +505,9 @@ def create_app(repository=None):
         if result is None:
             raise HTTPException(404, 'This revision is no longer available. Return to the library.')
         return dict(result, as_of=day)
+
+    if jrepo is not None:                       # precedent routes (docs/PRECEDENT-MODEL.md); absent in fake-repo tests
+        from nizam.api import precedent
+        precedent.register(app, jrepo, resolved)
 
     return app

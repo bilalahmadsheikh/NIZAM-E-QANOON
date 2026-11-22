@@ -1,7 +1,7 @@
 """D-097, pure: places -> territory, the citation grammar, and when a question's frame is stripped."""
 import pytest
 
-from nizam.retrieval.citations import find
+from nizam.storage.citations import find
 from nizam.retrieval.places import places, territory_of
 from nizam.retrieval.query import parse
 

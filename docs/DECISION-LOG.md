@@ -1136,6 +1136,244 @@ Area: client · Status: Superseded by D-084 (the whole-page cloth; the hem, the 
   design/heritage_art.dart, presentation/discover.dart, presentation/heritage.dart; test/heritage_test.dart
   (golden embroidery.png, a review sheet at 3x).
 
+### D-124 · 2026-11-23 · A judgment with no usable decision date is released marked undated, never dated by a guess
+Area: owner ruling, schema, L1 parser, linking, serving (docs/PRECEDENT-MODEL.md §3) · Status: standing
+- Decision: the owner ruled "release the undated marked as undated". It supersedes D-118's J1 hold.
+  - **Who:** a judgment that prints no decision date, or prints dates that contradict each other (two signed dates,
+    or a hearing after the date read).
+  - **0122:** `decided_on_basis = 'undated'`, with `undated_reason`, and `decided_on_printed` NULL.
+    `ck_judgment_undated` ties the three together.
+  - **The date column:** `decided_on` stays the partition key and the research-date filter, so it cannot be NULL.
+    For an undated judgment it holds the **latest possible day**: the day the court's archive was first observed
+    holding the bytes (`judgment_source.observed_at`). A research date before that never returns the judgment, the
+    conservative reading of INV-5 for case law. That day is never shown as the decision date.
+    - `v_release_judgment.decision_date` is NULL for an undated judgment.
+    - The readers render "date of decision not printed", with `decided_no_later_than` and `decided_not_before`
+      beside it.
+  - **`decided_not_before`:** the printed date of hearing, else 1 January of the case year. A hearing date that is
+    the one in conflict is not used.
+  - **Links:** an undated judgment's citations are linked with no version (`not_dated`), because the text the court
+    read cannot be chosen without the date. "Cases on this section" lists dated judgments first and undated ones last.
+  - **Coverage:** `v_judgment_coverage` counts undated judgments in one row with year NULL. Search reports them as
+    `undated`.
+  - **The parser `nizam.judgment/3`:** only the files held at J1 were re-read (`--held J1`). No released judgment was
+    retired. Reading those files found three reader defects:
+    - a closing date line ("LAHORE / 12.02.2026") had opened a false paragraph "12", hiding the date. `_PARA` now
+      refuses a number followed by a digit;
+    - "22d December" was not read;
+    - a hand-filled blank ("ANNOUNCED ON _14th _January, 2011") was not read.
+
+    No released judgment had the false paragraph (checked: 0 body paragraphs opening on the rest of a date).
+  - **Audit A25** now also asserts that every undated judgment's latest-possible day equals the archive's first
+    observation, and that none of its links claims a version.
+- Result, SC archive:
+
+  | Of the 327 held at J1 | Judgments |
+  |---|---:|
+  | Dated after the reader fixes | 13 |
+  | Released undated | 314 |
+  | of which "no printed date" | 283 |
+  | of which conflicting dates | 31 |
+  | of which bounded by a hearing date | 180 |
+  | of which bounded by the case year | 131 |
+  | of which with no lower bound | 3 |
+
+  Released SC judgments are now 3,105; 193 files are still held (court not resolved, no heading, J3).
+  Linking the 327: 9,977 citations resolved, all `not_dated` for the undated ones.
+- Why:
+  - A judgment the court published is evidence of the law, so withholding it for a missing date lost precedent.
+  - Guessing a date would break INV-1: a decision date is a rendered fact.
+  - The latest-possible day is the only bound that is certainly true, and using it as the filter can hide a
+    judgment from an early research date but can never show one before it existed.
+- Where: infra/postgres/migrations/0122_undated_judgments.sql; nizam/corpus/judgment.py;
+  nizam/storage/{judgment_write,judgment_read}.py; nizam/workers/{judgments,judgment_links,judgment_chunk}.py;
+  nizam/retrieval/precedent.py; tests/test_judgment_{parse,db}.py; tools/audit/criteria.sql (A25).
+
+### D-123 · 2026-11-22 · Supreme Court precedent landed end to end: courts, judgments, links to the law, search, routes
+Area: owner ruling, L1/L2 schema, linking, L3, L6 (docs/PRECEDENT-MODEL.md) · Status: standing
+- Decision: the owner asked to add precedent starting with the Supreme Court, "fully end to end". Built in order,
+  each slice tested before the next.
+  - **0118, courts and authority (D-116).** 8 courts, 5 superintendence rows, 6 jurisdictions and 7 binding rules,
+    each citing its source by (observation, ordinal, unit, exact words). The migration refuses a seed whose words
+    are not printed, and audit A24 asserts the same on every run. `nizam/storage/authority.py` resolves
+    `Binding | NotBinding | NotRecorded` as at the research date.
+  - **0119, the judgment ladder.** `judgment_source → judgment_document → judgment_block → judgment →
+    judgment_opinion → judgment_paragraph`, with `judgment_lineage`, `case_type` (19 SC types, seen in the archive),
+    the statute and case reference tables, and release views.
+    - **A ladder of its own** (correction to D-118 §3.1, which said judgments enter by the statute ladder):
+      criteria C1–C9 assert that every block of a landed observation belongs to a provision of a law, which no
+      judgment is. Sharing source_observation, blob and document would have failed about ten criteria.
+    - **Partitions:** judgment and judgment_paragraph are partitioned by decision date (a catch-all before 2010,
+      then 2010–2027), created ahead of time.
+  - **The parser `nizam.judgment/2`** (nizam/corpus/judgment.py) reads the header, opinions, printed paragraph
+    numbers in sequence, footnotes, furniture and closing. The decision date comes from the closing ("Announced …
+    on", "<place>, the <date>", or "Date of decision"), never from the hearing, a filename or the year folder: the
+    folder is the case year, and `c.p._600_2020` was decided on 26 Jan 2023.
+  - **The archive** (`scp_judgments.zip`): 3,750 files, 3,744 distinct.
+
+    | Outcome | Files | Detail |
+    |---|---:|---|
+    | Released | 2,778 | |
+    | Held | 520 | no printed decision date (J1) 327; court not resolved 70, mostly a separate note or an "order of the court" filed alone, or a damaged header; no heading 63; no case number (J3) 59; unreadable 1 |
+    | Waiting for OCR | 438 | no text layer 423, a thin layer 8, Urdu 7 (the D-114 lane) |
+    | Duplicate (J6) | 8 | |
+
+    Check: of 248 parsed files whose names carry a date, 188 agree. Most of the rest name a later release of
+    reasons, not the decision. The printed words are stored with every date (`decided_on_printed`).
+  - **Links (D-119), as built:**
+    - The grammar moved to `nizam/storage/citations.py`, not `nizam/shared/`. `.importlinter` contract 3 keeps
+      domain logic out of shared/, and storage is importable by both L3 and the workers.
+    - **0121:** a bare citation ("section 497(2)") takes the law the judgment last named for the same kind of unit,
+      recorded `inherited` with the citation it came from. In a 150-judgment dry run this lifted resolved citations
+      from 1,733 to 3,328 of 3,800. No default law is assumed.
+    - The version is read through `operative_provision` at the decision date (INV-5). Most of the codes are served
+      only from capture because an amendment is undated (the PPC, for one), so most links are `not_dated`. The
+      reader says "the text this court read is not held" rather than showing today's text as the court's.
+  - **0120, search:**
+    - BM25 on the partitioned `judgment_paragraph` (pg_search 0.25.6 propagates a parent's index; tested on this
+      build).
+    - `judgment_chunk`: offsets into paragraphs, with the CPU bge-m3 generation's sign bits and HNSW. One table:
+      correction to D-121's "partitioned", since one court is not yet large.
+    - `nizam/retrieval/precedent.py` fuses BM25, dense and "judgments citing the provision the question names"
+      by RRF (k = 60), one hit per judgment.
+    - Each hit carries its binding status for a named forum, the law it read with whether that text is still
+      operative, and the coverage searched. It is discovery, not an answer, and passes no gate (INV-2).
+  - **Routes:** `/v1/precedent/search`, `/v1/precedent/judgments/{id}`, `/v1/law/provisions/{id}/judgments`,
+    `/v1/precedent/authority`, `/v1/precedent/coverage`.
+  - **Audits A25–A27:** the judgment ladder, the links, and the chunks are each exactly the release.
+- Not done, and why:
+  - **The 8B GPU space for judgments** (D-121): the Kaggle top-up reads `chunk` only and needs a judgment input
+    path.
+  - **Treatments, invalidations, the citator and proposition review** (D-117, docs/06 §5).
+  - **Party display redaction rules:** `parties_display` is NULL everywhere, and party names are never served or
+    searched (D-122).
+  - **Short orders and detailed reasons** are separate judgments per file, linked to nothing yet. D-118 calls them
+    one judgment with two opinions; merging them needs a case-identity rule.
+  - **A precedent stratum in the golden set** and a calibrated precedent gate.
+  - **The 438 scans.**
+  - **The mobile screens.**
+- Why this order: each slice reads the one before (docs/PRECEDENT-MODEL.md §7). The SC first, as the owner asked
+  and as §7 recommends: the cleanest archive, the only one with source URLs, and the most binding court held.
+- Where: migrations 0118–0121; nizam/corpus/judgment.py; nizam/storage/{authority,citations,judgment_write,
+  judgment_read,judgment_linking}.py; nizam/workers/{judgments,judgment_links,judgment_chunk}.py;
+  nizam/retrieval/precedent.py; nizam/api/precedent.py; tests/test_{authority,judgment_parse,judgment_db}.py;
+  tools/audit/criteria.sql (A24–A27); logs in E:/nizam-data/acquire/judgments-sc-*.log.
+
+### D-122 · 2026-11-22 · Precedent coverage is shown with every answer; party names are redacted by category; no judge analytics
+Area: serving, security (docs/06 §5.1, docs/11) · Status: standing
+- Decision:
+  - `v_judgment_coverage` (court × year: held, source, last crawl, gaps) travels with every precedent answer and
+    `AuthoritySignal`. "No adverse treatment found" is always qualified by it.
+  - `parties_display` is redacted for sensitive categories (family, sexual offences, minors, medical). Each category
+    cites its statutory basis from the corpus, or is marked as product policy.
+  - Party names are not a search key.
+  - Judges are recorded for bench composition and authorship only: no per-judge outcome statistics, no prediction.
+- Why:
+  - The inventory is very uneven: Sindh's 55,075 files hold no text, and FCC, IHC, BHC, FSC, AJK and GB are absent.
+    An absence of evidence over that coverage must never read as "good law".
+  - docs/06 forbids predicting a judge.
+- Where: docs/PRECEDENT-MODEL.md §6.2–6.3.
+
+### D-121 · 2026-11-22 · Judgment chunks and vectors are their own tables, in the same embedding generations
+Area: schema, retrieval (docs/03 §3, docs/04 §6) · Status: standing
+- Decision:
+  - `judgment_chunk` holds offsets into `judgment_paragraph.text`, partitioned by `decided_on`. It carries its own
+    bge-m3 `bit(1024)` column, plus `judgment_chunk_embedding_gpu` (`bit(4096)`). Each space has its own HNSW and
+    BM25.
+  - The encoders and generations are the statutes' own, so one query vector searches both.
+  - Citations above L2 are judgment paragraphs (INV-4).
+- Why:
+  - `chunk` is defined against `provision_version`, and A20–A22 assert it equals the statute release.
+  - A judgment span must never pass the statute gate; precedent mode needs its own calibrated gate.
+  - Date partitions prune.
+- Where: docs/PRECEDENT-MODEL.md §6.1.
+
+### D-120 · 2026-11-22 · Law-reporter reprints are not landed; their citation is kept as an identifier
+Area: corpus, owner delegation (nizam-corpus copyright line, docs/04 §R0) · Status: standing
+- Decision:
+  - A judgment file that opens with a reporter citation and editorial headnote is recorded as a non-authoritative
+    copy and not landed. Detection: a reporter citation in the first lines plus at least four `---` separators,
+    with a person reading the borderline cases.
+  - Its citation ("2014 MLD 446") becomes a `reporter_ref` alias on the judgment once the official copy is held, and
+    the official copy is recrawled.
+- Why: headnotes are the reporter's copyright. A 150-file first-page sample found them in 0 SC files, 12 LHC files
+  and 13 PHC files, roughly 900 files across both High Courts.
+- Where: docs/PRECEDENT-MODEL.md §5; docs/DEFERRED-SOURCES.md item 7 (measured 22 Nov).
+
+### D-119 · 2026-11-22 · Judgments link to the provision version in force on the decision date, by one shared citation grammar
+Area: linking (docs/03b §6, D-097, D-108) · Status: standing
+- Decision:
+  - **`judgment_statute_reference`:**
+    - a derived table, linker `nizam.judgment_links/1`, rebuilt from the release, with audit A24;
+    - it resolves each printed citation ("S. 302(b) PPC", "u/s 497 Cr.P.C.", "Article 199") to the deepest unit and
+      to **the version valid on `decided_on`** in the deciding court's territory;
+    - it records `role` (charge, quoted, challenged, interpreted, cited) and the resolution state;
+    - `amended_since` and `repealed_since` are computed at read time.
+  - **`judgment_case_reference`** resolves cited cases by (court, case number, year) or a reporter alias.
+  - **`judicial_invalidation`**, lawyer-verified, feeds `legal_edge` `invalidated_by`, effective from the date the
+    decision sets (Art. 203D(2)(b)) and held back while an FSC appeal lies (203D(2) proviso).
+  - The grammar and aliases of `nizam/retrieval/citations.py`, and the title resolver of `nizam/storage/linking.py`,
+    move to `nizam/shared/` so that L3 and the L1/L2 worker share one copy.
+- Why:
+  - A court reads the law as it stood when it decided. A judgment on a since-substituted section must say so.
+  - Two citation grammars would drift.
+  - A worker importing L3 breaks the layer rule.
+- Where: docs/PRECEDENT-MODEL.md §4.
+
+### D-118 · 2026-11-22 · A judgment has opinions; paragraphs cite by printed number; no decision date, no landing
+Area: schema (docs/03 §2.5, docs/06 §5.2) · Status: standing; the J1 hold ("no decision date, no landing") Superseded by D-124
+- Decision: judgments enter by the statute ladder (observation → blob → document → text_block). The new tables:
+  - **`judgment`** (partitioned): `court_code`, `seat`, `decided_on` with its printed basis, the case type and
+    number, the jurisdiction invoked, the bench kind and size, `reported_flag`, and a neutral citation only when
+    printed.
+  - **`judgment_opinion`:** judgment of court, majority, concurring, dissent, short order, detailed reasons. A short
+    order and its later reasons are one judgment.
+  - **`judgment_paragraph`:** `printed_no` or NULL; the citation falls back to the page, never an ordinal (INV-1).
+  - **`judgment_translation`** for official Urdu translations.
+  - **`judgment_lineage`** (appeal, revision, review; affirmed, reversed …).
+  - **`case_type`.**
+  - **Gates J1–J8.** A judgment with no printed decision date is held, never dated from the upload or the filename.
+- Why:
+  - docs/06 filters evidence by opinion, but docs/03 had no opinion table.
+  - The SC archive holds short orders and detailed reasons as separate files of one case.
+  - A synthetic paragraph number is a generated citation.
+- Where: docs/PRECEDENT-MODEL.md §3.
+
+### D-117 · 2026-11-22 · Two treatment vocabularies (case and provision); appeal history is lineage, not treatment
+Area: schema, L5 (docs/03 §1.1, docs/06 §5) · Status: standing · Supersedes docs/03 §1.1's `treatment` enum
+- Decision:
+  - **`case_treatment`:** cited, applied, followed, approved, explained, distinguished, doubted, disapproved,
+    overruled, per_incuriam. Polarity is a fixed map, not a stored column.
+  - **`provision_treatment`:** cited, applied, interpreted, upheld, read_down, struck_down, declared_repugnant.
+  - "Affirmed" and "reversed" move to `judgment_lineage`.
+  - Negative treatments, invalidations and reversals display only when `lawyer_verified`.
+- Why:
+  - docs/03 (7 values) and docs/06 (11 values) conflicted. docs/06 owns treatment (docs/04 §6.5).
+  - A case's appeal outcome and a later court's view of its reasoning are different facts.
+  - A stored polarity could contradict its treatment.
+- Where: docs/PRECEDENT-MODEL.md §2.
+
+### D-116 · 2026-11-22 · Courts are data; whether a decision binds is a dated rule read from the Constitution's text
+Area: schema, serving (docs/03 §1.1, docs/04 §6.1, docs/06 §2.1) · Status: standing · Supersedes docs/03 §1.1's `court` enum
+- Decision: the tables are `court`, `court_seat`, `court_alias` (observed headers only), `court_jurisdiction`,
+  `court_superintendence` and `authority_rule`.
+  - **`authority_rule`** stores binding rules only. Each has a validity under EXCLUDE (no overlaps), and exactly one
+    source: a provision version or a judgment paragraph.
+  - **Seeds, read from served records:**
+    - Art. 189 of the 2016 copy: SC binds all courts.
+    - The 27th Amendment Act s.34 (commenced 2025-11-13), substituting Art. 189: FCC binds all courts including the
+      SC (189(1)), and the SC binds all courts except the FCC (189(2)).
+    - Art. 201: a High Court binds its subordinate courts, subject to Art. 189, with Art. 203 for "subordinate".
+    - Art. 203GG: the FSC binds the High Courts and their subordinate courts, subject to 203D/203F.
+  - **Gaps:** a gap between dated texts is filled only from amendment records.
+  - **Not recorded:** the AJK and GB courts (their constitutions are not held) and the bench rules (case law).
+  - **The resolver** returns `Binding | NotBinding | NotRecorded`, read as at the research date.
+- Why:
+  - The enum had no FCC, no AJK or GB courts, and no dates. docs/04 §6.1 marked it stale.
+  - Art. 189 changed on 13 Nov 2025, so whether an SC decision binds depends on the date.
+  - Every rule must be replayable from a record (INV-1, INV-3).
+- Where: docs/PRECEDENT-MODEL.md §1. Version ids of the seeds are in §1.3.
+
 ### D-115 · 2026-11-22 · A notification with no numbered paragraphs is one citable unit, "Notification"
 Area: L1 segmentation, L2 schema and serving (docs/02 §5, docs/03 §2, docs/03b §3) · Status: standing
 - Decision: the owner asked for the leftovers of D-113 to be fixed ("fix these also"). 307 regulator texts were
