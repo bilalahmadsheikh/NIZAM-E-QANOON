@@ -12,6 +12,7 @@ const _nouns = {
   'rule': 'Rule',
   'regulation': 'Regulation',
   'preamble': 'Preamble',
+  'notification': 'Notification', // an unnumbered notification's one unit (DECISION-LOG D-115)
   'part': 'Part',
   'chapter': 'Chapter',
   'schedule': 'Schedule',

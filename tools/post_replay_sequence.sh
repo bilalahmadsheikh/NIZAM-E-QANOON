@@ -231,6 +231,22 @@ else
     uv run python tools/record_provision_repeals.py | tail -1
 fi
 
+# ---------------------------------------------------------------- step 4a3 (0081, 0082, D-115)
+# Dates and status, in the only order that works: an enactment date before commencement, commencement and repeals
+# before status, status before the instrument columns. Missing from this sequence until 22 Nov 2026, so the 230 laws
+# of D-113 were served for a day without the owner's presumption of force (D-115).
+say "4a3. dates and status: enacted, commenced, repealed, in force (owner presumption), then instrument columns"
+if [ "$APPLY" = "1" ]; then
+    uv run python tools/record_enacted_dates.py --apply | { grep -E '"recorded"' || true; }
+    uv run python tools/record_commencement.py --apply | { grep -E '"recorded"|withdrawn' || true; }
+    uv run python tools/record_statutory_repeals.py --apply | { grep -E "recordable|recorded" || true; }
+    uv run python tools/record_status.py --apply | { grep -E 'presumed_in_force"|"recorded"|withdrawn' || true; }
+    uv run python tools/apply_statutory_repeals.py --apply | tail -1
+    uv run python tools/apply_instrument_metadata.py --apply | tail -1
+else
+    uv run python tools/record_status.py | { grep -E 'presumed_in_force"|"recorded"|withdrawn' || true; }
+fi
+
 # ---------------------------------------------------------------- step 4b (0094, 0096-0098, 0102)
 say "4b. refresh the serving snapshots operative_provision reads (audit A16 fails while stale)"
 if [ "$APPLY" = "1" ]; then

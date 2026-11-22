@@ -21,6 +21,12 @@ nizam.workers.verify_text_quality.score -- and is reported with what would block
                blocked    a blocker or no structure -- do NOT land (it would sit held)
                rejected   extraction refused the file
 The prediction is not a release decision: landed files still pass every gate in the ordinary lane.
+
+--ocr docai --second-read DIR (D-114): preflight the SCANS instead (grades scan, partial, urdu). Each is read by Google
+Document AI (nizam.corpus.ocr_docai; responses are kept, so landing reads them again for nothing), and 'evidence' is
+the cross-read against tools/acquire/second_read.py's Tesseract reading in DIR (nizam.corpus.crossread), in place of
+Poppler, which a scan has nothing for. 'quality' then also needs verify_ocr's thresholds (confidence, legal-token
+rate for English, words per page).
 """
 from __future__ import annotations
 
@@ -44,15 +50,69 @@ def _signature(text: str) -> str:
     return re.sub(r"\d+", "#", re.sub(r"\s+", " ", text).strip().casefold())
 
 
+OCR_MODE: dict = {}      # set in each worker by _init: {"engine": "docai", "second_read": DIR} for scans
+_CLIENT = None
+
+
+PROFILE = ["default"]     # --profile: the segmentation profile the landed observation will be pinned to (D-115)
+
+
+def _init(mode: dict, profile: str = "default") -> None:
+    OCR_MODE.update(mode)
+    PROFILE[0] = profile
+
+
+def _read(path: str, sha: str):
+    global _CLIENT
+    if not OCR_MODE:
+        from nizam.corpus.extract import extract_pdf
+        return extract_pdf(Path(path).read_bytes(), sha)
+    from nizam.corpus.ocr_docai import DocAIClient
+    if _CLIENT is None:
+        _CLIENT = DocAIClient()
+    return _CLIENT.ocr_pdf(Path(path).read_bytes(), sha)
+
+
+def ocr_evidence(doc, second_read: Path) -> dict:
+    """D-114: the release reading against the independent Tesseract reading, page by page; and verify_ocr's floor."""
+    import gzip
+    import json
+    from nizam.corpus.crossread import compare_pages, release_pages
+    from nizam.workers import verify_ocr as vo
+    f = second_read / f"{doc.sha256}.json.gz"
+    if not f.exists():
+        return {"evidence": "no second reading", "order": None}
+    rec = json.loads(gzip.decompress(f.read_bytes()))
+    if "pages" not in rec:
+        return {"evidence": f"second reader rejected the scan: {rec.get('rejected', '')[:80]}", "order": None}
+    r = compare_pages(release_pages(doc.blocks, doc.page_count), rec["pages"])
+    problems = [] if r["verdict"] == "agree" else [r["verdict"]]
+    conf = float(doc.printable_ratio)
+    if conf < vo.MIN_CONFIDENCE:
+        problems.append(f"confidence {conf:.3f}")
+    words = int(doc.pdf_metadata.get("ocr_words") or 0)
+    if doc.page_count and words / doc.page_count < vo.MIN_WORDS_PER_PAGE:
+        problems.append(f"{words / doc.page_count:.0f} words/page")
+    if doc.pdf_metadata.get("ocr_language") == "eng":
+        toks = vo.WORD.findall(" ".join(b.text for b in doc.blocks).lower())
+        rate = sum(t in vo.LEGAL for t in toks) / len(toks) if toks else 0.0
+        if rate < vo.MIN_LEGAL_RATE:
+            problems.append(f"legal-token rate {rate:.3f}")
+    rec_pages = [p for p in r["pages"] if p.get("compared")]
+    return {"evidence": "passed" if not problems else "; ".join(problems),
+            "char_recall": min((p["recall"] for p in rec_pages), default=None),
+            "char_precision": min((p["precision"] for p in rec_pages), default=None),
+            "order": r.get("bigram_precision")}
+
+
 def preflight(args: tuple[str, str, str]) -> dict:
     sha, title, path = args
-    from nizam.corpus.extract import extract_pdf
     from nizam.corpus.segment import segment
     from nizam.shared.corpus_types import ExtractionRejected
     from nizam.workers.verify_text_quality import score
     out = {"sha256": sha, "title": title}
     try:
-        doc = extract_pdf(Path(path).read_bytes(), sha)
+        doc = _read(path, sha)
     except ExtractionRejected as e:
         return {**out, "verdict": "rejected", "error": str(e)[:200]}
     except Exception as e:  # noqa: BLE001 -- one bad file never stops the run
@@ -62,7 +122,7 @@ def preflight(args: tuple[str, str, str]) -> dict:
                "page_height": float(heights.get(b.page_no, 792)), "x0": float(b.x0), "x1": float(b.x1)}
               for n, b in enumerate(sorted(doc.blocks, key=lambda b: b.reading_order))]
     try:
-        seg = segment(blocks)
+        seg = segment(blocks, **({} if PROFILE[0] == "default" else {"profile": PROFILE[0]}))
     except Exception as e:  # noqa: BLE001
         return {**out, "pages": doc.page_count, "lane": doc.lane, "verdict": "blocked",
                 "error": f"segment: {type(e).__name__}: {str(e)[:160]}"}
@@ -90,8 +150,9 @@ def preflight(args: tuple[str, str, str]) -> dict:
     leak_head = sum(1 for b in blocks if b["id"] in body and _signature(b["text"]) in heads)
     leak_note = sum(1 for b in blocks if b["id"] in body and FOOTNOTE.match(b["text"]))
     sections = sum(1 for n in getattr(seg.root, "children", []) or []
-                   for x in [n, *getattr(n, "children", [])] if getattr(x, "kind", None) in ("section", "article", "rule", "regulation"))
-    evidence = independent_evidence(Path(path), doc)
+                   for x in [n, *getattr(n, "children", [])] if getattr(x, "kind", None) in ("section", "article", "rule", "regulation", "notification"))
+    evidence = (ocr_evidence(doc, Path(OCR_MODE["second_read"])) if OCR_MODE
+                else independent_evidence(Path(path), doc))
     blocker = (s7 > 0 or toc_pending > 0 or q.get("outcome") == "review" or sections == 0
                or evidence["evidence"] != "passed")
     verdict = "blocked" if blocker else ("leaky" if leak_head or leak_note else "clean")
@@ -158,20 +219,31 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("staged"); ap.add_argument("files"); ap.add_argument("out")
     ap.add_argument("--workers", type=int, default=3)
+    ap.add_argument("--ocr", choices=("docai",), help="preflight the scans, read by this engine (D-114)")
+    ap.add_argument("--profile", help="segment under this profile, the one the observation will be pinned to (D-115)")
+    ap.add_argument("--second-read", type=Path, help="with --ocr: tools/acquire/second_read.py's output directory")
     a = ap.parse_args()
+    if bool(a.ocr) != bool(a.second_read):
+        ap.error("--ocr and --second-read go together")
+    grades = {"scan", "partial", "urdu"} if a.ocr else {"text"}
+    mode = {"engine": a.ocr, "second_read": str(a.second_read)} if a.ocr else {}
+    if a.profile:
+        from nizam.corpus.segment import SEGMENTATION_PROFILES
+        if a.profile not in SEGMENTATION_PROFILES:
+            ap.error(f"unknown profile {a.profile!r}")
     done = set()
     if Path(a.out).exists():                     # resumable: a file already preflighted is not run again
         done = {r["sha256"] for r in csv.DictReader(open(a.out, encoding="utf-8"))}
     jobs = []
     for r in csv.DictReader(open(a.staged, encoding="utf-8")):
-        if r.get("grade") != "text" or not r.get("sha256") or r["sha256"] in done:
+        if r.get("grade") not in grades or not r.get("sha256") or r["sha256"] in done:
             continue
         f = Path(a.files) / f"{r['sha256']}.pdf"
         if f.exists():
             jobs.append((r["sha256"], r["title"], str(f)))
             done.add(r["sha256"])
     new = not Path(a.out).exists()
-    with open(a.out, "a", encoding="utf-8", newline="") as fh, ProcessPoolExecutor(a.workers) as ex:
+    with open(a.out, "a", encoding="utf-8", newline="") as fh, ProcessPoolExecutor(a.workers, initializer=_init, initargs=(mode, a.profile or "default")) as ex:
         w = csv.DictWriter(fh, fieldnames=FIELDS, extrasaction="ignore")
         if new:
             w.writeheader()

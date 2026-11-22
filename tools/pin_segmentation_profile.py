@@ -56,8 +56,13 @@ SELECT (SELECT p.id FROM v_segmentation_profile_latest p
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--documents", required=True,
-                    help="comma- or space-separated document ids")
+    who = ap.add_mutually_exclusive_group(required=True)
+    who.add_argument("--documents",
+                     help="comma- or space-separated document ids")
+    who.add_argument("--observations",
+                     help="comma- or space-separated source observation ids: observations landed and not yet "
+                          "segmented, so with no instrument yet (D-115: pin before the first parse); a released "
+                          "observation is refused by the same check")
     ap.add_argument("--observation", type=int,
                     help="pin only this observation of a shared document")
     ap.add_argument("--profile", required=True)
@@ -83,12 +88,21 @@ def main() -> int:
     extra = json.loads(raw) if raw else {}
     if not isinstance(extra, dict):
         ap.error("--evidence must be a JSON object")
-    documents = sorted({int(v) for v in a.documents.replace(",", " ").split()})
+    documents = sorted({int(v) for v in (a.documents or "").replace(",", " ").split()})
+    observations = sorted({int(v) for v in (a.observations or "").replace(",", " ").split()})
 
     planned, refused = [], []
     with connect() as conn, conn.cursor() as cur:
-        cur.execute(OBSERVATIONS, (documents,))
-        pairs = cur.fetchall()
+        if observations:
+            cur.execute("""SELECT d.id, o.id FROM source_observation o
+                             LEFT JOIN document d ON d.sha256 = o.sha256 AND d.is_active
+                            WHERE o.id = ANY(%s) ORDER BY 2""", (observations,))
+            pairs = cur.fetchall()
+            for obs in sorted(set(observations) - {o for _, o in pairs}):
+                refused.append((f"obs {obs}", "no such observation"))
+        else:
+            cur.execute(OBSERVATIONS, (documents,))
+            pairs = cur.fetchall()
         found = {doc for doc, _ in pairs}
         for doc in sorted(set(documents) - found):
             refused.append((f"doc {doc}", "no active instrument"))

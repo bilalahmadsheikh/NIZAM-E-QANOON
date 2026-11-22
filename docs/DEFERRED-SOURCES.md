@@ -19,15 +19,21 @@ The released counts are after the 21 not-law files came out: 6 FBR SROs, 15 SECP
 1. **The six FBR 2026 consolidations of laws held** (Customs Act, Sales Tax Act, Federal Excise Act, the Income Tax
    Ordinance twice, the Finance Act 2026). They carry the Finance Act 2026 amendments. They need a newer-consolidation
    rule, a sibling of the 0075 twin link that serves the newer text, plus a golden-set re-point for the tax cases.
-2. **About 290 unnumbered notifications**, mostly SECP amending SROs. Their operative lead-in falls outside every unit.
-   They need a rule serving an unnumbered notification as one unit with its paragraphs, as the released notifications
-   already are; then they land through the ordinary gates.
+2. ~~About 290 unnumbered notifications~~ **Done 22 Nov 2026 (D-115):** a new provision kind `notification` and
+   profile `notification-v1` serve each as one unit, "Notification". 238 landed; two more drafts found and recorded
+   `source_not_law`; **236 released (10,572 → 10,808)**. About 55 notification-shaped texts the rule does not fire on
+   remain with item 3.
 3. **About 120 other blocked text files:** repeated labels (S7), evidence failures, and Gazette mastheads read as
    Parts. These are per-document readings.
 4. **29 released new laws flagged by leakscan:** notes, heads, page furniture. These are the established repair
    batches. The GB Civil Servants Act carries a Gazette price line as a false sub-section.
 5. **Scans: 282 here** (FBR 7, Customs 11, SECP 248, GB 16), plus the 874 AJK and 151 GB scans of item 6. That is
-   1,307 laws, on the Kaggle OCR route with page-read verification (D-076).
+   1,307 laws. **Route since 22 Nov 2026 (D-114):** Google Document AI reads them, with Tesseract as an independent
+   second reader (done: 1,179 scans read locally, 0 failures, `E:/nizam-data/ocr/second-read/`). Release needs the
+   two readings to agree page by page. **Blocked on the owner's Google credentials**
+   (`gcloud auth application-default login`). The "151 GB scans" figure does not reproduce from disk: the GB
+   government sites list 15 PDFs today (13 scans staged in `E:/nizam-data/acquire/gb-2026-11-22/`), and the
+   Assembly's 28 links are dead.
 6. **Judgments (item 7)** and the **acquisition exceptions (item 8)** are untouched.
 
 The per-file lists are in `E:/nizam-data/acquire/drops-2026-11-21/<drop>/` (staged.csv, excluded.csv, preflight.csv,

@@ -1,0 +1,14 @@
+[
+ {
+  "document_id": 11851,
+  "page_no": 4,
+  "match_text": "as per the format set out as Annexure",
+  "before_text": "Annexure \n2. A life insurer",
+  "after_text": "Annexure 2. A life insurer",
+  "defect": "a cross-reference number wrapped to the head of a line ('Annexure' / '2.') opened a false section '2' inside chapter 2",
+  "fixes": "text reading: the line break inside the reference is read as the space the page prints; rule 7 keeps its sub-rule (1) whole and its sub-rule (2)",
+  "observed": "Page 4 prints rule 7(1) as one paragraph: '... as per the format set out as Annexure 2. A life insurer may use a different format with additional information.' The text layer breaks the line after 'Annexure', so '2.' led a line and was read as a section opener; the false section held the rest of 7(1) and all of 7(2). The capitalised-name branch of the wrapped-reference guard keeps a section when text follows the number, and 'Annexure' is not one of its reference nouns.",
+  "render": "tools/evidence/annexure-wrap-2026-11-22/doc11851-p4.png",
+  "render_sha256": "63f05fd83676479ab94fb5fe7dd77ca2f92cd88c4cd4682c715360f778b56046"
+ }
+]

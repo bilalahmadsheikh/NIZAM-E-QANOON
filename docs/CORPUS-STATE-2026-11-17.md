@@ -318,6 +318,23 @@ Closed later on 21 Nov (D-113): **the regulators' text-layer instruments landed.
   - about 120 other blocked texts;
   - 1,307 scans.
 
+22 Nov 2026 (D-114, D-115): **the unnumbered notifications landed; the scans have a reader.**
+- New provision kind `notification` (0117) and profile `notification-v1`: an SRO or SECP notification with no
+  numbered paragraphs is one unit, label "Notification". 238 landed (`recrawl-2026-11-22/1`), pinned before their
+  first parse; two were drafts (`source_not_law`); **236 released, 10,572 → 10,808.** 121 had their kind corrected
+  to notification or sro (`record_drop_kinds.py`).
+- One released Rules text (doc 11851) had a false section from a wrapped "Annexure / 2."; held, read from the page,
+  replayed and re-verified the same day (`tools/evidence/annexure-wrap-2026-11-22/`).
+- The status chain had not run since D-113. Run now, and added to `post_replay_sequence.sh` as step 4a3:
+  **current 8,242 → 8,700.**
+- Leakscan: 11 of the 236 flagged. Two are real: doc 11801 has a Gazette price line in a provision, doc 11749 has
+  footnotes in the text. Three are the notifications' own "w.e.f."/"ibid". Six are "dup" amending texts whose item
+  labels repeat by nature. The real two join the leak-repair queue with D-113's 29.
+- Chunks follow the release: 18,154 re-cut or new, CPU-embedded, and 8B vectors topped up on Kaggle (18,147 in
+  0.13 h). Links rebuilt, golden sets 1–10 rebuilt with 0 problems, `./nz audit` 45/45.
+- Scans: Google Document AI is the reader, with Tesseract as the independent second reader. The second reading is
+  done for 1,179 scans. Landing waits for the owner's Google credentials.
+
 Still open:
 - Golden sets 5–10, and annotation of sets 1–4.
 - No Urdu statute text is landed. Sindh Urdu PDFs exist, but their text layer is

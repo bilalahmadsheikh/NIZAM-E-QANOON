@@ -17,7 +17,7 @@ for sha in $(./nz psql -tAc "SELECT DISTINCT o.sha256 FROM source_observation o 
                               AND NOT EXISTS (SELECT 1 FROM document d WHERE d.sha256=o.sha256 AND d.is_active)"); do
   .venv/bin/python -m nizam.workers.extract --sha256 "$sha" --quiet 2>&1 | tail -1
 done
-if [ "${OCR:-0}" = 1 ]; then .venv/bin/python -m nizam.workers.ocr --all --workers 6 2>&1 | tail -3; fi
+if [ "${OCR:-0}" = 1 ]; then .venv/bin/python -m nizam.workers.ocr --all --engine "${OCR_ENGINE:-tesseract}" --workers "${OCR_WORKERS:-6}" 2>&1 | tail -3; fi
 # only documents still missing verification evidence, and only observations not yet segmented (a re-run is incremental)
 DOCS=$(./nz psql -tAc "SELECT string_agg(DISTINCT d.id::text, ' ') FROM document d JOIN source_observation o ON o.sha256=d.sha256
                         JOIN v_document_quality_status q ON q.document_id=d.id

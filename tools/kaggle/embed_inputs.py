@@ -26,7 +26,7 @@ from nizam.storage.chunking import passage_text  # noqa: E402
 from nizam.storage.db import connect  # noqa: E402
 
 UNIT_KINDS = {"section", "article", "order"}
-OUTER_KINDS = {"schedule", "form", "appendix", "annexure", "preamble"}
+OUTER_KINDS = {"schedule", "form", "appendix", "annexure", "preamble", "notification"}
 ROOT = Path("/mnt/e/Nizam_e_Qanoon")
 
 

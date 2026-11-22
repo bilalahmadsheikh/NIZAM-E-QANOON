@@ -17,7 +17,7 @@ import argparse
 import os
 import sys
 import time
-from concurrent.futures import ProcessPoolExecutor, as_completed
+from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 from nizam.corpus.ocr import REVIEW_THRESHOLD, ocr_pdf
@@ -25,10 +25,19 @@ from nizam.shared.corpus_types import ExtractionRejected
 from nizam.storage import corpus_write
 
 CORPUS_ROOT = Path(os.environ.get("CORPUS_ROOT", "/mnt/e/nizam-data"))
+_DOCAI = None   # one Document AI client per process (D-114); threads share its session
 
 
-def _one(task: tuple[str, str, int]) -> dict:
-    """Runs in a worker process: read, OCR, hand the result back."""
+def _docai():
+    global _DOCAI
+    if _DOCAI is None:
+        from nizam.corpus.ocr_docai import DocAIClient
+        _DOCAI = DocAIClient()
+    return _DOCAI
+
+
+def _one(task: tuple[str, str, int], engine: str = "tesseract") -> dict:
+    """Runs in a worker: read, OCR, hand the result back."""
     sha256, object_key, byte_length = task
     path = CORPUS_ROOT / object_key
     started = time.time()
@@ -37,7 +46,8 @@ def _one(task: tuple[str, str, int]) -> dict:
         out["error"] = "blob missing from the store"
         return out
     try:
-        out["doc"] = ocr_pdf(path.read_bytes(), sha256)
+        data = path.read_bytes()
+        out["doc"] = _docai().ocr_pdf(data, sha256) if engine == "docai" else ocr_pdf(data, sha256)
     except ExtractionRejected as exc:
         out["rejected"] = str(exc)
     except Exception as exc:                       # a corrupt scan, a killed child
@@ -57,8 +67,14 @@ def main() -> int:
     ap.add_argument("--redo", action="store_true",
                     help="explicitly create a new extraction revision even when one is active")
     ap.add_argument("--workers", type=int, default=max(1, (os.cpu_count() or 4) - 2))
+    ap.add_argument("--engine", choices=("tesseract", "docai"), default="tesseract",
+                    help="docai: Google Document AI's OCR processor (D-114; needs Application Default Credentials). "
+                         "It is network-bound, so it runs threads, and every response is kept on disk.")
     ap.add_argument("--limit", type=int)
     a = ap.parse_args()
+    if a.engine == "docai":
+        # Fail before any work if credentials or the processor are missing, not once per document.
+        print(f"Document AI processor version: {_docai().processor_version()}")
 
     if a.sha256_list and not a.redo:
         ap.error("--sha256-list re-reads documents that already exist: it needs --redo")
@@ -77,12 +93,13 @@ def main() -> int:
         print("nothing to OCR -- every blob already has a document")
         return 0
 
-    print(f"OCR: {len(targets)} document(s), {a.workers} workers, 300 DPI\n")
+    print(f"OCR: {len(targets)} document(s), {a.workers} workers, engine {a.engine}\n")
     done = flagged = failed = 0
     started = time.time()
 
-    with ProcessPoolExecutor(max_workers=a.workers) as pool:
-        futures = {pool.submit(_one, t): t for t in targets}
+    executor = ThreadPoolExecutor if a.engine == "docai" else ProcessPoolExecutor
+    with executor(max_workers=a.workers) as pool:
+        futures = {pool.submit(_one, t, a.engine): t for t in targets}
         for n, fut in enumerate(as_completed(futures), 1):
             r = fut.result()
             sha = r["sha256"]
@@ -111,7 +128,7 @@ def main() -> int:
             else:
                 reason = r.get("rejected") or r.get("error") or "unknown"
                 corpus_write.record_attempt(
-                    sha, "tesseract", "rejected" if "rejected" in r else "error",
+                    sha, "google-documentai" if a.engine == "docai" else "tesseract", "rejected" if "rejected" in r else "error",
                     lane="E4", reason=reason, duration_ms=r.get("ms"))
                 failed += 1
                 print(f"  {n:>3}/{len(targets)}  FAIL   {sha[:12]}  {reason}", file=sys.stderr)

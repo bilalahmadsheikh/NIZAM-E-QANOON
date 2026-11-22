@@ -111,7 +111,7 @@ def citation(unit_kind: str, unit_label: str, title: str, chain=(), year: int | 
         elif kind in ("explanation", "illustration") and lab:
             tail += f", {lab}"
     lab = " ".join((unit_label or "").split())
-    if unit_kind in ("section", "article", "preamble"):
+    if unit_kind in ("section", "article", "preamble", "notification"):
         out = render_citation(title, year, unit_kind, (lab + brackets) if lab else lab, law_kind)
         return out + tail if out else None
     if not title or not lab:

@@ -8836,6 +8836,12 @@ SEGMENTATION_PROFILES["unreleased-v5"] = SEGMENTATION_PROFILES["unreleased-v4"] 
     "toc_promised_next_section",
 }
 
+# notification-v1 (22 Nov 2026, D-115, migration 0117): the default rules plus `notification_unit` -- a statutory
+# notification that numbers no paragraph is one unit (`notification_unit()`). Only documents pinned to it change.
+SEGMENTATION_PROFILES["notification-v1"] = SEGMENTATION_PROFILES["default"] | {
+    "gazette_masthead_part", "notification_unit",
+}
+
 
 # Rule `reviewed_series_regulation`: a regulation label in a lettered series -- 'R-1', 'O-1', 'SME R-1', 'HF 1',
 # 'IPF.1', 'IPF.1.4.1' (SBP prudential regulations). Always led by capital letters, so never a numeric section label.
@@ -9565,6 +9571,128 @@ def preamble_before_empty_division(root: "Node", blocks: list[dict]) -> int:
             root.children.insert(j, root.children.pop(i))
             moved += 1
     return moved
+
+
+# Profile rule `notification_unit` (profile `notification-v1`, 22 Nov 2026, DECISION-LOG D-115). A statutory
+# notification that numbers no paragraph -- 'S.R.O. 959 (I)/2022.- In exercise of the powers conferred by ..., the
+# Commission hereby makes the following amendments ..., namely:- In the aforesaid Regulations,- (1) in regulation 18,
+# ...' -- is one provision, and the parse had nowhere to put it: every block before the first item fell into the
+# preface (reachable, never served), so the notification's operative words were lost and its items (1), (a) hung from
+# the root with no head. The rule makes the notification itself the unit, labelled from the NOTIFICATION heading the
+# page prints (as a preamble is labelled 'Preamble'; no number is invented, INV-1), and hangs the items beneath it.
+#   fires   only when the root holds no numbered or division unit (section, article, order, part, chapter, schedule,
+#           form, appendix, annexure), and a preface block prints the notification head: its number line followed by
+#           the enabling formula ('S.R.O. 1286 (I)/2019.__ In exercise of powers ...'), or the formula opening a
+#           block after a printed NOTIFICATION heading;
+#   text    from the head (a masthead printed in the same block stays out of the unit's text) through every later
+#           preface block, up to the file-number line ('[File No. ...]', '[C.No. ...]') or a signature
+#           ('(Afnan Khan)' over a designation), which stay preface;
+#   items   the root's other children (sub-sections, clauses, provisos) become its children, in order; a preamble
+#           stays before it.
+# The number line as the text layer prints it: 'S.R.O.', 'S. R. O.', 'SRO.', and in scanned Gazettes' own OCR layers
+# 'S.R.0', '§.R.O', 's.R.o. ti, \n0/2026' (the number broken over lines); the formula's 'In' read 'ln' or '[n'.
+_NU_IN = r"[I\[l]n\s+(?:the\s+)?exercise\s+of\b"
+_NU_HEAD = re.compile(
+    r"(?:[S§5]\s*\.?\s*R\s*\.?\s*[O0]\s*\.?|\bNo\.)[^\n]{0,60}?(?:\n{1,3}[^\n]{0,30}?){0,2}[-–—_.:]\s*"
+    r"(?=" + _NU_IN + r")", re.I)
+_NU_FORMULA = re.compile(r"^\s*" + _NU_IN + r"\s*(?:the\s+)?powers?\b", re.I)
+# A Gazette masthead 'PART II / Statutory Notification (S. R. O)' read as a Part: a top-level Part labelled I-III
+# ('I1' as OCR prints II) whose heading, or own text, opens with the series name. It is apparatus.
+_NU_MASTHEAD = re.compile(r"^\s*Statutory\s+Notifications?\b", re.I)
+_NU_MASTHEAD_LABEL = re.compile(r"^(?:I{1,3}|I1|11|1I)$")
+_NU_HEADING = re.compile(r"(?m)^\s*NOTIFICATIONS?\s*\.?\s*$", re.I)
+_NU_END = re.compile(r"^\s*\[\s*(?:C\s*\.?\s*No|F(?:ile)?\s*\.?\s*No|No)\b[^\]]{0,100}\]\s*$", re.I)
+_NU_END_LINE = re.compile(r"(?m)(?:^|(?<=[.”\"'’:;)]))[ \t]*\[\s*(?:C\s*\.?\s*No|F(?:ile)?\s*\.?\s*No|No)\b"
+                          r"[^\]\n]{0,100}\]?[ \t\n]*\Z", re.I)
+_NU_SIGNATURE = re.compile(r"^\s*\(\s*[A-Z][A-Za-z.'\s-]{2,50}\)\s*(?:\n[^\n]{0,80}){0,4}\s*$")
+_NU_UNIT_KINDS = {"section", "article", "order", "part", "chapter"}
+# A Schedule, Form, Appendix or Annexure the notification prints (an amending notification substituting a Schedule)
+# stays a top-level unit after the notification, as in any law.
+_NU_AUXILIARY = {"schedule", "form", "appendix", "annexure"}
+
+
+def gazette_masthead_part(root: "Node", roles: dict) -> int:
+    """Profile rule `gazette_masthead_part` (notification-v1, D-115): the Gazette's masthead 'PART II / Statutory
+    Notification (S. R. O)', read as a top-level Part, is dissolved: its own blocks become preface (as the rest of
+    the masthead is) and whatever the walk hung beneath it returns to the root in its place. Only a Part labelled
+    I-III whose heading, or own text, opens with the series name. Returns the number dissolved."""
+    done = 0
+    for c in list(root.children):
+        if not (c.kind == "part" and _NU_MASTHEAD_LABEL.match((c.label or "").strip())
+                and _NU_MASTHEAD.match(c.heading or c.text or "")):
+            continue
+        for bid in c.blocks:
+            if roles.get(bid, ("",))[1] is c:
+                roles[bid] = ("preface", None)
+        for g in c.children:
+            g.parent = root
+        at = root.children.index(c)
+        root.children[at:at + 1] = c.children
+        done += 1
+    return done
+
+
+def notification_unit(root: "Node", blocks: list[dict], roles: dict) -> bool:
+    """Rule `notification_unit` (D-115): see the comment above. Returns whether the unit was made."""
+    if any(c.kind in _NU_UNIT_KINDS for c in root.children):
+        return False
+    order = [b for b in blocks if roles.get(b.get("id"), ("",))[0] == "preface"]
+    head_block, head_at = None, 0
+    heading_seen = False
+    for b in order:
+        text = b.get("text") or ""
+        m = _NU_HEAD.search(text)
+        if m:
+            head_block, head_at = b, m.start()
+            break
+        if heading_seen and _NU_FORMULA.match(text):
+            head_block, head_at = b, 0
+            break
+        if _NU_HEADING.search(text):
+            heading_seen = True
+            after = _NU_HEADING.split(text)[-1]
+            if _NU_FORMULA.match(after):
+                head_block, head_at = b, len(text) - len(after)
+                break
+    if head_block is None:
+        return False
+    position = {b.get("id"): k for k, b in enumerate(blocks)}
+    start = position[head_block["id"]]
+    # depth is the grammar's rank of a kind (a section is 3, a sub-section 4), not the place in the tree: the unit
+    # ranks as a section, and the items keep their own ranks
+    unit = Node(kind="notification", label="Notification", depth=3, parent=root,
+                first_page=head_block.get("page_no"), first_block=head_block["id"])
+    for b in blocks[start:]:
+        if roles.get(b.get("id"), ("",))[0] != "preface":
+            if roles.get(b.get("id"), ("",))[0] in ("body", "heading"):
+                break                       # the first item: the rest is the parse's own
+            continue                        # a running head or footnote keeps its role
+        text = b.get("text") or ""
+        if b is not head_block and (_NU_END.match(text) or _NU_SIGNATURE.match(text)):
+            break
+        part = text[head_at:] if b is head_block else text
+        # the file number printed on the last line of the block that ends the text ('... where warranted."
+        # [C. No.1(4)T&BT/2023]'; its closing bracket may be lost): the text stops before it
+        tail = _NU_END_LINE.search(part)
+        if tail:
+            part = part[:tail.start()]
+        unit.text_parts.append(part)
+        unit.blocks.append(b["id"])
+        unit.last_page = b.get("page_no")
+        roles[b["id"]] = ("body", unit)
+        if tail:
+            break
+    if not _norm(" ".join(unit.text_parts)):
+        return False
+
+    kept, moved, after = [], [], []
+    for c in root.children:
+        (kept if c.kind == "preamble" else after if c.kind in _NU_AUXILIARY else moved).append(c)
+    for c in moved:
+        c.parent = unit
+        unit.children.append(c)
+    root.children = kept + [unit] + after
+    return True
 
 
 # Rule `gazette_running_head` (18 Nov 2026, DECISION-LOG D-072). A Gazette prints a running head on every page --
@@ -17003,6 +17131,10 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
         reviews_enacted.append(_apply_source_schedule_form_group(
             root, schedule_form_group, seg_roles))
     preamble_before_empty_division(root, original_blocks)
+    if profile_rule("gazette_masthead_part") and gazette_masthead_part(root, seg_roles):
+        reviews_enacted.append({"resolution": "gazette_masthead_part"})
+    if profile_rule("notification_unit") and notification_unit(root, original_blocks, seg_roles):
+        reviews_enacted.append({"resolution": "notification_unit"})
 
     seg = Segmentation(root=root, toc=toc, body_starts_page=body_page,
                        toc_found=toc_found, block_roles=seg_roles,
@@ -18018,7 +18150,7 @@ def assign_paths(seg: Segmentation, prefix: str) -> list[tuple[Node, str]]:
               "order": "ord", "section": "s",
               "article": "art", "subsection": "ss", "clause": "cl",
               "proviso": "prov", "explanation": "expl", "illustration": "illus",
-              "preamble": "pre"}
+              "preamble": "pre", "notification": "notif"}
     out: list[tuple[Node, str]] = []
     used: set[str] = set()
 

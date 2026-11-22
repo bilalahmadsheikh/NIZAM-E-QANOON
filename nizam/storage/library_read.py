@@ -400,7 +400,8 @@ class LibraryRead:
     # a preamble is listed too, first: it precedes the enacting text by definition, though 477 released laws carry an
     # ordinal after their first section (the segmenter numbers it after the opening chapter's subtree)
     # an annexure or appendix carries law text as a schedule does (the Constitution's Annex, D-069)
-    SECTION_KINDS = ('preamble', 'section', 'article', 'rule', 'regulation', 'schedule', 'annexure', 'appendix')
+    SECTION_KINDS = ('preamble', 'notification', 'section', 'article', 'rule', 'regulation', 'schedule', 'annexure',
+                     'appendix')   # notification: an unnumbered notification's one unit (D-115)
     CONTAINER_KINDS = ('part', 'chapter', 'division', 'title')
     PREVIEW_CHARS = 300
     _index_cache: dict = {}
@@ -568,13 +569,15 @@ def render_citation(title: str | None, year: int | None, kind: str, label: str |
     only when the stored title does not already print it. Returns None without a title or label -- never guessed.
     A constitution numbers Articles: the segmenter stores its numbered units as `section`, and the instrument's
     stored kind (`constitution`) decides the word (DECISION-LOG D-070)."""
-    if not title or not (label or kind == 'preamble'):
+    if not title or not (label or kind in ('preamble', 'notification')):
         return None
     name = title.strip().rstrip('.')
     if year and str(year) not in name:
         name = f'{name}, {year}'
     if kind == 'preamble':
         return f"{name}, Preamble"
+    if kind == 'notification':              # D-115: the notification is the unit; its heading names it
+        return f"{name}, Notification"
     if kind == 'section' and instrument_kind == 'constitution':
         kind = 'article'
     return f"{name}, {_CITE_KIND.get(kind, kind)} {label}"

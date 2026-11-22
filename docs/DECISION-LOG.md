@@ -295,7 +295,7 @@ Area: linking · Status: standing
 - Where: migrations 0079, 0089; docs/03b §6; docs/SCHEMA.md.
 
 ### D-034 · 2026-11-14 · Owner: only laws that need no OCR are landed
-Area: owner ruling · Status: standing
+Area: owner ruling · Status: Superseded by D-114
 - Decision: scanned laws are not landed for now: 874 AJK and 151 GB scans.
 - Why: the owner's rule for this phase.
 - Where: CLAUDE.md "Current state"; docs/CORPUS-STATE-2026-11-17.md.
@@ -1135,6 +1135,112 @@ Area: client · Status: Superseded by D-084 (the whole-page cloth; the hem, the 
 - Where: apps/mobile/lib/design/embroidery.dart; design/components.dart (LibraryScaffold, solidTint),
   design/heritage_art.dart, presentation/discover.dart, presentation/heritage.dart; test/heritage_test.dart
   (golden embroidery.png, a review sheet at 3x).
+
+### D-115 · 2026-11-22 · A notification with no numbered paragraphs is one citable unit, "Notification"
+Area: L1 segmentation, L2 schema and serving (docs/02 §5, docs/03 §2, docs/03b §3) · Status: standing
+- Decision: the owner asked for the leftovers of D-113 to be fixed ("fix these also"). 307 regulator texts were
+  blocked because their operative words sit in one unnumbered paragraph: an SRO or SECP notification ("In exercise
+  of the powers conferred by ... is pleased to direct that ..."). The segmenter read that paragraph as preface, so
+  no unit held law.
+  - **New provision kind `notification`** (migration 0117). Its label is the word the page prints over it,
+    "Notification", never a number. The citation renders as "<title>, Notification" from records (INV-1); the path is
+    `<prefix>.notif_Notification`. Its depth is 3, a section's grammar rank.
+  - **New profile `notification-v1`** = default + two rules:
+    - `gazette_masthead_part`: the Gazette's "PART II / Statutory Notification(s)" masthead is a printing head, not
+      a Part of the law. Its blocks become preface and its children are lifted to the root unchanged.
+    - `notification_unit`: from the number line ("S.R.O. 123(I)/2024", "No. ...") or a NOTIFICATION heading
+      through to the formula's paragraph end, the closing file number or the signature, the paragraph is one unit;
+      the law's numbered items (clauses, sub-paragraphs), and every unit that is not a schedule, form, appendix or
+      annexure, go under it.
+  - It applies only to documents pinned to `notification-v1` before their first parse (`pin_segmentation_profile.py
+    --observations`). No released law changes, because released laws replay under their own pin.
+  - Serving code knows the kind: chunking, unit search, the Kaggle embed inputs, assembly, `library_read`
+    (`render_citation`), the mobile `law_units`.
+- Result, 22 Nov 2026:
+  - Of the 292 notification-shaped texts the rule fires on 238; preflight under the profile predicted 240 clean. One
+    hidden draft was excluded and one more is not a law, so 238 were landed (`recrawl-2026-11-22/1`, observations
+    15450–15687) and all 238 passed the gates (10,572 → 10,810). 237 carry one `notification` unit; the 238th,
+    the SECP Unit Linked Products Fund Rules 2015, has rules, and the rule stands aside.
+  - D-113's first-page sweep, run over the 238, found two more drafts behind ordinary titles: doc 11711 (SRO
+    1247(I)/2017, "objections or suggestions ... within seven days of placement of the draft") and doc 11796 (S.R.O.
+    1349(I)/2025, "DRAFT AMENDMENTS ... comments, if any"). They are recorded `source_not_law` (0116;
+    `tools/record_not_law.py`, now idempotent). Mentions of "draft", "circular" or "guidelines" inside operative
+    text were read and are law. **Released: 10,808** (236 notifications and rules).
+  - The status and date recorders (record_enacted_dates, record_commencement, record_status, then
+    apply_instrument_metadata) are not part of `post_replay_sequence.sh` and had not run since D-113. Run now: 154
+    enactment dates and 18 commencements recorded, 456 laws presumed in force under the owner presumption (16 Nov),
+    D-113's 230 among them. **Current: 8,242 → 8,700.**
+  - Retrieval: the chunk table follows the release (A20); 18,154 chunks were re-cut or added (split-document
+    re-materialisation re-cuts about 17.6k each run) and embedded on the CPU; the 8B GPU vectors are topped up on
+    Kaggle (A22). Links rebuilt; golden sets 1–10 rebuilt with 0 problems.
+  - That Rules text carried a false section: page 4 prints "... set out as Annexure 2. A life insurer may ...", the
+    text layer breaks after "Annexure", and "2." opened a section "2" holding the rest of rule 7. It was held, read
+    from the page (`tools/evidence/annexure-wrap-2026-11-22/`, a text reading joining the wrapped line), replayed
+    (sections 16 → 15, S7 0) and re-verified. A scan of all 238 for a section opening on a continuation found no
+    other.
+- Not done here, and why:
+  - The wrapped-reference guard (`_REFERENCE_LINE_END`) does not list "Annexure", "Schedule", "Form" or
+    "Appendix" as reference nouns. Adding them changes the default profile's output, so it waits for a new profile
+    and a corpus-wide count of the docs it would change. Open question.
+  - Still blocked from the drops: 88 texts with repeated section numbers (S7) need a decision per document against
+    the page; about 65 have no structure the rule recognises; 6 FBR 2026 consolidations need a rule for a newer
+    consolidation of a law already served, which docs/03 does not have.
+- Why one unit, not one unit per sentence or a synthetic "paragraph 1":
+  - The notification is the citable act. Gazette practice cites "Notification No. S.R.O. ..." for the whole text.
+  - A number the page does not print is a generated citation (INV-1). A label the page prints is not.
+- Where:
+  - nizam/corpus/segment.py (`gazette_masthead_part`, `notification_unit`, profile `notification-v1`, path
+    abbreviation `notif`); infra/postgres/migrations/0117_notification_unit.sql;
+  - nizam/storage/chunking.py, unit_search.py, library_read.py; nizam/retrieval/assembly.py;
+    tools/kaggle/embed_inputs.py; tools/pin_segmentation_profile.py (`--observations`);
+    apps/mobile/lib/domain/law_units.dart;
+  - tests/test_notification_unit.py; tools/evidence/hold-annexure-wrap-2026-11-22.sql; tools/record_not_law.py.
+- Process rule: `tools/post_replay_sequence.sh` gains step 4a3, the status chain (enacted dates → commencement →
+  statutory repeals → status → apply repeals → apply metadata), before 4b refreshes serving. A landing can no longer
+  release laws without the owner's presumption of force.
+
+### D-114 · 2026-11-22 · Scans are read by Google Document AI and released where a second engine agrees
+Area: owner ruling, L1 lane E4 (docs/02 §4) · Status: standing · Supersedes D-034 (scans not landed)
+- Decision: the owner asked for the held scans to be read with Google Document AI ("use this for quick correct ocr of
+  docs and release further quickly") and gave the processor: Document OCR, region us,
+  `projects/189384242594/locations/us/processors/537ddf134d0c28d0`. D-034's rule that scans are not landed ends.
+  - **Reader.** `nizam/corpus/ocr_docai.py` produces lane E4's `ExtractedDocument` unchanged in shape:
+    - each paragraph is a block, in PDF points of the original page;
+    - each block's confidence is its tokens' mean, and the document's mean is token-weighted;
+    - the metadata keys `verify_ocr` reads keep their meaning;
+    - the extractor names the processor version, so a newer model is a new revision.
+  - **Requests.** PDFs are cut into 15-page parts, the online limit read from the limits page on 22 Nov 2026. Every
+    response is kept gzip-compressed under `E:/nizam-data/ocr/docai/<version>/<sha256>/`. A re-run, or the landing
+    after a preflight, reads the stored response and never pays for the page twice.
+  - **Credentials.** Application Default Credentials. Only the PDF bytes and the processor name leave the laptop.
+  - **Run.** `nizam.workers.ocr --engine docai` (threads, because it is network-bound); `pipeline.sh` takes
+    `OCR=1 OCR_ENGINE=docai`.
+- **Verification: an independent second reader.** Tesseract reads every scan on the laptop
+  (`tools/acquire/second_read.py`, the existing `ocr_pdf` unchanged). `nizam/corpus/crossread.py` compares the two
+  readings page by page:
+  - character recall and precision over letters and digits, both at least .90;
+  - ordered word-bigram precision of the release reading, at least .70, which catches interleaved columns.
+
+  A page the second reader could not read (under 80 characters) does not vote. `verify_ocr` (v7) adds the cross-read
+  as a problem for every Document AI revision without a page-read assertion. `preflight_segment.py --ocr docai
+  --second-read DIR` predicts the same before landing. Every other gate is unchanged: confidence .70, legal-token rate
+  .25, 40 words a page, S7, contents, leakscan.
+- **Thresholds.** They are provisional. They were fixed before any Document AI output was seen, from Tesseract's
+  measured confidence on the first AJK sample (.88–.95). They are recalibrated once, on dev pages that were page-read,
+  and the change is logged. They are never tuned per document. A page that disagrees is named for a page read, not
+  averaged away.
+- Why:
+  - Lane E2's acceptance is two independent libraries agreeing over the same bytes. Two OCR engines that share no
+    model agreeing on a page is the same kind of evidence.
+  - Page-reading every page as D-076 did does not scale to 1,000+ laws. The D-076 rule stays for any page the two
+    engines dispute.
+  - Not measured: Document AI's own accuracy on these scans, and its price. The pricing page did not load on
+    22 Nov 2026, so no price is quoted here.
+- Where:
+  - nizam/corpus/ocr_docai.py, nizam/corpus/crossread.py, nizam/workers/ocr.py (`--engine`), nizam/workers/verify_ocr.py
+    (`_crossread`, VERIFIER 7);
+  - tools/acquire/second_read.py, tools/acquire/preflight_segment.py (`--ocr`, `--second-read`), tools/recrawl/pipeline.sh;
+  - tests/test_ocr_docai.py, tests/test_crossread.py.
 
 ### D-113 · 2026-11-21 · The held-back regulator sources: the binding text-layer instruments landed; drafts, guidance and scans not
 Area: owner ruling, L1 acquisition and release (docs/02 §2, §8; docs/DEFERRED-SOURCES.md items 1–5) · Status: standing

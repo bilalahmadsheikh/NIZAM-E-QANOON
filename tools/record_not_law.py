@@ -3,6 +3,11 @@
 The 21 below were found on 21 Nov 2026 by reading the first page of every law landed that day (recrawl-2026-11-21/1):
 19 drafts published for consultation, one SECP circular and one press release. For each, the block on pages 1-2 that
 prints the words making it not law is quoted; a document whose words are not found is refused, never guessed.
+
+22 Nov 2026 (D-115): the same sweep over the 238 notifications landed that day (recrawl-2026-11-22/1) found two more
+drafts, 11711 (SRO 1247(I)/2017, "objections or suggestions ... within seven days of placement of the draft") and
+11796 (S.R.O. 1349(I)/2025, "DRAFT AMENDMENTS ... comments, if any"). A re-run records only observations that do not
+already carry a standing row, so it never duplicates an earlier recording.
 """
 from __future__ import annotations
 
@@ -18,10 +23,14 @@ from nizam.storage.db import connect  # noqa: E402
 DRAFT = r"(?i)\bdraft\b|for public consultation|comments,? if any|objections or suggestions"
 NOT_LAW = {
     "draft_for_consultation": (DRAFT, [11401, 11421, 11438, 11446, 11455, 11473, 11478, 11486, 11505, 11506, 11520,
-                                       11527, 11543, 11552, 11560, 11577, 11584, 11591, 11608]),
+                                       11527, 11543, 11552, 11560, 11577, 11584, 11591, 11608, 11711, 11796]),
     "regulator_circular": (r"(?i)\bCircular\s+No\b", [11465]),
     "press_release": (r"(?i)\bpress release\b", [11449]),
 }
+# Which decision and sweep found each document; anything not listed was found by D-113's sweep.
+FOUND_BY = {11711: ("DECISION-LOG D-115", "first-page sweep of recrawl-2026-11-22/1"),
+            11796: ("DECISION-LOG D-115", "first-page sweep of recrawl-2026-11-22/1")}
+FOUND_DEFAULT = ("DECISION-LOG D-113", "first-page sweep of recrawl-2026-11-21/1")
 METHOD = "nizam.not_law_first_page/1"
 
 
@@ -34,9 +43,13 @@ def main() -> int:
         for kind, (pattern, docs) in NOT_LAW.items():
             rx = re.compile(pattern)
             for doc in docs:
-                cur.execute("""SELECT o.id FROM source_observation o JOIN document d ON d.sha256 = o.sha256
+                cur.execute("""SELECT o.id, c.assertion FROM source_observation o JOIN document d ON d.sha256 = o.sha256
+                                 LEFT JOIN v_source_not_law_current c ON c.source_observation_id = o.id
                                 WHERE d.id = %s AND d.is_active AND o.outcome = 'landed'""", (doc,))
-                obs = [r[0] for r in cur.fetchall()]
+                found = cur.fetchall()
+                if found and all(assertion == "excluded" for _, assertion in found):
+                    continue  # already recorded and standing
+                obs = [o for o, assertion in found if assertion != "excluded"]
                 cur.execute("""SELECT id, page_no, text FROM text_block WHERE document_id = %s AND page_no <= 2
                                 ORDER BY page_no, reading_order""", (doc,))
                 hit = next(((b, p, " ".join(t.split())) for b, p, t in cur.fetchall() if rx.search(t)), None)
@@ -57,8 +70,9 @@ def main() -> int:
                                                             source_block_id, source_page, method, evidence, recorded_by)
                                VALUES (%s, %s, %s, 'excluded', %s, %s, %s, %s, %s, 'claude')""",
                             (o, doc, kind, quote, b, p, METHOD,
-                             json.dumps({"reviewer_type": "assistant_first_page_read", "decision": "DECISION-LOG D-113",
-                                         "found_by": "first-page sweep of recrawl-2026-11-21/1"})))
+                             json.dumps({"reviewer_type": "assistant_first_page_read",
+                                         "decision": FOUND_BY.get(doc, FOUND_DEFAULT)[0],
+                                         "found_by": FOUND_BY.get(doc, FOUND_DEFAULT)[1]})))
             conn.commit()
             print("recorded")
         elif a.apply:

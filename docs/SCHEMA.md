@@ -320,7 +320,7 @@ owner's choice between the deeming date and the 30 March 2017 enactment.
 | `id` | uuid | |
 | `instrument_id` | uuid | → `instrument` CASCADE |
 | `parent_id` | uuid | → `provision` CASCADE, `CHECK parent_id <> id` |
-| `kind` | `provision_kind` | part · chapter · section · article · subsection · clause · proviso · explanation · illustration · schedule · preamble · form · appendix · annexure · order |
+| `kind` | `provision_kind` | part · chapter · section · article · subsection · clause · proviso · explanation · illustration · schedule · preamble · form · appendix · annexure · order · notification (0117, D-115: an unnumbered notification as one unit, label "Notification") |
 | `label`, `heading`, `marginal_note` | text | `label` is what a lawyer cites |
 | `ordinal` | int | document order |
 | `path` | **ltree, UNIQUE** | lineage; subtree queries with `@>` / `<@`, no recursive CTE |
@@ -1765,7 +1765,7 @@ lifecycle_state     in_force · repealed · spent · lapsed · not_yet_commenced
 observation_outcome landed · failed · missing · skipped · unknown
 provision_kind      part · chapter · section · article · subsection · clause
                     proviso · explanation · illustration · schedule · preamble
-                    form · appendix · annexure · order
+                    form · appendix · annexure · order · notification
 version_op          original · inserted · substituted · omitted · amended
 ```
 

@@ -1093,3 +1093,17 @@ composition, immutable input and rejection of altered source identity/text.
 - `tools/audit/criteria.sql` Q3: the recorded count is scoped to non-E4 documents, the same population as its expected count (a hold/lift row on an E4 document is evidence about a document the verifier does not apply to).
 - `tools/census_heading_mislabel.py`: the census reads RAW first blocks; a hit is skipped when the provision's own tree text no longer carries the raw printed name, i.e. a reviewed page reading replaced that block (doc 9308 s.140).
 - `tools/adjudicate_s7_from_source.py`: `stub_guard_waiver` (see the 10 Nov entry) is also used for table rows / list items of quoted material.
+
+## `notification-v1` (22 Nov 2026, migration 0117, DECISION-LOG D-115)
+
+`default` plus two rules, for regulator notifications whose operative words sit in one unnumbered paragraph ("In
+exercise of the powers conferred by ... is pleased to ..."). Under `default` that paragraph is preface and no unit
+holds law. A document gets this profile only by a pin recorded before its first parse
+(`tools/pin_segmentation_profile.py --observations`); no released law replays under it.
+
+| Rule | Behaviour | Evidence |
+|---|---|---|
+| `gazette_masthead_part` | The Gazette masthead "PART II / Statutory Notification(s)" (label I–III, with OCR forms I1, 11, 1I) is a printing head, not a Part. Its own blocks become preface and its children are lifted to the root in place; their depth (grammar rank) is unchanged. | SECP and FBR Gazette reprints; tests/test_notification_unit.py |
+| `notification_unit` | From the number line (`S.R.O. 123(I)/2024`, `No. ...`, up to two more lines, then a dash before "In exercise of") or a NOTIFICATION heading followed by the formula, through to a body or heading block, a closing file number (`[File No. ...]`, also glued to the last line) or a signature: one unit of kind `notification`, label "Notification" (the printed heading word, never a number), depth 3, path `<prefix>.notif_Notification`. Every root unit that is not a preamble, schedule, form, appendix or annexure goes under it, in order. A document with numbered sections, articles, orders, Parts or chapters is left as `default` reads it. | 238 landed 22 Nov 2026: 237 carry the unit, the Rules text with rules does not. tests/test_notification_unit.py |
+
+Both rules record a `reviews_enacted` resolution when they fire.

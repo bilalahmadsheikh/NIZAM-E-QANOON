@@ -25,18 +25,21 @@ are the same.
 from __future__ import annotations
 
 import argparse
+import gzip
+import os
 import hashlib
 import json
 import re
 import statistics
 import sys
+from pathlib import Path
 
 from nizam.storage.db import connect
 
 MIN_CONFIDENCE = 0.70
 MIN_LEGAL_RATE = 0.25
 MIN_WORDS_PER_PAGE = 40
-VERIFIER = "nizam.verify_ocr/6"
+VERIFIER = "nizam.verify_ocr/7"   # 7: D-114 cross-read for Document AI revisions
 REVIEWED_PROVISIONS_METHOD = "source-page-read-current-provisions/1"
 
 # The same small vocabulary used to score the corpus: function words and
@@ -128,6 +131,26 @@ def _reviewed_table_allowed(detail: object, pages: int, document_id: int,
     return (lane == 'E4' and detail.get('purpose') == 'ocr-table-document'
             and detail.get('table_review') == 'source_checked_article_names_and_duty_cells'
             and _reviewed_legal_rate(detail, pages, document_id, rows) is not None)
+
+
+SECOND_READ = Path(os.environ.get("NIZAM_SECOND_READ", "/mnt/e/nizam-data/ocr/second-read"))
+
+
+def _crossread(cur, document_id: int, sha256: str, pages: int) -> dict:
+    """D-114: the stored blocks of a Document AI revision against tools/acquire/second_read.py's Tesseract reading."""
+    from nizam.corpus.crossread import compare_pages
+    f = SECOND_READ / f"{sha256}.json.gz"
+    if not f.exists():
+        return {"verdict": "no second reading"}
+    rec = json.loads(gzip.decompress(f.read_bytes()))
+    if "pages" not in rec:
+        return {"verdict": "the second reader rejected the scan"}
+    cur.execute("""SELECT page_no, string_agg(text, E'\\n' ORDER BY reading_order)
+                     FROM text_block WHERE document_id=%s GROUP BY page_no""", (document_id,))
+    by_page = dict(cur.fetchall())
+    result = compare_pages([by_page.get(n, "") for n in range(1, int(pages or 0) + 1)], rec["pages"])
+    result["second_reader"] = rec.get("extractor")
+    return result
 
 
 def main() -> int:
@@ -276,6 +299,12 @@ def main() -> int:
             )
             if per_page < MIN_WORDS_PER_PAGE and not sparse_source_confirmed:
                 problems.append(f"{per_page:.0f} words/page")
+            crossread = None
+            if (extractor_config or {}).get("engine") == "google-documentai" and page_read_id is None:
+                # D-114: a cloud reading is released only where an independent engine read the same pages and agreed.
+                crossread = _crossread(cur, doc_id, sha, pages)
+                if crossread["verdict"] != "agree":
+                    problems.append(f"cross-read: {crossread['verdict']}")
 
             confs.append(conf)
             if english_only:
@@ -311,7 +340,10 @@ def main() -> int:
                                      confirmed_sparse_page_nos,
                                  "table_source_review_assertion_id":
                                      table_source_review_id,
-                                 "page_read_assertion_id": page_read_id},
+                                 "page_read_assertion_id": page_read_id,
+                                 "crossread": None if crossread is None else {
+                                     k: crossread.get(k) for k in ("verdict", "disagree", "compared_pages",
+                                                                   "bigram_precision", "second_reader")}},
                                 ensure_ascii=False)),
                 )
                 cur.execute("UPDATE document SET verification_state=%s WHERE id=%s",

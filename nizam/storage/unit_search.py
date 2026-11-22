@@ -33,7 +33,7 @@ from nizam.storage.db import connect
 from nizam.storage.lexical import SUBTREE_HEAD, Filters
 
 UNIT_KINDS = ("section", "article", "order")
-OUTER_KINDS = ("schedule", "form", "appendix", "annexure", "preamble")
+OUTER_KINDS = ("schedule", "form", "appendix", "annexure", "preamble", "notification")   # notification: D-115
 # where a law runs (nzq.territory) -> whose law can run there; federal law does not reach AJK or GB (0086)
 TERRITORY_JURISDICTIONS = {"punjab": ("punjab", "fed"), "sindh": ("sindh", "fed"), "kp": ("kp", "fed"),
                            "balochistan": ("balochistan", "fed"), "ict": ("fed", "ict"),

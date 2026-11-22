@@ -100,7 +100,7 @@ def spans(text: str, max_chars: int = MAX_CHARS, min_chars: int = MIN_CHARS) -> 
 # --- context: what is embedded beside a span, never altering the span ------------------------------------------
 
 _UNIT_ABBR = {"section": "s.", "article": "Art.", "order": "O.", "schedule": "", "form": "", "appendix": "",
-              "annexure": "", "preamble": "Preamble", "chapter": "", "part": ""}
+              "annexure": "", "preamble": "Preamble", "notification": "Notification", "chapter": "", "part": ""}
 _QUALIFIES = {"proviso", "explanation", "illustration", "exception"}
 
 
@@ -124,6 +124,8 @@ def unit_label(chain: list[Node]) -> str:
             out = lab or k.title()
         elif k == "preamble":
             out = "Preamble"
+        elif k == "notification":            # D-115: an unnumbered notification is one unit, cited by its heading
+            out = "Notification"
         elif k in ("subsection", "clause"):
             out += f"({lab})" if lab else ""
         elif k in _QUALIFIES:
@@ -148,7 +150,7 @@ def context_prefix(title: str, division_heading: str | None, chain: list[Node],
         parts.append(" ".join(division_heading.split()))
     unit = unit_label(chain)
     top = next((nd for nd in chain if nd.kind in ("section", "article", "order", "schedule", "form", "appendix",
-                                                  "annexure")), None)
+                                                  "annexure", "notification")), None)
     head = " ".join((top.heading or "").split()) if top else ""
     if unit or head:
         parts.append(" ".join(x for x in (unit, head) if x))
