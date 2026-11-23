@@ -154,8 +154,12 @@ def test_a_named_section_reaches_the_judgments_that_cite_it(repo):
         pytest.skip("section 497 CrPC not resolved")
     if not any("cited" in h.generators for h in r.hits):
         pytest.skip("links not built yet")
-    # an SC judgment binds a Punjab subordinate court today (Art. 189(2), recorded)
-    assert all(h.authority and h.authority["status"] == "binding" for h in r.hits)
+    # a Punjab subordinate court today is bound by the Supreme Court (Art. 189) and by the Lahore High Court
+    # (Art. 201), never by another High Court: a Peshawar judgment reaches it as not binding (recorded rules)
+    for h in r.hits:
+        assert h.authority, h.citation
+        binds = "Supreme Court" in h.court or "Lahore" in h.court
+        assert h.authority["status"] == ("binding" if binds else "not_binding"), (h.court, h.authority)
 
 
 def test_the_routes_serve_search_a_judgment_and_cases_on_a_section(repo, monkeypatch):

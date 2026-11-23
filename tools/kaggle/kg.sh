@@ -101,6 +101,18 @@ embedpush)
  "dataset_sources": ["$USER/nizam-embed-$3"], "kernel_sources": [], "competition_sources": []}
 EOF3
   $KG kernels push -p $K --accelerator ${KG_ACCEL:-NvidiaTeslaT4} ;;
+jembedpush)
+  # kg.sh jembedpush NAME VERSION : push the judgment-chunk kernel (tools/kaggle/judgment_embed_kernel.py, D-132) over
+  # nizam-embed-VERSION (an export of nizam.workers.judgment_chunk --export, uploaded by `kg.sh embeddata VERSION`);
+  # status, logs and output as for the corpus run: embedstatus / embedlogs / embedfetch NAME
+  K=/mnt/e/nizam-data/embed/kernel-$2; mkdir -p $K
+  cp /mnt/e/Nizam_e_Qanoon/tools/kaggle/judgment_embed_kernel.py $K/judgment_embed_kernel.py
+  cat > $K/kernel-metadata.json <<EOF3
+{"id": "$USER/nizam-embed-run-$2", "title": "nizam-embed-run-$2", "code_file": "judgment_embed_kernel.py",
+ "language": "python", "kernel_type": "script", "is_private": true, "enable_gpu": true, "enable_internet": true,
+ "dataset_sources": ["$USER/nizam-embed-$3"], "kernel_sources": [], "competition_sources": []}
+EOF3
+  $KG kernels push -p $K --accelerator ${KG_ACCEL:-NvidiaTeslaT4} ;;
 e8push)
   # kg.sh e8push NAME SHARDS : push the Qwen3-Embedding-8B shard kernel (tools/kaggle/embed8b_kernel.py, D-099) over
   # nizam-embed-v1; SHARDS like 0-11 or 3,7. KG_SMOKE=1 proves it (pipeline vs sentence-transformers, fp16 vs bf16,

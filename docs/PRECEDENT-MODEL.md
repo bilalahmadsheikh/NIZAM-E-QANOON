@@ -379,6 +379,9 @@ Rules:
   - `chunk` is defined against `provision_version`, and A20–A22 assert it is exactly the statute release.
   - A judgment span must never pass the statute gate.
   - Precedent mode needs its own calibrated gate (docs/04 §6), and the date partitions prune.
+- **As built (D-132, 24 Nov):** the bge-m3 bits may come from the laptop's int8 encoder or from a Kaggle GPU run in
+  fp16. Both are generation 1, as the statute chunks are. `judgment_chunk --export` / `--load` move the missing
+  chunks through the GPU, and A27 asserts one generation and one chunker.
 - **INV-4:** above L2, a precedent is cited by `judgment_paragraph`, never by a chunk.
 - **Publishing and offline:** `publish_scope = 'judgments'` (docs/03) lets a small deployment leave judgments out.
   Judgments are network-only, not in the offline pack (docs/03b).

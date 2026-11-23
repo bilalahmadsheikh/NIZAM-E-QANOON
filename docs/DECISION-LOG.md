@@ -1136,6 +1136,32 @@ Area: client · Status: Superseded by D-084 (the whole-page cloth; the hem, the 
   design/heritage_art.dart, presentation/discover.dart, presentation/heritage.dart; test/heritage_test.dart
   (golden embroidery.png, a review sheet at 3x).
 
+### D-132 · 2026-11-24 · Judgment chunks are embedded on a Kaggle GPU in generation 1, as the statutes were
+Area: L2 retrieval storage, judgment chunks (docs/PRECEDENT-MODEL.md §6.1, D-098, D-121) · Status: standing
+- Decision: the owner asked "can't we do on kaggle gpu?" when the CPU run over the Lahore and Peshawar paragraphs
+  was slow. The run moved to the GPU, under generation 1's rule:
+  - The model is BAAI/bge-m3 at the pinned commit, with its own CLS pooling, 512 tokens, fp16 and normalised. The
+    stored vector is the sign of the first 1,024 dimensions. The statute chunks were embedded the same way on a
+    Kaggle T4 (D-098, `tools/kaggle/embed_kernel.py`). Queries stay int8 ONNX on the CPU.
+  - `nizam.workers.judgment_chunk --export DIR` writes every chunk a released body or footnote paragraph should have
+    and does not. The passage is written exactly as the CPU encoder reads it (`passage_text`), and the row it becomes
+    is written beside it. A paragraph a stopped run left half-chunked is completed, not skipped.
+  - `tools/kaggle/judgment_embed_kernel.py` (pushed by `kg.sh jembedpush`) embeds them. `--load EXPORT RUN --apply`
+    COPYs the bits into `judgment_chunk` under the one active CPU generation and the same chunker.
+- Measured, 24 Nov 2026:
+  - 111,182 chunks were embedded on a T4 in about 25 minutes. The other 113,341 of the 224,523 were embedded earlier
+    on the laptop.
+  - Same space, checked: on 40 random passages, the GPU fp16 bits and the laptop's int8 encoder differ in a median
+    61 of 1,024 bits for the same passage, against 366 for different passages.
+  - A27 passes, and `./nz audit` passes 51/51.
+  - Changes to tests: `test_a_named_section_reaches_the_judgments_that_cite_it` assumed every hit was a Supreme Court
+    judgment. It now asserts the recorded rule per court: a Punjab subordinate court is bound by the SC and the
+    Lahore High Court, and a Peshawar judgment reaches it as `not_binding`.
+- Why: generation 1 is defined by the model, revision, pooling and sign rule, not by the device. The statutes already
+  live in this space through a GPU run, so judgments embedded the same way are searched by the same query vector.
+- Where: nizam/workers/judgment_chunk.py (`_missing`, `export`, `load`); tools/kaggle/judgment_embed_kernel.py;
+  tools/kaggle/kg.sh (`jembedpush`); tests/test_judgment_db.py.
+
 ### D-131 · 2026-11-24 · Names are withheld in sexual-offence, minor, family and medical judgments, on a recorded basis
 Area: owner ruling, schema, L2 readers, L3 precedent search, privacy (docs/PRECEDENT-MODEL.md §6.3, D-122) · Status: standing
 - Decision: the owner asked for item 2, the party-name rules, "end to end". D-122 had set the rule: parties_raw is
