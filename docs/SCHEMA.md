@@ -1769,6 +1769,13 @@ outcome: parsed, held with the gate, needs_ocr, reporter_reprint or duplicate) â
   - `judgment_relation`: `reasons_for` (the court's statement that the judgment gives the reasons for its short
     order, the order's printed date and basis, and the short order when held) and `copy_of` (a second file of one
     decision, and the copy kept).
+- **Names withheld (0128â€“0129, D-131):** `sensitive_category` (sexual offence, minor, family, medical, each with
+  `basis_kind` statute | follows_statute | product_policy and a note), `sensitive_category_source` (the law's words,
+  cited by observation, ordinal, unit and quote; checked by `law_unit_quote_found`), `sensitive_category_rule`
+  (law cited, header words, body words). Derived by `nizam.judgment_privacy/1` (audit A29):
+  `judgment_sensitivity` (category and the evidence that marked it) and `judgment_display` (`parties_display`,
+  `redacted`, and `names_withheld`, which is internal: readers redact with it and never return it).
+  `judgment.parties_display` is not used.
 - **Search (0120):** BM25 on `judgment_paragraph`; `judgment_chunk` holds offsets plus the CPU generation's sign bits
   under HNSW (audit A27).
 - **What to read:** `v_release_judgment` and `v_release_judgment_paragraph` are the release. `v_shown_judgment` is

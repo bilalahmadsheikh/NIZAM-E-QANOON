@@ -39,6 +39,12 @@ Corrections to the sections below, as built:
     one read and the grammar right), the case line is the record and the difference is kept.
   - A case citation in a judgment ("Civil Appeal No. 984 of 2018") resolves to the case, however many decisions it
     has (§4.2).
+- **§6.3 (D-131, 24 Nov):** built. Four categories with their basis read from the corpus: sexual offences (statute:
+  PPC s.376A(1), whose exemption covers law journals only; Anti-Rape Act 2021 s.26(1)); minors (follows the Juvenile
+  Justice System Act 2018 s.13(1), which exempts superior-court judgments); family and medical (product policy).
+  Marked by the laws a judgment cites, header words, and for sexual offences the body's words. The parties line
+  withholds any side naming a person; victims, "Mst." names and minors named in the body are withheld too; readers
+  replace them in every paragraph and hit, and a search naming a withheld person never returns the judgment (A29).
 - **§6.1:** `judgment_chunk` is one table, not partitioned, until a second court lands. (The second court, Lahore,
   landed on 23 Nov; the table stays one table, because judgment search filters by court through the judgment row and
   the chunk count is still under 200k.)

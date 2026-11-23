@@ -844,6 +844,32 @@ m AS (
     ,(SELECT count(*) FROM judgment_case_reference WHERE dst_case_key IS NOT NULL
                                                      AND resolution = 'resolved')                      AS jk_refs_resolved
 -- <<< A28 measures
+-- >>> A29 measures: names withheld in sensitive judgments (0128-0129, D-131): every released judgment decided once,
+--     redacted exactly when a category marks it, no withheld name in the line shown, every recorded basis still printed
+    ,(SELECT count(*) FROM v_release_judgment j WHERE NOT EXISTS (
+        SELECT 1 FROM judgment_display d WHERE d.judgment_id = j.id AND d.decided_on = j.decided_on))   AS jv_unread
+    ,(SELECT count(*) FROM (SELECT judgment_id, decided_on FROM judgment_display
+                            UNION SELECT judgment_id, decided_on FROM judgment_sensitivity
+                            EXCEPT SELECT id, decided_on FROM v_release_judgment) x)                   AS jv_outside
+    ,(SELECT count(*) FROM judgment_display d
+       WHERE d.redacted <> EXISTS (SELECT 1 FROM judgment_sensitivity s WHERE s.judgment_id = d.judgment_id
+                                                                            AND s.decided_on = d.decided_on))
+                                                                                                       AS jv_mismatch
+    ,(SELECT count(*) FROM judgment_display d
+       WHERE d.redacted AND d.parties_display IS NOT NULL
+         AND EXISTS (SELECT 1 FROM unnest(d.names_withheld) n
+                      WHERE length(n) >= 3 AND position(lower(n) IN lower(d.parties_display)) > 0))  AS jv_leak
+    ,(SELECT count(*) FROM sensitive_category_source s
+       WHERE NOT law_unit_quote_found(s.source_observation_id, s.source_expression_ordinal, s.source_unit,
+                                      s.source_quote))
+     + (SELECT count(*) FROM sensitive_category c WHERE c.basis_kind <> 'product_policy' AND NOT EXISTS (
+          SELECT 1 FROM sensitive_category_source s WHERE s.category = c.code AND s.role = 'protects'))
+                                                                                                       AS jv_basis_bad
+    ,(SELECT count(*) FROM (SELECT builder FROM judgment_display UNION SELECT builder FROM judgment_sensitivity) b)
+                                                                                                       AS jv_builders
+    ,(SELECT count(*) FROM judgment_display WHERE redacted)                                           AS jv_redacted
+    ,(SELECT coalesce(sum(cardinality(names_withheld)), 0) FROM judgment_display)                     AS jv_names
+-- <<< A29 measures
 )
 SELECT * FROM (
   SELECT 'C1' AS id, 'every acquired file becomes a blob'      AS criterion,
@@ -1074,6 +1100,14 @@ SELECT * FROM (
          '0 / 0 / 0 / 0 / 0; one builder',
          CASE WHEN jk_unread=0 AND jk_outside=0 AND jk_lead_bad=0 AND jk_rel_bad=0 AND jk_ref_dangling=0
                    AND jk_builders<=1 THEN 'PASS' ELSE 'FAIL' END FROM m
+  UNION ALL SELECT 'A29','names are withheld in sensitive judgments, on a recorded basis',
+         jv_redacted||' judgments with names withheld, '||jv_names||' names (reported); '||jv_unread
+         ||' judgments not decided; '||jv_outside||' rows outside the release; '||jv_mismatch
+         ||' redacted without a category or the reverse; '||jv_leak||' withheld names in the line shown; '
+         ||jv_basis_bad||' bases not printed or missing; '||jv_builders||' builder(s)',
+         '0 / 0 / 0 / 0 / 0; one builder',
+         CASE WHEN jv_unread=0 AND jv_outside=0 AND jv_mismatch=0 AND jv_leak=0 AND jv_basis_bad=0 AND jv_builders<=1
+              THEN 'PASS' ELSE 'FAIL' END FROM m
   UNION ALL SELECT 'A6','no overlapping law (enforced, not tested)',
          CASE WHEN excl_present=1 THEN 'EXCLUDE constraint present'
               ELSE 'CONSTRAINT MISSING' END, 'enforced',

@@ -32,6 +32,7 @@ from datetime import date
 
 from nizam.storage import authority as A
 from nizam.storage import citations as C
+from nizam.storage import privacy as PV
 from nizam.storage import unit_search
 from nizam.storage.judgment_read import JudgmentRead
 from nizam.storage.lexical import Filters
@@ -58,6 +59,8 @@ class PrecedentHit:
     undated: bool = False
     decided_no_later_than: date | None = None
     decided_not_before: date | None = None
+    parties_display: str | None = None  # 'A v. B', withheld names replaced (D-131)
+    privacy: dict = field(default_factory=dict)  # names_withheld, and each category's recorded basis
     case_key: str | None = None       # the case it decides, as printed ('SC/CA/1507/2024'); None if not placed (D-125)
     gives_reasons: bool = False       # it gives the reasons for the court's short order in that case
     short_order_on: date | None = None  # that short order's printed date, when printed
@@ -138,9 +141,14 @@ def search(question: str, *, as_of: date, court: str | None = None, forum=None, 
             statutes = repo.statutes_cited(conn, list(best), as_of)
             registry = A.load(cur) if forum is not None else None
             hits = []
+            withheld_queries = 0
             for jid, (pid, f) in best.items():
                 d = details.get(pid)
                 if not d:
+                    continue
+                if d["_names_withheld"] and PV.names_queried(question, d["_names_withheld"]):
+                    # a search that names a person whose name this judgment withholds never finds it (D-131)
+                    withheld_queries += 1
                     continue
                 hits.append(PrecedentHit(
                     judgment_id=str(jid), paragraph_id=str(pid), citation=d["citation"], court=d["court_name"],
@@ -152,6 +160,7 @@ def search(question: str, *, as_of: date, court: str | None = None, forum=None, 
                                     for s in statutes.get(jid, [])][:12],
                     undated=d["undated"], decided_no_later_than=d["decided_no_later_than"],
                     decided_not_before=d["decided_not_before"], case_key=d["case_key"],
+                    parties_display=d["parties_display"], privacy=d["privacy"],
                     gives_reasons=d["gives_reasons"], short_order_on=d["reasons_for_short_order_on"]))
             coverage = conn.execute("""SELECT v.court_code, min(first_decided) AS first_decided,
                                               max(last_decided) AS last_decided, sum(judgments_released) AS judgments,
@@ -161,7 +170,8 @@ def search(question: str, *, as_of: date, court: str | None = None, forum=None, 
                                                 WHERE k.court_code = v.court_code) AS cases
                                          FROM v_judgment_coverage v GROUP BY v.court_code
                                         ORDER BY v.court_code""").fetchall()
-        trace.update(generators={n: len(v) for n, v in lists.items()}, ms=int((time.time() - t0) * 1000))
+        trace.update(generators={n: len(v) for n, v in lists.items()}, ms=int((time.time() - t0) * 1000),
+                     withheld_by_name=withheld_queries)
         return PrecedentResult(question=question, as_of=as_of, hits=hits, cited_provisions=cited,
                                coverage=[dict(c) for c in coverage], mode=mode, trace=trace)
     finally:

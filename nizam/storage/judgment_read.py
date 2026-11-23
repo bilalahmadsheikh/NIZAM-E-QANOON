@@ -20,6 +20,7 @@ from datetime import date
 from psycopg.rows import dict_row
 from psycopg_pool import ConnectionPool
 
+from nizam.storage import privacy as PV
 from nizam.storage.db import dsn
 from nizam.storage.library_read import render_citation
 
@@ -142,6 +143,44 @@ class JudgmentRead:
                 break
         return out
 
+    # ---------------------------------------------------------------------------------------------- privacy
+
+    @staticmethod
+    def privacy_of(conn, judgment_ids: list) -> dict:
+        """judgment id -> {parties_display, redacted, names (internal), categories [{code, name, basis_kind, basis}]}
+        (D-131). names is used here to redact and to guard search, and is never returned to a caller."""
+        if not judgment_ids:
+            return {}
+        rows = conn.execute("""
+            SELECT d.judgment_id, d.parties_display, d.redacted, d.names_withheld,
+                   coalesce(json_agg(json_build_object('code', c.code, 'name', c.name, 'basis_kind', c.basis_kind,
+                                                       'basis', c.basis_note) ORDER BY c.code)
+                            FILTER (WHERE c.code IS NOT NULL), '[]') AS categories
+              FROM judgment_display d
+              LEFT JOIN judgment_sensitivity s ON s.judgment_id = d.judgment_id AND s.decided_on = d.decided_on
+              LEFT JOIN sensitive_category c ON c.code = s.category
+             WHERE d.judgment_id = ANY(%s::uuid[])
+             GROUP BY 1, 2, 3, 4""", (list(judgment_ids),)).fetchall()
+        return {r["judgment_id"]: dict(parties_display=r["parties_display"], redacted=r["redacted"],
+                                       names=r["names_withheld"], categories=r["categories"]) for r in rows}
+
+    @staticmethod
+    def shown_text(text: str, privacy: dict | None) -> str:
+        """The text a caller may see: withheld names replaced (D-131)."""
+        if not privacy or not privacy["redacted"]:
+            return text
+        # a victim's identity is protected by statute (PPC s.376A): in a sexual-offence judgment a one-word name is
+        # withheld even when it is a common word; elsewhere 'Ali' alone is not blanked everywhere
+        sexual = any(c["code"] == "sexual_offence" for c in privacy["categories"])
+        return PV.redact(text, privacy["names"], frozenset() if sexual else PV.common_words())
+
+    @staticmethod
+    def privacy_public(privacy: dict | None) -> dict:
+        """What a caller is told: whether names are withheld, and why, with each category's recorded basis."""
+        if not privacy:
+            return dict(names_withheld=False, categories=[])
+        return dict(names_withheld=privacy["redacted"], categories=privacy["categories"])
+
     # ---------------------------------------------------------------------------------------------- details
 
     @staticmethod
@@ -164,11 +203,17 @@ class JudgmentRead:
               LEFT JOIN case_type ct ON ct.code = j.case_type_code
               LEFT JOIN judgment_opinion o ON o.id = p.opinion_id
              WHERE p.id = ANY(%s::uuid[])""", (list(paragraph_ids),)).fetchall()
+        priv = JudgmentRead.privacy_of(conn, list({r["judgment_id"] for r in rows}))
         out = {}
         for r in rows:
             r.update(dates_shown(r))
             r["citation"] = render_judgment_citation(r["court_name"], r["case_no_printed"], r["decided_on"],
                                                      r["printed_no"], r["page_first"], r["kind"])
+            p = priv.get(r["judgment_id"])
+            r["text"] = JudgmentRead.shown_text(r["text"], p)
+            r["parties_display"] = p["parties_display"] if p else None
+            r["privacy"] = JudgmentRead.privacy_public(p)
+            r["_names_withheld"] = p["names"] if p and p["redacted"] else []     # internal: the search guard only
             out[r["id"]] = r
         return out
 
@@ -244,11 +289,15 @@ class JudgmentRead:
                                      WHERE r.judgment_id = %s ORDER BY r.char_start""", (j["id"],)).fetchall()
             statutes = self.statutes_cited(conn, [j["id"]], as_of).get(j["id"], [])
             case = self._case_of(conn, j, as_of)
+            priv = self.privacy_of(conn, [j["id"]]).get(j["id"])
+        for p in paras:                                             # withheld names replaced (D-131)
+            p["text"] = self.shown_text(p["text"], priv)
         j.pop("parties_raw", None)                                  # internal only (D-122)
         j.pop("decision_date", None)
+        j["parties_display"] = priv["parties_display"] if priv else None
         j.update(shown)                                             # never the latest-possible day as the date
         return dict(judgment=j, opinions=opinions, paragraphs=paras, lineage=lineage, cases_cited=cases,
-                    statutes_cited=statutes, case=case,
+                    statutes_cited=statutes, case=case, privacy=self.privacy_public(priv),
                     citation=render_judgment_citation(j["court_name"], j["case_no_printed"], shown["decided_on"]))
 
     # ------------------------------------------------------------------------------------------------ cases
@@ -375,12 +424,16 @@ class JudgmentRead:
                   FROM v_shown_judgment j JOIN court c ON c.code = j.court_code
                   LEFT JOIN case_type ct ON ct.code = j.case_type_code
                  WHERE j.id = ANY(%s::uuid[])""", ([r["judgment_id"] for r in rows],)).fetchall()}
+            priv = self.privacy_of(conn, [r["judgment_id"] for r in rows])
         out = []
         for r in rows:
             m = meta.get(r["judgment_id"])
             if m:
                 shown = dates_shown(m)
+                p = priv.get(r["judgment_id"])
                 out.append(dict(judgment_id=r["judgment_id"], mentions=r["mentions"], case_key=m["case_key"],
+                                parties_display=p["parties_display"] if p else None,
+                                names_withheld=bool(p and p["redacted"]),
                                 roles=sorted(r["roles"]), court=m["court_name"], case_type=m["case_type_name"],
                                 disposition=m["disposition"], reported=m["reported_flag"], **shown,
                                 citation=render_judgment_citation(m["court_name"], m["case_no_printed"],

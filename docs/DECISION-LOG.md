@@ -1136,6 +1136,82 @@ Area: client · Status: Superseded by D-084 (the whole-page cloth; the hem, the 
   design/heritage_art.dart, presentation/discover.dart, presentation/heritage.dart; test/heritage_test.dart
   (golden embroidery.png, a review sheet at 3x).
 
+### D-131 · 2026-11-24 · Names are withheld in sexual-offence, minor, family and medical judgments, on a recorded basis
+Area: owner ruling, schema, L2 readers, L3 precedent search, privacy (docs/PRECEDENT-MODEL.md §6.3, D-122) · Status: standing
+- Decision: the owner asked for item 2, the party-name rules, "end to end". D-122 had set the rule: parties_raw is
+  internal, the parties shown are redacted for sensitive categories, each category names its basis from the corpus
+  or is marked product policy, and party names are not a search key.
+  - **The bases, read in the served laws on 24 Nov 2026** (0128, `sensitive_category_source`). They are cited as the
+    court records are (observation, ordinal, unit label, exact words). The migration refuses a quote that is not
+    printed, and A29 asserts it on every run.
+
+    | Category | Kind | What the corpus says |
+    |---|---|---|
+    | Sexual offence | statute | PPC s.376A(1) forbids publishing what identifies the victim of an offence under ss.354A, 376, 376A, 377, 377B; its Explanation exempts judgments **in law journals** only. The Anti-Rape (Investigation and Trial) Act 2021 s.26(1): "No person shall disclose or reveal the identity of any victim" |
+    | Minor | follows statute | Juvenile Justice System Act 2018 s.13(1) forbids publishing a juvenile's identity; its Explanation says publishing a High Court or Supreme Court judgment is not an offence. Withheld anyway, following the section's purpose |
+    | Family | product policy | no provision found (searched) |
+    | Medical | product policy | none found for judgments (the Sindh HIV and AIDS Act covers a child tested for HIV, which is narrower) |
+
+  - **What marks a judgment** (`sensitive_category_rule`, data, not code):
+    - a resolved citation of a category's law (PPC ss.354A/376/376A/377/377B, the Anti-Rape Act, the Zina Ordinance
+      s.10, the Juvenile Justice Acts, the Guardians and Wards Act, the Family Courts Acts, MFLO, the Dissolution of
+      Muslim Marriages Act, the Dowry Acts, the mental health and HIV Acts);
+    - words in the header ("Judge Family Court", "minor", "through his father", "of unsound mind");
+    - for a sexual offence only, the offence named in the body ("zina-bil-jabr", "rape", "prosecutrix"; 0129).
+      Measured: 240 judgments speak of the offence and only 122 cite the section in a resolving form. "Minor" is
+      too common a word ("minor discrepancies") for the body rule.
+
+    Marking leans towards over-marking, because a wrong mark only hides a name.
+  - **What is withheld** (`nizam.judgment_privacy/1`, `judgment_sensitivity` and `judgment_display`, derived and
+    rebuilt from the release):
+    - the parties line shown, the first "A v. B" in the header, keeps a side only when it names no person (the
+      State, a government, an office, a company); any side that names a person is withheld whole;
+    - names withheld (internal, never returned): the persons on the parties line; for a sexual offence, the persons
+      the body names as victim, prosecutrix or abductee, and every "Mst."/"Miss" name; in every marked judgment,
+      the persons named as a minor or juvenile ("minor Zaryab Khan", "his minor son namely Arsalan").
+  - **What readers do** (`nizam.storage.privacy`, `judgment_read`, `precedent`):
+    - every paragraph and search hit returned replaces each withheld name with "[name withheld]". A one-word name
+      that is a common word ("Ali") is replaced only in a sexual-offence judgment, where the victim's identity is
+      statutory;
+    - the judgment page and hits carry `parties_display` and `privacy`: whether names are withheld, and each
+      category with its kind and recorded basis;
+    - a precedent search naming a withheld person (the whole name, or two of its words) never returns that judgment;
+      the trace counts such refusals.
+  - judgment.parties_display (0119) stays unused: the judgment row is append-only evidence.
+  - Run order after a judgment release: cases, then the linker, then this builder.
+- Result (9,694 released judgments; audit A29):
+
+  | | Judgments |
+  |---|---:|
+  | Names withheld | 570 |
+  | of which sexual offence | 264 |
+  | of which family | 270 |
+  | of which minor | 97 |
+  | of which medical | 3 |
+  | Names withheld, in all | 1,278 |
+  | Parties line not read (none printed in a form found) | 2,466 |
+
+  Measured after redaction over all 264 sexual-offence judgments: no "Mst."/"Miss" name and no "victim namely …"
+  name remains (3,231 replacements). Reading samples found and fixed five defects before release:
+  - a side carrying header words beside a person was judged an institution and shown. Now any person withholds
+    the side;
+  - "Judge" cut an office short;
+  - case lines and column labels stuck to names;
+  - child victims were missed;
+  - a sentence opener was taken as a name.
+
+  Two patterns also backtracked without end on Peshawar's OCR text (a dash run, a space run) and were rewritten,
+  with tests.
+- Limits, stated: a name the text never ties to a party line, "victim", "minor" or an honorific is not found.
+  Judgments with no parties line read get only their body names withheld. A party's name stays searchable in a
+  judgment of no category (D-122's general "not a search key" is enforced only where names are withheld; open
+  question below).
+- Why: s.376A(1) and the Anti-Rape Act make a victim's identity a legal matter for this product, which is not a law
+  journal. The other categories follow the law's purpose or D-122's policy, and say which.
+- Where: infra/postgres/migrations/0128_judgment_privacy.sql, 0129_privacy_body_words.sql; nizam/storage/privacy.py;
+  nizam/workers/judgment_privacy.py; nizam/storage/judgment_read.py; nizam/retrieval/precedent.py;
+  tools/audit/criteria.sql (A29); tests/test_privacy.py, tests/test_judgment_db.py.
+
 ### D-130 · 2026-11-23 · Peshawar High Court lands; a text layer must be readable (J9); a register lists all that is not added
 Area: owner ruling, L1 parser, schema, linking, process (docs/PRECEDENT-MODEL.md §7 step 6) · Status: standing
 - Decision: the owner asked for the Peshawar High Court "end to end fully", and for everything not added (laws and
@@ -3349,6 +3425,9 @@ Area: L1 corpus · Status: standing (closes two of the D-080 "what remains" item
 
 These were found and deliberately left open. Each will become an entry when it is decided.
 
+- **Party names as a search key in judgments of no sensitive category (found 24 Nov 2026, D-131).** D-122 says party names are
+  not a search key. D-131 enforces it only where names are withheld. Recommendation: at search time, drop a hit whose only
+  match with the query is its parties line, for every judgment, and measure what it costs dev recall first.
 - **Fusion with the 8B space (D-099)** — decided for the GPU profile by D-101: its reranker reads citations then
   dense, without the BM25 windows. The CPU profile keeps the hybrid.
 - **ADR-1d for the 8B space (D-112: not measured, low risk).** Dense-only, its sign bits cost nothing (bits4096 r50

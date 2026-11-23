@@ -322,3 +322,57 @@ def test_title_lookup_stays_exact_after_many_lookups_with_varied_titles():
     finally:
         conn.rollback()
         handle.__exit__(None, None, None)
+
+
+# ------------------------------------------------------------------------------------- names withheld (0128, D-131)
+
+def test_a_judgment_whose_names_are_withheld_shows_none_and_says_why(case_repo):
+    repo = case_repo
+    with repo.transaction() as conn:
+        if conn.execute("SELECT to_regclass('judgment_display') AS t").fetchone()["t"] is None:
+            pytest.skip("migration 0128 not applied")
+        row = conn.execute("""SELECT d.judgment_id, d.names_withheld FROM judgment_display d
+                               WHERE d.redacted AND cardinality(d.names_withheld) > 0
+                                 AND EXISTS (SELECT 1 FROM unnest(d.names_withheld) n WHERE n ~ ' ')
+                               ORDER BY d.judgment_id LIMIT 1""").fetchone()
+    if not row:
+        pytest.skip("no judgment with names withheld")
+    j = repo.judgment(row["judgment_id"], TODAY)
+    assert j["privacy"]["names_withheld"] is True and j["privacy"]["categories"]
+    assert all(c["basis"] and c["basis_kind"] in ("statute", "follows_statute", "product_policy")
+               for c in j["privacy"]["categories"])
+    shown = " ".join(p["text"] for p in j["paragraphs"]).lower() + " " + (j["judgment"]["parties_display"] or "").lower()
+    for n in row["names_withheld"]:
+        if " " in n:                                            # a full name never survives in what is shown
+            assert n.lower() not in shown, n
+    assert "names_withheld" not in j["judgment"] and "parties_raw" not in j["judgment"]
+
+
+def test_a_search_naming_a_withheld_person_never_finds_that_judgment(case_repo):
+    from nizam.retrieval.precedent import search
+    repo = case_repo
+    with repo.transaction() as conn:
+        if conn.execute("SELECT to_regclass('judgment_display') AS t").fetchone()["t"] is None:
+            pytest.skip("migration 0128 not applied")
+        row = conn.execute("""SELECT d.judgment_id, n AS name FROM judgment_display d, unnest(d.names_withheld) n
+                               WHERE d.redacted AND n ~ '^[A-Z][a-z]+ [A-Z][a-z]+$' ORDER BY d.judgment_id
+                               LIMIT 1""").fetchone()
+    if not row:
+        pytest.skip("no two-word withheld name")
+    r = search(f"{row['name']} judgment", as_of=TODAY, k=25, repo=repo)
+    assert str(row["judgment_id"]) not in [h.judgment_id for h in r.hits]
+
+
+def test_a_redacted_row_needs_its_category_and_a_basis_is_printed_law(cur):
+    cur.execute("SELECT to_regclass('judgment_display')")
+    if cur.fetchone()[0] is None:
+        pytest.skip("migration 0128 not applied")
+    cur.execute("""SELECT count(*) FROM sensitive_category_source s
+                    WHERE NOT law_unit_quote_found(s.source_observation_id, s.source_expression_ordinal, s.source_unit,
+                                                   s.source_quote)""")
+    assert cur.fetchone()[0] == 0
+    cur.execute("SELECT judgment_id, decided_on FROM judgment_display WHERE NOT redacted LIMIT 1")
+    jid, day = cur.fetchone()
+    _raises(cur, """INSERT INTO judgment_display (judgment_id, decided_on, parties_display, redacted, names_withheld,
+                                                   builder) VALUES (%s, %s, 'x', false, '{Some Name}', 'test')""",
+            (jid, day), match="ck_display_withheld|duplicate key")
