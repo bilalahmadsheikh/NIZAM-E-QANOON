@@ -1136,6 +1136,62 @@ Area: client · Status: Superseded by D-084 (the whole-page cloth; the hem, the 
   design/heritage_art.dart, presentation/discover.dart, presentation/heritage.dart; test/heritage_test.dart
   (golden embroidery.png, a review sheet at 3x).
 
+### D-133 · 2026-11-24 · A precedent stratum of the golden set: 58 questions, gold at judgment paragraphs
+Area: evaluation (docs/10 §4–§5, INV-4; docs/PRECEDENT-MODEL.md §8 build order step 5) · Status: standing
+- Decision: the owner asked for item 3, a test set for judgment search, after item 2.
+  `evals/golden/build_precedent1.py` builds `golden-pk-v1-precedent1`: 58 cases over the Supreme Court and the
+  Lahore and Peshawar High Courts.
+  - **Gold** is judgment paragraphs. Each is named by its source document id and one paragraph (printed number or
+    `#ordinal`), or the whole judgment for a case lookup. Court, case, date and text come from records. docs/10
+    already says labels end at judgment paragraphs; this is that rule applied.
+  - **Strata (the docs did not fix them for precedent; this sets them):**
+    - issue 35 (SC 15, LHC 10, PHC 10);
+    - authority 1, temporal 3, case_lookup 4, provision 4;
+    - Urdu and Roman Urdu 5, each in its English case's family;
+    - unanswerable 6: five courts not held, and one date (1 Jan 1995) before any held judgment existed.
+  - **Found by reading, not by the system:** gold paragraphs were picked by plain SQL text match
+    (`peek_judgment.py`) and read. The gold names some of the judgments that answer, not all, so no precision is
+    reported.
+  - **Checks in the builder (`precedent_common.py`):**
+    - each gold judgment existed at `as_of`, and each trap did not;
+    - each answer case's regexes match its gold paragraphs;
+    - abstain codes are checked against the release;
+    - the author's binding-status reading (Art. 189 binds every court to the SC; Art. 201 binds a High Court's own
+      subordinate courts) is compared with the recorded rules, and any difference is reported.
+  - **Split by family, not by case.** docs/10 §4 requires it, and the statute split (D-098) does not do it.
+    Families are ordered by sha256 within answerable and unanswerable, and the first 60% are dev: 36 dev cases, 22
+    test. Recorded in `split-precedent-v1.json`.
+  - **Harness:** `evals/precedent_eval.py` reports the following over `precedent.search` with the case's forum:
+    - hit@10, MRR@10, recall@10 and recall@50 over gold judgments;
+    - paragraph@10;
+    - leaks;
+    - authority agreement;
+    - what an unanswerable query returns.
+- Measured, 24 Nov 2026 (provisional: the gold is a draft; no tuning was done; test run once), hybrid:
+
+  | Split | Answerable | hit@10 | MRR@10 | recall@50 | paragraph@10 | Leaks | Authority (agree / disagree / not recorded) | p50 |
+  |---|---:|---:|---:|---:|---:|---:|---|---:|
+  | Dev | 32 | .719 | .376 | .786 | .435 | 0 | 33 / 0 / 1 | 0.75 s |
+  | Test | 20 | .650 | .390 | .900 | .692 | 0 | 19 / 0 / 1 | 0.80 s |
+
+  - **Issue questions:** hit@10 .81 dev and .79 test.
+  - **A case asked by its number:** found in 1 of 4. Precedent search has no case-number fast path, though the
+    grammar exists (`judgment_case.read_case_line`).
+  - **Provision questions** rank low (dev MRR .07).
+  - **Urdu and Roman Urdu:** found in 1 of 5. The same questions in English are found.
+  - **Courts not held:** each returns 50 judgments of other courts. Search is discovery and passes no gate, so a
+    precedent gate (docs/04 §6, not built) must decline to present them as the asked court's view.
+  - **The 1995 question** returns nothing, which is correct.
+  - **Authority before 13 Nov 2025:** the recorded rules give the SC's authority as `not_recorded` (three cases at
+    2023 and 2025 dates). Rules exist only where a dated text of Arts. 189 and 201 is held: 2016, and from 13 Nov
+    2025 (SC) and 19 Jun 2026 (High Courts). This is D-116 refusing rather than guessing. Closing it needs dated
+    Constitution texts for 2017–2025.
+- Why: no precedent claim can be tuned or defended without the instrument (docs/10). The precedent gate and any
+  ranking change need dev figures first.
+- Where: evals/golden/{build_precedent1.py, precedent_common.py, peek_judgment.py, split-precedent-v1.json,
+  golden-pk-v1-precedent1.draft.jsonl/.md, README.md}; evals/precedent_eval.py;
+  evals/results/precedent-eval-{dev,test}.json; tests/test_precedent_golden.py.
+
 ### D-132 · 2026-11-24 · Judgment chunks are embedded on a Kaggle GPU in generation 1, as the statutes were
 Area: L2 retrieval storage, judgment chunks (docs/PRECEDENT-MODEL.md §6.1, D-098, D-121) · Status: standing
 - Decision: the owner asked "can't we do on kaggle gpu?" when the CPU run over the Lahore and Peshawar paragraphs

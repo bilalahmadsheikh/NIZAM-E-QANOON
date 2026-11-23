@@ -105,6 +105,44 @@ Language variants of a question share the same `familyId` as their English
 case. They count as one statistical cluster and always go in the same split
 (docs/10 §4).
 
+## The precedent stratum (`golden-pk-v1-precedent1`, D-133)
+
+| File | What it is |
+|---|---|
+| `golden-pk-v1-precedent1.draft.jsonl` / `.md` | 58 precedent questions over the Supreme Court, Lahore and Peshawar High Courts |
+| `build_precedent1.py` | The cases, written as data; running it rebuilds the set from the database and checks every case |
+| `precedent_common.py` | The shared builder and its checks |
+| `peek_judgment.py` | Reads judgments while writing a case: `find "phrase" "phrase" --court LHC`, `read <document> [paragraphs]` |
+| `split-precedent-v1.json` | The dev/test split, by family |
+| `../precedent_eval.py` | The harness: `split`, then `run --split dev` (test is read once) |
+
+**Gold is judgment paragraphs.** Each is a released judgment named by its source document id (stable across
+replays) and one paragraph by printed number or `#ordinal`. A case lookup names the whole judgment. Court, case,
+date and text are read from the database (INV-1), and no label names a chunk (INV-4).
+
+**How it was found.** By plain SQL text match and reading (`peek_judgment.py`), never by the precedent search it
+measures. Many judgments state a settled principle and the gold names some of them, so the harness reports whether
+a gold judgment is found, not precision.
+
+| Stratum | Cases | What it asks |
+|---|---|---|
+| issue | 35 | A legal question a judgment answers: 15 SC, 10 LHC, 10 PHC |
+| authority | 1 | The same question for a court in another province (a Lahore judgment persuades a KP court) |
+| temporal | 3 | Asked at an earlier date: a later judgment did not exist then and must not be served |
+| case_lookup | 4 | A case by its printed number, including a short order joined to its later reasons |
+| provision | 4 | The judgments on a named provision |
+| urdu | 5 | Urdu and Roman Urdu variants, each in its English case's family |
+| unanswerable | 6 | A court whose judgments are not held (SHC, IHC, BHC, FSC, FCC), or a date before coverage |
+
+**Checks.** Every gold judgment existed at the case's `as_of`, and every trap did not. Every answer case has
+regexes that must match the gold paragraphs. The author's binding-status reading (Art. 189: the SC binds all courts;
+Art. 201: a High Court binds its own subordinate courts) is compared with the recorded rules, and any difference is
+reported. An abstain code is checked against the release.
+
+**The split assigns whole families**, as docs/10 §4 requires (the statute split above assigns cases). Families are
+ordered by sha256 within answerable and unanswerable, and the first 60% are dev: 26 families and 36 cases dev, 16
+families and 22 cases test.
+
 ## Status: DRAFT
 
 All four sets have passed stage **A0** (cases authored without system output)

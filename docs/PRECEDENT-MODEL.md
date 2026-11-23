@@ -417,6 +417,10 @@ Each step is one slice, finished before the next:
 3. **Supreme Court ingest, text-layer files**: header parse, opinions, paragraphs, gates J1–J8.
 4. **The shared citation grammar and the judgment → statute linker** (§4.1), with A24.
 5. **Judgment chunks, embeddings and precedent search**, with a precedent stratum in the golden set (docs/10).
+   *As built (D-133, 24 Nov):* the stratum is `golden-pk-v1-precedent1`: 58 cases, gold at judgment paragraphs,
+   split by family, harness `evals/precedent_eval.py`. Provisional test figures: hit@10 .65, recall@50 .90, no
+   leaks. It shows four gaps: no case-number fast path; provision questions rank low; Urdu queries miss; and no
+   precedent gate for courts not held.
 6. **Lahore HC, Peshawar HC** (the OCR route, D-114), the reprint rule (§5), then the Sindh recrawl, then FCC, IHC,
    BHC, FSC and the AJK and GB texts and courts.
 7. **Case references and treatments** (§2, §4.2), lineage (§3.5), invalidation (§4.3), then the citator (docs/06 §5).
