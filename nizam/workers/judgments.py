@@ -36,11 +36,12 @@ CORPUS_ROOT = Path(os.environ.get("CORPUS_ROOT", "/mnt/e/nizam-data"))
 _REF: tuple | None = None
 
 
-def _manifest(z: zipfile.ZipFile) -> dict[str, tuple[str, str]]:
-    """filename -> (url, status) from an archive's manifest.csv, preferring an 'ok' row."""
+def _manifest(z: zipfile.ZipFile, prefix: str = "") -> dict[str, tuple[str, str]]:
+    """filename -> (url, status) from an archive's manifest.csv, preferring an 'ok' row. With a member prefix, only a
+    manifest inside that folder is read: another set's manifest never gives this court's file a URL (D-130)."""
     out: dict[str, tuple[str, str]] = {}
     for name in z.namelist():
-        if name.endswith("manifest.csv"):
+        if name.endswith("manifest.csv") and name.startswith(prefix):
             for r in csv.DictReader(io.StringIO(z.read(name).decode("utf-8", "replace"))):
                 fn = r.get("filename") or ""
                 if fn and (fn not in out or (out[fn][1] != "ok" and r.get("status") == "ok")):
@@ -91,6 +92,8 @@ def main() -> int:
     ap.add_argument("--court", required=True)
     ap.add_argument("--source-id", required=True)
     ap.add_argument("--limit", type=int)
+    ap.add_argument("--member-prefix", default="", help="only archive members under this folder, e.g. "
+                                                         "'judgments_peshawar_high_court/'")
     ap.add_argument("--workers", type=int, default=5)
     ap.add_argument("--apply", action="store_true")
     ap.add_argument("--redo", action="store_true",
@@ -102,8 +105,11 @@ def main() -> int:
     from nizam.storage import judgment_write as jw
     archive = Path(a.archive)
     z = zipfile.ZipFile(archive)
-    manifest = _manifest(z)
-    members = sorted(n for n in z.namelist() if n.lower().endswith(".pdf"))
+    manifest = _manifest(z, a.member_prefix)
+    # an archive can bundle other sets (the Peshawar bundle repeats the whole SC archive and carries law files):
+    # --member-prefix takes only this court's folder, so another set is never recorded as this court's (D-130)
+    members = sorted(n for n in z.namelist() if n.lower().endswith(".pdf")
+                     and (not a.member_prefix or n.startswith(a.member_prefix)))
     if a.limit:
         members = members[:a.limit]
     store = CORPUS_ROOT / "raw" / "judgments" / a.source_id

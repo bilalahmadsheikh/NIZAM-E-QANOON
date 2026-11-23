@@ -29,7 +29,7 @@ import time
 from nizam.corpus import judgment_case as JC
 from nizam.storage.db import connect
 
-BUILDER = "nizam.judgment_cases/1"
+BUILDER = "nizam.judgment_cases/2"     # /2: the other cases the header lists as decided together (D-128)
 OPENING, CLOSING = 3, 4
 
 
@@ -46,6 +46,12 @@ def build(cur) -> tuple[dict, list, list, list, collections.Counter]:
     members: list[tuple] = []
     states: list[tuple] = []
     lead_of: dict = {}                                  # judgment id -> (lead key, day, undated, document id)
+    cur.execute("""SELECT p.judgment_id, string_agg(p.text, ' ' ORDER BY p.ordinal) FROM v_release_judgment_paragraph p
+                    WHERE p.kind = 'header' GROUP BY p.judgment_id""")
+    headers = dict(cur.fetchall())
+    court_forms: dict[str, dict[str, list[str]]] = collections.defaultdict(dict)
+    for code, fs in forms.items():
+        court_forms[code.split(":", 1)[0]][code] = fs
     for jid, day, undated, court, code, num, year, printed, doc in judgments:
         line = JC.read_case_line(printed, forms.get(code, []))
         if line is None or line.lead is None:
@@ -62,9 +68,18 @@ def build(cur) -> tuple[dict, list, list, list, collections.Counter]:
         counts["header_differs"] += differs
         lead = JC.case_key(court, code, line.lead, line.year)
         lead_of[jid] = (lead, day, undated, doc)
-        for number, role in [(line.lead, "lead")] + [(n, "joined") for n in line.joined]:
-            key = JC.case_key(court, code, number, line.year)
-            cases.setdefault(key, (key, court, code, JC.norm_number(number), line.year, BUILDER))
+        seen: set[str] = set()
+        listed = [(code, number, line.year, "lead") for number in [line.lead]]
+        listed += [(code, n, line.year, "joined") for n in line.joined]
+        # the other cases the header lists as decided together (D-128), each with its own type and year
+        for hcode, hline in JC.header_cases(headers.get(jid, ""), court_forms.get(court, {})):
+            listed += [(hcode, n, hline.year, "joined") for n in [hline.lead] + hline.joined]
+        for c_code, number, c_year, role in listed:
+            key = JC.case_key(court, c_code, number, c_year)
+            if key in seen:
+                continue
+            seen.add(key)
+            cases.setdefault(key, (key, court, c_code, JC.norm_number(number), c_year, BUILDER))
             members.append((jid, day, key, role, BUILDER))
             counts[f"membership:{role}"] += 1
     counts["cases"] = len(cases)

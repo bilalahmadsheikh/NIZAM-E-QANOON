@@ -233,3 +233,124 @@ def test_an_announced_judgment_and_its_reporting_note(real):
     assert isinstance(r, ParsedJudgment)
     assert (r.decided_on, r.decided_on_basis, r.reported_flag) == (dt.date(2015, 9, 18), "announced", False)
     assert r.lineage[0].lower_court_code == "SHC"
+
+
+# ------------------------------------------------------------------------------------- High Court layouts (D-128)
+
+LHC_TYPES = {"LHC:CRLMISC": ("misc_application", ["crl misc", "criminal misc"]),
+             "LHC:WP": ("writ", ["writ petition", "w p", "wp"]),
+             "LHC:FAO": ("appeal", ["f a o", "fao"])}
+
+
+def lhc(d) -> ParsedJudgment | Held:
+    return parse_judgment(d, ALIASES, LHC_TYPES, expected_court="LHC", today=TODAY)
+
+
+ORDER_SHEET = ["Form No: HCJD/C-121", "ORDER SHEET", "IN THE LAHORE HIGH COURT, MULTAN BENCH, MULTAN",
+               "JUDICIAL DEPARTMENT", "Crl. Misc. No. 3952-B/2025", "Maqbool Ali", "Versus", "The State etc.",
+               "Sr.No.of order/", "Proceedings", "Date of order/", "Proceedings",
+               "Order with signatures of Judge, and that of parties or counsel,", "where necessary.",
+               "20.02.2025", "Mr. Naveed Ahmad Khawaja, Advocate for the petitioner.",
+               "Through this petition, the petitioner seeks post arrest bail in case FIR No.1573.",
+               "2.", "The allegation as set out in the crime report is that heroin was recovered.",
+               "3.", "For the reasons recorded, this petition is dismissed.", "(MUHAMMAD AMJAD RAFIQ)", "JUDGE"]
+
+
+def test_an_order_sheet_is_dated_by_its_date_of_order_and_its_form_title_is_not_a_heading():
+    r = lhc(doc([ORDER_SHEET]))
+    assert isinstance(r, ParsedJudgment), r
+    assert r.court_code == "LHC" and r.seat == "Multan"
+    assert (r.decided_on, r.decided_on_basis) == (dt.date(2025, 2, 20), "date_of_order")
+    assert r.case_type_code == "LHC:CRLMISC" and r.case_number == "3952-B" and r.case_year == 2025
+    assert [o.kind for o in r.opinions] == ["order_of_court"]
+    body = [p for p in r.paragraphs if p.kind == "body"]
+    assert [p.printed_no for p in body] == [None, "2", "3"]
+    assert "Sr.No.of order" not in " ".join(p.text for p in body)      # column labels are header
+
+
+def test_an_order_sheet_opening_a_second_proceeding_with_another_date_is_undated():
+    second = ORDER_SHEET[:-2] + ["27.02.2025", "Mr. X, Advocate for the petitioner.", "Order reserved.",
+                                 "(MUHAMMAD AMJAD RAFIQ)", "JUDGE"]
+    r = lhc(doc([second]))
+    assert r.decided_on is None and r.undated_reason.startswith("several order dates")
+
+
+JUDGMENT_SHEET = ["Stereo. H C J D A 38.", "Judgment Sheet", "LAHORE HIGH COURT LAHORE", "JUDICIAL DEPARTMENT",
+                  "F.A.O. No.68910 of 2022", "Oil Marketing Association of Pakistan", "Versus",
+                  "Oil Companies Advisory Council and 02 others", "J U D G M E N T", "Date of Hearing",
+                  "29.10.2025", "For the appellant", "Mr. Ahmad Ali Ranjha, Advocate.",
+                  "Raheel Kamran J:- The instant First Appeal from Order has been filed under Section 21(4).",
+                  "2.", "By the impugned order, the Committee allowed the appeal.", "No order as to costs.",
+                  "(RAHEEL KAMRAN)", "JUDGE", "Announced in the Open Court on ___________", "JUDGE",
+                  "Approved for reporting."]
+
+
+def test_hearing_and_counsel_after_the_heading_are_header_and_a_blank_announcement_dates_nothing():
+    r = lhc(doc([JUDGMENT_SHEET]))
+    assert isinstance(r, ParsedJudgment), r
+    assert r.hearing_on == dt.date(2025, 10, 29)
+    assert r.decided_on is None and r.decided_on_basis == "undated"
+    assert (r.decided_not_before, r.decided_not_before_basis) == (dt.date(2025, 10, 29), "hearing")
+    assert r.opinions[0].author_printed and r.opinions[0].author_printed.startswith("Raheel Kamran")
+    body = " ".join(p.text for p in r.paragraphs if p.kind == "body")
+    assert "Advocate" not in body and body.startswith("Raheel Kamran J:- The instant First Appeal")
+
+
+def test_signed_on_and_pronounced_on_are_printed_dates():
+    signed = [x.replace("29.10.2025", "10.02.2025") for x in JUDGMENT_SHEET[:-3]] + ["Signed on 25.02.2025", "JUDGE"]
+    assert lhc(doc([signed])).decided_on == dt.date(2025, 2, 25)
+    said = JUDGMENT_SHEET[:-3] + ["This judgment has been dictated, pronounced on 13.03.2023 and signed later."]
+    r = lhc(doc([[x.replace("29.10.2025", "01.03.2023") for x in said]]))
+    assert (r.decided_on, r.decided_on_basis) == (dt.date(2023, 3, 13), "announced")
+
+
+def test_a_judge_word_wrapped_onto_its_own_line_does_not_end_the_order():
+    lines = ORDER_SHEET[:16] + ["The petitioner challenges the order of the learned Civil", "Judge",
+                                "Sahiwal dated 25-1-2001 which was not sustainable in law."] + \
+        [f"line {k} of the reasons continues here." for k in range(45)] + ORDER_SHEET[-2:]
+    r = lhc(doc([lines]))
+    body = " ".join(p.text for p in r.paragraphs if p.kind == "body")
+    assert "Sahiwal dated 25-1-2001" in body and "line 44 of the reasons" in body
+
+
+def test_a_case_line_after_case_no_or_an_enumerator_is_read():
+    for line in ("Case No. Writ Petition No.2849/2011", "1. W.P. No.2849 of 2011"):
+        lines = [x if x != "F.A.O. No.68910 of 2022" else line for x in JUDGMENT_SHEET]
+        r = lhc(doc([lines]))
+        assert (r.case_type_code, r.case_number, r.case_year) == ("LHC:WP", "2849", 2011), line
+
+
+def test_a_reprint_opening_with_its_series_is_not_landed():
+    reprint = ["PLJ 2020 Lahore 555 (DB)", "[Rawalpindi Bench Rawalpindi]", "Present: A AND B, JJ.",
+               "HABIB BANK LTD.--Appellant", "versus", "ZAWAR HUSSAIN SHAH--Respondent",
+               "R.F.A. No. 26 of 2012, decided on 4.11.2020.",
+               "Financial Institutions (Recovery of Finances) Ordinance, 2001--",
+               "----Ss. 9(2) & 22--Bankers Book Evidence Act, 1891, S. 2(8)--Suit for recovery--Dismissed--",
+               "Statement of account--Non-availability of date--Challenge to--"] + ["text"] * 20
+    r = lhc(doc([reprint]))
+    assert isinstance(r, Held) and r.outcome == "reporter_reprint"
+
+
+def test_a_garbled_text_layer_goes_to_ocr_and_a_clean_one_records_its_score():
+    """J9 (D-130): a court's own rough OCR is not released as citable text."""
+    from nizam.corpus.judgment import plausibility
+    garbled = ("IN TIIE PESIIAWAR IIIGII COUITT ll:e pctitioncr hns approachcd thc Court tlrrough tlris pctition "
+               "agninst thc ordcr dntcd ") * 30
+    clean = ("The petitioner has approached this Court through this petition against the order passed by the "
+             "learned trial court which dismissed the application filed under the law ") * 20
+    assert plausibility(garbled)[0] < 0.90 < plausibility(clean)[0]
+    assert plausibility("too short")[0] is None
+    lines = ORDER_SHEET[:15] + [garbled[k:k + 90] for k in range(0, len(garbled), 90)] + ORDER_SHEET[-2:]
+    r = lhc(doc([lines]))
+    assert isinstance(r, Held) and r.outcome == "needs_ocr" and r.reason.startswith("J9")
+    ok = lhc(doc([ORDER_SHEET[:15] + [clean[k:k + 90] for k in range(0, len(clean), 90)] + ORDER_SHEET[-2:]]))
+    assert isinstance(ok, ParsedJudgment) and ok.detail["plausibility"] > 0.9
+
+
+def test_peshawar_prints_announced_with_a_stop_and_dated():
+    from nizam.corpus.judgment import _ANNOUNCED
+    for text, day in (("Announced. 14.11.2017", dt.date(2017, 11, 14)), ("Announced: 13.10.2020.", dt.date(2020, 10, 13)),
+                      ("ANNOUNCED. Dated: 22/07/2015.", dt.date(2015, 7, 22)), ("Announced. Dt: 18.5.2016", dt.date(2016, 5, 18)),
+                      ("Announced in open Court on 18.09.2015.", dt.date(2015, 9, 18))):
+        m = _ANNOUNCED.search(text)
+        assert m and read_date(m.group(0), TODAY) == day, text

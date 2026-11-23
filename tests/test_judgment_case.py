@@ -36,6 +36,11 @@ def test_hyphen_ranges_expand_but_a_seat_suffix_is_part_of_the_number():
     assert (r.lead, r.joined) == ("800-L", ["801-L"])
     r = read_case_line("(CA 801-L/2013)", CA)
     assert (r.lead, r.year, r.joined) == ("801-L", 2013, [])
+    misc = ["crl misc", "criminal misc"]
+    assert read_case_line("Crl. Misc. 2143-CB of 2021.", misc).lead == "2143-CB"        # cancellation of bail
+    assert read_case_line("Crl. Misc. No. 3952-B/2025", misc).lead == "3952-B"
+    r = read_case_line("CR. No.259-D-2005/BWP", ["cr"])
+    assert (r.lead, r.year) == ("259-D", 2005)
 
 
 def test_an_application_of_another_type_in_the_line_is_not_another_case():
@@ -57,6 +62,7 @@ def test_the_number_after_the_forms_unread_tail_and_no_as_the_text_layer_prints_
     assert read_case_line("Crl.P.L.A. No.15 of 2015", crlp).lead == "15"
     assert read_case_line("Crl.P.L.A No.619-L of 2024", crlp).lead == "619-L"
     assert read_case_line("Civil Appeals No. Nil of 2021", CA).lead is None        # 'Nil' is not a number
+    assert read_case_line("Civil Appeal No. 0 of 2005", CA).lead is None           # no case is numbered 0
     r = read_case_line("C.P.L.As.211 and 213 of 2024", cp)
     assert (r.lead, r.year, r.joined) == ("211", 2024, ["213"])
     assert read_case_line("Civil Petitions No, 2547 and 2640 of 2023", cp).joined == ["2640"]
@@ -153,3 +159,23 @@ def test_two_copies_of_one_decision_overlap_and_two_orders_of_one_case_do_not():
     other = " ".join(f"word{i} of the order passed on another day" for i in range(400))
     assert copy_score(shingles(body), shingles(other)) < 0.2
     assert copy_score(set(), shingles(body)) == 0.0
+
+
+def test_cases_listed_in_a_header_are_decided_together_but_the_court_below_is_not():
+    from nizam.corpus.judgment_case import header_cases
+    forms = {"LHC:MR": ["murder reference", "m r"], "LHC:CRLA": ["criminal appeal", "crl appeal"],
+             "LHC:CRLREV": ["criminal revision", "crl revision"], "LHC:WP": ["writ petition", "w p"]}
+    head = ("JUDGMENT SHEET IN THE LAHORE HIGH COURT, LAHORE JUDICIAL DEPARTMENT Murder Reference No.290 of 2015 "
+            "The State v. Rizwan Akhtar Criminal Appeal No.1112-J of 2015 Rizwan Akhtar v. The State "
+            "3. Crl. Revision No.392 of 2013 (Muhammad Shahzad v. Allah Ditta)")
+    got = [(c, x.lead, x.year) for c, x in header_cases(head, forms)]
+    assert got == [("LHC:MR", "290", 2015), ("LHC:CRLA", "1112-J", 2015), ("LHC:CRLREV", "392", 2013)]
+    below = ("Criminal Appeal No.12 of 2020 (Against the judgment dated 04.02.2020 passed in Writ Petition No.67 of "
+             "2019 by the learned Single Judge)")
+    assert [(c, x.lead) for c, x in header_cases(below, forms)] == [("LHC:CRLA", "12")]
+    sc = {"SC:CRLP": ["criminal petition"], "SC:REF": ["reference"], "SC:CP": ["c p", "civil petition"]}
+    head = ("Criminal Petition No.12 of 2016 (On appeal against the judgment dated 21.10.2015 passed by the Lahore "
+            "High Court, Lahore, in Criminal Appeal No.300-J/2013 and Murder Reference No.138/2011) "
+            "C.P. No. 14 of 2016 (against the order of the High Court of Sindh passed in C.P.D-568/12 and "
+            "C.P.No.11-D/2017)")
+    assert [(c, x.lead) for c, x in header_cases(head, sc)] == [("SC:CRLP", "12"), ("SC:CP", "14")]

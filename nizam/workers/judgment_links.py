@@ -39,7 +39,7 @@ from nizam.storage import unit_search
 from nizam.storage.db import connect
 from nizam.storage.lexical import Filters
 
-LINKER = "nizam.judgment_links/2"
+LINKER = "nizam.judgment_links/3"    # /2 case citations to cases (D-125); /3 the deciding court's territory (D-128)
 
 
 def _todo(cur, rebuild: bool) -> list[tuple]:
@@ -89,11 +89,17 @@ class CaseIndex:
 
 
 class Resolver:
-    """Citation -> (unit, law title, alternates), cached per (law, label, subs); versions cached per (unit, day)."""
+    """Citation -> (unit, law title, alternates), cached per (law, label, subs); versions cached per (unit, day).
 
-    def __init__(self, cur):
+    One per deciding court's territory (D-128): a bare title in a Lahore High Court judgment ('the Rented Premises
+    Act') resolves to Punjab's law first, then federal law, and the version linked is the one in force in Punjab on
+    the decision date. A Supreme Court judgment reads federal law first and no territory."""
+
+    def __init__(self, cur, territory: str | None = None):
         self.cur = cur
-        self.session = unit_search.Session(cur, Filters(as_of=dt.date.today()))
+        self.territory = territory
+        self.session = unit_search.Session(cur, Filters(as_of=dt.date.today()),
+                                           prefer=(territory, "fed") if territory else ("fed",))
         self.units: dict[tuple, C.Citation] = {}
         self.versions: dict[tuple, str | None] = {}
         self.texts: dict[str, str] = {}
@@ -113,7 +119,8 @@ class Resolver:
         version of its own, and is dated through its clauses."""
         key = (unit.unit_id, day)
         if key not in self.versions:
-            self.cur.execute("SELECT set_config('nzq.as_of', %s, true)", (day.isoformat(),))
+            self.cur.execute("SELECT set_config('nzq.as_of', %s, true), set_config('nzq.territory', %s, true)",
+                             (day.isoformat(), self.territory or ""))
             self.cur.execute("""SELECT op.version_id::text, op.provision_id = %s::uuid FROM operative_provision op
                                  WHERE op.instrument_id = %s::uuid AND op.path <@ %s::ltree
                                  ORDER BY op.provision_id = %s::uuid DESC, op.path LIMIT 1""",
@@ -200,10 +207,14 @@ def main() -> int:
     with connect() as conn, conn.cursor() as cur:
         todo = _todo(cur, a.rebuild)[: a.limit or None]
         types = _case_types(cur)
-        res = Resolver(cur)
+        cur.execute("SELECT code, territory::text FROM court")
+        territory = {code: (None if j in (None, "fed") else j) for code, j in cur.fetchall()}
+        resolvers: dict = {}
         cases = CaseIndex(cur)
         print(f"judgments to link: {len(todo)} ({LINKER}; {len(cases.decisions):,} cases held)")
         for n, (jid, day, court, undated) in enumerate(todo, 1):
+            t = territory.get(court)
+            res = resolvers.get(t) or resolvers.setdefault(t, Resolver(cur, t))
             srows, crows = link_one(cur, res, types, jid, day, court, undated, cases)
             for r in srows:
                 totals[f"statute:{r[14]}"] += 1

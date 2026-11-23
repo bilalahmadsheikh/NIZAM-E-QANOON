@@ -18,7 +18,7 @@ so rather than guess.
 | 4. Judgment → statute links | **built**: one grammar (`nizam/storage/citations.py`), the law inherited from the judgment's last naming (0121), the version read through `operative_provision` at the decision date | `nizam/workers/judgment_links.py` (A26) |
 | 5. Chunks, embeddings, precedent search | **built** for the CPU generation and BM25; the 8B GPU space for judgments is not built | 0120, `nizam/workers/judgment_chunk.py` (A27), `nizam/retrieval/precedent.py`, `nizam/api/precedent.py` |
 | 5a. One record per case (D-125, 23 Nov) | **built**: 3,031 of 3,105 judgments placed in a case (6,935 cases with the appeals decided together); 326 reasons statements, 18 of them matched to a short order held as its own file; 1 second copy | 0123, `nizam/corpus/judgment_case.py`, `nizam/workers/judgment_cases.py` (A28), `/v1/precedent/cases/…` |
-| 6. Other courts | not started | |
+| 6. Other courts | **Lahore HC landed (D-128, 23 Nov):** 3,996 of 4,550 distinct files released, 2,518 of them undated (a hearing date and nothing else printed); 239 held; 197 reprints not landed; 117 waiting for OCR. Case types observed (0124); order sheets dated by their date of order; links read Punjab law first. **Peshawar HC landed (D-130, 23 Nov):** 2,593 of 5,704 distinct files released (693 undated); 1,818 to OCR (1,598 no text, 193 not readable by gate J9); 653 reprints; 639 held; links read KP law first. Sindh needs its recrawl | 0124–0127, `nizam.judgment/4` (LHC), `/5` (PHC, J9), `nizam.judgment_links/3` |
 | 7. Treatments, lineage review, invalidation, citator | lineage rows are machine candidates; the rest is not started | |
 
 Corrections to the sections below, as built:
@@ -39,7 +39,12 @@ Corrections to the sections below, as built:
     one read and the grammar right), the case line is the record and the difference is kept.
   - A case citation in a judgment ("Civil Appeal No. 984 of 2018") resolves to the case, however many decisions it
     has (§4.2).
-- **§6.1:** `judgment_chunk` is one table, not partitioned, until a second court lands.
+- **§6.1:** `judgment_chunk` is one table, not partitioned, until a second court lands. (The second court, Lahore,
+  landed on 23 Nov; the table stays one table, because judgment search filters by court through the judgment row and
+  the chunk count is still under 200k.)
+- **§3.2 / §3.7 for the High Courts (D-128):** an order sheet's decision date is its printed date of order
+  (`decided_on_basis = 'date_of_order'`). A judgment sheet whose "Announced … on" line is left blank is released
+  undated (D-124), bounded by its hearing date.
 - **§3.7 J1 (D-124, 23 Nov):** a judgment with no usable printed decision date is released **marked undated**, not
   held. `decided_on` then holds the latest possible day (the archive's first observation of the file). It is the
   research-date filter and is never shown: `decision_date` is NULL, and the reader prints "date of decision not

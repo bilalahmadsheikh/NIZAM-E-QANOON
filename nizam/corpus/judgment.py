@@ -34,9 +34,13 @@ import hashlib
 import re
 from dataclasses import dataclass, field
 
-PARSER = "nizam.judgment/3"     # /2: the lower court's date printed after its name; a skipped number only when unseen
+PARSER = "nizam.judgment/5"     # /2: the lower court's date printed after its name; a skipped number only when unseen
+#                                 /5: J9, a text layer whose words are not plausible goes to OCR (D-130)
 #                                 /3: no usable decision date -> released undated; a date line never opens a
 #                                     paragraph; '22d December', '_14th _January' read (D-124)
+#                                 /4: High Court layouts (D-128): ORDER/JUDGMENT SHEET are form titles; the order
+#                                     sheet's body and date of order; hearing and counsel after the heading are header;
+#                                     'Signed on <date>'; 'Case No.' before a case line; series-first reprints
 
 # ------------------------------------------------------------------------------------------------------ dates
 
@@ -160,14 +164,54 @@ def fold(s: str) -> str:
     return " ".join(re.sub(r"[^a-z0-9]+", " ", s.lower()).split())
 
 
+# ------------------------------------------------------------------------------- J9: is the text layer readable
+
+# A court can publish a scan carrying its own rough OCR ('IN TIIE PESIIAWAR IIIGII COUITT'). Such a text layer is not
+# released as citable text: the file goes to the OCR lane (D-114) instead. The measure is the share of words (three
+# letters or more) found in a vocabulary of the words typed in at least 3 released Supreme Court judgments
+# (tools/build_judgment_vocab.py). Measured 23 Nov 2026 on full text: every clean Lahore file scores 0.94 or more;
+# about one Peshawar file in ten falls below, some to 0.35 (D-130).
+PLAUSIBLE_MIN = 0.90
+PLAUSIBLE_MIN_WORDS = 200
+_VOCAB: frozenset[str] | None = None
+
+
+def plausibility(text: str) -> tuple[float | None, int]:
+    """(share of known words, words counted); None when fewer than PLAUSIBLE_MIN_WORDS words are counted."""
+    global _VOCAB
+    if _VOCAB is None:
+        from pathlib import Path
+        _VOCAB = frozenset((Path(__file__).parent / "data" / "judgment_vocab.txt").read_text(encoding="utf-8").split())
+    toks = re.findall(r"[a-z]{3,}", text.lower())
+    if len(toks) < PLAUSIBLE_MIN_WORDS:
+        return None, len(toks)
+    return sum(t in _VOCAB for t in toks) / len(toks), len(toks)
+
+
 # ---------------------------------------------------------------------------------------------- the patterns
 
 _HEADING = re.compile(r"^\s*(J\s*U\s*D\s*G\s*E?\s*M\s*E\s*N\s*T|O\s*R\s*D\s*E\s*R(?:\s+SHEET)?|SHORT\s+ORDER|"
                       r"ORDER\s+OF\s+THE\s+COURT|"
                       r"FINAL\s+ORDER|DETAILED\s+REASONS|(?:DISSENTING|SEPARATE|ADDITIONAL)\s+(?:NOTE|OPINION)|"
                       r"REASONS\s+FOR\s+THE\s+SHORT\s+ORDER)\s*[:.]?\s*$", re.I)
-_AUTHOR = re.compile(r"^\s*((?:[A-Z][\w'’.\-]*\s+){0,6}[A-Z][\w'’\-]*)\s*,\s*\(?\s*(H?\.?\s*C\.?\s*J|A\.?\s*C\.?\s*J|JJ|J)"
-                     r"\s*\.?\s*\)?\s*[-–—:.]{1,3}\s*(.*)$")
+_AUTHOR = re.compile(r"^\s*((?:[A-Z][\w'’.\-]*\s+){0,6}[A-Z][\w'’]*(?:-[A-Za-z][\w'’]*)*?)\s*[,\-]?\s*\(?\s*"
+                     r"(H?\.?\s*C\.?\s*J|A\.?\s*C\.?\s*J|JJ|J)"
+                     r"\s*\.?\s*\)?\s*[-–—:.,]{1,3}\s*(.*)$")
+# High Court form titles printed above the court's name: the form, not an opinion heading (D-128)
+_FORM_TITLE = re.compile(r"^\s*(?:ORDER|JUDG(?:E)?MENT)\s+SHEET\s*\.?\s*$", re.I)
+# the order sheet's column header; the order itself begins after it ('... where necessary.')
+_ORDER_COLUMNS = re.compile(r"order\s+(?:or\s+other\s+proceedings?\s+)?with\s+signatures?\s+of\s+(?:the\s+)?judge",
+                            re.I)    # Lahore: 'Order with signatures of Judge'; Peshawar: 'Order or other Proceedings with ...'
+# a header line printed after the JUDGMENT heading in High Court judgments: the hearing date and who appeared
+_POST_HEAD = re.compile(r"^\s*(?:date\s+of\s+hearing|(?:for\s+the\s+)?(?:petitioner|appellant|respondent|applicant|"
+                        r"complainant|state|plaintiff|defendant|accused|convict)s?(?:\s*(?:no\.?\s*)?[\d,&\-\s]*)?"
+                        r"(?:\(s\))?\s*(?:by|:))", re.I)
+_CASE_NO_PREFIX = re.compile(r"^\s*(?:case\s+no\s*[.:]?\s*|\(?(?:\d{1,2}|[ivx]{1,4})\s*[.)]\s+)", re.I)
+# an order sheet's column labels, as a text layer may print them after the column header
+_SHEET_LABEL = re.compile(r"^\s*(?:(?:sr?\s*\.?\s*no\s*\.?|serial\s+no\.?)(?:\s*of)?|date\s+of|order|orders|proceedings?|"
+                          r"where|necessary|of|and|or|counsel|parties|[/.,:\s])+\s*$", re.I)
+# a new proceeding on the sheet: a line recording who appeared
+_APPEARANCE = re.compile(r"\b(?:advocates?|counsel|in\s+person|prosecutor|A\.?A\.?G|D\.?P\.?G|present)\b", re.I)
 # a printed paragraph number; '12.02.2026' (a date line in the closing) is not paragraph 12 (D-124)
 _PARA = re.compile(r"^\s*(\d{1,3})\s*[.)](?!\d)\s*(.*)$")
 _SIGN = re.compile(r"^\s*(?:Sd/?-?\s*)?\(?\s*(?:Judge|JUDGE|Chief\s+Justice|CHIEF\s+JUSTICE|Acting\s+Chief\s+Justice|"
@@ -175,18 +219,28 @@ _SIGN = re.compile(r"^\s*(?:Sd/?-?\s*)?\(?\s*(?:Judge|JUDGE|Chief\s+Justice|CHIE
 _PAGENO = re.compile(r"^\s*[-–(]?\s*(?:Page\s+)?\d{1,3}\s*(?:of\s+\d{1,3})?\s*[-–)]?\s*$", re.I)
 _FOOTNOTE = re.compile(r"^\s*(\d{1,2})\s+(?=[A-Z(‘'\"“\[])")
 _REPORTER_START = re.compile(r"^\s*\d{4}\s*(?:P\s*L\s*D|S\s*C\s*M\s*R|Y\s*L\s*R|C\s*L\s*C|M\s*L\s*D|P\s*Cr\.?\s*L\s*J|"
-                             r"P\s*T\s*D|C\s*L\s*D|P\s*L\s*C|P\s*L\s*J)\s*\d+")
+                             r"P\s*T\s*D|C\s*L\s*D|P\s*L\s*C|P\s*L\s*J)\s*\d+"
+                             # series first, as PLJ prints it: 'PLJ 2020 Lahore 555 (DB)' (D-128)
+                             r"|^\s*(?:P\s*L\s*J|P\s*L\s*D|S\s*C\s*M\s*R|Y\s*L\s*R|C\s*L\s*C|M\s*L\s*D|P\s*Cr\.?\s*L\s*J|"
+                             r"P\s*T\s*D|C\s*L\s*D|P\s*L\s*C|N\s*L\s*R)\s+\d{4}\s+[A-Z][a-z]+\s+\d+")
 _JURIS = re.compile(r"\(\s*([A-Za-z ]{3,40}?Jurisdiction)\s*\)", re.I)
 PLACES = ("Islamabad", "Lahore", "Karachi", "Peshawar", "Quetta", "Rawalpindi", "Multan", "Bahawalpur", "Sukkur",
           "Hyderabad", "Abbottabad", "Mingora")
 _PLACE = r"(" + "|".join(PLACES) + r")"
-_ANNOUNCED = re.compile(r"Announced\s+(?:in\s+(?:the\s+)?(?:open\s+)?Court\s*)?(?:at\s+" + _PLACE + r"\s*)?[,.]?[\s_]*"
-                        r"(?:on[\s_]*)?(?:the\s+)?" + DATE, re.I)
+# 'Announced in open Court on 18.09.2015'; Peshawar: 'Announced. 14.11.2017', 'ANNOUNCED. Dated: 22/07/2015',
+# 'Announced. Dt: 18.5.2016' (D-130)
+_ANNOUNCED = re.compile(r"Announced\s*[.:,]?\s*(?:in\s+(?:the\s+)?(?:open\s+)?Court\s*)?(?:at\s+" + _PLACE + r"\s*)?[,.]?"
+                        r"[\s_]*(?:on[\s_]*)?(?:dated|dt)?\s*[.:]*\s*(?:the\s+)?" + DATE, re.I)
 _SIGNED_AT = re.compile(r"\b" + _PLACE + r"\b\s*[,.:/\-]*\s*(?:the\s*)?[,.]?\s*" + DATE, re.I)
 _PLACE_ONLY = re.compile(r"\b" + _PLACE + r"\b", re.I)
-_DATE_OF_DECISION = re.compile(r"Date\s+of\s+(?:decision|judgment|judgement|announcement|order)\s*[:.\-]*\s*" + DATE,
-                               re.I)
-_HEARING = re.compile(r"Date\s+of\s+hearing\s*[:.\-]*\s*" + DATE, re.I)
+_DATE_OF_DECISION = re.compile(r"(?:Date\s+of\s+(?:decision|judgment|judgement|announcement|order)\s*[:.\-]*|"
+                               r"\bdecided\s+on)\s*" + DATE, re.I)
+_HEARING = re.compile(r"Date\s+of\s+hearing[\s:.\-_]*" + DATE, re.I)
+_SIGNED_ON = re.compile(r"\bSigned\s+on[\s:._]*" + DATE, re.I)
+# 'This judgment has been dictated, pronounced on 13.03.2023 and signed ...': the decision announced
+_PRONOUNCED = re.compile(r"\bpronounced\s+(?:in\s+(?:the\s+)?(?:open\s+)?court\s+)?on[\s:._]*" + DATE, re.I)
+_ORDER_DATE = re.compile(r"^\s*(?:\d{1,3}\s*[.)]\s+)?(" + DATE + r")", re.I)
+_DATE_LINE = re.compile(r"^\s*(?:\d{1,3}\s*[.)]\s+)?" + DATE + r"\s*[.,]?\s*$", re.I)
 _REPORTED = re.compile(r"\b(not\s+)?approved\s+for\s+report", re.I)
 _AGAINST = re.compile(r"\(\s*(?:On\s+)?(?:appeal\s+)?(?:against|from)\s+(?:the\s+)?(?:impugned\s+)?(?:judgments?|orders?|"
                       r"decision|decree)\s+(?:dated|dt\.?|of)?\s*(?P<date>" + DATE + r")?(?P<rest>[^()]*(?:\([^()]*\)"
@@ -282,7 +336,7 @@ def _case(lines: list[str], case_types: dict[str, tuple[str, list[str]]]):
         for k in range(1, 5):
             if i + k > len(lines):
                 break
-            text = " ".join(lines[i:i + k])
+            text = _CASE_NO_PREFIX.sub("", " ".join(lines[i:i + k]))     # 'Case No. Writ Petition No.2849/2011'
             f = fold(text)
             hit = next(((form, code) for form, code in forms if f.startswith(form + " ")), None)
             if hit is None:
@@ -315,22 +369,60 @@ def parse_judgment(doc, court_aliases: dict[str, str], case_types: dict[str, tup
     if sum(1 for b in doc.blocks if b.script == "arabic") > len(doc.blocks) / 2:
         return Held("needs_ocr", "Urdu text layer (not trusted as extracted; the OCR lane, D-114)")
     first_text = " ".join(b.text for b in doc.blocks[:12])
-    if _REPORTER_START.match(first_text) and first_text[:3000].count("---") >= 4:
+    if _REPORTER_START.match(first_text) and (first_text[:3000].count("---") >= 4
+                                              or first_text[:3000].count("--") >= 6):
         return Held("reporter_reprint", "opens with a law-reporter citation and headnote (D-120)")
 
     lines = _lines(doc)
     main = [ln for ln in lines if not ln.footnote and not ln.furniture]
     if not main:
         return Held("not_a_judgment", "no text outside page furniture")
+    # J9 first: a garbled text layer is a scan to read, not a judgment whose court or heading could not be found
+    score, counted = plausibility(" ".join(ln.text for ln in main))
+    if score is not None and score < PLAUSIBLE_MIN:
+        return Held("needs_ocr", f"J9: text layer not readable ({score:.2f} of {counted} words known; "
+                                 f"{PLAUSIBLE_MIN} needed)", {"plausibility": round(score, 3)})
+
+    def is_heading(ln: Line) -> bool:
+        return bool(_HEADING.match(ln.text)) and not _FORM_TITLE.match(ln.text)
 
     # a heading may sit late in a short order whose header is long; an author line is trusted only early on
-    start = next((i for i, ln in enumerate(main[:max(10, int(len(main) * 0.9))]) if _HEADING.match(ln.text)), None)
+    start = next((i for i, ln in enumerate(main[:max(10, int(len(main) * 0.9))]) if is_heading(ln)), None)
+    order_sheet = False
+    if start is None:
+        # a High Court order sheet (D-128): no heading; the order begins after the column header 'Order with
+        # signatures of Judge, and that of parties or counsel, where necessary'
+        col = next((i for i, ln in enumerate(main[:max(12, int(len(main) * 0.6))]) if _ORDER_COLUMNS.search(ln.text)),
+                   None)
+        if col is not None:
+            end = next((k for k in range(col, min(col + 3, len(main))) if re.search(r"(?i)\bnecessary\b", main[k].text)),
+                       col)
+            if end + 1 < len(main):
+                start, order_sheet = end + 1, True
     if start is None:
         start = next((i for i, ln in enumerate(main[:max(10, int(len(main) * 0.6))])
                       if i > 3 and _AUTHOR.match(ln.text)), None)
     if start is None:
         return Held("held", "no JUDGMENT/ORDER heading, or author line in the first 60% of the text")
+    if order_sheet:
+        # a text layer can print the column header early, before the case line, the parties and the column labels
+        # ('Sr. No. of order/ proceeding'); the order begins at the first line opening with its date, and what comes
+        # before it is header
+        k = next((k for k in range(start, min(start + 25, len(main))) if _ORDER_DATE.match(main[k].text)), None)
+        if k is not None:
+            start = k
     header_lines = main[:start]
+    body_lines = main[start:]
+    if not order_sheet and is_heading(main[start]):
+        # High Court layout (D-128): after the heading come the hearing date, who appeared, sometimes the case line,
+        # then the author line. Those lines are header, not the court's text.
+        j = next((k for k in range(start + 1, min(start + 60, len(main))) if _AUTHOR.match(main[k].text)), None)
+        no_case_yet = _case([ln.text for ln in header_lines],
+                            {k: v for k, v in case_types.items() if k.startswith(f"{expected_court or ''}:")}) is None
+        if j is not None and j > start + 1 and (any(_POST_HEAD.match(x.text) for x in main[start + 1:start + 4])
+                                                or (expected_court and no_case_yet)):
+            header_lines = main[:start] + main[start + 1:j]
+            body_lines = [main[start]] + main[j:]
     header = _join(ln.text for ln in header_lines)
 
     # the court is the one the first lines print; a name further down is the court below, never the deciding court
@@ -360,11 +452,14 @@ def parse_judgment(doc, court_aliases: dict[str, str], case_types: dict[str, tup
                                    ls[0].block, ls[-1].block, _join(x.text for x in ls)))
 
     add("header", None, None, header_lines)
-    body = main[start:]
+    body = body_lines
     cur: list[Line] = []
     cur_no: str | None = None
     expected = 1
     op = -1
+    if order_sheet:
+        opinions.append(Opinion("order_of_court", "ORDER SHEET", None))
+        op = 0
     closing: list[Line] | None = None
     closings: list[str] = []
     i = 0
@@ -392,7 +487,7 @@ def parse_judgment(doc, court_aliases: dict[str, str], case_types: dict[str, tup
             closing.append(ln)
             i += 1
             continue
-        if op >= 0 and _SIGN.match(ln.text):
+        if op >= 0 and _SIGN.match(ln.text) and _signs_off(body, i):
             add("body", cur_no, op, cur)
             cur, cur_no = [], None
             closing = [ln]
@@ -441,7 +536,24 @@ def parse_judgment(doc, court_aliases: dict[str, str], case_types: dict[str, tup
     court_body = [p.text for p in paras if p.kind == "body" and p.opinion == court_op]
     all_body = [p.text for p in paras if p.kind == "body"]
     tail_text = (all_body[-1][-400:] if all_body else "")
-    decided, basis, printed, place = _decision_date(closings, all_body[-3:], tail_text, header, today)
+    decided = basis = printed = place = None
+    if order_sheet:
+        # the order's date opens it, in the sheet's date column (D-128); a sheet printing several different order
+        # dates holds several orders, and which one decides is not guessed
+        m0 = _ORDER_DATE.match(body_lines[0].text) if body_lines else None
+        d0 = read_date(m0.group(1), today) if m0 else None
+        days = {read_date(x.text, today) for k, x in enumerate(body_lines[1:], 1)
+                if _DATE_LINE.match(x.text) and k + 1 < len(body_lines)
+                and _APPEARANCE.search(body_lines[k + 1].text)} - {None}
+        if d0:
+            days.add(d0)
+        if d0 and len(days) == 1:
+            decided, basis, printed, place = d0, "date_of_order", m0.group(1), None
+        elif len(days) > 1:
+            decided, basis, printed, place = (None, None, None, "several order dates on the sheet: "
+                                              + ", ".join(map(str, sorted(days))))
+    if decided is None and not (order_sheet and place and place.startswith("several")):
+        decided, basis, printed, place = _decision_date(closings, all_body[-3:], tail_text, header, today)
     undated_reason = not_before = not_before_basis = None
     if decided is None:
         undated_reason = place
@@ -455,6 +567,10 @@ def parse_judgment(doc, court_aliases: dict[str, str], case_types: dict[str, tup
             not_before, not_before_basis = hearing, "hearing"
         elif case_year and 1947 <= case_year <= today.year:
             not_before, not_before_basis = dt.date(case_year, 1, 1), "case_year"
+    if place is None:
+        # the bench the header prints ('IN THE LAHORE HIGH COURT, MULTAN BENCH, MULTAN'), D-128
+        bm = re.search(_PLACE + r"\s+Bench\b", header, re.I)
+        place = bm.group(1).title() if bm else None
 
     reported = None
     for m in _REPORTED.finditer(" ".join(closings[-1:] + all_body[-1:])):
@@ -465,7 +581,8 @@ def parse_judgment(doc, court_aliases: dict[str, str], case_types: dict[str, tup
     detail = {"paragraphs": len(paras), "body_paragraphs": len(all_body), "opinions": len(opinions),
               "footnotes": sum(1 for p in paras if p.kind == "footnote"),
               "numbered": sum(1 for p in paras if p.kind == "body" and p.printed_no),
-              "coverage_chars": sum(len(p.text) for p in paras), "document_chars": doc.char_count}
+              "coverage_chars": sum(len(p.text) for p in paras), "document_chars": doc.char_count,
+              "plausibility": round(score, 3) if score is not None else None}
     return ParsedJudgment(
         court_code=court, decided_on=decided, decided_on_basis=basis,
         decided_on_printed=printed[:300] if printed else None, undated_reason=undated_reason,
@@ -478,9 +595,25 @@ def parse_judgment(doc, court_aliases: dict[str, str], case_types: dict[str, tup
         body_sha256=hashlib.sha256(fold(" ".join(all_body)).encode()).hexdigest(), detail=detail)
 
 
+_CLOSING_CUE = re.compile(r"^\s*(?:\(?[A-Z][A-Z .'’\-]{3,}\)?\s*$|\*|approved|not\s+approved|announced|signed|"
+                          r"pronounced|dictated|sd/|" + _PLACE + r"\b)", re.I)
+
+
+def _signs_off(body: list[Line], i: int) -> bool:
+    """Whether a lone 'Judge' line at body[i] is a signature (D-128), not a word wrapped onto its own line ('the
+    learned Civil / Judge / Sahiwal dated ...'): it is near the end, or what follows it reads as a closing or a new
+    opinion."""
+    if len(body) - i <= 40:
+        return True
+    nxt = next((x.text for x in body[i + 1:i + 3] if x.text.strip()), "")
+    return bool(_CLOSING_CUE.match(nxt) or _SIGN.match(nxt) or _HEADING.match(nxt) or _AUTHOR.match(nxt))
+
+
 def _decision_date(closings, tail_body, tail_text, header, today):
     """(date, basis, printed words, seat) by the fixed order of evidence, or (None, None, None, reason)."""
     for basis, rx, texts in (("announced", _ANNOUNCED, closings + tail_body),
+                             ("announced", _PRONOUNCED, closings + tail_body),
+                             ("signed_at", _SIGNED_ON, closings + [tail_text]),       # 'Signed on 25.02.2025'
                              ("signed_at", _SIGNED_AT, closings + [tail_text]),
                              ("date_of_decision", _DATE_OF_DECISION, [header])):
         found = []
@@ -496,7 +629,7 @@ def _decision_date(closings, tail_body, tail_text, header, today):
                 return None, None, None, f"conflicting {basis} dates: " + ", ".join(map(str, days))
             d, printed, place = found[-1]
             return d, basis, printed, place
-        if basis == "signed_at" and closings:
+        if rx is _SIGNED_AT and closings:
             # a closing laid out in columns prints the place and the date apart ('Islamabad / JUDGE / 24.03.2022');
             # it is read only when the last closing names exactly one place and exactly one date
             last = closings[-1]

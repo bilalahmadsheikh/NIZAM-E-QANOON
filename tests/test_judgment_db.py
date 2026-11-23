@@ -124,7 +124,9 @@ def test_precedent_search_returns_only_judgments_decided_by_the_date(repo):
     if not r.hits:
         pytest.skip("no judgments decided by 2015 match")
     assert all(h.decided_on <= dt.date(2015, 1, 1) for h in r.hits)
-    assert all(h.citation.startswith("Supreme Court of Pakistan, ") for h in r.hits)
+    # every hit's citation opens with its court's recorded name (SC, and since D-128/D-130 the Lahore and Peshawar HCs)
+    assert all(h.citation.startswith(("Supreme Court of Pakistan, ", "Lahore High Court, ", "Peshawar High Court, "))
+               for h in r.hits)
     assert r.coverage and r.mode in ("hybrid", "lexical_only")
 
 
@@ -281,7 +283,8 @@ def test_the_case_route_serves_a_case_by_its_printed_number(case_repo, monkeypat
         pytest.skip("case records not built")
     kind = row["case_type_code"].split(":")[1]
     with TestClient(create_app(judgments=repo)) as client:
-        r = client.get(f"/v1/precedent/cases/SC/{kind}/{row['case_number']}/{row['case_year']}",
+        court = row["case_type_code"].split(":")[0]
+        r = client.get(f"/v1/precedent/cases/{court}/{kind}/{row['case_number']}/{row['case_year']}",
                        params={"as_of": "2026-11-22"})
         assert r.status_code == 200 and r.json()["case"]["case_key"] == row["case_key"]
         assert r.json()["decisions"]

@@ -67,9 +67,12 @@ class Unit:
 
 
 class Session:
-    def __init__(self, cur, filters: Filters):
+    def __init__(self, cur, filters: Filters, prefer: tuple[str, ...] = ("fed",)):
+        """`prefer`: the jurisdictions a bare law title resolves to first, in order. Federal law by default; a High
+        Court's judgment linker passes its own territory, then federal (docs/PRECEDENT-MODEL.md §4.1, D-128)."""
         self.cur = cur
         self.filters = filters
+        self.prefer = list(prefer)
         j = filters.jurisdictions
         if j is None and filters.territory:
             j = TERRITORY_JURISDICTIONS.get(filters.territory)
@@ -216,7 +219,7 @@ class Session:
         # before a territory's law of the same title (provincial codes reprint federal Acts under their titles:
         # Contract Act 1872, MFLO 1961); then reliance. A title that NAMES its province is that province's only, so
         # it never meets a federal twin; the caller adds same-title territorial copies as alternates (D-097).
-        prefer = ["fed"]
+        prefer = self.prefer
         self.cur.execute("""
             SELECT i.id::text, coalesce(nullif(i.display_title, ''), i.short_title),
                    coalesce(c.cited_by_laws, 0) AS rely

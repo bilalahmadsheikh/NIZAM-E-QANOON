@@ -33,7 +33,8 @@ COPY_LEN_MIN = 0.90     # and the shorter body is at least this share of the lon
 
 # ------------------------------------------------------------------------------------------- the case line
 
-_ITEM = r"(\d{1,6})(?:\s*[-–—]\s*([A-Za-z])(?![A-Za-z])|\(\s*([A-Za-z])\s*\)|\s([A-Z])(?![A-Za-z]))?"
+# a number and its registry suffix: '801-L', '2143-CB' (cancellation of bail), '4-RWP', '07(S)', '241 K' (D-128)
+_ITEM = r"(\d{1,6})(?:\s*[-–—]\s*([A-Za-z]{1,3})(?![A-Za-z])|\(\s*([A-Za-z])\s*\)|\s([A-Z])(?![A-Za-z]))?"
 # after the type's form: a form's unread tail ('Crl.P' + '.L.A.'), then 'No.' as printed ('No,', 'NO-', 'No»', 'N.')
 _LEAD = re.compile(r"[\s.:#(,]*(?:[a-z]{1,2}(?:s?\.\s*|\s+)){0,3}(?:nos?|numbers?|n)?[\s.:#,»\-]*" + _ITEM, re.I)
 # '/2015', 'of 2015', '-2015', '611-L 2018'; and '/15' (two digits only after a slash, as the SC registry writes)
@@ -78,6 +79,8 @@ def read_case_line(printed: str, forms: list[str], today: dt.date | None = None)
     if not m:
         return CaseLine(None, None, [], printed[pos:pos + 40])
     prev_digits, prev_suffix = m.group(1), m.group(2) or m.group(3) or m.group(4)
+    if int(prev_digits) == 0:
+        return CaseLine(None, None, [], printed[pos:pos + 40])     # 'No. 0 of 2005': no case is numbered 0
     lead = norm_number(prev_digits + (("-" + prev_suffix) if prev_suffix else ""))
     numbers: list[str] = []
     pos = m.end()
@@ -109,8 +112,46 @@ def read_case_line(printed: str, forms: list[str], today: dt.date | None = None)
         pos = n.end()
     if year is None or not (1947 <= year <= 2100):
         return CaseLine(lead, None, [], printed[:pos])
-    joined = [x for i, x in enumerate(numbers) if x != lead and x not in numbers[:i]]
+    joined = [x for i, x in enumerate(numbers) if x != lead and x not in numbers[:i] and not re.match(r"0+(-|$)", x)]
     return CaseLine(lead, year, joined, printed[:pos])
+
+
+# --------------------------------------------------------------------------- cases listed in the header
+
+# words just before a case line that make it another court's case or the case an application is made in
+_NOT_DECIDED_HERE = re.compile(r"(?i)\b(?:in|against|from|passed|of\s+the\s+learned|vide|arising\s+out\s+of|"
+                               r"impugned|decided\s+by|dated)\W*$")
+_BELOW = re.compile(r"(?i)\b(?:in|against|from|passed|impugned|vide|arising|decided\s+by|on\s+appeal)\b")
+
+
+def header_cases(header: str, forms_by_code: dict[str, list[str]], today: dt.date | None = None) -> list[tuple]:
+    """[(case type code, CaseLine)] for every case line printed in a judgment's header, in printed order (D-128).
+
+    A High Court prints the cases it decides together on separate lines ('Murder Reference No.290 of 2015 ...
+    Criminal Appeal No.1112-J of 2015'). A case line preceded by 'in', 'against', 'from', 'passed', 'vide' or
+    'impugned' is the court below's case, or the case an application is made in, and is not read."""
+    f, idx = _fold_map(header)
+    out = []
+    taken: set[int] = set()
+    forms = sorted(((form, code) for code, fs in forms_by_code.items() for form in fs), key=lambda x: -len(x[0]))
+    for form, code in forms:
+        for m in re.finditer(r"(?<![a-z0-9])" + re.escape(form) + r"(?= (?:nos? )?\d)", f):
+            raw_start = idx[m.start()]
+            if raw_start in taken or _NOT_DECIDED_HERE.search(header[max(0, raw_start - 40):raw_start]):
+                continue
+            # inside an open parenthesis, the clause that opened it decides: '(Against the judgment ... passed by the
+            # Lahore High Court in Criminal Appeal No.300-J/2013 and Murder Reference No.138/2011)'
+            opened, closed = header.rfind("(", 0, raw_start), header.rfind(")", 0, raw_start)
+            if opened > closed and _BELOW.search(header[opened:raw_start]):
+                continue
+            # 'Murder Reference', 'Capital Sentence Reference', 'Income Tax Reference': not this court's 'Reference'
+            if re.search(r"(?i)\b(?:murder|sentence|tax|customs?|jail)\s*$", header[max(0, raw_start - 12):raw_start]):
+                continue
+            line = read_case_line(header[raw_start:raw_start + 160], [form], today)
+            if line and line.lead and line.year:
+                taken.update(range(raw_start, raw_start + len(line.printed)))
+                out.append((raw_start, code, line))
+    return [(code, line) for _s, code, line in sorted(out, key=lambda x: x[0])]
 
 
 # ------------------------------------------------------------------------------------------- reasons for

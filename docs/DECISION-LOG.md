@@ -1136,6 +1136,154 @@ Area: client · Status: Superseded by D-084 (the whole-page cloth; the hem, the 
   design/heritage_art.dart, presentation/discover.dart, presentation/heritage.dart; test/heritage_test.dart
   (golden embroidery.png, a review sheet at 3x).
 
+### D-130 · 2026-11-23 · Peshawar High Court lands; a text layer must be readable (J9); a register lists all that is not added
+Area: owner ruling, L1 parser, schema, linking, process (docs/PRECEDENT-MODEL.md §7 step 6) · Status: standing
+- Decision: the owner asked for the Peshawar High Court "end to end fully", and for everything not added (laws and
+  judgments, scans and the rest) to be written down for later.
+  - **Only the court's own folder is read.** `judgments_peshawar_high_court.zip` also carries the whole SC archive,
+    the SECP and FBR law files and GB codes. `nizam.workers.judgments --member-prefix
+    judgments_peshawar_high_court/` reads only that folder, and only a manifest inside it. Another set is never
+    recorded as this court's, and another set's URL is never attached to this court's file.
+  - **0126, case types, as observed.** 25 types read from the case lines of the court's headers, with every
+    printed spelling seen (the bail application alone prints as "Cr.Misc.BA", "Cr.M(BA)", "Cr.MBA", "BA", "Bail
+    Petition" and more). A name the court never prints is not invented: "F.A.B." (banking appeals) keeps its
+    printed name, and "COC" is contempt. **0127:** the court's name as its own templates type it ("PESHAWAR HIGH
+    OURT", "PESHAWARHIGH COURT", letter-spaced). OCR garble is not made an alias.
+  - **The parser, `nizam.judgment/5`:**
+    - **Gate J9, a readable text layer.** Many Peshawar files are scans carrying the court's own rough OCR ("IN
+      TIIE PESIIAWAR IIIGII COUITT"). Such text is not released as citable. A file whose words (three letters or
+      more, at least 200 counted) are less than 90% known goes to the OCR lane with its score. "Known" means found
+      in a word list built from the typed text of released SC judgments (`tools/build_judgment_vocab.py`, words in
+      at least 3 judgments, 22,956 words; versioned with the parser). The check runs before the court or heading is
+      looked for. Measured on full text before the threshold was set: every clean Lahore file scores 0.94 or more,
+      and about one Peshawar file in ten falls below, some to 0.35. Of the judgments already released (SC and
+      LHC), one falls below; it stays released and is listed for an OCR re-read.
+    - Peshawar's decision date: "Announced. 14.11.2017", "Announced: 13.10.2020", "ANNOUNCED. Dated: 22/07/2015",
+      "Announced. Dt: 18.5.2016". Undated Peshawar judgments fell from 79% to 27% with this alone. The same form
+      dates about 1% more of a Lahore sample, so Lahore is not re-read.
+    - Peshawar's order-sheet column header, "Order or other Proceedings with Signature of Judge(s)".
+    - A reprint whose series letters are spaced ("P L D 2011 Peshawar 120") is caught (D-120).
+  - **Links:** a Peshawar judgment's bare title resolves to KP law first, then federal law, in KP's served
+    text (D-128's territory rule).
+  - **The register** (`tools/pending_register.py` → `docs/PENDING-REGISTER.md`, `docs/pending/laws.csv`,
+    `docs/pending/judgments.csv`) is generated from the database and the staging lists, never edited by hand,
+    and rerun after any landing. A staging row whose file has since landed is dropped by its sha256.
+- Result, Peshawar High Court (5,713 files in the court's folder, 5,704 distinct):
+
+  | Outcome | Files |
+  |---|---:|
+  | Released | 2,593 |
+  | of which dated ("Announced", "decided on", date of order) | 1,900 |
+  | of which undated (D-124) | 693 |
+  | To OCR: no text layer | 1,598 |
+  | To OCR: text layer not readable (J9) | 193 |
+  | To OCR: too thin, or Urdu | 27 |
+  | Law-report reprints, not landed (D-120) | 653 |
+  | Held: court not printed or garbled (298), no heading (200), no case line (141) | 639 |
+  | Duplicate | 1 |
+
+  A sample of 30 dated readings was read against their printed phrase: every date was the one printed. No dated
+  Peshawar judgment has a hearing after its decision.
+- Why: the owner asked for Peshawar end to end. A garbled text layer released as citable text would put misread
+  section numbers and names into links and answers. Sending it to OCR is the honest route (INV-1). The register
+  turns "what is left" into a list that can be worked down.
+- Where: infra/postgres/migrations/0126_phc_case_types.sql, 0127_phc_court_aliases.sql; nizam/corpus/judgment.py,
+  nizam/corpus/data/judgment_vocab.txt; nizam/workers/judgments.py; tools/build_judgment_vocab.py,
+  tools/pending_register.py; docs/PENDING-REGISTER.md, docs/pending/; tests/test_judgment_parse.py.
+
+### D-129 · 2026-11-23 · L3's measured figures stand under D-126; custom plans cost no measurable latency
+Area: L3 evaluation (docs/RETRIEVAL-STATE-2026-11-21.md) · Status: standing
+- Decision: the open question D-126 raised, whether L3's figures were taken under generic plans, is closed. No
+  figure changes.
+  - **Measured on dev** (golden split v1, 276 answerable cases; `evals/lexical_benchmark.py` through a wrapper that
+    restores the old connection options). BM25, fused lexical and hybrid were run under both plan modes. All 276 result
+    lists are identical in every arm, so recall, MRR and NDCG agree to every digit:
+
+    | Arm | recall@10 | recall@50 | NDCG@10 |
+    |---|---:|---:|---:|
+    | BM25 | .248 | .393 | .165 |
+    | Fused lexical (D-097) | .438 | .607 | .296 |
+    | Hybrid (D-098) | .620 | .768 | .450 |
+
+    Hybrid recall@50 is .768 against .765 on 21 Nov. The difference comes from laws added since (D-113, D-115), not
+    from plans. Test was not run (it is scored once per decision, and nothing here is a decision about retrieval).
+  - **Latency,** hybrid on an idle machine, three runs: custom 1,083 ms p50 (1,429 p95), generic allowed 1,050 ms
+    (1,298), custom again 914 ms (1,200). Two runs of the same setting differ by more than the two settings do, so
+    custom plans have no measurable cost. A first run that appeared ~500 ms slower overlapped a Lahore dry run on the
+    same machine, and is discarded.
+- Why: the retrieval path's pg_search body windows evidently did not hit the generic-plan fault that the
+  title lookup did. The fix (D-126) stays, because the title lookup is on the same connections.
+- Where: evals/results/dev-plans-{auto,custom}-2026-11-23.json, dev-latency-{custom,auto,custom2}-2026-11-23.json.
+
+### D-128 · 2026-11-23 · The Lahore High Court lands: its case types, its two layouts, its territory for links
+Area: owner ruling, L1 parser, schema, linking (docs/PRECEDENT-MODEL.md §7 step 6) · Status: standing
+- Decision: the owner asked to start with the Lahore High Court. Its archive is ingested by the Supreme Court
+  pipeline, with these additions.
+  - **0124, case types and names, as observed.** 31 case types with their printed forms, read from the case lines
+    of 4,299 headers in `lahore_HC_judgements.zip`. A full name the headers do not print is taken from the
+    archive's own category label: PTR is "P. for Tax Reference"; C.O. is "Civil Original (Commercial)"; Crl. Org.
+    is "Criminal Original", contempt. Two printed forms of the court's name are observed aliases: letter-spaced
+    (15 headers) and "LAHORE HIGH C OURT" (2).
+  - **0125:** a case number's registry suffix may be up to three letters ('2143-CB', cancellation of bail;
+    '4-RWP'). Before, two different cases could share one key.
+  - **The parser, `nizam.judgment/4`.** Readings already released stay as they were read.
+    - "ORDER SHEET" and "JUDGMENT SHEET" are form titles, not opinion headings.
+    - **Order sheet** (form HCJD/C-121): the order begins at the first line opening with a date, within 25
+      lines of the column header "Order with signatures of Judge … where necessary". Lines before it (case line,
+      parties, column labels) are header. Its decision date is that **date of order**. A sheet that opens another
+      proceeding with a different date (a date line followed by an appearance line) holds several orders, and is
+      released undated with that reason.
+    - **Judgment sheet:** the hearing date, the counsel list and sometimes the case line are printed between the
+      JUDGMENT heading and the author line. They are header.
+    - The author line may omit its comma ("Raheel Kamran J:-", "AHMAD NADEEM ARSHAD-J,").
+    - Decision dates also read: "Signed on 25.02.2025" (signed_at); "pronounced on 13.03.2023" (announced);
+      "decided on 12th March, 2015" in the header (date_of_decision).
+    - A case line opening "Case No." or an enumerator ("1. Crl. Appeal No.646 of 2013") is read. The bench printed
+      in the header is the seat (Multan, Bahawalpur, Rawalpindi).
+    - **A lone "Judge" line** closes an opinion only near the end of the text, or when what follows reads as a
+      closing or a new opinion. Narrow order-sheet columns wrap "the learned Civil / Judge / Sahiwal", and the rest
+      of the order had gone into the closing, out of the searchable body.
+    - A law-report reprint that opens with its series ("PLJ 2020 Lahore 555 (DB)") is caught (D-120).
+  - **Cases decided together, from the header** (`nizam.judgment_cases/2`, both courts). A High Court prints each
+    case it decides on its own line ("Murder Reference No.290 of 2015 … Criminal Appeal No.1112-J of 2015"), and
+    752 of 3,996 Lahore headers list more than one. Every case line of the court's own types in the header becomes
+    a `joined` case of the judgment, with its own type and year. A case line is not read when it is the case below
+    or the case an application is made in. That means it is preceded by "in", "against", "from", "passed", "vide"
+    or "impugned", or it sits in a parenthesis opened by such words ("(Against the judgment … passed by the Lahore
+    High Court in Criminal Appeal No.300-J/2013 and Murder Reference No.138/2011)"), or its form is part of another
+    name ("Murder Reference"). Read: a sample of 25 Lahore and 30 Supreme Court header joins, after the
+    parenthesis rule, all cases decided in that judgment. The first SC sample had shown the two lower-court
+    patterns now refused.
+  - **Links in the court's territory** (`nizam.judgment_links/3`, PRECEDENT-MODEL §4.1). A bare title in a
+    Lahore judgment resolves to Punjab's law first, then federal law, and the version linked is the one served in
+    Punjab on the decision date (`nzq.territory`). Supreme Court judgments are unchanged: federal first, no
+    territory. `unit_search.Session` takes the preference order, and its default stays federal, so retrieval is
+    unchanged.
+- Result, Lahore High Court archive (4,557 files, 4,550 distinct):
+
+  | Outcome | Files |
+  |---|---:|
+  | Released | 3,996 |
+  | of which dated | 1,478 |
+  | of which undated (D-124): a hearing date and nothing else printed | 2,518 |
+  | Held: no heading and no court printed (2013 order sheets), or not this court (the Service Tribunal) | 199 |
+  | Held: J3, no case line read | 40 |
+  | Law-report reprints, not landed (D-120) | 197 |
+  | Waiting for OCR (D-114) | 117 |
+  | Duplicate | 1 |
+
+  - Most Lahore judgment sheets leave "Announced in open Court on ______" blank and print only the date of
+    hearing. They are released undated, never dated from the hearing or the folder year.
+  - The archive's file timestamps are all September 2026 (the download), so an undated Lahore judgment is bounded
+    by its hearing date below and September 2026 above. That is wide, but true. A portal recrawl with the court's
+    own decision dates would narrow it.
+  - A sample of 30 dated readings was read against their printed phrase, and every date was the one printed.
+- Why: the Lahore High Court is Punjab's highest court and the court most of the corpus's users answer to (Art.
+  201, recorded). Every rule above is read from the court's own pages, and nothing is dated by a guess (INV-1).
+- Where: infra/postgres/migrations/0124_lhc_case_types.sql, 0125_case_number_suffix.sql; nizam/corpus/judgment.py;
+  nizam/corpus/judgment_case.py; nizam/storage/unit_search.py; nizam/workers/judgment_links.py;
+  tests/test_judgment_{parse,case}.py.
+
 ### D-127 · 2026-11-23 · A citation that names only a kind of law, or a law of another year, is not resolved by a guess
 Area: L2 citation resolver (shared by L3 and the judgment linker), linking · Status: standing
 - Decision: `nizam.storage.citations.resolve` refuses two guesses. Both used to resolve, because the title search
@@ -3201,10 +3349,6 @@ Area: L1 corpus · Status: standing (closes two of the D-080 "what remains" item
 
 These were found and deliberately left open. Each will become an entry when it is decided.
 
-- **Were L3's measured figures taken under generic plans? (found 23 Nov 2026, D-126).** Long-lived sessions (the eval
-  harnesses, the API pools) ran pg_search queries more than five times per connection, so some BM25 windows and
-  citation lookups may have run under a generic plan, inexact or erroring. Recommendation: re-run the dev measures
-  (D-097 lexical and citations, D-098 hybrid) under D-126 and compare; test figures stay as scored once.
 - **Fusion with the 8B space (D-099)** — decided for the GPU profile by D-101: its reranker reads citations then
   dense, without the BM25 windows. The CPU profile keeps the hybrid.
 - **ADR-1d for the 8B space (D-112: not measured, low risk).** Dense-only, its sign bits cost nothing (bits4096 r50
