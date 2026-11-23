@@ -2,6 +2,7 @@
 
     GET /v1/precedent/search?q=&as_of=&court=&forum=&forum_territory=&limit=
     GET /v1/precedent/judgments/{judgment_id}?as_of=
+    GET /v1/precedent/cases/{court}/{case_type}/{number}/{year}?as_of=   one case and every decision in it (D-125)
     GET /v1/law/provisions/{provision_id}/judgments?as_of=&limit=      'cases on this section'
     GET /v1/precedent/authority?deciding=&receiving=&receiving_territory=&as_of=
     GET /v1/precedent/coverage
@@ -16,10 +17,11 @@ from datetime import date
 from typing import Literal
 from uuid import UUID
 
-from fastapi import HTTPException, Query
+from fastapi import HTTPException, Path, Query
 
 from nizam.retrieval import precedent as P
 from nizam.storage import authority as A
+from nizam.storage.case_key import case_key
 
 COURTS = Literal['', 'FCC', 'SC', 'FSC', 'LHC', 'SHC', 'PHC', 'BHC', 'IHC']
 TERRITORIES = Literal['', 'punjab', 'sindh', 'kp', 'balochistan', 'ict', 'ajk', 'gb']
@@ -54,6 +56,18 @@ def register(app, repo, resolved) -> None:
         out = repo.judgment(judgment_id, as_of=day)
         if out is None:
             raise HTTPException(404, 'No released judgment with this id was decided on or before this date.')
+        return dict(out, as_of=day)
+
+    @app.get('/v1/precedent/cases/{court}/{case_type}/{number}/{year}')
+    def case(court: COURTS, case_type: str = Path(..., pattern=r'^[A-Z]{1,12}$'),
+             number: str = Path(..., pattern=r'^[0-9]{1,6}(-[A-Za-z])?$'), year: int = Path(..., ge=1947, le=2100),
+             as_of: date | None = None):
+        day = resolved(as_of)
+        if not court:
+            raise HTTPException(422, 'Name the court.')
+        out = repo.case(case_key(court, f'{court}:{case_type}', number, year), as_of=day)
+        if out is None:
+            raise HTTPException(404, 'No case with this number is held with a decision on or before this date.')
         return dict(out, as_of=day)
 
     @app.get('/v1/law/provisions/{provision_id}/judgments')

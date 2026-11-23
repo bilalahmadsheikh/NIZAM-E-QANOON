@@ -1136,6 +1136,153 @@ Area: client · Status: Superseded by D-084 (the whole-page cloth; the hem, the 
   design/heritage_art.dart, presentation/discover.dart, presentation/heritage.dart; test/heritage_test.dart
   (golden embroidery.png, a review sheet at 3x).
 
+### D-127 · 2026-11-23 · A citation that names only a kind of law, or a law of another year, is not resolved by a guess
+Area: L2 citation resolver (shared by L3 and the judgment linker), linking · Status: standing
+- Decision: `nizam.storage.citations.resolve` refuses two guesses. Both used to resolve, because the title search
+  returned whatever matched and the most relied-on law won.
+  - **A kind word is not a name.** "Section 4 of the Act.", "the Act, 2013", "the Amending Act" and "the said
+    Ordinance of 1979" name no law. They are left unresolved, "no law named … not guessed", and the linker records
+    `no_law_named`. Before this, 722 citations of "the Act." went to the Trusts Act 1882, "section 14 of the Act,
+    1940" to the Arbitration Act 1940, and "section 24 of the Act, 2013" to the Trade Organizations Act 2013.
+  - **A printed year must agree.** When the name carries a year and the law's title prints one, the two must be
+    equal. "Family Courts Act of 1964" no longer resolves to the AJK Family Courts Act 1993. "Representation of the
+    People Act, 1976" (264 citations; not held) no longer reaches the 1957 Act, "Sindh Civil Servants Act, 1973"
+    (not held under that title) no longer reaches the Housing Foundation Act 2005, and "Evidence Act, 1872" no
+    longer reaches the Indian Museum Act 1887.
+  - A title that prints no year is still accepted ("Pakistan Penal Code, 1860" → the Pakistan Penal Code). The
+    reprint fallback, which drops the year, keeps the same year rule.
+- Result, the SC judgments relinked under D-126 and D-127 (`nizam.judgment_links/2`, 53,091 statute citations):
+
+  | | 22 Nov (/1, generic plans) | 23 Nov, custom plans | 23 Nov, + D-127 |
+  |---|---:|---:|---:|
+  | Resolved | 41,960 | 38,853 | 36,034 |
+  | Law not held | — | 6,647 | 7,457 |
+  | No law named | — | 2,437 | 6,554 |
+  | Unit not found | — | 5,154 | 3,046 |
+
+  The 22 Nov figure included links that resolved only because the title filter did not filter (D-126), and the
+  guesses above. A random sample of 40 resolved links read 40 correct. Relinking 207 judgments in reverse order
+  now changes none of them. The golden citation check is unchanged: 581 queries, 580 correct, 0 wrong.
+  - Misses that remain and are honest:
+    - practitioner abbreviations with no recorded alias (NAB Ordinance, STA 1973, ITO 2001, ROPA, NRO, COCA,
+      CSA). Aliases grow only from evidence a person reads (PRECEDENT-MODEL §4.1);
+    - spellings the title search does not join ("Sindh Rented Premises Ordinance, 1979" against the held "Sind";
+      "Qanoon-e-Shahadat" against "Qanun-e-Shahadat").
+
+    Both are an alias slice, not a guess.
+- Why: a citation linked to the wrong law is worse than one left unresolved (docs/04 R0, INV-1). Through "cases on
+  this section" it puts a judgment under a provision it never read.
+- Where: nizam/storage/citations.py (`_KIND_ONLY`, `_YEAR`); nizam/workers/judgment_links.py; tests/
+  test_citation_guesses.py. A26's resolved figure is now 36,034 of 53,091.
+
+### D-126 · 2026-11-23 · Every connection plans each statement for its own parameters (pg_search is not exact under a generic plan)
+Area: L2 storage, linking, L3 (nizam/storage/db.py) · Status: standing
+- Decision: `dsn()` sets `plan_cache_mode = force_custom_plan` on every connection the package opens: workers,
+  readers, retrieval and the API pools.
+  - **Found** relinking the judgments for D-125. The statute links resolved 41,940, against 41,960 the day before,
+    with no change to the linker's statute code. Relinking 207 judgments in reverse order changed 4 of them.
+  - **Cause:** psycopg prepares a statement on the server after five executions, and Postgres may then reuse a
+    generic plan. Under a generic plan, pg_search 0.25.6's operators are not exact:
+    - the match-all title search (`&&&`) stopped filtering. In the linker's own order, from the 26th judgment,
+      "Pakistan Penal Code" put the Constitution first, so every s.302 PPC citation of that run (952) went
+      unresolved;
+    - "Section 4 of the Act. Finally" was linked to Article 4 of the Constitution;
+    - run directly, the same query failed with `unrecognized node type`.
+
+    The resolver caches each (law, label) for a run, so one bad lookup spread to every later citation of that
+    section, and which lookup went bad depended on the order.
+  - **Measured** (302 printed law names, three passes in one transaction):
+
+    | Parallel workers | Plan cache | Result |
+    |---|---|---|
+    | 2 | auto | error (`unrecognized node type`) |
+    | 0 | auto | error (`unrecognized node type`) |
+    | 2 | force custom | 0 titles unstable; "Act. Finally" matches nothing |
+    | 0 | force custom | 0 titles unstable; "Act. Finally" matches nothing |
+
+    A first reading blamed parallel workers, and a serial wrapper was tried. The table shows parallelism is
+    irrelevant: the serial run still lost s.302 PPC. The wrapper was removed.
+  - **Checks:** a test makes many varied title lookups on one connection, then asserts "Act. Finally" matches
+    nothing and s.302 PPC resolves to the Pakistan Penal Code. The judgments were relinked under the fix.
+- Why: a citation resolved to the wrong law is the worst failure the citation path has (docs/04 R0). Planning each
+  statement costs well under a millisecond here. The same operators carry L3's BM25 windows and citation fast path,
+  so the fix belongs on the connection, not in one caller.
+- Where: nizam/storage/db.py (`dsn`); tests/test_judgment_db.py. The corpus browser and the MCP database server
+  (tools/) open their own connections and are not covered.
+
+### D-125 · 2026-11-23 · One record per case: a short order and its reasons are joined by their case, not merged
+Area: owner ruling, schema, L1 builder, linking, serving (docs/PRECEDENT-MODEL.md §3.3) · Status: standing
+- Decision: the owner asked for item 1, "one record per case", to be built fully end to end. It corrects §3.3, which
+  had a short order and its detailed reasons as "one judgment with two opinions".
+  - **Kept:** one judgment per file read (D-118). A short order and its reasons stay two judgments, each with its
+    own printed date. Merging them would move one file's paragraphs under the other's date partition, give the
+    citations a date that is not theirs, and retire readings that are correct.
+  - **What joins them is the case (0123):**
+    - `judicial_case` is keyed `<court>/<type>/<number>/<year>` from the printed case line (`SC/CA/1507/2024`; no
+      leading zeros). The key is built from words, never a row id, so rebuilding never breaks a stored reference
+      (the INV-4 rule, read for cases).
+    - `judgment_case`: the lead case, and the cases of the same type and year printed beside it ('Nos. 545 to 550
+      of 2015'; ranges up to 500 are expanded, a wider one keeps its ends). A number of another type in the line
+      ('and CMA No. 2382') is an application in the case, not another case.
+  - **The case line is read by its own grammar** (`nizam/corpus/judgment_case.py`). It reads the lead number after
+    the type's printed form, and the year that closes the list. The header parser's `case_number` and `case_year`
+    differ for 44 judgments. I read all 44 and the grammar was right each time ('CMA No.1652/2013 in SMC No.16 of
+    2011' is CMA 1652 of 2013, not 2011). The case line is the record, and the difference is kept
+    (`header_differs`). A line with no number ('No. Nil') or no year closing it is not placed in a case, and its
+    state row says which.
+  - **Reasons for a short order** (`judgment_relation` `reasons_for`):
+    - the court's own statement, read in the first three and last four body paragraphs: "the above are the
+      reasons for our short order dated 22.4.2024", "… of even date", "… announced by us on 31.05.2013";
+    - the short order's date is recorded with its basis (printed, even date, earlier in the paragraph, not
+      printed);
+    - a statement inside a quotation (the court quoting an earlier order) is not read;
+    - the short order is linked only when the case holds exactly one other judgment decided that day, and that
+      judgment's own record marks it as a short order: an opinion headed SHORT ORDER, or "for reasons to be
+      recorded later".
+  - **Copies** (`copy_of`): two judgments of one case whose bodies overlap at 0.90 or more (word 5-gram Jaccard), on
+    the same day when both are dated. The longer body is kept. `v_shown_judgment` leaves the copy out of lists and
+    search; opened directly, it names the copy kept.
+  - **Case citations resolve to the case** (`nizam.judgment_links/2`): "Civil Appeal No. 984 of 2018" resolves
+    when the case is held, however many decisions it has. `dst_judgment_id` is set only when the case holds one,
+    and a judgment citing its own case is `own_case`. Under /1 a case with several orders was 'ambiguous', and a
+    number was matched only through the header parser's fields.
+  - **Readers:**
+    - the judgment page carries `case`: the cases decided, the other decisions with dates as shown (D-124), the
+      reasons statement both ways, and copies;
+    - `GET /v1/precedent/cases/{court}/{type}/{number}/{year}` serves one case's decisions on or before `as_of`,
+      and the judgments citing it;
+    - precedent hits carry `case_key`, `gives_reasons` and `short_order_on`; coverage counts cases.
+  - **Audit A28:** the tables are exactly the release under one builder, and relations stay inside their case and
+    rule.
+- Result, SC (rebuilt from the 3,105 released judgments):
+
+  | | Count |
+  |---|---:|
+  | Judgments placed in a case | 3,031 |
+  | Not placed: no number printed / no year read | 10 / 64 |
+  | Cases (with those decided together) | 6,935 |
+  | Joined-case memberships | 4,316 |
+  | Reasons statements | 326 |
+  | of which the short order held and linked | 18 |
+  | of which dated by print / even date / the paragraph / not printed | 100 / 155 / 15 / 56 |
+  | Second copies | 1 |
+  | Header readings that differ (case line kept) | 44 |
+
+  Precision, author-read: a first sample of 40 reasons statements read 38 correct. The faults were a quotation and
+  "of today", and both are fixed. A fresh sample of 40 after the fixes read 40 correct, and all 18 linked short
+  orders are short orders by their own words. The copy threshold sits in a gap: one pair scores 0.999 and the next
+  0.52.
+- Why:
+  - The case is what lawyers cite and what later layers resolve to: the citator (§4.2), lineage (§3.5), and "this
+    case's other orders".
+  - Keying it by printed words keeps every stored reference stable across rebuilds.
+  - Two dated files stay two dated facts (INV-1). A short order's printed date is the decision announced, and the
+    reasons' own date is when they were given.
+- Where: infra/postgres/migrations/0123_judicial_case.sql; nizam/storage/case_key.py; nizam/corpus/judgment_case.py;
+  nizam/workers/{judgment_cases,judgment_links}.py; nizam/storage/judgment_read.py; nizam/retrieval/precedent.py;
+  nizam/api/precedent.py; tests/test_judgment_{case,db}.py; tools/audit/criteria.sql (A28); docs/SCHEMA.md,
+  docs/CORPUS-CRITERIA.md.
+
 ### D-124 · 2026-11-23 · A judgment with no usable decision date is released marked undated, never dated by a guess
 Area: owner ruling, schema, L1 parser, linking, serving (docs/PRECEDENT-MODEL.md §3) · Status: standing
 - Decision: the owner ruled "release the undated marked as undated". It supersedes D-118's J1 hold.
@@ -3054,6 +3201,10 @@ Area: L1 corpus · Status: standing (closes two of the D-080 "what remains" item
 
 These were found and deliberately left open. Each will become an entry when it is decided.
 
+- **Were L3's measured figures taken under generic plans? (found 23 Nov 2026, D-126).** Long-lived sessions (the eval
+  harnesses, the API pools) ran pg_search queries more than five times per connection, so some BM25 windows and
+  citation lookups may have run under a generic plan, inexact or erroring. Recommendation: re-run the dev measures
+  (D-097 lexical and citations, D-098 hybrid) under D-126 and compare; test figures stay as scored once.
 - **Fusion with the 8B space (D-099)** — decided for the GPU profile by D-101: its reranker reads citations then
   dense, without the BM25 windows. The CPU profile keeps the hybrid.
 - **ADR-1d for the 8B space (D-112: not measured, low risk).** Dense-only, its sign bits cost nothing (bits4096 r50

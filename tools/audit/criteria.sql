@@ -800,6 +800,50 @@ m AS (
     ,(SELECT count(DISTINCT chunker) FROM judgment_chunk)                                              AS jc_chunkers
     ,(SELECT count(*) FROM judgment_chunk)                                                             AS jc_chunks
 -- <<< A27 measures
+-- >>> A28 measures: the case records (0123, D-125) are exactly the release under one builder: every released
+--     judgment read once, a lead case exactly when it was placed in one, relations only within a case, and every
+--     case citation pointing at a held case
+    ,(SELECT count(*) FROM v_release_judgment j WHERE NOT EXISTS (
+        SELECT 1 FROM judgment_case_state s WHERE s.judgment_id = j.id AND s.decided_on = j.decided_on))  AS jk_unread
+    ,(SELECT count(*) FROM (SELECT judgment_id, decided_on FROM judgment_case_state
+                            UNION SELECT judgment_id, decided_on FROM judgment_case
+                            UNION SELECT judgment_id, decided_on FROM judgment_relation
+                            UNION SELECT other_judgment_id, other_decided_on FROM judgment_relation
+                             WHERE other_judgment_id IS NOT NULL
+                            EXCEPT SELECT id, decided_on FROM v_release_judgment) x)                   AS jk_outside
+    ,(SELECT count(*) FROM judgment_case_state s
+       WHERE (s.outcome = 'grouped') <> EXISTS (SELECT 1 FROM judgment_case c WHERE c.judgment_id = s.judgment_id
+                                                  AND c.decided_on = s.decided_on AND c.role = 'lead'))
+     + (SELECT count(*) FROM judicial_case k WHERE NOT EXISTS (
+          SELECT 1 FROM judgment_case c WHERE c.case_key = k.case_key))                              AS jk_lead_bad
+    ,(SELECT count(*) FROM judgment_relation r
+       WHERE NOT EXISTS (SELECT 1 FROM judgment_case c WHERE c.judgment_id = r.judgment_id
+                           AND c.decided_on = r.decided_on AND c.case_key = r.case_key)
+          OR (r.other_judgment_id IS NOT NULL AND NOT EXISTS (
+                SELECT 1 FROM judgment_case c WHERE c.judgment_id = r.other_judgment_id
+                   AND c.decided_on = r.other_decided_on AND c.case_key = r.case_key))
+          OR (r.relation = 'reasons_for' AND r.short_order_on > r.decided_on AND EXISTS (
+                SELECT 1 FROM judgment j WHERE j.id = r.judgment_id AND j.decided_on = r.decided_on
+                   AND j.decided_on_basis <> 'undated'))
+          OR (r.relation = 'copy_of' AND EXISTS (
+                SELECT 1 FROM judgment_relation x WHERE x.judgment_id = r.other_judgment_id
+                   AND x.decided_on = r.other_decided_on AND x.relation = 'copy_of'))
+          OR (r.relation = 'copy_of' AND r.decided_on <> r.other_decided_on AND NOT EXISTS (
+                SELECT 1 FROM judgment j WHERE j.id IN (r.judgment_id, r.other_judgment_id)
+                   AND j.decided_on_basis = 'undated')))                                               AS jk_rel_bad
+    ,(SELECT count(*) FROM judgment_case_reference r WHERE r.dst_case_key IS NOT NULL
+         AND NOT EXISTS (SELECT 1 FROM judicial_case k WHERE k.case_key = r.dst_case_key))           AS jk_ref_dangling
+    ,(SELECT count(*) FROM (SELECT builder FROM judicial_case UNION SELECT builder FROM judgment_case
+                            UNION SELECT builder FROM judgment_case_state
+                            UNION SELECT builder FROM judgment_relation) b)                            AS jk_builders
+    ,(SELECT count(*) FROM judicial_case)                                                              AS jk_cases
+    ,(SELECT count(*) FROM judgment_case_state WHERE outcome <> 'grouped')                             AS jk_ungrouped
+    ,(SELECT count(*) FROM judgment_case_state WHERE header_differs)                                   AS jk_header_differs
+    ,(SELECT count(*) FROM judgment_relation WHERE relation = 'reasons_for')                           AS jk_reasons
+    ,(SELECT count(*) FROM judgment_relation WHERE relation = 'copy_of')                               AS jk_copies
+    ,(SELECT count(*) FROM judgment_case_reference WHERE dst_case_key IS NOT NULL
+                                                     AND resolution = 'resolved')                      AS jk_refs_resolved
+-- <<< A28 measures
 )
 SELECT * FROM (
   SELECT 'C1' AS id, 'every acquired file becomes a blob'      AS criterion,
@@ -1021,6 +1065,15 @@ SELECT * FROM (
          ||jc_foreign||' not of the active CPU generation; '||jc_chunkers||' chunker(s)',
          '0 / 0 / 0; one chunker',
          CASE WHEN jc_outside=0 AND jc_missing=0 AND jc_foreign=0 AND jc_chunkers<=1 THEN 'PASS' ELSE 'FAIL' END FROM m
+  UNION ALL SELECT 'A28','case records are exactly the release under one builder',
+         jk_cases||' cases, '||jk_ungrouped||' judgments not placed, '||jk_header_differs||' header readings differing, '
+         ||jk_reasons||' reasons statements, '||jk_copies||' copies, '||jk_refs_resolved||' case citations resolved '
+         ||'(reported); '||jk_unread||' judgments unread; '||jk_outside||' rows outside the release; '||jk_lead_bad
+         ||' lead or case rows wrong; '||jk_rel_bad||' relations outside their case or rule; '||jk_ref_dangling
+         ||' citations to no case; '||jk_builders||' builder(s)',
+         '0 / 0 / 0 / 0 / 0; one builder',
+         CASE WHEN jk_unread=0 AND jk_outside=0 AND jk_lead_bad=0 AND jk_rel_bad=0 AND jk_ref_dangling=0
+                   AND jk_builders<=1 THEN 'PASS' ELSE 'FAIL' END FROM m
   UNION ALL SELECT 'A6','no overlapping law (enforced, not tested)',
          CASE WHEN excl_present=1 THEN 'EXCLUDE constraint present'
               ELSE 'CONSTRAINT MISSING' END, 'enforced',

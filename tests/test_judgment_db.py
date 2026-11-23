@@ -174,3 +174,148 @@ def test_the_routes_serve_search_a_judgment_and_cases_on_a_section(repo, monkeyp
         a = client.get("/v1/precedent/authority", params={"deciding": "SC", "receiving": "FCC",
                                                            "as_of": "2026-11-22"})
         assert a.json()["result"]["status"] == "not_binding"
+
+
+# ----------------------------------------------------------------------------------------------- cases (0123)
+
+def _cases_built(cur):
+    cur.execute("SELECT to_regclass('judicial_case'), (SELECT count(*) FROM judgment_case_state)")
+    reg, n = cur.fetchone()
+    if reg is None or not n:
+        pytest.skip("case records not built (nizam.workers.judgment_cases)")
+
+
+def test_a_case_key_is_the_case_as_printed_and_a_relation_keeps_its_rule(cur):
+    _cases_built(cur)
+    for key, number in (("SC/CA/05/2012", "05"), ("SC/CA/7/2012", "5"), ("SC/CP/5/2012", "5")):
+        _raises(cur, """INSERT INTO judicial_case (case_key, court_code, case_type_code, case_number, case_year,
+                                                   builder) VALUES (%s, 'SC', 'SC:CA', %s, 2012, 'test')""",
+                (key, number), match="judicial_case")
+    cur.execute("""SELECT judgment_id, decided_on, case_key FROM judgment_case WHERE role = 'lead' LIMIT 1""")
+    jid, day, key = cur.fetchone()
+    # a copy names the copy kept; a reasons row with no printed date cannot carry one
+    _raises(cur, """INSERT INTO judgment_relation (judgment_id, decided_on, relation, case_key, printed, builder)
+                    VALUES (%s, %s, 'copy_of', %s, 'x', 'test')""", (jid, day, key), match="ck_relation_copy")
+    _raises(cur, """INSERT INTO judgment_relation (judgment_id, decided_on, relation, case_key, short_order_on,
+                                                   date_basis, printed, builder)
+                    VALUES (%s, %s, 'reasons_for', %s, '2020-01-01', 'not_printed', 'x', 'test')""",
+            (jid, day, key), match="ck_relation_reasons")
+
+
+def test_every_released_judgment_is_read_for_its_case_and_placed_only_on_a_printed_number(cur):
+    _cases_built(cur)
+    cur.execute("""SELECT count(*) FROM v_release_judgment j WHERE NOT EXISTS (
+                     SELECT 1 FROM judgment_case_state s WHERE s.judgment_id = j.id AND s.decided_on = j.decided_on)""")
+    assert cur.fetchone()[0] == 0
+    # a 'No. Nil' petition is not placed in a case; the header parser's '2016' is not a case number
+    cur.execute("""SELECT s.outcome FROM judgment_case_state s JOIN judgment j ON j.id = s.judgment_id
+                                                                      AND j.decided_on = s.decided_on
+                    WHERE j.case_no_printed ~* '^CONST[.]? PETITION NO[.]? ?NIL'""")
+    assert {r[0] for r in cur.fetchall()} <= {"no_number_read"}
+
+
+@pytest.fixture()
+def case_repo():
+    """A reader of its own: a route test's app closes the module's reader when it shuts down."""
+    try:
+        from nizam.storage.judgment_read import JudgmentRead
+        r = JudgmentRead()
+        r.open()
+    except Exception as exc:                                    # noqa: BLE001
+        pytest.skip(f"corpus not reachable: {type(exc).__name__}")
+    with r.transaction() as conn:
+        if conn.execute("SELECT to_regclass('judicial_case') AS t").fetchone()["t"] is None:
+            pytest.skip("migration 0123 not applied")
+    yield r
+    r.close()
+
+
+def test_a_short_order_and_its_detailed_reasons_are_one_case_seen_from_either_side(case_repo):
+    repo = case_repo
+    with repo.transaction() as conn:
+        row = conn.execute("""SELECT judgment_id, other_judgment_id, short_order_on, case_key FROM judgment_relation
+                               WHERE relation = 'reasons_for' AND other_judgment_id IS NOT NULL LIMIT 1""").fetchone()
+    if not row:
+        pytest.skip("no short order held beside its reasons")
+    reasons = repo.judgment(row["judgment_id"], TODAY)["case"]
+    order = repo.judgment(row["other_judgment_id"], TODAY)["case"]
+    assert reasons["gives_reasons_for"]["short_order_judgment_id"] == row["other_judgment_id"]
+    assert reasons["gives_reasons_for"]["short_order_on"] == row["short_order_on"]
+    assert row["judgment_id"] in order["reasons_given_in"]
+    assert row["other_judgment_id"] in [d["judgment_id"] for d in reasons["other_decisions"]]
+    case = repo.case(row["case_key"], TODAY)
+    assert {row["judgment_id"], row["other_judgment_id"]} <= {d["judgment_id"] for d in case["decisions"]}
+    # the day before the short order, neither it nor its reasons existed (INV-5, read for case law)
+    early = repo.case(row["case_key"], row["short_order_on"] - dt.timedelta(days=1))
+    assert early is None or not {row["judgment_id"], row["other_judgment_id"]} & {
+        d["judgment_id"] for d in early["decisions"]}
+
+
+def test_a_second_copy_of_a_decision_is_never_listed_beside_the_copy_kept(case_repo):
+    repo = case_repo
+    with repo.transaction() as conn:
+        row = conn.execute("""SELECT judgment_id, other_judgment_id, case_key FROM judgment_relation
+                               WHERE relation = 'copy_of' LIMIT 1""").fetchone()
+        if not row:
+            pytest.skip("no copy found")
+        shown = conn.execute("SELECT count(*) AS n FROM v_shown_judgment WHERE id = %s",
+                             (row["judgment_id"],)).fetchone()["n"]
+    assert shown == 0
+    case = repo.case(row["case_key"], TODAY)
+    ids = [d["judgment_id"] for d in case["decisions"]]
+    assert row["other_judgment_id"] in ids and row["judgment_id"] not in ids
+    copy = repo.judgment(row["judgment_id"], TODAY)["case"]          # opened directly, it names the copy kept
+    assert copy["copy_of"]["judgment_id"] == row["other_judgment_id"]
+
+
+def test_the_case_route_serves_a_case_by_its_printed_number(case_repo, monkeypatch):
+    repo = case_repo
+    monkeypatch.setenv("NIZAM_WARM", "0")
+    from fastapi.testclient import TestClient
+    from nizam.api.library import create_app
+    with repo.transaction() as conn:
+        row = conn.execute("""SELECT k.case_key, k.case_type_code, k.case_number, k.case_year
+                                FROM judicial_case k JOIN judgment_case c ON c.case_key = k.case_key AND c.role = 'lead'
+                               ORDER BY k.case_key LIMIT 1""").fetchone()
+    if not row:
+        pytest.skip("case records not built")
+    kind = row["case_type_code"].split(":")[1]
+    with TestClient(create_app(judgments=repo)) as client:
+        r = client.get(f"/v1/precedent/cases/SC/{kind}/{row['case_number']}/{row['case_year']}",
+                       params={"as_of": "2026-11-22"})
+        assert r.status_code == 200 and r.json()["case"]["case_key"] == row["case_key"]
+        assert r.json()["decisions"]
+        assert client.get("/v1/precedent/cases/SC/CA/999999/1950").status_code == 404
+
+
+def test_title_lookup_stays_exact_after_many_lookups_with_varied_titles():
+    """D-126: after five executions psycopg prepares a statement on the server, and under a generic plan pg_search's
+    match-all title search stopped filtering: 'Pakistan Penal Code' put the Constitution first. Every connection now
+    forces a custom plan (nizam.storage.db.dsn)."""
+    import datetime as _dt
+
+    from nizam.storage import citations as C
+    from nizam.storage import unit_search
+    from nizam.storage.db import connect
+    from nizam.storage.lexical import Filters
+    try:
+        handle = connect()
+        conn = handle.__enter__()
+    except Exception as exc:                                    # noqa: BLE001
+        pytest.skip(f"corpus not reachable: {type(exc).__name__}")
+    try:
+        with conn.cursor() as c:
+            c.execute("SHOW plan_cache_mode")
+            assert c.fetchone()[0] == "force_custom_plan"
+            c.execute("SELECT DISTINCT law_printed FROM judgment_statute_reference WHERE law_printed IS NOT NULL "
+                      "ORDER BY 1 LIMIT 60")
+            titles = [r[0] for r in c.fetchall()]
+            s = unit_search.Session(c, Filters(as_of=_dt.date.today()))
+            for t in titles:
+                s.instruments_titled(t, 10, None)
+            assert s.instruments_titled("Act. Finally", 10, None) == []       # no law's title holds 'finally'
+            r = C.resolve(s, C.Citation("s.302 PPC", "302", [], "ppc"))
+            assert r.resolved_unit and r.resolved_law == "Pakistan Penal Code"
+    finally:
+        conn.rollback()
+        handle.__exit__(None, None, None)

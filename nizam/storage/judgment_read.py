@@ -6,6 +6,11 @@ date, and the printed paragraph number, else the page. A number the judgment doe
 
 `before` on every search is the research date (as_of): a judgment decided after it did not exist on that date and
 is never returned (the INV-5 rule, read for case law).
+
+Cases (D-125): a judgment is shown with the case it decides (judgment_case, keyed by the case as printed), the other
+decisions in that case, and which of them gives the reasons for which short order. A second copy of one decision
+(judgment_relation 'copy_of') is read through v_shown_judgment, so it is never listed or returned beside the copy
+kept; opened directly, it says which copy is kept.
 """
 from __future__ import annotations
 
@@ -123,9 +128,10 @@ class JudgmentRead:
         if not rows:
             return []
         ids = [r["id"] for r in rows]
+        # v_shown_judgment: a second copy of a decision is never a hit beside the copy kept (D-125)
         live = {r["id"]: r for r in conn.execute("""
             SELECT p.id, p.decided_on, p.judgment_id FROM v_release_judgment_paragraph p
-              JOIN judgment j ON j.id = p.judgment_id AND j.decided_on = p.decided_on
+              JOIN v_shown_judgment j ON j.id = p.judgment_id AND j.decided_on = p.decided_on
              WHERE p.id = ANY(%s::uuid[]) AND (%s::text IS NULL OR j.court_code = %s)""",
             (ids, court, court)).fetchall()}
         out = []
@@ -145,7 +151,13 @@ class JudgmentRead:
             SELECT p.id, p.kind, p.printed_no, p.page_first, p.text, j.id AS judgment_id, j.decided_on, j.court_code,
                    c.name AS court_name, j.case_no_printed, j.case_type_code, j.disposition, j.reported_flag,
                    j.bench_size, ct.name AS case_type_name, o.kind AS opinion_kind, j.decided_on_basis,
-                   j.decided_not_before, j.undated_reason
+                   j.decided_not_before, j.undated_reason,
+                   (SELECT c.case_key FROM judgment_case c WHERE c.judgment_id = j.id AND c.decided_on = j.decided_on
+                                                             AND c.role = 'lead') AS case_key,
+                   (SELECT r.short_order_on FROM judgment_relation r WHERE r.judgment_id = j.id
+                       AND r.decided_on = j.decided_on AND r.relation = 'reasons_for') AS reasons_for_short_order_on,
+                   EXISTS (SELECT 1 FROM judgment_relation r WHERE r.judgment_id = j.id AND r.decided_on = j.decided_on
+                                                               AND r.relation = 'reasons_for') AS gives_reasons
               FROM v_release_judgment_paragraph p
               JOIN judgment j ON j.id = p.judgment_id AND j.decided_on = p.decided_on
               JOIN court c ON c.code = j.court_code
@@ -228,15 +240,115 @@ class JudgmentRead:
                                              lower_decided_on, outcome, review_status
                                         FROM judgment_lineage WHERE upper_judgment_id = %s""", (j["id"],)).fetchall()
             cases = conn.execute("""SELECT r.raw, r.reporter_series, r.reporter_year, r.reporter_page, r.resolution,
-                                           r.dst_judgment_id FROM judgment_case_reference r
+                                           r.dst_judgment_id, r.dst_case_key FROM judgment_case_reference r
                                      WHERE r.judgment_id = %s ORDER BY r.char_start""", (j["id"],)).fetchall()
             statutes = self.statutes_cited(conn, [j["id"]], as_of).get(j["id"], [])
+            case = self._case_of(conn, j, as_of)
         j.pop("parties_raw", None)                                  # internal only (D-122)
         j.pop("decision_date", None)
         j.update(shown)                                             # never the latest-possible day as the date
         return dict(judgment=j, opinions=opinions, paragraphs=paras, lineage=lineage, cases_cited=cases,
-                    statutes_cited=statutes,
+                    statutes_cited=statutes, case=case,
                     citation=render_judgment_citation(j["court_name"], j["case_no_printed"], shown["decided_on"]))
+
+    # ------------------------------------------------------------------------------------------------ cases
+
+    @staticmethod
+    def _relations(conn, ids: list) -> tuple[dict, dict]:
+        """(judgment -> its reasons_for / copy_of rows, judgment -> the judgments relating to it), for `ids`."""
+        rows = conn.execute("""SELECT judgment_id, relation, other_judgment_id, short_order_on, date_basis, printed,
+                                      score FROM judgment_relation
+                                WHERE judgment_id = ANY(%s::uuid[]) OR other_judgment_id = ANY(%s::uuid[])""",
+                            (ids, ids)).fetchall()
+        own: dict = {}
+        incoming: dict = {}
+        for r in rows:
+            own.setdefault(r["judgment_id"], {})[r["relation"]] = r
+            if r["other_judgment_id"]:
+                incoming.setdefault(r["other_judgment_id"], []).append(r)
+        return own, incoming
+
+    @staticmethod
+    def _decision(r: dict, own: dict, incoming: dict) -> dict:
+        """One decision of a case, as shown: its citation and dates from records, and how it relates to the others
+        (it gives the reasons for a short order; it is a short order whose reasons another judgment gives)."""
+        shown = dates_shown(r)
+        reasons = own.get(r["id"], {}).get("reasons_for")
+        return dict(judgment_id=r["id"], **shown, case_no_printed=r["case_no_printed"],
+                    citation=render_judgment_citation(r["court_name"], r["case_no_printed"], shown["decided_on"]),
+                    gives_reasons_for=(dict(short_order_on=reasons["short_order_on"],
+                                            date_basis=reasons["date_basis"],
+                                            short_order_judgment_id=reasons["other_judgment_id"],
+                                            printed=reasons["printed"]) if reasons else None),
+                    reasons_given_in=[x["judgment_id"] for x in incoming.get(r["id"], [])
+                                      if x["relation"] == "reasons_for"])
+
+    def _case_decisions(self, conn, keys: list[str], as_of: date) -> list[dict]:
+        """The decisions shown in these cases that existed on `as_of`, oldest first, undated last."""
+        rows = conn.execute("""
+            SELECT j.id, j.decided_on, j.decided_on_basis, j.decided_not_before, j.undated_reason,
+                   j.case_no_printed, c.name AS court_name
+              FROM v_shown_judgment j JOIN court c ON c.code = j.court_code
+             WHERE EXISTS (SELECT 1 FROM judgment_case m WHERE m.judgment_id = j.id AND m.decided_on = j.decided_on
+                                                           AND m.case_key = ANY(%s))
+               AND j.decided_on <= %s
+             ORDER BY j.decided_on_basis = 'undated', j.decided_on, j.id""", (keys, as_of)).fetchall()
+        own, incoming = self._relations(conn, [r["id"] for r in rows])
+        return [self._decision(r, own, incoming) for r in rows]
+
+    def _case_of(self, conn, j: dict, as_of: date) -> dict:
+        """The case record of a judgment (D-125): the cases it decides, the other decisions in them, its reasons
+        statement, and whether it is a second copy of another decision. A judgment the builder could not place in a
+        case says why, rather than showing none."""
+        state = conn.execute("""SELECT outcome, case_line_read FROM judgment_case_state
+                                 WHERE judgment_id = %s AND decided_on = %s""", (j["id"], j["decided_on"])).fetchone()
+        keys = conn.execute("""SELECT c.case_key, c.role, k.case_number, k.case_year, ct.name AS case_type_name
+                                 FROM judgment_case c JOIN judicial_case k ON k.case_key = c.case_key
+                                 LEFT JOIN case_type ct ON ct.code = k.case_type_code
+                                WHERE c.judgment_id = %s AND c.decided_on = %s
+                                ORDER BY c.role = 'lead' DESC, c.case_key""", (j["id"], j["decided_on"])).fetchall()
+        own, incoming = self._relations(conn, [j["id"]])
+        mine = self._decision(dict(j, id=j["id"]), own, incoming)
+        copy = own.get(j["id"], {}).get("copy_of")
+        decisions = [d for d in self._case_decisions(conn, [k["case_key"] for k in keys], as_of)
+                     if d["judgment_id"] != j["id"]] if keys else []
+        return dict(status=(state["outcome"] if state else "not_built"),
+                    case_line_read=(state["case_line_read"] if state else None),
+                    cases_decided=keys, other_decisions=decisions,
+                    gives_reasons_for=mine["gives_reasons_for"], reasons_given_in=mine["reasons_given_in"],
+                    copy_of=(dict(judgment_id=copy["other_judgment_id"], score=copy["score"]) if copy else None),
+                    copies=[x["judgment_id"] for x in incoming.get(j["id"], []) if x["relation"] == "copy_of"])
+
+    def case(self, case_key: str, as_of: date) -> dict | None:
+        """One case (D-125): its record, every decision in it that existed on `as_of`, and the judgments that cite
+        it. None when the case is not held or none of its decisions existed on that date."""
+        with self.transaction() as conn:
+            k = conn.execute("""SELECT k.case_key, k.court_code, c.name AS court_name, k.case_type_code,
+                                       ct.name AS case_type_name, ct.kind AS case_kind, k.case_number, k.case_year
+                                  FROM judicial_case k JOIN court c ON c.code = k.court_code
+                                  LEFT JOIN case_type ct ON ct.code = k.case_type_code
+                                 WHERE k.case_key = %s""", (case_key,)).fetchone()
+            if not k:
+                return None
+            decisions = self._case_decisions(conn, [case_key], as_of)
+            if not decisions:
+                return None
+            cited = conn.execute("""
+                SELECT r.judgment_id, j.decided_on, j.decided_on_basis, j.decided_not_before, j.undated_reason,
+                       j.case_no_printed, c.name AS court_name, count(*) AS mentions
+                  FROM judgment_case_reference r
+                  JOIN v_shown_judgment j ON j.id = r.judgment_id AND j.decided_on = r.decided_on
+                  JOIN court c ON c.code = j.court_code
+                 WHERE r.dst_case_key = %s AND r.resolution = 'resolved' AND j.decided_on <= %s
+                 GROUP BY 1, 2, 3, 4, 5, 6, 7
+                 ORDER BY j.decided_on_basis = 'undated', j.decided_on DESC LIMIT 50""", (case_key, as_of)).fetchall()
+        cited_by = []
+        for r in cited:
+            shown = dates_shown(r)
+            cited_by.append(dict(judgment_id=r["judgment_id"], mentions=r["mentions"], **shown,
+                                 citation=render_judgment_citation(r["court_name"], r["case_no_printed"],
+                                                                   shown["decided_on"])))
+        return dict(case=k, decisions=decisions, cited_by=cited_by)
 
     def provision_judgments(self, provision_id, as_of: date, limit: int = 20) -> list[dict]:
         """'Cases on this section': released judgments citing the provision or a unit inside it, newest first."""
@@ -257,8 +369,10 @@ class JudgmentRead:
                 return []
             meta = {r["id"]: r for r in conn.execute("""
                 SELECT j.id, j.decided_on, j.case_no_printed, j.disposition, j.reported_flag, c.name AS court_name,
-                       ct.name AS case_type_name, j.decided_on_basis, j.decided_not_before, j.undated_reason
-                  FROM v_release_judgment j JOIN court c ON c.code = j.court_code
+                       ct.name AS case_type_name, j.decided_on_basis, j.decided_not_before, j.undated_reason,
+                       (SELECT m.case_key FROM judgment_case m WHERE m.judgment_id = j.id
+                           AND m.decided_on = j.decided_on AND m.role = 'lead') AS case_key
+                  FROM v_shown_judgment j JOIN court c ON c.code = j.court_code
                   LEFT JOIN case_type ct ON ct.code = j.case_type_code
                  WHERE j.id = ANY(%s::uuid[])""", ([r["judgment_id"] for r in rows],)).fetchall()}
         out = []
@@ -266,7 +380,7 @@ class JudgmentRead:
             m = meta.get(r["judgment_id"])
             if m:
                 shown = dates_shown(m)
-                out.append(dict(judgment_id=r["judgment_id"], mentions=r["mentions"],
+                out.append(dict(judgment_id=r["judgment_id"], mentions=r["mentions"], case_key=m["case_key"],
                                 roles=sorted(r["roles"]), court=m["court_name"], case_type=m["case_type_name"],
                                 disposition=m["disposition"], reported=m["reported_flag"], **shown,
                                 citation=render_judgment_citation(m["court_name"], m["case_no_printed"],

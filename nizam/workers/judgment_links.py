@@ -16,8 +16,12 @@ For each body or footnote paragraph:
    - Role: charge, challenged or interpreted from the words around the citation; 'quoted' when a quotation printed
      after it is found in the unit's own words.
 2. **The cases it cites.** Reporter references are kept as identifiers ('not_held': no reporter index is held). A
-   case number resolves to a released judgment of this court when exactly one matches its type, number and year,
-   and is 'ambiguous' when several do (orders and the final judgment of one case).
+   case number resolves to the case (judicial_case, D-125) when this court's case of that type, number and year is
+   held, however many judgments it has; dst_judgment_id is set too when the case holds one decision (a second copy
+   aside). A judgment citing a case it decides itself is 'own_case'. /1 matched judgment rows by the header parser's
+   number and year, and called a case with several orders 'ambiguous'.
+
+Run after nizam.workers.judgment_cases, whose cases this reads.
 """
 from __future__ import annotations
 
@@ -28,13 +32,14 @@ import sys
 import time
 
 from nizam.corpus.judgment import fold
+from nizam.storage.case_key import case_key
 from nizam.storage import citations as C
 from nizam.storage import judgment_linking as JL
 from nizam.storage import unit_search
 from nizam.storage.db import connect
 from nizam.storage.lexical import Filters
 
-LINKER = "nizam.judgment_links/1"
+LINKER = "nizam.judgment_links/2"
 
 
 def _todo(cur, rebuild: bool) -> list[tuple]:
@@ -55,6 +60,32 @@ def _case_types(cur) -> dict[str, list[tuple[str, str]]]:
     for v in out.values():
         v.sort(key=lambda x: -len(x[0]))
     return out
+
+
+class CaseIndex:
+    """The held cases (D-125): case key -> the decisions shown in it; judgment -> the cases it decides."""
+
+    def __init__(self, cur):
+        cur.execute("SELECT case_key FROM judicial_case")
+        self.decisions: dict[str, list] = {k: [] for (k,) in cur.fetchall()}
+        cur.execute("""SELECT c.case_key, c.judgment_id FROM judgment_case c
+                         JOIN v_shown_judgment j ON j.id = c.judgment_id AND j.decided_on = c.decided_on""")
+        self.own: dict = collections.defaultdict(set)
+        for key, jid in cur.fetchall():
+            self.decisions[key].append(jid)
+        cur.execute("SELECT case_key, judgment_id FROM judgment_case")
+        for key, jid in cur.fetchall():
+            self.own[jid].add(key)                      # a second copy still decides its case
+
+    def resolve(self, jid, court: str, code: str, number: str, year: int) -> tuple[str | None, object, str]:
+        """(case key, the case's one decision or None, resolution)."""
+        key = case_key(court, code, number, year)
+        if key in self.own.get(jid, ()):
+            return key, None, "own_case"
+        if key not in self.decisions:
+            return None, None, "not_held"
+        one = self.decisions[key]
+        return key, (one[0] if len(one) == 1 else None), "resolved"
 
 
 class Resolver:
@@ -102,7 +133,8 @@ class Resolver:
         return self.texts[unit_id]
 
 
-def link_one(cur, res: Resolver, types, jid, day, court, undated: bool = False) -> tuple[list, list]:
+def link_one(cur, res: Resolver, types, jid, day, court, undated: bool = False,
+             cases: CaseIndex | None = None) -> tuple[list, list]:
     """`undated` (D-124): `day` is only the latest possible decision day, so no version is claimed as the text the
     court read; the unit is linked 'not_dated'."""
     cur.execute("""SELECT id, text FROM judgment_paragraph WHERE judgment_id = %s AND decided_on = %s
@@ -134,8 +166,8 @@ def link_one(cur, res: Resolver, types, jid, day, court, undated: bool = False) 
                 if q and fold(q)[:120] and fold(q)[:120] in res.unit_text(dst_unit):
                     role = "quoted"
                 resolution = "resolved"
-            elif not c.law:
-                resolution = "no_law_named"
+            elif not c.law or (r.unresolved or "").startswith("no law named"):
+                resolution = "no_law_named"                 # none printed, or only a kind of law (D-127)
             elif r.unresolved and r.unresolved.startswith("no served law"):
                 resolution = "law_not_held"
             else:
@@ -146,21 +178,14 @@ def link_one(cur, res: Resolver, types, jid, day, court, undated: bool = False) 
                                  dst_inst, dst_unit, version, basis, resolution, alternates, role, LINKER,
                                  law_basis, inherited_from))
         for k in JL.case_citations(text):
-            dst, resolution = None, "not_held"
-            if k.case_type:
+            dst, dst_case, resolution = None, None, "not_held"
+            if k.case_type and cases is not None:
                 code = next((cd for f, cd in types.get(court, []) if fold(k.case_type).startswith(f)), None)
-                if code:
-                    cur.execute("""SELECT id FROM v_release_judgment WHERE court_code = %s AND case_type_code = %s
-                                     AND case_number = %s AND case_year = %s AND id <> %s""",
-                                (court, code, k.case_number, k.case_year, jid))
-                    hits = [h[0] for h in cur.fetchall()]
-                    if len(hits) == 1:
-                        dst, resolution = hits[0], "resolved"
-                    elif hits:
-                        resolution = "ambiguous"
+                if code and k.case_number and k.case_year:
+                    dst_case, dst, resolution = cases.resolve(jid, court, code, k.case_number, k.case_year)
             case_rows.append((pid, day, jid, k.start, k.end, k.raw[:300], k.series, k.year, k.court, k.page,
                               (f"{k.case_type} {k.case_number}/{k.case_year}" if k.case_type else None), dst,
-                              resolution, LINKER))
+                              resolution, LINKER, dst_case))
     return statute_rows, case_rows
 
 
@@ -176,9 +201,10 @@ def main() -> int:
         todo = _todo(cur, a.rebuild)[: a.limit or None]
         types = _case_types(cur)
         res = Resolver(cur)
-        print(f"judgments to link: {len(todo)} ({LINKER})")
+        cases = CaseIndex(cur)
+        print(f"judgments to link: {len(todo)} ({LINKER}; {len(cases.decisions):,} cases held)")
         for n, (jid, day, court, undated) in enumerate(todo, 1):
-            srows, crows = link_one(cur, res, types, jid, day, court, undated)
+            srows, crows = link_one(cur, res, types, jid, day, court, undated, cases)
             for r in srows:
                 totals[f"statute:{r[14]}"] += 1
                 totals[f"role:{r[16]}"] += 1
@@ -199,7 +225,8 @@ def main() -> int:
                 if crows:
                     with cur.copy("COPY judgment_case_reference (paragraph_id, decided_on, judgment_id, char_start, "
                                   "char_end, raw, reporter_series, reporter_year, reporter_court, reporter_page, "
-                                  "case_printed, dst_judgment_id, resolution, linker) FROM STDIN") as cp:
+                                  "case_printed, dst_judgment_id, resolution, linker, dst_case_key) "
+                                  "FROM STDIN") as cp:
                         for r in crows:
                             cp.write_row(r)
                 cur.execute("""INSERT INTO judgment_link_state (judgment_id, decided_on, linker) VALUES (%s,%s,%s)

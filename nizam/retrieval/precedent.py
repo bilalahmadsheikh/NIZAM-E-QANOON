@@ -18,6 +18,8 @@ What a result carries, and what it never does:
 - **The law it read:** for each provision the judgment cites, whether that text is still the operative text on
   `as_of` (amended since, no longer operative, same text, or the decision-date text not held).
 - **Coverage:** the courts and years searched (D-122). "Nothing found" is always "nothing found in this coverage".
+- **The case** each hit decides (D-125), and whether the hit gives the reasons for the court's short order. A
+  second copy of one decision is never a hit beside the copy kept.
 
 This is precedent discovery, not an answer. It returns evidence for a reader or for L4/L5. It is not a
 GroundingContext and passes no gate (INV-2). L5's citator owns treatment and "good law" (docs/04 §6.5).
@@ -56,6 +58,9 @@ class PrecedentHit:
     undated: bool = False
     decided_no_later_than: date | None = None
     decided_not_before: date | None = None
+    case_key: str | None = None       # the case it decides, as printed ('SC/CA/1507/2024'); None if not placed (D-125)
+    gives_reasons: bool = False       # it gives the reasons for the court's short order in that case
+    short_order_on: date | None = None  # that short order's printed date, when printed
 
 
 @dataclass
@@ -146,12 +151,16 @@ def search(question: str, *, as_of: date, court: str | None = None, forum=None, 
                                          role=s["role"], status_now=s["status_now"], mentions=s["mentions"])
                                     for s in statutes.get(jid, [])][:12],
                     undated=d["undated"], decided_no_later_than=d["decided_no_later_than"],
-                    decided_not_before=d["decided_not_before"]))
-            coverage = conn.execute("""SELECT court_code, min(first_decided) AS first_decided,
+                    decided_not_before=d["decided_not_before"], case_key=d["case_key"],
+                    gives_reasons=d["gives_reasons"], short_order_on=d["reasons_for_short_order_on"]))
+            coverage = conn.execute("""SELECT v.court_code, min(first_decided) AS first_decided,
                                               max(last_decided) AS last_decided, sum(judgments_released) AS judgments,
                                               coalesce(sum(judgments_released) FILTER (WHERE year IS NULL), 0)
-                                                  AS undated
-                                         FROM v_judgment_coverage GROUP BY court_code ORDER BY court_code""").fetchall()
+                                                  AS undated,
+                                              (SELECT count(*) FROM judicial_case k
+                                                WHERE k.court_code = v.court_code) AS cases
+                                         FROM v_judgment_coverage v GROUP BY v.court_code
+                                        ORDER BY v.court_code""").fetchall()
         trace.update(generators={n: len(v) for n, v in lists.items()}, ms=int((time.time() - t0) * 1000))
         return PrecedentResult(question=question, as_of=as_of, hits=hits, cited_provisions=cited,
                                coverage=[dict(c) for c in coverage], mode=mode, trace=trace)

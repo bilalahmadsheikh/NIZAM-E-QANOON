@@ -1753,15 +1753,27 @@ outcome: parsed, held with the gate, needs_ocr, reporter_reprint or duplicate) â
   judgment prints, or NULL (INV-1). A body paragraph always belongs to an opinion.
 - **History:** `judgment_lineage` records the case below (the court, case and date as printed), with an outcome
   read only when unambiguous. `case_type` maps a court's printed case names to a kind.
-- **Links:** `judgment_statute_reference` and `judgment_case_reference` are derived by `nizam.judgment_links/1`
+- **Links:** `judgment_statute_reference` and `judgment_case_reference` are derived by `nizam.judgment_links/2`
   (state in `judgment_link_state`, audit A26).
   - A statute reference records the unit, the version served on the decision date (or `version_basis =
     'not_dated'`), the role (charge, quoted, challenged, interpreted, cited), and whether its law was named or
     `inherited` (0121).
+  - A case-number reference resolves to the case (`dst_case_key`, 0123), with `dst_judgment_id` only when the case
+    holds one decision; a judgment citing a case it decides itself is `own_case`.
+- **Cases (0123, D-125):** derived by `nizam.judgment_cases/1`, rebuilt whole from the release (audit A28).
+  - `judicial_case`: one row per case, keyed `<court>/<type>/<number>/<year>` from the printed case line (no leading
+    zeros), never from a row id.
+  - `judgment_case`: the cases a judgment decides, `lead` and `joined` (the same type and year printed beside it).
+  - `judgment_case_state`: one row per released judgment: `grouped`, `no_number_read` or `no_year_read`, the words
+    read, and `header_differs` when the header parser's number or year is not the case line's.
+  - `judgment_relation`: `reasons_for` (the court's statement that the judgment gives the reasons for its short
+    order, the order's printed date and basis, and the short order when held) and `copy_of` (a second file of one
+    decision, and the copy kept).
 - **Search (0120):** BM25 on `judgment_paragraph`; `judgment_chunk` holds offsets plus the CPU generation's sign bits
   under HNSW (audit A27).
-- **What to read:** `v_release_judgment` and `v_release_judgment_paragraph` are the release. `v_judgment_coverage`
-  is what is held, per court and year; undated judgments are its rows with year NULL.
+- **What to read:** `v_release_judgment` and `v_release_judgment_paragraph` are the release. `v_shown_judgment` is
+  the release less second copies: lists and search read it. `v_judgment_coverage` is what is held, per court and
+  year; undated judgments are its rows with year NULL.
 
 ## Views â€” what you should actually query
 

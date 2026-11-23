@@ -17,6 +17,7 @@ so rather than guess.
 | 3. SC ingest | **built**: 3,105 of 3,744 distinct files released, 314 of them marked undated (D-124, 23 Nov); 193 held with their gate; 438 waiting for OCR; 8 duplicates | `nizam/corpus/judgment.py` (`nizam.judgment/2`, `/3` for the J1 re-read), `nizam/workers/judgments.py` |
 | 4. Judgment → statute links | **built**: one grammar (`nizam/storage/citations.py`), the law inherited from the judgment's last naming (0121), the version read through `operative_provision` at the decision date | `nizam/workers/judgment_links.py` (A26) |
 | 5. Chunks, embeddings, precedent search | **built** for the CPU generation and BM25; the 8B GPU space for judgments is not built | 0120, `nizam/workers/judgment_chunk.py` (A27), `nizam/retrieval/precedent.py`, `nizam/api/precedent.py` |
+| 5a. One record per case (D-125, 23 Nov) | **built**: 3,031 of 3,105 judgments placed in a case (6,935 cases with the appeals decided together); 326 reasons statements, 18 of them matched to a short order held as its own file; 1 second copy | 0123, `nizam/corpus/judgment_case.py`, `nizam/workers/judgment_cases.py` (A28), `/v1/precedent/cases/…` |
 | 6. Other courts | not started | |
 | 7. Treatments, lineage review, invalidation, citator | lineage rows are machine candidates; the rest is not started | |
 
@@ -24,8 +25,20 @@ Corrections to the sections below, as built:
 - **§3.1:** judgments have their own ladder, not the statute ladder's tables. The statute criteria C1–C9 require every
   landed block to belong to a provision of a law.
 - **§4.1:** the shared grammar lives in `nizam/storage/`, not `nizam/shared/` (`.importlinter` contract 3).
-- **§3.3:** a short order and its detailed reasons are still two judgments, one per file. Merging them needs a
-  case-identity rule.
+- **§3.3 (D-125, 23 Nov):** a short order and its detailed reasons stay two judgments, one per file, each with its
+  own date. They are not merged into one judgment with two opinions: what joins them is **the case**.
+  - `judicial_case` is keyed by the case as printed, `<court>/<type>/<number>/<year>` ('SC/CA/1507/2024'), so a
+    rebuild never changes a key and a stored reference to a case never breaks.
+  - `judgment_case` gives the case a judgment decides (`lead`) and the cases of the same type and year printed
+    beside it (`joined`: 'Civil Appeals No. 1507 and 1508 of 2024', 'Nos. 545 to 550').
+  - `judgment_relation` `reasons_for`: the court's own statement, "the above are the reasons for our short order
+    dated …", with the short order's printed date. The short order is linked when the case holds it as a separate
+    file that its own record marks as a short order. `copy_of`: a second file of one decision, never shown beside
+    the copy kept.
+  - The case line is read by its own grammar. Where the header parser's number or year differs (44 judgments, every
+    one read and the grammar right), the case line is the record and the difference is kept.
+  - A case citation in a judgment ("Civil Appeal No. 984 of 2018") resolves to the case, however many decisions it
+    has (§4.2).
 - **§6.1:** `judgment_chunk` is one table, not partitioned, until a second court lands.
 - **§3.7 J1 (D-124, 23 Nov):** a judgment with no usable printed decision date is released **marked undated**, not
   held. `decided_on` then holds the latest possible day (the archive's first observation of the file). It is the

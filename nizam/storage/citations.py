@@ -48,6 +48,11 @@ _TOKEN = (r"(?:\([^()]{1,80}\)|[A-Z][\w'\u2019&.-]*|of|the|and|for|in|on|to|agai
           r"relating|regarding)")
 _TITLE = r"(?P<title>" + _TOKEN + r"(?:(?:,\s*(?=[A-Z(])|\s+)" + _TOKEN + r")*(?:,?\s*\d{4})?)"
 _TYPE = re.compile(r"\b(?:Act|Ordinance|Order|Code|Constitution|Regulations?|Rules|Shahadat)\b", re.I)
+# a law named only by its kind ('the Act.', 'Act, 2013', 'the Amending Act', 'the said Ordinance of 1979'): no name
+_KIND_ONLY = re.compile(r"^\W*(?:the\s+)?(?:said\s+|same\s+|present\s+|above\s+|aforesaid\s+|amending\s+|principal\s+|"
+                        r"parent\s+|new\s+|old\s+|repealed\s+)?(?:act|ordinance|order|code|rules?|regulations?|law|"
+                        r"statute|enactment)s?\W*(?:of\s+)?(?:(?:18|19|20)\d{2})?\W*$", re.I)
+_YEAR = re.compile(r"(?<!\d)((?:18|19|20)\d{2})(?!\d)")
 _SMALL = {"of", "the", "and", "for", "in", "on", "to", "against", "at", "by", "from", "with", "relating", "regarding"}
 
 _P_FULL = re.compile(_UNIT + _LABEL + _SUBS + r"(?:\s*,?\s*(?:(?i:of)\s+(?:(?i:the)\s+)?)?(?:(?P<const>(?i:Constitution))\b|"
@@ -154,14 +159,21 @@ def resolve(session, cit: Citation) -> Citation:
         words, juris = ALIASES[cit.law]
     else:
         words, juris = cit.law, None
+        if _KIND_ONLY.match(words):
+            # 'section 4 of the Act.', 'the Act, 2013', 'the Amending Act': a kind of law, not a name (D-127)
+            cit.unresolved = f"no law named ({words!r} names only a kind of law): not guessed"
+            return cit
     wants_amendment = "amend" in words.lower()
+    year = (_YEAR.findall(words) or [None])[-1]
 
     def lookup(w):
+        # a year printed with the name must be the year in the law's title, when the title prints one (D-127)
         return [x for x in session.instruments_titled(w, 10, juris)
-                if wants_amendment or not re.search(r"amend", x[1], re.I)]
+                if (wants_amendment or not re.search(r"amend", x[1], re.I))
+                and (year is None or not _YEAR.findall(x[1]) or year in _YEAR.findall(x[1]))]
     laws = lookup(words)
-    if not laws and re.search(r"\d{4}", words):                      # a reprint whose title drops the year
-        laws = lookup(re.sub(r"[,\s]*\d{4}", "", words).strip(" ,"))
+    if not laws and year:                                            # a reprint whose title drops the year
+        laws = lookup(re.sub(r"[,\s]*(?:of\s+)?\d{4}", "", words).strip(" ,"))
     cit.candidates = [t for _i, t, _r in laws[:3]]
     if not laws:
         cit.unresolved = f"no served law titled like {words!r}"
