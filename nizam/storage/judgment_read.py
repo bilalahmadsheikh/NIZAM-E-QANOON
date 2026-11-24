@@ -112,17 +112,24 @@ class JudgmentRead:
         """Paragraphs that cite one of these provisions (or a unit inside one), applying or construing it first."""
         if not provision_ids:
             return []
-        # the provisions and their sub-units; a citation linked to any copy of one of them counts (alternates, D-136)
+        # the provisions and their sub-units; a citation linked to any copy of one of them counts (alternates, D-136).
+        # The window is of JUDGMENTS, each by its best citing paragraph: counted in paragraphs, a few judgments with
+        # many citing paragraphs crowded the rest out (D-137)
         rows = conn.execute("""
             WITH u AS (SELECT array_agg(p.id) AS ids FROM provision t
                          JOIN provision p ON p.instrument_id = t.instrument_id AND p.path <@ t.path
-                        WHERE t.id = ANY(%s::uuid[]))
-            SELECT r.paragraph_id AS id, r.decided_on,
-                   max(CASE r.role WHEN 'interpreted' THEN 3 WHEN 'quoted' THEN 3 WHEN 'challenged' THEN 3
-                                   WHEN 'charge' THEN 1 ELSE 2 END) AS score
-              FROM judgment_statute_reference r, u
-             WHERE r.decided_on <= %s AND (r.dst_provision_id = ANY(u.ids) OR r.alternates && u.ids)
-             GROUP BY 1, 2 ORDER BY score DESC, r.decided_on DESC LIMIT %s""",
+                        WHERE t.id = ANY(%s::uuid[])),
+                 c AS (SELECT r.judgment_id, r.paragraph_id, r.decided_on,
+                              max(CASE r.role WHEN 'interpreted' THEN 3 WHEN 'quoted' THEN 3 WHEN 'challenged' THEN 3
+                                              WHEN 'charge' THEN 1 ELSE 2 END) AS score,
+                              count(*) AS mentions
+                         FROM judgment_statute_reference r, u
+                        WHERE r.decided_on <= %s AND (r.dst_provision_id = ANY(u.ids) OR r.alternates && u.ids)
+                        GROUP BY 1, 2, 3),
+                 b AS (SELECT DISTINCT ON (judgment_id) * FROM c
+                        ORDER BY judgment_id, score DESC, mentions DESC, paragraph_id)
+            SELECT paragraph_id AS id, decided_on, score FROM b
+             ORDER BY score DESC, decided_on DESC LIMIT %s""",
             (provision_ids, before, n * 4)).fetchall()
         return JudgmentRead._released(conn, rows, n, court)
 

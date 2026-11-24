@@ -432,6 +432,9 @@ Each step is one slice, finished before the next:
    split by family, harness `evals/precedent_eval.py`. Provisional test figures: hit@10 .65, recall@50 .90, no
    leaks. It shows four gaps: no case-number fast path; provision questions rank low; Urdu queries miss; and no
    precedent gate for courts not held.
+   *As built (D-137):* a printed case number ranks its case first (3/3 dev, 1/1 test). A court asked for narrows the
+   search, and a court not held returns a typed `coverage_gap` with no hits (5/5 declined). The cited window counts
+   judgments. Urdu is unchanged; its route is the 8B space.
 6. **Lahore HC, Peshawar HC** (the OCR route, D-114), the reprint rule (§5), then the Sindh recrawl, then FCC, IHC,
    BHC, FSC and the AJK and GB texts and courts.
 7. **Case references and treatments** (§2, §4.2), lineage (§3.5), invalidation (§4.3), then the citator (docs/06 §5).

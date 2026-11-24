@@ -110,9 +110,13 @@ def run(split_name: str, out: Path | None) -> int:
                        trace=r.trace)
             neg = {jid_of.get(u["judgmentDocumentId"]) for u in c["precedentGold"]["hardNegatives"]}
             row["leaks_must_not_serve"] = sum(1 for j in ranked if j in neg)
+            row["coverage_gap"] = r.coverage_gap
+            row["cases_named"] = r.cases_named
             if c["expectedOutcome"] == "abstain":
                 row["abstention_code"] = c["abstention"]["code"]
                 row["courts_returned"] = sorted({h.court for h in r.hits})
+                # declined: nothing shown as a court's view it does not hold, or nothing before coverage (D-137)
+                row["declined"] = not r.hits
                 rows.append(row)
                 continue
             gold = defaultdict(set)              # judgment id -> gold paragraph ids (empty: whole judgment)
@@ -182,7 +186,9 @@ def summarise(rows: list[dict], ms: list[float], split_name: str) -> dict:
                   "must_not_serve": sum(r["leaks_must_not_serve"] for r in rows)},
         "authority": {k: auth.count(k) for k in ("agree", "disagree", "not_recorded")},
         "unanswerable": [{"caseId": r["caseId"], "code": r["abstention_code"], "hits": r["hits"],
-                          "courts_returned": r["courts_returned"]} for r in un],
+                          "courts_returned": r["courts_returned"], "declined": r.get("declined"),
+                          "coverage_gap": (r.get("coverage_gap") or {}).get("court")} for r in un],
+        "declined": f"{sum(1 for r in un if r.get('declined'))} of {len(un)}",
         "latency_ms": {"p50": round(statistics.median(ms)) if ms else None,
                        "p95": round(sorted(ms)[max(0, int(len(ms) * 0.95) - 1)]) if ms else None},
     }

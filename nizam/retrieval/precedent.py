@@ -26,6 +26,7 @@ GroundingContext and passes no gate (INV-2). L5's citator owns treatment and "go
 """
 from __future__ import annotations
 
+import re
 import time
 from dataclasses import dataclass, field
 from datetime import date
@@ -75,6 +76,83 @@ class PrecedentResult:
     coverage: list[dict]
     mode: str                         # 'hybrid' | 'lexical_only' (no encoder on this host)
     trace: dict
+    # the question names a court whose judgments are not held: no hit is shown as that court's view (D-137)
+    coverage_gap: dict | None = None
+    cases_named: list[str] = field(default_factory=list)   # case keys the question prints and the corpus holds
+
+
+# ------------------------------------------------------------------------------------- query understanding (D-137)
+
+def _fold(s: str) -> str:
+    t = " ".join(re.sub(r"[^a-z0-9]+", " ", (s or "").lower()).split())
+    return re.sub(r"\bsind\b", "sindh", re.sub(r"\bbaluchistan\b", "balochistan", t))
+
+
+_ASKED_AFTER = re.compile(r"^(?:s\s+)?(?:judgments?|precedents?|rulings?|case\s+law|decisions|jurisprudence|view|"
+                          r"held|holds?|ruled|rules?|decided|decides?|said|says?|on|in)\b")
+_ASKED_BEFORE = re.compile(r"(?:judgments?|decisions|rulings?|precedents?|case\s+law|view)\s+(?:of|by|from|in)\s+"
+                           r"(?:the\s+)?$")
+_OPENS = re.compile(r"^\s*(?:(?:the|in|by|from)\s+){0,2}$")
+
+
+def courts_named(conn, question: str) -> list[str]:
+    """The courts whose judgments a question asks for (D-137), by their recorded names and observed header forms
+    (court_alias), 'of Pakistan' dropped and the Sind/Sindh, Baluchistan/Balochistan spellings folded. A court is
+    asked for when the question opens with it ('Lahore High Court Writ Petition No. ...'), when a verb of deciding
+    follows it ('what has the Sindh High Court held'), or when its judgments are named ('the Supreme Court's
+    precedent', 'judgments of the Peshawar High Court'). A court mentioned in passing is not ('a ceiling after the
+    Federal Shariat Court's decision'). A spaced-out header form ('l a h o r e') is not a way of asking."""
+    q = f" {_fold(question)} "
+    keys = []
+    for r in conn.execute("SELECT code, name FROM court").fetchall():
+        code, name = r["code"], r["name"]
+        keys += [(code, _fold(name)), (code, _fold(re.sub(r"(?i)\s+of\s+pakistan$", "", name)))]
+    keys += [(r["court_code"], _fold(r["alias_key"])) for r in conn.execute(
+        "SELECT court_code, alias_key FROM court_alias WHERE withdrawn_at IS NULL").fetchall()]
+    found = {}
+    for code, key in keys:
+        words = key.split()
+        if not words or sum(len(w) == 1 for w in words) > len(words) / 2:
+            continue
+        start = 0
+        while True:
+            at = q.find(f" {key} ", start)
+            if at < 0:
+                break
+            start = at + 1
+            before, after = q[:at + 1], q[at + len(key) + 2:]
+            verb_soon = re.match(r"^(?:\w+\s+){0,1}(?:held|hold|ruled|rule|decided|decide|said|say)\b", after)
+            if (_OPENS.match(before) or _ASKED_AFTER.match(after) or verb_soon
+                    or _ASKED_BEFORE.search(before)) and (code not in found or at < found[code]):
+                found[code] = at
+    return sorted(found, key=found.get)
+
+
+def cases_named(conn, question: str, courts: list[str] | None = None) -> list[str]:
+    """Held case keys a question prints ('Civil Appeal No. 415 of 2018'), read by the case-line grammar
+    (nizam.storage.case_key.read_case_line) after any held court's printed case-type form, in any court the question
+    names or else every court; only keys of held cases (judicial_case) are returned."""
+    from nizam.storage.case_key import _fold_map, case_key, read_case_line
+    f, idx = _fold_map(question)
+    if not f:
+        return []
+    rows = conn.execute("SELECT court_code, code, printed_forms FROM case_type").fetchall()
+    out = []
+    for r in rows:
+        if courts and r["court_code"] not in courts:
+            continue
+        for form in sorted(r["printed_forms"] or [], key=len, reverse=True):
+            for m in re.finditer(r"(?:^| )" + re.escape(form) + r"(?= |$)", f):
+                at = m.start() + (1 if m.group(0).startswith(" ") else 0)
+                line = read_case_line(question[idx[at]:], [form])
+                if line and line.lead and line.year:
+                    out += [case_key(r["court_code"], r["code"], n, line.year) for n in [line.lead] + line.joined]
+    out = list(dict.fromkeys(out))
+    if not out:
+        return []
+    held = {x["case_key"] for x in conn.execute("SELECT case_key FROM judicial_case WHERE case_key = ANY(%s)",
+                                                 (out,)).fetchall()}
+    return [k for k in out if k in held]
 
 
 def _authority(deciding: str, forum, as_of: date, registry) -> dict | None:
@@ -110,7 +188,33 @@ def search(question: str, *, as_of: date, court: str | None = None, forum=None, 
                 r = C.resolve(session, c)
                 if r.resolved_unit:
                     cited.append(dict(raw=c.raw, provision_id=r.resolved_unit.unit_id, law=r.resolved_law))
+            # the court the question names (D-137): one held court narrows the search to it; one that is not held
+            # is a coverage gap, and no other court's judgment is shown as its view
+            named = courts_named(conn, question)
+            trace["courts_named"] = named
+            if court is None and len(named) == 1:
+                held = conn.execute("SELECT EXISTS (SELECT 1 FROM v_release_judgment WHERE court_code = %s) AS h",
+                                    (named[0],)).fetchone()["h"]
+                if not held:
+                    name = conn.execute("SELECT name FROM court WHERE code = %s", (named[0],)).fetchone()["name"]
+                    gap = dict(court=named[0], name=name, reason="no judgment of this court is held")
+                    return PrecedentResult(question=question, as_of=as_of, hits=[], cited_provisions=cited,
+                                           coverage=_coverage(conn), mode="none", coverage_gap=gap,
+                                           trace=dict(trace, ms=int((time.time() - t0) * 1000)))
+                court = named[0]
             lists = {}
+            # a case the question prints, by its number, ahead of anything found by likeness (D-137)
+            cases = cases_named(conn, question, [court] if court else None)
+            if cases:
+                lists["case"] = conn.execute("""
+                    SELECT DISTINCT ON (p.judgment_id) p.id, p.judgment_id, p.decided_on
+                      FROM judgment_case c
+                      JOIN v_shown_judgment j ON j.id = c.judgment_id AND j.decided_on = c.decided_on
+                      JOIN v_release_judgment_paragraph p ON p.judgment_id = j.id AND p.decided_on = j.decided_on
+                     WHERE c.case_key = ANY(%s) AND j.decided_on <= %s AND p.kind = 'body'
+                     ORDER BY p.judgment_id, p.ordinal""", (cases, as_of)).fetchall()
+            # The question as asked. The statute path's Urdu gloss (D-105) and an English dense rendering were measured
+            # here on dev and did not help (D-137); the measured route for Urdu is the 8B space (D-099).
             lists["bm25"] = repo.bm25_paragraphs(conn, question, WINDOW, as_of, court)
             mode = "lexical_only"
             try:
@@ -129,7 +233,8 @@ def search(question: str, *, as_of: date, court: str | None = None, forum=None, 
             for name, rows in lists.items():
                 for rank, r in enumerate(rows, 1):
                     f = fused.setdefault(r["id"], dict(score=0.0, gens=[], judgment_id=r["judgment_id"]))
-                    f["score"] += 1.0 / (RRF_K + rank)
+                    # a case named by its number is an identification, not a likeness: it ranks first
+                    f["score"] += 1.0 if name == "case" else 1.0 / (RRF_K + rank)
                     f["gens"].append(name)
             best: dict = {}
             for pid, f in sorted(fused.items(), key=lambda x: -x[1]["score"]):
@@ -162,18 +267,21 @@ def search(question: str, *, as_of: date, court: str | None = None, forum=None, 
                     decided_not_before=d["decided_not_before"], case_key=d["case_key"],
                     parties_display=d["parties_display"], privacy=d["privacy"],
                     gives_reasons=d["gives_reasons"], short_order_on=d["reasons_for_short_order_on"]))
-            coverage = conn.execute("""SELECT v.court_code, min(first_decided) AS first_decided,
-                                              max(last_decided) AS last_decided, sum(judgments_released) AS judgments,
-                                              coalesce(sum(judgments_released) FILTER (WHERE year IS NULL), 0)
-                                                  AS undated,
-                                              (SELECT count(*) FROM judicial_case k
-                                                WHERE k.court_code = v.court_code) AS cases
-                                         FROM v_judgment_coverage v GROUP BY v.court_code
-                                        ORDER BY v.court_code""").fetchall()
+            coverage = _coverage(conn)
         trace.update(generators={n: len(v) for n, v in lists.items()}, ms=int((time.time() - t0) * 1000),
-                     withheld_by_name=withheld_queries)
+                     withheld_by_name=withheld_queries, court_searched=court)
         return PrecedentResult(question=question, as_of=as_of, hits=hits, cited_provisions=cited,
-                               coverage=[dict(c) for c in coverage], mode=mode, trace=trace)
+                               coverage=coverage, mode=mode, trace=trace, cases_named=cases)
     finally:
         if own:
             repo.close()
+
+
+def _coverage(conn) -> list[dict]:
+    """The courts and years searched (D-122): 'nothing found' is always 'nothing found in this coverage'."""
+    return [dict(c) for c in conn.execute("""
+        SELECT v.court_code, min(first_decided) AS first_decided, max(last_decided) AS last_decided,
+               sum(judgments_released) AS judgments,
+               coalesce(sum(judgments_released) FILTER (WHERE year IS NULL), 0) AS undated,
+               (SELECT count(*) FROM judicial_case k WHERE k.court_code = v.court_code) AS cases
+          FROM v_judgment_coverage v GROUP BY v.court_code ORDER BY v.court_code""").fetchall()]

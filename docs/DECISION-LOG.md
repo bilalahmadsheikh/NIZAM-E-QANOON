@@ -1136,6 +1136,53 @@ Area: client · Status: Superseded by D-084 (the whole-page cloth; the hem, the 
   design/heritage_art.dart, presentation/discover.dart, presentation/heritage.dart; test/heritage_test.dart
   (golden embroidery.png, a review sheet at 3x).
 
+### D-137 · 2026-11-24 · Precedent search reads the case and the court a question names, and windows judgments, not paragraphs
+Area: L3 precedent search (docs/04 §6, PRECEDENT-MODEL §4, D-133) · Status: standing
+- Decision: the owner asked to fix the judgment-search gaps D-133 and D-136 found before the Sindh and Balochistan
+  judgments land.
+  - **A case named by its number ranks first** (`precedent.cases_named`). The question is read by the case-line
+    grammar after any held court's printed case-type form, anywhere in the question ("Supreme Court Civil Appeal
+    No. 415 of 2018"). The grammar (`read_case_line`) moved verbatim from `nizam/corpus/judgment_case.py` to
+    `nizam/storage/case_key.py`, so L3 reads L2; corpus re-exports it. Only held case keys are used, and that case's
+    judgments rank above any found by likeness, as the citation fast path does for statutes.
+  - **The court a question asks for** (`precedent.courts_named`). It is read from the court names and observed
+    header forms (`court_alias`), folding "of Pakistan", Sind/Sindh and Baluchistan/Balochistan. A court counts as
+    asked for when the question opens with it, when a verb of deciding follows it ("what has the Sindh High Court
+    held"), or when its judgments are named ("the Supreme Court's precedent", "judgments of the Peshawar High
+    Court"). A court mentioned in passing ("a ceiling after the Federal Shariat Court's decision") is not.
+    - One held court asked for narrows the search to it.
+    - A court not held returns no hit and a typed `coverage_gap` (court, name, reason): no other court's judgment
+      is shown as its view. This is the precedent gate D-133 found missing, for coverage. Search stays discovery
+      and passes no answer gate (INV-2 governs answers).
+  - **The cited window is of judgments** (`citing_paragraphs`): each judgment by its best citing paragraph (role,
+    then mentions) before the window. Counted in paragraphs, a few judgments crowded the rest out (D-136, dev S04).
+  - **Urdu, measured and not adopted.** Two variants were tried on dev and neither helped: the statute path's gloss
+    (D-105) in the lexical query, with an English dense rendering (MRR on the two Urdu dev cases .167 → .100); and
+    the statute lexical query, which drops the question's frame and lost S04. Precedent search keeps the question
+    as asked. The measured route for Urdu is the 8B space (D-099: Urdu r@50 1.0 for statutes), not yet built for
+    judgments.
+- Measured, golden-pk-v1-precedent1 (provisional: the gold is a draft; dev chose, test run once):
+
+  | | Dev, D-136 → D-137 | Test, D-133 → D-137 |
+  |---|---|---|
+  | hit@10 | .688 → .781 | .650 → .650 |
+  | MRR@10 | .391 → .441 | .390 → .371 |
+  | recall@50 | .771 → .849 | .900 → .900 |
+  | paragraph@10 | .477 → .435 | .692 → .750 |
+  | Case lookup | 1/3 → 3/3 | 0/1 → 1/1 |
+  | Courts not held, declined | 0/3 → 3/3, plus the 1995 date | 0/2 → 2/2 |
+  | Urdu | 1/2 → 1/2 | 0/3 → 0/3 |
+
+  - On test, one provision question (S01, s.22-A(6) CrPC) left the top 10. The test comparison also spans D-134 to
+    D-136's relinks.
+  - Tests: `tests/test_precedent_query.py` (the asking rule, case keys, the coverage gap); 81 pass.
+- Why: a lawyer who types a case number expects that case. A question about a court the corpus does not hold must
+  say so rather than answer with other courts' judgments (D-122: coverage is a first-class fact).
+- Where: nizam/retrieval/precedent.py (`courts_named`, `cases_named`, `coverage_gap`, `_coverage`);
+  nizam/storage/case_key.py; nizam/corpus/judgment_case.py; nizam/storage/judgment_read.py (`citing_paragraphs`);
+  evals/precedent_eval.py (`declined`, `coverage_gap`); evals/results/precedent-eval-{dev,test}-d137.json;
+  tests/test_precedent_query.py.
+
 ### D-136 · 2026-11-24 · A High Court's citation is linked to the law's federal text and its own province's copy, where they are one provision
 Area: L2 linking, citation resolver, judgment readers (PRECEDENT-MODEL §4.1, D-097, D-128) · Status: standing
 - Decision: item 5, which the owner asked for "fully end to end" ("for 5 we will link with both"). The rules:
@@ -3694,10 +3741,9 @@ Area: L1 corpus · Status: standing (closes two of the D-080 "what remains" item
 
 These were found and deliberately left open. Each will become an entry when it is decided.
 
-- **The cited generator's window counts paragraphs, not judgments (found 24 Nov 2026, D-136).** `citing_paragraphs`
-  takes the first 200 paragraphs by role and date. Since citations are matched through copies, judgments with many
-  citing paragraphs crowd others out (dev S04 lost its gold judgment from the top 50). Recommendation: take the best
-  paragraph per judgment before the window, then measure on dev.
+- **Urdu and Roman Urdu precedent questions miss (D-133; D-137 measured the statute gloss here, no gain).**
+  Recommendation: embed the judgment chunks in the 8B GPU space (D-099's route, which took statute Urdu r@50 to 1.0)
+  and measure on dev.
 - **Two different texts of one law, both served as current (found 24 Nov 2026, D-135).** 16 laws are reprinted
   inside multi-law documents (4497, 3949, 3696, 3553, 9283) with text that differs from their single-law twin
   (similarity 0.44–0.98). These are consolidations of different dates, and neither copy is marked historical. A
