@@ -41,8 +41,10 @@ from nizam.storage.lexical import Filters
 
 # /2 case citations to cases (D-125); /3 the deciding court's territory (D-128); /4 a title stops at its sentence's end
 # or the next citation, trailing parentheses dropped, reviewed law aliases (law_alias); /5 a law is inherited only by a
-# bare citation or one naming the same kind of law (D-134)
-LINKER = "nizam.judgment_links/5"
+# bare citation or one naming the same kind of law (D-134); /6 'of the Act.' refers back too, by kind and year, and
+# is never remembered as a law (D-135); /7 a High Court's citation of a federal law is linked to the territory's copy
+# too, and every copy only where its unit is the same provision (D-136)
+LINKER = "nizam.judgment_links/7"
 
 
 def _todo(cur, rebuild: bool) -> list[tuple]:
@@ -106,12 +108,42 @@ class Resolver:
         self.units: dict[tuple, C.Citation] = {}
         self.versions: dict[tuple, str | None] = {}
         self.texts: dict[str, str] = {}
+        self.pairs: dict[tuple, bool] = {}
 
     def resolve(self, c: JL.StatuteCitation) -> C.Citation:
         key = (c.law, c.label, tuple(c.subs))
         if key not in self.units:
-            self.units[key] = C.resolve(self.session, C.Citation(c.raw, c.label, list(c.subs), c.law))
+            r = C.resolve(self.session, C.Citation(c.raw, c.label, list(c.subs), c.law),
+                          copies_in=(self.territory,) if self.territory else None)
+            if r.resolved_unit and r.alternates:
+                # a copy is linked only in federal law and the court's own territory (a Lahore judgment is not
+                # filed under AJK's Contract Act), and only where its unit is the same provision as the one
+                # resolved: Punjab's copy of the PPC prints a prize-bond offence as s.489-F, not cheque dishonour
+                # (D-136)
+                allowed = {"fed", self.territory} if self.territory else {"fed"}
+                self.cur.execute("""SELECT p.id::text, i.jurisdiction::text FROM provision p
+                                      JOIN instrument i ON i.id = p.instrument_id WHERE p.id = ANY(%s::uuid[])""",
+                                 ([u.unit_id for u in r.alternates],))
+                where = dict(self.cur.fetchall())
+                keep = [(t, u) for t, u in zip(r.alternate_laws, r.alternates)
+                        if where.get(u.unit_id) in allowed
+                        and self.same_provision(r.resolved_unit.unit_id, u.unit_id)]
+                r.alternate_laws, r.alternates = [t for t, _u in keep], [u for _t, u in keep]
+            self.units[key] = r
         return self.units[key]
+
+    def same_provision(self, a: str, b: str) -> bool:
+        """Two copies' units are one provision when their headings agree, or (no heading on either) their words do:
+        JL.same_provision over the headings and the folded text of each unit and its sub-units."""
+        if (a, b) not in self.pairs:
+            self.cur.execute("""SELECT id::text, coalesce(heading, ''), lower(replace(coalesce(label, ''), '-', ''))
+                                  FROM provision WHERE id = ANY(%s::uuid[])""", ([a, b],))
+            info = {r[0]: r[1:] for r in self.cur.fetchall()}
+            (ha, la), (hb, lb) = info.get(a, ("", "?")), info.get(b, ("", "!"))
+            # the same label, at the same depth ('295A' and '295-A' alike), then the same provision by its words
+            self.pairs[(a, b)] = la.replace(" ", "") == lb.replace(" ", "") and JL.same_provision(
+                ha, hb, self.unit_text(a), self.unit_text(b))
+        return self.pairs[(a, b)]
 
     def version_on(self, unit: "unit_search.Unit", day: dt.date) -> tuple[str | None, bool]:
         """(the unit's own served version on `day`, whether the unit or a unit inside it is served on `day`).
@@ -155,9 +187,13 @@ def link_one(cur, res: Resolver, types, jid, day, court, undated: bool = False,
         for c in JL.statute_citations(text):
             word = "article" if c.raw.lower().startswith("art") else "section"
             law_basis, inherited_from = "named", None
-            if c.law:
+            back = JL.back_reference(c.law)
+            if c.law and not back:
                 last_law[word] = (c.law, c.raw)
-            elif word in last_law and JL.may_inherit(c.named, last_law[word][0]):
+            elif word in last_law and JL.may_inherit(back[0] if back else c.named, last_law[word][0],
+                                                     back[1] if back else None):
+                # 'of the Act.' refers back to a law named earlier: it is not a name to remember, and it takes the
+                # last-named law only when that law is of its kind and year (D-135)
                 # a bare citation takes the law this judgment last named for this kind of unit (0121); one that names
                 # a kind of law ('of the Ordinance') takes it only when that law is of the kind, and one that names
                 # something that is not a law ('of the Hisba Bill') takes none (D-134)

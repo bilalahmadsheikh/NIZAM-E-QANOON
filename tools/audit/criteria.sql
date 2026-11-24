@@ -781,7 +781,9 @@ m AS (
                             EXCEPT SELECT id FROM v_release_judgment) x)                               AS jl_outside
     ,(SELECT count(*) FROM (SELECT dst_provision_id FROM judgment_statute_reference
                              WHERE dst_provision_id IS NOT NULL
+                            UNION SELECT unnest(alternates) FROM judgment_statute_reference     -- linked copies, D-136
                             EXCEPT SELECT id FROM v_release_provision) x)                              AS jl_dst_outside
+    ,(SELECT count(*) FROM judgment_statute_reference WHERE cardinality(alternates) > 0)               AS jl_with_copies
     ,(SELECT count(*) FROM (SELECT linker FROM judgment_link_state UNION SELECT linker FROM judgment_statute_reference
                             UNION SELECT linker FROM judgment_case_reference) l)                       AS jl_linkers
     ,(SELECT count(*) FROM judgment_statute_reference WHERE resolution = 'resolved')                   AS jl_resolved
@@ -1104,7 +1106,8 @@ SELECT * FROM (
          CASE WHEN jsrc_unread=0 AND jdoc_not_one=0 AND j_orphan=0 AND j_bodyless=0 AND j_undated_bad=0
               THEN 'PASS' ELSE 'FAIL' END FROM m
   UNION ALL SELECT 'A26','judgment links are exactly the release under one linker',
-         jl_resolved||' of '||jl_refs||' statute citations resolved (reported); '||jl_unlinked||' judgments unlinked; '
+         jl_resolved||' of '||jl_refs||' statute citations resolved, '||jl_with_copies||' also linked to another copy '
+         ||'(reported); '||jl_unlinked||' judgments unlinked; '
          ||jl_outside||' rows outside the release; '||jl_dst_outside||' pointing at unreleased law; '||jl_linkers||
          ' linker(s)',
          '0 / 0 / 0; one linker',

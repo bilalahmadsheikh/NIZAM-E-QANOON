@@ -112,6 +112,50 @@ def test_a_citation_inherits_a_law_only_when_bare_or_naming_the_same_kind():
     assert JL.may_inherit("kind:order", "qso") is True and JL.may_inherit("kind:code", "crpc") is True
 
 
+def test_two_titles_are_one_law_in_two_copies_only_when_their_words_agree_and_no_printed_year_differs():
+    assert C.same_law("Pakistan Penal Code", "Pakistan Penal Code, 1860")
+    assert C.same_law("Qanun-e-Shahadat, 1984", "Qanun-E-Shahadat Order, 1984")
+    assert C.same_law("Contract Act, 1872", "The Contract Act, 1872")
+    assert not C.same_law("Industrial Relations Act, 2008", "Industrial Relations Act, 2012")
+    assert not C.same_law("Industrial Relations Act, 2012", "Industrial Relations Ordinance, 2012")
+    assert not C.same_law("Pakistan Penal Code", "Penal Code (West Pakistan Amendment) Act, 1964")
+
+
+def test_a_copys_unit_is_the_same_provision_only_by_heading_or_words():
+    from nizam.storage import judgment_linking as JL
+    cheque = "Whoever dishonestly issues a cheque towards repayment of a loan or fulfilment of an obligation"
+    prize = "Whoever sells, buys or deals in prize bonds or draws a lottery on prize bonds shall be punished"
+    assert not JL.same_provision("Dishonestly issuing a cheque", "Prize bond lotteries", cheque, prize)
+    assert JL.same_provision("1[Dishonestly issuing a cheque]", "Dishonestly issuing a cheque.", cheque, cheque)
+    # same heading, words amended in one province: still the one provision
+    assert JL.same_provision("Interim order for maintenance", "Interim order for maintenance",
+                             "the Family Court may pass an interim order for maintenance at any stage",
+                             "at the first appearance the Family Court shall fix interim maintenance rising ten "
+                             "per cent annually")
+    assert JL.same_provision("", "", cheque, cheque + " shall be punished")          # no headings: the words decide
+    assert not JL.same_provision("", "", cheque, prize)
+    rape = "Whoever commits rape shall be punished with death or imprisonment for a term"
+    assert JL.same_provision("Punishment for rape", "Punishment of rape", rape, rape + " of not less than ten years")
+    assert JL.same_provision("Insulting modesty or causing sexual harassment",
+                             "Word, gesture or act intended to insult the modesty of a woman",
+                             "Whoever intending to insult the modesty of any woman, or conducts sexual advances",
+                             "Whoever, intending to insult the modesty of any woman, utters any word")
+    assert not JL.same_provision("[Omitted]", "Definitions", "", "In this Act, unless")        # nothing to read
+
+
+def test_a_stopped_kind_word_refers_back_by_kind_and_year_and_an_amending_act_never_does():
+    from nizam.storage import judgment_linking as JL
+    assert JL.back_reference("Act.") == ("kind:act", None)
+    assert JL.back_reference("the said Ordinance of 1979") == ("kind:ordinance", "1979")
+    assert JL.back_reference("Act, 2013") == ("kind:act", "2013")
+    for other in ("Amending Act", "the principal Act", "the repealed Ordinance", "Land Acquisition Act", "Rules of"):
+        assert JL.back_reference(other) is None, other
+    assert JL.may_inherit("kind:act", "Land Acquisition Act, 1894") is True          # 'section 55 of the Act.'
+    assert JL.may_inherit("kind:act", "Arbitration Act, 1940", "1940") is True       # 'section 14 of the Act, 1940'
+    assert JL.may_inherit("kind:act", "Trusts Act, 1882", "1940") is False           # another year, another law
+    assert JL.may_inherit("kind:act", "ppc") is False                                # the PPC is a Code
+
+
 def test_law_key_folds_spelling_noise_but_keeps_the_words_and_the_year():
     assert C.law_key("Qanoon-e- Shahadat Order, 1984") == C.law_key("the Qanoon-e-Shahadat Order 1984") \
         == "qanoon e shahadat order 1984"

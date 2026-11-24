@@ -227,8 +227,28 @@ def find(text: str) -> list[Citation]:
     return out
 
 
-def resolve(session, cit: Citation) -> Citation:
+_COPY_KINDS = {"act", "ordinance", "order", "code", "rules", "rule", "regulations", "regulation"}
+
+
+def same_law(a: str, b: str) -> bool:
+    """Whether two recorded titles name one law in two copies ('Pakistan Penal Code' and 'Pakistan Penal Code,
+    1860'; 'Qanun-e-Shahadat, 1984' and 'Qanun-E-Shahadat Order, 1984'): the same words once case, punctuation,
+    'the' and 'No.' are folded; a year or a kind word counts only when both titles print one (D-136). Two printed
+    years that differ are two laws ('Industrial Relations Act, 2008' and '..., 2012')."""
+    def parts(t):
+        w = [x for x in re.sub(r"[^a-z0-9]+", " ", (t or "").lower()).split() if x not in ("the", "no")]
+        return ([x for x in w if not _YEAR.fullmatch(x) and x not in _COPY_KINDS],
+                {x for x in w if x in _COPY_KINDS}, {x for x in w if _YEAR.fullmatch(x)})
+    (wa, ka, ya), (wb, kb, yb) = parts(a), parts(b)
+    return wa == wb and (not ka or not kb or ka == kb) and (not ya or not yb or bool(ya & yb))
+
+
+def resolve(session, cit: Citation, copies_in: tuple[str, ...] | None = None) -> Citation:
     """fill resolved_unit / resolved_law, or unresolved with the reason; database identifiers only.
+
+    `copies_in` (the judgment linker of a High Court passes its territory, D-136): a law named by a federal alias is
+    also looked for in those jurisdictions, and its copy there joins the alternates after the federal resolution.
+    Retrieval passes nothing and is unchanged.
 
     The law named is the top match among SERVED laws -- federal before a territory's same-titled copy, then the most
     relied-on (D-075). The label is looked up in THAT law and in its same-titled copies only (the asked territory's
@@ -254,9 +274,9 @@ def resolve(session, cit: Citation) -> Citation:
     wants_amendment = "amend" in words.lower()
     year = (_YEAR.findall(words) or [None])[-1]
 
-    def lookup(w):
+    def lookup(w, j=juris):
         # a year printed with the name must be the year in the law's title, when the title prints one (D-127)
-        return [x for x in session.instruments_titled(w, 10, juris)
+        return [x for x in session.instruments_titled(w, 10, j)
                 if (wants_amendment or not re.search(r"amend", x[1], re.I))
                 and (year is None or not _YEAR.findall(x[1]) or year in _YEAR.findall(x[1]))]
     laws = lookup(words)
@@ -266,8 +286,11 @@ def resolve(session, cit: Citation) -> Citation:
     if not laws:
         cit.unresolved = f"no served law titled like {words!r}"
         return cit
-    key = _norm_title(laws[0][1])
-    same = [x for x in laws if _norm_title(x[1]) == key]        # copies of the one law, in preference order
+    if copies_in and juris and not set(copies_in) <= set(juris):
+        # a federal alias in a High Court's judgment: the territory's own copy of the law, after the federal one
+        seen = {x[0] for x in laws}
+        laws = laws + [x for x in lookup(words, tuple(copies_in)) if x[0] not in seen]
+    same = [x for x in laws if same_law(laws[0][1], x[1])]      # copies of the one law, in preference order
     found = []
     for oid, otitle, _r in same:
         ounits = _label_units(session, cit.label, oid)

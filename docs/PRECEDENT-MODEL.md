@@ -322,6 +322,12 @@ Rules:
   or a year that makes the name unique. Act numbers, schedule Articles and names without their province stay
   unresolved. The grammar also changed: a title stops at its sentence's end or at the next citation, and trailing
   parentheses ("(V of 1908)") are dropped while any year inside them is kept.
+  *As built (D-135, D-136):*
+  - **Aliases and back-references.** 188 aliases; "of the Act." refers back by kind and year.
+  - **Copies.** A High Court's citation of a federal law is also linked, in `alternates`, to its own province's copy
+    where that unit is the same provision. Punjab's PPC s.489-F (a prize-bond offence) and ss.375/376 (repealed
+    stubs) never are.
+  - **Readers.** "Cases on this section" and the cited generator read every copy.
 - **Time.** The version is the one valid on the decision date. When the law has since been amended or repealed, the
   reader and the answer say so: "This judgment read s.X before its substitution of <date>." The date comes from the
   version records.

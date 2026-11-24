@@ -1136,6 +1136,115 @@ Area: client · Status: Superseded by D-084 (the whole-page cloth; the hem, the 
   design/heritage_art.dart, presentation/discover.dart, presentation/heritage.dart; test/heritage_test.dart
   (golden embroidery.png, a review sheet at 3x).
 
+### D-136 · 2026-11-24 · A High Court's citation is linked to the law's federal text and its own province's copy, where they are one provision
+Area: L2 linking, citation resolver, judgment readers (PRECEDENT-MODEL §4.1, D-097, D-128) · Status: standing
+- Decision: item 5, which the owner asked for "fully end to end" ("for 5 we will link with both"). The rules:
+  - **The resolver finds the province's copy** (`citations.resolve(..., copies_in=)`). The Lahore and Peshawar
+    linkers pass their territory. A law named by a federal alias (PPC, CPC, QSO, MFLO, a reviewed alias) is also
+    looked up in Punjab or KP, and that copy joins the alternates after the federal resolution (D-097: federal
+    first, typed ambiguity). Retrieval passes nothing, so it is unchanged.
+  - **One law in two copies** (`same_law`):
+    - the same words once case, punctuation, "the" and "No." are folded;
+    - a year or a kind word counts only when both titles print one;
+    - two printed years that differ are two laws.
+
+    "Pakistan Penal Code" and "Pakistan Penal Code, 1860" are one law. "Code of Criminal Procedure, 1898" and the
+    pre-1947 archive "The Code of Criminal Procedure Act, 1898" are not.
+  - **A copy is linked only where its unit is the same provision** (linker `nizam.judgment_links/7`):
+    - the same label at the same depth;
+    - content words of heading and opening text overlapping by at least half, with boilerplate ("whoever … shall be
+      punished with imprisonment") set aside;
+    - only federal law and the court's own territory (no AJK copy under a Lahore judgment); the Supreme Court
+      federal only.
+  - **Readers read every copy.** `citing_paragraphs` (the precedent "cited" generator) and `provision_judgments`
+    ("cases on this section") match `dst_provision_id` or any alternate, using a GIN index on `alternates` (0131).
+    A26 now also requires every alternate to be released law.
+- What reading the copies found:
+  - **The Punjab copy is not always the same text.** Punjab's PPC is an older reprint. Its s.489-F is a prize-bond
+    offence, and its ss.375/376 read "repealed by the Offence of Zina (Enforcement of Hudood) Ordinance, 1979,
+    s.19". These are refused (tests).
+  - **Where a provincial primary differs from the federal unit** (570 citations: the Family Courts Act 1964, the
+    Police Order 2002, the CNSA, the Limitation Act), the provincial text is the province's amended law. D-128's
+    territory-first primary stands there, and the federal unit is correctly not tied to it.
+  - **The archive CrPC.** 731 "302/324 Cr.P.C." citations had resolved, under /6, into the pre-1947 archive text
+    (`historical`) because the current Code has no unit so labelled. Most are PPC sections attributed to the wrong
+    code. They are now `unit_not_found`, which is not a guess.
+- Measured, all 9,694 judgments relinked under /7:
+  - Resolved 109,007 of 146,182; under /6, 109,887 (the 880 difference is the archive-CrPC links above).
+  - 40,167 citations are also linked to another copy, 7,594 of them Lahore citations filed under the Punjab copy.
+  - A dry run on 160 High Court judgments, read: copies linked include Punjab PPC ss.34, 11 and 295-A. Copies
+    refused include PPC ss.375/376 (Punjab stub), Police Order s.18 (different provisions), unserved as-made
+    copies with no text, and units at different depths.
+  - **Privacy rebuilt from the new links** (`nizam.judgment_privacy/1`): no judgment lost a redaction. Two gained
+    one (family law now resolved), for 572 judgments and 1,282 names.
+  - Precedent dev, against /5 (test not rerun): hit@10 .719 → .688, MRR@10 .382 → .391, recall@50 .786 → .771,
+    paragraph@10 .413 → .477.
+    - The one hit lost is S04 ("judgments on s.489-F PPC"). Its gold judgment is still linked, but the cited
+      generator's window counts paragraphs, so judgments with many citing paragraphs now crowd it out of the top
+      200 (open).
+    - S03 rose from rank 10 to 1.
+  - `./nz audit` 52/52; 168 tests pass; golden citations 580/581, 0 wrong.
+- Why: a Lahore lawyer reading the Punjab Code's s.34 should find the Lahore judgments on s.34. A province's
+  different provision under the same number must never collect them.
+- Where: infra/postgres/migrations/0131_jsr_alternates_index.sql; nizam/storage/citations.py (`same_law`,
+  `copies_in`), judgment_linking.py (`same_provision`), judgment_read.py; nizam/workers/judgment_links.py;
+  tools/audit/criteria.sql (A26); tests/test_citation_guesses.py, test_judgment_db.py;
+  evals/results/precedent-eval-dev-d136.json.
+
+### D-135 · 2026-11-24 · D-134's open items closed: the rare names read, "of the Act." refers back by kind, compilation copies kept
+Area: L2 citation resolver and linking, corpus identity (D-134, D-127, PRECEDENT-MODEL §4.1) · Status: standing
+- Decision: the owner asked to "close these open fully". D-134 left three items open.
+  1. **The 1,584 rarer printed names** were put on a second sheet (`docs/alias-review/law-aliases-2026-11-24-tail.csv`).
+     `alias_review.py build --name tail` skips every name already decided on an earlier sheet. There were 1,597
+     rows, decided as follows:
+     - **472** one judgment and no year: decided by D-134's rule (a judgment's own short name).
+     - **417** with no candidate law at all, by initials or title: not held.
+     - **584** whose candidates matched neither on initials and year nor on every word, year and province: those
+       candidates are other laws.
+     - **128** strong proposals, every one read: **107 aliases**, 21 refused. The refused include a kind that
+       differs (an "Act, 1963" against a held Ordinance), a misprint naming two Orders, and three names that are the
+       held title itself.
+     - **New loader rule:** an alias never sits on a key that is the held title folded ("Specific Relief Act 1877"
+       with a stray apostrophe). Such an alias would override the title search, and its territory preference, for
+       every correct citation of the law.
+     - **Active aliases: 188.**
+  2. **"of the Act." refers back** (`judgment_linking.back_reference`, linker /6). A stopped kind word, optionally
+     with "the said/same/aforesaid" and a year ("Article 79 of the Order, 1984"), inherits the judgment's last-named
+     law when the kind and the printed year agree. "The amending/principal/repealed Act" never inherits. A
+     kind-only name is no longer remembered as the judgment's last law, which used to block later bare citations.
+     D-127's refusal to look such a name up by title is unchanged. Only the judgment's own named law is taken.
+  3. **The 34-law compilation (document 4497) and its kind.** All six multi-law documents were compared with their
+     single-law twins: 17 pairs, word-level similarity of the current released text.
+     - Only one pair is the same text: the Sindh Local Government (Local Fund Budget) Rules 2001, 3389 against 2985,
+       10 units, similarity 1.000.
+     - The other 16 differ (0.44–0.98). They are different consolidations: the NAO 2008 against 2026, the Civil
+       Servants Act 2016 against 2025, and the reverse for the Service Tribunals Act (2014 in the compilation, 1981
+       standalone).
+     - So `duplicate_of` (0062) does not apply: it would withdraw a different text of a law. Every route the corpus
+       has skips a released copy by design, and none is built here for one 10-unit rule.
+     - No fixed preference between the copies is safe either, since each order picks an older text somewhere.
+     - The resolver keeps the copies of one law as one law, the others as alternates (D-136 checks them).
+     - The underlying defect is two different texts of one law, both served as current. It is registered below as
+       a version-modelling item.
+- Measured, all 9,694 judgments relinked under /6 (statute citations):
+
+  | | /5 (D-134) | /6 |
+  |---|---:|---:|
+  | Resolved | 99,708 | 109,887 |
+  | Law not held | 7,044 | 8,361 |
+  | No law named | 32,618 | 19,561 |
+  | Unit not found | 6,812 | 8,373 |
+
+  - Read: 30 stopped references that now inherit, all correct (kind and year agree), and 20 links through tail
+    aliases, all correct.
+  - "Law not held" rose by inheritance of named laws the corpus does not hold. "Unit not found" rose where a law
+    is now named but the section is not in it.
+- Why: every printed name of a law that a person can read as one law should link, and none that cannot. A back
+  reference inherited by kind is the judgment's own words, not a guess.
+- Where: tools/alias_review.py (`--name`, decided-key skip, title-key rule); docs/alias-review/*-tail.*;
+  nizam/storage/judgment_linking.py (`back_reference`, `may_inherit` year); nizam/workers/judgment_links.py;
+  tests/test_citation_guesses.py. D-127 is partly superseded on inheritance only.
+
 ### D-134 · 2026-11-24 · Law aliases from a review sheet; a title stops at its sentence; a law is inherited only by its own kind
 Area: L2 citation resolver (shared by L3 and the judgment linker), schema, linking (PRECEDENT-MODEL §4.1, D-127) ·
 Status: standing
@@ -1520,7 +1629,8 @@ Area: owner ruling, L1 parser, schema, linking (docs/PRECEDENT-MODEL.md §7 step
   tests/test_judgment_{parse,case}.py.
 
 ### D-127 · 2026-11-23 · A citation that names only a kind of law, or a law of another year, is not resolved by a guess
-Area: L2 citation resolver (shared by L3 and the judgment linker), linking · Status: standing
+Area: L2 citation resolver (shared by L3 and the judgment linker), linking · Status: standing; partly superseded by
+D-135 (a kind-only name may inherit the judgment's own last-named law of that kind)
 - Decision: `nizam.storage.citations.resolve` refuses two guesses. Both used to resolve, because the title search
   returned whatever matched and the most relied-on law won.
   - **A kind word is not a name.** "Section 4 of the Act.", "the Act, 2013", "the Amending Act" and "the said
@@ -3584,14 +3694,17 @@ Area: L1 corpus · Status: standing (closes two of the D-080 "what remains" item
 
 These were found and deliberately left open. Each will become an entry when it is decided.
 
-- **"of the Act." with a full stop never inherits a law (found 24 Nov 2026, D-134).** D-127 made "the Act." a kind of
-  law, never resolved. Since D-134, an unstopped "of the Act" inherits a last-named law of the same kind, but the
-  stopped form does not ("section 55 of the Act." after the Land Acquisition Act). Recommendation: give the stopped
-  form the same kind-checked inheritance, measure the change on a read sample, and relink.
-- **A 34-law compilation repeats standalone laws (found 24 Nov 2026, D-134).** Document 4497 holds copies of the
-  National Accountability Ordinance, the Civil Servants Act and the Service Tribunals Act. They are not marked
-  `duplicate_of`, and the title search finds them first. Recommendation: compare each copy with its standalone law
-  and link exact copies by `duplicate_of` (the 0062 practice), so citations resolve to the single-law document.
+- **The cited generator's window counts paragraphs, not judgments (found 24 Nov 2026, D-136).** `citing_paragraphs`
+  takes the first 200 paragraphs by role and date. Since citations are matched through copies, judgments with many
+  citing paragraphs crowd others out (dev S04 lost its gold judgment from the top 50). Recommendation: take the best
+  paragraph per judgment before the window, then measure on dev.
+- **Two different texts of one law, both served as current (found 24 Nov 2026, D-135).** 16 laws are reprinted
+  inside multi-law documents (4497, 3949, 3696, 3553, 9283) with text that differs from their single-law twin
+  (similarity 0.44–0.98). These are consolidations of different dates, and neither copy is marked historical. A
+  reader can be shown the older text as current. Recommendation: a version-modelling slice. Read each pair's latest
+  amendment, keep the newer as current and serve the older as a dated historical version (0096–0099 practice). The
+  one identical pair (3389/2985) is then linked by a withdrawal writer for released copies, which needs a lead
+  decision.
 
 - **Party names as a search key in judgments of no sensitive category (found 24 Nov 2026, D-131).** D-122 says party names are
   not a search key. D-131 enforces it only where names are withheld. Recommendation: at search time, drop a hit whose only

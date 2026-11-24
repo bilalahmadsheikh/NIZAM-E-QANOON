@@ -78,8 +78,17 @@ def _candidates(cur, key: str, printed: str, titles) -> list[dict]:
     return best[:3]
 
 
-def build(min_judgments: int, min_citations: int) -> int:
+def _decided_keys() -> set[str]:
+    """Names already decided on an earlier sheet: never put on a new one."""
+    keys = set()
+    for p in sorted(OUT_DIR.glob("law-aliases-*.csv")):
+        keys |= {r["alias_key"] for r in csv.DictReader(p.open(encoding="utf-8")) if r.get("decision", "").strip()}
+    return keys
+
+
+def build(min_judgments: int, min_citations: int, name: str | None = None) -> int:
     today = dt.date.today().isoformat()
+    decided = _decided_keys()
     with connect() as conn, conn.cursor() as cur:
         cur.execute("SET statement_timeout = 0")
         cur.execute("""SELECT r.raw, r.paragraph_id::text, r.decided_on, r.char_start, r.char_end, r.judgment_id::text,
@@ -124,6 +133,8 @@ def build(min_judgments: int, min_citations: int) -> int:
         titles = cur.fetchall()
         sheet, tail = [], collections.Counter()
         for key, g in sorted(groups.items(), key=lambda kv: (-len(kv[1]["judgments"]), -kv[1]["citations"])):
+            if key in decided:
+                tail["already decided on an earlier sheet"] += 1; continue
             if len(g["judgments"]) < min_judgments and g["citations"] < min_citations:
                 tail["names"] += 1; tail["citations"] += g["citations"]; continue
             passages = []
@@ -144,7 +155,7 @@ def build(min_judgments: int, min_citations: int) -> int:
                                       for c in _candidates(cur, key, printed, titles)),
                 decision="", target_document_id="", basis="", reviewer_note=""))
     OUT_DIR.mkdir(parents=True, exist_ok=True)
-    out = OUT_DIR / f"law-aliases-{today}.csv"
+    out = OUT_DIR / f"law-aliases-{today}{'-' + name if name else ''}.csv"
     if out.exists():
         print(f"{out} exists; a filled sheet is never overwritten"); return 1
     with out.open("w", encoding="utf-8", newline="") as f:
@@ -157,7 +168,8 @@ def build(min_judgments: int, min_citations: int) -> int:
              "| Outcome | Citations |", "|---|---:|"]
     lines += [f"| {k} | {v:,} |" for k, v in outcome.most_common()]
     lines += ["", f"Rows on the sheet (≥ {min_judgments} judgments or ≥ {min_citations} citations): {len(sheet)}. "
-              f"Below that: {tail['names']:,} printed names, {tail['citations']:,} citations, not reviewed.", ""]
+              f"Below that: {tail['names']:,} printed names, {tail['citations']:,} citations, not reviewed. "
+              f"Already decided on an earlier sheet: {tail['already decided on an earlier sheet']:,}.", ""]
     summary.write_text("\n".join(lines), encoding="utf-8")
     print("\n".join(lines))
     print(f"-> {out}")
@@ -197,6 +209,10 @@ def load(sheet: Path, reviewer: str, apply: bool) -> int:
             if not first or C._norm_title(first[0][1]) != C._norm_title(title):
                 problems.append(f"{key}: the title {title!r} does not find document {doc}'s law first in {jur}")
                 continue
+            if C.law_key(title) == key:
+                # the name IS the title: an alias would override the title search (and its territory preference)
+                # for every correct citation of the law (D-135)
+                problems.append(f"{key}: the key is the law's own title folded; not an alias"); continue
             forms = [f.strip() for f in r["printed_forms"].split("|") if f.strip()]
             years = {y for f in forms for y in C._YEAR.findall(f)}
             if years and C._YEAR.findall(title) and not years <= set(C._YEAR.findall(title)):
@@ -242,13 +258,14 @@ def main() -> int:
     b = sub.add_parser("build")
     b.add_argument("--min-judgments", type=int, default=3)
     b.add_argument("--min-citations", type=int, default=10)
+    b.add_argument("--name", help="a suffix for a further sheet of the same day ('tail')")
     lo = sub.add_parser("load")
     lo.add_argument("sheet", type=Path)
     lo.add_argument("--reviewer", required=True)
     lo.add_argument("--apply", action="store_true")
     a = ap.parse_args()
     if a.cmd == "build":
-        return build(a.min_judgments, a.min_citations)
+        return build(a.min_judgments, a.min_citations, a.name)
     return load(a.sheet.resolve(), a.reviewer, a.apply)
 
 

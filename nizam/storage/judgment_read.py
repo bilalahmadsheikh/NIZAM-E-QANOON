@@ -112,14 +112,16 @@ class JudgmentRead:
         """Paragraphs that cite one of these provisions (or a unit inside one), applying or construing it first."""
         if not provision_ids:
             return []
+        # the provisions and their sub-units; a citation linked to any copy of one of them counts (alternates, D-136)
         rows = conn.execute("""
+            WITH u AS (SELECT array_agg(p.id) AS ids FROM provision t
+                         JOIN provision p ON p.instrument_id = t.instrument_id AND p.path <@ t.path
+                        WHERE t.id = ANY(%s::uuid[]))
             SELECT r.paragraph_id AS id, r.decided_on,
                    max(CASE r.role WHEN 'interpreted' THEN 3 WHEN 'quoted' THEN 3 WHEN 'challenged' THEN 3
                                    WHEN 'charge' THEN 1 ELSE 2 END) AS score
-              FROM judgment_statute_reference r
-              JOIN provision t ON t.id = ANY(%s::uuid[])
-              JOIN provision p ON p.id = r.dst_provision_id AND p.instrument_id = t.instrument_id AND p.path <@ t.path
-             WHERE r.decided_on <= %s
+              FROM judgment_statute_reference r, u
+             WHERE r.decided_on <= %s AND (r.dst_provision_id = ANY(u.ids) OR r.alternates && u.ids)
              GROUP BY 1, 2 ORDER BY score DESC, r.decided_on DESC LIMIT %s""",
             (provision_ids, before, n * 4)).fetchall()
         return JudgmentRead._released(conn, rows, n, court)
@@ -403,15 +405,17 @@ class JudgmentRead:
         """'Cases on this section': released judgments citing the provision or a unit inside it, newest first."""
         with self.transaction() as conn:
             rows = conn.execute("""
+                WITH u AS (SELECT array_agg(p.id) AS ids FROM provision t
+                             JOIN provision p ON p.instrument_id = t.instrument_id AND p.path <@ t.path
+                            WHERE t.id = %s)
                 SELECT r.judgment_id, r.decided_on, count(*) AS mentions,
                        array_agg(DISTINCT r.role) AS roles, min(r.paragraph_id::text) AS first_paragraph,
                        bool_or(j.decided_on_basis = 'undated') AS undated
                   FROM judgment_statute_reference r
                   JOIN judgment j ON j.id = r.judgment_id AND j.decided_on = r.decided_on
-                  JOIN provision t ON t.id = %s
-                  JOIN provision p ON p.id = r.dst_provision_id AND p.instrument_id = t.instrument_id
-                                  AND p.path <@ t.path
+                  CROSS JOIN u
                  WHERE r.decided_on <= %s
+                   AND (r.dst_provision_id = ANY(u.ids) OR r.alternates && u.ids)   -- any copy (D-136)
                  GROUP BY 1, 2 ORDER BY 6, r.decided_on DESC LIMIT %s""",   # newest dated first, undated last
                 (provision_id, as_of, limit * 2)).fetchall()
             if not rows:

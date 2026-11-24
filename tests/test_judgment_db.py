@@ -328,6 +328,29 @@ def test_title_lookup_stays_exact_after_many_lookups_with_varied_titles():
         handle.__exit__(None, None, None)
 
 
+def test_a_lahore_citation_is_filed_under_the_punjab_copy_only_where_it_is_the_same_provision(case_repo):
+    """D-136: a Lahore judgment citing s.34 PPC is linked to the federal Code and to the Punjab Code's s.34, so 'cases
+    on this section' from the Punjab copy finds it. The Punjab copy's s.376 is a stub repealed in 1979 (another
+    text), so judgments on the federal s.376 are never filed under it."""
+    repo = case_repo
+    with repo.transaction() as conn:
+        if conn.execute("SELECT count(*) AS n FROM judgment_statute_reference WHERE cardinality(alternates) > 0 "
+                        "AND linker = 'nizam.judgment_links/7'").fetchone()["n"] == 0:
+            pytest.skip("links not rebuilt under /7")
+        units = {r["label"]: r["id"] for r in conn.execute("""
+            SELECT p.label, p.id FROM provision p JOIN instrument i ON i.id = p.instrument_id
+             WHERE i.document_id = 4458 AND p.is_active AND p.kind::text = 'section' AND p.label IN ('34', '376')""")}
+    if set(units) != {"34", "376"}:
+        pytest.skip("the Punjab Code copy of the PPC is not held as expected")
+    on34 = repo.provision_judgments(units["34"], TODAY, limit=50)
+    assert on34 and any("Lahore" in (j.get("court") or j.get("court_name") or "") for j in on34)
+    with repo.transaction() as conn:
+        n = conn.execute("""SELECT count(*) AS n FROM judgment_statute_reference r
+                             WHERE %s = ANY(r.alternates) OR r.dst_provision_id = %s""",
+                         (units["376"], units["376"])).fetchone()["n"]
+    assert n == 0
+
+
 def test_a_reviewed_alias_resolves_through_the_shared_resolver_and_a_rejected_name_does_not():
     """D-134: 'ITO, 2001' was read and tied to the Income Tax Ordinance 2001 (law_alias); 'the Indian Penal Code' was
     read and rejected as foreign, so it reaches no Pakistani law. Retrieval and the linker share this resolver."""

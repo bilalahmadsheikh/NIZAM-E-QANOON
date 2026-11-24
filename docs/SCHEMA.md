@@ -1776,6 +1776,9 @@ outcome: parsed, held with the gate, needs_ocr, reporter_reprint or duplicate) â
   `judgment_sensitivity` (category and the evidence that marked it) and `judgment_display` (`parties_display`,
   `redacted`, and `names_withheld`, which is internal: readers redact with it and never return it).
   `judgment.parties_display` is not used.
+- **Copies (0131, D-136):** `judgment_statute_reference.alternates` holds the same provision in the law's other
+  copies: federal law and the deciding court's own territory, each checked to be the same provision. Readers treat
+  an alternate as a link (GIN index `ix_jsr_alternates`), and A26 requires each to be released.
 - **Law aliases (0130, D-134):** `law_alias` is a printed name of a law that its recorded title does not carry
   ('NAB Ordinance', 'ITO, 2001', 'NWFP Pre-emption Act, 1987', 'Qanoon-e-Shahadat Order'). It holds `alias_key`
   (folded by `nizam.storage.citations.law_key`), the forms printed, the law (`document_id`, with `title_words` and

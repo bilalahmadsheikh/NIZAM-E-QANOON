@@ -70,16 +70,64 @@ class CaseCitation:
     case_year: int | None
 
 
-def may_inherit(named: str | None, last_law: str) -> bool:
+def _words(t: str, limit: int = 400) -> list[str]:
+    return re.findall(r"[a-z]+", (t or "").lower())[:limit]
+
+
+# words every penal or procedural section prints, which say nothing about WHICH provision it is
+_BOILERPLATE = set("""whoever shall punished punishable imprisonment either description term which extend years year
+with fine both such person persons section sections under this that code ordinance any other than shall been have
+being when where there their them they from into upon said same been were will would also only made make case
+provided provision provisions subject clause clauses subsection article articles order rules rule hereinafter
+mentioned following words mean means include includes including omitted substituted inserted added""".split())
+
+
+def _content(head: str, text: str, limit: int = 80) -> set[str]:
+    words = re.findall(r"[a-z]+", ((head or "") + " " + (text or "")).lower())[: limit + 20]
+    return {w[:6] for w in words if len(w) >= 4 and w not in _BOILERPLATE}
+
+
+def same_provision(head_a: str, head_b: str, text_a: str, text_b: str) -> bool:
+    """Whether a unit in one copy of a law is the same provision as the like-numbered unit in another copy (D-136):
+    the content words of heading and opening text overlap (shared stems over the smaller set >= .5, boilerplate such
+    as 'whoever ... shall be punished with imprisonment' aside). A province's amended words keep the provision
+    ('Punishment for rape' and 'Punishment of rape'; s.509 before and after its 2016 substitution, both about
+    insulting a woman's modesty), but a different provision under the same number does not: Punjab's copy of the PPC
+    prints a prize-bond offence as s.489-F, which shares nothing with the federal s.489-F's cheque dishonour. A unit
+    with no words on either side (an omitted section) is never linked."""
+    a, b = _content(head_a, text_a), _content(head_b, text_b)
+    if not a or not b:
+        return False
+    return len(a & b) / min(len(a), len(b)) >= 0.5
+
+
+def may_inherit(named: str | None, last_law: str, year: str | None = None) -> bool:
     """Whether a citation that names no law takes the law its judgment last named (0121): a bare citation does
     ('section 497(2)'); one naming only a kind of law does when that law is of the kind ('section 3 of the Ordinance'
-    after the NAB Ordinance, not after the PC Act); one naming something that is not a law never does ('section 25
-    of the Hisba Bill', D-134)."""
+    after the NAB Ordinance, not after the PC Act), and, when it prints a year, of that year; one naming something
+    that is not a law never does ('section 25 of the Hisba Bill', D-134)."""
     if named is None:
         return True
     if named == "other":
         return False
-    return C.law_kind(last_law) == named.split(":", 1)[1]
+    if C.law_kind(last_law) != named.split(":", 1)[1]:
+        return False
+    return year is None or year in C._YEAR.findall(last_law)
+
+
+# A printed name that refers back to a law already named: 'the Act.', 'the said Ordinance of 1979', 'the same Code'.
+# 'the amending Act', 'the principal Act', 'the repealed Ordinance' point elsewhere and never inherit (D-135).
+_BACK_REFERENCE = re.compile(r"^\W*(?:the\s+)?(?:said\s+|same\s+|present\s+|above\s+|aforesaid\s+)?"
+                             r"(act|ordinance|order|code|rules?|regulations?)\W*(?:of\s+)?((?:18|19|20)\d{2})?\W*$",
+                             re.I)
+
+
+def back_reference(law: str | None) -> tuple[str, str | None] | None:
+    """('kind:<word>', year or None) when a printed law name only refers back to a law named earlier, else None."""
+    m = _BACK_REFERENCE.match(law or "")
+    if not m:
+        return None
+    return f"kind:{C.law_kind(m.group(1))}", m.group(2)
 
 
 def statute_citations(text: str) -> list[StatuteCitation]:
