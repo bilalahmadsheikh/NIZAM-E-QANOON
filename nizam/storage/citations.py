@@ -53,6 +53,17 @@ _KIND_ONLY = re.compile(r"^\W*(?:the\s+)?(?:said\s+|same\s+|present\s+|above\s+|
                         r"parent\s+|new\s+|old\s+|repealed\s+)?(?:act|ordinance|order|code|rules?|regulations?|law|"
                         r"statute|enactment)s?\W*(?:of\s+)?(?:(?:18|19|20)\d{2})?\W*$", re.I)
 _YEAR = re.compile(r"(?<!\d)((?:18|19|20)\d{2})(?!\d)")
+# A title ends at a sentence's end: a type word or a year, its full stop, then the next sentence's capital ('section 3
+# of the Limitation Act. It ...'). The stop is kept, so 'of the Act.' stays a kind of law (D-127). Dotted
+# abbreviations inside a title ('N.-W.F.P. Pre-emption Act') carry no type word before their stops (D-134).
+_SENTENCE_CUT = re.compile(r"(?:\b[A-Za-z][a-z]{3,}|\bAct|(?<!\d)(?:18|19|20)\d{2})\.(?=\s+[A-Z“\"(\[])")
+# ... and before the next citation's unit word: 'the General Clauses Act and Article 4', 'the Limitation Act, Section 5'
+_NEXT_UNIT = re.compile(r"(?:,|\s+and)\s+(?:Articles?|Sections?|Rules?)\b")
+# a sub-clause the grammar swallowed ahead of the name: 'Article 8(1) and (2) of the Constitution'
+_LEADING_PARENS = re.compile(r"^(?:\([^()]*\)\s*(?:,|and|or|to)?\s*)+(?:of\s+)?(?:the\s+)?", re.I)
+# trailing parentheses after a title are its act number or a short name, not its words: '(V of 1908)',
+# '(Act XLV of 1860)', '(Cr.P.C.)', '("FIO")', '(hereinafter referred to as ...)' (D-134)
+_TRAILING_PARENS = re.compile(r"(?:\s*\([^()]*\))+\s*$")
 _SMALL = {"of", "the", "and", "for", "in", "on", "to", "against", "at", "by", "from", "with", "relating", "regarding"}
 
 _P_FULL = re.compile(_UNIT + _LABEL + _SUBS + r"(?:\s*,?\s*(?:(?i:of)\s+(?:(?i:the)\s+)?)?(?:(?P<const>(?i:Constitution))\b|"
@@ -78,6 +89,10 @@ class Citation:
     alternate_laws: list = field(default_factory=list)
     start: int = -1                 # where `raw` is printed in the text given to find()
     end: int = -1
+    via_alias: str | None = None    # the reviewed law_alias key it resolved through (D-134), when it did
+    # when a title was printed but names no law: 'kind:ordinance' ('of the Ordinance') or 'other' ('of the Hisba
+    # Bill'); None when no title was printed. The linker inherits a law only for a bare citation or a matching kind.
+    named: str | None = None
 
 
 def _norm_title(t: str) -> str:
@@ -91,52 +106,121 @@ def _alias_key(s: str) -> str | None:
     return k if k in ALIASES else None
 
 
+_CODE_KIND = {"ppc": "code", "crpc": "code", "cr.p.c": "code", "cpc": "code", "c.p.c": "code", "qso": "order",
+              "constitution": "constitution", "mflo": "ordinance", "ata": "act", "cnsa": "act", "nao": "ordinance"}
+
+
+def _kind_word(w: str) -> str:
+    w = w.lower()
+    return {"shahadat": "order", "regulations": "regulation", "rules": "rule"}.get(w, w)
+
+
+def law_kind(law: str | None) -> str | None:
+    """The kind of law a name is ('act', 'ordinance', 'order', 'code' ...): from a code alias, else the last kind word
+    the name prints ('Qanoon-e-Shahadat Order, 1984' is an order). Used to keep 'of the Ordinance' from inheriting an
+    Act (D-134)."""
+    if not law:
+        return None
+    if law in _CODE_KIND:
+        return _CODE_KIND[law]
+    words = _TYPE.findall(law)
+    return _kind_word(words[-1]) if words else None
+
+
+def _title_named(title: str) -> str | None:
+    """What a captured title that names no law names: 'kind:<word>' when it is only a kind of law, 'other' when it
+    names something else (a Bill, a report, a person), None when nothing but small words was captured."""
+    words = [w for w in re.findall(r"[A-Za-z][\w'-]*", title) if w.lower() not in _SMALL]
+    if not words:
+        return None
+    kinds = [w for w in words if _TYPE.fullmatch(w)]
+    return f"kind:{_kind_word(kinds[-1])}" if kinds and len(kinds) == len(words) else "other"
+
+
+def law_key(law: str | None) -> str:
+    """The key a printed law name is reviewed and aliased under (law_alias, D-134): case, punctuation, hyphen spacing
+    and a leading 'the' folded; the words and any year kept ('Qanoon-e- Shahadat Order, 1984' and 'Qanoon-e-Shahadat
+    Order 1984' share 'qanoon e shahadat order 1984'; 'NAB Ordinance' and 'NAB Ordinance, 1999' do not)."""
+    t = re.sub(r"[‘’“”'\"]", "", (law or "").lower())
+    t = re.sub(r"[^a-z0-9]+", " ", t).split()
+    while t and t[0] == "the":
+        t.pop(0)
+    return " ".join(t)
+
+
 def _title_law(title: str) -> str | None:
     """the law a captured title names: an alias key, the title words, or None when it is not a law's title"""
-    words = title.replace(",", " , ").split()
-    while words and (words[-1].lower() in _SMALL or words[-1] == ","):
-        words.pop()
-    while words and words[0].lower() in _SMALL:
-        words.pop(0)
-    t = " ".join(words).replace(" , ", ", ").strip(" ,")
+    def trim(s):
+        words = s.replace(",", " , ").split()
+        while words and (words[-1].lower() in _SMALL or words[-1] == ","):
+            words.pop()
+        while words and words[0].lower() in _SMALL:
+            words.pop(0)
+        return " ".join(words).replace(" , ", ", ").strip(" ,")
+    t = trim(title)
+    t = trim(_LEADING_PARENS.sub("", t))
+    bare = _TRAILING_PARENS.sub("", t).strip(" ,")
+    if bare and bare != t:
+        # the parentheses go; a year printed only inside them stays ('Contempt of Court Ordinance (Ordinance V of
+        # 2003)' is the 2003 Ordinance, not the 1998 or 2004 one)
+        year = _YEAR.findall(t[len(bare):])
+        t = bare + (f", {year[-1]}" if year and not _YEAR.findall(bare) else "")
     if not t or not (_TYPE.search(t) or re.search(r"\d{4}$", t)):
         return None
+    if t.lower().rstrip(".") == "constitution":   # 'Article 8(1) and (2) of the Constitution', as the const branch
+        return "constitution"
     if not _TYPE.sub("", t).strip(" ,"):          # 'the Act', 'the Ordinance': which one depends on context
         return None
-    return _ALIAS_WORDS.get(re.sub(r"[,\s]*\d{4}$", "", t).lower().strip(" ,"), None) or t
+    return _ALIAS_WORDS.get(re.sub(r"[,\s]*\d{4}\.?$", "", t).lower().strip(" ,."), None) or t
 
 
 def find(text: str) -> list[Citation]:
     out: list[Citation] = []
     seen = set()
 
-    def add(m, law):
+    def add(m, law, end=None, named=None):
         # a CPC Order or Rule number is not a section ('Order 39 CPC', 'O. 39 r. 1'): a different numbering that
         # this grammar does not resolve, so it is left to the lexical search rather than misread
         if re.search(r"(?:\border|\brule|\bO\.|\br\.)\s*$", (text or "")[:m.start()], re.I):
             return
-        span = (m.start(), m.end())
+        end = m.end() if end is None else end
+        span = (m.start(), end)
         if any(a <= span[0] < b for a, b in seen):
             return
         seen.add(span)
         label = re.sub(r"\s+", " ", m.group("label")).strip()
         subs = re.findall(r"\(\s*([0-9A-Za-z]{1,4})\s*\)", m.group("subs") or "")
-        raw = m.group(0).strip()
-        lead = len(m.group(0)) - len(m.group(0).lstrip())
-        out.append(Citation(raw, label, subs, law, start=m.start() + lead, end=m.start() + lead + len(raw)))
+        whole = text[m.start():end]
+        raw = whole.strip()
+        lead = len(whole) - len(whole.lstrip())
+        out.append(Citation(raw, label, subs, law, start=m.start() + lead, end=m.start() + lead + len(raw),
+                            named=named if law is None else None))
 
-    for m in _P_FULL.finditer(text or ""):
+    pos = 0
+    while True:
+        m = _P_FULL.search(text or "", pos)
+        if not m:
+            break
+        pos = max(m.end(), pos + 1)
         alias = m.group("alias")
         title = m.group("title")
+        end = None
         if alias:
             law = _alias_key(alias)
         elif m.group("const"):
             law = "constitution"
         elif title:
+            # the title stops at its sentence's end, or where the next citation begins (D-134)
+            stops = [x.end() for x in [_SENTENCE_CUT.search(title)] if x] + \
+                    [x.start() for x in [_NEXT_UNIT.search(title)] if x]
+            if stops:
+                title = title[:min(stops)]
+                end = m.start("title") + len(title)
+                pos = max(end, m.start() + 1)               # what follows the cut is read again
             law = _title_law(title)
         else:
             law = None
-        add(m, law)
+        add(m, law, end, _title_named(title) if (title and law is None) else None)
     for rx in (_P_LABEL_ALIAS, _P_ALIAS_LABEL):
         for m in rx.finditer(text or ""):
             add(m, _alias_key(m.group("alias")))
@@ -155,8 +239,12 @@ def resolve(session, cit: Citation) -> Citation:
     if not cit.law:
         cit.unresolved = "no law named (e.g. 'Article 199' alone): not guessed"
         return cit
+    reviewed = None if cit.law in ALIASES else session.law_alias(law_key(cit.law))
     if cit.law in ALIASES:
         words, juris = ALIASES[cit.law]
+    elif reviewed:
+        # a printed name a person read and tied to one law (law_alias, D-134): that law's own title is searched
+        (words, juris), cit.via_alias = reviewed, law_key(cit.law)
     else:
         words, juris = cit.law, None
         if _KIND_ONLY.match(words):

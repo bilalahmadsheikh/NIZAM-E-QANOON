@@ -39,7 +39,10 @@ from nizam.storage import unit_search
 from nizam.storage.db import connect
 from nizam.storage.lexical import Filters
 
-LINKER = "nizam.judgment_links/3"    # /2 case citations to cases (D-125); /3 the deciding court's territory (D-128)
+# /2 case citations to cases (D-125); /3 the deciding court's territory (D-128); /4 a title stops at its sentence's end
+# or the next citation, trailing parentheses dropped, reviewed law aliases (law_alias); /5 a law is inherited only by a
+# bare citation or one naming the same kind of law (D-134)
+LINKER = "nizam.judgment_links/5"
 
 
 def _todo(cur, rebuild: bool) -> list[tuple]:
@@ -154,8 +157,10 @@ def link_one(cur, res: Resolver, types, jid, day, court, undated: bool = False,
             law_basis, inherited_from = "named", None
             if c.law:
                 last_law[word] = (c.law, c.raw)
-            elif word in last_law:
-                # a bare citation takes the law this judgment last named for this kind of unit (0121)
+            elif word in last_law and JL.may_inherit(c.named, last_law[word][0]):
+                # a bare citation takes the law this judgment last named for this kind of unit (0121); one that names
+                # a kind of law ('of the Ordinance') takes it only when that law is of the kind, and one that names
+                # something that is not a law ('of the Hisba Bill') takes none (D-134)
                 c = JL.StatuteCitation(c.start, c.end, c.raw, c.label, c.subs, last_law[word][0], c.role)
                 law_basis, inherited_from = "inherited", last_law[word][1][:300]
             r = res.resolve(c)
@@ -181,7 +186,8 @@ def link_one(cur, res: Resolver, types, jid, day, court, undated: bool = False,
                 resolution = "unit_not_found"
             alternates = [u.unit_id for u in (r.alternates or [])]
             statute_rows.append((pid, day, jid, c.start, c.end, c.raw[:500], c.label, c.subs,
-                                 (c.law if c.law not in C.ALIASES else None), (c.law if c.law in C.ALIASES else None),
+                                 (c.law if c.law not in C.ALIASES else None),
+                                 (c.law if c.law in C.ALIASES else r.via_alias),     # a code or a reviewed alias
                                  dst_inst, dst_unit, version, basis, resolution, alternates, role, LINKER,
                                  law_basis, inherited_from))
         for k in JL.case_citations(text):

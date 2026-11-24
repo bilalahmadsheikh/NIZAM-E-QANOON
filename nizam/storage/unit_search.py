@@ -78,6 +78,15 @@ class Session:
             j = TERRITORY_JURISDICTIONS.get(filters.territory)
         self.juris = list(j) if j else None
         self.last_dense_mode = None
+        self._law_aliases: dict[str, tuple[str, tuple[str, ...]]] | None = None
+
+    def law_alias(self, key: str) -> tuple[str, tuple[str, ...]] | None:
+        """(title words, jurisdictions) of the law a reviewed alias key names (law_alias, D-134), else None. The
+        active rows are read once per session."""
+        if self._law_aliases is None:
+            self.cur.execute("SELECT alias_key, title_words, jurisdiction FROM law_alias WHERE withdrawn_at IS NULL")
+            self._law_aliases = {r[0]: (r[1], (r[2],)) for r in self.cur.fetchall()}
+        return self._law_aliases.get(key)
 
     # --- windows (cheap pre-filters: active, in jurisdiction; NOT operative-checked) ----------------------------
     def body_hits(self, q: str, n: int) -> list[Hit]:

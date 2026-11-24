@@ -1776,6 +1776,14 @@ outcome: parsed, held with the gate, needs_ocr, reporter_reprint or duplicate) â
   `judgment_sensitivity` (category and the evidence that marked it) and `judgment_display` (`parties_display`,
   `redacted`, and `names_withheld`, which is internal: readers redact with it and never return it).
   `judgment.parties_display` is not used.
+- **Law aliases (0130, D-134):** `law_alias` is a printed name of a law that its recorded title does not carry
+  ('NAB Ordinance', 'ITO, 2001', 'NWFP Pre-emption Act, 1987', 'Qanoon-e-Shahadat Order'). It holds `alias_key`
+  (folded by `nizam.storage.citations.law_key`), the forms printed, the law (`document_id`, with `title_words` and
+  `jurisdiction` as the resolver searches them), `basis` (abbreviation | spelling | former_name | short_name), the
+  `evidence` passages read, and the review sheet, reviewer and date. Rows come only from a review sheet
+  (`tools/alias_review.py load`). One active row per key, withdrawn and never deleted. The citation resolver reads it,
+  for retrieval and the judgment linker alike, and `judgment_statute_reference.alias` records the key a citation
+  resolved through (audit A30).
 - **Search (0120):** BM25 on `judgment_paragraph`; `judgment_chunk` holds offsets plus the CPU generation's sign bits
   under HNSW (audit A27).
 - **What to read:** `v_release_judgment` and `v_release_judgment_paragraph` are the release. `v_shown_judgment` is

@@ -53,6 +53,7 @@ class StatuteCitation:
     subs: list[str]
     law: str | None          # an alias key or the title as printed
     role: str
+    named: str | None = None  # a printed title naming no law: 'kind:<word>' or 'other' (citations.Citation.named)
 
 
 @dataclass
@@ -69,13 +70,26 @@ class CaseCitation:
     case_year: int | None
 
 
+def may_inherit(named: str | None, last_law: str) -> bool:
+    """Whether a citation that names no law takes the law its judgment last named (0121): a bare citation does
+    ('section 497(2)'); one naming only a kind of law does when that law is of the kind ('section 3 of the Ordinance'
+    after the NAB Ordinance, not after the PC Act); one naming something that is not a law never does ('section 25
+    of the Hisba Bill', D-134)."""
+    if named is None:
+        return True
+    if named == "other":
+        return False
+    return C.law_kind(last_law) == named.split(":", 1)[1]
+
+
 def statute_citations(text: str) -> list[StatuteCitation]:
     out = []
     for cit in C.find(text):
         start, end = cit.start, cit.end
         if start < 0 or text[start:end] != cit.raw:
             continue
-        out.append(StatuteCitation(start, end, cit.raw, cit.label, cit.subs, cit.law, role_of(text, start, end)))
+        out.append(StatuteCitation(start, end, cit.raw, cit.label, cit.subs, cit.law, role_of(text, start, end),
+                                   cit.named))
     out.sort(key=lambda c: c.start)
     return out
 

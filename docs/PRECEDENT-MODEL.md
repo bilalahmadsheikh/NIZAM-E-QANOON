@@ -317,6 +317,11 @@ Rules:
 - **Aliases grow from evidence.** A practitioner abbreviation seen in judgments (PPC, CrPC, CPC, QSO, CNSA, ATA,
   NAO, MFLO today) is added to the shared table only with the law it was resolved to by a person, from a sample of
   judgments.
+  *As built (D-134, 24 Nov):* the table is `law_alias` (0130), filled from `docs/alias-review/` sheets by
+  `tools/alias_review.py`. The first sheet read 172 printed names and made 81 aliases. An alias needs two judgments,
+  or a year that makes the name unique. Act numbers, schedule Articles and names without their province stay
+  unresolved. The grammar also changed: a title stops at its sentence's end or at the next citation, and trailing
+  parentheses ("(V of 1908)") are dropped while any year inside them is kept.
 - **Time.** The version is the one valid on the decision date. When the law has since been amended or repealed, the
   reader and the answer say so: "This judgment read s.X before its substitution of <date>." The date comes from the
   version records.

@@ -870,6 +870,30 @@ m AS (
     ,(SELECT count(*) FROM judgment_display WHERE redacted)                                           AS jv_redacted
     ,(SELECT coalesce(sum(cardinality(names_withheld)), 0) FROM judgment_display)                     AS jv_names
 -- <<< A29 measures
+-- >>> A30 measures: reviewed law aliases (0130, D-134): each names one held law under its recorded title, each
+--     evidence passage is a released paragraph printing it, and no citation printing an active alias is left unheld
+    ,(SELECT count(*) FROM law_alias a WHERE a.withdrawn_at IS NULL AND (
+        (SELECT count(*) FROM instrument i WHERE i.document_id = a.document_id AND i.is_active
+                                              AND i.duplicate_of IS NULL) <> 1
+        OR NOT EXISTS (SELECT 1 FROM instrument i WHERE i.document_id = a.document_id AND i.is_active
+                         AND i.duplicate_of IS NULL AND i.jurisdiction::text = a.jurisdiction
+                         AND coalesce(nullif(i.display_title, ''), i.short_title) = a.title_words)))
+                                                                                                       AS al_target_bad
+    ,(SELECT count(*) FROM law_alias a, jsonb_array_elements(a.evidence) e
+       WHERE a.withdrawn_at IS NULL AND NOT EXISTS (
+         SELECT 1 FROM v_release_judgment_paragraph p
+          WHERE p.id = (e->>'paragraph_id')::uuid AND p.decided_on = (e->>'decided_on')::date
+            AND position(e->>'raw' IN p.text) > 0))                                                   AS al_evidence_bad
+    ,(SELECT count(*) FROM judgment_statute_reference r
+       WHERE r.resolution = 'law_not_held' AND r.law_printed IS NOT NULL
+         AND regexp_replace(btrim(regexp_replace(regexp_replace(lower(r.law_printed),
+               '[‘’“”''"]', '', 'g'), '[^a-z0-9]+', ' ', 'g')), '^(the )+', '')
+             IN (SELECT alias_key FROM law_alias WHERE withdrawn_at IS NULL))                         AS al_unapplied
+    ,(SELECT count(*) FROM law_alias WHERE withdrawn_at IS NULL)                                       AS al_active
+    ,(SELECT count(*) FROM judgment_statute_reference r
+       WHERE r.resolution = 'resolved'
+         AND r.alias IN (SELECT alias_key FROM law_alias WHERE withdrawn_at IS NULL))                 AS al_resolved
+-- <<< A30 measures
 )
 SELECT * FROM (
   SELECT 'C1' AS id, 'every acquired file becomes a blob'      AS criterion,
@@ -1108,6 +1132,12 @@ SELECT * FROM (
          '0 / 0 / 0 / 0 / 0; one builder',
          CASE WHEN jv_unread=0 AND jv_outside=0 AND jv_mismatch=0 AND jv_leak=0 AND jv_basis_bad=0 AND jv_builders<=1
               THEN 'PASS' ELSE 'FAIL' END FROM m
+  UNION ALL SELECT 'A30','law aliases name one held law each, from read evidence, and are applied',
+         al_active||' reviewed aliases, '||al_resolved||' citations resolved through them (reported); '
+         ||al_target_bad||' not naming one held law by its title; '||al_evidence_bad||' evidence passages not printed; '
+         ||al_unapplied||' citations of an alias left unheld',
+         '0 / 0 / 0',
+         CASE WHEN al_target_bad=0 AND al_evidence_bad=0 AND al_unapplied=0 THEN 'PASS' ELSE 'FAIL' END FROM m
   UNION ALL SELECT 'A6','no overlapping law (enforced, not tested)',
          CASE WHEN excl_present=1 THEN 'EXCLUDE constraint present'
               ELSE 'CONSTRAINT MISSING' END, 'enforced',

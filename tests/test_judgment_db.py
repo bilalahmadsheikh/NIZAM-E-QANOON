@@ -328,6 +328,36 @@ def test_title_lookup_stays_exact_after_many_lookups_with_varied_titles():
         handle.__exit__(None, None, None)
 
 
+def test_a_reviewed_alias_resolves_through_the_shared_resolver_and_a_rejected_name_does_not():
+    """D-134: 'ITO, 2001' was read and tied to the Income Tax Ordinance 2001 (law_alias); 'the Indian Penal Code' was
+    read and rejected as foreign, so it reaches no Pakistani law. Retrieval and the linker share this resolver."""
+    import datetime as _dt
+
+    from nizam.storage import citations as C
+    from nizam.storage import unit_search
+    from nizam.storage.db import connect
+    from nizam.storage.lexical import Filters
+    try:
+        handle = connect()
+        conn = handle.__enter__()
+    except Exception as exc:                                    # noqa: BLE001
+        pytest.skip(f"corpus not reachable: {type(exc).__name__}")
+    try:
+        with conn.cursor() as c:
+            c.execute("SELECT to_regclass('law_alias') IS NOT NULL AND EXISTS (SELECT 1 FROM law_alias "
+                      "WHERE alias_key = 'ito 2001' AND withdrawn_at IS NULL)")
+            if not c.fetchone()[0]:
+                pytest.skip("aliases not loaded")
+            s = unit_search.Session(c, Filters(as_of=_dt.date.today()))
+            r = C.resolve(s, C.find("notice under section 122 of the ITO, 2001 was")[0])
+            assert r.resolved_unit and r.resolved_law == "Income Tax Ordinance, 2001" and r.via_alias == "ito 2001"
+            r = C.resolve(s, C.find("under section 411 of the Indian Penal Code, to the")[0])
+            assert r.resolved_unit is None and r.via_alias is None
+    finally:
+        conn.rollback()
+        handle.__exit__(None, None, None)
+
+
 # ------------------------------------------------------------------------------------- names withheld (0128, D-131)
 
 def test_a_judgment_whose_names_are_withheld_shows_none_and_says_why(case_repo):

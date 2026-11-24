@@ -1136,6 +1136,83 @@ Area: client · Status: Superseded by D-084 (the whole-page cloth; the hem, the 
   design/heritage_art.dart, presentation/discover.dart, presentation/heritage.dart; test/heritage_test.dart
   (golden embroidery.png, a review sheet at 3x).
 
+### D-134 · 2026-11-24 · Law aliases from a review sheet; a title stops at its sentence; a law is inherited only by its own kind
+Area: L2 citation resolver (shared by L3 and the judgment linker), schema, linking (PRECEDENT-MODEL §4.1, D-127) ·
+Status: standing
+- Decision: the owner asked for item 4, the alias review sheet, "fully end to end". D-127 had left two kinds of miss
+  "for an alias slice": practitioner abbreviations (NAB Ordinance, ITO 2001, STA 1973) and spellings the title
+  search does not join (Qanoon-e-Shahadat, Sindh/Sind).
+  - **The grammar first** (`nizam/storage/citations.py`). Of the 17,420 citations recorded `law_not_held`, most were
+    not names at all:
+    - **A title stops at its sentence's end**, a word or year and its full stop before the next capital. The stop is
+      kept, so "of the Act." stays a kind of law (D-127). It also stops before the next citation's unit word ("the
+      General Clauses Act and Article 4"). The scan then resumes at the cut, so the next citation is read.
+    - **Trailing parentheses are dropped** ("(V of 1908)", "(Act XLV of 1860)", "(Cr.P.C.)", '("FIO")'). A year
+      printed only inside them is kept: "Contempt of Court Ordinance (Ordinance V of 2003)" is the 2003 Ordinance.
+    - A sub-clause swallowed ahead of the name is dropped: "Article 8(1) and (2) of the Constitution".
+    - Re-read under these rules: 11,099 name only a kind of law, 687 find their law by its title, 319 match a code
+      alias, and 5,315 remain.
+  - **The review sheet** (`tools/alias_review.py build`, `docs/alias-review/law-aliases-2026-11-24.csv`, .md). Each
+    printed name still unmatched in 3 or more judgments or 10 or more citations is a row: 172 rows, carrying counts,
+    printed forms, three passages and up to three candidate laws (by initials or trigram). Each row was decided by
+    reading its passages and the candidate's title in the corpus:
+    - 81 alias, 34 ambiguous, 30 not held, 13 foreign, 11 not a law, 3 historical.
+    - **Rules:**
+      - an alias needs two judgments, or a year that makes the name unique (a short name one judgment defines is
+        its own);
+      - a year that disagrees is not corrected ("Specific Relief Act, 1977");
+      - act numbers ("Act V of 1962"), First Schedule Articles of the Limitation Act, and names without their
+        province ("Cooperative Societies Act, 1925") stay unresolved.
+  - **`law_alias` (0130)**:
+    - **What a row holds:** key (`law_key`), printed forms, the law by source document with the title and
+      jurisdiction the resolver searches, basis, evidence passages, sheet, reviewer and date.
+    - **Rules:** one active row per key; rows are withdrawn, never deleted.
+    - **Who reads it:** `resolve()` reads it after the code aliases, for retrieval and the linker alike.
+    - **Loading:** `load` refuses a row unless the document holds one law, its title finds that law (or a
+      same-titled copy) first, a printed year is the title's, and every evidence passage is a released paragraph
+      printing the form.
+  - **Inheritance (0121) is checked by kind.** Reading 40 alias links found two wrong, both inherited:
+    - "Section 25 of the Hisba Bill" took the NAB Ordinance;
+    - "section 3 of the Ordinance" took the PC Act.
+
+    Now a citation whose printed title names something that is not a law never inherits, and one naming only a
+    kind ("of the Ordinance", "of the Code") inherits only a last-named law of that kind
+    (`judgment_linking.may_inherit`). A sample of 30 links this stopped were all corrections: "Article 13(2) of the
+    Order" no longer takes the Constitution, and "section 65 of the Act" no longer takes the CrPC.
+  - **Linker `nizam.judgment_links/5`; audit A30** (aliases name one held law, evidence printed, none left
+    unapplied).
+- Measured, 24 Nov 2026, all 9,694 judgments relinked (statute citations):
+
+  | | /3 (D-128) | /4: grammar and aliases | /5: + inheritance by kind |
+  |---|---:|---:|---:|
+  | Resolved | 99,384 | 103,758 | 99,708 |
+  | Law not held | 17,420 | 7,755 | 7,044 |
+  | No law named | 21,164 | 27,018 | 32,618 |
+  | Unit not found | 7,916 | 7,651 | 6,812 |
+  | Total | 145,884 | 146,182 | 146,182 |
+
+  - Resolved through a reviewed alias: 2,694.
+  - **The resolved count under /5 is close to /3, but the links differ.** About 4,000 links gained from the grammar
+    and aliases replace about 4,000 inherited links of the wrong kind, now removed.
+  - Samples read: 40 alias links, all 38 with the law named correct (the 2 wrong were inherited, fixed above); 30
+    inherited links under /5, all correct.
+  - The golden citation check is unchanged: 580 of 581, 0 wrong.
+  - Precedent search on dev is unchanged within noise: hit@10 .719 → .719, MRR@10 .376 → .382, paragraph@10 .435 →
+    .413. Test was not rerun.
+  - `./nz audit` passes 52/52.
+- Open (also in the open questions):
+  - "of the Act." with a full stop still never inherits (D-127), even where the kind matches ("section 55 of the
+    Act." after the Land Acquisition Act).
+  - Document 4497 is a 34-law compilation repeating the NAO, the Civil Servants Act and the Service Tribunals Act.
+    It is not marked `duplicate_of`, and the title search prefers its copies.
+  - 1,584 rarer printed names (2,222 citations) are not on the sheet.
+- Why: a law named in a judgment and not linked hides that judgment from "cases on this section". A wrong link is
+  worse than none (D-127), so every alias rests on reading, and inheritance now checks the kind of law named.
+- Where: infra/postgres/migrations/0130_law_alias.sql; nizam/storage/citations.py, unit_search.py
+  (`Session.law_alias`), judgment_linking.py (`may_inherit`); nizam/workers/judgment_links.py; tools/alias_review.py;
+  docs/alias-review/; tools/audit/criteria.sql (A30); tests/test_citation_guesses.py, test_judgment_db.py,
+  test_historical_expression.py; evals/results/precedent-eval-dev-d134.json.
+
 ### D-133 · 2026-11-24 · A precedent stratum of the golden set: 58 questions, gold at judgment paragraphs
 Area: evaluation (docs/10 §4–§5, INV-4; docs/PRECEDENT-MODEL.md §8 build order step 5) · Status: standing
 - Decision: the owner asked for item 3, a test set for judgment search, after item 2.
@@ -3506,6 +3583,15 @@ Area: L1 corpus · Status: standing (closes two of the D-080 "what remains" item
 ## Open questions (not yet decided)
 
 These were found and deliberately left open. Each will become an entry when it is decided.
+
+- **"of the Act." with a full stop never inherits a law (found 24 Nov 2026, D-134).** D-127 made "the Act." a kind of
+  law, never resolved. Since D-134, an unstopped "of the Act" inherits a last-named law of the same kind, but the
+  stopped form does not ("section 55 of the Act." after the Land Acquisition Act). Recommendation: give the stopped
+  form the same kind-checked inheritance, measure the change on a read sample, and relink.
+- **A 34-law compilation repeats standalone laws (found 24 Nov 2026, D-134).** Document 4497 holds copies of the
+  National Accountability Ordinance, the Civil Servants Act and the Service Tribunals Act. They are not marked
+  `duplicate_of`, and the title search finds them first. Recommendation: compare each copy with its standalone law
+  and link exact copies by `duplicate_of` (the 0062 practice), so citations resolve to the single-law document.
 
 - **Party names as a search key in judgments of no sensitive category (found 24 Nov 2026, D-131).** D-122 says party names are
   not a search key. D-131 enforces it only where names are withheld. Recommendation: at search time, drop a hit whose only
