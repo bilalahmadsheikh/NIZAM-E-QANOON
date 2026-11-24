@@ -896,6 +896,17 @@ m AS (
        WHERE r.resolution = 'resolved'
          AND r.alias IN (SELECT alias_key FROM law_alias WHERE withdrawn_at IS NULL))                 AS al_resolved
 -- <<< A30 measures
+-- >>> A31 measures: a judgment agrees with its own case line (D-138): its case number and year are its case key's
+--     reading, and no date is taken that is before the year its case was filed
+    ,(SELECT count(*) FROM judgment_case_state s
+       WHERE s.header_differs AND EXISTS (SELECT 1 FROM v_release_judgment j
+                                           WHERE j.id = s.judgment_id AND j.decided_on = s.decided_on))
+                                                                                                       AS jn_differs
+    ,(SELECT count(*) FROM v_release_judgment j
+       WHERE j.decided_on_basis <> 'undated' AND j.case_year BETWEEN 1947 AND extract(year FROM now())
+         AND extract(year FROM j.decided_on) < j.case_year)                                           AS jn_before_case
+    ,(SELECT count(*) FROM v_release_judgment WHERE decided_on_basis = 'undated')                     AS jn_undated
+-- <<< A31 measures
 )
 SELECT * FROM (
   SELECT 'C1' AS id, 'every acquired file becomes a blob'      AS criterion,
@@ -1141,6 +1152,12 @@ SELECT * FROM (
          ||al_unapplied||' citations of an alias left unheld',
          '0 / 0 / 0',
          CASE WHEN al_target_bad=0 AND al_evidence_bad=0 AND al_unapplied=0 THEN 'PASS' ELSE 'FAIL' END FROM m
+  UNION ALL SELECT 'A31','a judgment agrees with its own case line: case number, year and date',
+         jn_undated||' judgments released undated (reported); '||jn_differs
+         ||' case numbers or years differing from their case key; '||jn_before_case
+         ||' dated before their case year',
+         '0 / 0',
+         CASE WHEN jn_differs=0 AND jn_before_case=0 THEN 'PASS' ELSE 'FAIL' END FROM m
   UNION ALL SELECT 'A6','no overlapping law (enforced, not tested)',
          CASE WHEN excl_present=1 THEN 'EXCLUDE constraint present'
               ELSE 'CONSTRAINT MISSING' END, 'enforced',

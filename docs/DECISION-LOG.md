@@ -1136,6 +1136,110 @@ Area: client · Status: Superseded by D-084 (the whole-page cloth; the hem, the 
   design/heritage_art.dart, presentation/discover.dart, presentation/heritage.dart; test/heritage_test.dart
   (golden embroidery.png, a review sheet at 3x).
 
+### D-139 · 2026-11-25 · Every court's own site is crawled; the Federal Constitutional Court is landed; Balochistan's files are fetched against robots.txt by owner ruling
+Area: L1 precedent acquisition (docs/02 §4, PRECEDENT-MODEL §0, §7) · Status: standing (in progress: crawls running)
+- Decision (owner, 25 Nov 2026): the official websites of the courts already held and of the courts not yet held are
+  crawled, including the AJK and GB courts; Balochistan's law-report reprints are not used for now (D-120 holds).
+  - **The Supreme Court's site opts out of AI** (scp.gov.pk robots.txt: `ai-train=no`, named AI crawlers
+    disallowed). The owner ruled it is crawled: the corpus is searched and cited, not trained on.
+  - **Balochistan's judgment files sit under `/media/`, which bhc.gov.pk's robots.txt disallows.** Its newer portal
+    signs every visitor in with guest credentials built into its script; that route was not used. Owner's choice
+    (asked, 25 Nov): fetch `/media/` anyway, slowly (3 s between files). The listing pages are not disallowed.
+  - How every crawler behaves: one request at a time with a pause, a generic client name and nothing identifying the
+    project or its people; no path a robots.txt disallows, except the owner's Balochistan ruling; no block
+    circumvented. ajkhighcourt.gok.pk sends an incomplete certificate chain: the missing RapidSSL intermediate is
+    fetched from the certificate's own AIA URL and verification stays on.
+- **Federal Constitutional Court (fccp.gov.pk): landed.** The site is a single-page app over a public JSON API
+  (`/api/public/site/publications/judgement`, cursor paged; files at `/api/public/site/files/<sha256>`). 140 files,
+  each matching the sha256 the API names; 134 released (6 undated), 6 held: 4 long consolidated headers, 2 separate
+  opinions (a dissenting and an additional note) issued as files of their own, to be joined to their judgment later.
+  - Case types as its headers print them (0136): its own (F.C.P.L.A., F.C.R.P.) and the Supreme Court's for the cases
+    transferred to it under the 27th Amendment (C.P.L.A., C.A., C.R.P., C.M.A., Suo Moto, Crl. Org. P., Crl. R.P.).
+    A transferred case is keyed under the FCC, the court that decided it (D-125); its earlier Supreme Court record is
+    not joined (open).
+  - Parser /9: the FCC's 'JUDGMENT OF THE COURT' heading and 'JUSTICE <NAME>:' author line (upper case and a colon,
+    so a bench line is never an author).
+- **Crawled, by court** (`data/<court>_judgments_scraper.py`, each writing `<court>_judgments.zip` with a manifest the
+  worker reads; 25 Nov):
+
+  | Court | Source | Listed | Downloaded | Landed |
+  |---|---|---:|---:|---|
+  | Lahore HC | data.lhc.gov.pk approved-for-reporting, current and former judges, per year | 9,716 | running | after the crawl; held files skipped by sha256 |
+  | Peshawar HC | Reported Judgments, per year | 5,888 | running | after the crawl |
+  | Balochistan HC | per-judge reported and significant judgments | 24 judges | running (slow) | after; reprints caught by the gate |
+  | AJK Supreme Court | WordPress REST API: posts (some linking Google Drive files the court posted) and uploads | 960 | 959 | after its court is recorded |
+  | AJK High Court | the judgment search, both tabs; per-year counts equal the all-years search | 262 | 262 | after its court is recorded |
+  | GB Supreme Appellate Court | the static Judgments.html | 752 | 750 (2 links 404 on the court's page) | after its court is recorded |
+  | GB Chief Court | the ASP.NET search, every bench and date, each 'View PDF' postback | 154 | 154 | after its court is recorded |
+
+  - The Supreme Court (supremecourt.gov.pk) refused the survey's fetcher (403); not yet crawled.
+  - Lahore's listing serial ('2026LHC9081') numbers every Lahore judgment of the year; approved-for-reporting is a
+    subset of it. Sindh's portal reports 79,724 uploads by current judges, 87% orders; not yet compared per judge.
+- **The AJK and GB courts wait on their founding texts.** A court row cites the provision that creates it (A24).
+  - AJK Interim Constitution 1974 (staged, D-096): Art. 42 (Supreme Court), 42-B (binding on all AJK courts), 43
+    (High Court), 44-B (binding on subordinate courts). Its 33 unsettled repeated labels are read: the rights Art. 4
+    numbers 1–24 (printed indented) were taken for Arts. 5–24 (printed at the margin), and footnotes below the rule
+    ('1. Sub Article (1) has been amended two times') for clauses. Settled by `tools/adjudicate_s7_from_source.py`
+    readings once landed, then released.
+  - GB: the Government of Gilgit-Baltistan Order 2018 appears in force (the Supreme Court's 17 Jan 2019 judgment
+    directed a replacement that no source shows was promulgated). s.75 (Supreme Appellate Court), s.78 (binding), s.84
+    (Chief Court), s.88 (binding). Official copy: the GB Government portal, without a gazette header; whether it
+    carries the 2020 amendment is unconfirmed. To acquire.
+- **Law-report notes** (research, 25 Nov; legal-source-scout): a headnote is the publisher's editorial work, likely
+  protected (Copyright Ordinance 1962 s.2(p); Eastern Book Co v D.B. Modak, SC India 2008, persuasive), and carries no
+  precedential weight (only the decision binds, Arts. 189, 201; 2021 SCMR 1492 as reported). The judgment itself is
+  reproducible (s.57(1)(q)(ii)) unless its court prohibits it. Reprint text is not used (D-120); reporter citations
+  are kept as identifiers only.
+- Golden set: P1-X05 asked what the FCC decided and expected "not held"; it became false, so it is replaced in the
+  **test** split (the only test change since D-133, made because its premise failed, not to tune) by P1-I38: the FCC
+  holds it may punish contempt under Arts. 204 and 189 (C.P.L.A. 5312/2024 ¶1, ¶6). The FCC text carries a stray
+  watermark word ('PAKISTAN') inside sentences: an extraction defect, open.
+- Why: coverage is a first-class fact (D-122). The FCC's decisions bind every court, the Supreme Court included.
+- Where: data/{fcc,lhc,phc,bhc,sacgb,ajkhc,ajksc,gbcc}_judgments_scraper.py; migration 0136; nizam/corpus/judgment.py
+  (/9 `_AUTHOR_TITLED`, `_author`); tests/test_judgment_parse.py; E:/nizam-data/acquire/<court>/ (probes, logs).
+
+### D-138 · 2026-11-25 · The High Courts of Sindh and Balochistan are landed; a judgment agrees with its own case line
+Area: L1 precedent (PRECEDENT-MODEL §3, §7) · Status: standing
+- Decision: the owner asked for the Sindh and Balochistan archives in E:/nizam-data to be landed.
+  - **Sindh: 45,371 judgments released** from 56,227 PDFs and 4,279 official HTML pages (60,506 sources): 6,929
+    undated (D-124), 2,272 held, 5,223 scans waiting for OCR, 1,806 duplicates, 2 reprints. The HTML pages are lane
+    E1 (docs/02 §4, 0135), read by the same parser through MuPDF's HTML layout.
+  - **Balochistan: 30 released.** 1,936 of its 2,001 files are law-report reprints (PLD, YLR, CLC, PCr.LJ, ...), not
+    landed (D-120); 32 are scans; 2 held. Its own copies are being crawled (D-139).
+  - Case types as each court's headers print them (0132–0134, `tools/observe_case_forms.py`); manifests keyed by file
+    name and by sha256; `--held any` re-reads every held file; `--only FILE` re-reads named files after a rule changed.
+- **The register letter is part of a Sindh case number**: 'C.P. No. D-1544 of 2026' (division bench) is not 'S-1544'
+  (single bench). The case-line grammar keeps it (`D-1544`), with no leading zero after it (`D-01` → `D-1`); 0135 lets
+  `judicial_case.case_number` hold it.
+- **A judgment agrees with its own case line** (new audit A31):
+  - Parser /8 takes the case number and year from the case builder's grammar (`read_case_line`) over the same stored
+    words, so they agree by construction. 23,286 judgments read before (23,205 Sindh, 45 SC, 28 LHC, 8 PHC) were
+    re-read: `header_differs` 23,286 → 0.
+  - Parser /7: a decision date before the case's own year is not taken; the judgment is undated, bounded by its case
+    year. 61 judgments carried one (48 Sindh); 56 became undated, 5 carry a case year after today, which is the
+    misread part. A31 asserts both rules.
+- Parser /7 also reads Sindh's 'ORDER WITH THE SIGNATURE OF THE JUDGE' order sheets, 'Announced on', 'hearing and
+  order', 'Dated:' order dates; /6 catches a law report's masthead and its site's URL as a reprint. /10: a reading with
+  no body paragraph is held, not released (A25; Sindh C.P. D-649/2020).
+- Fallout fixed: the linker prunes the links of judgments a re-read retired (A26: 2,261 statute and 1,165 case rows);
+  the privacy builder (/2) redacts every withheld name in the line shown, one-word names included, and `redact` counts
+  a three-letter name (A29: a header joining two bail applications showed the second case's victim); alias 201's
+  evidence re-pointed to its re-read paragraph (A30, withdrawn and re-inserted); a zip member's time is never later
+  than now (it is local time, read as UTC).
+- Golden set: P1-X01 (SHC) and P1-X03 (BHC) asked about courts "not held"; replaced in dev by P1-I36 (Sindh, personal
+  bona fide need, SRPO 1979: FRA 07/2025 ¶14, CP S-276/2024 ¶14) and P1-I37 (Balochistan, the Special Assistants Act
+  2018 struck down: CP 1381/2018 ¶14). The test split is unchanged.
+- Open: paragraph numbers printed on a line of their own are sometimes taken as furniture, merging paragraphs (seen in
+  SHC CP S-1015/2025; every court shows bare-number furniture, not all of it wrong): a margin-position slice. Sindh's
+  2,272 held files (1,351 J3: no case line matching a recorded type; 712 no heading or author line).
+- Measured: 55,229 judgments released (SHC 45,371, LHC 3,996, SC 3,105, PHC 2,593, FCC 134, BHC 30); 365,048 new
+  passages exported for the GPU (`judgment_chunk --export`, D-132), embedded once the D-139 crawls land. Audit 53
+  criteria: A27 waits for that load.
+- Where: migrations 0132–0135; nizam/corpus/judgment.py (/6–/10), judgment_case.py; nizam/storage/case_key.py,
+  judgment_write.py, privacy.py; nizam/workers/judgments.py, judgment_links.py, judgment_privacy.py;
+  tools/observe_case_forms.py; tools/audit/criteria.sql (A31); evals/golden/build_precedent1.py,
+  split-precedent-v1.json; tests.
+
 ### D-137 · 2026-11-24 · Precedent search reads the case and the court a question names, and windows judgments, not paragraphs
 Area: L3 precedent search (docs/04 §6, PRECEDENT-MODEL §4, D-133) · Status: standing
 - Decision: the owner asked to fix the judgment-search gaps D-133 and D-136 found before the Sindh and Balochistan

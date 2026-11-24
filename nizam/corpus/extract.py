@@ -238,13 +238,17 @@ def extract_pdf(
     *,
     language: str = "en",
     publication_role: str = "code_portal",
+    filetype: str = "pdf",
 ) -> ExtractedDocument:
     """Extract one born-digital PDF into blocks with coordinates.
+
+    `filetype="html"`: an official HTML page (lane E1, §4), such as a court portal's Word-HTML judgment, laid out
+    into pages by MuPDF's HTML engine and read the same way (D-138). The caller records the lane.
 
     Raises ExtractionRejected when the result does not meet §4 acceptance, so a
     bad extraction never reaches the database.
     """
-    doc = pymupdf.open(stream=data, filetype="pdf")
+    doc = pymupdf.open(stream=data, filetype=filetype)
     try:
         if doc.page_count == 0:
             raise ExtractionRejected(f"{sha256[:12]}: no pages")

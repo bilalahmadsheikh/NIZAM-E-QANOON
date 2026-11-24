@@ -41,7 +41,8 @@ def test_every_answer_case_names_judgment_paragraphs_from_records():
             continue
         assert gold["necessaryJudgments"] and c["textChecks"], c["caseId"]
         for u in gold["necessaryJudgments"]:
-            assert u["textSha256"] and u["court"] in ("SC", "LHC", "PHC"), c["caseId"]
+            # a held court's judgment (SHC and BHC since D-138, FCC since D-139)
+            assert u["textSha256"] and u["court"] in ("SC", "LHC", "PHC", "SHC", "BHC", "FCC"), c["caseId"]
             assert u["existsAtAsOf"], c["caseId"]                 # no gold judgment postdates the question
             assert (u["paragraph"] is None) == (u["paragraphId"] is None)
             assert "chunk" not in json.dumps(u)                    # INV-4: labels end at paragraphs

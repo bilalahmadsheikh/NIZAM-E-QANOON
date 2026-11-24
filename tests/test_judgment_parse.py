@@ -84,7 +84,7 @@ def test_a_judgment_is_dated_by_its_closing_not_its_hearing_or_folder():
 
 
 def test_paragraphs_open_only_on_the_next_printed_number_and_none_is_invented():
-    head = HEADER[:-1] + ["Date of hearing: 10.09.2015"]
+    head = [ln.replace("of 2020", "of 2015") for ln in HEADER[:-1]] + ["Date of hearing: 10.09.2015"]
     d = doc([head + ["JUDGMENT", "Alpha Beta, J.- The petitioner was convicted under section", "302.",
                        "PPC and sentenced.", "2.", "The second paragraph.", "4.", "Not a paragraph: out of sequence.",
                        "3.", "The third paragraph.", "Judge", "Announced in open Court at Islamabad on 18.09.2015.",
@@ -137,6 +137,46 @@ def test_a_hearing_after_the_date_read_makes_the_judgment_undated_and_is_not_tru
     r = parsed(d)
     assert r.decided_on is None and r.undated_reason.startswith("hearing 2023-01-26 is after")
     assert r.decided_not_before_basis == "case_year"
+
+
+def test_a_decision_date_before_the_case_year_makes_the_judgment_undated():
+    # D-138: 'C.P. No. D-1544 of 2026' read as decided on 02.03.1989 (an earlier order's date, or a misprint)
+    head = HEADER[:-1] + ["Date of hearing: 10.09.2015"]                  # Civil Petition No.600 of 2020
+    r = parsed(doc([head + ["ORDER", "Alpha Beta, J.- The petition is dismissed.", "Judge",
+                            "Announced in open Court at Islamabad on 18.09.2015.", "Judge"]]))
+    assert r.decided_on is None and r.decided_on_basis == "undated"
+    assert r.undated_reason.startswith("the decision date read (2015-09-18") and "case year 2020" in r.undated_reason
+    # the hearing printed is before the case year too, so it is not the bound: the case year is
+    assert (r.decided_not_before, r.decided_not_before_basis) == (dt.date(2020, 1, 1), "case_year")
+    # a date in the case's own year stands
+    r = parsed(doc([HEADER[:-1] + ["ORDER", "Alpha Beta, J.- The petition is dismissed.", "Judge",
+                                   "Announced in open Court at Islamabad on 18.09.2020.", "Judge"]]))
+    assert r.decided_on == dt.date(2020, 9, 18)
+
+
+def test_a_reading_with_no_body_text_is_held_not_released():
+    # D-138: SHC C.P. D-649/2020 parsed to a header and a closing only; audit A25 refuses a bodyless judgment
+    r = parse_judgment(doc([HEADER + ["ORDER", "Judge", "Announced in open Court at Islamabad on 18.09.2023.", "Judge"]]),
+                       ALIASES, TYPES, expected_court="SC", today=TODAY)
+    assert isinstance(r, Held) and "no body text" in r.reason
+
+
+def test_the_federal_constitutional_courts_heading_and_author_line():
+    # D-139: 'JUDGMENT OF THE COURT', then 'JUSTICE AAMER FAROOQ:'; the bench lines in the header are not authors
+    aliases = dict(ALIASES, **{"federal constitutional court of pakistan": "FCC"})
+    types = {"FCC:FCPLA": ("leave_petition", ["f c p l a", "fcpla"])}
+    head = ["FEDERAL CONSTITUTIONAL COURT OF PAKISTAN", "(Appellate Jurisdiction)", "Present:",
+            "Justice AAMER FAROOQ", "Justice ROZI KHAN BARRECH",
+            "F.C.P.L.A. No. 642 of 2026", "(Against judgment dated 24.12.2025, passed by the Lahore High Court)",
+            "Muhammad Ali …Petitioner(s)", "Versus", "Federation of Pakistan …Respondent(s)",
+            "Date of Hearing : 30.06.2026"]
+    body = ["JUDGMENT OF THE COURT", "JUSTICE AAMER FAROOQ: - The question is whether leave should be granted.",
+            "2.", "Leave is refused.", "Judge", "Announced in open Court at Islamabad on 07.07.2026.", "Judge"]
+    r = parse_judgment(doc([head + body]), aliases, types, expected_court="FCC", today=TODAY)
+    assert isinstance(r, ParsedJudgment), r
+    assert (r.court_code, r.case_type_code, r.case_number, r.case_year) == ("FCC", "FCC:FCPLA", "642", 2026)
+    assert r.opinions[0].author_printed == "AAMER FAROOQ, J." and r.decided_on == dt.date(2026, 7, 7)
+    assert [p.printed_no for p in r.paragraphs if p.kind == "body"] == [None, "2"]
 
 
 def test_the_deciding_court_is_the_one_the_first_lines_print():

@@ -2,7 +2,7 @@
 
 Precedent stratum, set 1: Supreme Court, Lahore and Peshawar High Courts (D-133). Gold is judgment paragraphs read in the released text; it names some of the judgments that answer, not all.
 
-Corpus revision 63a1260. Strata: issue 35, authority 1, temporal 3, case_lookup 4, provision 4, urdu 5, unanswerable 6.
+Corpus revision ca67fc3. Strata: issue 38, authority 1, temporal 3, case_lookup 4, provision 4, urdu 5, unanswerable 3.
 Status: **draft** — A0 authoring and A3 identity resolution only. Not gold until two legal annotators (A1) and a senior advocate (A2) have reviewed it; do not tune or report on it before then.
 
 ## P1-I01 · issue · forum subordinate:sindh · as of 2026-11-24 · expect **answer**
@@ -329,6 +329,40 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 - **Necessary (grade 3)** — PHC RFA No. 327-P of 2024. (2025-10-31), para 11 · doc 15354 · expected binding
   > Furthermore, within the scope of Section 4, and in consonance with the provisions of section 5 of the Act, if the Ombudsperson concludes that a woman has been unlawfully deprived of her property, he may direct the restoration of her property rights, both posse
 
+## P1-I36 · issue · forum subordinate:sindh · as of 2026-11-24 · expect **answer**
+
+**Q:** What has the Sindh High Court held on personal bona fide need under the Sindh Rented Premises Ordinance 1979?
+
+- *Proposition:* A landlord who states the need on oath, unshaken in cross-examination, establishes it, and is the sole judge of whether other premises suit; section 15 requires the need in good faith, section 14 does not.
+- **Necessary (grade 3)** — SHC First Rent Appeal No. 07 of 2025 (2025-05-29), para 14 · doc 51035 · expected binding
+  > What is further imperative to note, is that the Appellant has been unable to establish that the Respondent currently, or at the time of filing the rent case, had another property in his possession which is suitable for his needs. The Respondent therefore was t
+- **Relevant (grade 2)** — SHC First Rent Appeal No. 07 of 2025 (2025-05-29), para 13 · doc 51035 · expected binding
+  > The accountability mechanism provided for in the sections noted above, ensures that the requirement of personal need of the landlord is genuine. Failure to occupy within the time stipulated can entitle to tenant to regain possession of the tenement. Further, t
+- **Relevant (grade 2)** — SHC Constitution Petition No. S – 276 of 2024 (2025-07-07), para 14 · doc 88436 · expected binding
+  > It would not be out of place to hold that even the requirement of the personal need is distinct in Section 14 and in essence the threshold of establishing personal need is lower in juxtaposition to Section 15 of the Ordinance. Whilst Section 15 of the Ordinanc
+
+## P1-I37 · issue · forum subordinate:balochistan · as of 2026-11-24 · expect **answer**
+
+**Q:** What did the High Court of Balochistan hold about the Act providing for Special Assistants to the Chief Minister?
+
+- *Proposition:* The Act was struck down as ultra vires the Constitution and the appointments declared illegal: the Cabinet is the decision-making body and the service had no eligibility criteria.
+- **Necessary (grade 3)** — BHC CP No. 1381 of 2018 (2020-04-13), para 14 · doc 84199 · expected binding
+  > Thus, in view of above, the petition is allowed. The Special Assistants to the Chief Minister Balochistan (Appointment, Salaries, Allowances, Privileges and Termination of Services) Act, 2018, being ultra viries the Constitution, is struck down. The appointmen
+- **Relevant (grade 2)** — BHC CP No. 1381 of 2018 (2020-04-13), para 13 · doc 84199 · expected binding
+  > Without prejudice to above, even otherwise, while appointing the Special Assistants, since there was no eligibility criteria and qualification for the service, which proves the fact that merit was not observed. There is nothing on the record to believe that th
+- **Relevant (grade 2)** — BHC CP No. 1381 of 2018 (2020-04-13), para 9 · doc 84199 · expected binding
+  > It is simply stated by the learned AG and the learned counsel for the respondents that the Special Assistants will just assist the CM on important policy decision. If it is believed so, then a question arises as to how they would assist the CM and if they do s
+
+## P1-I38 · issue · forum - · as of 2026-11-24 · expect **answer**
+
+**Q:** What has the Federal Constitutional Court decided about its own jurisdiction since the 27th Amendment?
+
+- *Proposition:* The FCC holds that it may initiate and decide contempt proceedings: the power flows from Articles 204 and 189 and is inherent in it, though the Contempt of Court Ordinance 2003 does not name it.
+- **Necessary (grade 3)** — FCC C.P.L.A. No.5312 of 2024 (2026-02-24), para 1 · doc 94398
+  > The determinative issue is whether the Federal Constitutional Court of Pakistan possesses the authority to initiate, adjudicate, or otherwise entertain contempt of court proceedings under the existing constitutional framework, despite the absence of any expres
+- **Relevant (grade 2)** — FCC C.P.L.A. No.5312 of 2024 (2026-02-24), para 6 · doc 94398
+  > Since the petitioner has raised a question regarding the jurisdiction of this Court, the same must be addressed at the outset. It has been contended before us that this Court lacks the authority to entertain contempt proceedings. We find this submission wantin
+
 ## P1-F01 · authority · forum subordinate:kp · as of 2026-11-24 · expect **answer**
 
 **Q:** For a civil court in Khyber Pakhtunkhwa: what three conditions must a plaintiff show to get a temporary injunction?
@@ -483,35 +517,17 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 - **Necessary (grade 3)** — LHC W.P. No.54172/2024 (undated, exists from 2026-09-08), para 6 · doc 9987 · expected binding
   > The pivotal question for determination before this Court, in matters relating to custody of minor, is to see welfare of the minor, which holds paramount importance. In view of this settled principle, the question narrows down to a determination as to whether t
 
-## P1-X01 · unanswerable · forum subordinate:sindh · as of 2026-11-24 · expect **abstain**
-
-**Q:** What has the Sindh High Court held on personal bona fide need under the Sindh Rented Premises Ordinance 1979?
-
-- *Abstain:* court_not_held — the corpus holds no judgment of this court (SHC); coverage must say so
-
 ## P1-X02 · unanswerable · forum subordinate:ict · as of 2026-11-24 · expect **abstain**
 
 **Q:** What has the Islamabad High Court held on section 20 of the Prevention of Electronic Crimes Act 2016?
 
 - *Abstain:* court_not_held — the corpus holds no judgment of this court (IHC); coverage must say so
 
-## P1-X03 · unanswerable · forum subordinate:balochistan · as of 2026-11-24 · expect **abstain**
-
-**Q:** What has the High Court of Balochistan held on the jurisdiction of the Levies Force?
-
-- *Abstain:* court_not_held — the corpus holds no judgment of this court (BHC); coverage must say so
-
 ## P1-X04 · unanswerable · forum - · as of 2026-11-24 · expect **abstain**
 
 **Q:** What has the Federal Shariat Court ruled on riba (interest) in banking?
 
 - *Abstain:* court_not_held — the corpus holds no judgment of this court (FSC); coverage must say so
-
-## P1-X05 · unanswerable · forum - · as of 2026-11-24 · expect **abstain**
-
-**Q:** What has the Federal Constitutional Court decided about its own jurisdiction since the 27th Amendment?
-
-- *Abstain:* court_not_held — the corpus holds no judgment of this court (FCC); coverage must say so
 
 ## P1-X06 · unanswerable · forum subordinate:punjab · as of 1995-01-01 · expect **abstain**
 

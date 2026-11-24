@@ -51,7 +51,8 @@ def unread_hashes(court_code: str, archive: str, parser: str | None = None,
             cur.execute("""SELECT DISTINCT s.sha256 FROM judgment_source s
                              JOIN judgment_document d ON d.sha256 = s.sha256 AND d.is_active
                             WHERE s.court_code = %s AND s.archive = %s AND d.outcome = 'held'
-                              AND d.hold_reason LIKE %s ORDER BY 1""", (court_code, archive, held_gate + ":%"))
+                              AND (%s = 'any' OR d.hold_reason LIKE %s) ORDER BY 1""",
+                        (court_code, archive, held_gate, held_gate + ":%"))   # 'any': every held reading (D-138)
             return [r[0] for r in cur.fetchall()]
         cur.execute("""SELECT DISTINCT s.sha256 FROM judgment_source s
                         WHERE s.court_code = %s AND s.archive = %s

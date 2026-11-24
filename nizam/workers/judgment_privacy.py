@@ -27,7 +27,7 @@ import time
 from nizam.storage import privacy as P
 from nizam.storage.db import connect
 
-BUILDER = "nizam.judgment_privacy/1"
+BUILDER = "nizam.judgment_privacy/2"     # /2: the shown line is redacted of every withheld name (D-138)
 
 
 def build(cur):
@@ -104,6 +104,11 @@ def build(cur):
                 names += P.victim_names(body)
             names += P.minor_names(body)          # a minor, and a child victim of a sexual offence
         names = list(dict.fromkeys(names))
+        if cats and line:
+            # no withheld name is ever in the line shown (audit A29), whatever the side-cutting above kept: a header
+            # joining two cases can carry the second case's parties on a side read as 'The State' (D-138, SHC Crl.
+            # B.A. 1698/2025). A one-word name is redacted here too: in a party line it is the person, not a word.
+            line = P.redact(line, names)
         display.append((jid, day, line, bool(cats), names, BUILDER))
         counts["redacted" if cats else "shown"] += 1
         counts["names_withheld"] += len(names)

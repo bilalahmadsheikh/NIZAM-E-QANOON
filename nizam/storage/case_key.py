@@ -12,9 +12,10 @@ from dataclasses import dataclass
 
 
 def norm_number(number: str) -> str:
-    """'05' -> '5', '801-l' -> '801-L', '0780' -> '780'. Keeps a trailing letter suffix (a registry's seat)."""
+    """'05' -> '5', '801-l' -> '801-L', '0780' -> '780', 'D-01' -> 'D-1'. Keeps a trailing letter suffix (a
+    registry's seat) and a register letter before the number (D-138)."""
     n = re.sub(r"\s+", "", number).upper()
-    return re.sub(r"^0+(?=\d)", "", n)
+    return re.sub(r"^([A-Z]-)?0+(?=\d)", r"\1", n)
 
 
 def case_key(court: str, case_type_code: str, number: str, year: int) -> str:
@@ -30,7 +31,10 @@ RANGE_MAX = 500         # a printed range wider than this is not expanded (a mis
 # a number and its registry suffix: '801-L', '2143-CB' (cancellation of bail), '4-RWP', '07(S)', '241 K' (D-128)
 _ITEM = r"(\d{1,6})(?:\s*[-–—]\s*([A-Za-z]{1,3})(?![A-Za-z])|\(\s*([A-Za-z])\s*\)|\s([A-Z])(?![A-Za-z]))?"
 # after the type's form: a form's unread tail ('Crl.P' + '.L.A.'), then 'No.' as printed ('No,', 'NO-', 'No»', 'N.')
-_LEAD = re.compile(r"[\s.:#(,]*(?:[a-z]{1,2}(?:s?\.\s*|\s+)){0,3}(?:nos?|numbers?|n)?[\s.:#,»\-]*" + _ITEM, re.I)
+# a register letter printed BEFORE the number is part of it: Sindh's 'C.P. No. D-2606 of 2018' (division bench) and
+# 'Cr. Bail Application No. S-1043' (single bench) are separate registers, as is 'Suit No. B-12' (banking) (D-138)
+_LEAD = re.compile(r"[\s.:#(,]*(?:[a-z]{1,2}(?:s?\.\s*|\s+)){0,3}(?:nos?|numbers?|n)?[\s.:#,»\-]*"
+                   r"(?:(?<![A-Za-z])([A-Z])\s*[-–]\s*(?=\d))?" + _ITEM, re.I)
 # '/2015', 'of 2015', '-2015', '611-L 2018'; and '/15' (two digits only after a slash, as the SC registry writes)
 _YEAR = re.compile(r"\s*(?:(?:of|/|-)\s*|\s)((?:19|20)\d{2})(?!\d)|\s*/\s*(\d{2})(?![\d/])", re.I)
 _NEXT = re.compile(r"\s*(,|&|\band\b|\bto\b|-)\s*(?:nos?\.?\s*)?" + _ITEM, re.I)
@@ -72,10 +76,12 @@ def read_case_line(printed: str, forms: list[str], today: dt.date | None = None)
     m = _LEAD.match(printed, pos)
     if not m:
         return CaseLine(None, None, [], printed[pos:pos + 40])
-    prev_digits, prev_suffix = m.group(1), m.group(2) or m.group(3) or m.group(4)
+    register = m.group(1)
+    prev_digits, prev_suffix = m.group(2), m.group(3) or m.group(4) or m.group(5)
     if int(prev_digits) == 0:
         return CaseLine(None, None, [], printed[pos:pos + 40])     # 'No. 0 of 2005': no case is numbered 0
-    lead = norm_number(prev_digits + (("-" + prev_suffix) if prev_suffix else ""))
+    lead = norm_number((f"{register}-" if register else "") + prev_digits
+                       + (("-" + prev_suffix) if prev_suffix else ""))
     numbers: list[str] = []
     pos = m.end()
     year = None

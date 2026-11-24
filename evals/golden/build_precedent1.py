@@ -1,5 +1,6 @@
 """golden-pk-v1 precedent set 1 (D-133): 58 precedent questions over the Supreme Court, Lahore and Peshawar High
-Courts. Gold is judgment paragraphs, found by reading (peek_judgment.py), never by the precedent search.
+Courts, and since D-138 the High Courts of Sindh and Balochistan (P1-I36, I37 replace P1-X01, X03). Gold is judgment
+paragraphs, found by reading (peek_judgment.py), never by the precedent search.
 
     python evals/golden/build_precedent1.py      # rebuilds the set from the database and checks every case
 
@@ -256,6 +257,34 @@ c("P1-I35", "issue", "FP1-women-property-kp", "property", ["en"], "latin",
   necessary=[(15354, "11", 3)],
   check=[r"restoration of her property rights", r"Deputy Commissioner", r"competing titles"])
 
+# ---------------------------------------------------------------- issue: Sindh and Balochistan (2), D-138
+# These replace P1-X01 and P1-X03 (25 Nov 2026): once the High Courts of Sindh and Balochistan were landed (D-138),
+# "this court's judgments are not held" was no longer true of either, so each question became answerable. Both stay in
+# dev, as the cases they replace were; the test split is unchanged.
+c("P1-I36", "issue", "FP1-sindh-bona-fide-need", "housing", ["en"], "latin",
+  "What has the Sindh High Court held on personal bona fide need under the Sindh Rented Premises Ordinance 1979?",
+  "Personal bona fide need, ss.14-15 SRPO 1979", "sindh", "answer",
+  ["A landlord who states the need on oath, unshaken in cross-examination, establishes it, and is the sole judge of "
+   "whether other premises suit; section 15 requires the need in good faith, section 14 does not."],
+  necessary=[(51035, "14", 3)], relevant=[(51035, "13", 2), (88436, "14", 2)],     # 88436: 26479 re-read (/8)
+  check=[r"sole judge", r"personal bona fide need"])
+c("P1-I37", "issue", "FP1-bhc-special-assistants", "rights", ["en"], "latin",
+  "What did the High Court of Balochistan hold about the Act providing for Special Assistants to the Chief Minister?",
+  "Special Assistants to the Chief Minister Balochistan Act 2018 struck down", "balochistan", "answer",
+  ["The Act was struck down as ultra vires the Constitution and the appointments declared illegal: the Cabinet is "
+   "the decision-making body and the service had no eligibility criteria."],
+  necessary=[(84199, "14", 3)], relevant=[(84199, "13", 2), (84199, "9", 2)],     # 18914 before its re-read
+  check=[r"ultra viries the\s+Constitution", r"struck down"])
+# Replaces P1-X05 (25 Nov 2026): the Federal Constitutional Court's judgments were landed (D-139), so "not held" was no
+# longer true. The family stays in the test split, renamed with the case.
+c("P1-I38", "issue", "FP1-fcc-contempt", "rights", ["en"], "latin",
+  "What has the Federal Constitutional Court decided about its own jurisdiction since the 27th Amendment?",
+  "The FCC's power to punish for contempt (Arts. 204, 189)", None, "answer",
+  ["The FCC holds that it may initiate and decide contempt proceedings: the power flows from Articles 204 and 189 "
+   "and is inherent in it, though the Contempt of Court Ordinance 2003 does not name it."],
+  necessary=[(94398, "1", 3)], relevant=[(94398, "6", 2)],
+  check=[r"contempt of court\s+proceedings", r"We hold that it does"])
+
 # ---------------------------------------------------------------- authority: the same question elsewhere (1)
 c("P1-F01", "authority", "FP1-temporary-injunction", "civil-procedure", ["en"], "latin",
   "For a civil court in Khyber Pakhtunkhwa: what three conditions must a plaintiff show to get a temporary "
@@ -347,19 +376,15 @@ c("P1-U05", "urdu", "FP1-custody-welfare", "family", ["ur"], "arabic",
   "Custody and the minor's welfare (Urdu variant of P1-I20)", "punjab", "answer",
   ["The welfare of the minor is paramount."], necessary=[(9987, "6", 3)], check=[r"paramount"])
 
-# ---------------------------------------------------------------- unanswerable: not held, or before coverage (6)
+# ---------------------------------------------------------------- unanswerable: not held, or before coverage (4)
+# P1-X01 (SHC) and P1-X03 (BHC) were withdrawn on 25 Nov 2026 when those courts were landed (D-138): see P1-I36, I37;
+# P1-X05 (FCC) likewise (D-139): see P1-I38.
 _NOT_HELD = ["presenting another court's judgments as this court's view", "inventing a citation"]
 for cid, fam, court, forum, q in (
-        ("P1-X01", "FP1-x-shc", "SHC", "sindh",
-         "What has the Sindh High Court held on personal bona fide need under the Sindh Rented Premises Ordinance 1979?"),
         ("P1-X02", "FP1-x-ihc", "IHC", "ict",
          "What has the Islamabad High Court held on section 20 of the Prevention of Electronic Crimes Act 2016?"),
-        ("P1-X03", "FP1-x-bhc", "BHC", "balochistan",
-         "What has the High Court of Balochistan held on the jurisdiction of the Levies Force?"),
         ("P1-X04", "FP1-x-fsc", "FSC", None,
-         "What has the Federal Shariat Court ruled on riba (interest) in banking?"),
-        ("P1-X05", "FP1-x-fcc", "FCC", None,
-         "What has the Federal Constitutional Court decided about its own jurisdiction since the 27th Amendment?")):
+         "What has the Federal Shariat Court ruled on riba (interest) in banking?")):
     c(cid, "unanswerable", fam, "coverage", ["en"], "latin", q, f"Judgments of a court not held ({court})", forum,
       "abstain", [], abstention=dict(code="court_not_held", court=court, requiredClarification=[],
                                      unsafeAlternatives=_NOT_HELD,

@@ -35,7 +35,10 @@ COPY_LEN_MIN = 0.90     # and the shorter body is at least this share of the lon
 
 # words just before a case line that make it another court's case or the case an application is made in
 _NOT_DECIDED_HERE = re.compile(r"(?i)\b(?:in|against|from|passed|of\s+the\s+learned|vide|arising\s+out\s+of|"
-                               r"impugned|decided\s+by|dated)\W*$")
+                               r"impugned|decided\s+by|dated|"
+                               # an order sheet's list of what is before the court: 'For orders on M.A. No. 1056'
+                               # (Sindh, D-138) is an application in the case, not a case decided
+                               r"for\s+(?:the\s+)?(?:hearing|orders?)\s+(?:of|on))\W*$")
 _BELOW = re.compile(r"(?i)\b(?:in|against|from|passed|impugned|vide|arising|decided\s+by|on\s+appeal)\b")
 
 
@@ -50,7 +53,8 @@ def header_cases(header: str, forms_by_code: dict[str, list[str]], today: dt.dat
     taken: set[int] = set()
     forms = sorted(((form, code) for code, fs in forms_by_code.items() for form in fs), key=lambda x: -len(x[0]))
     for form, code in forms:
-        for m in re.finditer(r"(?<![a-z0-9])" + re.escape(form) + r"(?= (?:nos? )?\d)", f):
+        # the number may carry a register letter before it ('C.P No. D-2606', folded 'c p no d 2606'; D-138)
+        for m in re.finditer(r"(?<![a-z0-9])" + re.escape(form) + r"(?= (?:nos? )?(?:[a-z] )?\d)", f):
             raw_start = idx[m.start()]
             if raw_start in taken or _NOT_DECIDED_HERE.search(header[max(0, raw_start - 40):raw_start]):
                 continue

@@ -38,6 +38,9 @@ def test_redaction_replaces_whole_names_and_spares_common_single_words():
     assert out == f"{WITHHELD} was convicted. Muhammad Ashraf, Inspector, investigated. {WITHHELD} absconded."
     assert redact("Muhammad appeared.", ["Muhammad"], common=frozenset({"muhammad"})) == "Muhammad appeared."
     assert redact(text, []) == text
+    # a party line is redacted with no common-word exception, and a three-letter name counts (D-138, audit A29)
+    line = "[name withheld] v. The State Criminal Bail Application No.1631 of 2025 Fahad Ali versus Faiza and Ali"
+    assert "Faiza" not in redact(line, ["Faiza", "Ali"]) and "Ali" not in redact(line, ["Faiza", "Ali"]).split()
 
 
 def test_a_query_naming_a_withheld_person_is_recognised():

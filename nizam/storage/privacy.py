@@ -154,7 +154,7 @@ def redact(text: str, names: list[str], common: frozenset[str] = frozenset()) ->
         return text
     for n in sorted(set(names), key=len, reverse=True):
         words = n.split()
-        if len(words) == 1 and (len(n) < 4 or n.lower() in common):
+        if len(words) == 1 and (len(n) < 3 or n.lower() in common):     # 3, as audit A29 counts a name (D-138)
             continue
         text = re.sub(r"(?<![\w])" + r"\.?\s+".join(map(re.escape, words)) + r"(?![\w])", WITHHELD, text, flags=re.I)
     return text

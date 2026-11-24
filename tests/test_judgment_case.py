@@ -179,3 +179,68 @@ def test_cases_listed_in_a_header_are_decided_together_but_the_court_below_is_no
             "C.P. No. 14 of 2016 (against the order of the High Court of Sindh passed in C.P.D-568/12 and "
             "C.P.No.11-D/2017)")
     assert [(c, x.lead) for c, x in header_cases(head, sc)] == [("SC:CRLP", "12"), ("SC:CP", "14")]
+
+
+def test_a_law_reports_masthead_is_a_reprint_and_a_courts_own_sheet_is_not():
+    from nizam.corpus.judgment import _REPRINT_MASTHEAD as M
+    assert M.match("2010 P L C (C.S.) 1449 [Quetta High Court] Before Qazi Faez Isa C. J. and Muhammad Noor ...")
+    assert M.match("• • • PLJ 2017 Quetta 60 (DB) Present: MRS. SYEDA TAHIRA SAFDAR AND ZAHEER-UD-DIN KAKAR, JJ.")
+    assert M.match("2012PCr.LJ646 [Balochistan] Before Muhammad Hashim Khan Kakar and Muhammad Noor Meskanzai, JJ")
+    assert M.match("PLJ 2018 Cr.C. (Quetta) 130 (DB) Present: ABDULLAH BALOCH & MUHAMMAD EJAZ SWATI, JJ.")
+    assert M.match("2015 P L C (C.S.) 788 [Balochistan High Court] Qazi Faez Isa, C.J. and Muhammad Kamran Khan")
+    assert M.match("H.B.T./60/Q 2011 M L D 1819 [Quetta] Before Naeem Akhtar Afghan and Muhammad Noor Meskanzai, JJ")
+    assert not M.match("JUDGMENT SHEET IN THE HIGH COURT OF BALOCHISTAN, QUETTA Constitutional Petition No.682 of 2011")
+    assert not M.match("C.P. No.337 of 2011 Page 1 of 5 Malik Naimat v. DG Mines and Minerals. JUDGMENT SHEET IN THE")
+    from nizam.corpus.judgment import _DATE_OF_DECISION as DD
+    for printed in ("Announced on 31.01.2020", "Announced on: 22.08.2013", "Date of Order : 11.06.2026",
+                    "Date of hearing and Order: 09.03.2026", "Announcement of judgment: 16th August, 2013"):
+        assert DD.search(printed), printed
+    assert not DD.search("FIR No.884/2024 dated 23.10.2024")
+    from nizam.corpus.judgment import _ORDER_COLUMNS as OC, _ORDER_DATE as OD
+    for printed in ("Order with signatures of Judge", "DATE ORDER WITH SIGNATURE(S) OF JUDGE(S)",
+                    "ORDER WITH THE SIGNATURE OF THE JUDGE", "ORDER WITH SIGNATURE OF HON'BLE JUDGE"):
+        assert OC.search(printed), printed
+    assert OD.match("Dated 19-01-2017 Mr. Ansar Hussain Zaidi") and not OD.match("FIR dated 23.10.2024")
+    assert not M.match("ORDER SHEET IN THE HIGH COURT OF SINDH AT KARACHI C.P. No. D-5050 of 2025 Before: Mr. Justice")
+
+
+def test_a_register_letter_before_the_number_is_part_of_it_and_listed_applications_are_not_cases():
+    """Sindh (D-138): 'C.P. No. D-2606' (division bench) and 'S-1043' (single bench) are separate registers;
+    an order sheet's 'For orders on M.A. No. ...' is an application before the court, not a case it decides."""
+    cp = ["c p", "cp", "constitution petition"]
+    r = read_case_line("C.P NO. D-2606 of 2018 [Anwar Khan & Others v. Zarai Taraqiati Bank]", cp)
+    assert (r.lead, r.year) == ("D-2606", 2018)
+    assert case_key("SHC", "SHC:CP", r.lead, r.year) == "SHC/CP/D-2606/2018"
+    r = read_case_line("Cr. Bail Application No.S-1043 of 2022", ["cr bail application"])
+    assert (r.lead, r.year) == ("S-1043", 2022)
+    assert read_case_line("Civil Appeal No.800-L of 2013", CA).lead == "800-L"     # a suffix stays a suffix
+    assert read_case_line("C.P. No.D-01 of 2016", cp).lead == "D-1"                  # no leading zero after it either
+    assert case_key("SHC", "SHC:CP", "D-01", 2016) == "SHC/CP/D-1/2016"
+    from nizam.corpus.judgment_case import header_cases
+    forms = {"SHC:CP": cp, "SHC:MA": ["m a", "misc appeal"]}
+    head = ("ORDER SHEET IN THE HIGH COURT OF SINDH, CIRCUIT COURT, HYDERABAD C.P NO. D-2606 of 2018 Dated: "
+            "20.11.2025 For hearing on M.A No. 1056 of 2023")
+    assert [(c, x.lead) for c, x in header_cases(head, forms)] == [("SHC:CP", "D-2606")]
+
+
+def test_the_header_parser_keeps_the_register_letter_as_the_case_builder_does():
+    """The judgment row's case number and the case key agree on 'D-1544' (D-138); 0135 lets the key hold it."""
+    from nizam.corpus.judgment import _case
+    types = {"SHC:CP": ("petition", ["constitutional petition", "c p"]), "SHC:CRLA": ("appeal", ["criminal appeal"])}
+    assert _case(["Constitutional Petition No. D-1544 of 2026"], types)[2] == "D-1544"
+    assert _case(["C.P.No.D- 920 of 2014"], types)[2] == "D-920"
+    assert _case(["Criminal Appeal No. 125 of 2019"], types)[2] == "125"
+
+
+def test_the_header_parser_and_the_case_builder_read_one_number_and_year():
+    """D-138 (/8): judgment.case_number and case_year are what read_case_line reads over the stored case line, so
+    the case builder never finds them differing (judgment_case_state.header_differs)."""
+    from nizam.corpus.judgment import _case
+    types = {"SHC:CP": ("petition", ["constitutional petition", "c p"]),
+             "SHC:CRLA": ("appeal", ["criminal appeal", "criminal appeals"]),
+             "LHC:WP": ("writ", ["writ petition"])}
+    for line in ["C.P. No.D-01 of 2016", "Criminal Appeal No. 05 of 2019", "Criminal Appeals Nos. 12 and 13 of 2019",
+                 "C.P. No. D-1544/2026", "Writ Petition No.4-RWP of 2020", "Writ Petition No. 2143-CB/2015"]:
+        code, printed, number, year, _ = _case([line], types)
+        r = read_case_line(printed[:500], types[code][1])
+        assert (number, year) == (r.lead, r.year), line

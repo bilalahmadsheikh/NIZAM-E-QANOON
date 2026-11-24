@@ -43,9 +43,14 @@ def _manifest(z: zipfile.ZipFile, prefix: str = "") -> dict[str, tuple[str, str]
     for name in z.namelist():
         if name.endswith("manifest.csv") and name.startswith(prefix):
             for r in csv.DictReader(io.StringIO(z.read(name).decode("utf-8", "replace"))):
-                fn = r.get("filename") or ""
-                if fn and (fn not in out or (out[fn][1] != "ok" and r.get("status") == "ok")):
-                    out[fn] = (r.get("url") or None, r.get("status") or None)
+                url = r.get("url") or r.get("pdf_url") or None
+                status = r.get("status") or None
+                good = status in ("ok", "success")
+                # keyed by filename where the manifest names one, and by the file's sha256 where it records one: the
+                # Balochistan and Sindh portals' manifests name no file, but hash it (D-138)
+                for key in (r.get("filename") or "", (r.get("sha256") or "").lower()):
+                    if key and (key not in out or (out[key][1] not in ("ok", "success") and good)):
+                        out[key] = (url, status)
     return out
 
 
@@ -62,8 +67,10 @@ def _read(args):
     pymupdf.TOOLS.mupdf_display_errors(False)
     data = zipfile.ZipFile(archive).read(member)
     extractor = f"pymupdf-{getattr(pymupdf, '__version__', 'unknown')}"
+    # an official HTML judgment (a court portal's Word-HTML page) is lane E1, read by the same parser (D-138)
+    html = member.lower().endswith(".html")
     try:
-        doc = extract_pdf(data, sha)
+        doc = extract_pdf(data, sha, filetype="html" if html else "pdf")
     except ExtractionRejected as exc:
         try:
             pages = pymupdf.open(stream=data, filetype="pdf").page_count or 1
@@ -78,7 +85,8 @@ def _read(args):
                     detail={}, parsed=None)
     aliases, types = _REF
     r = parse_judgment(doc, aliases, types, expected_court=court)
-    common = dict(sha256=sha, extractor=doc.extractor, lane=doc.lane if doc.lane in ("E2", "E4") else "E2",
+    common = dict(sha256=sha, extractor=doc.extractor,
+                  lane="E1" if html else (doc.lane if doc.lane in ("E2", "E4") else "E2"),
                   page_count=doc.page_count, char_count=doc.char_count, blocks=doc.blocks)
     if isinstance(r, Held):
         lang = "ur" if "Urdu" in r.reason else "en"
@@ -92,6 +100,7 @@ def main() -> int:
     ap.add_argument("--court", required=True)
     ap.add_argument("--source-id", required=True)
     ap.add_argument("--limit", type=int)
+    ap.add_argument("--every", type=int, default=1, help="a dry run over every Nth file, to sample a large archive")
     ap.add_argument("--member-prefix", default="", help="only archive members under this folder, e.g. "
                                                          "'judgments_peshawar_high_court/'")
     ap.add_argument("--workers", type=int, default=5)
@@ -100,7 +109,12 @@ def main() -> int:
                     help="re-read files read by an earlier parser (the earlier reading is retired, not deleted)")
     ap.add_argument("--held", metavar="GATE",
                     help="re-read only files whose active reading is held at this gate, e.g. J1 (D-124)")
+    ap.add_argument("--only", metavar="FILE", type=Path,
+                    help="re-read only the files whose sha256 is listed in FILE, one per line, after a rule changed "
+                         "for them (D-138); the earlier reading is retired, not deleted")
     a = ap.parse_args()
+    if sum(map(bool, (a.redo, a.held, a.only))) > 1:
+        raise SystemExit("--redo, --held and --only each choose what to read; give one")
 
     from nizam.storage import judgment_write as jw
     archive = Path(a.archive)
@@ -108,8 +122,14 @@ def main() -> int:
     manifest = _manifest(z, a.member_prefix)
     # an archive can bundle other sets (the Peshawar bundle repeats the whole SC archive and carries law files):
     # --member-prefix takes only this court's folder, so another set is never recorded as this court's (D-130)
-    members = sorted(n for n in z.namelist() if n.lower().endswith(".pdf")
+    # PDFs, and official HTML judgments (lane E1); a portal's listing pages are indexes, not judgments (D-138)
+    members = sorted(n for n in z.namelist()
+                     if (n.lower().endswith(".pdf") or (n.lower().endswith(".html") and "/listings/" not in n))
                      and (not a.member_prefix or n.startswith(a.member_prefix)))
+    if a.every > 1:
+        if a.apply:
+            raise SystemExit("--every samples a dry run; it never applies")
+        members = members[::a.every]
     if a.limit:
         members = members[:a.limit]
     store = CORPUS_ROOT / "raw" / "judgments" / a.source_id
@@ -119,11 +139,13 @@ def main() -> int:
         data = z.read(n)
         sha = hashlib.sha256(data).hexdigest()
         sha_of[n] = sha
-        url, status = manifest.get(n.split("/")[-1], (None, None))
+        url, status = manifest.get(n.split("/")[-1]) or manifest.get(sha) or (None, None)
+        # a zip member's time carries no zone; read as UTC, an archive written here in Pakistan time (UTC+5) is
+        # 'observed' up to five hours ahead, so the observation is never later than now (D-138)
+        observed = min(dt.datetime(*info.date_time, tzinfo=dt.timezone.utc), dt.datetime.now(dt.timezone.utc))
         rows.append(dict(source_id=a.source_id, court_code=a.court, archive=archive.name, member=n, source_url=url,
                          url_status=status, sha256=sha, byte_length=len(data),
-                         object_key=f"raw/judgments/{a.source_id}/{sha}",
-                         observed_at=dt.datetime(*info.date_time, tzinfo=dt.timezone.utc)))
+                         object_key=f"raw/judgments/{a.source_id}/{sha}", observed_at=observed))
         if a.apply:
             target = store / sha
             if not target.exists():
@@ -133,7 +155,11 @@ def main() -> int:
                 tmp.replace(target)
     distinct = sorted(set(sha_of.values()))
     print(f"{len(members)} files, {len(distinct)} distinct, {len(manifest)} manifest names")
-    if a.apply:
+    if a.only:
+        todo = {ln.strip() for ln in a.only.read_text(encoding="utf-8").splitlines() if ln.strip()}
+        if a.apply:
+            print("sources added:", jw.record_sources(rows))
+    elif a.apply:
         print("sources added:", jw.record_sources(rows))
         todo = set(jw.unread_hashes(a.court, archive.name, parser=PARSER if a.redo else None, held_gate=a.held))
     elif a.held:

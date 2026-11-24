@@ -76,6 +76,14 @@ Notes:
 - Not held: the Federal Constitutional Court, Islamabad HC, Balochistan HC, the Federal Shariat Court, the AJK and GB
   courts, and the AJK and GB constitutional texts (needed for those courts' authority rules, §1.3).
 
+*As built (25 Nov 2026, D-138, D-139):* released judgments 55,229 — Sindh HC 45,371 (a new archive of 56,227 PDFs and
+4,279 official HTML pages, lane E1), Lahore 3,996, Supreme Court 3,105, Peshawar 2,593, Federal Constitutional Court
+134 (crawled from its API), Balochistan 30 (1,936 of its 2,001 archived files are law-report reprints, not landed).
+Every court's own site is being crawled (D-139): Lahore lists 9,716 approved-for-reporting judgments, Peshawar 5,888;
+the AJK Supreme Court (960), AJK High Court (262), GB Supreme Appellate Court (752) and GB Chief Court (154) are
+downloaded and wait for their courts to be recorded, which waits for the AJK Interim Constitution and the GB Order
+2018 to be released. Still not held: Islamabad HC and the Federal Shariat Court.
+
 ---
 
 ## 1. Courts are data, with dated authority rules (D-116)

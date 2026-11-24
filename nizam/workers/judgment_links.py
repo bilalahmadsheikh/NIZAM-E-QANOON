@@ -247,6 +247,14 @@ def main() -> int:
     t0 = time.time()
     totals = collections.Counter()
     with connect() as conn, conn.cursor() as cur:
+        if a.apply:
+            # links are derived from the release (A26): a judgment retired by a re-read (D-124, D-138) leaves its
+            # rows behind, so they go before linking; its replacement is linked below as a new judgment
+            for table in ("judgment_statute_reference", "judgment_case_reference", "judgment_link_state"):
+                cur.execute(f"""DELETE FROM {table} t WHERE NOT EXISTS (
+                                  SELECT 1 FROM v_release_judgment j
+                                   WHERE j.id = t.judgment_id AND j.decided_on = t.decided_on)""")
+                print(f"pruned {cur.rowcount} {table} rows of judgments no longer released")
         todo = _todo(cur, a.rebuild)[: a.limit or None]
         types = _case_types(cur)
         cur.execute("SELECT code, territory::text FROM court")
