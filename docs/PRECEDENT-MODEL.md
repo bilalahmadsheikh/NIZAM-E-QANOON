@@ -84,6 +84,17 @@ the AJK Supreme Court (960), AJK High Court (262), GB Supreme Appellate Court (7
 downloaded and wait for their courts to be recorded, which waits for the AJK Interim Constitution and the GB Order
 2018 to be released. Still not held: Islamabad HC and the Federal Shariat Court.
 
+*As built (25 Nov 2026, D-140–D-143):* released judgments 60,826.
+- Lahore 8,057 and Peshawar 2,680, after their own sites' crawls; Balochistan's site served only the reprints already
+  held, so it stays at 30.
+- The AJK and GB courts are recorded (0137) on the AJK Interim Constitution (released D-140) and the GB Order 2018
+  (repaired D-143): AJK Supreme Court 673, AJK High Court 203, GB Supreme Appellate Court 556, GB Chief Court 22.
+  Most of the GB Chief Court's archive is scans, which wait for OCR.
+- §1.4 as built: each `authority_rule` names the territories its words reach (`territories`). "In Pakistan" (Arts.
+  189, 201, 203GG) reaches `fed` and Art. 1(2)(a)–(b); AJK Arts. 42-B and 44-B reach `ajk`; GB ss.78 and 88 reach `gb`.
+  A court outside a rule's reach is NotRecorded. Neither AJK nor GB prints a superintendence clause, so "courts
+  subordinate to it" is NotRecorded there.
+
 ---
 
 ## 1. Courts are data, with dated authority rules (D-116)

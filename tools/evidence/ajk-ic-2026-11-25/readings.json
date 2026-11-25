@@ -1,0 +1,1806 @@
+[
+ {
+  "document_id": 11875,
+  "page_no": 21,
+  "match_text": "far as it is inconsistent with the rights conferred",
+  "before_text": "far as it is inconsistent with the rights conferred",
+  "after_text": "far as it is inconsistent with the rights conferred",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p21.png",
+  "render_sha256": "f7bdc1c9f84181cc1af1174ae48be0f215cf2f965afa2504fa75706fb4bca358",
+  "source_paragraph_runs": [
+   {
+    "owner_block_id": 2913693,
+    "owner_label": "4",
+    "owner_kind": "subsection",
+    "opener_block_ids": [
+     2913694,
+     2913695,
+     2913725,
+     2913733,
+     2913739,
+     2913740,
+     2913741,
+     2913749,
+     2913759,
+     2913760,
+     2913768,
+     2913769,
+     2913777,
+     2913778,
+     2913798,
+     2913804,
+     2913806,
+     2913812,
+     2913813,
+     2913814,
+     2913817,
+     2913820,
+     2913825,
+     2913826
+    ],
+    "run_block_ids": [
+     2913694,
+     2913695,
+     2913699,
+     2913700,
+     2913701,
+     2913702,
+     2913703,
+     2913704,
+     2913705,
+     2913706,
+     2913710,
+     2913711,
+     2913712,
+     2913713,
+     2913714,
+     2913715,
+     2913718,
+     2913719,
+     2913720,
+     2913721,
+     2913724,
+     2913725,
+     2913726,
+     2913727,
+     2913728,
+     2913729,
+     2913730,
+     2913731,
+     2913732,
+     2913733,
+     2913734,
+     2913738,
+     2913739,
+     2913740,
+     2913741,
+     2913742,
+     2913746,
+     2913747,
+     2913748,
+     2913749,
+     2913750,
+     2913751,
+     2913752,
+     2913753,
+     2913754,
+     2913758,
+     2913759,
+     2913760,
+     2913761,
+     2913762,
+     2913763,
+     2913764,
+     2913768,
+     2913769,
+     2913770,
+     2913771,
+     2913772,
+     2913775,
+     2913776,
+     2913777,
+     2913778,
+     2913779,
+     2913780,
+     2913781,
+     2913784,
+     2913785,
+     2913786,
+     2913787,
+     2913788,
+     2913789,
+     2913793,
+     2913794,
+     2913795,
+     2913796,
+     2913797,
+     2913798,
+     2913799,
+     2913803,
+     2913804,
+     2913805,
+     2913806,
+     2913807,
+     2913811,
+     2913812,
+     2913813,
+     2913814,
+     2913815,
+     2913816,
+     2913817,
+     2913818,
+     2913819,
+     2913820,
+     2913824,
+     2913825,
+     2913826
+    ]
+   }
+  ],
+  "defect": "the 24 rights of Art. 4(4) were read as Articles: paragraph 5 as Article 5, 6-24 as Articles 6-24, the real Articles 5-24 as clauses (33 repeated labels)",
+  "fixes": "rule reviewed_paragraph_run: the run is rebuilt under sub-Article (4) of Article 4; Articles 5-24 follow Article 4 in sequence; no law text changes",
+  "observed": "Page 21 prints Article 4 (x0 144), its sub-Articles (1)-(3) and '(4) The Rights' (x0 180), then '1. Security of person.-' and '2. Safeguard as to arrest and detention.-' at x0 216; pages 22-35 continue the paragraphs to '24. Preservation of language, script and culture.-' (page 35, x0 216), after which page 35 prints '5. President.-' at the Articles' margin, x0 144. Each paragraph's own sub-paragraphs (1), (a), (i) are indented further (x0 249-279). The run is the 95 blocks between, less the footnotes (x0 144, below each page's rule), running heads and folios."
+ },
+ {
+  "document_id": 11875,
+  "page_no": 12,
+  "match_text": "people of the State through the democratic method of",
+  "before_text": "people of the State through the democratic method of",
+  "after_text": "people of the State through the democratic method of",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p12.png",
+  "render_sha256": "af554f463685bd530965c9dd179ef8afad4dbe132c1b470defd8ad08a349844e",
+  "source_apparatus_blocks": [
+   2913590
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 12 prints its folio '1' alone at its foot (block 2913590; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 13,
+  "match_text": "method of free and fair plebiscite under the auspices",
+  "before_text": "method of free and fair plebiscite under the auspices",
+  "after_text": "method of free and fair plebiscite under the auspices",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p13.png",
+  "render_sha256": "4bad5d27dcfd4fec5ad67957d3c449f496ca108a736d226bf7531526d0d56bbf",
+  "source_apparatus_blocks": [
+   2913600
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 13 prints its folio '2' alone at its foot (block 2913600; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 14,
+  "match_text": "(4) The President shall assent to this Bill within",
+  "before_text": "(4) The President shall assent to this Bill within",
+  "after_text": "(4) The President shall assent to this Bill within",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p14.png",
+  "render_sha256": "8bc3fbc28169573852e7bd9011a17ccd90aba4b4f4f3437391e540d98ab686fb",
+  "source_apparatus_blocks": [
+   2913613
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 14 prints its folio '3' alone at its foot (block 2913613; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 15,
+  "match_text": "claims to be a prophet, in any sense of the word",
+  "before_text": "claims to be a prophet, in any sense of the word",
+  "after_text": "claims to be a prophet, in any sense of the word",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p15.png",
+  "render_sha256": "099cbce99919576d233b0f0815f5cce5c08ea788ae8360384ce81fcd144b9a4f",
+  "source_apparatus_blocks": [
+   2913624
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 15 prints its folio '4' alone at its foot (block 2913624; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 16,
+  "match_text": "‘Property’ includes any right, title or interest in",
+  "before_text": "‘Property’ includes any right, title or interest in",
+  "after_text": "‘Property’ includes any right, title or interest in",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p16.png",
+  "render_sha256": "b333fa8db8b38b620abf3b85a308fb3549f522b03f93b88624851d8eaa024136",
+  "source_apparatus_blocks": [
+   2913636,
+   2913637
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 16 prints the amendment footnote '1. Omitted by Constitution (Thirteenth Amdt.) Act, 2018. 2. Ins. by th' below its text at x0 144, y0 625 (block 2913636); and its folio '5' alone at its foot (block 2913637; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 17,
+  "match_text": "out in Article 3-A, 3-B, 3-C, 3-D, 3-E, 3-F, 3-G, 3-",
+  "before_text": "out in Article 3-A, 3-B, 3-C, 3-D, 3-E, 3-F, 3-G, 3-",
+  "after_text": "out in Article 3-A, 3-B, 3-C, 3-D, 3-E, 3-F, 3-G, 3-",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p17.png",
+  "render_sha256": "6b29bdb11b99dc3f1945af297c6f744de14dd15904b618e517efb9ff1308841f",
+  "source_apparatus_blocks": [
+   2913649
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 17 prints its folio '6' alone at its foot (block 2913649; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 18,
+  "match_text": "(2) The validity of an action or of a law shall not",
+  "before_text": "(2) The validity of an action or of a law shall not",
+  "after_text": "(2) The validity of an action or of a law shall not",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p18.png",
+  "render_sha256": "dee6d1db6f47e06c677292477692a1f0893b386917dac763efb3b2cdbaebbff0",
+  "source_apparatus_blocks": [
+   2913662
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 18 prints its folio '7' alone at its foot (block 2913662; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 19,
+  "match_text": "parochial, racial, tribal and sectarian prejudices",
+  "before_text": "parochial, racial, tribal and sectarian prejudices",
+  "after_text": "parochial, racial, tribal and sectarian prejudices",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p19.png",
+  "render_sha256": "482ac21bd47df9e97c881ee6ffa69caf5d0154f14bf9b9981d10f0b1576503d9",
+  "source_apparatus_blocks": [
+   2913675
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 19 prints its folio '8' alone at its foot (block 2913675; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 20,
+  "match_text": "provide for all citizens, within the available",
+  "before_text": "provide for all citizens, within the available",
+  "after_text": "provide for all citizens, within the available",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p20.png",
+  "render_sha256": "9f4f794851d98ea21dfcded1d8228ea907e849615b4bcd26824c1520995e9468",
+  "source_apparatus_blocks": [
+   2913685
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 20 prints its folio '9' alone at its foot (block 2913685; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 21,
+  "match_text": "(3) The provisions of this Article shall not apply",
+  "before_text": "(3) The provisions of this Article shall not apply",
+  "after_text": "(3) The provisions of this Article shall not apply",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p21.png",
+  "render_sha256": "f7bdc1c9f84181cc1af1174ae48be0f215cf2f965afa2504fa75706fb4bca358",
+  "source_apparatus_blocks": [
+   2913697
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 21 prints its folio '10' alone at its foot (block 2913697; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 22,
+  "match_text": "the said period, that there is, in its",
+  "before_text": "the said period, that there is, in its",
+  "after_text": "the said period, that there is, in its",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p22.png",
+  "render_sha256": "62238b26a6ee27a74093e032cc0d167e67f3a3115d5549492445b8198219232d",
+  "source_apparatus_blocks": [
+   2913708
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 22 prints its folio '11' alone at its foot (block 2913708; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 23,
+  "match_text": "authority considers it to be against",
+  "before_text": "authority considers it to be against",
+  "after_text": "authority considers it to be against",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p23.png",
+  "render_sha256": "7b19c81d4382fe2c8ee9bc85551e224ec7c709b15bd86b7206f57b8b84f18fad",
+  "source_apparatus_blocks": [
+   2913716
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 23 prints its folio '12' alone at its foot (block 2913716; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 24,
+  "match_text": "prejudicial to the integrity, security",
+  "before_text": "prejudicial to the integrity, security",
+  "after_text": "prejudicial to the integrity, security",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p24.png",
+  "render_sha256": "952414bccb3daa7c6f52ba8407959349e3dbe1f41860d136158d16ddb0c1a155",
+  "source_apparatus_blocks": [
+   2913722
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 24 prints its folio '13' alone at its foot (block 2913722; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 25,
+  "match_text": "service shall be of a cruel nature or",
+  "before_text": "service shall be of a cruel nature or",
+  "after_text": "service shall be of a cruel nature or",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p25.png",
+  "render_sha256": "9bdbf213c127380b3919d9233692ff373532506b927fbb12032ef433c61c1ee8",
+  "source_apparatus_blocks": [
+   2913736
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 25 prints its folio '14' alone at its foot (block 2913736; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 26,
+  "match_text": "right to form association or unions,",
+  "before_text": "right to form association or unions,",
+  "after_text": "right to form association or unions,",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p26.png",
+  "render_sha256": "1145cea853cc3cf23ee3bf48e07890f31a37db0bd69d4cf93e0b45adf7c5e5f7",
+  "source_apparatus_blocks": [
+   2913744
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 26 prints its folio '15' alone at its foot (block 2913744; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 27,
+  "match_text": "take part in activities prejudicial or",
+  "before_text": "take part in activities prejudicial or",
+  "after_text": "take part in activities prejudicial or",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p27.png",
+  "render_sha256": "d6044116ffca16e5002ea36a28fb33ca249ac24fbfae0bc38dfd4fec97ca9c34",
+  "source_apparatus_blocks": [
+   2913756
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 27 prints its folio '16' alone at its foot (block 2913756; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 28,
+  "match_text": "restrictions imposed by law in the",
+  "before_text": "restrictions imposed by law in the",
+  "after_text": "restrictions imposed by law in the",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p28.png",
+  "render_sha256": "5e10c0141deae117f90b9bd83606030ad9d0ccddd3c6ad9e82fe151ef0a81338",
+  "source_apparatus_blocks": [
+   2913766
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 28 prints its folio '17' alone at its foot (block 2913766; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 29,
+  "match_text": "ground only of race, religion, caste",
+  "before_text": "ground only of race, religion, caste",
+  "after_text": "ground only of race, religion, caste",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p29.png",
+  "render_sha256": "f0b0cec59e954f1f64db73d06d06e4cbd1d787fb8e5c60c0f6054ad3fd6f3d25",
+  "source_apparatus_blocks": [
+   2913773
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 29 prints its folio '18' alone at its foot (block 2913773; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 30,
+  "match_text": "public interest, every State Subject",
+  "before_text": "public interest, every State Subject",
+  "after_text": "public interest, every State Subject",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p30.png",
+  "render_sha256": "3641842c4fd87192158f4a4ec3f2fb319f8171653f647cc0cc7fec3ca580dcdd",
+  "source_apparatus_blocks": [
+   2913782
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 30 prints its folio '19' alone at its foot (block 2913782; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 31,
+  "match_text": "or for the benefit of its owner;",
+  "before_text": "or for the benefit of its owner;",
+  "after_text": "or for the benefit of its owner;",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p31.png",
+  "render_sha256": "b93b2b8042302e3720af8abd7ddcc70a56c90e0de1815fd2292f825489c19f82",
+  "source_apparatus_blocks": [
+   2913791
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 31 prints its folio '20' alone at its foot (block 2913791; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 32,
+  "match_text": "2[15. Equality of State Subjects.- (1)",
+  "before_text": "2[15. Equality of State Subjects.- (1)",
+  "after_text": "2[15. Equality of State Subjects.- (1)",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p32.png",
+  "render_sha256": "367883d74d12e727cb810daba17574ad2027447fd6b3989a2c414430699745a1",
+  "source_apparatus_blocks": [
+   2913801
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 32 prints its folio '21' alone at its foot (block 2913801; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 33,
+  "match_text": "ground only of race, religion, caste,",
+  "before_text": "ground only of race, religion, caste,",
+  "after_text": "ground only of race, religion, caste,",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p33.png",
+  "render_sha256": "238eedad82c961b5243748d53982aaa179489c5bd7eaf47dfa307c807d5d4a91",
+  "source_apparatus_blocks": [
+   2913809
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 33 prints its folio '22' alone at its foot (block 2913809; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 34,
+  "match_text": "State Subject shall have the right to",
+  "before_text": "State Subject shall have the right to",
+  "after_text": "State Subject shall have the right to",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p34.png",
+  "render_sha256": "2fe8ea3428bd8bc4f101b456010f88155b2ecba267d6a8730d350349076b0f96",
+  "source_apparatus_blocks": [
+   2913822
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 34 prints its folio '23' alone at its foot (block 2913822; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 35,
+  "match_text": "majority in the first poll, a second poll shall be",
+  "before_text": "majority in the first poll, a second poll shall be",
+  "after_text": "majority in the first poll, a second poll shall be",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p35.png",
+  "render_sha256": "5bfb1ca6b0097e5a117b09b097a5bf33645223a41d95094c3cec69cba7f006de",
+  "source_apparatus_blocks": [
+   2913830
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 35 prints its folio '24' alone at its foot (block 2913830; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 36,
+  "match_text": "term of the President in office or, if the election",
+  "before_text": "term of the President in office or, if the election",
+  "after_text": "term of the President in office or, if the election",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p36.png",
+  "render_sha256": "3d8a73b98fcdea8b1dbbd4179d57b93b86b2d2e44d09bef189c795ba866c482d",
+  "source_apparatus_blocks": [
+   2913845
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 36 prints its folio '25' alone at its foot (block 2913845; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 37,
+  "match_text": "(2) The President shall have the right to appear",
+  "before_text": "(2) The President shall have the right to appear",
+  "after_text": "(2) The President shall have the right to appear",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p37.png",
+  "render_sha256": "009188af1524a96edf1fe5f99392e7286ac58a3f6e364a20932bd141ff0d11a5",
+  "source_apparatus_blocks": [
+   2913855
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 37 prints its folio '26' alone at its foot (block 2913855; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 38,
+  "match_text": "cause, the Speaker of the Assembly 4[*] shall act",
+  "before_text": "cause, the Speaker of the Assembly 4[*] shall act",
+  "after_text": "cause, the Speaker of the Assembly 4[*] shall act",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p38.png",
+  "render_sha256": "4e79feee5cf9065256cfdf3403f9fe7ecd055bc2d396b44ba537994899e59add",
+  "source_apparatus_blocks": [
+   2913865
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 38 prints its folio '27' alone at its foot (block 2913865; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 39,
+  "match_text": "Prime Minister who shall be the Chief executive",
+  "before_text": "Prime Minister who shall be the Chief executive",
+  "after_text": "Prime Minister who shall be the Chief executive",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p39.png",
+  "render_sha256": "105e16dc987eaca53eeb744ba99982bd8f4b45acb5a07562de069e573c8eb185",
+  "source_apparatus_blocks": [
+   2913876
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 39 prints its folio '28' alone at its foot (block 2913876; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 40,
+  "match_text": "majority in the first poll, a second poll shall be",
+  "before_text": "majority in the first poll, a second poll shall be",
+  "after_text": "majority in the first poll, a second poll shall be",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p40.png",
+  "render_sha256": "e3a2be84bb4de6e9c716a034acd534365bbf4e87fd47dab54a22a4a2dbe0dd3b",
+  "source_apparatus_blocks": [
+   2913886
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 40 prints its folio '29' alone at its foot (block 2913886; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 41,
+  "match_text": "total strength in each case shall not exceed two,",
+  "before_text": "total strength in each case shall not exceed two,",
+  "after_text": "total strength in each case shall not exceed two,",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p41.png",
+  "render_sha256": "326bf87baf2177a8aad7cd40a3b7c49b46a6ead7f99883d5a463370336bca8e5",
+  "source_apparatus_blocks": [
+   2913896,
+   2913897
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 41 prints the amendment footnote '1. Sub Article (1) has been amended two times i.e.; (i) Proviso Subs. ' below its text at x0 144, y0 607 (block 2913896); and its folio '30' alone at its foot (block 2913897; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 42,
+  "match_text": "Minister or, as the case may be, Minister until a",
+  "before_text": "Minister or, as the case may be, Minister until a",
+  "after_text": "Minister or, as the case may be, Minister until a",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p42.png",
+  "render_sha256": "18d2b16e5b91bcbd7ed8f6532b7e28f847de4c8b91751ce42430a783b34037df",
+  "source_apparatus_blocks": [
+   2913906
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 42 prints its folio '31' alone at its foot (block 2913906; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 43,
+  "match_text": "confidence (hereinafter in this Article referred",
+  "before_text": "confidence (hereinafter in this Article referred",
+  "after_text": "confidence (hereinafter in this Article referred",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p43.png",
+  "render_sha256": "95ca127185068d988507f334216f3cc06e308698dddc07a31f22f086500ded92",
+  "source_apparatus_blocks": [
+   2913916
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 43 prints its folio '32' alone at its foot (block 2913916; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 44,
+  "match_text": "(5) If the resolution is passed by majority of the",
+  "before_text": "(5) If the resolution is passed by majority of the",
+  "after_text": "(5) If the resolution is passed by majority of the",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p44.png",
+  "render_sha256": "048464df6e266513e6dda1edcaa709e29de2c6121dca3f24a59e3ca36ef0882e",
+  "source_apparatus_blocks": [
+   2913925,
+   2913926
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 44 prints the amendment footnote '1. Omitted by the (Ninth Amdt.) Act, 1988. 2. Subs. by the (Thirteenth' below its text at x0 144, y0 625 (block 2913925); and its folio '33' alone at its foot (block 2913926; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 45,
+  "match_text": "Pakistan with respect to peculiar political status",
+  "before_text": "Pakistan with respect to peculiar political status",
+  "after_text": "Pakistan with respect to peculiar political status",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p45.png",
+  "render_sha256": "a22e443933a8bb4df4c059ede1b6738df848edbeb3664ee2917cc845d79b53b5",
+  "source_apparatus_blocks": [
+   2913936
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 45 prints its folio '34' alone at its foot (block 2913936; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 46,
+  "match_text": "referred to in clause (e) of sub-Article(1), be the",
+  "before_text": "referred to in clause (e) of sub-Article(1), be the",
+  "after_text": "referred to in clause (e) of sub-Article(1), be the",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p46.png",
+  "render_sha256": "2b18b81130b3d96d2950d5f60e68e90afe7f2dff539e7310f6ef634ad37507a7",
+  "source_apparatus_blocks": [
+   2913951
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 46 prints its folio '35' alone at its foot (block 2913951; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 47,
+  "match_text": "(4-C) An election to fill a vacancy in the office of",
+  "before_text": "(4-C) An election to fill a vacancy in the office of",
+  "after_text": "(4-C) An election to fill a vacancy in the office of",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p47.png",
+  "render_sha256": "f2a01e6d6dd783bb6bea8a0bb4a542002b565fc5c01ffe71e44e27c0308ab8b0",
+  "source_apparatus_blocks": [
+   2913962
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 47 prints its folio '36' alone at its foot (block 2913962; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 48,
+  "match_text": "sub-Article (3) of Article 31 and in respect of the",
+  "before_text": "sub-Article (3) of Article 31 and in respect of the",
+  "after_text": "sub-Article (3) of Article 31 and in respect of the",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p48.png",
+  "render_sha256": "9d97cd66ffd7e84a3e9466000d66a166ee42b2b8c3daa82aa36513ce73338aa0",
+  "source_apparatus_blocks": [
+   2913973
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 48 prints its folio '37' alone at its foot (block 2913973; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 49,
+  "match_text": "residing abroad, shall be elected by the",
+  "before_text": "residing abroad, shall be elected by the",
+  "after_text": "residing abroad, shall be elected by the",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p49.png",
+  "render_sha256": "31e3438a94ec73eb6c9a0079da05b6bcb2b26d458f34e8ef4eb4906de0394107",
+  "source_apparatus_blocks": [
+   2913982
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 49 prints its folio '38' alone at its foot (block 2913982; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 50,
+  "match_text": "1[(4) A general election to the Assembly shall be",
+  "before_text": "1[(4) A general election to the Assembly shall be",
+  "after_text": "1[(4) A general election to the Assembly shall be",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p50.png",
+  "render_sha256": "c48a99db240ffef9c40f705c2793a410da3dc708a9941a2dff01070b0fd2ff93",
+  "source_apparatus_blocks": [
+   2913992
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 50 prints its folio '39' alone at its foot (block 2913992; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 51,
+  "match_text": "(1) A person shall be qualified to be elected as,",
+  "before_text": "(1) A person shall be qualified to be elected as,",
+  "after_text": "(1) A person shall be qualified to be elected as,",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p51.png",
+  "render_sha256": "bf59a2ff718ae9e9cf394b69d0f4aefe6741cd0e1017031a9688929a4c3211ab",
+  "source_apparatus_blocks": [
+   2914005
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 51 prints its folio '40' alone at its foot (block 2914005; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 52,
+  "match_text": "thirty days after the declaration of the result for",
+  "before_text": "thirty days after the declaration of the result for",
+  "after_text": "thirty days after the declaration of the result for",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p52.png",
+  "render_sha256": "ff343bc1b60a61f2e29833c7a653fb94d0fa96ba42e729548e5f413fc502d54e",
+  "source_apparatus_blocks": [
+   2914018
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 52 prints its folio '41' alone at its foot (block 2914018; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 53,
+  "match_text": "expire, an election to fill the seat shall be held",
+  "before_text": "expire, an election to fill the seat shall be held",
+  "after_text": "expire, an election to fill the seat shall be held",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p53.png",
+  "render_sha256": "3b7e31b0af1aa16a96e11686d99cc4af189f84c0060934c7078a1fbbce6a7c0f",
+  "source_apparatus_blocks": [
+   2914028
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 53 prints its folio '42' alone at its foot (block 2914028; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 54,
+  "match_text": "thinks fit, within fourteen days of the receipt of",
+  "before_text": "thinks fit, within fourteen days of the receipt of",
+  "after_text": "thinks fit, within fourteen days of the receipt of",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p54.png",
+  "render_sha256": "9eef3f91ac41291b2552cf83f3ac32627a53454f84a377288313f7608bb26726",
+  "source_apparatus_blocks": [
+   2914036
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 54 prints its folio '43' alone at its foot (block 2914036; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 55,
+  "match_text": "Speaker is vacant, or the Speaker is absent or is",
+  "before_text": "Speaker is vacant, or the Speaker is absent or is",
+  "after_text": "Speaker is vacant, or the Speaker is absent or is",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p55.png",
+  "render_sha256": "a887f5bca45f093f604a93219e097ae137162fa6e0502aae3480c98912f004d7",
+  "source_apparatus_blocks": [
+   2914049
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 55 prints its folio '44' alone at its foot (block 2914049; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 56,
+  "match_text": "shall be the duty of the person presiding either",
+  "before_text": "shall be the duty of the person presiding either",
+  "after_text": "shall be the duty of the person presiding either",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p56.png",
+  "render_sha256": "bbb4137c82a76ef6f3ff0fb2af659ae0b6455c1606a58ddd8e44e08b73b041b6",
+  "source_apparatus_blocks": [
+   2914060
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 56 prints its folio '45' alone at its foot (block 2914060; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 57,
+  "match_text": "4[31. Legislative Power.- (1) Subject to sub-Article",
+  "before_text": "4[31. Legislative Power.- (1) Subject to sub-Article",
+  "after_text": "4[31. Legislative Power.- (1) Subject to sub-Article",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p57.png",
+  "render_sha256": "015a6415b8930fa204b907b6c4bdc6c4dd8932a1842d34c70df1866d2a80da11",
+  "source_apparatus_blocks": [
+   2914073
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 57 prints its folio '46' alone at its foot (block 2914073; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 58,
+  "match_text": "1[32. Council of Islamic Ideology.-  (1) There shall",
+  "before_text": "1[32. Council of Islamic Ideology.-  (1) There shall",
+  "after_text": "1[32. Council of Islamic Ideology.-  (1) There shall",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p58.png",
+  "render_sha256": "21dc6022bb41bf699d468f441b18e0dfd1a106fac6d40e88d453b69c744046cb",
+  "source_apparatus_blocks": [
+   2914086
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 58 prints its folio '47' alone at its foot (block 2914086; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 59,
+  "match_text": "law is or is not repugnant to the injunctions of",
+  "before_text": "law is or is not repugnant to the injunctions of",
+  "after_text": "law is or is not repugnant to the injunctions of",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p59.png",
+  "render_sha256": "fb9ab79588c1d1cab639ddec51272addf3658baeff57de62f605eda8cec68715",
+  "source_apparatus_blocks": [
+   2914096
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 59 prints its folio '48' alone at its foot (block 2914096; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 60,
+  "match_text": "its opinion, to the Council of Islamic Ideology of",
+  "before_text": "its opinion, to the Council of Islamic Ideology of",
+  "after_text": "its opinion, to the Council of Islamic Ideology of",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p60.png",
+  "render_sha256": "b92ada3272464140e70d260ea034597db50b1c09a6c19c50da001f344826a512",
+  "source_apparatus_blocks": [
+   2914105
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 60 prints its folio '49' alone at its foot (block 2914105; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 61,
+  "match_text": "3[34. Validity of proceedings of the Assembly.- (1)",
+  "before_text": "3[34. Validity of proceedings of the Assembly.- (1)",
+  "after_text": "3[34. Validity of proceedings of the Assembly.- (1)",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p61.png",
+  "render_sha256": "c0d68ed248977d4e7f3ff378f8b88af3fc3e014c8b7cb4dfc0468440d55cf125",
+  "source_apparatus_blocks": [
+   2914116
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 61 prints its folio '50' alone at its foot (block 2914116; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 62,
+  "match_text": "33 and if the President fails to do so he shall be",
+  "before_text": "33 and if the President fails to do so he shall be",
+  "after_text": "33 and if the President fails to do so he shall be",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p62.png",
+  "render_sha256": "97626ca3241ebf273a9946703358075c6eb35e0b9a7655ffcb6fa175bb1e0a82",
+  "source_apparatus_blocks": [
+   2914128,
+   2914129
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 62 prints the amendment footnote '1. Omitted by the (Thirteenth Amdt.) Act, 2018. 2. Ibid. 3. Omitted by' below its text at x0 144, y0 597 (block 2914128); and its folio '51' alone at its foot (block 2914129; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 63,
+  "match_text": "the Assembly or, until provision in that behalf is",
+  "before_text": "the Assembly or, until provision in that behalf is",
+  "after_text": "the Assembly or, until provision in that behalf is",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p63.png",
+  "render_sha256": "56d4241105b64cacb84083d31b0c774a76c8f613e8cbf145066045074957fb9c",
+  "source_apparatus_blocks": [
+   2914139
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 63 prints its folio '52' alone at its foot (block 2914139; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 64,
+  "match_text": "the provisions of this Article shall apply to those",
+  "before_text": "the provisions of this Article shall apply to those",
+  "after_text": "the provisions of this Article shall apply to those",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p64.png",
+  "render_sha256": "408e5064abc2350e2871af6a13b5bc26fe9a401aa544120c0adeb79bc0062771",
+  "source_apparatus_blocks": [
+   2914150
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 64 prints its folio '53' alone at its foot (block 2914150; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 65,
+  "match_text": "reason of its having been earlier dissolved, the",
+  "before_text": "reason of its having been earlier dissolved, the",
+  "after_text": "reason of its having been earlier dissolved, the",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p65.png",
+  "render_sha256": "29348173f9a97eb2f5ed908737ad61b564466541ef42e7ff2e500cb727f2c51c",
+  "source_apparatus_blocks": [
+   2914158
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 65 prints its folio '54' alone at its foot (block 2914158; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 66,
+  "match_text": "(2) Subject to the provisions of the Constitution,",
+  "before_text": "(2) Subject to the provisions of the Constitution,",
+  "after_text": "(2) Subject to the provisions of the Constitution,",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p66.png",
+  "render_sha256": "d06d623f8af5b29a3c1f1454d9dc051015f05cf82874fd692dbbb43ad5251fa1",
+  "source_apparatus_blocks": [
+   2914169
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 66 prints its folio '55' alone at its foot (block 2914169; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 67,
+  "match_text": "1[(3) The Supreme Court shall consist of a Chief",
+  "before_text": "1[(3) The Supreme Court shall consist of a Chief",
+  "after_text": "1[(3) The Supreme Court shall consist of a Chief",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p67.png",
+  "render_sha256": "5032bec26532534832cb01a7fa3c31797d5ed3ea566e953698198b1425a26030",
+  "source_apparatus_blocks": [
+   2914180,
+   2914181
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 67 prints the amendment footnote '1. Sub. by the (Tenth Amdt.) Act, 1993. 2. Ins. by the (Fourteenth Amd' below its text at x0 144, y0 616 (block 2914180); and its folio '56' alone at its foot (block 2914181; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 68,
+  "match_text": "(8-A) If at any time it is not possible for want of",
+  "before_text": "(8-A) If at any time it is not possible for want of",
+  "after_text": "(8-A) If at any time it is not possible for want of",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p68.png",
+  "render_sha256": "d72f5c7358ccfc219f97abc9081dcec3f7ff2cf1cea4ffe9e07a42d7a33eda1e",
+  "source_apparatus_blocks": [
+   2914190
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 68 prints its folio '57' alone at its foot (block 2914190; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 69,
+  "match_text": "judgment, decree, final order or sentence of the",
+  "before_text": "judgment, decree, final order or sentence of the",
+  "after_text": "judgment, decree, final order or sentence of the",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p69.png",
+  "render_sha256": "4f5b126812ce6e83fa793be03178333daa3b986b4028510c4c24f9a52c9028e2",
+  "source_apparatus_blocks": [
+   2914201
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 69 prints its folio '58' alone at its foot (block 2914201; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 70,
+  "match_text": "order or sentence of the High Court in a case to",
+  "before_text": "order or sentence of the High Court in a case to",
+  "after_text": "order or sentence of the High Court in a case to",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p70.png",
+  "render_sha256": "f11320a6555ce8db1d0433303f3b544e5e2aa9ded9732d7f9c8f989159caa2e3",
+  "source_apparatus_blocks": [
+   2914211
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 70 prints its folio '59' alone at its foot (block 2914211; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 71,
+  "match_text": "1[(14) The person holding office as Chief Justice",
+  "before_text": "1[(14) The person holding office as Chief Justice",
+  "after_text": "1[(14) The person holding office as Chief Justice",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p71.png",
+  "render_sha256": "6348dd8da0c43f2d972ac7a5a342a40b2d63c848d8eaafc835a9bef18559c1fc",
+  "source_apparatus_blocks": [
+   2914219
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 71 prints its folio '60' alone at its foot (block 2914219; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 72,
+  "match_text": "shall have the same force and effect as if it had",
+  "before_text": "shall have the same force and effect as if it had",
+  "after_text": "shall have the same force and effect as if it had",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p72.png",
+  "render_sha256": "754776121f8c9e3b083223dfd928e2ea2d1887261481cd581b746d843e204f2b",
+  "source_apparatus_blocks": [
+   2914230
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 72 prints its folio '61' alone at its foot (block 2914230; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 73,
+  "match_text": "42-E. Supreme Judicial Council.- (1) There shall be",
+  "before_text": "42-E. Supreme Judicial Council.- (1) There shall be",
+  "after_text": "42-E. Supreme Judicial Council.- (1) There shall be",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p73.png",
+  "render_sha256": "19c0bdd7b7606651ca5cf1160710c13f6eefeeac153be92c8e40bd9d07f0999a",
+  "source_apparatus_blocks": [
+   2914244
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 73 prints its folio '62' alone at its foot (block 2914244; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 74,
+  "match_text": "is inquiring into the conduct of a Judge who is a",
+  "before_text": "is inquiring into the conduct of a Judge who is a",
+  "after_text": "is inquiring into the conduct of a Judge who is a",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p74.png",
+  "render_sha256": "278862395492bf34826a8954a38b8754f96d2dd9f5d6fc251621304ce0c857dd",
+  "source_apparatus_blocks": [
+   2914255
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 74 prints its folio '63' alone at its foot (block 2914255; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 75,
+  "match_text": "42-G. Bar of jurisdiction.- The proceedings before",
+  "before_text": "42-G. Bar of jurisdiction.- The proceedings before",
+  "after_text": "42-G. Bar of jurisdiction.- The proceedings before",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p75.png",
+  "render_sha256": "945bb6094af64f9ab441e8ebc34fe63ad29e42992cd42f3428cef2cf5ac0cacc",
+  "source_apparatus_blocks": [
+   2914266
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 75 prints its folio '64' alone at its foot (block 2914266; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 76,
+  "match_text": "(2) The person holding office as Chief Justice or",
+  "before_text": "(2) The person holding office as Chief Justice or",
+  "after_text": "(2) The person holding office as Chief Justice or",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p76.png",
+  "render_sha256": "77186d40563f24a2d1ca9381a3ab0c3312a9f5fe9abbcf68feecf25e8ecb41b2",
+  "source_apparatus_blocks": [
+   2914276
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 76 prints its folio '65' alone at its foot (block 2914276; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 77,
+  "match_text": "2.Ins. by the (Fourteenth Amdt.) Act, 2020 (Act XL of 2020).",
+  "before_text": "2.Ins. by the (Fourteenth Amdt.) Act, 2020 (Act XL of 2020).",
+  "after_text": "2.Ins. by the (Fourteenth Amdt.) Act, 2020 (Act XL of 2020).",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p77.png",
+  "render_sha256": "7021ce255bf87be11a97d6af1955cf2afdb734d21ba4086049421b02ed934bbb",
+  "source_apparatus_blocks": [
+   2914289
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 77 prints its folio '66' alone at its foot (block 2914289; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 78,
+  "match_text": "the High Court shall not hold any office of profit",
+  "before_text": "the High Court shall not hold any office of profit",
+  "after_text": "the High Court shall not hold any office of profit",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p78.png",
+  "render_sha256": "01a5bfe9387cb2f06e44e88067895b29d41cc41e4c0437f7c598f76dc374d389",
+  "source_apparatus_blocks": [
+   2914300
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 78 prints its folio '67' alone at its foot (block 2914300; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 79,
+  "match_text": "1[43-A. Acting Chief Justice.- At any time when:-",
+  "before_text": "1[43-A. Acting Chief Justice.- At any time when:-",
+  "after_text": "1[43-A. Acting Chief Justice.- At any time when:-",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p79.png",
+  "render_sha256": "30fa1091d57a7acdbb8ff98e63e05f9b1ee36e4cb62071e87ad11bcdf276e6c2",
+  "source_apparatus_blocks": [
+   2914311
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 79 prints its folio '68' alone at its foot (block 2914311; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 80,
+  "match_text": "his service or in respect of any action in relation",
+  "before_text": "his service or in respect of any action in relation",
+  "after_text": "his service or in respect of any action in relation",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p80.png",
+  "render_sha256": "064bd30d2a2df39b4238d0c49ca0ac62ff57ae0936701e510ce179d836924023",
+  "source_apparatus_blocks": [
+   2914320,
+   2914321
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 80 prints the amendment footnote '1. Omitted by the (First Amdt.) Act, 1975. 2. Ins. by the (First Amdt.' below its text at x0 144, y0 625 (block 2914320); and its folio '69' alone at its foot (block 2914321; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 81,
+  "match_text": "(5) In this Article, unless the context otherwise",
+  "before_text": "(5) In this Article, unless the context otherwise",
+  "after_text": "(5) In this Article, unless the context otherwise",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p81.png",
+  "render_sha256": "b09173bf1d789bc090c0549e91cd1ab6690f68d93b2a00c0255dd347279bc8e8",
+  "source_apparatus_blocks": [
+   2914329
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 81 prints its folio '70' alone at its foot (block 2914329; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 82,
+  "match_text": "High Court, with the approval of the President, may",
+  "before_text": "High Court, with the approval of the President, may",
+  "after_text": "High Court, with the approval of the President, may",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p82.png",
+  "render_sha256": "1ba95a4e61ecbc97b714ad5aeb2db1979310f1865db02e2a320dfd9a17280c54",
+  "source_apparatus_blocks": [
+   2914343
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 82 prints its folio '71' alone at its foot (block 2914343; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 83,
+  "match_text": "(4) No Court shall have any jurisdiction which is",
+  "before_text": "(4) No Court shall have any jurisdiction which is",
+  "after_text": "(4) No Court shall have any jurisdiction which is",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p83.png",
+  "render_sha256": "ddde3735b40b3e552fc0d470fe11067dc594e20a1923e9884ec2af4ffce4b4eb",
+  "source_apparatus_blocks": [
+   2914352
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 83 prints its folio '72' alone at its foot (block 2914352; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 84,
+  "match_text": "2[48. Public Service Commission.- (1) There shall",
+  "before_text": "2[48. Public Service Commission.- (1) There shall",
+  "after_text": "2[48. Public Service Commission.- (1) There shall",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p84.png",
+  "render_sha256": "fa59e7781c52fae8930db95b06c9cab65b9aeb629480affc2d9de44c42791c6b",
+  "source_apparatus_blocks": [
+   2914361
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 84 prints its folio '73' alone at its foot (block 2914361; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 85,
+  "match_text": "2[50. Election Commission.- (1) There shall be an",
+  "before_text": "2[50. Election Commission.- (1) There shall be an",
+  "after_text": "2[50. Election Commission.- (1) There shall be an",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p85.png",
+  "render_sha256": "e4f16db8666cd9634fd553b8223a2903466a1b0db6a712141f792db2d9ff780f",
+  "source_apparatus_blocks": [
+   2914370
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 85 prints its folio '74' alone at its foot (block 2914370; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 86,
+  "match_text": "the election is conducted honestly, justly, fairly",
+  "before_text": "the election is conducted honestly, justly, fairly",
+  "after_text": "the election is conducted honestly, justly, fairly",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p86.png",
+  "render_sha256": "42a625c90edfd2bca5d92c319d43752a49658476273fd3eea0a8a65f9430fd8a",
+  "source_apparatus_blocks": [
+   2914381
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 86 prints its folio '75' alone at its foot (block 2914381; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 87,
+  "match_text": "hold office for a term of five years from the day",
+  "before_text": "hold office for a term of five years from the day",
+  "after_text": "hold office for a term of five years from the day",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p87.png",
+  "render_sha256": "571fbb7a7b33a56fef09dc039e1068853ff9302425bba6088fb52b9c97901ca7",
+  "source_apparatus_blocks": [
+   2914394
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 87 prints its folio '76' alone at its foot (block 2914394; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 88,
+  "match_text": "authorities in the state to assist the Commission",
+  "before_text": "authorities in the state to assist the Commission",
+  "after_text": "authorities in the state to assist the Commission",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p88.png",
+  "render_sha256": "61ce4350b2b633a7e1f8e5e5ced429009d935f164018550f7cc453cc2efc837c",
+  "source_apparatus_blocks": [
+   2914406
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 88 prints its folio '77' alone at its foot (block 2914406; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 89,
+  "match_text": "(6) The reports of the Auditor-General relating",
+  "before_text": "(6) The reports of the Auditor-General relating",
+  "after_text": "(6) The reports of the Auditor-General relating",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p89.png",
+  "render_sha256": "afa42dac869ec5b3ae1f10b8a220a4f487944a9a32384954144eafb2377cc755",
+  "source_apparatus_blocks": [
+   2914415,
+   2914416
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 89 prints the amendment footnote '1. The existing provision re-numbered as sub-Article (1) by the Interi' below its text at x0 143, y0 616 (block 2914415); and its folio '78' alone at its foot (block 2914416; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 90,
+  "match_text": "Public Finance,  all savings or fixed deposits of",
+  "before_text": "Public Finance,  all savings or fixed deposits of",
+  "after_text": "Public Finance,  all savings or fixed deposits of",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p90.png",
+  "render_sha256": "52b31acf9e514682e22dd844a2b3777c329603953cc997dbee4abb73ee076d82",
+  "source_apparatus_blocks": [
+   2914422
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 90 prints its folio '79' alone at its foot (block 2914422; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 91,
+  "match_text": "(2) All existing employees in the service of Azad",
+  "before_text": "(2) All existing employees in the service of Azad",
+  "after_text": "(2) All existing employees in the service of Azad",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p91.png",
+  "render_sha256": "7fdebf1c61c106bd4ab864b96fdc7de8b0ca0320990d69413373df595878e778",
+  "source_apparatus_blocks": [
+   2914428
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 91 prints its folio '80' alone at its foot (block 2914428; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 92,
+  "match_text": "of the Council] shall be instituted while he is in",
+  "before_text": "of the Council] shall be instituted while he is in",
+  "after_text": "of the Council] shall be instituted while he is in",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p92.png",
+  "render_sha256": "b4db53a49e813d676bbe2868c3159b88a3c44864bee57115380d6fcf80349634",
+  "source_apparatus_blocks": [
+   2914437
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 92 prints its folio '81' alone at its foot (block 2914437; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 93,
+  "match_text": "shall be construed as restricting the right of any",
+  "before_text": "shall be construed as restricting the right of any",
+  "after_text": "shall be construed as restricting the right of any",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p93.png",
+  "render_sha256": "7705ae064d8bc1726313166dd086f36dd8f0cbea103ddd500896c596427d674f",
+  "source_apparatus_blocks": [
+   2914446
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 93 prints its folio '82' alone at its foot (block 2914446; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 94,
+  "match_text": "but without affecting the pristine environmental",
+  "before_text": "but without affecting the pristine environmental",
+  "after_text": "but without affecting the pristine environmental",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p94.png",
+  "render_sha256": "b824677844492e4b0f0c2b41a589dc40d7a953d346f72b54a289dcfc78d6c7b8",
+  "source_apparatus_blocks": [
+   2914456
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 94 prints its folio '83' alone at its foot (block 2914456; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 95,
+  "match_text": "that period, it shall cease to be in force at the",
+  "before_text": "that period, it shall cease to be in force at the",
+  "after_text": "that period, it shall cease to be in force at the",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p95.png",
+  "render_sha256": "daf68901440b2d83327c9cb193c04cb62ab32aaf22637ab1ae611b05ffecbade",
+  "source_apparatus_blocks": [
+   2914466
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 95 prints its folio '84' alone at its foot (block 2914466; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 96,
+  "match_text": "pending in any Court for the enforcement of the",
+  "before_text": "pending in any Court for the enforcement of the",
+  "after_text": "pending in any Court for the enforcement of the",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p96.png",
+  "render_sha256": "9e508f6d70ea7f2e6783962a1c2e2967bf42bf993ab768949548d1de0d270ced",
+  "source_apparatus_blocks": [
+   2914474,
+   2914475
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 96 prints the amendment footnote '5. This temporary insertion was made vide AJ&K Interim Constitution (5' below its text at x0 144, y0 597 (block 2914474); and its folio '85' alone at its foot (block 2914475; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 97,
+  "match_text": "56-B. Oath of office.- (1) An oath required to be",
+  "before_text": "56-B. Oath of office.- (1) An oath required to be",
+  "after_text": "56-B. Oath of office.- (1) An oath required to be",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p97.png",
+  "render_sha256": "13a9f6fee741429942db8ac1e5878bf52943058d50501c7f14d4fa6993924a35",
+  "source_apparatus_blocks": [
+   2914485
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 97 prints its folio '86' alone at its foot (block 2914485; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 98,
+  "match_text": "etc.-(1) The provisions of the Constitution shall",
+  "before_text": "etc.-(1) The provisions of the Constitution shall",
+  "after_text": "etc.-(1) The provisions of the Constitution shall",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p98.png",
+  "render_sha256": "b7b3200f00f99ba6d3999570765ed652a2c04b13d568a03bc03867dad2bb2090",
+  "source_apparatus_blocks": [
+   2914497
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 98 prints its folio '87' alone at its foot (block 2914497; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 98,
+  "match_text": "and any such investigation, legal proceedings or",
+  "before_text": "and any such investigation, legal proceedings or",
+  "after_text": "and any such investigation, legal proceedings or",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p98.png",
+  "render_sha256": "b7b3200f00f99ba6d3999570765ed652a2c04b13d568a03bc03867dad2bb2090",
+  "source_apparatus_blocks": [
+   2914499,
+   2914500
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 99, which prints no law text (its additional render), prints the amendment footnote '4. Omitted by the (First Amdt.) Act, 1975.' below its text at x0 144, y0 635 (block 2914499); and its folio '88' alone at its foot (block 2914500; the document's folios run at page - 11)",
+  "additional_render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p99.png",
+  "additional_render_sha256": "8421816157a3e13338ac1d2fe3955979d2c4bca152500d00f804f798d0a76a09"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 100,
+  "match_text": "I, --------------------------------, do solemnly swear that",
+  "before_text": "I, --------------------------------, do solemnly swear that",
+  "after_text": "I, --------------------------------, do solemnly swear that",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p100.png",
+  "render_sha256": "ab6cad84c8cfef7b028d7dccefbe68fcf89f547adbc07152d5b4c19ecd4f45f6",
+  "source_apparatus_blocks": [
+   2914513
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 100 prints its folio '89' alone at its foot (block 2914513; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 101,
+  "match_text": "I, -------------------------------, do solemnly swear that I",
+  "before_text": "I, -------------------------------, do solemnly swear that I",
+  "after_text": "I, -------------------------------, do solemnly swear that I",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p101.png",
+  "render_sha256": "cda9eaf1f900421a62d5c5d8d137e0dcf41411dd0b3ed75793d19d450624820c",
+  "source_apparatus_blocks": [
+   2914525
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 101 prints its folio '90' alone at its foot (block 2914525; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 102,
+  "match_text": "I, --------------------------------, do hereby solemnly",
+  "before_text": "I, --------------------------------, do hereby solemnly",
+  "after_text": "I, --------------------------------, do hereby solemnly",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p102.png",
+  "render_sha256": "f92f709cd15f82fdf83d46a548708e0f058018d02a222ebe2cff3b94b75eea8f",
+  "source_apparatus_blocks": [
+   2914537
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 102 prints its folio '91' alone at its foot (block 2914537; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 103,
+  "match_text": "I, --------------------------------, having been elected as",
+  "before_text": "I, --------------------------------, having been elected as",
+  "after_text": "I, --------------------------------, having been elected as",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p103.png",
+  "render_sha256": "7df69d3416818b4dbdc1ac8c2b19a389dee78a1220084f26220c5f7c717f797e",
+  "source_apparatus_blocks": [
+   2914551
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 103 prints its folio '92' alone at its foot (block 2914551; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 104,
+  "match_text": "I, --------------------------------, having been elected as",
+  "before_text": "I, --------------------------------, having been elected as",
+  "after_text": "I, --------------------------------, having been elected as",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p104.png",
+  "render_sha256": "ea7d2c7059ba76a748c38d0d3d2a7cb4a95e18a36159837c737f425b6a2314d3",
+  "source_apparatus_blocks": [
+   2914563
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 104 prints its folio '93' alone at its foot (block 2914563; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 105,
+  "match_text": "I will faithfully perform the duties of my office to the",
+  "before_text": "I will faithfully perform the duties of my office to the",
+  "after_text": "I will faithfully perform the duties of my office to the",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p105.png",
+  "render_sha256": "4e14c6acacfafac31dd08e2b36a3045a014f9b1db7294950e089a7a0c0b2bf60",
+  "source_apparatus_blocks": [
+   2914573
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 105 prints its folio '94' alone at its foot (block 2914573; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 106,
+  "match_text": "I will faithfully perform the duties of my office to the",
+  "before_text": "I will faithfully perform the duties of my office to the",
+  "after_text": "I will faithfully perform the duties of my office to the",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p106.png",
+  "render_sha256": "698eb6a8833c9cdaddfb9ec766e1414c0a1de7883a43c343389db2acdc275a2e",
+  "source_apparatus_blocks": [
+   2914583,
+   2914584
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 106 prints the amendment footnote '1. Omitted by the (Thirteenth Amdt.) Act, 2018.' below its text at x0 144, y0 635 (block 2914583); and its folio '95' alone at its foot (block 2914584; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 107,
+  "match_text": "I, --------------------------------, do hereby solemnly",
+  "before_text": "I, --------------------------------, do hereby solemnly",
+  "after_text": "I, --------------------------------, do hereby solemnly",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p107.png",
+  "render_sha256": "792b049727e31b3e72cb40ac3bf437fb14a1d6946ff2284d91cb7789a42fcbd8",
+  "source_apparatus_blocks": [
+   2914594
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 107 prints its folio '96' alone at its foot (block 2914594; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 108,
+  "match_text": "without fear or favor, affection or ill will, and that I",
+  "before_text": "without fear or favor, affection or ill will, and that I",
+  "after_text": "without fear or favor, affection or ill will, and that I",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p108.png",
+  "render_sha256": "6b3d64ac485a40916d3b1701257bb48e8e26a128ec7b56d687d6c64f42f6af36",
+  "source_apparatus_blocks": [
+   2914605
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 108 prints its folio '97' alone at its foot (block 2914605; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 109,
+  "match_text": "and Zaildar, whether called by this or any other",
+  "before_text": "and Zaildar, whether called by this or any other",
+  "after_text": "and Zaildar, whether called by this or any other",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p109.png",
+  "render_sha256": "46444a17485328c117a110f4891f0c29245a5fe14c3ba6199f0038838e51dd63",
+  "source_apparatus_blocks": [
+   2914615
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 109 prints its folio '98' alone at its foot (block 2914615; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 110,
+  "match_text": "Kashmir including foreign trade and foreign aid.",
+  "before_text": "Kashmir including foreign trade and foreign aid.",
+  "after_text": "Kashmir including foreign trade and foreign aid.",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p110.png",
+  "render_sha256": "451f2b997c3b462ddc234a767e30d4c84825eb1985d987dcb525601ff827cdfa",
+  "source_apparatus_blocks": [
+   2914635
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 110 prints its folio '99' alone at its foot (block 2914635; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 111,
+  "match_text": "State Bank of Pakistan; banking, that is to say,",
+  "before_text": "State Bank of Pakistan; banking, that is to say,",
+  "after_text": "State Bank of Pakistan; banking, that is to say,",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p111.png",
+  "render_sha256": "3b39f93d780a7778cad2e74840c19334eb5458d20b818626879a5b4f8631eb4c",
+  "source_apparatus_blocks": [
+   2914645
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 111 prints its folio '100' alone at its foot (block 2914645; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 112,
+  "match_text": "research, for professional or technical training,",
+  "before_text": "research, for professional or technical training,",
+  "after_text": "research, for professional or technical training,",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p112.png",
+  "render_sha256": "50dbe18a5bcbe543bc7f32fd4e4cca5a2e9541aaea34517fb6fa156ca7bebdd3",
+  "source_apparatus_blocks": [
+   2914661
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 112 prints its folio '101' alone at its foot (block 2914661; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 113,
+  "match_text": "State Property until transfer to the Government",
+  "before_text": "State Property until transfer to the Government",
+  "after_text": "State Property until transfer to the Government",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p113.png",
+  "render_sha256": "378125634710fba3d6b99972d8ec8c46f250dcf901303a7a04347e641ae31c63",
+  "source_apparatus_blocks": [
+   2914676
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 113 prints its folio '102' alone at its foot (block 2914676; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 114,
+  "match_text": "respect to any of the matters enumerated in this",
+  "before_text": "respect to any of the matters enumerated in this",
+  "after_text": "respect to any of the matters enumerated in this",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p114.png",
+  "render_sha256": "a2f669933454df492b753f3130c86afce020c41b2883fd2860850559d9b4a8da",
+  "source_apparatus_blocks": [
+   2914689
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 114 prints its folio '103' alone at its foot (block 2914689; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 115,
+  "match_text": "are admissible to the Chief Justice and the Judges of",
+  "before_text": "are admissible to the Chief Justice and the Judges of",
+  "after_text": "are admissible to the Chief Justice and the Judges of",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p115.png",
+  "render_sha256": "696e96dcdcc911bf6f0229e68a4128e427be9531c9081a301762ef1dc0f46fdd",
+  "source_apparatus_blocks": [
+   2914700
+  ],
+  "defect": "page apparatus (an amendment footnote or the page's folio) read as law",
+  "fixes": "rule reviewed_apparatus_block: the block is set aside; no law text changes",
+  "observed": "Page 115 prints its folio '104' alone at its foot (block 2914700; the document's folios run at page - 11)"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 110,
+  "match_text": "The current coin or the issue of bills, notes or",
+  "before_text": "The current coin or the issue of bills, notes or",
+  "after_text": "The current coin or the issue of bills, notes or",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p110.png",
+  "render_sha256": "451f2b997c3b462ddc234a767e30d4c84825eb1985d987dcb525601ff827cdfa",
+  "source_schedule_heading_blocks": [
+   2914617
+  ],
+  "defect": "a Schedule heading printed behind its amendment marker was not read as a Schedule",
+  "fixes": "rule reviewed_schedule_heading: the block opens its Schedule; no law text changes",
+  "observed": "Page 110 prints the centred display heading(s) ['1[THIRD SCHEDULE'] (block(s) [2914617]), each followed by '[See Article ...]', opening a new Schedule after the one before it"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 115,
+  "match_text": "are admissible to the Chief Justice and Judges of the",
+  "before_text": "are admissible to the Chief Justice and Judges of the",
+  "after_text": "are admissible to the Chief Justice and Judges of the",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p115.png",
+  "render_sha256": "696e96dcdcc911bf6f0229e68a4128e427be9531c9081a301762ef1dc0f46fdd",
+  "source_schedule_heading_blocks": [
+   2914691,
+   2914695
+  ],
+  "defect": "a Schedule heading printed behind its amendment marker was not read as a Schedule",
+  "fixes": "rule reviewed_schedule_heading: the block opens its Schedule; no law text changes",
+  "observed": "Page 115 prints the centred display heading(s) ['1[FOURTH SCHEDULE', '2[FIFTH SCHEDULE'] (block(s) [2914691, 2914695]), each followed by '[See Article ...]', opening a new Schedule after the one before it"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 57,
+  "match_text": "2[30-A Restriction on discussion in Assembly, etc.-",
+  "before_text": "2[30-A Restriction on discussion in Assembly, etc.-",
+  "after_text": "2[30-A Restriction on discussion in Assembly, etc.-",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p57.png",
+  "render_sha256": "015a6415b8930fa204b907b6c4bdc6c4dd8932a1842d34c70df1866d2a80da11",
+  "source_printed_rule_openers": [
+   {
+    "source_block_id": 2914063,
+    "label": "30-A",
+    "source_prefix": "2[30-A Restriction on discussion"
+   }
+  ],
+  "defect": "Article 30-A, printed with no stop after its number, was read into Article 30",
+  "fixes": "rule reviewed_printed_rule_opener: the block opens the unit; no law text changes",
+  "observed": "Page 57 prints '2[30-A Restriction on discussion in Assembly, etc.- No discussion shall take place in the Assembly' at the Articles' margin (x0 144), between Article 30's sub-Article (2) and '30-B. Finance Committee.-'"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 110,
+  "match_text": "Wireless, Broad- Casting and other like forms of",
+  "before_text": "Wireless, Broad- Casting and other like forms of",
+  "after_text": "Wireless, Broad- Casting and other like forms of",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p110.png",
+  "render_sha256": "451f2b997c3b462ddc234a767e30d4c84825eb1985d987dcb525601ff827cdfa",
+  "source_printed_rule_openers": [
+   {
+    "source_block_id": 2914619,
+    "label": "A",
+    "source_prefix": "‘PART-A’",
+    "kind": "part"
+   }
+  ],
+  "defect": "the Third Schedule's Part-A, printed in quotes, was not read as a part",
+  "fixes": "rule reviewed_printed_rule_opener: the block opens the unit; no law text changes",
+  "observed": "Page 110 prints '‘PART-A’' alone, centred (block 2914619), above the Third Schedule's items numbered from 1"
+ },
+ {
+  "document_id": 11875,
+  "page_no": 113,
+  "match_text": "Electricity except the power generation planned",
+  "before_text": "Electricity except the power generation planned",
+  "after_text": "Electricity except the power generation planned",
+  "render": ".artifacts/ajk-ic-2026-11-25/renders/doc11875-p113.png",
+  "render_sha256": "378125634710fba3d6b99972d8ec8c46f250dcf901303a7a04347e641ae31c63",
+  "source_printed_rule_openers": [
+   {
+    "source_block_id": 2914663,
+    "label": "B",
+    "source_prefix": "‘PART-B’",
+    "kind": "part"
+   }
+  ],
+  "defect": "the Third Schedule's Part-B, printed in quotes, was not read as a part",
+  "fixes": "rule reviewed_printed_rule_opener: the block opens the unit; no law text changes",
+  "observed": "Page 113 prints '‘PART-B’' alone, centred (block 2914663), above the Third Schedule's items numbered from 1"
+ }
+]

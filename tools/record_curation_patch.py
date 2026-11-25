@@ -60,6 +60,8 @@ CREATED_BY = "claude.ocr-digit-review/3"
 # a patch without it, and the replay would build a different tree from the
 # one the reading was checked against (doc 691's prototype keys, 6 Oct 2026).
 STRUCTURAL_KEYS = frozenset({
+    # rule `reviewed_paragraph_run` (D-140, the AJK Interim Constitution's Art. 4(4) rights)
+    "source_paragraph_runs",
     "source_unit_moves", "source_reviewed_grid_rows", "source_reviewed_table_blocks",
     # rule `reviewed_hyphen_rule_numbers` (agent JE, doc 4498)
     "source_hyphen_rule_numbers",
@@ -220,6 +222,8 @@ READING_KEYS = STRUCTURAL_KEYS | {
 # checks only that every block id the entry names is a block of the document (keys ported 13 Oct 2026; each key here
 # must ALSO be in STRUCTURAL_KEYS). A structural key with no recording branch is refused (see `dropped` below).
 GENERIC_STRUCTURAL_KEYS = frozenset({
+    # rule `reviewed_paragraph_run` (D-140): the parser refuses a run that does not fit the paragraph grammar
+    "source_paragraph_runs",
     "source_unit_moves", "source_reviewed_grid_rows", "source_reviewed_table_blocks",
     # rule `reviewed_hyphen_rule_numbers` (agent JE, doc 4498)
     "source_hyphen_rule_numbers",
@@ -1365,6 +1369,12 @@ def main() -> int:
                 continue
             generic = {k: r.get(k) for k in sorted(GENERIC_STRUCTURAL_KEYS) if r.get(k) is not None}
             if generic:
+                if "source_paragraph_runs" in generic:   # D-140
+                    from nizam.corpus.segment import paragraph_run_shape_ok
+                    runs = generic["source_paragraph_runs"]
+                    if not (isinstance(runs, list) and runs and all(paragraph_run_shape_ok(v) for v in runs)):
+                        refused.append((where, "a paragraph run needs its owner, its openers and every block"))
+                        continue
                 if "source_reviewed_table_blocks" in generic:
                     from nizam.corpus.segment import reviewed_table_block_shape_ok
                     table = generic["source_reviewed_table_blocks"]

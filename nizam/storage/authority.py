@@ -46,6 +46,9 @@ class Rule:
     valid_to: dt.date | None            # exclusive; None = unbounded
     basis: str
     source: dict = field(default_factory=dict, compare=False)
+    # D-141: the territories the rule's printed words reach ("in Pakistan": Art. 1(2)(a)-(b) and the federal courts;
+    # "in Azad Jammu and Kashmir"; "in the Gilgit-Baltistan"). A court outside them is not answered by the rule.
+    territories: tuple[str, ...] = ()
 
     def in_force(self, day: dt.date) -> bool:
         return (self.valid_from is None or self.valid_from <= day) and (self.valid_to is None or day < self.valid_to)
@@ -90,20 +93,35 @@ def authority(deciding: str, receiving: Receiver, as_of: dt.date, *, courts: dic
         if receiving == deciding:
             return NotRecorded(f"whether one bench of {deciding} binds another is case law, and no such rule is "
                                "recorded yet")
-    elif receiving.territory not in superintendence:
-        return NotRecorded(f"no High Court is recorded for the territory {receiving.territory}")
 
+    # D-141: a rule speaks only for deciding courts inside its printed reach -- Art. 201's "a High Court" is a High
+    # Court of Pakistan, never the High Court of Azad Jammu and Kashmir, whose own rule is its Art. 44-B
     applicable = tuple(r for r in rules
                        if (r.deciding_court == deciding or (r.deciding_court is None
                                                             and r.deciding_class == decider.court_class))
+                       and decider.territory in r.territories
                        and r.in_force(as_of) and r.subject in ("all", subject))
     if not applicable:
         return NotRecorded(f"no binding rule is recorded for {deciding} decisions on {as_of.isoformat()}"
                            + ("" if subject == "all" else f" in {subject}"))
-    for r in applicable:
+    where = receiving.territory if isinstance(receiving, Subordinate) else courts[receiving].territory
+    within = tuple(r for r in applicable if where in r.territories)
+    if not within:
+        # "all other courts in Pakistan" does not say whether an AJK or GB court is one (Art. 1(2)(c) is not read
+        # into a record), and an AJK rule does not speak of Punjab: not recorded, never guessed either way
+        reach = sorted({t for r in applicable for t in r.territories})
+        return NotRecorded(f"the binding rules recorded for {deciding} reach {', '.join(reach)}; whether they reach "
+                           f"a court in {where} is not recorded")
+    for r in within:
         if _reaches(r, decider, receiving, courts, superintendence):
             return Binding(r)
-    return NotBinding(applicable)
+    # "binding on all courts subordinate to it" needs to know which High Court a subordinate court answers to
+    # (Art. 203); a territory with none recorded (AJK, GB: their texts print no superintendence clause) is not
+    # answered by such a rule. A rule reaching "all other courts in" the territory needs no superintendence.
+    if (isinstance(receiving, Subordinate) and receiving.territory not in superintendence
+            and any(r.receiving == "courts_subordinate_to_deciding" for r in within)):
+        return NotRecorded(f"no High Court is recorded for the territory {receiving.territory}")
+    return NotBinding(within)
 
 
 def _reaches(rule: Rule, decider: Court, receiving: Receiver, courts: dict[str, Court],
@@ -130,9 +148,10 @@ def load(cur) -> tuple[dict[str, Court], list[Rule], dict[str, str]]:
                           jsonb_build_object('source_observation_id', source_observation_id,
                                              'source_expression_ordinal', source_expression_ordinal,
                                              'source_unit', source_unit, 'source_quote', source_quote,
-                                             'source_paragraph_id', source_paragraph_id)
+                                             'source_paragraph_id', source_paragraph_id),
+                          territories::text[]
                      FROM authority_rule WHERE withdrawn_at IS NULL ORDER BY id""")
-    rules = [Rule(i, dc, dk, rc, ex, sj, tuple(st or ()), lo, hi, b, src)
-             for i, dc, dk, rc, ex, sj, st, lo, hi, b, src in cur.fetchall()]
+    rules = [Rule(i, dc, dk, rc, ex, sj, tuple(st or ()), lo, hi, b, src, tuple(tr or ()))
+             for i, dc, dk, rc, ex, sj, st, lo, hi, b, src, tr in cur.fetchall()]
     cur.execute("SELECT territory::text, high_court FROM court_superintendence WHERE withdrawn_at IS NULL")
     return courts, rules, dict(cur.fetchall())

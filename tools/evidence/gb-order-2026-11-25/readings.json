@@ -1,0 +1,1306 @@
+[
+ {
+  "document_id": 11635,
+  "page_no": 37,
+  "match_text": "received by or on behalf of the Government, their payment into, and withdrawal from the",
+  "before_text": "received by or on behalf of the Government, their payment into, and withdrawal from the",
+  "after_text": "received by or on behalf of the Government, their payment into, and withdrawal from the",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p37.png",
+  "render_sha256": "fd20ea6e05744b3016f56818721dd92eb595cb83e81e442a54c6bf1554c74c57",
+  "source_text_units": [
+   {
+    "source_block_id": 2904930,
+    "kind": "article",
+    "label": "78"
+   }
+  ],
+  "defect": "a wrapped cross-reference ('Article 78 of the Constitution of Islamic Republic of Pakistan:') was read as an Article 78 of the Order",
+  "fixes": "rule reviewed_text_unit: the line is s.70(5)'s text, and its proviso s.70(5)'s",
+  "observed": "Page 37 prints s.70(5) 'All revenues and other moneys raised under the authority of the Prime Minister of Pakistan shall form part of Federal Consolidated Fund established under' (x0 72), then at the same margin 'Article 78 of the Constitution of Islamic Republic of Pakistan:' (block 2904930), then 'Provided that the Federal Government shall provide funds to the Council.' (x0 108), then '71. Budget.-'"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 15,
+  "match_text": "of the Chief Minister and Ministers, which shall act through the Chief Minister, who shall",
+  "before_text": "of the Chief Minister and Ministers, which shall act through the Chief Minister, who shall",
+  "after_text": "of the Chief Minister and Ministers, which shall act through the Chief Minister, who shall",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p15.png",
+  "render_sha256": "7de1cfce921869199501ce870be18c9a88f04358661e7c06023c7bfa29cbfde5",
+  "source_printed_rule_openers": [
+   {
+    "source_block_id": 2904336,
+    "label": "IV",
+    "kind": "part",
+    "source_prefix": "PART. IV-THE GOVERNMENT"
+   }
+  ],
+  "defect": "Part IV's heading, printed with a stop after PART, was not read",
+  "fixes": "rule reviewed_printed_rule_opener: the block opens the Part; no text changes",
+  "observed": "Page 15 prints 'PART. IV-THE GOVERNMENT' alone, centred (x0 222, block 2904336), as every other Part heading of the Order ('PART- X', 'PART-XII') is printed"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 39,
+  "match_text": "Assembly is in session, if satisfied that circumstances exist which render it necessary to",
+  "before_text": "Assembly is in session, if satisfied that circumstances exist which render it necessary to",
+  "after_text": "Assembly is in session, if satisfied that circumstances exist which render it necessary to",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p39.png",
+  "render_sha256": "567be9b92e2b13c5a4fa54f5588368bb283e7b82c5747cb35d558a1e748f27e9",
+  "source_printed_rule_openers": [
+   {
+    "source_block_id": 2904997,
+    "label": "XI",
+    "kind": "part",
+    "source_prefix": "PART. XI-THE JUDICATURE"
+   }
+  ],
+  "defect": "Part XI's heading, printed with a stop after PART, was not read",
+  "fixes": "rule reviewed_printed_rule_opener: the block opens the Part; no text changes",
+  "observed": "Page 39 prints 'PART. XI-THE JUDICATURE' alone, centred (x0 244, block 2904997), as every other Part heading of the Order ('PART- X', 'PART-XII') is printed"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 77,
+  "match_text": "An office, which is not a whole time office remunerated either by salary or by fee.",
+  "before_text": "An office, which is not a whole time office remunerated either by salary or by fee.",
+  "after_text": "An office, which is not a whole time office remunerated either by salary or by fee.",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p77.png",
+  "render_sha256": "8a76b2d0999c4a468a39de8134a03831ae055c2eaf05bd5d56aceb93ebd979c3",
+  "source_schedule_heading_blocks": [
+   2905844
+  ],
+  "defect": "the Second Schedule's heading was read into the First Schedule",
+  "fixes": "rule reviewed_schedule_heading: the block opens its Schedule; no text changes",
+  "observed": "Page 77 prints 'SECOND SCHEDULE' (x0 246, block 2905844) and '[see section 50(2)(d)]' centred at its head, after the First Schedule's last oath on page 76"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 1,
+  "match_text": "Baltistan at par with other provinces and to initiate necessary legislative, executive and",
+  "before_text": "Baltistan at par with other provinces and to initiate necessary legislative, executive and",
+  "after_text": "Baltistan at par with other provinces and to initiate necessary legislative, executive and",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p1.png",
+  "render_sha256": "9393d8ffdd82d7a7023117159ee2a6956948284408390f9e771af5f02770d9a7",
+  "source_apparatus_blocks": [
+   2903962
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 1 prints its own number '1' alone at its foot (block 2903962, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 2,
+  "match_text": "connection with the affairs of Gilgit-Baltistan, but does not include service",
+  "before_text": "connection with the affairs of Gilgit-Baltistan, but does not include service",
+  "after_text": "connection with the affairs of Gilgit-Baltistan, but does not include service",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p2.png",
+  "render_sha256": "5a3aff37fa9724a0bc61ff064b4fccdf65e2b9be90d1456d393cd258f26ac25b",
+  "source_apparatus_blocks": [
+   2903989
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 2 prints its own number '2' alone at its foot (block 2903989, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 3,
+  "match_text": "of all forms of exploitation and the gradual fulfillment of the fundamental principle, from",
+  "before_text": "of all forms of exploitation and the gradual fulfillment of the fundamental principle, from",
+  "after_text": "of all forms of exploitation and the gradual fulfillment of the fundamental principle, from",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p3.png",
+  "render_sha256": "f6e0b2a65de9bc1b2a4443ddead24e963867c654a29d47c35289803003b11c77",
+  "source_apparatus_blocks": [
+   2904012
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 3 prints its own number '3' alone at its foot (block 2904012, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 4,
+  "match_text": "and such other local or other authorities in Gilgit-Baltistan as are by law empowered to",
+  "before_text": "and such other local or other authorities in Gilgit-Baltistan as are by law empowered to",
+  "after_text": "and such other local or other authorities in Gilgit-Baltistan as are by law empowered to",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p4.png",
+  "render_sha256": "006d8d777fc0d8beec071226e0306167f679a79d1f52af0f3c0e64c8a5dfd295",
+  "source_apparatus_blocks": [
+   2904039
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 4 prints its own number '4' alone at its foot (block 2904039, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 5,
+  "match_text": "of Pakistan or any part thereof, or external affairs of Pakistan, or public order, or",
+  "before_text": "of Pakistan or any part thereof, or external affairs of Pakistan, or public order, or",
+  "after_text": "of Pakistan or any part thereof, or external affairs of Pakistan, or public order, or",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p5.png",
+  "render_sha256": "62572c105c97e418201c0fe95967619b07573ab95ec53cc8207b3600f206aa6c",
+  "source_apparatus_blocks": [
+   2904069
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 5 prints its own number '5' alone at its foot (block 2904069, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 6,
+  "match_text": "documents relevant to the case unless a certificate, signed by a Secretary to the",
+  "before_text": "documents relevant to the case unless a certificate, signed by a Secretary to the",
+  "after_text": "documents relevant to the case unless a certificate, signed by a Secretary to the",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p6.png",
+  "render_sha256": "d6f39a27058053f62c526eeb56ea24261f731e1c6dfc6ff875d02b0e899ecb88",
+  "source_apparatus_blocks": [
+   2904099
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 6 prints its own number '6' alone at its foot (block 2904099, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 7,
+  "match_text": "held in slavery, and no law shall permit or in any way facilitate the introduction",
+  "before_text": "held in slavery, and no law shall permit or in any way facilitate the introduction",
+  "after_text": "held in slavery, and no law shall permit or in any way facilitate the introduction",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p7.png",
+  "render_sha256": "09a43c7708a7f3c134c4a2ea9bee20bccd8774456f8e585f65db866ebedf3b23",
+  "source_apparatus_blocks": [
+   2904124
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 7 prints its own number '7' alone at its foot (block 2904124, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 8,
+  "match_text": "shall propagate against, or take part in activities prejudicial or detrimental to the",
+  "before_text": "shall propagate against, or take part in activities prejudicial or detrimental to the",
+  "after_text": "shall propagate against, or take part in activities prejudicial or detrimental to the",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p8.png",
+  "render_sha256": "1852297c46818c3efaa14c508d72755df32645d27bdc4b22464923d6c57de311",
+  "source_apparatus_blocks": [
+   2904153
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 8 prints its own number '8' alone at its foot (block 2904153, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 9,
+  "match_text": "possessing such qualifications, if any, as may be prescribed by law in relation to",
+  "before_text": "possessing such qualifications, if any, as may be prescribed by law in relation to",
+  "after_text": "possessing such qualifications, if any, as may be prescribed by law in relation to",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p9.png",
+  "render_sha256": "2b0a76cd8701704327b99b82f90e7f2198d44672dce591cbfd34158b3306fc28",
+  "source_apparatus_blocks": [
+   2904181
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 9 prints its own number '9' alone at its foot (block 2904181, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 10,
+  "match_text": "religious worship, if such instruction, ceremony or worship relates to a religion",
+  "before_text": "religious worship, if such instruction, ceremony or worship relates to a religion",
+  "after_text": "religious worship, if such instruction, ceremony or worship relates to a religion",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p10.png",
+  "render_sha256": "1a199505c823bc259c11db60c2bfdec1d42cdeee8189563b6ea6a8d01f9c44b1",
+  "source_apparatus_blocks": [
+   2904210
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 10 prints its own number '10' alone at its foot (block 2904210, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 11,
+  "match_text": "any law relating to the acquisition, administration or disposal of any",
+  "before_text": "any law relating to the acquisition, administration or disposal of any",
+  "after_text": "any law relating to the acquisition, administration or disposal of any",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p11.png",
+  "render_sha256": "ea16295e9e1124e082d41432a83991243af911bf37a3ff646e645ef47baf03a2",
+  "source_apparatus_blocks": [
+   2904238
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 11 prints its own number '11' alone at its foot (block 2904238, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 12,
+  "match_text": "immovable property, or any commercial or industrial undertaking, or any interest",
+  "before_text": "immovable property, or any commercial or industrial undertaking, or any interest",
+  "after_text": "immovable property, or any commercial or industrial undertaking, or any interest",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p12.png",
+  "render_sha256": "5761a4aaf6afda7adf021537ca63bf4a9a834b8f1f5cbbb2a2862782372a9540",
+  "source_apparatus_blocks": [
+   2904266
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 12 prints its own number '12' alone at its foot (block 2904266, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 13,
+  "match_text": "Chapter 2 of Part-II of the Constitution of Islamic Republic of  Pakistan in so far as they",
+  "before_text": "Chapter 2 of Part-II of the Constitution of Islamic Republic of  Pakistan in so far as they",
+  "after_text": "Chapter 2 of Part-II of the Constitution of Islamic Republic of  Pakistan in so far as they",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p13.png",
+  "render_sha256": "b8bf7f3663e357351dd0df543b7d1f3b17dcb621d93c03d9c80a6cb62c0191d4",
+  "source_apparatus_blocks": [
+   2904293
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 13 prints its own number '13' alone at its foot (block 2904293, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 14,
+  "match_text": "Judge of the Gilgit-Baltistan Supreme Appellate Court an oath in the form set out in the",
+  "before_text": "Judge of the Gilgit-Baltistan Supreme Appellate Court an oath in the form set out in the",
+  "after_text": "Judge of the Gilgit-Baltistan Supreme Appellate Court an oath in the form set out in the",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p14.png",
+  "render_sha256": "5ab855b8ee343125101a24c5ca41faa7fa72ebf92c2a23486b004015e9d6f90d",
+  "source_apparatus_blocks": [
+   2904318
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 14 prints its own number '14' alone at its foot (block 2904318, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 15,
+  "match_text": "(a)       appoint a date, not later than ninety days from the date of dissolution,  for",
+  "before_text": "(a)       appoint a date, not later than ninety days from the date of dissolution,  for",
+  "after_text": "(a)       appoint a date, not later than ninety days from the date of dissolution,  for",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p15.png",
+  "render_sha256": "7de1cfce921869199501ce870be18c9a88f04358661e7c06023c7bfa29cbfde5",
+  "source_apparatus_blocks": [
+   2904343
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 15 prints its own number '15' alone at its foot (block 2904343, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 16,
+  "match_text": "securing the highest number of votes is equal, further polls shall be held between them",
+  "before_text": "securing the highest number of votes is equal, further polls shall be held between them",
+  "after_text": "securing the highest number of votes is equal, further polls shall be held between them",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p16.png",
+  "render_sha256": "ca18a38644d34a4fa5338870049b8b6e78e637c612bc25c5a9b7a7c4d1721863",
+  "source_apparatus_blocks": [
+   2904368
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 16 prints its own number '16' alone at its foot (block 2904368, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 17,
+  "match_text": "Minister or any other Minister for continuing in office during any period during which the",
+  "before_text": "Minister or any other Minister for continuing in office during any period during which the",
+  "after_text": "Minister or any other Minister for continuing in office during any period during which the",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p17.png",
+  "render_sha256": "63ccfe3dd8b1078e7b7f75621d762917d33a4666b09b40337b97100f17ba5bc4",
+  "source_apparatus_blocks": [
+   2904394
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 17 prints its own number '17' alone at its foot (block 2904394, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 18,
+  "match_text": "Federation, or to its officers functions in relation to any matter to which the executive",
+  "before_text": "Federation, or to its officers functions in relation to any matter to which the executive",
+  "after_text": "Federation, or to its officers functions in relation to any matter to which the executive",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p18.png",
+  "render_sha256": "73acbd1480362115d692ceef9e637b3bc11fd8320b325d2253fc56b8b6abb209",
+  "source_apparatus_blocks": [
+   2904420
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 18 prints its own number '18' alone at its foot (block 2904420, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 19,
+  "match_text": "the Chief Minister, resign his office or may be removed from office by the Chief Minister.",
+  "before_text": "the Chief Minister, resign his office or may be removed from office by the Chief Minister.",
+  "after_text": "the Chief Minister, resign his office or may be removed from office by the Chief Minister.",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p19.png",
+  "render_sha256": "f2abcad0e3effdea971650ce61d4cc63f09c604e625d242eb10e7a1e84acb9ac",
+  "source_apparatus_blocks": [
+   2904447
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 19 prints its own number '19' alone at its foot (block 2904447, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 20,
+  "match_text": "perform his functions and exercise his powers in such manner as may be prescribed by",
+  "before_text": "perform his functions and exercise his powers in such manner as may be prescribed by",
+  "after_text": "perform his functions and exercise his powers in such manner as may be prescribed by",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p20.png",
+  "render_sha256": "6bae5a640ae2892b86d264fe07dc62ef194a243cff763a01673602128742ea65",
+  "source_apparatus_blocks": [
+   2904474
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 20 prints its own number '20' alone at its foot (block 2904474, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 21,
+  "match_text": "of filling casual vacancies and other related matters shall be such as may be prescribed.",
+  "before_text": "of filling casual vacancies and other related matters shall be such as may be prescribed.",
+  "after_text": "of filling casual vacancies and other related matters shall be such as may be prescribed.",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p21.png",
+  "render_sha256": "178ff71c8ef9c5eb02a6d8fd97292af63f31cc03db2cb3f5cb20300af3b606f8",
+  "source_apparatus_blocks": [
+   2904502
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 21 prints its own number '21' alone at its foot (block 2904502, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 22,
+  "match_text": "he holds any office of profit in the Service other than an office which",
+  "before_text": "he holds any office of profit in the Service other than an office which",
+  "after_text": "he holds any office of profit in the Service other than an office which",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p22.png",
+  "render_sha256": "342c40b99d02f164202c67ad6b40adb6d258bf25389446913c7a0575d5b5823a",
+  "source_apparatus_blocks": [
+   2904530
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 22 prints its own number '22' alone at its foot (block 2904530, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 23,
+  "match_text": "for the supply of goods to, or for the execution of any contract or for",
+  "before_text": "for the supply of goods to, or for the execution of any contract or for",
+  "after_text": "for the supply of goods to, or for the execution of any contract or for",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p23.png",
+  "render_sha256": "f37cb1747195904d2da4ce24934750439c4d9ed45849826dba02bee726aa9771",
+  "source_apparatus_blocks": [
+   2904560
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 23 prints its own number '23' alone at its foot (block 2904560, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 24,
+  "match_text": "he fails to make the oath referred to in section 49 within a period of",
+  "before_text": "he fails to make the oath referred to in section 49 within a period of",
+  "after_text": "he fails to make the oath referred to in section 49 within a period of",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p24.png",
+  "render_sha256": "c5d01b9b3a07b6d3b76c0ece5a957b7b33f2c14f0ccccf31a446a43fc2bc3c84",
+  "source_apparatus_blocks": [
+   2904589
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 24 prints its own number '24' alone at its foot (block 2904589, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 25,
+  "match_text": "within a period of thirty days after the declaration of result for the last such seat, resign",
+  "before_text": "within a period of thirty days after the declaration of result for the last such seat, resign",
+  "after_text": "within a period of thirty days after the declaration of result for the last such seat, resign",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p25.png",
+  "render_sha256": "c6a0c2e11a357d9c1ff814780ef327ac3a09e09dcb27fb084bd21cc373c1c35b",
+  "source_apparatus_blocks": [
+   2904618
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 25 prints its own number '25' alone at its foot (block 2904618, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 26,
+  "match_text": "place as he thinks fit, within fourteen days of the receipt of the requisition, and when the",
+  "before_text": "place as he thinks fit, within fourteen days of the receipt of the requisition, and when the",
+  "after_text": "place as he thinks fit, within fourteen days of the receipt of the requisition, and when the",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p26.png",
+  "render_sha256": "10b04228602c7e5ddf9fb090d52a6dd7bdea1695108337d2aa69579a4aedf2a6",
+  "source_apparatus_blocks": [
+   2904645
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 26 prints its own number '26' alone at its foot (block 2904645, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 27,
+  "match_text": "be held within a period of ninety days after the dissolution, and the result of the election",
+  "before_text": "be held within a period of ninety days after the dissolution, and the result of the election",
+  "after_text": "be held within a period of ninety days after the dissolution, and the result of the election",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p27.png",
+  "render_sha256": "941c8bde9e40369d5d02c123329c0958566af24250aa40eb2c5e2a2a254dd2be",
+  "source_apparatus_blocks": [
+   2904674
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 27 prints its own number '27' alone at its foot (block 2904674, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 28,
+  "match_text": "in the Assembly with respect to  matters relating to foreign affairs, defense, internal",
+  "before_text": "in the Assembly with respect to  matters relating to foreign affairs, defense, internal",
+  "after_text": "in the Assembly with respect to  matters relating to foreign affairs, defense, internal",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p28.png",
+  "render_sha256": "037c208342d9790892fc95e517ea771fed19254064aa36ed6cdec8e3d4d9a396",
+  "source_apparatus_blocks": [
+   2904701
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 28 prints its own number '28' alone at its foot (block 2904701, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 29,
+  "match_text": "authorized appropriation shall be controlled by the Assembly acting on the advice of the",
+  "before_text": "authorized appropriation shall be controlled by the Assembly acting on the advice of the",
+  "after_text": "authorized appropriation shall be controlled by the Assembly acting on the advice of the",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p29.png",
+  "render_sha256": "3fbb7e0c8c42340650601dac349e11af1532682f46924e9313b76a806e7f7956",
+  "source_apparatus_blocks": [
+   2904727
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 29 prints its own number '29' alone at its foot (block 2904727, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 30,
+  "match_text": "with the consent of the  Federation entrust either conditionally or unconditionally, to the",
+  "before_text": "with the consent of the  Federation entrust either conditionally or unconditionally, to the",
+  "after_text": "with the consent of the  Federation entrust either conditionally or unconditionally, to the",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p30.png",
+  "render_sha256": "e9d69b4a31f0f52b3fd8b4fb6c5cb5d9bc65f3a45e20dc24940a8ad70f9b9f6f",
+  "source_apparatus_blocks": [
+   2904754
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 30 prints its own number '30' alone at its foot (block 2904754, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 31,
+  "match_text": "(e) of clause (1), be the same as those for being elected as, and for being a member of",
+  "before_text": "(e) of clause (1), be the same as those for being elected as, and for being a member of",
+  "after_text": "(e) of clause (1), be the same as those for being elected as, and for being a member of",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p31.png",
+  "render_sha256": "e68281eb43ca5c5f05cf354af979411c4bc196854ebb5f1f026d339c67a6c763",
+  "source_apparatus_blocks": [
+   2904780
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 31 prints its own number '31' alone at its foot (block 2904780, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 32,
+  "match_text": "referred to in clause (a) of sub-section (2) of Section 60, assigned to the Prime Minister",
+  "before_text": "referred to in clause (a) of sub-section (2) of Section 60, assigned to the Prime Minister",
+  "after_text": "referred to in clause (a) of sub-section (2) of Section 60, assigned to the Prime Minister",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p32.png",
+  "render_sha256": "c0c5025bda4181203976359175eac0f88b4fbbfa5aef4fe5692a55ab26a996ab",
+  "source_apparatus_blocks": [
+   2904807
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 32 prints its own number '32' alone at its foot (block 2904807, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 33,
+  "match_text": "the Government shall be so exercised as not to impede or prejudice the exercise of the",
+  "before_text": "the Government shall be so exercised as not to impede or prejudice the exercise of the",
+  "after_text": "the Government shall be so exercised as not to impede or prejudice the exercise of the",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p33.png",
+  "render_sha256": "e416f56f6ce8f30382d18b1f38fa67cb0510a402d9d5eddc3346b52a6b0c1a38",
+  "source_apparatus_blocks": [
+   2904834
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 33 prints its own number '33' alone at its foot (block 2904834, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 34,
+  "match_text": "of the territories of Gilgit-Baltistan except by or under the authority of law and all taxes",
+  "before_text": "of the territories of Gilgit-Baltistan except by or under the authority of law and all taxes",
+  "after_text": "of the territories of Gilgit-Baltistan except by or under the authority of law and all taxes",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p34.png",
+  "render_sha256": "afde480eeff2672b3a5dad1a5baa9c23ddb2df9c90ea1578c4b6585e04be2912",
+  "source_apparatus_blocks": [
+   2904860
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 34 prints its own number '34' alone at its foot (block 2904860, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 35,
+  "match_text": "not, in relation to exercise by him of any of those powers, be subject to the jurisdiction of",
+  "before_text": "not, in relation to exercise by him of any of those powers, be subject to the jurisdiction of",
+  "after_text": "not, in relation to exercise by him of any of those powers, be subject to the jurisdiction of",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p35.png",
+  "render_sha256": "04c9b13d20a54f9fce6265bbc8513707fea46702e94637ef37dab32522d75e62",
+  "source_apparatus_blocks": [
+   2904888
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 35 prints its own number '35' alone at its foot (block 2904888, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 36,
+  "match_text": "reconsidered by the Assembly and, if it is again passed, with or without amendment, by",
+  "before_text": "reconsidered by the Assembly and, if it is again passed, with or without amendment, by",
+  "after_text": "reconsidered by the Assembly and, if it is again passed, with or without amendment, by",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p36.png",
+  "render_sha256": "ac95e62fbefaed8f87d7608096e82900499c2460657020e562cde9c683ad89b0",
+  "source_apparatus_blocks": [
+   2904917
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 36 prints its own number '36' alone at its foot (block 2904917, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 37,
+  "match_text": "matters aforesaid, shall be regulated by the Act of the Assembly or, until provision in",
+  "before_text": "matters aforesaid, shall be regulated by the Act of the Assembly or, until provision in",
+  "after_text": "matters aforesaid, shall be regulated by the Act of the Assembly or, until provision in",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p37.png",
+  "render_sha256": "fd20ea6e05744b3016f56818721dd92eb595cb83e81e442a54c6bf1554c74c57",
+  "source_apparatus_blocks": [
+   2904944
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 37 prints its own number '37' alone at its foot (block 2904944, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 38,
+  "match_text": "pending completion of the procedure prescribed in sub-section (2) for the voting of such",
+  "before_text": "pending completion of the procedure prescribed in sub-section (2) for the voting of such",
+  "after_text": "pending completion of the procedure prescribed in sub-section (2) for the voting of such",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p38.png",
+  "render_sha256": "7213e8a86085a4ea15b15e52a91506ccb4259c8592dcc27ebec9126761ccc6d9",
+  "source_apparatus_blocks": [
+   2904973
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 38 prints its own number '38' alone at its foot (block 2904973, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 39,
+  "match_text": "and effect as an Act of the Assembly and shall be subject to like restrictions as the",
+  "before_text": "and effect as an Act of the Assembly and shall be subject to like restrictions as the",
+  "after_text": "and effect as an Act of the Assembly and shall be subject to like restrictions as the",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p39.png",
+  "render_sha256": "567be9b92e2b13c5a4fa54f5588368bb283e7b82c5747cb35d558a1e748f27e9",
+  "source_apparatus_blocks": [
+   2904998
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 39 prints its own number '39' alone at its foot (block 2904998, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 40,
+  "match_text": "have such jurisdiction as is or may be conferred on it by this Order or by under any law.",
+  "before_text": "have such jurisdiction as is or may be conferred on it by this Order or by under any law.",
+  "after_text": "have such jurisdiction as is or may be conferred on it by this Order or by under any law.",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p40.png",
+  "render_sha256": "3331b9f9e185e89676b59971ae4096bb008a3e092b2610ba2b5b0041268807d8",
+  "source_apparatus_blocks": [
+   2905025
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 40 prints its own number '40' alone at its foot (block 2905025, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 41,
+  "match_text": "Court shall be appointed for a term of three years and shall hold office until he attains",
+  "before_text": "Court shall be appointed for a term of three years and shall hold office until he attains",
+  "after_text": "Court shall be appointed for a term of three years and shall hold office until he attains",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p41.png",
+  "render_sha256": "bcdee4d516ffea087d2ed6923cdf1e304a258ab476ce8c14f88d48a6f78214d8",
+  "source_apparatus_blocks": [
+   2905054
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 41 prints its own number '41' alone at its foot (block 2905054, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 42,
+  "match_text": "from any judgment, decree, final order or sentence of the Chief Court of Gilgit-Baltistan,-",
+  "before_text": "from any judgment, decree, final order or sentence of the Chief Court of Gilgit-Baltistan,-",
+  "after_text": "from any judgment, decree, final order or sentence of the Chief Court of Gilgit-Baltistan,-",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p42.png",
+  "render_sha256": "db49ccc6f75921c5e7ac66843e0bad2e9b7fd41534eaf193c1f106a8524dfbaa",
+  "source_apparatus_blocks": [
+   2905082
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 42 prints its own number '42' alone at its foot (block 2905082, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 43,
+  "match_text": "Part II of this Order is involved, have the power to make declaratory order of the nature",
+  "before_text": "Part II of this Order is involved, have the power to make declaratory order of the nature",
+  "after_text": "Part II of this Order is involved, have the power to make declaratory order of the nature",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p43.png",
+  "render_sha256": "2a1c85b30879cb36a124dfb3ce73662f68ddba9136c9bc9c1f0f90538d091405",
+  "source_apparatus_blocks": [
+   2905111
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 43 prints its own number '43' alone at its foot (block 2905111, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 44,
+  "match_text": "decision of the Supreme Appellate Court shall, to the extent that it decides a question of",
+  "before_text": "decision of the Supreme Appellate Court shall, to the extent that it decides a question of",
+  "after_text": "decision of the Supreme Appellate Court shall, to the extent that it decides a question of",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p44.png",
+  "render_sha256": "1e06eb5e919ce8d1e2842e38549496f2b1846b7fa9bbc757d44a4aaab6f72013",
+  "source_apparatus_blocks": [
+   2905138
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 44 prints its own number '44' alone at its foot (block 2905138, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 45,
+  "match_text": "a difference of opinion amongst its members, the opinion of the majority shall prevail,",
+  "before_text": "a difference of opinion amongst its members, the opinion of the majority shall prevail,",
+  "after_text": "a difference of opinion amongst its members, the opinion of the majority shall prevail,",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p45.png",
+  "render_sha256": "586b29f46cfe271355ae7e10a0adea5d07ae0de03719fb49c6093763455cafac",
+  "source_apparatus_blocks": [
+   2905163
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 45 prints its own number '45' alone at its foot (block 2905163, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 46,
+  "match_text": "Judicial Council is absent or is unable to act due to illness or any other cause, than,-",
+  "before_text": "Judicial Council is absent or is unable to act due to illness or any other cause, than,-",
+  "after_text": "Judicial Council is absent or is unable to act due to illness or any other cause, than,-",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p46.png",
+  "render_sha256": "e825bc543379fc21fcbd3fdf2dfc408406b7587494b0882b46ed4d9faa7dd2a6",
+  "source_apparatus_blocks": [
+   2905190
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 46 prints its own number '46' alone at its foot (block 2905190, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 47,
+  "match_text": "Council, and the  removal of a Judge under section 81, shall not be called in question in",
+  "before_text": "Council, and the  removal of a Judge under section 81, shall not be called in question in",
+  "after_text": "Council, and the  removal of a Judge under section 81, shall not be called in question in",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p47.png",
+  "render_sha256": "1634f677227cfb375c8e5bf2372061033356de57450c3c45c363b571bd62bd8b",
+  "source_apparatus_blocks": [
+   2905215
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 47 prints its own number '47' alone at its foot (block 2905215, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 48,
+  "match_text": "attains the age of sixty two years, unless he sooner resigns or is removed from office in",
+  "before_text": "attains the age of sixty two years, unless he sooner resigns or is removed from office in",
+  "after_text": "attains the age of sixty two years, unless he sooner resigns or is removed from office in",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p48.png",
+  "render_sha256": "5d6af9d4cc449643c5f3865c2df9bf15f0a43bfa9abac295704338fa6438c9bf",
+  "source_apparatus_blocks": [
+   2905241
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 48 prints its own number '48' alone at its foot (block 2905241, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 49,
+  "match_text": "any office of profit in the service of Gilgit-Baltistan not being a Judicial or quasi-Judicial",
+  "before_text": "any office of profit in the service of Gilgit-Baltistan not being a Judicial or quasi-Judicial",
+  "after_text": "any office of profit in the service of Gilgit-Baltistan not being a Judicial or quasi-Judicial",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p49.png",
+  "render_sha256": "c010d9223ff90bf8528d1cff8c0be2138a2b80b3ae30a0c99632b79476ecfceb",
+  "source_apparatus_blocks": [
+   2905267
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 49 prints its own number '49' alone at its foot (block 2905267, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 50,
+  "match_text": "relation to a person in the Armed Forces of Pakistan in respect of his terms and",
+  "before_text": "relation to a person in the Armed Forces of Pakistan in respect of his terms and",
+  "after_text": "relation to a person in the Armed Forces of Pakistan in respect of his terms and",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p50.png",
+  "render_sha256": "64ec497b17ae2b80122896280bbd6b6d45fda9974bc8cdf550d10ae35a28268c",
+  "source_apparatus_blocks": [
+   2905294
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 50 prints its own number '50' alone at its foot (block 2905294, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 51,
+  "match_text": "conditions of service, in respect of any matter arising out of his service or in respect of",
+  "before_text": "conditions of service, in respect of any matter arising out of his service or in respect of",
+  "after_text": "conditions of service, in respect of any matter arising out of his service or in respect of",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p51.png",
+  "render_sha256": "66b6cfca44ca2283a8b82faa0a7a76a29c8be950f60dbee55bb4db970a41511d",
+  "source_apparatus_blocks": [
+   2905324
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 51 prints its own number '51' alone at its foot (block 2905324, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 52,
+  "match_text": "etc.-(1) The Chief Court shall superintend and control all other courts that are",
+  "before_text": "etc.-(1) The Chief Court shall superintend and control all other courts that are",
+  "after_text": "etc.-(1) The Chief Court shall superintend and control all other courts that are",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p52.png",
+  "render_sha256": "4aff30443c7a5156691d4f793226d463d064c2ffbf6f4e376465de329bdc67d8",
+  "source_apparatus_blocks": [
+   2905350
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 52 prints its own number '52' alone at its foot (block 2905350, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 53,
+  "match_text": "more Administrative Courts or Tribunals to exercise exclusive jurisdiction in respect of, -",
+  "before_text": "more Administrative Courts or Tribunals to exercise exclusive jurisdiction in respect of, -",
+  "after_text": "more Administrative Courts or Tribunals to exercise exclusive jurisdiction in respect of, -",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p53.png",
+  "render_sha256": "d5b7dd6ae10c9055b4e4a7e57c9ec804e5071050e2c7255b4246f811b14472b0",
+  "source_apparatus_blocks": [
+   2905380
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 53 prints its own number '53' alone at its foot (block 2905380, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 54,
+  "match_text": "if the Supreme Appellate Court of Gilgit-Baltistan being satisfied, that the case involves",
+  "before_text": "if the Supreme Appellate Court of Gilgit-Baltistan being satisfied, that the case involves",
+  "after_text": "if the Supreme Appellate Court of Gilgit-Baltistan being satisfied, that the case involves",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p54.png",
+  "render_sha256": "c67500aaf4a7688843f4bd1b0827d264d7f8dc854f7879ab588599497ea3b17b",
+  "source_apparatus_blocks": [
+   2905409
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 54 prints its own number '54' alone at its foot (block 2905409, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 55,
+  "match_text": "before the Chief Judge of Gilgit-Baltistan oath in the form set out in the First Schedule.",
+  "before_text": "before the Chief Judge of Gilgit-Baltistan oath in the form set out in the First Schedule.",
+  "after_text": "before the Chief Judge of Gilgit-Baltistan oath in the form set out in the First Schedule.",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p55.png",
+  "render_sha256": "749b4f22fe4d650262625afc506f6efdbbf9eed5b958763ca3e43b206bbbf5e5",
+  "source_apparatus_blocks": [
+   2905436
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 55 prints its own number '55' alone at its foot (block 2905436, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 56,
+  "match_text": "force in Gilgit-Baltistan shall continue to be in force until altered, repealed or amended",
+  "before_text": "force in Gilgit-Baltistan shall continue to be in force until altered, repealed or amended",
+  "after_text": "force in Gilgit-Baltistan shall continue to be in force until altered, repealed or amended",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p56.png",
+  "render_sha256": "b6670658692736bc94b608634ba1ffdf9aafa4784c47638410890da46745cc78",
+  "source_apparatus_blocks": [
+   2905464
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 56 prints its own number '56' alone at its foot (block 2905464, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 57,
+  "match_text": "Prime Minister shall be instituted while he is in office in respect of anything done or not",
+  "before_text": "Prime Minister shall be instituted while he is in office in respect of anything done or not",
+  "after_text": "Prime Minister shall be instituted while he is in office in respect of anything done or not",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p57.png",
+  "render_sha256": "b970445e127b6c2d35cdbe4b1971cfb71ed35388d76caa8bb2187299ec2e6b52",
+  "source_apparatus_blocks": [
+   2905492
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 57 prints its own number '57' alone at its foot (block 2905492, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 58,
+  "match_text": "report from Governor or otherwise, is satisfied that  grave emergency exists in which the",
+  "before_text": "report from Governor or otherwise, is satisfied that  grave emergency exists in which the",
+  "after_text": "report from Governor or otherwise, is satisfied that  grave emergency exists in which the",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p58.png",
+  "render_sha256": "16d511e2022f626d77fe6623e2c99719b281d4404f351af3c6740479f680790a",
+  "source_apparatus_blocks": [
+   2905521
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 58 prints its own number '58' alone at its foot (block 2905521, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 59,
+  "match_text": "not held before the expiration of that period, it shall cease to be in force at the expiration",
+  "before_text": "not held before the expiration of that period, it shall cease to be in force at the expiration",
+  "after_text": "not held before the expiration of that period, it shall cease to be in force at the expiration",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p59.png",
+  "render_sha256": "5b6215f74f3d3fd37cf93c1601ab8efdf832bdd95c078e214db3c4b38a70234c",
+  "source_apparatus_blocks": [
+   2905549
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 59 prints its own number '59' alone at its foot (block 2905549, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 60,
+  "match_text": "satisfied that a situation has arisen whereby the economic life, financial stability or credit",
+  "before_text": "satisfied that a situation has arisen whereby the economic life, financial stability or credit",
+  "after_text": "satisfied that a situation has arisen whereby the economic life, financial stability or credit",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p60.png",
+  "render_sha256": "d42f1b2ed8a73dbaafa451540525ceeb2fbc0500214db215ccaadfae212ac97d",
+  "source_apparatus_blocks": [
+   2905577
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 60 prints its own number '60' alone at its foot (block 2905577, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 61,
+  "match_text": "office unless, at least sixty days before the proceedings are instituted, notice in writing",
+  "before_text": "office unless, at least sixty days before the proceedings are instituted, notice in writing",
+  "after_text": "office unless, at least sixty days before the proceedings are instituted, notice in writing",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p61.png",
+  "render_sha256": "371dee6b38fa561c68bbbe6cd9d942e45d1df0dbdbcb1ab58281c62d48448e63",
+  "source_apparatus_blocks": [
+   2905605
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 61 prints its own number '61' alone at its foot (block 2905605, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 62,
+  "match_text": "period and it is not done within that period, the doing  of  the  act  or  thing  shall  not  be",
+  "before_text": "period and it is not done within that period, the doing  of  the  act  or  thing  shall  not  be",
+  "after_text": "period and it is not done within that period, the doing  of  the  act  or  thing  shall  not  be",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p62.png",
+  "render_sha256": "a50e33baf1724f881d21d93b70a233d39f87674e0fc7de4192f592af58af6216",
+  "source_apparatus_blocks": [
+   2905631
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 62 prints its own number '62' alone at its foot (block 2905631, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 63,
+  "match_text": "Gilgit-Baltistan Chief Court, shall call into question or permit to be called into question,",
+  "before_text": "Gilgit-Baltistan Chief Court, shall call into question or permit to be called into question,",
+  "after_text": "Gilgit-Baltistan Chief Court, shall call into question or permit to be called into question,",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p63.png",
+  "render_sha256": "635c2bcbf4e05507a1d5bdeac38c7a472ebc223928ee1b7a3a4ab42e0f3be6d7",
+  "source_apparatus_blocks": [
+   2905658
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 63 prints its own number '63' alone at its foot (block 2905658, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 64,
+  "match_text": "repealed, by, under, or by virtue of this order, the repeal shall not, except as otherwise",
+  "before_text": "repealed, by, under, or by virtue of this order, the repeal shall not, except as otherwise",
+  "after_text": "repealed, by, under, or by virtue of this order, the repeal shall not, except as otherwise",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p64.png",
+  "render_sha256": "37e4039100370a8a67279d7e3bf88ce459aef5c3b56fc573f9e6ec0b17a6abf0",
+  "source_apparatus_blocks": [
+   2905687
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 64 prints its own number '64' alone at its foot (block 2905687, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 65,
+  "match_text": "(b) all rights, liabilities and obligations of the Council or of the Government.",
+  "before_text": "(b) all rights, liabilities and obligations of the Council or of the Government.",
+  "after_text": "(b) all rights, liabilities and obligations of the Council or of the Government.",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p65.png",
+  "render_sha256": "806c58cce785d9d214858c3c1327204c16ee2238c78bc5908c5b2aa494dce507",
+  "source_apparatus_blocks": [
+   2905705
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 65 prints its own number '65' alone at its foot (block 2905705, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 66,
+  "match_text": "That I will not directly or indirectly communicate or reveal to any person any official",
+  "before_text": "That I will not directly or indirectly communicate or reveal to any person any official",
+  "after_text": "That I will not directly or indirectly communicate or reveal to any person any official",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p66.png",
+  "render_sha256": "d3726af6890260393f4f58f1c82886c51fd7a15bd46f0502475f0681f11b3c1b",
+  "source_apparatus_blocks": [
+   2905716
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 66 prints its own number '66' alone at its foot (block 2905716, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 67,
+  "match_text": "That I will not directly or indirectly communicate or reveal to any person any official",
+  "before_text": "That I will not directly or indirectly communicate or reveal to any person any official",
+  "after_text": "That I will not directly or indirectly communicate or reveal to any person any official",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p67.png",
+  "render_sha256": "70e7d1617a66ba7f810edc4fecd0dda4178bdedd8a42dc5e2b73d5fb00c7e518",
+  "source_apparatus_blocks": [
+   2905728
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 67 prints its own number '67' alone at its foot (block 2905728, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 68,
+  "match_text": "That I will not directly or indirectly communicate or reveal to any person any official",
+  "before_text": "That I will not directly or indirectly communicate or reveal to any person any official",
+  "after_text": "That I will not directly or indirectly communicate or reveal to any person any official",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p68.png",
+  "render_sha256": "96dfcc712b4af7f4094708f266f4a4775488d93c85d1dbf0f297466196dddcab",
+  "source_apparatus_blocks": [
+   2905739
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 68 prints its own number '68' alone at its foot (block 2905739, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 69,
+  "match_text": "That I will not directly or indirectly communicate or reveal to any person any official",
+  "before_text": "That I will not directly or indirectly communicate or reveal to any person any official",
+  "after_text": "That I will not directly or indirectly communicate or reveal to any person any official",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p69.png",
+  "render_sha256": "40e188a348fbb59e3b1e559c5c67d0880ede698f2460373531af2d866ad25383",
+  "source_apparatus_blocks": [
+   2905754
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 69 prints its own number '69' alone at its foot (block 2905754, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 70,
+  "match_text": "That I will perform my functions as Member of the Legislative Assembly honestly",
+  "before_text": "That I will perform my functions as Member of the Legislative Assembly honestly",
+  "after_text": "That I will perform my functions as Member of the Legislative Assembly honestly",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p70.png",
+  "render_sha256": "1d4b3f0ce987d509b9ca260bc869b2aba0d59e1bb64f2a59df2352aff88e3aa4",
+  "source_apparatus_blocks": [
+   2905768
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 70 prints its own number '70' alone at its foot (block 2905768, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 71,
+  "match_text": "That I will not directly or indirectly communicate or reveal to any person any",
+  "before_text": "That I will not directly or indirectly communicate or reveal to any person any",
+  "after_text": "That I will not directly or indirectly communicate or reveal to any person any",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p71.png",
+  "render_sha256": "6df0b34add4099befda242741e61be7b3786ac6ee88bb9244d2b5cbb47108df3",
+  "source_apparatus_blocks": [
+   2905782
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 71 prints its own number '71' alone at its foot (block 2905782, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 72,
+  "match_text": "faith and allegiance to Pakistan and that I will faithfully perform the duties of my office to",
+  "before_text": "faith and allegiance to Pakistan and that I will faithfully perform the duties of my office to",
+  "after_text": "faith and allegiance to Pakistan and that I will faithfully perform the duties of my office to",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p72.png",
+  "render_sha256": "c6d0ec971e8b6fb73f5d4a4a99e210dd7ed6576cf4903dfb48e93c25e55d940d",
+  "source_apparatus_blocks": [
+   2905794
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 72 prints its own number '72' alone at its foot (block 2905794, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 73,
+  "match_text": "Allah and that I will faithfully perform the duties of my office to the best of my ability,",
+  "before_text": "Allah and that I will faithfully perform the duties of my office to the best of my ability,",
+  "after_text": "Allah and that I will faithfully perform the duties of my office to the best of my ability,",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p73.png",
+  "render_sha256": "229eba70aa2ec84872d4d5fae29f256c2bc9d693a98847f12bff2c3fdc4a571e",
+  "source_apparatus_blocks": [
+   2905807
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 73 prints its own number '73' alone at its foot (block 2905807, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 74,
+  "match_text": "That I will not directly or indirectly communicate or reveal to any person any",
+  "before_text": "That I will not directly or indirectly communicate or reveal to any person any",
+  "after_text": "That I will not directly or indirectly communicate or reveal to any person any",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p74.png",
+  "render_sha256": "00b9e7f197cd6175d4b1756feb5102f8261afe011eebc921a87a865749b53bba",
+  "source_apparatus_blocks": [
+   2905819
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 74 prints its own number '74' alone at its foot (block 2905819, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 75,
+  "match_text": "my functions honestly, faithfully, in accordance with the Government of Gilgit-Baltistan",
+  "before_text": "my functions honestly, faithfully, in accordance with the Government of Gilgit-Baltistan",
+  "after_text": "my functions honestly, faithfully, in accordance with the Government of Gilgit-Baltistan",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p75.png",
+  "render_sha256": "6d1100cbba67cbbba36c146660ce791ad25f7ac01a9457ae69b6254611d6a253",
+  "source_apparatus_blocks": [
+   2905831
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 75 prints its own number '75' alone at its foot (block 2905831, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 76,
+  "match_text": "Gilgit-Baltistan Order, 2018, and the law and to the best of my knowledge, ability and",
+  "before_text": "Gilgit-Baltistan Order, 2018, and the law and to the best of my knowledge, ability and",
+  "after_text": "Gilgit-Baltistan Order, 2018, and the law and to the best of my knowledge, ability and",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p76.png",
+  "render_sha256": "79f78e96a1328b299bfd0ee33fc0099bea2ed02118385305f761fc1482fa3b1d",
+  "source_apparatus_blocks": [
+   2905843
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 76 prints its own number '76' alone at its foot (block 2905843, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 77,
+  "match_text": "Any other office which is declared by an Act of the Assembly not to disqualify its",
+  "before_text": "Any other office which is declared by an Act of the Assembly not to disqualify its",
+  "after_text": "Any other office which is declared by an Act of the Assembly not to disqualify its",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p77.png",
+  "render_sha256": "8a76b2d0999c4a468a39de8134a03831ae055c2eaf05bd5d56aceb93ebd979c3",
+  "source_apparatus_blocks": [
+   2905851
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 77 prints its own number '77' alone at its foot (block 2905851, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 78,
+  "match_text": "14. Education as respects students of Gilgit-Baltistan in foreign countries and foreign",
+  "before_text": "14. Education as respects students of Gilgit-Baltistan in foreign countries and foreign",
+  "after_text": "14. Education as respects students of Gilgit-Baltistan in foreign countries and foreign",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p78.png",
+  "render_sha256": "9b6f5fb871042465a72a7990d0cdf62dd278c68b18667366c9caef790c98d373",
+  "source_apparatus_blocks": [
+   2905882
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 78 prints its own number '78' alone at its foot (block 2905882, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 79,
+  "match_text": "19. Light Houses, including lightships, beacons and other provisions for safety of",
+  "before_text": "19. Light Houses, including lightships, beacons and other provisions for safety of",
+  "after_text": "19. Light Houses, including lightships, beacons and other provisions for safety of",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p79.png",
+  "render_sha256": "206c2af6e3bd0da56e7040e7b20cd4534f12bc33e07524eb032887bd43439c52",
+  "source_apparatus_blocks": [
+   2905915
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 79 prints its own number '79' alone at its foot (block 2905915, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 80,
+  "match_text": "or Air Force works), but as regards property situate in the Gilgit-Baltistan, subject",
+  "before_text": "or Air Force works), but as regards property situate in the Gilgit-Baltistan, subject",
+  "after_text": "or Air Force works), but as regards property situate in the Gilgit-Baltistan, subject",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p80.png",
+  "render_sha256": "084ce62ce2ccad843960dcf464c1103af9ba10a8e1d92118c907723106d78382",
+  "source_apparatus_blocks": [
+   2905949
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 80 prints its own number '80' alone at its foot (block 2905949, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 81,
+  "match_text": "48. Major ports, that is to say the declaration and delimitation of such ports, and the",
+  "before_text": "48. Major ports, that is to say the declaration and delimitation of such ports, and the",
+  "after_text": "48. Major ports, that is to say the declaration and delimitation of such ports, and the",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p81.png",
+  "render_sha256": "24912d218749e443695c2148b6a93712d05c42f12973edef8263ca631fc5c18d",
+  "source_apparatus_blocks": [
+   2905983
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 81 prints its own number '81' alone at its foot (block 2905983, y0 752 of 792, the page's lowest block)"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 82,
+  "match_text": "65. Taxes on the capital value of the assets, not including taxes on capital gains on",
+  "before_text": "65. Taxes on the capital value of the assets, not including taxes on capital gains on",
+  "after_text": "65. Taxes on the capital value of the assets, not including taxes on capital gains on",
+  "render": ".artifacts/gb-order-2026-11-25/renders/doc11635-p82.png",
+  "render_sha256": "d3a3052a51c97ffcc58fcbc2de759cb865ff5acf5989ce93a41e78900e9f2fb7",
+  "source_apparatus_blocks": [
+   2906006
+  ],
+  "defect": "the page's printed number (folio) was read into a provision's text",
+  "fixes": "rule reviewed_apparatus_block: the folio block is set aside; no law text changes",
+  "observed": "Page 82 prints its own number '82' alone at its foot (block 2906006, y0 752 of 792, the page's lowest block)"
+ }
+]

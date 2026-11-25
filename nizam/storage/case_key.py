@@ -33,8 +33,11 @@ _ITEM = r"(\d{1,6})(?:\s*[-–—]\s*([A-Za-z]{1,3})(?![A-Za-z])|\(\s*([A-Za-z])
 # after the type's form: a form's unread tail ('Crl.P' + '.L.A.'), then 'No.' as printed ('No,', 'NO-', 'No»', 'N.')
 # a register letter printed BEFORE the number is part of it: Sindh's 'C.P. No. D-2606 of 2018' (division bench) and
 # 'Cr. Bail Application No. S-1043' (single bench) are separate registers, as is 'Suit No. B-12' (banking) (D-138)
+# ... and glued to its digits, upper case only ('CP D101of 2012', D-142): a lower-case letter before digits is an OCR
+# misreading of a digit far more often than a register
 _LEAD = re.compile(r"[\s.:#(,]*(?:[a-z]{1,2}(?:s?\.\s*|\s+)){0,3}(?:nos?|numbers?|n)?[\s.:#,»\-]*"
-                   r"(?:(?<![A-Za-z])([A-Z])\s*[-–]\s*(?=\d))?" + _ITEM, re.I)
+                   r"(?:(?<![A-Za-z])((?-i:[A-Z]))(?:\s*[-–]\s*|(?=\d{1,6}(?:of\b|\s|/|$)))(?=\d))?" + _ITEM,
+                   re.I)
 # '/2015', 'of 2015', '-2015', '611-L 2018'; and '/15' (two digits only after a slash, as the SC registry writes)
 _YEAR = re.compile(r"\s*(?:(?:of|/|-)\s*|\s)((?:19|20)\d{2})(?!\d)|\s*/\s*(\d{2})(?![\d/])", re.I)
 _NEXT = re.compile(r"\s*(,|&|\band\b|\bto\b|-)\s*(?:nos?\.?\s*)?" + _ITEM, re.I)

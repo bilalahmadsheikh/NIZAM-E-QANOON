@@ -19,7 +19,7 @@ import re
 import sys
 import time
 
-from nizam.corpus.segment import _owner_cited_label_shape_ok, assign_paths, segment, reviewed_unit_move_shape_ok, reviewed_grid_row_shape_ok, continuation_parent_shape_ok
+from nizam.corpus.segment import _owner_cited_label_shape_ok, assign_paths, segment, reviewed_unit_move_shape_ok, reviewed_grid_row_shape_ok, continuation_parent_shape_ok, paragraph_run_shape_ok
 from nizam.shared.corpus_types import SegmentedInstrument
 from nizam.storage import legal_write
 from nizam.storage.db import connect
@@ -1570,6 +1570,9 @@ def reviewed_structural_overrides(resolutions: list[dict] | None,
                 if valid:
                     patch_reparents.extend(value)
                     continue
+            elif key == "source_paragraph_runs":   # rule `reviewed_paragraph_run` (D-140)
+                valid = (isinstance(value, list) and bool(value)
+                         and all(paragraph_run_shape_ok(item) for item in value))
             elif key == "source_continuation_parent_blocks":
                 valid = (isinstance(value, list) and bool(value)
                          and all(continuation_parent_shape_ok(item) for item in value))

@@ -36,7 +36,11 @@ from dataclasses import dataclass, field
 
 from nizam.storage.case_key import read_case_line
 
-PARSER = "nizam.judgment/10"    # /2: the lower court's date printed after its name; a skipped number only when unseen
+PARSER = "nizam.judgment/12"    # /2: the lower court's date printed after its name; a skipped number only when unseen
+#                                 /12: no case number without a "No.", a year or the case grammar's reading; a register
+#                                      letter glued to its digits ("CP D101of 2012") read (D-142)
+#                                 /11: the AJK and GB courts' seats sign a judgment ('JUDGE / Mirpur, / 22.01.2018');
+#                                      the GB Supreme Appellate Court's 'Date of detail judgment' (D-142)
 #                                 /10: a reading with no body paragraph is held, not released (D-138)
 #                                 /9: the Federal Constitutional Court's 'JUDGMENT OF THE COURT' heading and its
 #                                     'JUSTICE <NAME>:' author line (D-139)
@@ -267,23 +271,36 @@ _REPRINT_MASTHEAD = re.compile(r"^.{0,20}?(?:\d{4}\s*" + _SERIES + r"|" + _SERIE
 _REPORT_SITE = re.compile(r"\b(?:pakistanlawsite\.com|plsbeta\.com|pljlawsite\.com)\b", re.I)
 _JURIS = re.compile(r"\(\s*([A-Za-z ]{3,40}?Jurisdiction)\s*\)", re.I)
 PLACES = ("Islamabad", "Lahore", "Karachi", "Peshawar", "Quetta", "Rawalpindi", "Multan", "Bahawalpur", "Sukkur",
-          "Hyderabad", "Abbottabad", "Mingora")
+          "Hyderabad", "Abbottabad", "Mingora",
+          # /11 (D-142): the AJK and GB courts' seats and registries, which sign 'JUDGE / Mirpur, / 22.01.2018'
+          "Muzaffarabad", "Mirpur", "Kotli", "Rawalakot", "Gilgit", "Skardu")
 _PLACE = r"(" + "|".join(PLACES) + r")"
 # 'Announced in open Court on 18.09.2015'; Peshawar: 'Announced. 14.11.2017', 'ANNOUNCED. Dated: 22/07/2015',
 # 'Announced. Dt: 18.5.2016' (D-130)
-_ANNOUNCED = re.compile(r"Announced\s*[.:,]?\s*(?:in\s+(?:the\s+)?(?:open\s+)?Court\s*)?(?:at\s+" + _PLACE + r"\s*)?[,.]?"
-                        r"[\s_]*(?:on[\s_]*)?(?:dated|dt)?\s*[.:]*\s*(?:the\s+)?" + DATE, re.I)
+# GB Supreme Appellate Court (/11, D-142): 'Announced:- 03-11-2016.', 'Announced on: - 12.04.2019.'
+_ANNOUNCED = re.compile(r"Announced\s*[.:,]?\s*-?\s*(?:in\s+(?:the\s+)?(?:open\s+)?Court\s*)?(?:at\s+" + _PLACE
+                        + r"\s*)?[,.]?[\s_]*(?:on[\s_]*)?"
+                        # /12 (D-142): Lahore, 'Announced in open Court today i.e. 02.02.2011.'
+                        r"(?:today\s*(?:i\.?\s*e\.?)?\s*)?"
+                        r"(?:dated|dt)?\s*[.:]*\s*-?\s*(?:the\s+)?" + DATE, re.I)
 _SIGNED_AT = re.compile(r"\b" + _PLACE + r"\b\s*[,.:/\-]*\s*(?:the\s*)?[,.]?\s*" + DATE, re.I)
 _PLACE_ONLY = re.compile(r"\b" + _PLACE + r"\b", re.I)
 # read in the header only. Balochistan prints 'Announced on 31.01.2020' and 'Announcement of judgment: 16th August,
 # 2013' there; Sindh 'Date of Order : 11.06.2026' and 'Date of hearing and Order: 09.03.2026' (D-138). A bare 'dated'
 # is not one: a header prints 'FIR No.884/2024 dated 23.10.2024'
 _DATE_OF_DECISION = re.compile(r"(?:Date\s+of\s+(?:decision|judgment|judgement|announcement|order|"
-                               r"hearing\s*(?:and|&)\s*order|judg(?:e)?ment\s*/\s*reasons)\s*[:.\-]*|\bdecided\s+on|"
+                               r"hearing\s*(?:and|&)\s*order|judg(?:e)?ment\s*/\s*reasons|"
+                               # /11 (D-142): GB Supreme Appellate Court, 'DATE OF DETAIL JUDGMENT: - 03.11.2016.',
+                               # 'Date of delivery of detail judgment', 'Date of detail order'
+                               r"(?:delivery\s+of\s+)?detail(?:ed)?\s+(?:judg(?:e)?ment|order))\s*[:.\-\s]*|"
+                               r"\bdecided\s+on|"
                                r"\bAnnounced\s+on\s*[:.\-]*|"
                                r"\bAnnouncement\s+of\s+(?:the\s+)?(?:judgment|judgement|order)\s*[:.\-]*)\s*" + DATE,
                                re.I)
-_HEARING = re.compile(r"Date\s+of\s+hearing[\s:.\-_]*" + DATE, re.I)
+_HEARING = re.compile(r"Dates?\s+of\s+hearing[\s:.\-_]*" + DATE, re.I)     # /12 (D-142): Lahore 'Dates of hearing'
+# /11 (D-142): a line that is wholly an order's own date, 'Order Dated 07-10-2010', 'ORDER DATED: - 21.03.2019.' (GB
+# Supreme Appellate Court). Read only as a whole line or paragraph, never inside one: 'impugned order dated ...'
+_ORDER_DATED = re.compile(r"\s*ORDER\s+DATED\s*[:.\-\s]*" + DATE + r"\s*[.,]?\s*", re.I)
 _SIGNED_ON = re.compile(r"\bSigned\s+on[\s:._]*" + DATE, re.I)
 # 'This judgment has been dictated, pronounced on 13.03.2023 and signed ...': the decision announced
 _PRONOUNCED = re.compile(r"\bpronounced\s+(?:in\s+(?:the\s+)?(?:open\s+)?court\s+)?on[\s:._]*" + DATE, re.I)
@@ -413,6 +430,10 @@ def _case(lines: list[str], case_types: dict[str, tuple[str, list[str]]]):
                 number = line.lead
                 if line.year is not None:
                     year = line.year
+            elif year is None and not re.search(r"\bnos? ?\d", rest):
+                # /12 (D-142): a number with no 'No.' before it, no year after it and no reading by the case grammar
+                # is not a case number -- 'CRIMINAL APPEAL UNDER SECTION 417 CR.P.C', 'Criminal Appeal N~2019'
+                continue
             return code, printed, number, year, i + k - 1
     return None
 
@@ -619,7 +640,8 @@ def parse_judgment(doc, court_aliases: dict[str, str], case_types: dict[str, tup
             decided, basis, printed, place = (None, None, None, "several order dates on the sheet: "
                                               + ", ".join(map(str, sorted(days))))
     if decided is None and not (order_sheet and place and place.startswith("several")):
-        decided, basis, printed, place = _decision_date(closings, all_body[-3:], tail_text, header, today)
+        decided, basis, printed, place = _decision_date(closings, all_body[-3:], tail_text, header, today,
+                                                        [ln.text for ln in header_lines])
     undated_reason = not_before = not_before_basis = None
     if decided is None:
         undated_reason = place
@@ -680,8 +702,20 @@ def _signs_off(body: list[Line], i: int) -> bool:
     return bool(_CLOSING_CUE.match(nxt) or _SIGN.match(nxt) or _HEADING.match(nxt) or _author(nxt))
 
 
-def _decision_date(closings, tail_body, tail_text, header, today):
+def _decision_date(closings, tail_body, tail_text, header, today, header_lines=()):
     """(date, basis, printed words, seat) by the fixed order of evidence, or (None, None, None, reason)."""
+    d, basis, printed, place = _decision_date_printed(closings, tail_body, tail_text, header, today)
+    if d is not None or (place or "").startswith("conflicting"):
+        return d, basis, printed, place          # weaker evidence never settles a conflict
+    # last: a line that is wholly the order's own date (/11, D-142); one distinct date only
+    lines = [t for t in list(header_lines) + closings + tail_body if t and _ORDER_DATED.fullmatch(t)]
+    days = {read_date(t, today) for t in lines} - {None}
+    if len(days) == 1:
+        return days.pop(), "date_of_order", lines[-1].strip(), None
+    return d, basis, printed, place
+
+
+def _decision_date_printed(closings, tail_body, tail_text, header, today):
     for basis, rx, texts in (("announced", _ANNOUNCED, closings + tail_body),
                              ("announced", _PRONOUNCED, closings + tail_body),
                              ("signed_at", _SIGNED_ON, closings + [tail_text]),       # 'Signed on 25.02.2025'

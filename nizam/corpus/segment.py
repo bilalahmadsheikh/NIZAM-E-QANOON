@@ -7799,6 +7799,134 @@ def _apply_source_reparents(root: Node, specifications: list[dict],
     return enacted
 
 
+# Rule `reviewed_paragraph_run` (D-140, the AJK Interim Constitution 1974, Art. 4(4)): a provision that prints a
+# numbered run of its own paragraphs -- "(4) The Rights / 1. Security of person.- ... 24. Preservation of language,
+# script and culture.-" -- with the same "N. Heading.-" grammar as the Articles around it, indented one step (x0 216
+# against the Articles' 144). Without a contents to compare headings against, the walk reads paragraph 5 as the
+# section after Article 4, paragraphs 6-24 as Articles 6-24, and the real Articles 5-24 as clauses: 33 repeated labels
+# and every right misfiled. A reviewed reading names the owner and every block of the run, in reading order; the walk
+# never sees those blocks, so the real Articles follow Article 4 in sequence, and the run is rebuilt here under its
+# owner: one clause per opener, its "(1)" sub-paragraphs, "(a)" and "(i)" items, provisos and explanations nested
+# inside it, and unmarked blocks continuing the deepest open node. Data-gated: inert without the reading, and any
+# block that does not fit the paragraph grammar refuses the parse rather than guessing.
+_PR_LEAD = r"^\s*" + _AMEND_PREFIX
+_PR_OPENER = re.compile(_PR_LEAD + r"(\d{1,2})\s*\.\s+(.*)$", re.S)
+_PR_SUB = re.compile(_PR_LEAD + r"\(\s*(\d{1,2}[A-Z]?)\s*\)\s*\]?\s*(.*)$", re.S)
+_PR_ROMAN = re.compile(_PR_LEAD + r"\(\s*((?:x{0,3})(?:ix|iv|v?i{1,3}))\s*\)\s*(.*)$", re.S)
+_PR_LETTER = re.compile(_PR_LEAD + r"\(\s*([a-z])\s*\)\s*(.*)$", re.S)
+_PR_PROVISO = re.compile(_PR_LEAD + r"Provided\b", re.S)
+_PR_EXPLANATION = re.compile(_PR_LEAD + r"Explanation\b", re.S)
+_PR_INLINE_FIRST = re.compile(r"^(.*?[.:]\s*[-–—_]+)\s*((?:\d{1,2}\s*\[\s*)?\(\s*1\s*\)\s*\]?\s*.*)$", re.S)
+PARAGRAPH_RUN_KEYS = frozenset({"owner_block_id", "owner_label", "owner_kind", "opener_block_ids", "run_block_ids"})
+
+
+def paragraph_run_shape_ok(spec) -> bool:
+    """One reviewed paragraph run: its owner, its openers and every block, in reading order (rule
+    `reviewed_paragraph_run`, D-140)."""
+    if not (isinstance(spec, dict) and set(spec) == PARAGRAPH_RUN_KEYS):
+        return False
+    ids, openers = spec["run_block_ids"], spec["opener_block_ids"]
+    return (type(spec["owner_block_id"]) is int and spec["owner_block_id"] > 0
+            and isinstance(spec["owner_label"], str) and bool(spec["owner_label"].strip())
+            and spec["owner_kind"] in ("section", "article", "subsection")
+            and isinstance(ids, list) and isinstance(openers, list) and len(openers) >= 2
+            and all(type(i) is int and i > 0 for i in ids + openers)
+            and len(set(ids)) == len(ids) and len(set(openers)) == len(openers)
+            and set(openers) <= set(ids) and ids[0] == openers[0]
+            and spec["owner_block_id"] not in ids
+            and [i for i in ids if i in set(openers)] == openers)
+
+
+def _apply_paragraph_run(root: Node, spec: dict, block_by_id: dict, block_roles: dict) -> dict:
+    """Rebuild one reviewed paragraph run under its owner (rule `reviewed_paragraph_run`, D-140)."""
+    def nodes(node: Node):
+        for child in node.children:
+            yield child
+            yield from nodes(child)
+
+    owners = [n for n in nodes(root) if n.first_block == spec["owner_block_id"]
+              and n.label == spec["owner_label"] and n.kind == spec["owner_kind"]]
+    if len(owners) != 1:
+        raise ValueError(f"paragraph run owner {spec['owner_kind']} {spec['owner_label']!r} at block "
+                         f"{spec['owner_block_id']} matched {len(owners)} nodes")
+    owner = owners[0]
+    openers = set(spec["opener_block_ids"])
+
+    def add(parent: Node, kind: str, label: str, text: str, block: dict) -> Node:
+        node = Node(kind=kind, label=label, depth=parent.depth + 1,
+                    text_parts=[_norm(text)] if text.strip() else [],
+                    first_page=block["page_no"], last_page=block["page_no"],
+                    first_block=block["id"], parent=parent, blocks=[block["id"]])
+        parent.children.append(node)
+        return node
+
+    def last(parent: Node, kinds: set) -> Node | None:
+        return next((c for c in reversed(parent.children) if c.kind in kinds), None)
+
+    # an open proviso takes the lettered items printed after it ("Provided that nothing in this paragraph shall
+    # prevent,- (a) ... (b) ..."); a new sub-paragraph or paragraph closes it
+    expected, paragraph, deepest, open_proviso = 1, None, None, None
+    for bid in spec["run_block_ids"]:
+        block = block_by_id.get(bid)
+        if block is None:
+            raise ValueError(f"paragraph run block {bid} is not a body block")
+        text = block.get("text") or ""
+        if bid in openers:
+            m = _PR_OPENER.match(text)
+            if m is None or int(m.group(1)) != expected:
+                raise ValueError(f"paragraph run opener {bid} does not print paragraph {expected}")
+            # as the walk does for a section with no contents: the leading amendment marker is not kept, the printed
+            # heading stays in the text ("Security of person.- No person ..."), and an inline "(1)" opens the first
+            # sub-paragraph, leaving the paragraph its heading ("Safeguard as to arrest and detention.-")
+            rest = m.group(2)
+            inline = _PR_INLINE_FIRST.match(rest)
+            paragraph = add(owner, "clause", str(expected), inline.group(1) if inline else rest, block)
+            deepest, open_proviso = paragraph, None
+            if inline:
+                s = _PR_SUB.match(inline.group(2))
+                deepest = add(paragraph, "subsection", s.group(1), s.group(2), block)
+            expected += 1
+            block_roles[bid] = ("body", paragraph)
+            continue
+        if paragraph is None:
+            raise ValueError(f"paragraph run block {bid} precedes the first opener")
+        if _PR_OPENER.match(text):
+            raise ValueError(f"paragraph run block {bid} opens a paragraph the reading does not name")
+        sub, roman, letter = _PR_SUB.match(text), _PR_ROMAN.match(text), _PR_LETTER.match(text)
+        if roman:
+            # (i), (ii) sit under the last lettered item ("(e) ... for the purpose of,- (i) ... (ii) ..."), else
+            # under the sub-paragraph or the paragraph itself -- never under an earlier romanette
+            within = last(paragraph, {"subsection"}) or paragraph
+            host = next((c for c in reversed(within.children) if c.kind == "clause"
+                         and re.fullmatch(r"[a-z]", c.label) and not _PR_ROMAN.match(f"({c.label})")), None)
+            host = host or within
+            deepest = add(host, "clause", roman.group(1), roman.group(2), block)
+        elif sub:
+            deepest, open_proviso = add(paragraph, "subsection", sub.group(1), sub.group(2), block), None
+        elif letter:
+            host = open_proviso or last(paragraph, {"subsection"}) or paragraph
+            deepest = add(host, "clause", letter.group(1), letter.group(2), block)
+        elif _PR_PROVISO.match(text) or _PR_EXPLANATION.match(text):
+            kind = "proviso" if _PR_PROVISO.match(text) else "explanation"
+            host = last(paragraph, {"subsection"}) or paragraph
+            deepest = add(host, kind, "Provided" if kind == "proviso" else "Explanation", text, block)
+            open_proviso = deepest if kind == "proviso" else None
+        else:
+            deepest.text_parts.append(_norm(text))
+            deepest.blocks.append(bid)
+            n = deepest
+            while n is not owner:
+                n.last_page = max(n.last_page or 0, block["page_no"])
+                n = n.parent
+        block_roles[bid] = ("body", deepest)
+    for n in [owner] + list(nodes(owner)):
+        if n.first_block in set(spec["run_block_ids"]):
+            n.last_page = max(n.last_page or 0, max(c.last_page or 0 for c in [n] + list(nodes(n))))
+    owner.last_page = max(owner.last_page or 0, max(n.last_page or 0 for n in nodes(owner)))
+    return {"resolution": "paragraph_run", "owner_block_id": spec["owner_block_id"],
+            "paragraphs": expected - 1, "blocks": len(spec["run_block_ids"])}
+
+
 def _apply_source_schedule_form_group(root: Node, spec: dict,
                                       block_roles: dict) -> dict:
     """Group two source-reviewed forms under their shared printed schedule.
@@ -10766,8 +10894,21 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
     }
     column_number_cell_ids = (_column_number_cells(body)
                               if profile_rule("column_number_cells") else set())
+    # Rule `reviewed_paragraph_run` (D-140): the reviewed run's blocks are held out of the walk and rebuilt under
+    # their owner after it (_apply_paragraph_run). Inert without a reading.
+    paragraph_run_specs = list(overrides.get("source_paragraph_runs") or [])
+    if not all(paragraph_run_shape_ok(s) for s in paragraph_run_specs):
+        raise ValueError("malformed source paragraph run")
+    paragraph_run_ids = {i for s in paragraph_run_specs for i in s["run_block_ids"]}
+    if sum(len(s["run_block_ids"]) for s in paragraph_run_specs) != len(paragraph_run_ids):
+        raise ValueError("source paragraph runs overlap")
+    paragraph_run_blocks = {block["id"]: block for block in body if block.get("id") in paragraph_run_ids}
+    if set(paragraph_run_blocks) != paragraph_run_ids or paragraph_run_ids & (
+            source_apparatus_blocks | set(source_marginal_blocks) | set(source_nonoperative_roles)):
+        raise ValueError("source paragraph run names a block that is not body text")
     body = [block for block in body
-            if block.get("id") not in source_apparatus_blocks
+            if block.get("id") not in paragraph_run_ids
+            and block.get("id") not in source_apparatus_blocks
             and block.get("id") not in source_marginal_blocks
             and block.get("id") not in source_nonoperative_roles]
     body_page = body[0]["page_no"] if body else 1
@@ -11567,7 +11708,9 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
         if profile_rule("reviewed_urdu_numeral_opener") and re.fullmatch(r"[\u06f0-\u06f9]{1,3}", label):   # agK6 `reviewed_urdu_numeral_opener`
             return r"\s*\(\s*" + label + r"\s*\)"
         if kind == "part":   # agent K2 (docs 4369, 4489): 'Part-B', 'PART IV', '1[PART IX'
-            return r"\s*(?:\d{1,3}\s*\[\s*)?(?i:part)\s*[-\u2013]?\s*" + re.escape(label)
+            # D-140 (AJK Interim Constitution, Third Schedule): a part heading printed in quotes, "\u2018PART-A\u2019";
+            # D-143 (GB Order 2018): a stop after PART, 'PART. XI-THE JUDICATURE'
+            return r"\s*(?:\d{1,3}\s*\[\s*)?[\u2018'\"\u201c]?(?i:part)\.?\s*[-\u2013]?\s*" + re.escape(label)
         # Doc9320 Schedule IV: seven explicitly reviewed ARTICLE I.–VII.
         # captions. The keyword and full stopped label are required; this
         # does not change ordinary article recognition or schedule retyping.
@@ -11669,6 +11812,10 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
                                       _ro_e["source_prefix"]))
                      or (_ro_kind == "subsection" and re.fullmatch(r"[A-HJ-UWYZ]", _ro_e["label"])
                          and re.match(_ro_label_rx(_ro_e["label"], "subsection"), _ro_e["source_prefix"]))
+                     # D-140: a quoted part heading, the whole block "‘PART-A’"
+                     or (_ro_kind == "part"
+                         and re.match(_ro_label_rx(_ro_e["label"], "part") + r"[’'\"”]\s*$",
+                                      _ro_e["source_prefix"]))
                      or (_ro_kind == "explanation"
                          and re.match(_ro_label_rx(_ro_e["label"], "explanation"), _ro_e["source_prefix"])))
                 and (_ro_e["source_block_id"], _ro_e["source_prefix"]) not in _ro_specs):
@@ -13590,6 +13737,8 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
                         c = (c[0], c[1], re.sub(r"^[ \t]*[:.]?[ \t]*[-\u2013\u2014]*[ \t]*", "", c[2]))
                     if c[0] == "part":
                         _do_forced_idx = idx   # agent K2 (doc 4489 p80)
+                        # D-140: the closing quote of a quoted part heading is not its heading
+                        c = (c[0], c[1], re.sub(r"^[’'\"”]\s*", "", c[2]))
                     _ro_applied.add((_ro_bid, _ro_pref))
                     _ro_forced_unit = True
                     break
@@ -16514,6 +16663,8 @@ def _segment(blocks: list[dict], curation_patches: list[dict] | None = None,
     if source_reparents and not _jb_late:
         reviews_enacted.extend(_apply_source_reparents(
             root, source_reparents, repeated_label_decisions, seg_roles))
+    for _pr_spec in paragraph_run_specs:   # rule `reviewed_paragraph_run` (D-140)
+        reviews_enacted.append(_apply_paragraph_run(root, _pr_spec, paragraph_run_blocks, seg_roles))
     # Rule `reviewed_figure_subsections` (agent JE, doc 4521; owner export j q1 'subsections'): data-gated.
     for _fs_spec in (overrides.get("source_figure_subsections") or []):
         if not _owner_decision_citation(_fs_spec.get("owner_decision")):

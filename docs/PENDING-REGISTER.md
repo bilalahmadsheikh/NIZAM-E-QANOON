@@ -1,10 +1,10 @@
 # What is not added yet — laws and judgments
 
-Generated 2026-11-24 by `tools/pending_register.py` from the database and the staging lists; never
+Generated 2026-11-25 by `tools/pending_register.py` from the database and the staging lists; never
 edited by hand (D-130). Every row, with its file, URL and reason, is in `docs/pending/laws.csv` and
 `docs/pending/judgments.csv`. Rerun the tool after any landing.
 
-## Laws: 1,640 items to work on (815 more set aside by rule)
+## Laws: 1,639 items to work on (815 more set aside by rule)
 
 What each needs:
 
@@ -14,14 +14,14 @@ What each needs:
 | not acquired | find another source, or retry the portal | 66 |
 | partial copy | a complete copy of the law | 48 |
 | scan | OCR (D-114: Document AI + Tesseract, page agreement) | 1,164 |
-| text, not structurable yet | a per-document reading (repeated labels, contents, mastheads) | 339 |
+| text, not structurable yet | a per-document reading (repeated labels, contents, mastheads) | 338 |
 
 By source:
 
 | source | category | items |
 |---|---|---:|
 | ajk | scan | 906 |
-| ajk | text, not structurable yet | 169 |
+| ajk | text, not structurable yet | 168 |
 | fbr_code | text, not structurable yet | 11 |
 | fbr_code | scan | 7 |
 | fbr_sro | text, not structurable yet | 26 |
@@ -57,23 +57,45 @@ Set aside by rule (listed for review, nothing to do unless a rule changes):
 | source | category | items |
 |---|---|---:|
 | AJK | court not held | 1 |
+| AJKHC | scan | 30 |
+| AJKHC | held by a gate | 28 |
+| AJKHC | released, date not printed | 5 |
+| AJKSC | released, date not printed | 220 |
+| AJKSC | scan | 147 |
+| AJKSC | held by a gate | 73 |
+| BHC | law-report reprint | 1,936 |
+| BHC | scan | 32 |
+| BHC | released, date not printed | 7 |
+| BHC | held by a gate | 2 |
 | BHC | court not held | 1 |
+| FCC | held by a gate | 6 |
+| FCC | released, date not printed | 6 |
 | FCC | court not held | 1 |
 | FSC | court not held | 1 |
 | GB | court not held | 1 |
+| GBCC | scan | 124 |
+| GBCC | held by a gate | 7 |
+| GBCC | released, date not printed | 5 |
+| GBSAC | released, date not printed | 416 |
+| GBSAC | held by a gate | 161 |
+| GBSAC | scan | 21 |
 | IHC | court not held | 1 |
-| LHC | released, date not printed | 2,518 |
-| LHC | held by a gate | 239 |
-| LHC | law-report reprint | 197 |
-| LHC | scan | 117 |
-| PHC | scan | 1,818 |
-| PHC | released, date not printed | 693 |
+| LHC | released, date not printed | 4,997 |
+| LHC | held by a gate | 888 |
+| LHC | law-report reprint | 477 |
+| LHC | scan | 262 |
+| PHC | scan | 1,832 |
+| PHC | released, date not printed | 717 |
+| PHC | held by a gate | 682 |
 | PHC | law-report reprint | 653 |
-| PHC | held by a gate | 639 |
 | SC | scan | 438 |
-| SC | released, date not printed | 314 |
-| SC | held by a gate | 193 |
+| SC | released, date not printed | 316 |
+| SC | held by a gate | 194 |
 | SC | released, text layer below J9 | 1 |
+| SHC | released, date not printed | 6,927 |
+| SHC | scan | 5,223 |
+| SHC | held by a gate | 2,276 |
+| SHC | law-report reprint | 2 |
 | SHC | source to recrawl | 1 |
 
 What each needs:
@@ -81,11 +103,11 @@ What each needs:
 | category | needs | items |
 |---|---|---:|
 | court not held | acquire the court's judgments | 6 |
-| held by a gate | a parser rule or a person's reading (see reason) | 1,071 |
-| law-report reprint | the court's own copy (portal recrawl); D-120 | 850 |
-| released, date not printed | the court's decision date (portal recrawl with metadata) | 3,525 |
+| held by a gate | a parser rule or a person's reading (see reason) | 4,317 |
+| law-report reprint | the court's own copy (portal recrawl); D-120 | 3,068 |
+| released, date not printed | the court's decision date (portal recrawl with metadata) | 13,616 |
 | released, text layer below J9 | an OCR re-read (D-114); released before the gate | 1 |
-| scan | OCR (D-114) | 2,373 |
+| scan | OCR (D-114) | 8,109 |
 | source to recrawl | recrawl the Sindh High Court portal | 1 |
 
 ## Order of work (recommended)

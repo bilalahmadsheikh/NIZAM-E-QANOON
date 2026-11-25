@@ -469,6 +469,8 @@ def assign_patches(blocks: list[dict], patches: list[dict],
 
 
 STRUCTURAL_PATCH_KEYS = (
+    # rule `reviewed_paragraph_run` (D-140)
+    "source_paragraph_runs",
     "source_body_start_block", "source_apparatus_blocks", "source_reparent_blocks",
     "source_continuation_parent_blocks", "source_unnumbered_section_openers",
     "source_unnumbered_part_headings", "source_schedule_row_openers",

@@ -232,6 +232,23 @@ def test_the_header_parser_keeps_the_register_letter_as_the_case_builder_does():
     assert _case(["Criminal Appeal No. 125 of 2019"], types)[2] == "125"
 
 
+def test_a_glued_register_is_read_and_a_section_number_is_never_a_case_number():
+    """D-142 (/12): 'CP D101of 2012' printed its register letter and 'of' glued to the number, and the year 2012 was
+    taken as the case number; 'CRIMINAL APPEAL UNDER SECTION 417' gave case number 417. A number needs a 'No.', a year
+    or the case grammar's reading; a lower-case letter before digits is never a register."""
+    from nizam.corpus.judgment import _case
+    cp = ["c p", "cp"]
+    r = read_case_line("CP D101of 2012 : Ghulam Asghar vs. District Education Officer", cp)
+    assert (r.lead, r.year) == ("D-101", 2012)
+    assert read_case_line("C.P. No.D-01 of 2016", cp).lead == "D-1"                  # the dashed form unchanged
+    assert read_case_line("Civil Appeal No.d12 of 2016", CA).lead != "D-12"           # lower case: no register
+    types = {"GBCC:CRLA": ("appeal", ["criminal appeal"]), "SHC:CP": ("petition", cp)}
+    assert _case(["CRIMINAL APPEAL UNDER SECTION 417 CR.P.C IMPUGNED JUDGMENT"], types) is None
+    assert _case(["Criminal Appeal N~2019 1- Said Rehman"], types) is None
+    assert _case(["CP D101of 2012 : Ghulam Asghar"], types)[2:4] == ("D-101", 2012)
+    assert _case(["Criminal Appeal No. 417"], types)[2] == "417"                    # 'No.' printed: kept
+
+
 def test_the_header_parser_and_the_case_builder_read_one_number_and_year():
     """D-138 (/8): judgment.case_number and case_year are what read_case_line reads over the stored case line, so
     the case builder never finds them differing (judgment_case_state.header_differs)."""

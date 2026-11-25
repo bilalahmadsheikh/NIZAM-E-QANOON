@@ -1136,6 +1136,166 @@ Area: client · Status: Superseded by D-084 (the whole-page cloth; the hem, the 
   design/heritage_art.dart, presentation/discover.dart, presentation/heritage.dart; test/heritage_test.dart
   (golden embroidery.png, a review sheet at 3x).
 
+### D-143 · 2026-11-25 · The Government of Gilgit-Baltistan Order 2018 is repaired from page readings
+Area: L1 corpus (released-law repair) · Status: standing (closes D-141's open item)
+- Decision: the GB Order 2018 (document 11635, observation 15449, released with the D-113 GB drop) is re-segmented
+  with 86 page readings (tools/evidence/gb-order-2026-11-25/build_readings.py) and released again: 725 provisions
+  (723 before), 122 sections, S7 0. The GB courts' words (D-141) are still found (A24).
+  - **82 folios set aside.** Each page prints its own number at its foot, and the text layer read it into the
+    sentence crossing the page ("If in respect of any financial year it is found- 37"; also in s.75's Explanation
+    and s.84(10)(c)). Test: the block is only the page's number, its lowest block, in the bottom quarter, inside a
+    provision.
+  - **The false Article 78 removed.** The wrapped line "Article 78 of the Constitution of Islamic Republic of Pakistan:"
+    ends s.70(5)'s sentence (reviewed_text_unit), and its proviso ("Provided that the Federal Government shall provide
+    funds to the Council") is s.70(5)'s. "78 GB Order" now resolves to s.78 alone.
+  - **Parts IV and XI opened.** "PART. IV-THE GOVERNMENT" and "PART. XI-THE JUDICATURE" print a stop after PART, which
+    the reviewed part opener now takes (only reviewed openers; D-140's quote rule beside it). ss.75–91 sit under Part
+    XI, and s.74(3) ends at its own words.
+  - **The Second Schedule opened** (reviewed_schedule_heading): it had been read into the First.
+  - Left as printed: the copy prints no Part V heading (Part IV is followed by Part VI), and "CHAPTER" on page 4 with
+    no number. No label is invented.
+- Why: leakscan reported this law clean, yet it served page numbers inside the GB courts' own provisions and a false
+  unit beside their binding rule. leakscan tests running heads, margin citations and notes, not folios or wrapped
+  cross-references, which is open (a folio test would have found these).
+- Where: nizam/corpus/segment.py (`_ro_label_rx` part: `part\.?`); tools/evidence/gb-order-2026-11-25/.
+
+### D-142 · 2026-11-25 · The court sites' judgments are landed: AJK, GB, Lahore, Peshawar and Balochistan; parsers /11 and /12
+Area: L1 precedent (PRECEDENT-MODEL §3, §7) · Status: standing (closes D-139's crawls)
+- Decision: the archives D-139 crawled are landed through the ordinary gates.
+
+  | Court | Files | Released (undated) | Held | OCR lane | Reprints |
+  |---|---:|---:|---:|---:|---:|
+  | AJK Supreme Court | 958 | 673 (220) | 72 | 147 | — |
+  | AJK High Court | 262 | 203 (5) | 28 | 30 | — |
+  | GB Supreme Appellate Court | 748 | 556 (416) | 161 | 21 | — |
+  | GB Chief Court | 154 | 22 (5) | 7 | 124 | — |
+  | Lahore HC (new on its site) | 5,141 | +4,079 | 648 | 145 | 263 |
+  | Peshawar HC (new on its site) | 144 | +92 | 38 | 14 | — |
+  | Balochistan HC | 2,000 | +0 | — | — | all |
+
+  - **60,826 judgments released** (55,229 before): Lahore 8,057, Peshawar 2,680.
+  - **Balochistan's own site adds nothing.** Its per-judge pages serve 2,000 files byte-identical to the law-report
+    archive already held (2,000 distinct sha256 in 4,001 source rows): PLC, P Cr. L J, MLD and CLC reprints, which
+    D-120 does not land. It stays at 30.
+  - Peshawar: 46 links on the court's own pages serve no PDF (truncated file names); they are a gap at the source.
+  - Lahore's site also serves law-report reprints (263, caught by the D-120/D-138 gates). The /12 re-read caught 17
+    more among Lahore judgments released before and retired them.
+- **Case types and names (0138)**, as each court's own headers print them, folded as the parser folds. The GB
+  Supreme Appellate Court's "under objection" registers are their own numbering series, so they are their own types.
+  Court alias keys are folded too (0137): "Gilgit-Baltistan" is "gilgit baltistan".
+- **Parser /11** (dates as these courts print them):
+  - the AJK and GB seats (Muzaffarabad, Mirpur, Kotli, Rawalakot, Gilgit, Skardu) sign a judgment
+    ("JUDGE / Mirpur, / 22.01.2018"); a blank day ("__.04.2019") stays undated;
+  - GB: "Date of detail judgment", "Date of delivery of detail judgment", "Date of detail order", "Announced:-";
+  - a line that is wholly an order's own date ("ORDER DATED: - 21.03.2019") dates it, last in the order of evidence
+    and never against a conflict. "impugned order dated …" inside a sentence never does.
+- **Parser /12** (a case number on evidence only):
+  - **Defect found in released records.** 30 Sindh judgments printed "CP D101of 2012" (register letter and "of"
+    glued), and the year 2012 was taken as the case number. "CRIMINAL APPEAL UNDER SECTION 417 CR.P.C" (GB Chief
+    Court) gave case number 417. "Criminal Appeal N~2019" gave 2019.
+  - The shared case grammar (storage/case_key.py) now reads an upper-case register letter glued to its digits, so
+    the judgment row and its case key still agree (D-138). A number with no "No.", no year and no reading by that
+    grammar is no case number: J3 holds it.
+  - The 285 released judgments with no case year were re-read: Sindh's 30 now read D-101 of 2012, and the
+    section-number and garbled readings are held.
+  - Lahore's "Dates of hearing" (plural) bounds an undated judgment from below, and "Announced in open Court today
+    i.e. 02.02.2011" dates it. Every undated Lahore judgment was re-read (5,066).
+- Open:
+  - **Headingless bench orders** (court line, case line, "PRESENT:-" with counsel, then the order and the signatures,
+    no "ORDER" heading and no author line) are held: about 1 GB Supreme Appellate Court file in 9, and many of
+    Lahore's 356 such holds. Taking them needs a header-end rule.
+  - Many GB and Lahore judgments print only a hearing date. They are released undated with the hearing as their
+    lower bound (D-124), never guessed.
+  - Undated judgments of the other courts, read before /12, have not been re-read for its plural-hearing and
+    "today i.e." forms.
+  - The 16,557 law chunks re-cut by post-replay step 2 (multi-expression laws get new ids on every run) and the new
+    judgment chunks wait for the one Kaggle run (A27, and A21/A22 for the GPU space).
+- Where: migration 0138; nizam/corpus/judgment.py (/11, /12); nizam/storage/case_key.py (`_LEAD`);
+  tests/test_judgment_parse.py, tests/test_judgment_case.py; E:/nizam-data/acquire/work/ (land, re-read lists, logs).
+
+### D-141 · 2026-11-25 · The AJK and GB courts are recorded; every binding rule names the territories its words reach
+Area: L2 precedent data (PRECEDENT-MODEL §1, §1.4) · Status: standing
+- Decision: four courts join the registry (migration 0137), each resting on words in a released law (A24):
+  - **AJKSC**, the Supreme Court of Azad Jammu and Kashmir (AJK Interim Constitution 1974 Art. 42, observation 15688,
+    released D-140) and **AJKHC**, the High Court of Azad Jammu and Kashmir (Art. 43);
+  - **GBSAC**, the Gilgit-Baltistan Supreme Appellate Court (Government of Gilgit-Baltistan Order 2018 s.75,
+    observation 15449) and **GBCC**, the Gilgit-Baltistan Chief Court (s.84).
+  - D-139 said the GB Order was "to acquire". It was already released (landed with the D-113 GB drop); the GB
+    Government portal's copy staged today has the same sha256 as the held file.
+- **Binding rules** (`authority_rule`, basis `dated_text`, from the day each text is served: AJK 12 May 2026, the
+  archived copy's capture; GB 12 Sep 2026):
+  - AJK Art. 42-B: the Supreme Court binds "all other Courts in Azad Jammu and Kashmir"; Art. 44-B: the High Court
+    binds "all courts subordinate to it", subject to Art. 42-B.
+  - GB s.78: the Supreme Appellate Court binds "all other Courts in the Gilgit-Baltistan"; s.88: the Chief Court binds
+    "all Courts subordinate to it", printed "Subject to Section 60" (likely a misprint for s.78; quoted as printed).
+  - Neither text prints a superintendence clause ("supervise and control"), so no `court_superintendence` row is
+    seeded for ajk or gb. Which High Court a subordinate court answers to is then unrecorded, and "courts subordinate
+    to it" answers NotRecorded there. A rule reaching "all other courts in" the territory needs no such record.
+- **Each rule now records the territories its words reach** (`authority_rule.territories`). Before this, the resolver
+  read "all other courts" as every court in the registry. Seeding the AJK and GB courts would have made a Supreme
+  Court of Pakistan decision "binding" on the AJK courts, an AJK Supreme Court decision binding on the Lahore High
+  Court, and Art. 201 ("any decision of a High Court") a rule for the AJK High Court.
+  - 0118's rules print "in Pakistan" (Arts. 189, 201, 203GG). They reach `fed` (the federation's own courts) and the
+    territories Art. 1(2)(a)–(b) names: the four Provinces and the Islamabad Capital Territory.
+  - The AJK rules reach `ajk`; the GB rules reach `gb`.
+  - A rule speaks only for deciding courts inside its reach (a class rule included). A receiving court outside every
+    applicable rule's reach is **NotRecorded**, with the reason, never NotBinding. Whether an AJK or GB court is a
+    "court in Pakistan" under Art. 1(2)(c) is a legal question no record in the corpus answers.
+- Why: courts are data and bindingness is a dated rule read from the text (D-116). A rule's printed place is part of
+  its words; reading it as everywhere was the silent default the registry could no longer carry.
+- Found: the GB Order 2018 as released had defects leakscan does not catch:
+  - page numbers (folios) in 57 provisions, including s.75's Explanation and s.84(10)(c);
+  - a wrapped cross-reference read as a unit `art_78` beside s.78;
+  - Part XI's heading ("PART. XI-THE JUDICATURE") swallowed into s.74(3), so ss.75–91 sat under Part X.
+  Its court rows quote clean words and cite by observation and label, so the repair replay kept them. Repaired the
+  same day (D-143).
+- Where: migration 0137; nizam/storage/authority.py (`Rule.territories`, the reach test, superintendence only for
+  `courts_subordinate_to_deciding`); tests/test_authority.py.
+
+### D-140 · 2026-11-25 · The AJK Interim Constitution 1974 is landed and released; a provision's own numbered paragraphs are rebuilt from a reviewed reading
+Area: L1 corpus (docs/02 §5; segmenter rules) · Status: standing
+- Decision: the AJK Interim Constitution (staged D-096) is landed (observation 15688, document 11875) and released:
+  97 Articles (1–59 and 38 lettered), 697 provisions, five Schedules, S7 33 → 0, leakscan clean.
+- **Why it was blocked.** Art. 4(4) "The Rights" prints its 24 rights as paragraphs "1. Security of person.-" …
+  "24. Preservation of language, script and culture.-", indented one step (x0 216) from the Articles (x0 144), in the
+  same "N. Heading.-" grammar. The law prints no contents page with a text layer (pages 1–11 are scans) to compare
+  headings against. So the walk read right 5 as the section after Article 4, rights 6–24 as Articles 6–24, and the
+  real Articles 5–24 as clauses: 33 repeated labels, every right misfiled.
+- **New reviewed rule `reviewed_paragraph_run`** (key `source_paragraph_runs`): a reading names the owner (sub-Article
+  (4) of Article 4), the run's openers and every block of the run, in reading order.
+  - The walk never sees those blocks, so the real Articles follow Article 4 in sequence.
+  - The run is rebuilt under its owner: one clause per opener, with its "(1)" sub-paragraphs, "(a)" and "(i)" items,
+    provisos (an open proviso takes the lettered items after it) and explanations nested inside it. Unmarked blocks
+    continue the deepest open node. As the walk does for a law without contents, the leading amendment marker is not
+    kept and the heading stays in the text.
+  - Data-gated, so it is inert without a reading. Fail-closed: an opener out of sequence, an unnamed opener inside
+    the run, a wrong owner, or a block that is not body text refuses the parse.
+  - Known to the recorder, the worker merge and the multi-instrument dry run (the key-registry tests pin this).
+- **The reviewed part opener takes a part heading printed in quotes** ("‘PART-A’", the Third Schedule); its closing
+  quote is not part of the heading. Only reviewed openers are affected; no recorded patch's prefix starts with a
+  quote.
+- **110 page readings** (tools/evidence/ajk-ic-2026-11-25/build_readings.py, renders and sha256 in each):
+  - the paragraph run;
+  - ten amendment footnotes the parser read as clauses ("1. Subs. by the (Thirteenth Amdt.) Act, 2018", at the
+    Articles' margin below each page's rule);
+  - 104 page numbers read into the law's text, each the page minus 11 and the lowest block of its page. Their tops
+    sit at 79.8% of an A4 page, so ajk_folio_patch.py's 80% line, made for the AJK Code's letter pages, would have
+    missed them;
+  - the Third, Fourth and Fifth Schedule headings printed behind their amendment marker ("1[THIRD SCHEDULE");
+  - Article 30-A, printed with no stop after its number; and the Third Schedule's quoted Parts A and B.
+- Found and left open:
+  - Where a heading runs into "(1)" with no space ("Supreme Court of Azad Jammu and Kashmir.-(1) There shall be"),
+    sub-Article (1) stays in the Article's own text (13 Articles). The text is whole; only "Art. 42(1)" is not
+    addressable alone. This is the segmenter's existing inline-split grammar, rarer in Pakistan's Constitution (1 of
+    8), and a corpus-wide question.
+  - Post-replay step 2 refused to re-materialise document 4347 expression 3 (5 paths). It is the open drift item
+    "'Part I' read as '1'", not this change: no patch on 4347 carries a reviewed part opener or a paragraph run.
+- Why: the AJK courts' founding provisions are Arts. 42, 42-B, 43 and 44-B (D-139). It is also AJK's constitution,
+  and its rights are its most cited text.
+- Where: nizam/corpus/segment.py (`paragraph_run_shape_ok`, `_apply_paragraph_run`, the hold-out before the walk,
+  the part opener's quote and stop); nizam/workers/segment.py; tools/record_curation_patch.py;
+  tools/materialize_multi_instrument.py; tests/test_paragraph_run.py; tools/evidence/ajk-ic-2026-11-25/.
+
 ### D-139 · 2026-11-25 · Every court's own site is crawled; the Federal Constitutional Court is landed; Balochistan's files are fetched against robots.txt by owner ruling
 Area: L1 precedent acquisition (docs/02 §4, PRECEDENT-MODEL §0, §7) · Status: standing (in progress: crawls running)
 - Decision (owner, 25 Nov 2026): the official websites of the courts already held and of the courts not yet held are

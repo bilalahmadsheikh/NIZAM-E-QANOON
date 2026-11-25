@@ -119,6 +119,66 @@ def test_a_date_line_after_the_last_paragraph_is_the_date_not_the_next_paragraph
     assert (r.decided_on, r.decided_on_basis) == (dt.date(2026, 2, 12), "signed_at")
 
 
+AJK = {"supreme court of azad jammu and kashmir": "AJKSC", "high court of azad jammu and kashmir": "AJKHC",
+       "supreme appellate court gilgit baltistan": "GBSAC"}
+AJK_TYPES = {"AJKSC:CPLA": ("leave_petition", ["civil pla"]), "GBSAC:CA": ("appeal", ["civil appeal"])}
+
+
+def test_ajk_and_gb_judgments_are_dated_as_their_courts_print_them():
+    # /11 (D-142): the AJK Supreme Court signs 'JUDGE / Mirpur / 25.11.2020' at its seat; a blank day stays undated
+    head = ["SUPREME COURT OF AZAD JAMMU AND KASHMIR", "[Appellate Jurisdiction]", "PRESENT:", "Alpha Beta, J.",
+            "Civil PLA No.123 of 2020", "(Filed on 21.11.2020)", "Rehana Rasheed ...PETITIONER", "VERSUS",
+            "Shumaila Sabir ...RESPONDENT", "Date of hearing: 25.11.2020"]
+    body = ["ORDER:", "Alpha Beta, J.- The petition is directed against the order of the Service Tribunal.",
+            "The PLA stands disposed of in the manner indicated above.", "JUDGE"]
+    r = parse_judgment(doc([head + body + ["Mirpur", "25.11.2020"]]), AJK, AJK_TYPES, expected_court="AJKSC",
+                       today=TODAY)
+    assert isinstance(r, ParsedJudgment), r
+    assert (r.decided_on, r.decided_on_basis, r.seat) == (dt.date(2020, 11, 25), "signed_at", "Mirpur")
+    r = parse_judgment(doc([head + body + ["Mirpur,", "__.11.2020"]]), AJK, AJK_TYPES, expected_court="AJKSC",
+                       today=TODAY)
+    assert r.decided_on is None and r.decided_on_basis == "undated"
+    # the GB Supreme Appellate Court prints its detailed judgment's date in the header
+    head = ["IN THE SUPREME APPELLATE COURT GILGIT-BALTISTAN,", "SKARDU REGISTRY.", "BEFORE:-",
+            "Mr. Justice Alpha Beta, Chief Judge.", "Civil Appeal No.04/2016", "Muhammad ...PETITIONER.", "VERSUS",
+            "Yousuf ...RESPONDENT.", "DATE OF HEARING: - 05.10.2016.", "DATE OF DETAIL JUDGMENT: - 03.11.2016.",
+            "JUDGMENT", "Alpha Beta, Chief Judge.- The appeal arises out of the impugned judgment.",
+            "The appeal is dismissed in above terms.", "Chief Judge.", "Judge."]
+    r = parse_judgment(doc([head]), AJK, AJK_TYPES, expected_court="GBSAC", today=TODAY)
+    assert isinstance(r, ParsedJudgment), r
+    assert (r.decided_on, r.decided_on_basis) == (dt.date(2016, 11, 3), "date_of_decision")
+    # 'Announced:- 03-11-2016.' with its dash
+    no_detail = [x for x in head if not x.startswith("DATE OF DETAIL")]
+    r = parse_judgment(doc([no_detail + ["Announced:- 04-11-2016."]]), AJK, AJK_TYPES, expected_court="GBSAC",
+                       today=TODAY)
+    assert (r.decided_on, r.decided_on_basis) == (dt.date(2016, 11, 4), "announced")
+
+
+def test_lahore_today_and_plural_dates_of_hearing():
+    # /12 (D-142): 'Announced in open Court today i.e. 02.02.2011.'; 'Dates of hearing' bounds an undated judgment
+    head = [ln.replace("Date of hearing: 26.01.2023", "Dates of hearing 21.01.2011") for ln in HEADER]
+    head = [ln.replace("of 2020", "of 2010") for ln in head]
+    body = ["JUDGMENT", "Alpha Beta, J.- The petition is dismissed.", "Judge"]
+    r = parsed(doc([head + body + ["Announced in open Court today i.e. 02.02.2011.", "Judge"]]))
+    assert (r.decided_on, r.decided_on_basis) == (dt.date(2011, 2, 2), "announced")
+    r = parsed(doc([head + body + ["Judge"]]))
+    assert r.decided_on is None and (r.decided_not_before, r.decided_not_before_basis) == (dt.date(2011, 1, 21),
+                                                                                          "hearing")
+
+
+def test_an_order_dated_line_dates_the_order_but_an_impugned_order_never_does():
+    head = ["IN THE SUPREME APPELLATE COURT GILGIT-BALTISTAN,", "GILGIT.", "BEFORE:-",
+            "Mr. Justice Alpha Beta, Chief Judge.", "Civil Appeal No.04/2016", "Muhammad ...PETITIONER.", "VERSUS",
+            "Yousuf ...RESPONDENT."]
+    body = ["ORDER", "Alpha Beta, Chief Judge.- The impugned order dated 11.06.2016 passed by the Chief Court is set "
+            "aside.", "The appeal is allowed.", "Chief Judge.", "Judge."]
+    r = parse_judgment(doc([head + ["Order Dated 07-10-2016"] + body]), AJK, AJK_TYPES, expected_court="GBSAC",
+                       today=TODAY)
+    assert (r.decided_on, r.decided_on_basis) == (dt.date(2016, 10, 7), "date_of_order")
+    r = parse_judgment(doc([head + body]), AJK, AJK_TYPES, expected_court="GBSAC", today=TODAY)
+    assert r.decided_on is None and r.decided_on_basis == "undated"      # 'impugned order dated' dates nothing
+
+
 def test_ordinals_as_printed_and_blanks_filled_by_hand():
     assert read_date("Islamabad, the 22d December, 2021.", TODAY) == dt.date(2021, 12, 22)
     assert read_date("ANNOUNCED ON  _14th _January, 2011", TODAY) == dt.date(2011, 1, 14)
