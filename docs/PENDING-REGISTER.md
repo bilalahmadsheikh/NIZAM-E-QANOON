@@ -76,25 +76,25 @@ Set aside by rule (listed for review, nothing to do unless a rule changes):
 | GBCC | scan | 124 |
 | GBCC | held by a gate | 7 |
 | GBCC | released, date not printed | 5 |
-| GBSAC | released, date not printed | 416 |
-| GBSAC | held by a gate | 161 |
+| GBSAC | released, date not printed | 417 |
+| GBSAC | held by a gate | 83 |
 | GBSAC | scan | 21 |
 | IHC | court not held | 1 |
-| LHC | released, date not printed | 4,997 |
-| LHC | held by a gate | 888 |
+| LHC | released, date not printed | 4,996 |
+| LHC | held by a gate | 877 |
 | LHC | law-report reprint | 477 |
-| LHC | scan | 262 |
+| LHC | scan | 267 |
 | PHC | scan | 1,832 |
-| PHC | released, date not printed | 717 |
-| PHC | held by a gate | 682 |
-| PHC | law-report reprint | 653 |
-| SC | scan | 438 |
+| PHC | released, date not printed | 699 |
+| PHC | held by a gate | 681 |
+| PHC | law-report reprint | 655 |
+| SC | scan | 439 |
 | SC | released, date not printed | 316 |
-| SC | held by a gate | 194 |
+| SC | held by a gate | 197 |
 | SC | released, text layer below J9 | 1 |
-| SHC | released, date not printed | 6,927 |
+| SHC | released, date not printed | 6,267 |
 | SHC | scan | 5,223 |
-| SHC | held by a gate | 2,276 |
+| SHC | held by a gate | 2,024 |
 | SHC | law-report reprint | 2 |
 | SHC | source to recrawl | 1 |
 
@@ -103,11 +103,11 @@ What each needs:
 | category | needs | items |
 |---|---|---:|
 | court not held | acquire the court's judgments | 6 |
-| held by a gate | a parser rule or a person's reading (see reason) | 4,317 |
-| law-report reprint | the court's own copy (portal recrawl); D-120 | 3,068 |
-| released, date not printed | the court's decision date (portal recrawl with metadata) | 13,616 |
+| held by a gate | a parser rule or a person's reading (see reason) | 3,978 |
+| law-report reprint | the court's own copy (portal recrawl); D-120 | 3,070 |
+| released, date not printed | the court's decision date (portal recrawl with metadata) | 12,938 |
 | released, text layer below J9 | an OCR re-read (D-114); released before the gate | 1 |
-| scan | OCR (D-114) | 8,109 |
+| scan | OCR (D-114) | 8,115 |
 | source to recrawl | recrawl the Sindh High Court portal | 1 |
 
 ## Order of work (recommended)

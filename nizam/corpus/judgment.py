@@ -36,7 +36,11 @@ from dataclasses import dataclass, field
 
 from nizam.storage.case_key import read_case_line
 
-PARSER = "nizam.judgment/12"    # /2: the lower court's date printed after its name; a skipped number only when unseen
+PARSER = "nizam.judgment/14"    # /2: the lower court's date printed after its name; a skipped number only when unseen
+#                                 /14: Sindh's 'Date of hearing & decision' / 'and Judgment' header line dates (D-146)
+#                                 /13: an order with no heading opens after its 'Order Dated:' line; the order sheet's
+#                                      column header wrapped or misread ('signature of / Judge', 'srgnature');
+#                                      'NAME, J;-' author lines; soft-hyphen dates (D-146)
 #                                 /12: no case number without a "No.", a year or the case grammar's reading; a register
 #                                      letter glued to its digits ("CP D101of 2012") read (D-142)
 #                                 /11: the AJK and GB courts' seats sign a judgment ('JUDGE / Mirpur, / 22.01.2018');
@@ -66,13 +70,14 @@ _MONTHS.update({m[:3]: i for m, i in list(_MONTHS.items())})
 _MONTHS["sept"] = 9
 _MON = (r"(?:january|february|march|april|may|june|july|august|september|october|november|december|jan|feb|mar|apr|"
         r"jun|jul|aug|sept|sep|oct|nov|dec)\.?")
-_D_NUM = re.compile(r"(?<![\d.])(\d{1,2})\s*[./-]\s*(\d{1,2})\s*[./-]\s*((?:19|20)\d{2}|\d{2})(?!\d)")
+# a soft hyphen (U+00AD) is printed as the separator in some GB Supreme Appellate Court files ('08­06­2010', D-146)
+_D_NUM = re.compile(r"(?<![\d.])(\d{1,2})\s*[./\-­]\s*(\d{1,2})\s*[./\-­]\s*((?:19|20)\d{2}|\d{2})(?!\d)")
 # '22d December' is an ordinal as printed; '_14th _January' is a blank filled in by hand on the typed form (D-124)
 _D_DMY = re.compile(r"(?<!\d)(\d{1,2})\s*(?:st|nd|rd|th|d)?[\s_]*(?:day\s+of\s+|of\s+)?(" + _MON +
                     r")\s*,?\s*((?:19|20)\d{2})", re.I)
 _D_MDY = re.compile(r"(" + _MON + r")\s+(\d{1,2})\s*(?:st|nd|rd|th)?\s*,?\s*((?:19|20)\d{2})", re.I)
 # a date in any of the three printed forms, as one non-capturing unit for embedding in other patterns
-DATE = (r"(?:\d{1,2}\s*[./-]\s*\d{1,2}\s*[./-]\s*(?:(?:19|20)\d{2}|\d{2})(?!\d)|"
+DATE = (r"(?:\d{1,2}\s*[./\-­]\s*\d{1,2}\s*[./\-­]\s*(?:(?:19|20)\d{2}|\d{2})(?!\d)|"
         r"\d{1,2}\s*(?:st|nd|rd|th|d)?[\s_]*(?:day\s+of\s+|of\s+)?" + _MON + r"\s*,?\s*(?:19|20)\d{2}|"
         + _MON + r"\s+\d{1,2}\s*(?:st|nd|rd|th)?\s*,?\s*(?:19|20)\d{2})")
 
@@ -210,9 +215,13 @@ _HEADING = re.compile(r"^\s*(J\s*U\s*D\s*G\s*E?\s*M\s*E\s*N\s*T|O\s*R\s*D\s*E\s*
                       r"ORDER\s+OF\s+THE\s+COURT|JUDG(?:E)?MENT\s+OF\s+THE\s+COURT|"
                       r"FINAL\s+ORDER|DETAILED\s+REASONS|(?:DISSENTING|SEPARATE|ADDITIONAL)\s+(?:NOTE|OPINION)|"
                       r"REASONS\s+FOR\s+THE\s+SHORT\s+ORDER)\s*[:.]?\s*$", re.I)
+# D-146: a semicolon after the title as Sindh prints it ('ZULFIQAR ALI SANGI, J;- Through ...'), only as 'J;-': a
+# Sindh bench line prints 'Muhammad Saleem Jessar J; Adnan-ul-Karim Memon, J;'. A stop between the name and its title
+# ('FAZAL SUBHAN. J.-') is NOT taken: the Peshawar files that print it are OCR'd text layers whose case lines read
+# wrong (17 of 21 differed from the case their file name gives), so they stay held for the OCR lane.
 _AUTHOR = re.compile(r"^\s*((?:[A-Z][\w'’.\-]*\s+){0,6}[A-Z][\w'’]*(?:-[A-Za-z][\w'’]*)*?)\s*[,\-]?\s*\(?\s*"
                      r"(H?\.?\s*C\.?\s*J|A\.?\s*C\.?\s*J|JJ|J)"
-                     r"\s*\.?\s*\)?\s*[-–—:.,]{1,3}\s*(.*)$")
+                     r"\s*\.?\s*\)?\s*(?:[-–—:.,]{1,3}|;\s*[-–—]{1,2})\s*(.*)$")
 # the Federal Constitutional Court names its author before the opinion: 'JUSTICE AAMER FAROOQ: - The petitioner ...',
 # 'JUSTICE AMIN-UD-DIN KHAN, CHIEF JUSTICE:' (D-139). Upper case and a colon, so a bench line in the header ('Justice
 # AAMER FAROOQ Justice ROZI KHAN BARRECH') is not an author line.
@@ -232,10 +241,10 @@ def _author(text: str) -> tuple[str, str] | None:
 # High Court form titles printed above the court's name: the form, not an opinion heading (D-128)
 _FORM_TITLE = re.compile(r"^\s*(?:ORDER|JUDG(?:E)?MENT)\s+SHEET\s*\.?\s*$", re.I)
 # the order sheet's column header; the order itself begins after it ('... where necessary.')
-_ORDER_COLUMNS = re.compile(r"order\s+(?:or\s+other\s+proceedings?\s+)?with\s+(?:the\s+)?signatures?\s*(?:\(\s*s\s*\))?"
+_ORDER_COLUMNS = re.compile(r"order\s+(?:or\s+other\s+proceedings?\s+)?with\s+(?:the\s+)?s[i1lr]gnatures?\s*(?:\(\s*s\s*\))?"
                             r"\s+of\s+"
-                            r"(?:the\s+)?(?:hon\W?ble\s+)?judge",
-                            re.I)    # Lahore: 'Order with signatures of Judge'; Peshawar: 'Order or other Proceedings with ...';
+                            r"(?:the\s+)?(?:hon\W?ble\s+)?jud(?:ge?)?",
+                            re.I)    # D-146: 'srgnature' as the text layer reads it; 'Judge' cut to 'JUDG' or 'jud'    # Lahore: 'Order with signatures of Judge'; Peshawar: 'Order or other Proceedings with ...';
 #                                      Sindh: 'DATE ORDER WITH SIGNATURE(S) OF JUDGE(S)', '... OF HON'BLE JUDGE' (D-138)
 # a header line printed after the JUDGMENT heading in High Court judgments: the hearing date and who appeared
 _POST_HEAD = re.compile(r"^\s*(?:date\s+of\s+hearing|(?:for\s+the\s+)?(?:petitioner|appellant|respondent|applicant|"
@@ -289,7 +298,8 @@ _PLACE_ONLY = re.compile(r"\b" + _PLACE + r"\b", re.I)
 # 2013' there; Sindh 'Date of Order : 11.06.2026' and 'Date of hearing and Order: 09.03.2026' (D-138). A bare 'dated'
 # is not one: a header prints 'FIR No.884/2024 dated 23.10.2024'
 _DATE_OF_DECISION = re.compile(r"(?:Date\s+of\s+(?:decision|judgment|judgement|announcement|order|"
-                               r"hearing\s*(?:and|&)\s*order|judg(?:e)?ment\s*/\s*reasons|"
+                               # /14 (D-146): Sindh 'Date of hearing & decision:', 'Date of hearing and Judgment:'
+                               r"hearing\s*(?:and|&)\s*(?:order|decision|judg(?:e)?ment)|judg(?:e)?ment\s*/\s*reasons|"
                                # /11 (D-142): GB Supreme Appellate Court, 'DATE OF DETAIL JUDGMENT: - 03.11.2016.',
                                # 'Date of delivery of detail judgment', 'Date of detail order'
                                r"(?:delivery\s+of\s+)?detail(?:ed)?\s+(?:judg(?:e)?ment|order))\s*[:.\-\s]*|"
@@ -475,16 +485,36 @@ def parse_judgment(doc, court_aliases: dict[str, str], case_types: dict[str, tup
     if start is None:
         # a High Court order sheet (D-128): no heading; the order begins after the column header 'Order with
         # signatures of Judge, and that of parties or counsel, where necessary'
-        col = next((i for i, ln in enumerate(main[:max(12, int(len(main) * 0.6))]) if _ORDER_COLUMNS.search(ln.text)),
-                   None)
+        col, wrapped = None, False
+        for i, ln in enumerate(main[:max(12, int(len(main) * 0.6))]):
+            if _ORDER_COLUMNS.search(ln.text):
+                col = i
+                break
+            # D-146: the header wrapped onto the next line ('Date Order with signature of' / 'Hon'ble Judge'); the
+            # match must begin on this line, and the next line must be only the header's end
+            nxt = main[i + 1].text if i + 1 < len(main) else ""
+            m = _ORDER_COLUMNS.search(ln.text + " " + nxt)
+            if m and m.start() < len(ln.text) and len(nxt.strip()) <= 30:
+                col, wrapped = i, True
+                break
         if col is not None:
             end = next((k for k in range(col, min(col + 3, len(main))) if re.search(r"(?i)\bnecessary\b", main[k].text)),
-                       col)
+                       col + 1 if wrapped else col)
             if end + 1 < len(main):
                 start, order_sheet = end + 1, True
     if start is None:
         start = next((i for i, ln in enumerate(main[:max(10, int(len(main) * 0.6))])
                       if i > 3 and _author(ln.text)), None)
+    order_dated = False
+    if start is None:
+        # D-146: a bench order printed with no heading, its header closed by a line that is only 'Order Dated: <date>'
+        # (the GB Supreme Appellate Court; some High Court orders). The order begins after that line, which stays in
+        # the header and dates the order (date_of_order). A date in a sentence ('the impugned order dated ...') is
+        # never such a line: the whole line must be the date.
+        k = next((i for i, ln in enumerate(main[:max(10, int(len(main) * 0.6))])
+                  if i > 1 and _ORDER_DATED.fullmatch(ln.text)), None)
+        if k is not None and k + 1 < len(main):
+            start, order_dated = k + 1, True
     if start is None:
         return Held("held", "no JUDGMENT/ORDER heading, or author line in the first 60% of the text")
     if order_sheet:
@@ -542,6 +572,9 @@ def parse_judgment(doc, court_aliases: dict[str, str], case_types: dict[str, tup
     op = -1
     if order_sheet:
         opinions.append(Opinion("order_of_court", "ORDER SHEET", None))
+        op = 0
+    elif order_dated:
+        opinions.append(Opinion("order_of_court", "ORDER", None))
         op = 0
     closing: list[Line] | None = None
     closings: list[str] = []

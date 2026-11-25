@@ -1136,6 +1136,106 @@ Area: client · Status: Superseded by D-084 (the whole-page cloth; the hem, the 
   design/heritage_art.dart, presentation/discover.dart, presentation/heritage.dart; test/heritage_test.dart
   (golden embroidery.png, a review sheet at 3x).
 
+### D-146 · 2026-11-25 · Parsers /13 and /14: orders with no heading open at their date line or wrapped column header; Sindh's header decision date; every court's undated judgments re-read
+Area: L1 precedent (PRECEDENT-MODEL §3) · Status: standing
+- Decision: three reads are added and one is refused.
+  - **/13 `Order Dated:` opens an order that prints no heading.** A line that is only "Order Dated: <date>" (the GB
+    Supreme Appellate Court's bench orders; some High Court orders) closes the header. The order begins after it, as
+    an order of the court, and the line dates it (date_of_order, the /12 rule). It applies only where no heading,
+    column header or author line is found. A date inside a sentence ("the impugned order dated ...") is never such a
+    line.
+  - **/13 the order sheet's column header, wrapped or misread.** "Date Order with signature of" / "Hon'ble Judge" over
+    two lines; "srgnature"; "Judge" cut to "JUDG" or "jud" (Sindh).
+  - **/13 author lines and dates:** "ZULFIQAR ALI SANGI, J;-" is an author line, but only as "J;-": a Sindh bench line
+    prints "Muhammad Saleem Jessar J; Adnan-ul-Karim Memon, J;". A soft hyphen (U+00AD) separates a date's parts in
+    some GB files ("08­06­2010").
+  - **/14 Sindh's header line "Date of hearing & decision:" / "Date of hearing and Judgment:"** dates the judgment
+    (date_of_decision), as "Date of hearing and order" already did. A hearing date alone never does.
+  - **Refused: "FAZAL SUBHAN. J.-"** (a stop between the name and J). The Peshawar files that print it are OCR'd text
+    layers, and their case lines read wrong: 17 of 21 differed from the case their own file name gives ("W.P No.
+    79-A of 2015" read as 79-N/2019). They stay held for the OCR lane. A file name is evidence, never a source of
+    the case key.
+- **Re-read and landed (25 Nov):**
+  - **/12 over every court's undated judgments** (8,488 files; Lahore was re-read under D-142): 88 gained a date
+    (Sindh 68, Peshawar 16, the Supreme Court 4), and 2 Peshawar files were caught as law-report reprints. The AJK
+    and GB courts' undated judgments print no decision date: a blank day ("__.01.2017", "-----1.2019") or only a hearing.
+    They stay undated, bounded by the hearing or the case year (D-124).
+  - **/13 over the 1,658 files held for 'no heading'**: 341 released (Sindh 248, GB SAC 86, Lahore 6, Peshawar 1), 6
+    as duplicates of judgments already held. The rest stay held: separate opinions issued as files of their own (the
+    Supreme Court), orders with no marker where their header ends, and OCR'd scans.
+  - **/14 over the 632 undated files printing the line:** 602 Sindh judgments and 1 Lahore judgment dated.
+  - **Released: 61,177 judgments** (60,826 before, plus 22 from the Supreme Court's site, D-144), **12,938 undated**.
+- Why: these were the gaps D-142 left open. Each rule was read against a sample of the files it would release, before
+  applying it.
+- Open: undated Lahore (4,996) and Sindh (6,267) judgments, other header forms (a label and its date in separate
+  columns), and the OCR lane for Peshawar's text-layer scans.
+- Where: nizam/corpus/judgment.py (`_ORDER_DATED` as an opener, `_ORDER_COLUMNS`, `_AUTHOR`, `_D_NUM`/`DATE`,
+  `_DATE_OF_DECISION`); tests/test_judgment_parse.py.
+
+### D-145 · 2026-11-25 · Sub-Article (1) printed on its heading's line opens in the AJK Interim Constitution and the GB Order
+Area: L1 corpus (released-law repair) · Status: standing (closes D-140's open item)
+- Decision: where an Article or section prints its number, its heading closed by a dash, and "(1)" on one line, the
+  reviewed rule `reviewed_hyphen_first_subsection` (rule F, doc 4450) cuts the block after the dash so that sub-Article
+  (1) opens. Recorded by 30 page readings (tools/evidence/first-subsection-2026-11-25/), and both laws replayed and
+  released again with no law text changed:
+  - AJK Interim Constitution 1974 (doc 11875): 15 Articles (1, 5, 7, 12, 18, 19, 28, 30, 39, 42, 51, 51-A, 52, 53, 57);
+    697 → 712 provisions.
+  - GB Order 2018 (doc 11635): 17 sections; 725 → 742 provisions.
+  - Clauses and provisos printed under (1) move into it: Art. 52(1)(a)–(b) had hung on Art. 52 itself, beside
+    52(2)–(5); s.108(1)'s proviso had sat after s.108(4).
+- **Rule F gains a second form**, tried only where its first finds no place, so a block it already cut keeps that
+  cut. It accepts:
+  - a note marker before or after (1) ("President.- 1[(1) There", "etc.- (1) 3[Subject", "Assembly.- 2[(1)] The");
+  - a heading closed inside its amendment bracket ("quorum.-] (1) Subject");
+  - a space before the dash, or an underscore for it ("Commission. – (1)There", "Jurisdiction._ (1) Without");
+  - a line end anywhere in that run.
+- Why: Art. 42(1), the AJK Supreme Court's own founding words, had no unit, so a citation of "Art. 42(1)" could resolve
+  only to the whole Article (INV-4). Within each law it was mixed: 52 AJK Articles and 56 GB sections already had their
+  (1).
+- Open: GB ss.7, 51, 77 and 91 print the heading and "(1)" in one block and the sub-section's words in the next. The
+  rule cuts within one block, so they are unchanged. Other laws may print the same shape; not surveyed.
+- Note: both replays' recorded approval reasons read "D-144: …". That was the number before the Supreme Court crawl took
+  it, and the reason is this entry. Afterwards, these were rebuilt:
+  - the chunks: 16,589 re-cut and embedded on the CPU; the GPU vectors wait for the Kaggle run;
+  - the law link tables;
+  - judgment links pointing at retired provision ids: 8,606 judgments relinked, their law re-segmented here and in
+    earlier replays;
+  - 53 alias evidence passages, re-pointed.
+- Where: nizam/corpus/segment.py (`_K6_HYPHEN_SUB_MARKED`); tools/evidence/first-subsection-2026-11-25/.
+
+### D-144 · 2026-11-25 · The Supreme Court's own site is crawled through its open listing only; its text never enters a training set
+Area: L1 precedent acquisition (D-139; PRECEDENT-MODEL §0, §7) · Status: standing
+- Decision: the Supreme Court is crawled from what scp.gov.pk serves without a block
+  (`data/scp_judgments_scraper.py`, surveyed 25 Nov 2026):
+  - **www.supremecourt.gov.pk is refused.** It answers 403 to every path, robots.txt included (an Akamai denial).
+    The court's site is www.scp.gov.pk.
+  - **robots.txt** allows every path to a generic client and signals `search=yes, ai-train=no, use=reference`; it
+    says nothing on ai-input. It disallows the named AI crawlers.
+  - **The judgment search is not used.** /JudgmentsSearch is protected by reCAPTCHA, and a block is never
+    circumvented (D-139). The September archive (`scp_judgments.zip`, 3,750 files) was gathered through that search
+    with a captcha-solving browser extension. That route is not repeated.
+  - **The open listing is /LatestJudgments**: the last 25 uploads, each row giving the case number, title, author
+    judge, judgment date and upload date, and some a tagline. The crawler keeps every row it has ever seen
+    (`listing.jsonl`), so running it regularly keeps the court current from now on.
+  - **Files are fetched from /Judgments/<file>.pdf.** The September manifest's 16 failed files are served there under
+    the same names. 12 were already held, 1 is fetched now, and 3 are gone (404: `const.p._42_*`).
+  - The advocates' portal (portal.scp.gov.pk) needs a sign-in, and is not used.
+- **Landed:** 26 new files (none already held), 22 judgments released, 4 of them undated, as printed. The gates held 3:
+  - a file with no heading;
+  - a header naming no court in its first lines;
+  - a case line with no year (J3).
+  1 is a scan for the OCR lane. The archive is `scp_site_judgments.zip` under source `pk-scp-judgments`.
+- **Not reachable:** judgments uploaded between the September archive (7 Sep, 25 from 2026) and the current listing
+  (the earliest upload in it is 3 Nov). The listing shows only the last 25 and the search is behind reCAPTCHA. Owner
+  question: ask the court for access, or accept the gap.
+- **ai-train=no is kept.** This court's text is searched, quoted and cited (search=yes, use=reference), but never put
+  into a training or fine-tuning set. That includes the reranker fine-tuning ADR-2 plans: Supreme Court passages may
+  be scored as evaluation gold, never trained on. Training data built later must filter on court SC (and
+  `pk-scp-judgments`).
+- Why: D-139's owner ruling covers the AI opt-out for search. The captcha and the training signal are lines the ruling
+  did not cross.
+- Where: data/scp_judgments_scraper.py; /mnt/e/nizam-data/scp_site_judgments.zip.
+
 ### D-143 · 2026-11-25 · The Government of Gilgit-Baltistan Order 2018 is repaired from page readings
 Area: L1 corpus (released-law repair) · Status: standing (closes D-141's open item)
 - Decision: the GB Order 2018 (document 11635, observation 15449, released with the D-113 GB drop) is re-segmented

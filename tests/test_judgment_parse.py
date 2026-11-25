@@ -454,3 +454,95 @@ def test_peshawar_prints_announced_with_a_stop_and_dated():
                       ("Announced in open Court on 18.09.2015.", dt.date(2015, 9, 18))):
         m = _ANNOUNCED.search(text)
         assert m and read_date(m.group(0), TODAY) == day, text
+
+
+# ------------------------------------------------------------------------------- headless orders (D-146, parser /13)
+
+HC_ALIASES = dict(ALIASES, **{"supreme appellate court gilgit baltistan": "GBSAC"})
+HC_TYPES = {"PHC:WP": ("writ", ["writ petition", "w p", "wp"]),
+            "SHC:CRLACQA": ("appeal", ["crl acquittal appeal", "criminal acquittal appeal"]),
+            "SHC:CP": ("writ", ["constt petition", "constitution petition", "const petition", "c p"]),
+            "GBSAC:CPLA": ("leave_petition", ["cpla"])}
+
+
+def hc(d, court):
+    return parse_judgment(d, HC_ALIASES, HC_TYPES, expected_court=court, today=TODAY)
+
+
+def test_a_sindh_author_line_closed_by_a_semicolon_but_never_a_bench_line():
+    # Peshawar's OCR'd 'FAZAL SUBHAN. J.-' (a stop before the title) is not taken: those files' case lines read
+    # wrong, so they stay held for the OCR lane (D-146)
+    phc = ["PESHAWAR HIGH COURT, ABBOTTABAD BENCH", "JUDICIAL DEPARTMENT", "JUDGMENT SHEET",
+           "Writ Petition No. 584-A/2022", "Date of hearing : 06.12.2022",
+           "Petitioner (Sayyab Khan) By Mr. Aqeel, Advocate.", "Respondents (Mst. Tayyaba) By Mr. Munib, Advocate.",
+           "FAZAL SUBHAN. J.- By way of this writ petition the petitioner has prayed for the relief below.",
+           "2.", "For the reasons recorded, the petition is dismissed.", "JUDGE", "Announced. 14.12.2022"]
+    held = hc(doc([phc]), "PHC")
+    assert isinstance(held, Held) and held.reason.startswith("no JUDGMENT/ORDER heading")
+    shc = ["JUDGMENT SHEET IN THE HIGH COURT OF SINDH, CIRCUIT COURT, LARKANA",
+           "Crl.Acquittal Appeal No.D-39 of 2022.", "Before:", "Mr. Justice Adnan Iqbal Chaudhry,",
+           "Mr. Justice Zulfiqar Ali Sangi,", "04. For hearing of main case.", "14.03.2023",
+           "Mr. Suhail Ahmed Veesar, Advocate for appellant.",
+           "ZULFIQAR ALI SANGI, J;- Through the listed appeal the appellant has impugned the judgment of acquittal.",
+           "2.", "For the reasons recorded, the appeal is dismissed.", "JUDGE", "JUDGE"]
+    r = hc(doc([shc]), "SHC")
+    assert isinstance(r, ParsedJudgment), r
+    assert r.opinions[0].author_printed.startswith("ZULFIQAR ALI SANGI")
+    # a sentence ending in a capital and a stop is never an author line
+    from nizam.corpus.judgment import _author
+    assert _author("The appeal is allowed. J.") is None and _author("In view of the above. J.-") is None
+    assert _author("Muhammad Saleem Jessar J; Adnan-ul-Karim Memon, J; For hearing of main case") is None
+
+
+def test_a_wrapped_or_misread_order_sheet_column_header_opens_the_order():
+    sheet = ["ORDER SHEET", "IN THE HIGH COURT OF SINDH, CIRCUIT COURT, LARKANA",
+             "Constt. Petition No. D-722 of 2016", "Date Order with srgnature of", "Hon'ble Judge",
+             "For orders on maintainability", "23.11.2016", "None present for the petitioner.",
+             "Mr. Ali Akber Kalhoro, State Counsel",
+             "None is present for the petitioner. Same was the position on the last date of hearing. It appears that "
+             "after filing this petition the petitioner lost interest; it is dismissed for non-prosecution.", "JUDGE"]
+    r = hc(doc([sheet]), "SHC")
+    assert isinstance(r, ParsedJudgment), r
+    assert (r.decided_on, r.decided_on_basis) == (dt.date(2016, 11, 23), "date_of_order")
+    assert [o.kind for o in r.opinions] == ["order_of_court"]
+    wrapped = sheet[:3] + ["DATE ORDER WITH SIGNATURE OF", "JUDG"] + sheet[5:]
+    assert isinstance(hc(doc([wrapped]), "SHC"), ParsedJudgment)
+
+
+GB_ORDER = ["IN THE SUPREME APPELLATE COURT GILGIT-BALTISTAN", "CPLA No. 02/2010",
+            "Before: Mr. Justice Muhammad Nawaz Abbasi, Chief Judge. Mr. Justice Syed Jaffar Shah, Judge.",
+            "Muhammad Naseem s/o Abdul Sadique Petitioner. Versus Zafar Iqbal MD NATCO",
+            "PETITION FOR LEAVE TO APPEAL UNDER ARTICLE 60 (11)(12) OF THE ORDER",
+            "Mr. Ehsan Ali Advocate for Petitioner", "Order Dated: 08­06­2010",
+            "These connected petitions have been directed against the judgment dated 28­09­2009 passed by the "
+            "Chief Court in a Civil Revision.", "2.", "The leave is refused.", "Chief Judge.", "Judge."]
+
+
+def test_an_order_dated_line_opens_a_headless_order_and_dates_it():
+    r = hc(doc([GB_ORDER]), "GBSAC")
+    assert isinstance(r, ParsedJudgment), r
+    assert (r.decided_on, r.decided_on_basis) == (dt.date(2010, 6, 8), "date_of_order")   # soft hyphens read
+    assert [o.kind for o in r.opinions] == ["order_of_court"]
+    body = " ".join(p.text for p in r.paragraphs if p.kind == "body")
+    assert body.startswith("These connected petitions") and "Advocate" not in body
+    # without the line nothing marks where the order begins: still held, never guessed
+    bare = [x for x in GB_ORDER if not x.startswith("Order Dated")]
+    held = hc(doc([bare]), "GBSAC")
+    assert isinstance(held, Held) and held.reason.startswith("no JUDGMENT/ORDER heading")
+
+
+def test_sindh_date_of_hearing_and_decision_in_the_header_dates_the_judgment():
+    for label in ("Date of hearing & decision:", "Date of hearing\n& decision:", "Date of hearing and Judgment:",
+                  "Date of hearing& decision :"):
+        sheet = ["IN THE HIGH COURT OF SINDH, CIRCUIT COURT, LARKANA", "Constt. Petition No. D-722 of 2016",
+                 "Mr. Ali Akber Kalhoro, Advocate for the petitioner.", label, "10.12.2025.", "ORDER",
+                 "ADNAN IQBAL CHAUDHRY, J.- The petitioner seeks the relief prayed in the petition.",
+                 "2.", "For the reasons recorded, the petition is dismissed.", "JUDGE"]
+        r = hc(doc([sheet]), "SHC")
+        assert isinstance(r, ParsedJudgment), (label, r)
+        assert (r.decided_on, r.decided_on_basis) == (dt.date(2025, 12, 10), "date_of_decision"), label
+    # a hearing alone never dates the judgment
+    alone = ["IN THE HIGH COURT OF SINDH, CIRCUIT COURT, LARKANA", "Constt. Petition No. D-722 of 2016",
+             "Date of hearing:", "10.12.2025.", "ORDER",
+             "ADNAN IQBAL CHAUDHRY, J.- The petitioner seeks the relief prayed in the petition.", "JUDGE"]
+    assert hc(doc([alone]), "SHC").decided_on is None

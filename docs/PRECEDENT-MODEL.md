@@ -95,6 +95,12 @@ downloaded and wait for their courts to be recorded, which waits for the AJK Int
   A court outside a rule's reach is NotRecorded. Neither AJK nor GB prints a superintendence clause, so "courts
   subordinate to it" is NotRecorded there.
 
+*As built (25 Nov 2026, later; D-144, D-146):* released judgments 61,177, 12,938 undated.
+- The Supreme Court's own site is crawled through its open "Last 25" listing (22 released). Its search is behind
+  reCAPTCHA and is not used. Its robots.txt signals ai-train=no, so Supreme Court text is never put in a training set.
+- Parsers /13 and /14 read orders with no heading (an `Order Dated:` line; a wrapped column header) and Sindh's
+  "Date of hearing & decision". Every court's undated judgments were re-read.
+
 ---
 
 ## 1. Courts are data, with dated authority rules (D-116)
