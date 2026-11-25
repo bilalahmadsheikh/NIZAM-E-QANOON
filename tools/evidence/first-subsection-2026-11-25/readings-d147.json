@@ -1,0 +1,62 @@
+[
+ {
+  "document_id": 11635,
+  "page_no": 4,
+  "match_text": "void.-(1) Any law, or any custom or usage having the force of law, in so far as it is",
+  "before_text": "void.-(1) Any law, or any custom or usage having the force of law, in so far as it is",
+  "after_text": "void.-(1) Any law, or any custom or usage having the force of law, in so far as it is",
+  "render": ".artifacts/first-subsection-2026-11-25/renders/doc11635-p4.png",
+  "render_sha256": "006d8d777fc0d8beec071226e0306167f679a79d1f52af0f3c0e64c8a5dfd295",
+  "source_hyphen_first_subsection_blocks": [
+   2904022
+  ],
+  "defect": "sub-section (1), printed at its section's heading, was read into the section's own text: (1) had no unit and its clauses hung on the section",
+  "fixes": "rule reviewed_hyphen_first_subsection (its third form where (1) closes the block, D-147): the block is cut after the heading's dash, so sub-section (1) opens; no law text changes",
+  "observed": "Page 4 of the Government of Gilgit-Baltistan Order 2018 prints s.7: 'void.-(1) Any law, or any custom o' (block 2904022): the heading closed by a dash and (1), the words of (1) following on that line or opening the next"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 24,
+  "match_text": "Seat in Assembly becomes vacant under certain circumstances.-  (1)",
+  "before_text": "Seat in Assembly becomes vacant under certain circumstances.-  (1)",
+  "after_text": "Seat in Assembly becomes vacant under certain circumstances.-  (1)",
+  "render": ".artifacts/first-subsection-2026-11-25/renders/doc11635-p24.png",
+  "render_sha256": "c5d01b9b3a07b6d3b76c0ece5a957b7b33f2c14f0ccccf31a446a43fc2bc3c84",
+  "source_hyphen_first_subsection_blocks": [
+   2904580
+  ],
+  "defect": "sub-section (1), printed at its section's heading, was read into the section's own text: (1) had no unit and its clauses hung on the section",
+  "fixes": "rule reviewed_hyphen_first_subsection (its third form where (1) closes the block, D-147): the block is cut after the heading's dash, so sub-section (1) opens; no law text changes",
+  "observed": "Page 24 of the Government of Gilgit-Baltistan Order 2018 prints s.51: '51. Seat in Assembly becomes vacant under certain circumstances.- (1)' (block 2904580): the heading closed by a dash and (1), the words of (1) following on that line or opening the next"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 44,
+  "match_text": "Issue and execution of processes of Supreme Appellate Court.-(1)",
+  "before_text": "Issue and execution of processes of Supreme Appellate Court.-(1)",
+  "after_text": "Issue and execution of processes of Supreme Appellate Court.-(1)",
+  "render": ".artifacts/first-subsection-2026-11-25/renders/doc11635-p44.png",
+  "render_sha256": "1e06eb5e919ce8d1e2842e38549496f2b1846b7fa9bbc757d44a4aaab6f72013",
+  "source_hyphen_first_subsection_blocks": [
+   2905112
+  ],
+  "defect": "sub-section (1), printed at its section's heading, was read into the section's own text: (1) had no unit and its clauses hung on the section",
+  "fixes": "rule reviewed_hyphen_first_subsection (its third form where (1) closes the block, D-147): the block is cut after the heading's dash, so sub-section (1) opens; no law text changes",
+  "observed": "Page 44 of the Government of Gilgit-Baltistan Order 2018 prints s.77: '77. Issue and execution of processes of Supreme Appellate Court.-(1)' (block 2905112): the heading closed by a dash and (1), the words of (1) following on that line or opening the next"
+ },
+ {
+  "document_id": 11635,
+  "page_no": 52,
+  "match_text": "Chief Court to superintend and control all courts subordinate to it,",
+  "before_text": "Chief Court to superintend and control all courts subordinate to it,",
+  "after_text": "Chief Court to superintend and control all courts subordinate to it,",
+  "render": ".artifacts/first-subsection-2026-11-25/renders/doc11635-p52.png",
+  "render_sha256": "4aff30443c7a5156691d4f793226d463d064c2ffbf6f4e376465de329bdc67d8",
+  "source_hyphen_first_subsection_blocks": [
+   2905344
+  ],
+  "defect": "sub-section (1), printed at its section's heading, was read into the section's own text: (1) had no unit and its clauses hung on the section",
+  "fixes": "rule reviewed_hyphen_first_subsection (its third form where (1) closes the block, D-147): the block is cut after the heading's dash, so sub-section (1) opens; no law text changes",
+  "observed": "Page 52 of the Government of Gilgit-Baltistan Order 2018 prints s.91: 'etc.-(1) The Chief Court shall su' (block 2905344): the heading closed by a dash and (1), the words of (1) following on that line or opening the next"
+ }
+]

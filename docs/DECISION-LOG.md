@@ -1136,6 +1136,62 @@ Area: client · Status: Superseded by D-084 (the whole-page cloth; the hem, the 
   design/heritage_art.dart, presentation/discover.dart, presentation/heritage.dart; test/heritage_test.dart
   (golden embroidery.png, a review sheet at 3x).
 
+### D-148 · 2026-11-25 · The Supreme Court's judgment search is crawled in a visible browser with the owner present to answer any captcha
+Area: L1 precedent (acquisition) · Status: standing (owner ruling; amends D-144's "open listing only")
+- Decision: `data/scp_search_crawler.py` drives the search in a visible Chrome window on its own fresh profile, not
+  the owner's. The owner is present, and if the site shows a captcha challenge, the owner answers it in that window.
+  - Each search is the form's own submit, run in the owner's window.
+  - Paging is the grid's own postback.
+  - The script never solves, bypasses or replays a captcha token. The site's reCAPTCHA v3 scores the window as it
+    would any visitor.
+  - It runs one search per case year (2026 back to 1980) at 100 rows a page, 4 s apart. Every page is saved
+    (`search/y<year>-p<n>.html`) and every row recorded with its judgment and upload dates (`search/rows.jsonl`).
+  - Files neither archive holds are queued in the site archive's listing. They are downloaded by
+    `data/scp_judgments_scraper.py` from the open `/Judgments/` folder and landed as D-144's were.
+- Why: the owner ruled to crawl the search with a person answering any challenge. D-144 had read only the open "Last
+  25" listing, which left the uploads of 7 Sep–3 Nov unreachable. The rows' judgment dates can also date Supreme
+  Court judgments the archive holds as undated (D-124), as records, never guesses.
+- Unchanged: robots.txt says ai-train=no, so this text never enters a training set (D-144). No headnote or reporter
+  text is used (D-120).
+- As run on 25 Nov:
+  - The search lists 3,865 files across case years 1980–2026. No case is listed for 1980–1992 except one in 1993
+    and six in 1996. No challenge appeared.
+  - 3,737 of the listed files were already held: 3,711 in the September archive and 26 in the site archive.
+  - Of the 128 new files, 124 were downloaded.
+  - The file with a space and an "&" in its name ("ICA3 &4-2011DT2011.pdf") gets 400 from the server however its
+    name is encoded. Three Const.P. 42 files on the September archive's retry list return 404.
+  - 79 new Supreme Court judgments were released, 8 of them undated; 5 files need OCR and 2 are held.
+  - Of 136 parsed files, 133 have a case number that agrees with the court's listing. One differs: CMAs 3685-3686
+    of 2012 in HRC 7734-G of 2009, keyed to the HRC case, as the archive's other copy of that order is. Two listing
+    rows print no number to compare.
+  - The listing's judgment dates cover only 4 of the 316 undated Supreme Court judgments, so no "listed date" basis
+    is added.
+- Crawler lessons:
+  - At 100 rows a page, responses were cut short, so it pages at 50.
+  - An Urdu-version row's tagline can link the main judgment, so links inside taglines are not rows.
+  - The refusal message sits hidden in every page, so only a visible one counts. The owner confirmed the stalls on
+    25 Nov were the connection, not the site.
+- Where: data/scp_search_crawler.py; E:/nizam-data/acquire/scp/search/.
+
+### D-147 · 2026-11-25 · Sub-section (1) opens in GB Order ss.7, 51, 77 and 91, closing D-145's open item; rule F's third form
+Area: L1 corpus (released-law repair) · Status: standing (closes D-145's open item)
+- Decision: the four GB Order 2018 sections (doc 11635) that D-145 left open are read and recorded, and the law
+  replayed with no law text changed: 742 → 746 provisions.
+- Two shapes, each read on its page (renders under .artifacts/first-subsection-2026-11-25/renders):
+  - **ss.7 and 91:** the heading runs to a second line, where the dash and (1) are printed and the sub-section's
+    words follow ("void.-(1) Any law ..."). Rule F's first form already cuts that block; it had not been read.
+  - **ss.51 and 77:** (1) closes the heading's line, and the words open the next line ("... circumstances.- (1)" /
+    "The seat of a member ..."). **Rule F gains a third form** (`_K6_HYPHEN_SUB_AT_END`), tried only where neither
+    earlier form finds a place: it cuts after the dash when (1) is the block's last text.
+- s.51's clauses (a)–(e) now sit under s.51(1), where the page prints them; before, they hung on s.51 beside
+  (2)–(4).
+- Recorder trap: a reading whose locator line is the same text as an earlier patch's locator on that page is
+  refused as "already recorded", even when it carries a different rule. Page 52's reading is therefore located by
+  the heading's first line.
+- Tests: tests/test_k6_rules_fg.py covers the second form (D-145) and the third.
+- Where: nizam/corpus/segment.py; tools/evidence/first-subsection-2026-11-25/build_readings_d147.py and
+  readings-d147.json.
+
 ### D-146 · 2026-11-25 · Parsers /13 and /14: orders with no heading open at their date line or wrapped column header; Sindh's header decision date; every court's undated judgments re-read
 Area: L1 precedent (PRECEDENT-MODEL §3) · Status: standing
 - Decision: three reads are added and one is refused.
@@ -1193,7 +1249,8 @@ Area: L1 corpus (released-law repair) · Status: standing (closes D-140's open i
   only to the whole Article (INV-4). Within each law it was mixed: 52 AJK Articles and 56 GB sections already had their
   (1).
 - Open: GB ss.7, 51, 77 and 91 print the heading and "(1)" in one block and the sub-section's words in the next. The
-  rule cuts within one block, so they are unchanged. Other laws may print the same shape; not surveyed.
+  rule cuts within one block, so they are unchanged. Other laws may print the same shape; not surveyed. (Closed by
+  D-147.)
 - Note: both replays' recorded approval reasons read "D-144: …". That was the number before the Supreme Court crawl took
   it, and the reason is this entry. Afterwards, these were rebuilt:
   - the chunks: 16,589 re-cut and embedded on the CPU; the GPU vectors wait for the Kaggle run;

@@ -2804,6 +2804,9 @@ def subdivide_spans(text: str) -> list[tuple[int, str]]:
             # inside its amendment bracket ('quorum.-] (1) Subject', 'etc.- ] (1) Where'), a space before the dash
             # ('Commission. \u2013 (1)There') or an underscore for it ('Jurisdiction._ (1) Without'), across a line end
             _k6f = [m.end() for m in _K6_HYPHEN_SUB_MARKED.finditer(text)]
+        if not _k6f:
+            # D-147: '(1)' closes the block; its words are the next block's
+            _k6f = [m.end() for m in _K6_HYPHEN_SUB_AT_END.finditer(text)]
         if len(_k6f) != 1:
             raise ValueError(f"source hyphen first sub-section block holds {len(_k6f)} 'Heading.-(1)' places")
         lower_heading_cuts.add(_k6f[0])
@@ -9057,6 +9060,9 @@ _K6_HYPHEN_SUB_SEEN: contextvars.ContextVar[set] = contextvars.ContextVar("k6_hy
 # bracket), before any note marker that opens (1)
 _K6_HYPHEN_SUB_MARKED = re.compile(r"(?<=[A-Za-z.])[ \t]?[-_–—]{1,2}\s*(?:\]\s*)?"
                                    r"(?=(?:\d{1,3}\s*\[\s*)?\(\s*1\s*\)\s*\]?\s*(?:\d{1,3}\s*\[\s*(?:\*\s*\]\s*)?)?[A-Z])")
+# rule F's third form (D-147), tried only where neither form above finds a place: (1) closes the reviewed block and its
+# words open the next block ('circumstances.- (1)' / 'The seat of a member ...', GB Order 2018 ss.51 and 77)
+_K6_HYPHEN_SUB_AT_END = re.compile(r"(?<=[A-Za-z.])[ \t]?[-_–—]{1,2}\s*(?=\(\s*1\s*\)\s*$)")
 _JD_FSC_LINE = re.compile(r"(?<=\n)[ \t\u00a0]*(?=\([ \t]*1[ \t]*\)[ \t\u00a0]*\n?[ \t\u00a0]*[\u201c\"]"
                           r"|\d{1,4}[a-z]?[ \t]*\[[ \t]*\([ \t]*\d{1,3}[A-Z]?[ \t]*\)[ \t]*\][ \t]*(?:[A-Za-z]|\d{1,4}[ \t]*\[))")
 # agJD rule D `marked_dash_section_cut`: texts of reviewed blocks (after readings)

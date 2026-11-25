@@ -88,9 +88,9 @@ Set aside by rule (listed for review, nothing to do unless a rule changes):
 | PHC | released, date not printed | 699 |
 | PHC | held by a gate | 681 |
 | PHC | law-report reprint | 655 |
-| SC | scan | 439 |
-| SC | released, date not printed | 316 |
-| SC | held by a gate | 197 |
+| SC | scan | 444 |
+| SC | released, date not printed | 324 |
+| SC | held by a gate | 199 |
 | SC | released, text layer below J9 | 1 |
 | SHC | released, date not printed | 6,267 |
 | SHC | scan | 5,223 |
@@ -103,11 +103,11 @@ What each needs:
 | category | needs | items |
 |---|---|---:|
 | court not held | acquire the court's judgments | 6 |
-| held by a gate | a parser rule or a person's reading (see reason) | 3,978 |
+| held by a gate | a parser rule or a person's reading (see reason) | 3,980 |
 | law-report reprint | the court's own copy (portal recrawl); D-120 | 3,070 |
-| released, date not printed | the court's decision date (portal recrawl with metadata) | 12,938 |
+| released, date not printed | the court's decision date (portal recrawl with metadata) | 12,946 |
 | released, text layer below J9 | an OCR re-read (D-114); released before the gate | 1 |
-| scan | OCR (D-114) | 8,115 |
+| scan | OCR (D-114) | 8,120 |
 | source to recrawl | recrawl the Sindh High Court portal | 1 |
 
 ## Order of work (recommended)

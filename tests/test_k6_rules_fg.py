@@ -42,6 +42,35 @@ def test_f_heading_without_stop_or_dash():
     assert nodes[("subsection", "1", "19")].text.startswith("The Government shall establish")
 
 
+def test_f_second_form_note_marker_or_bracketed_heading_close():
+    # D-145 (AJK Interim Constitution, GB Order 2018): a note marker before (1), a heading closed inside its bracket
+    blocks = [_b(31, "5. President.- 1[(1) There shall be a President of Azad Jammu and Kashmir.", 100),
+              _b(32, "(2) The President shall be elected.", 130),
+              _b(33, "30. 2[Voting in Assembly and quorum.-] (1) Subject to this Act, all questions shall be decided.",
+                 160),
+              _b(34, "(2) The Speaker shall not vote.", 190)]
+    nodes = _flat(segment(blocks, structural_overrides={"source_hyphen_first_subsection_blocks": [31, 33]}))
+    assert ("subsection", "1", "5") in nodes and ("subsection", "1", "30") in nodes
+    assert "There shall be a President" in nodes[("subsection", "1", "5")].text
+    assert nodes[("subsection", "1", "30")].text.startswith("Subject to this Act")
+
+
+def test_f_third_form_one_closing_the_block_takes_the_next_blocks_words():
+    # D-147 (GB Order 2018 s.51): '(1)' closes the heading's line; its words and clauses open the next block
+    blocks = [_b(41, "51. Seat in Assembly becomes vacant under certain circumstances.- (1)", 100),
+              _b(42, "The seat of a member of the Assembly shall become vacant if-", 120),
+              _b(43, "(a) he resigns his seat; or", 140),
+              _b(44, "(b) he is absent from the Assembly.", 160),
+              _b(45, "(2) If the member is elected to more than one seat, he shall resign all but one.", 190)]
+    nodes = _flat(segment(blocks, structural_overrides={"source_hyphen_first_subsection_blocks": [41]}))
+    assert nodes[("subsection", "1", "51")].text.startswith("The seat of a member")
+    assert ("clause", "a", "1") in nodes and ("clause", "b", "1") in nodes
+    assert ("subsection", "2", "51") in nodes
+    # without the key, (1) stays in the section's text and its clauses hang on the section
+    plain = _flat(segment(blocks))
+    assert ("subsection", "1", "51") not in plain
+
+
 def test_f_inert_without_the_key():
     nodes = _flat(segment(RULES))
     assert ("subsection", "1", "2") not in nodes

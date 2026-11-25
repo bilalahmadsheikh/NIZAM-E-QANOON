@@ -48,6 +48,9 @@ FIELDS = ("subject", "case_number", "title", "author_judge", "judgment_date", "u
 
 
 def get(url: str, timeout: int = 90) -> bytes:
+    # a listed file name may hold a space ('ICA3 &4-2011DT2011.pdf', D-148): the last segment is percent-encoded
+    head, _, name = url.rpartition("/")
+    url = f"{head}/{urllib.parse.quote(urllib.parse.unquote(name), safe='&')}"
     req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept": "*/*"})
     with urllib.request.urlopen(req, timeout=timeout) as r:
         return r.read()
