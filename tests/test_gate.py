@@ -149,6 +149,8 @@ def test_retrieve_vetoes_before_searching(monkeypatch):
                      today=date(2026, 11, 20))
     assert isinstance(out, G.Abstention) and out.code == "CORPUS_GAP" and out.gate["stage"] == "veto:source"
     assert "judgments" in out.public_reason
+    assert "not in the library" not in out.public_reason            # D-170: judgments are held
+    assert out.gate["refer_to"] == "precedent"                       # the search that answers it
     out = G.retrieve("Can my landlord evict me?", Filters(as_of=date(2027, 1, 1)), cal=CAL, today=date(2026, 11, 20))
     assert out.code == "NO_VALID_VERSION"
 

@@ -4,7 +4,8 @@ database, no model. Each returns a typed finding or None, and the gate turns a f
 
   time    the law at a future date (as_of after today, or a question asking what the law WILL be)  NO_VALID_VERSION
   place   the law OF a foreign place, with no Pakistani place in the question                        CORPUS_GAP
-  source  what a court, tribunal or ombudsman decided, or a law-report citation: no judgments yet    CORPUS_GAP
+  source  what a court, tribunal or ombudsman decided, or a law-report citation: this search reads   CORPUS_GAP
+          statutes; judgments are answered by precedent search (nizam.retrieval.precedent, D-170)
 
 Latin script only for now: an Urdu-script question meets only the classifier (recorded in D-102).
 
@@ -137,7 +138,8 @@ def source_veto(text: str) -> ScopeFinding | None:
         m = rx.search(text or "")
         if m:
             return ScopeFinding("CORPUS_GAP", "source", "the question asks what a court or tribunal decided; the "
-                                "corpus holds no judgments yet (statutes only, D-100)", m.group(0))
+                                "statute search answers from the law itself, and judgments are answered by "
+                                "precedent search (D-170)", m.group(0))
     return None
 
 

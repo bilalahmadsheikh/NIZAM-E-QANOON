@@ -6,7 +6,8 @@ Two values and no third: no retry at a lower threshold, no fallback to model kno
 
 Order of decisions, each recorded in the result's `gate` dict (INV-3):
   1. scope vetoes on the question, before any search (nizam.retrieval.scope): the law at a future date
-     (NO_VALID_VERSION), a court's decision (CORPUS_GAP, no judgments yet), the law of a foreign place (CORPUS_GAP);
+     (NO_VALID_VERSION), a court's decision (CORPUS_GAP: precedent search answers it, gate['refer_to'], D-170), the
+     law of a foreign place (CORPUS_GAP);
   2. the served retrieval (nizam.retrieval.rerank.ranked); nothing found -> INSUFFICIENT_EVIDENCE;
   3. the territory veto: no territory given or found, and the bundle's first 5 units hold provincial laws of two or
      more provinces -> JURISDICTION_UNRESOLVED (docs/04 §10.3: never guess a province);
@@ -54,8 +55,12 @@ PUBLIC = {   # what a reader is told, and what would let the question be answere
     "CORPUS_GAP:place": ("The library holds the law of Pakistan, its four provinces, Islamabad, Azad Jammu and Kashmir "
                          "and Gilgit-Baltistan, not the law of other countries.",
                          ("Ask how Pakistani law treats the matter.",)),
-    "CORPUS_GAP:source": ("Court judgments are not in the library yet; it holds statutes, rules and orders only.",
-                          ("Ask what the law itself says on the point.",)),
+    # D-170: judgments are held (D-116 onwards) but answered by precedent search, never from statutes; the
+    # abstention names that route in gate["refer_to"] so the caller can ask it (an L5/L6 choice, not a retry here)
+    "CORPUS_GAP:source": ("This search answers from the law itself. What a court decided is answered by searching "
+                          "the court judgments.",
+                          ("Search the court judgments for this question.",
+                           "Ask what the law itself says on the point.")),
     "CORPUS_GAP:records": ("The library holds the law, not records about particular people, cases, property or "
                            "companies.", ("Ask the office that keeps the record; ask here what the law requires.",)),
     "CORPUS_GAP:statistics": ("The library holds the law, not statistics about cases or events.",
@@ -247,6 +252,8 @@ def retrieve(question, filters: Filters, k: int = 50, connect_fn=None, encoder=N
         g = {"calibration": cal.get("version"), "stage": f"veto:{finding.kind}", "matched": finding.matched,
              "detail": finding.reason}
         variant = finding.kind if finding.code == "CORPUS_GAP" else None
+        if finding.kind == "source":
+            g["refer_to"] = "precedent"          # D-170: the search that answers it (/v1/precedent/search)
         return _abstain(finding.code, g, {"query": spec.text}, variant=variant)
     r = ranked(spec, filters, k, connect_fn=connect_fn, encoder=encoder, reranker=reranker)
     out = gate(r, cal=cal, connect_fn=connect_fn)

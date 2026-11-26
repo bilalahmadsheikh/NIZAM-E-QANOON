@@ -1136,6 +1136,29 @@ Area: client · Status: Superseded by D-084 (the whole-page cloth; the hem, the 
   design/heritage_art.dart, presentation/discover.dart, presentation/heritage.dart; test/heritage_test.dart
   (golden embroidery.png, a review sheet at 3x).
 
+### D-170 · 2026-11-27 · The statute search's "court decision" veto names precedent search; every Kaggle upload is checked private
+Area: L3 retrieval (docs/04 §8) / tooling · Status: standing (owner asked for both, 27 Nov)
+- The statute search's source veto (D-102) still told readers "Court judgments are not in the library yet". That
+  was false since D-116 (64,273 judgments released by D-157).
+  - The veto stays. The statute search (`retrieve()`) answers from statutes only. A question asking what a court
+    decided must not be answered from sections, and INV-2's two values are unchanged.
+  - Its public reason now says the search answers from the law itself and that a court's decision is answered by
+    searching the judgments. Its first suggestion is to search the court judgments.
+  - The abstention's gate record carries `refer_to: "precedent"`. The caller (L5/L6, not built yet; no API route
+    serves `retrieve()`) can send the question to `/v1/precedent/search`. This is a route for the caller, never a
+    retry inside L3.
+  - The statute golden sets' judgment questions still correctly expect this search to abstain. Their "why" notes
+    ("no judgments yet") are history and are not rewritten.
+- Kaggle (owner: "I don't want them public"): both accounts were checked on 27 Nov. Every one of the 46 datasets
+  and 81 notebooks answers 403 to a visitor with no credentials.
+  - Control: a known public dataset answers 200. Kaggle reports ours `isPrivate: true`.
+  - Every upload since October was created private. `kg.sh` never passes `--public`, and every kernel's metadata
+    sets `is_private: true`.
+  - Now `kg.sh dsup` asks Kaggle after each upload and exits 3, loudly, if the dataset is not private. `kg.sh
+    privacy` repeats the no-credentials check over a whole account.
+- Where: nizam/retrieval/scope.py (`source_veto`), nizam/retrieval/gate.py (`PUBLIC`, `retrieve`),
+  tests/test_gate.py; tools/kaggle/kg.sh (`dsup`, `privacy`).
+
 ### D-169 · 2026-11-27 · The 4-bit question encoder passes the reranked check: the GPU host serves it in 4-bit
 Area: L3 retrieval / deployment (GPU host) · Status: standing (closes D-165's open condition)
 - D-165 required that before a 4-bit (NF4) question encoder serves, the reranked path is measured once, as ADR-1d
