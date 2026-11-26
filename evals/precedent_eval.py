@@ -56,13 +56,18 @@ def make_split() -> int:
     fixed = {f: "dev" for f in prior["dev"]} | {f: "test" for f in prior["test"]}
     split = {"dev": [], "test": []}
     for group, ids in sorted(fams.items()):
-        ids = sorted(ids, key=lambda f: hashlib.sha256(f.encode()).hexdigest())
-        n_dev = round(len(ids) * DEV_SHARE)
-        for i, f in enumerate(ids):
-            split[fixed.get(f, "dev" if i < n_dev else "test")].append(f)
+        # a family already placed keeps its side; new ones are placed by the same rule AMONG THEMSELVES (D-168), so
+        # adding a set never moves an old family and the new families split 60/40 however they interleave
+        new = sorted((f for f in ids if f not in fixed), key=lambda f: hashlib.sha256(f.encode()).hexdigest())
+        n_dev = round(len(new) * DEV_SHARE)
+        for f in ids:
+            split[fixed[f] if f in fixed else ("dev" if new.index(f) < n_dev else "test")].append(f)
     split = {k: sorted(v) for k, v in split.items()}
-    SPLIT.write_text(json.dumps({"rule": "families by sha256(familyId) within answerable/unanswerable, first 60% dev "
-                                          "(D-133)", **split}, indent=1), encoding="utf-8")
+    rule = prior.get("rule") or "families by sha256(familyId) within answerable/unanswerable, first 60% dev (D-133)"
+    if "D-168" not in rule:
+        rule += ("; families added later keep set 1's places and are split by the same rule among themselves, first "
+                 "60% dev (D-168)")
+    SPLIT.write_text(json.dumps({"rule": rule, **split}, indent=1), encoding="utf-8")
     n = defaultdict(int)
     for c in cases():
         n["dev" if c["familyId"] in split["dev"] else "test"] += 1

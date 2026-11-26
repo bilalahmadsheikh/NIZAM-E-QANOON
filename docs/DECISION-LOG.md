@@ -1136,6 +1136,42 @@ Area: client · Status: Superseded by D-084 (the whole-page cloth; the hem, the 
   design/heritage_art.dart, presentation/discover.dart, presentation/heritage.dart; test/heritage_test.dart
   (golden embroidery.png, a review sheet at 3x).
 
+### D-168 · 2026-11-27 · The precedent golden set widened to 145 cases (set 2), split so set 1's families never move
+Area: L3 evaluation (docs/10 §4, PRECEDENT-MODEL §6) · Status: standing (draft gold: A0 authoring + A3 resolution;
+legal review A1/A2 and κ still need two human annotators)
+- Decision: `evals/golden/build_precedent2.py` adds 87 cases in 39 new families (FP2-*) to set 1's 58, for 145.
+  - Every court held is covered: SC, LHC, SHC, PHC, IHC, FSC, FCC, AJKSC and the GB SAC and CC.
+  - Strata: issue 37, case lookup 15, provision 11, Urdu and Roman Urdu 10, temporal 6, authority 6,
+    unanswerable 2.
+  - It leans on the paths D-133 found weak. Case numbers are typed as lawyers type them ("CP 5364/2024 Supreme
+    Court", "IHC W.P. No. 2155/2026"). Named provisions and Urdu-script questions are the other two.
+- How gold is found: as set 1 (D-133). A plain SQL text match lists paragraphs, dated judgments first, and the author
+  reads the paragraph in full. It is never found by the precedent search it measures.
+  - Each proposition states what the court held, not counsel's argument.
+  - Every necessary paragraph is checked by regex against its released text. Every necessary judgment existed at the
+    case's as_of. The GB Chief Court case is asked on 27 Nov, because the undated judgment exists from its landing
+    (D-124).
+  - FSC, FCC, AJK and GB cases ask no authority question (forum None): `expected_status` reads Arts. 189 and 201 only.
+- Unanswerable: two tribunals the corpus does not record, the Federal Service Tribunal and the Customs Appellate
+  Tribunal (`court_not_held`). This is the open case D-157 named.
+- The split (`evals/precedent_eval.py split`): a family already placed keeps its side. New families are placed by
+  the same sha256 rule among themselves, first 60% dev.
+  - The old code ranked new families among all families and rewrote the rule text, which would have dropped the
+    hand placements D-138 to D-157 recorded. Now the rule text is kept and extended.
+  - Every set 1 family kept its side. Set 2 has 23 families in dev and 16 in test, with one tribunal case on each
+    side.
+  - New totals: dev 89 cases (49 families), test 57 (33).
+- Baseline, dev v2, CPU profile (`evals/results/precedent-eval-dev-v2-cpu.json`):
+  - Overall: hit@10 .609, MRR@10 .392, recall@50 .739, paragraph@10 .600; 1 of 2 abstain cases declined.
+  - By stratum (hit@10): case lookup 1.0 (14), issue .609 (46), temporal .60 (5), Urdu .429 (7), provision .364
+    (11), authority .25 (4).
+  - The new test cases are not read. The 8B profile's question vectors are being made on Kaggle
+    (`ds-q8-precedent-v2`, texts only, no gold).
+- Why: 58 cases were too few to tell the weak paths apart. Set 1 had 5 Urdu cases in all, so one case moved an
+  Urdu figure by 20 points or more. A decision on precedent ranking needs intervals that exclude zero.
+- Where: evals/golden/build_precedent2.py, golden-pk-v1-precedent2.draft.{jsonl,md}, split-precedent-v1.json;
+  evals/precedent_eval.py (`make_split`).
+
 ### D-167 · 2026-11-27 · Precedent reranking measured and not adopted; candidate blends confirmed per profile; precedent search 21% faster
 Area: L3 retrieval (precedent, statutes) / performance · Status: standing (dev only; test not read)
 - **Precedent reranking (not adopted).** `evals/precedent_rerank.py` takes the served search's 50 judgments per dev
