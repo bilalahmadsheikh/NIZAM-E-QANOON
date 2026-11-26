@@ -175,6 +175,18 @@ rrexportpush)
  "dataset_sources": ["$USER/nizam-$3"], "kernel_sources": [], "competition_sources": []}
 EOF3
   $KG kernels push -p $K ;;
+rrtrainpush)
+  # kg.sh rrtrainpush NAME DATASET : fine-tune the CPU reranker on nizam-DATASET's groups.jsonl
+  # (tools/rerank_train_pairs.py) and export it int8 (tools/kaggle/rerank_train_kernel.py, D-171). KG_SMOKE=1: 64
+  # groups. Status/fetch: rrstatus/rrfetch NAME.
+  K=/mnt/e/nizam-data/rerank/kernel-$2; mkdir -p $K
+  sed "s/__SMOKE__/${KG_SMOKE:-0}/" /mnt/e/Nizam_e_Qanoon/tools/kaggle/rerank_train_kernel.py > $K/rerank_train_kernel.py
+  cat > $K/kernel-metadata.json <<EOF3
+{"id": "$USER/nizam-rerank-run-$2", "title": "nizam-rerank-run-$2", "code_file": "rerank_train_kernel.py",
+ "language": "python", "kernel_type": "script", "is_private": true, "enable_gpu": true, "enable_internet": true,
+ "dataset_sources": ["$USER/nizam-$3"], "kernel_sources": [], "competition_sources": []}
+EOF3
+  $KG kernels push -p $K --accelerator ${KG_ACCEL:-NvidiaTeslaT4} ;;
 rrstatus)
   $KG kernels status $USER/nizam-rerank-run-$2 ;;
 rrfetch)
@@ -188,7 +200,28 @@ dsup)
 {"title": "nizam-$2", "id": "$USER/nizam-$2", "licenses": [{"name": "other"}]}
 EOF3
   if $KG datasets status $USER/nizam-$2 >/dev/null 2>&1; then $KG datasets version -p $3 -m "inputs $(date -u +%F)" -r skip
-  else $KG datasets create -p $3 -r skip; fi ;;
+  else $KG datasets create -p $3 -r skip; fi
+  # every upload must be private (owner, 27 Nov 2026; D-170): ask Kaggle, and fail loudly if it is not
+  for i in 1 2 3 4 5 6 7 8; do                  # a new dataset takes a moment to be viewable
+    sleep 15
+    P=$(curl -s -m 30 -H "Authorization: Bearer $KAGGLE_API_TOKEN" \
+          "https://www.kaggle.com/api/v1/datasets/view/$USER/nizam-$2" | grep -o '"isPrivate":[a-z]*')
+    [ -n "$P" ] && break
+  done
+  [ "$P" = '"isPrivate":true' ] || { echo "!!! nizam-$2 is NOT private ($P): make it private on Kaggle now"; exit 3; }
+  echo "nizam-$2: private" ;;
+privacy)
+  # kg.sh privacy : every dataset and notebook of this account, fetched with NO credentials: 403 = not visible
+  for p in $(seq 1 15); do
+    r=$($KG datasets list --mine --csv --page $p 2>/dev/null | tail -n +2 | cut -d, -f1); [ -z "$r" ] && break
+    for d in $r; do echo "dataset $d $(curl -s -o /dev/null -m 20 -w '%{http_code}' \
+                     "https://www.kaggle.com/api/v1/datasets/view/$d")"; done
+  done
+  for p in $(seq 1 15); do
+    r=$($KG kernels list --mine --csv --page-size 100 --page $p 2>/dev/null | tail -n +2 | cut -d, -f1); [ -z "$r" ] && break
+    for k in $r; do echo "kernel $k $(curl -s -o /dev/null -m 20 -w '%{http_code}' \
+                    "https://www.kaggle.com/api/v1/kernels/pull?userName=${k%%/*}&kernelSlug=${k##*/}")"; done
+  done ;;
 embedstatus)
   $KG kernels status $USER/nizam-embed-run-$2 ;;
 exportpush)
