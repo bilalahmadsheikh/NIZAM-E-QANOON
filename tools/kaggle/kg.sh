@@ -156,6 +156,8 @@ rrpush)
   # kg.sh dsup) with the rerankers MODELS (comma-separated slugs of tools/kaggle/rerank_kernel.py). KG_SMOKE=1: 64 pairs.
   K=/mnt/e/nizam-data/rerank/kernel-$2; mkdir -p $K
   sed "s/__MODELS__/$4/; s/__SMOKE__/${KG_SMOKE:-0}/" /mnt/e/Nizam_e_Qanoon/tools/kaggle/rerank_kernel.py > $K/rerank_kernel.py
+  # KG_TASK: the reranker's instruction for another kind of passage (judgments, D-167); unset keeps the statutes' own
+  [ -n "${KG_TASK:-}" ] && sed -i "s|__TASK__|${KG_TASK}|g" $K/rerank_kernel.py
   cat > $K/kernel-metadata.json <<EOF3
 {"id": "$USER/nizam-rerank-run-$2", "title": "nizam-rerank-run-$2", "code_file": "rerank_kernel.py", "language": "python",
  "kernel_type": "script", "is_private": true, "enable_gpu": true, "enable_internet": true,

@@ -91,10 +91,13 @@ class JudgmentRead:
         """Best BM25 paragraphs (body and footnote) of released judgments decided on or before `before`.
 
         The index's best window is taken first, then filtered to the release by id; one statement joining the
-        release view would make the planner expand it (the statute lesson, D-095)."""
-        rows = conn.execute("""SELECT id, decided_on, pdb.score(id) AS score FROM judgment_paragraph
-                                WHERE text ||| %s AND kind IN ('body', 'footnote') AND decided_on <= %s
-                                ORDER BY score DESC, id LIMIT %s""", (q, before, n * 4)).fetchall()
+        release view would make the planner expand it (the statute lesson, D-095). Since D-167 the window asks the
+        index alone (kind and decided_on are not index fields, so as predicates pg_search read them from the heap
+        for every candidate: ~110k buffer reads), over-fetched, and the kind and date filtered here. Measured on
+        precedent dev: every metric identical, p50 2,111 -> 1,660 ms with the coverage cache."""
+        rows = conn.execute("""SELECT id, decided_on, kind, pdb.score(id) AS score FROM judgment_paragraph
+                                WHERE text ||| %s ORDER BY score DESC, id LIMIT %s""", (q, n * 8)).fetchall()
+        rows = [r for r in rows if r["kind"] in ("body", "footnote") and r["decided_on"] <= before][:n * 4]
         return JudgmentRead._released(conn, rows, n, court)
 
     @staticmethod

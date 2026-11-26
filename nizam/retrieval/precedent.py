@@ -203,11 +203,20 @@ def _default_encoder(trace: dict):
 
 
 def search(question: str, *, as_of: date, court: str | None = None, forum=None, k: int = 10,
-           repo: JudgmentRead | None = None, encoder=None, subject: str | None = None) -> PrecedentResult:
+           repo: JudgmentRead | None = None, encoder=None, subject: str | None = None,
+           bm25: bool = True) -> PrecedentResult:
     if type(as_of) is not date:
         raise ValueError("as_of is mandatory (INV-5) and is a date")
     t0 = time.time()
     trace: dict = {}
+    stage: dict = {}                                 # ms per stage (D-167): where a search spends its time
+    clock = [time.time()]
+
+    def mark(name):
+        now = time.time()
+        stage[name] = round((now - clock[0]) * 1000)
+        clock[0] = now
+    trace["stage_ms"] = stage
     own = repo is None
     repo = repo or JudgmentRead()
     if own:
@@ -222,9 +231,11 @@ def search(question: str, *, as_of: date, court: str | None = None, forum=None, 
                 r = C.resolve(session, c)
                 if r.resolved_unit:
                     cited.append(dict(raw=c.raw, provision_id=r.resolved_unit.unit_id, law=r.resolved_law))
+            mark("citations")
             # the court the question names (D-137): one held court narrows the search to it; one that is not held
             # is a coverage gap, and no other court's judgment is shown as its view
             named = courts_named(conn, question)
+            mark("courts_named")
             trace["courts_named"] = named
             if court is None and len(named) == 1:
                 held = conn.execute("SELECT EXISTS (SELECT 1 FROM v_release_judgment WHERE court_code = %s) AS h",
@@ -247,9 +258,12 @@ def search(question: str, *, as_of: date, court: str | None = None, forum=None, 
                       JOIN v_release_judgment_paragraph p ON p.judgment_id = j.id AND p.decided_on = j.decided_on
                      WHERE c.case_key = ANY(%s) AND j.decided_on <= %s AND p.kind = 'body'
                      ORDER BY p.judgment_id, p.ordinal""", (cases, as_of)).fetchall()
+            mark("cases_named")
             # The question as asked. The statute path's Urdu gloss (D-105) and an English dense rendering were measured
             # here on dev and did not help (D-137); the measured route for Urdu is the 8B space (D-099).
-            lists["bm25"] = repo.bm25_paragraphs(conn, question, WINDOW, as_of, court)
+            if bm25:                                            # bm25=False: the D-167 measurement's variant
+                lists["bm25"] = repo.bm25_paragraphs(conn, question, WINDOW, as_of, court)
+            mark("bm25")
             mode = "lexical_only"
             try:
                 enc = encoder if encoder is not None else _default_encoder(trace)
@@ -269,9 +283,11 @@ def search(question: str, *, as_of: date, court: str | None = None, forum=None, 
                 mode = "hybrid"
             except Exception as exc:                            # noqa: BLE001  no encoder bundle on this host
                 trace["dense_unavailable"] = type(exc).__name__
+            mark("dense")                                       # the question's encoding and the HNSW scan
             if cited:
                 lists["cited"] = repo.citing_paragraphs(conn, [c["provision_id"] for c in cited], WINDOW, as_of,
                                                         court)
+            mark("cited")
             fused: dict = {}
             for name, rows in lists.items():
                 for rank, r in enumerate(rows, 1):
@@ -312,8 +328,11 @@ def search(question: str, *, as_of: date, court: str | None = None, forum=None, 
                     best[f["judgment_id"]] = (pid, f)
                 if len(best) >= k:
                     break
+            mark("fusion")                                      # RRF, the binding vote, subjects
             details = repo.paragraph_hits(conn, [pid for pid, _ in best.values()])
+            mark("details")
             statutes = repo.statutes_cited(conn, list(best), as_of)
+            mark("statutes_cited")
             hits = []
             withheld_queries = 0
             for jid, (pid, f) in best.items():
@@ -337,7 +356,9 @@ def search(question: str, *, as_of: date, court: str | None = None, forum=None, 
                     parties_display=d["parties_display"], privacy=d["privacy"],
                     gives_reasons=d["gives_reasons"], short_order_on=d["reasons_for_short_order_on"],
                     subjects=list(subj_of.get(jid, []))))
+            mark("hits")
             coverage = _coverage(conn)
+            mark("coverage")
         trace.update(generators={n: len(v) for n, v in lists.items()}, ms=int((time.time() - t0) * 1000),
                      withheld_by_name=withheld_queries, court_searched=court)
         return PrecedentResult(question=question, as_of=as_of, hits=hits, cited_provisions=cited,
@@ -347,8 +368,25 @@ def search(question: str, *, as_of: date, court: str | None = None, forum=None, 
             repo.close()
 
 
+_COVERAGE: dict = {}
+
+
 def _coverage(conn) -> list[dict]:
-    """The courts and years searched (D-122): 'nothing found' is always 'nothing found in this coverage'."""
+    """The courts and years searched (D-122): 'nothing found' is always 'nothing found in this coverage'.
+
+    Cached per process (D-167): coverage changes only when a judgment is released or retired, so it is keyed by the
+    release's fingerprint (the latest creation and retirement of a judgment row); a landing or a re-read changes the
+    key and the next search reads it afresh. The key costs one indexed-free scan of judgment's two timestamps, about
+    a tenth of the aggregate it replaces."""
+    key = tuple(conn.execute("SELECT max(created_at) AS c, max(retired_at) AS r, count(*) AS n FROM judgment")
+                .fetchone().values())
+    if key not in _COVERAGE:
+        _COVERAGE.clear()
+        _COVERAGE[key] = _coverage_now(conn)
+    return [dict(c) for c in _COVERAGE[key]]
+
+
+def _coverage_now(conn) -> list[dict]:
     return [dict(c) for c in conn.execute("""
         SELECT v.court_code, min(first_decided) AS first_decided, max(last_decided) AS last_decided,
                sum(judgments_released) AS judgments,

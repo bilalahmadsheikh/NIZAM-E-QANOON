@@ -71,6 +71,24 @@ class HybridSearch:
         return [SimpleNamespace(provision_id=c.unit_id, score=c.score, rank=c.rank) for c in r.candidates]
 
 
+class CitedDenseSearch:
+    """the citation fast path, then the dense units, with no BM25 windows (candidates(windows=False), D-101's slate):
+    the candidate order a profile serves when its dense space beats the hybrid (D-167)"""
+    name = "cited_dense"
+
+    def __init__(self):
+        self.last_trace = {}
+
+    def search(self, q, filters, k):
+        from types import SimpleNamespace
+        from nizam.retrieval.candidates import candidates
+        r = candidates(q, filters, k, encoder=ENCODER, windows=False)
+        if r.degraded:
+            raise SystemExit(f"cited_dense degraded to {r.degraded}: {r.trace.get('degraded')}")
+        self.last_trace = r.trace
+        return [SimpleNamespace(provision_id=c.unit_id, score=c.score, rank=c.rank) for c in r.candidates]
+
+
 RERANKER = None      # --rerank-scores: GPU-made reranker scores replayed (evals/precomputed_reranker.py, D-101)
 
 
@@ -149,7 +167,7 @@ def main() -> int:
         RERANKER = PrecomputedReranker(RerankerInfo(hub, rev, kind, 1024, "", "gpu"), Path(a.rerank_pairs),
                                        Path(a.rerank_scores))
     every = [Bm25LexicalSearch(), TsRankLexicalSearch(), TsRankAnyLexicalSearch(), FusedSearch(), HybridSearch(),
-             DenseOnly(), RankedSearch()]
+             DenseOnly(), CitedDenseSearch(), RankedSearch()]
     impls = [i for i in every if i.name in a.impls.split(",")]
     per = {i.name: [] for i in impls}
     with connect() as conn, conn.cursor() as cur:

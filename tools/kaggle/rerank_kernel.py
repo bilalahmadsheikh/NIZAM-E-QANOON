@@ -39,7 +39,9 @@ REG = {
 # gte-multilingual's modelling code lives in another repo its config points to (trust_remote_code), so its revision
 # is recorded at run time: the bake-off row must say which code scored it
 REMOTE_CODE = {"gte-ml": "Alibaba-NLP/new-impl"}
-TASK = "Given a question about Pakistani law, retrieve the statutory provisions that answer it"
+# the statutes' instruction (D-101, as measured); a precedent run passes its own (KG_TASK, D-167)
+TASK = "__TASK__" if not "__TASK__".startswith("__") else \
+    "Given a question about Pakistani law, retrieve the statutory provisions that answer it"
 Q_PREFIX = ("<|im_start|>system\nJudge whether the Document meets the requirements based on the Query and the "
             "Instruct provided. Note that the answer can only be \"yes\" or \"no\".<|im_end|>\n<|im_start|>user\n")
 Q_SUFFIX = "<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"

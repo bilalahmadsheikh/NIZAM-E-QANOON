@@ -1136,6 +1136,54 @@ Area: client · Status: Superseded by D-084 (the whole-page cloth; the hem, the 
   design/heritage_art.dart, presentation/discover.dart, presentation/heritage.dart; test/heritage_test.dart
   (golden embroidery.png, a review sheet at 3x).
 
+### D-167 · 2026-11-27 · Precedent reranking measured and not adopted; candidate blends confirmed per profile; precedent search 21% faster
+Area: L3 retrieval (precedent, statutes) / performance · Status: standing (dev only; test not read)
+- **Precedent reranking (not adopted).** `evals/precedent_rerank.py` takes the served search's 50 judgments per dev
+  question, each with the paragraph it was found by. It scores them with Qwen3-Reranker-8B on Kaggle (`rrpush`;
+  new `KG_TASK` instruction: "retrieve the court judgment passages that answer it"; the statutes' instruction is
+  unchanged by default).
+  - Results, 35 answerable:
+
+    | Order | hit@10 | MRR@10 | recall@10 | paragraph@10 |
+    |---|---|---|---|---|
+    | search | .714 | .444 | .700 | .478 |
+    | reranked | .600 | .412 | .567 | .605 |
+    | search and rerank fused | .686 | .427 | .643 | .500 |
+
+    It is the same for the 4-bit and CPU slates.
+  - Why: the reranker judges a judgment by one paragraph, while search ranks it on several (and on the binding vote
+    D-154 adds). The reranker chooses paragraphs better and judgments worse. It is also 26.5 s for 50 passages on a
+    T4.
+  - Open: keep search's judgment order and use a fast reranker to choose which paragraph of each judgment to show.
+- **Blending, statutes:** on law dev (276), `cited_dense` (citations then dense, no BM25 windows) minus hybrid,
+  paired bootstrap 95% CI:
+
+  | Profile | NDCG@10 | recall@10 | recall@50 |
+  |---|---|---|---|
+  | 8B fp16 | +10.9 [+6.2, +15.4] | +9.8 | −0.2 [−2.4, +2.0] |
+  | 8B 4-bit | +9.1 [+4.7, +13.5] | +7.1 | +0.9 |
+  | CPU (bge-m3) | −3.6 | −7.8 | −8.0 [−12.5, −3.4] |
+
+  The GPU profile is also about 250 ms faster.
+  - This confirms D-101's served slate (`rerank.SLATE_WINDOWS = {"gpu": False, "cpu": True}`), now without the
+    reranker too: `retrieve()` already serves it on both profiles. No code changed. `candidates()` called directly
+    stays hybrid; the benchmark gains a `cited_dense` impl.
+- **Blending, precedent:** without its BM25 generator, recall@50 falls 5.7 points (CI [−12.9, 0.0]) on both the 8B
+  and CPU spaces, so precedent search keeps BM25. Unlike statutes, its dense space does not cover what BM25
+  finds.
+- **Latency:** precedent search now records per-stage ms in its trace. Dev p50: BM25 ~1,000, dense ~490,
+  statutes-cited ~195, coverage ~125.
+  - The BM25 window asks the index alone. `kind` and `decided_on` were predicates pg_search read from the heap
+    for every candidate, about 110k buffer reads. Now it over-fetches and filters in Python.
+  - Coverage is cached per process, keyed by the release's fingerprint (latest created_at and retired_at, and the
+    row count), so a landing or re-read refreshes it.
+  - On dev every metric is identical (hit@10 .714, MRR .444, recall@50 .790, paragraph@10 .478), and p50 drops
+    2,111 → 1,660 ms (−21%).
+- Where: evals/precedent_rerank.py; tools/kaggle/rerank_kernel.py (`__TASK__`); tools/kaggle/kg.sh (`KG_TASK`);
+  evals/lexical_benchmark.py (`cited_dense`); nizam/retrieval/precedent.py (`stage_ms`, `bm25=`, `_coverage`
+  cache); nizam/storage/judgment_read.py (`bm25_paragraphs`); evals/results/precedent-rerank-dev-qwen3-8b.json,
+  blend-law-dev-*.json, blend-precedent-dev-*.json.
+
 ### D-166 · 2026-11-26 · The 8B judgment space is loaded, and precedent search reads it with the GPU encoder
 Area: L2 storage / L3 retrieval (precedent) · Status: standing (results of D-158)
 - Loaded: four Kaggle runs (24 shards, two accounts; about 12 passages/s, 0.73–0.77 h a shard, no non-finite row)
