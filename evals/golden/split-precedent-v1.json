@@ -1,5 +1,5 @@
 {
- "rule": "families by sha256(familyId) within answerable/unanswerable, first 60% dev (D-133); FP1-sindh-bona-fide-need and FP1-bhc-special-assistants placed in dev by hand, replacing FP1-x-shc and FP1-x-bhc (D-138); FP1-fcc-contempt kept in test by hand, replacing FP1-x-fcc (D-139); FP1-ihc-contract-writ placed in dev by hand, replacing FP1-x-ihc (D-156)",
+ "rule": "families by sha256(familyId) within answerable/unanswerable, first 60% dev (D-133); FP1-sindh-bona-fide-need and FP1-bhc-special-assistants placed in dev by hand, replacing FP1-x-shc and FP1-x-bhc (D-138); FP1-fcc-contempt kept in test by hand, replacing FP1-x-fcc (D-139); FP1-ihc-contract-writ placed in dev by hand, replacing FP1-x-ihc (D-156); FP1-fsc-riba kept in test by hand, replacing FP1-x-fsc, and FP1-x-before-coverage-khula added to test by hand so abstention stays measured there (D-157)",
  "dev": [
   "FP1-ac-eviction",
   "FP1-attesting-witness",
@@ -43,7 +43,8 @@
   "FP1-statutory-bail",
   "FP1-talb-ishhad",
   "FP1-talb-muwathibat",
+  "FP1-fsc-riba",
   "FP1-upgradation",
-  "FP1-x-fsc"
+  "FP1-x-before-coverage-khula"
  ]
 }

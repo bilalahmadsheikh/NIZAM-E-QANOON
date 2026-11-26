@@ -108,6 +108,27 @@ class JudgmentRead:
         return JudgmentRead._released(conn, sorted(best.values(), key=lambda r: -r["score"]), n, court)
 
     @staticmethod
+    def gpu_vectors_held(conn) -> bool:
+        """whether the GPU generation's judgment vectors are loaded (0141, D-158); A33 keeps them complete once they are"""
+        return conn.execute("SELECT EXISTS (SELECT 1 FROM judgment_chunk_embedding_gpu) AS h").fetchone()["h"]
+
+    @staticmethod
+    def dense_paragraphs_gpu(conn, bits: str, n: int, before: date, court: str | None = None,
+                             ef_search: int = 200) -> list[dict]:
+        """Nearest judgment chunks by Hamming distance on the GPU generation's 4096 sign bits (D-158), folded to
+        paragraphs: the statutes' GPU space, so the question vector is the one statute retrieval uses."""
+        conn.execute("SELECT set_config('hnsw.ef_search', %s, true)", (str(ef_search),))
+        rows = conn.execute("""SELECT c.paragraph_id AS id, c.decided_on, -(e.bits <~> %s::bit(4096)) AS score
+                                 FROM judgment_chunk_embedding_gpu e JOIN judgment_chunk c ON c.id = e.chunk_id
+                                ORDER BY e.bits <~> %s::bit(4096) LIMIT %s""",
+                            (bits, bits, n * 6)).fetchall()
+        best: dict = {}
+        for r in rows:
+            if r["decided_on"] <= before and (r["id"] not in best or r["score"] > best[r["id"]]["score"]):
+                best[r["id"]] = r
+        return JudgmentRead._released(conn, sorted(best.values(), key=lambda r: -r["score"]), n, court)
+
+    @staticmethod
     def citing_paragraphs(conn, provision_ids: list[str], n: int, before: date, court: str | None = None) -> list[dict]:
         """Paragraphs that cite one of these provisions (or a unit inside one), applying or construing it first."""
         if not provision_ids:

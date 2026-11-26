@@ -28,8 +28,10 @@ RANGE_MAX = 500         # a printed range wider than this is not expanded (a mis
 
 # ------------------------------------------------------------------------------------------- the case line
 
-# a number and its registry suffix: '801-L', '2143-CB' (cancellation of bail), '4-RWP', '07(S)', '241 K' (D-128)
-_ITEM = r"(\d{1,6})(?:\s*[-–—]\s*([A-Za-z]{1,3})(?![A-Za-z])|\(\s*([A-Za-z])\s*\)|\s([A-Z])(?![A-Za-z]))?"
+# a number and its registry suffix: '801-L', '2143-CB' (cancellation of bail), '4-RWP', '07(S)', '241 K' (D-128);
+# and after a slash, as the Federal Shariat Court ('Criminal Appeal No.01/K OF 2022') and Lahore's bail registers
+# ('Crl. Misc. No.853/B/2014') print it (D-157: over every released case line it reads 103 more, and moves none)
+_ITEM = r"(\d{1,6})(?:\s*[-–—/]\s*([A-Za-z]{1,3})(?![A-Za-z])|\(\s*([A-Za-z])\s*\)|\s([A-Z])(?![A-Za-z]))?"
 # after the type's form: a form's unread tail ('Crl.P' + '.L.A.'), then 'No.' as printed ('No,', 'NO-', 'No»', 'N.')
 # a register letter printed BEFORE the number is part of it: Sindh's 'C.P. No. D-2606 of 2018' (division bench) and
 # 'Cr. Bail Application No. S-1043' (single bench) are separate registers, as is 'Suit No. B-12' (banking) (D-138)

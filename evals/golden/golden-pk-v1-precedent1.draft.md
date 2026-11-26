@@ -1,8 +1,8 @@
-# golden-pk-v1 — draft precedent1 (58 cases)
+# golden-pk-v1 — draft precedent1 (59 cases)
 
 Precedent stratum, set 1: Supreme Court, Lahore and Peshawar High Courts (D-133). Gold is judgment paragraphs read in the released text; it names some of the judgments that answer, not all.
 
-Corpus revision f45da7c. Strata: issue 39, authority 1, temporal 3, case_lookup 4, provision 4, urdu 5, unanswerable 2.
+Corpus revision a862863. Strata: issue 40, authority 1, temporal 3, case_lookup 4, provision 4, urdu 5, unanswerable 2.
 Status: **draft** — A0 authoring and A3 identity resolution only. Not gold until two legal annotators (A1) and a senior advocate (A2) have reviewed it; do not tune or report on it before then.
 
 ## P1-I01 · issue · forum subordinate:sindh · as of 2026-11-24 · expect **answer**
@@ -373,6 +373,18 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 - **Relevant (grade 2)** — IHC W.P.No.2904 of 2016 (undated, exists from 2026-11-26), para 22 · doc 133661 · expected binding
   > The petitioners want permanent employment without going through a competitive process for it. The mere fact that they were given contractual employment after a test or an interview could not make out their case for the conversion of their contractual employmen
 
+## P1-I40 · issue · forum - · as of 2026-11-24 · expect **answer**
+
+**Q:** What has the Federal Shariat Court ruled on riba (interest) in banking?
+
+- *Proposition:* Riba is to be defined inclusively: any increase over the principal of a loan is riba, which the Injunctions of Islam prohibit absolutely; the Court held the Interest Act 1839 and the interest provisions of other laws repugnant to the Injunctions of Islam.
+- **Necessary (grade 3)** — FSC Shariat Petition No.30-L of 1991 & All other 81 connected matters relating to Riba/Interest (2022-04-28), para 46 · doc 136131
+  > After going through all the verses of the Qur‟an, ahadith, saying of Companions/ Sahabah (ؓؓ ) of the Prophet (﵁), the opinion of the Muslim Jurists, muhaddithin, lexicographers and mufassirin especially the opinion of Hazrat Umer ؓؓ . We hold that „Riba‟ shou
+- **Relevant (grade 2)** — FSC Shariat Petition No.30-L of 1991 & All other 81 connected matters relating to Riba/Interest (2022-04-28), para 161 · doc 136131
+  > Following are the laws the provisions of which were discussed in the judgment and held repugnant to the injunctions of Islam to the extent as elaborated in the judgment: 1. Interest Act 1839 held completely repugnant to the Injunctions of Islam. 2. Section. 10
+- **Relevant (grade 2)** — FSC Shariat Petition No.30-L of 1991 & All other 81 connected matters relating to Riba/Interest (2022-04-28), para 140 · doc 136131
+  > For the reasons already discussed in detail we would hold that the Interest Act, 1839 is repugnant to the Injunctions of Islam as laid down in the Holy Qur'an and Sunnah of the Holy Prophet (SAW). All other 81 connected matters relating to Riba/Interest
+
 ## P1-F01 · authority · forum subordinate:kp · as of 2026-11-24 · expect **answer**
 
 **Q:** For a civil court in Khyber Pakhtunkhwa: what three conditions must a plaintiff show to get a temporary injunction?
@@ -527,17 +539,17 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 - **Necessary (grade 3)** — LHC W.P. No.54172/2024 (undated, exists from 2026-09-08), para 6 · doc 9987 · expected binding
   > The pivotal question for determination before this Court, in matters relating to custody of minor, is to see welfare of the minor, which holds paramount importance. In view of this settled principle, the question narrows down to a determination as to whether t
 
-## P1-X04 · unanswerable · forum - · as of 2026-11-24 · expect **abstain**
-
-**Q:** What has the Federal Shariat Court ruled on riba (interest) in banking?
-
-- *Abstain:* court_not_held — the corpus holds no judgment of this court (FSC); coverage must say so
-
-## P1-X06 · unanswerable · forum subordinate:punjab · as of 1995-01-01 · expect **abstain**
+## P1-X06 · unanswerable · forum subordinate:punjab · as of 1980-01-01 · expect **abstain**
 
 **Q:** What was the Supreme Court's precedent on 'further inquiry' in bail matters?
 
-- *Abstain:* before_coverage — no held judgment had been decided by 1 January 1995
+- *Abstain:* before_coverage — no held judgment had been decided by 1 January 1980
+
+## P1-X07 · unanswerable · forum subordinate:punjab · as of 1979-06-01 · expect **abstain**
+
+**Q:** What had the High Courts held about a wife's right to khula?
+
+- *Abstain:* before_coverage — no held judgment had been decided by 1 June 1979
 
 ## Where the author's authority reading and the recorded rules differ
 

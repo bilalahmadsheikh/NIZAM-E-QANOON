@@ -43,6 +43,17 @@ def test_hyphen_ranges_expand_but_a_seat_suffix_is_part_of_the_number():
     assert (r.lead, r.year) == ("259-D", 2005)
 
 
+def test_a_seat_suffix_after_a_slash_is_part_of_the_number_and_a_slash_year_stays_a_year():
+    # D-157: the Federal Shariat Court's 'No.01/K OF 2022' and Lahore's 'No.853/B/2014'
+    ca = ["criminal appeal", "jail criminal appeal"]
+    assert (lambda r: (r.lead, r.year))(read_case_line("Criminal Appeal No.01/K OF 2022", ca)) == ("1-K", 2022)
+    assert (lambda r: (r.lead, r.year))(read_case_line("Jail Criminal Appeal NO. 07/I OF 2024", ca)) == ("7-I", 2024)
+    assert (lambda r: (r.lead, r.year))(read_case_line("CRIMINAL APPEAL NO. 04-P OF 2025", ca)) == ("4-P", 2025)
+    misc = ["crl misc"]
+    assert (lambda r: (r.lead, r.year))(read_case_line("Crl.Misc.No.853/ B/2014/BWP", misc)) == ("853-B", 2014)
+    assert (lambda r: (r.lead, r.year))(read_case_line("Crl. Misc. No. 3952/2025", misc)) == ("3952", 2025)
+
+
 def test_an_application_of_another_type_in_the_line_is_not_another_case():
     r = read_case_line("C.M.A. NO.3470 OF 2013 IN C.M.A. NO.1536 OF 2013", CMA)
     assert (r.lead, r.year, r.joined) == ("3470", 2013, [])

@@ -38,6 +38,7 @@ SMOKE = __SMOKE__
 SHARDS = "__SHARDS__"          # e.g. "0-11" or "3,7,9"
 REV = "__REV__"                # the pinned commit; empty only in the smoke run, which records the hub head
 NSHARD = int("__NSHARD__" or 24)      # 24 for the corpus; 1 for a top-up of a replay's new chunks (embed_topup.py)
+BITS = int("__BITS__" or 0)           # 1: write each shard as packed sign bits (judgment chunks, D-158), not float16
 HUB = "Qwen/Qwen3-Embedding-8B"
 SMALL = "Qwen/Qwen3-Embedding-0.6B"
 TASK = "Given a question about Pakistani law, retrieve the statutory provisions that answer it"
@@ -331,10 +332,16 @@ for s in todo:
     ntok, bad = run_parallel(workers, seqs, TOKBUDGET, dest)
     secs = time.time() - t
     rate = secs / (b - a)
-    np.save(f"{OUT}/shard_{s:02d}.npy", dest)
+    if BITS:
+        # the sign of every dimension, packed (numpy.packbits, first dimension first): 512 bytes a row, not 8,192.
+        # The stored form is bit(4096) of exactly these signs, so nothing the database keeps is lost (D-158)
+        np.save(f"{OUT}/shard_{s:02d}.npy", np.packbits(dest > 0, axis=1))
+    else:
+        np.save(f"{OUT}/shard_{s:02d}.npy", dest)
     meta = {"shard": s, "rows": b - a, "first_row": a, "first_id": int(ids[a]), "last_id": int(ids[b - 1]),
             "ids_sha": hashlib.sha256(ids[a:b].tobytes()).hexdigest(), "seconds": round(secs),
-            "tokens": ntok, "nonfinite_rows": bad, "revision": REV, "versions": VERSIONS}
+            "tokens": ntok, "nonfinite_rows": bad, "revision": REV, "versions": VERSIONS,
+            "form": "packbits_sign" if BITS else "float16"}
     json.dump(meta, open(f"{OUT}/shard_{s:02d}.json", "w"))
     done.append(s)
     log(f"shard {s}: {b - a} chunks in {secs / 3600:.2f} h ({(b - a) / secs:.1f}/s, {ntok / secs:.0f} tok/s); "

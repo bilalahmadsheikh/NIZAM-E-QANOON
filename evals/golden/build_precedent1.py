@@ -1,6 +1,6 @@
 """golden-pk-v1 precedent set 1 (D-133): 58 precedent questions over the Supreme Court, Lahore and Peshawar High
 Courts, and since D-138 the High Courts of Sindh and Balochistan (P1-I36, I37 replace P1-X01, X03), and since D-156
-the Islamabad High Court (P1-I39 replaces P1-X02). Gold is judgment
+the Islamabad High Court (P1-I39 replaces P1-X02), and since D-157 the Federal Shariat Court (P1-I40 replaces P1-X04). Gold is judgment
 paragraphs, found by reading (peek_judgment.py), never by the precedent search.
 
     python evals/golden/build_precedent1.py      # rebuilds the set from the database and checks every case
@@ -298,6 +298,18 @@ c("P1-I39", "issue", "FP1-ihc-contract-writ", "employment", ["en"], "latin",
   necessary=[(133661, "13", 3)], relevant=[(133661, "22", 2)], as_of="2026-11-26",   # undated: served from landing
   check=[r"contractual employee cannot file a writ petition", r"master and servant"])
 
+# Replaces P1-X04 (26 Nov 2026): the Federal Shariat Court's judgments were landed (D-157), so "not held" was no longer
+# true. The family stays in the test split, renamed with the case (as P1-I38 for the FCC).
+c("P1-I40", "issue", "FP1-fsc-riba", "finance", ["en"], "latin",
+  "What has the Federal Shariat Court ruled on riba (interest) in banking?",
+  "Riba defined inclusively and prohibited; interest laws held repugnant (Shariat Petition 30-L of 1991)", None,
+  "answer",
+  ["Riba is to be defined inclusively: any increase over the principal of a loan is riba, which the Injunctions of "
+   "Islam prohibit absolutely; the Court held the Interest Act 1839 and the interest provisions of other laws "
+   "repugnant to the Injunctions of Islam."],
+  necessary=[(136131, "46", 3)], relevant=[(136131, "161", 2), (136131, "140", 2)],
+  check=[r"defined inclusively", r"completely and absolutely prohibited"])
+
 # ---------------------------------------------------------------- authority: the same question elsewhere (1)
 c("P1-F01", "authority", "FP1-temporary-injunction", "civil-procedure", ["en"], "latin",
   "For a civil court in Khyber Pakhtunkhwa: what three conditions must a plaintiff show to get a temporary "
@@ -391,21 +403,24 @@ c("P1-U05", "urdu", "FP1-custody-welfare", "family", ["ur"], "arabic",
 
 # ---------------------------------------------------------------- unanswerable: not held, or before coverage (4)
 # P1-X01 (SHC) and P1-X03 (BHC) were withdrawn on 25 Nov 2026 when those courts were landed (D-138): see P1-I36, I37;
-# P1-X05 (FCC) likewise (D-139): see P1-I38; P1-X02 (IHC) likewise (D-156): see P1-I39.
-_NOT_HELD = ["presenting another court's judgments as this court's view", "inventing a citation"]
-for cid, fam, court, forum, q in (
-        ("P1-X04", "FP1-x-fsc", "FSC", None,
-         "What has the Federal Shariat Court ruled on riba (interest) in banking?"),):
-    c(cid, "unanswerable", fam, "coverage", ["en"], "latin", q, f"Judgments of a court not held ({court})", forum,
-      "abstain", [], abstention=dict(code="court_not_held", court=court, requiredClarification=[],
-                                     unsafeAlternatives=_NOT_HELD,
-                                     why=f"the corpus holds no judgment of this court ({court}); coverage must say so"))
+# P1-X05 (FCC) likewise (D-139): see P1-I38; P1-X02 (IHC) likewise (D-156): see P1-I39; P1-X04 (FSC) likewise
+# (D-157): see P1-I40. Since D-157 every recorded court has released judgments, so no "court not held" case remains;
+# a court the corpus does not record (a family court, a tribunal) is the open case (D-157).
 c("P1-X06", "unanswerable", "FP1-x-before-coverage", "coverage", ["en"], "latin",
   "What was the Supreme Court's precedent on 'further inquiry' in bail matters?",
-  "Asked as at 1 January 1995, before any held judgment existed", "punjab", "abstain", [], as_of="1995-01-01",
+  # 1995 until D-157: the Federal Shariat Court's judgments reach back to 1981
+  "Asked as at 1 January 1980, before any held judgment existed", "punjab", "abstain", [], as_of="1980-01-01",
   abstention=dict(code="before_coverage", requiredClarification=[],
-                  unsafeAlternatives=["citing a later judgment as if it existed in 1995"],
-                  why="no held judgment had been decided by 1 January 1995"))
+                  unsafeAlternatives=["citing a later judgment as if it existed in 1980"],
+                  why="no held judgment had been decided by 1 January 1980"))
+# Added 26 Nov 2026 (D-157), in the test split: once every recorded court was held, the court_not_held cases that kept
+# abstention on the test side were all answerable, and docs/10 measures abstention on test too
+c("P1-X07", "unanswerable", "FP1-x-before-coverage-khula", "coverage", ["en"], "latin",
+  "What had the High Courts held about a wife's right to khula?",
+  "Asked as at 1 June 1979, before any held judgment existed", "punjab", "abstain", [], as_of="1979-06-01",
+  abstention=dict(code="before_coverage", requiredClarification=[],
+                  unsafeAlternatives=["citing a later judgment as if it existed in 1979"],
+                  why="no held judgment had been decided by 1 June 1979"))
 
 if __name__ == "__main__":
     sys.exit(build(ps, "Precedent stratum, set 1: Supreme Court, Lahore and Peshawar High Courts (D-133). Gold is "

@@ -71,6 +71,10 @@ Set aside by rule (listed for review, nothing to do unless a rule changes):
 | FCC | held by a gate | 6 |
 | FCC | released, date not printed | 6 |
 | FCC | court not held | 1 |
+| FSC | held by a gate | 137 |
+| FSC | released, date not printed | 104 |
+| FSC | scan | 98 |
+| FSC | law-report reprint | 15 |
 | FSC | court not held | 1 |
 | GB | court not held | 1 |
 | GBCC | scan | 124 |
@@ -107,11 +111,11 @@ What each needs:
 | category | needs | items |
 |---|---|---:|
 | court not held | acquire the court's judgments | 6 |
-| held by a gate | a parser rule or a person's reading (see reason) | 4,350 |
-| law-report reprint | the court's own copy (portal recrawl); D-120 | 3,088 |
-| released, date not printed | the court's decision date (portal recrawl with metadata) | 14,164 |
+| held by a gate | a parser rule or a person's reading (see reason) | 4,487 |
+| law-report reprint | the court's own copy (portal recrawl); D-120 | 3,103 |
+| released, date not printed | the court's decision date (portal recrawl with metadata) | 14,268 |
 | released, text layer below J9 | an OCR re-read (D-114); released before the gate | 1 |
-| scan | OCR (D-114) | 8,411 |
+| scan | OCR (D-114) | 8,509 |
 | source to recrawl | recrawl the Sindh High Court portal | 1 |
 
 ## Order of work (recommended)

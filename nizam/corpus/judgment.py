@@ -36,7 +36,10 @@ from dataclasses import dataclass, field
 
 from nizam.storage.case_key import read_case_line
 
-PARSER = "nizam.judgment/16"    # /2: the lower court's date printed after its name; a skipped number only when unseen
+PARSER = "nizam.judgment/17"    # /2: the lower court's date printed after its name; a skipped number only when unseen
+#                                 /17: the case grammar reads a seat suffix after a slash ('No.01/K OF 2022',
+#                                      'No.853/B/2014'); the 106 judgments it reads newly were re-read; a
+#                                      letter-spaced heading names its court ('I N T H E F E D E R A L ...') (D-157)
 #                                 /16: the Islamabad High Court's 'ANNOUNCED IN AN OPEN COURT ON <date>' (D-156)
 #                                 /15: a paragraph or footnote number printed in Urdu or Arabic digits ('۱') is kept
 #                                      in Western digits, the form every identifier takes (D-152)
@@ -403,7 +406,18 @@ def _court(text: str, aliases: dict[str, str], glued: bool = False) -> str | Non
         i = f.find(("" if glued else " ") + key + " ")
         if i >= 0 and (best is None or i < best[0] or (i == best[0] and len(key) > best[2])):
             best = (i, code, len(key))
+    if best is None and glued and _SPACED.search(text):
+        # a letter-spaced heading ('I N T H E F E D E R A L S H A R I A T C O U R T', D-157): its words are read
+        # with the spaces taken out, and only then; the first name so found is the deciding court
+        g = fold(text).replace(" ", "")
+        for key, code in aliases.items():
+            i = g.find(key.replace(" ", ""))
+            if i >= 0 and (best is None or i < best[0] or (i == best[0] and len(key) > best[2])):
+                best = (i, code, len(key))
     return best[1] if best else None
+
+
+_SPACED = re.compile(r"(?:\b[A-Za-z] ){6,}[A-Za-z]\b")
 
 
 def _case(lines: list[str], case_types: dict[str, tuple[str, list[str]]]):

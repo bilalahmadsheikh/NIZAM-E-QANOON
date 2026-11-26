@@ -80,7 +80,7 @@ def _doc_to_judgment(conn, docs: set[int]) -> dict[int, str]:
     return {r["document_id"]: r["id"] for r in rows}
 
 
-def run(split_name: str, out: Path | None) -> int:
+def run(split_name: str, out: Path | None, gpu_vectors: Path | None = None) -> int:
     from nizam.inference.encoder import encoder
     from nizam.retrieval.precedent import search
     from nizam.storage.authority import Subordinate
@@ -90,7 +90,13 @@ def run(split_name: str, out: Path | None) -> int:
     repo = JudgmentRead()
     repo.open()
     try:
-        enc = encoder()
+        if gpu_vectors:
+            # the GPU generation (D-158), measured here by replaying the questions' 8B vectors made on Kaggle
+            # (q8push): the kernel's q.npy and questions.json, with the GPU encoder bundle's encoder.json
+            from precomputed_encoder import PrecomputedEncoder
+            enc = PrecomputedEncoder.from_bundle(gpu_vectors, vectors="q.npy", questions="questions.json")
+        else:
+            enc = encoder()
     except Exception as exc:                                    # noqa: BLE001  no encoder bundle: lexical only
         print(f"encoder unavailable ({type(exc).__name__}); dense generator off"); enc = None
     docs = {u["judgmentDocumentId"] for c in chosen for k in ("necessaryJudgments", "relevantJudgments",
@@ -205,8 +211,10 @@ def main() -> int:
     r = sub.add_parser("run")
     r.add_argument("--split", choices=["dev", "test", "all"], required=True)
     r.add_argument("--out", type=Path)
+    r.add_argument("--gpu-vectors", type=Path, help="a directory of the questions' 8B vectors (q.npy, questions.json, "
+                                                    "encoder.json): search the GPU generation's space (D-158)")
     a = ap.parse_args()
-    return make_split() if a.cmd == "split" else run(a.split, a.out)
+    return make_split() if a.cmd == "split" else run(a.split, a.out, a.gpu_vectors)
 
 
 if __name__ == "__main__":

@@ -921,6 +921,15 @@ m AS (
     ,(SELECT count(*) FROM judgment_case_reference
        WHERE reporter_series IS NOT NULL AND resolution IN ('resolved', 'own_case'))                   AS rc_linked
 -- <<< A32 measures
+-- >>> A33 measures: the judgment chunks' GPU vectors (0141, D-158) are the active GPU generation's, one per chunk; once
+--     the table holds any row, every judgment chunk has one (a re-read or landing is a top-up, as A22 for statutes)
+    ,(SELECT count(*) FROM judgment_chunk_embedding_gpu)                                               AS jg_rows
+    ,(SELECT count(*) FROM judgment_chunk c WHERE NOT EXISTS (
+        SELECT 1 FROM judgment_chunk_embedding_gpu e WHERE e.chunk_id = c.id))                         AS jg_missing
+    ,(SELECT count(*) FROM judgment_chunk_embedding_gpu e WHERE NOT EXISTS (
+        SELECT 1 FROM embedding_generation g WHERE g.id = e.generation_id AND g.active
+           AND g.encoder_device = 'gpu'))                                                              AS jg_other_gen
+-- <<< A33 measures
 )
 SELECT * FROM (
   SELECT 'C1' AS id, 'every acquired file becomes a blob'      AS criterion,
@@ -1178,6 +1187,14 @@ SELECT * FROM (
          ||rc_two_cases||' citations naming two cases; '||rc_builders||' builder(s)',
          '0 / 0 / 0; one builder',
          CASE WHEN rc_outside=0 AND rc_case_bad=0 AND rc_two_cases=0 AND rc_builders<=1 THEN 'PASS' ELSE 'FAIL' END
+    FROM m
+  UNION ALL SELECT 'A33','judgment chunks in the GPU space: the active GPU generation, every chunk once the table is filled',
+         jg_rows||' judgment vectors (reported); '
+         ||CASE WHEN jg_rows=0 THEN jg_missing||' chunks not yet embedded (the table is empty)'
+                ELSE jg_missing||' chunks lacking a vector' END
+         ||'; '||jg_other_gen||' of another generation',
+         'empty, or 0 lacking; 0 other',
+         CASE WHEN jg_other_gen=0 AND (jg_rows=0 OR jg_missing=0) THEN 'PASS' ELSE 'FAIL' END
     FROM m
   UNION ALL SELECT 'A6','no overlapping law (enforced, not tested)',
          CASE WHEN excl_present=1 THEN 'EXCLUDE constraint present'

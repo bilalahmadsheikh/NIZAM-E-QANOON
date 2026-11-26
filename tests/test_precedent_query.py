@@ -76,12 +76,41 @@ def test_a_court_not_held_is_a_coverage_gap_with_no_hits(conn):
     from datetime import date
 
     from nizam.retrieval.precedent import search
-    # the Islamabad High Court was the example until it was landed (D-156); the Federal Shariat Court is not held
-    held = conn.execute("SELECT EXISTS (SELECT 1 FROM v_release_judgment WHERE court_code = 'FSC') AS h").fetchone()
-    if held["h"]:
-        pytest.skip("Federal Shariat Court judgments are now held")
-    r = search("What has the Federal Shariat Court ruled on riba in banking?", as_of=date(2026, 11, 24), encoder=False)
-    assert r.hits == [] and r.coverage_gap and r.coverage_gap["court"] == "FSC"
+    # the example was the IHC until D-156, then the FSC until D-157: any recorded court with no released judgment
+    row = conn.execute("""SELECT c.code, c.name FROM court c
+                           WHERE NOT EXISTS (SELECT 1 FROM v_release_judgment j WHERE j.court_code = c.code)
+                           ORDER BY c.code LIMIT 1""").fetchone()
+    if row is None:
+        pytest.skip("every recorded court has released judgments")
+    r = search(f"What has the {row['name']} held on bail?", as_of=date(2026, 11, 24), encoder=False)
+    assert r.hits == [] and r.coverage_gap and r.coverage_gap["court"] == row["code"]
+
+
+def test_a_gpu_encoder_searches_the_gpu_space_or_says_it_could_not(conn):
+    # D-158: a 4096-dimension question vector searches judgment_chunk_embedding_gpu; before its vectors are loaded
+    # the CPU generation is searched and the trace marks the fallback -- never passed off as the GPU path
+    from datetime import date
+
+    from nizam.inference.encoder import EncoderInfo
+    from nizam.retrieval.precedent import search
+
+    class Gpu:
+        info = EncoderInfo("Qwen/Qwen3-Embedding-8B", "x", "lasttoken", "{q}", 512, 4096)
+
+        def bits(self, q, width=None):
+            return "1" * (width or 4096)
+
+    held = conn.execute("SELECT EXISTS (SELECT 1 FROM judgment_chunk_embedding_gpu) AS h").fetchone()["h"]
+    try:
+        r = search("bail on the ground of further inquiry", as_of=date(2026, 11, 26), encoder=Gpu())
+    except Exception as exc:                                    # noqa: BLE001
+        pytest.skip(f"search unavailable: {type(exc).__name__}")
+    if r.mode != "hybrid":
+        pytest.skip("no CPU encoder bundle on this host")
+    if held:
+        assert r.trace["dense_space"] == "gpu" and "dense_fell_back" not in r.trace
+    else:
+        assert r.trace["dense_space"] == "cpu" and "not loaded" in r.trace["dense_fell_back"]
 
 
 def test_islamabad_high_court_judgments_are_found_when_asked_for(conn):

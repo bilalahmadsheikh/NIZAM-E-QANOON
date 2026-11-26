@@ -1136,6 +1136,86 @@ Area: client · Status: Superseded by D-084 (the whole-page cloth; the hem, the 
   design/heritage_art.dart, presentation/discover.dart, presentation/heritage.dart; test/heritage_test.dart
   (golden embroidery.png, a review sheet at 3x).
 
+### D-158 · 2026-11-26 · Judgment chunks are embedded in the GPU generation's space (Qwen3-Embedding-8B), beside their CPU vectors
+Area: L2 storage / L3 retrieval (precedent) · Status: standing (results to be recorded when the runs are loaded)
+- Decision: every judgment chunk also gets the GPU generation's vector (generation 2, Qwen3-Embedding-8B @1d8ad4ca,
+  D-099), the space statute chunks already hold (chunk_embedding_gpu).
+  - One generation per device stays shared by laws and judgments (D-121's rule for the CPU side), so one question
+    vector searches both.
+  - Why: for statutes, the 8B space lifted hybrid recall@50 from .76 to .96 and Urdu to 1.0 (D-099). Urdu
+    precedent questions are the weak path on the CPU space (D-133, D-137).
+- Storage: migration 0141 adds `judgment_chunk_embedding_gpu`. It holds a chunk id (`ON DELETE CASCADE`: a re-read
+  rebuilds chunks with new ids, and their vectors go with them), the generation and `bits bit(4096)`. Its HNSW
+  index is built by the loader after the first load.
+- The run: `tools/judgment_embed8b_export.py` writes the chunks lacking a GPU vector (763,392 on 26 Nov) in
+  embed_inputs.py's format, with the generation's dev questions.
+  - The unchanged shard kernel (`embed8b_kernel.py`) runs 24 shards as four Kaggle runs, two per account.
+  - `KG_BITS=1`, new: the kernel saves each shard as packed sign bits (512 B a row, not 8 KB). That is exactly
+    what bit(4096) stores, so nothing kept is lost, and the download is about 390 MB, not 6.3 GB.
+- The loader (`tools/load_judgment_embeddings_gpu.py`) refuses unless:
+  - the shards verify (tools/kaggle/shards.py);
+  - the runs are the active GPU generation's model, commit and template, and their dev questions reproduce its
+    vectors (cosine ≥ 0.999);
+  - every exported chunk that still exists and lacks a vector has exactly the passage text the run embedded,
+    compared character for character.
+  A chunk removed by a re-read during the run is skipped, and one made since is a later top-up. The rule is the
+  statutes' "exactly the chunks lacking", made safe for a run that takes hours while judgments land.
+- Audit A33: every row is of the active GPU generation, and once the table holds any row every judgment chunk has
+  one.
+- Search: `precedent.search` with a 4096-dimension encoder (the GPU host's service, or precomputed question vectors
+  in evaluation) searches `judgment_chunk_embedding_gpu`. Until its vectors are loaded it searches the CPU space,
+  and the trace says so; it is never passed off as the GPU path.
+  - `evals/precedent_eval.py --gpu-vectors` replays 8B question vectors made on Kaggle (q8push), as the statute
+    benchmark does.
+- Where: infra/postgres/migrations/0141_judgment_chunk_embedding_gpu.sql; tools/judgment_embed8b_export.py;
+  tools/load_judgment_embeddings_gpu.py; tools/kaggle/embed8b_kernel.py (`BITS`); tools/kaggle/kg.sh
+  (`KG_BITS`); nizam/storage/judgment_read.py (`dense_paragraphs_gpu`); nizam/retrieval/precedent.py;
+  evals/precedent_eval.py; tools/audit/criteria.sql (A33); tests/test_precedent_query.py.
+
+### D-157 · 2026-11-26 · The Federal Shariat Court's judgments are landed from its own site; a seat letter after a slash is part of a case number
+Area: L1 precedent (acquisition, courts, case identity) · Status: standing (D-139's "crawl every court's own site")
+- Source: federalshariatcourt.gov.pk. Its robots.txt disallows only /wp-admin/. It publishes four lists, read by
+  `data/fsc_judgments_scraper.py` at 3 s a request:
+  - the Shariat petitions table (`shariatjudgment2.2.php`, 160 rows), each with its case number, parties,
+    citation, decision date, author, the **law challenged** and the remarks;
+  - its criminal appeals (392) and Shariat suo motu (2), from the public `judgments_api.php` its own pages call
+    with an empty search;
+  - its landmark page (21, mostly the petitions again).
+  - Result: 569 distinct files, 538 fetched; the court's server answers 404 for 29 and timed out on 2.
+  - The law challenged is kept as the court's own words, in the listing. It is the evidence a later
+    `invalidated_by` reading starts from (docs/03b; PRECEDENT-MODEL §4.3, lawyer-verified only), never itself a
+    ruling.
+- The court: it was already recorded (0118, Art. 203C), and Art. 203GG's rule (authority_rule 6, 7) binds the High
+  Courts and their subordinate courts on its Chapter 3A questions.
+  - Migration 0142 adds its six case types as its headers and lists print them: Shariat Petition ("Sh.P."),
+    Shariat Suo Moto, Criminal Appeal, Jail Criminal Appeal, Criminal Revision, Criminal Murder Reference. Case
+    lines were observed on page 1 of 247 files (`fsc-case-forms.json`).
+- **The case grammar reads a seat letter after a slash** ('Criminal Appeal No.01/K OF 2022'; Lahore's bail
+  register 'Crl. Misc. No.853/B/2014'), as it read '-K' (D-128).
+  - Measured over all 63,992 released case lines first: 106 read differently, all newly read (no year was read
+    before), and **none that was read moves**. Three stay unread.
+  - Parser /17; the 106 judgments were re-read with `--only` (LHC 95, IHC 6, SC 4, AJKHC 1).
+- Parser /17 also names the court of a letter-spaced heading ("I N T H E F E D E R A L S H A R I A T C O U R T").
+  The names are compared with the spaces taken out, only when such a run is printed and the plain match failed.
+  - An OCR misreading ("COU~T", "FEDE~L") is not repaired. Those files are held: their text layer is an old OCR,
+    and they wait for the OCR lane.
+- Landed (`--court FSC --source-id pk-fsc-judgments`): 537 distinct files, **281 released**, 104 of them undated.
+  - Held 137: 82 with a court name misread in an old OCR text layer, 35 with no JUDGMENT/ORDER heading, 15 at J3,
+    5 unreadable.
+  - Needs OCR: 98. Reprints, not landed: 15. Duplicates: 6.
+- Every recorded court now has released judgments.
+  - The golden set's last "court not held" case (P1-X04, FSC) is replaced by P1-I40, an answerable FSC question
+    (the Riba judgment, Sh.P. 30-L of 1991, paras 46, 161, 140), kept in the test split as P1-I38 was.
+  - The coverage-gap test now looks for any recorded court with no judgment.
+  - P1-X06 ("before coverage") moves from 1 January 1995 to 1 January 1980: the FSC's judgments reach back to
+    27 May 1981.
+  - P1-X07, a second before-coverage case (1 June 1979), is added to the test split, so abstention is still
+    measured on test (docs/10).
+  - Open: a court the corpus does not record (a family court, a tribunal) is not yet a typed coverage gap.
+- Where: data/fsc_judgments_scraper.py; infra/postgres/migrations/0142_fsc_case_types.sql;
+  nizam/storage/case_key.py (`_ITEM`); nizam/corpus/judgment.py (/17, `_court`); tests/test_judgment_case.py,
+  test_judgment_parse.py, test_precedent_query.py; evals/golden/build_precedent1.py, split-precedent-v1.json.
+
 ### D-156 · 2026-11-26 · The Islamabad High Court's judgments are landed from the court's own listing
 Area: L1 precedent (acquisition, courts) · Status: standing (D-139's "crawl every court's own site")
 - Source: mis.ihc.gov.pk lists the decisions the court marks "approved for reporting" and "important" through its own

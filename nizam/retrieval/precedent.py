@@ -183,6 +183,24 @@ def _authority(deciding: str, forum, as_of: date, registry) -> dict | None:
     return dict(status="not_recorded", reason=r.reason)
 
 
+def _cpu_encoder():
+    from nizam.inference.encoder import encoder as _encoder
+    return _encoder()
+
+
+def _default_encoder(trace: dict):
+    """the profile statute retrieval uses (candidates.profile: gpu when NIZAM_GPU_ENCODER_URL is set); a GPU encoder
+    that cannot load falls back to the CPU one, marked"""
+    from nizam.retrieval.candidates import profile
+    if profile() == "gpu":
+        try:
+            from nizam.inference.remote import remote_encoder
+            return remote_encoder()
+        except Exception as exc:                                # noqa: BLE001
+            trace["dense_fell_back"] = f"gpu encoder: {type(exc).__name__}"
+    return _cpu_encoder()
+
+
 def search(question: str, *, as_of: date, court: str | None = None, forum=None, k: int = 10,
            repo: JudgmentRead | None = None, encoder=None) -> PrecedentResult:
     if type(as_of) is not date:
@@ -233,11 +251,20 @@ def search(question: str, *, as_of: date, court: str | None = None, forum=None, 
             lists["bm25"] = repo.bm25_paragraphs(conn, question, WINDOW, as_of, court)
             mode = "lexical_only"
             try:
-                enc = encoder
-                if enc is None:
-                    from nizam.inference.encoder import encoder as _encoder
-                    enc = _encoder()
-                lists["dense"] = repo.dense_paragraphs(conn, enc.bits(question), WINDOW, as_of, court)
+                enc = encoder if encoder is not None else _default_encoder(trace)
+                if getattr(getattr(enc, "info", None), "dims", 1024) == 4096:
+                    # the GPU generation (D-158): the statutes' GPU space; until its judgment vectors are loaded the
+                    # CPU generation is searched instead, and the trace says so (never passed off as the GPU path)
+                    if repo.gpu_vectors_held(conn):
+                        lists["dense"] = repo.dense_paragraphs_gpu(conn, enc.bits(question, 4096), WINDOW, as_of,
+                                                                   court)
+                        trace["dense_space"] = "gpu"
+                    else:
+                        trace["dense_fell_back"] = "the GPU generation's judgment vectors are not loaded"
+                        enc = _cpu_encoder()
+                if "dense" not in lists:
+                    lists["dense"] = repo.dense_paragraphs(conn, enc.bits(question), WINDOW, as_of, court)
+                    trace["dense_space"] = "cpu"
                 mode = "hybrid"
             except Exception as exc:                            # noqa: BLE001  no encoder bundle on this host
                 trace["dense_unavailable"] = type(exc).__name__

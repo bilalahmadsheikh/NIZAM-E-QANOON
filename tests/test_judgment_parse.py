@@ -121,6 +121,18 @@ def test_announced_in_an_open_court_dates_the_judgment_and_a_blank_one_does_not(
         assert not m or read_date(m.group(0), TODAY) is None
 
 
+def test_a_letter_spaced_heading_names_its_court_and_an_unspaced_miss_stays_a_miss():
+    # D-157: the Federal Shariat Court's 'I N T H E F E D E R A L S H A R I A T C O U R T'
+    from nizam.corpus.judgment import _court
+    al = {"federal shariat court": "FSC", "lahore high court": "LHC", "supreme court of pakistan": "SC"}
+    assert _court("I N T H E F E D E R A L S H A R I A T C O U R T (ORIGINAL JURISDICTION)", al, glued=True) == "FSC"
+    assert _court("IN THE FEDERAL SHARIAT COURT (Appellate Jurisdiction)", al, glued=True) == "FSC"
+    # an OCR misreading is not repaired: the file waits for OCR (J9) rather than a guessed court
+    assert _court("IN THE FEDE~L SHARIAT COURT (Original Jurisdiction)", al, glued=True) is None
+    # without a letter-spaced run the spaces are never taken out
+    assert _court("IN THE FEDERALSHARIAT COURT", al, glued=True) is None
+
+
 def test_no_printed_decision_date_is_released_undated_not_guessed():
     # D-124: released marked undated; the hearing bounds it from below and is never taken as the date
     d = doc([HEADER + ["ORDER", "Alpha Beta, J.- The petition is dismissed.", "Judge", "Judge",

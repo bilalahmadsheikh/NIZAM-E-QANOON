@@ -120,7 +120,7 @@ e8push)
   # Status, logs and output: embedstatus / embedlogs / embedfetch NAME (same kernel naming).
   # KG_DS=<dataset> (default nizam-embed-v1; a top-up: nizam-topup-<stamp>) and KG_NSHARD=1 for a top-up
   K=/mnt/e/nizam-data/embed/kernel-$2; mkdir -p $K
-  sed "s/__HOURS__/${KG_HOURS:-11.5}/; s/__SMOKE__/${KG_SMOKE:-0}/; s/__SHARDS__/$3/; s/__REV__/${KG_REV:-}/; s/__TOKBUDGET__/${KG_TOKBUDGET:-}/; s/__NSHARD__/${KG_NSHARD:-}/" \
+  sed "s/__HOURS__/${KG_HOURS:-11.5}/; s/__SMOKE__/${KG_SMOKE:-0}/; s/__SHARDS__/$3/; s/__REV__/${KG_REV:-}/; s/__TOKBUDGET__/${KG_TOKBUDGET:-}/; s/__NSHARD__/${KG_NSHARD:-}/; s/__BITS__/${KG_BITS:-}/" \
     /mnt/e/Nizam_e_Qanoon/tools/kaggle/embed8b_kernel.py > $K/embed8b_kernel.py
   cat > $K/kernel-metadata.json <<EOF3
 {"id": "$USER/nizam-embed-run-$2", "title": "nizam-embed-run-$2", "code_file": "embed8b_kernel.py", "language": "python",
