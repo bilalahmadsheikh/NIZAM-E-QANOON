@@ -1136,6 +1136,57 @@ Area: client · Status: Superseded by D-084 (the whole-page cloth; the hem, the 
   design/heritage_art.dart, presentation/discover.dart, presentation/heritage.dart; test/heritage_test.dart
   (golden embroidery.png, a review sheet at 3x).
 
+### D-173 · 2026-11-27 · S1, the precedent context: built; the law join measured and not adopted
+Area: L5 precedent (docs/06 §5) / L3 precedent search · Status: standing (dev only; test not read)
+- Built (D-172's S1):
+  - `nizam/domain/precedent/` (L5, docs/01 Figure 20): `context_for(question, as_of, forum, seed) →
+    PrecedentContext | PrecedentAbstention` (`COURT_NOT_HELD`, `NO_PRECEDENT_FOUND`).
+  - It calls precedent search once. It adds the forum's authority per judgment, adverse status as at as_of
+    (`JudgmentRead.adverse_status`), a version note per seed unit (`version_notes`), coverage, and `interprets`:
+    which of the answer's sections each judgment cites.
+  - Adverse status: a lawyer-verified overruling, per incuriam, disapproval or reversal on appeal excludes the
+    judgment, recorded in the trace. A machine reading is carried as `awaiting_review`.
+  - `gated=False`: the result is discovery until the precedent gate (S2) exists. Nothing may be generated from it
+    (INV-2).
+  - `seed_from()` takes the units of a passed statute context, or the units the statute gate found nearest; a veto
+    gives none.
+- Measured: the law join, where the statute units choose judgments. Precedent dev v2, 87 answerable cases, paired
+  bootstrap against search alone.
+  - Seeds: the passed statute bundle (20 of 89 cases pass the CPU gate), or the served statute order's first 10
+    (all 89).
+  - Uses: a fifth RRF generator ordered by the question (`citing_paragraphs_by_question`, Hamming on the same sign
+    bits) or by treatment and date, or only a vote for judgments already found, like D-154's binding vote.
+  - No form helped:
+
+    | Profile | Variant | hit@10 | MRR@10 | recall@50 |
+    |---|---|---|---|---|
+    | CPU | passed bundle, question order | +0.0 | −2.7 [−6.1, +0.1] | +0.0 |
+    | CPU | passed bundle, role order | −1.1 | −2.5 | +0.0 |
+    | CPU | discovery, question order | −4.6 [−10.3, 0] | −5.9 [−10.6, −1.7] | −1.5 |
+    | CPU | discovery, role order | −6.9 [−13.8, −1.1] | −6.1 | −0.4 |
+    | CPU | passed bundle, vote | −1.1 | −3.2 [−7.0, −0.1] | +0.0 |
+    | CPU | discovery, vote | −1.1 | −4.9 [−9.7, −0.7] | +0.0 |
+    | 8B | discovery, question order | +0.0 | −4.1 | −2.9 [−6.9, 0] |
+    | 8B | discovery, role order | −1.1 | −3.7 | −3.6 [−7.5, −0.6] |
+    | 8B | discovery, vote | −2.3 | −3.1 | −0.6 |
+
+  - The one gain: provision questions on the 8B rose .636 → .727, which is one case.
+- Why D-172's study over-predicted (+7 to +8 points of candidate recall): it counted a judgment found if it was
+  anywhere among ALL judgments citing the units, often hundreds. The served search keeps 50, and the join's picks
+  displace better ones.
+  - Questions naming a section already reach those judgments through the "cited" generator.
+  - Citing the same section is not a relevance signal beyond what the search's other generators read.
+- Decision:
+  - The join is off by default (`context_for(law_join=False)`; `search(context_provisions=None)` is exactly the
+    D-167 search). The seed still marks `interprets` and the version note, so the answer packet knows which
+    judgments apply its sections.
+  - ANSWER-COMPOSITION §5 stage 3 carries an as-measured note.
+  - The code stays, with its options, for a later measurement: the 8B provision case, or a larger dev set.
+- Where: nizam/domain/precedent/; nizam/retrieval/precedent.py (`context_provisions`, `law_order`, `law_use`);
+  nizam/storage/judgment_read.py (`citing_paragraphs_by_question`, `adverse_status`, `version_notes`);
+  evals/precedent_eval.py (`lawctx`, `--law-context`, `--law-seed`, `--law-order`, `--law-use`);
+  tests/test_precedent_context.py; evals/results/precedent-lawjoin-dev-*.json.
+
 ### D-172 · 2026-11-27 · Law and precedent in one answer: the composition design (proposed)
 Area: L3–L6 (docs/01 §5, docs/05, docs/06) · Status: **proposed**, for the team's review before L4 starts
 - Asked by the owner (27 Nov): research how to combine the law and judgments with reasoning, then write it down.

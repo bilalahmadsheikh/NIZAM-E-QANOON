@@ -1,0 +1,5229 @@
+{
+ "summary": {
+  "split": "dev",
+  "status": "provisional: draft gold, not yet legally reviewed (A1/A2)",
+  "cases": 89,
+  "answerable": 87,
+  "modes": [
+   "hybrid"
+  ],
+  "hit@10": 0.644,
+  "MRR@10": 0.386,
+  "recall@10": 0.6,
+  "recall@50": 0.747,
+  "paragraph@10": 0.477,
+  "gold_or_relevant@10": 0.655,
+  "by_stratum": {
+   "authority": {
+    "n": 4,
+    "hit@10": 0.25,
+    "MRR@10": 0.125,
+    "recall@50": 0.417
+   },
+   "case_lookup": {
+    "n": 14,
+    "hit@10": 1.0,
+    "MRR@10": 0.946,
+    "recall@50": 1.0
+   },
+   "issue": {
+    "n": 46,
+    "hit@10": 0.652,
+    "MRR@10": 0.305,
+    "recall@50": 0.75
+   },
+   "provision": {
+    "n": 11,
+    "hit@10": 0.636,
+    "MRR@10": 0.282,
+    "recall@50": 0.621
+   },
+   "temporal": {
+    "n": 5,
+    "hit@10": 0.2,
+    "MRR@10": 0.2,
+    "recall@50": 0.6
+   },
+   "urdu": {
+    "n": 7,
+    "hit@10": 0.429,
+    "MRR@10": 0.238,
+    "recall@50": 0.714
+   }
+  },
+  "leaks": {
+   "after_as_of": 0,
+   "must_not_serve": 0
+  },
+  "authority": {
+   "agree": 68,
+   "disagree": 0,
+   "not_recorded": 3
+  },
+  "unanswerable": [
+   {
+    "caseId": "P1-X06",
+    "code": "before_coverage",
+    "hits": 0,
+    "courts_returned": [],
+    "declined": true,
+    "coverage_gap": null
+   },
+   {
+    "caseId": "P2-X01",
+    "code": "court_not_held",
+    "hits": 50,
+    "courts_returned": [
+     "Gilgit-Baltistan Supreme Appellate Court",
+     "High Court of Azad Jammu and Kashmir",
+     "High Court of Sindh",
+     "Islamabad High Court",
+     "Lahore High Court",
+     "Peshawar High Court",
+     "Supreme Court of Azad Jammu and Kashmir",
+     "Supreme Court of Pakistan"
+    ],
+    "declined": false,
+    "coverage_gap": null
+   }
+  ],
+  "declined": "1 of 2",
+  "latency_ms": {
+   "p50": 1794,
+   "p95": 2841
+  },
+  "law_join": {
+   "context": "/mnt/e/nizam-data/acquire/work/p2/lawctx-dev-cpu.json",
+   "seed": "discovery",
+   "order": "role",
+   "cases_seeded": 89
+  }
+ },
+ "cases": [
+  {
+   "caseId": "P1-I01",
+   "stratum": "issue",
+   "familyId": "FP1-bail-further-inquiry",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 57,
+     "courts_named": 3,
+     "cases_named": 70,
+     "bm25": 1477,
+     "dense": 502,
+     "law": 182,
+     "cited": 73,
+     "fusion": 60,
+     "details": 95,
+     "statutes_cited": 136,
+     "hits": 1,
+     "coverage": 359
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 156,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 50,
+     "cited": 50
+    },
+    "ms": 3015,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": false,
+   "rr10": 0.0,
+   "recall10": 0.0,
+   "recall50": 0.0,
+   "paragraph10": null,
+   "any_gold_or_relevant10": false,
+   "authority": [],
+   "gold_courts": [
+    "SC"
+   ],
+   "first_rank": null,
+   "gold_ranks": {
+    "SC doc 4414": null,
+    "SC doc 6231": null
+   }
+  },
+  {
+   "caseId": "P1-I02",
+   "stratum": "issue",
+   "familyId": "FP1-mutation-title",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 2,
+     "cases_named": 29,
+     "bm25": 1175,
+     "dense": 453,
+     "law": 95,
+     "cited": 0,
+     "fusion": 44,
+     "details": 67,
+     "statutes_cited": 216,
+     "hits": 1,
+     "coverage": 33
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 60,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 50
+    },
+    "ms": 2116,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": false,
+   "rr10": 0.0,
+   "recall10": 0.0,
+   "recall50": 0.0,
+   "paragraph10": null,
+   "any_gold_or_relevant10": false,
+   "authority": [],
+   "gold_courts": [
+    "SC"
+   ],
+   "first_rank": null,
+   "gold_ranks": {
+    "SC doc 4550": null
+   }
+  },
+  {
+   "caseId": "P1-I03",
+   "stratum": "issue",
+   "familyId": "FP1-gift-ingredients",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 2,
+     "cases_named": 30,
+     "bm25": 694,
+     "dense": 261,
+     "law": 65,
+     "cited": 0,
+     "fusion": 38,
+     "details": 82,
+     "statutes_cited": 144,
+     "hits": 1,
+     "coverage": 36
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 15,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 50
+    },
+    "ms": 1353,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": true,
+   "rr10": 0.14285714285714285,
+   "recall10": 0.5,
+   "recall50": 0.5,
+   "paragraph10": 0.0,
+   "any_gold_or_relevant10": true,
+   "authority": [
+    "agree"
+   ],
+   "gold_courts": [
+    "SC"
+   ],
+   "first_rank": 7,
+   "gold_ranks": {
+    "SC doc 6514": 7,
+    "SC doc 5903": null
+   }
+  },
+  {
+   "caseId": "P1-I05",
+   "stratum": "issue",
+   "familyId": "FP1-attesting-witness",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 62,
+     "courts_named": 2,
+     "cases_named": 31,
+     "bm25": 856,
+     "dense": 322,
+     "law": 92,
+     "cited": 102,
+     "fusion": 77,
+     "details": 105,
+     "statutes_cited": 182,
+     "hits": 1,
+     "coverage": 65
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 60,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 50,
+     "cited": 50
+    },
+    "ms": 1900,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": true,
+   "rr10": 0.5,
+   "recall10": 0.5,
+   "recall50": 1.0,
+   "paragraph10": 0.0,
+   "any_gold_or_relevant10": true,
+   "authority": [
+    "agree",
+    "agree"
+   ],
+   "gold_courts": [
+    "SC"
+   ],
+   "first_rank": 2,
+   "gold_ranks": {
+    "SC doc 7719": 2,
+    "SC doc 5020": 17
+   }
+  },
+  {
+   "caseId": "P1-I06",
+   "stratum": "issue",
+   "familyId": "FP1-res-judicata",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 225,
+     "courts_named": 2,
+     "cases_named": 34,
+     "bm25": 764,
+     "dense": 398,
+     "law": 148,
+     "cited": 69,
+     "fusion": 46,
+     "details": 63,
+     "statutes_cited": 147,
+     "hits": 1,
+     "coverage": 35
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 9,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 50,
+     "cited": 50
+    },
+    "ms": 1932,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": true,
+   "rr10": 0.3333333333333333,
+   "recall10": 0.5,
+   "recall50": 1.0,
+   "paragraph10": 0.0,
+   "any_gold_or_relevant10": true,
+   "authority": [
+    "agree",
+    "agree"
+   ],
+   "gold_courts": [
+    "SC"
+   ],
+   "first_rank": 3,
+   "gold_ranks": {
+    "SC doc 5937": 3,
+    "SC doc 7515": 11
+   }
+  },
+  {
+   "caseId": "P1-I07",
+   "stratum": "issue",
+   "familyId": "FP1-narcotics-custody",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 2,
+     "cases_named": 31,
+     "bm25": 878,
+     "dense": 410,
+     "law": 116,
+     "cited": 0,
+     "fusion": 39,
+     "details": 67,
+     "statutes_cited": 108,
+     "hits": 1,
+     "coverage": 32
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 12,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 50
+    },
+    "ms": 1686,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": true,
+   "rr10": 0.14285714285714285,
+   "recall10": 1.0,
+   "recall50": 1.0,
+   "paragraph10": 1.0,
+   "any_gold_or_relevant10": true,
+   "authority": [
+    "agree"
+   ],
+   "gold_courts": [
+    "SC"
+   ],
+   "first_rank": 7,
+   "gold_ranks": {
+    "SC doc 7595": 7
+   }
+  },
+  {
+   "caseId": "P1-I08",
+   "stratum": "issue",
+   "familyId": "FP1-benefit-of-doubt",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 1,
+     "cases_named": 43,
+     "bm25": 785,
+     "dense": 602,
+     "law": 154,
+     "cited": 0,
+     "fusion": 90,
+     "details": 120,
+     "statutes_cited": 251,
+     "hits": 2,
+     "coverage": 39
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 48,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 50
+    },
+    "ms": 2087,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": false,
+   "rr10": 0.0,
+   "recall10": 0.0,
+   "recall50": 0.0,
+   "paragraph10": null,
+   "any_gold_or_relevant10": false,
+   "authority": [],
+   "gold_courts": [
+    "SC"
+   ],
+   "first_rank": null,
+   "gold_ranks": {
+    "SC doc 5298": null
+   }
+  },
+  {
+   "caseId": "P1-I18",
+   "stratum": "issue",
+   "familyId": "FP1-cheque-489f",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 35,
+     "courts_named": 2,
+     "cases_named": 30,
+     "bm25": 784,
+     "dense": 386,
+     "law": 99,
+     "cited": 73,
+     "fusion": 40,
+     "details": 64,
+     "statutes_cited": 198,
+     "hits": 1,
+     "coverage": 35
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 17,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 50,
+     "cited": 50
+    },
+    "ms": 1747,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": true,
+   "rr10": 1.0,
+   "recall10": 1.0,
+   "recall50": 1.0,
+   "paragraph10": 0.0,
+   "any_gold_or_relevant10": true,
+   "authority": [
+    "agree"
+   ],
+   "gold_courts": [
+    "LHC"
+   ],
+   "first_rank": 1,
+   "gold_ranks": {
+    "LHC doc 9712": 1
+   }
+  },
+  {
+   "caseId": "P1-I21",
+   "stratum": "issue",
+   "familyId": "FP1-khula-dower",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 2,
+     "cases_named": 31,
+     "bm25": 970,
+     "dense": 301,
+     "law": 117,
+     "cited": 0,
+     "fusion": 46,
+     "details": 77,
+     "statutes_cited": 109,
+     "hits": 2,
+     "coverage": 41
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 48,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 29
+    },
+    "ms": 1697,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": true,
+   "rr10": 0.2,
+   "recall10": 1.0,
+   "recall50": 1.0,
+   "paragraph10": 0.0,
+   "any_gold_or_relevant10": true,
+   "authority": [
+    "agree"
+   ],
+   "gold_courts": [
+    "LHC"
+   ],
+   "first_rank": 5,
+   "gold_ranks": {
+    "LHC doc 8425": 5
+   }
+  },
+  {
+   "caseId": "P1-I22",
+   "stratum": "issue",
+   "familyId": "FP1-temporary-injunction",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 2,
+     "cases_named": 31,
+     "bm25": 688,
+     "dense": 407,
+     "law": 122,
+     "cited": 0,
+     "fusion": 34,
+     "details": 49,
+     "statutes_cited": 173,
+     "hits": 1,
+     "coverage": 36
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 57,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 50
+    },
+    "ms": 1547,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": true,
+   "rr10": 0.5,
+   "recall10": 1.0,
+   "recall50": 1.0,
+   "paragraph10": 1.0,
+   "any_gold_or_relevant10": true,
+   "authority": [
+    "agree",
+    "agree"
+   ],
+   "gold_courts": [
+    "LHC"
+   ],
+   "first_rank": 2,
+   "gold_ranks": {
+    "LHC doc 10478": 7,
+    "LHC doc 12079": 2
+   }
+  },
+  {
+   "caseId": "P1-I23",
+   "stratum": "issue",
+   "familyId": "FP1-juvenile-age",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 1,
+     "cases_named": 34,
+     "bm25": 818,
+     "dense": 332,
+     "law": 116,
+     "cited": 0,
+     "fusion": 77,
+     "details": 104,
+     "statutes_cited": 296,
+     "hits": 2,
+     "coverage": 38
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 25,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 40
+    },
+    "ms": 1818,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": true,
+   "rr10": 0.3333333333333333,
+   "recall10": 1.0,
+   "recall50": 1.0,
+   "paragraph10": 0.0,
+   "any_gold_or_relevant10": true,
+   "authority": [
+    "agree"
+   ],
+   "gold_courts": [
+    "LHC"
+   ],
+   "first_rank": 3,
+   "gold_ranks": {
+    "LHC doc 9484": 3
+   }
+  },
+  {
+   "caseId": "P1-I24",
+   "stratum": "issue",
+   "familyId": "FP1-registered-deed",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 1,
+     "cases_named": 27,
+     "bm25": 757,
+     "dense": 598,
+     "law": 76,
+     "cited": 0,
+     "fusion": 36,
+     "details": 55,
+     "statutes_cited": 169,
+     "hits": 1,
+     "coverage": 34
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 46,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 43
+    },
+    "ms": 1756,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": true,
+   "rr10": 1.0,
+   "recall10": 1.0,
+   "recall50": 1.0,
+   "paragraph10": 1.0,
+   "any_gold_or_relevant10": true,
+   "authority": [
+    "agree"
+   ],
+   "gold_courts": [
+    "LHC"
+   ],
+   "first_rank": 1,
+   "gold_ranks": {
+    "LHC doc 9348": 1
+   }
+  },
+  {
+   "caseId": "P1-I25",
+   "stratum": "issue",
+   "familyId": "FP1-punjab-rent-ltc",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 1,
+     "cases_named": 34,
+     "bm25": 1409,
+     "dense": 509,
+     "law": 58,
+     "cited": 0,
+     "fusion": 36,
+     "details": 61,
+     "statutes_cited": 152,
+     "hits": 1,
+     "coverage": 32
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 60,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 41
+    },
+    "ms": 2293,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": true,
+   "rr10": 0.3333333333333333,
+   "recall10": 1.0,
+   "recall50": 1.0,
+   "paragraph10": 1.0,
+   "any_gold_or_relevant10": true,
+   "authority": [
+    "agree"
+   ],
+   "gold_courts": [
+    "LHC"
+   ],
+   "first_rank": 3,
+   "gold_ranks": {
+    "LHC doc 9892": 3
+   }
+  },
+  {
+   "caseId": "P1-I27",
+   "stratum": "issue",
+   "familyId": "FP1-nab-bail",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 29,
+     "courts_named": 2,
+     "cases_named": 34,
+     "bm25": 686,
+     "dense": 496,
+     "law": 228,
+     "cited": 149,
+     "fusion": 76,
+     "details": 119,
+     "statutes_cited": 434,
+     "hits": 1,
+     "coverage": 35
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 19,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 50,
+     "cited": 50
+    },
+    "ms": 2289,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": true,
+   "rr10": 0.2,
+   "recall10": 1.0,
+   "recall50": 1.0,
+   "paragraph10": 1.0,
+   "any_gold_or_relevant10": true,
+   "authority": [
+    "agree"
+   ],
+   "gold_courts": [
+    "PHC"
+   ],
+   "first_rank": 5,
+   "gold_ranks": {
+    "PHC doc 14561": 5
+   }
+  },
+  {
+   "caseId": "P1-I28",
+   "stratum": "issue",
+   "familyId": "FP1-ac-eviction",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 1,
+     "cases_named": 30,
+     "bm25": 885,
+     "dense": 411,
+     "law": 71,
+     "cited": 0,
+     "fusion": 37,
+     "details": 66,
+     "statutes_cited": 102,
+     "hits": 1,
+     "coverage": 42
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 34,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 50
+    },
+    "ms": 1649,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": true,
+   "rr10": 1.0,
+   "recall10": 1.0,
+   "recall50": 1.0,
+   "paragraph10": 0.0,
+   "any_gold_or_relevant10": true,
+   "authority": [
+    "agree"
+   ],
+   "gold_courts": [
+    "PHC"
+   ],
+   "first_rank": 1,
+   "gold_ranks": {
+    "PHC doc 15762": 1
+   }
+  },
+  {
+   "caseId": "P1-I30",
+   "stratum": "issue",
+   "familyId": "FP1-fcr-merger",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 49,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 1,
+     "cases_named": 29,
+     "bm25": 1316,
+     "dense": 352,
+     "law": 63,
+     "cited": 0,
+     "fusion": 10,
+     "details": 67,
+     "statutes_cited": 377,
+     "hits": 1,
+     "coverage": 34
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 44,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 23
+    },
+    "ms": 2252,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": true,
+   "rr10": 0.25,
+   "recall10": 1.0,
+   "recall50": 1.0,
+   "paragraph10": 0.0,
+   "any_gold_or_relevant10": true,
+   "authority": [
+    "agree"
+   ],
+   "gold_courts": [
+    "PHC"
+   ],
+   "first_rank": 4,
+   "gold_ranks": {
+    "PHC doc 16568": 4
+   }
+  },
+  {
+   "caseId": "P1-I31",
+   "stratum": "issue",
+   "familyId": "FP1-cheque-bail",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 28,
+     "courts_named": 2,
+     "cases_named": 31,
+     "bm25": 734,
+     "dense": 252,
+     "law": 99,
+     "cited": 64,
+     "fusion": 42,
+     "details": 57,
+     "statutes_cited": 247,
+     "hits": 1,
+     "coverage": 82
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 3,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 50,
+     "cited": 50
+    },
+    "ms": 1641,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": false,
+   "rr10": 0.0,
+   "recall10": 0.0,
+   "recall50": 0.0,
+   "paragraph10": null,
+   "any_gold_or_relevant10": false,
+   "authority": [],
+   "gold_courts": [
+    "PHC"
+   ],
+   "first_rank": null,
+   "gold_ranks": {
+    "PHC doc 14459": null
+   }
+  },
+  {
+   "caseId": "P1-I32",
+   "stratum": "issue",
+   "familyId": "FP1-mpo-detention",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 46,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 2442,
+     "courts_named": 1,
+     "cases_named": 31,
+     "bm25": 1414,
+     "dense": 334,
+     "law": 60,
+     "cited": 46,
+     "fusion": 12,
+     "details": 55,
+     "statutes_cited": 170,
+     "hits": 1,
+     "coverage": 34
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 15,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 24,
+     "cited": 22
+    },
+    "ms": 4601,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": true,
+   "rr10": 0.16666666666666666,
+   "recall10": 1.0,
+   "recall50": 1.0,
+   "paragraph10": 0.0,
+   "any_gold_or_relevant10": true,
+   "authority": [
+    "agree"
+   ],
+   "gold_courts": [
+    "PHC"
+   ],
+   "first_rank": 6,
+   "gold_ranks": {
+    "PHC doc 14732": 6
+   }
+  },
+  {
+   "caseId": "P1-I33",
+   "stratum": "issue",
+   "familyId": "FP1-interim-custody-appeal",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 200,
+     "courts_named": 2,
+     "cases_named": 29,
+     "bm25": 873,
+     "dense": 445,
+     "law": 130,
+     "cited": 93,
+     "fusion": 75,
+     "details": 130,
+     "statutes_cited": 143,
+     "hits": 1,
+     "coverage": 38
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 10,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 50,
+     "cited": 50
+    },
+    "ms": 2158,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": true,
+   "rr10": 0.3333333333333333,
+   "recall10": 1.0,
+   "recall50": 1.0,
+   "paragraph10": 1.0,
+   "any_gold_or_relevant10": true,
+   "authority": [
+    "agree"
+   ],
+   "gold_courts": [
+    "PHC"
+   ],
+   "first_rank": 3,
+   "gold_ranks": {
+    "PHC doc 14852": 3
+   }
+  },
+  {
+   "caseId": "P1-I34",
+   "stratum": "issue",
+   "familyId": "FP1-dissolution-dower",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 2,
+     "cases_named": 27,
+     "bm25": 770,
+     "dense": 213,
+     "law": 94,
+     "cited": 0,
+     "fusion": 40,
+     "details": 76,
+     "statutes_cited": 91,
+     "hits": 1,
+     "coverage": 34
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 39,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 50
+    },
+    "ms": 1349,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": true,
+   "rr10": 1.0,
+   "recall10": 1.0,
+   "recall50": 1.0,
+   "paragraph10": 1.0,
+   "any_gold_or_relevant10": true,
+   "authority": [
+    "agree"
+   ],
+   "gold_courts": [
+    "PHC"
+   ],
+   "first_rank": 1,
+   "gold_ranks": {
+    "PHC doc 17400": 1
+   }
+  },
+  {
+   "caseId": "P1-I35",
+   "stratum": "issue",
+   "familyId": "FP1-women-property-kp",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 28,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 1,
+     "cases_named": 30,
+     "bm25": 780,
+     "dense": 416,
+     "law": 117,
+     "cited": 0,
+     "fusion": 18,
+     "details": 168,
+     "statutes_cited": 259,
+     "hits": 1,
+     "coverage": 49
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 14,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 7
+    },
+    "ms": 1842,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": true,
+   "rr10": 0.2,
+   "recall10": 1.0,
+   "recall50": 1.0,
+   "paragraph10": 0.0,
+   "any_gold_or_relevant10": true,
+   "authority": [
+    "agree"
+   ],
+   "gold_courts": [
+    "PHC"
+   ],
+   "first_rank": 5,
+   "gold_ranks": {
+    "PHC doc 15354": 5
+   }
+  },
+  {
+   "caseId": "P1-I36",
+   "stratum": "issue",
+   "familyId": "FP1-sindh-bona-fide-need",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 2,
+     "cases_named": 8,
+     "bm25": 947,
+     "dense": 345,
+     "law": 51,
+     "cited": 0,
+     "fusion": 34,
+     "details": 71,
+     "statutes_cited": 89,
+     "hits": 1,
+     "coverage": 36
+    },
+    "courts_named": [
+     "SHC"
+    ],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 63,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 2
+    },
+    "ms": 1585,
+    "withheld_by_name": 0,
+    "court_searched": "SHC"
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": false,
+   "rr10": 0.0,
+   "recall10": 0.0,
+   "recall50": 0.0,
+   "paragraph10": null,
+   "any_gold_or_relevant10": true,
+   "authority": [],
+   "gold_courts": [
+    "SHC"
+   ],
+   "first_rank": null,
+   "gold_ranks": {
+    "SHC doc 51035": null
+   }
+  },
+  {
+   "caseId": "P1-I37",
+   "stratum": "issue",
+   "familyId": "FP1-bhc-special-assistants",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 7,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 1,
+     "cases_named": 8,
+     "bm25": 1279,
+     "dense": 843,
+     "law": 14,
+     "cited": 0,
+     "fusion": 6,
+     "details": 39,
+     "statutes_cited": 33,
+     "hits": 0,
+     "coverage": 39
+    },
+    "courts_named": [
+     "BHC"
+    ],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 7,
+    "generators": {
+     "bm25": 19,
+     "dense": 12,
+     "law": 0
+    },
+    "ms": 2263,
+    "withheld_by_name": 0,
+    "court_searched": "BHC"
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": true,
+   "rr10": 1.0,
+   "recall10": 1.0,
+   "recall50": 1.0,
+   "paragraph10": 1.0,
+   "any_gold_or_relevant10": true,
+   "authority": [
+    "agree"
+   ],
+   "gold_courts": [
+    "BHC"
+   ],
+   "first_rank": 1,
+   "gold_ranks": {
+    "BHC doc 84199": 1
+   }
+  },
+  {
+   "caseId": "P1-I39",
+   "stratum": "issue",
+   "familyId": "FP1-ihc-contract-writ",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 30,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 1,
+     "cases_named": 4,
+     "bm25": 1227,
+     "dense": 619,
+     "law": 65,
+     "cited": 0,
+     "fusion": 11,
+     "details": 85,
+     "statutes_cited": 138,
+     "hits": 1,
+     "coverage": 36
+    },
+    "courts_named": [
+     "IHC"
+    ],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 30,
+    "generators": {
+     "bm25": 13,
+     "dense": 26,
+     "law": 6
+    },
+    "ms": 2188,
+    "withheld_by_name": 0,
+    "court_searched": "IHC"
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": true,
+   "rr10": 0.16666666666666666,
+   "recall10": 1.0,
+   "recall50": 1.0,
+   "paragraph10": 1.0,
+   "any_gold_or_relevant10": true,
+   "authority": [
+    "agree"
+   ],
+   "gold_courts": [
+    "IHC"
+   ],
+   "first_rank": 6,
+   "gold_ranks": {
+    "IHC doc 133661": 6
+   }
+  },
+  {
+   "caseId": "P1-F01",
+   "stratum": "authority",
+   "familyId": "FP1-temporary-injunction",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 1,
+     "cases_named": 20,
+     "bm25": 734,
+     "dense": 273,
+     "law": 21,
+     "cited": 0,
+     "fusion": 33,
+     "details": 59,
+     "statutes_cited": 130,
+     "hits": 1,
+     "coverage": 32
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 27,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 0
+    },
+    "ms": 1305,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": false,
+   "rr10": 0.0,
+   "recall10": 0.0,
+   "recall50": 1.0,
+   "paragraph10": null,
+   "any_gold_or_relevant10": false,
+   "authority": [
+    "agree",
+    "agree"
+   ],
+   "gold_courts": [
+    "LHC"
+   ],
+   "first_rank": null,
+   "gold_ranks": {
+    "LHC doc 10478": 49,
+    "LHC doc 12079": 11
+   }
+  },
+  {
+   "caseId": "P1-T02",
+   "stratum": "temporal",
+   "familyId": "FP1-bail-further-inquiry",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 27,
+     "courts_named": 1,
+     "cases_named": 31,
+     "bm25": 790,
+     "dense": 524,
+     "law": 41,
+     "cited": 102,
+     "fusion": 40,
+     "details": 71,
+     "statutes_cited": 476,
+     "hits": 1,
+     "coverage": 31
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 0,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 1,
+     "cited": 50
+    },
+    "ms": 2134,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": false,
+   "rr10": 0.0,
+   "recall10": 0.0,
+   "recall50": 0.0,
+   "paragraph10": null,
+   "any_gold_or_relevant10": false,
+   "authority": [],
+   "gold_courts": [
+    "SC"
+   ],
+   "first_rank": null,
+   "gold_ranks": {
+    "SC doc 6231": null
+   }
+  },
+  {
+   "caseId": "P1-T03",
+   "stratum": "temporal",
+   "familyId": "FP1-judges-transfer",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 32,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 2,
+     "cases_named": 7,
+     "bm25": 843,
+     "dense": 420,
+     "law": 80,
+     "cited": 0,
+     "fusion": 10,
+     "details": 77,
+     "statutes_cited": 1823,
+     "hits": 1,
+     "coverage": 34
+    },
+    "courts_named": [
+     "SC"
+    ],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 0,
+    "generators": {
+     "bm25": 50,
+     "dense": 39,
+     "law": 1
+    },
+    "ms": 3298,
+    "withheld_by_name": 0,
+    "court_searched": "SC"
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": true,
+   "rr10": 1.0,
+   "recall10": 1.0,
+   "recall50": 1.0,
+   "paragraph10": 0.0,
+   "any_gold_or_relevant10": true,
+   "authority": [
+    "not_recorded"
+   ],
+   "gold_courts": [
+    "SC"
+   ],
+   "first_rank": 1,
+   "gold_ranks": {
+    "SC doc 5600": 1
+   }
+  },
+  {
+   "caseId": "P1-C01",
+   "stratum": "case_lookup",
+   "familyId": "FP1-mutation-title",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 1,
+     "cases_named": 34,
+     "bm25": 606,
+     "dense": 668,
+     "law": 109,
+     "cited": 0,
+     "fusion": 38,
+     "details": 60,
+     "statutes_cited": 547,
+     "hits": 1,
+     "coverage": 33
+    },
+    "courts_named": [
+     "SC"
+    ],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 71,
+    "generators": {
+     "case": 1,
+     "bm25": 5,
+     "dense": 50,
+     "law": 50
+    },
+    "ms": 2099,
+    "withheld_by_name": 0,
+    "court_searched": "SC"
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [
+    "SC/CA/415/2018"
+   ],
+   "hit10": true,
+   "rr10": 1.0,
+   "recall10": 1.0,
+   "recall50": 1.0,
+   "paragraph10": null,
+   "any_gold_or_relevant10": true,
+   "authority": [
+    "agree"
+   ],
+   "gold_courts": [
+    "SC"
+   ],
+   "first_rank": 1,
+   "gold_ranks": {
+    "SC doc 4550": 1
+   }
+  },
+  {
+   "caseId": "P1-C02",
+   "stratum": "case_lookup",
+   "familyId": "FP1-khula-dower",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 38,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 1,
+     "cases_named": 27,
+     "bm25": 668,
+     "dense": 518,
+     "law": 138,
+     "cited": 0,
+     "fusion": 18,
+     "details": 99,
+     "statutes_cited": 377,
+     "hits": 1,
+     "coverage": 39
+    },
+    "courts_named": [
+     "LHC"
+    ],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 38,
+    "generators": {
+     "case": 1,
+     "bm25": 3,
+     "dense": 50,
+     "law": 1
+    },
+    "ms": 1889,
+    "withheld_by_name": 0,
+    "court_searched": "LHC"
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [
+    "LHC/WP/12505/2020"
+   ],
+   "hit10": true,
+   "rr10": 1.0,
+   "recall10": 1.0,
+   "recall50": 1.0,
+   "paragraph10": null,
+   "any_gold_or_relevant10": true,
+   "authority": [
+    "agree"
+   ],
+   "gold_courts": [
+    "LHC"
+   ],
+   "first_rank": 1,
+   "gold_ranks": {
+    "LHC doc 8425": 1
+   }
+  },
+  {
+   "caseId": "P1-C04",
+   "stratum": "case_lookup",
+   "familyId": "FP1-judges-transfer",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 1,
+     "cases_named": 41,
+     "bm25": 900,
+     "dense": 164,
+     "law": 103,
+     "cited": 0,
+     "fusion": 38,
+     "details": 67,
+     "statutes_cited": 1479,
+     "hits": 3,
+     "coverage": 42
+    },
+    "courts_named": [
+     "SC"
+    ],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 66,
+    "generators": {
+     "case": 6,
+     "bm25": 50,
+     "dense": 50,
+     "law": 50
+    },
+    "ms": 2839,
+    "withheld_by_name": 0,
+    "court_searched": "SC"
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [
+    "SC/CONSTP/22/2025"
+   ],
+   "hit10": true,
+   "rr10": 0.25,
+   "recall10": 1.0,
+   "recall50": 1.0,
+   "paragraph10": 0.0,
+   "any_gold_or_relevant10": true,
+   "authority": [
+    "agree",
+    "agree"
+   ],
+   "gold_courts": [
+    "SC"
+   ],
+   "first_rank": 4,
+   "gold_ranks": {
+    "SC doc 5600": 6,
+    "SC doc 4463": 4
+   }
+  },
+  {
+   "caseId": "P1-S02",
+   "stratum": "provision",
+   "familyId": "FP1-attesting-witness",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 68,
+     "courts_named": 1,
+     "cases_named": 25,
+     "bm25": 812,
+     "dense": 307,
+     "law": 75,
+     "cited": 55,
+     "fusion": 36,
+     "details": 60,
+     "statutes_cited": 128,
+     "hits": 1,
+     "coverage": 33
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 59,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 50,
+     "cited": 50
+    },
+    "ms": 1603,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": true,
+   "rr10": 1.0,
+   "recall10": 0.3333333333333333,
+   "recall50": 0.3333333333333333,
+   "paragraph10": 1.0,
+   "any_gold_or_relevant10": true,
+   "authority": [
+    "agree"
+   ],
+   "gold_courts": [
+    "PHC",
+    "SC"
+   ],
+   "first_rank": 1,
+   "gold_ranks": {
+    "SC doc 7719": 1,
+    "SC doc 5020": null,
+    "PHC doc 17863": null
+   }
+  },
+  {
+   "caseId": "P1-S03",
+   "stratum": "provision",
+   "familyId": "FP1-juvenile-age",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 323,
+     "courts_named": 2,
+     "cases_named": 37,
+     "bm25": 1110,
+     "dense": 414,
+     "law": 51,
+     "cited": 35,
+     "fusion": 16,
+     "details": 58,
+     "statutes_cited": 194,
+     "hits": 1,
+     "coverage": 42
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 16,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 17,
+     "cited": 10
+    },
+    "ms": 2284,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": true,
+   "rr10": 1.0,
+   "recall10": 1.0,
+   "recall50": 1.0,
+   "paragraph10": 0.0,
+   "any_gold_or_relevant10": true,
+   "authority": [
+    "agree"
+   ],
+   "gold_courts": [
+    "LHC"
+   ],
+   "first_rank": 1,
+   "gold_ranks": {
+    "LHC doc 9484": 1
+   }
+  },
+  {
+   "caseId": "P1-S04",
+   "stratum": "provision",
+   "familyId": "FP1-cheque-489f",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 30,
+     "courts_named": 1,
+     "cases_named": 30,
+     "bm25": 679,
+     "dense": 406,
+     "law": 102,
+     "cited": 70,
+     "fusion": 44,
+     "details": 92,
+     "statutes_cited": 302,
+     "hits": 1,
+     "coverage": 62
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 6,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 50,
+     "cited": 50
+    },
+    "ms": 1821,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": false,
+   "rr10": 0.0,
+   "recall10": 0.0,
+   "recall50": 0.0,
+   "paragraph10": null,
+   "any_gold_or_relevant10": false,
+   "authority": [],
+   "gold_courts": [
+    "LHC",
+    "PHC"
+   ],
+   "first_rank": null,
+   "gold_ranks": {
+    "LHC doc 9712": null,
+    "PHC doc 14459": null
+   }
+  },
+  {
+   "caseId": "P1-U02",
+   "stratum": "urdu",
+   "familyId": "FP1-mutation-title",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 1,
+     "cases_named": 35,
+     "bm25": 960,
+     "dense": 432,
+     "law": 434,
+     "cited": 0,
+     "fusion": 36,
+     "details": 50,
+     "statutes_cited": 166,
+     "hits": 1,
+     "coverage": 35
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 44,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 5
+    },
+    "ms": 2152,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": false,
+   "rr10": 0.0,
+   "recall10": 0.0,
+   "recall50": 0.0,
+   "paragraph10": null,
+   "any_gold_or_relevant10": false,
+   "authority": [],
+   "gold_courts": [
+    "SC"
+   ],
+   "first_rank": null,
+   "gold_ranks": {
+    "SC doc 4550": null
+   }
+  },
+  {
+   "caseId": "P1-U04",
+   "stratum": "urdu",
+   "familyId": "FP1-cheque-489f",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 1,
+     "cases_named": 28,
+     "bm25": 867,
+     "dense": 265,
+     "law": 191,
+     "cited": 0,
+     "fusion": 45,
+     "details": 64,
+     "statutes_cited": 246,
+     "hits": 1,
+     "coverage": 35
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 17,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 20
+    },
+    "ms": 1743,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": true,
+   "rr10": 1.0,
+   "recall10": 1.0,
+   "recall50": 1.0,
+   "paragraph10": 0.0,
+   "any_gold_or_relevant10": true,
+   "authority": [
+    "agree"
+   ],
+   "gold_courts": [
+    "LHC"
+   ],
+   "first_rank": 1,
+   "gold_ranks": {
+    "LHC doc 9712": 1
+   }
+  },
+  {
+   "caseId": "P1-X06",
+   "stratum": "unanswerable",
+   "familyId": "FP1-x-before-coverage",
+   "outcome": "abstain",
+   "mode": "hybrid",
+   "hits": 0,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 2,
+     "cases_named": 7,
+     "bm25": 620,
+     "dense": 318,
+     "law": 44,
+     "cited": 0,
+     "fusion": 2,
+     "details": 6,
+     "statutes_cited": 0,
+     "hits": 0,
+     "coverage": 36
+    },
+    "courts_named": [
+     "SC"
+    ],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "generators": {
+     "bm25": 0,
+     "dense": 0,
+     "law": 0
+    },
+    "ms": 1037,
+    "withheld_by_name": 0,
+    "court_searched": "SC"
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "abstention_code": "before_coverage",
+   "courts_returned": [],
+   "declined": true
+  },
+  {
+   "caseId": "P2-I03",
+   "stratum": "issue",
+   "familyId": "FP2-extra-judicial-confession",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 1,
+     "cases_named": 31,
+     "bm25": 717,
+     "dense": 497,
+     "law": 166,
+     "cited": 0,
+     "fusion": 83,
+     "details": 111,
+     "statutes_cited": 403,
+     "hits": 2,
+     "coverage": 54
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 41,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 50
+    },
+    "ms": 2067,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": true,
+   "rr10": 0.1,
+   "recall10": 1.0,
+   "recall50": 1.0,
+   "paragraph10": 1.0,
+   "any_gold_or_relevant10": true,
+   "authority": [
+    "agree"
+   ],
+   "gold_courts": [
+    "LHC"
+   ],
+   "first_rank": 10,
+   "gold_ranks": {
+    "LHC doc 114209": 10
+   }
+  },
+  {
+   "caseId": "P2-I06",
+   "stratum": "issue",
+   "familyId": "FP2-circumstantial-chain",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 2,
+     "cases_named": 45,
+     "bm25": 929,
+     "dense": 287,
+     "law": 101,
+     "cited": 0,
+     "fusion": 41,
+     "details": 79,
+     "statutes_cited": 187,
+     "hits": 1,
+     "coverage": 36
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 65,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 46
+    },
+    "ms": 1709,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": false,
+   "rr10": 0.0,
+   "recall10": 0.0,
+   "recall50": 1.0,
+   "paragraph10": null,
+   "any_gold_or_relevant10": false,
+   "authority": [
+    "agree"
+   ],
+   "gold_courts": [
+    "SHC"
+   ],
+   "first_rank": null,
+   "gold_ranks": {
+    "SHC doc 87018": 21
+   }
+  },
+  {
+   "caseId": "P2-I07",
+   "stratum": "issue",
+   "familyId": "FP2-bail-cancellation",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 1,
+     "cases_named": 33,
+     "bm25": 800,
+     "dense": 444,
+     "law": 119,
+     "cited": 0,
+     "fusion": 52,
+     "details": 58,
+     "statutes_cited": 144,
+     "hits": 2,
+     "coverage": 39
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 67,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 18
+    },
+    "ms": 1694,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": false,
+   "rr10": 0.0,
+   "recall10": 0.0,
+   "recall50": 0.0,
+   "paragraph10": null,
+   "any_gold_or_relevant10": false,
+   "authority": [],
+   "gold_courts": [
+    "SHC"
+   ],
+   "first_rank": null,
+   "gold_ranks": {
+    "SHC doc 102038": null
+   }
+  },
+  {
+   "caseId": "P2-I10",
+   "stratum": "issue",
+   "familyId": "FP2-adverse-possession",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 1,
+     "cases_named": 33,
+     "bm25": 794,
+     "dense": 465,
+     "law": 57,
+     "cited": 0,
+     "fusion": 36,
+     "details": 65,
+     "statutes_cited": 128,
+     "hits": 1,
+     "coverage": 39
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 50,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 26
+    },
+    "ms": 1622,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": true,
+   "rr10": 1.0,
+   "recall10": 1.0,
+   "recall50": 1.0,
+   "paragraph10": 1.0,
+   "any_gold_or_relevant10": true,
+   "authority": [
+    "agree"
+   ],
+   "gold_courts": [
+    "PHC"
+   ],
+   "first_rank": 1,
+   "gold_ranks": {
+    "PHC doc 16538": 1
+   }
+  },
+  {
+   "caseId": "P2-I13",
+   "stratum": "issue",
+   "familyId": "FP2-inheritance-limitation",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 1,
+     "cases_named": 29,
+     "bm25": 834,
+     "dense": 337,
+     "law": 102,
+     "cited": 0,
+     "fusion": 76,
+     "details": 127,
+     "statutes_cited": 222,
+     "hits": 1,
+     "coverage": 43
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 31,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 2
+    },
+    "ms": 1774,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": true,
+   "rr10": 0.16666666666666666,
+   "recall10": 1.0,
+   "recall50": 1.0,
+   "paragraph10": 1.0,
+   "any_gold_or_relevant10": true,
+   "authority": [
+    "agree"
+   ],
+   "gold_courts": [
+    "LHC"
+   ],
+   "first_rank": 6,
+   "gold_ranks": {
+    "LHC doc 12107": 6
+   }
+  },
+  {
+   "caseId": "P2-I14",
+   "stratum": "issue",
+   "familyId": "FP2-rejection-of-plaint",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 1,
+     "cases_named": 33,
+     "bm25": 839,
+     "dense": 328,
+     "law": 28,
+     "cited": 0,
+     "fusion": 34,
+     "details": 64,
+     "statutes_cited": 102,
+     "hits": 1,
+     "coverage": 40
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 49,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 0
+    },
+    "ms": 1473,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": false,
+   "rr10": 0.0,
+   "recall10": 0.0,
+   "recall50": 0.0,
+   "paragraph10": null,
+   "any_gold_or_relevant10": false,
+   "authority": [],
+   "gold_courts": [
+    "SHC"
+   ],
+   "first_rank": null,
+   "gold_ranks": {
+    "SHC doc 34952": null
+   }
+  },
+  {
+   "caseId": "P2-I15",
+   "stratum": "issue",
+   "familyId": "FP2-ex-parte-decree",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 193,
+     "courts_named": 1,
+     "cases_named": 29,
+     "bm25": 928,
+     "dense": 450,
+     "law": 192,
+     "cited": 71,
+     "fusion": 41,
+     "details": 63,
+     "statutes_cited": 230,
+     "hits": 1,
+     "coverage": 64
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 50,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 50,
+     "cited": 50
+    },
+    "ms": 2265,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": false,
+   "rr10": 0.0,
+   "recall10": 0.0,
+   "recall50": 1.0,
+   "paragraph10": null,
+   "any_gold_or_relevant10": false,
+   "authority": [
+    "agree"
+   ],
+   "gold_courts": [
+    "SHC"
+   ],
+   "first_rank": null,
+   "gold_ranks": {
+    "SHC doc 93505": 23
+   }
+  },
+  {
+   "caseId": "P2-I16",
+   "stratum": "issue",
+   "familyId": "FP2-laches-writ",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 1,
+     "cases_named": 36,
+     "bm25": 819,
+     "dense": 630,
+     "law": 77,
+     "cited": 0,
+     "fusion": 51,
+     "details": 64,
+     "statutes_cited": 364,
+     "hits": 1,
+     "coverage": 98
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 32,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 50
+    },
+    "ms": 2143,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": false,
+   "rr10": 0.0,
+   "recall10": 0.0,
+   "recall50": 0.0,
+   "paragraph10": null,
+   "any_gold_or_relevant10": false,
+   "authority": [],
+   "gold_courts": [
+    "IHC"
+   ],
+   "first_rank": null,
+   "gold_ranks": {
+    "IHC doc 133424": null
+   }
+  },
+  {
+   "caseId": "P2-I17",
+   "stratum": "issue",
+   "familyId": "FP2-aggrieved-person",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 92,
+     "courts_named": 1,
+     "cases_named": 34,
+     "bm25": 942,
+     "dense": 651,
+     "law": 91,
+     "cited": 61,
+     "fusion": 40,
+     "details": 55,
+     "statutes_cited": 366,
+     "hits": 1,
+     "coverage": 39
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 14,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 50,
+     "cited": 50
+    },
+    "ms": 2373,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": false,
+   "rr10": 0.0,
+   "recall10": 0.0,
+   "recall50": 0.0,
+   "paragraph10": null,
+   "any_gold_or_relevant10": false,
+   "authority": [],
+   "gold_courts": [
+    "IHC"
+   ],
+   "first_rank": null,
+   "gold_ranks": {
+    "IHC doc 134146": null
+   }
+  },
+  {
+   "caseId": "P2-I19",
+   "stratum": "issue",
+   "familyId": "FP2-regular-inquiry",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 5,
+     "courts_named": 2,
+     "cases_named": 51,
+     "bm25": 1345,
+     "dense": 503,
+     "law": 53,
+     "cited": 0,
+     "fusion": 33,
+     "details": 55,
+     "statutes_cited": 109,
+     "hits": 1,
+     "coverage": 42
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 45,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 28
+    },
+    "ms": 2199,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": true,
+   "rr10": 0.1,
+   "recall10": 1.0,
+   "recall50": 1.0,
+   "paragraph10": 0.0,
+   "any_gold_or_relevant10": true,
+   "authority": [
+    "agree"
+   ],
+   "gold_courts": [
+    "SC"
+   ],
+   "first_rank": 10,
+   "gold_ranks": {
+    "SC doc 5086": 10
+   }
+  },
+  {
+   "caseId": "P2-I20",
+   "stratum": "issue",
+   "familyId": "FP2-locus-poenitentiae",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 1,
+     "cases_named": 29,
+     "bm25": 775,
+     "dense": 383,
+     "law": 62,
+     "cited": 0,
+     "fusion": 33,
+     "details": 86,
+     "statutes_cited": 353,
+     "hits": 1,
+     "coverage": 67
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 48,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 7
+    },
+    "ms": 1792,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": false,
+   "rr10": 0.0,
+   "recall10": 0.0,
+   "recall50": 0.0,
+   "paragraph10": null,
+   "any_gold_or_relevant10": false,
+   "authority": [],
+   "gold_courts": [
+    "LHC"
+   ],
+   "first_rank": null,
+   "gold_ranks": {
+    "LHC doc 114463": null
+   }
+  },
+  {
+   "caseId": "P2-I24",
+   "stratum": "issue",
+   "familyId": "FP2-hizanat-remarriage",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 1,
+     "cases_named": 52,
+     "bm25": 927,
+     "dense": 250,
+     "law": 42,
+     "cited": 0,
+     "fusion": 31,
+     "details": 67,
+     "statutes_cited": 106,
+     "hits": 1,
+     "coverage": 37
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 28,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 4
+    },
+    "ms": 1514,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": false,
+   "rr10": 0.0,
+   "recall10": 0.0,
+   "recall50": 1.0,
+   "paragraph10": null,
+   "any_gold_or_relevant10": false,
+   "authority": [
+    "agree"
+   ],
+   "gold_courts": [
+    "SHC"
+   ],
+   "first_rank": null,
+   "gold_ranks": {
+    "SHC doc 96220": 17
+   }
+  },
+  {
+   "caseId": "P2-I25",
+   "stratum": "issue",
+   "familyId": "FP2-talaq-union-council",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 354,
+     "courts_named": 2,
+     "cases_named": 33,
+     "bm25": 733,
+     "dense": 216,
+     "law": 62,
+     "cited": 38,
+     "fusion": 11,
+     "details": 59,
+     "statutes_cited": 140,
+     "hits": 2,
+     "coverage": 34
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 27,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 39,
+     "cited": 27
+    },
+    "ms": 1683,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": true,
+   "rr10": 0.5,
+   "recall10": 1.0,
+   "recall50": 1.0,
+   "paragraph10": 0.0,
+   "any_gold_or_relevant10": true,
+   "authority": [
+    "agree"
+   ],
+   "gold_courts": [
+    "SC"
+   ],
+   "first_rank": 2,
+   "gold_ranks": {
+    "SC doc 6069": 2
+   }
+  },
+  {
+   "caseId": "P2-I26",
+   "stratum": "issue",
+   "familyId": "FP2-fio-leave-to-defend",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 2,
+     "cases_named": 36,
+     "bm25": 1456,
+     "dense": 312,
+     "law": 100,
+     "cited": 0,
+     "fusion": 34,
+     "details": 49,
+     "statutes_cited": 134,
+     "hits": 1,
+     "coverage": 33
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 2,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 50
+    },
+    "ms": 2158,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": true,
+   "rr10": 1.0,
+   "recall10": 1.0,
+   "recall50": 1.0,
+   "paragraph10": 1.0,
+   "any_gold_or_relevant10": true,
+   "authority": [
+    "agree"
+   ],
+   "gold_courts": [
+    "PHC"
+   ],
+   "first_rank": 1,
+   "gold_ranks": {
+    "PHC doc 17783": 1
+   }
+  },
+  {
+   "caseId": "P2-I27",
+   "stratum": "issue",
+   "familyId": "FP2-ata-terrorism",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 1,
+     "cases_named": 29,
+     "bm25": 759,
+     "dense": 362,
+     "law": 104,
+     "cited": 0,
+     "fusion": 34,
+     "details": 63,
+     "statutes_cited": 534,
+     "hits": 4,
+     "coverage": 56
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 28,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 50
+    },
+    "ms": 1946,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": false,
+   "rr10": 0.0,
+   "recall10": 0.0,
+   "recall50": 1.0,
+   "paragraph10": null,
+   "any_gold_or_relevant10": false,
+   "authority": [
+    "agree"
+   ],
+   "gold_courts": [
+    "SC"
+   ],
+   "first_rank": null,
+   "gold_ranks": {
+    "SC doc 5899": 22
+   }
+  },
+  {
+   "caseId": "P2-I28",
+   "stratum": "issue",
+   "familyId": "FP2-medical-bail",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 1,
+     "cases_named": 34,
+     "bm25": 675,
+     "dense": 360,
+     "law": 178,
+     "cited": 0,
+     "fusion": 40,
+     "details": 55,
+     "statutes_cited": 176,
+     "hits": 1,
+     "coverage": 35
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 91,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 50
+    },
+    "ms": 1557,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": true,
+   "rr10": 0.5,
+   "recall10": 1.0,
+   "recall50": 1.0,
+   "paragraph10": 1.0,
+   "any_gold_or_relevant10": true,
+   "authority": [
+    "agree"
+   ],
+   "gold_courts": [
+    "SHC"
+   ],
+   "first_rank": 2,
+   "gold_ranks": {
+    "SHC doc 44641": 2
+   }
+  },
+  {
+   "caseId": "P2-I29",
+   "stratum": "issue",
+   "familyId": "FP2-fsc-qazf",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 21,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 2,
+     "cases_named": 4,
+     "bm25": 725,
+     "dense": 375,
+     "law": 52,
+     "cited": 0,
+     "fusion": 3,
+     "details": 85,
+     "statutes_cited": 188,
+     "hits": 1,
+     "coverage": 72
+    },
+    "courts_named": [
+     "FSC"
+    ],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "generators": {
+     "bm25": 39,
+     "dense": 50,
+     "law": 6
+    },
+    "ms": 1507,
+    "withheld_by_name": 0,
+    "court_searched": "FSC"
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": true,
+   "rr10": 0.25,
+   "recall10": 1.0,
+   "recall50": 1.0,
+   "paragraph10": 1.0,
+   "any_gold_or_relevant10": true,
+   "authority": [],
+   "gold_courts": [
+    "FSC"
+   ],
+   "first_rank": 4,
+   "gold_ranks": {
+    "FSC doc 136337": 4
+   }
+  },
+  {
+   "caseId": "P2-I30",
+   "stratum": "issue",
+   "familyId": "FP2-gb-complete-justice",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 1,
+     "cases_named": 39,
+     "bm25": 892,
+     "dense": 446,
+     "law": 58,
+     "cited": 0,
+     "fusion": 3,
+     "details": 53,
+     "statutes_cited": 600,
+     "hits": 1,
+     "coverage": 36
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "generators": {
+     "bm25": 31,
+     "dense": 50,
+     "law": 38
+    },
+    "ms": 2130,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": true,
+   "rr10": 1.0,
+   "recall10": 1.0,
+   "recall50": 1.0,
+   "paragraph10": 0.0,
+   "any_gold_or_relevant10": true,
+   "authority": [],
+   "gold_courts": [
+    "GBSAC"
+   ],
+   "first_rank": 1,
+   "gold_ranks": {
+    "GBSAC doc 109990": 1
+   }
+  },
+  {
+   "caseId": "P2-I33",
+   "stratum": "issue",
+   "familyId": "FP2-gb-ransom-delay",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 1,
+     "cases_named": 31,
+     "bm25": 810,
+     "dense": 660,
+     "law": 124,
+     "cited": 0,
+     "fusion": 6,
+     "details": 59,
+     "statutes_cited": 199,
+     "hits": 1,
+     "coverage": 35
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 50
+    },
+    "ms": 1928,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": false,
+   "rr10": 0.0,
+   "recall10": 0.0,
+   "recall50": 1.0,
+   "paragraph10": null,
+   "any_gold_or_relevant10": false,
+   "authority": [],
+   "gold_courts": [
+    "GBCC"
+   ],
+   "first_rank": null,
+   "gold_ranks": {
+    "GBCC doc 110792": 29
+   }
+  },
+  {
+   "caseId": "P2-I34",
+   "stratum": "issue",
+   "familyId": "FP2-gb-executing-court",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 1,
+     "cases_named": 27,
+     "bm25": 770,
+     "dense": 376,
+     "law": 83,
+     "cited": 0,
+     "fusion": 7,
+     "details": 60,
+     "statutes_cited": 106,
+     "hits": 1,
+     "coverage": 32
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 37
+    },
+    "ms": 1466,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": false,
+   "rr10": 0.0,
+   "recall10": 0.0,
+   "recall50": 0.0,
+   "paragraph10": null,
+   "any_gold_or_relevant10": false,
+   "authority": [],
+   "gold_courts": [
+    "GBCC"
+   ],
+   "first_rank": null,
+   "gold_ranks": {
+    "GBCC doc 121854": null
+   }
+  },
+  {
+   "caseId": "P2-I36",
+   "stratum": "issue",
+   "familyId": "FP2-land-acq-potential",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 1,
+     "cases_named": 32,
+     "bm25": 1000,
+     "dense": 255,
+     "law": 14,
+     "cited": 0,
+     "fusion": 10,
+     "details": 59,
+     "statutes_cited": 285,
+     "hits": 1,
+     "coverage": 35
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 24,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 0
+    },
+    "ms": 1695,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": true,
+   "rr10": 0.125,
+   "recall10": 1.0,
+   "recall50": 1.0,
+   "paragraph10": 0.0,
+   "any_gold_or_relevant10": true,
+   "authority": [
+    "agree"
+   ],
+   "gold_courts": [
+    "SC"
+   ],
+   "first_rank": 8,
+   "gold_ranks": {
+    "SC doc 6943": 8
+   }
+  },
+  {
+   "caseId": "P2-I37",
+   "stratum": "issue",
+   "familyId": "FP2-limitation-duty",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 1,
+     "cases_named": 36,
+     "bm25": 722,
+     "dense": 373,
+     "law": 72,
+     "cited": 0,
+     "fusion": 38,
+     "details": 59,
+     "statutes_cited": 195,
+     "hits": 1,
+     "coverage": 32
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 80,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 50
+    },
+    "ms": 1532,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": true,
+   "rr10": 0.5,
+   "recall10": 1.0,
+   "recall50": 1.0,
+   "paragraph10": 1.0,
+   "any_gold_or_relevant10": true,
+   "authority": [
+    "agree"
+   ],
+   "gold_courts": [
+    "SC"
+   ],
+   "first_rank": 2,
+   "gold_ranks": {
+    "SC doc 7377": 2
+   }
+  },
+  {
+   "caseId": "P2-C01",
+   "stratum": "case_lookup",
+   "familyId": "FP2-regular-inquiry",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 2,
+     "cases_named": 64,
+     "bm25": 526,
+     "dense": 708,
+     "law": 128,
+     "cited": 0,
+     "fusion": 77,
+     "details": 94,
+     "statutes_cited": 634,
+     "hits": 2,
+     "coverage": 37
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 62,
+    "generators": {
+     "case": 1,
+     "bm25": 16,
+     "dense": 50,
+     "law": 46
+    },
+    "ms": 2271,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [
+    "SC/CP/1729-L/2017"
+   ],
+   "hit10": true,
+   "rr10": 1.0,
+   "recall10": 1.0,
+   "recall50": 1.0,
+   "paragraph10": null,
+   "any_gold_or_relevant10": true,
+   "authority": [
+    "agree"
+   ],
+   "gold_courts": [
+    "SC"
+   ],
+   "first_rank": 1,
+   "gold_ranks": {
+    "SC doc 5086": 1
+   }
+  },
+  {
+   "caseId": "P2-C02",
+   "stratum": "case_lookup",
+   "familyId": "FP2-talaq-union-council",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 2,
+     "cases_named": 49,
+     "bm25": 647,
+     "dense": 400,
+     "law": 116,
+     "cited": 0,
+     "fusion": 51,
+     "details": 67,
+     "statutes_cited": 286,
+     "hits": 1,
+     "coverage": 34
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 60,
+    "generators": {
+     "case": 1,
+     "bm25": 33,
+     "dense": 50,
+     "law": 0
+    },
+    "ms": 1655,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [
+    "SC/CP/5364/2024"
+   ],
+   "hit10": true,
+   "rr10": 1.0,
+   "recall10": 1.0,
+   "recall50": 1.0,
+   "paragraph10": null,
+   "any_gold_or_relevant10": true,
+   "authority": [
+    "agree"
+   ],
+   "gold_courts": [
+    "SC"
+   ],
+   "first_rank": 1,
+   "gold_ranks": {
+    "SC doc 6069": 1
+   }
+  },
+  {
+   "caseId": "P2-C03",
+   "stratum": "case_lookup",
+   "familyId": "FP2-circumstantial-chain",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 1,
+     "cases_named": 28,
+     "bm25": 733,
+     "dense": 570,
+     "law": 104,
+     "cited": 0,
+     "fusion": 39,
+     "details": 67,
+     "statutes_cited": 162,
+     "hits": 1,
+     "coverage": 34
+    },
+    "courts_named": [
+     "SHC"
+    ],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 68,
+    "generators": {
+     "case": 1,
+     "bm25": 12,
+     "dense": 50,
+     "law": 13
+    },
+    "ms": 1740,
+    "withheld_by_name": 0,
+    "court_searched": "SHC"
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [
+    "SHC/CRLJA/D-1/2024"
+   ],
+   "hit10": true,
+   "rr10": 1.0,
+   "recall10": 1.0,
+   "recall50": 1.0,
+   "paragraph10": null,
+   "any_gold_or_relevant10": true,
+   "authority": [
+    "agree"
+   ],
+   "gold_courts": [
+    "SHC"
+   ],
+   "first_rank": 1,
+   "gold_ranks": {
+    "SHC doc 87018": 1
+   }
+  },
+  {
+   "caseId": "P2-C04",
+   "stratum": "case_lookup",
+   "familyId": "FP2-bail-cancellation",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 49,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 1,
+     "cases_named": 39,
+     "bm25": 559,
+     "dense": 655,
+     "law": 61,
+     "cited": 0,
+     "fusion": 10,
+     "details": 48,
+     "statutes_cited": 106,
+     "hits": 1,
+     "coverage": 36
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 44,
+    "generators": {
+     "case": 1,
+     "bm25": 6,
+     "dense": 50,
+     "law": 0
+    },
+    "ms": 1519,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [
+    "SHC/CRLMA/S-424/2025"
+   ],
+   "hit10": true,
+   "rr10": 1.0,
+   "recall10": 1.0,
+   "recall50": 1.0,
+   "paragraph10": null,
+   "any_gold_or_relevant10": true,
+   "authority": [
+    "agree"
+   ],
+   "gold_courts": [
+    "SHC"
+   ],
+   "first_rank": 1,
+   "gold_ranks": {
+    "SHC doc 102038": 1
+   }
+  },
+  {
+   "caseId": "P2-C05",
+   "stratum": "case_lookup",
+   "familyId": "FP2-laches-writ",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 26,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 1,
+     "cases_named": 54,
+     "bm25": 538,
+     "dense": 379,
+     "law": 265,
+     "cited": 0,
+     "fusion": 9,
+     "details": 77,
+     "statutes_cited": 214,
+     "hits": 1,
+     "coverage": 41
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 10,
+    "generators": {
+     "case": 1,
+     "bm25": 10,
+     "dense": 50,
+     "law": 0
+    },
+    "ms": 1581,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [
+    "IHC/WP/2155/2026"
+   ],
+   "hit10": true,
+   "rr10": 1.0,
+   "recall10": 1.0,
+   "recall50": 1.0,
+   "paragraph10": null,
+   "any_gold_or_relevant10": true,
+   "authority": [
+    "agree"
+   ],
+   "gold_courts": [
+    "IHC"
+   ],
+   "first_rank": 1,
+   "gold_ranks": {
+    "IHC doc 133424": 1
+   }
+  },
+  {
+   "caseId": "P2-C06",
+   "stratum": "case_lookup",
+   "familyId": "FP2-aggrieved-person",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 2,
+     "cases_named": 22,
+     "bm25": 650,
+     "dense": 485,
+     "law": 28,
+     "cited": 0,
+     "fusion": 10,
+     "details": 51,
+     "statutes_cited": 192,
+     "hits": 1,
+     "coverage": 38
+    },
+    "courts_named": [
+     "IHC"
+    ],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 50,
+    "generators": {
+     "case": 1,
+     "bm25": 3,
+     "dense": 50,
+     "law": 2
+    },
+    "ms": 1480,
+    "withheld_by_name": 0,
+    "court_searched": "IHC"
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [
+    "IHC/WP/2913/2025"
+   ],
+   "hit10": true,
+   "rr10": 1.0,
+   "recall10": 1.0,
+   "recall50": 1.0,
+   "paragraph10": null,
+   "any_gold_or_relevant10": true,
+   "authority": [
+    "agree"
+   ],
+   "gold_courts": [
+    "IHC"
+   ],
+   "first_rank": 1,
+   "gold_ranks": {
+    "IHC doc 134146": 1
+   }
+  },
+  {
+   "caseId": "P2-C07",
+   "stratum": "case_lookup",
+   "familyId": "FP2-adverse-possession",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 1,
+     "cases_named": 50,
+     "bm25": 565,
+     "dense": 579,
+     "law": 64,
+     "cited": 0,
+     "fusion": 12,
+     "details": 93,
+     "statutes_cited": 418,
+     "hits": 1,
+     "coverage": 53
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 38,
+    "generators": {
+     "case": 1,
+     "bm25": 19,
+     "dense": 50,
+     "law": 0
+    },
+    "ms": 1839,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [
+    "PHC/CR/395-A/2010"
+   ],
+   "hit10": true,
+   "rr10": 1.0,
+   "recall10": 1.0,
+   "recall50": 1.0,
+   "paragraph10": null,
+   "any_gold_or_relevant10": true,
+   "authority": [
+    "agree"
+   ],
+   "gold_courts": [
+    "PHC"
+   ],
+   "first_rank": 1,
+   "gold_ranks": {
+    "PHC doc 16538": 1
+   }
+  },
+  {
+   "caseId": "P2-C08",
+   "stratum": "case_lookup",
+   "familyId": "FP2-fio-leave-to-defend",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 25,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 2,
+     "cases_named": 37,
+     "bm25": 768,
+     "dense": 214,
+     "law": 128,
+     "cited": 0,
+     "fusion": 7,
+     "details": 41,
+     "statutes_cited": 77,
+     "hits": 0,
+     "coverage": 33
+    },
+    "courts_named": [
+     "PHC"
+    ],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 25,
+    "generators": {
+     "case": 1,
+     "bm25": 4,
+     "dense": 50,
+     "law": 0
+    },
+    "ms": 1309,
+    "withheld_by_name": 0,
+    "court_searched": "PHC"
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [
+    "PHC/FAB/2-D/2023"
+   ],
+   "hit10": true,
+   "rr10": 1.0,
+   "recall10": 1.0,
+   "recall50": 1.0,
+   "paragraph10": null,
+   "any_gold_or_relevant10": true,
+   "authority": [
+    "agree"
+   ],
+   "gold_courts": [
+    "PHC"
+   ],
+   "first_rank": 1,
+   "gold_ranks": {
+    "PHC doc 17783": 1
+   }
+  },
+  {
+   "caseId": "P2-C10",
+   "stratum": "case_lookup",
+   "familyId": "FP2-extra-judicial-confession",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 45,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 1,
+     "cases_named": 22,
+     "bm25": 582,
+     "dense": 472,
+     "law": 37,
+     "cited": 0,
+     "fusion": 10,
+     "details": 50,
+     "statutes_cited": 199,
+     "hits": 1,
+     "coverage": 32
+    },
+    "courts_named": [
+     "LHC"
+    ],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 45,
+    "generators": {
+     "case": 1,
+     "bm25": 0,
+     "dense": 50,
+     "law": 0
+    },
+    "ms": 1408,
+    "withheld_by_name": 0,
+    "court_searched": "LHC"
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [
+    "LHC/CRLA/138/2024"
+   ],
+   "hit10": true,
+   "rr10": 1.0,
+   "recall10": 1.0,
+   "recall50": 1.0,
+   "paragraph10": null,
+   "any_gold_or_relevant10": true,
+   "authority": [
+    "agree"
+   ],
+   "gold_courts": [
+    "LHC"
+   ],
+   "first_rank": 1,
+   "gold_ranks": {
+    "LHC doc 114209": 1
+   }
+  },
+  {
+   "caseId": "P2-C11",
+   "stratum": "case_lookup",
+   "familyId": "FP2-fsc-qazf",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 42,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 1,
+     "cases_named": 24,
+     "bm25": 590,
+     "dense": 279,
+     "law": 40,
+     "cited": 0,
+     "fusion": 4,
+     "details": 148,
+     "statutes_cited": 267,
+     "hits": 1,
+     "coverage": 54
+    },
+    "courts_named": [
+     "FSC"
+    ],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "generators": {
+     "case": 1,
+     "bm25": 3,
+     "dense": 50,
+     "law": 2
+    },
+    "ms": 1410,
+    "withheld_by_name": 1,
+    "court_searched": "FSC"
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [
+    "FSC/CRLA/4-P/2019"
+   ],
+   "hit10": true,
+   "rr10": 1.0,
+   "recall10": 1.0,
+   "recall50": 1.0,
+   "paragraph10": null,
+   "any_gold_or_relevant10": true,
+   "authority": [],
+   "gold_courts": [
+    "FSC"
+   ],
+   "first_rank": 1,
+   "gold_ranks": {
+    "FSC doc 136337": 1
+   }
+  },
+  {
+   "caseId": "P2-C12",
+   "stratum": "case_lookup",
+   "familyId": "FP2-gb-complete-justice",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 3,
+     "courts_named": 1,
+     "cases_named": 45,
+     "bm25": 578,
+     "dense": 298,
+     "law": 68,
+     "cited": 0,
+     "fusion": 5,
+     "details": 55,
+     "statutes_cited": 482,
+     "hits": 1,
+     "coverage": 35
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "generators": {
+     "case": 1,
+     "bm25": 16,
+     "dense": 50,
+     "law": 17
+    },
+    "ms": 1573,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [
+    "GBSAC/CPLA/24/2020"
+   ],
+   "hit10": true,
+   "rr10": 1.0,
+   "recall10": 1.0,
+   "recall50": 1.0,
+   "paragraph10": null,
+   "any_gold_or_relevant10": true,
+   "authority": [],
+   "gold_courts": [
+    "GBSAC"
+   ],
+   "first_rank": 1,
+   "gold_ranks": {
+    "GBSAC doc 109990": 1
+   }
+  },
+  {
+   "caseId": "P2-S03",
+   "stratum": "provision",
+   "familyId": "FP2-fio-leave-to-defend",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 280,
+     "courts_named": 2,
+     "cases_named": 32,
+     "bm25": 757,
+     "dense": 418,
+     "law": 112,
+     "cited": 61,
+     "fusion": 41,
+     "details": 54,
+     "statutes_cited": 141,
+     "hits": 1,
+     "coverage": 38
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 5,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 50,
+     "cited": 50
+    },
+    "ms": 1935,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": true,
+   "rr10": 0.5,
+   "recall10": 0.5,
+   "recall50": 0.5,
+   "paragraph10": 0.0,
+   "any_gold_or_relevant10": true,
+   "authority": [
+    "agree"
+   ],
+   "gold_courts": [
+    "PHC",
+    "SHC"
+   ],
+   "first_rank": 2,
+   "gold_ranks": {
+    "PHC doc 17783": 2,
+    "SHC doc 48983": null
+   }
+  },
+  {
+   "caseId": "P2-S04",
+   "stratum": "provision",
+   "familyId": "FP2-ata-terrorism",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1042,
+     "courts_named": 2,
+     "cases_named": 31,
+     "bm25": 725,
+     "dense": 209,
+     "law": 103,
+     "cited": 62,
+     "fusion": 38,
+     "details": 75,
+     "statutes_cited": 333,
+     "hits": 2,
+     "coverage": 37
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 26,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 50,
+     "cited": 50
+    },
+    "ms": 2659,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": false,
+   "rr10": 0.0,
+   "recall10": 0.0,
+   "recall50": 1.0,
+   "paragraph10": null,
+   "any_gold_or_relevant10": false,
+   "authority": [
+    "agree",
+    "agree"
+   ],
+   "gold_courts": [
+    "SC",
+    "SHC"
+   ],
+   "first_rank": null,
+   "gold_ranks": {
+    "SC doc 5899": 13,
+    "SHC doc 96159": 12
+   }
+  },
+  {
+   "caseId": "P2-S05",
+   "stratum": "provision",
+   "familyId": "FP2-ex-parte-decree",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 1,
+     "cases_named": 34,
+     "bm25": 1337,
+     "dense": 433,
+     "law": 82,
+     "cited": 0,
+     "fusion": 51,
+     "details": 85,
+     "statutes_cited": 262,
+     "hits": 1,
+     "coverage": 37
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 51,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 44
+    },
+    "ms": 2325,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": false,
+   "rr10": 0.0,
+   "recall10": 0.0,
+   "recall50": 0.0,
+   "paragraph10": null,
+   "any_gold_or_relevant10": false,
+   "authority": [],
+   "gold_courts": [
+    "SHC"
+   ],
+   "first_rank": null,
+   "gold_ranks": {
+    "SHC doc 93505": null
+   }
+  },
+  {
+   "caseId": "P2-S06",
+   "stratum": "provision",
+   "familyId": "FP2-talaq-union-council",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 270,
+     "courts_named": 2,
+     "cases_named": 30,
+     "bm25": 679,
+     "dense": 363,
+     "law": 140,
+     "cited": 99,
+     "fusion": 80,
+     "details": 125,
+     "statutes_cited": 184,
+     "hits": 3,
+     "coverage": 77
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 31,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 50,
+     "cited": 27
+    },
+    "ms": 2053,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": true,
+   "rr10": 0.16666666666666666,
+   "recall10": 1.0,
+   "recall50": 1.0,
+   "paragraph10": 0.0,
+   "any_gold_or_relevant10": true,
+   "authority": [
+    "agree"
+   ],
+   "gold_courts": [
+    "SC"
+   ],
+   "first_rank": 6,
+   "gold_ranks": {
+    "SC doc 6069": 6
+   }
+  },
+  {
+   "caseId": "P2-S07",
+   "stratum": "provision",
+   "familyId": "FP2-aggrieved-person",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 82,
+     "courts_named": 2,
+     "cases_named": 32,
+     "bm25": 882,
+     "dense": 287,
+     "law": 94,
+     "cited": 62,
+     "fusion": 36,
+     "details": 49,
+     "statutes_cited": 355,
+     "hits": 2,
+     "coverage": 38
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 13,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 50,
+     "cited": 50
+    },
+    "ms": 1921,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": false,
+   "rr10": 0.0,
+   "recall10": 0.0,
+   "recall50": 0.0,
+   "paragraph10": null,
+   "any_gold_or_relevant10": false,
+   "authority": [],
+   "gold_courts": [
+    "IHC"
+   ],
+   "first_rank": null,
+   "gold_ranks": {
+    "IHC doc 134146": null
+   }
+  },
+  {
+   "caseId": "P2-S08",
+   "stratum": "provision",
+   "familyId": "FP2-limitation-duty",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1822,
+     "courts_named": 2,
+     "cases_named": 32,
+     "bm25": 804,
+     "dense": 297,
+     "law": 88,
+     "cited": 49,
+     "fusion": 37,
+     "details": 47,
+     "statutes_cited": 197,
+     "hits": 1,
+     "coverage": 53
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 28,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 50,
+     "cited": 50
+    },
+    "ms": 3430,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": true,
+   "rr10": 0.16666666666666666,
+   "recall10": 0.5,
+   "recall50": 1.0,
+   "paragraph10": 1.0,
+   "any_gold_or_relevant10": true,
+   "authority": [
+    "agree",
+    "agree"
+   ],
+   "gold_courts": [
+    "PHC",
+    "SC"
+   ],
+   "first_rank": 6,
+   "gold_ranks": {
+    "SC doc 7377": 6,
+    "PHC doc 17495": 33
+   }
+  },
+  {
+   "caseId": "P2-S09",
+   "stratum": "provision",
+   "familyId": "FP2-land-acq-potential",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 157,
+     "courts_named": 2,
+     "cases_named": 36,
+     "bm25": 600,
+     "dense": 369,
+     "law": 100,
+     "cited": 86,
+     "fusion": 76,
+     "details": 75,
+     "statutes_cited": 277,
+     "hits": 1,
+     "coverage": 42
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 47,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 50,
+     "cited": 50
+    },
+    "ms": 1822,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": true,
+   "rr10": 0.14285714285714285,
+   "recall10": 1.0,
+   "recall50": 1.0,
+   "paragraph10": 0.5,
+   "any_gold_or_relevant10": true,
+   "authority": [
+    "agree",
+    "agree"
+   ],
+   "gold_courts": [
+    "PHC",
+    "SC"
+   ],
+   "first_rank": 7,
+   "gold_ranks": {
+    "SC doc 6943": 7,
+    "PHC doc 111179": 8
+   }
+  },
+  {
+   "caseId": "P2-S10",
+   "stratum": "provision",
+   "familyId": "FP2-extra-judicial-confession",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 88,
+     "courts_named": 2,
+     "cases_named": 33,
+     "bm25": 843,
+     "dense": 177,
+     "law": 99,
+     "cited": 49,
+     "fusion": 41,
+     "details": 62,
+     "statutes_cited": 177,
+     "hits": 1,
+     "coverage": 35
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 72,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 50,
+     "cited": 50
+    },
+    "ms": 1609,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": true,
+   "rr10": 0.125,
+   "recall10": 1.0,
+   "recall50": 1.0,
+   "paragraph10": 1.0,
+   "any_gold_or_relevant10": true,
+   "authority": [
+    "agree"
+   ],
+   "gold_courts": [
+    "SHC"
+   ],
+   "first_rank": 8,
+   "gold_ranks": {
+    "SHC doc 90263": 8
+   }
+  },
+  {
+   "caseId": "P2-U04",
+   "stratum": "urdu",
+   "familyId": "FP2-hizanat-remarriage",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 1,
+     "cases_named": 30,
+     "bm25": 624,
+     "dense": 168,
+     "law": 26,
+     "cited": 0,
+     "fusion": 30,
+     "details": 66,
+     "statutes_cited": 400,
+     "hits": 1,
+     "coverage": 74
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 48,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 1
+    },
+    "ms": 1423,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": false,
+   "rr10": 0.0,
+   "recall10": 0.0,
+   "recall50": 1.0,
+   "paragraph10": null,
+   "any_gold_or_relevant10": false,
+   "authority": [
+    "agree"
+   ],
+   "gold_courts": [
+    "SHC"
+   ],
+   "first_rank": null,
+   "gold_ranks": {
+    "SHC doc 96220": 44
+   }
+  },
+  {
+   "caseId": "P2-U06",
+   "stratum": "urdu",
+   "familyId": "FP2-bail-cancellation",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 1,
+     "cases_named": 36,
+     "bm25": 751,
+     "dense": 350,
+     "law": 193,
+     "cited": 0,
+     "fusion": 36,
+     "details": 51,
+     "statutes_cited": 194,
+     "hits": 1,
+     "coverage": 47
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 63,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 22
+    },
+    "ms": 1662,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": false,
+   "rr10": 0.0,
+   "recall10": 0.0,
+   "recall50": 0.0,
+   "paragraph10": null,
+   "any_gold_or_relevant10": false,
+   "authority": [],
+   "gold_courts": [
+    "SHC"
+   ],
+   "first_rank": null,
+   "gold_ranks": {
+    "SHC doc 102038": null
+   }
+  },
+  {
+   "caseId": "P2-U07",
+   "stratum": "urdu",
+   "familyId": "FP2-talaq-union-council",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 2,
+     "courts_named": 2,
+     "cases_named": 0,
+     "bm25": 541,
+     "dense": 120,
+     "law": 54,
+     "cited": 0,
+     "fusion": 34,
+     "details": 59,
+     "statutes_cited": 122,
+     "hits": 2,
+     "coverage": 35
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 17,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 34
+    },
+    "ms": 971,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": true,
+   "rr10": 0.3333333333333333,
+   "recall10": 1.0,
+   "recall50": 1.0,
+   "paragraph10": 0.0,
+   "any_gold_or_relevant10": true,
+   "authority": [
+    "agree"
+   ],
+   "gold_courts": [
+    "SC"
+   ],
+   "first_rank": 3,
+   "gold_ranks": {
+    "SC doc 6069": 3
+   }
+  },
+  {
+   "caseId": "P2-U08",
+   "stratum": "urdu",
+   "familyId": "FP2-adverse-possession",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 1,
+     "cases_named": 29,
+     "bm25": 1093,
+     "dense": 237,
+     "law": 105,
+     "cited": 0,
+     "fusion": 33,
+     "details": 54,
+     "statutes_cited": 141,
+     "hits": 1,
+     "coverage": 38
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 29,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 50
+    },
+    "ms": 1733,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": true,
+   "rr10": 0.3333333333333333,
+   "recall10": 1.0,
+   "recall50": 1.0,
+   "paragraph10": 0.0,
+   "any_gold_or_relevant10": true,
+   "authority": [
+    "agree"
+   ],
+   "gold_courts": [
+    "PHC"
+   ],
+   "first_rank": 3,
+   "gold_ranks": {
+    "PHC doc 16538": 3
+   }
+  },
+  {
+   "caseId": "P2-U10",
+   "stratum": "urdu",
+   "familyId": "FP2-medical-bail",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 1,
+     "cases_named": 0,
+     "bm25": 458,
+     "dense": 168,
+     "law": 161,
+     "cited": 0,
+     "fusion": 38,
+     "details": 74,
+     "statutes_cited": 142,
+     "hits": 2,
+     "coverage": 72
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 76,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 50
+    },
+    "ms": 1120,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": false,
+   "rr10": 0.0,
+   "recall10": 0.0,
+   "recall50": 1.0,
+   "paragraph10": null,
+   "any_gold_or_relevant10": false,
+   "authority": [
+    "agree"
+   ],
+   "gold_courts": [
+    "SHC"
+   ],
+   "first_rank": null,
+   "gold_ranks": {
+    "SHC doc 44641": 44
+   }
+  },
+  {
+   "caseId": "P2-T03",
+   "stratum": "temporal",
+   "familyId": "FP2-ata-terrorism",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 458,
+     "courts_named": 1,
+     "cases_named": 35,
+     "bm25": 913,
+     "dense": 90,
+     "law": 20,
+     "cited": 61,
+     "fusion": 33,
+     "details": 57,
+     "statutes_cited": 1223,
+     "hits": 4,
+     "coverage": 76
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 11,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 0,
+     "cited": 50
+    },
+    "ms": 2973,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": false,
+   "rr10": 0.0,
+   "recall10": 0.0,
+   "recall50": 1.0,
+   "paragraph10": null,
+   "any_gold_or_relevant10": false,
+   "authority": [
+    "not_recorded"
+   ],
+   "gold_courts": [
+    "SHC"
+   ],
+   "first_rank": null,
+   "gold_ranks": {
+    "SHC doc 96159": 30
+   }
+  },
+  {
+   "caseId": "P2-T04",
+   "stratum": "temporal",
+   "familyId": "FP2-extra-judicial-confession",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 1,
+     "cases_named": 32,
+     "bm25": 890,
+     "dense": 179,
+     "law": 50,
+     "cited": 0,
+     "fusion": 31,
+     "details": 59,
+     "statutes_cited": 484,
+     "hits": 1,
+     "coverage": 41
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 0,
+    "generators": {
+     "bm25": 50,
+     "dense": 33,
+     "law": 2
+    },
+    "ms": 1769,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": false,
+   "rr10": 0.0,
+   "recall10": 0.0,
+   "recall50": 1.0,
+   "paragraph10": null,
+   "any_gold_or_relevant10": false,
+   "authority": [
+    "not_recorded"
+   ],
+   "gold_courts": [
+    "SHC"
+   ],
+   "first_rank": null,
+   "gold_ranks": {
+    "SHC doc 90263": 11
+   }
+  },
+  {
+   "caseId": "P2-T05",
+   "stratum": "temporal",
+   "familyId": "FP2-laches-writ",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 1,
+     "cases_named": 35,
+     "bm25": 676,
+     "dense": 232,
+     "law": 94,
+     "cited": 0,
+     "fusion": 36,
+     "details": 57,
+     "statutes_cited": 258,
+     "hits": 1,
+     "coverage": 79
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 33,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 37
+    },
+    "ms": 1473,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": false,
+   "rr10": 0.0,
+   "recall10": 0.0,
+   "recall50": 0.0,
+   "paragraph10": null,
+   "any_gold_or_relevant10": false,
+   "authority": [],
+   "gold_courts": [
+    "IHC"
+   ],
+   "first_rank": null,
+   "gold_ranks": {
+    "IHC doc 133424": null
+   }
+  },
+  {
+   "caseId": "P2-F04",
+   "stratum": "authority",
+   "familyId": "FP2-laches-writ",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 2,
+     "cases_named": 49,
+     "bm25": 996,
+     "dense": 196,
+     "law": 246,
+     "cited": 0,
+     "fusion": 37,
+     "details": 48,
+     "statutes_cited": 395,
+     "hits": 1,
+     "coverage": 33
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 29,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 50
+    },
+    "ms": 2003,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": false,
+   "rr10": 0.0,
+   "recall10": 0.0,
+   "recall50": 0.0,
+   "paragraph10": null,
+   "any_gold_or_relevant10": false,
+   "authority": [],
+   "gold_courts": [
+    "IHC"
+   ],
+   "first_rank": null,
+   "gold_ranks": {
+    "IHC doc 133424": null
+   }
+  },
+  {
+   "caseId": "P2-F05",
+   "stratum": "authority",
+   "familyId": "FP2-limitation-duty",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 1,
+     "cases_named": 30,
+     "bm25": 1142,
+     "dense": 302,
+     "law": 116,
+     "cited": 0,
+     "fusion": 49,
+     "details": 67,
+     "statutes_cited": 191,
+     "hits": 1,
+     "coverage": 33
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 72,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 4
+    },
+    "ms": 1934,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": false,
+   "rr10": 0.0,
+   "recall10": 0.0,
+   "recall50": 0.0,
+   "paragraph10": null,
+   "any_gold_or_relevant10": false,
+   "authority": [],
+   "gold_courts": [
+    "SC",
+    "SHC"
+   ],
+   "first_rank": null,
+   "gold_ranks": {
+    "SC doc 7377": null,
+    "SHC doc 35782": null
+   }
+  },
+  {
+   "caseId": "P2-F06",
+   "stratum": "authority",
+   "familyId": "FP2-extra-judicial-confession",
+   "outcome": "answer",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 1,
+     "cases_named": 34,
+     "bm25": 688,
+     "dense": 159,
+     "law": 96,
+     "cited": 0,
+     "fusion": 33,
+     "details": 53,
+     "statutes_cited": 134,
+     "hits": 1,
+     "coverage": 41
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "binding_voted": 80,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 50
+    },
+    "ms": 1242,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "hit10": true,
+   "rr10": 0.5,
+   "recall10": 0.3333333333333333,
+   "recall50": 0.6666666666666666,
+   "paragraph10": 1.0,
+   "any_gold_or_relevant10": true,
+   "authority": [
+    "agree",
+    "agree"
+   ],
+   "gold_courts": [
+    "LHC",
+    "SHC"
+   ],
+   "first_rank": 2,
+   "gold_ranks": {
+    "SHC doc 30223": 2,
+    "SHC doc 90263": 21,
+    "LHC doc 114209": null
+   }
+  },
+  {
+   "caseId": "P2-X01",
+   "stratum": "unanswerable",
+   "familyId": "FP2-x-service-tribunal",
+   "outcome": "abstain",
+   "mode": "hybrid",
+   "hits": 50,
+   "leaks_after_as_of": 0,
+   "trace": {
+    "stage_ms": {
+     "citations": 1,
+     "courts_named": 2,
+     "cases_named": 33,
+     "bm25": 1284,
+     "dense": 300,
+     "law": 217,
+     "cited": 0,
+     "fusion": 3,
+     "details": 48,
+     "statutes_cited": 243,
+     "hits": 1,
+     "coverage": 34
+    },
+    "courts_named": [],
+    "dense_space": "gpu",
+    "law_order": "role",
+    "context_provisions": 10,
+    "generators": {
+     "bm25": 50,
+     "dense": 50,
+     "law": 13
+    },
+    "ms": 2166,
+    "withheld_by_name": 0,
+    "court_searched": null
+   },
+   "leaks_must_not_serve": 0,
+   "coverage_gap": null,
+   "cases_named": [],
+   "abstention_code": "court_not_held",
+   "courts_returned": [
+    "Gilgit-Baltistan Supreme Appellate Court",
+    "High Court of Azad Jammu and Kashmir",
+    "High Court of Sindh",
+    "Islamabad High Court",
+    "Lahore High Court",
+    "Peshawar High Court",
+    "Supreme Court of Azad Jammu and Kashmir",
+    "Supreme Court of Pakistan"
+   ],
+   "declined": false
+  }
+ ]
+}

@@ -204,7 +204,12 @@ def _default_encoder(trace: dict):
 
 def search(question: str, *, as_of: date, court: str | None = None, forum=None, k: int = 10,
            repo: JudgmentRead | None = None, encoder=None, subject: str | None = None,
-           bm25: bool = True) -> PrecedentResult:
+           bm25: bool = True, context_provisions: list[str] | None = None,
+           law_order: str = "question", law_use: str = "generator") -> PrecedentResult:
+    """`context_provisions`: the unit ids a statute retrieval already found for this question (its GroundingContext's
+    bundle, D-173). They feed a fifth generator, "law": the judgments that cite those units, ordered by the question
+    (`law_order="question"`, the paragraphs' nearness to it) or by how they treat the unit, newest first ("role", the
+    "cited" generator's order). None or empty: the search as before."""
     if type(as_of) is not date:
         raise ValueError("as_of is mandatory (INV-5) and is a date")
     t0 = time.time()
@@ -265,36 +270,65 @@ def search(question: str, *, as_of: date, court: str | None = None, forum=None, 
                 lists["bm25"] = repo.bm25_paragraphs(conn, question, WINDOW, as_of, court)
             mark("bm25")
             mode = "lexical_only"
+            qbits, gpu_space = None, False                      # kept for the law generator (D-173)
             try:
                 enc = encoder if encoder is not None else _default_encoder(trace)
                 if getattr(getattr(enc, "info", None), "dims", 1024) == 4096:
                     # the GPU generation (D-158): the statutes' GPU space; until its judgment vectors are loaded the
                     # CPU generation is searched instead, and the trace says so (never passed off as the GPU path)
                     if repo.gpu_vectors_held(conn):
-                        lists["dense"] = repo.dense_paragraphs_gpu(conn, enc.bits(question, 4096), WINDOW, as_of,
-                                                                   court)
+                        qbits, gpu_space = enc.bits(question, 4096), True
+                        lists["dense"] = repo.dense_paragraphs_gpu(conn, qbits, WINDOW, as_of, court)
                         trace["dense_space"] = "gpu"
                     else:
                         trace["dense_fell_back"] = "the GPU generation's judgment vectors are not loaded"
                         enc = _cpu_encoder()
                 if "dense" not in lists:
-                    lists["dense"] = repo.dense_paragraphs(conn, enc.bits(question), WINDOW, as_of, court)
+                    qbits = enc.bits(question)
+                    lists["dense"] = repo.dense_paragraphs(conn, qbits, WINDOW, as_of, court)
                     trace["dense_space"] = "cpu"
                 mode = "hybrid"
             except Exception as exc:                            # noqa: BLE001  no encoder bundle on this host
                 trace["dense_unavailable"] = type(exc).__name__
             mark("dense")                                       # the question's encoding and the HNSW scan
+            if context_provisions:
+                # the law join (D-173): judgments citing the units the statute retrieval found. Ordered by the question
+                # when a question vector exists; without one (lexical_only) by treatment and date, and the trace says so
+                if law_order == "question" and qbits is not None:
+                    lists["law"] = repo.citing_paragraphs_by_question(conn, list(context_provisions), qbits, WINDOW,
+                                                                      as_of, court, gpu=gpu_space)
+                    trace["law_order"] = "question"
+                else:
+                    lists["law"] = repo.citing_paragraphs(conn, list(context_provisions), WINDOW, as_of, court)
+                    trace["law_order"] = "role"
+                trace["context_provisions"] = len(context_provisions)
+            mark("law")
             if cited:
                 lists["cited"] = repo.citing_paragraphs(conn, [c["provision_id"] for c in cited], WINDOW, as_of,
                                                         court)
             mark("cited")
             fused: dict = {}
+            law_vote = lists.pop("law", None) if law_use == "vote" else None
             for name, rows in lists.items():
                 for rank, r in enumerate(rows, 1):
                     f = fused.setdefault(r["id"], dict(score=0.0, gens=[], judgment_id=r["judgment_id"]))
                     # a case named by its number is an identification, not a likeness: it ranks first
                     f["score"] += 1.0 if name == "case" else 1.0 / (RRF_K + rank)
                     f["gens"].append(name)
+            if law_vote:
+                # law_use="vote" (D-173): the law join adds no judgment; a judgment the other generators found and the
+                # law join also found takes one more vote, by its law rank, as the binding vote does (D-154)
+                law_rank = {}
+                for rank, r in enumerate(law_vote, 1):
+                    law_rank.setdefault(r["judgment_id"], rank)
+                voted_law = set()
+                for f in sorted(fused.values(), key=lambda f: -f["score"]):      # each judgment's best paragraph
+                    j = f["judgment_id"]
+                    if j in law_rank and j not in voted_law:
+                        voted_law.add(j)
+                        f["score"] += 1.0 / (RRF_K + law_rank[j])
+                        f["gens"].append("law")
+                trace["law_voted"] = len(voted_law)
             registry = A.load(cur) if forum is not None else None
             if registry is not None and fused:
                 # for a forum, the judgments that bind it take one more vote, in their fused order (D-154)

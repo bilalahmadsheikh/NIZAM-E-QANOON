@@ -163,6 +163,46 @@ class JudgmentRead:
         return JudgmentRead._released(conn, rows, n, court)
 
     @staticmethod
+    def citing_paragraphs_by_question(conn, provision_ids: list[str], bits: str, n: int, before: date,
+                                      court: str | None = None, gpu: bool = False, pool: int = 400) -> list[dict]:
+        """The law join (D-173, docs/ANSWER-COMPOSITION §5 stage 3): paragraphs citing one of these provisions (or a
+        unit inside one, or any copy of one, D-136), decided on or before `before`, each judgment by its citing
+        paragraph that construes the provision rather than mentioning it, then ordered by how near the paragraph's
+        nearest chunk is to the question (Hamming distance on the same sign bits dense search uses: the CPU
+        generation's 1024 or, with `gpu`, the 8B generation's 4096). A pool of `pool` judgments is ranked, so a
+        provision cited in hundreds of judgments is sorted by the question, never by recency alone."""
+        if not provision_ids:
+            return []
+        rows = conn.execute("""
+            WITH u AS (SELECT array_agg(p.id) AS ids FROM provision t
+                         JOIN provision p ON p.instrument_id = t.instrument_id AND p.path <@ t.path
+                        WHERE t.id = ANY(%s::uuid[])),
+                 c AS (SELECT r.judgment_id, r.paragraph_id, r.decided_on,
+                              max(CASE r.role WHEN 'interpreted' THEN 3 WHEN 'quoted' THEN 3 WHEN 'challenged' THEN 3
+                                              WHEN 'charge' THEN 1 ELSE 2 END) AS role_score
+                         FROM judgment_statute_reference r, u
+                        WHERE r.decided_on <= %s AND (r.dst_provision_id = ANY(u.ids) OR r.alternates && u.ids)
+                        GROUP BY 1, 2, 3),
+                 b AS (SELECT DISTINCT ON (judgment_id) * FROM c ORDER BY judgment_id, role_score DESC, paragraph_id)
+            SELECT paragraph_id AS id, decided_on, role_score FROM b
+             ORDER BY role_score DESC, decided_on DESC LIMIT %s""", (provision_ids, before, pool)).fetchall()
+        if not rows:
+            return []
+        ids = [r["id"] for r in rows]
+        if gpu:
+            dist = conn.execute("""SELECT c.paragraph_id AS id, min(e.bits <~> %s::bit(4096)) AS d
+                                     FROM judgment_chunk c JOIN judgment_chunk_embedding_gpu e ON e.chunk_id = c.id
+                                    WHERE c.paragraph_id = ANY(%s::uuid[]) GROUP BY 1""", (bits, ids)).fetchall()
+        else:
+            dist = conn.execute("""SELECT paragraph_id AS id, min(embedding <~> %s::bit(1024)) AS d
+                                     FROM judgment_chunk WHERE paragraph_id = ANY(%s::uuid[]) AND embedding IS NOT NULL
+                                    GROUP BY 1""", (bits, ids)).fetchall()
+        d = {r["id"]: r["d"] for r in dist}
+        far = float("inf")
+        ordered = sorted(rows, key=lambda r: (d.get(r["id"], far), -r["role_score"]))
+        return JudgmentRead._released(conn, [dict(r, score=-(d.get(r["id"]) or 0)) for r in ordered], n, court)
+
+    @staticmethod
     def _released(conn, rows: list[dict], n: int, court: str | None) -> list[dict]:
         if not rows:
             return []
@@ -571,6 +611,65 @@ class JudgmentRead:
                                                                   shown["decided_on"])))
             if len(out) >= limit:
                 break
+        return out
+
+    def adverse_status(self, judgment_ids: list[str], as_of: date) -> dict:
+        """{judgment id: {"verified": [...], "awaiting_review": [...]}} for a batch (D-173, the precedent context):
+        a later judgment, decided on or before `as_of`, treating this one's case as overruled, per incuriam or
+        disapproved (case_treatment, D-160), and a court above setting aside, reversing, modifying or remanding it
+        (judgment_lineage, D-159). Each is `verified` only once a lawyer verified it; a machine reading is
+        `awaiting_review`, never a fact (docs/06 §5.1)."""
+        out = {str(j): {"verified": [], "awaiting_review": []} for j in judgment_ids}
+        if not judgment_ids:
+            return out
+        with self.transaction() as conn:
+            for r in conn.execute("""
+                SELECT m.judgment_id::text AS jid, t.treatment AS what, t.review_status, t.judgment_id::text AS by,
+                       t.decided_on AS on_
+                  FROM judgment_case m
+                  JOIN case_treatment t ON t.dst_case_key = m.case_key
+                 WHERE m.judgment_id = ANY(%s::uuid[]) AND t.decided_on <= %s AND t.judgment_id <> m.judgment_id
+                   AND t.treatment = ANY(%s) AND t.review_status <> 'rejected'""",
+                    (judgment_ids, as_of, list(TREATMENT_NEGATIVE))).fetchall():
+                out[r["jid"]]["verified" if r["review_status"] == "lawyer_verified" else "awaiting_review"].append(
+                    dict(kind="treatment", what=r["what"], by=r["by"], on=r["on_"]))
+            for r in conn.execute("""
+                SELECT k.lower_judgment_id::text AS jid, l.outcome AS what, l.review_status,
+                       l.upper_judgment_id::text AS by, l.upper_decided_on AS on_
+                  FROM judgment_lineage_link k JOIN judgment_lineage l ON l.id = k.lineage_id
+                 WHERE k.lower_judgment_id = ANY(%s::uuid[]) AND k.upper_decided_on <= %s AND l.outcome = ANY(%s)""",
+                    (judgment_ids, as_of, list(NEGATIVE_OUTCOMES))).fetchall():
+                out[r["jid"]]["verified" if r["review_status"] == "lawyer_verified" else "awaiting_review"].append(
+                    dict(kind="appeal", what=r["what"], by=r["by"], on=r["on_"]))
+        return out
+
+    def version_notes(self, judgment_ids: list[str], unit_ids: list[str], as_of: date) -> dict:
+        """{judgment id: {unit id: "earlier_text" | "same_text" | "not_dated"}} (D-173): for each judgment's citations
+        of a unit (or a provision inside it), whether the version the court read (judgment_statute_reference
+        .dst_version_id, the version in force on the decision date, D-122) is still the one in force at `as_of`.
+        `not_dated` when no citation's version is dated (most laws are served only from capture, text_known_from):
+        the check could not be made, and nothing is to be written as if it had passed."""
+        out: dict = {str(j): {} for j in judgment_ids}
+        if not judgment_ids or not unit_ids:
+            return out
+        with self.transaction() as conn:
+            for r in conn.execute("""
+                WITH u AS (SELECT t.id AS unit_id, p.id AS pid FROM provision t
+                             JOIN provision p ON p.instrument_id = t.instrument_id AND p.path <@ t.path
+                            WHERE t.id = ANY(%s::uuid[]))
+                SELECT r.judgment_id::text AS jid, u.unit_id::text AS unit, r.version_basis,
+                       bool_or(r.version_basis = 'dated' AND upper(v.validity) <= %s) AS ended,
+                       bool_or(r.version_basis = 'dated') AS dated
+                  FROM judgment_statute_reference r
+                  JOIN u ON u.pid = r.dst_provision_id
+                  LEFT JOIN provision_version v ON v.id = r.dst_version_id
+                 WHERE r.judgment_id = ANY(%s::uuid[]) AND r.resolution = 'resolved'
+                 GROUP BY 1, 2, 3""", (unit_ids, as_of, judgment_ids)).fetchall():
+                cur = out[r["jid"]].get(r["unit"])
+                note = "earlier_text" if r["ended"] else ("same_text" if r["dated"] else "not_dated")
+                rank = {"earlier_text": 2, "same_text": 1, "not_dated": 0}
+                if cur is None or rank[note] > rank[cur]:
+                    out[r["jid"]][r["unit"]] = note
         return out
 
     def later_history(self, judgment_id, as_of: date) -> list[dict]:

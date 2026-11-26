@@ -162,6 +162,14 @@ INV-2 is unchanged: no claim is made from material that did not pass a gate.
 
 ### Stage 3: precedent evidence (L5, new: `IPrecedent.contextFor`)
 
+*As measured (27 Nov 2026, D-173): S1 is built (`nizam/domain/precedent/context_for`), but step 1(a) below, the law
+join choosing judgments, is **off**.*
+- On precedent dev v2 it lowered the results in all nine forms tried (a fifth generator by question or by role,
+  or a vote; seeded by the passed bundle or by the statute order's first 10; CPU and 8B).
+- §3C's union figure counted every judgment citing the units, not the 50 the search keeps.
+- The seed still marks which of the answer's sections each judgment cites, and its version note. Steps 2–5 are
+  built as written.
+
 Input: the passed `GroundingContext` (its units, as_of, territory, forum) and the question.
 
 1. **Two generators, fused by RRF** (k=60, as everywhere else):

@@ -3,6 +3,9 @@
     python evals/precedent_eval.py split                 # writes evals/golden/split-precedent-v1.json (idempotent)
     python evals/precedent_eval.py run --split dev       # dev: for choosing and tuning
     python evals/precedent_eval.py run --split test      # test: read once, to report a decision made on dev
+    python evals/precedent_eval.py lawctx --split dev --out F    # the statute retrieval's bundle per case (D-173)
+    python evals/precedent_eval.py run --split dev --law-context F [--law-order question|role]
+                                                         # precedent search fed the statute bundle (the law join)
 
 The split assigns whole families (docs/10 §4: variants, dates and translations of one question stay together):
 families are ordered by sha256(familyId) within two groups (answerable, unanswerable) and the first 60% are dev.
@@ -85,13 +88,48 @@ def _doc_to_judgment(conn, docs: set[int]) -> dict[int, str]:
     return {r["document_id"]: r["id"] for r in rows}
 
 
-def run(split_name: str, out: Path | None, gpu_vectors: Path | None = None) -> int:
+def law_contexts(split_name: str, out: Path) -> int:
+    """The statute retrieval's passed bundle for each case (D-173): `retrieve(question, Filters(as_of, territory),
+    assemble=False)` on this host's profile. A case whose retrieval abstains keeps its code and no units: the law join
+    then adds nothing, as it would in service."""
+    from nizam.retrieval.gate import GroundingContext, retrieve
+    from nizam.retrieval.rerank import ranked
+    from nizam.storage.lexical import Filters
+    split = json.loads(SPLIT.read_text(encoding="utf-8"))
+    chosen = [c for c in cases() if split_name == "all" or c["familyId"] in split[split_name]]
+    res, t0 = {}, time.time()
+    for c in chosen:
+        s = c["scope"]
+        terr = s.get("territory")
+        juris = ("fed",) if terr in (None, "ict", "fed") else (terr, "fed")
+        f = Filters(as_of=date.fromisoformat(s["asOf"]), territory=terr if terr not in (None, "fed") else None,
+                    jurisdictions=juris)
+        r = retrieve(c["question"]["text"], f, assemble=False)
+        if isinstance(r, GroundingContext):
+            res[c["caseId"]] = dict(passed=True, units=[i.unit_id for i in r.items], mode=r.gate.get("mode"))
+        else:
+            res[c["caseId"]] = dict(passed=False, units=[], code=r.code, stage=r.gate.get("stage"))
+        # the discovery seed (D-173): the served statute order's first 10 units whatever the gate decided. It only
+        # chooses which judgments to look at; no statutory claim is made from it (INV-2 governs answers)
+        res[c["caseId"]]["discovery"] = [x.unit_id for x in ranked(c["question"]["text"], f, 10).candidates]
+        print(f"  {c['caseId']}: {res[c['caseId']]} ({time.time() - t0:.0f}s)", flush=True)
+    out.write_text(json.dumps(dict(built=date.today().isoformat(), split=split_name, cases=res), indent=1),
+                   encoding="utf-8")
+    n = sum(1 for v in res.values() if v["passed"])
+    print(f"{n} of {len(res)} cases passed the statute gate -> {out}")
+    return 0
+
+
+def run(split_name: str, out: Path | None, gpu_vectors: Path | None = None, law_context: Path | None = None,
+        law_order: str = "question", law_seed: str = "units",
+        law_use: str = "generator") -> int:
     from nizam.inference.encoder import encoder
     from nizam.retrieval.precedent import search
     from nizam.storage.authority import Subordinate
     from nizam.storage.judgment_read import JudgmentRead
     split = json.loads(SPLIT.read_text(encoding="utf-8"))
     chosen = [c for c in cases() if split_name == "all" or c["familyId"] in split[split_name]]
+    law_ctx = json.loads(law_context.read_text(encoding="utf-8"))["cases"] if law_context else None
     repo = JudgmentRead()
     repo.open()
     try:
@@ -116,7 +154,9 @@ def run(split_name: str, out: Path | None, gpu_vectors: Path | None = None) -> i
             terr = c["scope"]["territory"]
             forum = Subordinate(terr) if c["scope"].get("forum") else None
             t = time.time()
-            r = search(c["question"]["text"], as_of=as_of, forum=forum, k=50, repo=repo, encoder=enc)
+            ctx_units = (law_ctx.get(c["caseId"]) or {}).get(law_seed) if law_ctx is not None else None
+            r = search(c["question"]["text"], as_of=as_of, forum=forum, k=50, repo=repo, encoder=enc,
+                       context_provisions=ctx_units, law_order=law_order, law_use=law_use)
             ms.append((time.time() - t) * 1000)
             ranked = [h.judgment_id for h in r.hits]
             row = dict(caseId=c["caseId"], stratum=c["stratum"], familyId=c["familyId"],
@@ -168,6 +208,9 @@ def run(split_name: str, out: Path | None, gpu_vectors: Path | None = None) -> i
     finally:
         repo.close()
     report = summarise(rows, ms, split_name)
+    if law_ctx is not None:
+        report["law_join"] = dict(context=str(law_context), seed=law_seed, order=law_order, use=law_use,
+                                  cases_seeded=sum(1 for c in chosen if (law_ctx.get(c["caseId"]) or {}).get(law_seed)))
     out = out or ROOT / f"evals/results/precedent-eval-{split_name}.json"
     out.write_text(json.dumps({"summary": report, "cases": rows}, indent=1, default=str), encoding="utf-8")
     print(json.dumps(report, indent=1))
@@ -218,8 +261,21 @@ def main() -> int:
     r.add_argument("--out", type=Path)
     r.add_argument("--gpu-vectors", type=Path, help="a directory of the questions' 8B vectors (q.npy, questions.json, "
                                                     "encoder.json): search the GPU generation's space (D-158)")
+    r.add_argument("--law-context", type=Path, help="lawctx output: feed each case's statute bundle to the search")
+    r.add_argument("--law-order", choices=["question", "role"], default="question")
+    r.add_argument("--law-seed", choices=["units", "discovery"], default="units",
+                   help="units: the passed statute bundle only; discovery: the served order's first 10, gate or not")
+    r.add_argument("--law-use", choices=["generator", "vote"], default="generator",
+                   help="generator: the law join adds judgments; vote: it only votes for judgments already found")
+    lc = sub.add_parser("lawctx")
+    lc.add_argument("--split", choices=["dev", "test", "all"], required=True)
+    lc.add_argument("--out", type=Path, required=True)
     a = ap.parse_args()
-    return make_split() if a.cmd == "split" else run(a.split, a.out, a.gpu_vectors)
+    if a.cmd == "split":
+        return make_split()
+    if a.cmd == "lawctx":
+        return law_contexts(a.split, a.out)
+    return run(a.split, a.out, a.gpu_vectors, a.law_context, a.law_order, a.law_seed, a.law_use)
 
 
 if __name__ == "__main__":
