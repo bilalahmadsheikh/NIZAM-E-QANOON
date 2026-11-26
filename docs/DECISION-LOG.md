@@ -1136,6 +1136,39 @@ Area: client · Status: Superseded by D-084 (the whole-page cloth; the hem, the 
   design/heritage_art.dart, presentation/discover.dart, presentation/heritage.dart; test/heritage_test.dart
   (golden embroidery.png, a review sheet at 3x).
 
+### D-169 · 2026-11-27 · The 4-bit question encoder passes the reranked check: the GPU host serves it in 4-bit
+Area: L3 retrieval / deployment (GPU host) · Status: standing (closes D-165's open condition)
+- D-165 required that before a 4-bit (NF4) question encoder serves, the reranked path is measured once, as ADR-1d
+  did. Now measured, on law dev (276 questions):
+  - The served GPU path: the citations-then-dense slate, 50 units at 1,600 characters, Qwen3-Reranker-8B. The 8B
+    reranker scored the 15,417 distinct pairs of both slates on Kaggle, split across the two accounts
+    (`ds-lawrr-union`). `lexical_benchmark --impls ranked` replays them with fp16 and with 4-bit question vectors.
+  - Results, paired bootstrap, 4-bit minus fp16:
+
+    | Metric | fp16 | 4-bit | Difference, 95% CI |
+    |---|---|---|---|
+    | NDCG@10 | .813 | .815 | +0.2 [−1.1, +1.4] |
+    | MRR@10 | .778 | .780 | +0.2 [−1.0, +1.4] |
+    | recall@10 | .937 | .938 | +0.2 |
+    | recall@50 | .953 | .955 | +0.2 |
+
+  - ADR-1d's bound is 2 NDCG points after reranking. The 4-bit encoder's whole interval lies within ±1.4.
+- Decision: the GPU host runs the question encoder in 4-bit (NF4). The owner's rule (26 Nov) applies: 4-bit if the
+  difference is barely any.
+  - It needs half the VRAM (6.9 GiB peak against about 13.9) and is 32 ms slower per question on a T4 (D-165). The
+    passages stay fp16-made, with no re-embedding.
+  - fp16 and 8-bit remain allowed. The precision in use is recorded with the host's deployment, as D-165 set.
+- Also measured: the 8B profile on the widened precedent dev split (D-168), 89 cases, with question vectors
+  encoded on Kaggle in fp16 (`bundle-precedent-v2-fp16`; the 35 questions shared with D-166's bundle encode
+  identically).
+  - Overall: hit@10 .655, MRR@10 .422, recall@50 .784, paragraph@10 .534. The CPU profile's figures are .609,
+    .392, .739 and .600.
+  - By stratum, the 8B profile lifts named provisions (.364 → .636) and issues (.609 → .674). Urdu stays .429 and
+    authority .25.
+  - Temporal falls (.60 → .20), but on 5 cases. It is the next thing to read.
+- Where: evals/results/lawrr-dev-gpu-{fp16,nf4}.json, precedent-eval-dev-v2-gpu.json;
+  /mnt/e/nizam-data/rerank/ds-lawrr-union (pairs, joined scores).
+
 ### D-168 · 2026-11-27 · The precedent golden set widened to 145 cases (set 2), split so set 1's families never move
 Area: L3 evaluation (docs/10 §4, PRECEDENT-MODEL §6) · Status: standing (draft gold: A0 authoring + A3 resolution;
 legal review A1/A2 and κ still need two human annotators)
