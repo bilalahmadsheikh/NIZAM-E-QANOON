@@ -34,6 +34,7 @@ def test_the_author_reads_art_189_and_art_201_and_nothing_else():
 def test_every_answer_case_names_judgment_paragraphs_from_records():
     cases = _cases()
     assert len(cases) >= 50
+    not_held = {c["abstention"].get("court") for c in cases if c["expectedOutcome"] == "abstain"} - {None}
     for c in cases:
         gold = c["precedentGold"]
         if c["expectedOutcome"] == "abstain":
@@ -41,8 +42,9 @@ def test_every_answer_case_names_judgment_paragraphs_from_records():
             continue
         assert gold["necessaryJudgments"] and c["textChecks"], c["caseId"]
         for u in gold["necessaryJudgments"]:
-            # a held court's judgment (SHC and BHC since D-138, FCC since D-139)
-            assert u["textSha256"] and u["court"] in ("SC", "LHC", "PHC", "SHC", "BHC", "FCC"), c["caseId"]
+            # a held court's judgment: never one the set itself declares not held (the rule, not a list of the courts
+            # held today, which broke at each landing: D-138, D-139, D-156)
+            assert u["textSha256"] and u["court"] and u["court"] not in not_held, c["caseId"]
             assert u["existsAtAsOf"], c["caseId"]                 # no gold judgment postdates the question
             assert (u["paragraph"] is None) == (u["paragraphId"] is None)
             assert "chunk" not in json.dumps(u)                    # INV-4: labels end at paragraphs

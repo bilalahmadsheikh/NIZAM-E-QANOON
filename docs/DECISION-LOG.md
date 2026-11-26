@@ -1136,6 +1136,55 @@ Area: client · Status: Superseded by D-084 (the whole-page cloth; the hem, the 
   design/heritage_art.dart, presentation/discover.dart, presentation/heritage.dart; test/heritage_test.dart
   (golden embroidery.png, a review sheet at 3x).
 
+### D-156 · 2026-11-26 · The Islamabad High Court's judgments are landed from the court's own listing
+Area: L1 precedent (acquisition, courts) · Status: standing (D-139's "crawl every court's own site")
+- Source: mis.ihc.gov.pk lists the decisions the court marks "approved for reporting" and "important" through its own
+  public JSON service, `ihc.asmx/srchDecisionClms`, by case year. There is no captcha and no login, and robots.txt
+  is absent.
+  - `data/ihc_judgments_scraper.py` read case years 1990–2026 at 3 s a request: 3,515 decisions. 3,437 files were
+    fetched in two runs. Of the 78 not fetched, 47 are refused with an HTTP error and 31 loop on a redirect, at the
+    server.
+  - Kept from the listing: the court's own record (case number, bench, author, listed date, subject, section,
+    citation identifiers, and the Supreme Court's later appeal status and result).
+  - Never kept: the headnote fields `O_IHC_HEADNOTE` and `O_SC_HEADNOTE` (D-120).
+- The court: it was already recorded (0118, Art. 198). Art. 201's high-court rule (authority_rule 4, 5) already
+  reaches its subordinate courts in ICT.
+  - Migration 0140 adds its 21 case types as its headers print them: `tools/observe_case_forms.py` over 1 in 3
+    files, with the number found printed in 894 of 1,090 headers. The observer now also reads the listing's
+    'Type-num-year' form.
+  - Short forms never seen printed ("t r", "m r", "str") are not recorded.
+- Parser /16 reads its "ANNOUNCED IN AN OPEN COURT ON 17.04.2023" line. The same form dated 25 undated Lahore
+  judgments, which were re-read with `--only`.
+  - The blank form ("Announced in the open Court on this ______ day of May 2025") dates nothing. It is how most of
+    the court's uploaded copies close.
+- Landed (`--court IHC --source-id pk-ihc-judgments`): 3,424 distinct files, and **2,736 released**, 1,243 of them
+  undated and 1,237 marked approved for reporting.
+  - Held: 370 (164 with no header or a misread one, e.g. "ISTAMABAD", "ISLAMABADHIGH"; 135 with no
+    JUDGMENT/ORDER heading; 71 at J3).
+  - Needs OCR: 291. Reprints, not landed: 18. Duplicates: 9.
+  - Links: 26,598 statute citations and 2,973 case citations resolved in the new judgments. Privacy rebuilt: 1,888
+    judgments with names withheld.
+  - Released judgments in all: **63,992**, 14,164 undated.
+- Checked against the court's listing: 2,685 of 2,743 judgments agree on case number (its digits) and year.
+  - Most of the rest are files deciding connected cases (the header names one, the listing another), or an
+    objection case numbered later as a writ petition.
+  - A few are text-layer misreads ("2O13"). None is guessed.
+- **The listing's date is not taken as a decision date.** It agrees with the printed date in 1,389 of 1,495 dated
+  judgments, and 72 differ by more than a week, so it is not the date of decision. The 1,243 undated judgments stay
+  undated under D-124; the listed date is kept in the listing.
+- Golden set: P1-X02 ("the IHC is not held") is replaced by P1-I39, an answerable IHC question (W.P. 2904/2016,
+  paras 13, 22), kept in dev as D-138 did.
+  - Two test tripwires listing "the courts held" were rewritten as rules: the citation opens with its own court's
+    name, and gold is never in a court the set declares not held.
+- Chunks: 63,661 new judgment chunks are embedded on a Kaggle T4 (D-132, second account; the first was at its
+  two-session limit), loaded with `--load`. The sweep found none missing.
+- After: audit 54/54 pass; dev (35 answerable, with P1-I39) hit@10 .686, MRR@10 .42, recall@50 .738, leaks 0
+  (`precedent-eval-dev-d156.json`).
+- Where: data/ihc_judgments_scraper.py; infra/postgres/migrations/0140_ihc_case_types.sql;
+  tools/observe_case_forms.py; nizam/corpus/judgment.py (/16); tests/test_judgment_parse.py,
+  test_precedent_query.py, test_judgment_db.py, test_precedent_golden.py; evals/golden/build_precedent1.py,
+  split-precedent-v1.json.
+
 ### D-155 · 2026-11-26 · A judgment "card" is not embedded: measured on dev, it does not help
 Area: L3 retrieval (precedent) · Status: measured, not adopted
 - The question: should a judgment's headers and titles be embedded, so that a judgment can be found by meaning as a

@@ -2,7 +2,7 @@
 
 Precedent stratum, set 1: Supreme Court, Lahore and Peshawar High Courts (D-133). Gold is judgment paragraphs read in the released text; it names some of the judgments that answer, not all.
 
-Corpus revision d7c1a94. Strata: issue 38, authority 1, temporal 3, case_lookup 4, provision 4, urdu 5, unanswerable 3.
+Corpus revision f45da7c. Strata: issue 39, authority 1, temporal 3, case_lookup 4, provision 4, urdu 5, unanswerable 2.
 Status: **draft** — A0 authoring and A3 identity resolution only. Not gold until two legal annotators (A1) and a senior advocate (A2) have reviewed it; do not tune or report on it before then.
 
 ## P1-I01 · issue · forum subordinate:sindh · as of 2026-11-24 · expect **answer**
@@ -363,6 +363,16 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 - **Relevant (grade 2)** — FCC C.P.L.A. No.5312 of 2024 (2026-02-24), para 6 · doc 94398
   > Since the petitioner has raised a question regarding the jurisdiction of this Court, the same must be addressed at the outset. It has been contended before us that this Court lacks the authority to entertain contempt proceedings. We find this submission wantin
 
+## P1-I39 · issue · forum subordinate:ict · as of 2026-11-26 · expect **answer**
+
+**Q:** What has the Islamabad High Court held on whether a contract employee can file a writ petition for reinstatement or regularization?
+
+- *Proposition:* Where no statutory rules govern the service, a contractual employee's relationship is master and servant: the High Court cannot declare a termination unlawful under Article 199, and the remedy is a suit for damages; contract employment does not become permanent without a competitive process.
+- **Necessary (grade 3)** — IHC W.P.No.2904 of 2016 (undated, exists from 2026-11-26), para 13 · doc 133661 · expected binding
+  > As for the petitioners who have been issued notices for the termination of their employment contracts, this Court in exercise of its jurisdiction under Article 199 of the Constitution, can neither declare the termination notices to be unlawful nor hold that th
+- **Relevant (grade 2)** — IHC W.P.No.2904 of 2016 (undated, exists from 2026-11-26), para 22 · doc 133661 · expected binding
+  > The petitioners want permanent employment without going through a competitive process for it. The mere fact that they were given contractual employment after a test or an interview could not make out their case for the conversion of their contractual employmen
+
 ## P1-F01 · authority · forum subordinate:kp · as of 2026-11-24 · expect **answer**
 
 **Q:** For a civil court in Khyber Pakhtunkhwa: what three conditions must a plaintiff show to get a temporary injunction?
@@ -516,12 +526,6 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 - *Proposition:* The welfare of the minor is paramount.
 - **Necessary (grade 3)** — LHC W.P. No.54172/2024 (undated, exists from 2026-09-08), para 6 · doc 9987 · expected binding
   > The pivotal question for determination before this Court, in matters relating to custody of minor, is to see welfare of the minor, which holds paramount importance. In view of this settled principle, the question narrows down to a determination as to whether t
-
-## P1-X02 · unanswerable · forum subordinate:ict · as of 2026-11-24 · expect **abstain**
-
-**Q:** What has the Islamabad High Court held on section 20 of the Prevention of Electronic Crimes Act 2016?
-
-- *Abstain:* court_not_held — the corpus holds no judgment of this court (IHC); coverage must say so
 
 ## P1-X04 · unanswerable · forum - · as of 2026-11-24 · expect **abstain**
 

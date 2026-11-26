@@ -107,6 +107,20 @@ def test_a_paragraph_numbered_in_urdu_digits_keeps_its_number_in_western_digits(
     assert [p.printed_no for p in body] == [None, "2", "3"]
 
 
+def test_announced_in_an_open_court_dates_the_judgment_and_a_blank_one_does_not():
+    # D-156: the Islamabad High Court prints 'ANNOUNCED IN AN OPEN COURT ON 17.04.2023.'; its blank form
+    # 'Announced in the open Court on this ______ day of May 2025.' names no day and dates nothing
+    from nizam.corpus.judgment import _ANNOUNCED
+    for line, day in (("ANNOUNCED IN AN OPEN COURT ON 17.04.2023.", dt.date(2023, 4, 17)),
+                      ("ANNOUNCED IN AN OPEN COURT ON 10/06/2024", dt.date(2024, 6, 10))):
+        m = _ANNOUNCED.search(line)
+        assert m and read_date(m.group(0), TODAY) == day
+    for blank in ("Announced in the open Court on this ______ day of May 2025.",
+                  "ANNOUNCED IN AN OPEN COURT ON ________/2019", "Announced in open Court on _________________"):
+        m = _ANNOUNCED.search(blank)
+        assert not m or read_date(m.group(0), TODAY) is None
+
+
 def test_no_printed_decision_date_is_released_undated_not_guessed():
     # D-124: released marked undated; the hearing bounds it from below and is never taken as the date
     d = doc([HEADER + ["ORDER", "Alpha Beta, J.- The petition is dismissed.", "Judge", "Judge",

@@ -124,9 +124,9 @@ def test_precedent_search_returns_only_judgments_decided_by_the_date(repo):
     if not r.hits:
         pytest.skip("no judgments decided by 2015 match")
     assert all(h.decided_on <= dt.date(2015, 1, 1) for h in r.hits)
-    # every hit's citation opens with its court's recorded name (SC, and since D-128/D-130 the Lahore and Peshawar HCs)
-    assert all(h.citation.startswith(("Supreme Court of Pakistan, ", "Lahore High Court, ", "Peshawar High Court, "))
-               for h in r.hits)
+    # every hit's citation opens with its court's recorded name (the rule, not a list of the courts held today:
+    # a fixed list broke when the Islamabad High Court was landed, D-156)
+    assert all(h.citation.startswith(h.court + ", ") for h in r.hits)
     assert r.coverage and r.mode in ("hybrid", "lexical_only")
 
 

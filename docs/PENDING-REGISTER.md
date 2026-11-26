@@ -79,8 +79,12 @@ Set aside by rule (listed for review, nothing to do unless a rule changes):
 | GBSAC | released, date not printed | 417 |
 | GBSAC | held by a gate | 83 |
 | GBSAC | scan | 21 |
+| IHC | released, date not printed | 1,243 |
+| IHC | held by a gate | 370 |
+| IHC | scan | 291 |
+| IHC | law-report reprint | 18 |
 | IHC | court not held | 1 |
-| LHC | released, date not printed | 4,996 |
+| LHC | released, date not printed | 4,971 |
 | LHC | held by a gate | 877 |
 | LHC | law-report reprint | 477 |
 | LHC | scan | 267 |
@@ -103,11 +107,11 @@ What each needs:
 | category | needs | items |
 |---|---|---:|
 | court not held | acquire the court's judgments | 6 |
-| held by a gate | a parser rule or a person's reading (see reason) | 3,980 |
-| law-report reprint | the court's own copy (portal recrawl); D-120 | 3,070 |
-| released, date not printed | the court's decision date (portal recrawl with metadata) | 12,946 |
+| held by a gate | a parser rule or a person's reading (see reason) | 4,350 |
+| law-report reprint | the court's own copy (portal recrawl); D-120 | 3,088 |
+| released, date not printed | the court's decision date (portal recrawl with metadata) | 14,164 |
 | released, text layer below J9 | an OCR re-read (D-114); released before the gate | 1 |
-| scan | OCR (D-114) | 8,120 |
+| scan | OCR (D-114) | 8,411 |
 | source to recrawl | recrawl the Sindh High Court portal | 1 |
 
 ## Order of work (recommended)

@@ -36,7 +36,8 @@ from dataclasses import dataclass, field
 
 from nizam.storage.case_key import read_case_line
 
-PARSER = "nizam.judgment/15"    # /2: the lower court's date printed after its name; a skipped number only when unseen
+PARSER = "nizam.judgment/16"    # /2: the lower court's date printed after its name; a skipped number only when unseen
+#                                 /16: the Islamabad High Court's 'ANNOUNCED IN AN OPEN COURT ON <date>' (D-156)
 #                                 /15: a paragraph or footnote number printed in Urdu or Arabic digits ('۱') is kept
 #                                      in Western digits, the form every identifier takes (D-152)
 #                                 /14: Sindh's 'Date of hearing & decision' / 'and Judgment' header line dates (D-146)
@@ -289,7 +290,8 @@ _PLACE = r"(" + "|".join(PLACES) + r")"
 # 'Announced in open Court on 18.09.2015'; Peshawar: 'Announced. 14.11.2017', 'ANNOUNCED. Dated: 22/07/2015',
 # 'Announced. Dt: 18.5.2016' (D-130)
 # GB Supreme Appellate Court (/11, D-142): 'Announced:- 03-11-2016.', 'Announced on: - 12.04.2019.'
-_ANNOUNCED = re.compile(r"Announced\s*[.:,]?\s*-?\s*(?:in\s+(?:the\s+)?(?:open\s+)?Court\s*)?(?:at\s+" + _PLACE
+# Islamabad (/16, D-156): 'ANNOUNCED IN AN OPEN COURT ON 17.04.2023.'
+_ANNOUNCED = re.compile(r"Announced\s*[.:,]?\s*-?\s*(?:in\s+(?:(?:the|an)\s+)?(?:open\s+)?Court\s*)?(?:at\s+" + _PLACE
                         + r"\s*)?[,.]?[\s_]*(?:on[\s_]*)?"
                         # /12 (D-142): Lahore, 'Announced in open Court today i.e. 02.02.2011.'
                         r"(?:today\s*(?:i\.?\s*e\.?)?\s*)?"

@@ -30,8 +30,9 @@ def fold(s: str) -> str:
 
 
 def manifest_type(case_no: str) -> tuple[str, str, str] | None:
-    """('const p', '6005', '2026') from 'Const. P. 6005/2026 (D.B.) Sindh High Court, Karachi'"""
-    m = re.match(r"\s*(.*?)\s*(?:No\.?\s*)?([A-Z]-)?(\d+)\s*/\s*(\d{4})", case_no or "")
+    """('const p', '6005', '2026') from 'Const. P. 6005/2026 (D.B.) Sindh High Court, Karachi', and
+    ('writ petition', '1337', '2001') from the Islamabad High Court's 'Writ Petition-1337-2001'"""
+    m = re.match(r"\s*(.*?)\s*(?:No\.?\s*)?([A-Z]-)?(\d+)\s*[/-]\s*(\d{4})", case_no or "")
     if not m:
         return None
     return fold(re.sub(r"[^A-Za-z() ]", " ", m.group(1))), m.group(3), m.group(4)
@@ -55,7 +56,7 @@ def main() -> int:
     for n in members:
         data = z.read(n)
         r = by_sha.get(hashlib.sha256(data).hexdigest())
-        mt = manifest_type(r["case_no"]) if r else None
+        mt = manifest_type(r.get("case_no") or r.get("caseno")) if r else None
         if not mt:
             continue
         kind, number, year = mt

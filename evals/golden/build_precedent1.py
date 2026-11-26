@@ -1,5 +1,6 @@
 """golden-pk-v1 precedent set 1 (D-133): 58 precedent questions over the Supreme Court, Lahore and Peshawar High
-Courts, and since D-138 the High Courts of Sindh and Balochistan (P1-I36, I37 replace P1-X01, X03). Gold is judgment
+Courts, and since D-138 the High Courts of Sindh and Balochistan (P1-I36, I37 replace P1-X01, X03), and since D-156
+the Islamabad High Court (P1-I39 replaces P1-X02). Gold is judgment
 paragraphs, found by reading (peek_judgment.py), never by the precedent search.
 
     python evals/golden/build_precedent1.py      # rebuilds the set from the database and checks every case
@@ -285,6 +286,18 @@ c("P1-I38", "issue", "FP1-fcc-contempt", "rights", ["en"], "latin",
   necessary=[(94398, "1", 3)], relevant=[(94398, "6", 2)],
   check=[r"contempt of court\s+proceedings", r"We hold that it does"])
 
+# Replaces P1-X02 (26 Nov 2026): the Islamabad High Court's judgments were landed (D-156), so "not held" was no longer
+# true. It stays in dev, as the case it replaces was.
+c("P1-I39", "issue", "FP1-ihc-contract-writ", "employment", ["en"], "latin",
+  "What has the Islamabad High Court held on whether a contract employee can file a writ petition for "
+  "reinstatement or regularization?",
+  "Contractual employment, no statutory rules: no writ for reinstatement (Art. 199)", "ict", "answer",
+  ["Where no statutory rules govern the service, a contractual employee's relationship is master and servant: the "
+   "High Court cannot declare a termination unlawful under Article 199, and the remedy is a suit for damages; "
+   "contract employment does not become permanent without a competitive process."],
+  necessary=[(133661, "13", 3)], relevant=[(133661, "22", 2)], as_of="2026-11-26",   # undated: served from landing
+  check=[r"contractual employee cannot file a writ petition", r"master and servant"])
+
 # ---------------------------------------------------------------- authority: the same question elsewhere (1)
 c("P1-F01", "authority", "FP1-temporary-injunction", "civil-procedure", ["en"], "latin",
   "For a civil court in Khyber Pakhtunkhwa: what three conditions must a plaintiff show to get a temporary "
@@ -378,13 +391,11 @@ c("P1-U05", "urdu", "FP1-custody-welfare", "family", ["ur"], "arabic",
 
 # ---------------------------------------------------------------- unanswerable: not held, or before coverage (4)
 # P1-X01 (SHC) and P1-X03 (BHC) were withdrawn on 25 Nov 2026 when those courts were landed (D-138): see P1-I36, I37;
-# P1-X05 (FCC) likewise (D-139): see P1-I38.
+# P1-X05 (FCC) likewise (D-139): see P1-I38; P1-X02 (IHC) likewise (D-156): see P1-I39.
 _NOT_HELD = ["presenting another court's judgments as this court's view", "inventing a citation"]
 for cid, fam, court, forum, q in (
-        ("P1-X02", "FP1-x-ihc", "IHC", "ict",
-         "What has the Islamabad High Court held on section 20 of the Prevention of Electronic Crimes Act 2016?"),
         ("P1-X04", "FP1-x-fsc", "FSC", None,
-         "What has the Federal Shariat Court ruled on riba (interest) in banking?")):
+         "What has the Federal Shariat Court ruled on riba (interest) in banking?"),):
     c(cid, "unanswerable", fam, "coverage", ["en"], "latin", q, f"Judgments of a court not held ({court})", forum,
       "abstain", [], abstention=dict(code="court_not_held", court=court, requiredClarification=[],
                                      unsafeAlternatives=_NOT_HELD,

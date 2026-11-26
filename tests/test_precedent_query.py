@@ -76,8 +76,19 @@ def test_a_court_not_held_is_a_coverage_gap_with_no_hits(conn):
     from datetime import date
 
     from nizam.retrieval.precedent import search
-    held = conn.execute("SELECT EXISTS (SELECT 1 FROM v_release_judgment WHERE court_code = 'IHC') AS h").fetchone()
+    # the Islamabad High Court was the example until it was landed (D-156); the Federal Shariat Court is not held
+    held = conn.execute("SELECT EXISTS (SELECT 1 FROM v_release_judgment WHERE court_code = 'FSC') AS h").fetchone()
     if held["h"]:
-        pytest.skip("Islamabad High Court judgments are now held")
-    r = search("What has the Islamabad High Court held on section 20 PECA?", as_of=date(2026, 11, 24), encoder=False)
-    assert r.hits == [] and r.coverage_gap and r.coverage_gap["court"] == "IHC"
+        pytest.skip("Federal Shariat Court judgments are now held")
+    r = search("What has the Federal Shariat Court ruled on riba in banking?", as_of=date(2026, 11, 24), encoder=False)
+    assert r.hits == [] and r.coverage_gap and r.coverage_gap["court"] == "FSC"
+
+
+def test_islamabad_high_court_judgments_are_found_when_asked_for(conn):
+    # D-156: once landed, a question naming the court narrows the search to it
+    from datetime import date
+
+    from nizam.retrieval.precedent import search
+    r = search("What has the Islamabad High Court held on regularization of contract employees?",
+               as_of=date(2026, 11, 26), encoder=False)
+    assert r.coverage_gap is None and r.hits and {h.court for h in r.hits} == {"Islamabad High Court"}
