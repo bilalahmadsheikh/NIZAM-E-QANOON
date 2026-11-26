@@ -229,6 +229,70 @@ def find(text: str) -> list[Citation]:
 
 _COPY_KINDS = {"act", "ordinance", "order", "code", "rules", "rule", "regulations", "regulation"}
 
+# D-149: how well a law's title fits a name printed without an alias. Province prefixes a territory's copy carries
+# ('West Pakistan Land-Revenue Act', 'Sindh Buildings Control Ordinance') and one-word brackets (an acronym '(ATA)',
+# '(Punjab)') are set aside; a bracket of two or more words is the law's own words ('School Bags (Limitation of
+# Weight) Act'), so it never lends them to another law's name.
+_PLACE_PREFIXES = (("west", "pakistan"), ("north", "west", "frontier", "province"), ("khyber", "pakhtunkhwa"),
+                   ("islamabad", "capital", "territory"), ("azad", "jammu", "and", "kashmir"), ("gilgit", "baltistan"),
+                   ("punjab",), ("sindh",), ("sind",), ("balochistan",), ("baluchistan",), ("baln",), ("nwfp",),
+                   ("kp",), ("ajk",), ("ict",), ("gb",))
+_PLACE_WORDS = {w for p in _PLACE_PREFIXES for w in p if len(p) == 1}
+
+
+def _fit_words(t: str, acronyms: bool = True) -> list[str]:
+    """A title or printed name as fit words: brackets of two or more words dropped (a one-word bracket kept when
+    `acronyms`, unless it is a place), case, punctuation, hyphens, years, 'the' and 'no' folded, a plural 's' folded,
+    a leading place prefix dropped."""
+    t = re.sub(r"\(([^()]*)\)", lambda m: " " if not acronyms or len(m.group(1).split()) > 1
+               or m.group(1).strip().lower() in _PLACE_WORDS else f" {m.group(1)} ", (t or "").lower())
+    w = [x for x in re.sub(r"[^a-z0-9]+", " ", t).split()
+         if x not in ("the", "no", "codified") and not _YEAR.fullmatch(x)]
+    w = [x[:-1] if len(x) > 3 and x.endswith("s") and not x.endswith("ss") else x for x in w]
+    for p in _PLACE_PREFIXES:
+        if tuple(w[:len(p)]) == p:
+            w = w[len(p):]
+            break
+    return w
+
+
+def name_fit(printed: str, title: str) -> int:
+    """How a law's title fits a printed law name (D-149), best first:
+    1 the same name; 2 the name as one run within the title ('Indian Limitation Act'); 3 the name's words in order
+    with others between ('Colonization of Government Lands Act' for 'Colonization Act'); 4 the words only somewhere
+    (never a resolution: 'Limitation Act' is not 'School Bags (Limitation of Weight) Act', and 'Sales Tax Act' is
+    rather the Sales Tax Act than 'Sindh Sales Tax on Services Act', which fits only at 3)."""
+    p = _fit_words(printed)
+    if not p:
+        return 4
+
+    def fit(t):
+        if p == t:
+            return 1
+        n = len(p)
+        if any(t[i:i + n] == p for i in range(len(t) - n + 1)):
+            return 2
+        it = iter(t)
+        return 3 if all(x in it for x in p) else 4
+    # a one-word bracket is an acronym the name may omit ('Anti-Terrorism Act' for 'Anti Terrorism Act (ATA)') or
+    # print in place of the words it abbreviates ('PEMRA Ordinance' for 'Pakistan Electronic Media Regulatory
+    # Authority Ordinance (PEMRA)', 'FIA Act' for 'Federal Investigation Agency Act (FIA)'): the best reading
+    readings = [_fit_words(title), _fit_words(title, acronyms=False)]
+    kinds = [x for x in readings[1] if x in _FIT_KINDS]
+    for a in re.findall(r"\(\s*([A-Za-z&.]{2,12})\s*\)", title or ""):
+        a = re.sub(r"[^a-z0-9]+", "", a.lower())
+        if a and a in p and a not in _PLACE_WORDS:
+            readings.append([a] + kinds[-1:])
+    return min(fit(r) for r in readings)
+
+
+_FIT_KINDS = {"act", "ordinance", "order", "code", "rule", "regulation", "constitution"}
+
+
+def name_fit_any(printed: str, titles: list[str]) -> int:
+    """The best fit of a printed name over a law's recorded titles (its short and its display title, D-149)."""
+    return min((name_fit(printed, t) for t in titles if t), default=4)
+
 
 def same_law(a: str, b: str) -> bool:
     """Whether two recorded titles name one law in two copies ('Pakistan Penal Code' and 'Pakistan Penal Code,
@@ -274,11 +338,22 @@ def resolve(session, cit: Citation, copies_in: tuple[str, ...] | None = None) ->
     wants_amendment = "amend" in words.lower()
     year = (_YEAR.findall(words) or [None])[-1]
 
+    printed = not (cit.law in ALIASES or reviewed)
+
     def lookup(w, j=juris):
         # a year printed with the name must be the year in the law's title, when the title prints one (D-127)
-        return [x for x in session.instruments_titled(w, 10, j)
-                if (wants_amendment or not re.search(r"amend", x[1], re.I))
-                and (year is None or not _YEAR.findall(x[1]) or year in _YEAR.findall(x[1]))]
+        got = [x for x in session.instruments_titled(w, 25 if printed else 10, j)
+               if (wants_amendment or not re.search(r"amend", x[1], re.I))
+               and (year is None or not _YEAR.findall(x[1]) or year in _YEAR.findall(x[1]))]
+        if not printed:
+            return got
+        # a printed name is resolved by how well a title fits it, then by the session's order (served, the court's
+        # territory, federal, reliance): 'the Limitation Act' in a Peshawar judgment is the Limitation Act 1908, not
+        # KP's School Bags (Limitation of Weight) Act; a title holding the words only somewhere is no match (D-149)
+        lister = getattr(session, "instrument_titles", None)     # a session that lists both titles (unit_search)
+        titles = lister([x[0] for x in got]) if (got and lister) else {}
+        fit = {x[0]: name_fit_any(w, titles.get(x[0]) or [x[1]]) for x in got}
+        return sorted((x for x in got if fit[x[0]] < 4), key=lambda x: fit[x[0]])
     laws = lookup(words)
     if not laws and year:                                            # a reprint whose title drops the year
         laws = lookup(re.sub(r"[,\s]*(?:of\s+)?\d{4}", "", words).strip(" ,"))

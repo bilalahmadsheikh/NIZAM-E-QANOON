@@ -1,0 +1,4703 @@
+{
+ "summary": {
+  "full": {
+   "CORRECT": 399,
+   "CORRECT_ALT": 6,
+   "UNRESOLVED": 1,
+   "WRONG": 0,
+   "queries": 406
+  },
+  "alias": {
+   "CORRECT": 100,
+   "CORRECT_ALT": 0,
+   "UNRESOLVED": 0,
+   "WRONG": 0,
+   "queries": 100
+  },
+  "bare": {
+   "CORRECT": 77,
+   "CORRECT_ALT": 0,
+   "UNRESOLVED": 0,
+   "WRONG": 0,
+   "queries": 77
+  }
+ },
+ "rows": [
+  {
+   "form": "full",
+   "query": "section 15 of the Punjab Rented Premises Act, 2009",
+   "expected": "punjab.act.y2009_VII_o11359.ch_III.s_15",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "punjab.act.y2009_VII_o11359.ch_III.s_15"
+  },
+  {
+   "form": "full",
+   "query": "section 15 of the Sind Rented Premises Ordinance, 1979",
+   "expected": "sindh.ordinance.y1979_XVII_o3672.s_15",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "sindh.ordinance.y1979_XVII_o3672.s_15"
+  },
+  {
+   "form": "full",
+   "query": "section 6 of the Muslim Family Laws Ordinance, 1961",
+   "expected": "fed.ordinance.y1961_VIII_o324.s_6",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.ordinance.y1961_VIII_o324.s_6"
+  },
+  {
+   "form": "alias",
+   "query": "s. 6 MFLO",
+   "expected": "fed.ordinance.y1961_VIII_o324.s_6",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.ordinance.y1961_VIII_o324.s_6"
+  },
+  {
+   "form": "bare",
+   "query": "6 MFLO",
+   "expected": "fed.ordinance.y1961_VIII_o324.s_6",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.ordinance.y1961_VIII_o324.s_6"
+  },
+  {
+   "form": "full",
+   "query": "section 7 of the Muslim Family Laws Ordinance, 1961",
+   "expected": "fed.ordinance.y1961_VIII_o324.s_7",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.ordinance.y1961_VIII_o324.s_7"
+  },
+  {
+   "form": "alias",
+   "query": "s. 7 MFLO",
+   "expected": "fed.ordinance.y1961_VIII_o324.s_7",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.ordinance.y1961_VIII_o324.s_7"
+  },
+  {
+   "form": "bare",
+   "query": "7 MFLO",
+   "expected": "fed.ordinance.y1961_VIII_o324.s_7",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.ordinance.y1961_VIII_o324.s_7"
+  },
+  {
+   "form": "full",
+   "query": "section 3 of the Dowry and Bridal Gifts (Restriction) Act, 1976",
+   "expected": "fed.act.y1976_o539.s_3",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1976_o539.s_3"
+  },
+  {
+   "form": "full",
+   "query": "section 2 of the Sindh Child Marriages Restraint Act, 2013",
+   "expected": "sindh.act.y2013_o3498.s_2",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "sindh.act.y2013_o3498.s_2"
+  },
+  {
+   "form": "full",
+   "query": "section 3 of the Sindh Child Marriages Restraint Act, 2013",
+   "expected": "sindh.act.y2013_o3498.s_3",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "sindh.act.y2013_o3498.s_3"
+  },
+  {
+   "form": "full",
+   "query": "section 7 of the Punjab Protection of Women Against Violence Act, 2016",
+   "expected": "punjab.act.y2016_XVI_o11341.s_7",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "punjab.act.y2016_XVI_o11341.s_7"
+  },
+  {
+   "form": "full",
+   "query": "section 8 of the Protection Against Harassment of Women at the Work Place Act, 2010",
+   "expected": "fed.act.y2010_IV_o815.s_8",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y2010_IV_o815.s_8"
+  },
+  {
+   "form": "full",
+   "query": "section 4 of the Punjab Consumer Protection Act, 2005",
+   "expected": "punjab.act.y2005_II_o11166.pt_II.s_4",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "punjab.act.y2005_II_o11166.pt_II.s_4"
+  },
+  {
+   "form": "full",
+   "query": "section 25 of the Punjab Consumer Protection Act, 2005",
+   "expected": "punjab.act.y2005_II_o11166.pt_VIII.s_25",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "punjab.act.y2005_II_o11166.pt_VIII.s_25"
+  },
+  {
+   "form": "full",
+   "query": "section 489F of the Pakistan Penal Code",
+   "expected": "fed.act.y1860_o147.ch_XVIII.s_489F",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVIII.s_489F"
+  },
+  {
+   "form": "alias",
+   "query": "s. 489F PPC",
+   "expected": "fed.act.y1860_o147.ch_XVIII.s_489F",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVIII.s_489F"
+  },
+  {
+   "form": "bare",
+   "query": "489F PPC",
+   "expected": "fed.act.y1860_o147.ch_XVIII.s_489F",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVIII.s_489F"
+  },
+  {
+   "form": "full",
+   "query": "section 302 of the Pakistan Penal Code",
+   "expected": "fed.act.y1860_o147.ch_XVI.s_302",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVI.s_302"
+  },
+  {
+   "form": "alias",
+   "query": "s. 302 PPC",
+   "expected": "fed.act.y1860_o147.ch_XVI.s_302",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVI.s_302"
+  },
+  {
+   "form": "bare",
+   "query": "302 PPC",
+   "expected": "fed.act.y1860_o147.ch_XVI.s_302",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVI.s_302"
+  },
+  {
+   "form": "full",
+   "query": "section 3 of the Workmen’s Compensation Act, 1923",
+   "expected": "fed.act.y1923_o377.ch_II.s_3",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1923_o377.ch_II.s_3"
+  },
+  {
+   "form": "full",
+   "query": "section 5 of the Payment of Wages Act, 1936",
+   "expected": "fed.act.y1936_o240.s_5",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1936_o240.s_5"
+  },
+  {
+   "form": "full",
+   "query": "section 6 of the Sindh Minimum Wages Act, 2015",
+   "expected": "sindh.act.y2015_o3555.s_6",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "sindh.act.y2015_o3555.s_6"
+  },
+  {
+   "form": "full",
+   "query": "section 54 of the Transfer of Property Act, 1882",
+   "expected": "fed.act.y1882_o102.ch_III.s_54",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1882_o102.ch_III.s_54"
+  },
+  {
+   "form": "full",
+   "query": "section 12 of the Specific Relief Act, 1877",
+   "expected": "fed.act.y1877_o125.pt_II.ch_II.s_12",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1877_o125.pt_II.ch_II.s_12"
+  },
+  {
+   "form": "full",
+   "query": "section 113 of the Limitation Act, 1908",
+   "expected": "fed.act.y1908_o107.pt_VI_n10_1.s_113",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1908_o107.pt_VI_n10_1.s_113"
+  },
+  {
+   "form": "full",
+   "query": "section 6 of the The Khyber Pakhtunkhwa Right to Information Act, 2013",
+   "expected": "kp.act.y2013_XXVII_o1804.s_6",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "kp.act.y2013_XXVII_o1804.s_6"
+  },
+  {
+   "form": "full",
+   "query": "section 17 of the Guardians and Wards Act, 1890",
+   "expected": "fed.act.y1890_o137.ch_II.s_17",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1890_o137.ch_II.s_17"
+  },
+  {
+   "form": "full",
+   "query": "section 14 of the The Azad Jammu and Kashmir Rent Restriction Act, 1986",
+   "expected": "ajk.act.y1986_XIII_o14327.s_14",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "ajk.act.y1986_XIII_o14327.s_14"
+  },
+  {
+   "form": "full",
+   "query": "section 497 of the Code of Criminal Procedure, 1898",
+   "expected": "fed.act.y1898_o434.pt_IX.ch_XXXIX.s_497",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_IX.ch_XXXIX.s_497"
+  },
+  {
+   "form": "alias",
+   "query": "s. 497 CrPC",
+   "expected": "fed.act.y1898_o434.pt_IX.ch_XXXIX.s_497",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_IX.ch_XXXIX.s_497"
+  },
+  {
+   "form": "bare",
+   "query": "497 CrPC",
+   "expected": "fed.act.y1898_o434.pt_IX.ch_XXXIX.s_497",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_IX.ch_XXXIX.s_497"
+  },
+  {
+   "form": "full",
+   "query": "section 154 of the Code of Criminal Procedure, 1898",
+   "expected": "fed.act.y1898_o434.pt_V.ch_XIV.s_154",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_V.ch_XIV.s_154"
+  },
+  {
+   "form": "alias",
+   "query": "s. 154 CrPC",
+   "expected": "fed.act.y1898_o434.pt_V.ch_XIV.s_154",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_V.ch_XIV.s_154"
+  },
+  {
+   "form": "bare",
+   "query": "154 CrPC",
+   "expected": "fed.act.y1898_o434.pt_V.ch_XIV.s_154",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_V.ch_XIV.s_154"
+  },
+  {
+   "form": "full",
+   "query": "section 9 of the Code of Civil Procedure, 1908",
+   "expected": "fed.act.y1908_o248.pt_I.s_9",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1908_o248.pt_I.s_9"
+  },
+  {
+   "form": "alias",
+   "query": "s. 9 CPC",
+   "expected": "fed.act.y1908_o248.pt_I.s_9",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1908_o248.pt_I.s_9"
+  },
+  {
+   "form": "bare",
+   "query": "9 CPC",
+   "expected": "fed.act.y1908_o248.pt_I.s_9",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1908_o248.pt_I.s_9"
+  },
+  {
+   "form": "full",
+   "query": "section 10 of the Contract Act, 1872",
+   "expected": "fed.act.y1872_o152.ch_II.s_10",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1872_o152.ch_II.s_10"
+  },
+  {
+   "form": "full",
+   "query": "section 73 of the Contract Act, 1872",
+   "expected": "fed.act.y1872_o152.ch_VI.s_73",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1872_o152.ch_VI.s_73"
+  },
+  {
+   "form": "full",
+   "query": "section 199 of the Constitution of the Islamic Republic of Pakistan",
+   "expected": "fed.constitution.y1973_o507.pt_VII.ch_3.s_199",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.constitution.y1973_o507.pt_VII.ch_3.s_199"
+  },
+  {
+   "form": "alias",
+   "query": "Article 199 of the Constitution",
+   "expected": "fed.constitution.y1973_o507.pt_VII.ch_3.s_199",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.constitution.y1973_o507.pt_VII.ch_3.s_199"
+  },
+  {
+   "form": "full",
+   "query": "section 10A of the Constitution of the Islamic Republic of Pakistan",
+   "expected": "fed.constitution.y1973_o507.pt_II.ch_1.s_10A",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.constitution.y1973_o507.pt_II.ch_1.s_10A"
+  },
+  {
+   "form": "alias",
+   "query": "Article 10A of the Constitution",
+   "expected": "fed.constitution.y1973_o507.pt_II.ch_1.s_10A",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.constitution.y1973_o507.pt_II.ch_1.s_10A"
+  },
+  {
+   "form": "full",
+   "query": "section 89 of the Constitution of the Islamic Republic of Pakistan",
+   "expected": "fed.constitution.y1973_o507.pt_III.ch_2.s_89",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.constitution.y1973_o507.pt_III.ch_2.s_89"
+  },
+  {
+   "form": "alias",
+   "query": "Article 89 of the Constitution",
+   "expected": "fed.constitution.y1973_o507.pt_III.ch_2.s_89",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.constitution.y1973_o507.pt_III.ch_2.s_89"
+  },
+  {
+   "form": "full",
+   "query": "section 3 of the Sales Tax Act, 1990",
+   "expected": "fed.act.y1990_VII_o747.ch_II.s_3",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1990_VII_o747.ch_II.s_3"
+  },
+  {
+   "form": "full",
+   "query": "section 82 of the Income Tax Ordinance, 2001",
+   "expected": "fed.ordinance.y2001_o1032.ch_V.pt_I.s_82",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.ordinance.y2001_o1032.ch_V.pt_I.s_82"
+  },
+  {
+   "form": "full",
+   "query": "section 509 of the Companies Act, 2017",
+   "expected": "fed.act.y2017_o1037.pt_XIII.s_509",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y2017_o1037.pt_XIII.s_509"
+  },
+  {
+   "form": "full",
+   "query": "section 3 of the Prevention of Electronic Crimes Act, 2016",
+   "expected": "fed.act.y2016_o1026.ch_II.s_3",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y2016_o1026.ch_II.s_3"
+  },
+  {
+   "form": "full",
+   "query": "section 372 of the Succession Act, 1925",
+   "expected": "fed.act.y1925_o187.pt_X.s_372",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1925_o187.pt_X.s_372"
+  },
+  {
+   "form": "full",
+   "query": "section 17 of the Registration Act, 1908",
+   "expected": "fed.act.y1908_o76.pt_III.s_17",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1908_o76.pt_III.s_17"
+  },
+  {
+   "form": "full",
+   "query": "section 10 of the Family Courts Act, 1964",
+   "expected": "punjab.act.y1964_XXXV_o2299.s_10",
+   "outcome": "CORRECT_ALT",
+   "why": [
+    "Family Courts Act, 1964"
+   ],
+   "got": "punjab.act.y1964_XXXV_o2299.s_10"
+  },
+  {
+   "form": "full",
+   "query": "section 2 of the Dissolution of Muslim Marriages Act, 1939",
+   "expected": "fed.act.y1939_VIII_o219.s_2",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1939_VIII_o219.s_2"
+  },
+  {
+   "form": "full",
+   "query": "section 21 of the Sind Rented Premises Ordinance, 1979",
+   "expected": "sindh.ordinance.y1979_XVII_o3672.s_21",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "sindh.ordinance.y1979_XVII_o3672.s_21"
+  },
+  {
+   "form": "full",
+   "query": "section 14 of the Arbitration Act, 1940",
+   "expected": "fed.act.y1940_o169.ch_II.s_14",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1940_o169.ch_II.s_14"
+  },
+  {
+   "form": "full",
+   "query": "section 17 of the Arbitration Act, 1940",
+   "expected": "fed.act.y1940_o169.ch_II.s_17",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1940_o169.ch_II.s_17"
+  },
+  {
+   "form": "full",
+   "query": "section 7 of the Domestic Violence (Prevention and Protection) Act, 2013",
+   "expected": "sindh.act.y2013_XX_o3614.s_7",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "sindh.act.y2013_XX_o3614.s_7"
+  },
+  {
+   "form": "full",
+   "query": "section 11 of the Domestic Violence (Prevention and Protection) Act, 2013",
+   "expected": "sindh.act.y2013_XX_o3614.s_11",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "sindh.act.y2013_XX_o3614.s_11"
+  },
+  {
+   "form": "full",
+   "query": "section 4 of the Juvenile Justice System Act, 2018",
+   "expected": "fed.act.y2018_XXII_o930.s_4",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y2018_XXII_o930.s_4"
+  },
+  {
+   "form": "full",
+   "query": "section 12 of the Punjab Environmental Protection Act, 1997",
+   "expected": "punjab.act.y1997_XXXIV_o11192.s_12",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "punjab.act.y1997_XXXIV_o11192.s_12"
+  },
+  {
+   "form": "full",
+   "query": "section 17 of the Sindh Environmental Protection Act, 2014",
+   "expected": "sindh.act.y2014_VIII_o3524.pt_VI.s_17",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "sindh.act.y2014_VIII_o3524.pt_VI.s_17"
+  },
+  {
+   "form": "full",
+   "query": "section 7B of the The Khyber Pakhtunkhwa Environmental Protection Act, 2014",
+   "expected": "kp.act.y2014_XXXVIII_o1880.s_7B",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "kp.act.y2014_XXXVIII_o1880.s_7B"
+  },
+  {
+   "form": "full",
+   "query": "section 15 of the The Balochistan Environmental Protection Act, 2012",
+   "expected": "balochistan.act.y2012_VIII_o1406.s_15",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "balochistan.act.y2012_VIII_o1406.s_15"
+  },
+  {
+   "form": "full",
+   "query": "section 12 of the Pakistan Environmental Protection Act, 1997",
+   "expected": "fed.act.y1997_XXXIV_o1028.s_12",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1997_XXXIV_o1028.s_12"
+  },
+  {
+   "form": "full",
+   "query": "section 15 of the Punjab Environmental Protection Act, 1997",
+   "expected": "punjab.act.y1997_XXXIV_o11192.s_15",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "punjab.act.y1997_XXXIV_o11192.s_15"
+  },
+  {
+   "form": "full",
+   "query": "section 21 of the Sindh Environmental Protection Act, 2014",
+   "expected": "sindh.act.y2014_VIII_o3524.pt_VII.s_21",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "sindh.act.y2014_VIII_o3524.pt_VII.s_21"
+  },
+  {
+   "form": "full",
+   "query": "section 10 of the ICT Rights of Persons with Disability Act, 2020",
+   "expected": "fed.act.y2020_o918.pt_II.s_10",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y2020_o918.pt_II.s_10"
+  },
+  {
+   "form": "full",
+   "query": "section 10 of the Balochistan Persons with Disabilities Act, 2017",
+   "expected": "balochistan.act.y2017_II_o1283.s_10",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "balochistan.act.y2017_II_o1283.s_10"
+  },
+  {
+   "form": "full",
+   "query": "section 8 of the Punjab Empowerment of Persons with Disabilities Act, 2022",
+   "expected": "punjab.act.y2022_XLII_o2975.pt_II.s_8",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "punjab.act.y2022_XLII_o2975.pt_II.s_8"
+  },
+  {
+   "form": "full",
+   "query": "section 9 of the ICT Rights of Persons with Disability Act, 2020",
+   "expected": "fed.act.y2020_o918.pt_II.s_9",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y2020_o918.pt_II.s_9"
+  },
+  {
+   "form": "full",
+   "query": "section 7 of the ICT Rights of Persons with Disability Act, 2020",
+   "expected": "fed.act.y2020_o918.pt_II.s_7",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y2020_o918.pt_II.s_7"
+  },
+  {
+   "form": "full",
+   "query": "section 19 of the Punjab Healthcare Commission Act, 2010",
+   "expected": "punjab.act.y2010_XVI_o11253.ch_III.s_19",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "punjab.act.y2010_XVI_o11253.ch_III.s_19"
+  },
+  {
+   "form": "full",
+   "query": "section 19 of the Sindh Healthcare Commission Act, 2013",
+   "expected": "sindh.act.y2013_o3527.ch_III.s_19",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "sindh.act.y2013_o3527.ch_III.s_19"
+  },
+  {
+   "form": "full",
+   "query": "section 13 of the The Khyber Pakhtunkhwa Health Care Commission Act, 2015",
+   "expected": "kp.act.y2015_V_o1819.ch_IV.s_13",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "kp.act.y2015_V_o1819.ch_IV.s_13"
+  },
+  {
+   "form": "full",
+   "query": "section 32 of the Punjab Food Authority Act, 2011",
+   "expected": "punjab.act.y2011_XVI_o11242.ch_IV.s_32",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "punjab.act.y2011_XVI_o11242.ch_IV.s_32"
+  },
+  {
+   "form": "full",
+   "query": "section 4 of the The Gilgit-Baltistan Child Marriages Restraint Act, 2015",
+   "expected": "gb.act.y2015_I_o15190.s_4",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "gb.act.y2015_I_o15190.s_4"
+  },
+  {
+   "form": "full",
+   "query": "section 3 of the The Gilgit-Baltistan Prohibition of Corporal Punishment Act, 2015",
+   "expected": "gb.act.y2015_VII_o15177.s_3",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "gb.act.y2015_VII_o15177.s_3"
+  },
+  {
+   "form": "full",
+   "query": "section 3 of the The Gilgit-Baltistan Information of Temporary Residents Act, 2016",
+   "expected": "gb.act.y2016_III_o15194.s_3",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "gb.act.y2016_III_o15194.s_3"
+  },
+  {
+   "form": "full",
+   "query": "section 3 of the The Gilgit-Baltistan Sound Systems (Regulation) Act, 2017",
+   "expected": "gb.act.y2017_I_o15192.s_3",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "gb.act.y2017_I_o15192.s_3"
+  },
+  {
+   "form": "full",
+   "query": "section 11 of the Pakistan Environmental Protection Act, 1997",
+   "expected": "fed.act.y1997_XXXIV_o1028.s_11",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1997_XXXIV_o1028.s_11"
+  },
+  {
+   "form": "full",
+   "query": "section 17 of the Pakistan Environmental Protection Act, 1997",
+   "expected": "fed.act.y1997_XXXIV_o1028.s_17",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1997_XXXIV_o1028.s_17"
+  },
+  {
+   "form": "full",
+   "query": "section 18 of the The Khyber Pakhtunkhwa Environmental Protection Act, 2014",
+   "expected": "kp.act.y2014_XXXVIII_o1880.s_18",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "kp.act.y2014_XXXVIII_o1880.s_18"
+  },
+  {
+   "form": "full",
+   "query": "section 16 of the Punjab Environmental Protection Act, 1997",
+   "expected": "punjab.act.y1997_XXXIV_o11192.s_16",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "punjab.act.y1997_XXXIV_o11192.s_16"
+  },
+  {
+   "form": "full",
+   "query": "section 25 of the Sindh Environmental Protection Act, 2014",
+   "expected": "sindh.act.y2014_VIII_o3524.pt_IX.s_25",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "sindh.act.y2014_VIII_o3524.pt_IX.s_25"
+  },
+  {
+   "form": "full",
+   "query": "section 20 of the Pakistan Environmental Protection Act, 1997",
+   "expected": "fed.act.y1997_XXXIV_o1028.s_20",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1997_XXXIV_o1028.s_20"
+  },
+  {
+   "form": "full",
+   "query": "section 36 of the Punjab Empowerment of Persons with Disabilities Act, 2022",
+   "expected": "punjab.act.y2022_XLII_o2975.pt_IV.s_36",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "punjab.act.y2022_XLII_o2975.pt_IV.s_36"
+  },
+  {
+   "form": "full",
+   "query": "section 28 of the Punjab Healthcare Commission Act, 2010",
+   "expected": "punjab.act.y2010_XVI_o11253.ch_V.s_28",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "punjab.act.y2010_XVI_o11253.ch_V.s_28"
+  },
+  {
+   "form": "full",
+   "query": "section 15 of the The Khyber Pakhtunkhwa Food Safety Authority Act, 2014",
+   "expected": "kp.act.y2014_X_o1839.ch_III.s_15",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "kp.act.y2014_X_o1839.ch_III.s_15"
+  },
+  {
+   "form": "full",
+   "query": "section 15 of the Punjab Food Authority Act, 2011",
+   "expected": "punjab.act.y2011_XVI_o11242.ch_III.s_15",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "punjab.act.y2011_XVI_o11242.ch_III.s_15"
+  },
+  {
+   "form": "full",
+   "query": "section 6 of the The Gilgit-Baltistan Pre-emption Act, 2010",
+   "expected": "gb.act.y2010_VII_o15183.s_6",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "gb.act.y2010_VII_o15183.s_6"
+  },
+  {
+   "form": "full",
+   "query": "section 3 of the The Gilgit-Baltistan Child Marriages Restraint Act, 2015",
+   "expected": "gb.act.y2015_I_o15190.s_3",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "gb.act.y2015_I_o15190.s_3"
+  },
+  {
+   "form": "full",
+   "query": "section 42 of the Punjab Empowerment of Persons with Disabilities Act, 2022",
+   "expected": "punjab.act.y2022_XLII_o2975.pt_IV.s_42",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "punjab.act.y2022_XLII_o2975.pt_IV.s_42"
+  },
+  {
+   "form": "full",
+   "query": "section 31 of the Sindh Healthcare Commission Act, 2013",
+   "expected": "sindh.act.y2013_o3527.ch_V.s_31",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "sindh.act.y2013_o3527.ch_V.s_31"
+  },
+  {
+   "form": "full",
+   "query": "section 21 of the The Khyber Pakhtunkhwa Health Care Commission Act, 2015",
+   "expected": "kp.act.y2015_V_o1819.ch_IV.s_21",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "kp.act.y2015_V_o1819.ch_IV.s_21"
+  },
+  {
+   "form": "full",
+   "query": "section 4 of the The Gilgit-Baltistan Information of Temporary Residents Act, 2016",
+   "expected": "gb.act.y2016_III_o15194.s_4",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "gb.act.y2016_III_o15194.s_4"
+  },
+  {
+   "form": "full",
+   "query": "section 17 of the ICT Rights of Persons with Disability Act, 2020",
+   "expected": "fed.act.y2020_o918.pt_II.s_17",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y2020_o918.pt_II.s_17"
+  },
+  {
+   "form": "full",
+   "query": "section 45A of the Punjab Food Authority Act, 2011",
+   "expected": "punjab.act.y2011_XVI_o11242.ch_V.s_45A",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "punjab.act.y2011_XVI_o11242.ch_V.s_45A"
+  },
+  {
+   "form": "full",
+   "query": "section 17 of the The Khyber Pakhtunkhwa Environmental Protection Act, 2014",
+   "expected": "kp.act.y2014_XXXVIII_o1880.s_17",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "kp.act.y2014_XXXVIII_o1880.s_17"
+  },
+  {
+   "form": "full",
+   "query": "section 379 of the Pakistan Penal Code",
+   "expected": "fed.act.y1860_o147.ch_XVII.s_379",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVII.s_379"
+  },
+  {
+   "form": "alias",
+   "query": "s. 379 PPC",
+   "expected": "fed.act.y1860_o147.ch_XVII.s_379",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVII.s_379"
+  },
+  {
+   "form": "bare",
+   "query": "379 PPC",
+   "expected": "fed.act.y1860_o147.ch_XVII.s_379",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVII.s_379"
+  },
+  {
+   "form": "full",
+   "query": "section 420 of the Pakistan Penal Code",
+   "expected": "fed.act.y1860_o147.ch_XVII.s_420",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVII.s_420"
+  },
+  {
+   "form": "alias",
+   "query": "s. 420 PPC",
+   "expected": "fed.act.y1860_o147.ch_XVII.s_420",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVII.s_420"
+  },
+  {
+   "form": "bare",
+   "query": "420 PPC",
+   "expected": "fed.act.y1860_o147.ch_XVII.s_420",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVII.s_420"
+  },
+  {
+   "form": "full",
+   "query": "section 336B of the Pakistan Penal Code",
+   "expected": "fed.act.y1860_o147.ch_XVI.s_336B",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVI.s_336B"
+  },
+  {
+   "form": "alias",
+   "query": "s. 336B PPC",
+   "expected": "fed.act.y1860_o147.ch_XVI.s_336B",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVI.s_336B"
+  },
+  {
+   "form": "bare",
+   "query": "336B PPC",
+   "expected": "fed.act.y1860_o147.ch_XVI.s_336B",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVI.s_336B"
+  },
+  {
+   "form": "full",
+   "query": "section 320 of the Pakistan Penal Code",
+   "expected": "fed.act.y1860_o147.ch_XVI.s_320",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVI.s_320"
+  },
+  {
+   "form": "alias",
+   "query": "s. 320 PPC",
+   "expected": "fed.act.y1860_o147.ch_XVI.s_320",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVI.s_320"
+  },
+  {
+   "form": "bare",
+   "query": "320 PPC",
+   "expected": "fed.act.y1860_o147.ch_XVI.s_320",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVI.s_320"
+  },
+  {
+   "form": "full",
+   "query": "section 10 of the Constitution of the Islamic Republic of Pakistan",
+   "expected": "fed.constitution.y1973_o507.pt_II.ch_1.s_10",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.constitution.y1973_o507.pt_II.ch_1.s_10"
+  },
+  {
+   "form": "alias",
+   "query": "Article 10 of the Constitution",
+   "expected": "fed.constitution.y1973_o507.pt_II.ch_1.s_10",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.constitution.y1973_o507.pt_II.ch_1.s_10"
+  },
+  {
+   "form": "full",
+   "query": "section 61 of the Code of Criminal Procedure, 1898",
+   "expected": "fed.act.y1898_o434.pt_III.ch_V.s_61",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_III.ch_V.s_61"
+  },
+  {
+   "form": "alias",
+   "query": "s. 61 CrPC",
+   "expected": "fed.act.y1898_o434.pt_III.ch_V.s_61",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_III.ch_V.s_61"
+  },
+  {
+   "form": "bare",
+   "query": "61 CrPC",
+   "expected": "fed.act.y1898_o434.pt_III.ch_V.s_61",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_III.ch_V.s_61"
+  },
+  {
+   "form": "full",
+   "query": "section 22A of the Code of Criminal Procedure, 1898",
+   "expected": "fed.act.y1898_o434.pt_II.ch_II.s_22A",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_II.ch_II.s_22A"
+  },
+  {
+   "form": "alias",
+   "query": "s. 22A CrPC",
+   "expected": "fed.act.y1898_o434.pt_II.ch_II.s_22A",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_II.ch_II.s_22A"
+  },
+  {
+   "form": "bare",
+   "query": "22A CrPC",
+   "expected": "fed.act.y1898_o434.pt_II.ch_II.s_22A",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_II.ch_II.s_22A"
+  },
+  {
+   "form": "full",
+   "query": "section 3 of the Illegal Dispossession Act, 2005",
+   "expected": "fed.act.y2005_XI_o656.s_3",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y2005_XI_o656.s_3"
+  },
+  {
+   "form": "full",
+   "query": "section 9 of the Muslim Family Laws Ordinance, 1961",
+   "expected": "fed.ordinance.y1961_VIII_o324.s_9",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.ordinance.y1961_VIII_o324.s_9"
+  },
+  {
+   "form": "alias",
+   "query": "s. 9 MFLO",
+   "expected": "fed.ordinance.y1961_VIII_o324.s_9",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.ordinance.y1961_VIII_o324.s_9"
+  },
+  {
+   "form": "bare",
+   "query": "9 MFLO",
+   "expected": "fed.ordinance.y1961_VIII_o324.s_9",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.ordinance.y1961_VIII_o324.s_9"
+  },
+  {
+   "form": "full",
+   "query": "section 4 of the Muslim Family Laws Ordinance, 1961",
+   "expected": "fed.ordinance.y1961_VIII_o324.s_4",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.ordinance.y1961_VIII_o324.s_4"
+  },
+  {
+   "form": "alias",
+   "query": "s. 4 MFLO",
+   "expected": "fed.ordinance.y1961_VIII_o324.s_4",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.ordinance.y1961_VIII_o324.s_4"
+  },
+  {
+   "form": "bare",
+   "query": "4 MFLO",
+   "expected": "fed.ordinance.y1961_VIII_o324.s_4",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.ordinance.y1961_VIII_o324.s_4"
+  },
+  {
+   "form": "full",
+   "query": "section 5 of the Muslim Family Laws Ordinance, 1961",
+   "expected": "fed.ordinance.y1961_VIII_o324.s_5",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.ordinance.y1961_VIII_o324.s_5"
+  },
+  {
+   "form": "alias",
+   "query": "s. 5 MFLO",
+   "expected": "fed.ordinance.y1961_VIII_o324.s_5",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.ordinance.y1961_VIII_o324.s_5"
+  },
+  {
+   "form": "bare",
+   "query": "5 MFLO",
+   "expected": "fed.ordinance.y1961_VIII_o324.s_5",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.ordinance.y1961_VIII_o324.s_5"
+  },
+  {
+   "form": "full",
+   "query": "section 4 of the Hindu Marriage Act, 2017",
+   "expected": "fed.act.y2017_VII_o809.s_4",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y2017_VII_o809.s_4"
+  },
+  {
+   "form": "full",
+   "query": "section 29 of the Guardians and Wards Act, 1890",
+   "expected": "fed.act.y1890_o137.ch_III.s_29",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1890_o137.ch_III.s_29"
+  },
+  {
+   "form": "full",
+   "query": "section 69 of the Partnership Act, 1932",
+   "expected": "fed.act.y1932_o260.ch_VII.s_69",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1932_o260.ch_VII.s_69"
+  },
+  {
+   "form": "full",
+   "query": "section 16 of the Sale of Goods Act, 1930",
+   "expected": "fed.act.y1930_o180.s_16",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1930_o180.s_16"
+  },
+  {
+   "form": "full",
+   "query": "section 74 of the Contract Act, 1872",
+   "expected": "fed.act.y1872_o152.ch_VI.s_74",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1872_o152.ch_VI.s_74"
+  },
+  {
+   "form": "full",
+   "query": "section 56 of the Contract Act, 1872",
+   "expected": "fed.act.y1872_o152.ch_IV.s_56",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1872_o152.ch_IV.s_56"
+  },
+  {
+   "form": "full",
+   "query": "section 23 of the Land Acquisition Act, 1894",
+   "expected": "fed.act.y1894_o112.pt_III.s_23",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1894_o112.pt_III.s_23"
+  },
+  {
+   "form": "full",
+   "query": "section 20 of the Prevention of Electronic Crimes Act, 2016",
+   "expected": "fed.act.y2016_o1026.ch_II.s_20",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y2016_o1026.ch_II.s_20"
+  },
+  {
+   "form": "full",
+   "query": "section 24 of the Prevention of Electronic Crimes Act, 2016",
+   "expected": "fed.act.y2016_o1026.ch_II.s_24",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y2016_o1026.ch_II.s_24"
+  },
+  {
+   "form": "full",
+   "query": "section 500 of the Pakistan Penal Code",
+   "expected": "fed.act.y1860_o147.ch_XXI.s_500",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XXI.s_500"
+  },
+  {
+   "form": "alias",
+   "query": "s. 500 PPC",
+   "expected": "fed.act.y1860_o147.ch_XXI.s_500",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XXI.s_500"
+  },
+  {
+   "form": "bare",
+   "query": "500 PPC",
+   "expected": "fed.act.y1860_o147.ch_XXI.s_500",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XXI.s_500"
+  },
+  {
+   "form": "full",
+   "query": "section 34 of the Pakistan Penal Code",
+   "expected": "fed.act.y1860_o147.ch_II.s_34",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_II.s_34"
+  },
+  {
+   "form": "alias",
+   "query": "s. 34 PPC",
+   "expected": "fed.act.y1860_o147.ch_II.s_34",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_II.s_34"
+  },
+  {
+   "form": "bare",
+   "query": "34 PPC",
+   "expected": "fed.act.y1860_o147.ch_II.s_34",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_II.s_34"
+  },
+  {
+   "form": "full",
+   "query": "section 54 of the Code of Criminal Procedure, 1898",
+   "expected": "fed.act.y1898_o434.pt_III.ch_V.s_54",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_III.ch_V.s_54"
+  },
+  {
+   "form": "alias",
+   "query": "s. 54 CrPC",
+   "expected": "fed.act.y1898_o434.pt_III.ch_V.s_54",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_III.ch_V.s_54"
+  },
+  {
+   "form": "bare",
+   "query": "54 CrPC",
+   "expected": "fed.act.y1898_o434.pt_III.ch_V.s_54",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_III.ch_V.s_54"
+  },
+  {
+   "form": "full",
+   "query": "section 345 of the Code of Criminal Procedure, 1898",
+   "expected": "fed.act.y1898_o434.pt_VI.ch_XXIV.s_345",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_VI.ch_XXIV.s_345"
+  },
+  {
+   "form": "alias",
+   "query": "s. 345 CrPC",
+   "expected": "fed.act.y1898_o434.pt_VI.ch_XXIV.s_345",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_VI.ch_XXIV.s_345"
+  },
+  {
+   "form": "bare",
+   "query": "345 CrPC",
+   "expected": "fed.act.y1898_o434.pt_VI.ch_XXIV.s_345",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_VI.ch_XXIV.s_345"
+  },
+  {
+   "form": "full",
+   "query": "section 13 of the Constitution of the Islamic Republic of Pakistan",
+   "expected": "fed.constitution.y1973_o507.pt_II.ch_1.s_13",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.constitution.y1973_o507.pt_II.ch_1.s_13"
+  },
+  {
+   "form": "alias",
+   "query": "Article 13 of the Constitution",
+   "expected": "fed.constitution.y1973_o507.pt_II.ch_1.s_13",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.constitution.y1973_o507.pt_II.ch_1.s_13"
+  },
+  {
+   "form": "full",
+   "query": "section 12 of the Constitution of the Islamic Republic of Pakistan",
+   "expected": "fed.constitution.y1973_o507.pt_II.ch_1.s_12",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.constitution.y1973_o507.pt_II.ch_1.s_12"
+  },
+  {
+   "form": "alias",
+   "query": "Article 12 of the Constitution",
+   "expected": "fed.constitution.y1973_o507.pt_II.ch_1.s_12",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.constitution.y1973_o507.pt_II.ch_1.s_12"
+  },
+  {
+   "form": "full",
+   "query": "section 17 of the Qanun-e-Shahadat, 1984",
+   "expected": "fed.order.y1984_o675.ch_II.s_17",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.order.y1984_o675.ch_II.s_17"
+  },
+  {
+   "form": "alias",
+   "query": "s. 17 QSO",
+   "expected": "fed.order.y1984_o675.ch_II.s_17",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.order.y1984_o675.ch_II.s_17"
+  },
+  {
+   "form": "bare",
+   "query": "17 QSO",
+   "expected": "fed.order.y1984_o675.ch_II.s_17",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.order.y1984_o675.ch_II.s_17"
+  },
+  {
+   "form": "full",
+   "query": "section 79 of the Qanun-e-Shahadat, 1984",
+   "expected": "fed.order.y1984_o675.ch_V.s_79",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.order.y1984_o675.ch_V.s_79"
+  },
+  {
+   "form": "alias",
+   "query": "s. 79 QSO",
+   "expected": "fed.order.y1984_o675.ch_V.s_79",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.order.y1984_o675.ch_V.s_79"
+  },
+  {
+   "form": "bare",
+   "query": "79 QSO",
+   "expected": "fed.order.y1984_o675.ch_V.s_79",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.order.y1984_o675.ch_V.s_79"
+  },
+  {
+   "form": "full",
+   "query": "section 117 of the Qanun-e-Shahadat, 1984",
+   "expected": "fed.order.y1984_o675.pt_III.ch_IX.s_117",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.order.y1984_o675.pt_III.ch_IX.s_117"
+  },
+  {
+   "form": "alias",
+   "query": "s. 117 QSO",
+   "expected": "fed.order.y1984_o675.pt_III.ch_IX.s_117",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.order.y1984_o675.pt_III.ch_IX.s_117"
+  },
+  {
+   "form": "bare",
+   "query": "117 QSO",
+   "expected": "fed.order.y1984_o675.pt_III.ch_IX.s_117",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.order.y1984_o675.pt_III.ch_IX.s_117"
+  },
+  {
+   "form": "full",
+   "query": "section 5 of the Limitation Act, 1908",
+   "expected": "fed.act.y1908_o107.pt_II.s_5",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1908_o107.pt_II.s_5"
+  },
+  {
+   "form": "full",
+   "query": "section 3 of the Limitation Act, 1908",
+   "expected": "fed.act.y1908_o107.pt_II.s_3",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1908_o107.pt_II.s_3"
+  },
+  {
+   "form": "full",
+   "query": "section 52 of the Transfer of Property Act, 1882",
+   "expected": "fed.act.y1882_o102.ch_II.s_52",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1882_o102.ch_II.s_52"
+  },
+  {
+   "form": "full",
+   "query": "section 53A of the Transfer of Property Act, 1882",
+   "expected": "fed.act.y1882_o102.ch_II.s_53A",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1882_o102.ch_II.s_53A"
+  },
+  {
+   "form": "full",
+   "query": "section 96 of the Code of Civil Procedure, 1908",
+   "expected": "fed.act.y1908_o248.pt_VII.s_96",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1908_o248.pt_VII.s_96"
+  },
+  {
+   "form": "alias",
+   "query": "s. 96 CPC",
+   "expected": "fed.act.y1908_o248.pt_VII.s_96",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1908_o248.pt_VII.s_96"
+  },
+  {
+   "form": "bare",
+   "query": "96 CPC",
+   "expected": "fed.act.y1908_o248.pt_VII.s_96",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1908_o248.pt_VII.s_96"
+  },
+  {
+   "form": "full",
+   "query": "section 115 of the Code of Civil Procedure, 1908",
+   "expected": "fed.act.y1908_o248.pt_VIII.s_115",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1908_o248.pt_VIII.s_115"
+  },
+  {
+   "form": "alias",
+   "query": "s. 115 CPC",
+   "expected": "fed.act.y1908_o248.pt_VIII.s_115",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1908_o248.pt_VIII.s_115"
+  },
+  {
+   "form": "bare",
+   "query": "115 CPC",
+   "expected": "fed.act.y1908_o248.pt_VIII.s_115",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1908_o248.pt_VIII.s_115"
+  },
+  {
+   "form": "full",
+   "query": "section 12 of the Code of Civil Procedure, 1908",
+   "expected": "fed.act.y1908_o248.pt_I.s_12",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1908_o248.pt_I.s_12"
+  },
+  {
+   "form": "alias",
+   "query": "s. 12 CPC",
+   "expected": "fed.act.y1908_o248.pt_I.s_12",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1908_o248.pt_I.s_12"
+  },
+  {
+   "form": "bare",
+   "query": "12 CPC",
+   "expected": "fed.act.y1908_o248.pt_I.s_12",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1908_o248.pt_I.s_12"
+  },
+  {
+   "form": "full",
+   "query": "section 42 of the Specific Relief Act, 1877",
+   "expected": "fed.act.y1877_o125.pt_II.ch_VI.s_42",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1877_o125.pt_II.ch_VI.s_42"
+  },
+  {
+   "form": "full",
+   "query": "section 54 of the Specific Relief Act, 1877",
+   "expected": "fed.act.y1877_o125.pt_III.ch_X.s_54",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1877_o125.pt_III.ch_X.s_54"
+  },
+  {
+   "form": "full",
+   "query": "section 30 of the Arbitration Act, 1940",
+   "expected": "fed.act.y1940_o169.ch_V.s_30",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1940_o169.ch_V.s_30"
+  },
+  {
+   "form": "full",
+   "query": "section 15 of the Hindu Marriage Act, 2017",
+   "expected": "fed.act.y2017_VII_o809.s_15",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y2017_VII_o809.s_15"
+  },
+  {
+   "form": "full",
+   "query": "section 17-A of the Family Courts Act, 1964",
+   "expected": "punjab.act.y1964_XXXV_o2299.s_17_A",
+   "outcome": "CORRECT_ALT",
+   "why": [
+    "Family Courts Act, 1964"
+   ],
+   "got": "punjab.act.y1964_XXXV_o2299.s_17_A"
+  },
+  {
+   "form": "full",
+   "query": "section 17 of the Islamabad Rent Restriction Ordinance, 2001",
+   "expected": "fed.ordinance.y2001_IV_o676.s_17",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.ordinance.y2001_IV_o676.s_17"
+  },
+  {
+   "form": "full",
+   "query": "section 13 of the The West Pakistan Urban Rent Restriction Ordinance, 1959",
+   "expected": "kp.ordinance.y1959_VI_o1497.s_13",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "kp.ordinance.y1959_VI_o1497.s_13"
+  },
+  {
+   "form": "full",
+   "query": "section 2 of the Punjab Child Marriage Restraint Act, 2026",
+   "expected": "punjab.act.y2026_XXVII_o2994.s_2",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "punjab.act.y2026_XXVII_o2994.s_2"
+  },
+  {
+   "form": "full",
+   "query": "section 4 of the Punjab Child Marriage Restraint Act, 2026",
+   "expected": "punjab.act.y2026_XXVII_o2994.s_4",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "punjab.act.y2026_XXVII_o2994.s_4"
+  },
+  {
+   "form": "full",
+   "query": "section 2 of the Child Marriage Restraint Act, 1929",
+   "expected": "punjab.act.y1929_XIX_o1975.s_2",
+   "outcome": "CORRECT_ALT",
+   "why": [
+    "Child Marriage Restraint Act, 1929"
+   ],
+   "got": "punjab.act.y1929_XIX_o1975.s_2"
+  },
+  {
+   "form": "full",
+   "query": "section 3 of the Islamabad Capital Territory Child Marriage Restraint Act, 2025",
+   "expected": "fed.act.y2025_XI_o903.s_3",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y2025_XI_o903.s_3"
+  },
+  {
+   "form": "full",
+   "query": "section 4 of the Islamabad Capital Territory Child Marriage Restraint Act, 2025",
+   "expected": "fed.act.y2025_XI_o903.s_4",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y2025_XI_o903.s_4"
+  },
+  {
+   "form": "full",
+   "query": "section 3 of the The Balochistan Child Marriages Restraint Act, 2025",
+   "expected": "balochistan.act.y2025_XXXIII_o1210.s_3",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "balochistan.act.y2025_XXXIII_o1210.s_3"
+  },
+  {
+   "form": "full",
+   "query": "section 3 of the Punjab Defamation Act, 2024",
+   "expected": "punjab.act.y2024_II_o2976.s_3",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "punjab.act.y2024_II_o2976.s_3"
+  },
+  {
+   "form": "full",
+   "query": "section 3 of the Defamation Ordinance, 2002",
+   "expected": "punjab.ordinance.y2002_LVI_o10988.s_3",
+   "outcome": "CORRECT_ALT",
+   "why": [
+    "Defamation Ordinance, 2002"
+   ],
+   "got": "punjab.ordinance.y2002_LVI_o10988.s_3"
+  },
+  {
+   "form": "full",
+   "query": "section 4 of the Defamation Ordinance, 2002",
+   "expected": "fed.ordinance.y2002_LVI_o669.s_4",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.ordinance.y2002_LVI_o669.s_4"
+  },
+  {
+   "form": "full",
+   "query": "section 12 of the Defamation Ordinance, 2002",
+   "expected": "fed.ordinance.y2002_LVI_o669.s_12",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.ordinance.y2002_LVI_o669.s_12"
+  },
+  {
+   "form": "full",
+   "query": "section 3 of the The Khyber Pakhtunkhwa Domestic Violence Against Women (Prevention and Protection) Act, 2021",
+   "expected": "kp.act.y2021_III_o9630.s_3",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "kp.act.y2021_III_o9630.s_3"
+  },
+  {
+   "form": "full",
+   "query": "section 8 of the Balochistan Domestic Violence (Prevention and Protection) Act, 2014",
+   "expected": "balochistan.act.y2014_VII_o1394.s_8",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "balochistan.act.y2014_VII_o1394.s_8"
+  },
+  {
+   "form": "full",
+   "query": "section 5 of the Domestic Violence (Prevention and Protection) Act, 2026",
+   "expected": "fed.act.y2026_X_o852.s_5",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y2026_X_o852.s_5"
+  },
+  {
+   "form": "full",
+   "query": "section 8 of the Domestic Violence (Prevention and Protection) Act, 2026",
+   "expected": "fed.act.y2026_X_o852.s_8",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y2026_X_o852.s_8"
+  },
+  {
+   "form": "full",
+   "query": "section 3 of the Sindh Right of Children to Free and Compulsory Education Act, 2013",
+   "expected": "sindh.act.y2013_XIV_o3602.ch_II.s_3",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "sindh.act.y2013_XIV_o3602.ch_II.s_3"
+  },
+  {
+   "form": "full",
+   "query": "section 3 of the Punjab Free and Compulsory Education Act, 2014",
+   "expected": "punjab.act.y2014_XXVI_o11245.ch_II.s_3",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "punjab.act.y2014_XXVI_o11245.ch_II.s_3"
+  },
+  {
+   "form": "full",
+   "query": "section 3 of the Right to Free and Compulsory Education Act, 2012",
+   "expected": "fed.act.y2012_XXIV_o760.s_3",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y2012_XXIV_o760.s_3"
+  },
+  {
+   "form": "full",
+   "query": "section 29 of the Sindh Consumer Protection Act, 2014",
+   "expected": "sindh.act.y2014_o3892.pt_VIII.s_29",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "sindh.act.y2014_o3892.pt_VIII.s_29"
+  },
+  {
+   "form": "full",
+   "query": "section 26 of the Sindh Consumer Protection Act, 2014",
+   "expected": "sindh.act.y2014_o3892.pt_VIII.s_26",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "sindh.act.y2014_o3892.pt_VIII.s_26"
+  },
+  {
+   "form": "full",
+   "query": "section 13 of the Consumers Protection Act, 1997",
+   "expected": "kp.act.y1997_VI_o1680.pt_III.s_13",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "kp.act.y1997_VI_o1680.pt_III.s_13"
+  },
+  {
+   "form": "full",
+   "query": "section 14 of the Consumers Protection Act, 2003",
+   "expected": "balochistan.act.y2003_IX_o1127.pt_III.s_14",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "balochistan.act.y2003_IX_o1127.pt_III.s_14"
+  },
+  {
+   "form": "full",
+   "query": "section 3 of the Punjab Domestic Workers Act, 2019",
+   "expected": "punjab.act.y2019_II_o11183.s_3",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "punjab.act.y2019_II_o11183.s_3"
+  },
+  {
+   "form": "full",
+   "query": "section 4 of the Sindh Hindus Marriage Act, 2016",
+   "expected": "sindh.act.y2016_IX_o3487.s_4",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "sindh.act.y2016_IX_o3487.s_4"
+  },
+  {
+   "form": "full",
+   "query": "section 6 of the Sindh Hindus Marriage Act, 2016",
+   "expected": "sindh.act.y2016_IX_o3487.s_6",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "sindh.act.y2016_IX_o3487.s_6"
+  },
+  {
+   "form": "full",
+   "query": "section 4 of the Anti-Rape (Investigation and Trial) Act, 2021",
+   "expected": "fed.act.y2021_XXX_o953.s_4",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y2021_XXX_o953.s_4"
+  },
+  {
+   "form": "full",
+   "query": "section 4 of the The Anti-Rape (Investigation and Trial) Ordinance, 2020",
+   "expected": "fed.ordinance.y2020_o10634.s_4",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.ordinance.y2020_o10634.s_4"
+  },
+  {
+   "form": "full",
+   "query": "section 8 of the Protection Against Harassment of Women at the Workplace Act, 2010",
+   "expected": "punjab.act.y2010_IV_o11115.s_8",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "punjab.act.y2010_IV_o11115.s_8"
+  },
+  {
+   "form": "full",
+   "query": "section 4 of the Azad Jammu and Kashmir protection against harassment of Women at the Workplace Act, 2014",
+   "expected": "ajk.act.y2014_XX_o15154.s_4",
+   "outcome": "UNRESOLVED",
+   "why": "no law named (e.g. 'Article 199' alone): not guessed",
+   "got": null
+  },
+  {
+   "form": "full",
+   "query": "section 3 of the Torture and Custodial Death (Prevention and Punishment) Act, 2022",
+   "expected": "fed.act.y2022_XXVIII_o834.s_3",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y2022_XXVIII_o834.s_3"
+  },
+  {
+   "form": "full",
+   "query": "section 8 of the Torture and Custodial Death (Prevention and Punishment) Act, 2022",
+   "expected": "fed.act.y2022_XXVIII_o834.s_8",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y2022_XXVIII_o834.s_8"
+  },
+  {
+   "form": "full",
+   "query": "section 3 of the Prevention of Trafficking In Persons Act, 2018",
+   "expected": "fed.act.y2018_XXXIV_o922.s_3",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y2018_XXXIV_o922.s_3"
+  },
+  {
+   "form": "full",
+   "query": "section 11 of the Transplantation of Human Organs and Tissues Act, 2010",
+   "expected": "fed.act.y2010_VI_o802.s_11",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y2010_VI_o802.s_11"
+  },
+  {
+   "form": "full",
+   "query": "section 9 of the Zainab Alert, Response and Recovery Act, 2020",
+   "expected": "fed.act.y2020_XV_o931.pt_III.s_9",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y2020_XV_o931.pt_III.s_9"
+  },
+  {
+   "form": "full",
+   "query": "section 20 of the Islamabad Capital Territory Senior Citizens Act, 2021",
+   "expected": "fed.act.y2021_IX_o925.pt_V.s_20",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y2021_IX_o925.pt_V.s_20"
+  },
+  {
+   "form": "full",
+   "query": "section 9 of the The Khyber Pakhtunkhwa Senior Citizens Act, 2014",
+   "expected": "kp.act.y2014_XXXV_o9689.pt_II.s_9",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "kp.act.y2014_XXXV_o9689.pt_II.s_9"
+  },
+  {
+   "form": "full",
+   "query": "section 11 of the Islamabad Capital Territory Senior Citizens Act, 2021",
+   "expected": "fed.act.y2021_IX_o925.pt_IV.s_11",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y2021_IX_o925.pt_IV.s_11"
+  },
+  {
+   "form": "full",
+   "query": "section 18 of the The Azad Jammu and Kashmir Rent Restriction Act, 1986",
+   "expected": "ajk.act.y1986_XIII_o14327.s_18",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "ajk.act.y1986_XIII_o14327.s_18"
+  },
+  {
+   "form": "full",
+   "query": "section 21 of the Islamabad Rent Restriction Ordinance, 2001",
+   "expected": "fed.ordinance.y2001_IV_o676.s_21",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.ordinance.y2001_IV_o676.s_21"
+  },
+  {
+   "form": "full",
+   "query": "section 15 of the The West Pakistan Urban Rent Restriction Ordinance, 1959",
+   "expected": "kp.ordinance.y1959_VI_o1497.s_15",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "kp.ordinance.y1959_VI_o1497.s_15"
+  },
+  {
+   "form": "full",
+   "query": "section 10 of the Punjab Transparency and Right to Information Act, 2013",
+   "expected": "punjab.act.y2013_XXV_o11415.s_10",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "punjab.act.y2013_XXV_o11415.s_10"
+  },
+  {
+   "form": "full",
+   "query": "section 11 of the Right of Access to Information Act, 2017",
+   "expected": "fed.act.y2017_XXXIV_o785.s_11",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y2017_XXXIV_o785.s_11"
+  },
+  {
+   "form": "full",
+   "query": "section 9 of the Punjab Legal Aid Act, 2018",
+   "expected": "punjab.act.y2018_XIX_o11283.s_9",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "punjab.act.y2018_XIX_o11283.s_9"
+  },
+  {
+   "form": "full",
+   "query": "section 13 of the Punjab Pre-Emption Act, 1991",
+   "expected": "punjab.act.y1991_IX_o2899.s_13",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "punjab.act.y1991_IX_o2899.s_13"
+  },
+  {
+   "form": "full",
+   "query": "section 42 of the Punjab Land Revenue Act, 1967",
+   "expected": "punjab.act.y1967_XVII_o2491.ch_VI.s_42",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "punjab.act.y1967_XVII_o2491.ch_VI.s_42"
+  },
+  {
+   "form": "full",
+   "query": "section 11 of the Punjab Minimum Wages Act, 2019",
+   "expected": "punjab.act.y2019_XXVIII_o11298.s_11",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "punjab.act.y2019_XXVIII_o11298.s_11"
+  },
+  {
+   "form": "full",
+   "query": "section 5 of the Sindh Payment of Wages Act, 2015",
+   "expected": "sindh.act.y2015_o3654.s_5",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "sindh.act.y2015_o3654.s_5"
+  },
+  {
+   "form": "full",
+   "query": "section 4 of the Punjab Maternity Benefit Ordinance, 1958",
+   "expected": "punjab.ordinance.y1958_XXXII_o2121.s_4",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "punjab.ordinance.y1958_XXXII_o2121.s_4"
+  },
+  {
+   "form": "full",
+   "query": "section 3 of the Maternity Benefits Act, 2018",
+   "expected": "sindh.act.y2018_XXXIX_o3432.s_3",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "sindh.act.y2018_XXXIX_o3432.s_3"
+  },
+  {
+   "form": "full",
+   "query": "section 4 of the The Khyber Pakhtunkhwa Maternity Benefits Act, 2013",
+   "expected": "kp.act.y2013_XVIII_o1796.s_4",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "kp.act.y2013_XVIII_o1796.s_4"
+  },
+  {
+   "form": "full",
+   "query": "section 3 of the Maternity and Paternity Leave Act, 2023",
+   "expected": "fed.act.y2023_XXXI_o987.s_3",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y2023_XXXI_o987.s_3"
+  },
+  {
+   "form": "full",
+   "query": "section 7 of the Punjab Maternity Benefit Ordinance, 1958",
+   "expected": "punjab.ordinance.y1958_XXXII_o2121.s_7",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "punjab.ordinance.y1958_XXXII_o2121.s_7"
+  },
+  {
+   "form": "full",
+   "query": "section 3 of the Punjab Restriction on Employment of Children Act, 2016",
+   "expected": "punjab.act.y2016_L_o11364.s_3",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "punjab.act.y2016_L_o11364.s_3"
+  },
+  {
+   "form": "full",
+   "query": "section 8 of the Islamabad Capital Territory Domestic Workers Act, 2022",
+   "expected": "fed.act.y2022_o837.s_8",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y2022_o837.s_8"
+  },
+  {
+   "form": "full",
+   "query": "section 3 of the Industrial Relations Act, 2012",
+   "expected": "fed.act.y2012_o774.ch_II.s_3",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y2012_o774.ch_II.s_3"
+  },
+  {
+   "form": "full",
+   "query": "section 5 of the Prohibition of Smoking and Protection of Non-Smokers Health Ordinance, 2002",
+   "expected": "fed.ordinance.y2002_LXXIV_o753.s_5",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.ordinance.y2002_LXXIV_o753.s_5"
+  },
+  {
+   "form": "full",
+   "query": "section 9 of the Punjab Arms Ordinance, 1965",
+   "expected": "punjab.ordinance.y1965_XX_o2402.ch_IV.s_9",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "punjab.ordinance.y1965_XX_o2402.ch_IV.s_9"
+  },
+  {
+   "form": "full",
+   "query": "section 18 of the Copyright Ordinance, 1962",
+   "expected": "fed.ordinance.y1962_o410.ch_III.s_18",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.ordinance.y1962_o410.ch_III.s_18"
+  },
+  {
+   "form": "full",
+   "query": "section 34 of the Trade Marks Ordinance, 2001",
+   "expected": "fed.ordinance.y2001_o812.ch_III.s_34",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.ordinance.y2001_o812.ch_III.s_34"
+  },
+  {
+   "form": "full",
+   "query": "section 8 of the Passports Act, 1974",
+   "expected": "fed.act.y1974_o413.s_8",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1974_o413.s_8"
+  },
+  {
+   "form": "full",
+   "query": "section 14 of the Pakistan Citizenship Act, 1951",
+   "expected": "fed.act.y1951_o1004.s_14",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1951_o1004.s_14"
+  },
+  {
+   "form": "full",
+   "query": "section 114 of the Income Tax Ordinance, 2001",
+   "expected": "fed.ordinance.y2001_o1032.ch_X.pt_I.s_114",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.ordinance.y2001_o1032.ch_X.pt_I.s_114"
+  },
+  {
+   "form": "full",
+   "query": "section 8 of the Protection of Journalists and Media Professionals Act, 2021",
+   "expected": "fed.act.y2021_o963.pt_II.s_8",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y2021_o963.pt_II.s_8"
+  },
+  {
+   "form": "full",
+   "query": "section 5 of the Small Claims and Minor Offences Courts Ordinance, 2002",
+   "expected": "fed.ordinance.y2002_o722.s_5",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.ordinance.y2002_o722.s_5"
+  },
+  {
+   "form": "full",
+   "query": "section 10 of the The Islamabad Capital Territory (Consumers Protection) Rules, 2011",
+   "expected": "fed.rules.y2011_o12781.s_10",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.rules.y2011_o12781.s_10"
+  },
+  {
+   "form": "full",
+   "query": "section 118 of the Income Tax Ordinance, 2001",
+   "expected": "fed.ordinance.y2001_o1032.ch_X.pt_I.s_118",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.ordinance.y2001_o1032.ch_X.pt_I.s_118"
+  },
+  {
+   "form": "full",
+   "query": "section 16 of the Companies Act, 2017",
+   "expected": "fed.act.y2017_o1037.pt_IV.s_16",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y2017_o1037.pt_IV.s_16"
+  },
+  {
+   "form": "full",
+   "query": "section 117 of the Trade Marks Ordinance, 2001",
+   "expected": "fed.ordinance.y2001_o812.ch_XIV.s_117",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.ordinance.y2001_o812.ch_XIV.s_117"
+  },
+  {
+   "form": "full",
+   "query": "section 118 of the Negotiable Instruments Act, 1881",
+   "expected": "fed.act.y1881_o135.ch_XIII.s_118",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1881_o135.ch_XIII.s_118"
+  },
+  {
+   "form": "full",
+   "query": "section 9 of the Financial Institutions (Recovery of Finances) Ordinance, 2001",
+   "expected": "fed.ordinance.y2001_XLVI_o649.s_9",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.ordinance.y2001_XLVI_o649.s_9"
+  },
+  {
+   "form": "full",
+   "query": "section 9 of the Establishment of the Office of Wafaqi Mohtasib (Ombudsman) Order, 1983",
+   "expected": "fed.order.y1983_o653.s_9",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.order.y1983_o653.s_9"
+  },
+  {
+   "form": "full",
+   "query": "section 8 of the Alternative Dispute Resolution Act, 2017",
+   "expected": "fed.act.y2017_XX_o803.ch_I.s_8",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y2017_XX_o803.ch_I.s_8"
+  },
+  {
+   "form": "full",
+   "query": "section 10 of the Mental Health Ordinance, 2001",
+   "expected": "fed.ordinance.y2001_o673.ch_III.s_10",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.ordinance.y2001_o673.ch_III.s_10"
+  },
+  {
+   "form": "full",
+   "query": "section 105 of the Transfer of Property Act, 1882",
+   "expected": "fed.act.y1882_o102.ch_V.s_105",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1882_o102.ch_V.s_105"
+  },
+  {
+   "form": "full",
+   "query": "section 19A of the Constitution of the Islamic Republic of Pakistan",
+   "expected": "fed.constitution.y1973_o507.pt_II.ch_1.s_19A",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.constitution.y1973_o507.pt_II.ch_1.s_19A"
+  },
+  {
+   "form": "alias",
+   "query": "Article 19A of the Constitution",
+   "expected": "fed.constitution.y1973_o507.pt_II.ch_1.s_19A",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.constitution.y1973_o507.pt_II.ch_1.s_19A"
+  },
+  {
+   "form": "full",
+   "query": "section 25 of the Constitution of the Islamic Republic of Pakistan",
+   "expected": "fed.constitution.y1973_o507.pt_II.ch_1.s_25",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.constitution.y1973_o507.pt_II.ch_1.s_25"
+  },
+  {
+   "form": "alias",
+   "query": "Article 25 of the Constitution",
+   "expected": "fed.constitution.y1973_o507.pt_II.ch_1.s_25",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.constitution.y1973_o507.pt_II.ch_1.s_25"
+  },
+  {
+   "form": "full",
+   "query": "section 4 of the Land Acquisition Act, 1894",
+   "expected": "fed.act.y1894_o112.pt_II.s_4",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1894_o112.pt_II.s_4"
+  },
+  {
+   "form": "full",
+   "query": "section 6 of the West Pakistan Family Courts Rules, 1965",
+   "expected": "kp.rules.y1965_o9749.s_6",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "kp.rules.y1965_o9749.s_6"
+  },
+  {
+   "form": "full",
+   "query": "section 5 of the Punjab Transparency and Right to Information Rules, 2014",
+   "expected": "punjab.rules.y2014_o2499.s_5",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "punjab.rules.y2014_o2499.s_5"
+  },
+  {
+   "form": "full",
+   "query": "section 3 of the Punjab Consumer Protection Rules, 2009",
+   "expected": "punjab.rules.y2009_o2581.s_3",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "punjab.rules.y2009_o2581.s_3"
+  },
+  {
+   "form": "full",
+   "query": "section 12 of the Punjab Minimum Wages Act, 2019",
+   "expected": "punjab.act.y2019_XXVIII_o11298.s_12",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "punjab.act.y2019_XXVIII_o11298.s_12"
+  },
+  {
+   "form": "full",
+   "query": "section 39 of the Copyright Ordinance, 1962",
+   "expected": "fed.ordinance.y1962_o410.ch_VIII.s_39",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.ordinance.y1962_o410.ch_VIII.s_39"
+  },
+  {
+   "form": "full",
+   "query": "section 22 of the Trade Marks Ordinance, 2001",
+   "expected": "fed.ordinance.y2001_o812.ch_III.s_22",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.ordinance.y2001_o812.ch_III.s_22"
+  },
+  {
+   "form": "full",
+   "query": "section 14 of the Punjab Partition of Immovable Property Act, 2012",
+   "expected": "punjab.act.y2012_o11305.s_14",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "punjab.act.y2012_o11305.s_14"
+  },
+  {
+   "form": "full",
+   "query": "section 10 of the Punjab Partition of Immovable Property Act, 2012",
+   "expected": "punjab.act.y2012_o11305.s_10",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "punjab.act.y2012_o11305.s_10"
+  },
+  {
+   "form": "full",
+   "query": "section 28 of the Punjab Consumer Protection Act, 2005",
+   "expected": "punjab.act.y2005_II_o11166.pt_VIII.s_28",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "punjab.act.y2005_II_o11166.pt_VIII.s_28"
+  },
+  {
+   "form": "full",
+   "query": "section 4 of the Punjab Enforcement of Women’s Property Rights Act, 2021",
+   "expected": "punjab.act.y2021_X_o2921.s_4",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "punjab.act.y2021_X_o2921.s_4"
+  },
+  {
+   "form": "full",
+   "query": "section 4 of the Enforcement of Women’s Property Rights Act, 2020",
+   "expected": "fed.act.y2020_o907.s_4",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y2020_o907.s_4"
+  },
+  {
+   "form": "full",
+   "query": "section 8 of the Khyber Pakhtunkhwa Enforcement of Women’s Property Rights Act, 2019",
+   "expected": "kp.act.y2019_XLIV_o1870.s_8",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "kp.act.y2019_XLIV_o1870.s_8"
+  },
+  {
+   "form": "full",
+   "query": "section 55 of the Transfer of Property Act, 1882",
+   "expected": "fed.act.y1882_o102.ch_III.s_55",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1882_o102.ch_III.s_55"
+  },
+  {
+   "form": "full",
+   "query": "section 49 of the Registration Act, 1908",
+   "expected": "fed.act.y1908_o76.pt_X.s_49",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1908_o76.pt_X.s_49"
+  },
+  {
+   "form": "full",
+   "query": "section 60 of the Transfer of Property Act, 1882",
+   "expected": "fed.act.y1882_o102.ch_IV.s_60",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1882_o102.ch_IV.s_60"
+  },
+  {
+   "form": "full",
+   "query": "section 67 of the Transfer of Property Act, 1882",
+   "expected": "fed.act.y1882_o102.ch_IV.s_67",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1882_o102.ch_IV.s_67"
+  },
+  {
+   "form": "full",
+   "query": "section 107 of the Transfer of Property Act, 1882",
+   "expected": "fed.act.y1882_o102.ch_V.s_107",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1882_o102.ch_V.s_107"
+  },
+  {
+   "form": "full",
+   "query": "section 3 of the Punjab Urban Immovable Property Tax Act, 1958",
+   "expected": "punjab.act.y1958_V_o2137.s_3",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "punjab.act.y1958_V_o2137.s_3"
+  },
+  {
+   "form": "full",
+   "query": "section 15 of the Easements Act, 1882",
+   "expected": "fed.act.y1882_o110.ch_II.s_15",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1882_o110.ch_II.s_15"
+  },
+  {
+   "form": "full",
+   "query": "section 13 of the Easements Act, 1882",
+   "expected": "fed.act.y1882_o110.ch_II.s_13",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1882_o110.ch_II.s_13"
+  },
+  {
+   "form": "full",
+   "query": "section 60 of the Easements Act, 1882",
+   "expected": "fed.act.y1882_o110.ch_VI.s_60",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1882_o110.ch_VI.s_60"
+  },
+  {
+   "form": "full",
+   "query": "section 53 of the Punjab Land Revenue Act, 1967",
+   "expected": "punjab.act.y1967_XVII_o2491.ch_VI.s_53",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "punjab.act.y1967_XVII_o2491.ch_VI.s_53"
+  },
+  {
+   "form": "full",
+   "query": "section 161 of the Punjab Land Revenue Act, 1967",
+   "expected": "punjab.act.y1967_XVII_o2491.ch_XIII.s_161",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "punjab.act.y1967_XVII_o2491.ch_XIII.s_161"
+  },
+  {
+   "form": "full",
+   "query": "section 162 of the Punjab Land Revenue Act, 1967",
+   "expected": "punjab.act.y1967_XVII_o2491.ch_XIII.s_162",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "punjab.act.y1967_XVII_o2491.ch_XIII.s_162"
+  },
+  {
+   "form": "full",
+   "query": "section 16 of the Punjab Land Records Authority Act, 2017",
+   "expected": "punjab.act.y2017_VI_o11281.ch_IV.s_16",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "punjab.act.y2017_VI_o11281.ch_IV.s_16"
+  },
+  {
+   "form": "full",
+   "query": "section 35 of the Stamp Act, 1899",
+   "expected": "fed.act.y1899_o118.ch_IV.s_35",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1899_o118.ch_IV.s_35"
+  },
+  {
+   "form": "full",
+   "query": "section 44 of the Transfer of Property Act, 1882",
+   "expected": "fed.act.y1882_o102.ch_II.s_44",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1882_o102.ch_II.s_44"
+  },
+  {
+   "form": "full",
+   "query": "section 6 of the Transfer of Property Act, 1882",
+   "expected": "fed.act.y1882_o102.ch_II.s_6",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1882_o102.ch_II.s_6"
+  },
+  {
+   "form": "full",
+   "query": "section 42 of the Punjab Tenancy Act, 1887",
+   "expected": "punjab.act.y1887_XVI_o2062.ch_IV.s_42",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "punjab.act.y1887_XVI_o2062.ch_IV.s_42"
+  },
+  {
+   "form": "full",
+   "query": "section 50 of the Punjab Tenancy Act, 1887",
+   "expected": "punjab.act.y1887_XVI_o2062.ch_IV.s_50",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "punjab.act.y1887_XVI_o2062.ch_IV.s_50"
+  },
+  {
+   "form": "full",
+   "query": "section 23 of the Registration Act, 1908",
+   "expected": "fed.act.y1908_o76.pt_IV.s_23",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1908_o76.pt_IV.s_23"
+  },
+  {
+   "form": "full",
+   "query": "section 25 of the Registration Act, 1908",
+   "expected": "fed.act.y1908_o76.pt_IV.s_25",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1908_o76.pt_IV.s_25"
+  },
+  {
+   "form": "full",
+   "query": "section 28 of the Registration Act, 1908",
+   "expected": "fed.act.y1908_o76.pt_V.s_28",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1908_o76.pt_V.s_28"
+  },
+  {
+   "form": "full",
+   "query": "section 47 of the Registration Act, 1908",
+   "expected": "fed.act.y1908_o76.pt_X.s_47",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1908_o76.pt_X.s_47"
+  },
+  {
+   "form": "full",
+   "query": "section 123 of the Transfer of Property Act, 1882",
+   "expected": "fed.act.y1882_o102.ch_VII.s_123",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1882_o102.ch_VII.s_123"
+  },
+  {
+   "form": "full",
+   "query": "section 126 of the Transfer of Property Act, 1882",
+   "expected": "fed.act.y1882_o102.ch_VII.s_126",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1882_o102.ch_VII.s_126"
+  },
+  {
+   "form": "full",
+   "query": "section 10 of the Transfer of Property Act, 1882",
+   "expected": "fed.act.y1882_o102.ch_II.s_10",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1882_o102.ch_II.s_10"
+  },
+  {
+   "form": "full",
+   "query": "section 41 of the Transfer of Property Act, 1882",
+   "expected": "fed.act.y1882_o102.ch_II.s_41",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1882_o102.ch_II.s_41"
+  },
+  {
+   "form": "full",
+   "query": "section 106 of the Transfer of Property Act, 1882",
+   "expected": "fed.act.y1882_o102.ch_V.s_106",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1882_o102.ch_V.s_106"
+  },
+  {
+   "form": "full",
+   "query": "section 58 of the Transfer of Property Act, 1882",
+   "expected": "fed.act.y1882_o102.ch_IV.s_58",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1882_o102.ch_IV.s_58"
+  },
+  {
+   "form": "full",
+   "query": "section 39 of the Specific Relief Act, 1877",
+   "expected": "fed.act.y1877_o125.pt_II.ch_V.s_39",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1877_o125.pt_II.ch_V.s_39"
+  },
+  {
+   "form": "full",
+   "query": "section 32 of the Registration Act, 1908",
+   "expected": "fed.act.y1908_o76.pt_VI.s_32",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1908_o76.pt_VI.s_32"
+  },
+  {
+   "form": "full",
+   "query": "section 164 of the Punjab Land Revenue Act, 1967",
+   "expected": "punjab.act.y1967_XVII_o2491.ch_XIII.s_164",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "punjab.act.y1967_XVII_o2491.ch_XIII.s_164"
+  },
+  {
+   "form": "full",
+   "query": "section 7 of the Enforcement of Women’s Property Rights Act, 2020",
+   "expected": "fed.act.y2020_o907.s_7",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y2020_o907.s_7"
+  },
+  {
+   "form": "full",
+   "query": "section 4 of the Khyber Pakhtunkhwa Enforcement of Women’s Property Rights Act, 2019",
+   "expected": "kp.act.y2019_XLIV_o1870.s_4",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "kp.act.y2019_XLIV_o1870.s_4"
+  },
+  {
+   "form": "full",
+   "query": "section 33 of the Stamp Act, 1899",
+   "expected": "fed.act.y1899_o118.ch_IV.s_33",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1899_o118.ch_IV.s_33"
+  },
+  {
+   "form": "full",
+   "query": "section 19 of the Punjab Land Records Authority Act, 2017",
+   "expected": "punjab.act.y2017_VI_o11281.ch_V.s_19",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "punjab.act.y2017_VI_o11281.ch_V.s_19"
+  },
+  {
+   "form": "full",
+   "query": "section 111 of the Transfer of Property Act, 1882",
+   "expected": "fed.act.y1882_o102.ch_V.s_111",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1882_o102.ch_V.s_111"
+  },
+  {
+   "form": "full",
+   "query": "section 118 of the Transfer of Property Act, 1882",
+   "expected": "fed.act.y1882_o102.ch_VI.s_118",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1882_o102.ch_VI.s_118"
+  },
+  {
+   "form": "full",
+   "query": "section 337 of the Pakistan Penal Code",
+   "expected": "fed.act.y1860_o147.ch_XVI.s_337",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVI.s_337"
+  },
+  {
+   "form": "alias",
+   "query": "s. 337 PPC",
+   "expected": "fed.act.y1860_o147.ch_XVI.s_337",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVI.s_337"
+  },
+  {
+   "form": "bare",
+   "query": "337 PPC",
+   "expected": "fed.act.y1860_o147.ch_XVI.s_337",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVI.s_337"
+  },
+  {
+   "form": "full",
+   "query": "section 337A of the Pakistan Penal Code",
+   "expected": "fed.act.y1860_o147.ch_XVI.s_337A",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVI.s_337A"
+  },
+  {
+   "form": "alias",
+   "query": "s. 337A PPC",
+   "expected": "fed.act.y1860_o147.ch_XVI.s_337A",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVI.s_337A"
+  },
+  {
+   "form": "bare",
+   "query": "337A PPC",
+   "expected": "fed.act.y1860_o147.ch_XVI.s_337A",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVI.s_337A"
+  },
+  {
+   "form": "full",
+   "query": "section 318 of the Pakistan Penal Code",
+   "expected": "fed.act.y1860_o147.ch_XVI.s_318",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVI.s_318"
+  },
+  {
+   "form": "alias",
+   "query": "s. 318 PPC",
+   "expected": "fed.act.y1860_o147.ch_XVI.s_318",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVI.s_318"
+  },
+  {
+   "form": "bare",
+   "query": "318 PPC",
+   "expected": "fed.act.y1860_o147.ch_XVI.s_318",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVI.s_318"
+  },
+  {
+   "form": "full",
+   "query": "section 319 of the Pakistan Penal Code",
+   "expected": "fed.act.y1860_o147.ch_XVI.s_319",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVI.s_319"
+  },
+  {
+   "form": "alias",
+   "query": "s. 319 PPC",
+   "expected": "fed.act.y1860_o147.ch_XVI.s_319",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVI.s_319"
+  },
+  {
+   "form": "bare",
+   "query": "319 PPC",
+   "expected": "fed.act.y1860_o147.ch_XVI.s_319",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVI.s_319"
+  },
+  {
+   "form": "full",
+   "query": "section 323 of the Pakistan Penal Code",
+   "expected": "fed.act.y1860_o147.ch_XVI.s_323",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVI.s_323"
+  },
+  {
+   "form": "alias",
+   "query": "s. 323 PPC",
+   "expected": "fed.act.y1860_o147.ch_XVI.s_323",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVI.s_323"
+  },
+  {
+   "form": "bare",
+   "query": "323 PPC",
+   "expected": "fed.act.y1860_o147.ch_XVI.s_323",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVI.s_323"
+  },
+  {
+   "form": "full",
+   "query": "section 363 of the Pakistan Penal Code",
+   "expected": "fed.act.y1860_o147.ch_XVIA.s_363",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVIA.s_363"
+  },
+  {
+   "form": "alias",
+   "query": "s. 363 PPC",
+   "expected": "fed.act.y1860_o147.ch_XVIA.s_363",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVIA.s_363"
+  },
+  {
+   "form": "bare",
+   "query": "363 PPC",
+   "expected": "fed.act.y1860_o147.ch_XVIA.s_363",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVIA.s_363"
+  },
+  {
+   "form": "full",
+   "query": "section 383 of the Pakistan Penal Code",
+   "expected": "fed.act.y1860_o147.ch_XVII.s_383",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVII.s_383"
+  },
+  {
+   "form": "alias",
+   "query": "s. 383 PPC",
+   "expected": "fed.act.y1860_o147.ch_XVII.s_383",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVII.s_383"
+  },
+  {
+   "form": "bare",
+   "query": "383 PPC",
+   "expected": "fed.act.y1860_o147.ch_XVII.s_383",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVII.s_383"
+  },
+  {
+   "form": "full",
+   "query": "section 384 of the Pakistan Penal Code",
+   "expected": "fed.act.y1860_o147.ch_XVII.s_384",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVII.s_384"
+  },
+  {
+   "form": "alias",
+   "query": "s. 384 PPC",
+   "expected": "fed.act.y1860_o147.ch_XVII.s_384",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVII.s_384"
+  },
+  {
+   "form": "bare",
+   "query": "384 PPC",
+   "expected": "fed.act.y1860_o147.ch_XVII.s_384",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVII.s_384"
+  },
+  {
+   "form": "full",
+   "query": "section 405 of the Pakistan Penal Code",
+   "expected": "fed.act.y1860_o147.ch_XVII.s_405",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVII.s_405"
+  },
+  {
+   "form": "alias",
+   "query": "s. 405 PPC",
+   "expected": "fed.act.y1860_o147.ch_XVII.s_405",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVII.s_405"
+  },
+  {
+   "form": "bare",
+   "query": "405 PPC",
+   "expected": "fed.act.y1860_o147.ch_XVII.s_405",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVII.s_405"
+  },
+  {
+   "form": "full",
+   "query": "section 406 of the Pakistan Penal Code",
+   "expected": "fed.act.y1860_o147.ch_XVII.s_406",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVII.s_406"
+  },
+  {
+   "form": "alias",
+   "query": "s. 406 PPC",
+   "expected": "fed.act.y1860_o147.ch_XVII.s_406",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVII.s_406"
+  },
+  {
+   "form": "bare",
+   "query": "406 PPC",
+   "expected": "fed.act.y1860_o147.ch_XVII.s_406",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVII.s_406"
+  },
+  {
+   "form": "full",
+   "query": "section 463 of the Pakistan Penal Code",
+   "expected": "fed.act.y1860_o147.ch_XVIII.s_463",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVIII.s_463"
+  },
+  {
+   "form": "alias",
+   "query": "s. 463 PPC",
+   "expected": "fed.act.y1860_o147.ch_XVIII.s_463",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVIII.s_463"
+  },
+  {
+   "form": "bare",
+   "query": "463 PPC",
+   "expected": "fed.act.y1860_o147.ch_XVIII.s_463",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVIII.s_463"
+  },
+  {
+   "form": "full",
+   "query": "section 465 of the Pakistan Penal Code",
+   "expected": "fed.act.y1860_o147.ch_XVIII.s_465",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVIII.s_465"
+  },
+  {
+   "form": "alias",
+   "query": "s. 465 PPC",
+   "expected": "fed.act.y1860_o147.ch_XVIII.s_465",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVIII.s_465"
+  },
+  {
+   "form": "bare",
+   "query": "465 PPC",
+   "expected": "fed.act.y1860_o147.ch_XVIII.s_465",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVIII.s_465"
+  },
+  {
+   "form": "full",
+   "query": "section 506 of the Pakistan Penal Code",
+   "expected": "fed.act.y1860_o147.ch_XXII.s_506",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XXII.s_506"
+  },
+  {
+   "form": "alias",
+   "query": "s. 506 PPC",
+   "expected": "fed.act.y1860_o147.ch_XXII.s_506",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XXII.s_506"
+  },
+  {
+   "form": "bare",
+   "query": "506 PPC",
+   "expected": "fed.act.y1860_o147.ch_XXII.s_506",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XXII.s_506"
+  },
+  {
+   "form": "full",
+   "query": "section 441 of the Pakistan Penal Code",
+   "expected": "fed.act.y1860_o147.ch_XVII.s_441",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVII.s_441"
+  },
+  {
+   "form": "alias",
+   "query": "s. 441 PPC",
+   "expected": "fed.act.y1860_o147.ch_XVII.s_441",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVII.s_441"
+  },
+  {
+   "form": "bare",
+   "query": "441 PPC",
+   "expected": "fed.act.y1860_o147.ch_XVII.s_441",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVII.s_441"
+  },
+  {
+   "form": "full",
+   "query": "section 447 of the Pakistan Penal Code",
+   "expected": "fed.act.y1860_o147.ch_XVII.s_447",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVII.s_447"
+  },
+  {
+   "form": "alias",
+   "query": "s. 447 PPC",
+   "expected": "fed.act.y1860_o147.ch_XVII.s_447",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVII.s_447"
+  },
+  {
+   "form": "bare",
+   "query": "447 PPC",
+   "expected": "fed.act.y1860_o147.ch_XVII.s_447",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVII.s_447"
+  },
+  {
+   "form": "full",
+   "query": "section 376A of the Pakistan Penal Code",
+   "expected": "fed.act.y1860_o147.ch_XVIA.s_376A",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVIA.s_376A"
+  },
+  {
+   "form": "alias",
+   "query": "s. 376A PPC",
+   "expected": "fed.act.y1860_o147.ch_XVIA.s_376A",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVIA.s_376A"
+  },
+  {
+   "form": "bare",
+   "query": "376A PPC",
+   "expected": "fed.act.y1860_o147.ch_XVIA.s_376A",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVIA.s_376A"
+  },
+  {
+   "form": "full",
+   "query": "section 9 of the Sindh Control of Narcotic Substances Act, 2024",
+   "expected": "sindh.act.y2024_VIII_o4542.ch_II.s_9",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "sindh.act.y2024_VIII_o4542.ch_II.s_9"
+  },
+  {
+   "form": "full",
+   "query": "section 21 of the Sindh Control of Narcotic Substances Act, 2024",
+   "expected": "sindh.act.y2024_VIII_o4542.ch_III.s_21",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "sindh.act.y2024_VIII_o4542.ch_III.s_21"
+  },
+  {
+   "form": "full",
+   "query": "section 167 of the Code of Criminal Procedure, 1898",
+   "expected": "fed.act.y1898_o434.pt_V.ch_XIV.s_167",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_V.ch_XIV.s_167"
+  },
+  {
+   "form": "alias",
+   "query": "s. 167 CrPC",
+   "expected": "fed.act.y1898_o434.pt_V.ch_XIV.s_167",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_V.ch_XIV.s_167"
+  },
+  {
+   "form": "bare",
+   "query": "167 CrPC",
+   "expected": "fed.act.y1898_o434.pt_V.ch_XIV.s_167",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_V.ch_XIV.s_167"
+  },
+  {
+   "form": "full",
+   "query": "section 38 of the Qanun-e-Shahadat, 1984",
+   "expected": "fed.order.y1984_o675.ch_III.s_38",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.order.y1984_o675.ch_III.s_38"
+  },
+  {
+   "form": "alias",
+   "query": "s. 38 QSO",
+   "expected": "fed.order.y1984_o675.ch_III.s_38",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.order.y1984_o675.ch_III.s_38"
+  },
+  {
+   "form": "bare",
+   "query": "38 QSO",
+   "expected": "fed.order.y1984_o675.ch_III.s_38",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.order.y1984_o675.ch_III.s_38"
+  },
+  {
+   "form": "full",
+   "query": "section 40 of the Qanun-e-Shahadat, 1984",
+   "expected": "fed.order.y1984_o675.ch_III.s_40",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.order.y1984_o675.ch_III.s_40"
+  },
+  {
+   "form": "alias",
+   "query": "s. 40 QSO",
+   "expected": "fed.order.y1984_o675.ch_III.s_40",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.order.y1984_o675.ch_III.s_40"
+  },
+  {
+   "form": "bare",
+   "query": "40 QSO",
+   "expected": "fed.order.y1984_o675.ch_III.s_40",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.order.y1984_o675.ch_III.s_40"
+  },
+  {
+   "form": "full",
+   "query": "section 46 of the Qanun-e-Shahadat, 1984",
+   "expected": "fed.order.y1984_o675.ch_III.s_46",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.order.y1984_o675.ch_III.s_46"
+  },
+  {
+   "form": "alias",
+   "query": "s. 46 QSO",
+   "expected": "fed.order.y1984_o675.ch_III.s_46",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.order.y1984_o675.ch_III.s_46"
+  },
+  {
+   "form": "bare",
+   "query": "46 QSO",
+   "expected": "fed.order.y1984_o675.ch_III.s_46",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.order.y1984_o675.ch_III.s_46"
+  },
+  {
+   "form": "full",
+   "query": "section 491 of the Code of Criminal Procedure, 1898",
+   "expected": "fed.act.y1898_o434.pt_VIII.ch_XXXVII.s_491",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_VIII.ch_XXXVII.s_491"
+  },
+  {
+   "form": "alias",
+   "query": "s. 491 CrPC",
+   "expected": "fed.act.y1898_o434.pt_VIII.ch_XXXVII.s_491",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_VIII.ch_XXXVII.s_491"
+  },
+  {
+   "form": "bare",
+   "query": "491 CrPC",
+   "expected": "fed.act.y1898_o434.pt_VIII.ch_XXXVII.s_491",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_VIII.ch_XXXVII.s_491"
+  },
+  {
+   "form": "full",
+   "query": "section 145 of the Code of Criminal Procedure, 1898",
+   "expected": "fed.act.y1898_o434.pt_IV.ch_XII.s_145",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_IV.ch_XII.s_145"
+  },
+  {
+   "form": "alias",
+   "query": "s. 145 CrPC",
+   "expected": "fed.act.y1898_o434.pt_IV.ch_XII.s_145",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_IV.ch_XII.s_145"
+  },
+  {
+   "form": "bare",
+   "query": "145 CrPC",
+   "expected": "fed.act.y1898_o434.pt_IV.ch_XII.s_145",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_IV.ch_XII.s_145"
+  },
+  {
+   "form": "full",
+   "query": "section 410 of the Code of Criminal Procedure, 1898",
+   "expected": "fed.act.y1898_o434.pt_VII.ch_XXXI.s_410",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_VII.ch_XXXI.s_410"
+  },
+  {
+   "form": "alias",
+   "query": "s. 410 CrPC",
+   "expected": "fed.act.y1898_o434.pt_VII.ch_XXXI.s_410",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_VII.ch_XXXI.s_410"
+  },
+  {
+   "form": "bare",
+   "query": "410 CrPC",
+   "expected": "fed.act.y1898_o434.pt_VII.ch_XXXI.s_410",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_VII.ch_XXXI.s_410"
+  },
+  {
+   "form": "full",
+   "query": "section 382-B of the Code of Criminal Procedure, 1898",
+   "expected": "fed.act.y1898_o434.pt_VI.ch_XXVIII.s_382_B",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_VI.ch_XXVIII.s_382_B"
+  },
+  {
+   "form": "alias",
+   "query": "s. 382-B CrPC",
+   "expected": "fed.act.y1898_o434.pt_VI.ch_XXVIII.s_382_B",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_VI.ch_XXVIII.s_382_B"
+  },
+  {
+   "form": "bare",
+   "query": "382-B CrPC",
+   "expected": "fed.act.y1898_o434.pt_VI.ch_XXVIII.s_382_B",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_VI.ch_XXVIII.s_382_B"
+  },
+  {
+   "form": "full",
+   "query": "section 164 of the Code of Criminal Procedure, 1898",
+   "expected": "fed.act.y1898_o434.pt_V.ch_XIV.s_164",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_V.ch_XIV.s_164"
+  },
+  {
+   "form": "alias",
+   "query": "s. 164 CrPC",
+   "expected": "fed.act.y1898_o434.pt_V.ch_XIV.s_164",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_V.ch_XIV.s_164"
+  },
+  {
+   "form": "bare",
+   "query": "164 CrPC",
+   "expected": "fed.act.y1898_o434.pt_V.ch_XIV.s_164",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_V.ch_XIV.s_164"
+  },
+  {
+   "form": "full",
+   "query": "section 498 of the Code of Criminal Procedure, 1898",
+   "expected": "fed.act.y1898_o434.pt_IX.ch_XXXIX.s_498",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_IX.ch_XXXIX.s_498"
+  },
+  {
+   "form": "alias",
+   "query": "s. 498 CrPC",
+   "expected": "fed.act.y1898_o434.pt_IX.ch_XXXIX.s_498",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_IX.ch_XXXIX.s_498"
+  },
+  {
+   "form": "bare",
+   "query": "498 CrPC",
+   "expected": "fed.act.y1898_o434.pt_IX.ch_XXXIX.s_498",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_IX.ch_XXXIX.s_498"
+  },
+  {
+   "form": "full",
+   "query": "section 173 of the Code of Criminal Procedure, 1898",
+   "expected": "fed.act.y1898_o434.pt_V.ch_XIV.s_173",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_V.ch_XIV.s_173"
+  },
+  {
+   "form": "alias",
+   "query": "s. 173 CrPC",
+   "expected": "fed.act.y1898_o434.pt_V.ch_XIV.s_173",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_V.ch_XIV.s_173"
+  },
+  {
+   "form": "bare",
+   "query": "173 CrPC",
+   "expected": "fed.act.y1898_o434.pt_V.ch_XIV.s_173",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_V.ch_XIV.s_173"
+  },
+  {
+   "form": "full",
+   "query": "section 200 of the Code of Criminal Procedure, 1898",
+   "expected": "fed.act.y1898_o434.pt_VI.ch_XVI.s_200",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_VI.ch_XVI.s_200"
+  },
+  {
+   "form": "alias",
+   "query": "s. 200 CrPC",
+   "expected": "fed.act.y1898_o434.pt_VI.ch_XVI.s_200",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_VI.ch_XVI.s_200"
+  },
+  {
+   "form": "bare",
+   "query": "200 CrPC",
+   "expected": "fed.act.y1898_o434.pt_VI.ch_XVI.s_200",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_VI.ch_XVI.s_200"
+  },
+  {
+   "form": "full",
+   "query": "section 249A of the Code of Criminal Procedure, 1898",
+   "expected": "fed.act.y1898_o434.pt_VI.ch_XX.s_249A",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_VI.ch_XX.s_249A"
+  },
+  {
+   "form": "alias",
+   "query": "s. 249A CrPC",
+   "expected": "fed.act.y1898_o434.pt_VI.ch_XX.s_249A",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_VI.ch_XX.s_249A"
+  },
+  {
+   "form": "bare",
+   "query": "249A CrPC",
+   "expected": "fed.act.y1898_o434.pt_VI.ch_XX.s_249A",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_VI.ch_XX.s_249A"
+  },
+  {
+   "form": "full",
+   "query": "section 265K of the Code of Criminal Procedure, 1898",
+   "expected": "fed.act.y1898_o434.pt_VI.ch_XXII.s_265K",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_VI.ch_XXII.s_265K"
+  },
+  {
+   "form": "alias",
+   "query": "s. 265K CrPC",
+   "expected": "fed.act.y1898_o434.pt_VI.ch_XXII.s_265K",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_VI.ch_XXII.s_265K"
+  },
+  {
+   "form": "bare",
+   "query": "265K CrPC",
+   "expected": "fed.act.y1898_o434.pt_VI.ch_XXII.s_265K",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_VI.ch_XXII.s_265K"
+  },
+  {
+   "form": "full",
+   "query": "section 426 of the Code of Criminal Procedure, 1898",
+   "expected": "fed.act.y1898_o434.pt_VII.ch_XXXI.s_426",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_VII.ch_XXXI.s_426"
+  },
+  {
+   "form": "alias",
+   "query": "s. 426 CrPC",
+   "expected": "fed.act.y1898_o434.pt_VII.ch_XXXI.s_426",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_VII.ch_XXXI.s_426"
+  },
+  {
+   "form": "bare",
+   "query": "426 CrPC",
+   "expected": "fed.act.y1898_o434.pt_VII.ch_XXXI.s_426",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_VII.ch_XXXI.s_426"
+  },
+  {
+   "form": "full",
+   "query": "section 5 of the Probation of Offenders Ordinance, 1960",
+   "expected": "fed.ordinance.y1960_XLV_o274.s_5",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.ordinance.y1960_XLV_o274.s_5"
+  },
+  {
+   "form": "full",
+   "query": "section 107 of the Code of Criminal Procedure, 1898",
+   "expected": "fed.act.y1898_o434.pt_IV.ch_VIII3.s_107",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_IV.ch_VIII3.s_107"
+  },
+  {
+   "form": "alias",
+   "query": "s. 107 CrPC",
+   "expected": "fed.act.y1898_o434.pt_IV.ch_VIII3.s_107",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_IV.ch_VIII3.s_107"
+  },
+  {
+   "form": "bare",
+   "query": "107 CrPC",
+   "expected": "fed.act.y1898_o434.pt_IV.ch_VIII3.s_107",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_IV.ch_VIII3.s_107"
+  },
+  {
+   "form": "full",
+   "query": "section 376 of the Pakistan Penal Code",
+   "expected": "fed.act.y1860_o147.ch_XVIA.s_376",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVIA.s_376"
+  },
+  {
+   "form": "alias",
+   "query": "s. 376 PPC",
+   "expected": "fed.act.y1860_o147.ch_XVIA.s_376",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVIA.s_376"
+  },
+  {
+   "form": "bare",
+   "query": "376 PPC",
+   "expected": "fed.act.y1860_o147.ch_XVIA.s_376",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVIA.s_376"
+  },
+  {
+   "form": "full",
+   "query": "section 37 of the Qanun-e-Shahadat, 1984",
+   "expected": "fed.order.y1984_o675.ch_III.s_37",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.order.y1984_o675.ch_III.s_37"
+  },
+  {
+   "form": "alias",
+   "query": "s. 37 QSO",
+   "expected": "fed.order.y1984_o675.ch_III.s_37",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.order.y1984_o675.ch_III.s_37"
+  },
+  {
+   "form": "bare",
+   "query": "37 QSO",
+   "expected": "fed.order.y1984_o675.ch_III.s_37",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.order.y1984_o675.ch_III.s_37"
+  },
+  {
+   "form": "full",
+   "query": "section 9 of the Control of Narcotic Substances Act, 1997",
+   "expected": "fed.act.y1997_o1025.ch_II.s_9",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1997_o1025.ch_II.s_9"
+  },
+  {
+   "form": "alias",
+   "query": "s. 9 CNSA",
+   "expected": "fed.act.y1997_o1025.ch_II.s_9",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1997_o1025.ch_II.s_9"
+  },
+  {
+   "form": "bare",
+   "query": "9 CNSA",
+   "expected": "fed.act.y1997_o1025.ch_II.s_9",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1997_o1025.ch_II.s_9"
+  },
+  {
+   "form": "full",
+   "query": "section 155 of the Code of Criminal Procedure, 1898",
+   "expected": "fed.act.y1898_o434.pt_V.ch_XIV.s_155",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_V.ch_XIV.s_155"
+  },
+  {
+   "form": "alias",
+   "query": "s. 155 CrPC",
+   "expected": "fed.act.y1898_o434.pt_V.ch_XIV.s_155",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_V.ch_XIV.s_155"
+  },
+  {
+   "form": "bare",
+   "query": "155 CrPC",
+   "expected": "fed.act.y1898_o434.pt_V.ch_XIV.s_155",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_V.ch_XIV.s_155"
+  },
+  {
+   "form": "full",
+   "query": "section 103 of the Code of Criminal Procedure, 1898",
+   "expected": "fed.act.y1898_o434.pt_III.ch_VII.s_103",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_III.ch_VII.s_103"
+  },
+  {
+   "form": "alias",
+   "query": "s. 103 CrPC",
+   "expected": "fed.act.y1898_o434.pt_III.ch_VII.s_103",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_III.ch_VII.s_103"
+  },
+  {
+   "form": "bare",
+   "query": "103 CrPC",
+   "expected": "fed.act.y1898_o434.pt_III.ch_VII.s_103",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_III.ch_VII.s_103"
+  },
+  {
+   "form": "full",
+   "query": "section 202 of the Code of Criminal Procedure, 1898",
+   "expected": "fed.act.y1898_o434.pt_VI.ch_XVI.s_202",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_VI.ch_XVI.s_202"
+  },
+  {
+   "form": "alias",
+   "query": "s. 202 CrPC",
+   "expected": "fed.act.y1898_o434.pt_VI.ch_XVI.s_202",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_VI.ch_XVI.s_202"
+  },
+  {
+   "form": "bare",
+   "query": "202 CrPC",
+   "expected": "fed.act.y1898_o434.pt_VI.ch_XVI.s_202",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_VI.ch_XVI.s_202"
+  },
+  {
+   "form": "full",
+   "query": "section 204 of the Code of Criminal Procedure, 1898",
+   "expected": "fed.act.y1898_o434.pt_VI.ch_XVII.s_204",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_VI.ch_XVII.s_204"
+  },
+  {
+   "form": "alias",
+   "query": "s. 204 CrPC",
+   "expected": "fed.act.y1898_o434.pt_VI.ch_XVII.s_204",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_VI.ch_XVII.s_204"
+  },
+  {
+   "form": "bare",
+   "query": "204 CrPC",
+   "expected": "fed.act.y1898_o434.pt_VI.ch_XVII.s_204",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_VI.ch_XVII.s_204"
+  },
+  {
+   "form": "full",
+   "query": "section 417 of the Code of Criminal Procedure, 1898",
+   "expected": "fed.act.y1898_o434.pt_VII.ch_XXXI.s_417",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_VII.ch_XXXI.s_417"
+  },
+  {
+   "form": "alias",
+   "query": "s. 417 CrPC",
+   "expected": "fed.act.y1898_o434.pt_VII.ch_XXXI.s_417",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_VII.ch_XXXI.s_417"
+  },
+  {
+   "form": "bare",
+   "query": "417 CrPC",
+   "expected": "fed.act.y1898_o434.pt_VII.ch_XXXI.s_417",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_VII.ch_XXXI.s_417"
+  },
+  {
+   "form": "full",
+   "query": "section 439 of the Code of Criminal Procedure, 1898",
+   "expected": "fed.act.y1898_o434.pt_VII.ch_XXXII.s_439",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_VII.ch_XXXII.s_439"
+  },
+  {
+   "form": "alias",
+   "query": "s. 439 CrPC",
+   "expected": "fed.act.y1898_o434.pt_VII.ch_XXXII.s_439",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_VII.ch_XXXII.s_439"
+  },
+  {
+   "form": "bare",
+   "query": "439 CrPC",
+   "expected": "fed.act.y1898_o434.pt_VII.ch_XXXII.s_439",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_VII.ch_XXXII.s_439"
+  },
+  {
+   "form": "full",
+   "query": "section 540 of the Code of Criminal Procedure, 1898",
+   "expected": "fed.act.y1898_o434.pt_IX.ch_XLVI.s_540",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_IX.ch_XLVI.s_540"
+  },
+  {
+   "form": "alias",
+   "query": "s. 540 CrPC",
+   "expected": "fed.act.y1898_o434.pt_IX.ch_XLVI.s_540",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_IX.ch_XLVI.s_540"
+  },
+  {
+   "form": "bare",
+   "query": "540 CrPC",
+   "expected": "fed.act.y1898_o434.pt_IX.ch_XLVI.s_540",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_IX.ch_XLVI.s_540"
+  },
+  {
+   "form": "full",
+   "query": "section 342 of the Code of Criminal Procedure, 1898",
+   "expected": "fed.act.y1898_o434.pt_VI.ch_XXIV.s_342",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_VI.ch_XXIV.s_342"
+  },
+  {
+   "form": "alias",
+   "query": "s. 342 CrPC",
+   "expected": "fed.act.y1898_o434.pt_VI.ch_XXIV.s_342",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_VI.ch_XXIV.s_342"
+  },
+  {
+   "form": "bare",
+   "query": "342 CrPC",
+   "expected": "fed.act.y1898_o434.pt_VI.ch_XXIV.s_342",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1898_o434.pt_VI.ch_XXIV.s_342"
+  },
+  {
+   "form": "full",
+   "query": "section 5 of the Dissolution of Muslim Marriages Act, 1939",
+   "expected": "fed.act.y1939_VIII_o219.s_5",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1939_VIII_o219.s_5"
+  },
+  {
+   "form": "full",
+   "query": "section 10 of the Muslim Family Laws Ordinance, 1961",
+   "expected": "fed.ordinance.y1961_VIII_o324.s_10",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.ordinance.y1961_VIII_o324.s_10"
+  },
+  {
+   "form": "alias",
+   "query": "s. 10 MFLO",
+   "expected": "fed.ordinance.y1961_VIII_o324.s_10",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.ordinance.y1961_VIII_o324.s_10"
+  },
+  {
+   "form": "bare",
+   "query": "10 MFLO",
+   "expected": "fed.ordinance.y1961_VIII_o324.s_10",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.ordinance.y1961_VIII_o324.s_10"
+  },
+  {
+   "form": "full",
+   "query": "section 5 of the The Family Courts Act, 1964",
+   "expected": "fed.act.y1964_o392.s_5",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1964_o392.s_5"
+  },
+  {
+   "form": "full",
+   "query": "section 25 of the Guardians and Wards Act, 1890",
+   "expected": "fed.act.y1890_o137.ch_III.s_25",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1890_o137.ch_III.s_25"
+  },
+  {
+   "form": "full",
+   "query": "section 19 of the Guardians and Wards Act, 1890",
+   "expected": "fed.act.y1890_o137.ch_II.s_19",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1890_o137.ch_II.s_19"
+  },
+  {
+   "form": "full",
+   "query": "section 3 of the Majority Act, 1875",
+   "expected": "fed.act.y1875_o86.s_3",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1875_o86.s_3"
+  },
+  {
+   "form": "full",
+   "query": "section 498A of the Pakistan Penal Code",
+   "expected": "fed.act.y1860_o147.ch_XXA.s_498A",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XXA.s_498A"
+  },
+  {
+   "form": "alias",
+   "query": "s. 498A PPC",
+   "expected": "fed.act.y1860_o147.ch_XXA.s_498A",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XXA.s_498A"
+  },
+  {
+   "form": "bare",
+   "query": "498A PPC",
+   "expected": "fed.act.y1860_o147.ch_XXA.s_498A",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XXA.s_498A"
+  },
+  {
+   "form": "full",
+   "query": "section 498B of the Pakistan Penal Code",
+   "expected": "fed.act.y1860_o147.ch_XXA.s_498B",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XXA.s_498B"
+  },
+  {
+   "form": "alias",
+   "query": "s. 498B PPC",
+   "expected": "fed.act.y1860_o147.ch_XXA.s_498B",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XXA.s_498B"
+  },
+  {
+   "form": "bare",
+   "query": "498B PPC",
+   "expected": "fed.act.y1860_o147.ch_XXA.s_498B",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XXA.s_498B"
+  },
+  {
+   "form": "full",
+   "query": "section 498C of the Pakistan Penal Code",
+   "expected": "fed.act.y1860_o147.ch_XXA.s_498C",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XXA.s_498C"
+  },
+  {
+   "form": "alias",
+   "query": "s. 498C PPC",
+   "expected": "fed.act.y1860_o147.ch_XXA.s_498C",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XXA.s_498C"
+  },
+  {
+   "form": "bare",
+   "query": "498C PPC",
+   "expected": "fed.act.y1860_o147.ch_XXA.s_498C",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XXA.s_498C"
+  },
+  {
+   "form": "full",
+   "query": "section 310A of the Pakistan Penal Code",
+   "expected": "fed.act.y1860_o147.ch_XVI.s_310A",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVI.s_310A"
+  },
+  {
+   "form": "alias",
+   "query": "s. 310A PPC",
+   "expected": "fed.act.y1860_o147.ch_XVI.s_310A",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVI.s_310A"
+  },
+  {
+   "form": "bare",
+   "query": "310A PPC",
+   "expected": "fed.act.y1860_o147.ch_XVI.s_310A",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1860_o147.ch_XVI.s_310A"
+  },
+  {
+   "form": "full",
+   "query": "section 128 of the Qanun-e-Shahadat, 1984",
+   "expected": "fed.order.y1984_o675.pt_III.ch_IX.s_128",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.order.y1984_o675.pt_III.ch_IX.s_128"
+  },
+  {
+   "form": "alias",
+   "query": "s. 128 QSO",
+   "expected": "fed.order.y1984_o675.pt_III.ch_IX.s_128",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.order.y1984_o675.pt_III.ch_IX.s_128"
+  },
+  {
+   "form": "bare",
+   "query": "128 QSO",
+   "expected": "fed.order.y1984_o675.pt_III.ch_IX.s_128",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.order.y1984_o675.pt_III.ch_IX.s_128"
+  },
+  {
+   "form": "full",
+   "query": "section 5 of the Punjab Sikh Anand Karaj Marriage Act, 2018",
+   "expected": "punjab.act.y2018_VI_o11392.s_5",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "punjab.act.y2018_VI_o11392.s_5"
+  },
+  {
+   "form": "full",
+   "query": "section 14 of the The Family Courts Act, 1964",
+   "expected": "fed.act.y1964_o392.s_14",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1964_o392.s_14"
+  },
+  {
+   "form": "full",
+   "query": "section 5 of the Christian Marriage Act, 1872",
+   "expected": "fed.act.y1872_o123.pt_I.s_5",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1872_o123.pt_I.s_5"
+  },
+  {
+   "form": "full",
+   "query": "section 9 of the National Database and Registration Authority Ordinance, 2000",
+   "expected": "fed.ordinance.y2000_o750.ch_V.s_9",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.ordinance.y2000_o750.ch_V.s_9"
+  },
+  {
+   "form": "full",
+   "query": "section 18 of the National Database and Registration Authority Ordinance, 2000",
+   "expected": "fed.ordinance.y2000_o750.ch_VI.s_18",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.ordinance.y2000_o750.ch_VI.s_18"
+  },
+  {
+   "form": "full",
+   "query": "section 7 of the Guardians and Wards Act, 1890",
+   "expected": "fed.act.y1890_o137.ch_II.s_7",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1890_o137.ch_II.s_7"
+  },
+  {
+   "form": "full",
+   "query": "section 10 of the National Database and Registration Authority Ordinance, 2000",
+   "expected": "fed.ordinance.y2000_o750.ch_VI.s_10",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.ordinance.y2000_o750.ch_VI.s_10"
+  },
+  {
+   "form": "full",
+   "query": "section 26 of the Guardians and Wards Act, 1890",
+   "expected": "fed.act.y1890_o137.ch_III.s_26",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1890_o137.ch_III.s_26"
+  },
+  {
+   "form": "full",
+   "query": "section 41 of the Guardians and Wards Act, 1890",
+   "expected": "fed.act.y1890_o137.ch_III.s_41",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1890_o137.ch_III.s_41"
+  },
+  {
+   "form": "full",
+   "query": "section 17 of the The Family Courts Act, 1964",
+   "expected": "fed.act.y1964_o392.s_17",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1964_o392.s_17"
+  },
+  {
+   "form": "full",
+   "query": "section 21 of the The Family Courts Act, 1964",
+   "expected": "fed.act.y1964_o392.s_21",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1964_o392.s_21"
+  },
+  {
+   "form": "full",
+   "query": "section 3 of the Punjab Sikh Anand Karaj Marriage Act, 2018",
+   "expected": "punjab.act.y2018_VI_o11392.s_3",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "punjab.act.y2018_VI_o11392.s_3"
+  },
+  {
+   "form": "full",
+   "query": "section 7 of the The Family Courts Act, 1964",
+   "expected": "fed.act.y1964_o392.s_7",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1964_o392.s_7"
+  },
+  {
+   "form": "full",
+   "query": "section 8 of the The Family Courts Act, 1964",
+   "expected": "fed.act.y1964_o392.s_8",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1964_o392.s_8"
+  },
+  {
+   "form": "full",
+   "query": "section 9 of the The Family Courts Act, 1964",
+   "expected": "fed.act.y1964_o392.s_9",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1964_o392.s_9"
+  },
+  {
+   "form": "full",
+   "query": "section 12 of the Guardians and Wards Act, 1890",
+   "expected": "fed.act.y1890_o137.ch_II.s_12",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1890_o137.ch_II.s_12"
+  },
+  {
+   "form": "full",
+   "query": "section 6 of the Punjab Sikh Anand Karaj Marriage Act, 2018",
+   "expected": "punjab.act.y2018_VI_o11392.s_6",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "punjab.act.y2018_VI_o11392.s_6"
+  },
+  {
+   "form": "full",
+   "query": "section 13 of the The Family Courts Act, 1964",
+   "expected": "fed.act.y1964_o392.s_13",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1964_o392.s_13"
+  },
+  {
+   "form": "full",
+   "query": "section 8 of the Muslim Family Laws Ordinance, 1961",
+   "expected": "fed.ordinance.y1961_VIII_o324.s_8",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.ordinance.y1961_VIII_o324.s_8"
+  },
+  {
+   "form": "alias",
+   "query": "s. 8 MFLO",
+   "expected": "fed.ordinance.y1961_VIII_o324.s_8",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.ordinance.y1961_VIII_o324.s_8"
+  },
+  {
+   "form": "bare",
+   "query": "8 MFLO",
+   "expected": "fed.ordinance.y1961_VIII_o324.s_8",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.ordinance.y1961_VIII_o324.s_8"
+  },
+  {
+   "form": "full",
+   "query": "section 12 of the The Family Courts Act, 1964",
+   "expected": "fed.act.y1964_o392.s_12",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1964_o392.s_12"
+  },
+  {
+   "form": "full",
+   "query": "section 9A of the Constitution of the Islamic Republic of Pakistan",
+   "expected": "fed.constitution.y1973_o507.pt_II.ch_1.s_9A",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.constitution.y1973_o507.pt_II.ch_1.s_9A"
+  },
+  {
+   "form": "alias",
+   "query": "Article 9A of the Constitution",
+   "expected": "fed.constitution.y1973_o507.pt_II.ch_1.s_9A",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.constitution.y1973_o507.pt_II.ch_1.s_9A"
+  },
+  {
+   "form": "full",
+   "query": "section 11 of the Constitution of the Islamic Republic of Pakistan",
+   "expected": "fed.constitution.y1973_o507.pt_II.ch_1.s_11",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.constitution.y1973_o507.pt_II.ch_1.s_11"
+  },
+  {
+   "form": "alias",
+   "query": "Article 11 of the Constitution",
+   "expected": "fed.constitution.y1973_o507.pt_II.ch_1.s_11",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.constitution.y1973_o507.pt_II.ch_1.s_11"
+  },
+  {
+   "form": "full",
+   "query": "section 14 of the Constitution of the Islamic Republic of Pakistan",
+   "expected": "fed.constitution.y1973_o507.pt_II.ch_1.s_14",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.constitution.y1973_o507.pt_II.ch_1.s_14"
+  },
+  {
+   "form": "alias",
+   "query": "Article 14 of the Constitution",
+   "expected": "fed.constitution.y1973_o507.pt_II.ch_1.s_14",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.constitution.y1973_o507.pt_II.ch_1.s_14"
+  },
+  {
+   "form": "full",
+   "query": "section 15 of the Constitution of the Islamic Republic of Pakistan",
+   "expected": "fed.constitution.y1973_o507.pt_II.ch_1.s_15",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.constitution.y1973_o507.pt_II.ch_1.s_15"
+  },
+  {
+   "form": "alias",
+   "query": "Article 15 of the Constitution",
+   "expected": "fed.constitution.y1973_o507.pt_II.ch_1.s_15",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.constitution.y1973_o507.pt_II.ch_1.s_15"
+  },
+  {
+   "form": "full",
+   "query": "section 16 of the Constitution of the Islamic Republic of Pakistan",
+   "expected": "fed.constitution.y1973_o507.pt_II.ch_1.s_16",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.constitution.y1973_o507.pt_II.ch_1.s_16"
+  },
+  {
+   "form": "alias",
+   "query": "Article 16 of the Constitution",
+   "expected": "fed.constitution.y1973_o507.pt_II.ch_1.s_16",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.constitution.y1973_o507.pt_II.ch_1.s_16"
+  },
+  {
+   "form": "full",
+   "query": "section 17 of the Constitution of the Islamic Republic of Pakistan",
+   "expected": "fed.constitution.y1973_o507.pt_II.ch_1.s_17",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.constitution.y1973_o507.pt_II.ch_1.s_17"
+  },
+  {
+   "form": "alias",
+   "query": "Article 17 of the Constitution",
+   "expected": "fed.constitution.y1973_o507.pt_II.ch_1.s_17",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.constitution.y1973_o507.pt_II.ch_1.s_17"
+  },
+  {
+   "form": "full",
+   "query": "section 18 of the Constitution of the Islamic Republic of Pakistan",
+   "expected": "fed.constitution.y1973_o507.pt_II.ch_1.s_18",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.constitution.y1973_o507.pt_II.ch_1.s_18"
+  },
+  {
+   "form": "alias",
+   "query": "Article 18 of the Constitution",
+   "expected": "fed.constitution.y1973_o507.pt_II.ch_1.s_18",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.constitution.y1973_o507.pt_II.ch_1.s_18"
+  },
+  {
+   "form": "full",
+   "query": "section 20 of the Constitution of the Islamic Republic of Pakistan",
+   "expected": "fed.constitution.y1973_o507.pt_II.ch_1.s_20",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.constitution.y1973_o507.pt_II.ch_1.s_20"
+  },
+  {
+   "form": "alias",
+   "query": "Article 20 of the Constitution",
+   "expected": "fed.constitution.y1973_o507.pt_II.ch_1.s_20",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.constitution.y1973_o507.pt_II.ch_1.s_20"
+  },
+  {
+   "form": "full",
+   "query": "section 22 of the Constitution of the Islamic Republic of Pakistan",
+   "expected": "fed.constitution.y1973_o507.pt_II.ch_1.s_22",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.constitution.y1973_o507.pt_II.ch_1.s_22"
+  },
+  {
+   "form": "alias",
+   "query": "Article 22 of the Constitution",
+   "expected": "fed.constitution.y1973_o507.pt_II.ch_1.s_22",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.constitution.y1973_o507.pt_II.ch_1.s_22"
+  },
+  {
+   "form": "full",
+   "query": "section 24 of the Constitution of the Islamic Republic of Pakistan",
+   "expected": "fed.constitution.y1973_o507.pt_II.ch_1.s_24",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.constitution.y1973_o507.pt_II.ch_1.s_24"
+  },
+  {
+   "form": "alias",
+   "query": "Article 24 of the Constitution",
+   "expected": "fed.constitution.y1973_o507.pt_II.ch_1.s_24",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.constitution.y1973_o507.pt_II.ch_1.s_24"
+  },
+  {
+   "form": "full",
+   "query": "section 26 of the Constitution of the Islamic Republic of Pakistan",
+   "expected": "fed.constitution.y1973_o507.pt_II.ch_1.s_26",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.constitution.y1973_o507.pt_II.ch_1.s_26"
+  },
+  {
+   "form": "alias",
+   "query": "Article 26 of the Constitution",
+   "expected": "fed.constitution.y1973_o507.pt_II.ch_1.s_26",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.constitution.y1973_o507.pt_II.ch_1.s_26"
+  },
+  {
+   "form": "full",
+   "query": "section 27 of the Constitution of the Islamic Republic of Pakistan",
+   "expected": "fed.constitution.y1973_o507.pt_II.ch_1.s_27",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.constitution.y1973_o507.pt_II.ch_1.s_27"
+  },
+  {
+   "form": "alias",
+   "query": "Article 27 of the Constitution",
+   "expected": "fed.constitution.y1973_o507.pt_II.ch_1.s_27",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.constitution.y1973_o507.pt_II.ch_1.s_27"
+  },
+  {
+   "form": "full",
+   "query": "section 3 of the Exit from Pakistan (Control) Ordinance, 1981",
+   "expected": "fed.ordinance.y1981_XLVI_o567.s_3",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.ordinance.y1981_XLVI_o567.s_3"
+  },
+  {
+   "form": "full",
+   "query": "section 18 of the Emigration Ordinance, 1979",
+   "expected": "fed.ordinance.y1979_o636.ch_VII.s_18",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.ordinance.y1979_o636.ch_VII.s_18"
+  },
+  {
+   "form": "full",
+   "query": "section 14 of the Foreigners Act, 1946",
+   "expected": "fed.act.y1946_o792.s_14",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1946_o792.s_14"
+  },
+  {
+   "form": "full",
+   "query": "section 4 of the Punjab Service Tribunals Act, 1974",
+   "expected": "punjab.act.y1974_IX_o2630.s_4",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "punjab.act.y1974_IX_o2630.s_4"
+  },
+  {
+   "form": "full",
+   "query": "section 13 of the Civil Servants Act, 1973",
+   "expected": "fed.act.y1973_o438.ch_II.s_13",
+   "outcome": "CORRECT_ALT",
+   "why": [
+    "Civil Servants Act, 1973"
+   ],
+   "got": "fed.act.y1973_o438.ch_II.s_13"
+  },
+  {
+   "form": "full",
+   "query": "section 37 of the Elections Act, 2017",
+   "expected": "fed.act.y2017_o875.ch_IV.s_37",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y2017_o875.ch_IV.s_37"
+  },
+  {
+   "form": "full",
+   "query": "section 139 of the Elections Act, 2017",
+   "expected": "fed.act.y2017_o875.ch_IX.s_139",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y2017_o875.ch_IX.s_139"
+  },
+  {
+   "form": "full",
+   "query": "section 9 of the Constitution of the Islamic Republic of Pakistan",
+   "expected": "fed.constitution.y1973_o507.pt_II.ch_1.s_9",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.constitution.y1973_o507.pt_II.ch_1.s_9"
+  },
+  {
+   "form": "alias",
+   "query": "Article 9 of the Constitution",
+   "expected": "fed.constitution.y1973_o507.pt_II.ch_1.s_9",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.constitution.y1973_o507.pt_II.ch_1.s_9"
+  },
+  {
+   "form": "full",
+   "query": "section 19 of the Constitution of the Islamic Republic of Pakistan",
+   "expected": "fed.constitution.y1973_o507.pt_II.ch_1.s_19",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.constitution.y1973_o507.pt_II.ch_1.s_19"
+  },
+  {
+   "form": "alias",
+   "query": "Article 19 of the Constitution",
+   "expected": "fed.constitution.y1973_o507.pt_II.ch_1.s_19",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.constitution.y1973_o507.pt_II.ch_1.s_19"
+  },
+  {
+   "form": "full",
+   "query": "section 23 of the Constitution of the Islamic Republic of Pakistan",
+   "expected": "fed.constitution.y1973_o507.pt_II.ch_1.s_23",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.constitution.y1973_o507.pt_II.ch_1.s_23"
+  },
+  {
+   "form": "alias",
+   "query": "Article 23 of the Constitution",
+   "expected": "fed.constitution.y1973_o507.pt_II.ch_1.s_23",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.constitution.y1973_o507.pt_II.ch_1.s_23"
+  },
+  {
+   "form": "full",
+   "query": "section 60 of the Elections Act, 2017",
+   "expected": "fed.act.y2017_o875.ch_V.s_60",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y2017_o875.ch_V.s_60"
+  },
+  {
+   "form": "full",
+   "query": "section 45 of the Elections Act, 2017",
+   "expected": "fed.act.y2017_o875.ch_IV.s_45",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y2017_o875.ch_IV.s_45"
+  },
+  {
+   "form": "full",
+   "query": "section 132 of the Elections Act, 2017",
+   "expected": "fed.act.y2017_o875.ch_VIII.s_132",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y2017_o875.ch_VIII.s_132"
+  },
+  {
+   "form": "full",
+   "query": "section 140 of the Elections Act, 2017",
+   "expected": "fed.act.y2017_o875.ch_IX.s_140",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y2017_o875.ch_IX.s_140"
+  },
+  {
+   "form": "full",
+   "query": "section 2 of the Exit from Pakistan (Control) Ordinance, 1981",
+   "expected": "fed.ordinance.y1981_XLVI_o567.s_2",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.ordinance.y1981_XLVI_o567.s_2"
+  },
+  {
+   "form": "full",
+   "query": "section 25 of the National Accountability Ordinance, 1999",
+   "expected": "fed.ordinance.y1999_XVIII_o698.s_25",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.ordinance.y1999_XVIII_o698.s_25"
+  },
+  {
+   "form": "alias",
+   "query": "s. 25 NAO",
+   "expected": "fed.ordinance.y1999_XVIII_o698.s_25",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.ordinance.y1999_XVIII_o698.s_25"
+  },
+  {
+   "form": "bare",
+   "query": "25 NAO",
+   "expected": "fed.ordinance.y1999_XVIII_o698.s_25",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.ordinance.y1999_XVIII_o698.s_25"
+  },
+  {
+   "form": "full",
+   "query": "section 4 of the Service Tribunals Act, 1973",
+   "expected": "fed.act.y1973_LXXI_o437.s_4",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1973_LXXI_o437.s_4"
+  },
+  {
+   "form": "full",
+   "query": "section 17 of the Emigration Ordinance, 1979",
+   "expected": "fed.ordinance.y1979_o636.ch_VII.s_17",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.ordinance.y1979_o636.ch_VII.s_17"
+  },
+  {
+   "form": "full",
+   "query": "section 25 of the Elections Act, 2017",
+   "expected": "fed.act.y2017_o875.ch_IV.s_25",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y2017_o875.ch_IV.s_25"
+  },
+  {
+   "form": "full",
+   "query": "section 12 of the Emigration Ordinance, 1979",
+   "expected": "fed.ordinance.y1979_o636.ch_V.s_12",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.ordinance.y1979_o636.ch_V.s_12"
+  },
+  {
+   "form": "full",
+   "query": "section 15 of the Emigration Ordinance, 1979",
+   "expected": "fed.ordinance.y1979_o636.ch_V.s_15",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.ordinance.y1979_o636.ch_V.s_15"
+  },
+  {
+   "form": "full",
+   "query": "section 86 of the Elections Act, 2017",
+   "expected": "fed.act.y2017_o875.ch_V.s_86",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y2017_o875.ch_V.s_86"
+  },
+  {
+   "form": "full",
+   "query": "section 34 of the Elections Act, 2017",
+   "expected": "fed.act.y2017_o875.ch_IV.s_34",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y2017_o875.ch_IV.s_34"
+  },
+  {
+   "form": "full",
+   "query": "section 22 of the Civil Servants Act, 1973",
+   "expected": "fed.act.y1973_o438.ch_II.s_22",
+   "outcome": "CORRECT_ALT",
+   "why": [
+    "Civil Servants Act, 1973"
+   ],
+   "got": "fed.act.y1973_o438.ch_II.s_22"
+  },
+  {
+   "form": "full",
+   "query": "section 5 of the Service Tribunals Act, 1973",
+   "expected": "fed.act.y1973_LXXI_o437.s_5",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1973_LXXI_o437.s_5"
+  },
+  {
+   "form": "full",
+   "query": "section 93 of the Elections Act, 2017",
+   "expected": "fed.act.y2017_o875.ch_V.s_93",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y2017_o875.ch_V.s_93"
+  },
+  {
+   "form": "full",
+   "query": "section 3 of the Punjab Prohibition of Interest on Private Loans Act, 2022",
+   "expected": "punjab.act.y2022_XV_o2939.s_3",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "punjab.act.y2022_XV_o2939.s_3"
+  },
+  {
+   "form": "full",
+   "query": "section 3 of the Prohibition of Interest on Private Loans Act, 2016",
+   "expected": "kp.act.y2016_XVII_o1740.s_3",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "kp.act.y2016_XVII_o1740.s_3"
+  },
+  {
+   "form": "full",
+   "query": "section 7 of the Prohibition of Interest on Private Loans Act, 2023",
+   "expected": "sindh.act.y2023_XXIII_o4424.s_7",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "sindh.act.y2023_XXIII_o4424.s_7"
+  },
+  {
+   "form": "full",
+   "query": "section 3 of the Prohibition of Private Money Lending Act, 2014",
+   "expected": "balochistan.act.y2014_XXV_o1357.s_3",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "balochistan.act.y2014_XXV_o1357.s_3"
+  },
+  {
+   "form": "full",
+   "query": "section 4 of the Prohibition of Private Money Lending Act, 2014",
+   "expected": "balochistan.act.y2014_XXV_o1357.s_4",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "balochistan.act.y2014_XXV_o1357.s_4"
+  },
+  {
+   "form": "full",
+   "query": "section 5 of the Punjab Prohibition of Interest on Private Loans Act, 2022",
+   "expected": "punjab.act.y2022_XV_o2939.s_5",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "punjab.act.y2022_XV_o2939.s_5"
+  },
+  {
+   "form": "full",
+   "query": "section 128 of the Contract Act, 1872",
+   "expected": "fed.act.y1872_o152.ch_VIII.s_128",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1872_o152.ch_VIII.s_128"
+  },
+  {
+   "form": "full",
+   "query": "section 151 of the Contract Act, 1872",
+   "expected": "fed.act.y1872_o152.ch_IX.s_151",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1872_o152.ch_IX.s_151"
+  },
+  {
+   "form": "full",
+   "query": "section 172 of the Contract Act, 1872",
+   "expected": "fed.act.y1872_o152.ch_IX.s_172",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1872_o152.ch_IX.s_172"
+  },
+  {
+   "form": "full",
+   "query": "section 230 of the Contract Act, 1872",
+   "expected": "fed.act.y1872_o152.ch_X.s_230",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1872_o152.ch_X.s_230"
+  },
+  {
+   "form": "full",
+   "query": "section 20 of the Sale of Goods Act, 1930",
+   "expected": "fed.act.y1930_o180.ch_III.s_20",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1930_o180.ch_III.s_20"
+  },
+  {
+   "form": "full",
+   "query": "section 45 of the Sale of Goods Act, 1930",
+   "expected": "fed.act.y1930_o180.ch_V.s_45",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1930_o180.ch_V.s_45"
+  },
+  {
+   "form": "full",
+   "query": "section 46 of the Sale of Goods Act, 1930",
+   "expected": "fed.act.y1930_o180.ch_V.s_46",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1930_o180.ch_V.s_46"
+  },
+  {
+   "form": "full",
+   "query": "section 43 of the Partnership Act, 1932",
+   "expected": "fed.act.y1932_o260.ch_VI.s_43",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1932_o260.ch_VI.s_43"
+  },
+  {
+   "form": "full",
+   "query": "section 42 of the Partnership Act, 1932",
+   "expected": "fed.act.y1932_o260.ch_VI.s_42",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1932_o260.ch_VI.s_42"
+  },
+  {
+   "form": "full",
+   "query": "section 118 of the Insurance Ordinance, 2000",
+   "expected": "fed.ordinance.y2000_o945.pt_XIV.s_118",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.ordinance.y2000_o945.pt_XIV.s_118"
+  },
+  {
+   "form": "full",
+   "query": "section 5 of the Prohibition of Interest on Private Loans Act, 2023",
+   "expected": "sindh.act.y2023_XXIII_o4424.s_5",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "sindh.act.y2023_XXIII_o4424.s_5"
+  },
+  {
+   "form": "full",
+   "query": "section 127 of the Insurance Ordinance, 2000",
+   "expected": "fed.ordinance.y2000_o945.pt_XVI.s_127",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.ordinance.y2000_o945.pt_XVI.s_127"
+  },
+  {
+   "form": "full",
+   "query": "section 4 of the Competition Act, 2010",
+   "expected": "fed.act.y2010_o830.ch_II.s_4",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y2010_o830.ch_II.s_4"
+  },
+  {
+   "form": "full",
+   "query": "section 10 of the Competition Act, 2010",
+   "expected": "fed.act.y2010_o830.ch_II.s_10",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y2010_o830.ch_II.s_10"
+  },
+  {
+   "form": "full",
+   "query": "section 3 of the Electronic Transactions Ordinance, 2002",
+   "expected": "fed.ordinance.y2002_o682.s_3",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.ordinance.y2002_o682.s_3"
+  },
+  {
+   "form": "full",
+   "query": "section 31 of the Negotiable Instruments Act, 1881",
+   "expected": "fed.act.y1881_o135.ch_III.s_31",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1881_o135.ch_III.s_31"
+  },
+  {
+   "form": "full",
+   "query": "section 124 of the Contract Act, 1872",
+   "expected": "fed.act.y1872_o152.ch_VIII.s_124",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1872_o152.ch_VIII.s_124"
+  },
+  {
+   "form": "full",
+   "query": "section 182 of the Contract Act, 1872",
+   "expected": "fed.act.y1872_o152.ch_X.s_182",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1872_o152.ch_X.s_182"
+  },
+  {
+   "form": "full",
+   "query": "section 148 of the Contract Act, 1872",
+   "expected": "fed.act.y1872_o152.ch_IX.s_148",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1872_o152.ch_IX.s_148"
+  },
+  {
+   "form": "full",
+   "query": "section 3 of the Competition Act, 2010",
+   "expected": "fed.act.y2010_o830.ch_II.s_3",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y2010_o830.ch_II.s_3"
+  },
+  {
+   "form": "full",
+   "query": "section 41 of the Competition Act, 2010",
+   "expected": "fed.act.y2010_o830.ch_V.s_41",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y2010_o830.ch_V.s_41"
+  },
+  {
+   "form": "full",
+   "query": "section 7 of the Electronic Transactions Ordinance, 2002",
+   "expected": "fed.ordinance.y2002_o682.s_7",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.ordinance.y2002_o682.s_7"
+  },
+  {
+   "form": "full",
+   "query": "section 93 of the Negotiable Instruments Act, 1881",
+   "expected": "fed.act.y1881_o135.ch_VIII.s_93",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1881_o135.ch_VIII.s_93"
+  },
+  {
+   "form": "full",
+   "query": "section 84 of the Negotiable Instruments Act, 1881",
+   "expected": "fed.act.y1881_o135.ch_VII.s_84",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y1881_o135.ch_VII.s_84"
+  },
+  {
+   "form": "full",
+   "query": "section 9 of the Limited Liability Partnership Act, 2017",
+   "expected": "fed.act.y2017_o870.pt_IV.s_9",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y2017_o870.pt_IV.s_9"
+  },
+  {
+   "form": "full",
+   "query": "section 11 of the Limited Liability Partnership Act, 2017",
+   "expected": "fed.act.y2017_o870.pt_IV.s_11",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y2017_o870.pt_IV.s_11"
+  },
+  {
+   "form": "full",
+   "query": "section 3 of the Islamabad Capital Territory Prohibition of Interest of Private Loans Act, 2023",
+   "expected": "fed.act.y2023_III_o971.s_3",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y2023_III_o971.s_3"
+  },
+  {
+   "form": "full",
+   "query": "section 6 of the Islamabad Capital Territory Prohibition of Interest of Private Loans Act, 2023",
+   "expected": "fed.act.y2023_III_o971.s_6",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y2023_III_o971.s_6"
+  },
+  {
+   "form": "full",
+   "query": "section 6 of the Punjab Prohibition of Interest on Private Loans Act, 2022",
+   "expected": "punjab.act.y2022_XV_o2939.s_6",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "punjab.act.y2022_XV_o2939.s_6"
+  },
+  {
+   "form": "full",
+   "query": "section 6 of the Prohibition of Interest on Private Loans Act, 2016",
+   "expected": "kp.act.y2016_XVII_o1740.s_6",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "kp.act.y2016_XVII_o1740.s_6"
+  },
+  {
+   "form": "full",
+   "query": "section 128 of the Insurance Ordinance, 2000",
+   "expected": "fed.ordinance.y2000_o945.pt_XVI.s_128",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.ordinance.y2000_o945.pt_XVI.s_128"
+  },
+  {
+   "form": "full",
+   "query": "section 42 of the Competition Act, 2010",
+   "expected": "fed.act.y2010_o830.ch_V.s_42",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y2010_o830.ch_V.s_42"
+  },
+  {
+   "form": "full",
+   "query": "section 38 of the Competition Act, 2010",
+   "expected": "fed.act.y2010_o830.ch_V.s_38",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.act.y2010_o830.ch_V.s_38"
+  },
+  {
+   "form": "full",
+   "query": "section 72 of the Insurance Ordinance, 2000",
+   "expected": "fed.ordinance.y2000_o945.pt_X.s_72",
+   "outcome": "CORRECT",
+   "why": null,
+   "got": "fed.ordinance.y2000_o945.pt_X.s_72"
+  }
+ ]
+}

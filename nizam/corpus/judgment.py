@@ -36,7 +36,9 @@ from dataclasses import dataclass, field
 
 from nizam.storage.case_key import read_case_line
 
-PARSER = "nizam.judgment/14"    # /2: the lower court's date printed after its name; a skipped number only when unseen
+PARSER = "nizam.judgment/15"    # /2: the lower court's date printed after its name; a skipped number only when unseen
+#                                 /15: a paragraph or footnote number printed in Urdu or Arabic digits ('۱') is kept
+#                                      in Western digits, the form every identifier takes (D-152)
 #                                 /14: Sindh's 'Date of hearing & decision' / 'and Judgment' header line dates (D-146)
 #                                 /13: an order with no heading opens after its 'Order Dated:' line; the order sheet's
 #                                      column header wrapped or misread ('signature of / Judge', 'srgnature');
@@ -618,7 +620,7 @@ def parse_judgment(doc, court_aliases: dict[str, str], case_types: dict[str, tup
                 (pm := _PARA.match(x.text)) and int(pm.group(1)) == expected for x in body[i + 1:i + 400])
             if n == expected or skip_ok:
                 add("body", cur_no, op, cur)
-                cur_no, expected = m.group(1), n + 1
+                cur_no, expected = str(n), n + 1        # Urdu digits ('۱') kept as the number read (D-152)
                 cur = [Line(m.group(2).strip(), ln.page, ln.block, ln.y0)]
                 i += 1
                 continue
@@ -639,7 +641,7 @@ def parse_judgment(doc, court_aliases: dict[str, str], case_types: dict[str, tup
             if last and last.kind == "footnote" and last.last_block == ln.block:
                 last.text = _join([last.text, ln.text])
             elif fm:
-                paras.append(Paragraph("footnote", fm.group(1), None, ln.page, ln.page, ln.block, ln.block,
+                paras.append(Paragraph("footnote", str(int(fm.group(1))), None, ln.page, ln.page, ln.block, ln.block,
                                        ln.text.strip()))
             elif last and last.kind == "footnote":
                 last.text, last.last_block, last.page_last = _join([last.text, ln.text]), ln.block, ln.page

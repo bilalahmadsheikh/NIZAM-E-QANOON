@@ -2,6 +2,7 @@
 
     GET /v1/precedent/search?q=&as_of=&court=&forum=&forum_territory=&limit=
     GET /v1/precedent/judgments/{judgment_id}?as_of=
+    GET /v1/precedent/judgments/{judgment_id}/cited-by?as_of=&limit=   later judgments citing its case (D-150)
     GET /v1/precedent/cases/{court}/{case_type}/{number}/{year}?as_of=   one case and every decision in it (D-125)
     GET /v1/law/provisions/{provision_id}/judgments?as_of=&limit=      'cases on this section'
     GET /v1/precedent/authority?deciding=&receiving=&receiving_territory=&as_of=
@@ -23,7 +24,7 @@ from nizam.retrieval import precedent as P
 from nizam.storage import authority as A
 from nizam.storage.case_key import case_key
 
-COURTS = Literal['', 'FCC', 'SC', 'FSC', 'LHC', 'SHC', 'PHC', 'BHC', 'IHC']
+COURTS = Literal['', 'FCC', 'SC', 'FSC', 'LHC', 'SHC', 'PHC', 'BHC', 'IHC', 'AJKSC', 'AJKHC', 'GBSAC', 'GBCC']
 TERRITORIES = Literal['', 'punjab', 'sindh', 'kp', 'balochistan', 'ict', 'ajk', 'gb']
 
 
@@ -69,6 +70,14 @@ def register(app, repo, resolved) -> None:
         if out is None:
             raise HTTPException(404, 'No case with this number is held with a decision on or before this date.')
         return dict(out, as_of=day)
+
+    @app.get('/v1/precedent/judgments/{judgment_id}/cited-by')
+    def cited_by(judgment_id: UUID, as_of: date | None = None, limit: int = Query(20, ge=1, le=50)):
+        # later judgments citing this one's case, by number or by a reporter citation the court publishes (D-150);
+        # a citation not resolved is not shown, so 'none' means none found among the judgments held (coverage)
+        day = resolved(as_of)
+        return dict(judgment_id=judgment_id, as_of=day, items=repo.citing_judgments(judgment_id, day, limit),
+                    coverage=repo.coverage())
 
     @app.get('/v1/law/provisions/{provision_id}/judgments')
     def provision_judgments(provision_id: UUID, as_of: date | None = None, limit: int = Query(20, ge=1, le=50)):

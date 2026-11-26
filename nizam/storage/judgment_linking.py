@@ -176,6 +176,24 @@ def _series(s: str) -> str:
     return {"PCRLJ": "PCrLJ"}.get(s, s)
 
 
+_SC_COURT = {"sc", "supremecourt"}
+
+
+def fold_reporter_court(court: str | None) -> str:
+    """A reporter citation's court as the law-report index keys it (D-150): '' when none is printed, 'SC' for the
+    Supreme Court however printed ('SC', 'S.C.', 'Supreme Court'), otherwise its letters folded ('SC (AJ&K)' stays
+    apart from 'SC' as 'scajk')."""
+    k = re.sub(r"[^a-z0-9]+", "", (court or "").lower())
+    return "SC" if k in _SC_COURT else k
+
+
+def reporter_key(c: CaseCitation) -> tuple[str, int, str, int] | None:
+    """(series, year, folded court, page) of a reporter citation, or None for a case-number citation."""
+    if not (c.series and c.year and c.page):
+        return None
+    return c.series, c.year, fold_reporter_court(c.court), c.page
+
+
 def case_citations(text: str) -> list[CaseCitation]:
     out: list[CaseCitation] = []
     taken: list[tuple[int, int]] = []

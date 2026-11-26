@@ -15,7 +15,8 @@ For each body or footnote paragraph:
      linked with version_basis 'not_dated' and no version.
    - Role: charge, challenged or interpreted from the words around the citation; 'quoted' when a quotation printed
      after it is found in the unit's own words.
-2. **The cases it cites.** Reporter references are kept as identifiers ('not_held': no reporter index is held). A
+2. **The cases it cites.** Reporter references are kept as identifiers, and resolve through the law-report index the
+   court publishes for its own judgments (reporter_citation, D-150; 'not_held' when the index lacks them). A
    case number resolves to the case (judicial_case, D-125) when this court's case of that type, number and year is
    held, however many judgments it has; dst_judgment_id is set too when the case holds one decision (a second copy
    aside). A judgment citing a case it decides itself is 'own_case'. /1 matched judgment rows by the header parser's
@@ -43,8 +44,10 @@ from nizam.storage.lexical import Filters
 # or the next citation, trailing parentheses dropped, reviewed law aliases (law_alias); /5 a law is inherited only by a
 # bare citation or one naming the same kind of law (D-134); /6 'of the Act.' refers back too, by kind and year, and
 # is never remembered as a law (D-135); /7 a High Court's citation of a federal law is linked to the territory's copy
-# too, and every copy only where its unit is the same provision (D-136)
-LINKER = "nizam.judgment_links/7"
+# too, and every copy only where its unit is the same provision (D-136); /8 a printed law name resolves by how well a
+# title fits it before the court's territory is preferred (D-149), and a reporter citation resolves through the
+# law-report index the court publishes (D-150)
+LINKER = "nizam.judgment_links/8"
 
 
 def _todo(cur, rebuild: bool) -> list[tuple]:
@@ -81,10 +84,25 @@ class CaseIndex:
         cur.execute("SELECT case_key, judgment_id FROM judgment_case")
         for key, jid in cur.fetchall():
             self.own[jid].add(key)                      # a second copy still decides its case
+        # the law-report index (D-150): a reporter citation the court publishes for its own judgment -> its case
+        cur.execute("SELECT DISTINCT series, year, court, page, case_key FROM reporter_citation WHERE case_key IS NOT NULL")
+        self.reporter: dict[tuple, str] = {}
+        for s, y, c, p, key in cur.fetchall():
+            self.reporter[(s, y, c, p)] = key
+
+    def resolve_reporter(self, jid, k: "JL.CaseCitation") -> tuple[str | None, object, str]:
+        """A reporter citation through the law-report index: (case key, its one decision or None, resolution)."""
+        rk = JL.reporter_key(k)
+        key = self.reporter.get(rk) if rk else None
+        if key is None:
+            return None, None, "not_held"
+        return self.by_key(jid, key)
 
     def resolve(self, jid, court: str, code: str, number: str, year: int) -> tuple[str | None, object, str]:
         """(case key, the case's one decision or None, resolution)."""
-        key = case_key(court, code, number, year)
+        return self.by_key(jid, case_key(court, code, number, year))
+
+    def by_key(self, jid, key: str) -> tuple[str | None, object, str]:
         if key in self.own.get(jid, ()):
             return key, None, "own_case"
         if key not in self.decisions:
@@ -232,6 +250,8 @@ def link_one(cur, res: Resolver, types, jid, day, court, undated: bool = False,
                 code = next((cd for f, cd in types.get(court, []) if fold(k.case_type).startswith(f)), None)
                 if code and k.case_number and k.case_year:
                     dst_case, dst, resolution = cases.resolve(jid, court, code, k.case_number, k.case_year)
+            elif k.series and cases is not None:
+                dst_case, dst, resolution = cases.resolve_reporter(jid, k)       # '2026 SCMR 715' (D-150)
             case_rows.append((pid, day, jid, k.start, k.end, k.raw[:300], k.series, k.year, k.court, k.page,
                               (f"{k.case_type} {k.case_number}/{k.case_year}" if k.case_type else None), dst,
                               resolution, LINKER, dst_case))

@@ -453,6 +453,53 @@ class JudgmentRead:
                 break
         return out
 
+    def citing_judgments(self, judgment_id, as_of: date, limit: int = 20) -> list[dict]:
+        """'Cited by': released judgments, decided on or before `as_of`, that cite the case this judgment decides, by
+        its case number or by a reporter citation the court publishes for it (D-150); newest first. A citation in a
+        judgment of the same case (its own_case) is not 'cited by'."""
+        with self.transaction() as conn:
+            rows = conn.execute("""
+                WITH mine AS (SELECT c.case_key FROM judgment_case c
+                               JOIN judgment j ON j.id = c.judgment_id AND j.decided_on = c.decided_on
+                              WHERE j.id = %s)
+                SELECT r.judgment_id, r.decided_on, count(*) AS mentions, min(r.raw) AS printed,
+                       bool_or(r.reporter_series IS NOT NULL) AS by_report,
+                       bool_or(j.decided_on_basis = 'undated') AS undated
+                  FROM judgment_case_reference r
+                  JOIN judgment j ON j.id = r.judgment_id AND j.decided_on = r.decided_on
+                 WHERE r.resolution = 'resolved' AND r.decided_on <= %s AND r.judgment_id <> %s
+                   AND (r.dst_judgment_id = %s OR r.dst_case_key IN (SELECT case_key FROM mine))
+                 GROUP BY 1, 2 ORDER BY 6, r.decided_on DESC LIMIT %s""",
+                (judgment_id, as_of, judgment_id, judgment_id, limit * 2)).fetchall()
+            if not rows:
+                return []
+            meta = {r["id"]: r for r in conn.execute("""
+                SELECT j.id, j.decided_on, j.case_no_printed, j.disposition, j.reported_flag, c.name AS court_name,
+                       ct.name AS case_type_name, j.decided_on_basis, j.decided_not_before, j.undated_reason,
+                       (SELECT m.case_key FROM judgment_case m WHERE m.judgment_id = j.id
+                           AND m.decided_on = j.decided_on AND m.role = 'lead') AS case_key
+                  FROM v_shown_judgment j JOIN court c ON c.code = j.court_code
+                  LEFT JOIN case_type ct ON ct.code = j.case_type_code
+                 WHERE j.id = ANY(%s::uuid[])""", ([r["judgment_id"] for r in rows],)).fetchall()}
+            priv = self.privacy_of(conn, [r["judgment_id"] for r in rows])
+        out = []
+        for r in rows:
+            m = meta.get(r["judgment_id"])
+            if m:
+                shown = dates_shown(m)
+                p = priv.get(r["judgment_id"])
+                out.append(dict(judgment_id=r["judgment_id"], mentions=r["mentions"], case_key=m["case_key"],
+                                cited_as=r["printed"], by_reporter_citation=r["by_report"],
+                                parties_display=p["parties_display"] if p else None,
+                                names_withheld=bool(p and p["redacted"]),
+                                court=m["court_name"], case_type=m["case_type_name"],
+                                disposition=m["disposition"], reported=m["reported_flag"], **shown,
+                                citation=render_judgment_citation(m["court_name"], m["case_no_printed"],
+                                                                  shown["decided_on"])))
+            if len(out) >= limit:
+                break
+        return out
+
     def coverage(self) -> list[dict]:
         with self.transaction() as conn:
             return conn.execute("""SELECT court_code, year, judgments_released, first_decided, last_decided

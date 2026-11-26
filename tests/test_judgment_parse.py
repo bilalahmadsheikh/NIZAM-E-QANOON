@@ -98,6 +98,15 @@ def test_paragraphs_open_only_on_the_next_printed_number_and_none_is_invented():
     assert r.opinions[0].kind == "judgment_of_court" and r.opinions[0].author_printed == "Alpha Beta, J."
 
 
+def test_a_paragraph_numbered_in_urdu_digits_keeps_its_number_in_western_digits():
+    # D-152: '۲.' is paragraph 2 as printed; the number every citation names is '2', never the glyph
+    d = doc([HEADER + ["ORDER", "Alpha Beta, J.- The first paragraph.", "۲.", "The second paragraph.",
+                       "۳. The third paragraph.", "Judge", "Announced in open Court at Islamabad on 18.09.2023.",
+                       "Judge"]])
+    body = [p for p in parsed(d).paragraphs if p.kind == "body"]
+    assert [p.printed_no for p in body] == [None, "2", "3"]
+
+
 def test_no_printed_decision_date_is_released_undated_not_guessed():
     # D-124: released marked undated; the hearing bounds it from below and is never taken as the date
     d = doc([HEADER + ["ORDER", "Alpha Beta, J.- The petition is dismissed.", "Judge", "Judge",

@@ -1,6 +1,6 @@
 # What is not added yet — laws and judgments
 
-Generated 2026-11-25 by `tools/pending_register.py` from the database and the staging lists; never
+Generated 2026-11-26 by `tools/pending_register.py` from the database and the staging lists; never
 edited by hand (D-130). Every row, with its file, URL and reason, is in `docs/pending/laws.csv` and
 `docs/pending/judgments.csv`. Rerun the tool after any landing.
 

@@ -367,6 +367,9 @@ Rules:
 - They resolve to a judgment by (court, case number, year), or by a `reporter_ref` alias already attached to that
   judgment.
 - Unresolved rows are kept with the reason, as the statute links keep theirs.
+- *As built (D-150, 26 Nov):* the `reporter_ref` alias is the table `reporter_citation` (0139). It is filled from the
+  Supreme Court's own listings, never from a reprint: 2,195 citations, through which 29,621 citing references
+  resolve. Each judgment also lists its citers (`/v1/precedent/judgments/{id}/cited-by`, as at a date).
 - A `case_treatment` edge (§2.1) is classified on top of a resolved reference: the grammar for explicit verbs
   ("overruled", "distinguished", "followed", "per incuriam") first, then model candidates. Both are reviewed.
 
@@ -460,6 +463,9 @@ Each step is one slice, finished before the next:
    *As built (D-137):* a printed case number ranks its case first (3/3 dev, 1/1 test). A court asked for narrows the
    search, and a court not held returns a typed `coverage_gap` with no hits (5/5 declined). The cited window counts
    judgments. Urdu is unchanged; its route is the 8B space.
+   *As built (D-153–D-155, 26 Nov):* gold follows a re-read file by its sha256. Asked for a forum, the judgments that
+   bind it (§1.4) take one more RRF vote, a reordering and not a filter: dev hit@10 .588 → .676; test once .667,
+   recall@50 .881. A per-judgment card embedding was measured and not adopted.
 6. **Lahore HC, Peshawar HC** (the OCR route, D-114), the reprint rule (§5), then the Sindh recrawl, then FCC, IHC,
    BHC, FSC and the AJK and GB texts and courts.
 7. **Case references and treatments** (§2, §4.2), lineage (§3.5), invalidation (§4.3), then the citator (docs/06 §5).

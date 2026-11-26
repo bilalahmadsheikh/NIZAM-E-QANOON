@@ -79,7 +79,11 @@ def _judgment(cur, doc: int):
                           j.reported_flag,
                           coalesce((SELECT array_agg(c.case_key ORDER BY c.case_key) FROM judgment_case c
                                      WHERE c.judgment_id = j.id AND c.decided_on = j.decided_on), '{}')
-                     FROM v_release_judgment j WHERE j.document_id = %s""", (doc,))
+                     FROM v_release_judgment j
+                    -- the gold names the file read (its document id at build); a re-read (D-146, D-152) gives the
+                    -- same file a new document, so the judgment is the one released now from the same bytes
+                    WHERE j.document_id IN (SELECT d.id FROM judgment_document d JOIN judgment_document g
+                                              ON g.sha256 = d.sha256 WHERE g.id = %s)""", (doc,))
     rows = cur.fetchall()
     return rows[0] if len(rows) == 1 else None
 

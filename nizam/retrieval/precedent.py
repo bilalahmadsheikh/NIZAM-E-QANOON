@@ -8,6 +8,9 @@ best paragraph:
 2. **Dense:** the question's bge-m3 sign bits against judgment chunks (the statutes' own generation, D-121).
 3. **Cited:** when the question names a provision ('s.497 CrPC', 'Article 199'), the judgments that cite it or a
    unit inside it (judgment_statute_reference, D-119), through the same citation grammar as statute retrieval.
+A printed case number or reporter citation ranks its case first (D-137, D-150). When the question is asked for a
+forum, the fused judgments whose court binds that forum on `as_of` (the recorded rules, never a court's name) take
+one more reciprocal-rank vote, in their fused order (D-154). A persuasive judgment keeps its place; none is removed.
 
 What a result carries, and what it never does:
 - **Citations from records only (INV-1):** court, case as printed, decision date, printed paragraph number.
@@ -131,13 +134,14 @@ def courts_named(conn, question: str) -> list[str]:
 def cases_named(conn, question: str, courts: list[str] | None = None) -> list[str]:
     """Held case keys a question prints ('Civil Appeal No. 415 of 2018'), read by the case-line grammar
     (nizam.storage.case_key.read_case_line) after any held court's printed case-type form, in any court the question
-    names or else every court; only keys of held cases (judicial_case) are returned."""
+    names or else every court; and the cases its reporter citations report (D-150). Only keys of held cases
+    (judicial_case) are returned."""
     from nizam.storage.case_key import _fold_map, case_key, read_case_line
     f, idx = _fold_map(question)
     if not f:
         return []
+    out: list[str] = []
     rows = conn.execute("SELECT court_code, code, printed_forms FROM case_type").fetchall()
-    out = []
     for r in rows:
         if courts and r["court_code"] not in courts:
             continue
@@ -147,6 +151,17 @@ def cases_named(conn, question: str, courts: list[str] | None = None) -> list[st
                 line = read_case_line(question[idx[at]:], [form])
                 if line and line.lead and line.year:
                     out += [case_key(r["court_code"], r["code"], n, line.year) for n in [line.lead] + line.joined]
+    # a reporter citation the question prints ('2026 SCMR 715', 'PLD 2016 SC 1'), through the law-report index the
+    # court publishes for its own judgments (D-150)
+    from nizam.storage import judgment_linking as JL
+    for c in JL.case_citations(question):
+        rk = JL.reporter_key(c)
+        if rk:
+            out += [x["case_key"] for x in conn.execute(
+                """SELECT DISTINCT case_key FROM reporter_citation
+                    WHERE series = %s AND year = %s AND court = %s AND page = %s AND case_key IS NOT NULL""",
+                rk).fetchall()
+                if not courts or x["case_key"].split("/")[0] in courts]
     out = list(dict.fromkeys(out))
     if not out:
         return []
@@ -236,6 +251,22 @@ def search(question: str, *, as_of: date, court: str | None = None, forum=None, 
                     # a case named by its number is an identification, not a likeness: it ranks first
                     f["score"] += 1.0 if name == "case" else 1.0 / (RRF_K + rank)
                     f["gens"].append(name)
+            registry = A.load(cur) if forum is not None else None
+            if registry is not None and fused:
+                # for a forum, the judgments that bind it take one more vote, in their fused order (D-154)
+                court_of = {r["id"]: r["court_code"] for r in conn.execute(
+                    "SELECT id, court_code FROM v_release_judgment WHERE id = ANY(%s)",
+                    (list({f["judgment_id"] for f in fused.values()}),)).fetchall()}
+                binds = {c for c in set(court_of.values())
+                         if ((_authority(c, forum, as_of, registry) or {}).get("status")) == "binding"}
+                voted: set = set()
+                for f in sorted(fused.values(), key=lambda f: -f["score"]):
+                    if f["judgment_id"] in voted or court_of.get(f["judgment_id"]) not in binds:
+                        continue
+                    voted.add(f["judgment_id"])
+                    f["score"] += 1.0 / (RRF_K + len(voted))
+                    f["gens"].append("binding")
+                trace["binding_voted"] = len(voted)
             best: dict = {}
             for pid, f in sorted(fused.items(), key=lambda x: -x[1]["score"]):
                 if f["judgment_id"] not in best:
@@ -244,7 +275,6 @@ def search(question: str, *, as_of: date, court: str | None = None, forum=None, 
                     break
             details = repo.paragraph_hits(conn, [pid for pid, _ in best.values()])
             statutes = repo.statutes_cited(conn, list(best), as_of)
-            registry = A.load(cur) if forum is not None else None
             hits = []
             withheld_queries = 0
             for jid, (pid, f) in best.items():

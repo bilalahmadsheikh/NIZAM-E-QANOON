@@ -907,6 +907,20 @@ m AS (
          AND extract(year FROM j.decided_on) < j.case_year)                                           AS jn_before_case
     ,(SELECT count(*) FROM v_release_judgment WHERE decided_on_basis = 'undated')                     AS jn_undated
 -- <<< A31 measures
+-- >>> A32 measures: the law-report index (0139, D-150) is exactly the release under one builder: every row names a
+--     released judgment and a recorded case, and every citation names one case
+    ,(SELECT count(*) FROM reporter_citation r WHERE NOT EXISTS (
+        SELECT 1 FROM v_release_judgment j WHERE j.id = r.judgment_id AND j.decided_on = r.decided_on)) AS rc_outside
+    ,(SELECT count(*) FROM reporter_citation r
+       WHERE r.case_key IS NOT NULL AND NOT EXISTS (SELECT 1 FROM judicial_case c WHERE c.case_key = r.case_key))
+                                                                                                       AS rc_case_bad
+    ,(SELECT count(*) FROM (SELECT series, year, court, page FROM reporter_citation
+                             GROUP BY 1, 2, 3, 4 HAVING count(DISTINCT case_key) > 1) x)               AS rc_two_cases
+    ,(SELECT count(DISTINCT builder) FROM reporter_citation)                                           AS rc_builders
+    ,(SELECT count(DISTINCT (series, year, court, page)) FROM reporter_citation)                       AS rc_citations
+    ,(SELECT count(*) FROM judgment_case_reference
+       WHERE reporter_series IS NOT NULL AND resolution IN ('resolved', 'own_case'))                   AS rc_linked
+-- <<< A32 measures
 )
 SELECT * FROM (
   SELECT 'C1' AS id, 'every acquired file becomes a blob'      AS criterion,
@@ -1158,6 +1172,13 @@ SELECT * FROM (
          ||' dated before their case year',
          '0 / 0',
          CASE WHEN jn_differs=0 AND jn_before_case=0 THEN 'PASS' ELSE 'FAIL' END FROM m
+  UNION ALL SELECT 'A32','the law-report index is exactly the release: each citation one case, under one builder',
+         rc_citations||' reporter citations indexed, '||rc_linked||' citing references resolved through them '
+         ||'(reported); '||rc_outside||' rows outside the release; '||rc_case_bad||' naming no recorded case; '
+         ||rc_two_cases||' citations naming two cases; '||rc_builders||' builder(s)',
+         '0 / 0 / 0; one builder',
+         CASE WHEN rc_outside=0 AND rc_case_bad=0 AND rc_two_cases=0 AND rc_builders<=1 THEN 'PASS' ELSE 'FAIL' END
+    FROM m
   UNION ALL SELECT 'A6','no overlapping law (enforced, not tested)',
          CASE WHEN excl_present=1 THEN 'EXCLUDE constraint present'
               ELSE 'CONSTRAINT MISSING' END, 'enforced',

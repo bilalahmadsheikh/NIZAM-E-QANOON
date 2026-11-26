@@ -71,8 +71,12 @@ def make_split() -> int:
 
 
 def _doc_to_judgment(conn, docs: set[int]) -> dict[int, str]:
-    rows = conn.execute("SELECT document_id, id::text FROM v_release_judgment WHERE document_id = ANY(%s)",
-                        (list(docs),)).fetchall()
+    # the gold names the file read at build; a re-read gives the same bytes a new document (precedent_common)
+    rows = conn.execute("""SELECT g.id AS document_id, j.id::text AS id
+                             FROM judgment_document g
+                             JOIN judgment_document d ON d.sha256 = g.sha256
+                             JOIN v_release_judgment j ON j.document_id = d.id
+                            WHERE g.id = ANY(%s)""", (list(docs),)).fetchall()
     return {r["document_id"]: r["id"] for r in rows}
 
 

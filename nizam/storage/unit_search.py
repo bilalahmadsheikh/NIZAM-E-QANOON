@@ -244,6 +244,13 @@ class Session:
              LIMIT %(n)s""", dict(q=words, n=n, j=j, prefer=prefer))
         return [(r[0], r[1], int(r[2])) for r in self.cur.fetchall()]
 
+    def instrument_titles(self, instrument_ids: list[str]) -> dict[str, list[str]]:
+        """{instrument id: [short title, display title]}: a printed name is fitted against both (D-149), since a
+        display title can drop the acronym the short title prints ('Federal Investigation Agency Act (FIA), 1974')."""
+        self.cur.execute("""SELECT id::text, short_title, display_title FROM instrument
+                             WHERE id = ANY(%s::uuid[])""", (list(instrument_ids),))
+        return {r[0]: [t for t in r[1:] if t] for r in self.cur.fetchall()}
+
     def label_units(self, label: str, instrument_ids: list[str]) -> list[Unit]:
         folded = "".join((label or "").split()).lower()
         self.cur.execute("""

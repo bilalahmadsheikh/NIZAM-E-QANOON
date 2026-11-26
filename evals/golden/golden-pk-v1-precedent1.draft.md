@@ -2,7 +2,7 @@
 
 Precedent stratum, set 1: Supreme Court, Lahore and Peshawar High Courts (D-133). Gold is judgment paragraphs read in the released text; it names some of the judgments that answer, not all.
 
-Corpus revision ca67fc3. Strata: issue 38, authority 1, temporal 3, case_lookup 4, provision 4, urdu 5, unanswerable 3.
+Corpus revision d7c1a94. Strata: issue 38, authority 1, temporal 3, case_lookup 4, provision 4, urdu 5, unanswerable 3.
 Status: **draft** — A0 authoring and A3 identity resolution only. Not gold until two legal annotators (A1) and a senior advocate (A2) have reviewed it; do not tune or report on it before then.
 
 ## P1-I01 · issue · forum subordinate:sindh · as of 2026-11-24 · expect **answer**
@@ -15,7 +15,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
   > The case of further inquiry pre-supposes the tentative assessment which may create doubt with respect to the involvement of accused in the crime. Sufficient material is present to demonstrate the petitioner’s involvement in the case without any reasonable doub
 - **Necessary (grade 3)** — SC CRL.P.L.A.No.745 OF 2025 (2025-07-09), para 6 · doc 6231 · expected binding
   > In our view, the case requires further inquiry and unless the trial is conducted and completed, the culpability of the present petitioner cannot be proved. The mere statement of the learned APG that the petitioner is involved in some other similar cases also d
-- **Relevant (grade 2)** — LHC Crl. Misc. No. 72710/B/2022 (undated, exists from 2026-09-08), para 12 · doc 8400 · expected not_binding
+- **Relevant (grade 2)** — LHC Crl. Misc. No. 72710/B/2022 (2023-03-31), para 12 · doc 8400 · expected not_binding
   > The Petitioner has failed to point out any mala fides on the part of the Complainant or the police regarding registration of the instant case, which is a pre-requisite for the grant of pre-arrest bail. In Muhammad Sadiq and another v. The State and another (20
 
 ## P1-I02 · issue · forum subordinate:punjab · as of 2026-11-24 · expect **answer**
@@ -151,7 +151,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** What must an accused show to get bail before arrest (pre-arrest bail)?
 
 - *Proposition:* Pre-arrest bail is an extraordinary relief protecting the innocent from cases lodged with mala fide or ulterior motives; mala fides is a pre-requisite besides the conditions of section 497(2) CrPC.
-- **Necessary (grade 3)** — LHC Crl. Misc. No. 72710/B/2022 (undated, exists from 2026-09-08), para 12 · doc 8400 · expected binding
+- **Necessary (grade 3)** — LHC Crl. Misc. No. 72710/B/2022 (2023-03-31), para 12 · doc 8400 · expected binding
   > The Petitioner has failed to point out any mala fides on the part of the Complainant or the police regarding registration of the instant case, which is a pre-requisite for the grant of pre-arrest bail. In Muhammad Sadiq and another v. The State and another (20
 - **Necessary (grade 3)** — SC Criminal Petition No.187-K of 2025 (2025-11-06), para 6 · doc 4414 · expected binding
   > The case of further inquiry pre-supposes the tentative assessment which may create doubt with respect to the involvement of accused in the crime. Sufficient material is present to demonstrate the petitioner’s involvement in the case without any reasonable doub
@@ -480,7 +480,7 @@ Status: **draft** — A0 authoring and A3 identity resolution only. Not gold unt
 **Q:** Zamanat qabl az giraftari kab milti hai? Kya bad-niyati sabit karna zaroori hai?
 
 - *Proposition:* Pre-arrest bail is extraordinary relief; mala fides must be shown.
-- **Necessary (grade 3)** — LHC Crl. Misc. No. 72710/B/2022 (undated, exists from 2026-09-08), para 12 · doc 8400 · expected binding
+- **Necessary (grade 3)** — LHC Crl. Misc. No. 72710/B/2022 (2023-03-31), para 12 · doc 8400 · expected binding
   > The Petitioner has failed to point out any mala fides on the part of the Complainant or the police regarding registration of the instant case, which is a pre-requisite for the grant of pre-arrest bail. In Muhammad Sadiq and another v. The State and another (20
 - **Necessary (grade 3)** — SC Criminal Petition No.187-K of 2025 (2025-11-06), para 6 · doc 4414 · expected binding
   > The case of further inquiry pre-supposes the tentative assessment which may create doubt with respect to the involvement of accused in the crime. Sufficient material is present to demonstrate the petitioner’s involvement in the case without any reasonable doub

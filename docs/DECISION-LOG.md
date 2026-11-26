@@ -1136,6 +1136,178 @@ Area: client · Status: Superseded by D-084 (the whole-page cloth; the hem, the 
   design/heritage_art.dart, presentation/discover.dart, presentation/heritage.dart; test/heritage_test.dart
   (golden embroidery.png, a review sheet at 3x).
 
+### D-155 · 2026-11-26 · A judgment "card" is not embedded: measured on dev, it does not help
+Area: L3 retrieval (precedent) · Status: measured, not adopted
+- The question: should a judgment's headers and titles be embedded, so that a judgment can be found by meaning as a
+  whole and not only by its paragraphs?
+  - The law side already does this. Every law chunk embeds its act title and heading path in its context prefix
+    (D-098).
+  - Judgment chunks embed their court and case line in their prefix (D-121). Parties are names and are not
+    embedded.
+- What was tried: one card per shown judgment (61,191), built from records only and with no names: court, case
+  type, year (or "date not printed"), disposition, and the six laws it applies most with their four most-cited
+  units. Each card was embedded with the CPU encoder (bge-m3 sign bits, 12.8 cards/s). Cards ranked by Hamming
+  distance as a fourth RRF generator, voting at the judgment.
+- Measured on dev (D-153 harness, 34 answerable cases):
+  - hit@10 .588 → .559;
+  - MRR@10 .334 → .315;
+  - recall@50 .701 → .672;
+  - p50 latency +540 ms.
+  Seven cases moved, three of them down, and Urdu recall@50 fell .5 → 0. Test was not read.
+- Why it fails: a card says what a judgment is about in a dozen words, and the questions ask what it holds. The
+  laws a card names are already a generator, and a better one: the cited path reads them exactly.
+- Kept: nothing in the schema. The prototype (`card_proto.py`, `card_eval.py`) and its vectors stay in
+  /mnt/e/nizam-data/embed/cards/ (not released). The run is in evals/results/precedent-eval-dev-d155-card.json.
+
+### D-154 · 2026-11-26 · For a forum, the judgments that bind it take one more vote in precedent search
+Area: L3 retrieval (precedent) · Status: standing (the docs set no order by authority; this records one)
+- Decision: when a precedent question is asked for a forum (`Subordinate(territory)` or a court), the fused
+  candidates whose court binds that forum on `as_of` take one more reciprocal-rank vote, in their fused order
+  (1/(60+n) for the n-th binding judgment).
+  - Bindingness comes from the recorded rules (`authority.load`, Arts. 189, 201, 203, 203GG, A24), never from a
+    court's name.
+  - A persuasive judgment keeps its place, and none is removed: the same judgments come back, only reordered. The
+    hit carries `binding` among its generators.
+- Why: after the High Courts landed (D-138–D-148), the corpus held six times the judgments D-137 was measured on.
+  Generic questions ("bail under 489-F", "a temporary injunction") then filled the first ten with other provinces'
+  High Courts, ahead of the court whose rulings bind the reader. docs/PRECEDENT-MODEL §5 records which court binds
+  which, and search had not used it.
+- Measured on dev (D-153 harness):
+  - hit@10 .588 → .676;
+  - MRR@10 .334 → .415;
+  - recall@10 .544 → .647;
+  - recall@50 .701 → .730.
+  Twelve cases improved and one fell: P1-F01, by design. A KP court's gold there is a Lahore judgment, persuasive
+  for it, and binding Peshawar and Supreme Court judgments now come first; it stays within the first 50.
+  - paragraph@10 fell .556 → .452, because the judgments that now enter the ten are found by a non-gold
+    paragraph.
+  - Leaks 0, p50 1.06 s.
+- Test, scored once (21 answerable): hit@10 .667, MRR@10 .423, recall@10 .667, recall@50 .881, paragraph@10 .615,
+  leaks 0.
+  - D-137's reading was .65 / .371 / .625 / .90 / .75, on a sixth of today's corpus and 20 cases. It is not a paired
+    comparison.
+  - Provisional: the gold is a draft (A1/A2).
+- Where: nizam/retrieval/precedent.py (`search`); tests/test_precedent_query.py;
+  evals/results/precedent-eval-{dev,test}-d154.json (the dev baseline without the vote: -dev-d151.json).
+
+### D-153 · 2026-11-26 · Precedent gold names the file read; a re-read is followed by its bytes
+Area: evaluation (precedent golden set) · Status: standing
+- Decision: a precedent gold unit's `judgmentDocumentId` names the file read when the gold was written. Both the
+  builder (`evals/golden/precedent_common.py`) and the harness (`evals/precedent_eval.py`) resolve it through that
+  document's sha256 to the judgment released now from the same bytes.
+  - A gold paragraph is still found by its printed number and checked against its words, so a re-read can move an
+    id but never what the gold says.
+- Why: the D-146 re-read gave the gold judgments new documents. The harness then mapped every gold judgment to
+  nothing, and the dev run of 26 Nov read hit@10 .18 (D-137's dev was .78). The loss was in the instrument, not the
+  search.
+- Done: `build_precedent1.py` was rebuilt at d7c1a94 with 0 problems and the same gold paragraphs. Some LHC gold
+  judgments now carry the dates D-146 read.
+  - Dev now reads hit@10 .588, MRR@10 .334, recall@50 .701 (`precedent-eval-dev-d151.json`). Below D-137's .78 on a
+    sixth of the corpus: D-154 takes that up.
+- Where: evals/golden/precedent_common.py (`_judgment`); evals/precedent_eval.py (`_doc_to_judgment`);
+  evals/golden/golden-pk-v1-precedent1.draft.*.
+
+### D-152 · 2026-11-26 · A paragraph number printed in Urdu digits is kept in Western digits
+Area: L1 precedent (parsing) · Status: standing
+- Decision: judgment parser /15 keeps a paragraph or footnote number printed in Extended Arabic-Indic or Arabic-Indic
+  digits ('۱.', '۲.') as the number read, in Western digits ('1', '2').
+  - The number is the one printed, so none is invented (INV-1).
+  - Its form is the one every identifier takes, so "para 2" of the citation and of the stored row agree.
+- Why: Python's `\d` reads Urdu digits, so parser /12 stored '۱'…'۷' as the printed numbers of one Lahore judgment
+  (W.P. No.46741 of 2021, `2021LHC3320.pdf`). The test that numbers are digits 1–999 failed on it.
+- Done: that one file was re-read with `--only`. Its earlier reading was retired, its 55 chunks re-embedded, and
+  cases, reporter index, links and privacy were rebuilt. No released paragraph number is now outside Western digits.
+- Where: nizam/corpus/judgment.py (PARSER /15); tests/test_judgment_parse.py.
+
+### D-151 · 2026-11-26 · Law aliases, third sheet: 128 printed names read and tied to held laws
+Area: L1 precedent (linking) · Status: standing (the D-134 process)
+- Decision: the sheet `docs/alias-review/law-aliases-2026-11-26.csv` was read. It lists 181 printed law names that
+  resolved to no held law, each seen in 3 or more judgments or 10 or more citations. For each, its forms, candidates
+  and passages were read (decisions in `docs/alias-review/fill_2026-11-26.py`).
+  - **128 aliases were loaded** (`law_alias`, 316 in all), and the loader verified each one. Examples:
+    - SBCO / SBCA 1979 → Sindh Buildings Control Ordinance;
+    - SCNS / Sindh CNS Act 2024;
+    - SAA 2013 → Sindh Arms Act;
+    - IPOP Act 2012;
+    - "MSO 2001" → Pakistan Merchant Shipping Ordinance;
+    - "DHA Order" → Pakistan Defence Officers Housing Authority Order 1980;
+    - "Act IX of 1991" → Punjab Pre-emption Act 1991;
+    - "ATC Act 1997" s.21-H → Anti-Terrorism Act 1997.
+  - Each was decided from its passage. "MPO Ordinance" in Sindh judgments is the Maintenance of Public Order
+    Ordinance (preventive detention), not the Motion Pictures Ordinance the resolver offered. "Sindh Tax Act, 1990"
+    is the Sales Tax Act (the judgment speaks of FBR input-tax adjustment).
+  - 53 were not aliased: not held 27, ambiguous 15, historical 7, foreign 2, not a law 2. Not held are the laws
+    judgments cite that the corpus lacks: Sindh's own Land Revenue Act 1967, General Clauses Act, Maintenance of
+    Public Order and Pure Food Ordinances 1960, Board of Revenue Act 1957, the federal CNS (Amendment) Acts 2022
+    and 2024, the Azad Penal Code, and the AJK Civil Servants Act 1976. They are acquisition work, not aliases.
+  - Two refusals by the loader were kept, never forced:
+    - document 9361 holds three laws, so the KDA Order alias points at document 9246, which holds the Order alone;
+    - SPP (REO) 2010's title search finds its amending Ordinance first, so it stays ambiguous.
+- Why: D-134's process. An alias grows only from evidence a person reads.
+- Where: docs/alias-review/law-aliases-2026-11-26.csv and fill_2026-11-26.py; law_alias.
+
+### D-150 · 2026-11-26 · A law-report index from the court's own listing: reporter citations resolve to the case
+Area: L1 precedent (linking, search) · Status: standing
+- Decision: migration 0139 adds `reporter_citation`. Each row ties a reporter citation the Supreme Court publishes
+  for its own judgment ('2026 SCMR 715', 'PLD 2016 SC 1', and the second series a cell may print) to that judgment
+  and its lead case.
+  - **Source:** the citation columns of its search listing (D-148) and of its "Last 25" listing (D-144).
+  - **Builder:** `nizam.workers.reporter_index`. It rebuilds the table from the listings and the release.
+  - **Key:** the judgment linker's own grammar and `judgment_linking.reporter_key`, with the court folded ('SC',
+    'S.C.', 'Supreme Court' → SC), so the citing text and the listing agree by construction.
+  - **One decision, several files:** a decision listed under several files (its short order and reasons, or connected
+    cases decided together) keeps its citation when one claimant's case line covers every claimant's lead. Otherwise
+    it is dropped, never guessed between: 53 dropped, 9 kept this way.
+  - **Built on 26 Nov:** 2,195 citations (SCMR 1,601, PLD 554, …).
+- **Linker /8:** a reporter citation resolves through the index to the case, and to its one decision where it has
+  one, as a case-number citation does (D-125). Before this, all 174,657 reporter-style citations were 'not_held'.
+- **Precedent search:** a question printing a reporter citation finds that case first, as a printed case number
+  does (D-137).
+- **Audit A32:** every row names a released judgment and a recorded case, every citation names one case, and one
+  builder made the table.
+- Identifiers only: no headnote or other reporter text is stored (D-120).
+- Measured (relink /8, 26 Nov): 29,621 of 167,574 reporter citations in judgments now resolve to a case through
+  the index. Before it, every one was 'not_held'. 2,065 distinct citations are indexed. Case citations resolved in
+  all: 30,047 (426 by case number).
+- Run order after a judgment landing: judgment_cases, then reporter_index, then judgment_links.
+- Open: the court's own neutral citation ('2025 SCP 399', 3,815 rows) is not read by the grammar. It would key
+  judgments citing it once they do.
+- Where: infra/postgres/migrations/0139_reporter_citation.sql; nizam/workers/reporter_index.py;
+  nizam/storage/judgment_linking.py; nizam/workers/judgment_links.py; nizam/retrieval/precedent.py;
+  tools/audit/criteria.sql (A32); tests/test_precedent_query.py.
+
+### D-149 · 2026-11-26 · A printed law name resolves by how well a title fits it, before the court's territory
+Area: L3 retrieval / L1 linking (citations) · Status: standing (corrects D-128's ordering)
+- Decision: `citations.resolve` searches laws whose title holds every printed word. For a name printed in a judgment
+  or a question, with no code alias or reviewed alias, it now ranks the candidates by `name_fit` before the session's
+  order (served, the court's territory, federal, reliance):
+  1. the same name, once a province prefix, a year, plural endings and a one-word bracket (an acronym, "(ATA)")
+     are set aside;
+  2. the name as one run within the title ('Indian Limitation Act');
+  3. its words in order with others between them;
+  4. the words only somewhere. This is never a resolution.
+  A bracket of two or more words is the law's own words, so it lends nothing to another name. 25 candidates are
+  read, where 10 were before.
+  A name printed as an acronym ("PEMRA Ordinance", "FIA Act", "OGRA Ordinance") is also read as the title's bracket
+  acronym plus its kind. The fit is taken over both the short and the display title (`name_fit_any`). A plural is
+  folded only for words longer than three letters ("Laws" → "Law", never "ss").
+- Why: three wrong-law links were found on 26 Nov.
+  - 48 Peshawar citations of "section 5 of the Limitation Act" had resolved to KP's School Bags (Limitation of
+    Weight) Act 2020.
+  - 12 AJK citations had resolved to an LLP adaptation Act.
+  - 52 Sindh citations of "Sales Tax Act" had resolved to the Sindh Sales Tax on Services Act.
+  The court's territory was preferred over the fit of the name. Retrieval's citation fast path is the same code, so
+  a question asked with KP selected would have been misrouted too.
+  - A first version of the rule refused acronym names and "Muslim Family Law Ordinance". The relink showed this, and
+    the acronym and plural readings were added before the rule was kept.
+- Measured: the golden citation set is unchanged (full 399 + 6 alternates of 406, the same one unresolved as on
+  24 Nov; alias 100/100; bare 77/77; WRONG 0).
+  - Every judgment was relinked under /8 on 26 Nov. Of 393,519 statute citations, 295,513 resolve, 24,426 name a
+    law not held, and 79,586 are also linked to another copy. The privacy rebuild left 1,748 judgments with names
+    withheld. A26, A29 and A30 pass.
+- Where: nizam/storage/citations.py (`name_fit`, `name_fit_any`, `_fit_words`); nizam/storage/unit_search.py
+  (`instrument_titles`); tests/test_name_fit.py; linker /8.
+
 ### D-148 · 2026-11-25 · The Supreme Court's judgment search is crawled in a visible browser with the owner present to answer any captcha
 Area: L1 precedent (acquisition) · Status: standing (owner ruling; amends D-144's "open listing only")
 - Decision: `data/scp_search_crawler.py` drives the search in a visible Chrome window on its own fresh profile, not
