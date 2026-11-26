@@ -1136,6 +1136,92 @@ Area: client · Status: Superseded by D-084 (the whole-page cloth; the hem, the 
   design/heritage_art.dart, presentation/discover.dart, presentation/heritage.dart; test/heritage_test.dart
   (golden embroidery.png, a review sheet at 3x).
 
+### D-160 · 2026-11-26 · Case treatments are read from the citing court's own words; negative ones wait for a lawyer
+Area: L1 precedent (links) / L5 citator groundwork · Status: standing (PRECEDENT-MODEL §2.1, built by grammar)
+- Decision: for every resolved case citation of a released judgment, the sentence holding it is read by
+  `nizam.storage.treatment`.
+  - A treatment read is a `case_treatment` row (0145), derived by `nizam.workers.case_treatments`. Every row is a
+    machine candidate.
+  - Vocabulary §2.1's, with polarity a fixed map: applied, followed, approved (positive); explained, distinguished
+    (neutral); overruled, per_incuriam, disapproved (negative). "Doubted" is not read: here "doubt" is the benefit
+    of the doubt far more often.
+- Why the grammar is strict, from a survey of the 33,047 resolved case citations:
+  - "the objection is overruled";
+  - "X was overruled in Y" (a third case's treatment);
+  - "in the following manner";
+  - counsel's "relied upon" and "contended … per incuriam".
+  The court's own words in the citation's sentence are required, and a sentence reporting a party's case is never
+  a treatment.
+- Measured by reading (author check, 26 Nov), with each misleading form dropped before the rule was kept:
+  - passive "approved" read 0/4 ("the census is approved");
+  - "it was explained in X" is X explaining the law;
+  - passive "followed" was mostly a third case following X;
+  - "is distinguishable" read 6/6 and 6/6 in two samples, and present-tense "reliance is placed upon" 12/12.
+- A structural rule: a court bound by another cannot overrule, disapprove or hold per incuriam that court's case.
+  Both negatives first read were High Courts reporting the Supreme Court ("PLD 2009 SC 460 was per incuriam …"). A
+  negative reading by a court ranked below the treated court is therefore skipped as a report (court_class: apex
+  above shariat and high courts).
+- Built: 487 treatments (applied 469, distinguished 18), no negative one.
+- Review: `case_treatment_review` is append-only evidence (trigger), keyed by the evidence sentence's words, the case
+  treated and the treatment, so a decision outlives every rebuild.
+  - `case_treatments --sheet DIR` writes the negative readings awaiting review; `tools/treatment_review_load.py`
+    appends a reviewer's decisions.
+  - A negative treatment is shown only when lawyer_verified (§2; docs/06 §5.1). Until then the cited-by item
+    counts it as `treatments_awaiting_review`.
+- Read: each cited-by item (`/v1/precedent/judgments/{id}/cited-by`) carries `treatments`.
+- Audit A35: rows only over released resolved citations; each review status the latest review; one builder.
+- Limits: treatments are found only where a case citation resolves (33,047). Wider law-report indexes (D-161 on)
+  widen them. Run order: after judgment_links.
+- Where: infra/postgres/migrations/0145_case_treatment.sql; nizam/storage/treatment.py;
+  nizam/workers/case_treatments.py; tools/treatment_review_load.py; nizam/storage/judgment_read.py
+  (`citing_judgments`); tools/audit/criteria.sql (A35); tests/test_treatment.py, test_cited_by.py.
+
+### D-159 · 2026-11-26 · Appeal chains are linked to the judgments below, and a judgment shows its later history
+Area: L1 precedent (links) / L6 API · Status: standing (PRECEDENT-MODEL §3.5's `lower_judgment_id`, built)
+- Decision: `judgment_lineage` (the parser's reading of "against the judgment dated … passed by the Lahore High
+  Court in Cr.A. No.652-J of 2016") is resolved to the case below, and to its judgment where exactly one held
+  decision of that case is of the printed date.
+  - Stored in `judgment_lineage_link` (0143), derived and rebuilt by `nizam.workers.lineage_links`. A parser row is
+    never updated in place.
+  - The court below is the one printed. An AJK or GB apex court's "the (…) High Court" is its one court below
+    (AJKHC, GBCC), marked `sole_court_below`. The Supreme Court's bare "the High Court" names none and is not read.
+  - The case line is read by the case grammar every reader uses, in the court below's own forms, so a lineage and a
+    citation of one case give one key.
+  - No date is inferred. An undated copy, or several decisions with none of the printed date, is `case_held`, with
+    the case and no judgment.
+  - Keys are not loosened. "123-J" (the jail register) and "123" stay different cases; 23 such near-misses were
+    left unmatched.
+- First build (2,318 lineage rows of released judgments): 73 resolved to the judgment below, 112 to its case only.
+  - 1,472 name a case the corpus does not hold (LHC 670, PHC 276, AJKHC 176, …): only a slice of each High Court's
+    decisions is held.
+  - 307 name a court not recorded (service tribunals, "this Court"); 354 are not read.
+- A second, labelled source: the Islamabad High Court's listing records the Supreme Court's later outcome for 44 of
+  its judgments (Upheld 37, Set Aside 5, Remanded 2; D-156 kept those fields).
+  - `judgment_recorded_outcome` (0144, `nizam.workers.recorded_outcomes`) holds 42 of them for released
+    judgments, as the court's own words, with the date and the Supreme Court file it links.
+  - Our appeal chains find none of the 42, because those Supreme Court decisions are not held: each source covers
+    what the other cannot.
+- Read: `JudgmentRead.later_history(judgment_id, as_of)` and
+  `GET /v1/precedent/judgments/{id}/history?as_of=`. Each item says its source (`upper_judgment` or
+  `court_record`) and whether it singles out this judgment or only its case.
+  - Only what the court above had decided by `as_of` is shown.
+  - A court record carries no citation, since no upper judgment is held to render one from (INV-1).
+  - A reversal read by machine (set aside, reversed, modified, remanded) is listed with its outcome withheld,
+    "awaiting lawyer review", until `lawyer_verified` (PRECEDENT-MODEL §2; docs/06 §5.1).
+  - Affirmed, dismissed and leave-refused outcomes are shown.
+  - A court's own listed outcome is its published record, not a machine reading, so it is shown, labelled as the
+    court's record.
+- Audit A34: every lineage row of a released judgment is linked once; none outside the release; a judgment below is
+  a released decision of the case named; recorded outcomes are of released judgments; one builder.
+- Run order after a landing: judgment_cases, then lineage_links and recorded_outcomes, then reporter_index and
+  judgment_links.
+- Open, measured not decided: 83 undated judgments below are dated by the court above's printed "judgment dated …",
+  inside their own bounds. Taking that date would be a new dating rule (D-124 takes only the judgment's own print).
+  It is left for its own decision.
+- Where: infra/postgres/migrations/0143_judgment_lineage_link.sql, 0144_judgment_recorded_outcome.sql;
+  nizam/workers/lineage_links.py, recorded_outcomes.py; nizam/storage/judgment_read.py (`later_history`);
+  nizam/api/precedent.py; tools/audit/criteria.sql (A34); tests/test_lineage_links.py.
+
 ### D-158 · 2026-11-26 · Judgment chunks are embedded in the GPU generation's space (Qwen3-Embedding-8B), beside their CPU vectors
 Area: L2 storage / L3 retrieval (precedent) · Status: standing (results to be recorded when the runs are loaded)
 - Decision: every judgment chunk also gets the GPU generation's vector (generation 2, Qwen3-Embedding-8B @1d8ad4ca,

@@ -55,6 +55,11 @@ def dates_shown(row: dict) -> dict:
                 undated_reason=row.get("undated_reason") if undated else None)
 
 
+# appeal outcomes that reverse or disturb the judgment below: shown only when lawyer_verified (PRECEDENT-MODEL §2)
+NEGATIVE_OUTCOMES = frozenset({"set_aside", "reversed", "modified", "remanded"})
+TREATMENT_NEGATIVE = frozenset({"overruled", "per_incuriam", "disapproved"})      # nizam.storage.treatment.NEGATIVE
+
+
 class JudgmentRead:
     def __init__(self, pool: ConnectionPool | None = None):
         self.pool = pool or ConnectionPool(dsn(), min_size=0, max_size=3, max_waiting=12, timeout=3, open=False,
@@ -503,14 +508,31 @@ class JudgmentRead:
                   LEFT JOIN case_type ct ON ct.code = j.case_type_code
                  WHERE j.id = ANY(%s::uuid[])""", ([r["judgment_id"] for r in rows],)).fetchall()}
             priv = self.privacy_of(conn, [r["judgment_id"] for r in rows])
+            # how each citing judgment treats this case, in its own words (D-160); a negative treatment only once a
+            # lawyer has verified it (PRECEDENT-MODEL §2), else it is counted as awaiting review
+            treated: dict = {}
+            for t in conn.execute("""
+                    SELECT t.judgment_id, t.treatment, t.review_status FROM case_treatment t
+                     WHERE t.judgment_id = ANY(%s::uuid[]) AND t.review_status <> 'rejected'
+                       AND t.dst_case_key IN (SELECT c.case_key FROM judgment_case c
+                                               JOIN judgment j ON j.id = c.judgment_id AND j.decided_on = c.decided_on
+                                              WHERE j.id = %s)""",
+                    ([r["judgment_id"] for r in rows], judgment_id)).fetchall():
+                treated.setdefault(t["judgment_id"], []).append(t)
         out = []
         for r in rows:
+            ts = treated.get(r["judgment_id"], [])
+            shown_t = sorted({t["treatment"] for t in ts
+                              if t["treatment"] not in TREATMENT_NEGATIVE or t["review_status"] == "lawyer_verified"})
+            pending = sum(1 for t in ts
+                          if t["treatment"] in TREATMENT_NEGATIVE and t["review_status"] != "lawyer_verified")
             m = meta.get(r["judgment_id"])
             if m:
                 shown = dates_shown(m)
                 p = priv.get(r["judgment_id"])
                 out.append(dict(judgment_id=r["judgment_id"], mentions=r["mentions"], case_key=m["case_key"],
                                 cited_as=r["printed"], by_reporter_citation=r["by_report"],
+                                treatments=shown_t, treatments_awaiting_review=pending,
                                 parties_display=p["parties_display"] if p else None,
                                 names_withheld=bool(p and p["redacted"]),
                                 court=m["court_name"], case_type=m["case_type_name"],
@@ -519,6 +541,66 @@ class JudgmentRead:
                                                                   shown["decided_on"])))
             if len(out) >= limit:
                 break
+        return out
+
+    def later_history(self, judgment_id, as_of: date) -> list[dict]:
+        """What happened to this judgment's case above it (D-159): released judgments decided on or before `as_of`
+        whose appeal chain (judgment_lineage_link) names it -- `matched` 'judgment' when the upper court's printed
+        case and date single it out, 'case' when only its case is named (several decisions, or an undated copy).
+        The outcome is the upper court's own (affirmed, set aside, remanded, leave refused ...), oldest first; a
+        later history is never inferred from anything else."""
+        with self.transaction() as conn:
+            rows = conn.execute("""
+                WITH mine AS (SELECT c.case_key FROM judgment_case c
+                               JOIN judgment j ON j.id = c.judgment_id AND j.decided_on = c.decided_on
+                              WHERE j.id = %s)
+                SELECT k.upper_judgment_id, k.upper_decided_on, l.relation, l.outcome, l.review_status,
+                       l.lower_case_printed, l.lower_decided_on,
+                       CASE WHEN k.lower_judgment_id = %s THEN 'judgment' ELSE 'case' END AS matched
+                  FROM judgment_lineage_link k JOIN judgment_lineage l ON l.id = k.lineage_id
+                 WHERE k.upper_decided_on <= %s AND k.upper_judgment_id <> %s
+                   AND (k.lower_judgment_id = %s
+                        OR (k.resolution = 'case_held' AND k.lower_case_key IN (SELECT case_key FROM mine)))
+                 ORDER BY k.upper_decided_on""",
+                (judgment_id, judgment_id, as_of, judgment_id, judgment_id)).fetchall()
+            # the court below's own record of what the court above did (0144): a second source, labelled, shown
+            # only when the court above had decided by `as_of`
+            recorded = conn.execute("""
+                SELECT o.upper_court_code, c.name AS court_name, o.outcome, o.outcome_printed, o.upper_decided_on,
+                       o.source_id, o.upper_file_url
+                  FROM judgment_recorded_outcome o JOIN court c ON c.code = o.upper_court_code
+                 WHERE o.judgment_id = %s AND o.upper_decided_on <= %s
+                 ORDER BY o.upper_decided_on""", (judgment_id, as_of)).fetchall()
+            if not rows and not recorded:
+                return []
+            meta = {r["id"]: r for r in conn.execute("""
+                SELECT j.id, j.decided_on, j.case_no_printed, j.disposition, c.name AS court_name,
+                       j.decided_on_basis, j.decided_not_before, j.undated_reason
+                  FROM v_shown_judgment j JOIN court c ON c.code = j.court_code
+                 WHERE j.id = ANY(%s::uuid[])""", ([r["upper_judgment_id"] for r in rows],)).fetchall()}
+        out = []
+        for r in rows:
+            m = meta.get(r["upper_judgment_id"])
+            if not m:
+                continue
+            shown = dates_shown(m)
+            # a reversal read by machine is shown only once a lawyer verifies it (PRECEDENT-MODEL §2, docs/06 §5.1):
+            # until then the later decision is listed and its outcome is withheld, marked so
+            withheld = r["outcome"] in NEGATIVE_OUTCOMES and r["review_status"] != "lawyer_verified"
+            out.append(dict(source="upper_judgment", judgment_id=r["upper_judgment_id"], court=m["court_name"],
+                            relation=r["relation"], outcome=None if withheld else r["outcome"],
+                            outcome_withheld="awaiting lawyer review" if withheld else None, matched=r["matched"],
+                            below_as_printed=r["lower_case_printed"], below_dated=r["lower_decided_on"], **shown,
+                            citation=render_judgment_citation(m["court_name"], m["case_no_printed"],
+                                                              shown["decided_on"])))
+        for r in recorded:
+            # no judgment of the court above is held: there is no citation to render, only the record and its source.
+            # The outcome is the court's own published record, not a machine reading, so the review rule for read
+            # reversals does not hold it back; it is labelled as the court's record
+            out.append(dict(source="court_record", recorded_by=r["source_id"], judgment_id=None, court=r["court_name"],
+                            relation=None, outcome=r["outcome"], outcome_printed=r["outcome_printed"],
+                            matched="judgment", decided_on=r["upper_decided_on"], citation=None,
+                            upper_file_url=r["upper_file_url"]))
         return out
 
     def coverage(self) -> list[dict]:

@@ -930,6 +930,41 @@ m AS (
         SELECT 1 FROM embedding_generation g WHERE g.id = e.generation_id AND g.active
            AND g.encoder_device = 'gpu'))                                                              AS jg_other_gen
 -- <<< A33 measures
+-- >>> A34 measures: appeal-chain links (0143, D-159) are exactly the release under one builder: each lineage row of a
+--     released judgment has one link row, none of another; a judgment below is a released decision of the case named
+    ,(SELECT count(*) FROM judgment_lineage l
+       JOIN v_release_judgment j ON j.id = l.upper_judgment_id AND j.decided_on = l.upper_decided_on
+      WHERE NOT EXISTS (SELECT 1 FROM judgment_lineage_link k WHERE k.lineage_id = l.id))             AS lk_missing
+    ,(SELECT count(*) FROM judgment_lineage_link k WHERE NOT EXISTS (
+        SELECT 1 FROM v_release_judgment j WHERE j.id = k.upper_judgment_id AND j.decided_on = k.upper_decided_on))
+                                                                                                       AS lk_outside
+    ,(SELECT count(*) FROM judgment_lineage_link k WHERE k.lower_judgment_id IS NOT NULL AND NOT EXISTS (
+        SELECT 1 FROM judgment_case c JOIN v_release_judgment j ON j.id = c.judgment_id AND j.decided_on = c.decided_on
+         WHERE c.judgment_id = k.lower_judgment_id AND c.case_key = k.lower_case_key))                AS lk_lower_bad
+    ,(SELECT count(DISTINCT builder) FROM judgment_lineage_link)                                       AS lk_builders
+    ,(SELECT count(*) FROM judgment_lineage_link WHERE resolution = 'resolved')                        AS lk_resolved
+    ,(SELECT count(*) FROM judgment_lineage_link WHERE resolution = 'case_held')                       AS lk_case_held
+    ,(SELECT count(*) FROM judgment_recorded_outcome o WHERE NOT EXISTS (
+        SELECT 1 FROM v_release_judgment j WHERE j.id = o.judgment_id AND j.decided_on = o.decided_on))
+                                                                                                       AS lk_record_outside
+    ,(SELECT count(*) FROM judgment_recorded_outcome)                                                  AS lk_recorded
+-- <<< A34 measures
+-- >>> A35 measures: case treatments (0145, D-160) are exactly over the release's resolved case citations, each row's
+--     review status the latest review of its key, under one builder
+    ,(SELECT count(*) FROM case_treatment t WHERE NOT EXISTS (
+        SELECT 1 FROM judgment_case_reference r
+          JOIN v_release_judgment j ON j.id = r.judgment_id AND j.decided_on = r.decided_on
+         WHERE r.paragraph_id = t.paragraph_id AND r.char_start = t.cite_start AND r.dst_case_key = t.dst_case_key
+           AND r.resolution = 'resolved'))                                                             AS ct_outside
+    ,(SELECT count(*) FROM case_treatment t
+       WHERE t.review_status <> coalesce((SELECT v.decision FROM case_treatment_review v
+                                           WHERE v.review_key = t.review_key ORDER BY v.reviewed_at DESC LIMIT 1),
+                                         'machine_candidate'))                                         AS ct_status_stale
+    ,(SELECT count(DISTINCT builder) FROM case_treatment)                                              AS ct_builders
+    ,(SELECT count(*) FROM case_treatment)                                                             AS ct_rows
+    ,(SELECT count(*) FROM case_treatment WHERE treatment IN ('overruled', 'per_incuriam', 'disapproved')
+         AND review_status <> 'lawyer_verified')                                                       AS ct_negative_pending
+-- <<< A35 measures
 )
 SELECT * FROM (
   SELECT 'C1' AS id, 'every acquired file becomes a blob'      AS criterion,
@@ -1195,6 +1230,23 @@ SELECT * FROM (
          ||'; '||jg_other_gen||' of another generation',
          'empty, or 0 lacking; 0 other',
          CASE WHEN jg_other_gen=0 AND (jg_rows=0 OR jg_missing=0) THEN 'PASS' ELSE 'FAIL' END
+    FROM m
+  UNION ALL SELECT 'A34','appeal chains are linked exactly over the release, each judgment below a decision of its case',
+         lk_resolved||' linked to the judgment below, '||lk_case_held||' to its case only, '||lk_recorded
+         ||' outcomes recorded by the court below (reported); '
+         ||lk_missing||' lineage rows unlinked; '||lk_outside||' rows outside the release; '||lk_lower_bad
+         ||' judgments below not of the case named; '||lk_record_outside||' recorded outcomes outside the release; '
+         ||lk_builders||' builder(s)',
+         '0 / 0 / 0 / 0; one builder',
+         CASE WHEN lk_missing=0 AND lk_outside=0 AND lk_lower_bad=0 AND lk_record_outside=0 AND lk_builders<=1
+              THEN 'PASS' ELSE 'FAIL' END
+    FROM m
+  UNION ALL SELECT 'A35','case treatments are read over the release''s resolved citations, review status current',
+         ct_rows||' treatments, '||ct_negative_pending||' negative awaiting review (reported); '||ct_outside
+         ||' rows not over a released resolved citation; '||ct_status_stale||' with a stale review status; '
+         ||ct_builders||' builder(s)',
+         '0 / 0; one builder',
+         CASE WHEN ct_outside=0 AND ct_status_stale=0 AND ct_builders<=1 THEN 'PASS' ELSE 'FAIL' END
     FROM m
   UNION ALL SELECT 'A6','no overlapping law (enforced, not tested)',
          CASE WHEN excl_present=1 THEN 'EXCLUDE constraint present'

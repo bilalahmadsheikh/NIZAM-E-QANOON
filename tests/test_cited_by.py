@@ -41,6 +41,29 @@ def test_a_cited_judgment_lists_the_judgments_citing_it(repo):
     assert all(i["citation"] for i in items)                                          # rendered from records
 
 
+def test_a_citing_judgment_carries_its_treatment_and_a_negative_one_waits_for_review(repo):
+    # D-160: treatments read from the citing court's own words; negative ones only when lawyer_verified
+    with repo.transaction() as conn:
+        # a case with few citers, so the citing judgment is inside the first 50 the list returns
+        row = conn.execute("""SELECT c.judgment_id, t.judgment_id AS citing, t.treatment, t.decided_on
+                                FROM case_treatment t
+                                JOIN judgment_case c ON c.case_key = t.dst_case_key
+                                JOIN v_shown_judgment j ON j.id = c.judgment_id AND j.decided_on = c.decided_on
+                               WHERE t.review_status = 'machine_candidate'
+                                 AND (SELECT count(DISTINCT r.judgment_id) FROM judgment_case_reference r
+                                       WHERE r.dst_case_key = t.dst_case_key AND r.resolution = 'resolved') < 20
+                               LIMIT 1""").fetchone()
+    if not row:
+        pytest.skip("no case treatment is held")
+    items = repo.citing_judgments(row["judgment_id"], row["decided_on"], 50)
+    mine = [i for i in items if str(i["judgment_id"]) == str(row["citing"])]
+    assert mine
+    if row["treatment"] in ("overruled", "per_incuriam", "disapproved"):
+        assert row["treatment"] not in mine[0]["treatments"] and mine[0]["treatments_awaiting_review"] >= 1
+    else:
+        assert row["treatment"] in mine[0]["treatments"]
+
+
 def test_cited_by_is_as_at_a_date(repo):
     row = _most_cited(repo)
     before = repo.citing_judgments(row["judgment_id"], row["first_cited"] - timedelta(days=1), 50)

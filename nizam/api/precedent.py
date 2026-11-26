@@ -3,6 +3,7 @@
     GET /v1/precedent/search?q=&as_of=&court=&forum=&forum_territory=&limit=
     GET /v1/precedent/judgments/{judgment_id}?as_of=
     GET /v1/precedent/judgments/{judgment_id}/cited-by?as_of=&limit=   later judgments citing its case (D-150)
+    GET /v1/precedent/judgments/{judgment_id}/history?as_of=          what the courts above did with it (D-159)
     GET /v1/precedent/cases/{court}/{case_type}/{number}/{year}?as_of=   one case and every decision in it (D-125)
     GET /v1/law/provisions/{provision_id}/judgments?as_of=&limit=      'cases on this section'
     GET /v1/precedent/authority?deciding=&receiving=&receiving_territory=&as_of=
@@ -77,6 +78,15 @@ def register(app, repo, resolved) -> None:
         # a citation not resolved is not shown, so 'none' means none found among the judgments held (coverage)
         day = resolved(as_of)
         return dict(judgment_id=judgment_id, as_of=day, items=repo.citing_judgments(judgment_id, day, limit),
+                    coverage=repo.coverage())
+
+    @app.get('/v1/precedent/judgments/{judgment_id}/history')
+    def history(judgment_id: UUID, as_of: date | None = None):
+        # what the courts above did with this judgment's case, in their own words (D-159): affirmed, set aside,
+        # remanded, leave refused. Only appeals the corpus holds are known, so an empty list says 'none held', and
+        # the coverage says which courts and years that covers
+        day = resolved(as_of)
+        return dict(judgment_id=judgment_id, as_of=day, items=repo.later_history(judgment_id, day),
                     coverage=repo.coverage())
 
     @app.get('/v1/law/provisions/{provision_id}/judgments')
