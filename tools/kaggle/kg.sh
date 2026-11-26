@@ -140,6 +140,17 @@ q8push)
  "dataset_sources": ["$USER/nizam-$3"], "kernel_sources": [], "competition_sources": []}
 EOF3
   $KG kernels push -p $K --accelerator ${KG_ACCEL:-NvidiaTeslaT4} ;;
+q4push)
+  # kg.sh q4push NAME DATASET : encode a q8push dataset's questions with Qwen3-Embedding-8B in 4-bit (NF4) and 8-bit
+  # weights (tools/kaggle/query8b_quant_kernel.py, D-165), with peak VRAM and latency. Output: embedfetch NAME.
+  K=/mnt/e/nizam-data/embed/kernel-$2; mkdir -p $K
+  sed "s/__REV__/${KG_REV:-}/" /mnt/e/Nizam_e_Qanoon/tools/kaggle/query8b_quant_kernel.py > $K/query8b_quant_kernel.py
+  cat > $K/kernel-metadata.json <<EOF3
+{"id": "$USER/nizam-embed-run-$2", "title": "nizam-embed-run-$2", "code_file": "query8b_quant_kernel.py",
+ "language": "python", "kernel_type": "script", "is_private": true, "enable_gpu": true, "enable_internet": true,
+ "dataset_sources": ["$USER/nizam-$3"], "kernel_sources": [], "competition_sources": []}
+EOF3
+  $KG kernels push -p $K --accelerator ${KG_ACCEL:-NvidiaTeslaT4} ;;
 rrpush)
   # kg.sh rrpush NAME DATASET MODELS : score pairs.jsonl of private dataset nizam-DATASET (evals/rerank_slates.py, then
   # kg.sh dsup) with the rerankers MODELS (comma-separated slugs of tools/kaggle/rerank_kernel.py). KG_SMOKE=1: 64 pairs.

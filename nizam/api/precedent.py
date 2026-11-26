@@ -26,6 +26,12 @@ from nizam.storage import authority as A
 from nizam.storage.case_key import case_key
 
 COURTS = Literal['', 'FCC', 'SC', 'FSC', 'LHC', 'SHC', 'PHC', 'BHC', 'IHC', 'AJKSC', 'AJKHC', 'GBSAC', 'GBCC']
+# subject_matter v1 (nizam.storage.facets.VOCABULARY, D-163)
+SUBJECTS = Literal['', 'civil_procedure', 'civil_service', 'constitutional', 'corporate_commercial', 'courts_judiciary',
+                   'criminal', 'education', 'elections', 'energy_utilities', 'environment', 'family',
+                   'finance_banking', 'health', 'intellectual_property', 'labour_employment', 'local_government',
+                   'media_technology', 'police_public_order', 'property_land', 'religious_affairs', 'tax',
+                   'transport']
 TERRITORIES = Literal['', 'punjab', 'sindh', 'kp', 'balochistan', 'ict', 'ajk', 'gb']
 
 
@@ -41,10 +47,10 @@ def register(app, repo, resolved) -> None:
     @app.get('/v1/precedent/search')
     def precedent_search(q: str = Query(..., min_length=2, max_length=300), as_of: date | None = None,
                          court: COURTS = '', forum: COURTS = '', forum_territory: TERRITORIES = '',
-                         limit: int = Query(10, ge=1, le=25)):
+                         subject: SUBJECTS = '', limit: int = Query(10, ge=1, le=25)):
         day = resolved(as_of)
         r = P.search(q.strip(), as_of=day, court=court or None, forum=_forum(forum, forum_territory), k=limit,
-                     repo=repo)
+                     repo=repo, subject=subject or None)          # subject: an area read from the laws cited (D-163)
         return dict(query=r.question, as_of=r.as_of, mode=r.mode, kind='precedent_discovery',
                     note='Judgments that bear on the question, with the law they read. Not legal advice and not '
                          'an answer: binding status is from the recorded constitutional rules only, and the coverage '
@@ -93,6 +99,7 @@ def register(app, repo, resolved) -> None:
     def provision_judgments(provision_id: UUID, as_of: date | None = None, limit: int = Query(20, ge=1, le=50)):
         day = resolved(as_of)
         return dict(provision_id=provision_id, as_of=day, items=repo.provision_judgments(provision_id, day, limit),
+                    judicial_status=repo.judicial_status(provision_id, day),       # D-161: verified only
                     coverage=repo.coverage())
 
     @app.get('/v1/precedent/authority')

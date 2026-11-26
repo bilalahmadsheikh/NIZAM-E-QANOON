@@ -965,6 +965,35 @@ m AS (
     ,(SELECT count(*) FROM case_treatment WHERE treatment IN ('overruled', 'per_incuriam', 'disapproved')
          AND review_status <> 'lawyer_verified')                                                       AS ct_negative_pending
 -- <<< A35 measures
+-- >>> A36 measures: judicial invalidation (0146, D-161): candidates are over the release's resolved statute
+--     citations; the serving snapshot is exactly the latest verified, whole-unit reviews (nothing else changes serving)
+    ,(SELECT count(*) FROM judicial_invalidation_candidate c WHERE NOT EXISTS (
+        SELECT 1 FROM v_release_judgment j WHERE j.id = c.judgment_id AND j.decided_on = c.decided_on)) AS ji_outside
+    ,(SELECT count(*) FROM (SELECT provision_id FROM mv_provision_invalidation
+                            EXCEPT SELECT provision_id FROM v_judicial_invalidation_verified
+                                    WHERE decision = 'lawyer_verified' AND extent = 'whole') x)
+     + (SELECT count(*) FROM (SELECT provision_id FROM v_judicial_invalidation_verified
+                               WHERE decision = 'lawyer_verified' AND extent = 'whole'
+                              EXCEPT SELECT provision_id FROM mv_provision_invalidation) y)            AS ji_stale
+    ,(SELECT count(DISTINCT builder) FROM judicial_invalidation_candidate)                             AS ji_builders
+    ,(SELECT count(*) FROM judicial_invalidation_candidate)                                            AS ji_candidates
+    ,(SELECT count(*) FROM mv_provision_invalidation)                                                  AS ji_serving
+-- <<< A36 measures
+-- >>> A37 measures: facets (0147, D-163): every value is in the vocabulary of its version, over released laws and
+--     judgments only, under one builder
+    ,(SELECT count(*) FROM instrument_facet f JOIN taxonomy_version t ON t.facet = f.facet AND t.version = f.taxonomy_ver
+       WHERE NOT (t.vocabulary ? f.value))
+     + (SELECT count(*) FROM judgment_subject s JOIN taxonomy_version t
+          ON t.facet = s.facet AND t.version = s.taxonomy_ver WHERE NOT (t.vocabulary ? s.value))       AS fc_bad_value
+    ,(SELECT count(*) FROM instrument_facet f WHERE NOT EXISTS (
+        SELECT 1 FROM v_release_instrument i WHERE i.id = f.instrument_id))
+     + (SELECT count(*) FROM judgment_subject s WHERE NOT EXISTS (
+        SELECT 1 FROM v_release_judgment j WHERE j.id = s.judgment_id AND j.decided_on = s.decided_on))  AS fc_outside
+    ,(SELECT count(DISTINCT builder) FROM (SELECT builder FROM instrument_facet
+                                           UNION SELECT builder FROM judgment_subject) b)               AS fc_builders
+    ,(SELECT count(DISTINCT instrument_id) FROM instrument_facet WHERE facet = 'subject_matter')      AS fc_laws
+    ,(SELECT count(DISTINCT judgment_id) FROM judgment_subject)                                        AS fc_judgments
+-- <<< A37 measures
 )
 SELECT * FROM (
   SELECT 'C1' AS id, 'every acquired file becomes a blob'      AS criterion,
@@ -1247,6 +1276,19 @@ SELECT * FROM (
          ||ct_builders||' builder(s)',
          '0 / 0; one builder',
          CASE WHEN ct_outside=0 AND ct_status_stale=0 AND ct_builders<=1 THEN 'PASS' ELSE 'FAIL' END
+    FROM m
+  UNION ALL SELECT 'A36','struck-down provisions serve only from lawyer-verified whole-unit reviews',
+         ji_candidates||' candidates, '||ji_serving||' verified units not served (reported); '||ji_outside
+         ||' candidates outside the release; '||ji_stale||' snapshot rows differing from the verified reviews; '
+         ||ji_builders||' builder(s)',
+         '0 / 0; one builder',
+         CASE WHEN ji_outside=0 AND ji_stale=0 AND ji_builders<=1 THEN 'PASS' ELSE 'FAIL' END
+    FROM m
+  UNION ALL SELECT 'A37','facet values are their version''s vocabulary, over the release, under one builder',
+         fc_laws||' laws and '||fc_judgments||' judgments with a subject (reported); '||fc_bad_value
+         ||' values outside their vocabulary; '||fc_outside||' rows outside the release; '||fc_builders||' builder(s)',
+         '0 / 0; one builder',
+         CASE WHEN fc_bad_value=0 AND fc_outside=0 AND fc_builders<=1 THEN 'PASS' ELSE 'FAIL' END
     FROM m
   UNION ALL SELECT 'A6','no overlapping law (enforced, not tested)',
          CASE WHEN excl_present=1 THEN 'EXCLUDE constraint present'

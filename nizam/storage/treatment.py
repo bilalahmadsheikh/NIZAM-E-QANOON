@@ -82,6 +82,52 @@ _OVERRULED_OTHER = re.compile(r"\b(?:objections?|pleas?|contentions?|arguments?|
                               r"prayers?|exceptions?)\b[^.;]{0,80}\boverrul", re.I)
 
 
+# ------------------------------------------------------------------ a judgment invalidating a provision (§2.2, D-161)
+# 'is hereby declared repugnant to the Injunctions of Islam' (the FSC, Art. 203D); 'is struck down', 'is declared
+# ultra vires / unconstitutional / void' (a constitutional court). Never a negation ('not repugnant', 'cannot be struck
+# down'), never a party's case, never an upheld provision. Every reading is a machine candidate for a lawyer.
+_INVALID_NOT = re.compile(r"\bnot\s+(?:been\s+)?(?:found\s+|held\s+|declared\s+)?(?:to\s+be\s+)?(?:repugnant|ultra\s+vires|"
+                          r"unconstitutional|void)|\bcannot\s+be\s+(?:struck|declared)|\bupheld\b|\bintra\s+vires\b|"
+                          r"\bwhether\b|\bif\s+(?:it|they|the)\b|"
+                          # a hypothetical or a power, not an act: 'can be struck down by a High Court'
+                          r"\b(?:can|could|may|might|would|should|shall)\s+(?:not\s+)?be\s+(?:struck|declared)\b|"
+                          # a party's prayer, not the court's order
+                          r"\bpray(?:s|ed|er|ing)?\b|\bsought\b|\bseek(?:s|ing)?\b|\bmay\s+kindly\b|"
+                          r"\bneed\s+not\b|\bif\b|"
+                          # an order, an act or a decision made under the provision is what is void, not the provision
+                          r"\b(?:order|orders|notification|action|actions|proceedings?|appointment|decree|conviction|"
+                          r"sentence|award|transaction)\b[^;]{0,100}?\bdeclared\s+(?:to\s+be\s+)?(?:void|null)", re.I)
+# a report of another decision ('was declared repugnant ... in PLD 1994 SC 1') against the court's own act
+# ('are hereby declared', 'we hold'): both are evidence for a reviewer, who reads the decision a report names
+_REPORTED = re.compile(r"\b(?:was|were|had\s+been|has\s+been|have\s+been)\s+(?:declared|held|struck)\b|"
+                       r"\b(?:in|by)\s+(?:the\s+)?(?:case|judgment|decision)\s+of\b|\bwherein\b", re.I)
+
+
+def invalidation_voice(sentence: str) -> str:
+    return "reported" if _REPORTED.search(sentence) else "own"
+_INVALIDATIONS: list[tuple[str, re.Pattern]] = [
+    ("declared_repugnant", re.compile(
+        r"\b(?:is|are|was|were|stands?|be|being)\s+(?:hereby\s+)?(?:held|declared|found)\s+(?:to\s+be\s+)?"
+        r"repugnant\s+to\s+the\s+injunctions\s+of\s+islam|"
+        r"\bwe\s+(?:hold|declare|find)\b[^.;]{0,120}\brepugnant\s+to\s+the\s+injunctions\s+of\s+islam|"
+        r"\bheld\s+(?:completely\s+)?repugnant\s+to\s+the\s+injunctions\s+of\s+islam", re.I)),
+    ("struck_down", re.compile(
+        r"\b(?:is|are|was|were|stands?|be|being)\s+(?:hereby\s+)?struck\s+down\b|"
+        r"\b(?:is|are|was|were|stands?|be)\s+(?:hereby\s+)?declared\s+(?:to\s+be\s+)?(?:ultra\s+vires|"
+        r"unconstitutional|void|null\s+and\s+void)\b|\bwe\s+(?:hereby\s+)?strike\s+down\b", re.I)),
+]
+
+
+def invalidation_of(sentence: str) -> str | None:
+    """'declared_repugnant' or 'struck_down' when the court's own words in the sentence say so, else None"""
+    if _PARTY.search(sentence) or _INVALID_NOT.search(sentence):
+        return None
+    for name, rx in _INVALIDATIONS:
+        if rx.search(sentence):
+            return name
+    return None
+
+
 def review_key(sentence: str, dst_case_key: str, treatment: str) -> str:
     """a reviewer's decision outlives a rebuild: keyed by the evidence's words, the case treated and the treatment"""
     words = " ".join(sentence.split())

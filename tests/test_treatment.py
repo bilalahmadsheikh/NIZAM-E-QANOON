@@ -41,6 +41,23 @@ def test_polarity_is_a_fixed_map_and_reviews_outlive_rebuilds():
     assert k != review_key("X is not good law.", "SC/CA/2/2020", "disapproved")
 
 
+def test_an_invalidation_is_the_courts_act_on_a_provision_never_a_prayer_a_power_or_an_order():
+    from nizam.storage.treatment import invalidation_of, invalidation_voice
+    own = ("The provisions of Section 25(2)(a) relating to interest are held to be repugnant to the Injunctions of "
+           "Islam as laid down in the Holy Qur'an.")
+    assert invalidation_of(own) == "declared_repugnant" and invalidation_voice(own) == "own"
+    rep = "It is true that provisions of Section 6(2) were declared repugnant to the Injunctions of Islam in PLD 1994 SC 1."
+    assert invalidation_of(rep) == "declared_repugnant" and invalidation_voice(rep) == "reported"
+    assert invalidation_of("The phrase used in Section 9(a)(v) is struck down from the NAB Ordinance.") == "struck_down"
+    # a prayer, a power, a hypothetical, a negation, an order made under the provision
+    assert invalidation_of("He prayed that Section 4C of the Income Tax Ordinance be declared unconstitutional.") is None
+    assert invalidation_of("Any law can be struck down by a High Court under Article 199.") is None
+    assert invalidation_of("If Section 6 of the NRO is declared void, the convicts must surrender.") is None
+    assert invalidation_of("Section 46, therefore, need not be struck down.") is None
+    assert invalidation_of("Section 28 is not repugnant to the Injunctions of Islam.") is None
+    assert invalidation_of("The order passed under Section 552 Cr.P.C is declared void and set aside.") is None
+
+
 def test_the_sentence_is_the_one_holding_the_citation():
     t = "First point. The view in X (PLD 2018 SC 405) is hereby overruled. Next point."
     s = t.index("X (PLD")

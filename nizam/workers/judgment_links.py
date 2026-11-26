@@ -46,8 +46,10 @@ from nizam.storage.lexical import Filters
 # is never remembered as a law (D-135); /7 a High Court's citation of a federal law is linked to the territory's copy
 # too, and every copy only where its unit is the same provision (D-136); /8 a printed law name resolves by how well a
 # title fits it before the court's territory is preferred (D-149), and a reporter citation resolves through the
-# law-report index the court publishes (D-150)
-LINKER = "nizam.judgment_links/8"
+# law-report index the court publishes (D-150); /9 the courts' neutral citations ('2022 SCP 313', '2015 LHC 3623',
+# '2020 IHC 146') are read as citations and resolve through the widened index (D-162); /10 a judgment's own short
+# forms ('the 2001 Ordinance' it defined), a schedule's article naming its Act, a hyphen a title prints (D-164)
+LINKER = "nizam.judgment_links/10"
 
 
 def _todo(cur, rebuild: bool) -> list[tuple]:
@@ -199,14 +201,25 @@ def link_one(cur, res: Resolver, types, jid, day, court, undated: bool = False,
     court read; the unit is linked 'not_dated'."""
     cur.execute("""SELECT id, text FROM judgment_paragraph WHERE judgment_id = %s AND decided_on = %s
                      AND kind IN ('body', 'footnote') ORDER BY ordinal""", (jid, day))
+    paragraphs = cur.fetchall()
+    # the short forms this judgment defines ('... Ordinance, 2001 ("the 2001 Ordinance")'): read before any citation,
+    # since a judgment may define one in a footnote or after its first use (D-164)
+    short_forms = {**JL.FIXED_SHORT_FORMS, **JL.defined_short_forms(t for _p, t in paragraphs)}
     statute_rows, case_rows = [], []
     last_law: dict[str, tuple[str, str]] = {}       # unit word -> (law, the citation that named it)
-    for pid, text in cur.fetchall():
+    for pid, text in paragraphs:
         for c in JL.statute_citations(text):
             word = "article" if c.raw.lower().startswith("art") else "section"
             law_basis, inherited_from = "named", None
+            sf = JL.short_form_of(c.law, text[c.end:c.end + 20])
+            if sf and sf in short_forms:
+                # 'section 19 of the 2001 Ordinance': the law this judgment itself named so (D-164)
+                c = JL.StatuteCitation(c.start, c.end, c.raw, c.label, c.subs, short_forms[sf], c.role)
+                law_basis, inherited_from = "inherited", f"defined in this judgment as the {sf[0]} {sf[1]}"
             back = JL.back_reference(c.law)
-            if c.law and not back:
+            if law_basis == "inherited":
+                last_law[word] = (c.law, c.raw)            # a later 'of the Ordinance' refers back to it too
+            elif c.law and not back:
                 last_law[word] = (c.law, c.raw)
             elif word in last_law and JL.may_inherit(back[0] if back else c.named, last_law[word][0],
                                                      back[1] if back else None):

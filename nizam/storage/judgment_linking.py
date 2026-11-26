@@ -30,7 +30,10 @@ _INTERPRET = re.compile(r"(?i)\binterpret\w*\b|\bmeaning\s+of\b|\bconstru(?:e|ed
                         r"\bscope\s+of\b|\bpurport\s+of\b")
 
 _SERIES = (r"SCMR|PLD|PLC(?:\s*\(C\.?S\.?\))?|PTD|CLC|YLR|MLD|P\s*Cr\.?\s*L\.?\s*J|PCrLJ|CLD|PLJ|SCR|GBLR|NLR|"
-           r"YLR|PSC|MLD|KLR|SBLR|CLR")
+           r"YLR|PSC|MLD|KLR|SBLR|CLR|"
+           # the courts' own neutral citations (D-162): the Supreme Court's '2022 SCP 313', the Lahore High Court's
+           # '2015 LHC 3623', the Islamabad High Court's '2020 IHC 146'
+           r"SCP|LHC|IHC")
 # "2019 SCMR 1234", "2016 PCr.LJ 77", "1999 YLR 2200 [Lahore]"
 _REP_YEAR_FIRST = re.compile(r"\b((?:19|20)\d{2})\s+(" + _SERIES + r")\s+(\d{1,5})\b(?:\s*\[\s*([A-Za-z.() ]{2,25}?)\s*\])?")
 # "PLD 2016 SC 1", "PLD 1966 SC 717", "PLD 2013 Lahore 45"
@@ -128,6 +131,64 @@ def back_reference(law: str | None) -> tuple[str, str | None] | None:
     if not m:
         return None
     return f"kind:{C.law_kind(m.group(1))}", m.group(2)
+
+
+# ------------------------------------------------------------------ a judgment's own short forms (D-164)
+# A judgment names a law in full once and defines its short form: 'the Financial Institutions (Recovery of Finances)
+# Ordinance, 2001 ("the 2001 Ordinance")', '... Act, 2017 (hereinafter "the 2017 Act")'. Its later 'section 19 of the
+# 2001 Ordinance' means that law -- in this judgment only; the same year is another law in the next one.
+_KINDS = r"(Act|Ordinance|Order|Code|Rules|Regulations|Constitution)"
+_DEFINES = re.compile(r"\(\s*(?:hereinafter\s+(?:referred\s+to\s+as\s+|called\s+|to\s+be\s+referred\s+(?:to\s+)?as\s+)?)?"
+                      r"[\"“‘']\s*(?:the\s+)?((?:18|19|20)\d{2})\s+" + _KINDS + r"\s*[\"”’']\s*\)", re.I)
+_NAME_WORD = r"(?:[A-Z][\w&’'.,\-]*|\([^()]{1,80}\)|of|and|the|for|in|on|to|&)"   # 'Generation, Transmission'
+_FULL_NAME = re.compile(r"((?:" + _NAME_WORD + r"\s+){1,16}?" + _KINDS + r"\b[,\s]*(?:No\.?\s*[IVXLC\d]+\s+of\s+)?"
+                        r"((?:18|19|20)\d{2})\)?)\s*,?\s*$")
+
+
+_OPENERS = {"the", "under", "in", "by", "as", "per", "of", "with", "from", "that", "this", "since", "whereas", "while",
+            "where", "according", "to", "and", "for", "on", "vide", "namely", "i.e", "viz", "also", "see", "is", "are",
+            "was", "were", "be", "has", "have", "had", "which", "who", "it", "its", "a", "an"}
+
+
+def defined_short_forms(texts) -> dict[tuple[str, str], str]:
+    """{(year, kind): the full law name} for the short forms a judgment defines; a short form defined for two
+    different laws in one judgment is dropped, never chosen between"""
+    out: dict[tuple[str, str], str] = {}
+    clash: set = set()
+    for t in texts:
+        for m in _DEFINES.finditer(t or ""):
+            before = t[max(0, m.start() - 240):m.start()]
+            n = _FULL_NAME.search(before)
+            if not n:
+                continue
+            words = " ".join(n.group(1).split()).split(" ")
+            while words and words[0].lower().strip(",.") in _OPENERS:
+                words = words[1:]                           # 'Under the Financial Institutions ...' -> 'Financial ...'
+            name = " ".join(words)
+            year, kind = m.group(1), m.group(2).lower()
+            if n.group(3) != year or n.group(2).lower() != kind:
+                continue                                    # the name before is not the law the short form names
+            key = (year, kind)
+            if key in out and C._norm_title(out[key]) != C._norm_title(name):
+                clash.add(key)
+            out.setdefault(key, name)
+    return {k: v for k, v in out.items() if k not in clash}
+
+
+_KIND_AFTER = re.compile(r"\s*" + _KINDS + r"\b", re.I)
+
+
+def short_form_of(law: str | None, after: str) -> tuple[str, str] | None:
+    """(year, kind) when a citation printed only a year as its law ('of the 2001 Ordinance': the grammar reads the
+    law as '2001') and the kind follows it in the text"""
+    if not law or not re.fullmatch(r"(?:the\s+)?((?:18|19|20)\d{2})", law.strip(), re.I):
+        return None
+    m = _KIND_AFTER.match(after or "")
+    return (re.search(r"\d{4}", law).group(0), m.group(1).lower()) if m else None
+
+
+# the one reading that needs no definition: Pakistan's Constitution is the only 1973 Constitution a court here means
+FIXED_SHORT_FORMS = {("1973", "constitution"): "Constitution of the Islamic Republic of Pakistan"}
 
 
 def statute_citations(text: str) -> list[StatuteCitation]:

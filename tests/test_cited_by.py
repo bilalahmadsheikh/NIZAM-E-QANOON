@@ -64,6 +64,23 @@ def test_a_citing_judgment_carries_its_treatment_and_a_negative_one_waits_for_re
         assert row["treatment"] in mine[0]["treatments"]
 
 
+def test_cases_on_a_section_list_the_judgments_construing_it_first(repo):
+    # D-161: interpreted, challenged or quoted before cited, before charged under
+    with repo.transaction() as conn:
+        row = conn.execute("""SELECT r.dst_provision_id FROM judgment_statute_reference r
+                               WHERE r.resolution = 'resolved' AND r.role = 'interpreted'
+                               GROUP BY 1 HAVING count(DISTINCT r.judgment_id) BETWEEN 5 AND 200
+                               ORDER BY count(*) DESC LIMIT 1""").fetchone()
+    if not row:
+        pytest.skip("no interpreted provision is held")
+    items = repo.provision_judgments(row["dst_provision_id"], date.today(), 50)
+
+    def weight(roles):
+        return 3 if set(roles) & {"interpreted", "challenged", "quoted"} else (1 if set(roles) == {"charge"} else 2)
+    w = [weight(i["roles"]) for i in items]
+    assert w and w == sorted(w, reverse=True) and w[0] == 3
+
+
 def test_cited_by_is_as_at_a_date(repo):
     row = _most_cited(repo)
     before = repo.citing_judgments(row["judgment_id"], row["first_cited"] - timedelta(days=1), 50)

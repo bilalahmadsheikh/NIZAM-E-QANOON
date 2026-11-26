@@ -335,6 +335,11 @@ def resolve(session, cit: Citation, copies_in: tuple[str, ...] | None = None) ->
             # 'section 4 of the Act.', 'the Act, 2013', 'the Amending Act': a kind of law, not a name (D-127)
             cit.unresolved = f"no law named ({words!r} names only a kind of law): not guessed"
             return cit
+    # 'Article 151 of the First Schedule to the Limitation Act, 1908' names the Limitation Act: the unit is looked for
+    # in its schedule (D-164)
+    sched = _SCHEDULE_OF.match(words)
+    if sched:
+        words = sched.group(2)
     wants_amendment = "amend" in words.lower()
     year = (_YEAR.findall(words) or [None])[-1]
 
@@ -357,6 +362,10 @@ def resolve(session, cit: Citation, copies_in: tuple[str, ...] | None = None) ->
     laws = lookup(words)
     if not laws and year:                                            # a reprint whose title drops the year
         laws = lookup(re.sub(r"[,\s]*(?:of\s+)?\d{4}", "", words).strip(" ,"))
+    if not laws and _HYPHENED.search(words):
+        # 'Cooperative Societies Act' printed, 'Co-operative Societies Act' titled: the title search reads the hyphen
+        # as two words (D-164); the hyphenated spelling is the same name
+        laws = lookup(_HYPHENED.sub(lambda m: _HYPHENS[m.group(0).lower()], words))
     cit.candidates = [t for _i, t, _r in laws[:3]]
     if not laws:
         cit.unresolved = f"no served law titled like {words!r}"
@@ -369,6 +378,12 @@ def resolve(session, cit: Citation, copies_in: tuple[str, ...] | None = None) ->
     found = []
     for oid, otitle, _r in same:
         ounits = _label_units(session, cit.label, oid)
+        if sched:
+            # a schedule's article: a unit of any kind inside the law's marked schedule; in a law whose copy marks
+            # no schedule, the label's only unit. A label the law's own sections share too ('Article 29' and s.29)
+            # is never chosen between, and a marked schedule's law never falls back to a section (D-164)
+            in_sched, marked = _schedule_units(session, cit.label, oid, sched.group("ord"))
+            ounits = in_sched if marked else (ounits if len(ounits) == 1 else [])
         if ounits:
             found.append((otitle, session.child_by_label(ounits[0], cit.subs) if cit.subs else ounits[0]))
     if not found:
@@ -378,6 +393,46 @@ def resolve(session, cit: Citation, copies_in: tuple[str, ...] | None = None) ->
     cit.alternate_laws = [t for t, _u in rest]
     cit.alternates = [u for _t, u in rest]
     return cit
+
+
+_SCHEDULE_OF = re.compile(r"(?i)^(?:the\s+)?(?P<ord>first|second|third|fourth|fifth|sixth|seventh|eighth|ninth|"
+                          r"tenth|1st|2nd|3rd|[4-9]th)\s+schedule\s+(?:to|of|appended\s+to|annexed\s+to)\s+"
+                          r"(?:the\s+)?(.+)$")
+# words a judgment prints whole and a title prints hyphenated (the title search reads a hyphen as a word break)
+_HYPHENS = {"cooperative": "co-operative", "preemption": "pre-emption", "coordination": "co-ordination",
+            "reorganisation": "re-organisation", "reorganization": "re-organization"}
+_HYPHENED = re.compile(r"(?i)\b(?:" + "|".join(_HYPHENS) + r")\b")
+
+
+_ORDINAL = {"1st": "first", "2nd": "second", "3rd": "third", "4th": "fourth", "5th": "fifth", "6th": "sixth",
+            "7th": "seventh", "8th": "eighth", "9th": "ninth"}
+
+
+def _schedule_units(session, label: str, instrument_id: str, ordinal: str):
+    """(units labelled `label` inside the law's marked schedule of that ordinal (path '.sch_FIRST_SCHEDULE'),
+    whether the law marks that schedule at all). A copy that marks its Second Schedule but keeps its First's
+    articles as sections (the federal Limitation Act) does not mark the First."""
+    cur = getattr(session, "cur", None)
+    if cur is None:
+        return [], False
+    word = _ORDINAL.get(ordinal.lower(), ordinal.lower()).upper()
+    pattern = rf"[.]sch_{word}(_|$)"
+    folded = "".join((label or "").split()).lower()
+    cur.execute("""SELECT p.id::text, p.path::text, p.instrument_id::text FROM provision p
+                    WHERE p.instrument_id = %s AND p.is_active AND p.path::text ~ %s
+                      AND lower(replace(p.label, ' ', '')) = %s
+                    ORDER BY p.ordinal, p.id""", (instrument_id, pattern, folded))
+    rows = cur.fetchall()
+    if rows:
+        return [_unit(*r) for r in rows], True
+    cur.execute("SELECT EXISTS (SELECT 1 FROM provision WHERE instrument_id = %s AND is_active AND path::text ~ %s)",
+                (instrument_id, pattern))
+    return [], bool(cur.fetchone()[0])
+
+
+def _unit(unit_id, path, instrument_id):
+    from nizam.storage.unit_search import Unit
+    return Unit(unit_id, path, instrument_id)
 
 
 def _label_units(session, label: str, instrument_id: str):

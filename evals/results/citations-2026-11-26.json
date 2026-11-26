@@ -1,8 +1,8 @@
 {
  "summary": {
   "full": {
-   "CORRECT": 399,
-   "CORRECT_ALT": 6,
+   "CORRECT": 400,
+   "CORRECT_ALT": 5,
    "UNRESOLVED": 1,
    "WRONG": 0,
    "queries": 406
@@ -4163,10 +4163,8 @@
    "form": "full",
    "query": "section 13 of the Civil Servants Act, 1973",
    "expected": "fed.act.y1973_o438.ch_II.s_13",
-   "outcome": "CORRECT_ALT",
-   "why": [
-    "Civil Servants Act, 1973"
-   ],
+   "outcome": "CORRECT",
+   "why": null,
    "got": "fed.act.y1973_o438.ch_II.s_13"
   },
   {
@@ -4277,8 +4275,10 @@
    "form": "full",
    "query": "section 25 of the National Accountability Ordinance, 1999",
    "expected": "fed.ordinance.y1999_XVIII_o698.s_25",
-   "outcome": "CORRECT",
-   "why": null,
+   "outcome": "CORRECT_ALT",
+   "why": [
+    "National Accountability Ordinance, 1999"
+   ],
    "got": "fed.ordinance.y1999_XVIII_o698.s_25"
   },
   {
@@ -4357,10 +4357,8 @@
    "form": "full",
    "query": "section 22 of the Civil Servants Act, 1973",
    "expected": "fed.act.y1973_o438.ch_II.s_22",
-   "outcome": "CORRECT_ALT",
-   "why": [
-    "Civil Servants Act, 1973"
-   ],
+   "outcome": "CORRECT",
+   "why": null,
    "got": "fed.act.y1973_o438.ch_II.s_22"
   },
   {

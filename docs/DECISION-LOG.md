@@ -1136,6 +1136,226 @@ Area: client · Status: Superseded by D-084 (the whole-page cloth; the hem, the 
   design/heritage_art.dart, presentation/discover.dart, presentation/heritage.dart; test/heritage_test.dart
   (golden embroidery.png, a review sheet at 3x).
 
+### D-166 · 2026-11-26 · The 8B judgment space is loaded, and precedent search reads it with the GPU encoder
+Area: L2 storage / L3 retrieval (precedent) · Status: standing (results of D-158)
+- Loaded: four Kaggle runs (24 shards, two accounts; about 12 passages/s, 0.73–0.77 h a shard, no non-finite row)
+  gave 760,516 judgment vectors. 2,876 exported chunks were skipped, removed by re-reads during the run, as the
+  loader's text-compare rule (D-158) intends.
+  - A one-shard top-up gave the 10,324 chunks made since (the FSC landing, re-reads). Its dev questions
+    reproduced the generation at cosine 1.00000.
+  - Every judgment chunk now has its generation-2 vector, and `ix_judgment_chunk_embedding_gpu_hnsw` was built in
+    182 s.
+- Measured on precedent dev (35 answerable), with the 8B question vectors from Kaggle replayed
+  (`precedent_eval --gpu-vectors`), against the CPU space:
+  - hit@10 .686 → .714;
+  - MRR@10 .422 → .449;
+  - recall@50 .738 → .790;
+  - leaks 0.
+  The sample is small, and test was not read. The served path uses the GPU space wherever `NIZAM_GPU_ENCODER_URL`
+  is set (D-158), and the CPU space otherwise, marked.
+- Incident: the loader's HNSW build (maintenance_work_mem 1 GB, parallel workers) filled the container's 1 GB
+  `/dev/shm` while relink /10 ran beside it.
+  - The relink stopped at 45,500 of 64,273 with `DiskFull` and rolled back whole, so nothing was half-written.
+  - It was restarted alone.
+  - Rule kept: an index build of this size runs on its own, never beside a relink.
+- Where: tools/load_judgment_embeddings_gpu.py; judgment_chunk_embedding_gpu; evals/results/quant-precedent-dev-*.json.
+
+### D-165 · 2026-11-26 · The question encoder may run in 8-bit or 4-bit; the stored fp16 vectors are not re-embedded
+Area: L3 retrieval / deployment (GPU host) · Status: measured, decision for the serving host
+- Question: can a quantized Qwen3-Embedding-8B encode questions against passages embedded once in fp16, so a smaller
+  GPU serves it and nothing is re-embedded?
+- Measured on a Kaggle T4 (`tools/kaggle/query8b_quant_kernel.py`, bitsandbytes 0.50.2; `kg.sh q4push`):
+  - Vectors against fp16, on 108 generation dev questions:
+    - 8-bit cosine min .973, mean .996, signs 97.3%;
+    - 4-bit (NF4) min .910, mean .977, signs 93.1%.
+    Neither meets the same-space rule (cosine ≥ 0.999), as expected. The search results decide.
+  - Memory and speed (single question, T4):
+
+    | Encoder | VRAM | p50 |
+    |---|---|---|
+    | fp16 | about 13.9 GiB peak per card | 87.6 ms |
+    | 8-bit | 8.0 GiB peak | 233.5 ms |
+    | 4-bit | 6.9 GiB peak | 119.9 ms |
+
+    Quantization saves memory and costs speed on this card.
+  - Law dev, all 276 questions; paired bootstrap of the difference from fp16, 95% CI:
+    - 8-bit: no difference on any metric (dense NDCG@10 +0.2 [−0.8, +1.1]; hybrid recall@50 −0.4 [−1.4, +0.7]).
+    - 4-bit, hybrid (the served candidates): no difference (NDCG@10 −0.1 [−1.1, +0.8]; recall@50 −0.9
+      [−2.4, +0.4]).
+    - 4-bit, dense alone: recall@50 the same (+0.2), ranking lower (NDCG@10 −1.9 [−3.4, −0.5]; MRR@10 −2.2
+      [−4.0, −0.5]).
+  - Precedent dev (8B judgment space): fp16 hit@10 .714, recall@50 .790; 8-bit .714, .795; 4-bit .743, .776.
+    Indistinguishable at 35 questions.
+- Decision: the corpus vectors stay fp16-made, with no re-embedding.
+  - The serving host may run the question encoder in fp16 (default), 8-bit (no measurable loss, slower), or 4-bit
+    (half the VRAM; candidates' recall unchanged; dense-only ranking about 2 points lower, which the reranker
+    reorders anyway).
+  - The choice is the host's VRAM, recorded with the host. This is a measured, recorded exception to the
+    same-space rule for the question side only. Passage vectors are always embedded at the generation's own
+    precision.
+  - Before a 4-bit encoder serves, the reranked path is measured once as ADR-1d did. Fine-tuning is not
+    needed for this (the user's question, 26 Nov).
+- Where: tools/kaggle/query8b_quant_kernel.py; tools/kaggle/kg.sh (`q4push`);
+  evals/results/quant-statute-dev-{fp16,int8,nf4}.json, quant-precedent-dev-*.json.
+
+### D-164 · 2026-11-26 · Fewer unresolved law citations: a judgment's own short forms, schedule articles, hyphens, six aliases
+Area: L1 precedent (linking) / L3 citation path · Status: standing
+- The survey (law_not_held, 26 Nov) read the largest unresolved names. Four causes were found, each with a rule
+  that guesses nothing.
+  - **A judgment's own short form.** "Section 19 of the 2001 Ordinance" is the most common unresolved form: thousands
+    of citations, printed as a bare year. The same year is a different law in each judgment, so it is never an
+    alias.
+    - The judgment defines it: "Financial Institutions (Recovery of Finances) Ordinance, 2001 ('the 2001
+      Ordinance')", "(hereinafter 'the 2017 Act')". `judgment_linking.defined_short_forms` reads each judgment's
+      definitions before its citations.
+    - A definition counts only when the full name before it has the same year and kind. One defined for two laws in
+      a judgment is dropped.
+    - A citation printing the year and that kind resolves to the full name (`law_basis` inherited, "defined in this
+      judgment").
+    - One fixed reading: "the 1973 Constitution" is the Constitution of Pakistan.
+    - Sampled on 400 judgments: 1,333 of 1,976 bare-year citations read through a definition, and the names read
+      right ("1940 Act" → Arbitration Act 1940).
+  - **A schedule's article.** "Article 151 of the First Schedule to the Limitation Act" names the Limitation Act, and
+    the unit is looked for in its First Schedule.
+    - The copies differ: Punjab's marks it (`.sch_FIRST_SCHEDULE`). The federal copy marks its Second and Third but
+      keeps the First's articles as sections, where "29" is both s.29 and Article 29.
+    - So a unit inside the marked schedule of that ordinal is taken. In a copy that does not mark it, the label is
+      taken only if it is the law's only unit of that label. A shared label is never chosen between: a test caught
+      Article 29 resolving to Punjab's s.29 before the rule read schedule units of any kind.
+  - **A hyphen a title prints.** "Cooperative Societies Act" printed, "Co-operative" titled: the title search reads
+    the hyphen as two words. A fixed list of such words (co-operative, pre-emption, co-ordination, re-organisation) is
+    tried. A Sindh judgment now resolves to Sindh's copy.
+  - **Six reviewed aliases** (sheet `law-aliases-2026-11-26-d164`, read; the loader verified each), each recorded
+    with the passage read:
+    - IRRO 2001 → Islamabad Rent Restriction Ordinance;
+    - C.A.A. Ordinance → Pakistan Civil Aviation Authority Ordinance 1982 (not the Chhamb Area Ordinance offered);
+    - PM&DC Act 2022;
+    - S.B.P. Act → SBP Act 1956;
+    - Telecom Act → Pakistan Telecommunication (Re-organization) Act 1996;
+    - I.C.T.-L.G. Act → ICT Local Government Act 2015.
+    "DHA Act" is ambiguous (Islamabad, Lahore and Karachi each have one), and NEPRA's federal Act is not held (only
+    a Punjab copy). The 40 bare-year rows are left to the short-form rule.
+- Retrieval's citation fast path is the same resolver. The golden citation set is unchanged: full 400 + 5 alternates
+  of 406, alias 100/100, bare 77/77, WRONG 0.
+- Linker /10 (with D-162) relinked every judgment (26–27 Nov):
+  - statute citations resolved 324,530 → 329,141 of 437,377;
+  - "law not held" 31,085 → 26,299;
+  - case citations resolved 33,047 → 34,153;
+  - reviewed aliases 322, resolving 13,439 citations.
+  Audit 59/59; tests 2,675 passed.
+- Not done here, with reasons:
+  - The Representation of the People Act 1976 (850 citations) is not held: Pakistan Code fails its TLS check.
+  - The Punjab Local Government Act 2013 (317, repealed) has an official PDF and is an acquisition, a law landing
+    with its own pipeline.
+  - The Sindh Land Revenue Act 1967 (242) has no official text: an owner question.
+- Where: nizam/storage/judgment_linking.py (`defined_short_forms`, `short_form_of`, `FIXED_SHORT_FORMS`);
+  nizam/storage/citations.py (`_SCHEDULE_OF`, `_schedule_units`, `_HYPHENS`); nizam/workers/judgment_links.py (/10);
+  docs/alias-review/law-aliases-2026-11-26-d164.*, fill_2026-11-26-d164.py; tests/test_citation_forms.py,
+  test_judgment_parse.py.
+
+### D-163 · 2026-11-26 · Facets, first slice: subject_matter for laws by title rule, and a judgment's subjects from the laws it cites
+Area: L2 data model (docs/03b facets) / L3 precedent filter · Status: standing (docs/03b §8.1's first step)
+- Decision: migration 0147 adds `taxonomy_version`, `instrument_facet` (docs/03b §6.1) and `judgment_subject`.
+  - The last is proposed here: docs/03b defines no judgment facet. A judgment's areas are read from the laws it
+    cites, so precedent can be filtered by area.
+  - jurisdiction and instrument_type are columns already, and life_stage is read as at a date through
+    `operative_provision`. None is copied, where it would go stale.
+- subject_matter v1 (`nizam.storage.facets`): 22 areas, assigned only where the short title decides (§8: "rule where
+  the short title decides; classifier otherwise"), with the words that decided it. A title that decides none is
+  unassigned, never guessed. Each value carries its vocabulary version.
+  - Read by sampling 40: 37 right before three fixes. A body's "constitution" ("Prosecution Service (Constitution,
+    Functions and Powers)") is not the Constitution; "Sugar Factories Control" is not labour law; "Public Health
+    Engineering" rules are not health.
+  - Built: 5,335 of 10,809 laws assigned after the fixes (5,398 before them), family 132 laws, tax 633, …
+- A judgment's subjects: the subjects of its resolved statute citations, weighted by role (interpreted, challenged
+  or quoted 3; cited 2; charge 1). A subject with at least a third of the weight is kept, with its share. Built over
+  41,424 judgments after relink /10 (family 660 on the first build).
+- Search: each precedent hit carries `subjects`, and `subject=` narrows to judgments in that area, as a named court
+  does (a user's filter, not a ranking change).
+- Audit A37: every value is in its version's vocabulary, over released laws and judgments, under one builder.
+- Open, by docs/03b §8.1: competence, legal_origin and the citizen_situation taxonomy (hand-curated, ~70
+  advocate-hours); provision-level facets; a classifier for the unassigned half.
+- Where: infra/postgres/migrations/0147_facets.sql; nizam/storage/facets.py; nizam/workers/facets.py;
+  nizam/retrieval/precedent.py (`subject`); nizam/api/precedent.py (`SUBJECTS`); tools/audit/criteria.sql (A37);
+  tests/test_facets.py.
+
+### D-162 · 2026-11-26 · The courts' own citations widen the law-report index: neutral citations, the Islamabad listing, Lahore's file names
+Area: L1 precedent (links) · Status: standing (extends D-150)
+- Decision: the citation grammar reads the courts' neutral citations as citations: the Supreme Court's "2022 SCP
+  313", the Lahore High Court's "2015 LHC 3623", the Islamabad High Court's "2020 IHC 146" (judgments print 223,
+  167 and 8 of them). The law-report index takes three more of the courts' own sources (`reporter_index/2`):
+  - the Supreme Court listings' neutral column, which was "not read" before (3,980 cells);
+  - the Islamabad listing's own citation for each judgment it lists ("2023 PTD 603", "2015 CLC 1066"; "Citation
+    Awaited" is not read);
+  - the Lahore High Court's file names, which are its neutral citations ("2021LHC3320.pdf" is "2021 LHC 3320", the
+    form its judgments cite). Only names of exactly that form are read.
+- Built: 14,281 citations (2,195 before): LHC 8,011, SCP 3,098, SCMR 1,601, PLD 703, CLC 211, …
+  - 217 claimed by two decisions are dropped, never chosen between.
+- Checked by reading 12 neutral citations in judgments against the judgment indexed. Seven are confirmed by the
+  parties printed beside the citation ("Coca-Cola" with "Coca Cola"; "Rehana Nazir v. DPO Gujrat" with "… v.
+  District Police Officer"), and none contradicts.
+- Linker /10 (with D-164) resolves the citing references, and treatments (D-160) follow them.
+  - After the relink: 14,150 distinct citations indexed, and 33,739 citing references resolved through the index.
+  - Case citations resolved in all: 34,153.
+  - Treatments: 498 (applied 479, distinguished 19).
+- Where: nizam/storage/judgment_linking.py (`_SERIES`); nizam/workers/reporter_index.py (/2: `ihc_listed`,
+  `lhc_named`); nizam/workers/judgment_links.py; tests/test_judgment_parse.py.
+
+### D-161 · 2026-11-26 · Struck-down and repugnant provisions: machine candidates for a lawyer, served only once verified
+Area: L1 precedent → L2 serving (`invalidated_by`) · Status: standing (PRECEDENT-MODEL §4.3, §2.2; docs/03b)
+- Decision: a judgment's own words striking down a provision, or declaring it repugnant to the Injunctions of Islam
+  (Art. 203D), become a machine candidate. Only a lawyer-verified review changes what `operative_provision` serves.
+  Migration 0146 adds:
+  - `judicial_invalidation_candidate`, derived by `nizam.workers.invalidation_candidates`. It covers every
+    resolved statute citation of a released judgment whose sentence the grammar
+    (`nizam.storage.treatment.invalidation_of`) reads.
+  - `judicial_invalidation_review`, append-only evidence. A verified row must give the provision (a reviewer may
+    correct the candidate's), its extent (`whole`, or `words` with the words read down), the effective day (the
+    decision's or the day it names, Art. 203D(2)(b)) and the appeal state (203D(2) proviso).
+    - It is keyed by the sentence's words, the citation as printed and the reading, so it survives a judgment's
+      re-read and a law's re-segmentation.
+  - `mv_provision_invalidation`: the latest reviews that are verified and `whole`. `operative_provision` stops
+    serving such a unit, and everything under it, from its effective day, as it does a repealed unit (0102).
+    - A `words` extent does not remove the unit.
+    - `tools/refresh_serving.py` refreshes the snapshot.
+    - `invalidation_coverage` stays `not_tracked`, because only judgments held are read.
+- The grammar, measured by reading:
+  - The Constitution (and the AJK Interim Constitution and GB Order) is never the invalidated instrument. Its
+    Article is the measure ("unconstitutional, against Article 25") or the jurisdiction ("struck down … under
+    Article 199").
+  - Refused, each seen in the first read:
+    - a party's prayer ("prayed that section 4C … be declared unconstitutional");
+    - a power or hypothetical ("can be struck down", "if Section 6 … is declared void");
+    - "need not be struck down";
+    - an order made under a provision ("the order passed under Section 552 Cr.P.C is declared void").
+  - Each candidate is marked `own` (the court's act: "are hereby declared repugnant") or `reported` (another
+    decision's act: "were declared repugnant in PLD 1994 SC 1"). A report names the decision a reviewer then
+    reads.
+- Built: 134 candidates (struck down 121, declared repugnant 13; own 90, reported 44). Examples:
+  - the FSC Riba judgment's SBP Act s.25(2)(a);
+  - NAB Ordinance s.9(b) (PLD 2001 SC 607, reported);
+  - CrPC s.197 and Limitation Act s.28 (reported repugnant);
+  - Punjab Pre-emption Act provisions.
+  No review exists yet, so nothing served changed: 0 units in the snapshot.
+  - After relink /10: 140 candidates (struck down 127, declared repugnant 13; own 92, reported 48).
+- Review: `invalidation_candidates --sheet docs/invalidation-review` writes the sheet, with the FSC listing's own
+  "law challenged" and remarks for FSC judgments. `tools/invalidation_review_load.py` appends a lawyer's decisions
+  and refuses a verified row without its provision, extent or day.
+- Read: the "cases on this section" route (`/v1/law/provisions/{id}/judgments`) carries `judicial_status`. It states
+  only verified readings, with extent and effective day, and counts the candidates awaiting review.
+  - The same route now lists the judgments construing the provision first: interpreted, challenged or quoted, then
+    cited, then charged under it. Within each, an apex court's come before a High Court's, then the newest. It
+    listed newest first before, so a passing mention ranked above a construction.
+- Proof: `tests/test_judicial_invalidation.py`, in a transaction rolled back.
+  - A candidate alone changes nothing.
+  - A verified whole-unit review stops the unit being served from its effective day.
+  - A review cannot be changed or removed, and a verified one must say what it establishes.
+- Audit A36: candidates only over the release; the snapshot exactly the verified whole-unit reviews; one builder.
+- Where: infra/postgres/migrations/0146_judicial_invalidation.sql; nizam/storage/treatment.py;
+  nizam/workers/invalidation_candidates.py; tools/invalidation_review_load.py; tools/refresh_serving.py;
+  nizam/storage/judgment_read.py (`judicial_status`); nizam/api/precedent.py; tests/test_judicial_invalidation.py,
+  test_treatment.py; docs/invalidation-review/.
+
 ### D-160 · 2026-11-26 · Case treatments are read from the citing court's own words; negative ones wait for a lawyer
 Area: L1 precedent (links) / L5 citator groundwork · Status: standing (PRECEDENT-MODEL §2.1, built by grammar)
 - Decision: for every resolved case citation of a released judgment, the sentence holding it is read by

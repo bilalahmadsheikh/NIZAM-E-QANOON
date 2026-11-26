@@ -434,8 +434,30 @@ class JudgmentRead:
                                                                    shown["decided_on"])))
         return dict(case=k, decisions=decisions, cited_by=cited_by)
 
+    def judicial_status(self, provision_id, as_of: date) -> dict:
+        """What courts have held about this provision's validity (D-161): only lawyer-verified reviews are stated
+        (PRECEDENT-MODEL §2: struck_down and declared_repugnant are shown only when verified), each with its extent
+        and effective day; machine candidates are only counted. A 'whole' extent is also what operative_provision
+        stops serving; 'words' reads part of the text down and the unit still serves."""
+        with self.transaction() as conn:
+            verified = conn.execute("""
+                SELECT v.extent, v.extent_note, v.effective_on, v.appeal_state, c.reading, c.judgment_id
+                  FROM v_judicial_invalidation_verified v
+                  JOIN LATERAL (SELECT reading, judgment_id FROM judicial_invalidation_candidate x
+                                 WHERE x.review_key = v.review_key LIMIT 1) c ON true
+                 WHERE v.decision = 'lawyer_verified' AND v.provision_id = %s AND v.effective_on <= %s
+                 ORDER BY v.effective_on""", (provision_id, as_of)).fetchall()
+            pending = conn.execute("""
+                SELECT count(*) AS n FROM judicial_invalidation_candidate
+                 WHERE provision_id = %s AND review_status = 'machine_candidate' AND decided_on <= %s""",
+                (provision_id, as_of)).fetchone()["n"]
+        return dict(verified=[dict(r) for r in verified], candidates_awaiting_review=pending,
+                    coverage="only the judgments held are read; only lawyer-verified readings are stated")
+
     def provision_judgments(self, provision_id, as_of: date, limit: int = 20) -> list[dict]:
-        """'Cases on this section': released judgments citing the provision or a unit inside it, newest first."""
+        """'Cases on this section': released judgments citing the provision or a unit inside it (D-161 order):
+        first the judgments that construe it (interpreted, challenged or quoted), then those citing it, then those
+        charging under it; within each, an apex court's before a High Court's; then the newest dated, undated last."""
         with self.transaction() as conn:
             rows = conn.execute("""
                 WITH u AS (SELECT array_agg(p.id) AS ids FROM provision t
@@ -443,13 +465,18 @@ class JudgmentRead:
                             WHERE t.id = %s)
                 SELECT r.judgment_id, r.decided_on, count(*) AS mentions,
                        array_agg(DISTINCT r.role) AS roles, min(r.paragraph_id::text) AS first_paragraph,
-                       bool_or(j.decided_on_basis = 'undated') AS undated
+                       bool_or(j.decided_on_basis = 'undated') AS undated,
+                       max(CASE r.role WHEN 'interpreted' THEN 3 WHEN 'challenged' THEN 3 WHEN 'quoted' THEN 3
+                                       WHEN 'charge' THEN 1 ELSE 2 END) AS weight,
+                       max(CASE co.court_class WHEN 'apex' THEN 2 WHEN 'constitutional_apex' THEN 2 ELSE 1 END)
+                                                                                          AS court_rank
                   FROM judgment_statute_reference r
                   JOIN judgment j ON j.id = r.judgment_id AND j.decided_on = r.decided_on
+                  JOIN court co ON co.code = j.court_code
                   CROSS JOIN u
                  WHERE r.decided_on <= %s
                    AND (r.dst_provision_id = ANY(u.ids) OR r.alternates && u.ids)   -- any copy (D-136)
-                 GROUP BY 1, 2 ORDER BY 6, r.decided_on DESC LIMIT %s""",   # newest dated first, undated last
+                 GROUP BY 1, 2 ORDER BY 7 DESC, 8 DESC, 6, r.decided_on DESC LIMIT %s""",
                 (provision_id, as_of, limit * 2)).fetchall()
             if not rows:
                 return []

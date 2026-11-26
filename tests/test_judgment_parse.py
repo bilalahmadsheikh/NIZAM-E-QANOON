@@ -133,6 +133,31 @@ def test_a_letter_spaced_heading_names_its_court_and_an_unspaced_miss_stays_a_mi
     assert _court("IN THE FEDERALSHARIAT COURT", al, glued=True) is None
 
 
+def test_a_judgments_own_short_form_names_the_law_it_defined():
+    # D-164: 'the 2001 Ordinance' is the law this judgment named in full and defined so; never across judgments
+    from nizam.storage.judgment_linking import defined_short_forms, short_form_of
+    t = ("Under the Financial Institutions (Recovery of Finances) Ordinance, 2001 (“the 2001 Ordinance”) the Banking "
+         "Court decides. The Elections Act, 2017 (hereinafter “the 2017 Act”) governs.")
+    d = defined_short_forms([t])
+    assert d[("2001", "ordinance")] == "Financial Institutions (Recovery of Finances) Ordinance, 2001"
+    assert d[("2017", "act")] == "Elections Act, 2017"
+    assert short_form_of("2001", " Ordinance which") == ("2001", "ordinance")
+    assert short_form_of("Income Tax Ordinance, 2001", " which") is None
+    # a short form whose name before it is another law's, or one defined for two laws, is not read
+    assert defined_short_forms(["the Act of 1997 (“the 2001 Ordinance”)"]) == {}
+    two = ["the Sales Tax Act, 1990 (“the 1990 Act”) and", "the Customs Act, 1990 (“the 1990 Act”)"]
+    assert ("1990", "act") not in defined_short_forms(two)
+
+
+def test_the_courts_neutral_citations_are_read_as_citations():
+    # D-162: '2022 SCP 313', '(2015 LHC 3623)', '2020 IHC 146' key the law-report index like a reporter citation
+    from nizam.storage.judgment_linking import reporter_key
+    t = "Naseer Ahmed v. RO 2022 SCP 313; Northern Power v. FOP (2015 LHC 3623) and Bhatti v. FOP (2020 IHC 146)."
+    keys = [reporter_key(c) for c in case_citations(t)]
+    assert ("SCP", 2022, "", 313) in keys and ("LHC", 2015, "", 3623) in keys and ("IHC", 2020, "", 146) in keys
+    assert ("SCMR", 2023, "", 1011) in [reporter_key(c) for c in case_citations("(2023 SCMR 1011 = 2023 SCP 150)")]
+
+
 def test_no_printed_decision_date_is_released_undated_not_guessed():
     # D-124: released marked undated; the hearing bounds it from below and is never taken as the date
     d = doc([HEADER + ["ORDER", "Alpha Beta, J.- The petition is dismissed.", "Judge", "Judge",

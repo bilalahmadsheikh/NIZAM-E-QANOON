@@ -68,6 +68,7 @@ class PrecedentHit:
     case_key: str | None = None       # the case it decides, as printed ('SC/CA/1507/2024'); None if not placed (D-125)
     gives_reasons: bool = False       # it gives the reasons for the court's short order in that case
     short_order_on: date | None = None  # that short order's printed date, when printed
+    subjects: list = field(default_factory=list)  # its areas, read from the laws it cites (judgment_subject, D-163)
 
 
 @dataclass
@@ -202,7 +203,7 @@ def _default_encoder(trace: dict):
 
 
 def search(question: str, *, as_of: date, court: str | None = None, forum=None, k: int = 10,
-           repo: JudgmentRead | None = None, encoder=None) -> PrecedentResult:
+           repo: JudgmentRead | None = None, encoder=None, subject: str | None = None) -> PrecedentResult:
     if type(as_of) is not date:
         raise ValueError("as_of is mandatory (INV-5) and is a date")
     t0 = time.time()
@@ -294,8 +295,19 @@ def search(question: str, *, as_of: date, court: str | None = None, forum=None, 
                     f["score"] += 1.0 / (RRF_K + len(voted))
                     f["gens"].append("binding")
                 trace["binding_voted"] = len(voted)
+            # the judgments' areas (D-163); a subject the user names narrows to its judgments, as a named court does
+            subj_of: dict = {}
+            if fused:
+                for r in conn.execute("""SELECT judgment_id, array_agg(value ORDER BY share DESC) AS v
+                                           FROM judgment_subject WHERE judgment_id = ANY(%s) GROUP BY 1""",
+                                      (list({f["judgment_id"] for f in fused.values()}),)).fetchall():
+                    subj_of[r["judgment_id"]] = r["v"]
+            if subject:
+                trace["subject"] = subject
             best: dict = {}
             for pid, f in sorted(fused.items(), key=lambda x: -x[1]["score"]):
+                if subject and subject not in subj_of.get(f["judgment_id"], ()):
+                    continue
                 if f["judgment_id"] not in best:
                     best[f["judgment_id"]] = (pid, f)
                 if len(best) >= k:
@@ -323,7 +335,8 @@ def search(question: str, *, as_of: date, court: str | None = None, forum=None, 
                     undated=d["undated"], decided_no_later_than=d["decided_no_later_than"],
                     decided_not_before=d["decided_not_before"], case_key=d["case_key"],
                     parties_display=d["parties_display"], privacy=d["privacy"],
-                    gives_reasons=d["gives_reasons"], short_order_on=d["reasons_for_short_order_on"]))
+                    gives_reasons=d["gives_reasons"], short_order_on=d["reasons_for_short_order_on"],
+                    subjects=list(subj_of.get(jid, []))))
             coverage = _coverage(conn)
         trace.update(generators={n: len(v) for n, v in lists.items()}, ms=int((time.time() - t0) * 1000),
                      withheld_by_name=withheld_queries, court_searched=court)

@@ -19,18 +19,21 @@ from __future__ import annotations
 import argparse
 import collections
 import json
+import re
 import sys
+import zipfile
 from pathlib import Path
 
 from nizam.storage import judgment_linking as JL
 from nizam.storage.db import connect
 
-BUILDER = "nizam.reporter_index/1"
+BUILDER = "nizam.reporter_index/2"   # /2: the IHC listing's citations and the LHC's neutral citations too (D-162)
 ACQ = Path("/mnt/e/nizam-data/acquire/scp")
+IHC_ARCHIVE = Path("/mnt/e/nizam-data/acquire/ihc/ihc_judgments.zip")
 
 
-def listed(search: Path, latest: Path) -> list[tuple[str, str, str]]:
-    """[(file name lower, printed citation, source)] from both listings, each pair once."""
+def listed(search: Path, latest: Path) -> list[tuple[str, str, str, str]]:
+    """[(court, file name lower, printed citation, source)] from both Supreme Court listings, each pair once."""
     out, seen = [], set()
     for path, source in ((search, "scp-search"), (latest, "scp-latest")):
         if not path.exists():
@@ -42,16 +45,47 @@ def listed(search: Path, latest: Path) -> list[tuple[str, str, str]]:
                 v = (r.get(col) or "").strip()
                 if v and (f, v) not in seen:
                     seen.add((f, v))
-                    out.append((f, v, source))
+                    out.append(("SC", f, v, source))
     return out
 
 
-def build(cur, rows: list[tuple[str, str, str]]) -> tuple[list[tuple], collections.Counter]:
+def ihc_listed(archive: Path = IHC_ARCHIVE) -> list[tuple[str, str, str, str]]:
+    """the Islamabad High Court's listing (D-156) prints, for each judgment it lists, the citation under which it was
+    reported (O_CITATION: '2023 PTD 603', 'Citation Awaited'); the archive member is '<O_ID>_<name>'"""
+    if not archive.exists():
+        return []
+    with zipfile.ZipFile(archive) as z:
+        names = {n.split("/")[-1].split("_", 1)[0]: n.split("/")[-1].lower() for n in z.namelist()
+                 if n.lower().endswith(".pdf")}
+        lines = z.read("ihc_judgments/listing.jsonl").decode("utf-8").splitlines()
+    out = []
+    for line in lines:
+        r = json.loads(line)
+        f = names.get(str(r["O_ID"]))
+        v = (r.get("O_CITATION") or "").strip()
+        if f and v:
+            out.append(("IHC", f, v, "ihc-listing"))
+    return out
+
+
+def lhc_named(cur) -> list[tuple[str, str, str, str]]:
+    """the Lahore High Court's site names each judgment file by its neutral citation ('2021LHC3320.pdf' is
+    '2021 LHC 3320', the form its judgments cite: '(2015 LHC 3623)'); only names of exactly that form are read"""
+    cur.execute("SELECT DISTINCT lower(regexp_replace(member, '^.*/', '')) FROM judgment_source WHERE court_code = 'LHC'")
+    out = []
+    for (f,) in cur.fetchall():
+        m = re.fullmatch(r"((?:19|20)\d{2})lhc(\d{1,6})\.pdf", f)
+        if m:
+            out.append(("LHC", f, f"{m.group(1)} LHC {int(m.group(2))}", "lhc-file-name"))
+    return out
+
+
+def build(cur, rows: list[tuple[str, str, str, str]]) -> tuple[list[tuple], collections.Counter]:
     tally = collections.Counter()
-    # the file's released judgment: by its member name among the Supreme Court's sources; a second copy's citation
-    # goes to the decision shown (v_shown_judgment), else to the released reading itself
+    # the file's released judgment: by its member name among its court's sources; a second copy's citation goes to
+    # the decision shown (v_shown_judgment), else to the released reading itself
     cur.execute("""
-        SELECT DISTINCT lower(regexp_replace(s.member, '^.*/', '')), j.id, j.decided_on,
+        SELECT DISTINCT s.court_code, lower(regexp_replace(s.member, '^.*/', '')), j.id, j.decided_on,
                EXISTS (SELECT 1 FROM v_shown_judgment v WHERE v.id = j.id AND v.decided_on = j.decided_on),
                (SELECT min(c.case_key) FROM judgment_case c
                  WHERE c.judgment_id = j.id AND c.decided_on = j.decided_on AND c.role = 'lead'),
@@ -60,21 +94,22 @@ def build(cur, rows: list[tuple[str, str, str]]) -> tuple[list[tuple], collectio
           FROM judgment_source s
           JOIN judgment_document d ON d.sha256 = s.sha256 AND d.court_code = s.court_code AND d.is_active
           JOIN v_release_judgment j ON j.document_id = d.id
-         WHERE s.court_code = 'SC'""")
+         WHERE s.court_code IN ('SC', 'IHC', 'LHC')""")
     by_file = collections.defaultdict(list)
-    for f, jid, day, shown, lead, keys in cur.fetchall():
-        by_file[f].append((not shown, str(jid), day, lead, frozenset(keys or ())))
+    for court, f, jid, day, shown, lead, keys in cur.fetchall():
+        by_file[(court, f)].append((not shown, str(jid), day, lead, frozenset(keys or ())))
     claims = collections.defaultdict(list)
     out = []
-    for f, printed, source in rows:
+    for court, f, printed, source in rows:
         cites = [c for c in JL.case_citations(printed) if JL.reporter_key(c)]
         if not cites:
-            tally["citation not read (e.g. 'NA', a neutral 'SCP' citation)"] += 1
+            tally[f"{source}: citation not read ('NA', 'Citation Awaited')"] += 1
             continue
-        if f not in by_file:
-            tally["file not released"] += 1
+        if (court, f) not in by_file:
+            tally[f"{source}: file not released"] += 1
             continue
-        _copy, jid, day, lead, keys = sorted(by_file[f], key=lambda x: x[:3])[0]
+        tally[f"{source}: indexed"] += 1
+        _copy, jid, day, lead, keys = sorted(by_file[(court, f)], key=lambda x: x[:3])[0]
         # a cell may print the judgment in several reports ('2026 SCMR 42 2026 PLC (CS) 247'): each is indexed
         for c in cites:
             k = JL.reporter_key(c)
@@ -104,7 +139,7 @@ def main() -> int:
     ap.add_argument("--apply", action="store_true")
     a = ap.parse_args()
     with connect() as conn, conn.cursor() as cur:
-        rows, tally = build(cur, listed(a.search, a.latest))
+        rows, tally = build(cur, listed(a.search, a.latest) + ihc_listed() + lhc_named(cur))
         cur.execute("DELETE FROM reporter_citation")
         cur.executemany("""INSERT INTO reporter_citation (series, year, court, page, printed, judgment_id, decided_on,
                                                           case_key, source, source_ref, builder)
