@@ -1,0 +1,3164 @@
+{
+ "built": "2026-11-27",
+ "A_statute_dev": {
+  "gold_units": 292,
+  "cases": 276,
+  "share_cited_by_any_judgment": 0.726,
+  "share_interpreted_quoted_or_challenged": 0.432,
+  "share_cited_by_a_binding_court": 0.651,
+  "median_judgments_per_cited_unit": 17,
+  "rows": [
+   {
+    "case": "S1-C01",
+    "unit": "874d4c34-6c75-478d-982d-ea3e4d0acb9c",
+    "forum": "punjab",
+    "judgments": 21,
+    "interpreting": 0,
+    "binding": 21
+   },
+   {
+    "case": "S1-C03",
+    "unit": "1d2f70cc-9439-4d8d-b1e4-cddad521bd92",
+    "forum": "punjab",
+    "judgments": 11,
+    "interpreting": 1,
+    "binding": 5
+   },
+   {
+    "case": "S1-C05",
+    "unit": "44a60af0-3ac8-4763-b992-61acd50b1b25",
+    "forum": "punjab",
+    "judgments": 1,
+    "interpreting": 0,
+    "binding": 1
+   },
+   {
+    "case": "S1-C06",
+    "unit": "3422d60d-327d-4f21-92ff-cf153a0e5c45",
+    "forum": "sindh",
+    "judgments": 1,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S1-C06",
+    "unit": "6026c084-15df-40d5-a5fe-44701a85fd22",
+    "forum": "sindh",
+    "judgments": 1,
+    "interpreting": 0,
+    "binding": 1
+   },
+   {
+    "case": "S1-C08",
+    "unit": "7699f718-b1c9-43ba-8181-7e7bb2c6e606",
+    "forum": "ict",
+    "judgments": 1,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S1-C11",
+    "unit": "fe8ff95d-73bb-4b13-8431-67d61b0bd545",
+    "forum": "kp",
+    "judgments": 3591,
+    "interpreting": 33,
+    "binding": 878
+   },
+   {
+    "case": "S1-C12",
+    "unit": "6a850e4a-d106-4003-b670-9d3c06ee11c1",
+    "forum": "punjab",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S1-C13",
+    "unit": "7d946258-5f03-40aa-8d0e-4047ce60b4a4",
+    "forum": "punjab",
+    "judgments": 3,
+    "interpreting": 0,
+    "binding": 1
+   },
+   {
+    "case": "S1-C15",
+    "unit": "25427349-1ea3-45c8-b3ca-ef82a11e905d",
+    "forum": "punjab",
+    "judgments": 63,
+    "interpreting": 11,
+    "binding": 15
+   },
+   {
+    "case": "S1-C16",
+    "unit": "35e8603c-087e-4c5f-936a-e5e356ee01d3",
+    "forum": "sindh",
+    "judgments": 18,
+    "interpreting": 2,
+    "binding": 13
+   },
+   {
+    "case": "S1-C17",
+    "unit": "232a4270-1da6-4291-92e2-40c1e500700b",
+    "forum": "punjab",
+    "judgments": 132,
+    "interpreting": 12,
+    "binding": 34
+   },
+   {
+    "case": "S1-C19",
+    "unit": "1ab5db9a-b19d-44e6-bed9-13b3098dd057",
+    "forum": "balochistan",
+    "judgments": 44,
+    "interpreting": 5,
+    "binding": 3
+   },
+   {
+    "case": "S1-C20",
+    "unit": "27514abd-49ec-4dcf-850e-42c04c5cc77c",
+    "forum": "ajk",
+    "judgments": 1,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S1-P02",
+    "unit": "4f99424c-dbf7-48e3-9060-05386246a6c7",
+    "forum": "sindh",
+    "judgments": 1103,
+    "interpreting": 34,
+    "binding": 790
+   },
+   {
+    "case": "S1-P06",
+    "unit": "ed178a43-e4a1-4a18-bd3c-8b945ef5534c",
+    "forum": "punjab",
+    "judgments": 8101,
+    "interpreting": 726,
+    "binding": 1911
+   },
+   {
+    "case": "S1-P08",
+    "unit": "41716fbb-4b5c-4a63-874b-bc43533ee5e0",
+    "forum": "ict",
+    "judgments": 78,
+    "interpreting": 13,
+    "binding": 52
+   },
+   {
+    "case": "S1-P09",
+    "unit": "b66112f9-076e-4f5f-a7eb-e76d4e64fc82",
+    "forum": "punjab",
+    "judgments": 137,
+    "interpreting": 30,
+    "binding": 79
+   },
+   {
+    "case": "S1-P10",
+    "unit": "08e40ab3-9fd0-47ed-ba71-e83c2b8bee48",
+    "forum": "sindh",
+    "judgments": 3,
+    "interpreting": 1,
+    "binding": 0
+   },
+   {
+    "case": "S1-P12",
+    "unit": "ef38408e-1180-4879-ad12-442b934e05f6",
+    "forum": "kp",
+    "judgments": 2,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S1-R03",
+    "unit": "5f36c397-7d6b-4065-bb7a-05e207dba9ff",
+    "forum": "punjab",
+    "judgments": 45,
+    "interpreting": 4,
+    "binding": 45
+   },
+   {
+    "case": "S1-R04",
+    "unit": "1f5d4a3d-ecb8-439a-a3de-bd3ce7818c7e",
+    "forum": "kp",
+    "judgments": 45,
+    "interpreting": 3,
+    "binding": 16
+   },
+   {
+    "case": "S1-R06",
+    "unit": "a117e6fc-0163-4256-943d-33459b1e4628",
+    "forum": "punjab",
+    "judgments": 49,
+    "interpreting": 5,
+    "binding": 7
+   },
+   {
+    "case": "S1-R06",
+    "unit": "7dd2e3db-6c64-4be0-8b96-0a4f321f3d7f",
+    "forum": "punjab",
+    "judgments": 23,
+    "interpreting": 1,
+    "binding": 3
+   },
+   {
+    "case": "S1-U02",
+    "unit": "f96ede93-e18a-46a8-875a-f0a91ca3d7da",
+    "forum": "sindh",
+    "judgments": 7090,
+    "interpreting": 1017,
+    "binding": 6152
+   },
+   {
+    "case": "S1-U03",
+    "unit": "874d4c34-6c75-478d-982d-ea3e4d0acb9c",
+    "forum": "punjab",
+    "judgments": 21,
+    "interpreting": 0,
+    "binding": 21
+   },
+   {
+    "case": "S1-U04",
+    "unit": "428b841e-3130-4a53-a621-7c38b47f3079",
+    "forum": "punjab",
+    "judgments": 1905,
+    "interpreting": 137,
+    "binding": 216
+   },
+   {
+    "case": "S1-U05",
+    "unit": "1d2f70cc-9439-4d8d-b1e4-cddad521bd92",
+    "forum": "kp",
+    "judgments": 11,
+    "interpreting": 1,
+    "binding": 8
+   },
+   {
+    "case": "S10-C01",
+    "unit": "d033efb5-78cf-4ec9-888e-f1d0e0e93b1d",
+    "forum": "punjab",
+    "judgments": 15,
+    "interpreting": 3,
+    "binding": 13
+   },
+   {
+    "case": "S10-C02",
+    "unit": "9683e48c-e109-4a75-a704-5e05322076f9",
+    "forum": "sindh",
+    "judgments": 3,
+    "interpreting": 0,
+    "binding": 3
+   },
+   {
+    "case": "S10-C04",
+    "unit": "fa9eab47-59e1-41ba-b936-bbf7a334365d",
+    "forum": "balochistan",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S10-C07",
+    "unit": "bd9cdead-ff71-4b08-afff-3e6b088be7eb",
+    "forum": "sindh",
+    "judgments": 1,
+    "interpreting": 0,
+    "binding": 1
+   },
+   {
+    "case": "S10-C08",
+    "unit": "dca1f909-b2aa-4592-9a19-eba23c96ddf7",
+    "forum": "ict",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S10-C09",
+    "unit": "2d3fa14a-7f1a-4704-b958-1ae840da3b22",
+    "forum": "balochistan",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S10-C10",
+    "unit": "e49fda3e-87fb-4e78-a50f-36c61c4949fb",
+    "forum": "punjab",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S10-C11",
+    "unit": "820354c4-523b-4f43-8746-9ea174d03a23",
+    "forum": "ict",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S10-C12",
+    "unit": "342357ef-aa7c-49a2-a18f-3d09ea7bc912",
+    "forum": "ict",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S10-C15",
+    "unit": "0be66df8-309e-478d-899d-9ebc8cb76304",
+    "forum": "kp",
+    "judgments": 5,
+    "interpreting": 1,
+    "binding": 5
+   },
+   {
+    "case": "S10-C18",
+    "unit": "bad316c0-fd08-4e0f-8055-85537bedfa30",
+    "forum": "gb",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S10-C19",
+    "unit": "f3b71ed5-358b-4901-b14f-01f9f186e34b",
+    "forum": "gb",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S10-C20",
+    "unit": "4f1deb26-3a61-4e7a-af12-df4a292c1e45",
+    "forum": "gb",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S10-P01",
+    "unit": "a7dc9d23-2991-42ad-a775-93c6cadccb6e",
+    "forum": "ict",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S10-P02",
+    "unit": "bd343cd5-7870-426f-9d98-2dfcc80d672a",
+    "forum": "ict",
+    "judgments": 2,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S10-P06",
+    "unit": "dbf164b7-42a4-4222-a01d-d44e48c35ff3",
+    "forum": "ict",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S10-P09",
+    "unit": "a7240dee-3dda-4cbb-8033-a2623f4a171e",
+    "forum": "kp",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S10-P11",
+    "unit": "3c217c85-9601-4bc8-8fba-0a3aedca9788",
+    "forum": "gb",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S10-R02",
+    "unit": "a323a88a-1cd7-45c0-b1ed-5259fc698145",
+    "forum": "sindh",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S10-R03",
+    "unit": "381ae17c-fe89-4939-8b11-83aa852525c3",
+    "forum": "kp",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S10-R04",
+    "unit": "f3b71ed5-358b-4901-b14f-01f9f186e34b",
+    "forum": "gb",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S10-R05",
+    "unit": "22e6dcd4-a994-41c8-91e0-e58ebb97c2b8",
+    "forum": "gb",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S10-R06",
+    "unit": "1fc625e2-2bdb-4f67-b8e1-f65161f10b1d",
+    "forum": "ict",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S10-U01",
+    "unit": "817e50d7-24b0-442c-81a1-f458afff1b78",
+    "forum": "kp",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S10-U02",
+    "unit": "dca1f909-b2aa-4592-9a19-eba23c96ddf7",
+    "forum": "ict",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S10-U04",
+    "unit": "d0fbfe8c-fc6b-4bba-acc0-2543bc7adbc4",
+    "forum": "gb",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S2-C01",
+    "unit": "ae3bc76f-e85a-46a7-b29e-5a2069ddf173",
+    "forum": "kp",
+    "judgments": 82,
+    "interpreting": 0,
+    "binding": 6
+   },
+   {
+    "case": "S2-C02",
+    "unit": "98476f1d-b02b-450f-a3ba-b918d1d5e00f",
+    "forum": "sindh",
+    "judgments": 407,
+    "interpreting": 2,
+    "binding": 285
+   },
+   {
+    "case": "S2-C03",
+    "unit": "fc31fa70-83cd-4b1c-8641-b992f0d8cce5",
+    "forum": "sindh",
+    "judgments": 31,
+    "interpreting": 0,
+    "binding": 15
+   },
+   {
+    "case": "S2-C05",
+    "unit": "f91aa1ac-0d60-44b9-90ee-e8bfa14c7ca0",
+    "forum": "sindh",
+    "judgments": 197,
+    "interpreting": 14,
+    "binding": 88
+   },
+   {
+    "case": "S2-C05",
+    "unit": "1825bf79-3e3a-463d-80a6-7a0673b0e67e",
+    "forum": "sindh",
+    "judgments": 33,
+    "interpreting": 1,
+    "binding": 7
+   },
+   {
+    "case": "S2-C08",
+    "unit": "059f316e-74ed-47db-b20e-c6c6eb0ed62e",
+    "forum": "kp",
+    "judgments": 8,
+    "interpreting": 1,
+    "binding": 2
+   },
+   {
+    "case": "S2-C09",
+    "unit": "41af4b2b-64b1-4dfd-bd1e-a45002ba0155",
+    "forum": "sindh",
+    "judgments": 41,
+    "interpreting": 19,
+    "binding": 25
+   },
+   {
+    "case": "S2-C10",
+    "unit": "14055c4c-c999-4085-8837-8fc728b19e3a",
+    "forum": "balochistan",
+    "judgments": 8,
+    "interpreting": 0,
+    "binding": 3
+   },
+   {
+    "case": "S2-C11",
+    "unit": "35106aa0-8967-42c8-b3dc-f25f1a8f176c",
+    "forum": "ict",
+    "judgments": 1,
+    "interpreting": 1,
+    "binding": 0
+   },
+   {
+    "case": "S2-C12",
+    "unit": "b0cc551c-1753-4bad-ae39-5e2796efba6e",
+    "forum": "sindh",
+    "judgments": 7,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S2-C14",
+    "unit": "16352e56-1f2a-4c27-a494-6cbc55fcbfdc",
+    "forum": "kp",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S2-C17",
+    "unit": "e52b8943-6603-49e8-acff-15fc71ffb1a7",
+    "forum": "sindh",
+    "judgments": 40,
+    "interpreting": 5,
+    "binding": 27
+   },
+   {
+    "case": "S2-C18",
+    "unit": "35d179bd-ab63-4291-897d-4f0d53bc7a21",
+    "forum": "punjab",
+    "judgments": 9,
+    "interpreting": 0,
+    "binding": 4
+   },
+   {
+    "case": "S2-P01",
+    "unit": "37dfcc23-0394-40c7-ba75-51cdb011529f",
+    "forum": "sindh",
+    "judgments": 4434,
+    "interpreting": 30,
+    "binding": 3295
+   },
+   {
+    "case": "S2-P02",
+    "unit": "9477dd5a-684b-4c2f-b933-9e3f3c6b4cd6",
+    "forum": "sindh",
+    "judgments": 95,
+    "interpreting": 3,
+    "binding": 45
+   },
+   {
+    "case": "S2-P04",
+    "unit": "13dc532a-5f1d-4926-945c-ce5495fd66a0",
+    "forum": "ict",
+    "judgments": 206,
+    "interpreting": 20,
+    "binding": 66
+   },
+   {
+    "case": "S2-P05",
+    "unit": "b60945d1-a9f8-4f3a-8769-d3a263a52743",
+    "forum": "balochistan",
+    "judgments": 124,
+    "interpreting": 16,
+    "binding": 23
+   },
+   {
+    "case": "S2-P06",
+    "unit": "bf9e6bae-c854-4b37-a27a-cdcae5138ec1",
+    "forum": "sindh",
+    "judgments": 136,
+    "interpreting": 10,
+    "binding": 62
+   },
+   {
+    "case": "S2-P07",
+    "unit": "558f55ba-5c70-479c-8ab4-118766e8483c",
+    "forum": "punjab",
+    "judgments": 145,
+    "interpreting": 12,
+    "binding": 52
+   },
+   {
+    "case": "S2-P08",
+    "unit": "7a0463af-65c4-4a62-b0e4-958c4bf18897",
+    "forum": "kp",
+    "judgments": 145,
+    "interpreting": 0,
+    "binding": 38
+   },
+   {
+    "case": "S2-P10",
+    "unit": "73dbac7b-b82b-4eb5-8a09-0e0741410501",
+    "forum": "balochistan",
+    "judgments": 129,
+    "interpreting": 6,
+    "binding": 28
+   },
+   {
+    "case": "S2-P11",
+    "unit": "ba021ccf-bfbe-4a13-8185-c4cb995a3f84",
+    "forum": "sindh",
+    "judgments": 50,
+    "interpreting": 6,
+    "binding": 32
+   },
+   {
+    "case": "S2-P12",
+    "unit": "cd0d2a1f-158b-4e4f-b6ef-6438a1e70f06",
+    "forum": "balochistan",
+    "judgments": 73,
+    "interpreting": 5,
+    "binding": 8
+   },
+   {
+    "case": "S2-R01",
+    "unit": "19bce19a-8d4a-4397-a4b6-59a94e738fd4",
+    "forum": "sindh",
+    "judgments": 244,
+    "interpreting": 11,
+    "binding": 123
+   },
+   {
+    "case": "S2-R03",
+    "unit": "e0f49440-656a-4fe0-b915-d5489383fbbc",
+    "forum": "kp",
+    "judgments": 967,
+    "interpreting": 78,
+    "binding": 128
+   },
+   {
+    "case": "S2-R05",
+    "unit": "ed8048c3-c7ed-4d6d-a398-997505313304",
+    "forum": "sindh",
+    "judgments": 7,
+    "interpreting": 0,
+    "binding": 5
+   },
+   {
+    "case": "S2-R06",
+    "unit": "94963e3a-b37c-4265-8f26-6e4b885b4f7d",
+    "forum": "sindh",
+    "judgments": 63,
+    "interpreting": 12,
+    "binding": 34
+   },
+   {
+    "case": "S2-R07",
+    "unit": "3592a83a-6a04-4ad3-a134-8abde3a4e0d7",
+    "forum": "ict",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S2-U02",
+    "unit": "f91aa1ac-0d60-44b9-90ee-e8bfa14c7ca0",
+    "forum": "punjab",
+    "judgments": 197,
+    "interpreting": 14,
+    "binding": 107
+   },
+   {
+    "case": "S2-U02",
+    "unit": "1825bf79-3e3a-463d-80a6-7a0673b0e67e",
+    "forum": "punjab",
+    "judgments": 33,
+    "interpreting": 1,
+    "binding": 17
+   },
+   {
+    "case": "S2-U03",
+    "unit": "059f316e-74ed-47db-b20e-c6c6eb0ed62e",
+    "forum": "sindh",
+    "judgments": 8,
+    "interpreting": 1,
+    "binding": 5
+   },
+   {
+    "case": "S2-U04",
+    "unit": "c1ee92d5-92d0-4c72-bff3-35cac04f7afd",
+    "forum": "sindh",
+    "judgments": 244,
+    "interpreting": 19,
+    "binding": 195
+   },
+   {
+    "case": "S2-U05",
+    "unit": "35d179bd-ab63-4291-897d-4f0d53bc7a21",
+    "forum": "punjab",
+    "judgments": 9,
+    "interpreting": 0,
+    "binding": 4
+   },
+   {
+    "case": "S3-C02",
+    "unit": "fddb6147-e898-46c1-92f4-71e2ab392255",
+    "forum": "kp",
+    "judgments": 53,
+    "interpreting": 7,
+    "binding": 31
+   },
+   {
+    "case": "S3-C03",
+    "unit": "bc0529cc-4386-4ab8-ab62-1e8a632bc0e5",
+    "forum": "punjab",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S3-C03",
+    "unit": "6afaf309-cba2-4eeb-97cb-5901a166919f",
+    "forum": "punjab",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S3-C05",
+    "unit": "9e2a6678-0ea5-47a3-b8d2-054fc190a206",
+    "forum": "ict",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S3-C05",
+    "unit": "6d02db01-3d4a-454d-8e56-3199d9f4b6b4",
+    "forum": "ict",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S3-C06",
+    "unit": "7414b719-b3ed-4ebd-9735-48e3bb9d852b",
+    "forum": "balochistan",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S3-C07",
+    "unit": "9b1aa8ed-3f23-44d0-91e1-106d92fa4104",
+    "forum": "punjab",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S3-C08",
+    "unit": "9c461888-035b-4663-aef4-45641ee40549",
+    "forum": "punjab",
+    "judgments": 1,
+    "interpreting": 0,
+    "binding": 1
+   },
+   {
+    "case": "S3-C10",
+    "unit": "cae3718e-4172-41c8-a07f-56461443f292",
+    "forum": "kp",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S3-C11",
+    "unit": "b44c51d0-a848-41d2-97ed-0d00f8f2f7d4",
+    "forum": "balochistan",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S3-C13",
+    "unit": "0236536d-58af-4925-ba96-69bf9df8a567",
+    "forum": "sindh",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S3-C14",
+    "unit": "17c70498-0a5d-4d94-9489-f70de3207b73",
+    "forum": "punjab",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S3-C17",
+    "unit": "d8c22376-53e7-4cb1-a9c7-daeaa54109c7",
+    "forum": "kp",
+    "judgments": 3,
+    "interpreting": 0,
+    "binding": 3
+   },
+   {
+    "case": "S3-C18",
+    "unit": "3e711c73-a018-451b-ac47-2449ace7e1e3",
+    "forum": "balochistan",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S3-C19",
+    "unit": "f13dcf33-b5cc-4e9f-aa92-8e3ba6b0d79b",
+    "forum": "punjab",
+    "judgments": 1,
+    "interpreting": 0,
+    "binding": 1
+   },
+   {
+    "case": "S3-C20",
+    "unit": "2065506d-e3a5-42bf-aa53-7b35342f93b1",
+    "forum": "sindh",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S3-C20",
+    "unit": "69711fb3-0676-4fd6-a274-5cd92bbb79b4",
+    "forum": "sindh",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S3-P02",
+    "unit": "379fb154-b51c-47a7-bfce-dd08c16d1a36",
+    "forum": "punjab",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S3-P03",
+    "unit": "a0d4b0c5-6310-422c-8064-f75834ffbb85",
+    "forum": "punjab",
+    "judgments": 14,
+    "interpreting": 0,
+    "binding": 2
+   },
+   {
+    "case": "S3-P04",
+    "unit": "3f6c33cc-fb8b-466e-b76f-6a9ffc02d2a9",
+    "forum": "ajk",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S3-P08",
+    "unit": "b2f74994-dda5-425c-b054-28f15b072212",
+    "forum": "ict",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S3-P12",
+    "unit": "67af3670-2cae-4088-ba73-ec16a80796e1",
+    "forum": "ict",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S3-R03",
+    "unit": "a3ee68ad-ae1d-40cf-8714-9b0a4a2413f3",
+    "forum": "kp",
+    "judgments": 7,
+    "interpreting": 0,
+    "binding": 3
+   },
+   {
+    "case": "S3-R04",
+    "unit": "3b13bfee-e59b-4086-bc1e-def7ce562f44",
+    "forum": "punjab",
+    "judgments": 1,
+    "interpreting": 0,
+    "binding": 1
+   },
+   {
+    "case": "S3-R05",
+    "unit": "ba4a2261-5137-4790-a777-c90a31d40df6",
+    "forum": "ict",
+    "judgments": 2,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S3-R06",
+    "unit": "45624dc0-7b05-46b5-ac06-1cf49a5d685f",
+    "forum": "punjab",
+    "judgments": 1,
+    "interpreting": 0,
+    "binding": 1
+   },
+   {
+    "case": "S3-R07",
+    "unit": "dcae68a2-adaa-4b57-9479-faa2f3833631",
+    "forum": "punjab",
+    "judgments": 104,
+    "interpreting": 10,
+    "binding": 89
+   },
+   {
+    "case": "S3-U03",
+    "unit": "0236536d-58af-4925-ba96-69bf9df8a567",
+    "forum": "sindh",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S3-U04",
+    "unit": "cae3718e-4172-41c8-a07f-56461443f292",
+    "forum": "kp",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S3-U05",
+    "unit": "8e400414-6089-46b9-8052-6b7a063a15ee",
+    "forum": "ajk",
+    "judgments": 1,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S4-C02",
+    "unit": "fa7aaf8d-418c-4608-97c0-492ce8a4226e",
+    "forum": "sindh",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S4-C06",
+    "unit": "88ec3e49-28d9-46ad-942a-773430eda6ea",
+    "forum": "ict",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S4-C10",
+    "unit": "134a7ac0-4bf2-4ed0-b244-d0b987b7627a",
+    "forum": "ict",
+    "judgments": 10,
+    "interpreting": 1,
+    "binding": 2
+   },
+   {
+    "case": "S4-C12",
+    "unit": "1a604ac9-6790-4231-a1cc-14102a582320",
+    "forum": "punjab",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S4-C14",
+    "unit": "4a218b60-409c-4bf6-881a-e16fbb96ccae",
+    "forum": "sindh",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S4-C15",
+    "unit": "166d51b8-3616-42cc-a120-e8b778821c02",
+    "forum": "ict",
+    "judgments": 17,
+    "interpreting": 2,
+    "binding": 6
+   },
+   {
+    "case": "S4-C16",
+    "unit": "da9e2e0a-a7c5-4da3-a9b3-bd2fa5d4a1e2",
+    "forum": "punjab",
+    "judgments": 25,
+    "interpreting": 6,
+    "binding": 13
+   },
+   {
+    "case": "S4-C17",
+    "unit": "afb0bd30-2c90-49ea-89f1-4702d931121d",
+    "forum": "sindh",
+    "judgments": 50,
+    "interpreting": 7,
+    "binding": 14
+   },
+   {
+    "case": "S4-C18",
+    "unit": "cc7d50ee-cbbc-47dd-93ad-069aa5a00788",
+    "forum": "ict",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S4-P01",
+    "unit": "13c9206a-def5-4258-91b5-65e48206197f",
+    "forum": "punjab",
+    "judgments": 3,
+    "interpreting": 0,
+    "binding": 1
+   },
+   {
+    "case": "S4-P02",
+    "unit": "3018e31a-788e-48a2-9f61-be5f23565ff4",
+    "forum": "sindh",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S4-P04",
+    "unit": "8320152b-1ff8-45e5-9270-53365c8093a3",
+    "forum": "kp",
+    "judgments": 101,
+    "interpreting": 3,
+    "binding": 2
+   },
+   {
+    "case": "S4-P06",
+    "unit": "d75d1511-3223-46d9-b452-6f634335f035",
+    "forum": "ict",
+    "judgments": 10,
+    "interpreting": 2,
+    "binding": 7
+   },
+   {
+    "case": "S4-P07",
+    "unit": "41e6456c-8844-4952-bd9a-7087b8ad890d",
+    "forum": "ict",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S4-P08",
+    "unit": "d7f18c68-5a4c-43d7-83ad-b8deb0b9902e",
+    "forum": "ict",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S4-P10",
+    "unit": "233f2245-e5c4-4446-9043-831a49bdc35e",
+    "forum": "punjab",
+    "judgments": 91,
+    "interpreting": 9,
+    "binding": 57
+   },
+   {
+    "case": "S4-P11",
+    "unit": "81e3c088-2744-4b30-8d26-46803a996707",
+    "forum": "sindh",
+    "judgments": 1003,
+    "interpreting": 87,
+    "binding": 552
+   },
+   {
+    "case": "S4-R01",
+    "unit": "33aeb9d7-fa4c-4316-8fba-44097610138a",
+    "forum": "kp",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S4-R02",
+    "unit": "f9216985-d7b3-466a-814c-fd59e63c010a",
+    "forum": "punjab",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S4-R03",
+    "unit": "f52ab77b-5fc1-4c36-8645-f9d8fcf746ba",
+    "forum": "punjab",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S4-R05",
+    "unit": "29304b8b-c4cf-4140-9668-05d28a1680a7",
+    "forum": "sindh",
+    "judgments": 2,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S4-R06",
+    "unit": "46edd7f9-32c7-4058-9492-7e70c7c6ea45",
+    "forum": "sindh",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S4-R07",
+    "unit": "3f586c56-d0cb-4fc4-af46-efbb07249e50",
+    "forum": "punjab",
+    "judgments": 1,
+    "interpreting": 0,
+    "binding": 1
+   },
+   {
+    "case": "S4-R07",
+    "unit": "e796171f-2d80-4561-9cf5-3ceb615c003c",
+    "forum": "punjab",
+    "judgments": 2,
+    "interpreting": 0,
+    "binding": 2
+   },
+   {
+    "case": "S4-U04",
+    "unit": "fa7aaf8d-418c-4608-97c0-492ce8a4226e",
+    "forum": "sindh",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S5-C02",
+    "unit": "d9ad0a6d-f1a0-4206-ba9d-fa02426d1ea3",
+    "forum": "ict",
+    "judgments": 5,
+    "interpreting": 0,
+    "binding": 5
+   },
+   {
+    "case": "S5-C03",
+    "unit": "6ccb392b-00b6-4bda-8794-5c9bc8af2ec2",
+    "forum": "kp",
+    "judgments": 8,
+    "interpreting": 2,
+    "binding": 8
+   },
+   {
+    "case": "S5-C04",
+    "unit": "d3d611c5-2a36-4af7-bef3-2f5a72c2a543",
+    "forum": "sindh",
+    "judgments": 5,
+    "interpreting": 1,
+    "binding": 5
+   },
+   {
+    "case": "S5-C05",
+    "unit": "25427349-1ea3-45c8-b3ca-ef82a11e905d",
+    "forum": "sindh",
+    "judgments": 63,
+    "interpreting": 11,
+    "binding": 42
+   },
+   {
+    "case": "S5-C07",
+    "unit": "b44695c8-269d-4451-8e3f-bc954e77bf24",
+    "forum": "sindh",
+    "judgments": 6,
+    "interpreting": 0,
+    "binding": 4
+   },
+   {
+    "case": "S5-C09",
+    "unit": "57192f44-c119-42e9-b833-ffaaeb9d6cc5",
+    "forum": "sindh",
+    "judgments": 13,
+    "interpreting": 2,
+    "binding": 10
+   },
+   {
+    "case": "S5-C10",
+    "unit": "fc5e5125-a05c-4ff1-b1c6-bc06916a2a9e",
+    "forum": "punjab",
+    "judgments": 4,
+    "interpreting": 1,
+    "binding": 4
+   },
+   {
+    "case": "S5-C13",
+    "unit": "21ac00ba-824c-4d3a-ab7c-8aa764d5a046",
+    "forum": "ict",
+    "judgments": 17,
+    "interpreting": 4,
+    "binding": 5
+   },
+   {
+    "case": "S5-C17",
+    "unit": "d3c3a3a2-46d1-4e9e-854a-dad4cf0e001a",
+    "forum": "sindh",
+    "judgments": 9,
+    "interpreting": 1,
+    "binding": 6
+   },
+   {
+    "case": "S5-C19",
+    "unit": "d91a4c6a-db94-43e6-bfe8-c0b1adafe059",
+    "forum": "sindh",
+    "judgments": 5,
+    "interpreting": 0,
+    "binding": 3
+   },
+   {
+    "case": "S5-C20",
+    "unit": "2fd89727-470d-4a58-b353-c16dc695d743",
+    "forum": "punjab",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S5-C20",
+    "unit": "390646d2-dcc1-4f93-84b0-a74445dbdafc",
+    "forum": "punjab",
+    "judgments": 1,
+    "interpreting": 0,
+    "binding": 1
+   },
+   {
+    "case": "S5-P02",
+    "unit": "628786b3-3f72-432c-b744-354121f91aa3",
+    "forum": "sindh",
+    "judgments": 4,
+    "interpreting": 0,
+    "binding": 2
+   },
+   {
+    "case": "S5-P03",
+    "unit": "7af7d20b-8503-45cd-b8bf-e317ec04c077",
+    "forum": "sindh",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S5-P04",
+    "unit": "8aae690e-93de-4d78-91b0-4e4d6520929a",
+    "forum": "ict",
+    "judgments": 1,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S5-P07",
+    "unit": "8f2b13b7-dc94-4ee9-85b5-b1d9b6b776c0",
+    "forum": "ict",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S5-P08",
+    "unit": "ddd1867c-ef62-4d01-923e-36800f2f37d2",
+    "forum": "sindh",
+    "judgments": 2,
+    "interpreting": 0,
+    "binding": 1
+   },
+   {
+    "case": "S5-P09",
+    "unit": "a858a606-1764-4f44-9dd3-d9f2ff1df7d5",
+    "forum": "sindh",
+    "judgments": 54,
+    "interpreting": 5,
+    "binding": 30
+   },
+   {
+    "case": "S5-P10",
+    "unit": "3abae35d-a936-4700-832c-11f9dd68b716",
+    "forum": "ict",
+    "judgments": 1,
+    "interpreting": 0,
+    "binding": 1
+   },
+   {
+    "case": "S5-P12",
+    "unit": "46987073-08fc-4c0d-9e92-4aca1f3f32c1",
+    "forum": "sindh",
+    "judgments": 53,
+    "interpreting": 11,
+    "binding": 49
+   },
+   {
+    "case": "S5-R01",
+    "unit": "fbc99987-9f4d-4d31-a24f-b747fdc68fd6",
+    "forum": "sindh",
+    "judgments": 4,
+    "interpreting": 0,
+    "binding": 4
+   },
+   {
+    "case": "S5-R02",
+    "unit": "0af17b4a-9ce9-4f34-85a9-06f19720fb2c",
+    "forum": "punjab",
+    "judgments": 13,
+    "interpreting": 0,
+    "binding": 11
+   },
+   {
+    "case": "S5-R03",
+    "unit": "388052f7-4644-4a7b-ae23-b1d74df0bdc0",
+    "forum": "ict",
+    "judgments": 1,
+    "interpreting": 0,
+    "binding": 1
+   },
+   {
+    "case": "S5-R06",
+    "unit": "d3c0a226-99d4-4773-9b82-2c9c83a161bb",
+    "forum": "punjab",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S5-R07",
+    "unit": "ddaf268a-a804-44b4-8523-edc4289be8c5",
+    "forum": "ict",
+    "judgments": 5,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S5-R08",
+    "unit": "e589b70e-98b7-4fde-9044-d5c2a125487a",
+    "forum": "balochistan",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S5-U01",
+    "unit": "87dac419-ea29-43a2-b70d-3cb09faafdf2",
+    "forum": "punjab",
+    "judgments": 2,
+    "interpreting": 0,
+    "binding": 1
+   },
+   {
+    "case": "S5-U04",
+    "unit": "49363298-f061-49e0-b864-ca670d79b3f8",
+    "forum": "sindh",
+    "judgments": 5,
+    "interpreting": 0,
+    "binding": 3
+   },
+   {
+    "case": "S6-C01",
+    "unit": "3a510808-6843-4136-bf0e-29ed0b017715",
+    "forum": "sindh",
+    "judgments": 154,
+    "interpreting": 1,
+    "binding": 89
+   },
+   {
+    "case": "S6-C01",
+    "unit": "f1a139c2-a8dd-4776-95e4-9e6ce7a707b3",
+    "forum": "sindh",
+    "judgments": 688,
+    "interpreting": 3,
+    "binding": 501
+   },
+   {
+    "case": "S6-C02",
+    "unit": "3cf7962a-b288-49dc-a56e-3051f08e33e0",
+    "forum": "kp",
+    "judgments": 14,
+    "interpreting": 1,
+    "binding": 1
+   },
+   {
+    "case": "S6-C02",
+    "unit": "5e135947-e656-4c3e-9f8c-246f780e8b39",
+    "forum": "kp",
+    "judgments": 51,
+    "interpreting": 0,
+    "binding": 4
+   },
+   {
+    "case": "S6-C03",
+    "unit": "955cc1e5-88a7-415d-aec5-f87d8c9c4efb",
+    "forum": "balochistan",
+    "judgments": 24,
+    "interpreting": 0,
+    "binding": 5
+   },
+   {
+    "case": "S6-C04",
+    "unit": "c62ea633-6d37-4559-b15a-bb3a8347abd7",
+    "forum": "ict",
+    "judgments": 48,
+    "interpreting": 1,
+    "binding": 3
+   },
+   {
+    "case": "S6-C05",
+    "unit": "f280bdc8-8ed8-47d4-9ec8-3341259ecbe8",
+    "forum": "sindh",
+    "judgments": 5,
+    "interpreting": 0,
+    "binding": 3
+   },
+   {
+    "case": "S6-C05",
+    "unit": "3343c888-1129-4788-bf45-ee48a0a4ae02",
+    "forum": "sindh",
+    "judgments": 22,
+    "interpreting": 0,
+    "binding": 14
+   },
+   {
+    "case": "S6-C06",
+    "unit": "aa591bd5-1c1f-4eac-8f94-15dda7b92a7f",
+    "forum": "kp",
+    "judgments": 122,
+    "interpreting": 13,
+    "binding": 18
+   },
+   {
+    "case": "S6-C06",
+    "unit": "8a9743fa-bf40-4e0e-9e1a-0aaed4719a30",
+    "forum": "kp",
+    "judgments": 258,
+    "interpreting": 7,
+    "binding": 14
+   },
+   {
+    "case": "S6-C07",
+    "unit": "23a39c07-8ff7-49b3-802c-ddafe97f1262",
+    "forum": "sindh",
+    "judgments": 12,
+    "interpreting": 2,
+    "binding": 3
+   },
+   {
+    "case": "S6-C07",
+    "unit": "a3090479-9e7a-48d7-ba27-848421a2b9c0",
+    "forum": "sindh",
+    "judgments": 11,
+    "interpreting": 0,
+    "binding": 7
+   },
+   {
+    "case": "S6-C08",
+    "unit": "60bfa26f-6309-45db-827f-636a4e3b170d",
+    "forum": "ict",
+    "judgments": 362,
+    "interpreting": 3,
+    "binding": 36
+   },
+   {
+    "case": "S6-C09",
+    "unit": "27d09109-7e36-460c-92be-a12206772327",
+    "forum": "balochistan",
+    "judgments": 9,
+    "interpreting": 1,
+    "binding": 0
+   },
+   {
+    "case": "S6-C09",
+    "unit": "f6a02145-32ee-42aa-9dd9-49f76d60797a",
+    "forum": "balochistan",
+    "judgments": 21,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S6-C10",
+    "unit": "01a702d2-b720-4f09-b5f7-e2e6b43dced0",
+    "forum": "sindh",
+    "judgments": 5,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S6-C14",
+    "unit": "5d7a6109-8d90-4012-a8d6-7a5aaa01745a",
+    "forum": "balochistan",
+    "judgments": 128,
+    "interpreting": 5,
+    "binding": 10
+   },
+   {
+    "case": "S6-C16",
+    "unit": "904167a4-b9ad-4751-aa3b-9569ac1de31d",
+    "forum": "kp",
+    "judgments": 63,
+    "interpreting": 2,
+    "binding": 23
+   },
+   {
+    "case": "S6-P01",
+    "unit": "e501cf89-e67a-4009-a1d5-cf7be1c30a19",
+    "forum": "ict",
+    "judgments": 1177,
+    "interpreting": 18,
+    "binding": 94
+   },
+   {
+    "case": "S6-P02",
+    "unit": "4c636654-5a75-45cb-addd-fb45a81bb640",
+    "forum": "kp",
+    "judgments": 447,
+    "interpreting": 19,
+    "binding": 28
+   },
+   {
+    "case": "S6-P03",
+    "unit": "bcd1c632-0de6-4de2-a452-eb2d36a87a72",
+    "forum": "sindh",
+    "judgments": 2654,
+    "interpreting": 27,
+    "binding": 1308
+   },
+   {
+    "case": "S6-P04",
+    "unit": "b5d74b2d-633e-41b1-be2b-9583ba5f1b6b",
+    "forum": "balochistan",
+    "judgments": 266,
+    "interpreting": 8,
+    "binding": 13
+   },
+   {
+    "case": "S6-P05",
+    "unit": "a8477c46-5595-44fb-a430-20bf5b4e141b",
+    "forum": "sindh",
+    "judgments": 403,
+    "interpreting": 9,
+    "binding": 243
+   },
+   {
+    "case": "S6-P06",
+    "unit": "9cb5c3d7-933c-457c-add5-d575746f98f3",
+    "forum": "kp",
+    "judgments": 482,
+    "interpreting": 12,
+    "binding": 55
+   },
+   {
+    "case": "S6-P07",
+    "unit": "b26b6273-902c-4ae0-b84d-d5e5b194e28a",
+    "forum": "ict",
+    "judgments": 188,
+    "interpreting": 7,
+    "binding": 21
+   },
+   {
+    "case": "S6-P10",
+    "unit": "97c8e754-894f-47f3-bf22-d926e5a37f2c",
+    "forum": "sindh",
+    "judgments": 411,
+    "interpreting": 1,
+    "binding": 211
+   },
+   {
+    "case": "S6-P12",
+    "unit": "ec9e6096-6ed4-49f5-8d8c-9f5da041d9df",
+    "forum": "ict",
+    "judgments": 1224,
+    "interpreting": 11,
+    "binding": 127
+   },
+   {
+    "case": "S6-R03",
+    "unit": "2958c193-cb29-4dfd-9c82-f4a52cdaefae",
+    "forum": "ict",
+    "judgments": 126,
+    "interpreting": 6,
+    "binding": 11
+   },
+   {
+    "case": "S6-R04",
+    "unit": "d022d7cf-e23e-4105-a480-182c52a6ce02",
+    "forum": "balochistan",
+    "judgments": 157,
+    "interpreting": 11,
+    "binding": 5
+   },
+   {
+    "case": "S6-R05",
+    "unit": "35c3f4da-216e-4caa-80ea-4824caeec15c",
+    "forum": "sindh",
+    "judgments": 221,
+    "interpreting": 7,
+    "binding": 101
+   },
+   {
+    "case": "S6-R07",
+    "unit": "6214f0ff-7a9f-465e-995a-94cf50448e9c",
+    "forum": "ict",
+    "judgments": 273,
+    "interpreting": 18,
+    "binding": 36
+   },
+   {
+    "case": "S6-U01",
+    "unit": "72c5570a-50e3-46ef-929c-b32d65ecfbf1",
+    "forum": "kp",
+    "judgments": 75,
+    "interpreting": 6,
+    "binding": 12
+   },
+   {
+    "case": "S6-U03",
+    "unit": "2bc2497c-e147-42b1-a01a-b12bb8caefc1",
+    "forum": "sindh",
+    "judgments": 268,
+    "interpreting": 2,
+    "binding": 268
+   },
+   {
+    "case": "S6-U04",
+    "unit": "60bfa26f-6309-45db-827f-636a4e3b170d",
+    "forum": "ict",
+    "judgments": 362,
+    "interpreting": 3,
+    "binding": 36
+   },
+   {
+    "case": "S6-U05",
+    "unit": "a3090479-9e7a-48d7-ba27-848421a2b9c0",
+    "forum": "sindh",
+    "judgments": 11,
+    "interpreting": 0,
+    "binding": 7
+   },
+   {
+    "case": "S7-C04",
+    "unit": "e60c52cc-dbda-451b-810b-a95db11775d8",
+    "forum": "sindh",
+    "judgments": 6,
+    "interpreting": 2,
+    "binding": 2
+   },
+   {
+    "case": "S7-C05",
+    "unit": "2b3e1bcf-8589-472b-bbca-1ab2bd339bd9",
+    "forum": "ict",
+    "judgments": 10,
+    "interpreting": 1,
+    "binding": 3
+   },
+   {
+    "case": "S7-C06",
+    "unit": "f7663acc-c831-4a87-8c87-3b4f6abab14b",
+    "forum": "kp",
+    "judgments": 20,
+    "interpreting": 3,
+    "binding": 5
+   },
+   {
+    "case": "S7-C07",
+    "unit": "f797e45b-34c4-419f-bbc4-e87e54e62476",
+    "forum": "sindh",
+    "judgments": 104,
+    "interpreting": 0,
+    "binding": 49
+   },
+   {
+    "case": "S7-C08",
+    "unit": "173e7371-2d8e-4a28-a29b-14fd49b500a6",
+    "forum": "ict",
+    "judgments": 10,
+    "interpreting": 2,
+    "binding": 2
+   },
+   {
+    "case": "S7-C09",
+    "unit": "11929904-c577-42de-839c-6d495989573f",
+    "forum": "sindh",
+    "judgments": 4,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S7-C12",
+    "unit": "1e38f820-fc5a-4125-8eb5-45aa2c1b8448",
+    "forum": "sindh",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S7-C14",
+    "unit": "e623a8c8-903d-4215-bf5c-3a7e8f4a4ff8",
+    "forum": "sindh",
+    "judgments": 30,
+    "interpreting": 3,
+    "binding": 15
+   },
+   {
+    "case": "S7-C15",
+    "unit": "0f7ffe8f-605b-4eab-9023-901873c3838b",
+    "forum": "punjab",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S7-C17",
+    "unit": "e340fd92-7724-4a90-9663-1f72a6f335d2",
+    "forum": "ict",
+    "judgments": 1,
+    "interpreting": 0,
+    "binding": 1
+   },
+   {
+    "case": "S7-C19",
+    "unit": "9e686330-2203-44f3-a80b-795d0eeb1c85",
+    "forum": "balochistan",
+    "judgments": 38,
+    "interpreting": 3,
+    "binding": 0
+   },
+   {
+    "case": "S7-P01",
+    "unit": "11929904-c577-42de-839c-6d495989573f",
+    "forum": "ict",
+    "judgments": 4,
+    "interpreting": 0,
+    "binding": 1
+   },
+   {
+    "case": "S7-P02",
+    "unit": "1f5d4a3d-ecb8-439a-a3de-bd3ce7818c7e",
+    "forum": "ict",
+    "judgments": 45,
+    "interpreting": 3,
+    "binding": 8
+   },
+   {
+    "case": "S7-P03",
+    "unit": "1f5d4a3d-ecb8-439a-a3de-bd3ce7818c7e",
+    "forum": "kp",
+    "judgments": 45,
+    "interpreting": 3,
+    "binding": 16
+   },
+   {
+    "case": "S7-P04",
+    "unit": "1f5d4a3d-ecb8-439a-a3de-bd3ce7818c7e",
+    "forum": "sindh",
+    "judgments": 45,
+    "interpreting": 3,
+    "binding": 10
+   },
+   {
+    "case": "S7-P05",
+    "unit": "c49b3cf0-b5d9-40c5-becf-5f883984b2b4",
+    "forum": "sindh",
+    "judgments": 33,
+    "interpreting": 2,
+    "binding": 15
+   },
+   {
+    "case": "S7-P06",
+    "unit": "b3b0f75b-0858-4a3b-bc6a-4d01e7c4d135",
+    "forum": "ict",
+    "judgments": 9,
+    "interpreting": 0,
+    "binding": 3
+   },
+   {
+    "case": "S7-P07",
+    "unit": "a3015a3c-bbbe-47b3-8fca-ff5cc4a8426f",
+    "forum": "kp",
+    "judgments": 9,
+    "interpreting": 2,
+    "binding": 1
+   },
+   {
+    "case": "S7-P10",
+    "unit": "ffe67117-0cb2-48cd-a936-aa87e9ce1973",
+    "forum": "kp",
+    "judgments": 1,
+    "interpreting": 0,
+    "binding": 1
+   },
+   {
+    "case": "S7-P11",
+    "unit": "33fa6cf2-d61b-4893-b312-1b1ef6efd688",
+    "forum": "punjab",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S7-P12",
+    "unit": "1f5d4a3d-ecb8-439a-a3de-bd3ce7818c7e",
+    "forum": "sindh",
+    "judgments": 45,
+    "interpreting": 3,
+    "binding": 10
+   },
+   {
+    "case": "S7-R02",
+    "unit": "0eff7451-d221-40b9-aabb-4be2c8893373",
+    "forum": "ict",
+    "judgments": 4,
+    "interpreting": 0,
+    "binding": 1
+   },
+   {
+    "case": "S7-R06",
+    "unit": "654012cf-2aed-482b-b99f-5b5e929b19d6",
+    "forum": "ict",
+    "judgments": 6,
+    "interpreting": 0,
+    "binding": 2
+   },
+   {
+    "case": "S7-R08",
+    "unit": "c04ca153-5905-4d7c-9dc7-8dded8b90a93",
+    "forum": "sindh",
+    "judgments": 7,
+    "interpreting": 0,
+    "binding": 3
+   },
+   {
+    "case": "S7-U01",
+    "unit": "1f5d4a3d-ecb8-439a-a3de-bd3ce7818c7e",
+    "forum": "sindh",
+    "judgments": 45,
+    "interpreting": 3,
+    "binding": 10
+   },
+   {
+    "case": "S7-U02",
+    "unit": "aec44d15-d818-4e0a-a98e-3c99abc8c2c6",
+    "forum": "sindh",
+    "judgments": 16,
+    "interpreting": 3,
+    "binding": 10
+   },
+   {
+    "case": "S7-U03",
+    "unit": "297423d6-5c63-4aef-927a-d2af57ee1948",
+    "forum": "kp",
+    "judgments": 6,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S7-U05",
+    "unit": "ff7ef8cf-e911-41e3-b062-ac95ec7751d1",
+    "forum": "sindh",
+    "judgments": 18,
+    "interpreting": 0,
+    "binding": 5
+   },
+   {
+    "case": "S8-C01",
+    "unit": "f91aa1ac-0d60-44b9-90ee-e8bfa14c7ca0",
+    "forum": "sindh",
+    "judgments": 197,
+    "interpreting": 14,
+    "binding": 88
+   },
+   {
+    "case": "S8-C02",
+    "unit": "e3a701e6-19bf-48b0-bb0e-56b075bb35df",
+    "forum": "punjab",
+    "judgments": 14,
+    "interpreting": 3,
+    "binding": 6
+   },
+   {
+    "case": "S8-C04",
+    "unit": "bc8d9a4a-2107-412d-85c5-302029d74bfe",
+    "forum": "balochistan",
+    "judgments": 314,
+    "interpreting": 21,
+    "binding": 85
+   },
+   {
+    "case": "S8-C05",
+    "unit": "0320d5fb-8348-4ced-a6bb-8fd4bd40eefa",
+    "forum": "sindh",
+    "judgments": 135,
+    "interpreting": 22,
+    "binding": 57
+   },
+   {
+    "case": "S8-C07",
+    "unit": "a9e1ac98-715c-4e2e-8306-958ee5b81ae7",
+    "forum": "kp",
+    "judgments": 151,
+    "interpreting": 28,
+    "binding": 76
+   },
+   {
+    "case": "S8-C08",
+    "unit": "4f3f64ba-187d-4b40-83c8-93b7cb0c3bc9",
+    "forum": "sindh",
+    "judgments": 362,
+    "interpreting": 49,
+    "binding": 167
+   },
+   {
+    "case": "S8-C10",
+    "unit": "d5665213-3c65-4e9e-8d38-cc50f00078ae",
+    "forum": "ict",
+    "judgments": 17,
+    "interpreting": 0,
+    "binding": 4
+   },
+   {
+    "case": "S8-C11",
+    "unit": "5a63cbdb-9bad-43c3-a4e2-b00922160366",
+    "forum": "punjab",
+    "judgments": 200,
+    "interpreting": 22,
+    "binding": 104
+   },
+   {
+    "case": "S8-C12",
+    "unit": "d72eb427-1ac1-42b7-9ddb-c388ae5c7f0c",
+    "forum": "sindh",
+    "judgments": 35,
+    "interpreting": 3,
+    "binding": 15
+   },
+   {
+    "case": "S8-C14",
+    "unit": "dafad3cb-d262-40bb-81e6-e65d603d049c",
+    "forum": "punjab",
+    "judgments": 9,
+    "interpreting": 0,
+    "binding": 1
+   },
+   {
+    "case": "S8-C15",
+    "unit": "93eadca2-b11e-4cbb-a321-4a1e8a2e7161",
+    "forum": "punjab",
+    "judgments": 2,
+    "interpreting": 0,
+    "binding": 2
+   },
+   {
+    "case": "S8-C16",
+    "unit": "95e3c2c7-7ca8-4d77-b937-8dcd9b25f129",
+    "forum": "kp",
+    "judgments": 48,
+    "interpreting": 1,
+    "binding": 14
+   },
+   {
+    "case": "S8-C17",
+    "unit": "88688e2c-e9f1-4924-82b2-14d72a2bbda3",
+    "forum": "punjab",
+    "judgments": 28,
+    "interpreting": 1,
+    "binding": 26
+   },
+   {
+    "case": "S8-C18",
+    "unit": "6bc90cf2-939e-4c69-a850-999d89c11d66",
+    "forum": "ict",
+    "judgments": 8,
+    "interpreting": 1,
+    "binding": 7
+   },
+   {
+    "case": "S8-C19",
+    "unit": "96358496-ea50-4f7c-888e-025918748193",
+    "forum": "punjab",
+    "judgments": 5,
+    "interpreting": 0,
+    "binding": 1
+   },
+   {
+    "case": "S8-C20",
+    "unit": "790053c9-3f69-4a50-b849-f200829103a9",
+    "forum": "sindh",
+    "judgments": 24,
+    "interpreting": 1,
+    "binding": 9
+   },
+   {
+    "case": "S8-P01",
+    "unit": "0c0f14c3-f7a1-4c97-875d-9f2edafb75eb",
+    "forum": "ict",
+    "judgments": 960,
+    "interpreting": 130,
+    "binding": 316
+   },
+   {
+    "case": "S8-P04",
+    "unit": "59100f09-d308-4742-a868-920449bc7803",
+    "forum": "sindh",
+    "judgments": 47,
+    "interpreting": 5,
+    "binding": 16
+   },
+   {
+    "case": "S8-P07",
+    "unit": "f6cb1614-2865-4d34-a29f-6fe8a4b67c9c",
+    "forum": "kp",
+    "judgments": 3,
+    "interpreting": 0,
+    "binding": 1
+   },
+   {
+    "case": "S8-P08",
+    "unit": "7c77d651-3a9d-482b-b967-80d231a345e9",
+    "forum": "ict",
+    "judgments": 73,
+    "interpreting": 1,
+    "binding": 6
+   },
+   {
+    "case": "S8-P09",
+    "unit": "6905e130-b653-4f02-a55b-1c198c4a18e2",
+    "forum": "ict",
+    "judgments": 17,
+    "interpreting": 1,
+    "binding": 7
+   },
+   {
+    "case": "S8-P10",
+    "unit": "2d425d90-e494-4156-a888-dc704e372634",
+    "forum": "ict",
+    "judgments": 37,
+    "interpreting": 4,
+    "binding": 9
+   },
+   {
+    "case": "S8-P12",
+    "unit": "d6d02de5-7269-4dc5-98ad-8274676a7c35",
+    "forum": "punjab",
+    "judgments": 10,
+    "interpreting": 0,
+    "binding": 3
+   },
+   {
+    "case": "S8-R02",
+    "unit": "e9f3d9e4-c0a5-4cbc-8508-1da45f61fb54",
+    "forum": "sindh",
+    "judgments": 3,
+    "interpreting": 0,
+    "binding": 1
+   },
+   {
+    "case": "S8-R03",
+    "unit": "d119f313-5272-40ef-8fb7-7d9004cc9af9",
+    "forum": "kp",
+    "judgments": 2,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S8-R06",
+    "unit": "6bda7fa8-07c2-4e72-b29a-62deb6491c5e",
+    "forum": "ict",
+    "judgments": 8,
+    "interpreting": 1,
+    "binding": 7
+   },
+   {
+    "case": "S8-R07",
+    "unit": "9e760fa2-fb9e-42c9-ad4e-765e4f84e675",
+    "forum": "ict",
+    "judgments": 21,
+    "interpreting": 0,
+    "binding": 18
+   },
+   {
+    "case": "S8-U01",
+    "unit": "f91aa1ac-0d60-44b9-90ee-e8bfa14c7ca0",
+    "forum": "sindh",
+    "judgments": 197,
+    "interpreting": 14,
+    "binding": 88
+   },
+   {
+    "case": "S8-U02",
+    "unit": "96358496-ea50-4f7c-888e-025918748193",
+    "forum": "punjab",
+    "judgments": 5,
+    "interpreting": 0,
+    "binding": 1
+   },
+   {
+    "case": "S8-U03",
+    "unit": "dafad3cb-d262-40bb-81e6-e65d603d049c",
+    "forum": "punjab",
+    "judgments": 9,
+    "interpreting": 0,
+    "binding": 1
+   },
+   {
+    "case": "S9-C01",
+    "unit": "532e5b32-f127-424c-b8e5-5d6925005455",
+    "forum": "punjab",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S9-C02",
+    "unit": "31336edb-aeb5-4acb-951d-1285929b5831",
+    "forum": "kp",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S9-C03",
+    "unit": "32de319a-202d-4b47-9c91-915f2998ef87",
+    "forum": "sindh",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S9-C04",
+    "unit": "009846ff-2837-4a7f-a955-b39795b77410",
+    "forum": "balochistan",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S9-C04",
+    "unit": "659400b3-52d8-4851-983e-606d75125904",
+    "forum": "balochistan",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S9-C05",
+    "unit": "fbbb38a4-b01b-45be-8319-45071c71d6d3",
+    "forum": "punjab",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S9-C06",
+    "unit": "f9e9ebcf-d534-4d48-bc70-0747b508306a",
+    "forum": "sindh",
+    "judgments": 16,
+    "interpreting": 2,
+    "binding": 7
+   },
+   {
+    "case": "S9-C07",
+    "unit": "73c970b6-836f-4204-82f4-634fdc8f21b5",
+    "forum": "ict",
+    "judgments": 3,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S9-C09",
+    "unit": "f1c26b16-0798-42d7-a735-09e0128d58ac",
+    "forum": "sindh",
+    "judgments": 3,
+    "interpreting": 1,
+    "binding": 3
+   },
+   {
+    "case": "S9-C10",
+    "unit": "f065dacc-a983-4878-984d-fd933c60426e",
+    "forum": "sindh",
+    "judgments": 2,
+    "interpreting": 0,
+    "binding": 2
+   },
+   {
+    "case": "S9-C12",
+    "unit": "8cddbee8-4a79-44b8-ba84-3eb87df00ccd",
+    "forum": "kp",
+    "judgments": 2,
+    "interpreting": 0,
+    "binding": 1
+   },
+   {
+    "case": "S9-C13",
+    "unit": "2edb745f-864a-47b2-a5bb-e5de23fcdf83",
+    "forum": "sindh",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S9-C15",
+    "unit": "0364e354-1972-4d0b-a53b-c3db9f728df9",
+    "forum": "sindh",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S9-P02",
+    "unit": "d858f47d-dc0e-4cc4-9532-8192ebf20b84",
+    "forum": "kp",
+    "judgments": 4,
+    "interpreting": 0,
+    "binding": 3
+   },
+   {
+    "case": "S9-P03",
+    "unit": "3dfbfee0-bff6-46df-810c-15a39b88771a",
+    "forum": "ict",
+    "judgments": 5,
+    "interpreting": 0,
+    "binding": 1
+   },
+   {
+    "case": "S9-P04",
+    "unit": "c4d6a895-e3ab-484d-ac2e-2074b65cee5c",
+    "forum": "ict",
+    "judgments": 9,
+    "interpreting": 0,
+    "binding": 5
+   },
+   {
+    "case": "S9-P05",
+    "unit": "4ce701e8-1d89-41fb-9b3a-caadbffd0363",
+    "forum": "ict",
+    "judgments": 3,
+    "interpreting": 0,
+    "binding": 1
+   },
+   {
+    "case": "S9-P09",
+    "unit": "0b3e4f76-a6ad-488f-b63b-33ce3faf1259",
+    "forum": "ict",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S9-P10",
+    "unit": "d7deb5c2-d576-4895-82f4-1067a408b0fc",
+    "forum": "sindh",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S9-P11",
+    "unit": "a910415a-32d5-4f60-9d90-e26a095f8570",
+    "forum": "ict",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S9-P12",
+    "unit": "89cbe993-bccd-4397-a475-9bde9a371b6f",
+    "forum": "balochistan",
+    "judgments": 1,
+    "interpreting": 0,
+    "binding": 1
+   },
+   {
+    "case": "S9-R01",
+    "unit": "f78bbca2-a0bd-4d92-8fc3-0390c23ce5a1",
+    "forum": "ict",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S9-R04",
+    "unit": "80396c87-53c0-45b4-a681-52e5b4cabfdb",
+    "forum": "sindh",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S9-R05",
+    "unit": "830c42fe-dfa5-4801-89b7-d8878aae663c",
+    "forum": "ict",
+    "judgments": 4,
+    "interpreting": 1,
+    "binding": 3
+   },
+   {
+    "case": "S9-R07",
+    "unit": "2edb745f-864a-47b2-a5bb-e5de23fcdf83",
+    "forum": "sindh",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S9-R08",
+    "unit": "672efcd7-ba12-4258-8a0b-d6af28f56a5f",
+    "forum": "sindh",
+    "judgments": 1,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S9-U01",
+    "unit": "532e5b32-f127-424c-b8e5-5d6925005455",
+    "forum": "punjab",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   },
+   {
+    "case": "S9-U03",
+    "unit": "f9e9ebcf-d534-4d48-bc70-0747b508306a",
+    "forum": "sindh",
+    "judgments": 16,
+    "interpreting": 2,
+    "binding": 7
+   },
+   {
+    "case": "S9-U04",
+    "unit": "ea76ba0f-cecd-4759-b43e-18c5c4eb5d2a",
+    "forum": "ict",
+    "judgments": 0,
+    "interpreting": 0,
+    "binding": 0
+   }
+  ]
+ },
+ "B_precedent_dev": {
+  "cases": 73,
+  "judgment_cites_law": 0.932,
+  "gold_paragraph_cites_law": 0.521,
+  "paragraph_law_in_top10": 0.315,
+  "paragraph_law_in_top50": 0.342,
+  "judgment_law_in_top10": 0.452,
+  "judgment_law_in_top50": 0.534,
+  "median_judgments_citing_top10_units": 53,
+  "rows": [
+   {
+    "case": "P1-I01",
+    "stratum": "issue",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": true,
+    "paragraph_law_in_top10": true,
+    "paragraph_law_in_top50": true,
+    "judgment_law_in_top10": true,
+    "judgment_law_in_top50": true,
+    "judgments_citing_top10_units": 6365
+   },
+   {
+    "case": "P1-I02",
+    "stratum": "issue",
+    "judgment_cites_law": false,
+    "gold_paragraph_cites_law": false,
+    "paragraph_law_in_top10": false,
+    "paragraph_law_in_top50": false,
+    "judgment_law_in_top10": false,
+    "judgment_law_in_top50": false,
+    "judgments_citing_top10_units": 60
+   },
+   {
+    "case": "P1-I03",
+    "stratum": "issue",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": false,
+    "paragraph_law_in_top10": false,
+    "paragraph_law_in_top50": false,
+    "judgment_law_in_top10": false,
+    "judgment_law_in_top50": false,
+    "judgments_citing_top10_units": 50
+   },
+   {
+    "case": "P1-I05",
+    "stratum": "issue",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": true,
+    "paragraph_law_in_top10": true,
+    "paragraph_law_in_top50": true,
+    "judgment_law_in_top10": true,
+    "judgment_law_in_top50": true,
+    "judgments_citing_top10_units": 208
+   },
+   {
+    "case": "P1-I06",
+    "stratum": "issue",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": true,
+    "paragraph_law_in_top10": true,
+    "paragraph_law_in_top50": true,
+    "judgment_law_in_top10": true,
+    "judgment_law_in_top50": true,
+    "judgments_citing_top10_units": 1638
+   },
+   {
+    "case": "P1-I07",
+    "stratum": "issue",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": false,
+    "paragraph_law_in_top10": false,
+    "paragraph_law_in_top50": false,
+    "judgment_law_in_top10": false,
+    "judgment_law_in_top50": false,
+    "judgments_citing_top10_units": 955
+   },
+   {
+    "case": "P1-I08",
+    "stratum": "issue",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": false,
+    "paragraph_law_in_top10": false,
+    "paragraph_law_in_top50": false,
+    "judgment_law_in_top10": false,
+    "judgment_law_in_top50": false,
+    "judgments_citing_top10_units": 595
+   },
+   {
+    "case": "P1-I18",
+    "stratum": "issue",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": true,
+    "paragraph_law_in_top10": true,
+    "paragraph_law_in_top50": true,
+    "judgment_law_in_top10": true,
+    "judgment_law_in_top50": true,
+    "judgments_citing_top10_units": 1298
+   },
+   {
+    "case": "P1-I21",
+    "stratum": "issue",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": false,
+    "paragraph_law_in_top10": false,
+    "paragraph_law_in_top50": false,
+    "judgment_law_in_top10": false,
+    "judgment_law_in_top50": false,
+    "judgments_citing_top10_units": 42
+   },
+   {
+    "case": "P1-I22",
+    "stratum": "issue",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": false,
+    "paragraph_law_in_top10": false,
+    "paragraph_law_in_top50": false,
+    "judgment_law_in_top10": false,
+    "judgment_law_in_top50": false,
+    "judgments_citing_top10_units": 73
+   },
+   {
+    "case": "P1-I23",
+    "stratum": "issue",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": false,
+    "paragraph_law_in_top10": false,
+    "paragraph_law_in_top50": false,
+    "judgment_law_in_top10": true,
+    "judgment_law_in_top50": true,
+    "judgments_citing_top10_units": 42
+   },
+   {
+    "case": "P1-I24",
+    "stratum": "issue",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": true,
+    "paragraph_law_in_top10": false,
+    "paragraph_law_in_top50": false,
+    "judgment_law_in_top10": false,
+    "judgment_law_in_top50": false,
+    "judgments_citing_top10_units": 53
+   },
+   {
+    "case": "P1-I25",
+    "stratum": "issue",
+    "judgment_cites_law": false,
+    "gold_paragraph_cites_law": false,
+    "paragraph_law_in_top10": false,
+    "paragraph_law_in_top50": false,
+    "judgment_law_in_top10": false,
+    "judgment_law_in_top50": false,
+    "judgments_citing_top10_units": 49
+   },
+   {
+    "case": "P1-I27",
+    "stratum": "issue",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": true,
+    "paragraph_law_in_top10": true,
+    "paragraph_law_in_top50": true,
+    "judgment_law_in_top10": true,
+    "judgment_law_in_top50": true,
+    "judgments_citing_top10_units": 6501
+   },
+   {
+    "case": "P1-I28",
+    "stratum": "issue",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": false,
+    "paragraph_law_in_top10": false,
+    "paragraph_law_in_top50": false,
+    "judgment_law_in_top10": true,
+    "judgment_law_in_top50": true,
+    "judgments_citing_top10_units": 111
+   },
+   {
+    "case": "P1-I30",
+    "stratum": "issue",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": true,
+    "paragraph_law_in_top10": false,
+    "paragraph_law_in_top50": true,
+    "judgment_law_in_top10": false,
+    "judgment_law_in_top50": true,
+    "judgments_citing_top10_units": 24
+   },
+   {
+    "case": "P1-I31",
+    "stratum": "issue",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": false,
+    "paragraph_law_in_top10": false,
+    "paragraph_law_in_top50": false,
+    "judgment_law_in_top10": true,
+    "judgment_law_in_top50": true,
+    "judgments_citing_top10_units": 1689
+   },
+   {
+    "case": "P1-I32",
+    "stratum": "issue",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": false,
+    "paragraph_law_in_top10": false,
+    "paragraph_law_in_top50": false,
+    "judgment_law_in_top10": true,
+    "judgment_law_in_top50": true,
+    "judgments_citing_top10_units": 30
+   },
+   {
+    "case": "P1-I33",
+    "stratum": "issue",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": true,
+    "paragraph_law_in_top10": true,
+    "paragraph_law_in_top50": true,
+    "judgment_law_in_top10": true,
+    "judgment_law_in_top50": true,
+    "judgments_citing_top10_units": 129
+   },
+   {
+    "case": "P1-I34",
+    "stratum": "issue",
+    "judgment_cites_law": false,
+    "gold_paragraph_cites_law": false,
+    "paragraph_law_in_top10": false,
+    "paragraph_law_in_top50": false,
+    "judgment_law_in_top10": false,
+    "judgment_law_in_top50": false,
+    "judgments_citing_top10_units": 60
+   },
+   {
+    "case": "P1-I35",
+    "stratum": "issue",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": true,
+    "paragraph_law_in_top10": false,
+    "paragraph_law_in_top50": false,
+    "judgment_law_in_top10": true,
+    "judgment_law_in_top50": true,
+    "judgments_citing_top10_units": 7
+   },
+   {
+    "case": "P1-I36",
+    "stratum": "issue",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": false,
+    "paragraph_law_in_top10": false,
+    "paragraph_law_in_top50": false,
+    "judgment_law_in_top10": false,
+    "judgment_law_in_top50": false,
+    "judgments_citing_top10_units": 2
+   },
+   {
+    "case": "P1-I37",
+    "stratum": "issue",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": false,
+    "paragraph_law_in_top10": false,
+    "paragraph_law_in_top50": false,
+    "judgment_law_in_top10": false,
+    "judgment_law_in_top50": false,
+    "judgments_citing_top10_units": 0
+   },
+   {
+    "case": "P1-I39",
+    "stratum": "issue",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": true,
+    "paragraph_law_in_top10": false,
+    "paragraph_law_in_top50": false,
+    "judgment_law_in_top10": false,
+    "judgment_law_in_top50": false,
+    "judgments_citing_top10_units": 35
+   },
+   {
+    "case": "P1-F01",
+    "stratum": "authority",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": false,
+    "paragraph_law_in_top10": false,
+    "paragraph_law_in_top50": false,
+    "judgment_law_in_top10": false,
+    "judgment_law_in_top50": false,
+    "judgments_citing_top10_units": 0
+   },
+   {
+    "case": "P1-T02",
+    "stratum": "temporal",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": true,
+    "paragraph_law_in_top10": false,
+    "paragraph_law_in_top50": false,
+    "judgment_law_in_top10": false,
+    "judgment_law_in_top50": false,
+    "judgments_citing_top10_units": 1
+   },
+   {
+    "case": "P1-T03",
+    "stratum": "temporal",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": true,
+    "paragraph_law_in_top10": false,
+    "paragraph_law_in_top50": false,
+    "judgment_law_in_top10": false,
+    "judgment_law_in_top50": false,
+    "judgments_citing_top10_units": 6
+   },
+   {
+    "case": "P1-S02",
+    "stratum": "provision",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": true,
+    "paragraph_law_in_top10": true,
+    "paragraph_law_in_top50": true,
+    "judgment_law_in_top10": true,
+    "judgment_law_in_top50": true,
+    "judgments_citing_top10_units": 213
+   },
+   {
+    "case": "P1-S03",
+    "stratum": "provision",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": false,
+    "paragraph_law_in_top10": false,
+    "paragraph_law_in_top50": false,
+    "judgment_law_in_top10": true,
+    "judgment_law_in_top50": true,
+    "judgments_citing_top10_units": 19
+   },
+   {
+    "case": "P1-S04",
+    "stratum": "provision",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": true,
+    "paragraph_law_in_top10": true,
+    "paragraph_law_in_top50": true,
+    "judgment_law_in_top10": true,
+    "judgment_law_in_top50": true,
+    "judgments_citing_top10_units": 1328
+   },
+   {
+    "case": "P1-U02",
+    "stratum": "urdu",
+    "judgment_cites_law": false,
+    "gold_paragraph_cites_law": false,
+    "paragraph_law_in_top10": false,
+    "paragraph_law_in_top50": false,
+    "judgment_law_in_top10": false,
+    "judgment_law_in_top50": false,
+    "judgments_citing_top10_units": 6
+   },
+   {
+    "case": "P1-U04",
+    "stratum": "urdu",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": true,
+    "paragraph_law_in_top10": false,
+    "paragraph_law_in_top50": false,
+    "judgment_law_in_top10": false,
+    "judgment_law_in_top50": false,
+    "judgments_citing_top10_units": 22
+   },
+   {
+    "case": "P2-I03",
+    "stratum": "issue",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": true,
+    "paragraph_law_in_top10": true,
+    "paragraph_law_in_top50": true,
+    "judgment_law_in_top10": true,
+    "judgment_law_in_top50": true,
+    "judgments_citing_top10_units": 1140
+   },
+   {
+    "case": "P2-I06",
+    "stratum": "issue",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": false,
+    "paragraph_law_in_top10": false,
+    "paragraph_law_in_top50": false,
+    "judgment_law_in_top10": false,
+    "judgment_law_in_top50": true,
+    "judgments_citing_top10_units": 50
+   },
+   {
+    "case": "P2-I07",
+    "stratum": "issue",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": false,
+    "paragraph_law_in_top10": false,
+    "paragraph_law_in_top50": false,
+    "judgment_law_in_top10": false,
+    "judgment_law_in_top50": true,
+    "judgments_citing_top10_units": 17
+   },
+   {
+    "case": "P2-I10",
+    "stratum": "issue",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": false,
+    "paragraph_law_in_top10": false,
+    "paragraph_law_in_top50": false,
+    "judgment_law_in_top10": false,
+    "judgment_law_in_top50": false,
+    "judgments_citing_top10_units": 26
+   },
+   {
+    "case": "P2-I13",
+    "stratum": "issue",
+    "judgment_cites_law": false,
+    "gold_paragraph_cites_law": false,
+    "paragraph_law_in_top10": false,
+    "paragraph_law_in_top50": false,
+    "judgment_law_in_top10": false,
+    "judgment_law_in_top50": false,
+    "judgments_citing_top10_units": 2
+   },
+   {
+    "case": "P2-I14",
+    "stratum": "issue",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": false,
+    "paragraph_law_in_top10": false,
+    "paragraph_law_in_top50": false,
+    "judgment_law_in_top10": false,
+    "judgment_law_in_top50": false,
+    "judgments_citing_top10_units": 0
+   },
+   {
+    "case": "P2-I15",
+    "stratum": "issue",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": true,
+    "paragraph_law_in_top10": true,
+    "paragraph_law_in_top50": true,
+    "judgment_law_in_top10": true,
+    "judgment_law_in_top50": true,
+    "judgments_citing_top10_units": 854
+   },
+   {
+    "case": "P2-I16",
+    "stratum": "issue",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": false,
+    "paragraph_law_in_top10": false,
+    "paragraph_law_in_top50": false,
+    "judgment_law_in_top10": false,
+    "judgment_law_in_top50": false,
+    "judgments_citing_top10_units": 144
+   },
+   {
+    "case": "P2-I17",
+    "stratum": "issue",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": true,
+    "paragraph_law_in_top10": true,
+    "paragraph_law_in_top50": true,
+    "judgment_law_in_top10": true,
+    "judgment_law_in_top50": true,
+    "judgments_citing_top10_units": 370
+   },
+   {
+    "case": "P2-I19",
+    "stratum": "issue",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": false,
+    "paragraph_law_in_top10": false,
+    "paragraph_law_in_top50": false,
+    "judgment_law_in_top10": false,
+    "judgment_law_in_top50": false,
+    "judgments_citing_top10_units": 32
+   },
+   {
+    "case": "P2-I20",
+    "stratum": "issue",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": false,
+    "paragraph_law_in_top10": false,
+    "paragraph_law_in_top50": false,
+    "judgment_law_in_top10": false,
+    "judgment_law_in_top50": false,
+    "judgments_citing_top10_units": 8
+   },
+   {
+    "case": "P2-I24",
+    "stratum": "issue",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": false,
+    "paragraph_law_in_top10": false,
+    "paragraph_law_in_top50": false,
+    "judgment_law_in_top10": false,
+    "judgment_law_in_top50": false,
+    "judgments_citing_top10_units": 4
+   },
+   {
+    "case": "P2-I25",
+    "stratum": "issue",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": true,
+    "paragraph_law_in_top10": true,
+    "paragraph_law_in_top50": true,
+    "judgment_law_in_top10": true,
+    "judgment_law_in_top50": true,
+    "judgments_citing_top10_units": 30
+   },
+   {
+    "case": "P2-I26",
+    "stratum": "issue",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": true,
+    "paragraph_law_in_top10": true,
+    "paragraph_law_in_top50": true,
+    "judgment_law_in_top10": true,
+    "judgment_law_in_top50": true,
+    "judgments_citing_top10_units": 268
+   },
+   {
+    "case": "P2-I27",
+    "stratum": "issue",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": true,
+    "paragraph_law_in_top10": true,
+    "paragraph_law_in_top50": true,
+    "judgment_law_in_top10": true,
+    "judgment_law_in_top50": true,
+    "judgments_citing_top10_units": 369
+   },
+   {
+    "case": "P2-I28",
+    "stratum": "issue",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": false,
+    "paragraph_law_in_top10": false,
+    "paragraph_law_in_top50": false,
+    "judgment_law_in_top10": true,
+    "judgment_law_in_top50": true,
+    "judgments_citing_top10_units": 6354
+   },
+   {
+    "case": "P2-I29",
+    "stratum": "issue",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": false,
+    "paragraph_law_in_top10": false,
+    "paragraph_law_in_top50": false,
+    "judgment_law_in_top10": true,
+    "judgment_law_in_top50": true,
+    "judgments_citing_top10_units": 28
+   },
+   {
+    "case": "P2-I30",
+    "stratum": "issue",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": true,
+    "paragraph_law_in_top10": false,
+    "paragraph_law_in_top50": false,
+    "judgment_law_in_top10": false,
+    "judgment_law_in_top50": true,
+    "judgments_citing_top10_units": 47
+   },
+   {
+    "case": "P2-I33",
+    "stratum": "issue",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": true,
+    "paragraph_law_in_top10": false,
+    "paragraph_law_in_top50": false,
+    "judgment_law_in_top10": false,
+    "judgment_law_in_top50": false,
+    "judgments_citing_top10_units": 846
+   },
+   {
+    "case": "P2-I34",
+    "stratum": "issue",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": false,
+    "paragraph_law_in_top10": false,
+    "paragraph_law_in_top50": false,
+    "judgment_law_in_top10": false,
+    "judgment_law_in_top50": false,
+    "judgments_citing_top10_units": 37
+   },
+   {
+    "case": "P2-I36",
+    "stratum": "issue",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": true,
+    "paragraph_law_in_top10": false,
+    "paragraph_law_in_top50": true,
+    "judgment_law_in_top10": false,
+    "judgment_law_in_top50": true,
+    "judgments_citing_top10_units": 0
+   },
+   {
+    "case": "P2-I37",
+    "stratum": "issue",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": true,
+    "paragraph_law_in_top10": true,
+    "paragraph_law_in_top50": true,
+    "judgment_law_in_top10": true,
+    "judgment_law_in_top50": true,
+    "judgments_citing_top10_units": 162
+   },
+   {
+    "case": "P2-S03",
+    "stratum": "provision",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": true,
+    "paragraph_law_in_top10": true,
+    "paragraph_law_in_top50": true,
+    "judgment_law_in_top10": true,
+    "judgment_law_in_top50": true,
+    "judgments_citing_top10_units": 265
+   },
+   {
+    "case": "P2-S04",
+    "stratum": "provision",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": true,
+    "paragraph_law_in_top10": true,
+    "paragraph_law_in_top50": true,
+    "judgment_law_in_top10": true,
+    "judgment_law_in_top50": true,
+    "judgments_citing_top10_units": 990
+   },
+   {
+    "case": "P2-S05",
+    "stratum": "provision",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": true,
+    "paragraph_law_in_top10": false,
+    "paragraph_law_in_top50": false,
+    "judgment_law_in_top10": false,
+    "judgment_law_in_top50": false,
+    "judgments_citing_top10_units": 53
+   },
+   {
+    "case": "P2-S06",
+    "stratum": "provision",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": true,
+    "paragraph_law_in_top10": true,
+    "paragraph_law_in_top50": true,
+    "judgment_law_in_top10": true,
+    "judgment_law_in_top50": true,
+    "judgments_citing_top10_units": 66
+   },
+   {
+    "case": "P2-S07",
+    "stratum": "provision",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": true,
+    "paragraph_law_in_top10": true,
+    "paragraph_law_in_top50": true,
+    "judgment_law_in_top10": true,
+    "judgment_law_in_top50": true,
+    "judgments_citing_top10_units": 413
+   },
+   {
+    "case": "P2-S08",
+    "stratum": "provision",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": true,
+    "paragraph_law_in_top10": true,
+    "paragraph_law_in_top50": true,
+    "judgment_law_in_top10": true,
+    "judgment_law_in_top50": true,
+    "judgments_citing_top10_units": 129
+   },
+   {
+    "case": "P2-S09",
+    "stratum": "provision",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": true,
+    "paragraph_law_in_top10": true,
+    "paragraph_law_in_top50": true,
+    "judgment_law_in_top10": true,
+    "judgment_law_in_top50": true,
+    "judgments_citing_top10_units": 74
+   },
+   {
+    "case": "P2-S10",
+    "stratum": "provision",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": true,
+    "paragraph_law_in_top10": true,
+    "paragraph_law_in_top50": true,
+    "judgment_law_in_top10": true,
+    "judgment_law_in_top50": true,
+    "judgments_citing_top10_units": 167
+   },
+   {
+    "case": "P2-U04",
+    "stratum": "urdu",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": false,
+    "paragraph_law_in_top10": false,
+    "paragraph_law_in_top50": false,
+    "judgment_law_in_top10": false,
+    "judgment_law_in_top50": false,
+    "judgments_citing_top10_units": 1
+   },
+   {
+    "case": "P2-U06",
+    "stratum": "urdu",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": false,
+    "paragraph_law_in_top10": false,
+    "paragraph_law_in_top50": false,
+    "judgment_law_in_top10": false,
+    "judgment_law_in_top50": true,
+    "judgments_citing_top10_units": 19
+   },
+   {
+    "case": "P2-U07",
+    "stratum": "urdu",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": true,
+    "paragraph_law_in_top10": true,
+    "paragraph_law_in_top50": true,
+    "judgment_law_in_top10": true,
+    "judgment_law_in_top50": true,
+    "judgments_citing_top10_units": 28
+   },
+   {
+    "case": "P2-U08",
+    "stratum": "urdu",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": false,
+    "paragraph_law_in_top10": false,
+    "paragraph_law_in_top50": false,
+    "judgment_law_in_top10": false,
+    "judgment_law_in_top50": false,
+    "judgments_citing_top10_units": 192
+   },
+   {
+    "case": "P2-U10",
+    "stratum": "urdu",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": false,
+    "paragraph_law_in_top10": false,
+    "paragraph_law_in_top50": false,
+    "judgment_law_in_top10": true,
+    "judgment_law_in_top50": true,
+    "judgments_citing_top10_units": 6284
+   },
+   {
+    "case": "P2-T03",
+    "stratum": "temporal",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": true,
+    "paragraph_law_in_top10": false,
+    "paragraph_law_in_top50": false,
+    "judgment_law_in_top10": false,
+    "judgment_law_in_top50": false,
+    "judgments_citing_top10_units": 0
+   },
+   {
+    "case": "P2-T04",
+    "stratum": "temporal",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": true,
+    "paragraph_law_in_top10": false,
+    "paragraph_law_in_top50": false,
+    "judgment_law_in_top10": false,
+    "judgment_law_in_top50": false,
+    "judgments_citing_top10_units": 6
+   },
+   {
+    "case": "P2-T05",
+    "stratum": "temporal",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": false,
+    "paragraph_law_in_top10": false,
+    "paragraph_law_in_top50": false,
+    "judgment_law_in_top10": false,
+    "judgment_law_in_top50": false,
+    "judgments_citing_top10_units": 36
+   },
+   {
+    "case": "P2-F04",
+    "stratum": "authority",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": false,
+    "paragraph_law_in_top10": false,
+    "paragraph_law_in_top50": false,
+    "judgment_law_in_top10": true,
+    "judgment_law_in_top50": true,
+    "judgments_citing_top10_units": 7695
+   },
+   {
+    "case": "P2-F05",
+    "stratum": "authority",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": true,
+    "paragraph_law_in_top10": false,
+    "paragraph_law_in_top50": false,
+    "judgment_law_in_top10": false,
+    "judgment_law_in_top50": false,
+    "judgments_citing_top10_units": 4
+   },
+   {
+    "case": "P2-F06",
+    "stratum": "authority",
+    "judgment_cites_law": true,
+    "gold_paragraph_cites_law": true,
+    "paragraph_law_in_top10": false,
+    "paragraph_law_in_top50": false,
+    "judgment_law_in_top10": false,
+    "judgment_law_in_top50": false,
+    "judgments_citing_top10_units": 235
+   }
+  ]
+ }
+}

@@ -1136,6 +1136,34 @@ Area: client · Status: Superseded by D-084 (the whole-page cloth; the hem, the 
   design/heritage_art.dart, presentation/discover.dart, presentation/heritage.dart; test/heritage_test.dart
   (golden embroidery.png, a review sheet at 3x).
 
+### D-172 · 2026-11-27 · Law and precedent in one answer: the composition design (proposed)
+Area: L3–L6 (docs/01 §5, docs/05, docs/06) · Status: **proposed**, for the team's review before L4 starts
+- Asked by the owner (27 Nov): research how to combine the law and judgments with reasoning, then write it down.
+  The design is `docs/ANSWER-COMPOSITION.md`.
+- Measured for it (`evals/law_precedent_join_study.py`, dev splits only):
+  - 72.6% of statute-dev gold units are cited by some judgment, 43.2% interpreted, quoted or challenged.
+  - On precedent dev, "law first, then the judgments citing it" reaches the gold judgment in 45.2% of cases alone.
+    Added to precedent search, candidate recall rises .712 → .795 (CPU) and .767 → .836 (8B). It is strongest on
+    provision questions (.91).
+  - Only 8.4% of judgment → law links carry a dated version, so "the court read an earlier text" can seldom be
+    told.
+- Proposed:
+  - Seven stages: route, law evidence (L3), precedent evidence (L5 `IPrecedent.contextFor`: law join + search,
+    time, authority, treatment, version note, own gate), sealed packet, claim-graph generation with an
+    `interpretation` block, verification (exists, faithful, applies), display.
+  - A precedent abstention on a law question becomes a coverage-limit block, not an answer abstention.
+  - Authority words are rendered from L5's finding, never written by the model.
+  - Statute text controls a disagreeing paragraph, shown as a conflict.
+  - Equal binding conflicts are shown, not resolved.
+- Contract changes proposed, not made: `IPrecedent.contextFor` (docs/06), block kind `interpretation`
+  (docs/05), L6 orchestration order (docs/01).
+- Next slice if agreed: S1, the precedent context in L5, measured on precedent dev v2.
+- Why: the external audits (doc §4) find the same failure everywhere: a real citation that does not support the
+  claim, worst on jurisdiction- and time-specific questions. The design checks support per claim and keeps as_of,
+  territory and authority deterministic.
+- Where: docs/ANSWER-COMPOSITION.md; evals/law_precedent_join_study.py;
+  evals/results/join-study-2026-11-27.json.
+
 ### D-170 · 2026-11-27 · The statute search's "court decision" veto names precedent search; every Kaggle upload is checked private
 Area: L3 retrieval (docs/04 §8) / tooling · Status: standing (owner asked for both, 27 Nov)
 - The statute search's source veto (D-102) still told readers "Court judgments are not in the library yet". That
