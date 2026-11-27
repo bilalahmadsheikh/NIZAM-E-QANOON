@@ -1,0 +1,10 @@
+{
+ "decision": "D-181: the CPU reranker distilled from Qwen3-Reranker-8B (rrft4-d), replacing the int8 mMiniLM base",
+ "written": "2026-11-27 17:05, after the dev readings below and before any test reading of the distilled model",
+ "training": "student mMiniLM-L12 (the served base) trained on the 8B's scores of 30,145 (question, passage) pairs from the courts' citation groups (D-171's pairs; no SC text, ai-train=no; BHC excluded): KL to the teacher's softmax over each group + 0.5 x MSE on its logits; a1 = the trained weights, a0.5 = averaged half-and-half with the base (WiSE-FT), exported int8 ONNX",
+ "dev": {"base": {"ndcg10": 0.51, "gate_passed": 89, "coverage": 0.489},
+         "a1": {"ndcg10": 0.52, "gate_passed": 105, "coverage": 0.575, "oof_precision": 0.952},
+         "a0.5": {"ndcg10": 0.5196, "gate_passed": 108, "coverage": 0.592, "oof_precision": 0.954}},
+ "candidate": "a0.5 (most dev gate passes at >= 0.95 out-of-fold precision, the dev criterion D-171 and D-175 used)",
+ "test_rule": "read once on test (195): adopt iff (1) gate passes > the served CPU gate's on the same test (46, D-175) AND its answered precision >= 0.915 (D-175's .935 less 2 points); and (2) NDCG@10 minus the base's (both on today's corpus) has 95% CI lower bound >= -2.0 points (ADR-1d's line). Otherwise the base stays."
+}

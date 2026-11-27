@@ -16,28 +16,28 @@
     "agree"
    ],
    "mean": [
-    -0.13204827,
-    1.79044731,
-    1.15194346
+    1.15142763,
+    1.71612841,
+    1.16607774
    ],
    "scale": [
-    4.84491722,
-    2.0053997,
-    0.6737544
+    4.13400483,
+    1.82978296,
+    0.67041031
    ],
    "coef": [
-    1.33292035,
-    0.01537019,
-    0.6773351
+    1.49940968,
+    0.15883615,
+    0.58026645
    ],
-   "intercept": 0.84843717,
-   "tau": 0.851709,
+   "intercept": 0.90108833,
+   "tau": 0.806674,
    "target_precision": 0.95,
    "dense_generation": 1,
    "fitted_on": "dev, split-v1, 283 scored cases",
-   "oof_answered_precision": 0.9551,
-   "oof_coverage_of_sufficient": 0.4885,
-   "reranker": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1@1427fd652930e4ba29e8149678df786c240d8825"
+   "oof_answered_precision": 0.9537,
+   "oof_coverage_of_sufficient": 0.592,
+   "reranker": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1+nizam-judgment-citations-v2-distill-a0.5@1427fd652930e4ba29e8149678df786c240d8825"
   },
   "gpu": {
    "features": [
@@ -86,5 +86,8 @@
    "oof_answered_precision": 0.9,
    "oof_coverage_of_sufficient": 0.2069
   }
- }
+ },
+ "notes": [
+  "cpu mode: the distilled reranker (D-181), fitted on dev under the reach addendum; gpu and unreranked: D-175"
+ ]
 }

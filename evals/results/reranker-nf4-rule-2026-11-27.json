@@ -1,0 +1,10 @@
+{
+ "decision": "D-182: serve Qwen3-Reranker-8B in 4-bit (NF4, fp16 compute, double quantisation; D-165's configuration) instead of fp16",
+ "written": "2026-11-27, before any 4-bit reranker score existed (owner asked for 4-bit reranking)",
+ "why": "fp16 holds ~15 GiB of the GPU service's 25 GiB peak (D-178); 4-bit would hold ~5-6 GiB, so both 8B models fit one 16-24 GB card",
+ "data": "law dev (276 cases), the served path: nf4 question vectors (bundle-law-nf4), cited_dense slate, depth 50, 1,600 characters; the same 15,417 pairs as ds-lawrr-union, scored again in NF4 on a Kaggle T4",
+ "step_1_rule": "ranking: NF4 NDCG@10 minus fp16 (gpu-depth-dev-50.json, same corpus and slates) >= -1.0 point AND 95% CI lower bound >= -2.0 (paired bootstrap 10,000, seed 0) -- ADR-1d's line, as D-169 used for the encoder",
+ "step_2_if_step_1_passes": "the gate: GPU gate features recomputed with NF4 scores on dev, refit under the reach addendum (D-175); NF4 ships only if its dev coverage at >= 0.95 out-of-fold precision is within 2 points of fp16's .973; then test read once against D-175's fp16 GPU row (170 passed, .941)",
+ "also_reported": "latency (the kernel's 10- and 50-passage timings) and VRAM; 4-bit matrix multiplies can be slower than fp16 on a T4, so the speed is measured, not assumed",
+ "serving": "an NF4 reranker is a new calibration key (precision is part of the reranker's identity) and the GPU service's RerankerBackend loads it from reranker.json precision"
+}

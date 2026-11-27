@@ -1136,6 +1136,48 @@ Area: client · Status: Superseded by D-084 (the whole-page cloth; the hem, the 
   design/heritage_art.dart, presentation/discover.dart, presentation/heritage.dart; test/heritage_test.dart
   (golden embroidery.png, a review sheet at 3x).
 
+### D-181 · 2026-11-27 · The CPU reranker distilled from the 8B: adopted (ranks better and the gate answers more)
+Area: L3 rerank, CPU profile (docs/04 §6; D-101, D-171) · Status: standing (provisional golden sets)
+- **Why this one:** D-171's fine-tunes on the courts' citations ranked better, but every one made the CPU gate pass
+  fewer questions (base 89 dev passes; ft1 73, ft2 72–80, D-175). They learned an order, not a confidence the gate
+  could read.
+- **Distillation** (`tools/kaggle/rerank_train_kernel.py`, loss `distill`):
+  - The teacher is Qwen3-Reranker-8B. It scored 30,145 (question, passage) pairs from the courts' citation groups
+    (D-171's pairs).
+    - No Supreme Court text (ai-train=no); the Balochistan High Court excluded.
+    - Teacher means: positives 4.44, negatives −0.87; 9.2% of negatives score above the median positive.
+  - The student is the served mMiniLM-L12. Loss: KL to the teacher's softmax over each group, plus 0.5 × MSE on its
+    logits.
+  - a0.5 is the trained weights averaged half-and-half with the base, exported int8 ONNX.
+- **Dev** (today's corpus, gate under the reach addendum, D-175):
+
+  | | NDCG@10 | Gate passes at ≥ .95 | Coverage |
+  |---|---|---|---|
+  | base | .510 | 89 | .489 |
+  | distilled a1 | .520 | 105 | .575 |
+  | **distilled a0.5** | .520 | **108** | **.592** |
+
+- **Rule** (`evals/results/distill-rule-2026-11-27.json`, written after dev and before any test reading): adopt a0.5
+  iff, on test:
+  - gate passes > 46 (D-175's CPU row) at answered precision ≥ .915, and
+  - NDCG@10's CI lower bound against the base ≥ −2.
+- **Test, read once** (195 cases; NDCG over the 174 answerable):
+  - NDCG@10 .446 → .467, +2.2 [+0.6, +3.8]; MRR@10 +2.9 [+0.8, +5.1]; recall@10 unchanged.
+  - Gate: **55 passed at .927 [.827, .971]**, coverage .537; unanswerable recall 1.0. → **Adopted.**
+- **Served:**
+  - `models/reranker` is the distilled bundle (`validation.json` records its sha256 and these figures). The base is
+    kept at `models/reranker-base-mminilm`.
+  - The served calibration's `cpu` mode is the distilled model's, keyed by its identity
+    (`...mMiniLMv2-L12-H384-v1+nizam-judgment-citations-v2-distill-a0.5@1427fd65`).
+  - A host still running the base reranker meets no calibration for it and abstains `RETRIEVAL_DEGRADED`
+    (docs/04 §9.2); it never misjudges.
+  - `./nz export` ships the new bundle. A live `retrieve()` check reads the new τ (.807).
+- **Reading:** the CPU gate is still under its 0.95 target (.927 on test), as since D-106. It is now the CPU's best
+  row: D-111 answered 55 at .909, D-175's base 46 at .935.
+- Where: tools/kaggle/rerank_train_kernel.py; evals/results/distill-rule-2026-11-27.json,
+  distill-test-ndcg-{base,a0.5}.json, gate-test-ft4-d-a0.5.json, gate-calibration-reach-ft4-d-a0.5.json,
+  rerank-ft4-dev-cpu-d-*.json; nizam/retrieval/gate_calibration.json; /mnt/e/nizam-data/models/reranker.
+
 ### D-176 · 2026-11-27 · The paragraph a found judgment presents: chosen by the 8B on the GPU profile
 Area: L3 precedent search (docs/PRECEDENT-MODEL.md; docs/ANSWER-COMPOSITION stage 3) · Status: standing (provisional gold)
 - **Problem:** precedent search finds the right judgment more often than it presents the right paragraph of it. On

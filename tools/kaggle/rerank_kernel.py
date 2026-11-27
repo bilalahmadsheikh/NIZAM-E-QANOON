@@ -21,7 +21,7 @@ SMOKE = int("__SMOKE__" or 0)
 OUT = "/kaggle/working/out"
 os.makedirs(OUT, exist_ok=True)
 os.environ.setdefault("PYTORCH_CUDA_ALLOC_CONF", "expandable_segments:True")
-subprocess.run([sys.executable, "-m", "pip", "install", "-q", "transformers==4.51.3", "accelerate==1.6.0"], check=False)
+subprocess.run([sys.executable, "-m", "pip", "install", "-q", "transformers==4.51.3", "accelerate==1.6.0", "bitsandbytes"], check=False)
 import numpy as np  # noqa: E402
 import torch  # noqa: E402
 import transformers  # noqa: E402
@@ -46,6 +46,8 @@ Q_PREFIX = ("<|im_start|>system\nJudge whether the Document meets the requiremen
             "Instruct provided. Note that the answer can only be \"yes\" or \"no\".<|im_end|>\n<|im_start|>user\n")
 Q_SUFFIX = "<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
 TOKENS_PER_BATCH = 16384
+# KG_QUANT (kg.sh rrpush): "nf4" loads the Qwen3 rerankers in 4-bit (D-182); unset: fp16, as D-101 measured
+QUANT = "__QUANT__" if not "__QUANT__".startswith("__") else "fp16"
 
 src = sorted(glob.glob("/kaggle/input/**/pairs.jsonl", recursive=True))[0]
 pairs = [json.loads(line) for line in open(src, encoding="utf-8")]
@@ -82,10 +84,22 @@ class QwenYesNo:
     def __init__(self, hub, rev, max_len):
         self.tok = AutoTokenizer.from_pretrained(hub, revision=rev, padding_side="left")
         big = "8B" in hub
-        self.m = AutoModelForCausalLM.from_pretrained(
-            hub, revision=rev, torch_dtype=torch.float16, attn_implementation="sdpa",
-            device_map="auto" if big else {"": 0},
-            max_memory={0: "13GiB", 1: "14GiB"} if big else None).eval()
+        if QUANT == "nf4":
+            # D-182: the reranker in 4-bit, D-165's exact configuration (NF4, fp16 compute, double quantisation); one
+            # card holds it. The yes/no rows of the output head must stay unquantised: the score reads them directly.
+            from transformers import BitsAndBytesConfig
+            self.m = AutoModelForCausalLM.from_pretrained(
+                hub, revision=rev, torch_dtype=torch.float16, attn_implementation="sdpa", device_map={"": 0},
+                quantization_config=BitsAndBytesConfig(load_in_4bit=True, bnb_4bit_quant_type="nf4",
+                                                       bnb_4bit_compute_dtype=torch.float16,
+                                                       bnb_4bit_use_double_quant=True)).eval()
+            head = self.m.get_output_embeddings().weight
+            assert head.dtype in (torch.float16, torch.bfloat16, torch.float32), f"output head quantised: {head.dtype}"
+        else:
+            self.m = AutoModelForCausalLM.from_pretrained(
+                hub, revision=rev, torch_dtype=torch.float16, attn_implementation="sdpa",
+                device_map="auto" if big else {"": 0},
+                max_memory={0: "13GiB", 1: "14GiB"} if big else None).eval()
         self.pre = self.tok.encode(Q_PREFIX, add_special_tokens=False)
         self.suf = self.tok.encode(Q_SUFFIX, add_special_tokens=False)
         self.max_len = max_len

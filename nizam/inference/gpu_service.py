@@ -94,10 +94,24 @@ class RerankerBackend:
         # NIZAM_GPU_SERVICE_MAX_MEMORY "0:8GiB,1:15GiB": where "auto" may place layers (two smaller cards; unset on one)
         mm = os.environ.get("NIZAM_GPU_SERVICE_MAX_MEMORY")
         max_memory = {int(k): v for k, v in (x.split(":") for x in mm.split(","))} if mm else None
-        self.model = AutoModelForCausalLM.from_pretrained(
-            cfg["model"], revision=cfg["revision"], torch_dtype=torch.float16, attn_implementation="sdpa",
-            device_map="auto" if dev == "auto" else {"": int(dev)},
-            **({"max_memory": max_memory} if max_memory and dev == "auto" else {})).eval()
+        # reranker.json "precision": fp16 (D-101) or nf4 (D-182: D-165's configuration; one card holds it)
+        self.precision = cfg.get("precision", "fp16")
+        kwargs = dict(revision=cfg["revision"], torch_dtype=torch.float16, attn_implementation="sdpa")
+        if self.precision == "nf4":
+            from transformers import BitsAndBytesConfig
+            kwargs["quantization_config"] = BitsAndBytesConfig(
+                load_in_4bit=True, bnb_4bit_quant_type="nf4", bnb_4bit_compute_dtype=torch.float16,
+                bnb_4bit_use_double_quant=True)
+            kwargs["device_map"] = {"": 0 if dev == "auto" else int(dev)}
+        elif self.precision == "fp16":
+            kwargs["device_map"] = "auto" if dev == "auto" else {"": int(dev)}
+            if max_memory and dev == "auto":
+                kwargs["max_memory"] = max_memory
+        else:
+            raise ValueError(f"unknown reranker precision {self.precision!r} (fp16 | nf4)")
+        self.model = AutoModelForCausalLM.from_pretrained(cfg["model"], **kwargs).eval()
+        if self.model.get_output_embeddings().weight.dtype not in (torch.float16, torch.bfloat16, torch.float32):
+            raise ValueError("the output head is quantised: the yes/no rows the score reads would be wrong")
         self.pre = self.tok.encode(QWEN_PREFIX, add_special_tokens=False)
         self.suf = self.tok.encode(QWEN_SUFFIX, add_special_tokens=False)
         yes, no = self.tok.convert_tokens_to_ids("yes"), self.tok.convert_tokens_to_ids("no")
@@ -136,7 +150,7 @@ class RerankerBackend:
 
     def info(self) -> dict:
         return {k: self.cfg.get(k) for k in ("model", "revision", "kind", "max_tokens")} | {
-            "precision": "fp16", "device": str(next(self.model.parameters()).device)}
+            "precision": self.precision, "device": str(next(self.model.parameters()).device)}
 
 
 try:                                              # request bodies at module level: FastAPI resolves them here
