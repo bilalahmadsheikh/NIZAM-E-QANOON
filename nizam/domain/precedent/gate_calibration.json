@@ -1,0 +1,48 @@
+{
+ "version": "precedent-gate-v1-2026-11-27",
+ "rule": "evals/results/precedent-gate-rule-2026-11-27.json",
+ "presented": 5,
+ "provisional": "fitted on the draft precedent stratum (D-133, D-168); refit when reviewed",
+ "profiles": {
+  "cpu": {
+   "features": [
+    "top"
+   ],
+   "mean": [
+    0.20118755
+   ],
+   "scale": [
+    0.35914307
+   ],
+   "coef": [
+    1.36570036
+   ],
+   "intercept": 0.31859803,
+   "tau": 0.462427,
+   "target_precision": 0.9,
+   "fitted_on": "dev, split-precedent-v1 (D-168), 87 scored cases",
+   "oof_answered_precision": 1.0,
+   "oof_coverage_of_sufficient": 0.3111
+  },
+  "gpu": {
+   "features": [
+    "top"
+   ],
+   "mean": [
+    0.20158201
+   ],
+   "scale": [
+    0.35781958
+   ],
+   "coef": [
+    1.30822785
+   ],
+   "intercept": 0.40553216,
+   "tau": 0.488853,
+   "target_precision": 0.9,
+   "fitted_on": "dev, split-precedent-v1 (D-168), 87 scored cases",
+   "oof_answered_precision": 1.0,
+   "oof_coverage_of_sufficient": 0.2979
+  }
+ }
+}

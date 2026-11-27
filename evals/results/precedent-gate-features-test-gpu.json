@@ -1,0 +1,909 @@
+{
+ "split": "test",
+ "profile": "gpu",
+ "built": "2026-11-27",
+ "rule": "precedent gate (S2, D-174; docs/ANSWER-COMPOSITION.md \u00a75 stage 3 step 6), fixed 27 Nov 2026 BEFORE any precedent gate feature or score was computed",
+ "cases": {
+  "P1-I04": {
+   "family": "FP1-talb-muwathibat",
+   "stratum": "issue",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.048172,
+    "margin": 0.0009440000000000004,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "gpu",
+   "sufficient": false,
+   "gold_rank": null
+  },
+  "P1-I09": {
+   "family": "FP1-quash-fir",
+   "stratum": "issue",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.04918,
+    "margin": 0.0036759999999999987,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "gpu",
+   "sufficient": true,
+   "gold_rank": 1
+  },
+  "P1-I10": {
+   "family": "FP1-upgradation",
+   "stratum": "issue",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.042727,
+    "margin": 0.010709000000000003,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "gpu",
+   "sufficient": true,
+   "gold_rank": 1
+  },
+  "P1-I11": {
+   "family": "FP1-specific-performance",
+   "stratum": "issue",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.047891,
+    "margin": 0.005428000000000002,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "gpu",
+   "sufficient": false,
+   "gold_rank": null
+  },
+  "P1-I12": {
+   "family": "FP1-condonation",
+   "stratum": "issue",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.045244,
+    "margin": 0.002257999999999996,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "gpu",
+   "sufficient": true,
+   "gold_rank": 3
+  },
+  "P1-I13": {
+   "family": "FP1-ata-compounding",
+   "stratum": "issue",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.059927,
+    "margin": 0.004243000000000004,
+    "agree": 3.0,
+    "binding_top": 1.0
+   },
+   "profile": "gpu",
+   "sufficient": true,
+   "gold_rank": 3
+  },
+  "P1-I14": {
+   "family": "FP1-police-confession",
+   "stratum": "issue",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.048395,
+    "margin": 0.0033079999999999984,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "gpu",
+   "sufficient": true,
+   "gold_rank": 4
+  },
+  "P1-I15": {
+   "family": "FP1-co-heirs",
+   "stratum": "issue",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.042991,
+    "margin": 0.0014790000000000011,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "gpu",
+   "sufficient": true,
+   "gold_rank": 2
+  },
+  "P1-I16": {
+   "family": "FP1-pre-arrest-bail",
+   "stratum": "issue",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.045667,
+    "margin": 0.013144999999999997,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "gpu",
+   "sufficient": false,
+   "gold_rank": null
+  },
+  "P1-I17": {
+   "family": "FP1-statutory-bail",
+   "stratum": "issue",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.047073,
+    "margin": 0.0017329999999999984,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "gpu",
+   "sufficient": true,
+   "gold_rank": 1
+  },
+  "P1-I19": {
+   "family": "FP1-justice-of-peace",
+   "stratum": "issue",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.055073,
+    "margin": 0.006420999999999996,
+    "agree": 3.0,
+    "binding_top": 1.0
+   },
+   "profile": "gpu",
+   "sufficient": true,
+   "gold_rank": 2
+  },
+  "P1-I20": {
+   "family": "FP1-custody-welfare",
+   "stratum": "issue",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.048916,
+    "margin": 0.0007689999999999989,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "gpu",
+   "sufficient": true,
+   "gold_rank": 1
+  },
+  "P1-I26": {
+   "family": "FP1-talb-ishhad",
+   "stratum": "issue",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.048412,
+    "margin": 0.004239999999999994,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "gpu",
+   "sufficient": true,
+   "gold_rank": 1
+  },
+  "P1-I29": {
+   "family": "FP1-fcr-rights",
+   "stratum": "issue",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.048916,
+    "margin": 0.004415000000000002,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "gpu",
+   "sufficient": true,
+   "gold_rank": 1
+  },
+  "P1-I38": {
+   "family": "FP1-fcc-contempt",
+   "stratum": "issue",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.032018,
+    "margin": 0.001395999999999998,
+    "agree": 2.0,
+    "binding_top": 0.0
+   },
+   "profile": "gpu",
+   "sufficient": true,
+   "gold_rank": 5
+  },
+  "P1-I40": {
+   "family": "FP1-fsc-riba",
+   "stratum": "issue",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.032522,
+    "margin": 0.021028,
+    "agree": 2.0,
+    "binding_top": 0.0
+   },
+   "profile": "gpu",
+   "sufficient": true,
+   "gold_rank": 1
+  },
+  "P1-T01": {
+   "family": "FP1-upgradation",
+   "stratum": "temporal",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.030331,
+    "margin": 0.00047399999999999873,
+    "agree": 2.0,
+    "binding_top": 0.0
+   },
+   "profile": "gpu",
+   "sufficient": true,
+   "gold_rank": 3
+  },
+  "P1-C03": {
+   "family": "FP1-fcr-rights",
+   "stratum": "case_lookup",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 1.016393,
+    "margin": 0.983871,
+    "agree": 1.0,
+    "binding_top": 1.0
+   },
+   "profile": "gpu",
+   "sufficient": true,
+   "gold_rank": 1
+  },
+  "P1-S01": {
+   "family": "FP1-justice-of-peace",
+   "stratum": "provision",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.046871,
+    "margin": 0.0011700000000000044,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "gpu",
+   "sufficient": true,
+   "gold_rank": 2
+  },
+  "P1-U01": {
+   "family": "FP1-pre-arrest-bail",
+   "stratum": "urdu",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.032522,
+    "margin": 0.001687000000000001,
+    "agree": 1.0,
+    "binding_top": 1.0
+   },
+   "profile": "gpu",
+   "sufficient": false,
+   "gold_rank": null
+  },
+  "P1-U03": {
+   "family": "FP1-police-confession",
+   "stratum": "urdu",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.032787,
+    "margin": 0.005163999999999995,
+    "agree": 1.0,
+    "binding_top": 1.0
+   },
+   "profile": "gpu",
+   "sufficient": false,
+   "gold_rank": null
+  },
+  "P1-U05": {
+   "family": "FP1-custody-welfare",
+   "stratum": "urdu",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.032787,
+    "margin": 0.0010329999999999992,
+    "agree": 1.0,
+    "binding_top": 1.0
+   },
+   "profile": "gpu",
+   "sufficient": false,
+   "gold_rank": null
+  },
+  "P1-X07": {
+   "family": "FP1-x-before-coverage-khula",
+   "stratum": "unanswerable",
+   "expected": "abstain",
+   "abstained": "NO_PRECEDENT_FOUND",
+   "veto": null,
+   "features": null,
+   "sufficient": false
+  },
+  "P2-I01": {
+   "family": "FP2-dying-declaration",
+   "stratum": "issue",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.044868,
+    "margin": 0.0006999999999999992,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "gpu",
+   "sufficient": false,
+   "gold_rank": null
+  },
+  "P2-I02": {
+   "family": "FP2-fir-delay",
+   "stratum": "issue",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.04717,
+    "margin": 0.0013709999999999972,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "gpu",
+   "sufficient": false,
+   "gold_rank": null
+  },
+  "P2-I04": {
+   "family": "FP2-identification-parade",
+   "stratum": "issue",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.046351,
+    "margin": 0.002593000000000005,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "gpu",
+   "sufficient": false,
+   "gold_rank": null
+  },
+  "P2-I05": {
+   "family": "FP2-related-witness",
+   "stratum": "issue",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.048412,
+    "margin": 0.006474999999999995,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "gpu",
+   "sufficient": false,
+   "gold_rank": null
+  },
+  "P2-I08": {
+   "family": "FP2-acquittal-265k",
+   "stratum": "issue",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.04728,
+    "margin": 0.0016000000000000042,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "gpu",
+   "sufficient": false,
+   "gold_rank": null
+  },
+  "P2-I09": {
+   "family": "FP2-dowry-depreciation",
+   "stratum": "issue",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.042683,
+    "margin": 0.010665000000000001,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "gpu",
+   "sufficient": true,
+   "gold_rank": 1
+  },
+  "P2-I11": {
+   "family": "FP2-pardanasheen",
+   "stratum": "issue",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.048147,
+    "margin": 0.001804,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "gpu",
+   "sufficient": true,
+   "gold_rank": 1
+  },
+  "P2-I12": {
+   "family": "FP2-benami",
+   "stratum": "issue",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.048172,
+    "margin": 0.0014930000000000013,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "gpu",
+   "sufficient": true,
+   "gold_rank": 1
+  },
+  "P2-I18": {
+   "family": "FP2-pension-right",
+   "stratum": "issue",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.042787,
+    "margin": 0.0006439999999999987,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "gpu",
+   "sufficient": false,
+   "gold_rank": null
+  },
+  "P2-I21": {
+   "family": "FP2-legitimate-expectation",
+   "stratum": "issue",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.047643,
+    "margin": 0.0014959999999999973,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "gpu",
+   "sufficient": false,
+   "gold_rank": null
+  },
+  "P2-I22": {
+   "family": "FP2-fair-trial-cross",
+   "stratum": "issue",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.048139,
+    "margin": 0.004864,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "gpu",
+   "sufficient": true,
+   "gold_rank": 5
+  },
+  "P2-I23": {
+   "family": "FP2-maintenance-wife",
+   "stratum": "issue",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.048916,
+    "margin": 0.002251000000000003,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "gpu",
+   "sufficient": false,
+   "gold_rank": null
+  },
+  "P2-I31": {
+   "family": "FP2-fcc-leave-merger",
+   "stratum": "issue",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.032787,
+    "margin": 0.000784999999999994,
+    "agree": 2.0,
+    "binding_top": 0.0
+   },
+   "profile": "gpu",
+   "sufficient": true,
+   "gold_rank": 1
+  },
+  "P2-I32": {
+   "family": "FP2-ajk-preemption-waiver",
+   "stratum": "issue",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.030331,
+    "margin": 0.013937999999999999,
+    "agree": 2.0,
+    "binding_top": 0.0
+   },
+   "profile": "gpu",
+   "sufficient": true,
+   "gold_rank": 1
+  },
+  "P2-I35": {
+   "family": "FP2-art-184-3",
+   "stratum": "issue",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.048147,
+    "margin": 0.0007600000000000037,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "gpu",
+   "sufficient": true,
+   "gold_rank": 3
+  },
+  "P2-C09": {
+   "family": "FP2-fair-trial-cross",
+   "stratum": "case_lookup",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 1.016393,
+    "margin": 0.983871,
+    "agree": 1.0,
+    "binding_top": 1.0
+   },
+   "profile": "gpu",
+   "sufficient": true,
+   "gold_rank": 1
+  },
+  "P2-C13": {
+   "family": "FP2-ajk-preemption-waiver",
+   "stratum": "case_lookup",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 1.0,
+    "margin": 0.983607,
+    "agree": 1.0,
+    "binding_top": 0.0
+   },
+   "profile": "gpu",
+   "sufficient": true,
+   "gold_rank": 1
+  },
+  "P2-C14": {
+   "family": "FP2-fcc-leave-merger",
+   "stratum": "case_lookup",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 1.031754,
+    "margin": 1.003015,
+    "agree": 3.0,
+    "binding_top": 0.0
+   },
+   "profile": "gpu",
+   "sufficient": true,
+   "gold_rank": 1
+  },
+  "P2-C15": {
+   "family": "FP2-benami",
+   "stratum": "case_lookup",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 1.016393,
+    "margin": 0.976852,
+    "agree": 1.0,
+    "binding_top": 1.0
+   },
+   "profile": "gpu",
+   "sufficient": true,
+   "gold_rank": 1
+  },
+  "P2-S01": {
+   "family": "FP2-acquittal-265k",
+   "stratum": "provision",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.047674,
+    "margin": 0.003387000000000001,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "gpu",
+   "sufficient": true,
+   "gold_rank": 2
+  },
+  "P2-S02": {
+   "family": "FP2-fair-trial-cross",
+   "stratum": "provision",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.054858,
+    "margin": 0.003279999999999998,
+    "agree": 3.0,
+    "binding_top": 1.0
+   },
+   "profile": "gpu",
+   "sufficient": false,
+   "gold_rank": null
+  },
+  "P2-S11": {
+   "family": "FP2-art-184-3",
+   "stratum": "provision",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.062877,
+    "margin": 0.016382,
+    "agree": 3.0,
+    "binding_top": 1.0
+   },
+   "profile": "gpu",
+   "sufficient": false,
+   "gold_rank": null
+  },
+  "P2-U01": {
+   "family": "FP2-fir-delay",
+   "stratum": "urdu",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.032787,
+    "margin": 0.000784999999999994,
+    "agree": 1.0,
+    "binding_top": 1.0
+   },
+   "profile": "gpu",
+   "sufficient": false,
+   "gold_rank": null
+  },
+  "P2-U02": {
+   "family": "FP2-dying-declaration",
+   "stratum": "urdu",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.032018,
+    "margin": 0.0005039999999999975,
+    "agree": 1.0,
+    "binding_top": 1.0
+   },
+   "profile": "gpu",
+   "sufficient": false,
+   "gold_rank": null
+  },
+  "P2-U03": {
+   "family": "FP2-maintenance-wife",
+   "stratum": "urdu",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.032787,
+    "margin": 0.0005209999999999937,
+    "agree": 1.0,
+    "binding_top": 1.0
+   },
+   "profile": "gpu",
+   "sufficient": false,
+   "gold_rank": null
+  },
+  "P2-U05": {
+   "family": "FP2-pension-right",
+   "stratum": "urdu",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.032522,
+    "margin": 0.0005199999999999996,
+    "agree": 1.0,
+    "binding_top": 1.0
+   },
+   "profile": "gpu",
+   "sufficient": false,
+   "gold_rank": null
+  },
+  "P2-U09": {
+   "family": "FP2-related-witness",
+   "stratum": "urdu",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.030886,
+    "margin": 0.0004709999999999992,
+    "agree": 1.0,
+    "binding_top": 1.0
+   },
+   "profile": "gpu",
+   "sufficient": false,
+   "gold_rank": null
+  },
+  "P2-T01": {
+   "family": "FP2-maintenance-wife",
+   "stratum": "temporal",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.047712,
+    "margin": 0.0017059999999999992,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "gpu",
+   "sufficient": false,
+   "gold_rank": null
+  },
+  "P2-T02": {
+   "family": "FP2-pension-right",
+   "stratum": "temporal",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.04422,
+    "margin": 0.0005860000000000032,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "gpu",
+   "sufficient": false,
+   "gold_rank": null
+  },
+  "P2-T06": {
+   "family": "FP2-dying-declaration",
+   "stratum": "temporal",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.047907,
+    "margin": 0.005087999999999995,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "gpu",
+   "sufficient": false,
+   "gold_rank": null
+  },
+  "P2-F01": {
+   "family": "FP2-fir-delay",
+   "stratum": "authority",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.031778,
+    "margin": 0.0007240000000000024,
+    "agree": 1.0,
+    "binding_top": 1.0
+   },
+   "profile": "gpu",
+   "sufficient": false,
+   "gold_rank": null
+  },
+  "P2-F02": {
+   "family": "FP2-related-witness",
+   "stratum": "authority",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.048652,
+    "margin": 0.006331999999999997,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "gpu",
+   "sufficient": false,
+   "gold_rank": null
+  },
+  "P2-F03": {
+   "family": "FP2-pension-right",
+   "stratum": "authority",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.044378,
+    "margin": 0.002571000000000004,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "gpu",
+   "sufficient": false,
+   "gold_rank": null
+  },
+  "P2-X02": {
+   "family": "FP2-x-customs-tribunal",
+   "stratum": "unanswerable",
+   "expected": "abstain",
+   "abstained": "COURT_NOT_HELD",
+   "veto": {
+    "forum": "Customs Appellate Tribunal",
+    "reason": "the question asks what this forum decided; its decisions are not held"
+   },
+   "features": null,
+   "sufficient": false
+  }
+ }
+}

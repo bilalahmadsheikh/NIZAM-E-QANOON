@@ -66,8 +66,8 @@ def test_the_law_join_reaches_judgments_the_question_does_not_name(repo, s497):
     from nizam.storage.authority import Subordinate
     q = "When does a case call for further inquiry so that the accused gets bail?"      # names no section
     ctx = context_for(q, as_of=TODAY, forum=Subordinate("punjab"), seed_units=[s497], seed_kind="context", k=10,
-                      repo=repo, law_join=True)
-    assert isinstance(ctx, PrecedentContext) and not ctx.gated          # discovery until the precedent gate (S2)
+                      repo=repo, law_join=True, gate=False)
+    assert isinstance(ctx, PrecedentContext) and not ctx.gated          # gate=False: discovery only
     assert ctx.trace["search"]["generators"].get("law"), "the law generator ran"
     assert any("law" in i.generators for i in ctx.items)
     for i in ctx.items:
@@ -80,7 +80,7 @@ def test_the_law_join_reaches_judgments_the_question_does_not_name(repo, s497):
 
 
 def test_without_a_seed_it_is_the_search_alone(repo):
-    ctx = context_for("further inquiry bail", as_of=TODAY, k=5, repo=repo)
+    ctx = context_for("further inquiry bail", as_of=TODAY, k=5, repo=repo, gate=False)
     if isinstance(ctx, PrecedentAbstention):
         pytest.skip("nothing found")
     assert "law" not in ctx.trace["search"]["generators"] and ctx.seed["kind"] == "none"
@@ -88,8 +88,8 @@ def test_without_a_seed_it_is_the_search_alone(repo):
 
 def test_by_default_the_seed_marks_judgments_but_does_not_choose_them(repo, s497):
     q = "When does a case call for further inquiry so that the accused gets bail?"
-    plain = context_for(q, as_of=TODAY, k=5, repo=repo)
-    seeded = context_for(q, as_of=TODAY, seed_units=[s497], seed_kind="context", k=5, repo=repo)
+    plain = context_for(q, as_of=TODAY, k=5, repo=repo, gate=False)
+    seeded = context_for(q, as_of=TODAY, seed_units=[s497], seed_kind="context", k=5, repo=repo, gate=False)
     if isinstance(plain, PrecedentAbstention):
         pytest.skip("nothing found")
     assert [i.judgment_id for i in seeded.items] == [i.judgment_id for i in plain.items]   # D-173: join off
@@ -99,7 +99,7 @@ def test_by_default_the_seed_marks_judgments_but_does_not_choose_them(repo, s497
 
 def test_a_verified_adverse_judgment_is_excluded_and_a_machine_reading_is_only_carried(repo, s497, monkeypatch):
     q = "When does a case call for further inquiry so that the accused gets bail?"
-    first = context_for(q, as_of=TODAY, seed_units=[s497], seed_kind="context", k=5, repo=repo)
+    first = context_for(q, as_of=TODAY, seed_units=[s497], seed_kind="context", k=5, repo=repo, gate=False)
     if isinstance(first, PrecedentAbstention):
         pytest.skip("nothing found")
     bad, pending = first.items[0].judgment_id, first.items[1].judgment_id if len(first.items) > 1 else None
@@ -115,7 +115,7 @@ def test_a_verified_adverse_judgment_is_excluded_and_a_machine_reading_is_only_c
                                                                        on=TODAY)]}
         return out
     monkeypatch.setattr(repo, "adverse_status", fake)
-    ctx = context_for(q, as_of=TODAY, seed_units=[s497], seed_kind="context", k=5, repo=repo)
+    ctx = context_for(q, as_of=TODAY, seed_units=[s497], seed_kind="context", k=5, repo=repo, gate=False)
     assert bad not in [i.judgment_id for i in ctx.items]
     assert any(e["judgment_id"] == bad for e in ctx.trace["excluded_adverse"])
     if pending:
@@ -152,3 +152,51 @@ def test_the_law_join_orders_by_the_question_and_keeps_to_the_date(repo, s497):
     scores = [r["score"] for r in rows]
     assert scores == sorted(scores, reverse=True)                        # nearest first
     assert len({r["judgment_id"] for r in rows}) == len(rows)            # one paragraph per judgment
+
+
+# ------------------------------------------------------------------------------------------------ the gate (S2)
+
+def test_a_forum_is_recognised_only_when_its_decisions_are_asked_for():
+    from nizam.domain.precedent.gate import forum_asked
+    assert forum_asked("What has the Federal Service Tribunal held about seniority?") == "Federal Service Tribunal"
+    assert forum_asked("What did the Family Court Lahore decide about maintenance?") == "Family Court Lahore"
+    assert forum_asked("judgments of the Federal Shariat Court on qazf") == "Federal Shariat Court"
+    assert forum_asked("What has the court held about it?") is None          # no named forum
+    assert forum_asked("Can a tribunal be set up for rent cases?") is None    # a mention, not a question of holdings
+
+
+def test_an_uncalibrated_profile_never_passes_and_a_score_below_tau_abstains():
+    from nizam.domain.precedent.gate import decide
+    f = dict(top=0.9, margin=0.1, agree=3.0, binding_top=1.0)
+    assert decide(f, "cpu", {"version": None, "profiles": {}})["code"] == "PRECEDENT_GATE_UNCALIBRATED"
+    cal = {"version": "t", "profiles": {"cpu": dict(features=["top"], mean=[0.0], scale=[1.0], coef=[1.0],
+                                                    intercept=0.0, tau=0.7)}}
+    assert decide(dict(f, top=2.0), "cpu", cal)["decision"] == "pass"            # sigmoid(2) = .88
+    assert decide(dict(f, top=0.1), "cpu", cal)["code"] == "INSUFFICIENT_PRECEDENT"
+    assert decide(f, "gpu", cal)["code"] == "PRECEDENT_GATE_UNCALIBRATED"         # another profile's fit never serves
+    assert decide(dict(f, top=None), "cpu", cal)["code"] == "NO_PRECEDENT_FOUND"
+
+
+def test_a_tribunal_is_declined_before_any_search(repo, monkeypatch):
+    import nizam.domain.precedent.context as C
+    monkeypatch.setattr(C, "search", lambda *a, **k: pytest.fail("a vetoed question must not be searched"))
+    r = context_for("What has the Federal Service Tribunal held about the seniority of deputationists?",
+                    as_of=TODAY, repo=repo)
+    assert isinstance(r, PrecedentAbstention) and r.code == "COURT_NOT_HELD" and "Federal Service Tribunal" in r.public_reason
+
+
+def test_a_recorded_court_is_not_vetoed(repo):
+    r = context_for("What has the Lahore High Court held about further inquiry in bail?", as_of=TODAY, repo=repo,
+                    gate=False)
+    assert not (isinstance(r, PrecedentAbstention) and r.code == "COURT_NOT_HELD")
+
+
+def test_the_served_context_is_gated_or_abstains_with_its_leads_apart(repo):
+    r = context_for("When does a case call for further inquiry so that the accused gets bail?", as_of=TODAY,
+                    repo=repo)
+    if isinstance(r, PrecedentContext):
+        assert r.gated and r.trace["gate"]["decision"] == "pass"
+    else:
+        assert r.code in ("INSUFFICIENT_PRECEDENT", "PRECEDENT_GATE_UNCALIBRATED", "NO_PRECEDENT_FOUND")
+        assert r.trace.get("gate") is None or r.trace["gate"]["decision"] == "abstain"
+        assert all(not hasattr(i, "gated") for i in r.nearest)                   # leads, never a context

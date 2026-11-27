@@ -1,0 +1,909 @@
+{
+ "split": "test",
+ "profile": "cpu",
+ "built": "2026-11-27",
+ "rule": "precedent gate (S2, D-174; docs/ANSWER-COMPOSITION.md \u00a75 stage 3 step 6), fixed 27 Nov 2026 BEFORE any precedent gate feature or score was computed",
+ "cases": {
+  "P1-I04": {
+   "family": "FP1-talb-muwathibat",
+   "stratum": "issue",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.048412,
+    "margin": 0.001001999999999996,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "cpu",
+   "sufficient": false,
+   "gold_rank": null
+  },
+  "P1-I09": {
+   "family": "FP1-quash-fir",
+   "stratum": "issue",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.052258,
+    "margin": 0.003605999999999998,
+    "agree": 3.0,
+    "binding_top": 1.0
+   },
+   "profile": "cpu",
+   "sufficient": true,
+   "gold_rank": 2
+  },
+  "P1-I10": {
+   "family": "FP1-upgradation",
+   "stratum": "issue",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.042991,
+    "margin": 0.0026390000000000025,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "cpu",
+   "sufficient": true,
+   "gold_rank": 1
+  },
+  "P1-I11": {
+   "family": "FP1-specific-performance",
+   "stratum": "issue",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.045831,
+    "margin": 0.0009629999999999986,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "cpu",
+   "sufficient": false,
+   "gold_rank": null
+  },
+  "P1-I12": {
+   "family": "FP1-condonation",
+   "stratum": "issue",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.045244,
+    "margin": 0.004624999999999997,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "cpu",
+   "sufficient": false,
+   "gold_rank": null
+  },
+  "P1-I13": {
+   "family": "FP1-ata-compounding",
+   "stratum": "issue",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.046724,
+    "margin": 0.001455999999999999,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "cpu",
+   "sufficient": true,
+   "gold_rank": 1
+  },
+  "P1-I14": {
+   "family": "FP1-police-confession",
+   "stratum": "issue",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.048916,
+    "margin": 0.003581000000000001,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "cpu",
+   "sufficient": true,
+   "gold_rank": 4
+  },
+  "P1-I15": {
+   "family": "FP1-co-heirs",
+   "stratum": "issue",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.04918,
+    "margin": 0.0026359999999999995,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "cpu",
+   "sufficient": false,
+   "gold_rank": null
+  },
+  "P1-I16": {
+   "family": "FP1-pre-arrest-bail",
+   "stratum": "issue",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.048147,
+    "margin": 0.002256000000000001,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "cpu",
+   "sufficient": false,
+   "gold_rank": null
+  },
+  "P1-I17": {
+   "family": "FP1-statutory-bail",
+   "stratum": "issue",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.048172,
+    "margin": 0.0055720000000000006,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "cpu",
+   "sufficient": true,
+   "gold_rank": 1
+  },
+  "P1-I19": {
+   "family": "FP1-justice-of-peace",
+   "stratum": "issue",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.05473,
+    "margin": 0.006335,
+    "agree": 3.0,
+    "binding_top": 1.0
+   },
+   "profile": "cpu",
+   "sufficient": true,
+   "gold_rank": 2
+  },
+  "P1-I20": {
+   "family": "FP1-custody-welfare",
+   "stratum": "issue",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.048916,
+    "margin": 0.00026400000000000035,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "cpu",
+   "sufficient": true,
+   "gold_rank": 2
+  },
+  "P1-I26": {
+   "family": "FP1-talb-ishhad",
+   "stratum": "issue",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.047403,
+    "margin": 0.004916999999999998,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "cpu",
+   "sufficient": true,
+   "gold_rank": 1
+  },
+  "P1-I29": {
+   "family": "FP1-fcr-rights",
+   "stratum": "issue",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.04866,
+    "margin": 0.0002730000000000024,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "cpu",
+   "sufficient": true,
+   "gold_rank": 1
+  },
+  "P1-I38": {
+   "family": "FP1-fcc-contempt",
+   "stratum": "issue",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.030777,
+    "margin": 0.000899999999999998,
+    "agree": 2.0,
+    "binding_top": 0.0
+   },
+   "profile": "cpu",
+   "sufficient": true,
+   "gold_rank": 2
+  },
+  "P1-I40": {
+   "family": "FP1-fsc-riba",
+   "stratum": "issue",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.031319,
+    "margin": 0.019825,
+    "agree": 2.0,
+    "binding_top": 0.0
+   },
+   "profile": "cpu",
+   "sufficient": true,
+   "gold_rank": 1
+  },
+  "P1-T01": {
+   "family": "FP1-upgradation",
+   "stratum": "temporal",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.032258,
+    "margin": 0.002686000000000001,
+    "agree": 2.0,
+    "binding_top": 0.0
+   },
+   "profile": "cpu",
+   "sufficient": true,
+   "gold_rank": 3
+  },
+  "P1-C03": {
+   "family": "FP1-fcr-rights",
+   "stratum": "case_lookup",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 1.016393,
+    "margin": 0.983871,
+    "agree": 1.0,
+    "binding_top": 1.0
+   },
+   "profile": "cpu",
+   "sufficient": true,
+   "gold_rank": 1
+  },
+  "P1-S01": {
+   "family": "FP1-justice-of-peace",
+   "stratum": "provision",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.046871,
+    "margin": 0.002024000000000005,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "cpu",
+   "sufficient": false,
+   "gold_rank": null
+  },
+  "P1-U01": {
+   "family": "FP1-pre-arrest-bail",
+   "stratum": "urdu",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.032787,
+    "margin": 0.000784999999999994,
+    "agree": 1.0,
+    "binding_top": 1.0
+   },
+   "profile": "cpu",
+   "sufficient": false,
+   "gold_rank": null
+  },
+  "P1-U03": {
+   "family": "FP1-police-confession",
+   "stratum": "urdu",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.032787,
+    "margin": 0.005029999999999996,
+    "agree": 1.0,
+    "binding_top": 1.0
+   },
+   "profile": "cpu",
+   "sufficient": false,
+   "gold_rank": null
+  },
+  "P1-U05": {
+   "family": "FP1-custody-welfare",
+   "stratum": "urdu",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.032787,
+    "margin": 0.0005289999999999948,
+    "agree": 1.0,
+    "binding_top": 1.0
+   },
+   "profile": "cpu",
+   "sufficient": false,
+   "gold_rank": null
+  },
+  "P1-X07": {
+   "family": "FP1-x-before-coverage-khula",
+   "stratum": "unanswerable",
+   "expected": "abstain",
+   "abstained": "NO_PRECEDENT_FOUND",
+   "veto": null,
+   "features": null,
+   "sufficient": false
+  },
+  "P2-I01": {
+   "family": "FP2-dying-declaration",
+   "stratum": "issue",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.04717,
+    "margin": 0.001901999999999994,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "cpu",
+   "sufficient": false,
+   "gold_rank": null
+  },
+  "P2-I02": {
+   "family": "FP2-fir-delay",
+   "stratum": "issue",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.048916,
+    "margin": 0.0017770000000000008,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "cpu",
+   "sufficient": false,
+   "gold_rank": null
+  },
+  "P2-I04": {
+   "family": "FP2-identification-parade",
+   "stratum": "issue",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.043683,
+    "margin": 0.005249999999999998,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "cpu",
+   "sufficient": false,
+   "gold_rank": null
+  },
+  "P2-I05": {
+   "family": "FP2-related-witness",
+   "stratum": "issue",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.04717,
+    "margin": 0.008438999999999995,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "cpu",
+   "sufficient": false,
+   "gold_rank": null
+  },
+  "P2-I08": {
+   "family": "FP2-acquittal-265k",
+   "stratum": "issue",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.044936,
+    "margin": 0.003238999999999999,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "cpu",
+   "sufficient": false,
+   "gold_rank": null
+  },
+  "P2-I09": {
+   "family": "FP2-dowry-depreciation",
+   "stratum": "issue",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.041303,
+    "margin": 0.0029790000000000025,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "cpu",
+   "sufficient": true,
+   "gold_rank": 1
+  },
+  "P2-I11": {
+   "family": "FP2-pardanasheen",
+   "stratum": "issue",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.048412,
+    "margin": 0.0007689999999999989,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "cpu",
+   "sufficient": true,
+   "gold_rank": 1
+  },
+  "P2-I12": {
+   "family": "FP2-benami",
+   "stratum": "issue",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.04918,
+    "margin": 0.0022739999999999982,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "cpu",
+   "sufficient": true,
+   "gold_rank": 1
+  },
+  "P2-I18": {
+   "family": "FP2-pension-right",
+   "stratum": "issue",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.048147,
+    "margin": 0.0009930000000000008,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "cpu",
+   "sufficient": false,
+   "gold_rank": null
+  },
+  "P2-I21": {
+   "family": "FP2-legitimate-expectation",
+   "stratum": "issue",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.046411,
+    "margin": 0.002156999999999999,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "cpu",
+   "sufficient": false,
+   "gold_rank": null
+  },
+  "P2-I22": {
+   "family": "FP2-fair-trial-cross",
+   "stratum": "issue",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.047493,
+    "margin": 0.0050069999999999976,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "cpu",
+   "sufficient": true,
+   "gold_rank": 4
+  },
+  "P2-I23": {
+   "family": "FP2-maintenance-wife",
+   "stratum": "issue",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.044835,
+    "margin": 0.0008120000000000002,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "cpu",
+   "sufficient": false,
+   "gold_rank": null
+  },
+  "P2-I31": {
+   "family": "FP2-fcc-leave-merger",
+   "stratum": "issue",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.031258,
+    "margin": 0.0005789999999999997,
+    "agree": 2.0,
+    "binding_top": 0.0
+   },
+   "profile": "cpu",
+   "sufficient": true,
+   "gold_rank": 2
+  },
+  "P2-I32": {
+   "family": "FP2-ajk-preemption-waiver",
+   "stratum": "issue",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.029631,
+    "margin": 0.013238,
+    "agree": 2.0,
+    "binding_top": 0.0
+   },
+   "profile": "cpu",
+   "sufficient": true,
+   "gold_rank": 1
+  },
+  "P2-I35": {
+   "family": "FP2-art-184-3",
+   "stratum": "issue",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.045965,
+    "margin": 0.001240999999999999,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "cpu",
+   "sufficient": true,
+   "gold_rank": 1
+  },
+  "P2-C09": {
+   "family": "FP2-fair-trial-cross",
+   "stratum": "case_lookup",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 1.016393,
+    "margin": 0.983871,
+    "agree": 1.0,
+    "binding_top": 1.0
+   },
+   "profile": "cpu",
+   "sufficient": true,
+   "gold_rank": 1
+  },
+  "P2-C13": {
+   "family": "FP2-ajk-preemption-waiver",
+   "stratum": "case_lookup",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 1.015152,
+    "margin": 0.9987590000000001,
+    "agree": 2.0,
+    "binding_top": 0.0
+   },
+   "profile": "cpu",
+   "sufficient": true,
+   "gold_rank": 1
+  },
+  "P2-C14": {
+   "family": "FP2-fcc-leave-merger",
+   "stratum": "case_lookup",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 1.032258,
+    "margin": 1.004274,
+    "agree": 3.0,
+    "binding_top": 0.0
+   },
+   "profile": "cpu",
+   "sufficient": true,
+   "gold_rank": 1
+  },
+  "P2-C15": {
+   "family": "FP2-benami",
+   "stratum": "case_lookup",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 1.029727,
+    "margin": 0.987661,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "cpu",
+   "sufficient": true,
+   "gold_rank": 1
+  },
+  "P2-S01": {
+   "family": "FP2-acquittal-265k",
+   "stratum": "provision",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.044365,
+    "margin": 0.006816000000000003,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "cpu",
+   "sufficient": true,
+   "gold_rank": 3
+  },
+  "P2-S02": {
+   "family": "FP2-fair-trial-cross",
+   "stratum": "provision",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.053271,
+    "margin": 0.002468999999999999,
+    "agree": 3.0,
+    "binding_top": 1.0
+   },
+   "profile": "cpu",
+   "sufficient": false,
+   "gold_rank": null
+  },
+  "P2-S11": {
+   "family": "FP2-art-184-3",
+   "stratum": "provision",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.048172,
+    "margin": 0.0019520000000000023,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "cpu",
+   "sufficient": false,
+   "gold_rank": null
+  },
+  "P2-U01": {
+   "family": "FP2-fir-delay",
+   "stratum": "urdu",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.032787,
+    "margin": 0.0005289999999999948,
+    "agree": 1.0,
+    "binding_top": 1.0
+   },
+   "profile": "cpu",
+   "sufficient": false,
+   "gold_rank": null
+  },
+  "P2-U02": {
+   "family": "FP2-dying-declaration",
+   "stratum": "urdu",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.031778,
+    "margin": 0.0011560000000000008,
+    "agree": 1.0,
+    "binding_top": 1.0
+   },
+   "profile": "cpu",
+   "sufficient": false,
+   "gold_rank": null
+  },
+  "P2-U03": {
+   "family": "FP2-maintenance-wife",
+   "stratum": "urdu",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.032258,
+    "margin": 0.0002400000000000041,
+    "agree": 2.0,
+    "binding_top": 0.0
+   },
+   "profile": "cpu",
+   "sufficient": true,
+   "gold_rank": 5
+  },
+  "P2-U05": {
+   "family": "FP2-pension-right",
+   "stratum": "urdu",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.032787,
+    "margin": 0.0005289999999999948,
+    "agree": 1.0,
+    "binding_top": 1.0
+   },
+   "profile": "cpu",
+   "sufficient": false,
+   "gold_rank": null
+  },
+  "P2-U09": {
+   "family": "FP2-related-witness",
+   "stratum": "urdu",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.030886,
+    "margin": 0.001243000000000001,
+    "agree": 1.0,
+    "binding_top": 1.0
+   },
+   "profile": "cpu",
+   "sufficient": false,
+   "gold_rank": null
+  },
+  "P2-T01": {
+   "family": "FP2-maintenance-wife",
+   "stratum": "temporal",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.04647,
+    "margin": 0.014716,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "cpu",
+   "sufficient": false,
+   "gold_rank": null
+  },
+  "P2-T02": {
+   "family": "FP2-pension-right",
+   "stratum": "temporal",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.04866,
+    "margin": 0.001017000000000004,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "cpu",
+   "sufficient": false,
+   "gold_rank": null
+  },
+  "P2-T06": {
+   "family": "FP2-dying-declaration",
+   "stratum": "temporal",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.047192,
+    "margin": 0.0019799999999999957,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "cpu",
+   "sufficient": false,
+   "gold_rank": null
+  },
+  "P2-F01": {
+   "family": "FP2-fir-delay",
+   "stratum": "authority",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.044652,
+    "margin": 0.013597999999999999,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "cpu",
+   "sufficient": false,
+   "gold_rank": null
+  },
+  "P2-F02": {
+   "family": "FP2-related-witness",
+   "stratum": "authority",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.044315,
+    "margin": 0.011792999999999998,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "cpu",
+   "sufficient": false,
+   "gold_rank": null
+  },
+  "P2-F03": {
+   "family": "FP2-pension-right",
+   "stratum": "authority",
+   "expected": "answer",
+   "abstained": null,
+   "veto": null,
+   "features": {
+    "top": 0.042039,
+    "margin": 0.010285000000000002,
+    "agree": 2.0,
+    "binding_top": 1.0
+   },
+   "profile": "cpu",
+   "sufficient": false,
+   "gold_rank": null
+  },
+  "P2-X02": {
+   "family": "FP2-x-customs-tribunal",
+   "stratum": "unanswerable",
+   "expected": "abstain",
+   "abstained": "COURT_NOT_HELD",
+   "veto": {
+    "forum": "Customs Appellate Tribunal",
+    "reason": "the question asks what this forum decided; its decisions are not held"
+   },
+   "features": null,
+   "sufficient": false
+  }
+ }
+}

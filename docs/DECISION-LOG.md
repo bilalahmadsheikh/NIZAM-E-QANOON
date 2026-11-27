@@ -1136,6 +1136,47 @@ Area: client · Status: Superseded by D-084 (the whole-page cloth; the hem, the 
   design/heritage_art.dart, presentation/discover.dart, presentation/heritage.dart; test/heritage_test.dart
   (golden embroidery.png, a review sheet at 3x).
 
+### D-174 · 2026-11-27 · S2, the precedent gate: a precedent context is cited only when it passes
+Area: L5 precedent (docs/ANSWER-COMPOSITION §5 stage 3 step 6; INV-2) · Status: standing (draft gold; provisional)
+- The rule was fixed before any score: `evals/results/precedent-gate-rule-2026-11-27.json`.
+  - Unit: the first 5 judgments `context_for` presents (law join off, D-173).
+  - Label: a necessary gold judgment among them. It under-counts: the gold names some answering judgments, not
+    all, so precision is a lower bound.
+  - Features: top, margin, agree, binding_top.
+  - Fit: leave-one-family-out ridge logistic regression per profile (the statute gate's functions). τ is set for
+    0.90 answered precision, falling back to 0.80, with at least 10% coverage, or no calibration ships.
+- A forum veto runs first: the question asks what a named forum held, and the forum is not a recorded court (a
+  tribunal, a family court, an ombudsman) → `COURT_NOT_HELD`, before any search.
+  - `gate.forum_asked`: question words match in any case; the forum keeps its capitals.
+  - The first version missed a capital "What". The fix was found on dev's tribunal case, before the fit.
+- Served: `context_for(gate=True)`, the default.
+  - A passed context is `gated=True` and may be cited.
+  - Otherwise a `PrecedentAbstention` (`INSUFFICIENT_PRECEDENT`, `PRECEDENT_GATE_UNCALIBRATED`,
+    `NO_PRECEDENT_FOUND`, `COURT_NOT_HELD`) with its nearest judgments apart, as leads.
+  - A profile with no fit never passes. Calibration: `nizam/domain/precedent/gate_calibration.json`.
+- Fitted on dev (89 cases: 87 scored, 1 vetoed, 1 empty):
+
+  | Profile | Features | τ | Out-of-fold answered precision | Coverage of sufficient |
+  |---|---|---|---|---|
+  | CPU | `top` | .462 | 1.0 (14 of 14) | .311 (14 of 45) |
+  | GPU (8B) | `top` | .489 | 1.0 (14 of 14) | .298 |
+
+- Test, read once (57 cases):
+
+  | Profile | Passed | Wrong | Answered precision | Coverage of sufficient | Unanswerable declined |
+  |---|---|---|---|---|---|
+  | CPU | 5 | 0 | 1.0 [.57, 1.0] | .192 | 2 of 2 |
+  | GPU | 5 | 0 | 1.0 [.57, 1.0] | .179 | 2 of 2 |
+
+  The tribunal veto and before-coverage both held.
+- Reading: a cautious gate, as intended. An answer cites judgments for about one precedent question in five and
+  otherwise says no judgment answers clearly enough, with the leads apart.
+  - Coverage will rise as the gold is completed by the legal review (the label under-counts) and as ranking
+    improves.
+  - Intervals are wide at 57 cases.
+- Where: nizam/domain/precedent/gate.py, context.py; evals/precedent_gate.py; tests/test_precedent_context.py
+  (14 tests); evals/results/precedent-gate-{rule,fit-dev,test-cpu,test-gpu}-2026-11-27.json, features files.
+
 ### D-171 · 2026-11-27 · The CPU reranker fine-tuned on the courts' citations: ranks better, not adopted (its gate answers a quarter as often)
 Area: L3 retrieval (CPU profile; ADR-2's fine-tuned reranker) · Status: standing; the model is kept, not served
 - Training data (`tools/rerank_train_pairs.py`):

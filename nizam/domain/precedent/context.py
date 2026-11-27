@@ -23,9 +23,9 @@ units it found nearest. The seed only chooses which judgments to look at; no sta
 seed the statute gate did not pass (INV-2 governs answers). A vetoed question (a court's decision, a foreign place)
 has no seed.
 
-What it does not do yet: decide whether the judgments are good enough to cite. That is the precedent gate (S2,
-docs/ANSWER-COMPOSITION §8); until it is fitted, a PrecedentContext is discovery, and nothing may be generated from
-it (INV-2). `gated` says so.
+Whether the judgments are good enough to cite is the precedent gate's decision (S2, D-174; nizam.domain.precedent
+.gate): by default context_for applies it, and only a `gated` context may be cited (INV-2). `gate=False` gives the
+ungated context, which is discovery.
 """
 from __future__ import annotations
 
@@ -35,7 +35,13 @@ from datetime import date
 from nizam.retrieval.precedent import search
 from nizam.storage.judgment_read import JudgmentRead
 
-ABSTENTION_CODES = frozenset({"COURT_NOT_HELD", "NO_PRECEDENT_FOUND"})
+ABSTENTION_CODES = frozenset({"COURT_NOT_HELD", "NO_PRECEDENT_FOUND", "INSUFFICIENT_PRECEDENT",
+                              "PRECEDENT_GATE_UNCALIBRATED"})
+PUBLIC = {   # what a reader is told (docs/04 §8.1: actionable); the coverage always goes with it
+    "INSUFFICIENT_PRECEDENT": "No judgment in the library answers this clearly enough to rely on. The closest judgments are listed apart, as research leads, not as authority.",
+    "PRECEDENT_GATE_UNCALIBRATED": "Judgments cannot be relied on in this mode yet. The closest judgments are listed apart, as research leads, not as authority.",
+    "NO_PRECEDENT_FOUND": "No judgment in the library was found on this point. The library's courts and years are listed with this result.",
+}
 
 
 @dataclass(frozen=True)
@@ -74,6 +80,7 @@ class PrecedentAbstention:
     public_reason: str
     coverage: list
     trace: dict = field(default_factory=dict)
+    nearest: tuple = ()                # PrecedentItems shown APART from any answer, as leads (never as authority)
 
     def __post_init__(self):
         if self.code not in ABSTENTION_CODES:
@@ -93,11 +100,17 @@ def seed_from(law) -> dict:
 
 def context_for(question: str, *, as_of: date, forum=None, seed_units: list[str] | None = None,
                 seed_kind: str = "none", k: int = 10, repo: JudgmentRead | None = None,
-                encoder=None, law_join: bool = False) -> PrecedentContext | PrecedentAbstention:
+                encoder=None, law_join: bool = False, gate: bool = True,
+                cal: dict | None = None) -> PrecedentContext | PrecedentAbstention:
     """`law_join=False` (the default, D-173): the seed units mark which of the answer's sections each judgment cites
     and the version it read, but do not change which judgments are found. Fed to the search as a generator or a vote,
     the law join lowered precedent dev v2 in every form measured (evals/results/precedent-lawjoin-dev-*.json), so it is
-    off unless a later measurement turns it on."""
+    off unless a later measurement turns it on.
+
+    `gate=True` (the default, S2, D-174): the forum veto, then the precedent gate (nizam.domain.precedent.gate) for the
+    profile the search ran in. A passed context is `gated=True` and may be cited; otherwise a PrecedentAbstention with
+    the nearest judgments apart. `gate=False` returns the ungated context (discovery, and the gate's own features);
+    the forum veto applies either way."""
     if type(as_of) is not date:
         raise ValueError("as_of is mandatory (INV-5) and is a date")
     own = repo is None
@@ -105,7 +118,13 @@ def context_for(question: str, *, as_of: date, forum=None, seed_units: list[str]
     if own:
         repo.open()
     try:
+        from nizam.domain.precedent import gate as PG
         seed = list(dict.fromkeys(seed_units or []))
+        with repo.transaction() as conn:
+            veto = PG.forum_veto(conn, question)
+        if veto:
+            return PrecedentAbstention("COURT_NOT_HELD", f"The library holds no decisions of the {veto['forum']}, so "
+                                       "none can be shown as its view.", [], dict(veto=veto))
         # over-fetch: verified adverse judgments are removed below, and k must still be met where it can be
         r = search(question, as_of=as_of, forum=forum, k=k * 2, repo=repo, encoder=encoder,
                    context_provisions=(seed or None) if law_join else None)
@@ -134,11 +153,18 @@ def context_for(question: str, *, as_of: date, forum=None, seed_units: list[str]
                      law_found=sum(1 for i in items if "law" in i.generators),
                      only_law=sum(1 for i in items if i.generators and set(i.generators) <= {"law", "binding"}))
         if not items:
-            return PrecedentAbstention("NO_PRECEDENT_FOUND", "No judgment in the library was found on this point. "
-                                       "The library's courts and years are listed with this result.",
-                                       r.coverage, trace)
+            return PrecedentAbstention("NO_PRECEDENT_FOUND", PUBLIC["NO_PRECEDENT_FOUND"], r.coverage, trace)
+        profile = r.trace.get("dense_space") or "lexical"                # the space the dense generator read
+        trace.update(profile=profile, features=PG.features(items))
+        if gate:
+            d = PG.decide(trace["features"], profile, cal)
+            trace["gate"] = d
+            if d["decision"] != "pass":
+                return PrecedentAbstention(d["code"], PUBLIC[d["code"]], r.coverage, trace,
+                                           nearest=tuple(items[:PG.PRESENTED]))
         return PrecedentContext(question=question, as_of=as_of, forum=forum, items=tuple(items),
-                                seed=dict(kind=seed_kind, units=seed), coverage=r.coverage, trace=trace)
+                                seed=dict(kind=seed_kind, units=seed), coverage=r.coverage, trace=trace,
+                                gated=bool(gate))
     finally:
         if own:
             repo.close()

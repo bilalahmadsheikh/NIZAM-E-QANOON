@@ -1,0 +1,27 @@
+{
+ "rule": "precedent gate (S2, D-174; docs/ANSWER-COMPOSITION.md §5 stage 3 step 6), fixed 27 Nov 2026 BEFORE any precedent gate feature or score was computed",
+ "unit": "one precedent context: nizam.domain.precedent.context_for(question, as_of, forum), law join off (D-173); the first PRESENTED = 5 judgments are what an answer may cite",
+ "label": "sufficient = at least one of the case's necessary gold judgments is among the first 5 presented judgments. The gold is incomplete by nature (precedent_common: it names some of the judgments that answer, not all), so this label UNDER-counts sufficiency and any precision computed from it is a lower bound: the gate it yields errs toward abstaining",
+ "negatives": "every answerable case whose first 5 hold no gold judgment, and every unanswerable case (court_not_held, before_coverage) that reaches the classifier",
+ "vetoes_before_scoring": {
+  "forum_not_recorded": "the question asks what a named forum held or decided ('what has the X Tribunal held ...') and X is not a recorded court (courts_named finds none): COURT_NOT_HELD, nothing searched for display",
+  "coverage_gap": "precedent search's own coverage_gap (a recorded court with no released judgment): COURT_NOT_HELD",
+  "nothing_found": "no judgment survives search and the S1 filters: NO_PRECEDENT_FOUND"
+ },
+ "candidate_feature_sets": {
+  "P1": ["top"],
+  "P2": ["top", "margin"],
+  "P3": ["top", "margin", "agree"],
+  "P4": ["top", "agree", "binding_top"]
+ },
+ "features": {
+  "top": "the fused score of the first presented judgment (search's RRF score, including the binding vote D-154 and a case-number identification's 1.0)",
+  "margin": "top minus the second presented judgment's fused score (0 when only one)",
+  "agree": "how many distinct generators found the first judgment (bm25, dense, cited, case; 'binding' and 'law' are votes, not generators)",
+  "binding_top": "1 if the first judgment binds the forum at as_of (recorded rules, A24), else 0"
+ },
+ "fit": "per profile (cpu: bge-m3 question vectors; gpu: the 8B space), on DEV only (split-precedent-v1, D-168): leave-one-family-out ridge logistic regression (lambda 1.0, standardised features, Newton; evals/gate_fit.py's functions); the feature set with the lowest out-of-fold log loss wins, a set within 0.005 with fewer features winning",
+ "threshold": "tau = the smallest out-of-fold probability at which answered precision (sufficient among p >= tau) reaches 0.90 with at least 5 passing; if under 10% of sufficient cases pass, the target is 0.80; if still under 10%, that profile ships no calibration and abstains (as D-102 for statutes). Precedent targets are lower than the statute gate's 0.95 only because the label under-counts (see label)",
+ "test": "the frozen calibration is applied to the test split ONCE and reported, never refitted on it",
+ "provisional": "fitted on a draft golden stratum (D-133, D-168) of 89 dev cases: intervals are wide; refit when the reviewed split exists"
+}

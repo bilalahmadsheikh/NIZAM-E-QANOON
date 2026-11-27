@@ -1,0 +1,27 @@
+{
+ "split": "test",
+ "profile": "gpu",
+ "calibration": "precedent-gate-v1-2026-11-27",
+ "cases": 57,
+ "passed": 5,
+ "answered_precision": {
+  "k": 5,
+  "n": 5,
+  "rate": 1.0,
+  "wilson95": [
+   0.5655,
+   1.0
+  ]
+ },
+ "coverage_of_sufficient": {
+  "k": 5,
+  "n": 28,
+  "rate": 0.1786
+ },
+ "unanswerable_declined": {
+  "k": 2,
+  "n": 2
+ },
+ "wrong_answers": [],
+ "note": "label under-counts sufficiency (gold is incomplete): precision is a lower bound"
+}
