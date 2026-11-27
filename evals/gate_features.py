@@ -57,7 +57,9 @@ GPU_SCORES = [(DATA / "rerank/ds-dev/pairs.jsonl", DATA / "rerank/out-rr2/out/sc
               # the same (grown) pairs file, rescored whole with the 500-case pending pairs (D-106)
               (DATA / "rerank/ds-gate-x/pairs.jsonl", DATA / "rerank/out-rrg2-8b/out/scores-qwen3-8b.npy"),
               # the passages the D-110 repairs and re-materialisations changed (new text, new pairs; D-111)
-              (DATA / "rerank/ds-gate-y/pairs.jsonl", DATA / "rerank/out-rrg3-8b/out/scores-qwen3-8b.npy")]
+              (DATA / "rerank/ds-gate-y/pairs.jsonl", DATA / "rerank/out-rrg3-8b/out/scores-qwen3-8b.npy"),
+              # the passages the corpus changed since 21 Nov (D-164 relink, re-cut chunks), for the D-175 refit
+              (DATA / "rerank/ds-gate-z/pairs.jsonl", DATA / "rerank/out-gatez/out/scores-qwen3-8b.npy")]
 GPU_RERANKER = RerankerInfo("Qwen/Qwen3-Reranker-8B", "77d193c791ed757ca307ee72715aa132723da912", "qwen", 1024,
                             "Given a question about Pakistani law, retrieve the statutory provisions that answer it",
                             "gpu")
@@ -148,8 +150,15 @@ def main() -> int:
     ap.add_argument("--out", type=Path)
     ap.add_argument("--pending", type=Path, default=DATA / "rerank/ds-gate-x",
                     help="where GPU pairs with no replayed score are written (a Kaggle dataset: pairs only, no gold)")
+    ap.add_argument("--cpu-input", help="CHARS,DEPTH for the CPU reranker instead of rerank.RERANK_INPUT['cpu'] "
+                                        "(an evaluation sweep, D-175: depth beyond the bundle lets the reranker choose it)")
     a = ap.parse_args()
     modes = a.modes.split(",")
+    if a.cpu_input:
+        import nizam.retrieval.rerank as RR
+        chars, depth = (int(x) for x in a.cpu_input.split(","))
+        RR.RERANK_INPUT["cpu"] = (chars, depth)
+        print(f"cpu reranker input: {chars} chars x {depth} units (served: 800 x 10)", flush=True)
     out_path = a.out or ROOT / f"evals/results/gate-features-{a.split}-{date.today().isoformat()}.json"
     prior = json.loads(out_path.read_text(encoding="utf-8")) if out_path.exists() else {"cases": {}}
     os.environ["NIZAM_DENSE_PROFILE"] = "cpu"

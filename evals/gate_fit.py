@@ -114,6 +114,8 @@ def main() -> int:
                     default=Path(sorted(glob.glob(str(ROOT / "evals/results/gate-features-dev-*.json")))[-1]))
     ap.add_argument("--calibration", type=Path, default=ROOT / "nizam/retrieval/gate_calibration.json")
     ap.add_argument("--report", type=Path, default=ROOT / f"evals/results/gate-fit-dev-{date.today().isoformat()}.json")
+    ap.add_argument("--reach", action="store_true",
+                    help="addendum 'reach' (D-175): fit on the cases that reach the classifier; vetoed cases left out")
     a = ap.parse_args()
     data = json.loads(a.features.read_text(encoding="utf-8"))
     if data["split"] != "dev":
@@ -123,7 +125,8 @@ def main() -> int:
                              "provisional": data["provisional"], "modes": {}}
     for mode in ("cpu", "gpu", "unreranked"):
         rows = [(cid, c, c["modes"][mode]) for cid, c in sorted(cases.items())
-                if mode in c.get("modes", {}) and not c["modes"][mode].get("pending")]
+                if mode in c.get("modes", {}) and not c["modes"][mode].get("pending")
+                and not (a.reach and c.get("veto"))]
         if not rows:
             report["modes"][mode] = {"status": "no rows"}
             continue
@@ -184,7 +187,8 @@ def main() -> int:
               f"passed={rep['oof_passed']}/{len(scored)} (sufficient {int(y.sum())})")
     calib = {"version": VERSION, "rule": "evals/results/gate-rule-2026-11-20.json",
              "addenda": ["evals/results/gate-rule-addendum-agree-2026-11-20.json",
-                         "evals/results/gate-rule-addendum-scope-2026-11-20.json"],
+                         "evals/results/gate-rule-addendum-scope-2026-11-20.json"]
+                        + (["evals/results/gate-rule-addendum-reach-2026-11-27.json"] if a.reach else []),
              "provisional": "fitted on draft golden sets 1-10 (D-095, D-104); refit when the reviewed split exists",
              "bundle": data["bundle"], "modes": modes_out}
     a.calibration.write_text(json.dumps(calib, indent=1) + "\n", encoding="utf-8")

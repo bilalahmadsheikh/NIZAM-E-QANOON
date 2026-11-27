@@ -2378,6 +2378,17 @@
           "score": {
             "type": "number",
             "title": "Score"
+          },
+          "copy_of": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Copy Of"
           }
         },
         "type": "object",

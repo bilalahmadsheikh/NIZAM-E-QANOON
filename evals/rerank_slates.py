@@ -47,7 +47,12 @@ def main() -> int:
     ap.add_argument("--vectors", default="reference_q.npy")
     ap.add_argument("--questions", default="reference_questions.json")
     ap.add_argument("--profiles", default="cpu,gpu")
+    ap.add_argument("--k", type=int, default=K, help="slate depth (D-175: 100 for the Urdu study)")
+    ap.add_argument("--strata", help="comma-separated strata to keep (D-175: urdu)")
+    ap.add_argument("--slates", default="hybrid,cited_dense", help="which slates (hybrid, cited_dense)")
     a = ap.parse_args()
+    keep_strata = set(a.strata.split(",")) if a.strata else None
+    slates_wanted = {n: w for n, w in SLATES.items() if n in a.slates.split(",")}
     profiles = a.profiles.split(",")
     enc = None
     if "gpu" in profiles:
@@ -61,6 +66,8 @@ def main() -> int:
     pairs, out = [], {}
     t0 = time.time()
     for d, units in cases(a.split):
+        if keep_strata and d["stratum"] not in keep_strata:
+            continue
         cid, q = d["caseId"], d["question"]["text"]
         j = d["scope"]["jurisdiction"]
         juris = ("fed",) if j in ("fed", "foreign") else (j, "fed")
@@ -68,8 +75,8 @@ def main() -> int:
         rec = {"stratum": d["stratum"], "script": d["question"].get("script", "latin"),
                "gold": [{"provisionId": u["provisionId"], "path": u["path"]} for u in units], "slates": {}}
         for prof in profiles:
-            for name, windows in SLATES.items():
-                r = candidates(q, f, K, encoder=enc if prof == "gpu" else None, windows=windows)
+            for name, windows in slates_wanted.items():
+                r = candidates(q, f, a.k, encoder=enc if prof == "gpu" else None, windows=windows)
                 if r.degraded:
                     sys.exit(f"{cid} {prof}/{name}: degraded to {r.degraded} -- refusing to score it as {prof}")
                 want = 2 if prof == "gpu" else 1
@@ -94,7 +101,7 @@ def main() -> int:
     with open(a.out / "pairs.jsonl", "w", encoding="utf-8") as fh:
         for p in pairs:
             fh.write(json.dumps(p, ensure_ascii=False) + "\n")
-    (a.out / "slates.json").write_text(json.dumps({"split": a.split, "k": K, "profiles": profiles,
+    (a.out / "slates.json").write_text(json.dumps({"split": a.split, "k": a.k, "profiles": profiles,
                                                    "built": date.today().isoformat(), "cases": out},
                                                   ensure_ascii=False, indent=0), encoding="utf-8")
     print(f"{len(out)} cases, {len(pairs)} distinct (question, unit) pairs -> {a.out}")

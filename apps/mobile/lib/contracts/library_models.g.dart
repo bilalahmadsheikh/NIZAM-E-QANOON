@@ -583,7 +583,8 @@ class LawHit {
   final String snippet;
   final bool via_citation;
   final double score;
-  const LawHit({required this.rank, required this.provision_id, required this.version_id, required this.instrument_id, required this.citation, required this.heading, required this.law, required this.law_kind, required this.year, required this.jurisdiction, required this.snippet, required this.via_citation, required this.score});
+  final int? copy_of;
+  const LawHit({required this.rank, required this.provision_id, required this.version_id, required this.instrument_id, required this.citation, required this.heading, required this.law, required this.law_kind, required this.year, required this.jurisdiction, required this.snippet, required this.via_citation, required this.score, required this.copy_of});
   factory LawHit.fromJson(Map<String, dynamic> json) => LawHit(
     rank: json['rank'] as int,
     provision_id: json['provision_id'] as String,
@@ -598,6 +599,7 @@ class LawHit {
     snippet: json['snippet'] as String,
     via_citation: json['via_citation'] as bool,
     score: json['score'] as double,
+    copy_of: json['copy_of'] == null ? null : json['copy_of'] as int,
   );
 }
 

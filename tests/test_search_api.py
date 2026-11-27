@@ -56,6 +56,16 @@ def test_search_returns_record_rendered_operative_units(client):
     assert body["mode"]["searched"] and "degraded" in body["mode"]
 
 
+def test_copies_of_one_unit_are_marked_not_hidden():
+    from nizam.api.search import copy_key
+    assert copy_key("Pakistan Penal Code (PPC),1860 (Under Review)", 1860, "489F") == \
+        copy_key("PAKISTAN PENAL CODE, 1860", 1860, "489-F")
+    assert copy_key("MUSLIM FAMILY LAWS ORDINANCE, 1961", 1961, "7") == copy_key("Muslim Family Laws Ordinance, 1961", 1961, "7")
+    assert copy_key("Pakistan Penal Code, 1860", 1860, "489-A") != copy_key("Pakistan Penal Code, 1860", 1860, "489-F")
+    assert copy_key("Pakistan Penal Code, 1860", 1860, "7")[0] == "pakistan penal code"
+    assert copy_key("Muslim Family Laws Ordinance, 1961", 1961, "7") != copy_key("Code of Criminal Procedure, 1898", 1961, "7")
+
+
 def test_a_territory_search_holds_no_other_province_law(client):
     r = client.post('/v1/search', json={"q": "eviction of a tenant for non payment of rent", "territory": "punjab",
                                          "limit": 10}).json()

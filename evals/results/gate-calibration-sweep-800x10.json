@@ -1,0 +1,43 @@
+{
+ "version": "gate-v2-2026-11-20",
+ "rule": "evals/results/gate-rule-2026-11-20.json",
+ "addenda": [
+  "evals/results/gate-rule-addendum-agree-2026-11-20.json",
+  "evals/results/gate-rule-addendum-scope-2026-11-20.json",
+  "evals/results/gate-rule-addendum-reach-2026-11-27.json"
+ ],
+ "provisional": "fitted on draft golden sets 1-10 (D-095, D-104); refit when the reviewed split exists",
+ "bundle": 10,
+ "modes": {
+  "cpu": {
+   "features": [
+    "top",
+    "margin",
+    "agree"
+   ],
+   "mean": [
+    -0.13204827,
+    1.79044731,
+    1.15194346
+   ],
+   "scale": [
+    4.84491722,
+    2.0053997,
+    0.6737544
+   ],
+   "coef": [
+    1.33292035,
+    0.01537019,
+    0.6773351
+   ],
+   "intercept": 0.84843717,
+   "tau": 0.851709,
+   "target_precision": 0.95,
+   "dense_generation": 1,
+   "fitted_on": "dev, split-v1, 283 scored cases",
+   "oof_answered_precision": 0.9551,
+   "oof_coverage_of_sufficient": 0.4885,
+   "reranker": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1@1427fd652930e4ba29e8149678df786c240d8825"
+  }
+ }
+}

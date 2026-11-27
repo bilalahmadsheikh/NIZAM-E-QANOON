@@ -1,0 +1,10 @@
+{
+ "rule": "CPU reranker input sweep (D-175), fixed 27 Nov 2026 BEFORE any sweep run",
+ "why": "On the CPU profile the reranker scores 10 units and the gate's bundle is those 10 (BUNDLE = depth = 10): reordering inside the bundle cannot change whether it is sufficient, and assembly reads the bundle in legal order. Scoring more units, each shorter, lets the reranker choose which 10 enter the bundle; the slate's recall rises from about .61 at 10 to .77 at 50 (law dev).",
+ "configs": [[800, 10], [600, 15], [450, 20], [350, 30]],
+ "served": [800, 10],
+ "models": ["served (cross-encoder/mmarco-mMiniLMv2-L12-H384-v1)", "then the best fine-tune or interpolation at the chosen config"],
+ "measure_per_config": "evals/gate_features.py --split dev --modes cpu --cpu-input CHARS,DEPTH, then evals/gate_fit.py --reach on those features (CPU mode only): sufficient bundles (of the cases that reach the gate), and the gate's out-of-fold correct answers at 0.95 answered precision; rerank latency p50 from the rows",
+ "decision": "the config with the most out-of-fold correct answers (passed and sufficient) at >= 0.95 answered precision, among those whose CPU rerank p50 is <= 1,000 ms on this host (D-101's latency addendum budget). Ties: the served config. A changed config needs a gate refit on dev and one test read before it serves",
+ "dev_only": true
+}

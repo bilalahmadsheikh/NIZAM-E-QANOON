@@ -81,6 +81,9 @@ class LawHit(BaseModel):
     snippet: str
     via_citation: bool
     score: float
+    # the rank of an earlier result that is the same unit of another copy of this law (a provincial copy of a federal
+    # law, a compilation copy, D-135): both are served, the app may group them; None when it is the first
+    copy_of: int | None = None
 
 
 class SearchPage(BaseModel):
@@ -125,6 +128,16 @@ def public_finding(finding) -> dict:
                 suggestions=list(suggestions))
 
 
+def copy_key(law: str, year: int | None, label: str | None) -> tuple:
+    """the same unit of another copy of a law: the title without its brackets, years, case or "Act"/"Ordinance"
+    words (the citation grammar's normaliser), the year, and the label without spaces or hyphens ("489-F" = "489F")"""
+    import re
+    from nizam.storage.citations import _norm_title
+    t = re.sub(r"\([^)]*\)", " ", (law or "").lower())
+    t = re.sub(r"\b(?:1[6-9]|20)\d\d\b", " ", t)
+    return (_norm_title(t), year, re.sub(r"[^0-9a-z]", "", (label or "").lower()))
+
+
 def filters_for(day: date, territory: str) -> Filters:
     """the scope a reader asks for: a territory's own law plus federal law; none given: every place's law"""
     if not territory:
@@ -153,6 +166,7 @@ def describe(session, units: list[tuple[str, str]]) -> dict:
         _, kind, label, heading, inst, title, year, ikind, juris = m
         out[uid] = dict(citation=render_citation(title, year, kind, label, ikind), heading=heading, law=title,
                         law_kind=ikind, year=year, jurisdiction=juris, instrument_id=inst,
+                        label=label,
                         snippet=texts.get(uid, ''))
     return out
 
@@ -181,12 +195,16 @@ def register(app, resolved, ranked_fn=None) -> None:
             info = describe(s, [(c.unit_id, c.version_id) for c in head])
         rr = r.trace.get('rerank') or {}
         results = []
+        first_of: dict = {}
         for c in head:
             d = info.get(c.unit_id)
             if not d or not d['citation']:
                 continue                           # no record-rendered citation: the unit is not shown (INV-1)
+            key = copy_key(d['law'], d['year'], d['label'])
+            first_of.setdefault(key, len(results) + 1)
             results.append(dict(rank=len(results) + 1, provision_id=c.unit_id, version_id=c.version_id, via_citation=c.via_citation,
                                 score=c.rerank_score if c.rerank_score is not None else c.score, **d))
+            results[-1]['copy_of'] = first_of[key] if first_of[key] != results[-1]['rank'] else None
         return dict(query=body.q, kind='law_discovery', scope=scope,
                     mode=dict(searched=True, degraded=r.degraded, dense_generation=r.trace.get('dense_generation'),
                               reranker=f"{rr.get('model')}@{(rr.get('revision') or '')[:12]}" if rr else None,

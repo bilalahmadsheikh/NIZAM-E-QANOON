@@ -1136,6 +1136,58 @@ Area: client · Status: Superseded by D-084 (the whole-page cloth; the hem, the 
   design/heritage_art.dart, presentation/discover.dart, presentation/heritage.dart; test/heritage_test.dart
   (golden embroidery.png, a review sheet at 3x).
 
+### D-175 · 2026-11-27 · The gate refitted on today's corpus under the "reach" addendum; shipped (and what did not help)
+Area: L3 gate (docs/04 §8; D-102, D-106, D-111) · Status: standing (provisional golden sets)
+- **Corpus drift:** the gate's 21 Nov features differ from today's in 123 of 305 dev bundles (judgment-era repairs,
+  relinks and re-cut chunks since D-111). A calibration fitted on stale features is compared against the wrong
+  bundles. Every comparison below is on features recomputed on today's corpus, for every mode.
+- **The "reach" addendum** (`evals/results/gate-rule-addendum-reach-2026-11-27.json`, written before any fit under
+  it). The classifier is fitted only on dev cases that reach it in service, so a case a scope veto declines first is
+  left out of its rows.
+  - Kept in, a vetoed case is a negative the classifier never meets in service, and it raised the CPU threshold.
+  - The vetoes, the features, the fit and the targets are unchanged.
+- **Dev fit** (`gate-calibration-candidate-d175.json`, `gate-fit-dev-d175.json`, 283 scored cases):
+
+  | Mode | Set | τ | Out-of-fold precision | Coverage of sufficient | Passed |
+  |---|---|---|---|---|---|
+  | GPU (8B) | F1 | .723 | .951 | .973 | 267 |
+  | CPU | F4 | .852 | .955 | .489 | 89 |
+  | Unreranked | F2 | .833 | .900 | .207 | 40 |
+
+- **Test, read once** (195 cases), against the served calibration on the same test features:
+
+  | Mode | Served (D-111) | Refit (D-175) |
+  |---|---|---|
+  | GPU | 162 passed, .944 [.898, .971], coverage .939, strict abstention precision .61, ECE .040 | **170, .941 [.895, .968], coverage .982, strict abstention precision .80, ECE .029** |
+  | CPU | 54, .907 [.801, .960] (5 wrong) | 46, .935 [.825, .978] (3 wrong) |
+  | Unreranked | 20, 1.0 | 28, 1.0 |
+
+  Unanswerable recall is .95 or better in every mode, as before.
+- **Shipped:** `nizam/retrieval/gate_calibration.json` is the refit. A live `retrieve()` check decided four questions
+  the same way under both calibrations.
+- **Reading:**
+  - GPU: 8 more answered at the same precision, and abstentions are now right 80% of the time (docs/10 wants .90).
+  - CPU: answers less often but is wrong less often. It is still under the 0.95 target (open, as since D-106).
+- **Measured on 27 Nov and not adopted** (dev only; CPU gate passes on today's features unless stated). Each run
+  had its rule fixed first:
+  - **Fine-tuned CPU rerankers** (D-171), compared fairly on today's corpus: base 89 passes, ft1 73, ft2 listwise+bce
+    80, ft2 bce 72. Each ranks better and passes fewer.
+  - **Interpolating** base and fine-tune weights (WiSE-FT): coverage fell steadily toward the fine-tune, with no
+    middle point above the base.
+  - **CPU rerank depth and length** (`cpu-depth-sweep-rule-2026-11-27.json`; 600×15, 450×20, 350×30 against 800×10):
+    within ±2 passes of the base. 800×10 stays.
+  - **GPU rank blend** (the 8B score blended with the fused rank): worse at every weight.
+  - **HyDE** (a drafted answer's 8B vector as the dense query): within-50 recall +0.7 [−1.4, +2.9]; 6 cases rescued,
+    4 lost.
+  - **Urdu depth 100** (rerank 100 units for Urdu-script and Roman Urdu questions): NDCG@10 +5.3 [−1.9, +15.3],
+    +2 of 31 into the bundle. It leans positive and is unproven at 31 cases, so it is kept as an open lead.
+  - **The GPU's misses are retrieval misses:** 13 of 15 dev misses have no gold in the top 50. Gold within the top
+    50 / 100 / 200 is .957 / .978 / .982, and Urdu .81 / .90.
+- Where: evals/gate_fit.py (`--reach`), evals/gate_features.py (`--cpu-input`, the ds-gate-z replay),
+  evals/rerank_slates.py (`--k`, `--strata`, `--slates`), evals/gate_eval.py (`--calibration`);
+  evals/results/gate-{rule-addendum-reach,calibration-candidate-d175,fit-dev-d175,test-d175,test-served-today}*.json
+  and the features files of 27 Nov; nizam/retrieval/gate_calibration.json.
+
 ### D-178 · 2026-11-27 · The GPU host's inference service: both 8B models behind the clients' own protocols, proved on a GPU
 Area: L3 inference / deployment (docs/04 §9.2; D-099, D-101, D-165, D-169) · Status: standing
 - `nizam/inference/gpu_service.py` (FastAPI, one process, one GPU job at a time) serves:
@@ -1217,7 +1269,9 @@ Area: L6 API (docs/07 §B2, the contract's `search` group: "search returns scope
     warm on the laptop's CPU path (27 Nov 2026).
 - **Seen on real queries, not yet changed:**
   - A law held in two copies (the federal and a provincial MFLO; the PPC's "(Under Review)" compilation copy, D-135)
-    appears twice. The jurisdiction field lets the app label them; collapsing copies is a version-modelling item.
+    appears twice. Both stay served. Each later copy carries `copy_of`, the rank of the first: same title without
+    brackets or years, same year, same label without spaces or hyphens. The app may group them; collapsing copies
+    remains a version-modelling item.
   - "PAKISTAN PENAL CODE, 1860, clause 489-F" is a unit segmented as a clause: a corpus item.
   - CPU Roman Urdu ranking is weak: "talaq ke baad iddat" puts Hudood s.7 first.
 - The responses are typed models (`SearchPage`, `LawHit`, `SearchMode`, `ScopeNotice`, `CitationPage`,

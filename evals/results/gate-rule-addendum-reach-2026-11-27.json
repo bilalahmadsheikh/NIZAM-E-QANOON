@@ -1,0 +1,7 @@
+{
+ "addendum": "gate-rule-2026-11-20.json, addendum 'reach' (D-175), written 27 Nov 2026 BEFORE any gate was fitted or scored under it",
+ "change": "the classifier is fitted and its threshold chosen on the dev cases that REACH it in service: a case the scope vetoes (time, source, place, records, statistics, live) decline is left out of the classifier's rows. The vetoes themselves are unchanged and still decline those cases first; test reporting still counts every case.",
+ "why": "retrieve() applies the scope vetoes before the classifier (gate.py: pre_veto, then ranked, then the calibration), so a vetoed case can never pass. Kept in the fit, a vetoed case is a negative the classifier never sees in service. For a reranker trained on judgment sentences, the 'what did the court decide' questions score high, and those unreachable negatives raised the CPU threshold: D-171's fine-tune's ten most confident dev cases held one such case. Measured on 27 Nov: two of the fine-tune's 30 most confident cases are insufficient, S3-X02 (vetoed, source) and S1-P09.",
+ "applies_to": "every CPU candidate compared on 27 Nov, the served reranker included, so the comparison stays like for like; the GPU and unreranked modes are refitted only if the CPU decision ships, and then under the same addendum",
+ "everything_else": "unchanged: the feature sets (F1-F5), leave-one-family-out ridge logistic regression, targets 0.95 then 0.90, at least 5 passing and 10% coverage, dev only; test read once for the candidate that ships"
+}
