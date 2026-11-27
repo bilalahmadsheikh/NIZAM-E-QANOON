@@ -34,6 +34,10 @@ from transformers import AutoModelForSequenceClassification, AutoTokenizer, get_
 HUB, REV, MAX_LEN = "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1", "1427fd652930e4ba29e8149678df786c240d8825", 512
 EPOCHS, LR, GROUPS_PER_STEP, WARMUP, EVAL_EVERY, SEED = 2, 2e-5, 8, 0.1, 150, 20261127
 SMOKE = "__SMOKE__" == "1"
+# D-171 follow-up: "listwise" (softmax over each group, D-171), "listwise+bce" (plus a per-pair yes/no, so a score
+# means the same across questions -- what the gate reads), "bce" (the per-pair loss alone)
+LOSS = "__LOSS__" if not "__LOSS__".startswith("__") else "listwise"
+assert LOSS in ("listwise", "listwise+bce", "bce"), LOSS
 random.seed(SEED); np.random.seed(SEED); torch.manual_seed(SEED)
 
 src = sorted(glob.glob("/kaggle/input/**/groups.jsonl", recursive=True))[0]
@@ -59,7 +63,7 @@ def batch_scores(m, q_and_p: list[tuple[str, str]]) -> torch.Tensor:
 @torch.inference_mode()
 def evaluate(m) -> dict:
     m.eval()
-    rr, top1 = [], 0
+    rr, top1, pos_s, neg_s = [], 0, [], []
     for g in val:
         cands = [g["pos"][0]] + g["neg"]
         with torch.autocast("cuda", dtype=torch.float16, enabled=dev.type == "cuda"):
@@ -67,8 +71,19 @@ def evaluate(m) -> dict:
         rank = 1 + int((s[1:] > s[0]).sum())
         rr.append(1.0 / rank)
         top1 += rank == 1
+        pos_s.append(float(s[0])); neg_s += [float(x) for x in s[1:]]
     m.train()
-    return {"mrr": round(float(np.mean(rr)), 4), "acc1": round(top1 / max(len(val), 1), 4)}
+    # global AUC: a positive of ANY question above a negative of ANY question -- cross-question comparability
+    allv = np.array(pos_s + neg_s); lab = np.array([1] * len(pos_s) + [0] * len(neg_s))
+    order = allv.argsort(); ranks = np.empty(len(allv)); ranks[order] = np.arange(1, len(allv) + 1)
+    auc = (ranks[lab == 1].sum() - len(pos_s) * (len(pos_s) + 1) / 2) / max(len(pos_s) * len(neg_s), 1)
+    return {"mrr": round(float(np.mean(rr)), 4), "acc1": round(top1 / max(len(val), 1), 4),
+            "global_auc": round(float(auc), 4)}
+
+
+def select(e: dict) -> float:
+    """the checkpoint criterion: MRR for the listwise model (D-171); with the per-pair loss, MRR and global AUC"""
+    return e["mrr"] if LOSS == "listwise" else (e["mrr"] + e["global_auc"]) / 2
 
 
 curve = [{"step": 0, **evaluate(model)}]
@@ -78,7 +93,7 @@ total = steps_per_epoch * EPOCHS
 opt = torch.optim.AdamW(model.parameters(), lr=LR, weight_decay=0.01)
 sched = get_linear_schedule_with_warmup(opt, int(total * WARMUP), total)
 scaler = torch.amp.GradScaler("cuda", enabled=dev.type == "cuda")
-best, best_state, step, t0 = curve[0]["mrr"], None, 0, time.time()
+best, best_state, step, t0 = select(curve[0]), None, 0, time.time()
 model.train()
 for epoch in range(EPOCHS):
     random.shuffle(train)
@@ -91,9 +106,12 @@ for epoch in range(EPOCHS):
             pairs += [(g["q"], p) for p in cands]
         with torch.autocast("cuda", dtype=torch.float16, enabled=dev.type == "cuda"):
             s = batch_scores(model, pairs).float()
-        loss = torch.stack([torch.nn.functional.cross_entropy(s[a:a + n].unsqueeze(0),
-                                                              torch.zeros(1, dtype=torch.long, device=dev))
-                            for a, n in spans]).mean()
+        lw = torch.stack([torch.nn.functional.cross_entropy(s[a:a + n].unsqueeze(0),
+                                                            torch.zeros(1, dtype=torch.long, device=dev))
+                          for a, n in spans]).mean()
+        lab = torch.cat([torch.tensor([1.0] + [0.0] * (n - 1), device=dev) for _, n in spans])
+        bce = torch.nn.functional.binary_cross_entropy_with_logits(s, lab)
+        loss = lw if LOSS == "listwise" else (bce if LOSS == "bce" else lw + bce)
         opt.zero_grad(set_to_none=True)
         scaler.scale(loss).backward()
         scaler.unscale_(opt)
@@ -105,8 +123,8 @@ for epoch in range(EPOCHS):
                  "seconds": round(time.time() - t0)}
             curve.append(e)
             print(e, flush=True)
-            if e["mrr"] > best:
-                best = e["mrr"]
+            if select(e) > best:
+                best = select(e)
                 best_state = {k: v.detach().cpu().clone() for k, v in model.state_dict().items()}
 if best_state is None:
     print("no checkpoint beat the untrained model on val: exporting nothing", flush=True)
@@ -163,10 +181,10 @@ check = {"pairs": len(enc), "fp32_corr": float(np.corrcoef(q8, ref)[0, 1]),
 print("int8 per_channel vs fp32", check, flush=True)
 tok.save_pretrained(f"{OUT}/tok")
 os.replace(f"{OUT}/tok/tokenizer.json", f"{OUT}/tokenizer.json")
-json.dump({"model": HUB + "+nizam-judgment-citations-v1", "revision": REV, "kind": "cls", "max_tokens": MAX_LEN,
+json.dump({"model": HUB + f"+nizam-judgment-citations-v2-{LOSS}", "revision": REV, "kind": "cls", "max_tokens": MAX_LEN,
            "instruction": "", "variant": "fine-tuned (tools/kaggle/rerank_train_kernel.py, D-171), int8 dynamic, "
                                          "per channel"}, open(f"{OUT}/reranker.json", "w"), indent=1)
-json.dump({"curve": curve, "best_val_mrr": best, "train": len(train), "val": len(val), "epochs": EPOCHS, "lr": LR,
+json.dump({"curve": curve, "loss": LOSS, "best_val_criterion": best, "train": len(train), "val": len(val), "epochs": EPOCHS, "lr": LR,
            "groups_per_step": GROUPS_PER_STEP, "seed": SEED, "int8_check": check, "exported": True,
            "int8_mb": round(os.path.getsize(f"{OUT}/model.onnx") / 1e6)}, open(f"{OUT}/train.json", "w"), indent=1)
 import shutil  # noqa: E402

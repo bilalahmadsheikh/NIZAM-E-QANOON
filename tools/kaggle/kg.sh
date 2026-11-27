@@ -182,7 +182,7 @@ rrtrainpush)
   # (tools/rerank_train_pairs.py) and export it int8 (tools/kaggle/rerank_train_kernel.py, D-171). KG_SMOKE=1: 64
   # groups. Status/fetch: rrstatus/rrfetch NAME.
   K=/mnt/e/nizam-data/rerank/kernel-$2; mkdir -p $K
-  sed "s/__SMOKE__/${KG_SMOKE:-0}/" /mnt/e/Nizam_e_Qanoon/tools/kaggle/rerank_train_kernel.py > $K/rerank_train_kernel.py
+  sed "s/__SMOKE__/${KG_SMOKE:-0}/g; s/__LOSS__/${KG_LOSS:-listwise}/g" /mnt/e/Nizam_e_Qanoon/tools/kaggle/rerank_train_kernel.py > $K/rerank_train_kernel.py
   cat > $K/kernel-metadata.json <<EOF3
 {"id": "$USER/nizam-rerank-run-$2", "title": "nizam-rerank-run-$2", "code_file": "rerank_train_kernel.py",
  "language": "python", "kernel_type": "script", "is_private": true, "enable_gpu": true, "enable_internet": true,
