@@ -330,7 +330,7 @@ class Cursor:
 SHELF = [doc for _s, doc, _p in collections.POPULAR]   # the editorial shelf stays on top of ranked lists
 
 
-def create_app(repository=None, judgments=None):
+def create_app(repository=None, judgments=None, search=None):
     repo = repository or LibraryRead()
     from nizam.storage.judgment_read import JudgmentRead
     jrepo = judgments or (JudgmentRead() if repository is None else None)
@@ -355,6 +355,9 @@ def create_app(repository=None, judgments=None):
         if isinstance(repo, LibraryRead) and os.environ.get('NIZAM_WARM', '1') != '0':
             import threading
             threading.Thread(target=warm, name='warm-popular', daemon=True).start()
+            if search_on:
+                from nizam.api import search as law_search
+                threading.Thread(target=law_search.warm, args=(resolved,), name='warm-search', daemon=True).start()
         yield
         repo.close()
         if jrepo is not None:
@@ -363,7 +366,7 @@ def create_app(repository=None, judgments=None):
     app = FastAPI(title='Nizam Library — research preview', version='0.1.0', lifespan=lifespan)
     # Explicit development origin. Never a wildcard public/authenticated policy.
     app.add_middleware(CORSMiddleware, allow_origins=['http://localhost:5173'],
-                       allow_methods=['GET'], allow_headers=['If-None-Match'],
+                       allow_methods=['GET', 'POST'], allow_headers=['If-None-Match', 'Content-Type'],
                        expose_headers=['ETag'])
 
     @app.middleware('http')
@@ -505,6 +508,12 @@ def create_app(repository=None, judgments=None):
         if result is None:
             raise HTTPException(404, 'This revision is no longer available. Return to the library.')
         return dict(result, as_of=day)
+
+    search_on = bool(search or (search is None and repository is None))
+    # law search (docs/07 §B2, D-179): on with the real repositories; a test passes search=True and fakes L3
+    if search_on:
+        from nizam.api import search as law_search
+        law_search.register(app, resolved, ranked_fn=search if callable(search) else None)
 
     if jrepo is not None:                       # precedent routes (docs/PRECEDENT-MODEL.md); absent in fake-repo tests
         from nizam.api import precedent

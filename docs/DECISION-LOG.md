@@ -1136,6 +1136,50 @@ Area: client · Status: Superseded by D-084 (the whole-page cloth; the hem, the 
   design/heritage_art.dart, presentation/discover.dart, presentation/heritage.dart; test/heritage_test.dart
   (golden embroidery.png, a review sheet at 3x).
 
+### D-179 · 2026-11-27 · The app's law search: POST /v1/search and POST /v1/citations/resolve
+Area: L6 API (docs/07 §B2, the contract's `search` group: "search returns scope and degradation") · Status: standing
+- **`POST /v1/search`** takes `{q, as_of?, territory?, limit 1..20}` and returns L3's ranked units,
+  `nizam.retrieval.rerank.ranked`.
+  - The path is chosen by configuration: the 8B GPU path when the GPU service is configured, else the CPU path.
+  - `mode` says which path served (dense generation, reranker model@revision and device) and any degradation.
+  - Each result carries:
+    - `provision_id` and `version_id`;
+    - a citation rendered from the record (`render_citation`, INV-1);
+    - heading, law, kind, year and jurisdiction;
+    - a 420-character snippet read through `operative_provision` at `as_of` (INV-5);
+    - `via_citation`.
+  - A unit with no record-rendered citation is not shown.
+- **Search is discovery, not an answer** (INV-2 governs `POST /v1/answers`, L4 onwards). The response is
+  `kind: law_discovery` with a fixed note: not legal advice and not an answer.
+- **Scope rule** (the docs did not set one; proposed and recorded here):
+  - a territory searches its own law plus federal law;
+  - ICT's law is federal law, so ICT searches federal law only;
+  - no territory searches every place's law.
+  - Extent at the place is the view's job, through `nzq.territory`.
+- **A court-decision question** (the statute veto's `source` finding, D-170) is not searched. It returns
+  `refer_to: "precedent"` with no results, and the app sends it to `/v1/precedent/search`.
+  - A question about another country's law (`place`) is not searched either: Pakistani sections listed for it would
+    read as its answer.
+  - Other findings (time, records, statistics, live figures) are reported in `scope_findings`, with the gate's
+    public reason and suggestions, and the search still runs: the law on the matter is still worth finding.
+- **`POST /v1/citations/resolve`** takes `{citation, as_of?, territory?}` and resolves the text with the citation
+  grammar (`nizam.storage.citations`, D-097, D-127).
+  - A resolved unit is returned only when the view serves it at that date and place. Otherwise it is
+    `unresolved: not_operative`.
+  - A citation naming no law ("Art. 199") stays unresolved, as D-127 rules.
+  - Text with no citation in it is a 422.
+- **Serving details:**
+  - `create_app` registers the routes when it builds its own repositories; fake-repository tests leave them off.
+  - The development CORS origin now allows POST.
+  - A background warm-up loads the encoder and reranker at start: the cold first search took 14.6 s, about 2 s
+    warm on the laptop's CPU path (27 Nov 2026).
+- **Seen on real queries, not yet changed:**
+  - A law held in two copies (the federal and a provincial MFLO; the PPC's "(Under Review)" compilation copy, D-135)
+    appears twice. The jurisdiction field lets the app label them; collapsing copies is a version-modelling item.
+  - "PAKISTAN PENAL CODE, 1860, clause 489-F" is a unit segmented as a clause: a corpus item.
+  - CPU Roman Urdu ranking is weak: "talaq ke baad iddat" puts Hudood s.7 first.
+- Where: nizam/api/search.py, nizam/api/library.py; tests/test_search_api.py (10 tests, against the database).
+
 ### D-174 · 2026-11-27 · S2, the precedent gate: a precedent context is cited only when it passes
 Area: L5 precedent (docs/ANSWER-COMPOSITION §5 stage 3 step 6; INV-2) · Status: standing (draft gold; provisional)
 - The rule was fixed before any score: `evals/results/precedent-gate-rule-2026-11-27.json`.
