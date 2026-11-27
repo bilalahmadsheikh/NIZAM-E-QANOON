@@ -1136,6 +1136,34 @@ Area: client · Status: Superseded by D-084 (the whole-page cloth; the hem, the 
   design/heritage_art.dart, presentation/discover.dart, presentation/heritage.dart; test/heritage_test.dart
   (golden embroidery.png, a review sheet at 3x).
 
+### D-177 · 2026-11-27 · A per-layer weight-merge search for the CPU reranker: measured, not adopted
+Area: L3 rerank, CPU profile (D-171, D-175) · Status: not adopted
+- **Idea:** model merging, chosen per part rather than by one global ratio as interpolation (WiSE-FT) does.
+  - Two of D-171's fine-tunes (listwise; listwise+bce) were merged into the base with 28 coefficients: two models ×
+    14 parts (embeddings, layers 0–11, head).
+  - Search: random search plus hill-climbing on half A of the training validation set, scored on half B. The top 3
+    were exported int8 (`tools/kaggle/rerank_merge_kernel.py`).
+- **Why it might help:** the weight study found the fine-tunes change each layer by 0.4–0.7%, the top FFN by ~9%,
+  and the embeddings carry 18% of the change. A merge can keep the useful layers' change and drop the rest.
+- **Dev, today's corpus** (gate under the reach addendum, ≥ .95 out-of-fold precision, the CPU criterion of D-175 and
+  D-181):
+
+  | CPU reranker | NDCG@10 | Gate passes |
+  |---|---|---|
+  | base | .510 | 89 |
+  | distilled (served, D-181) | .520 | 108 |
+  | merge finalist 1 (validation B .815) | .532 | 76 |
+  | merge finalist 2 | .530 | 67 |
+  | merge finalist 3 | .529 | 80 |
+
+- **Reading:** the merges rank best of all, but each one lowers the gate's passes. That is the same pattern as every
+  ranking fine-tune (D-171, D-175).
+  - Ranking-only objectives reorder passages but leave the scores less separable for the gate.
+  - Distillation (D-181) transfers the 8B's confidence too, and that is what the gate reads.
+  - No test reading: no finalist met the dev criterion.
+- Where: tools/kaggle/rerank_merge_kernel.py, kg.sh (`rrmergepush`); evals/results/rerank-merge-dev-cpu-m{1,2,3}.json,
+  gate-fit-dev-reach-merge-m{1,2,3}.json.
+
 ### D-181 · 2026-11-27 · The CPU reranker distilled from the 8B: adopted (ranks better and the gate answers more)
 Area: L3 rerank, CPU profile (docs/04 §6; D-101, D-171) · Status: standing (provisional golden sets)
 - **Why this one:** D-171's fine-tunes on the courts' citations ranked better, but every one made the CPU gate pass

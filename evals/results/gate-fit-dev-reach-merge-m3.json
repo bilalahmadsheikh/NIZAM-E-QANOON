@@ -1,0 +1,1496 @@
+{
+ "rule": "evals/results/gate-rule-2026-11-20.json",
+ "features_file": "gate-features-dev-merge-m3-cpu.json",
+ "provisional": "golden sets 1-10 are drafts; kappa not measured (D-095, D-104)",
+ "modes": {
+  "cpu": {
+   "cases": 283,
+   "scored": 283,
+   "unscored_abstain": 0,
+   "sufficient": 174,
+   "sufficient_share": 0.6148,
+   "sets": {
+    "F1": {
+     "features": [
+      "top"
+     ],
+     "oof_log_loss": 0.5141,
+     "oof_ece": 0.0356
+    },
+    "F2": {
+     "features": [
+      "top",
+      "margin"
+     ],
+     "oof_log_loss": 0.516,
+     "oof_ece": 0.0478
+    },
+    "F3": {
+     "features": [
+      "top",
+      "margin",
+      "conc",
+      "cited"
+     ],
+     "oof_log_loss": 0.5081,
+     "oof_ece": 0.0528
+    },
+    "F4": {
+     "features": [
+      "top",
+      "margin",
+      "agree"
+     ],
+     "oof_log_loss": 0.5042,
+     "oof_ece": 0.0347
+    },
+    "F5": {
+     "features": [
+      "top",
+      "margin",
+      "conc",
+      "cited",
+      "agree"
+     ],
+     "oof_log_loss": 0.5012,
+     "oof_ece": 0.0328
+    }
+   },
+   "chosen": "F4",
+   "tau_at_0.95": {
+    "tau": 0.839504117,
+    "coverage_of_sufficient": 0.4368
+   },
+   "risk_coverage_oof": [
+    {
+     "passed": 1,
+     "tau": 0.9889,
+     "precision": 1.0
+    },
+    {
+     "passed": 2,
+     "tau": 0.9887,
+     "precision": 1.0
+    },
+    {
+     "passed": 3,
+     "tau": 0.9883,
+     "precision": 1.0
+    },
+    {
+     "passed": 4,
+     "tau": 0.988,
+     "precision": 1.0
+    },
+    {
+     "passed": 5,
+     "tau": 0.9802,
+     "precision": 1.0
+    },
+    {
+     "passed": 6,
+     "tau": 0.9799,
+     "precision": 1.0
+    },
+    {
+     "passed": 7,
+     "tau": 0.9776,
+     "precision": 1.0
+    },
+    {
+     "passed": 8,
+     "tau": 0.9766,
+     "precision": 1.0
+    },
+    {
+     "passed": 9,
+     "tau": 0.9752,
+     "precision": 1.0
+    },
+    {
+     "passed": 10,
+     "tau": 0.975,
+     "precision": 1.0
+    },
+    {
+     "passed": 11,
+     "tau": 0.9748,
+     "precision": 1.0
+    },
+    {
+     "passed": 12,
+     "tau": 0.9742,
+     "precision": 1.0
+    },
+    {
+     "passed": 13,
+     "tau": 0.9741,
+     "precision": 1.0
+    },
+    {
+     "passed": 14,
+     "tau": 0.9721,
+     "precision": 1.0
+    },
+    {
+     "passed": 15,
+     "tau": 0.972,
+     "precision": 1.0
+    },
+    {
+     "passed": 16,
+     "tau": 0.9695,
+     "precision": 1.0
+    },
+    {
+     "passed": 17,
+     "tau": 0.9691,
+     "precision": 1.0
+    },
+    {
+     "passed": 18,
+     "tau": 0.9668,
+     "precision": 1.0
+    },
+    {
+     "passed": 19,
+     "tau": 0.9649,
+     "precision": 1.0
+    },
+    {
+     "passed": 20,
+     "tau": 0.9642,
+     "precision": 1.0
+    },
+    {
+     "passed": 21,
+     "tau": 0.962,
+     "precision": 1.0
+    },
+    {
+     "passed": 22,
+     "tau": 0.9601,
+     "precision": 1.0
+    },
+    {
+     "passed": 23,
+     "tau": 0.9587,
+     "precision": 1.0
+    },
+    {
+     "passed": 24,
+     "tau": 0.9538,
+     "precision": 1.0
+    },
+    {
+     "passed": 25,
+     "tau": 0.9534,
+     "precision": 0.96
+    },
+    {
+     "passed": 26,
+     "tau": 0.9528,
+     "precision": 0.9615
+    },
+    {
+     "passed": 27,
+     "tau": 0.9509,
+     "precision": 0.963
+    },
+    {
+     "passed": 28,
+     "tau": 0.9504,
+     "precision": 0.9643
+    },
+    {
+     "passed": 29,
+     "tau": 0.9489,
+     "precision": 0.9655
+    },
+    {
+     "passed": 30,
+     "tau": 0.948,
+     "precision": 0.9667
+    },
+    {
+     "passed": 31,
+     "tau": 0.9467,
+     "precision": 0.9677
+    },
+    {
+     "passed": 32,
+     "tau": 0.945,
+     "precision": 0.9688
+    },
+    {
+     "passed": 33,
+     "tau": 0.9448,
+     "precision": 0.9697
+    },
+    {
+     "passed": 34,
+     "tau": 0.9441,
+     "precision": 0.9706
+    },
+    {
+     "passed": 35,
+     "tau": 0.9413,
+     "precision": 0.9714
+    },
+    {
+     "passed": 36,
+     "tau": 0.9394,
+     "precision": 0.9722
+    },
+    {
+     "passed": 37,
+     "tau": 0.9357,
+     "precision": 0.973
+    },
+    {
+     "passed": 38,
+     "tau": 0.935,
+     "precision": 0.9737
+    },
+    {
+     "passed": 39,
+     "tau": 0.9327,
+     "precision": 0.9744
+    },
+    {
+     "passed": 40,
+     "tau": 0.9302,
+     "precision": 0.975
+    },
+    {
+     "passed": 41,
+     "tau": 0.929,
+     "precision": 0.9756
+    },
+    {
+     "passed": 42,
+     "tau": 0.9207,
+     "precision": 0.9762
+    },
+    {
+     "passed": 43,
+     "tau": 0.9193,
+     "precision": 0.9767
+    },
+    {
+     "passed": 44,
+     "tau": 0.9176,
+     "precision": 0.9773
+    },
+    {
+     "passed": 45,
+     "tau": 0.9173,
+     "precision": 0.9778
+    },
+    {
+     "passed": 46,
+     "tau": 0.9163,
+     "precision": 0.9783
+    },
+    {
+     "passed": 47,
+     "tau": 0.9152,
+     "precision": 0.9787
+    },
+    {
+     "passed": 48,
+     "tau": 0.9151,
+     "precision": 0.9792
+    },
+    {
+     "passed": 49,
+     "tau": 0.9146,
+     "precision": 0.9796
+    },
+    {
+     "passed": 50,
+     "tau": 0.9116,
+     "precision": 0.98
+    },
+    {
+     "passed": 51,
+     "tau": 0.9093,
+     "precision": 0.9608
+    },
+    {
+     "passed": 52,
+     "tau": 0.9075,
+     "precision": 0.9615
+    },
+    {
+     "passed": 53,
+     "tau": 0.9069,
+     "precision": 0.9623
+    },
+    {
+     "passed": 54,
+     "tau": 0.9041,
+     "precision": 0.963
+    },
+    {
+     "passed": 55,
+     "tau": 0.903,
+     "precision": 0.9636
+    },
+    {
+     "passed": 56,
+     "tau": 0.8998,
+     "precision": 0.9643
+    },
+    {
+     "passed": 57,
+     "tau": 0.8991,
+     "precision": 0.9649
+    },
+    {
+     "passed": 58,
+     "tau": 0.8981,
+     "precision": 0.9655
+    },
+    {
+     "passed": 59,
+     "tau": 0.893,
+     "precision": 0.9661
+    },
+    {
+     "passed": 60,
+     "tau": 0.892,
+     "precision": 0.9667
+    },
+    {
+     "passed": 61,
+     "tau": 0.8906,
+     "precision": 0.9672
+    },
+    {
+     "passed": 62,
+     "tau": 0.8876,
+     "precision": 0.9677
+    },
+    {
+     "passed": 63,
+     "tau": 0.8835,
+     "precision": 0.9524
+    },
+    {
+     "passed": 64,
+     "tau": 0.8829,
+     "precision": 0.9531
+    },
+    {
+     "passed": 65,
+     "tau": 0.8793,
+     "precision": 0.9538
+    },
+    {
+     "passed": 66,
+     "tau": 0.8762,
+     "precision": 0.9545
+    },
+    {
+     "passed": 67,
+     "tau": 0.8744,
+     "precision": 0.9552
+    },
+    {
+     "passed": 68,
+     "tau": 0.8725,
+     "precision": 0.9559
+    },
+    {
+     "passed": 69,
+     "tau": 0.87,
+     "precision": 0.9565
+    },
+    {
+     "passed": 70,
+     "tau": 0.8696,
+     "precision": 0.9571
+    },
+    {
+     "passed": 71,
+     "tau": 0.8661,
+     "precision": 0.9577
+    },
+    {
+     "passed": 72,
+     "tau": 0.8653,
+     "precision": 0.9583
+    },
+    {
+     "passed": 73,
+     "tau": 0.8628,
+     "precision": 0.9589
+    },
+    {
+     "passed": 74,
+     "tau": 0.8594,
+     "precision": 0.9595
+    },
+    {
+     "passed": 75,
+     "tau": 0.8516,
+     "precision": 0.96
+    },
+    {
+     "passed": 76,
+     "tau": 0.8495,
+     "precision": 0.9605
+    },
+    {
+     "passed": 77,
+     "tau": 0.8476,
+     "precision": 0.961
+    },
+    {
+     "passed": 78,
+     "tau": 0.8462,
+     "precision": 0.9487
+    },
+    {
+     "passed": 79,
+     "tau": 0.8414,
+     "precision": 0.9494
+    },
+    {
+     "passed": 80,
+     "tau": 0.8406,
+     "precision": 0.95
+    },
+    {
+     "passed": 81,
+     "tau": 0.8395,
+     "precision": 0.9383
+    },
+    {
+     "passed": 82,
+     "tau": 0.8349,
+     "precision": 0.939
+    },
+    {
+     "passed": 83,
+     "tau": 0.8323,
+     "precision": 0.9398
+    },
+    {
+     "passed": 84,
+     "tau": 0.8307,
+     "precision": 0.9286
+    },
+    {
+     "passed": 85,
+     "tau": 0.8294,
+     "precision": 0.9294
+    },
+    {
+     "passed": 86,
+     "tau": 0.8283,
+     "precision": 0.9302
+    },
+    {
+     "passed": 87,
+     "tau": 0.826,
+     "precision": 0.9195
+    },
+    {
+     "passed": 88,
+     "tau": 0.8202,
+     "precision": 0.9091
+    },
+    {
+     "passed": 89,
+     "tau": 0.8182,
+     "precision": 0.9101
+    },
+    {
+     "passed": 90,
+     "tau": 0.8175,
+     "precision": 0.9111
+    },
+    {
+     "passed": 91,
+     "tau": 0.8123,
+     "precision": 0.9121
+    },
+    {
+     "passed": 92,
+     "tau": 0.8115,
+     "precision": 0.913
+    },
+    {
+     "passed": 93,
+     "tau": 0.8093,
+     "precision": 0.914
+    },
+    {
+     "passed": 94,
+     "tau": 0.8061,
+     "precision": 0.9043
+    },
+    {
+     "passed": 95,
+     "tau": 0.8059,
+     "precision": 0.9053
+    },
+    {
+     "passed": 96,
+     "tau": 0.8011,
+     "precision": 0.8958
+    },
+    {
+     "passed": 97,
+     "tau": 0.7993,
+     "precision": 0.8969
+    },
+    {
+     "passed": 98,
+     "tau": 0.7965,
+     "precision": 0.898
+    },
+    {
+     "passed": 99,
+     "tau": 0.7927,
+     "precision": 0.899
+    },
+    {
+     "passed": 100,
+     "tau": 0.7823,
+     "precision": 0.9
+    },
+    {
+     "passed": 101,
+     "tau": 0.7782,
+     "precision": 0.901
+    },
+    {
+     "passed": 102,
+     "tau": 0.7781,
+     "precision": 0.902
+    },
+    {
+     "passed": 103,
+     "tau": 0.7759,
+     "precision": 0.9029
+    },
+    {
+     "passed": 104,
+     "tau": 0.7711,
+     "precision": 0.8942
+    },
+    {
+     "passed": 105,
+     "tau": 0.7589,
+     "precision": 0.8952
+    },
+    {
+     "passed": 106,
+     "tau": 0.7563,
+     "precision": 0.8868
+    },
+    {
+     "passed": 107,
+     "tau": 0.7528,
+     "precision": 0.8879
+    },
+    {
+     "passed": 108,
+     "tau": 0.7519,
+     "precision": 0.8889
+    },
+    {
+     "passed": 109,
+     "tau": 0.7499,
+     "precision": 0.8807
+    },
+    {
+     "passed": 110,
+     "tau": 0.7476,
+     "precision": 0.8727
+    },
+    {
+     "passed": 111,
+     "tau": 0.7267,
+     "precision": 0.8739
+    },
+    {
+     "passed": 112,
+     "tau": 0.7257,
+     "precision": 0.8661
+    },
+    {
+     "passed": 113,
+     "tau": 0.7238,
+     "precision": 0.8673
+    },
+    {
+     "passed": 114,
+     "tau": 0.722,
+     "precision": 0.8596
+    },
+    {
+     "passed": 115,
+     "tau": 0.719,
+     "precision": 0.8609
+    },
+    {
+     "passed": 116,
+     "tau": 0.7149,
+     "precision": 0.8534
+    },
+    {
+     "passed": 117,
+     "tau": 0.7145,
+     "precision": 0.8547
+    },
+    {
+     "passed": 118,
+     "tau": 0.7095,
+     "precision": 0.8559
+    },
+    {
+     "passed": 119,
+     "tau": 0.7041,
+     "precision": 0.8571
+    },
+    {
+     "passed": 120,
+     "tau": 0.704,
+     "precision": 0.8583
+    },
+    {
+     "passed": 121,
+     "tau": 0.6954,
+     "precision": 0.8595
+    },
+    {
+     "passed": 122,
+     "tau": 0.6948,
+     "precision": 0.8607
+    },
+    {
+     "passed": 123,
+     "tau": 0.6945,
+     "precision": 0.8618
+    },
+    {
+     "passed": 124,
+     "tau": 0.6907,
+     "precision": 0.8629
+    },
+    {
+     "passed": 125,
+     "tau": 0.69,
+     "precision": 0.864
+    },
+    {
+     "passed": 126,
+     "tau": 0.6885,
+     "precision": 0.8651
+    },
+    {
+     "passed": 127,
+     "tau": 0.6827,
+     "precision": 0.8661
+    },
+    {
+     "passed": 128,
+     "tau": 0.6824,
+     "precision": 0.8594
+    },
+    {
+     "passed": 129,
+     "tau": 0.6813,
+     "precision": 0.8605
+    },
+    {
+     "passed": 130,
+     "tau": 0.6693,
+     "precision": 0.8538
+    },
+    {
+     "passed": 131,
+     "tau": 0.6678,
+     "precision": 0.8473
+    },
+    {
+     "passed": 132,
+     "tau": 0.6637,
+     "precision": 0.8485
+    },
+    {
+     "passed": 133,
+     "tau": 0.6633,
+     "precision": 0.8421
+    },
+    {
+     "passed": 134,
+     "tau": 0.6581,
+     "precision": 0.8433
+    },
+    {
+     "passed": 135,
+     "tau": 0.6496,
+     "precision": 0.8444
+    },
+    {
+     "passed": 136,
+     "tau": 0.6455,
+     "precision": 0.8456
+    },
+    {
+     "passed": 137,
+     "tau": 0.6363,
+     "precision": 0.8467
+    },
+    {
+     "passed": 138,
+     "tau": 0.6278,
+     "precision": 0.8478
+    },
+    {
+     "passed": 139,
+     "tau": 0.6263,
+     "precision": 0.8417
+    },
+    {
+     "passed": 140,
+     "tau": 0.6217,
+     "precision": 0.8429
+    },
+    {
+     "passed": 141,
+     "tau": 0.6136,
+     "precision": 0.8369
+    },
+    {
+     "passed": 142,
+     "tau": 0.6119,
+     "precision": 0.838
+    },
+    {
+     "passed": 143,
+     "tau": 0.6112,
+     "precision": 0.8392
+    },
+    {
+     "passed": 144,
+     "tau": 0.6084,
+     "precision": 0.8403
+    },
+    {
+     "passed": 145,
+     "tau": 0.6084,
+     "precision": 0.8345
+    },
+    {
+     "passed": 146,
+     "tau": 0.6057,
+     "precision": 0.8288
+    },
+    {
+     "passed": 147,
+     "tau": 0.5946,
+     "precision": 0.8231
+    },
+    {
+     "passed": 148,
+     "tau": 0.5929,
+     "precision": 0.8243
+    },
+    {
+     "passed": 149,
+     "tau": 0.5892,
+     "precision": 0.8188
+    },
+    {
+     "passed": 150,
+     "tau": 0.5884,
+     "precision": 0.8133
+    },
+    {
+     "passed": 151,
+     "tau": 0.5881,
+     "precision": 0.8079
+    },
+    {
+     "passed": 152,
+     "tau": 0.5866,
+     "precision": 0.8092
+    },
+    {
+     "passed": 153,
+     "tau": 0.586,
+     "precision": 0.8105
+    },
+    {
+     "passed": 154,
+     "tau": 0.5746,
+     "precision": 0.8052
+    },
+    {
+     "passed": 155,
+     "tau": 0.5745,
+     "precision": 0.8065
+    },
+    {
+     "passed": 156,
+     "tau": 0.5721,
+     "precision": 0.8013
+    },
+    {
+     "passed": 157,
+     "tau": 0.5708,
+     "precision": 0.8025
+    },
+    {
+     "passed": 158,
+     "tau": 0.5685,
+     "precision": 0.8038
+    },
+    {
+     "passed": 159,
+     "tau": 0.5598,
+     "precision": 0.7987
+    },
+    {
+     "passed": 160,
+     "tau": 0.5595,
+     "precision": 0.7937
+    },
+    {
+     "passed": 161,
+     "tau": 0.5582,
+     "precision": 0.795
+    },
+    {
+     "passed": 162,
+     "tau": 0.5518,
+     "precision": 0.7901
+    },
+    {
+     "passed": 163,
+     "tau": 0.5506,
+     "precision": 0.7914
+    },
+    {
+     "passed": 164,
+     "tau": 0.5487,
+     "precision": 0.7927
+    },
+    {
+     "passed": 165,
+     "tau": 0.5439,
+     "precision": 0.7939
+    },
+    {
+     "passed": 166,
+     "tau": 0.5426,
+     "precision": 0.7952
+    },
+    {
+     "passed": 167,
+     "tau": 0.5408,
+     "precision": 0.7904
+    },
+    {
+     "passed": 168,
+     "tau": 0.537,
+     "precision": 0.7857
+    },
+    {
+     "passed": 169,
+     "tau": 0.5351,
+     "precision": 0.787
+    },
+    {
+     "passed": 170,
+     "tau": 0.5263,
+     "precision": 0.7882
+    },
+    {
+     "passed": 171,
+     "tau": 0.5252,
+     "precision": 0.7895
+    },
+    {
+     "passed": 172,
+     "tau": 0.5232,
+     "precision": 0.7849
+    },
+    {
+     "passed": 173,
+     "tau": 0.5201,
+     "precision": 0.7861
+    },
+    {
+     "passed": 174,
+     "tau": 0.5191,
+     "precision": 0.7816
+    },
+    {
+     "passed": 175,
+     "tau": 0.515,
+     "precision": 0.7829
+    },
+    {
+     "passed": 176,
+     "tau": 0.5145,
+     "precision": 0.7784
+    },
+    {
+     "passed": 177,
+     "tau": 0.5126,
+     "precision": 0.7797
+    },
+    {
+     "passed": 178,
+     "tau": 0.5107,
+     "precision": 0.7809
+    },
+    {
+     "passed": 179,
+     "tau": 0.5068,
+     "precision": 0.7821
+    },
+    {
+     "passed": 180,
+     "tau": 0.5044,
+     "precision": 0.7778
+    },
+    {
+     "passed": 181,
+     "tau": 0.504,
+     "precision": 0.7735
+    },
+    {
+     "passed": 182,
+     "tau": 0.5037,
+     "precision": 0.7692
+    },
+    {
+     "passed": 183,
+     "tau": 0.502,
+     "precision": 0.7705
+    },
+    {
+     "passed": 184,
+     "tau": 0.4989,
+     "precision": 0.7717
+    },
+    {
+     "passed": 185,
+     "tau": 0.4984,
+     "precision": 0.773
+    },
+    {
+     "passed": 186,
+     "tau": 0.4939,
+     "precision": 0.7688
+    },
+    {
+     "passed": 187,
+     "tau": 0.4939,
+     "precision": 0.7701
+    },
+    {
+     "passed": 188,
+     "tau": 0.4907,
+     "precision": 0.7713
+    },
+    {
+     "passed": 189,
+     "tau": 0.4895,
+     "precision": 0.7725
+    },
+    {
+     "passed": 190,
+     "tau": 0.4864,
+     "precision": 0.7737
+    },
+    {
+     "passed": 191,
+     "tau": 0.4824,
+     "precision": 0.7696
+    },
+    {
+     "passed": 192,
+     "tau": 0.4749,
+     "precision": 0.7708
+    },
+    {
+     "passed": 193,
+     "tau": 0.4664,
+     "precision": 0.772
+    },
+    {
+     "passed": 194,
+     "tau": 0.4656,
+     "precision": 0.768
+    },
+    {
+     "passed": 195,
+     "tau": 0.463,
+     "precision": 0.7692
+    },
+    {
+     "passed": 196,
+     "tau": 0.456,
+     "precision": 0.7653
+    },
+    {
+     "passed": 197,
+     "tau": 0.4499,
+     "precision": 0.7614
+    },
+    {
+     "passed": 198,
+     "tau": 0.4462,
+     "precision": 0.7576
+    },
+    {
+     "passed": 199,
+     "tau": 0.445,
+     "precision": 0.7538
+    },
+    {
+     "passed": 200,
+     "tau": 0.4448,
+     "precision": 0.755
+    },
+    {
+     "passed": 201,
+     "tau": 0.4439,
+     "precision": 0.7512
+    },
+    {
+     "passed": 202,
+     "tau": 0.4433,
+     "precision": 0.7525
+    },
+    {
+     "passed": 203,
+     "tau": 0.4429,
+     "precision": 0.7537
+    },
+    {
+     "passed": 204,
+     "tau": 0.4428,
+     "precision": 0.75
+    },
+    {
+     "passed": 205,
+     "tau": 0.4422,
+     "precision": 0.7463
+    },
+    {
+     "passed": 206,
+     "tau": 0.441,
+     "precision": 0.7476
+    },
+    {
+     "passed": 207,
+     "tau": 0.4299,
+     "precision": 0.744
+    },
+    {
+     "passed": 208,
+     "tau": 0.4292,
+     "precision": 0.7404
+    },
+    {
+     "passed": 209,
+     "tau": 0.4282,
+     "precision": 0.7368
+    },
+    {
+     "passed": 210,
+     "tau": 0.428,
+     "precision": 0.7381
+    },
+    {
+     "passed": 211,
+     "tau": 0.427,
+     "precision": 0.7346
+    },
+    {
+     "passed": 212,
+     "tau": 0.4269,
+     "precision": 0.7311
+    },
+    {
+     "passed": 213,
+     "tau": 0.4251,
+     "precision": 0.7277
+    },
+    {
+     "passed": 214,
+     "tau": 0.4208,
+     "precision": 0.7243
+    },
+    {
+     "passed": 215,
+     "tau": 0.4195,
+     "precision": 0.7256
+    },
+    {
+     "passed": 216,
+     "tau": 0.4041,
+     "precision": 0.7222
+    },
+    {
+     "passed": 217,
+     "tau": 0.4035,
+     "precision": 0.7189
+    },
+    {
+     "passed": 218,
+     "tau": 0.402,
+     "precision": 0.7156
+    },
+    {
+     "passed": 219,
+     "tau": 0.4008,
+     "precision": 0.7123
+    },
+    {
+     "passed": 220,
+     "tau": 0.3993,
+     "precision": 0.7136
+    },
+    {
+     "passed": 221,
+     "tau": 0.3948,
+     "precision": 0.7149
+    },
+    {
+     "passed": 222,
+     "tau": 0.3928,
+     "precision": 0.7162
+    },
+    {
+     "passed": 223,
+     "tau": 0.3876,
+     "precision": 0.713
+    },
+    {
+     "passed": 224,
+     "tau": 0.3694,
+     "precision": 0.7098
+    },
+    {
+     "passed": 225,
+     "tau": 0.365,
+     "precision": 0.7067
+    },
+    {
+     "passed": 226,
+     "tau": 0.3605,
+     "precision": 0.708
+    },
+    {
+     "passed": 227,
+     "tau": 0.3556,
+     "precision": 0.7048
+    },
+    {
+     "passed": 228,
+     "tau": 0.3543,
+     "precision": 0.7061
+    },
+    {
+     "passed": 229,
+     "tau": 0.3534,
+     "precision": 0.7031
+    },
+    {
+     "passed": 230,
+     "tau": 0.3529,
+     "precision": 0.7043
+    },
+    {
+     "passed": 231,
+     "tau": 0.3481,
+     "precision": 0.7013
+    },
+    {
+     "passed": 232,
+     "tau": 0.3466,
+     "precision": 0.6983
+    },
+    {
+     "passed": 233,
+     "tau": 0.3458,
+     "precision": 0.6953
+    },
+    {
+     "passed": 234,
+     "tau": 0.3438,
+     "precision": 0.6966
+    },
+    {
+     "passed": 235,
+     "tau": 0.339,
+     "precision": 0.6936
+    },
+    {
+     "passed": 236,
+     "tau": 0.3384,
+     "precision": 0.6907
+    },
+    {
+     "passed": 237,
+     "tau": 0.3365,
+     "precision": 0.692
+    },
+    {
+     "passed": 238,
+     "tau": 0.3242,
+     "precision": 0.6891
+    },
+    {
+     "passed": 239,
+     "tau": 0.3147,
+     "precision": 0.6862
+    },
+    {
+     "passed": 240,
+     "tau": 0.3094,
+     "precision": 0.6833
+    },
+    {
+     "passed": 241,
+     "tau": 0.3088,
+     "precision": 0.6805
+    },
+    {
+     "passed": 242,
+     "tau": 0.3084,
+     "precision": 0.6818
+    },
+    {
+     "passed": 243,
+     "tau": 0.3027,
+     "precision": 0.6831
+    },
+    {
+     "passed": 244,
+     "tau": 0.2966,
+     "precision": 0.6803
+    },
+    {
+     "passed": 245,
+     "tau": 0.291,
+     "precision": 0.6816
+    },
+    {
+     "passed": 246,
+     "tau": 0.2875,
+     "precision": 0.6829
+    },
+    {
+     "passed": 247,
+     "tau": 0.2861,
+     "precision": 0.6802
+    },
+    {
+     "passed": 248,
+     "tau": 0.285,
+     "precision": 0.6774
+    },
+    {
+     "passed": 249,
+     "tau": 0.282,
+     "precision": 0.6747
+    },
+    {
+     "passed": 250,
+     "tau": 0.2802,
+     "precision": 0.672
+    },
+    {
+     "passed": 251,
+     "tau": 0.2784,
+     "precision": 0.6693
+    },
+    {
+     "passed": 252,
+     "tau": 0.2778,
+     "precision": 0.6667
+    },
+    {
+     "passed": 253,
+     "tau": 0.2699,
+     "precision": 0.664
+    },
+    {
+     "passed": 254,
+     "tau": 0.2646,
+     "precision": 0.6614
+    },
+    {
+     "passed": 255,
+     "tau": 0.2641,
+     "precision": 0.6627
+    },
+    {
+     "passed": 256,
+     "tau": 0.2569,
+     "precision": 0.6602
+    },
+    {
+     "passed": 257,
+     "tau": 0.2498,
+     "precision": 0.6615
+    },
+    {
+     "passed": 258,
+     "tau": 0.2447,
+     "precision": 0.6589
+    },
+    {
+     "passed": 259,
+     "tau": 0.2279,
+     "precision": 0.6602
+    },
+    {
+     "passed": 260,
+     "tau": 0.221,
+     "precision": 0.6577
+    },
+    {
+     "passed": 261,
+     "tau": 0.2093,
+     "precision": 0.6552
+    },
+    {
+     "passed": 262,
+     "tau": 0.2088,
+     "precision": 0.6527
+    },
+    {
+     "passed": 263,
+     "tau": 0.2065,
+     "precision": 0.654
+    },
+    {
+     "passed": 264,
+     "tau": 0.1915,
+     "precision": 0.6515
+    },
+    {
+     "passed": 265,
+     "tau": 0.1811,
+     "precision": 0.6491
+    },
+    {
+     "passed": 266,
+     "tau": 0.1598,
+     "precision": 0.6504
+    },
+    {
+     "passed": 267,
+     "tau": 0.1547,
+     "precision": 0.6479
+    },
+    {
+     "passed": 268,
+     "tau": 0.1446,
+     "precision": 0.6455
+    },
+    {
+     "passed": 269,
+     "tau": 0.1312,
+     "precision": 0.6431
+    },
+    {
+     "passed": 270,
+     "tau": 0.1228,
+     "precision": 0.6407
+    },
+    {
+     "passed": 271,
+     "tau": 0.1163,
+     "precision": 0.6384
+    },
+    {
+     "passed": 272,
+     "tau": 0.1134,
+     "precision": 0.636
+    },
+    {
+     "passed": 273,
+     "tau": 0.1106,
+     "precision": 0.6337
+    },
+    {
+     "passed": 274,
+     "tau": 0.1097,
+     "precision": 0.6314
+    },
+    {
+     "passed": 275,
+     "tau": 0.1069,
+     "precision": 0.6291
+    },
+    {
+     "passed": 276,
+     "tau": 0.0658,
+     "precision": 0.6268
+    },
+    {
+     "passed": 277,
+     "tau": 0.0539,
+     "precision": 0.6282
+    },
+    {
+     "passed": 278,
+     "tau": 0.0533,
+     "precision": 0.6259
+    },
+    {
+     "passed": 279,
+     "tau": 0.053,
+     "precision": 0.6237
+    },
+    {
+     "passed": 280,
+     "tau": 0.0395,
+     "precision": 0.6214
+    },
+    {
+     "passed": 281,
+     "tau": 0.0386,
+     "precision": 0.6192
+    },
+    {
+     "passed": 282,
+     "tau": 0.0316,
+     "precision": 0.617
+    },
+    {
+     "passed": 283,
+     "tau": 0.0202,
+     "precision": 0.6148
+    }
+   ],
+   "status": "calibrated",
+   "target_precision": 0.95,
+   "tau": 0.839504,
+   "oof_answered_precision": 0.95,
+   "oof_passed": 80,
+   "oof_coverage_of_sufficient": 0.4368,
+   "oof_wrong_answers": 4
+  },
+  "gpu": {
+   "status": "no rows"
+  },
+  "unreranked": {
+   "status": "no rows"
+  }
+ }
+}
