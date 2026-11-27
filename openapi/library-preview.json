@@ -1096,7 +1096,126 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/PrecedentSearchPage"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/precedent/courts": {
+      "get": {
+        "summary": "Courts",
+        "operationId": "courts_v1_precedent_courts_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CourtsPage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/precedent/courts/{court}/judgments": {
+      "get": {
+        "summary": "Court Judgments",
+        "operationId": "court_judgments_v1_precedent_courts__court__judgments_get",
+        "parameters": [
+          {
+            "name": "court",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "enum": [
+                "FCC",
+                "SC",
+                "FSC",
+                "LHC",
+                "SHC",
+                "PHC",
+                "BHC",
+                "IHC",
+                "AJKSC",
+                "AJKHC",
+                "GBSAC",
+                "GBCC"
+              ],
+              "type": "string",
+              "title": "Court"
+            }
+          },
+          {
+            "name": "as_of",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "As Of"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 50,
+              "minimum": 1,
+              "default": 20,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "after",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 200
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "After"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JudgmentList"
+                }
               }
             }
           },
@@ -1151,7 +1270,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/JudgmentPage"
+                }
               }
             }
           },
@@ -1318,7 +1439,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/JudgmentList"
+                }
               }
             }
           },
@@ -1373,7 +1496,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/HistoryPage"
+                }
               }
             }
           },
@@ -1423,6 +1548,20 @@
             }
           },
           {
+            "name": "order",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "enum": [
+                "recent",
+                "relevant"
+              ],
+              "type": "string",
+              "default": "recent",
+              "title": "Order"
+            }
+          },
+          {
             "name": "limit",
             "in": "query",
             "required": false,
@@ -1433,6 +1572,18 @@
               "default": 20,
               "title": "Limit"
             }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 2000,
+              "minimum": 0,
+              "default": 0,
+              "title": "Offset"
+            }
           }
         ],
         "responses": {
@@ -1440,7 +1591,104 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/CitingPage"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/law/instruments/{instrument_id}/judgments": {
+      "get": {
+        "summary": "Instrument Judgments",
+        "operationId": "instrument_judgments_v1_law_instruments__instrument_id__judgments_get",
+        "parameters": [
+          {
+            "name": "instrument_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Instrument Id"
+            }
+          },
+          {
+            "name": "as_of",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "As Of"
+            }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "enum": [
+                "recent",
+                "relevant"
+              ],
+              "type": "string",
+              "default": "recent",
+              "title": "Order"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 50,
+              "minimum": 1,
+              "default": 20,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 2000,
+              "minimum": 0,
+              "default": 0,
+              "title": "Offset"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CitingPage"
+                }
               }
             }
           },
@@ -1644,6 +1892,177 @@
         ],
         "title": "Ancestor"
       },
+      "AppealFrom": {
+        "properties": {
+          "relation": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Relation"
+          },
+          "court_below": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Court Below"
+          },
+          "case_below": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Case Below"
+          },
+          "decided_below": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Decided Below"
+          },
+          "outcome": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Outcome"
+          },
+          "outcome_withheld": {
+            "type": "boolean",
+            "title": "Outcome Withheld"
+          }
+        },
+        "type": "object",
+        "required": [
+          "relation",
+          "court_below",
+          "case_below",
+          "decided_below",
+          "outcome",
+          "outcome_withheld"
+        ],
+        "title": "AppealFrom"
+      },
+      "CaseDecided": {
+        "properties": {
+          "case_key": {
+            "type": "string",
+            "title": "Case Key"
+          },
+          "role": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Role"
+          },
+          "case_type_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Case Type Name"
+          },
+          "case_number": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Case Number"
+          },
+          "case_year": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Case Year"
+          }
+        },
+        "type": "object",
+        "required": [
+          "case_key",
+          "role",
+          "case_type_name",
+          "case_number",
+          "case_year"
+        ],
+        "title": "CaseDecided"
+      },
+      "CaseDecision": {
+        "properties": {
+          "judgment_id": {
+            "type": "string",
+            "title": "Judgment Id"
+          },
+          "citation": {
+            "type": "string",
+            "title": "Citation"
+          },
+          "decided_on": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Decided On"
+          },
+          "undated": {
+            "type": "boolean",
+            "title": "Undated"
+          }
+        },
+        "type": "object",
+        "required": [
+          "judgment_id",
+          "citation",
+          "decided_on",
+          "undated"
+        ],
+        "title": "CaseDecision"
+      },
       "CitationIn": {
         "properties": {
           "citation": {
@@ -1710,6 +2129,220 @@
           "citations"
         ],
         "title": "CitationPage"
+      },
+      "CitedCase": {
+        "properties": {
+          "raw": {
+            "type": "string",
+            "title": "Raw"
+          },
+          "resolution": {
+            "type": "string",
+            "title": "Resolution"
+          },
+          "judgment_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Judgment Id"
+          },
+          "case_key": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Case Key"
+          }
+        },
+        "type": "object",
+        "required": [
+          "raw",
+          "resolution",
+          "judgment_id",
+          "case_key"
+        ],
+        "title": "CitedCase"
+      },
+      "CitedProvision": {
+        "properties": {
+          "provision_id": {
+            "type": "string",
+            "title": "Provision Id"
+          },
+          "citation": {
+            "type": "string",
+            "title": "Citation"
+          },
+          "label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Label"
+          },
+          "kind": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Kind"
+          },
+          "law_title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Law Title"
+          },
+          "law_year": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Law Year"
+          },
+          "law_kind": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Law Kind"
+          },
+          "role": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Role"
+          },
+          "mentions": {
+            "type": "integer",
+            "title": "Mentions"
+          },
+          "status_now": {
+            "type": "string",
+            "title": "Status Now"
+          }
+        },
+        "type": "object",
+        "required": [
+          "provision_id",
+          "citation",
+          "label",
+          "kind",
+          "law_title",
+          "law_year",
+          "law_kind",
+          "role",
+          "mentions",
+          "status_now"
+        ],
+        "title": "CitedProvision",
+        "description": "A provision the judgment cites, resolved to the corpus, with whether its text is still the operative text"
+      },
+      "CitingPage": {
+        "properties": {
+          "scope": {
+            "type": "string",
+            "title": "Scope"
+          },
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "as_of": {
+            "type": "string",
+            "format": "date",
+            "title": "As Of"
+          },
+          "order": {
+            "type": "string",
+            "title": "Order"
+          },
+          "total": {
+            "type": "integer",
+            "title": "Total"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/JudgmentCard"
+            },
+            "type": "array",
+            "title": "Items"
+          },
+          "next_offset": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Offset"
+          },
+          "judicial_status": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/JudicialStatus"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "coverage_note": {
+            "type": "string",
+            "title": "Coverage Note"
+          }
+        },
+        "type": "object",
+        "required": [
+          "scope",
+          "id",
+          "as_of",
+          "order",
+          "total",
+          "items",
+          "next_offset",
+          "judicial_status",
+          "coverage_note"
+        ],
+        "title": "CitingPage",
+        "description": "The decisions citing a section (or a unit inside it) or a whole law, and any copy of it (D-136, D-184)"
       },
       "CollectionItem": {
         "properties": {
@@ -1811,6 +2444,86 @@
         ],
         "title": "ConstitutionPage",
         "description": "The Constitution and the texts around it (nizam/api/collections.py, D-070). `constitution` is null only when\nits document is not released at as_of."
+      },
+      "CourtCoverage": {
+        "properties": {
+          "code": {
+            "type": "string",
+            "title": "Code"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "court_class": {
+            "type": "string",
+            "title": "Court Class"
+          },
+          "judgments": {
+            "type": "integer",
+            "title": "Judgments"
+          },
+          "first_decided": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "First Decided"
+          },
+          "last_decided": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Decided"
+          }
+        },
+        "type": "object",
+        "required": [
+          "code",
+          "name",
+          "court_class",
+          "judgments",
+          "first_decided",
+          "last_decided"
+        ],
+        "title": "CourtCoverage"
+      },
+      "CourtsPage": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/CourtCoverage"
+            },
+            "type": "array",
+            "title": "Items"
+          },
+          "total_judgments": {
+            "type": "integer",
+            "title": "Total Judgments"
+          },
+          "coverage_note": {
+            "type": "string",
+            "title": "Coverage Note"
+          }
+        },
+        "type": "object",
+        "required": [
+          "items",
+          "total_judgments",
+          "coverage_note"
+        ],
+        "title": "CourtsPage"
       },
       "FamilyGroup": {
         "properties": {
@@ -2077,6 +2790,146 @@
         "title": "HeritageUnit",
         "description": "`preview` is the opening of the unit's served text (the section index's own preview): the client shows it\nwhere the source prints no heading (the Balochistan and AJK Acts print theirs in the margin or inline)."
       },
+      "HistoryItem": {
+        "properties": {
+          "source": {
+            "type": "string",
+            "title": "Source"
+          },
+          "judgment_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Judgment Id"
+          },
+          "court": {
+            "type": "string",
+            "title": "Court"
+          },
+          "relation": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Relation"
+          },
+          "outcome": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Outcome"
+          },
+          "outcome_withheld": {
+            "type": "boolean",
+            "title": "Outcome Withheld"
+          },
+          "outcome_printed": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Outcome Printed"
+          },
+          "decided_on": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Decided On"
+          },
+          "citation": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Citation"
+          },
+          "upper_file_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Upper File Url"
+          }
+        },
+        "type": "object",
+        "required": [
+          "source",
+          "judgment_id",
+          "court",
+          "relation",
+          "outcome",
+          "outcome_withheld",
+          "outcome_printed",
+          "decided_on",
+          "citation",
+          "upper_file_url"
+        ],
+        "title": "HistoryItem"
+      },
+      "HistoryPage": {
+        "properties": {
+          "judgment_id": {
+            "type": "string",
+            "title": "Judgment Id"
+          },
+          "as_of": {
+            "type": "string",
+            "format": "date",
+            "title": "As Of"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/HistoryItem"
+            },
+            "type": "array",
+            "title": "Items"
+          },
+          "coverage_note": {
+            "type": "string",
+            "title": "Coverage Note"
+          }
+        },
+        "type": "object",
+        "required": [
+          "judgment_id",
+          "as_of",
+          "items",
+          "coverage_note"
+        ],
+        "title": "HistoryPage"
+      },
       "Instrument": {
         "properties": {
           "id": {
@@ -2310,6 +3163,768 @@
           "item"
         ],
         "title": "InstrumentResult"
+      },
+      "JudgmentCard": {
+        "properties": {
+          "judgment_id": {
+            "type": "string",
+            "title": "Judgment Id"
+          },
+          "citation": {
+            "type": "string",
+            "title": "Citation"
+          },
+          "court": {
+            "type": "string",
+            "title": "Court"
+          },
+          "case_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Case Type"
+          },
+          "case_key": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Case Key"
+          },
+          "decided_on": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Decided On"
+          },
+          "undated": {
+            "type": "boolean",
+            "title": "Undated"
+          },
+          "decided_no_later_than": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Decided No Later Than"
+          },
+          "decided_not_before": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Decided Not Before"
+          },
+          "parties_display": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Parties Display"
+          },
+          "names_withheld": {
+            "type": "boolean",
+            "title": "Names Withheld"
+          },
+          "disposition": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Disposition"
+          },
+          "reported": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reported"
+          },
+          "mentions": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mentions"
+          },
+          "roles": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Roles"
+          },
+          "treatments": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Treatments"
+          },
+          "treatments_awaiting_review": {
+            "type": "integer",
+            "title": "Treatments Awaiting Review"
+          },
+          "cited_as": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cited As"
+          }
+        },
+        "type": "object",
+        "required": [
+          "judgment_id",
+          "citation",
+          "court",
+          "case_type",
+          "case_key",
+          "decided_on",
+          "undated",
+          "decided_no_later_than",
+          "decided_not_before",
+          "parties_display",
+          "names_withheld",
+          "disposition",
+          "reported",
+          "mentions",
+          "roles",
+          "treatments",
+          "treatments_awaiting_review",
+          "cited_as"
+        ],
+        "title": "JudgmentCard",
+        "description": "One judgment in a list: what a reader needs to choose it, every field from records"
+      },
+      "JudgmentCase": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "cases_decided": {
+            "items": {
+              "$ref": "#/components/schemas/CaseDecided"
+            },
+            "type": "array",
+            "title": "Cases Decided"
+          },
+          "other_decisions": {
+            "items": {
+              "$ref": "#/components/schemas/CaseDecision"
+            },
+            "type": "array",
+            "title": "Other Decisions"
+          },
+          "copy_of_judgment_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Copy Of Judgment Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status",
+          "cases_decided",
+          "other_decisions",
+          "copy_of_judgment_id"
+        ],
+        "title": "JudgmentCase"
+      },
+      "JudgmentHead": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "court_code": {
+            "type": "string",
+            "title": "Court Code"
+          },
+          "court_name": {
+            "type": "string",
+            "title": "Court Name"
+          },
+          "seat": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Seat"
+          },
+          "case_no_printed": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Case No Printed"
+          },
+          "case_type_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Case Type Name"
+          },
+          "case_number": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Case Number"
+          },
+          "case_year": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Case Year"
+          },
+          "decided_on": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Decided On"
+          },
+          "undated": {
+            "type": "boolean",
+            "title": "Undated"
+          },
+          "decided_no_later_than": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Decided No Later Than"
+          },
+          "decided_not_before": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Decided Not Before"
+          },
+          "undated_reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Undated Reason"
+          },
+          "hearing_on": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Hearing On"
+          },
+          "bench_printed": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Bench Printed"
+          },
+          "bench_size": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Bench Size"
+          },
+          "disposition": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Disposition"
+          },
+          "disposition_printed": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Disposition Printed"
+          },
+          "reported_flag": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reported Flag"
+          },
+          "neutral_citation": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Neutral Citation"
+          },
+          "parties_display": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Parties Display"
+          },
+          "jurisdiction_printed": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Jurisdiction Printed"
+          },
+          "source_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Url"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "court_code",
+          "court_name",
+          "seat",
+          "case_no_printed",
+          "case_type_name",
+          "case_number",
+          "case_year",
+          "decided_on",
+          "undated",
+          "decided_no_later_than",
+          "decided_not_before",
+          "undated_reason",
+          "hearing_on",
+          "bench_printed",
+          "bench_size",
+          "disposition",
+          "disposition_printed",
+          "reported_flag",
+          "neutral_citation",
+          "parties_display",
+          "jurisdiction_printed",
+          "source_url"
+        ],
+        "title": "JudgmentHead"
+      },
+      "JudgmentList": {
+        "properties": {
+          "as_of": {
+            "type": "string",
+            "format": "date",
+            "title": "As Of"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/JudgmentCard"
+            },
+            "type": "array",
+            "title": "Items"
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Cursor"
+          },
+          "coverage_note": {
+            "type": "string",
+            "title": "Coverage Note"
+          }
+        },
+        "type": "object",
+        "required": [
+          "as_of",
+          "items",
+          "next_cursor",
+          "coverage_note"
+        ],
+        "title": "JudgmentList"
+      },
+      "JudgmentOpinion": {
+        "properties": {
+          "ordinal": {
+            "type": "integer",
+            "title": "Ordinal"
+          },
+          "kind": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Kind"
+          },
+          "heading_printed": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Heading Printed"
+          },
+          "author_printed": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Author Printed"
+          }
+        },
+        "type": "object",
+        "required": [
+          "ordinal",
+          "kind",
+          "heading_printed",
+          "author_printed"
+        ],
+        "title": "JudgmentOpinion"
+      },
+      "JudgmentPage": {
+        "properties": {
+          "as_of": {
+            "type": "string",
+            "format": "date",
+            "title": "As Of"
+          },
+          "citation": {
+            "type": "string",
+            "title": "Citation"
+          },
+          "judgment": {
+            "$ref": "#/components/schemas/JudgmentHead"
+          },
+          "opinions": {
+            "items": {
+              "$ref": "#/components/schemas/JudgmentOpinion"
+            },
+            "type": "array",
+            "title": "Opinions"
+          },
+          "paragraphs": {
+            "items": {
+              "$ref": "#/components/schemas/JudgmentParagraph"
+            },
+            "type": "array",
+            "title": "Paragraphs"
+          },
+          "statutes_cited": {
+            "items": {
+              "$ref": "#/components/schemas/CitedProvision"
+            },
+            "type": "array",
+            "title": "Statutes Cited"
+          },
+          "cases_cited": {
+            "items": {
+              "$ref": "#/components/schemas/CitedCase"
+            },
+            "type": "array",
+            "title": "Cases Cited"
+          },
+          "appeal_from": {
+            "items": {
+              "$ref": "#/components/schemas/AppealFrom"
+            },
+            "type": "array",
+            "title": "Appeal From"
+          },
+          "case_record": {
+            "$ref": "#/components/schemas/JudgmentCase"
+          },
+          "privacy": {
+            "$ref": "#/components/schemas/JudgmentPrivacy"
+          },
+          "note": {
+            "type": "string",
+            "title": "Note"
+          }
+        },
+        "type": "object",
+        "required": [
+          "as_of",
+          "citation",
+          "judgment",
+          "opinions",
+          "paragraphs",
+          "statutes_cited",
+          "cases_cited",
+          "appeal_from",
+          "case_record",
+          "privacy",
+          "note"
+        ],
+        "title": "JudgmentPage"
+      },
+      "JudgmentParagraph": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "kind": {
+            "type": "string",
+            "title": "Kind"
+          },
+          "printed_no": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Printed No"
+          },
+          "page_first": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Page First"
+          },
+          "text": {
+            "type": "string",
+            "title": "Text"
+          },
+          "opinion": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Opinion"
+          },
+          "opinion_kind": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Opinion Kind"
+          },
+          "citation": {
+            "type": "string",
+            "title": "Citation"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "printed_no",
+          "page_first",
+          "text",
+          "opinion",
+          "opinion_kind",
+          "citation"
+        ],
+        "title": "JudgmentParagraph"
+      },
+      "JudgmentPrivacy": {
+        "properties": {
+          "names_withheld": {
+            "type": "boolean",
+            "title": "Names Withheld"
+          },
+          "categories": {
+            "items": {
+              "$ref": "#/components/schemas/PrivacyCategory"
+            },
+            "type": "array",
+            "title": "Categories"
+          }
+        },
+        "type": "object",
+        "required": [
+          "names_withheld",
+          "categories"
+        ],
+        "title": "JudgmentPrivacy"
+      },
+      "JudicialStatus": {
+        "properties": {
+          "verified": {
+            "items": {
+              "$ref": "#/components/schemas/VerifiedInvalidation"
+            },
+            "type": "array",
+            "title": "Verified"
+          },
+          "candidates_awaiting_review": {
+            "type": "integer",
+            "title": "Candidates Awaiting Review"
+          },
+          "coverage": {
+            "type": "string",
+            "title": "Coverage"
+          }
+        },
+        "type": "object",
+        "required": [
+          "verified",
+          "candidates_awaiting_review",
+          "coverage"
+        ],
+        "title": "JudicialStatus"
       },
       "LawHit": {
         "properties": {
@@ -2719,6 +4334,263 @@
           "next_cursor"
         ],
         "title": "NodePage"
+      },
+      "PrecedentHitOut": {
+        "properties": {
+          "judgment_id": {
+            "type": "string",
+            "title": "Judgment Id"
+          },
+          "paragraph_id": {
+            "type": "string",
+            "title": "Paragraph Id"
+          },
+          "citation": {
+            "type": "string",
+            "title": "Citation"
+          },
+          "court": {
+            "type": "string",
+            "title": "Court"
+          },
+          "case_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Case Type"
+          },
+          "case_key": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Case Key"
+          },
+          "decided_on": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Decided On"
+          },
+          "undated": {
+            "type": "boolean",
+            "title": "Undated"
+          },
+          "decided_no_later_than": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Decided No Later Than"
+          },
+          "disposition": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Disposition"
+          },
+          "reported": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reported"
+          },
+          "text": {
+            "type": "string",
+            "title": "Text"
+          },
+          "parties_display": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Parties Display"
+          },
+          "names_withheld": {
+            "type": "boolean",
+            "title": "Names Withheld"
+          },
+          "binding": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Binding"
+          },
+          "subjects": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Subjects"
+          }
+        },
+        "type": "object",
+        "required": [
+          "judgment_id",
+          "paragraph_id",
+          "citation",
+          "court",
+          "case_type",
+          "case_key",
+          "decided_on",
+          "undated",
+          "decided_no_later_than",
+          "disposition",
+          "reported",
+          "text",
+          "parties_display",
+          "names_withheld",
+          "binding",
+          "subjects"
+        ],
+        "title": "PrecedentHitOut"
+      },
+      "PrecedentSearchPage": {
+        "properties": {
+          "query": {
+            "type": "string",
+            "title": "Query"
+          },
+          "as_of": {
+            "type": "string",
+            "format": "date",
+            "title": "As Of"
+          },
+          "mode": {
+            "type": "string",
+            "title": "Mode"
+          },
+          "kind": {
+            "type": "string",
+            "title": "Kind"
+          },
+          "note": {
+            "type": "string",
+            "title": "Note"
+          },
+          "hits": {
+            "items": {
+              "$ref": "#/components/schemas/PrecedentHitOut"
+            },
+            "type": "array",
+            "title": "Hits"
+          },
+          "coverage_gap": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Coverage Gap"
+          },
+          "coverage_note": {
+            "type": "string",
+            "title": "Coverage Note"
+          }
+        },
+        "type": "object",
+        "required": [
+          "query",
+          "as_of",
+          "mode",
+          "kind",
+          "note",
+          "hits",
+          "coverage_gap",
+          "coverage_note"
+        ],
+        "title": "PrecedentSearchPage"
+      },
+      "PrivacyCategory": {
+        "properties": {
+          "code": {
+            "type": "string",
+            "title": "Code"
+          },
+          "name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Name"
+          },
+          "basis_kind": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Basis Kind"
+          },
+          "basis": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Basis"
+          }
+        },
+        "type": "object",
+        "required": [
+          "code",
+          "name",
+          "basis_kind",
+          "basis"
+        ],
+        "title": "PrivacyCategory"
       },
       "Provision": {
         "properties": {
@@ -3834,6 +5706,80 @@
           "type"
         ],
         "title": "ValidationError"
+      },
+      "VerifiedInvalidation": {
+        "properties": {
+          "extent": {
+            "type": "string",
+            "title": "Extent"
+          },
+          "extent_note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Extent Note"
+          },
+          "effective_on": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Effective On"
+          },
+          "appeal_state": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Appeal State"
+          },
+          "reading": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reading"
+          },
+          "judgment_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Judgment Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "extent",
+          "extent_note",
+          "effective_on",
+          "appeal_state",
+          "reading",
+          "judgment_id"
+        ],
+        "title": "VerifiedInvalidation"
       }
     }
   }

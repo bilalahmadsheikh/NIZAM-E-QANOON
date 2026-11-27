@@ -121,7 +121,7 @@ class LibraryScaffold extends ConsumerWidget {
             height: 72,
             selectedIndex: selected,
             onDestinationSelected:
-                (index) => context.go(['/', '/library', '/heritage'][index]),
+                (index) => context.go(['/', '/library', '/judgments', '/heritage'][index]),
             destinations: const [
               NavigationDestination(
                 icon: Icon(Icons.home_outlined),
@@ -132,6 +132,11 @@ class LibraryScaffold extends ConsumerWidget {
                 icon: Icon(Icons.auto_stories_outlined),
                 selectedIcon: Icon(Icons.auto_stories),
                 label: 'Library',
+              ),
+              NavigationDestination(
+                icon: Icon(Icons.gavel_outlined),
+                selectedIcon: Icon(Icons.gavel),
+                label: 'Judgments',
               ),
               NavigationDestination(
                 // the Minar-e-Pakistan as the tab's mark (D-077), in the navigation's own icon colour

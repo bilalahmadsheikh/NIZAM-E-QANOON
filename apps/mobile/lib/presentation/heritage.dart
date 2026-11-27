@@ -38,7 +38,7 @@ class _HeritageScreenState extends ConsumerState<HeritageScreen> {
     final still = MediaQuery.disableAnimationsOf(context);
     return LibraryScaffold(
       title: 'Heritage',
-      selected: 2,
+      selected: 3,
       body: ReadingWidth(
         child: ListView(
           padding: const EdgeInsets.fromLTRB(0, 24, 0, 120),

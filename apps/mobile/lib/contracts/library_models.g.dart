@@ -662,3 +662,485 @@ class CitationPage {
     citations: (json['citations'] as List).map((v) => ResolvedCitation.fromJson(v as Map<String, dynamic>)).toList(),
   );
 }
+
+class CourtCoverage {
+  final String code;
+  final String name;
+  final String court_class;
+  final int judgments;
+  final String? first_decided;
+  final String? last_decided;
+  const CourtCoverage({required this.code, required this.name, required this.court_class, required this.judgments, required this.first_decided, required this.last_decided});
+  factory CourtCoverage.fromJson(Map<String, dynamic> json) => CourtCoverage(
+    code: json['code'] as String,
+    name: json['name'] as String,
+    court_class: json['court_class'] as String,
+    judgments: json['judgments'] as int,
+    first_decided: json['first_decided'] == null ? null : json['first_decided'] as String,
+    last_decided: json['last_decided'] == null ? null : json['last_decided'] as String,
+  );
+}
+
+class CourtsPage {
+  final List<CourtCoverage> items;
+  final int total_judgments;
+  final String coverage_note;
+  const CourtsPage({required this.items, required this.total_judgments, required this.coverage_note});
+  factory CourtsPage.fromJson(Map<String, dynamic> json) => CourtsPage(
+    items: (json['items'] as List).map((v) => CourtCoverage.fromJson(v as Map<String, dynamic>)).toList(),
+    total_judgments: json['total_judgments'] as int,
+    coverage_note: json['coverage_note'] as String,
+  );
+}
+
+class JudgmentCard {
+  final String judgment_id;
+  final String citation;
+  final String court;
+  final String? case_type;
+  final String? case_key;
+  final String? decided_on;
+  final bool undated;
+  final String? decided_no_later_than;
+  final String? decided_not_before;
+  final String? parties_display;
+  final bool names_withheld;
+  final String? disposition;
+  final bool? reported;
+  final int? mentions;
+  final List<String> roles;
+  final List<String> treatments;
+  final int treatments_awaiting_review;
+  final String? cited_as;
+  const JudgmentCard({required this.judgment_id, required this.citation, required this.court, required this.case_type, required this.case_key, required this.decided_on, required this.undated, required this.decided_no_later_than, required this.decided_not_before, required this.parties_display, required this.names_withheld, required this.disposition, required this.reported, required this.mentions, required this.roles, required this.treatments, required this.treatments_awaiting_review, required this.cited_as});
+  factory JudgmentCard.fromJson(Map<String, dynamic> json) => JudgmentCard(
+    judgment_id: json['judgment_id'] as String,
+    citation: json['citation'] as String,
+    court: json['court'] as String,
+    case_type: json['case_type'] == null ? null : json['case_type'] as String,
+    case_key: json['case_key'] == null ? null : json['case_key'] as String,
+    decided_on: json['decided_on'] == null ? null : json['decided_on'] as String,
+    undated: json['undated'] as bool,
+    decided_no_later_than: json['decided_no_later_than'] == null ? null : json['decided_no_later_than'] as String,
+    decided_not_before: json['decided_not_before'] == null ? null : json['decided_not_before'] as String,
+    parties_display: json['parties_display'] == null ? null : json['parties_display'] as String,
+    names_withheld: json['names_withheld'] as bool,
+    disposition: json['disposition'] == null ? null : json['disposition'] as String,
+    reported: json['reported'] == null ? null : json['reported'] as bool,
+    mentions: json['mentions'] == null ? null : json['mentions'] as int,
+    roles: (json['roles'] as List).map((v) => v as String).toList(),
+    treatments: (json['treatments'] as List).map((v) => v as String).toList(),
+    treatments_awaiting_review: json['treatments_awaiting_review'] as int,
+    cited_as: json['cited_as'] == null ? null : json['cited_as'] as String,
+  );
+}
+
+class JudgmentList {
+  final String as_of;
+  final List<JudgmentCard> items;
+  final String? next_cursor;
+  final String coverage_note;
+  const JudgmentList({required this.as_of, required this.items, required this.next_cursor, required this.coverage_note});
+  factory JudgmentList.fromJson(Map<String, dynamic> json) => JudgmentList(
+    as_of: json['as_of'] as String,
+    items: (json['items'] as List).map((v) => JudgmentCard.fromJson(v as Map<String, dynamic>)).toList(),
+    next_cursor: json['next_cursor'] == null ? null : json['next_cursor'] as String,
+    coverage_note: json['coverage_note'] as String,
+  );
+}
+
+class VerifiedInvalidation {
+  final String extent;
+  final String? extent_note;
+  final String? effective_on;
+  final String? appeal_state;
+  final String? reading;
+  final String? judgment_id;
+  const VerifiedInvalidation({required this.extent, required this.extent_note, required this.effective_on, required this.appeal_state, required this.reading, required this.judgment_id});
+  factory VerifiedInvalidation.fromJson(Map<String, dynamic> json) => VerifiedInvalidation(
+    extent: json['extent'] as String,
+    extent_note: json['extent_note'] == null ? null : json['extent_note'] as String,
+    effective_on: json['effective_on'] == null ? null : json['effective_on'] as String,
+    appeal_state: json['appeal_state'] == null ? null : json['appeal_state'] as String,
+    reading: json['reading'] == null ? null : json['reading'] as String,
+    judgment_id: json['judgment_id'] == null ? null : json['judgment_id'] as String,
+  );
+}
+
+class JudicialStatus {
+  final List<VerifiedInvalidation> verified;
+  final int candidates_awaiting_review;
+  final String coverage;
+  const JudicialStatus({required this.verified, required this.candidates_awaiting_review, required this.coverage});
+  factory JudicialStatus.fromJson(Map<String, dynamic> json) => JudicialStatus(
+    verified: (json['verified'] as List).map((v) => VerifiedInvalidation.fromJson(v as Map<String, dynamic>)).toList(),
+    candidates_awaiting_review: json['candidates_awaiting_review'] as int,
+    coverage: json['coverage'] as String,
+  );
+}
+
+class CitingPage {
+  final String scope;
+  final String id;
+  final String as_of;
+  final String order;
+  final int total;
+  final List<JudgmentCard> items;
+  final int? next_offset;
+  final JudicialStatus? judicial_status;
+  final String coverage_note;
+  const CitingPage({required this.scope, required this.id, required this.as_of, required this.order, required this.total, required this.items, required this.next_offset, required this.judicial_status, required this.coverage_note});
+  factory CitingPage.fromJson(Map<String, dynamic> json) => CitingPage(
+    scope: json['scope'] as String,
+    id: json['id'] as String,
+    as_of: json['as_of'] as String,
+    order: json['order'] as String,
+    total: json['total'] as int,
+    items: (json['items'] as List).map((v) => JudgmentCard.fromJson(v as Map<String, dynamic>)).toList(),
+    next_offset: json['next_offset'] == null ? null : json['next_offset'] as int,
+    judicial_status: json['judicial_status'] == null ? null : JudicialStatus.fromJson(json['judicial_status'] as Map<String, dynamic>),
+    coverage_note: json['coverage_note'] as String,
+  );
+}
+
+class JudgmentHead {
+  final String id;
+  final String court_code;
+  final String court_name;
+  final String? seat;
+  final String? case_no_printed;
+  final String? case_type_name;
+  final String? case_number;
+  final int? case_year;
+  final String? decided_on;
+  final bool undated;
+  final String? decided_no_later_than;
+  final String? decided_not_before;
+  final String? undated_reason;
+  final String? hearing_on;
+  final List<String> bench_printed;
+  final int? bench_size;
+  final String? disposition;
+  final String? disposition_printed;
+  final bool? reported_flag;
+  final String? neutral_citation;
+  final String? parties_display;
+  final String? jurisdiction_printed;
+  final String? source_url;
+  const JudgmentHead({required this.id, required this.court_code, required this.court_name, required this.seat, required this.case_no_printed, required this.case_type_name, required this.case_number, required this.case_year, required this.decided_on, required this.undated, required this.decided_no_later_than, required this.decided_not_before, required this.undated_reason, required this.hearing_on, required this.bench_printed, required this.bench_size, required this.disposition, required this.disposition_printed, required this.reported_flag, required this.neutral_citation, required this.parties_display, required this.jurisdiction_printed, required this.source_url});
+  factory JudgmentHead.fromJson(Map<String, dynamic> json) => JudgmentHead(
+    id: json['id'] as String,
+    court_code: json['court_code'] as String,
+    court_name: json['court_name'] as String,
+    seat: json['seat'] == null ? null : json['seat'] as String,
+    case_no_printed: json['case_no_printed'] == null ? null : json['case_no_printed'] as String,
+    case_type_name: json['case_type_name'] == null ? null : json['case_type_name'] as String,
+    case_number: json['case_number'] == null ? null : json['case_number'] as String,
+    case_year: json['case_year'] == null ? null : json['case_year'] as int,
+    decided_on: json['decided_on'] == null ? null : json['decided_on'] as String,
+    undated: json['undated'] as bool,
+    decided_no_later_than: json['decided_no_later_than'] == null ? null : json['decided_no_later_than'] as String,
+    decided_not_before: json['decided_not_before'] == null ? null : json['decided_not_before'] as String,
+    undated_reason: json['undated_reason'] == null ? null : json['undated_reason'] as String,
+    hearing_on: json['hearing_on'] == null ? null : json['hearing_on'] as String,
+    bench_printed: (json['bench_printed'] as List).map((v) => v as String).toList(),
+    bench_size: json['bench_size'] == null ? null : json['bench_size'] as int,
+    disposition: json['disposition'] == null ? null : json['disposition'] as String,
+    disposition_printed: json['disposition_printed'] == null ? null : json['disposition_printed'] as String,
+    reported_flag: json['reported_flag'] == null ? null : json['reported_flag'] as bool,
+    neutral_citation: json['neutral_citation'] == null ? null : json['neutral_citation'] as String,
+    parties_display: json['parties_display'] == null ? null : json['parties_display'] as String,
+    jurisdiction_printed: json['jurisdiction_printed'] == null ? null : json['jurisdiction_printed'] as String,
+    source_url: json['source_url'] == null ? null : json['source_url'] as String,
+  );
+}
+
+class JudgmentOpinion {
+  final int ordinal;
+  final String? kind;
+  final String? heading_printed;
+  final String? author_printed;
+  const JudgmentOpinion({required this.ordinal, required this.kind, required this.heading_printed, required this.author_printed});
+  factory JudgmentOpinion.fromJson(Map<String, dynamic> json) => JudgmentOpinion(
+    ordinal: json['ordinal'] as int,
+    kind: json['kind'] == null ? null : json['kind'] as String,
+    heading_printed: json['heading_printed'] == null ? null : json['heading_printed'] as String,
+    author_printed: json['author_printed'] == null ? null : json['author_printed'] as String,
+  );
+}
+
+class JudgmentParagraph {
+  final String id;
+  final String kind;
+  final String? printed_no;
+  final int? page_first;
+  final String text;
+  final int? opinion;
+  final String? opinion_kind;
+  final String citation;
+  const JudgmentParagraph({required this.id, required this.kind, required this.printed_no, required this.page_first, required this.text, required this.opinion, required this.opinion_kind, required this.citation});
+  factory JudgmentParagraph.fromJson(Map<String, dynamic> json) => JudgmentParagraph(
+    id: json['id'] as String,
+    kind: json['kind'] as String,
+    printed_no: json['printed_no'] == null ? null : json['printed_no'] as String,
+    page_first: json['page_first'] == null ? null : json['page_first'] as int,
+    text: json['text'] as String,
+    opinion: json['opinion'] == null ? null : json['opinion'] as int,
+    opinion_kind: json['opinion_kind'] == null ? null : json['opinion_kind'] as String,
+    citation: json['citation'] as String,
+  );
+}
+
+class CitedProvision {
+  final String provision_id;
+  final String citation;
+  final String? label;
+  final String? kind;
+  final String? law_title;
+  final int? law_year;
+  final String? law_kind;
+  final String? role;
+  final int mentions;
+  final String status_now;
+  const CitedProvision({required this.provision_id, required this.citation, required this.label, required this.kind, required this.law_title, required this.law_year, required this.law_kind, required this.role, required this.mentions, required this.status_now});
+  factory CitedProvision.fromJson(Map<String, dynamic> json) => CitedProvision(
+    provision_id: json['provision_id'] as String,
+    citation: json['citation'] as String,
+    label: json['label'] == null ? null : json['label'] as String,
+    kind: json['kind'] == null ? null : json['kind'] as String,
+    law_title: json['law_title'] == null ? null : json['law_title'] as String,
+    law_year: json['law_year'] == null ? null : json['law_year'] as int,
+    law_kind: json['law_kind'] == null ? null : json['law_kind'] as String,
+    role: json['role'] == null ? null : json['role'] as String,
+    mentions: json['mentions'] as int,
+    status_now: json['status_now'] as String,
+  );
+}
+
+class CitedCase {
+  final String raw;
+  final String resolution;
+  final String? judgment_id;
+  final String? case_key;
+  const CitedCase({required this.raw, required this.resolution, required this.judgment_id, required this.case_key});
+  factory CitedCase.fromJson(Map<String, dynamic> json) => CitedCase(
+    raw: json['raw'] as String,
+    resolution: json['resolution'] as String,
+    judgment_id: json['judgment_id'] == null ? null : json['judgment_id'] as String,
+    case_key: json['case_key'] == null ? null : json['case_key'] as String,
+  );
+}
+
+class AppealFrom {
+  final String? relation;
+  final String? court_below;
+  final String? case_below;
+  final String? decided_below;
+  final String? outcome;
+  final bool outcome_withheld;
+  const AppealFrom({required this.relation, required this.court_below, required this.case_below, required this.decided_below, required this.outcome, required this.outcome_withheld});
+  factory AppealFrom.fromJson(Map<String, dynamic> json) => AppealFrom(
+    relation: json['relation'] == null ? null : json['relation'] as String,
+    court_below: json['court_below'] == null ? null : json['court_below'] as String,
+    case_below: json['case_below'] == null ? null : json['case_below'] as String,
+    decided_below: json['decided_below'] == null ? null : json['decided_below'] as String,
+    outcome: json['outcome'] == null ? null : json['outcome'] as String,
+    outcome_withheld: json['outcome_withheld'] as bool,
+  );
+}
+
+class CaseDecided {
+  final String case_key;
+  final String? role;
+  final String? case_type_name;
+  final String? case_number;
+  final int? case_year;
+  const CaseDecided({required this.case_key, required this.role, required this.case_type_name, required this.case_number, required this.case_year});
+  factory CaseDecided.fromJson(Map<String, dynamic> json) => CaseDecided(
+    case_key: json['case_key'] as String,
+    role: json['role'] == null ? null : json['role'] as String,
+    case_type_name: json['case_type_name'] == null ? null : json['case_type_name'] as String,
+    case_number: json['case_number'] == null ? null : json['case_number'] as String,
+    case_year: json['case_year'] == null ? null : json['case_year'] as int,
+  );
+}
+
+class CaseDecision {
+  final String judgment_id;
+  final String citation;
+  final String? decided_on;
+  final bool undated;
+  const CaseDecision({required this.judgment_id, required this.citation, required this.decided_on, required this.undated});
+  factory CaseDecision.fromJson(Map<String, dynamic> json) => CaseDecision(
+    judgment_id: json['judgment_id'] as String,
+    citation: json['citation'] as String,
+    decided_on: json['decided_on'] == null ? null : json['decided_on'] as String,
+    undated: json['undated'] as bool,
+  );
+}
+
+class JudgmentCase {
+  final String status;
+  final List<CaseDecided> cases_decided;
+  final List<CaseDecision> other_decisions;
+  final String? copy_of_judgment_id;
+  const JudgmentCase({required this.status, required this.cases_decided, required this.other_decisions, required this.copy_of_judgment_id});
+  factory JudgmentCase.fromJson(Map<String, dynamic> json) => JudgmentCase(
+    status: json['status'] as String,
+    cases_decided: (json['cases_decided'] as List).map((v) => CaseDecided.fromJson(v as Map<String, dynamic>)).toList(),
+    other_decisions: (json['other_decisions'] as List).map((v) => CaseDecision.fromJson(v as Map<String, dynamic>)).toList(),
+    copy_of_judgment_id: json['copy_of_judgment_id'] == null ? null : json['copy_of_judgment_id'] as String,
+  );
+}
+
+class PrivacyCategory {
+  final String code;
+  final String? name;
+  final String? basis_kind;
+  final String? basis;
+  const PrivacyCategory({required this.code, required this.name, required this.basis_kind, required this.basis});
+  factory PrivacyCategory.fromJson(Map<String, dynamic> json) => PrivacyCategory(
+    code: json['code'] as String,
+    name: json['name'] == null ? null : json['name'] as String,
+    basis_kind: json['basis_kind'] == null ? null : json['basis_kind'] as String,
+    basis: json['basis'] == null ? null : json['basis'] as String,
+  );
+}
+
+class JudgmentPrivacy {
+  final bool names_withheld;
+  final List<PrivacyCategory> categories;
+  const JudgmentPrivacy({required this.names_withheld, required this.categories});
+  factory JudgmentPrivacy.fromJson(Map<String, dynamic> json) => JudgmentPrivacy(
+    names_withheld: json['names_withheld'] as bool,
+    categories: (json['categories'] as List).map((v) => PrivacyCategory.fromJson(v as Map<String, dynamic>)).toList(),
+  );
+}
+
+class JudgmentPage {
+  final String as_of;
+  final String citation;
+  final JudgmentHead judgment;
+  final List<JudgmentOpinion> opinions;
+  final List<JudgmentParagraph> paragraphs;
+  final List<CitedProvision> statutes_cited;
+  final List<CitedCase> cases_cited;
+  final List<AppealFrom> appeal_from;
+  final JudgmentCase case_record;
+  final JudgmentPrivacy privacy;
+  final String note;
+  const JudgmentPage({required this.as_of, required this.citation, required this.judgment, required this.opinions, required this.paragraphs, required this.statutes_cited, required this.cases_cited, required this.appeal_from, required this.case_record, required this.privacy, required this.note});
+  factory JudgmentPage.fromJson(Map<String, dynamic> json) => JudgmentPage(
+    as_of: json['as_of'] as String,
+    citation: json['citation'] as String,
+    judgment: JudgmentHead.fromJson(json['judgment'] as Map<String, dynamic>),
+    opinions: (json['opinions'] as List).map((v) => JudgmentOpinion.fromJson(v as Map<String, dynamic>)).toList(),
+    paragraphs: (json['paragraphs'] as List).map((v) => JudgmentParagraph.fromJson(v as Map<String, dynamic>)).toList(),
+    statutes_cited: (json['statutes_cited'] as List).map((v) => CitedProvision.fromJson(v as Map<String, dynamic>)).toList(),
+    cases_cited: (json['cases_cited'] as List).map((v) => CitedCase.fromJson(v as Map<String, dynamic>)).toList(),
+    appeal_from: (json['appeal_from'] as List).map((v) => AppealFrom.fromJson(v as Map<String, dynamic>)).toList(),
+    case_record: JudgmentCase.fromJson(json['case_record'] as Map<String, dynamic>),
+    privacy: JudgmentPrivacy.fromJson(json['privacy'] as Map<String, dynamic>),
+    note: json['note'] as String,
+  );
+}
+
+class HistoryItem {
+  final String source;
+  final String? judgment_id;
+  final String court;
+  final String? relation;
+  final String? outcome;
+  final bool outcome_withheld;
+  final String? outcome_printed;
+  final String? decided_on;
+  final String? citation;
+  final String? upper_file_url;
+  const HistoryItem({required this.source, required this.judgment_id, required this.court, required this.relation, required this.outcome, required this.outcome_withheld, required this.outcome_printed, required this.decided_on, required this.citation, required this.upper_file_url});
+  factory HistoryItem.fromJson(Map<String, dynamic> json) => HistoryItem(
+    source: json['source'] as String,
+    judgment_id: json['judgment_id'] == null ? null : json['judgment_id'] as String,
+    court: json['court'] as String,
+    relation: json['relation'] == null ? null : json['relation'] as String,
+    outcome: json['outcome'] == null ? null : json['outcome'] as String,
+    outcome_withheld: json['outcome_withheld'] as bool,
+    outcome_printed: json['outcome_printed'] == null ? null : json['outcome_printed'] as String,
+    decided_on: json['decided_on'] == null ? null : json['decided_on'] as String,
+    citation: json['citation'] == null ? null : json['citation'] as String,
+    upper_file_url: json['upper_file_url'] == null ? null : json['upper_file_url'] as String,
+  );
+}
+
+class HistoryPage {
+  final String judgment_id;
+  final String as_of;
+  final List<HistoryItem> items;
+  final String coverage_note;
+  const HistoryPage({required this.judgment_id, required this.as_of, required this.items, required this.coverage_note});
+  factory HistoryPage.fromJson(Map<String, dynamic> json) => HistoryPage(
+    judgment_id: json['judgment_id'] as String,
+    as_of: json['as_of'] as String,
+    items: (json['items'] as List).map((v) => HistoryItem.fromJson(v as Map<String, dynamic>)).toList(),
+    coverage_note: json['coverage_note'] as String,
+  );
+}
+
+class PrecedentHitOut {
+  final String judgment_id;
+  final String paragraph_id;
+  final String citation;
+  final String court;
+  final String? case_type;
+  final String? case_key;
+  final String? decided_on;
+  final bool undated;
+  final String? decided_no_later_than;
+  final String? disposition;
+  final bool? reported;
+  final String text;
+  final String? parties_display;
+  final bool names_withheld;
+  final String? binding;
+  final List<String> subjects;
+  const PrecedentHitOut({required this.judgment_id, required this.paragraph_id, required this.citation, required this.court, required this.case_type, required this.case_key, required this.decided_on, required this.undated, required this.decided_no_later_than, required this.disposition, required this.reported, required this.text, required this.parties_display, required this.names_withheld, required this.binding, required this.subjects});
+  factory PrecedentHitOut.fromJson(Map<String, dynamic> json) => PrecedentHitOut(
+    judgment_id: json['judgment_id'] as String,
+    paragraph_id: json['paragraph_id'] as String,
+    citation: json['citation'] as String,
+    court: json['court'] as String,
+    case_type: json['case_type'] == null ? null : json['case_type'] as String,
+    case_key: json['case_key'] == null ? null : json['case_key'] as String,
+    decided_on: json['decided_on'] == null ? null : json['decided_on'] as String,
+    undated: json['undated'] as bool,
+    decided_no_later_than: json['decided_no_later_than'] == null ? null : json['decided_no_later_than'] as String,
+    disposition: json['disposition'] == null ? null : json['disposition'] as String,
+    reported: json['reported'] == null ? null : json['reported'] as bool,
+    text: json['text'] as String,
+    parties_display: json['parties_display'] == null ? null : json['parties_display'] as String,
+    names_withheld: json['names_withheld'] as bool,
+    binding: json['binding'] == null ? null : json['binding'] as String,
+    subjects: (json['subjects'] as List).map((v) => v as String).toList(),
+  );
+}
+
+class PrecedentSearchPage {
+  final String query;
+  final String as_of;
+  final String mode;
+  final String kind;
+  final String note;
+  final List<PrecedentHitOut> hits;
+  final String? coverage_gap;
+  final String coverage_note;
+  const PrecedentSearchPage({required this.query, required this.as_of, required this.mode, required this.kind, required this.note, required this.hits, required this.coverage_gap, required this.coverage_note});
+  factory PrecedentSearchPage.fromJson(Map<String, dynamic> json) => PrecedentSearchPage(
+    query: json['query'] as String,
+    as_of: json['as_of'] as String,
+    mode: json['mode'] as String,
+    kind: json['kind'] as String,
+    note: json['note'] as String,
+    hits: (json['hits'] as List).map((v) => PrecedentHitOut.fromJson(v as Map<String, dynamic>)).toList(),
+    coverage_gap: json['coverage_gap'] == null ? null : json['coverage_gap'] as String,
+    coverage_note: json['coverage_note'] as String,
+  );
+}

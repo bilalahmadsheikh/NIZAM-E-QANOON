@@ -1136,6 +1136,60 @@ Area: client · Status: Superseded by D-084 (the whole-page cloth; the hem, the 
   design/heritage_art.dart, presentation/discover.dart, presentation/heritage.dart; test/heritage_test.dart
   (golden embroidery.png, a review sheet at 3x).
 
+### D-184 · 2026-11-27 · Precedent in the app: a Judgments tab, a judgment reader, and the decisions citing a law
+Area: client, serving (docs/08 §content classes, docs/13; PRECEDENT-MODEL §2, §6; D-122, D-125, D-131, D-159–D-161) ·
+Status: standing
+- **Decision:** the app reads judgments the way it reads laws, and each points to the other.
+  - **A Judgments tab** (the fourth destination, labelled; Heritage moves to the fourth place). It has a search box
+    (`/v1/precedent/search`, discovery, no gate) and every court with what is held of it: judgments and years, a court
+    with none held listed as such. A court opens its judgments newest first, undated last, paged by keyset cursor.
+  - **A judgment reader** (`/judgment/:id`), in this order:
+    - the record: court, parties as published, the citation, the date or why there is none (D-124), bench, outcome;
+    - why names are withheld, with each category's recorded basis (D-131);
+    - the laws it cites, grouped by law. Each unit opens the law reader at that unit, and is marked when its text was
+      amended since the decision or is not in force on the chosen date ("the court read the law of its day");
+    - the text with printed paragraph numbers and opinion headings;
+    - the cases it cites (a held one opens), the other decisions in its case, the decision it heard on appeal, what
+      the courts above did, and the later judgments citing it.
+    - A search hit opens with its passage shown first and highlighted.
+  - **"Decisions citing this section"** below a unit's text, and **"Decisions citing this law"** on the law page, above
+    its long lazy section list. Both show the number held, newest first by default (owner, 27 Nov), with "Most
+    relevant" (D-161's order: construing judgments, apex courts, then newest) as the other choice, five shown and a
+    full paged list.
+- **Rules carried into the app:**
+  - What a judgment did to the decision below (`judgment_lineage.outcome`) is a machine reading, so the judgment page
+    now withholds it until a lawyer verifies it, as history and cited-by already did (PRECEDENT-MODEL §2). Until this
+    entry the judgment route returned it raw.
+  - Every list states what it was drawn from (`coverage_note`): "a short list is not proof that nothing else was
+    decided" (D-122).
+  - Every read carries `as_of`. A judgment decided after the chosen date is a 404 that says so, not "revision
+    unavailable".
+  - Offline is a quiet waiting line ("the law above is unaffected"), never an error: precedent is network-required
+    content (docs/08).
+- **Serving:**
+  - The precedent routes are typed (23 models; the Dart contract is regenerated), so internal columns (parser,
+    document ids, raw parties) no longer leave the API.
+  - New: `GET /v1/precedent/courts`, `GET /v1/precedent/courts/{court}/judgments`, `GET /v1/law/instruments/{id}/judgments`.
+    `GET /v1/law/provisions/{id}/judgments` gains `order` (default `recent`) and `offset`, with an exact `total`
+    (second copies excluded, D-125).
+  - `JudgmentRead.citing()` serves a unit or a whole law, any copy included (D-136).
+  - The court index is cached per release fingerprint, as search's coverage is (D-167).
+  - A precedent warm-up runs at API start, because the first search took 15 s cold.
+  - The judgment page's `case` field is `case_record` (`case` is a Dart keyword).
+- **Measured** (laptop, live database):
+  - Court index 278 ms (cached after); a court's page 60–130 ms.
+  - Decisions citing s.302 PPC (2,849 held): 269 ms newest, 134 ms relevant.
+  - The whole Penal Code (13,397 decisions): 467 ms.
+  - A judgment 437 ms; cited-by 102 ms; history 53 ms.
+- **Open:** the Limitation Act 1908's First Schedule articles are segmented as `section` units, so "Article 159 of the
+  Limitation Act" links correctly but renders "s. 159". That is a corpus labelling defect to repair with a replay, not
+  in the client.
+- Where: nizam/api/precedent.py, nizam/api/library.py (warm-up), nizam/storage/judgment_read.py (`citing`, `courts`,
+  `court_judgments`), tools/generate_library_contract.py, openapi/library-preview.json; apps/mobile lib/presentation/
+  {precedent,judgment}.dart, reader.dart, library.dart, lib/state/library_state.dart, lib/data/library_repository.dart,
+  lib/design/components.dart (navigation), lib/main.dart (routes); tests/test_precedent_routes.py, apps/mobile/test/
+  precedent_test.dart (fixture recorded from the API: a Lahore High Court judgment, no Supreme Court text, D-144).
+
 ### D-182 · 2026-11-27 · The 8B reranker in 4-bit (NF4): adopted for a one-card GPU host, beside fp16
 Area: L3 rerank, GPU profile (D-101, D-165, D-178) · Status: standing (provisional golden sets)
 - **Decision:** the GPU host may serve Qwen3-Reranker-8B in NF4 (D-165's configuration: NF4, fp16 compute, double

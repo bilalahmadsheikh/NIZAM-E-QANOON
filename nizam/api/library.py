@@ -358,6 +358,10 @@ def create_app(repository=None, judgments=None, search=None):
             if search_on:
                 from nizam.api import search as law_search
                 threading.Thread(target=law_search.warm, args=(resolved,), name='warm-search', daemon=True).start()
+            if jrepo is not None:
+                from nizam.api import precedent as precedent_routes
+                threading.Thread(target=precedent_routes.warm, args=(jrepo, resolved), name='warm-precedent',
+                                 daemon=True).start()
         yield
         repo.close()
         if jrepo is not None:

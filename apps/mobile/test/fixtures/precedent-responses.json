@@ -1,0 +1,908 @@
+{
+ "_judgment": "4ff38715-885a-48f4-8556-f312cfce5f27",
+ "_provision": "ed178a43-e4a1-4a18-bd3c-8b945ef5534c",
+ "_instrument": "40689a31-cc0e-45ae-bd7f-044ea05c8021",
+ "/v1/precedent/courts": {
+  "items": [
+   {
+    "code": "FCC",
+    "name": "Federal Constitutional Court of Pakistan",
+    "court_class": "constitutional_apex",
+    "judgments": 134,
+    "first_decided": "2025-12-02",
+    "last_decided": "2026-11-23"
+   },
+   {
+    "code": "SC",
+    "name": "Supreme Court of Pakistan",
+    "court_class": "apex",
+    "judgments": 3205,
+    "first_decided": "2002-04-10",
+    "last_decided": "2026-11-19"
+   },
+   {
+    "code": "AJKSC",
+    "name": "Supreme Court of Azad Jammu and Kashmir",
+    "court_class": "apex",
+    "judgments": 673,
+    "first_decided": "2013-01-10",
+    "last_decided": "2026-11-17"
+   },
+   {
+    "code": "GBSAC",
+    "name": "Gilgit-Baltistan Supreme Appellate Court",
+    "court_class": "apex",
+    "judgments": 632,
+    "first_decided": "2010-03-10",
+    "last_decided": "2021-08-13"
+   },
+   {
+    "code": "FSC",
+    "name": "Federal Shariat Court",
+    "court_class": "shariat",
+    "judgments": 281,
+    "first_decided": "1981-05-27",
+    "last_decided": "2026-05-18"
+   },
+   {
+    "code": "SHC",
+    "name": "High Court of Sindh",
+    "court_class": "high_court",
+    "judgments": 45615,
+    "first_decided": "2007-02-13",
+    "last_decided": "2026-11-24"
+   },
+   {
+    "code": "LHC",
+    "name": "Lahore High Court",
+    "court_class": "high_court",
+    "judgments": 8063,
+    "first_decided": "2010-10-29",
+    "last_decided": "2026-11-20"
+   },
+   {
+    "code": "IHC",
+    "name": "Islamabad High Court",
+    "court_class": "high_court",
+    "judgments": 2736,
+    "first_decided": "2011-02-24",
+    "last_decided": "2026-11-16"
+   },
+   {
+    "code": "PHC",
+    "name": "Peshawar High Court",
+    "court_class": "high_court",
+    "judgments": 2679,
+    "first_decided": "2010-02-23",
+    "last_decided": "2026-11-16"
+   },
+   {
+    "code": "AJKHC",
+    "name": "High Court of Azad Jammu and Kashmir",
+    "court_class": "high_court",
+    "judgments": 203,
+    "first_decided": "2022-06-08",
+    "last_decided": "2026-10-26"
+   },
+   {
+    "code": "BHC",
+    "name": "High Court of Balochistan",
+    "court_class": "high_court",
+    "judgments": 30,
+    "first_decided": "2013-08-22",
+    "last_decided": "2022-09-30"
+   },
+   {
+    "code": "GBCC",
+    "name": "Gilgit-Baltistan Chief Court",
+    "court_class": "high_court",
+    "judgments": 22,
+    "first_decided": "2018-06-01",
+    "last_decided": "2019-11-27"
+   }
+  ],
+  "total_judgments": 64273,
+  "coverage_note": "From 64,273 judgments of 12 courts held, decided 1981–2026. A judgment not held is not shown, so a short list is not proof that nothing else was decided."
+ },
+ "/v1/precedent/courts/LHC/judgments": {
+  "as_of": "2026-11-27",
+  "items": [
+   {
+    "judgment_id": "e1af572d-674f-4f0e-a657-665013504799",
+    "citation": "Lahore High Court, WP No.14169 of 2017, decided 20 Nov 2026",
+    "court": "Lahore High Court",
+    "case_type": "Writ Petition",
+    "case_key": "LHC/WP/14169/2017",
+    "decided_on": "2026-11-20",
+    "undated": false,
+    "decided_no_later_than": null,
+    "decided_not_before": null,
+    "parties_display": "Qaisar Iqbal and others v. Additional District Judge, Sialkot and others",
+    "names_withheld": false,
+    "disposition": "allowed",
+    "reported": true,
+    "mentions": null,
+    "roles": [],
+    "treatments": [],
+    "treatments_awaiting_review": 0,
+    "cited_as": null
+   },
+   {
+    "judgment_id": "9e6d64a1-b214-4cd4-9896-fea5c49e96b2",
+    "citation": "Lahore High Court, C.M No.40374/2026, decided 19 Nov 2026",
+    "court": "Lahore High Court",
+    "case_type": "Civil Miscellaneous",
+    "case_key": "LHC/CM/40374/2026",
+    "decided_on": "2026-11-19",
+    "undated": false,
+    "decided_no_later_than": null,
+    "decided_not_before": null,
+    "parties_display": "Nuzhat Saeed v. Mst. Hassan Afza etc",
+    "names_withheld": false,
+    "disposition": null,
+    "reported": true,
+    "mentions": null,
+    "roles": [],
+    "treatments": [],
+    "treatments_awaiting_review": 0,
+    "cited_as": null
+   },
+   {
+    "judgment_id": "b7af413f-f046-4a43-bd90-9826e0655dc4",
+    "citation": "Lahore High Court, STR No.40130/2022, decided 18 Nov 2026",
+    "court": "Lahore High Court",
+    "case_type": "Sales Tax Reference",
+    "case_key": "LHC/STR/40130/2022",
+    "decided_on": "2026-11-18",
+    "undated": false,
+    "decided_no_later_than": null,
+    "decided_not_before": null,
+    "parties_display": "Commissioner Inland v. M/s Shoaib Traders Revenue",
+    "names_withheld": false,
+    "disposition": "dismissed",
+    "reported": true,
+    "mentions": null,
+    "roles": [],
+    "treatments": [],
+    "treatments_awaiting_review": 0,
+    "cited_as": null
+   },
+   {
+    "judgment_id": "4ff38715-885a-48f4-8556-f312cfce5f27",
+    "citation": "Lahore High Court, WRIT PETITION NO.2271 OF 2026, decided 17 Nov 2026",
+    "court": "Lahore High Court",
+    "case_type": "Writ Petition",
+    "case_key": "LHC/WP/2271/2026",
+    "decided_on": "2026-11-17",
+    "undated": false,
+    "decided_no_later_than": null,
+    "decided_not_before": null,
+    "parties_display": "ZAHID BASHIR v. LEARNED SENIOR CIVIL JUDGE, SPECIAL JUDGE",
+    "names_withheld": false,
+    "disposition": "dismissed",
+    "reported": true,
+    "mentions": null,
+    "roles": [],
+    "treatments": [],
+    "treatments_awaiting_review": 0,
+    "cited_as": null
+   },
+   {
+    "judgment_id": "b9a4f857-111b-4ce4-a64d-ae8c8efe7230",
+    "citation": "Lahore High Court, Writ Petition No. 6570 of 2026, decided 17 Nov 2026",
+    "court": "Lahore High Court",
+    "case_type": "Writ Petition",
+    "case_key": "LHC/WP/6570/2026",
+    "decided_on": "2026-11-17",
+    "undated": false,
+    "decided_no_later_than": null,
+    "decided_not_before": null,
+    "parties_display": "Naila Mumtaz and another v. Govt. of the Punjab etc",
+    "names_withheld": false,
+    "disposition": "disposed",
+    "reported": true,
+    "mentions": null,
+    "roles": [],
+    "treatments": [],
+    "treatments_awaiting_review": 0,
+    "cited_as": null
+   }
+  ],
+  "next_cursor": "W2ZhbHNlLCAiMjAyNi0xMS0xNyIsICJiOWE0Zjg1Ny0xMTFiLTRjZTQtYTY0ZC1hZThjOGVmZTcyMzAiXQ==",
+  "coverage_note": "From 8,063 judgments of 1 courts held, decided 2010–2026. A judgment not held is not shown, so a short list is not proof that nothing else was decided."
+ },
+ "/v1/precedent/judgments/4ff38715-885a-48f4-8556-f312cfce5f27": {
+  "as_of": "2026-11-27",
+  "citation": "Lahore High Court, WRIT PETITION NO.2271 OF 2026, decided 17 Nov 2026",
+  "judgment": {
+   "id": "4ff38715-885a-48f4-8556-f312cfce5f27",
+   "court_code": "LHC",
+   "court_name": "Lahore High Court",
+   "seat": "Rawalpindi",
+   "case_no_printed": "WRIT PETITION NO.2271 OF 2026",
+   "case_type_name": "Writ Petition",
+   "case_number": "2271",
+   "case_year": 2026,
+   "decided_on": "2026-11-17",
+   "undated": false,
+   "decided_no_later_than": null,
+   "decided_not_before": null,
+   "undated_reason": null,
+   "hearing_on": "2026-10-05",
+   "bench_printed": [],
+   "bench_size": null,
+   "disposition": "dismissed",
+   "disposition_printed": "Consequently, the instant petition, being devoid of any merits is dismissed, with no order as to costs.",
+   "reported_flag": true,
+   "neutral_citation": null,
+   "parties_display": "ZAHID BASHIR v. LEARNED SENIOR CIVIL JUDGE, SPECIAL JUDGE",
+   "jurisdiction_printed": null,
+   "source_url": "https://sys.lhc.gov.pk/appjudgments/2026LHC8844.pdf"
+  },
+  "opinions": [
+   {
+    "ordinal": 0,
+    "kind": "judgment_of_court",
+    "heading_printed": "JUDGMENT",
+    "author_printed": "Mirza Viqas Rauf, J."
+   }
+  ],
+  "paragraphs": [
+   {
+    "id": "efe40261-7164-49bc-be30-0a1a7a838bcb",
+    "kind": "body",
+    "printed_no": null,
+    "page_first": 1,
+    "text": "Mirza Viqas Rauf, J. This petition in terms of Article 199 of the Constitution of the Islamic Republic of Pakistan, 1973 stems from order dated 04th June, 2026, whereby learned Special Judge (Rent), Jhelum (hereinafter referred to as “Rent Tribunal”) proceeded to allow leave to contest to respondent No.2 (hereinafter referred to as “respondent”) raising the pivotal question canvassed before this Court qua true import of Sub-Section (2) of Section 22 of the Punjab Rented Premises Act, 2009 (hereinafter referred to as “Act, 2009”).",
+    "opinion": 0,
+    "opinion_kind": "judgment_of_court",
+    "citation": "Lahore High Court, WRIT PETITION NO.2271 OF 2026, decided 17 Nov 2026, p. 1"
+   },
+   {
+    "id": "aa20cc70-c07c-4e5b-8e7d-0275c89ce644",
+    "kind": "body",
+    "printed_no": "2",
+    "page_first": 1,
+    "text": "Before embarking upon the question raised, herein, it would be advantageous to first have a preview of the necessary facts related to the matter in issue. The petitioner, herein, filed an application under Section 19 of the Act, 2009 before the Rent Tribunal, seeking eviction of the respondent inter alia on the grounds of expiry of tenancy period and default in payment of rent. The application was resisted by the respondent, who filed an application for leave to contest, denying the existence of relationship of landlord and tenant. Leave was allowed by way of the impugned order which has now been assailed before this Court mainly on the ground that leave to contest was not filed within prescribed period of time.",
+    "opinion": 0,
+    "opinion_kind": "judgment_of_court",
+    "citation": "Lahore High Court, WRIT PETITION NO.2271 OF 2026, decided 17 Nov 2026, para 2"
+   },
+   {
+    "id": "4a600185-0f31-4cf1-ad1e-b6401392693f",
+    "kind": "body",
+    "printed_no": "3",
+    "page_first": 2,
+    "text": "I have heard learned counsel for the petitioner as well as respondent at considerable length and also perused the record in the light of their respective contentions.",
+    "opinion": 0,
+    "opinion_kind": "judgment_of_court",
+    "citation": "Lahore High Court, WRIT PETITION NO.2271 OF 2026, decided 17 Nov 2026, para 3"
+   },
+   {
+    "id": "10026d69-029a-4ee8-9406-6380299eb39d",
+    "kind": "body",
+    "printed_no": "4",
+    "page_first": 2,
+    "text": "This case has a bit of checkered history at its back. The petitioner claiming himself to be landlord of four shops situated in Abdullah Market, Library Road, Jhelum, (hereinafter referred to as “premises in question”) moved an application under Section 19 of the Act, 2009, seeking eviction of the respondent on the grounds noted hereinabove. In order to resist the application, the respondent filed an application in terms of Section 22 of the Act, 2009, seeking leave to contest which was initially declined vide order dated 06th December, 2021 and eviction order was passed. Feeling aggrieved, the respondent challenged said order before the learned Additional District Judge, Jhelum through an appeal, who proceeded to allow the same vide judgment dated 01st June, 2022. The petitioner, feeling offended, filed W.P.No.1638 of 2022, which came up for hearing before this Court and was accepted vide judgment dated 24th October, 2022 with the following observations: - 6. The petitioners claiming themselves the landlord of the premises in question moved an ejectment petition under section 19 of the “Act 2009” seeking eviction of the “respondent” on multiple grounds as are narrated hereinabove. It is an admitted fact that premises in question were originally owned by Muhammad Bashir who died on 16th May, 2016 and the petitioners are his legal heirs. The “respondent” is also admittedly son in law of Muhammad Bashir. While resisting the ejectment proceedings, the “respondent” in his application for leave to contest denied the existence of relationship of landlord and tenant on the ground that his wife is real daughter of deceased Muhammad Bashir and with the death she has also became one of the co-owner. Leaving aside this aspect, in terms of Sub-section (2) of Section 22 of the “Act 2009”, it is incumbent upon the “respondent” to move the application for leave to contest within 10 days from his first appearance before the learned Rent Tribunal but apparently this was not done well within time. As per contemplation of Section 3 of the Limitation Act, 1908, the question relating to the limitation is always pivotal and goes to the very root of the case. It is as important as jurisdiction of the court. In terms of Section 3 of the Limitation Act, 1908, every court is supposed to ponder upon the question of limitation, even if it is not pressed by any of the side. I am afraid that none of the court below have adverted to this very pivotal question which by itself is sufficient to render both the judgments nullity in the eyes of law. Thus, without pondering upon the merits or demerits of the case, lest it would prejudice the case of either party before learned Rent Tribunal, this petition is allowed, as a result thereof, impugned judgment dated 01st June, 2022, passed by learned Additional District Judge, Jhelum as well as order dated 06th December, 2021, passed by the learned Senior Civil Judge (Civil Division) / Rent Tribunal, Jhelum are set-aside, as a sequel whereof, ejectment petition as well as application for leave to contest shall be deemed to be pending before learned Special Judge Rent, Jhelum who shall decide the same afresh on its own merits after application of judicious minds to the facts of the case. Needless to observe that learned Special Judge Rent shall also take into consideration the question of limitation while deciding the fate of the application for leave to contest. It is expected from the learned Special Judge Rent to decide the ejectment petition expeditiously and swiftly preferably within two months from the date of first appearance of the parties before the said Court. Parties are directed to appear before the said court on 17.11.2022. Office to transmit copy of this order to the concerned quarter for compliance.",
+    "opinion": 0,
+    "opinion_kind": "judgment_of_court",
+    "citation": "Lahore High Court, WRIT PETITION NO.2271 OF 2026, decided 17 Nov 2026, para 4"
+   },
+   {
+    "id": "00b54367-0e8e-46df-b599-8244e4bc1993",
+    "kind": "body",
+    "printed_no": "5",
+    "page_first": 3,
+    "text": "In the second round, not only the leave was declined but the eviction application was also dismissed by the Rent Tribunal vide order dated 06th January, 2023. This prompted the petitioner to prefer an appeal before the learned Additional District Judge, Jhelum, who proceeded to dismiss the same vide judgment dated 31st May, 2023. This followed W.P.No.2835 of 2023, which was allowed vide order dated 14th May, 2025. Relevant excerpt from the same is reproduced: - 2. Learned counsel for the Petitioners submits that this is second round of litigation and the learned Courts below erred in law while rejecting their ejectment petition on the ground that there is no relationship of landlord and tenant between the Parties. He added that the Special Judge Rent did not consider the written rent deed between the Parties rather passed the impugned order without framing of issues and recording of evidence, which is against the procedure provided under the Punjab Rented Premises Act 2009 (the \"Act\"), hence, the impugned orders/judgments are liable to be set aside. 3. When confronted, learned counsel for the Respondents did not submit any satisfactory reply. He, however, after arguing the case at some length submitted that he has no objection on acceptance of instant writ petition and setting-aside of aforesaid impugned orders/judgments for its proper adjudication in accordance with law. 4. In view of above concurrence of both the learned counsel for parties, this petition is allowed, the impugned orders/judgments dated 06.01.2023 and 31.05.2023 passed by learned Courts below are set-aside and the matter is remitted back to the Special Judge Rent, Jhelum to decide the same afresh strictly in accordance with the procedure as provided under the Act after giving full opportunity of fair trial to both the parties. No order as to costs. In pursuance to the above said order, the Rent Tribunal delved upon the application for leave to contest and finding sufficient grounds, proceeded to allow the same through the impugned order.",
+    "opinion": 0,
+    "opinion_kind": "judgment_of_court",
+    "citation": "Lahore High Court, WRIT PETITION NO.2271 OF 2026, decided 17 Nov 2026, para 5"
+   },
+   {
+    "id": "299661c6-41d6-472d-8c05-0303c069b50f",
+    "kind": "body",
+    "printed_no": "6",
+    "page_first": 4,
+    "text": "The main ground for assailance by the petitioner qua leave granting order is that the application for leave to contest was filed beyond the period of limitation so it should have been dismissed instead of allowing it. In order to properly comprehend the proposition, canvassed in this constitutional petition, it would be advantageous to have a recourse to Section 22 of the Act, 2009, which is directly relevant for the said purpose. For ready reference and convenience, same is reproduced below: “22. Leave to contest.– (1) A Rent Tribunal shall not allow a respondent to defend the application unless he obtains leave to contest. (2) Subject to this Act, a respondent shall file an application for leave to contest within ten days of his first appearance in the Rent Tribunal. (3) An application for leave to contest shall be in the form of a written reply, stating grounds on which the leave is sought and shall be accompanied by an affidavit of the respondent, copy of all relevant documents in his possession and, if desired, affidavits of not more than two witnesses. (4) The Rent Tribunal shall not allow leave to contest to a respondent unless the application discloses sufficient grounds for production of oral evidence. (5) The Rent Tribunal shall decide the application for leave to contest within a period of fifteen days from the date of its filing. (6) If the leave to contest is refused or the respondent has failed to file application for leave to contest within the stipulated time, the Rent Tribunal shall pass the final order.” (Underlining is supplied for emphasis) Mere glimpse of the above noted provision of the law clearly manifests that an application before the Rent Tribunal, filed under the Act, 2009, can only be contested by a respondent by moving an application for leave to contest within ten days of his first appearance before the Rent Tribunal.",
+    "opinion": 0,
+    "opinion_kind": "judgment_of_court",
+    "citation": "Lahore High Court, WRIT PETITION NO.2271 OF 2026, decided 17 Nov 2026, para 6"
+   }
+  ],
+  "statutes_cited": [
+   {
+    "provision_id": "ed178a43-e4a1-4a18-bd3c-8b945ef5534c",
+    "citation": "Constitution of the Islamic Republic of Pakistan, 1973, Art. 199",
+    "label": "199",
+    "kind": "section",
+    "law_title": "Constitution of the Islamic Republic of Pakistan",
+    "law_year": 1973,
+    "law_kind": "constitution",
+    "role": "cited",
+    "mentions": 1,
+    "status_now": "same_text"
+   },
+   {
+    "provision_id": "586b35b3-159e-4f72-8dcb-5223c8b4d3f8",
+    "citation": "Financial Institutions (Recovery of Finances) Ordinance, 2001, s. 10",
+    "label": "10",
+    "kind": "section",
+    "law_title": "Financial Institutions (Recovery of Finances) Ordinance, 2001",
+    "law_year": 2001,
+    "law_kind": "ordinance",
+    "role": "cited",
+    "mentions": 2,
+    "status_now": "same_text"
+   },
+   {
+    "provision_id": "54d074ac-b976-40a7-8b5a-a4d5c71465bb",
+    "citation": "PUNJAB RENTED PREMISES ACT 2009, s. 19",
+    "label": "19",
+    "kind": "section",
+    "law_title": "PUNJAB RENTED PREMISES ACT 2009",
+    "law_year": 2009,
+    "law_kind": "act",
+    "role": "cited",
+    "mentions": 3,
+    "status_now": "same_text"
+   },
+   {
+    "provision_id": "4b1ca9ea-d7de-4272-b82a-412760053075",
+    "citation": "Financial Institutions (Recovery of Finances) Ordinance, 2001, s. 9",
+    "label": "9",
+    "kind": "section",
+    "law_title": "Financial Institutions (Recovery of Finances) Ordinance, 2001",
+    "law_year": 2001,
+    "law_kind": "ordinance",
+    "role": "cited",
+    "mentions": 1,
+    "status_now": "same_text"
+   },
+   {
+    "provision_id": "d2551ebe-2eaf-4b6a-99d9-27be1583446f",
+    "citation": "PUNJAB RENTED PREMISES ACT 2009, s. 22",
+    "label": "22",
+    "kind": "section",
+    "law_title": "PUNJAB RENTED PREMISES ACT 2009",
+    "law_year": 2009,
+    "law_kind": "act",
+    "role": "cited",
+    "mentions": 3,
+    "status_now": "same_text"
+   },
+   {
+    "provision_id": "6af77a1f-5b5f-412c-89e4-030c2667a360",
+    "citation": "Limitation Act, 1908, s. 159",
+    "label": "159",
+    "kind": "section",
+    "law_title": "Limitation Act, 1908",
+    "law_year": 1908,
+    "law_kind": "act",
+    "role": "cited",
+    "mentions": 1,
+    "status_now": "same_text"
+   },
+   {
+    "provision_id": "3c660bd0-4550-4fc2-86a9-1f1a9000eb1f",
+    "citation": "LIMITATION ACT, 1908, s. 3",
+    "label": "3",
+    "kind": "section",
+    "law_title": "LIMITATION ACT, 1908",
+    "law_year": 1908,
+    "law_kind": "act",
+    "role": "cited",
+    "mentions": 3,
+    "status_now": "same_text"
+   }
+  ],
+  "cases_cited": [
+   {
+    "raw": "PLD 2012 Lahore 41",
+    "resolution": "not_held",
+    "judgment_id": null,
+    "case_key": null
+   },
+   {
+    "raw": "2023 SCMR 1451",
+    "resolution": "resolved",
+    "judgment_id": "e0340372-b67f-42f8-a6b7-963fb0dd4fb7",
+    "case_key": "SC/CP/2467/2020"
+   },
+   {
+    "raw": "2013 CLC 904",
+    "resolution": "not_held",
+    "judgment_id": null,
+    "case_key": null
+   },
+   {
+    "raw": "2017 SCMR 56",
+    "resolution": "resolved",
+    "judgment_id": "f1edb999-9e76-4aec-a2f2-ac1970cb2b3a",
+    "case_key": "SC/CP/2411/2014"
+   },
+   {
+    "raw": "2012 SCMR 91",
+    "resolution": "not_held",
+    "judgment_id": null,
+    "case_key": null
+   },
+   {
+    "raw": "2016 SCMR 834",
+    "resolution": "resolved",
+    "judgment_id": "a7a9c159-623c-447e-b378-47ff3c21e394",
+    "case_key": "SC/CA/1207/2004"
+   },
+   {
+    "raw": "2020 SCMR 260",
+    "resolution": "not_held",
+    "judgment_id": null,
+    "case_key": null
+   },
+   {
+    "raw": "2003 SCMR 1772",
+    "resolution": "not_held",
+    "judgment_id": null,
+    "case_key": null
+   },
+   {
+    "raw": "PLD 2025 Supreme Court 847",
+    "resolution": "not_held",
+    "judgment_id": null,
+    "case_key": null
+   },
+   {
+    "raw": "PLD 2018 Supreme Court 52",
+    "resolution": "resolved",
+    "judgment_id": "4641fc87-c3e4-4df3-9146-3414cdebadec",
+    "case_key": "SC/CA/1406/2016"
+   },
+   {
+    "raw": "2023 SCMR 334",
+    "resolution": "resolved",
+    "judgment_id": "4825b8f0-9b0b-44e2-9f0f-27f37943c9f2",
+    "case_key": "SC/CP/2021/2019"
+   },
+   {
+    "raw": "2022 SCMR 25",
+    "resolution": "resolved",
+    "judgment_id": "560236ef-9bb4-4ef1-a45b-10902645d5a1",
+    "case_key": "SC/CA/414/2021"
+   },
+   {
+    "raw": "1973 SCMR 140",
+    "resolution": "not_held",
+    "judgment_id": null,
+    "case_key": null
+   },
+   {
+    "raw": "2022 SCMR 1546",
+    "resolution": "resolved",
+    "judgment_id": "859aa2be-96fa-444b-8879-a5781d1a2a77",
+    "case_key": "SC/CA/1653/2021"
+   },
+   {
+    "raw": "2022 PLC (C.S) 1390",
+    "resolution": "not_held",
+    "judgment_id": null,
+    "case_key": null
+   },
+   {
+    "raw": "PLD 2017 Supreme Court 674",
+    "resolution": "not_held",
+    "judgment_id": null,
+    "case_key": null
+   },
+   {
+    "raw": "PLD 2012 SC 764",
+    "resolution": "not_held",
+    "judgment_id": null,
+    "case_key": null
+   },
+   {
+    "raw": "PLD 2013 SC 489",
+    "resolution": "not_held",
+    "judgment_id": null,
+    "case_key": null
+   },
+   {
+    "raw": "PLD 2014 SC 466",
+    "resolution": "not_held",
+    "judgment_id": null,
+    "case_key": null
+   }
+  ],
+  "appeal_from": [],
+  "case_record": {
+   "status": "grouped",
+   "cases_decided": [
+    {
+     "case_key": "LHC/WP/2271/2026",
+     "role": "lead",
+     "case_type_name": "Writ Petition",
+     "case_number": "2271",
+     "case_year": 2026
+    }
+   ],
+   "other_decisions": [],
+   "copy_of_judgment_id": null
+  },
+  "privacy": {
+   "names_withheld": false,
+   "categories": []
+  },
+  "note": "Judgments, as the courts published them. Legal information, not advice: read the judgment and its source before relying on it."
+ },
+ "/v1/precedent/judgments/4ff38715-885a-48f4-8556-f312cfce5f27/cited-by": {
+  "as_of": "2026-11-27",
+  "items": [],
+  "next_cursor": null,
+  "coverage_note": "From 64,273 judgments of 12 courts held, decided 1981–2026. A judgment not held is not shown, so a short list is not proof that nothing else was decided."
+ },
+ "/v1/precedent/judgments/4ff38715-885a-48f4-8556-f312cfce5f27/history": {
+  "judgment_id": "4ff38715-885a-48f4-8556-f312cfce5f27",
+  "as_of": "2026-11-27",
+  "items": [],
+  "coverage_note": "From 64,273 judgments of 12 courts held, decided 1981–2026. A judgment not held is not shown, so a short list is not proof that nothing else was decided."
+ },
+ "/v1/law/provisions/ed178a43-e4a1-4a18-bd3c-8b945ef5534c/judgments": {
+  "scope": "provision",
+  "id": "ed178a43-e4a1-4a18-bd3c-8b945ef5534c",
+  "as_of": "2026-11-27",
+  "order": "recent",
+  "total": 7358,
+  "items": [
+   {
+    "judgment_id": "4ebcd10d-5524-48d2-87f9-2ebf102ba03c",
+    "citation": "Federal Constitutional Court of Pakistan, C.As.567, 568 & 569/2011, decided 23 Nov 2026",
+    "court": "Federal Constitutional Court of Pakistan",
+    "case_type": "Civil Appeal",
+    "case_key": "FCC/CA/567/2011",
+    "decided_on": "2026-11-23",
+    "undated": false,
+    "decided_no_later_than": null,
+    "decided_not_before": null,
+    "parties_display": null,
+    "names_withheld": false,
+    "disposition": "dismissed",
+    "reported": true,
+    "mentions": 1,
+    "roles": [
+     "cited"
+    ],
+    "treatments": [],
+    "treatments_awaiting_review": 0,
+    "cited_as": null
+   },
+   {
+    "judgment_id": "0b9e9def-62fb-44bf-acc0-dcc188e9be83",
+    "citation": "High Court of Sindh, Constitutional Petition No.D-1042/2024, decided 19 Nov 2026",
+    "court": "High Court of Sindh",
+    "case_type": "Constitution Petition",
+    "case_key": "SHC/CP/D-1042/2024",
+    "decided_on": "2026-11-19",
+    "undated": false,
+    "decided_no_later_than": null,
+    "decided_not_before": null,
+    "parties_display": null,
+    "names_withheld": false,
+    "disposition": "dismissed",
+    "reported": null,
+    "mentions": 1,
+    "roles": [
+     "cited"
+    ],
+    "treatments": [],
+    "treatments_awaiting_review": 0,
+    "cited_as": null
+   },
+   {
+    "judgment_id": "4b109e05-a705-4ac5-93ed-f2969e8afdf2",
+    "citation": "High Court of Sindh, C.P. No.D-886 of 2026, decided 19 Nov 2026",
+    "court": "High Court of Sindh",
+    "case_type": "Constitution Petition",
+    "case_key": "SHC/CP/D-886/2026",
+    "decided_on": "2026-11-19",
+    "undated": false,
+    "decided_no_later_than": null,
+    "decided_not_before": null,
+    "parties_display": null,
+    "names_withheld": false,
+    "disposition": "dismissed",
+    "reported": null,
+    "mentions": 1,
+    "roles": [
+     "cited"
+    ],
+    "treatments": [],
+    "treatments_awaiting_review": 0,
+    "cited_as": null
+   },
+   {
+    "judgment_id": "730bcb2d-271d-4fa8-b2bd-ee67faf9453e",
+    "citation": "High Court of Sindh, C.P No.S-38 of 2026, decided 19 Nov 2026",
+    "court": "High Court of Sindh",
+    "case_type": "Constitution Petition",
+    "case_key": "SHC/CP/S-38/2026",
+    "decided_on": "2026-11-19",
+    "undated": false,
+    "decided_no_later_than": null,
+    "decided_not_before": null,
+    "parties_display": "Lal Muhammad Solangi and another v. Federation of Pakistan and others] Petitioners : Through Mr. Afaq Akhtar, Advocate. Respondent No.2 and 10 to 14 [official Respondents] : Through Mr. Abdul Same",
+    "names_withheld": false,
+    "disposition": null,
+    "reported": true,
+    "mentions": 4,
+    "roles": [
+     "cited"
+    ],
+    "treatments": [],
+    "treatments_awaiting_review": 0,
+    "cited_as": null
+   },
+   {
+    "judgment_id": "ed245eb3-1736-4990-8d4f-2fc690d5b68b",
+    "citation": "Federal Constitutional Court of Pakistan, C.P.L.A. Nos.5 AND 6 OF 2024, decided 19 Nov 2026",
+    "court": "Federal Constitutional Court of Pakistan",
+    "case_type": "Civil Petition for Leave to Appeal",
+    "case_key": "FCC/CP/5/2024",
+    "decided_on": "2026-11-19",
+    "undated": false,
+    "decided_no_later_than": null,
+    "decided_not_before": null,
+    "parties_display": null,
+    "names_withheld": false,
+    "disposition": null,
+    "reported": true,
+    "mentions": 1,
+    "roles": [
+     "cited"
+    ],
+    "treatments": [],
+    "treatments_awaiting_review": 0,
+    "cited_as": null
+   }
+  ],
+  "next_offset": 5,
+  "judicial_status": {
+   "verified": [],
+   "candidates_awaiting_review": 0,
+   "coverage": "only the judgments held are read; only lawyer-verified readings are stated"
+  },
+  "coverage_note": "From 64,273 judgments of 12 courts held, decided 1981–2026. A judgment not held is not shown, so a short list is not proof that nothing else was decided."
+ },
+ "/v1/law/instruments/40689a31-cc0e-45ae-bd7f-044ea05c8021/judgments": {
+  "scope": "instrument",
+  "id": "40689a31-cc0e-45ae-bd7f-044ea05c8021",
+  "as_of": "2026-11-27",
+  "order": "recent",
+  "total": 11509,
+  "items": [
+   {
+    "judgment_id": "4ebcd10d-5524-48d2-87f9-2ebf102ba03c",
+    "citation": "Federal Constitutional Court of Pakistan, C.As.567, 568 & 569/2011, decided 23 Nov 2026",
+    "court": "Federal Constitutional Court of Pakistan",
+    "case_type": "Civil Appeal",
+    "case_key": "FCC/CA/567/2011",
+    "decided_on": "2026-11-23",
+    "undated": false,
+    "decided_no_later_than": null,
+    "decided_not_before": null,
+    "parties_display": null,
+    "names_withheld": false,
+    "disposition": "dismissed",
+    "reported": true,
+    "mentions": 1,
+    "roles": [
+     "cited"
+    ],
+    "treatments": [],
+    "treatments_awaiting_review": 0,
+    "cited_as": null
+   },
+   {
+    "judgment_id": "0b9e9def-62fb-44bf-acc0-dcc188e9be83",
+    "citation": "High Court of Sindh, Constitutional Petition No.D-1042/2024, decided 19 Nov 2026",
+    "court": "High Court of Sindh",
+    "case_type": "Constitution Petition",
+    "case_key": "SHC/CP/D-1042/2024",
+    "decided_on": "2026-11-19",
+    "undated": false,
+    "decided_no_later_than": null,
+    "decided_not_before": null,
+    "parties_display": null,
+    "names_withheld": false,
+    "disposition": "dismissed",
+    "reported": null,
+    "mentions": 1,
+    "roles": [
+     "cited"
+    ],
+    "treatments": [],
+    "treatments_awaiting_review": 0,
+    "cited_as": null
+   },
+   {
+    "judgment_id": "4b109e05-a705-4ac5-93ed-f2969e8afdf2",
+    "citation": "High Court of Sindh, C.P. No.D-886 of 2026, decided 19 Nov 2026",
+    "court": "High Court of Sindh",
+    "case_type": "Constitution Petition",
+    "case_key": "SHC/CP/D-886/2026",
+    "decided_on": "2026-11-19",
+    "undated": false,
+    "decided_no_later_than": null,
+    "decided_not_before": null,
+    "parties_display": null,
+    "names_withheld": false,
+    "disposition": "dismissed",
+    "reported": null,
+    "mentions": 1,
+    "roles": [
+     "cited"
+    ],
+    "treatments": [],
+    "treatments_awaiting_review": 0,
+    "cited_as": null
+   },
+   {
+    "judgment_id": "4c28c928-9530-4066-9660-ee74e1289bf9",
+    "citation": "High Court of Sindh, Criminal Miscellaneous Application No.209 of 2025, decided 19 Nov 2026",
+    "court": "High Court of Sindh",
+    "case_type": "Criminal Miscellaneous Application",
+    "case_key": "SHC/CRLMA/209/2025",
+    "decided_on": "2026-11-19",
+    "undated": false,
+    "decided_no_later_than": null,
+    "decided_not_before": null,
+    "parties_display": null,
+    "names_withheld": false,
+    "disposition": "disposed",
+    "reported": null,
+    "mentions": 1,
+    "roles": [
+     "cited"
+    ],
+    "treatments": [],
+    "treatments_awaiting_review": 0,
+    "cited_as": null
+   },
+   {
+    "judgment_id": "4cbed15e-9cae-4196-972b-7fcdc9365e84",
+    "citation": "High Court of Sindh, Constitutional Petition No.D-685 of 2025, decided 19 Nov 2026",
+    "court": "High Court of Sindh",
+    "case_type": "Constitution Petition",
+    "case_key": "SHC/CP/D-685/2025",
+    "decided_on": "2026-11-19",
+    "undated": false,
+    "decided_no_later_than": null,
+    "decided_not_before": null,
+    "parties_display": null,
+    "names_withheld": false,
+    "disposition": "disposed",
+    "reported": null,
+    "mentions": 2,
+    "roles": [
+     "cited"
+    ],
+    "treatments": [],
+    "treatments_awaiting_review": 0,
+    "cited_as": null
+   }
+  ],
+  "next_offset": 5,
+  "judicial_status": null,
+  "coverage_note": "From 64,273 judgments of 12 courts held, decided 1981–2026. A judgment not held is not shown, so a short list is not proof that nothing else was decided."
+ },
+ "/v1/precedent/search": {
+  "query": "eviction of a tenant for default in rent",
+  "as_of": "2026-11-27",
+  "mode": "hybrid",
+  "kind": "precedent_discovery",
+  "note": "Judgments that bear on the question, with the law they read. Not legal advice and not an answer: binding status is from the recorded constitutional rules only, and the coverage below is all that was searched.",
+  "hits": [
+   {
+    "judgment_id": "9290690f-42fd-405e-9b1e-c58dc60ffbad",
+    "paragraph_id": "c6083a20-04c4-4f10-b29b-e931a12bb1ed",
+    "citation": "High Court of Sindh, Const. Petition No. S-1167 of 2025, date of decision not printed, para 12",
+    "court": "High Court of Sindh",
+    "case_type": "Constitution Petition",
+    "case_key": "SHC/CP/S-1167/2025",
+    "decided_on": null,
+    "undated": true,
+    "decided_no_later_than": "2026-11-24",
+    "disposition": "disposed",
+    "reported": true,
+    "text": "It is very strange rather shocking that learned trial court held that filing of the statement with delay amounted to default, particularly when no application to condone delay in submitting the proof was filed. Section 15(2)(ii) of the SRPO lays down the procedure to evict a tenant on the ground of default. This provision of law articulated that where landlord sought eviction of the tenant on the ground of default, the controller shall make an order, if he is satisfied that the tenant has failed to pay rent in respect of the premises in his possession within fifteen days after the expiry of the period fixed by mutual agreement between the tenant and landlord for payment of the rent, or in the absence of such agreement, within the sixty days after the rent has become due for payment. Section 15(2)(ii) provided an exception for eviction when the tenant on the first day of hearing admitted his liability to pay the rent claimed from him, the Controller shall, if he is satisfied that the tenant has not made such default on any previous occasion and the default is not exceeding six months, direct the tenant to pay all the rent claimed from him on or before the date to be fixed for the purpose and upon such payment, he shall reject the application of eviction. In the case of Petitioner there was no admission on the part of tenant that he was defaulter on the contrary he demonstrated his bona fides that on refusal to accept rent it was being deposited through MAK/PS MRC and trial court itself approved this practice by allowing Petitioner to continue deposit the rent in MRC proceedings.",
+    "parties_display": null,
+    "names_withheld": false,
+    "binding": null,
+    "subjects": [
+     "property_land"
+    ]
+   },
+   {
+    "judgment_id": "43f6d7ea-996f-4e53-bd6b-998743338f4a",
+    "paragraph_id": "b4a6e614-0254-4d12-966c-ba923012fa9c",
+    "citation": "Supreme Court of Pakistan, CIVIL APPEAL NO.222-L OF 2016, decided 10 Oct 2016, para 5",
+    "court": "Supreme Court of Pakistan",
+    "case_type": "Civil Appeal",
+    "case_key": "SC/CA/222-L/2016",
+    "decided_on": "2016-10-10",
+    "undated": false,
+    "decided_no_later_than": null,
+    "disposition": "allowed",
+    "reported": true,
+    "text": "The Ordinance was repealed by the Punjab Rented Premises Ordinance, 2007 which finally culminated into the Act. Again, in this special law (the Act) the jurisdiction of the Rent Tribunal is restricted to disputes which are covered by the Act in terms of subject matter, parties and territorial jurisdiction. Subject matter jurisdiction includes non-agricultural residential or non-residential buildings or rented land whereas in terms of territorial jurisdiction it is the same as the extent of the jurisdiction of the Rent Tribunal under the previous law. With respect to parties, as was the case under the earlier law, the Rent Tribunal would only assume jurisdiction over a matter once the jurisdictional threshold is crossed by establishing that the matter involves a landlord and tenant. ‘Tenant’ has been defined termination of his tenancy for the purpose of a proceeding under this Act; (ii) Legal heirs of a tenant in the event of death of the tenant who continue to be in occupation of the premises; and (iii) A sub-tenant who is in possession of the premises or part thereof with the written consent of the landlord…” Section 24 of the Act reads as under: “24. Payment of rent and other dues for pending proceedings.—(1) If an eviction application is filed, the Rent Tribunal, while granting leave to contest, shall direct the tenant to deposit the rent due from him within a specified time, and continue to deposit the same in accordance with the tenancy agreement or as may be directed by the Rent Tribunal till the final order. (Emphasis supplied) (2) If there is a dispute as to the amount of rent due or rate of rent, the Rent Tribunal shall tentatively determine the dispute and pass the order for deposit of the rent in terms of Sub-section (1). (3) In case the tenant has not paid a utility bill, the Rent Tribunal shall direct the tenant to pay the utility bill. (4) If a tenant fails to comply with a direction or order of the Rent Tribunal, the Rent Tribunal shall forthwith pass the final order.” Through the impugned judgment the learned High Court has tried to resolve the question at hand by dwelling upon the larger scheme of the new rent laws by trying to decipher the latent intent of the legislature, which in our view was completely unnecessary because the answer to the question is quite patent. A plain reading of Section 24 of the Act reproduced hereinabove makes it clear that a direction is not to be issued to the respondent of an eviction application but to a tenant. The use of the word ‘tenant’ as opposed to ‘respondent’ speaks to the legislative intent. This usage appears to be conscious and deliberate, because elsewhere in the Act where the parties to a lis are meant to be referred to without identifying their legal characters, the words ‘applicant’ and ‘respondent’ are used instead of ‘landlord’ and ‘tenant’ (see Sections 19, 21 and 22 etc.). Where there is a specific intention to do so and the attending context requires that the parties be referred to by their legal status, the legislature has used the words ‘landlord’ and ‘tenant’ (see Sections 5, 7, 9, 10, 11, 12, 13, 14, 15, 20, 24 etc.). It is a settled canon of statutory interpretation that where a statute uses a particular word(s), the presumption is that such word(s) is illustrative of the legislative intent unless there are very cogent reasons to displace the same and in our view, there are no such reasons that justify interpreting Section 24 of the Act in a way that defeats its express meaning. Therefore, it follows that where the relationship of landlord and tenant is denied, the Rent Tribunal would lack jurisdiction, on account of the doctrine of jurisdictional fact, to pass an order for payment of rent due under Section 24 of the Act until and unless the Tribunal positively ascertains the relationship of tenancy and establishes that the respondent to the eviction application is in fact a ‘tenant’ in terms of Section 2(l) of the Act. As regards the argument of the learned counsel for the respondent that where there is a contumacious denial by the respondent of an eviction application the Rent Tribunal should pass an order for payment of rent due, suffice it to say that contumacious denial of the relationship of tenancy would form the basis for declining relief to the respondent. Where the denial, prima facie, appears to be tainted and contumacious, the Rent Controller would refrain from granting leave to the respondent as a matter of right and course, in a perfunctory manner. Instead, when the Rent Tribunal, without framing an issue, concludes that the denial is contumacious in nature, it may refuse to grant leave and allow the eviction application. Whilst so doing, the Tribunal can simultaneously pass an order under Section 24 of the Act finally determining the rent due from the tenant and direct that the same be deposited/paid. However, where once leave has been granted and the Tribunal has first to decide the question of its own jurisdiction, then in that eventuality, on account of the clear provisions of Section 24 ibid read with the definition of the word ‘tenant’ appearing in the Act, the Rent Tribunal is precluded from passing an order without first determining the jurisdictional fact. Once the relationship of tenancy has been denied the jurisdiction of the Rent Tribunal has essentially been called into question and needs to be resolved before the Tribunal can proceed to pass an order for payment of rent due. It needs to be appreciated that the there is a distinction between an issue as to the very authority to adjudicate and those issues which may arise as between the parties. The Rent Controller must first establish relationship of landlord and tenant. Objections “to” proceedings must be distinguished from objections “in” the proceedings. Issue of jurisdiction may be raised by a party but it only concerns the court and the party over whom it is asked to assume jurisdiction.1To hold otherwise would be to defeat the express intention of the statute, which is that an order for payment of rent due should only be passed against a tenant, and not merely a respondent of an eviction application. The relationship of landlord and tenant is an essential question which has a direct effect upon the assumption and exercise of the jurisdiction of the Rent Tribunal, which (question) must necessarily be positively ascertained before passing an order for payment of rent due under Section 24 of the Act. The judgment of the High Court reported as Farrukh Nadeem Vs. Muhammad Ahmad Khan and another (2009 MLD 955) relied upon by the learned counsel for the respondent to the effect that where there is a contumacious denial an order under Section 13(6) of the Ordinance can be passed is bad law which cannot be sustained, thus this judgment is set aside. It may however be mentioned here that where default in the payment of rent is set out as a ground in the eviction application, the relationship of tenancy is denied by the respondent, leave is granted to the respondent of the case, an issue in this context is framed, evidence is led by the parties, and the Rent Tribunal comes to the conclusion that such relationship exists, the Tribunal by applying the principles of estoppel and the rule of forfeiture of tenancy shall straightaway pass an order of eviction against the respondent/tenant and shall also pass the final order regarding the amount of rent due to the landlord which the respondent (adjudged as a tenant) is obliged to pay, and such order shall be executable against the tenant, besides the execution of the 1Akhtar Ali Pervez Vs. Altafur Rehman (PLD 1963 (WP) Lah 390), Full Bench, J Manzur Qadir. eviction. However where grounds envisaged by Section 15 of the Act other than default are raised in an eviction application, obviously the Rent Tribunal after deciding the issue of relationship of tenancy and finding in favour of the landlord may frame further issues on merits and at that point of time pass an order under Section 24 ibid.",
+    "parties_display": "PPEAL NO.222-L OF 2016 (Against the judgment dated 10.6.2015 of the Lahore High Court, Lahore passed in W.P.No.3925/2015) Mian Umar Ikram-ul-Haque v. Dr. Shahida Hasnain and another",
+    "names_withheld": false,
+    "binding": null,
+    "subjects": [
+     "civil_procedure",
+     "property_land"
+    ]
+   },
+   {
+    "judgment_id": "1fd6d35e-efab-455e-afc9-dae434321975",
+    "paragraph_id": "ebca9098-846b-44fd-86d2-81eb897fcf22",
+    "citation": "Lahore High Court, WRIT PETITION NO.520 OF 2025, date of decision not printed, para 5",
+    "court": "Lahore High Court",
+    "case_type": "Writ Petition",
+    "case_key": "LHC/WP/520/2025",
+    "decided_on": null,
+    "undated": true,
+    "decided_no_later_than": "2026-09-08",
+    "disposition": "remanded",
+    "reported": true,
+    "text": "The dispute interse landlord and tenant within the Province of the Punjab was previously adjudicated under the Punjab Urban Rent Restriction Ordinance, 1959 (VI of 1959), which was promulgated to restrict the increase of the rent of certain premises within the limits of Urban Areas and the eviction of tenants therefrom in the Province of the Punjab. Nevertheless, in order to regulate the relationship of landlord and tenant, to provide a mechanism for settlement of their dispute in an expeditious and cost-effective manner and connected matters, Act, 2009 was promulgated on 17th November, 2009, which repealed the Punjab Urban Rent Restriction Ordinance, 1959 (VI of 1959) by virtue of its Section 35. Act, 2009 introduced a completely different mechanism and procedure for trying the dispute interse landlord and tenant. Chapter IV deals with establishment of Rent Tribunal and procedure. In terms of Section 16 of the Act, 2009, Government of the Punjab established Rent Tribunals consisting of Special Judges (Rent), who were appointed by the Government in consultation with the Lahore High Court. The Rent Tribunals, so established, are vested with exclusive jurisdiction over a case under the Act, 2009. Section 19 of the Act, 2009 prescribes procedure for filing of an application in respect of rented premises before the Rent Tribunal whereas Section 15 of Act, 2009 specifies grounds for eviction of a tenant which reads as under: - 15. Grounds for eviction.– A landlord may seek eviction of the tenant if– (a) the period of tenancy has expired; (b) the tenant has failed to pay or tender the rent within a period of thirty days after the expiry of the period stipulated in section 7; (c) the tenant has committed breach of a term or condition of the tenancy agreement; (d) the tenant has committed a violation of an obligation under section 13; (e) the tenant has used the premises for a purpose which is different from the purpose for which it has been let out; or (f) the tenant has sub-let the premises without the prior written consent of the landlord.",
+    "parties_display": "TANVEER AMJAD TAHIR v. SHAHID MEHMOOD and others",
+    "names_withheld": false,
+    "binding": null,
+    "subjects": [
+     "property_land"
+    ]
+   },
+   {
+    "judgment_id": "2a73c278-54a6-47d2-b164-ccd78bba25a4",
+    "paragraph_id": "a12b0d7b-1aaa-425e-8981-40987b733885",
+    "citation": "Lahore High Court, WRIT PETITION NO.1480 OF 2023, decided 16 Sep 2026, para 15",
+    "court": "Lahore High Court",
+    "case_type": "Writ Petition",
+    "case_key": "LHC/WP/1480/2023",
+    "decided_on": "2026-09-16",
+    "undated": false,
+    "decided_no_later_than": null,
+    "disposition": "dismissed",
+    "reported": true,
+    "text": "Section 19 of the Act, 2009, prescribes the procedure for filing of an application in respect of a rented premises before the Rent Tribunal established under the Act, 2009 whereas Section 15, which is part of Chapter-III, enumerates the grounds for eviction. For ready reference, the same is reproduced below:- 15. Grounds for eviction.– A landlord may seek eviction of the tenant if– (a) the period of tenancy has expired; (b) the tenant has failed to pay or tender the rent within a period of thirty days after the expiry of the period stipulated in section 7; (c) the tenant has committed breach of a term or condition of the tenancy agreement; (d) the tenant has committed a violation of an obligation under section 13; e) the tenant has used the premises for a purpose which is different from the purpose for which it has been let out; or (f) the tenant has sub-let the premises without the prior written consent of the landlord.",
+    "parties_display": "SHEIKH AAMIR and another v. IDREES JAVED and others",
+    "names_withheld": false,
+    "binding": null,
+    "subjects": [
+     "property_land",
+     "civil_procedure"
+    ]
+   },
+   {
+    "judgment_id": "52106de6-73ad-41c4-8d27-5afe3d87059f",
+    "paragraph_id": "06e80edf-88bb-4615-aefc-0253fa6365b9",
+    "citation": "High Court of Sindh, C.P No. S-299 of 2025, decided 16 Jun 2026, para 29",
+    "court": "High Court of Sindh",
+    "case_type": "Constitution Petition",
+    "case_key": "SHC/CP/S-299/2025",
+    "decided_on": "2026-06-16",
+    "undated": false,
+    "decided_no_later_than": null,
+    "disposition": "dismissed",
+    "reported": true,
+    "text": "It seems that the Rent Controller has held that the petitioner / tenant has committed default in payment of rents for certain period during the proceedings of rent case viz. after filing of ejectment application. It may be observed that filing of an ejectment application by the landlord, does not absolve the tenant of his obligation to pay monthly rent regularly. It would not be in the consonance of law for a tenant to withhold payment of rent on the ground that the landlord has filed an ejectment application. Needless to emphasize that even a default in payment of rent having occurred during the proceedings of a rent case and having not been pleaded or prayed for in the rent application, would be fatal to the case of the tenant.",
+    "parties_display": null,
+    "names_withheld": false,
+    "binding": null,
+    "subjects": [
+     "property_land"
+    ]
+   }
+  ],
+  "coverage_gap": null,
+  "coverage_note": "From 64,273 judgments of 12 courts held, decided 1981–2026. A judgment not held is not shown, so a short list is not proof that nothing else was decided."
+ }
+}

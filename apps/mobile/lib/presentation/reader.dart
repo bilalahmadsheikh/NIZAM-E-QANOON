@@ -7,6 +7,7 @@ import '../design/status_banner.dart';
 import '../domain/law_status.dart';
 import '../state/library_state.dart';
 import 'library.dart';
+import 'precedent.dart';
 import 'statute_text.dart';
 
 /// The reader. One request returns the opened unit and everything under it as operative_provision serves it at the
@@ -68,6 +69,15 @@ class ProvisionScreen extends ConsumerWidget {
                 SliverPadding(
                   padding: const EdgeInsets.fromLTRB(24, 20, 24, 0),
                   sliver: SliverToBoxAdapter(child: _Neighbours(id: id, instrumentKind: unit.item.instrument.kind)),
+                ),
+              // the decisions citing this unit (or a unit inside it), newest first (D-184): below the text and its
+              // neighbours, fetched beside them and never in their way
+              if (unit != null)
+                SliverPadding(
+                  padding: const EdgeInsets.fromLTRB(24, 32, 24, 0),
+                  sliver: SliverToBoxAdapter(
+                    child: CitingSection(scope: 'provision', id: id, noun: _citedNoun(unit.item)),
+                  ),
                 ),
               if (unit != null)
                 SliverPadding(
@@ -183,6 +193,13 @@ class ProvisionScreen extends ConsumerWidget {
       ),
     );
   }
+}
+
+/// 'section', 'Article', 'Part', 'Schedule': what "decisions citing this ..." names. An Article keeps its capital as
+/// the Constitution prints it; other units read in lower case.
+String _citedNoun(law.Provision item) {
+  final noun = item.kind == 'preamble' ? 'Preamble' : unitNoun(item.instrument.kind, item.kind);
+  return noun == 'Article' || noun == 'Preamble' ? noun : noun.toLowerCase();
 }
 
 /// Judge mode: the records behind what is shown, as they stand -- the as-at date, the territory, the serving

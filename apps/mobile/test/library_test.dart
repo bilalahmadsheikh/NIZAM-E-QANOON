@@ -300,12 +300,14 @@ void main() {
         isTrue,
       );
       // one request for the whole section: no per-sub-section reads (beside it, at most one for the units either
-      // side, which never carries text)
+      // side and one for the decisions citing it (D-184), neither of which carries text)
       expect(requested.where((uri) => uri.path.endsWith('/text')).length, 1);
+      expect(requested.where((uri) => uri.path.startsWith('/v1/law/provisions/') && uri.path.endsWith('/judgments'))
+          .length, lessThanOrEqualTo(1));
       expect(
         requested.where((uri) =>
             uri.path.startsWith('/v1/law/provisions/') && !uri.path.endsWith('/text') &&
-            !uri.path.endsWith('/neighbours')),
+            !uri.path.endsWith('/neighbours') && !uri.path.endsWith('/judgments')),
         isEmpty,
       );
       expect(requested.where((uri) => uri.path.endsWith('/neighbours')).length, lessThanOrEqualTo(1));
@@ -317,6 +319,9 @@ void main() {
         find.byType(MaterialApp),
         matchesGoldenFile('goldens/reader.png'),
       );
+      // below the decisions citing the unit (D-184), so scrolled to rather than already built
+      await tester.scrollUntilVisible(find.text('Source & edition'), 300,
+          scrollable: find.descendant(of: find.byType(CustomScrollView), matching: find.byType(Scrollable)).first);
       await tester.ensureVisible(find.text('Source & edition'));
       await tester.pumpAndSettle();
       await tester.tap(find.text('Source & edition'));
@@ -393,7 +398,8 @@ void main() {
       expect(requested.where((u) => u.path.endsWith('/text')).length, 1);
       expect(
           requested.where((u) =>
-              u.path.startsWith('/v1/law/provisions/') && !u.path.endsWith('/text') && !u.path.endsWith('/neighbours')),
+              u.path.startsWith('/v1/law/provisions/') && !u.path.endsWith('/text') && !u.path.endsWith('/neighbours') &&
+              !u.path.endsWith('/judgments')),
           isEmpty);
       await tester.pumpWidget(const SizedBox.shrink());
       await tester.pump(const Duration(minutes: 6));

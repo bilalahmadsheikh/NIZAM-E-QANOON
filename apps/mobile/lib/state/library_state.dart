@@ -181,8 +181,73 @@ final heritageProvider = FutureProvider<HeritagePage>(
 );
 
 /// The reader's territory ('' = none chosen: every law is returned, each with its own reach). Part of the scope,
-/// like the date: a Punjab reader must not be served a law that does not run in Punjab (docs/04 §6).
+/// like the date: a Punjab reader must not be served a law that does not run in Punjab (docs/04 Â§6).
 final territoryProvider = StateProvider<String>((ref) => '');
+
+// ------------------------------------------------------------------------------------------ precedent (D-184)
+
+/// Keeps a read for five minutes after its last screen closes: going back to a judgment and forward again, or from a
+/// judgment to a cited law and back, costs no request. The date is part of the key through ref.watch.
+void _keepFiveMinutes(Ref ref) {
+  final link = ref.keepAlive();
+  Timer? timer;
+  ref.onCancel(() => timer = Timer(const Duration(minutes: 5), link.close));
+  ref.onResume(() => timer?.cancel());
+  ref.onDispose(() => timer?.cancel());
+}
+
+/// The courts and what is held of each: one small request, kept for the session.
+final courtsProvider = FutureProvider<CourtsPage>((ref) => ref.watch(repositoryProvider).courts());
+
+/// A court's judgments, newest first, a page at a time.
+final courtJudgmentsProvider = StateNotifierProvider.autoDispose
+    .family<Pager<JudgmentCard>, AsyncValue<Paged<JudgmentCard>>, String>((ref, court) {
+  final repo = ref.watch(repositoryProvider);
+  final day = ref.watch(asOfProvider);
+  return Pager((after) async {
+    final page = await repo.courtJudgments(court, day, after: after);
+    return (page.items, page.next_cursor);
+  });
+});
+
+final judgmentProvider = FutureProvider.autoDispose.family<JudgmentPage, String>((ref, id) {
+  _keepFiveMinutes(ref);
+  return ref.watch(repositoryProvider).judgment(id, ref.watch(asOfProvider));
+});
+final citedByProvider = FutureProvider.autoDispose.family<JudgmentList, String>((ref, id) {
+  _keepFiveMinutes(ref);
+  return ref.watch(repositoryProvider).citedBy(id, ref.watch(asOfProvider));
+});
+final historyProvider = FutureProvider.autoDispose.family<HistoryPage, String>((ref, id) {
+  _keepFiveMinutes(ref);
+  return ref.watch(repositoryProvider).history(id, ref.watch(asOfProvider));
+});
+
+/// Which decisions citing a section or a law, and in which order ('recent' newest first, or 'relevant').
+typedef CitingQuery = ({String scope, String id, String order});
+
+/// The first few decisions citing a section or a law, shown beside its text: a preview, never in the text's way.
+final citingPreviewProvider = FutureProvider.autoDispose.family<CitingPage, CitingQuery>((ref, q) {
+  _keepFiveMinutes(ref);
+  return ref.watch(repositoryProvider).citing(q.scope, q.id, ref.watch(asOfProvider), order: q.order, limit: 5);
+});
+
+/// The full list of decisions citing a section or a law, paged by offset.
+final citingProvider = StateNotifierProvider.autoDispose
+    .family<Pager<JudgmentCard>, AsyncValue<Paged<JudgmentCard>>, CitingQuery>((ref, q) {
+  final repo = ref.watch(repositoryProvider);
+  final day = ref.watch(asOfProvider);
+  return Pager((after) async {
+    final page = await repo.citing(q.scope, q.id, day, order: q.order, offset: int.tryParse(after ?? '') ?? 0);
+    Future.microtask(() => ref.read(citingHeadProvider(q).notifier).state = page);
+    return (page.items, page.next_offset?.toString());
+  });
+});
+final citingHeadProvider = StateProvider.family<CitingPage?, CitingQuery>((ref, q) => null);
+
+/// Judgments bearing on a question; only for a query of two letters or more.
+final precedentSearchProvider = FutureProvider.autoDispose.family<PrecedentSearchPage, ({String q, String court})>(
+    (ref, query) => ref.watch(repositoryProvider).precedentSearch(query.q, ref.watch(asOfProvider), court: query.court));
 
 /// A unit and its served subtree. Kept for five minutes after the screen closes, so going back to a section and
 /// forward again costs no request; the date and territory are part of the key through ref.watch.

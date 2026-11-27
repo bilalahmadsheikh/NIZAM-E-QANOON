@@ -8,7 +8,9 @@ import 'presentation/catalogue.dart';
 import 'presentation/constitution.dart';
 import 'presentation/discover.dart';
 import 'presentation/heritage.dart';
+import 'presentation/judgment.dart';
 import 'presentation/library.dart';
+import 'presentation/precedent.dart';
 import 'presentation/reader.dart';
 import 'state/library_state.dart';
 
@@ -53,6 +55,32 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/provision/:id',
         pageBuilder: (context, state) => _stitched(state, ProvisionScreen(id: state.pathParameters['id']!)),
+      ),
+      // precedent (D-184): the Judgments tab, a court's decisions, one judgment, and the decisions citing a law
+      GoRoute(path: '/judgments', pageBuilder: (context, state) => _stitched(state, const PrecedentScreen())),
+      GoRoute(
+        path: '/court/:code',
+        pageBuilder: (context, state) => _stitched(state, CourtScreen(code: state.pathParameters['code']!)),
+      ),
+      GoRoute(
+        path: '/judgment/:id',
+        pageBuilder: (context, state) => _stitched(
+            state,
+            JudgmentScreen(
+                key: ValueKey(state.uri.toString()),
+                id: state.pathParameters['id']!,
+                paragraph: state.uri.queryParameters['paragraph'])),
+      ),
+      GoRoute(
+        path: '/citing/:scope/:id',
+        pageBuilder: (context, state) => _stitched(
+            state,
+            CitingScreen(
+              scope: state.pathParameters['scope'] == 'instrument' ? 'instrument' : 'provision',
+              id: state.pathParameters['id']!,
+              order: state.uri.queryParameters['order'] ?? 'recent',
+              noun: state.uri.queryParameters['noun'] ?? 'law',
+            )),
       ),
       // ?region= opens a region's panel (the home page's craft of the day, D-079)
       GoRoute(

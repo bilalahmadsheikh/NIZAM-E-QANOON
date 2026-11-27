@@ -7,6 +7,7 @@ import '../design/status_banner.dart';
 import '../domain/law_status.dart';
 import '../domain/law_units.dart';
 import '../state/library_state.dart';
+import 'precedent.dart';
 import 'sections.dart';
 export '../domain/law_units.dart';
 
@@ -190,7 +191,11 @@ class _InstrumentScreenState extends ConsumerState<InstrumentScreen> {
                           ),
                           const SizedBox(height: 24),
                           StatusBanner(instrumentWording(item)),
-                          const SizedBox(height: 20),
+                          const SizedBox(height: 24),
+                          // the decisions citing any section of this law, the newest two and a way to all (D-184):
+                          // above the section list, which is long and lazy, so it is never out of reach
+                          CitingSection(scope: 'instrument', id: item.id, noun: 'law', compact: true),
+                          const SizedBox(height: 24),
                           Row(
                             children: [
                               Expanded(

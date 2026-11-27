@@ -60,6 +60,9 @@ NEGATIVE_OUTCOMES = frozenset({"set_aside", "reversed", "modified", "remanded"})
 TREATMENT_NEGATIVE = frozenset({"overruled", "per_incuriam", "disapproved"})      # nizam.storage.treatment.NEGATIVE
 
 
+_COURTS: dict = {}          # courts() per release fingerprint (D-184)
+
+
 class JudgmentRead:
     def __init__(self, pool: ConnectionPool | None = None):
         self.pool = pool or ConnectionPool(dsn(), min_size=0, max_size=3, max_waiting=12, timeout=3, open=False,
@@ -497,15 +500,32 @@ class JudgmentRead:
         return dict(verified=[dict(r) for r in verified], candidates_awaiting_review=pending,
                     coverage="only the judgments held are read; only lawyer-verified readings are stated")
 
-    def provision_judgments(self, provision_id, as_of: date, limit: int = 20) -> list[dict]:
-        """'Cases on this section': released judgments citing the provision or a unit inside it (D-161 order):
-        first the judgments that construe it (interpreted, challenged or quoted), then those citing it, then those
-        charging under it; within each, an apex court's before a High Court's; then the newest dated, undated last."""
+    def provision_judgments(self, provision_id, as_of: date, limit: int = 20, order: str = "relevant",
+                            offset: int = 0) -> list[dict]:
+        """'Cases on this section': released judgments citing the provision or a unit inside it. order 'relevant'
+        (D-161): first the judgments that construe it (interpreted, challenged or quoted), then those citing it, then
+        those charging under it; within each, an apex court's before a High Court's; then the newest dated, undated
+        last. order 'recent' (D-184): the newest dated first, undated last."""
+        return self.citing(("provision", provision_id), as_of, limit=limit, order=order, offset=offset)["items"]
+
+    def citing(self, scope: tuple[str, object], as_of: date, limit: int = 20, order: str = "relevant",
+               offset: int = 0) -> dict:
+        """{items, total}: the released judgments decided on or before `as_of` that cite `scope` -- ('provision',
+        id): that unit or any unit inside it; ('instrument', id): any unit of that law -- or a copy of it in another
+        law (D-136). A second copy of one decision is never listed (D-125), and `total` counts what can be listed."""
+        if order not in ("relevant", "recent"):
+            raise ValueError(f"order {order!r}")
+        kind, ident = scope
+        units = {"provision": """SELECT array_agg(p.id) AS ids FROM provision t
+                                   JOIN provision p ON p.instrument_id = t.instrument_id AND p.path <@ t.path
+                                  WHERE t.id = %s""",
+                 "instrument": "SELECT array_agg(p.id) AS ids FROM provision p WHERE p.instrument_id = %s"}[kind]
+        rank = ("weight DESC, court_rank DESC, undated, decided_on DESC, judgment_id" if order == "relevant"
+                else "undated, decided_on DESC, judgment_id")
         with self.transaction() as conn:
-            rows = conn.execute("""
-                WITH u AS (SELECT array_agg(p.id) AS ids FROM provision t
-                             JOIN provision p ON p.instrument_id = t.instrument_id AND p.path <@ t.path
-                            WHERE t.id = %s)
+            rows = conn.execute(f"""
+                WITH u AS ({units}),
+                g AS (
                 SELECT r.judgment_id, r.decided_on, count(*) AS mentions,
                        array_agg(DISTINCT r.role) AS roles, min(r.paragraph_id::text) AS first_paragraph,
                        bool_or(j.decided_on_basis = 'undated') AS undated,
@@ -514,15 +534,25 @@ class JudgmentRead:
                        max(CASE co.court_class WHEN 'apex' THEN 2 WHEN 'constitutional_apex' THEN 2 ELSE 1 END)
                                                                                           AS court_rank
                   FROM judgment_statute_reference r
-                  JOIN judgment j ON j.id = r.judgment_id AND j.decided_on = r.decided_on
+                  JOIN judgment j ON j.id = r.judgment_id AND j.decided_on = r.decided_on AND j.is_active
                   JOIN court co ON co.code = j.court_code
                   CROSS JOIN u
                  WHERE r.decided_on <= %s
                    AND (r.dst_provision_id = ANY(u.ids) OR r.alternates && u.ids)   -- any copy (D-136)
-                 GROUP BY 1, 2 ORDER BY 7 DESC, 8 DESC, 6, r.decided_on DESC LIMIT %s""",
-                (provision_id, as_of, limit * 2)).fetchall()
+                   AND NOT EXISTS (SELECT 1 FROM judgment_relation x WHERE x.judgment_id = r.judgment_id
+                                      AND x.decided_on = r.decided_on AND x.relation = 'copy_of')
+                 GROUP BY 1, 2)
+                SELECT g.*, count(*) OVER () AS total FROM g ORDER BY {rank} LIMIT %s OFFSET %s""",
+                (ident, as_of, limit, offset)).fetchall()
             if not rows:
-                return []
+                total = 0
+                if offset:          # past the end: the count is still the count
+                    total = conn.execute(f"""WITH u AS ({units}) SELECT count(DISTINCT r.judgment_id) AS n
+                        FROM judgment_statute_reference r CROSS JOIN u
+                       WHERE r.decided_on <= %s AND (r.dst_provision_id = ANY(u.ids) OR r.alternates && u.ids)""",
+                        (ident, as_of)).fetchone()["n"]
+                return dict(items=[], total=total)
+            total = rows[0]["total"]
             meta = {r["id"]: r for r in conn.execute("""
                 SELECT j.id, j.decided_on, j.case_no_printed, j.disposition, j.reported_flag, c.name AS court_name,
                        ct.name AS case_type_name, j.decided_on_basis, j.decided_not_before, j.undated_reason,
@@ -547,7 +577,7 @@ class JudgmentRead:
                                                                   shown["decided_on"])))
             if len(out) >= limit:
                 break
-        return out
+        return dict(items=out, total=total)
 
     def citing_judgments(self, judgment_id, as_of: date, limit: int = 20) -> list[dict]:
         """'Cited by': released judgments, decided on or before `as_of`, that cite the case this judgment decides, by
@@ -736,3 +766,59 @@ class JudgmentRead:
         with self.transaction() as conn:
             return conn.execute("""SELECT court_code, year, judgments_released, first_decided, last_decided
                                      FROM v_judgment_coverage ORDER BY court_code, year""").fetchall()
+
+    def courts(self) -> list[dict]:
+        """Every recorded court with what is held of it (D-184): released judgments, the first and last decision
+        held. A court with none held is listed with 0, so an empty court reads as 'none held', never 'no law'. Cached
+        per process, keyed by the release's fingerprint, as precedent search's coverage is (D-167)."""
+        with self.transaction() as conn:
+            key = tuple(conn.execute("SELECT max(created_at) AS c, max(retired_at) AS r, count(*) AS n FROM judgment")
+                        .fetchone().values())
+            if key in _COURTS:
+                return [dict(r) for r in _COURTS[key]]
+            rows = conn.execute("""
+                SELECT c.code, c.name, c.court_class, coalesce(v.n, 0)::int AS judgments, v.first_decided,
+                       v.last_decided
+                  FROM court c
+                  LEFT JOIN (SELECT court_code, sum(judgments_released) AS n, min(first_decided) AS first_decided,
+                                    max(last_decided) AS last_decided
+                               FROM v_judgment_coverage GROUP BY 1) v ON v.court_code = c.code
+                 ORDER BY CASE c.court_class WHEN 'constitutional_apex' THEN 0 WHEN 'apex' THEN 1
+                                             WHEN 'shariat' THEN 2 ELSE 3 END, coalesce(v.n, 0) DESC, c.code""").fetchall()
+        _COURTS.clear()
+        _COURTS[key] = rows
+        return [dict(r) for r in rows]
+
+    def court_judgments(self, court: str, as_of: date, limit: int = 20,
+                        after: tuple | None = None) -> tuple[list[dict], tuple | None]:
+        """A court's released judgments decided on or before `as_of`, newest first and undated last (D-184), a page
+        at a time: `after` is the last row's (undated, decided_on, id) and the next page's key is returned."""
+        key = after or (False, date.max, "ffffffff-ffff-ffff-ffff-ffffffffffff")
+        with self.transaction() as conn:
+            rows = conn.execute("""
+                SELECT j.id, j.decided_on, j.case_no_printed, j.disposition, j.reported_flag, c.name AS court_name,
+                       ct.name AS case_type_name, j.decided_on_basis, j.decided_not_before, j.undated_reason,
+                       (j.decided_on_basis = 'undated') AS undated_key,
+                       (SELECT m.case_key FROM judgment_case m WHERE m.judgment_id = j.id
+                           AND m.decided_on = j.decided_on AND m.role = 'lead') AS case_key
+                  FROM v_shown_judgment j JOIN court c ON c.code = j.court_code
+                  LEFT JOIN case_type ct ON ct.code = j.case_type_code
+                 WHERE j.court_code = %s AND j.decided_on <= %s
+                   AND ((j.decided_on_basis = 'undated') > %s
+                        OR ((j.decided_on_basis = 'undated') = %s
+                            AND (j.decided_on < %s OR (j.decided_on = %s AND j.id::text > %s))))
+                 ORDER BY (j.decided_on_basis = 'undated'), j.decided_on DESC, j.id::text
+                 LIMIT %s""", (court, as_of, key[0], key[0], key[1], key[1], str(key[2]), limit + 1)).fetchall()
+            priv = self.privacy_of(conn, [r["id"] for r in rows[:limit]])
+        out = []
+        for r in rows[:limit]:
+            shown = dates_shown(r)
+            p = priv.get(r["id"])
+            out.append(dict(judgment_id=r["id"], mentions=None, case_key=r["case_key"],
+                            parties_display=p["parties_display"] if p else None,
+                            names_withheld=bool(p and p["redacted"]), roles=[], court=r["court_name"],
+                            case_type=r["case_type_name"], disposition=r["disposition"], reported=r["reported_flag"],
+                            **shown, citation=render_judgment_citation(r["court_name"], r["case_no_printed"],
+                                                                       shown["decided_on"])))
+        last = rows[limit - 1] if len(rows) > limit else None
+        return out, ((last["undated_key"], last["decided_on"], str(last["id"])) if last else None)
