@@ -1,0 +1,81 @@
+{
+ "version": "gate-v2-2026-11-20",
+ "rule": "evals/results/gate-rule-2026-11-20.json",
+ "addenda": [
+  "evals/results/gate-rule-addendum-agree-2026-11-20.json",
+  "evals/results/gate-rule-addendum-scope-2026-11-20.json"
+ ],
+ "provisional": "fitted on draft golden sets 1-10 (D-095, D-104); refit when the reviewed split exists",
+ "bundle": 10,
+ "modes": {
+  "cpu": {
+   "features": [
+    "top"
+   ],
+   "mean": [
+    -0.20371624
+   ],
+   "scale": [
+    3.51874596
+   ],
+   "coef": [
+    1.39479735
+   ],
+   "intercept": 0.43219029,
+   "tau": 0.92716,
+   "target_precision": 0.95,
+   "dense_generation": 1,
+   "fitted_on": "dev, split-v1, 305 scored cases",
+   "oof_answered_precision": 0.9583,
+   "oof_coverage_of_sufficient": 0.1322,
+   "reranker": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1+nizam-judgment-citations-v1@1427fd652930e4ba29e8149678df786c240d8825"
+  },
+  "gpu": {
+   "features": [
+    "top"
+   ],
+   "mean": [
+    6.13276175
+   ],
+   "scale": [
+    1.78009489
+   ],
+   "coef": [
+    2.15481481
+   ],
+   "intercept": 2.80811736,
+   "tau": 0.744165,
+   "target_precision": 0.95,
+   "dense_generation": 2,
+   "fitted_on": "dev, split-v1, 305 scored cases",
+   "oof_answered_precision": 0.9565,
+   "oof_coverage_of_sufficient": 0.9272,
+   "reranker": "Qwen/Qwen3-Reranker-8B@77d193c791ed757ca307ee72715aa132723da912"
+  },
+  "unreranked": {
+   "features": [
+    "top",
+    "margin"
+   ],
+   "mean": [
+    0.02863152,
+    0.0024761
+   ],
+   "scale": [
+    0.00453145,
+    0.00269018
+   ],
+   "coef": [
+    0.95749871,
+    -0.31754903
+   ],
+   "intercept": 0.33575631,
+   "tau": 0.791857,
+   "target_precision": 0.9,
+   "dense_generation": 1,
+   "fitted_on": "dev, split-v1, 305 scored cases",
+   "oof_answered_precision": 0.9048,
+   "oof_coverage_of_sufficient": 0.1073
+  }
+ }
+}

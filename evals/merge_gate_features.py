@@ -21,9 +21,14 @@ def main() -> int:
         if cid not in m["cases"]:
             sys.exit(f"{cid}: in {extra_p.name}, not in {main_p.name}")
         mine = m["cases"][cid]
-        for k in ("family", "stratum", "expected", "veto"):
+        for k in ("family", "stratum", "expected"):
             if mine.get(k) != rec.get(k):
                 sys.exit(f"{cid}: {k} differs ({mine.get(k)!r} vs {rec.get(k)!r})")
+        # a veto must agree on what it decided (code, kind, the words that triggered it); its public wording may have
+        # changed since (D-170 reworded the source veto's reason), which changes no decision
+        same = lambda v: None if v is None else {f: v.get(f) for f in ("code", "kind", "matched")}  # noqa: E731
+        if same(mine.get("veto")) != same(rec.get("veto")):
+            sys.exit(f"{cid}: veto differs ({mine.get('veto')!r} vs {rec.get('veto')!r})")
         for mode, row in rec.get("modes", {}).items():
             mine.setdefault("modes", {})[mode] = row
             added += 1

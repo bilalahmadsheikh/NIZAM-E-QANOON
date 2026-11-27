@@ -1136,6 +1136,64 @@ Area: client · Status: Superseded by D-084 (the whole-page cloth; the hem, the 
   design/heritage_art.dart, presentation/discover.dart, presentation/heritage.dart; test/heritage_test.dart
   (golden embroidery.png, a review sheet at 3x).
 
+### D-171 · 2026-11-27 · The CPU reranker fine-tuned on the courts' citations: ranks better, not adopted (its gate answers a quarter as often)
+Area: L3 retrieval (CPU profile; ADR-2's fine-tuned reranker) · Status: standing; the model is kept, not served
+- Training data (`tools/rerank_train_pairs.py`):
+  - A query is a sentence of a released judgment citing a provision the linker resolved, with every statute and
+    case citation cut out.
+  - Each group is the served CPU slate (hybrid, bge-m3) at the build date, in the court's territory. Positives are
+    the slate units holding a provision the sentence cites. Negatives are up to 7 of the slate's first 20 other
+    units, none overlapping a unit the paragraph cites. Passages are cut at 800 characters, as served.
+  - Excluded:
+    - the Supreme Court (ai-train=no, D-144);
+    - the Balochistan High Court (a robots.txt-disallowed path, D-139);
+    - judgments with names withheld (D-131);
+    - the precedent golden judgments and their cases (D-133, D-168);
+    - sentences in a reporter's headnote style (D-120).
+  - Every other court's robots.txt was read on 27 Nov. None restricts training (SHC's states no signal).
+  - Result: 3,970 groups (train 3,631, val 339, split by judgment), from 10,000 sampled sentences. Uploaded as a
+    private Kaggle dataset, checked private (D-170).
+- Training (`tools/kaggle/rerank_train_kernel.py`, T4):
+  - Model: mmarco-mMiniLMv2-L12 at the served revision; 2 epochs; listwise softmax cross-entropy; lr 2e-5.
+  - Early stopping on val: MRR .540 → .775.
+  - Exported int8 per channel, as D-101 did (fp32 correlation .997, 119 MB).
+- Measured, served CPU path, paired bootstrap:
+
+  | Split | NDCG@10 | MRR@10 | recall@10, @50 |
+  |---|---|---|---|
+  | law dev (276) | .510 → .539, +2.9 [+0.6, +5.2] | +3.9 [+0.8, +7.1] | unchanged (it reorders the first 10) |
+  | test, read once (174) | .446 → .481, +3.5 [+0.9, +6.2] | +4.6 [+1.1, +8.2] | |
+
+  Latency is unchanged (rerank p50 780 against 851 ms).
+- The gate (D-106 procedure; GPU and unreranked calibrations unchanged by the refit):
+  - Fitted on dev, the new model's scores separate sufficient bundles less well. The fit chose feature set `top`
+    with τ .927.
+  - Out-of-fold coverage of sufficient cases: .13, against .54 for the current model.
+  - On test (read once):
+
+    | Model | Passed | Answered precision | Coverage of sufficient | Wrong answers |
+    |---|---|---|---|---|
+    | Fine-tuned | 15 of 195 | .933 [.702, .988] | .147 | 1 |
+    | Current (D-111) | 55 | .909 [.804, .961] | .516 | 5 |
+
+  - Unanswerable recall: 1.0 for both.
+- Decision: **not adopted**. The CPU profile keeps the current reranker and calibration.
+  - Better order does not reach the reader, because the gate would answer a quarter as many questions at a
+    precision the intervals cannot tell apart.
+  - Lowering the 0.95 target would change the gate's rule after reading test (D-102 forbids it).
+- Kept:
+  - the model, in `/mnt/e/nizam-data/models/reranker-ft1`, not shipped;
+  - the candidate calibration, in `evals/results/gate-calibration-candidate-ft1.json`;
+  - the tooling.
+- Next, if taken up: a retrain with a pointwise term beside the listwise loss, so the scores stay comparable across
+  questions (what the gate reads). Measured on dev first. A new test read needs its own decision.
+- Also: `evals/gate_eval.py --calibration` (a candidate, without touching the served file).
+  `evals/merge_gate_features.py` now compares a veto by what it decided (code, kind, matched words), not its
+  wording (D-170 had reworded one).
+- Where: tools/rerank_train_pairs.py, tools/kaggle/rerank_train_kernel.py, tools/kaggle/kg.sh (`rrtrainpush`),
+  tests/test_rerank_train_pairs.py; evals/results/rerank-ft-{dev,test}-cpu-{base,ft1}.json,
+  gate-fit-dev-ft1-2026-11-27.json, gate-test-ft1-2026-11-27.json, gate-calibration-candidate-ft1.json.
+
 ### D-173 · 2026-11-27 · S1, the precedent context: built; the law join measured and not adopted
 Area: L5 precedent (docs/06 §5) / L3 precedent search · Status: standing (dev only; test not read)
 - Built (D-172's S1):

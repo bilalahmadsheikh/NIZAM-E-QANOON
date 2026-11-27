@@ -136,12 +136,13 @@ def main() -> int:
     ap.add_argument("--features", type=Path)
     ap.add_argument("--modes", default="cpu,gpu,unreranked")
     ap.add_argument("--out", type=Path)
+    ap.add_argument("--calibration", type=Path, help="a candidate calibration file instead of the served one")
     a = ap.parse_args()
     f = a.features or Path(sorted(glob.glob(str(ROOT / f"evals/results/gate-features-{a.split}-*.json")))[-1])
     data = json.loads(f.read_text(encoding="utf-8"))
     if data["split"] != a.split:
         sys.exit(f"{f} is the {data['split']} split")
-    cal = G.calibration()
+    cal = G.calibration(a.calibration) if a.calibration else G.calibration()
     # the vetoes are recomputed from the question with the CURRENT rules (nizam.retrieval.scope), never read from the
     # features file: what is reported is what serving would do
     from nizam.retrieval.query import parse
