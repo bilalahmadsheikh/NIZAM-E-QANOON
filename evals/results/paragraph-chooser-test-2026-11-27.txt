@@ -1,0 +1,6 @@
+gold judgments in the top 10 with paragraph gold: 26
+  search         paragraph right 0.654
+  nearest        paragraph right 0.731   vs search +7.7 [+0.0, +19.2]
+  cpu reranker   paragraph right 0.615   vs search -3.8 [-23.1, +15.4]
+  8B reranker    paragraph right 0.808   vs search +15.4 [+3.8, +30.8]
+  pool ceiling   paragraph right 0.962

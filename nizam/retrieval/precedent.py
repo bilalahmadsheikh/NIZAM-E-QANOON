@@ -29,6 +29,7 @@ GroundingContext and passes no gate (INV-2). L5's citator owns treatment and "go
 """
 from __future__ import annotations
 
+import os
 import re
 import time
 from dataclasses import dataclass, field
@@ -43,6 +44,14 @@ from nizam.storage.lexical import Filters
 
 RRF_K = 60
 WINDOW = 50
+# D-176: on the GPU profile the 8B reranker chooses which paragraph each found judgment presents, from search's own
+# paragraph and the next nearest the question by embedding (CHOOSER_CANDIDATES in all), for the first CHOOSER_JUDGMENTS
+# judgments (evals/results/paragraph-budget-rule-2026-11-27.json: J=10, P=3, ~29 pairs a question). The CPU profile
+# keeps search's paragraph: neither the CPU reranker nor the nearest paragraph beat it on dev.
+CHOOSER_JUDGMENTS = 10
+CHOOSER_CANDIDATES = int(os.environ.get("NIZAM_CHOOSER_CANDIDATES", "3"))   # 7: the whole measured pool (test .808)
+CHOOSER_CHARS = 2000
+CHOOSER_TASK = "Given a question about Pakistani law, retrieve the court judgment passages that answer it"
 
 
 @dataclass
@@ -202,10 +211,50 @@ def _default_encoder(trace: dict):
     return _cpu_encoder()
 
 
+def choose_paragraphs(conn, question: str, best: dict, qbits: str, reranker, trace: dict) -> dict:
+    """best {judgment id: (paragraph id, fused)} with each judgment's presented paragraph chosen by the 8B reranker
+    (D-176). The candidates are search's paragraph, then the judgment's body paragraphs nearest the question in the
+    GPU space; the judgment order is never changed. Any failure keeps search's paragraphs, and the trace says why."""
+    order = list(best)[:CHOOSER_JUDGMENTS]
+    cands: dict = {}
+    for jid in order:
+        pid = best[jid][0]
+        near = conn.execute("""
+            SELECT c.paragraph_id::text AS id, min(e.bits <~> %s::bit(4096)) AS d
+              FROM judgment_chunk c JOIN judgment_chunk_embedding_gpu e ON e.chunk_id = c.id
+              JOIN judgment_paragraph p ON p.id = c.paragraph_id AND p.decided_on = c.decided_on
+             WHERE c.judgment_id = %s AND p.kind = 'body' GROUP BY 1 ORDER BY 2 LIMIT %s""",
+                            (qbits, jid, CHOOSER_CANDIDATES)).fetchall()
+        cands[jid] = list(dict.fromkeys([str(pid)] + [n["id"] for n in near]))[:CHOOSER_CANDIDATES]
+    every = [p for ps in cands.values() for p in ps]
+    texts = {r["id"]: r["text"] for r in conn.execute(
+        "SELECT id::text AS id, text FROM judgment_paragraph WHERE id = ANY(%s::uuid[])", (every,)).fetchall()}
+    flat = [(jid, p) for jid, ps in cands.items() for p in ps if texts.get(p)]
+    t = time.time()
+    try:
+        scores = reranker.score(question, [texts[p][:CHOOSER_CHARS] for _, p in flat], instruction=CHOOSER_TASK)
+    except Exception as exc:                                    # noqa: BLE001 -- the service is down or refused
+        trace["paragraph_chooser"] = {"used": False, "reason": f"{type(exc).__name__}: {exc}"[:200]}
+        return best
+    top: dict = {}
+    for (jid, p), s in zip(flat, scores):
+        if jid not in top or s > top[jid][1]:
+            top[jid] = (p, s)
+    out, moved = dict(best), 0
+    for jid, (p, _s) in top.items():
+        if p != str(best[jid][0]):
+            out[jid] = (type(best[jid][0])(p) if not isinstance(best[jid][0], str) else p, best[jid][1])
+            moved += 1
+    trace["paragraph_chooser"] = {"used": True, "model": f"{reranker.info.model}@{reranker.info.revision[:12]}",
+                                  "pairs": len(flat), "moved": moved, "ms": round((time.time() - t) * 1000)}
+    return out
+
+
 def search(question: str, *, as_of: date, court: str | None = None, forum=None, k: int = 10,
            repo: JudgmentRead | None = None, encoder=None, subject: str | None = None,
            bm25: bool = True, context_provisions: list[str] | None = None,
-           law_order: str = "question", law_use: str = "generator") -> PrecedentResult:
+           law_order: str = "question", law_use: str = "generator", choose_paragraph: bool | None = None,
+           paragraph_reranker=None) -> PrecedentResult:
     """`context_provisions`: the unit ids a statute retrieval already found for this question (its GroundingContext's
     bundle, D-173). They feed a fifth generator, "law": the judgments that cite those units, ordered by the question
     (`law_order="question"`, the paragraphs' nearness to it) or by how they treat the unit, newest first ("role", the
@@ -363,6 +412,21 @@ def search(question: str, *, as_of: date, court: str | None = None, forum=None, 
                 if len(best) >= k:
                     break
             mark("fusion")                                      # RRF, the binding vote, subjects
+            # D-176: the GPU profile's 8B chooses each judgment's paragraph (None: when the GPU reranker is configured;
+            # False: never; an injected `paragraph_reranker` for evaluation)
+            if gpu_space and best and choose_paragraph is not False:
+                rr = paragraph_reranker
+                if rr is None:
+                    from nizam.retrieval.rerank import rerank_profile
+                    if rerank_profile() == "gpu":
+                        try:
+                            from nizam.inference.reranker import reranker as _reranker
+                            rr = _reranker("gpu")
+                        except (OSError, ImportError, ValueError) as exc:
+                            trace["paragraph_chooser"] = {"used": False, "reason": f"{type(exc).__name__}: {exc}"[:200]}
+                if rr is not None:
+                    best = choose_paragraphs(conn, question, best, qbits, rr, trace)
+                mark("chooser")
             details = repo.paragraph_hits(conn, [pid for pid, _ in best.values()])
             mark("details")
             statutes = repo.statutes_cited(conn, list(best), as_of)

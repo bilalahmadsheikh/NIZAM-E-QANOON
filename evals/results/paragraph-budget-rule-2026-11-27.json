@@ -1,0 +1,8 @@
+{
+ "decision": "D-176 serving budget: how many judgments (J) and candidate paragraphs each (P) the 8B chooser scores",
+ "written": "2026-11-27, before any budget below J=10, P=7 was computed",
+ "data": "precedent dev v2 GPU pool (ds-para-gpu) and its 8B scores (out-paragpu); judgments beyond J keep search's paragraph",
+ "grid": {"J": [2, 3, 5, 10], "P": [2, 3, 4, 7]},
+ "rule": "the budget with the fewest mean pairs per question whose paragraph@10 is within 2.1 points (one case of 48) of the full chooser (J=10, P=7) AND whose paired 95% CI against search's paragraph stays above 0; ties: fewer pairs, then smaller J",
+ "then": "the chosen budget is the one read on test (paragraph-chooser-test), computed from the same test scores"
+}

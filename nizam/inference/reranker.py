@@ -30,7 +30,7 @@ import json
 import os
 import threading
 import urllib.request
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from pathlib import Path
 
 _LOCK = threading.Lock()
@@ -160,9 +160,12 @@ class RemoteReranker:
         with urllib.request.urlopen(req, timeout=self.timeout) as resp:      # URLError and timeouts are OSError
             return json.loads(resp.read().decode("utf-8"))
 
-    def score(self, question: str, passages: list[str]) -> list[float]:
+    def score(self, question: str, passages: list[str], instruction: str | None = None) -> list[float]:
+        """`instruction`: another task's instruction for a Qwen3 reranker (judgment passages, D-176); None keeps the
+        pinned one the reference check verified"""
         if self.info.kind == "qwen":       # the server is sent the card's user turn; its template adds the rest
-            docs = [qwen_document(self.info, question, p) for p in passages]
+            info = replace(self.info, instruction=instruction) if instruction else self.info
+            docs = [qwen_document(info, question, p) for p in passages]
         else:
             docs = list(passages)
         try:

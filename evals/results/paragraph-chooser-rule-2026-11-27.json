@@ -1,0 +1,12 @@
+{
+ "decision": "D-176: which paragraph of each found judgment precedent search presents (the judgment order is unchanged)",
+ "rule_stated": "2026-11-27, in the session before the 8B scores were read: adopt a chooser only if its paragraph@10 against search's own choice has a paired-bootstrap 95% CI above 0 on precedent dev v2; then read test ONCE",
+ "filed": "2026-11-27 15:40, after the dev reading below (the rule was stated before it, not filed before it)",
+ "metric": "paragraph@10: over gold judgments in the first 10 that carry paragraph-level gold, the share whose presented paragraph is a gold paragraph",
+ "pool": "search's paragraph, the other paragraphs any generator found, and the 6 nearest the question by embedding in the judgment",
+ "dev": {"cases_with_paragraph_gold_in_top10": 48, "search": 0.542, "nearest": 0.542, "cpu_reranker": 0.521,
+         "8B_reranker": 0.750, "8B_minus_search": "+20.8 [+8.3, +33.3]", "pool_ceiling": 0.979},
+ "dev_outcome": "the 8B chooser qualifies (GPU profile); the CPU reranker and nearest do not (the CPU profile keeps search's paragraph)",
+ "test": "precedent test split, GPU pool, 8B scores, read once: evals/results/paragraph-chooser-test-2026-11-27.txt",
+ "latency_note": "the GPU service scores ~2.3 passages/s on a T4 (D-178): 10 judgments x up to 7 paragraphs is ~70 pairs; the serving depth is a separate measured choice"
+}

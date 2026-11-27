@@ -1136,6 +1136,57 @@ Area: client · Status: Superseded by D-084 (the whole-page cloth; the hem, the 
   design/heritage_art.dart, presentation/discover.dart, presentation/heritage.dart; test/heritage_test.dart
   (golden embroidery.png, a review sheet at 3x).
 
+### D-176 · 2026-11-27 · The paragraph a found judgment presents: chosen by the 8B on the GPU profile
+Area: L3 precedent search (docs/PRECEDENT-MODEL.md; docs/ANSWER-COMPOSITION stage 3) · Status: standing (provisional gold)
+- **Problem:** precedent search finds the right judgment more often than it presents the right paragraph of it. On
+  dev, the paragraph it shows is a gold paragraph in .542 of the gold judgments in its top 10; the pool of candidates
+  holds one in .979.
+- **Candidates** (`evals/precedent_paragraphs.py`):
+  - search's own paragraph;
+  - the judgment's body paragraphs nearest the question in the profile's embedding space, up to 6.
+  - The judgment order is never changed; only the paragraph shown for each judgment.
+- **Rule:** adopt a chooser only if its paired 95% CI against search's paragraph is above 0 on precedent dev v2, then
+  read test once. The rule was stated before the 8B scores were read; it was filed afterwards
+  (`paragraph-chooser-rule-2026-11-27.json` says so).
+- **Dev** (48 gold judgments with paragraph gold):
+
+  | Chooser | Right | vs search |
+  |---|---|---|
+  | search | .542 | |
+  | nearest | .542 | +0.0 |
+  | CPU reranker | .521 | −2.1 |
+  | **8B reranker** | **.750** | **+20.8 [+8.3, +33.3]** |
+  | pool ceiling | .979 | |
+
+- **Budget** (`paragraph-budget-rule-2026-11-27.json`, fixed before any smaller budget was computed): the fewest pairs
+  within one case of the full chooser, still above search.
+  - Chosen: J = 10 judgments × P = 3 candidates, about 29 pairs a question instead of 58. Dev .729, +18.8 [+6.2, +31.2].
+  - Every gold judgment rank matters: J = 3 or 5 lose 8–10 points.
+- **Test, read once** (26 judgments with paragraph gold):
+
+  | Chooser | Right | vs search |
+  |---|---|---|
+  | search | .654 | |
+  | 8B, J=10 × P=3 (served) | .769 | +11.5 [+0.0, +26.9] |
+  | 8B, full pool (P=7) | .808 | +15.4 [+3.8, +30.8] |
+  | nearest | .731 | +7.7 [+0.0, +19.2] |
+  | CPU reranker | .615 | −3.8 |
+
+- **Reading:** the 8B chooser helps on test as on dev. At the served budget the interval touches 0 at 26 cases, and
+  the full pool is the stronger choice at twice the GPU time.
+  - `NIZAM_CHOOSER_CANDIDATES` (default 3) lets a fast GPU host serve 7.
+  - The CPU profile keeps search's paragraph: neither CPU chooser beat it.
+- **Served** (`nizam/retrieval/precedent.py: choose_paragraphs`):
+  - When precedent search ran in the GPU space and the GPU reranker is configured, the first 10 judgments' candidates
+    are scored by the 8B with the judgment-passage instruction (`RemoteReranker.score(..., instruction=)`).
+  - A failure keeps search's paragraphs; the trace says why, and records pairs, moved and ms.
+  - Replaying the dev 8B scores through the served code reproduces the budget figure exactly: .729 on the same 48,
+    29.3 pairs a question.
+- Where: nizam/retrieval/precedent.py, nizam/inference/reranker.py; tests/test_paragraph_chooser.py (3 tests: order
+  never changes, a failing reranker keeps search's paragraphs, the CPU profile never chooses);
+  evals/precedent_paragraphs.py (pool `--split`, score-cpu, report, budget);
+  evals/results/paragraph-{chooser,budget}-rule-2026-11-27.json, paragraph-chooser-test-2026-11-27.txt.
+
 ### D-175 · 2026-11-27 · The gate refitted on today's corpus under the "reach" addendum; shipped (and what did not help)
 Area: L3 gate (docs/04 §8; D-102, D-106, D-111) · Status: standing (provisional golden sets)
 - **Corpus drift:** the gate's 21 Nov features differ from today's in 123 of 305 dev bundles (judgment-era repairs,
