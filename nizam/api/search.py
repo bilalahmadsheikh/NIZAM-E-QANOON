@@ -44,6 +44,75 @@ class CitationIn(BaseModel):
     territory: TERRITORY = ''
 
 
+# response models: the app's Dart contract is generated from these (tools/generate_library_contract.py)
+class SearchScope(BaseModel):
+    as_of: date
+    territory: str | None
+    jurisdictions: list[str] | None = None
+
+
+class SearchMode(BaseModel):
+    searched: bool                       # False: a scope finding left nothing to search (see scope_findings)
+    degraded: str | None = None          # 'lexical_only', 'dense_cpu', 'unreranked' ... (docs/04 §9.2)
+    dense_generation: int | None = None
+    reranker: str | None = None          # model@revision
+    reranker_device: str | None = None
+
+
+class ScopeNotice(BaseModel):
+    code: str
+    kind: str
+    matched: str
+    reason: str
+    suggestions: list[str]
+
+
+class LawHit(BaseModel):
+    rank: int
+    provision_id: str
+    version_id: str
+    instrument_id: str
+    citation: str                        # rendered from the record (INV-1)
+    heading: str | None
+    law: str
+    law_kind: str
+    year: int | None
+    jurisdiction: str
+    snippet: str
+    via_citation: bool
+    score: float
+
+
+class SearchPage(BaseModel):
+    query: str
+    kind: str
+    scope: SearchScope
+    mode: SearchMode
+    refer_to: str | None
+    note: str
+    scope_findings: list[ScopeNotice]
+    results: list[LawHit]
+
+
+class ResolvedCitation(BaseModel):
+    raw: str
+    resolved: bool
+    provision_id: str | None
+    version_id: str | None
+    citation: str | None
+    heading: str | None
+    law: str | None
+    unresolved: str | None
+    candidates: list[str]
+    alternates: list[str]
+
+
+class CitationPage(BaseModel):
+    query: str
+    scope: SearchScope
+    citations: list[ResolvedCitation]
+
+
 NOT_SEARCHED = ('source', 'place')     # the statute veto's findings that leave no statutory search to show (D-179)
 
 
@@ -91,7 +160,7 @@ def describe(session, units: list[tuple[str, str]]) -> dict:
 def register(app, resolved, ranked_fn=None) -> None:
     """`ranked_fn` is injected by tests; serving uses L3's ranked()"""
 
-    @app.post('/v1/search')
+    @app.post('/v1/search', response_model=SearchPage)
     def search(body: SearchIn):
         from nizam.retrieval.rerank import ranked
         day = resolved(body.as_of)
@@ -103,7 +172,7 @@ def register(app, resolved, ranked_fn=None) -> None:
         if finding and finding.kind in NOT_SEARCHED:
             # a court-decision question goes to precedent search (D-170); another country's law is not held, and
             # Pakistani sections listed for it would read as its answer
-            return dict(query=body.q, kind='law_discovery', scope=scope, mode='not_searched',
+            return dict(query=body.q, kind='law_discovery', scope=scope, mode=dict(searched=False),
                         refer_to='precedent' if finding.kind == 'source' else None,
                         note=findings[0]['reason'], scope_findings=findings, results=[])
         r = (ranked_fn or ranked)(spec, f, max(body.limit, 10))
@@ -112,14 +181,14 @@ def register(app, resolved, ranked_fn=None) -> None:
             info = describe(s, [(c.unit_id, c.version_id) for c in head])
         rr = r.trace.get('rerank') or {}
         results = []
-        for i, c in enumerate(head, 1):
+        for c in head:
             d = info.get(c.unit_id)
             if not d or not d['citation']:
                 continue                           # no record-rendered citation: the unit is not shown (INV-1)
-            results.append(dict(rank=i, provision_id=c.unit_id, version_id=c.version_id, via_citation=c.via_citation,
+            results.append(dict(rank=len(results) + 1, provision_id=c.unit_id, version_id=c.version_id, via_citation=c.via_citation,
                                 score=c.rerank_score if c.rerank_score is not None else c.score, **d))
         return dict(query=body.q, kind='law_discovery', scope=scope,
-                    mode=dict(degraded=r.degraded, dense_generation=r.trace.get('dense_generation'),
+                    mode=dict(searched=True, degraded=r.degraded, dense_generation=r.trace.get('dense_generation'),
                               reranker=f"{rr.get('model')}@{(rr.get('revision') or '')[:12]}" if rr else None,
                               reranker_device=rr.get('device')),
                     refer_to=None,
@@ -128,7 +197,7 @@ def register(app, resolved, ranked_fn=None) -> None:
                     scope_findings=findings,
                     results=results)
 
-    @app.post('/v1/citations/resolve')
+    @app.post('/v1/citations/resolve', response_model=CitationPage)
     def resolve(body: CitationIn):
         from nizam.storage import citations as C
         day = resolved(body.as_of)

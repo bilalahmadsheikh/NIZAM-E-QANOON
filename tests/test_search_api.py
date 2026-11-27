@@ -53,7 +53,7 @@ def test_search_returns_record_rendered_operative_units(client):
         assert x["citation"] and x["law"] and x["citation"].startswith(x["law"].strip().rstrip('.'))
         assert x["provision_id"] and x["version_id"]
     assert any("379" in x["citation"] or "theft" in (x["heading"] or "").lower() for x in body["results"])
-    assert "degraded" in body["mode"]
+    assert body["mode"]["searched"] and "degraded" in body["mode"]
 
 
 def test_a_territory_search_holds_no_other_province_law(client):
@@ -65,20 +65,20 @@ def test_a_territory_search_holds_no_other_province_law(client):
 
 def test_a_court_decision_question_is_referred_to_precedent(client):
     r = client.post('/v1/search', json={"q": "What did the Supreme Court hold about bail in murder cases?"}).json()
-    assert r["refer_to"] == "precedent" and r["results"] == [] and r["mode"] == "not_searched"
+    assert r["refer_to"] == "precedent" and r["results"] == [] and r["mode"]["searched"] is False
     assert "court judgments" in r["note"] and r["scope_findings"][0]["kind"] == "source"
 
 
 def test_another_countrys_law_is_not_listed_as_pakistani_sections(client):
     r = client.post('/v1/search', json={"q": "What is the minimum wage under the law of Saudi Arabia?"}).json()
-    assert r["results"] == [] and r["mode"] == "not_searched" and r["refer_to"] is None
+    assert r["results"] == [] and r["mode"]["searched"] is False and r["refer_to"] is None
     assert r["scope_findings"][0]["kind"] == "place" and "other countries" in r["note"]
 
 
 def test_a_live_figure_question_still_lists_the_law_with_its_finding(client):
     r = client.post('/v1/search', json={"q": "What is the current petrol price today?"}).json()
     if r["scope_findings"]:
-        assert r["mode"] != "not_searched" and r["scope_findings"][0]["reason"]
+        assert r["mode"]["searched"] and r["scope_findings"][0]["reason"]
 
 
 def test_limits_hold(client):

@@ -72,7 +72,7 @@ vlmpush)
  "kernel_type": "script", "is_private": true, "enable_gpu": true, "enable_internet": true,
  "dataset_sources": ["$USER/nizam-vlm-$3"], "kernel_sources": [], "competition_sources": []}
 EOF2
-  $KG kernels push -p $K --accelerator ${KG_ACCEL:-NvidiaTeslaT4} | tee /dev/stderr | grep -q "successfully pushed" && \
+  timeout 900 $KG kernels push -p $K --accelerator ${KG_ACCEL:-NvidiaTeslaT4} | tee /dev/stderr | grep -q "successfully pushed" && \
     printf '%s\t%s\t%s\t%s\t%s\n' "$2" "vlm" "$3" "$(date -u +%FT%TZ)" "${KG_HOURS:-11}" >> $ROOT/runs.tsv ;;
 progress)
   # per run and per group: documents/pages read by Kaggle, fetched, imported, released (tools/kaggle/progress.py)
@@ -102,7 +102,7 @@ embedpush)
  "kernel_type": "script", "is_private": true, "enable_gpu": true, "enable_internet": true,
  "dataset_sources": ["$USER/nizam-embed-$3"], "kernel_sources": [], "competition_sources": []}
 EOF3
-  $KG kernels push -p $K --accelerator ${KG_ACCEL:-NvidiaTeslaT4} ;;
+  timeout 900 $KG kernels push -p $K --accelerator ${KG_ACCEL:-NvidiaTeslaT4} ;;
 jembedpush)
   # kg.sh jembedpush NAME VERSION : push the judgment-chunk kernel (tools/kaggle/judgment_embed_kernel.py, D-132) over
   # nizam-embed-VERSION (an export of nizam.workers.judgment_chunk --export, uploaded by `kg.sh embeddata VERSION`);
@@ -114,7 +114,7 @@ jembedpush)
  "language": "python", "kernel_type": "script", "is_private": true, "enable_gpu": true, "enable_internet": true,
  "dataset_sources": ["$USER/nizam-embed-$3"], "kernel_sources": [], "competition_sources": []}
 EOF3
-  $KG kernels push -p $K --accelerator ${KG_ACCEL:-NvidiaTeslaT4} ;;
+  timeout 900 $KG kernels push -p $K --accelerator ${KG_ACCEL:-NvidiaTeslaT4} ;;
 e8push)
   # kg.sh e8push NAME SHARDS : push the Qwen3-Embedding-8B shard kernel (tools/kaggle/embed8b_kernel.py, D-099) over
   # nizam-embed-v1; SHARDS like 0-11 or 3,7. KG_SMOKE=1 proves it (pipeline vs sentence-transformers, fp16 vs bf16,
@@ -130,7 +130,7 @@ e8push)
  "dataset_sources": ["$USER/${KG_DS:-nizam-embed-v1}"], "kernel_sources": [], "competition_sources": []}
 EOF3
   grep -n '^HOURS\|^SMOKE\|^SHARDS\|^REV\|^TOKBUDGET' $K/embed8b_kernel.py
-  $KG kernels push -p $K --accelerator ${KG_ACCEL:-NvidiaTeslaT4} ;;
+  timeout 900 $KG kernels push -p $K --accelerator ${KG_ACCEL:-NvidiaTeslaT4} ;;
 q8push)
   # kg.sh q8push NAME DATASET : encode questions.json of private dataset nizam-DATASET with Qwen3-Embedding-8B
   # (tools/kaggle/query8b_kernel.py, D-099) at KG_REV, timing single-question encodes. Output: embedfetch NAME.
@@ -141,7 +141,7 @@ q8push)
  "kernel_type": "script", "is_private": true, "enable_gpu": true, "enable_internet": true,
  "dataset_sources": ["$USER/nizam-$3"], "kernel_sources": [], "competition_sources": []}
 EOF3
-  $KG kernels push -p $K --accelerator ${KG_ACCEL:-NvidiaTeslaT4} ;;
+  timeout 900 $KG kernels push -p $K --accelerator ${KG_ACCEL:-NvidiaTeslaT4} ;;
 q4push)
   # kg.sh q4push NAME DATASET : encode a q8push dataset's questions with Qwen3-Embedding-8B in 4-bit (NF4) and 8-bit
   # weights (tools/kaggle/query8b_quant_kernel.py, D-165), with peak VRAM and latency. Output: embedfetch NAME.
@@ -152,7 +152,7 @@ q4push)
  "language": "python", "kernel_type": "script", "is_private": true, "enable_gpu": true, "enable_internet": true,
  "dataset_sources": ["$USER/nizam-$3"], "kernel_sources": [], "competition_sources": []}
 EOF3
-  $KG kernels push -p $K --accelerator ${KG_ACCEL:-NvidiaTeslaT4} ;;
+  timeout 900 $KG kernels push -p $K --accelerator ${KG_ACCEL:-NvidiaTeslaT4} ;;
 rrpush)
   # kg.sh rrpush NAME DATASET MODELS : score pairs.jsonl of private dataset nizam-DATASET (evals/rerank_slates.py, then
   # kg.sh dsup) with the rerankers MODELS (comma-separated slugs of tools/kaggle/rerank_kernel.py). KG_SMOKE=1: 64 pairs.
@@ -165,7 +165,7 @@ rrpush)
  "kernel_type": "script", "is_private": true, "enable_gpu": true, "enable_internet": true,
  "dataset_sources": ["$USER/nizam-$3"], "kernel_sources": [], "competition_sources": []}
 EOF3
-  $KG kernels push -p $K --accelerator ${KG_ACCEL:-NvidiaTeslaT4} ;;
+  timeout 900 $KG kernels push -p $K --accelerator ${KG_ACCEL:-NvidiaTeslaT4} ;;
 rrexportpush)
   # kg.sh rrexportpush NAME DATASET SLUG : export reranker SLUG to int8 ONNX and score every pair of nizam-DATASET on
   # the Kaggle CPU (tools/kaggle/rerank_export_kernel.py, D-101). Status/fetch: rrstatus/rrfetch NAME.
@@ -176,21 +176,54 @@ rrexportpush)
  "language": "python", "kernel_type": "script", "is_private": true, "enable_gpu": false, "enable_internet": true,
  "dataset_sources": ["$USER/nizam-$3"], "kernel_sources": [], "competition_sources": []}
 EOF3
-  $KG kernels push -p $K ;;
+  timeout 900 $KG kernels push -p $K ;;
 rrtrainpush)
   # kg.sh rrtrainpush NAME DATASET : fine-tune the CPU reranker on nizam-DATASET's groups.jsonl
   # (tools/rerank_train_pairs.py) and export it int8 (tools/kaggle/rerank_train_kernel.py, D-171). KG_SMOKE=1: 64
   # groups. Status/fetch: rrstatus/rrfetch NAME.
   K=/mnt/e/nizam-data/rerank/kernel-$2; mkdir -p $K
-  sed "s/__SMOKE__/${KG_SMOKE:-0}/g; s/__LOSS__/${KG_LOSS:-listwise}/g" /mnt/e/Nizam_e_Qanoon/tools/kaggle/rerank_train_kernel.py > $K/rerank_train_kernel.py
+  sed "s/__SMOKE__/${KG_SMOKE:-0}/g; s/__LOSS__/${KG_LOSS:-listwise}/g; s/__MERGE__/${KG_MERGE:-}/g" /mnt/e/Nizam_e_Qanoon/tools/kaggle/rerank_train_kernel.py > $K/rerank_train_kernel.py
   cat > $K/kernel-metadata.json <<EOF3
 {"id": "$USER/nizam-rerank-run-$2", "title": "nizam-rerank-run-$2", "code_file": "rerank_train_kernel.py",
  "language": "python", "kernel_type": "script", "is_private": true, "enable_gpu": true, "enable_internet": true,
  "dataset_sources": ["$USER/nizam-$3"], "kernel_sources": [], "competition_sources": []}
 EOF3
-  $KG kernels push -p $K --accelerator ${KG_ACCEL:-NvidiaTeslaT4} ;;
+  timeout 900 $KG kernels push -p $K --accelerator ${KG_ACCEL:-NvidiaTeslaT4} ;;
+rrmergepush)
+  # kg.sh rrmergepush NAME DATASET : per-layer merge search for the CPU reranker over nizam-DATASET's groups.jsonl
+  # (tools/kaggle/rerank_merge_kernel.py, D-177). KG_SMOKE=1: a few trials. Status/fetch: rrstatus/rrfetch NAME.
+  K=/mnt/e/nizam-data/rerank/kernel-$2; mkdir -p $K
+  sed "s/__SMOKE__/${KG_SMOKE:-0}/g" /mnt/e/Nizam_e_Qanoon/tools/kaggle/rerank_merge_kernel.py > $K/rerank_merge_kernel.py
+  cat > $K/kernel-metadata.json <<EOF3
+{"id": "$USER/nizam-rerank-run-$2", "title": "nizam-rerank-run-$2", "code_file": "rerank_merge_kernel.py",
+ "language": "python", "kernel_type": "script", "is_private": true, "enable_gpu": true, "enable_internet": true,
+ "dataset_sources": ["$USER/nizam-$3"], "kernel_sources": [], "competition_sources": []}
+EOF3
+  timeout 900 $KG kernels push -p $K --accelerator ${KG_ACCEL:-NvidiaTeslaT4} ;;
+gpusvcpush)
+  # kg.sh gpusvcpush NAME DATASET : prove the GPU inference service (D-178) with the real clients, both 8B models
+  # loaded (tools/kaggle/gpu_service_kernel.py). Output: embedfetch NAME (out/proof.json).
+  K=/mnt/e/nizam-data/embed/kernel-$2; mkdir -p $K
+  cp /mnt/e/Nizam_e_Qanoon/tools/kaggle/gpu_service_kernel.py $K/gpu_service_kernel.py
+  cat > $K/kernel-metadata.json <<EOF3
+{"id": "$USER/nizam-embed-run-$2", "title": "nizam-embed-run-$2", "code_file": "gpu_service_kernel.py",
+ "language": "python", "kernel_type": "script", "is_private": true, "enable_gpu": true, "enable_internet": true,
+ "dataset_sources": ["$USER/nizam-$3"], "kernel_sources": [], "competition_sources": []}
+EOF3
+  timeout 900 $KG kernels push -p $K --accelerator ${KG_ACCEL:-NvidiaTeslaT4} ;;
+hydepush)
+  # kg.sh hydepush NAME DATASET : HyDE drafts + their 8B document vectors for questions.json of nizam-DATASET
+  # (tools/kaggle/hyde_kernel.py, D-175) at KG_REV (the embedding corpus run). Output: embedfetch NAME.
+  K=/mnt/e/nizam-data/embed/kernel-$2; mkdir -p $K
+  sed "s/__REV__/${KG_REV:-}/g" /mnt/e/Nizam_e_Qanoon/tools/kaggle/hyde_kernel.py > $K/hyde_kernel.py
+  cat > $K/kernel-metadata.json <<EOF3
+{"id": "$USER/nizam-embed-run-$2", "title": "nizam-embed-run-$2", "code_file": "hyde_kernel.py", "language": "python",
+ "kernel_type": "script", "is_private": true, "enable_gpu": true, "enable_internet": true,
+ "dataset_sources": ["$USER/nizam-$3"], "kernel_sources": [], "competition_sources": []}
+EOF3
+  timeout 900 $KG kernels push -p $K --accelerator ${KG_ACCEL:-NvidiaTeslaT4} ;;
 rrstatus)
-  $KG kernels status $USER/nizam-rerank-run-$2 ;;
+  timeout 120 $KG kernels status $USER/nizam-rerank-run-$2 ;;   # a hung status call stalled a watcher (27 Nov)
 rrfetch)
   # no --force: files already here are skipped and a partial one resumes (an 8B fetch restarted from zero, D-099)
   O=/mnt/e/nizam-data/rerank/out-$2; mkdir -p $O
@@ -201,8 +234,8 @@ dsup)
   cat > $3/dataset-metadata.json <<EOF3
 {"title": "nizam-$2", "id": "$USER/nizam-$2", "licenses": [{"name": "other"}]}
 EOF3
-  if $KG datasets status $USER/nizam-$2 >/dev/null 2>&1; then $KG datasets version -p $3 -m "inputs $(date -u +%F)" -r skip
-  else $KG datasets create -p $3 -r skip; fi
+  if $KG datasets status $USER/nizam-$2 >/dev/null 2>&1; then $KG datasets version -p $3 -m "inputs $(date -u +%F)" -r "${KG_DIR_MODE:-skip}"
+  else $KG datasets create -p $3 -r "${KG_DIR_MODE:-skip}"; fi
   # every upload must be private (owner, 27 Nov 2026; D-170): ask Kaggle, and fail loudly if it is not
   for i in $(seq 1 40); do                      # a new dataset is not viewable while Kaggle processes it
     sleep 15
@@ -225,7 +258,7 @@ privacy)
                     "https://www.kaggle.com/api/v1/kernels/pull?userName=${k%%/*}&kernelSlug=${k##*/}")"; done
   done ;;
 embedstatus)
-  $KG kernels status $USER/nizam-embed-run-$2 ;;
+  timeout 120 $KG kernels status $USER/nizam-embed-run-$2 ;;
 exportpush)
   # kg.sh exportpush NAME VERSION SLUG RUN : export model SLUG (as embedded by bake-off run nizam-embed-run-RUN) to an
   # int8 ONNX query encoder and validate it on the dev questions (tools/kaggle/export_kernel.py, D-098). The hub id,
@@ -249,7 +282,7 @@ EOF4
  "language": "python", "kernel_type": "script", "is_private": true, "enable_gpu": false, "enable_internet": true,
  "dataset_sources": ["$USER/nizam-embed-$3"], "kernel_sources": ["$USER/nizam-embed-run-$5"], "competition_sources": []}
 EOF3
-  $KG kernels push -p $K ;;
+  timeout 900 $KG kernels push -p $K ;;
 querypush)
   # kg.sh querypush NAME VERSION RUN/SLUG... : encode the dev questions at full precision with each model, at the revision
   # and template its bake-off run recorded (tools/kaggle/query_kernel.py, D-098; the asymmetric-rescoring arm of ADR-1d)
@@ -272,7 +305,7 @@ EOF5
  "code_file": "query_kernel.py", "language": "python", "kernel_type": "script", "is_private": true, "enable_gpu": false,
  "enable_internet": true, "dataset_sources": ["$USER/nizam-embed-$V"], "kernel_sources": [], "competition_sources": []}
 EOF3
-  $KG kernels push -p $K ;;
+  timeout 900 $KG kernels push -p $K ;;
 querystatus)
   $KG kernels status $USER/nizam-embed-query-$2 ;;
 queryfetch)

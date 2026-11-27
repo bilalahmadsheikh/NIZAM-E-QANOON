@@ -55,6 +55,16 @@ PY
   mkdir -p "$out/encoder-gpu"
   cp "$src/encoder.json" "$src/reference_q.npy" "$src/reference_questions.json" "$out/encoder-gpu/"
   ( cd "$out/encoder-gpu" && sha256sum encoder.json reference_q.npy reference_questions.json > SHA256SUMS )
+  # the 4-bit host (D-169) is checked against nf4-made reference vectors (D-178: nf4 vs fp16 cosine .977 fails the
+  # fp16 bundle's 0.99 check), so its bundle travels too when installed: same model and commit, or refused
+  local nf4="${NIZAM_GPU_ENCODER_NF4_DIR:-${CORPUS_ROOT}/models/encoder-gpu-nf4}"
+  if [ -f "$nf4/encoder.json" ] && [ -f "$nf4/reference_q.npy" ] && [ -f "$nf4/reference_questions.json" ]; then
+    python3 -c "import json,sys; e=json.load(open(sys.argv[1],encoding='utf-8')); sys.exit(0 if (e.get('model'),e.get('revision'),e.get('precision'))==(sys.argv[2],sys.argv[3],'nf4') else 1)" \
+      "$nf4/encoder.json" "$model" "$rev" || { echo "encoder: ${nf4} is not generation ${id}'s nf4 bundle" >&2; return 1; }
+    mkdir -p "$out/encoder-gpu-nf4"
+    cp "$nf4/encoder.json" "$nf4/reference_q.npy" "$nf4/reference_questions.json" "$out/encoder-gpu-nf4/"
+    ( cd "$out/encoder-gpu-nf4" && sha256sum encoder.json reference_q.npy reference_questions.json > SHA256SUMS )
+  fi
   echo "$id"
 }
 
@@ -89,7 +99,7 @@ bundle_rerankers() {
 # (absent folders: nothing to check)
 check_encoder() {
   local sub src
-  for sub in encoder encoder-gpu reranker reranker-gpu; do
+  for sub in encoder encoder-gpu encoder-gpu-nf4 reranker reranker-gpu; do
     src="$1/$sub"
     [ -f "$src/SHA256SUMS" ] || continue
     ( cd "$src" && sha256sum -c --quiet SHA256SUMS ) || { echo "encoder: ${src} fails its SHA256SUMS" >&2; return 1; }
@@ -111,6 +121,12 @@ install_encoder() {
     mkdir -p "$dst"
     cp "$1/encoder-gpu"/* "$dst/"
     echo "GPU encoder bundle installed at ${dst} (served by the GPU host: set NIZAM_GPU_ENCODER_URL)"
+  fi
+  if [ -f "$1/encoder-gpu-nf4/SHA256SUMS" ]; then
+    dst="${NIZAM_GPU_ENCODER_NF4_DIR:-${CORPUS_ROOT}/models/encoder-gpu-nf4}"
+    mkdir -p "$dst"
+    cp "$1/encoder-gpu-nf4"/* "$dst/"
+    echo "4-bit GPU encoder bundle installed at ${dst} (a 4-bit host: set NIZAM_GPU_ENCODER_DIR=${dst})"
   fi
   if [ -f "$1/reranker/SHA256SUMS" ]; then
     dst="${NIZAM_RERANKER_DIR:-${CORPUS_ROOT}/models/reranker}"

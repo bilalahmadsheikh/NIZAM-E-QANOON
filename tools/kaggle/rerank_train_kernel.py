@@ -37,7 +37,13 @@ SMOKE = "__SMOKE__" == "1"
 # D-171 follow-up: "listwise" (softmax over each group, D-171), "listwise+bce" (plus a per-pair yes/no, so a score
 # means the same across questions -- what the gate reads), "bce" (the per-pair loss alone)
 LOSS = "__LOSS__" if not "__LOSS__".startswith("__") else "listwise"
-assert LOSS in ("listwise", "listwise+bce", "bce"), LOSS
+# weight interpolation (WiSE-FT style): base + alpha * (fine-tuned - base) for each alpha, each exported beside the
+# fine-tuned model, with a per-layer report of what the fine-tune changed. "" = none
+MERGE = [float(x) for x in "__MERGE__".split(",") if x] if not "__MERGE__".startswith("__") else []
+# "distill" (D-175): learn Qwen3-Reranker-8B's scores on each group (g["teacher"]): listwise KL to its softmax plus
+# MSE to its logits, so the student inherits the teacher's order AND its cross-question scale; no hard labels
+assert LOSS in ("listwise", "listwise+bce", "bce", "distill"), LOSS
+MSE_W = 0.5
 random.seed(SEED); np.random.seed(SEED); torch.manual_seed(SEED)
 
 src = sorted(glob.glob("/kaggle/input/**/groups.jsonl", recursive=True))[0]
@@ -52,6 +58,33 @@ dev = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 tok = AutoTokenizer.from_pretrained(HUB, revision=REV)
 model = AutoModelForSequenceClassification.from_pretrained(HUB, revision=REV, torch_dtype=torch.float32).to(dev)
 PAD = tok.pad_token_id
+base_sd = {k: v.detach().cpu().clone() for k, v in model.state_dict().items()}       # the served weights
+
+
+def group_of(name: str) -> str:
+    """embeddings | layer.NN.attention | layer.NN.ffn | layer.NN.norm | pooler | classifier | other"""
+    import re as _re
+    m = _re.search(r"layer\.(\d+)\.", name)
+    if m:
+        part = ("norm" if "LayerNorm" in name else
+                "attention" if ".attention." in name else "ffn")
+        return f"layer.{int(m.group(1)):02d}.{part}"
+    for g in ("embeddings", "pooler", "classifier"):
+        if g in name:
+            return g
+    return "other"
+
+
+arch = {"config": {k: getattr(model.config, k, None) for k in ("model_type", "num_hidden_layers", "hidden_size",
+                                                               "num_attention_heads", "intermediate_size",
+                                                               "vocab_size", "max_position_embeddings")},
+        "params_total": sum(v.numel() for v in base_sd.values() if v.dtype.is_floating_point), "groups": {}}
+for k, v in base_sd.items():
+    if v.dtype.is_floating_point:
+        g = group_of(k)
+        g = g.split(".")[0] + "." + g.split(".")[-1] if g.startswith("layer.") else g
+        arch["groups"][g] = arch["groups"].get(g, 0) + v.numel()
+print("architecture", json.dumps(arch), flush=True)
 
 
 def batch_scores(m, q_and_p: list[tuple[str, str]]) -> torch.Tensor:
@@ -100,10 +133,14 @@ for epoch in range(EPOCHS):
     for b in range(0, len(train), GROUPS_PER_STEP):
         chunk = train[b:b + GROUPS_PER_STEP]
         pairs, spans = [], []
+        teach = []
         for g in chunk:
-            cands = [random.choice(g["pos"])] + g["neg"]
+            pi = random.randrange(len(g["pos"]))
+            cands = [g["pos"][pi]] + g["neg"]
             spans.append((len(pairs), len(cands)))
             pairs += [(g["q"], p) for p in cands]
+            if LOSS == "distill":
+                teach += [g["teacher"]["pos"][pi]] + list(g["teacher"]["neg"])
         with torch.autocast("cuda", dtype=torch.float16, enabled=dev.type == "cuda"):
             s = batch_scores(model, pairs).float()
         lw = torch.stack([torch.nn.functional.cross_entropy(s[a:a + n].unsqueeze(0),
@@ -111,7 +148,13 @@ for epoch in range(EPOCHS):
                           for a, n in spans]).mean()
         lab = torch.cat([torch.tensor([1.0] + [0.0] * (n - 1), device=dev) for _, n in spans])
         bce = torch.nn.functional.binary_cross_entropy_with_logits(s, lab)
-        loss = lw if LOSS == "listwise" else (bce if LOSS == "bce" else lw + bce)
+        if LOSS == "distill":
+            t = torch.tensor(teach, device=dev, dtype=torch.float32)
+            kl = torch.stack([torch.nn.functional.kl_div(torch.log_softmax(s[a:a + n], 0), torch.softmax(t[a:a + n], 0),
+                                                         reduction="sum") for a, n in spans]).mean()
+            loss = kl + MSE_W * torch.nn.functional.mse_loss(s, t)
+        else:
+            loss = lw if LOSS == "listwise" else (bce if LOSS == "bce" else lw + bce)
         opt.zero_grad(set_to_none=True)
         scaler.scale(loss).backward()
         scaler.unscale_(opt)
@@ -131,8 +174,29 @@ if best_state is None:
     json.dump({"curve": curve, "train": len(train), "val": len(val), "exported": False},
               open(f"{OUT}/train.json", "w"), indent=1)
     sys.exit(0)
-model.load_state_dict(best_state)
-model = model.float().cpu().eval()
+ft_sd = best_state
+
+
+def weight_report() -> dict:
+    """what the fine-tune changed, per group: relative change ||ft - base|| / ||base||, and the share of all change"""
+    rows, tot = {}, 0.0
+    for k, b in base_sd.items():
+        if not b.dtype.is_floating_point:
+            continue
+        d = ft_sd[k].float() - b.float()
+        dn, bn = float(d.norm()), float(b.float().norm())
+        r = rows.setdefault(group_of(k), {"delta_sq": 0.0, "base_sq": 0.0, "params": 0})
+        r["delta_sq"] += dn * dn
+        r["base_sq"] += bn * bn
+        r["params"] += b.numel()
+        tot += dn * dn
+    return {g: {"relative_change": round((r["delta_sq"] ** 0.5) / max(r["base_sq"] ** 0.5, 1e-12), 6),
+                "share_of_change": round(r["delta_sq"] / max(tot, 1e-12), 4), "params": r["params"]}
+            for g, r in sorted(rows.items())}
+
+
+wr = weight_report()
+print("weight change by group:", json.dumps(wr)[:4000], flush=True)
 
 
 class Scorer(torch.nn.Module):
@@ -143,7 +207,6 @@ class Scorer(torch.nn.Module):
         return self.m(input_ids=input_ids, attention_mask=attention_mask).logits[:, -1]
 
 
-scorer = Scorer(model).eval()
 vp = [(g["q"], p) for g in val[:64] for p in [g["pos"][0]] + g["neg"]]
 enc = [tok(q, p, truncation="only_second", max_length=MAX_LEN)["input_ids"] for q, p in vp]
 
@@ -157,36 +220,60 @@ def feeds(idx):
     return ids, mask
 
 
-ids, mask = feeds([0, 1])
-fp32 = f"{OUT}/fp32/model.onnx"
-os.makedirs(f"{OUT}/fp32", exist_ok=True)
-torch.onnx.export(scorer, (torch.from_numpy(ids), torch.from_numpy(mask)), fp32,
-                  input_names=["input_ids", "attention_mask"], output_names=["score"],
-                  dynamic_axes={"input_ids": {0: "b", 1: "t"}, "attention_mask": {0: "b", 1: "t"}, "score": {0: "b"}},
-                  opset_version=17, dynamo=False)
-quantize_dynamic(fp32, f"{OUT}/model.onnx", weight_type=QuantType.QInt8, per_channel=True,
-                 use_external_data_format=False)
-with torch.inference_mode():
-    ref = np.concatenate([scorer(*[torch.from_numpy(x) for x in feeds(list(range(i, min(i + 16, len(enc)))))]).numpy()
-                          for i in range(0, len(enc), 16)])
-so = ort.SessionOptions(); so.intra_op_num_threads = 4
-sess = ort.InferenceSession(f"{OUT}/model.onnx", so, providers=["CPUExecutionProvider"])
-q8_parts = []
-for i in range(0, len(enc), 16):
-    ids_i, mask_i = feeds(list(range(i, min(i + 16, len(enc)))))
-    q8_parts.append(np.asarray(sess.run(None, {"input_ids": ids_i, "attention_mask": mask_i})[0]).reshape(-1))
-q8 = np.concatenate(q8_parts)
-check = {"pairs": len(enc), "fp32_corr": float(np.corrcoef(q8, ref)[0, 1]),
-         "fp32_abs_diff_mean": float(np.abs(q8 - ref).mean()), "fp32_abs_diff_max": float(np.abs(q8 - ref).max())}
-print("int8 per_channel vs fp32", check, flush=True)
-tok.save_pretrained(f"{OUT}/tok")
-os.replace(f"{OUT}/tok/tokenizer.json", f"{OUT}/tokenizer.json")
-json.dump({"model": HUB + f"+nizam-judgment-citations-v2-{LOSS}", "revision": REV, "kind": "cls", "max_tokens": MAX_LEN,
-           "instruction": "", "variant": "fine-tuned (tools/kaggle/rerank_train_kernel.py, D-171), int8 dynamic, "
-                                         "per channel"}, open(f"{OUT}/reranker.json", "w"), indent=1)
-json.dump({"curve": curve, "loss": LOSS, "best_val_criterion": best, "train": len(train), "val": len(val), "epochs": EPOCHS, "lr": LR,
-           "groups_per_step": GROUPS_PER_STEP, "seed": SEED, "int8_check": check, "exported": True,
-           "int8_mb": round(os.path.getsize(f"{OUT}/model.onnx") / 1e6)}, open(f"{OUT}/train.json", "w"), indent=1)
-import shutil  # noqa: E402
-shutil.rmtree(f"{OUT}/fp32"); shutil.rmtree(f"{OUT}/tok", ignore_errors=True)
+def export(sd: dict, out: str, tag: str) -> dict:
+    """the state dict as the served int8 graph (one logit per pair), checked against fp32 on val pairs"""
+    import shutil
+    os.makedirs(f"{out}/fp32", exist_ok=True)
+    model.load_state_dict(sd)
+    m = model.float().cpu().eval()
+    scorer = Scorer(m).eval()
+    ids, mask = feeds([0, 1])
+    torch.onnx.export(scorer, (torch.from_numpy(ids), torch.from_numpy(mask)), f"{out}/fp32/model.onnx",
+                      input_names=["input_ids", "attention_mask"], output_names=["score"],
+                      dynamic_axes={"input_ids": {0: "b", 1: "t"}, "attention_mask": {0: "b", 1: "t"},
+                                    "score": {0: "b"}}, opset_version=17, dynamo=False)
+    quantize_dynamic(f"{out}/fp32/model.onnx", f"{out}/model.onnx", weight_type=QuantType.QInt8, per_channel=True,
+                     use_external_data_format=False)
+    with torch.inference_mode():
+        ref = np.concatenate([scorer(*[torch.from_numpy(x) for x in feeds(list(range(i, min(i + 16, len(enc)))))])
+                              .numpy() for i in range(0, len(enc), 16)])
+    so = ort.SessionOptions()
+    so.intra_op_num_threads = 4
+    sess = ort.InferenceSession(f"{out}/model.onnx", so, providers=["CPUExecutionProvider"])
+    parts = []
+    for i in range(0, len(enc), 16):
+        ids_i, mask_i = feeds(list(range(i, min(i + 16, len(enc)))))
+        parts.append(np.asarray(sess.run(None, {"input_ids": ids_i, "attention_mask": mask_i})[0]).reshape(-1))
+    q8 = np.concatenate(parts)
+    check = {"pairs": len(enc), "fp32_corr": float(np.corrcoef(q8, ref)[0, 1]),
+             "fp32_abs_diff_mean": float(np.abs(q8 - ref).mean())}
+    tok.save_pretrained(f"{out}/tok")
+    os.replace(f"{out}/tok/tokenizer.json", f"{out}/tokenizer.json")
+    json.dump({"model": HUB + f"+nizam-judgment-citations-v2-{tag}", "revision": REV, "kind": "cls",
+               "max_tokens": MAX_LEN, "instruction": "",
+               "variant": f"fine-tuned ({tag}; tools/kaggle/rerank_train_kernel.py, D-171), int8 dynamic, per channel"},
+              open(f"{out}/reranker.json", "w"), indent=1)
+    shutil.rmtree(f"{out}/fp32")
+    shutil.rmtree(f"{out}/tok", ignore_errors=True)
+    model.to(dev)
+    print(tag, "int8 vs fp32", check, flush=True)
+    return check
+
+
+check = export(ft_sd, OUT, LOSS)
+merges = []
+for a in MERGE:
+    sd = {k: (b.float() + a * (ft_sd[k].float() - b.float())).to(b.dtype) if b.dtype.is_floating_point else b
+          for k, b in base_sd.items()}
+    model.load_state_dict(sd)
+    model.to(dev)
+    e = evaluate(model)
+    tag = f"{LOSS}-a{a:g}"
+    c = export(sd, f"{OUT}/a{a:g}", tag)
+    merges.append({"alpha": a, **e, "int8_check": c})
+    print("merge", merges[-1], flush=True)
+json.dump({"curve": curve, "loss": LOSS, "best_val_criterion": best, "train": len(train), "val": len(val),
+           "epochs": EPOCHS, "lr": LR, "groups_per_step": GROUPS_PER_STEP, "seed": SEED, "int8_check": check,
+           "exported": True, "int8_mb": round(os.path.getsize(f"{OUT}/model.onnx") / 1e6),
+           "architecture": arch, "weight_change": wr, "merges": merges}, open(f"{OUT}/train.json", "w"), indent=1)
 print("done", flush=True)

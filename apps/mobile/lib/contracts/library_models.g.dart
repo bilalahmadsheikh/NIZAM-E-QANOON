@@ -524,3 +524,139 @@ class HeritagePage {
     makers: HeritageMakers.fromJson(json['makers'] as Map<String, dynamic>),
   );
 }
+
+class SearchScope {
+  final String as_of;
+  final String? territory;
+  final List<String>? jurisdictions;
+  const SearchScope({required this.as_of, required this.territory, required this.jurisdictions});
+  factory SearchScope.fromJson(Map<String, dynamic> json) => SearchScope(
+    as_of: json['as_of'] as String,
+    territory: json['territory'] == null ? null : json['territory'] as String,
+    jurisdictions: json['jurisdictions'] == null ? null : (json['jurisdictions'] as List).map((v) => v as String).toList(),
+  );
+}
+
+class SearchMode {
+  final bool searched;
+  final String? degraded;
+  final int? dense_generation;
+  final String? reranker;
+  final String? reranker_device;
+  const SearchMode({required this.searched, required this.degraded, required this.dense_generation, required this.reranker, required this.reranker_device});
+  factory SearchMode.fromJson(Map<String, dynamic> json) => SearchMode(
+    searched: json['searched'] as bool,
+    degraded: json['degraded'] == null ? null : json['degraded'] as String,
+    dense_generation: json['dense_generation'] == null ? null : json['dense_generation'] as int,
+    reranker: json['reranker'] == null ? null : json['reranker'] as String,
+    reranker_device: json['reranker_device'] == null ? null : json['reranker_device'] as String,
+  );
+}
+
+class ScopeNotice {
+  final String code;
+  final String kind;
+  final String matched;
+  final String reason;
+  final List<String> suggestions;
+  const ScopeNotice({required this.code, required this.kind, required this.matched, required this.reason, required this.suggestions});
+  factory ScopeNotice.fromJson(Map<String, dynamic> json) => ScopeNotice(
+    code: json['code'] as String,
+    kind: json['kind'] as String,
+    matched: json['matched'] as String,
+    reason: json['reason'] as String,
+    suggestions: (json['suggestions'] as List).map((v) => v as String).toList(),
+  );
+}
+
+class LawHit {
+  final int rank;
+  final String provision_id;
+  final String version_id;
+  final String instrument_id;
+  final String citation;
+  final String? heading;
+  final String law;
+  final String law_kind;
+  final int? year;
+  final String jurisdiction;
+  final String snippet;
+  final bool via_citation;
+  final double score;
+  const LawHit({required this.rank, required this.provision_id, required this.version_id, required this.instrument_id, required this.citation, required this.heading, required this.law, required this.law_kind, required this.year, required this.jurisdiction, required this.snippet, required this.via_citation, required this.score});
+  factory LawHit.fromJson(Map<String, dynamic> json) => LawHit(
+    rank: json['rank'] as int,
+    provision_id: json['provision_id'] as String,
+    version_id: json['version_id'] as String,
+    instrument_id: json['instrument_id'] as String,
+    citation: json['citation'] as String,
+    heading: json['heading'] == null ? null : json['heading'] as String,
+    law: json['law'] as String,
+    law_kind: json['law_kind'] as String,
+    year: json['year'] == null ? null : json['year'] as int,
+    jurisdiction: json['jurisdiction'] as String,
+    snippet: json['snippet'] as String,
+    via_citation: json['via_citation'] as bool,
+    score: json['score'] as double,
+  );
+}
+
+class SearchPage {
+  final String query;
+  final String kind;
+  final SearchScope scope;
+  final SearchMode mode;
+  final String? refer_to;
+  final String note;
+  final List<ScopeNotice> scope_findings;
+  final List<LawHit> results;
+  const SearchPage({required this.query, required this.kind, required this.scope, required this.mode, required this.refer_to, required this.note, required this.scope_findings, required this.results});
+  factory SearchPage.fromJson(Map<String, dynamic> json) => SearchPage(
+    query: json['query'] as String,
+    kind: json['kind'] as String,
+    scope: SearchScope.fromJson(json['scope'] as Map<String, dynamic>),
+    mode: SearchMode.fromJson(json['mode'] as Map<String, dynamic>),
+    refer_to: json['refer_to'] == null ? null : json['refer_to'] as String,
+    note: json['note'] as String,
+    scope_findings: (json['scope_findings'] as List).map((v) => ScopeNotice.fromJson(v as Map<String, dynamic>)).toList(),
+    results: (json['results'] as List).map((v) => LawHit.fromJson(v as Map<String, dynamic>)).toList(),
+  );
+}
+
+class ResolvedCitation {
+  final String raw;
+  final bool resolved;
+  final String? provision_id;
+  final String? version_id;
+  final String? citation;
+  final String? heading;
+  final String? law;
+  final String? unresolved;
+  final List<String> candidates;
+  final List<String> alternates;
+  const ResolvedCitation({required this.raw, required this.resolved, required this.provision_id, required this.version_id, required this.citation, required this.heading, required this.law, required this.unresolved, required this.candidates, required this.alternates});
+  factory ResolvedCitation.fromJson(Map<String, dynamic> json) => ResolvedCitation(
+    raw: json['raw'] as String,
+    resolved: json['resolved'] as bool,
+    provision_id: json['provision_id'] == null ? null : json['provision_id'] as String,
+    version_id: json['version_id'] == null ? null : json['version_id'] as String,
+    citation: json['citation'] == null ? null : json['citation'] as String,
+    heading: json['heading'] == null ? null : json['heading'] as String,
+    law: json['law'] == null ? null : json['law'] as String,
+    unresolved: json['unresolved'] == null ? null : json['unresolved'] as String,
+    candidates: (json['candidates'] as List).map((v) => v as String).toList(),
+    alternates: (json['alternates'] as List).map((v) => v as String).toList(),
+  );
+}
+
+class CitationPage {
+  final String query;
+  final SearchScope scope;
+  final List<ResolvedCitation> citations;
+  const CitationPage({required this.query, required this.scope, required this.citations});
+  factory CitationPage.fromJson(Map<String, dynamic> json) => CitationPage(
+    query: json['query'] as String,
+    scope: SearchScope.fromJson(json['scope'] as Map<String, dynamic>),
+    citations: (json['citations'] as List).map((v) => ResolvedCitation.fromJson(v as Map<String, dynamic>)).toList(),
+  );
+}

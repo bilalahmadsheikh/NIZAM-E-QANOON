@@ -863,6 +863,729 @@
           }
         }
       }
+    },
+    "/v1/search": {
+      "post": {
+        "summary": "Search",
+        "operationId": "search_v1_search_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchPage"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/citations/resolve": {
+      "post": {
+        "summary": "Resolve",
+        "operationId": "resolve_v1_citations_resolve_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CitationIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CitationPage"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/precedent/search": {
+      "get": {
+        "summary": "Precedent Search",
+        "operationId": "precedent_search_v1_precedent_search_get",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 300,
+              "title": "Q"
+            }
+          },
+          {
+            "name": "as_of",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "As Of"
+            }
+          },
+          {
+            "name": "court",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "enum": [
+                "",
+                "FCC",
+                "SC",
+                "FSC",
+                "LHC",
+                "SHC",
+                "PHC",
+                "BHC",
+                "IHC",
+                "AJKSC",
+                "AJKHC",
+                "GBSAC",
+                "GBCC"
+              ],
+              "type": "string",
+              "default": "",
+              "title": "Court"
+            }
+          },
+          {
+            "name": "forum",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "enum": [
+                "",
+                "FCC",
+                "SC",
+                "FSC",
+                "LHC",
+                "SHC",
+                "PHC",
+                "BHC",
+                "IHC",
+                "AJKSC",
+                "AJKHC",
+                "GBSAC",
+                "GBCC"
+              ],
+              "type": "string",
+              "default": "",
+              "title": "Forum"
+            }
+          },
+          {
+            "name": "forum_territory",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "enum": [
+                "",
+                "punjab",
+                "sindh",
+                "kp",
+                "balochistan",
+                "ict",
+                "ajk",
+                "gb"
+              ],
+              "type": "string",
+              "default": "",
+              "title": "Forum Territory"
+            }
+          },
+          {
+            "name": "subject",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "enum": [
+                "",
+                "civil_procedure",
+                "civil_service",
+                "constitutional",
+                "corporate_commercial",
+                "courts_judiciary",
+                "criminal",
+                "education",
+                "elections",
+                "energy_utilities",
+                "environment",
+                "family",
+                "finance_banking",
+                "health",
+                "intellectual_property",
+                "labour_employment",
+                "local_government",
+                "media_technology",
+                "police_public_order",
+                "property_land",
+                "religious_affairs",
+                "tax",
+                "transport"
+              ],
+              "type": "string",
+              "default": "",
+              "title": "Subject"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 25,
+              "minimum": 1,
+              "default": 10,
+              "title": "Limit"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/precedent/judgments/{judgment_id}": {
+      "get": {
+        "summary": "Judgment",
+        "operationId": "judgment_v1_precedent_judgments__judgment_id__get",
+        "parameters": [
+          {
+            "name": "judgment_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Judgment Id"
+            }
+          },
+          {
+            "name": "as_of",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "As Of"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/precedent/cases/{court}/{case_type}/{number}/{year}": {
+      "get": {
+        "summary": "Case",
+        "operationId": "case_v1_precedent_cases__court___case_type___number___year__get",
+        "parameters": [
+          {
+            "name": "court",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "enum": [
+                "",
+                "FCC",
+                "SC",
+                "FSC",
+                "LHC",
+                "SHC",
+                "PHC",
+                "BHC",
+                "IHC",
+                "AJKSC",
+                "AJKHC",
+                "GBSAC",
+                "GBCC"
+              ],
+              "type": "string",
+              "title": "Court"
+            }
+          },
+          {
+            "name": "case_type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Z]{1,12}$",
+              "title": "Case Type"
+            }
+          },
+          {
+            "name": "number",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[0-9]{1,6}(-[A-Za-z])?$",
+              "title": "Number"
+            }
+          },
+          {
+            "name": "year",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "maximum": 2100,
+              "minimum": 1947,
+              "title": "Year"
+            }
+          },
+          {
+            "name": "as_of",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "As Of"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/precedent/judgments/{judgment_id}/cited-by": {
+      "get": {
+        "summary": "Cited By",
+        "operationId": "cited_by_v1_precedent_judgments__judgment_id__cited_by_get",
+        "parameters": [
+          {
+            "name": "judgment_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Judgment Id"
+            }
+          },
+          {
+            "name": "as_of",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "As Of"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 50,
+              "minimum": 1,
+              "default": 20,
+              "title": "Limit"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/precedent/judgments/{judgment_id}/history": {
+      "get": {
+        "summary": "History",
+        "operationId": "history_v1_precedent_judgments__judgment_id__history_get",
+        "parameters": [
+          {
+            "name": "judgment_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Judgment Id"
+            }
+          },
+          {
+            "name": "as_of",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "As Of"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/law/provisions/{provision_id}/judgments": {
+      "get": {
+        "summary": "Provision Judgments",
+        "operationId": "provision_judgments_v1_law_provisions__provision_id__judgments_get",
+        "parameters": [
+          {
+            "name": "provision_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Provision Id"
+            }
+          },
+          {
+            "name": "as_of",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "As Of"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 50,
+              "minimum": 1,
+              "default": 20,
+              "title": "Limit"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/precedent/authority": {
+      "get": {
+        "summary": "Authority",
+        "operationId": "authority_v1_precedent_authority_get",
+        "parameters": [
+          {
+            "name": "deciding",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "enum": [
+                "",
+                "FCC",
+                "SC",
+                "FSC",
+                "LHC",
+                "SHC",
+                "PHC",
+                "BHC",
+                "IHC",
+                "AJKSC",
+                "AJKHC",
+                "GBSAC",
+                "GBCC"
+              ],
+              "type": "string",
+              "title": "Deciding"
+            }
+          },
+          {
+            "name": "receiving",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "enum": [
+                "",
+                "FCC",
+                "SC",
+                "FSC",
+                "LHC",
+                "SHC",
+                "PHC",
+                "BHC",
+                "IHC",
+                "AJKSC",
+                "AJKHC",
+                "GBSAC",
+                "GBCC"
+              ],
+              "type": "string",
+              "default": "",
+              "title": "Receiving"
+            }
+          },
+          {
+            "name": "receiving_territory",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "enum": [
+                "",
+                "punjab",
+                "sindh",
+                "kp",
+                "balochistan",
+                "ict",
+                "ajk",
+                "gb"
+              ],
+              "type": "string",
+              "default": "",
+              "title": "Receiving Territory"
+            }
+          },
+          {
+            "name": "as_of",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "As Of"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/precedent/coverage": {
+      "get": {
+        "summary": "Coverage",
+        "operationId": "coverage_v1_precedent_coverage_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -920,6 +1643,73 @@
           "kind"
         ],
         "title": "Ancestor"
+      },
+      "CitationIn": {
+        "properties": {
+          "citation": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 2,
+            "title": "Citation"
+          },
+          "as_of": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "As Of"
+          },
+          "territory": {
+            "type": "string",
+            "enum": [
+              "",
+              "punjab",
+              "sindh",
+              "kp",
+              "balochistan",
+              "ict",
+              "ajk",
+              "gb"
+            ],
+            "title": "Territory",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "required": [
+          "citation"
+        ],
+        "title": "CitationIn"
+      },
+      "CitationPage": {
+        "properties": {
+          "query": {
+            "type": "string",
+            "title": "Query"
+          },
+          "scope": {
+            "$ref": "#/components/schemas/SearchScope"
+          },
+          "citations": {
+            "items": {
+              "$ref": "#/components/schemas/ResolvedCitation"
+            },
+            "type": "array",
+            "title": "Citations"
+          }
+        },
+        "type": "object",
+        "required": [
+          "query",
+          "scope",
+          "citations"
+        ],
+        "title": "CitationPage"
       },
       "CollectionItem": {
         "properties": {
@@ -1521,6 +2311,93 @@
         ],
         "title": "InstrumentResult"
       },
+      "LawHit": {
+        "properties": {
+          "rank": {
+            "type": "integer",
+            "title": "Rank"
+          },
+          "provision_id": {
+            "type": "string",
+            "title": "Provision Id"
+          },
+          "version_id": {
+            "type": "string",
+            "title": "Version Id"
+          },
+          "instrument_id": {
+            "type": "string",
+            "title": "Instrument Id"
+          },
+          "citation": {
+            "type": "string",
+            "title": "Citation"
+          },
+          "heading": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Heading"
+          },
+          "law": {
+            "type": "string",
+            "title": "Law"
+          },
+          "law_kind": {
+            "type": "string",
+            "title": "Law Kind"
+          },
+          "year": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Year"
+          },
+          "jurisdiction": {
+            "type": "string",
+            "title": "Jurisdiction"
+          },
+          "snippet": {
+            "type": "string",
+            "title": "Snippet"
+          },
+          "via_citation": {
+            "type": "boolean",
+            "title": "Via Citation"
+          },
+          "score": {
+            "type": "number",
+            "title": "Score"
+          }
+        },
+        "type": "object",
+        "required": [
+          "rank",
+          "provision_id",
+          "version_id",
+          "instrument_id",
+          "citation",
+          "heading",
+          "law",
+          "law_kind",
+          "year",
+          "jurisdiction",
+          "snippet",
+          "via_citation",
+          "score"
+        ],
+        "title": "LawHit"
+      },
       "LawStatus": {
         "properties": {
           "currency": {
@@ -2050,6 +2927,353 @@
           "item"
         ],
         "title": "ProvisionResult"
+      },
+      "ResolvedCitation": {
+        "properties": {
+          "raw": {
+            "type": "string",
+            "title": "Raw"
+          },
+          "resolved": {
+            "type": "boolean",
+            "title": "Resolved"
+          },
+          "provision_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Provision Id"
+          },
+          "version_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Version Id"
+          },
+          "citation": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Citation"
+          },
+          "heading": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Heading"
+          },
+          "law": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Law"
+          },
+          "unresolved": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Unresolved"
+          },
+          "candidates": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Candidates"
+          },
+          "alternates": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Alternates"
+          }
+        },
+        "type": "object",
+        "required": [
+          "raw",
+          "resolved",
+          "provision_id",
+          "version_id",
+          "citation",
+          "heading",
+          "law",
+          "unresolved",
+          "candidates",
+          "alternates"
+        ],
+        "title": "ResolvedCitation"
+      },
+      "ScopeNotice": {
+        "properties": {
+          "code": {
+            "type": "string",
+            "title": "Code"
+          },
+          "kind": {
+            "type": "string",
+            "title": "Kind"
+          },
+          "matched": {
+            "type": "string",
+            "title": "Matched"
+          },
+          "reason": {
+            "type": "string",
+            "title": "Reason"
+          },
+          "suggestions": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Suggestions"
+          }
+        },
+        "type": "object",
+        "required": [
+          "code",
+          "kind",
+          "matched",
+          "reason",
+          "suggestions"
+        ],
+        "title": "ScopeNotice"
+      },
+      "SearchIn": {
+        "properties": {
+          "q": {
+            "type": "string",
+            "maxLength": 300,
+            "minLength": 2,
+            "title": "Q"
+          },
+          "as_of": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "As Of"
+          },
+          "territory": {
+            "type": "string",
+            "enum": [
+              "",
+              "punjab",
+              "sindh",
+              "kp",
+              "balochistan",
+              "ict",
+              "ajk",
+              "gb"
+            ],
+            "title": "Territory",
+            "default": ""
+          },
+          "limit": {
+            "type": "integer",
+            "maximum": 20.0,
+            "minimum": 1.0,
+            "title": "Limit",
+            "default": 10
+          }
+        },
+        "type": "object",
+        "required": [
+          "q"
+        ],
+        "title": "SearchIn"
+      },
+      "SearchMode": {
+        "properties": {
+          "searched": {
+            "type": "boolean",
+            "title": "Searched"
+          },
+          "degraded": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Degraded"
+          },
+          "dense_generation": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dense Generation"
+          },
+          "reranker": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reranker"
+          },
+          "reranker_device": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reranker Device"
+          }
+        },
+        "type": "object",
+        "required": [
+          "searched"
+        ],
+        "title": "SearchMode"
+      },
+      "SearchPage": {
+        "properties": {
+          "query": {
+            "type": "string",
+            "title": "Query"
+          },
+          "kind": {
+            "type": "string",
+            "title": "Kind"
+          },
+          "scope": {
+            "$ref": "#/components/schemas/SearchScope"
+          },
+          "mode": {
+            "$ref": "#/components/schemas/SearchMode"
+          },
+          "refer_to": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Refer To"
+          },
+          "note": {
+            "type": "string",
+            "title": "Note"
+          },
+          "scope_findings": {
+            "items": {
+              "$ref": "#/components/schemas/ScopeNotice"
+            },
+            "type": "array",
+            "title": "Scope Findings"
+          },
+          "results": {
+            "items": {
+              "$ref": "#/components/schemas/LawHit"
+            },
+            "type": "array",
+            "title": "Results"
+          }
+        },
+        "type": "object",
+        "required": [
+          "query",
+          "kind",
+          "scope",
+          "mode",
+          "refer_to",
+          "note",
+          "scope_findings",
+          "results"
+        ],
+        "title": "SearchPage"
+      },
+      "SearchScope": {
+        "properties": {
+          "as_of": {
+            "type": "string",
+            "format": "date",
+            "title": "As Of"
+          },
+          "territory": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Territory"
+          },
+          "jurisdictions": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Jurisdictions"
+          }
+        },
+        "type": "object",
+        "required": [
+          "as_of",
+          "territory"
+        ],
+        "title": "SearchScope"
       },
       "SectionItem": {
         "properties": {

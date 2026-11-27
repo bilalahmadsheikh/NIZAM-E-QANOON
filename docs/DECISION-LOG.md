@@ -1136,6 +1136,48 @@ Area: client · Status: Superseded by D-084 (the whole-page cloth; the hem, the 
   design/heritage_art.dart, presentation/discover.dart, presentation/heritage.dart; test/heritage_test.dart
   (golden embroidery.png, a review sheet at 3x).
 
+### D-178 · 2026-11-27 · The GPU host's inference service: both 8B models behind the clients' own protocols, proved on a GPU
+Area: L3 inference / deployment (docs/04 §9.2; D-099, D-101, D-165, D-169) · Status: standing
+- `nizam/inference/gpu_service.py` (FastAPI, one process, one GPU job at a time) serves:
+  - **`POST /v1/embeddings`** (OpenAI form): Qwen3-Embedding-8B at the bundle's model, commit and precision; last-token
+    pooling, L2-normalised; the client applies the query template.
+  - **`POST /rerank`** (TEI form): Qwen3-Reranker-8B in fp16, logit(yes) − logit(no) of the model card's prompt, as
+    the D-101 bake-off scored it. The client builds the user turn (`qwen_document`); the service adds the fixed
+    prefix and suffix.
+  - **`GET /health`**: models, commits, precision, devices.
+  - It is built on the stack the figures were measured with (transformers + bitsandbytes), so the served vectors and
+    scores are the measured ones. It decides nothing; an error is "dense or reranker unavailable" to the client.
+- **Precision:** the encoder is served in 4-bit (NF4, fp16 compute, double quantisation), as D-169 decided. An nf4
+  host does not reproduce the fp16 reference vectors (cosine .977 < the client's 0.99 check). So a 4-bit host is
+  checked against its own bundle, `models/encoder-gpu-nf4` (`precision: nf4`; 276 dev questions encoded in NF4 on a
+  Kaggle T4, D-165).
+  - The API then sets `NIZAM_GPU_ENCODER_DIR` to that bundle, with `NIZAM_GPU_ENCODER_URL` and
+    `NIZAM_GPU_RERANKER_URL` pointing at the service.
+  - `./nz export` and restore carry the nf4 bundle beside the fp16 one (`infra/scripts/encoder-bundle.sh`; same
+    model and commit as the active GPU generation, or refused). Round trip checked.
+- **Proof** (`tools/kaggle/gpu_service_kernel.py`, Kaggle 2× T4, 27 Nov): the service started with both models, then
+  the real clients (`RemoteEncoder`, `RemoteReranker`) were built against it, so their own same-space checks ran.
+
+  | Check | Result |
+  |---|---|
+  | Encoder check (nf4 refs) | passed; cosine min and mean 1.0 over 40 dev questions |
+  | Reranker check (Spearman ≥ 0.98 vs the bake-off) | passed |
+  | Load (download + both models) | 288 s |
+  | Question encode p50 / p95 | 125 / 133 ms |
+  | Rerank 10 / 50 passages × 1,600 chars | 3.8 s / 21.4 s |
+  | VRAM after load / peak, both cards | 19.8 / 25.0 GiB (encoder ~5 GiB, reranker ~15 GiB + activations) |
+
+- **Reading:**
+  - The service is correct.
+  - On a T4 it is too slow: 50 reranked passages, the served GPU depth, take 21 s against docs/10's p95 < 4 s. The
+    depth is measured next (D-180).
+  - Both models need ~25 GiB at peak, so one 24 GB card is marginal: a 48 GB card or two 24 GB cards fit.
+- The HTTP contract is tested through the real clients against fake backends: `tests/test_gpu_service.py`, 4 tests.
+  A faithful service passes; a wrong encoder or a reversed reranker is refused.
+- Kaggle uploads of folders need `KG_DIR_MODE=zip` (`kg.sh dsup`); the kernel unpacks a zip that Kaggle keeps.
+- Where: nizam/inference/gpu_service.py; tests/test_gpu_service.py; tools/kaggle/gpu_service_kernel.py, kg.sh
+  (`gpusvcpush`, `KG_DIR_MODE`); infra/scripts/encoder-bundle.sh; /mnt/e/nizam-data/models/encoder-gpu-nf4.
+
 ### D-179 · 2026-11-27 · The app's law search: POST /v1/search and POST /v1/citations/resolve
 Area: L6 API (docs/07 §B2, the contract's `search` group: "search returns scope and degradation") · Status: standing
 - **`POST /v1/search`** takes `{q, as_of?, territory?, limit 1..20}` and returns L3's ranked units,
@@ -1178,7 +1220,13 @@ Area: L6 API (docs/07 §B2, the contract's `search` group: "search returns scope
     appears twice. The jurisdiction field lets the app label them; collapsing copies is a version-modelling item.
   - "PAKISTAN PENAL CODE, 1860, clause 489-F" is a unit segmented as a clause: a corpus item.
   - CPU Roman Urdu ranking is weak: "talaq ke baad iddat" puts Hudood s.7 first.
-- Where: nizam/api/search.py, nizam/api/library.py; tests/test_search_api.py (10 tests, against the database).
+- The responses are typed models (`SearchPage`, `LawHit`, `SearchMode`, `ScopeNotice`, `CitationPage`,
+  `ResolvedCitation`), so the app's Dart contract is generated from them (`tools/generate_library_contract.py`).
+  - Regenerating it also brought `openapi/library-preview.json` up to date with the precedent routes; it had drifted
+    since D-118.
+  - `--check` passes; `flutter analyze` is clean.
+- Where: nizam/api/search.py, nizam/api/library.py; tests/test_search_api.py (10 tests, against the database);
+  tools/generate_library_contract.py, openapi/library-preview.json, apps/mobile/lib/contracts/library_models.g.dart.
 
 ### D-174 · 2026-11-27 · S2, the precedent gate: a precedent context is cited only when it passes
 Area: L5 precedent (docs/ANSWER-COMPOSITION §5 stage 3 step 6; INV-2) · Status: standing (draft gold; provisional)
