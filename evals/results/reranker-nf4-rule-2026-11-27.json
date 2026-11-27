@@ -6,5 +6,6 @@
  "step_1_rule": "ranking: NF4 NDCG@10 minus fp16 (gpu-depth-dev-50.json, same corpus and slates) >= -1.0 point AND 95% CI lower bound >= -2.0 (paired bootstrap 10,000, seed 0) -- ADR-1d's line, as D-169 used for the encoder",
  "step_2_if_step_1_passes": "the gate: GPU gate features recomputed with NF4 scores on dev, refit under the reach addendum (D-175); NF4 ships only if its dev coverage at >= 0.95 out-of-fold precision is within 2 points of fp16's .973; then test read once against D-175's fp16 GPU row (170 passed, .941)",
  "also_reported": "latency (the kernel's 10- and 50-passage timings) and VRAM; 4-bit matrix multiplies can be slower than fp16 on a T4, so the speed is measured, not assumed",
- "serving": "an NF4 reranker is a new calibration key (precision is part of the reranker's identity) and the GPU service's RerankerBackend loads it from reranker.json precision"
+ "serving": "an NF4 reranker is a new calibration key (precision is part of the reranker's identity) and the GPU service's RerankerBackend loads it from reranker.json precision",
+ "result": "step 1 at 1,600: +0.4 [-1.2, +2.1]; at 800 vs fp16/1600: +0.5 [-1.4, +2.3]. Step 2 at nf4+800: dev coverage .954 at .950 (262/283); test read once (21:45): 167 passed at .934 [.886, .963], judged by D-180's written criterion (CI overlaps .941, passes >= 165) -> adopted as mode gpu-nf4 (D-182). Latency: 23.3 s p50 per 50 at 1,600 on one T4 (fp16 24.5 s on two): memory, not speed"
 }

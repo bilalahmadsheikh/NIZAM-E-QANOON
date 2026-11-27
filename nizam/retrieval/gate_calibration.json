@@ -41,25 +41,38 @@
   },
   "gpu": {
    "features": [
-    "top"
+    "top",
+    "margin",
+    "conc",
+    "cited"
    ],
    "mean": [
-    6.37890794
+    6.25713686,
+    1.7311845,
+    0.50742049,
+    0.0
    ],
    "scale": [
-    1.51178196
+    1.55912894,
+    1.71908657,
+    0.26699755,
+    1.0
    ],
    "coef": [
-    1.58407123
+    1.58818916,
+    0.24760831,
+    0.7013809,
+    0.0
    ],
-   "intercept": 3.34681507,
-   "tau": 0.723027,
+   "intercept": 3.55026972,
+   "tau": 0.6727,
    "target_precision": 0.95,
    "dense_generation": 2,
    "fitted_on": "dev, split-v1, 283 scored cases",
-   "oof_answered_precision": 0.9513,
-   "oof_coverage_of_sufficient": 0.9732,
-   "reranker": "Qwen/Qwen3-Reranker-8B@77d193c791ed757ca307ee72715aa132723da912"
+   "oof_answered_precision": 0.9508,
+   "oof_coverage_of_sufficient": 0.9654,
+   "reranker": "Qwen/Qwen3-Reranker-8B@77d193c791ed757ca307ee72715aa132723da912",
+   "passage_chars": 800
   },
   "unreranked": {
    "features": [
@@ -85,9 +98,42 @@
    "fitted_on": "dev, split-v1, 283 scored cases",
    "oof_answered_precision": 0.9,
    "oof_coverage_of_sufficient": 0.2069
+  },
+  "gpu-nf4": {
+   "features": [
+    "top",
+    "margin",
+    "agree"
+   ],
+   "mean": [
+    6.81995261,
+    1.73789349,
+    0.80565371
+   ],
+   "scale": [
+    1.66464401,
+    1.73823619,
+    0.39569661
+   ],
+   "coef": [
+    1.28953005,
+    0.82218769,
+    0.50395095
+   ],
+   "intercept": 3.81635553,
+   "tau": 0.714491,
+   "target_precision": 0.95,
+   "dense_generation": 2,
+   "fitted_on": "dev, split-v1, 283 scored cases",
+   "oof_answered_precision": 0.9504,
+   "oof_coverage_of_sufficient": 0.954,
+   "reranker": "Qwen/Qwen3-Reranker-8B@77d193c791ed757ca307ee72715aa132723da912@nf4",
+   "passage_chars": 800
   }
  },
  "notes": [
-  "cpu mode: the distilled reranker (D-181), fitted on dev under the reach addendum; gpu and unreranked: D-175"
+  "cpu mode: the distilled reranker (D-181), fitted on dev under the reach addendum; unreranked: D-175",
+  "gpu mode: Qwen3-Reranker-8B fp16 reading 800 characters x 50 (D-180); test once 168 passed at .941",
+  "gpu-nf4 mode: the same reranker in NF4 at 800 x 50 (D-182); test once 167 passed at .934"
  ]
 }

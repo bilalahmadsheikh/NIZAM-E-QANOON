@@ -49,6 +49,13 @@ class RerankerInfo:
     max_tokens: int
     instruction: str = ""
     device: str = "cpu"       # where it runs: "cpu" (in process) | "gpu" (the GPU host's service)
+    precision: str = "fp16"   # the GPU host's weights: "fp16" (D-101) | "nf4" (D-182); part of the gate's key
+
+
+def reranker_key(model: str, revision: str, precision: str | None = "fp16") -> str:
+    """the gate calibration's key for a reranker: model@revision, and @precision when it is not fp16 (D-182: a
+    4-bit reranker's scores are calibrated on their own, so an fp16 calibration never gates them, nor the reverse)"""
+    return f"{model}@{revision}" + ("" if (precision or "fp16") == "fp16" else f"@{precision}")
 
 
 def _root() -> Path:
@@ -58,7 +65,9 @@ def _root() -> Path:
 def _info(d: Path, device: str) -> RerankerInfo:
     cfg = json.loads((d / "reranker.json").read_text(encoding="utf-8"))
     info = RerankerInfo(cfg["model"], cfg["revision"], cfg["kind"], int(cfg["max_tokens"]),
-                        cfg.get("instruction") or "", device)
+                        cfg.get("instruction") or "", device, cfg.get("precision", "fp16"))
+    if info.precision not in ("fp16", "nf4"):
+        raise ValueError(f"unknown reranker precision {info.precision!r} (fp16 | nf4)")
     if info.kind not in ("cls", "qwen"):
         raise ValueError(f"unknown reranker kind {info.kind!r}")
     if info.kind == "qwen" and not info.instruction:
@@ -134,7 +143,8 @@ class OnnxReranker:
 
 
 class RemoteReranker:
-    def __init__(self, directory: Path | None = None, url: str | None = None, timeout: float = 5.0, post=None):
+    def __init__(self, directory: Path | None = None, url: str | None = None, timeout: float = 5.0, post=None,
+                 get=None):
         d = Path(directory or os.environ.get("NIZAM_GPU_RERANKER_DIR") or _root() / "reranker-gpu")
         self.info = _info(d, "gpu")
         cfg = json.loads((d / "reranker.json").read_text(encoding="utf-8"))
@@ -145,6 +155,9 @@ class RemoteReranker:
             raise OSError("NIZAM_GPU_RERANKER_URL is not set: no GPU reranker on this host")
         self.timeout = timeout
         self._post = post or self._http_post
+        # an injected transport brings its own health (tests); the real one asks the service
+        self._get = get or (self._http_get if post is None else None)
+        self._check_precision()
         ref = json.loads((d / "reference.json").read_text(encoding="utf-8"))
         for g in ref["groups"]:
             got = self.score(g["question"], g["passages"])
@@ -153,6 +166,25 @@ class RemoteReranker:
                 raise ValueError(f"the GPU reranker at {self.url} does not rank the bake-off's reference pairs as "
                                  f"{self.info.model}@{self.info.revision[:12]} did (Spearman {rho:.3f} < "
                                  f"{REFERENCE_SPEARMAN}): another model, revision or prompt template")
+
+    def _check_precision(self) -> None:
+        """the reference check cannot tell fp16 from nf4 (they rank alike, D-182), so the precision is asked: our GPU
+        service's /health names it (D-178). A server that does not report one (TEI) is not refused for that"""
+        if self._get is None:
+            return
+        try:
+            health = self._get("/health")
+        except (OSError, ValueError):
+            return
+        got = ((health or {}).get("reranker") or {}).get("precision") if isinstance(health, dict) else None
+        if got is not None and got != self.info.precision:
+            raise ValueError(f"the GPU reranker at {self.url} runs {got}, but this bundle is calibrated for "
+                             f"{self.info.precision}: install the {got} bundle (models/reranker-gpu"
+                             f"{'' if got == 'fp16' else '-' + got}) or serve {self.info.precision}")
+
+    def _http_get(self, path: str):
+        with urllib.request.urlopen(self.url + path, timeout=self.timeout) as resp:
+            return json.loads(resp.read().decode("utf-8") or "null")
 
     def _http_post(self, path: str, payload: dict):
         req = urllib.request.Request(self.url + path, data=json.dumps(payload).encode("utf-8"),

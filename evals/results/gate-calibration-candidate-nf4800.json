@@ -1,0 +1,43 @@
+{
+ "version": "gate-v2-2026-11-20",
+ "rule": "evals/results/gate-rule-2026-11-20.json",
+ "addenda": [
+  "evals/results/gate-rule-addendum-agree-2026-11-20.json",
+  "evals/results/gate-rule-addendum-scope-2026-11-20.json",
+  "evals/results/gate-rule-addendum-reach-2026-11-27.json"
+ ],
+ "provisional": "fitted on draft golden sets 1-10 (D-095, D-104); refit when the reviewed split exists",
+ "bundle": 10,
+ "modes": {
+  "gpu": {
+   "features": [
+    "top",
+    "margin",
+    "agree"
+   ],
+   "mean": [
+    6.81995261,
+    1.73789349,
+    0.80565371
+   ],
+   "scale": [
+    1.66464401,
+    1.73823619,
+    0.39569661
+   ],
+   "coef": [
+    1.28953005,
+    0.82218769,
+    0.50395095
+   ],
+   "intercept": 3.81635553,
+   "tau": 0.714491,
+   "target_precision": 0.95,
+   "dense_generation": 2,
+   "fitted_on": "dev, split-v1, 283 scored cases",
+   "oof_answered_precision": 0.9504,
+   "oof_coverage_of_sufficient": 0.954,
+   "reranker": "Qwen/Qwen3-Reranker-8B@77d193c791ed757ca307ee72715aa132723da912@nf4"
+  }
+ }
+}

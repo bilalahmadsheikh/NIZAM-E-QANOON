@@ -81,7 +81,20 @@ def test_the_gpu_reads_the_bake_offs_length_and_depth():
     class G(Fixed):
         info = gpu
     R.rerank(_result(n=5), reranker=G({f"u{i}": float(i) for i in range(1, 6)}))
-    assert ASKED == [(5, R.RERANK_INPUT["gpu"][0])] and R.RERANK_INPUT["gpu"] == (1600, 50)
+    assert ASKED == [(5, R.RERANK_INPUT["gpu"][0])] and R.RERANK_INPUT["gpu"] == (800, 50)     # D-180
+
+
+def test_the_trace_names_the_precision_and_the_gate_keys_by_it():
+    from nizam.inference.reranker import reranker_key
+    nf4 = RerankerInfo("Qwen/Qwen3-Reranker-8B", "77d1", "qwen", 1024, "", "gpu", "nf4")
+
+    class G(Fixed):
+        info = nf4
+    r = R.rerank(_result(n=3), reranker=G({f"u{i}": float(i) for i in range(1, 4)}))
+    t = r.trace["rerank"]
+    assert t["precision"] == "nf4"
+    assert reranker_key(t["model"], t["revision"], t["precision"]) == "Qwen/Qwen3-Reranker-8B@77d1@nf4"
+    assert reranker_key("m", "r", "fp16") == reranker_key("m", "r", None) == "m@r"     # fp16 keys are unchanged
 
 
 def test_no_reranker_serves_the_fused_order_marked(monkeypatch):
@@ -174,6 +187,27 @@ def test_the_vllm_response_shape_is_read(tmp_path):
         return {"results": [{"index": i, "relevance_score": float(n - i)} for i in range(n)]}
     rr = RemoteReranker(_bundle(tmp_path, [9.0, 5.0, 1.0, -2.0], api="vllm"), url="http://gpu", post=post)
     assert rr.score("q", ["x", "y"]) == [2.0, 1.0]
+
+
+def _ordered(path, payload):
+    order = {"a": 4.0, "b": 3.0, "c": 2.0, "d": 1.0}
+    return [{"index": i, "score": order[t.rsplit(": ", 1)[-1]]} for i, t in enumerate(payload["texts"])]
+
+
+def test_a_service_running_another_precision_is_refused(tmp_path):
+    """fp16 and nf4 rank the reference pairs alike, so only the service's own report can tell them apart (D-182)"""
+    d = _bundle(tmp_path, [9.0, 5.0, 1.0, -2.0])                                     # an fp16 bundle
+    with pytest.raises(ValueError, match="runs nf4"):
+        RemoteReranker(d, url="http://gpu", post=_ordered, get=lambda p: {"reranker": {"precision": "nf4"}})
+    assert RemoteReranker(d, url="http://gpu", post=_ordered, get=lambda p: {"reranker": {"precision": "fp16"}})
+    assert RemoteReranker(d, url="http://gpu", post=_ordered, get=lambda p: None)     # TEI: no report, no refusal
+    cfg = json.loads((d / "reranker.json").read_text())
+    (d / "reranker.json").write_text(json.dumps({**cfg, "precision": "nf4"}))
+    rr = RemoteReranker(d, url="http://gpu", post=_ordered, get=lambda p: {"reranker": {"precision": "nf4"}})
+    assert rr.info.precision == "nf4"
+    (d / "reranker.json").write_text(json.dumps({**cfg, "precision": "int3"}))
+    with pytest.raises(ValueError, match="unknown reranker precision"):
+        RemoteReranker(d, url="http://gpu", post=_ordered)
 
 
 def test_no_url_is_oserror(tmp_path, monkeypatch):

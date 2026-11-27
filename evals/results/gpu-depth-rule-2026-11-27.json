@@ -1,0 +1,11 @@
+{
+ "decision": "D-180: how many of the GPU slate's units the 8B reranker scores (RERANK_INPUT['gpu'] depth)",
+ "written": "2026-11-27, before any depth below 50 was scored",
+ "why": "the GPU service proof (D-178) measured 21.4 s to score 50 passages of 1,600 characters on a Kaggle T4 and 3.8 s for 10; GPU time per question is the hosting cost and the latency",
+ "data": "law dev (276 cases with gold), the served path: nf4 question vectors (bundle-law-nf4, D-169), cited_dense slate, Qwen3-Reranker-8B scores replayed from ds-lawrr-union (1,600 characters); depth 50 re-run beside the others on the same corpus",
+ "candidates": [10, 20, 30, 50],
+ "metric": "NDCG@10 per case; paired bootstrap (10,000 resamples, seed 0) of depth k minus depth 50",
+ "rule": "adopt the smallest k whose mean difference is >= -1.0 NDCG point AND whose 95% CI lower bound is >= -2.0 points (ADR-1d's 2-point line); recall@10 and MRR@10 reported, not deciding. None qualifies: depth stays 50.",
+ "then": "the chosen depth's gate features are re-measured on dev before any change ships (the gate reads the top scores); test is read once, after the dev choice",
+ "chars": "passage length (1,600) is not varied here: the replayed scores exist only at 1,600 characters"
+}

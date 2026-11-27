@@ -92,6 +92,16 @@ bundle_rerankers() {
     ( cd "$out/reranker-gpu" && sha256sum reranker.json reference.json > SHA256SUMS )
     got="${got:+$got }gpu"
   fi
+  # the 4-bit GPU reranker's bundle (D-182): precision nf4 and nf4-made reference scores (fp16 and nf4 rank alike, so
+  # the host's /health precision is what tells them apart; the gate keys its calibration by precision)
+  src="${NIZAM_GPU_RERANKER_NF4_DIR:-${CORPUS_ROOT}/models/reranker-gpu-nf4}"
+  if [ -f "$src/reranker.json" ] && [ -f "$src/reference.json" ]; then
+    python3 -c "import json,sys; sys.exit(0 if json.load(open(sys.argv[1],encoding='utf-8')).get('precision')=='nf4' else 1)"       "$src/reranker.json" || { echo "reranker: ${src} is not an nf4 bundle" >&2; return 1; }
+    mkdir -p "$out/reranker-gpu-nf4"
+    cp "$src/reranker.json" "$src/reference.json" "$out/reranker-gpu-nf4/"
+    ( cd "$out/reranker-gpu-nf4" && sha256sum reranker.json reference.json > SHA256SUMS )
+    got="${got:+$got }gpu-nf4"
+  fi
   echo "${got:-none}"
 }
 
@@ -99,7 +109,7 @@ bundle_rerankers() {
 # (absent folders: nothing to check)
 check_encoder() {
   local sub src
-  for sub in encoder encoder-gpu encoder-gpu-nf4 reranker reranker-gpu; do
+  for sub in encoder encoder-gpu encoder-gpu-nf4 reranker reranker-gpu reranker-gpu-nf4; do
     src="$1/$sub"
     [ -f "$src/SHA256SUMS" ] || continue
     ( cd "$src" && sha256sum -c --quiet SHA256SUMS ) || { echo "encoder: ${src} fails its SHA256SUMS" >&2; return 1; }
@@ -139,5 +149,11 @@ install_encoder() {
     mkdir -p "$dst"
     cp "$1/reranker-gpu"/* "$dst/"
     echo "GPU reranker bundle installed at ${dst} (served by the GPU host: set NIZAM_GPU_RERANKER_URL)"
+  fi
+  if [ -f "$1/reranker-gpu-nf4/SHA256SUMS" ]; then
+    dst="${NIZAM_GPU_RERANKER_NF4_DIR:-${CORPUS_ROOT}/models/reranker-gpu-nf4}"
+    mkdir -p "$dst"
+    cp "$1/reranker-gpu-nf4"/* "$dst/"
+    echo "4-bit GPU reranker bundle installed at ${dst} (a 4-bit host: set NIZAM_GPU_RERANKER_DIR=${dst})"
   fi
 }

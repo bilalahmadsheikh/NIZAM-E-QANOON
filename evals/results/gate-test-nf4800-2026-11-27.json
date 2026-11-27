@@ -1,0 +1,205 @@
+{
+ "provisional": "golden sets 1-10 are drafts; kappa not measured (D-095, D-104)",
+ "split": "test",
+ "calibration": "gate-v2-2026-11-20",
+ "features_file": "gate-features-test-nf4800.json",
+ "note": "test: scored once after the calibration gate-v2-2026-11-20 was frozen (D-102, D-106)",
+ "modes": {
+  "gpu": {
+   "cases": 195,
+   "passed": 167,
+   "answered_precision": {
+    "k": 156,
+    "n": 167,
+    "rate": 0.9341,
+    "wilson95": [
+     0.8859,
+     0.9628
+    ]
+   },
+   "coverage_of_sufficient": {
+    "k": 156,
+    "n": 162,
+    "rate": 0.963,
+    "wilson95": [
+     0.9216,
+     0.9829
+    ]
+   },
+   "coverage_of_answerable": {
+    "k": 166,
+    "n": 174,
+    "rate": 0.954,
+    "wilson95": [
+     0.9119,
+     0.9765
+    ]
+   },
+   "wrong_answers": {
+    "passed_insufficient": 11,
+    "passed_expected_abstain": 1,
+    "cases": [
+     "S2-C06",
+     "S4-C08",
+     "S4-X05",
+     "S5-C15",
+     "S6-C17",
+     "S6-R01",
+     "S7-C10",
+     "S8-C03",
+     "S8-R04",
+     "S8-U04",
+     "S9-R06"
+    ]
+   },
+   "unanswerable": {
+    "recall_all": {
+     "k": 20,
+     "n": 21,
+     "rate": 0.9524,
+     "wilson95": [
+      0.7733,
+      0.9915
+     ]
+    },
+    "recall_l3_scope": {
+     "k": 19,
+     "n": 19,
+     "rate": 1.0,
+     "wilson95": [
+      0.8318,
+      1.0
+     ]
+    },
+    "recall_l6_professional_review": {
+     "k": 1,
+     "n": 2,
+     "rate": 0.5,
+     "wilson95": [
+      0.0945,
+      0.9055
+     ]
+    },
+    "precision_strict": {
+     "k": 20,
+     "n": 28,
+     "rate": 0.7143,
+     "wilson95": [
+      0.5294,
+      0.8475
+     ]
+    },
+    "precision_vs_sufficiency": {
+     "k": 22,
+     "n": 28,
+     "rate": 0.7857,
+     "wilson95": [
+      0.6046,
+      0.8979
+     ]
+    },
+    "missed": [
+     "S4-X05"
+    ]
+   },
+   "abstained_by": {
+    "classifier": 15,
+    "veto:place": 2,
+    "veto:records": 2,
+    "veto:time": 3,
+    "veto:statistics": 2,
+    "veto:source": 4
+   },
+   "by_script": {
+    "arabic": {
+     "cases": 5,
+     "passed": 5,
+     "answered_precision": {
+      "k": 5,
+      "n": 5,
+      "rate": 1.0,
+      "wilson95": [
+       0.5655,
+       1.0
+      ]
+     },
+     "coverage_of_sufficient": {
+      "k": 5,
+      "n": 5,
+      "rate": 1.0,
+      "wilson95": [
+       0.5655,
+       1.0
+      ]
+     }
+    },
+    "latin": {
+     "cases": 176,
+     "passed": 151,
+     "answered_precision": {
+      "k": 141,
+      "n": 151,
+      "rate": 0.9338,
+      "wilson95": [
+       0.8824,
+       0.9636
+      ]
+     },
+     "coverage_of_sufficient": {
+      "k": 141,
+      "n": 145,
+      "rate": 0.9724,
+      "wilson95": [
+       0.9312,
+       0.9892
+      ]
+     }
+    },
+    "roman_urdu": {
+     "cases": 14,
+     "passed": 11,
+     "answered_precision": {
+      "k": 10,
+      "n": 11,
+      "rate": 0.9091,
+      "wilson95": [
+       0.6226,
+       0.9838
+      ]
+     },
+     "coverage_of_sufficient": {
+      "k": 10,
+      "n": 12,
+      "rate": 0.8333,
+      "wilson95": [
+       0.552,
+       0.953
+      ]
+     }
+    }
+   },
+   "ece": 0.062,
+   "classifier_alone": {
+    "unanswerable_recall": {
+     "k": 15,
+     "n": 21,
+     "rate": 0.7143,
+     "wilson95": [
+      0.5004,
+      0.8619
+     ]
+    },
+    "answered_precision": {
+     "k": 156,
+     "n": 172,
+     "rate": 0.907,
+     "wilson95": [
+      0.8542,
+      0.9419
+     ]
+    }
+   },
+   "vetoes_on_answerable": []
+  }
+ }
+}

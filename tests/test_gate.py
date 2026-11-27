@@ -119,6 +119,29 @@ def test_a_reranker_with_no_calibration_of_its_own_never_borrows_one():
     assert "bge-reranker" in out.gate["mode"]
 
 
+
+def test_an_nf4_reranker_is_gated_by_its_own_calibration_and_never_by_fp16s():
+    """D-182: the same model and revision in 4-bit is another calibration key; neither precision borrows the other's"""
+    q8 = "Qwen/Qwen3-Reranker-8B@77d1"
+    cal = {"version": "x", "modes": {"gpu": {**CAL["modes"]["cpu"], "reranker": q8},
+                                     "gpu-nf4": {**CAL["modes"]["cpu"], "reranker": q8 + "@nf4", "tau": 0.7}}}
+    fp16, nf4 = result(strong(), rerank=q8), result(strong(), rerank=q8)
+    nf4.trace["rerank"]["precision"] = "nf4"
+    assert G.mode_of(fp16, cal)[0] == "gpu" and G.mode_of(nf4, cal)[0] == "gpu-nf4"
+    only_fp16 = {"version": "x", "modes": {"gpu": cal["modes"]["gpu"]}}
+    out = G.gate(nf4, cal=only_fp16, territory_check=False)
+    assert isinstance(out, G.Abstention) and out.code == "RETRIEVAL_DEGRADED"
+
+
+def test_a_calibration_fitted_at_one_passage_length_does_not_gate_another():
+    q8 = "Qwen/Qwen3-Reranker-8B@77d1"
+    cal = {"version": "x", "modes": {"gpu": {**CAL["modes"]["cpu"], "reranker": q8, "passage_chars": 800}}}
+    at800, at1600 = result(strong(), rerank=q8), result(strong(), rerank=q8)
+    at800.trace["rerank"]["passage_chars"], at1600.trace["rerank"]["passage_chars"] = 800, 1600
+    assert G.mode_of(at800, cal)[0] == "gpu"
+    out = G.gate(at1600, cal=cal, territory_check=False)
+    assert isinstance(out, G.Abstention) and out.code == "RETRIEVAL_DEGRADED"
+
 @contextmanager
 def fake_session(juris):
     class S:

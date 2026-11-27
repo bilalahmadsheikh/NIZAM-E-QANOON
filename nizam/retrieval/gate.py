@@ -34,6 +34,7 @@ from datetime import date
 from functools import lru_cache
 from pathlib import Path
 
+from nizam.inference.reranker import reranker_key
 from nizam.retrieval import scope
 from nizam.retrieval.lexical import LexicalResult
 from nizam.retrieval.query import QuerySpec, parse
@@ -179,9 +180,11 @@ def mode_of(r: LexicalResult, cal: dict) -> tuple[str, dict | None]:
             return "unreranked", m
         return "unreranked", None
     rr = r.trace.get("rerank") or {}
-    ident = f"{rr.get('model')}@{rr.get('revision')}"
+    ident = reranker_key(rr.get("model"), rr.get("revision"), rr.get("precision"))
     for name, m in modes.items():
-        if name != "unreranked" and m.get("reranker") == ident:
+        # a calibration that names the passage length it was fitted at gates only that length (D-180: 800 vs 1,600)
+        if name != "unreranked" and m.get("reranker") == ident and m.get("passage_chars") in (
+                None, rr.get("passage_chars")):
             return name, m
     return f"reranker {ident}", None
 

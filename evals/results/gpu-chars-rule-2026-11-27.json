@@ -1,0 +1,14 @@
+{
+ "decision": "D-180 (second lever): passage length the 8B reranker reads on the GPU profile (RERANK_INPUT['gpu'] chars), depth 50",
+ "written": "2026-11-27, after the depth sweep (no depth below 50 qualified: 30 was -0.7 [-2.6, +0.9]) and before any 800-character score",
+ "why": "tokens per passage set the GPU time: ~480 tokens at 1,600 characters with the prompt, ~280 at 800",
+ "data": "law dev (276 cases), the served path (nf4 question vectors, cited_dense slate, depth 50); 800-character passages cut from the scored 1,600-character pairs exactly as Session.unit_passages cuts (prefix line, then the words cut at a word boundary after 800), scored by Qwen3-Reranker-8B on Kaggle",
+ "candidates": [
+  800
+ ],
+ "rule": "adopt 800 if its NDCG@10 minus 1,600's is >= -1.0 point AND the 95% CI lower bound >= -2.0 (paired bootstrap, 10,000, seed 0); else 1,600 stays",
+ "then": "an adopted length is re-measured for the gate on dev (features at the new length) before it ships; test read once",
+ "ranking_result": "dev NDCG@10 1,600 .815 -> 800 .814, -0.1 [-1.7, +1.3]; recall@50 unchanged: step 1 passes (17:32)",
+ "gate_rule": "written 17:35, before any gate feature at 800 characters: the GPU gate refit on dev at 800 characters (reach addendum) must reach coverage of sufficient >= .953 (within 2 points of D-175's .973 at 1,600) at >= 0.95 out-of-fold precision; then test read once against D-175's GPU row (170 passed, .941): 800 ships if its test answered precision's CI overlaps and passes >= 165",
+ "gate_result": "dev gate at 800: coverage .965 at .951 (264/283) -> test read once (21:45): 168 passed at .941 [.894, .967] -> 800 ships (D-180). The first 800 gate run scored 1,600-character cuts (gate_features defect) and was discarded unread"
+}

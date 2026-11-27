@@ -42,10 +42,11 @@ log = logging.getLogger(__name__)
 SLATE_WINDOWS = {"gpu": False, "cpu": True}
 
 # what each reranker device reads: passage characters (unit_passages' max_chars) and depth (how many of the fused
-# slate's first units are scored; the rest keep their fused order below them). gpu: the bake-off's 1,600 x 50
-# (Qwen3-Reranker-8B). cpu: the latency addendum's choice (evals/results/rerank-rule-addendum-cpu-2026-11-20.json;
+# slate's first units are scored; the rest keep their fused order below them). gpu: 800 x 50 (Qwen3-Reranker-8B;
+# the bake-off's 1,600 x 50 until D-180: 800 ranks the same, dev -0.1 [-1.7, +1.3], and its gate passed test 168 at
+# .941, at about half the tokens; depth 30 failed). cpu: the latency addendum's choice (evals/results/rerank-rule-addendum-cpu-2026-11-20.json;
 # int8 mMiniLM at 800 x 10, dev p50 589 ms on the 6-core build host, where 1,600 x 50 took 5 s), D-101.
-RERANK_INPUT = {"gpu": (1600, 50), "cpu": (800, 10)}
+RERANK_INPUT = {"gpu": (800, 50), "cpu": (800, 10)}
 
 
 class RerankUnavailable(Exception):
@@ -116,6 +117,7 @@ def rerank(r: LexicalResult, reranker=None, connect_fn=None) -> LexicalResult:
     # units below the depth were not scored: they keep their fused order, after every scored unit, rerank_score None
     r.candidates = [replace(c, rank=i) for i, c in enumerate(cited + rest + tail, 1)]
     r.trace["rerank"] = {"model": info.model, "revision": info.revision, "kind": info.kind, "device": info.device,
+                         "precision": getattr(info, "precision", "fp16"),
                          "passage_chars": chars, "depth": depth, "scored": len(head),
                          "passages_ms": round((t1 - t0) * 1000), "score_ms": round((t2 - t1) * 1000),
                          "scores": {c.unit_id: c.rerank_score for c in scored}}

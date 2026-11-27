@@ -41,14 +41,14 @@ class FakeEncoder:
 
 
 class FakeReranker:
-    def __init__(self, scores: dict, reverse: bool = False):
-        self.scores, self.reverse = scores, reverse
+    def __init__(self, scores: dict, reverse: bool = False, precision: str = "fp16"):
+        self.scores, self.reverse, self.precision = scores, reverse, precision
 
     def score(self, texts):
         return [(-1 if self.reverse else 1) * self.scores.get(t, 0.0) for t in texts]
 
     def info(self):
-        return {"model": "fake/Qwen3-Reranker-8B", "revision": "r", "kind": "qwen"}
+        return {"model": "fake/Qwen3-Reranker-8B", "revision": "r", "kind": "qwen", "precision": self.precision}
 
 
 @pytest.fixture()
@@ -112,6 +112,13 @@ def test_rerank_returns_every_index_best_first_and_the_client_maps_them_back(tmp
     bad = TestClient(create_app(reranker=FakeReranker(good, reverse=True)))
     with pytest.raises(ValueError, match="does not rank"):
         RemoteReranker(directory=tmp_path, url="http://svc", post=_post_to(bad))
+    # D-182: a 4-bit service ranks like fp16, so its /health is what tells an fp16 bundle it is the wrong one
+    nf4 = TestClient(create_app(reranker=FakeReranker(good, precision="nf4")))
+    with pytest.raises(ValueError, match="runs nf4"):
+        RemoteReranker(directory=tmp_path, url="http://svc", post=_post_to(nf4), get=lambda p: nf4.get(p).json())
+    (tmp_path / "reranker.json").write_text(json.dumps({**info, "precision": "nf4"}), encoding="utf-8")
+    rr = RemoteReranker(directory=tmp_path, url="http://svc", post=_post_to(nf4), get=lambda p: nf4.get(p).json())
+    assert rr.info.precision == "nf4"
 
 
 def test_a_missing_model_is_a_503_and_limits_hold(encoder_bundle):

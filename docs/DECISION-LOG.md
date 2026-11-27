@@ -1136,6 +1136,73 @@ Area: client · Status: Superseded by D-084 (the whole-page cloth; the hem, the 
   design/heritage_art.dart, presentation/discover.dart, presentation/heritage.dart; test/heritage_test.dart
   (golden embroidery.png, a review sheet at 3x).
 
+### D-182 · 2026-11-27 · The 8B reranker in 4-bit (NF4): adopted for a one-card GPU host, beside fp16
+Area: L3 rerank, GPU profile (D-101, D-165, D-178) · Status: standing (provisional golden sets)
+- **Decision:** the GPU host may serve Qwen3-Reranker-8B in NF4 (D-165's configuration: NF4, fp16 compute, double
+  quantisation; the output head unquantised).
+  - It has its own gate calibration, mode `gpu-nf4`, keyed `Qwen/Qwen3-Reranker-8B@77d193c7…@nf4`. An fp16 host keeps
+    mode `gpu` (D-180).
+  - Precision is part of the reranker's identity (`RerankerInfo.precision`, `reranker_key()`), so neither precision's
+    calibration ever gates the other's scores.
+- **Why:** fp16 held ~15 GiB of the GPU service's 25 GiB peak (D-178). In 4-bit the 8B reranker loads on one 16 GB
+  T4 with the 4-bit encoder beside it, where fp16 needed two cards. The owner asked for it.
+- **Rule** (`evals/results/reranker-nf4-rule-2026-11-27.json`, written before any 4-bit score):
+  - Step 1: law dev NDCG@10 against fp16 ≥ −1 point, with the CI lower bound ≥ −2 (ADR-1d's line, as D-169 used).
+  - Step 2: the gate refitted on dev with 4-bit scores must reach coverage within 2 points of fp16's .973. Then test
+    is read once against D-175's GPU row.
+  - For step 2's test reading I applied D-180's written criterion: the answered-precision CI overlaps .941 and passes
+    ≥ 165. The nf4 rule named the row (170, .941) but no margin.
+- **Measured** (law dev, 276 cases, paired bootstrap 10,000; all 26,712 nf4 pairs finite):
+  - Step 1 at 1,600 characters: NDCG@10 .815 → .819, +0.4 [−1.2, +2.1]; recall@50 unchanged.
+  - At 800 characters (the served length, D-180): +0.5 [−1.4, +2.3] against fp16 at 1,600.
+  - Dev gate at nf4 + 800: coverage .954 at out-of-fold precision .950, 262 of 283 passed. Passes.
+  - **Test, read once:** 167 passed at .934 [.886, .963]; coverage .963; unanswerable recall .952; strict abstention
+    precision .714; ECE .062. Passes; adopted.
+  - The cost: one test pass and a little precision against fp16 at 800 (168, .941), well inside each other's
+    intervals. The calibration error is higher (.062 against .029).
+- **Speed:** 4-bit is no faster. On a Kaggle T4, 50 passages at 1,600 characters took 23.3 s p50 on one card,
+  against fp16's 24.5 s on two. bitsandbytes dequantises in each matrix multiply, so 4-bit buys memory, not
+  latency. It is the configuration for a 16–24 GB card, not for speed.
+- **Serving:**
+  - `models/reranker-gpu-nf4` holds `reranker.json` (precision nf4) and `reference.json`: 6 questions × 12 passages
+    scored by the NF4 8B, so the client's Spearman check is made against a 4-bit host's scores.
+  - fp16 and nf4 rank alike, so the reference check cannot tell them apart. `RemoteReranker` therefore also reads the
+    service's `/health`, and refuses a host whose reported precision differs from its bundle's. A server that reports
+    none (TEI) is not refused for that.
+  - `gpu_service.RerankerBackend` loads nf4 from `reranker.json`.
+  - `./nz export` ships the bundle, checked by SHA256SUMS.
+- Where: nizam/inference/reranker.py (`precision`, `reranker_key`, `/health` check), nizam/retrieval/gate.py
+  (`mode_of`), nizam/retrieval/rerank.py (trace `precision`), evals/gate_features.py, tools/kaggle/rerank_kernel.py
+  (`KG_QUANT=nf4`), infra/scripts/encoder-bundle.sh; tests/test_rerank.py, test_gate.py, test_gpu_service.py;
+  evals/results/reranker-nf4-dev.json, reranker-nf4-800-dev.json, gate-fit-dev-nf4800.json,
+  gate-calibration-candidate-nf4800.json, gate-test-nf4800-2026-11-27.json.
+
+### D-180 · 2026-11-27 · The 8B reads 800 characters per passage, still 50 deep (shipped); fewer passages failed
+Area: L3 rerank, GPU profile (D-101) · Status: standing (provisional golden sets)
+- **Decision:** `RERANK_INPUT["gpu"]` is now (800, 50): the 8B reranker reads each of the first 50 units cut at 800
+  characters, where it read 1,600 since D-101.
+  - A gate calibration now names the passage length it was fitted at (`passage_chars`). `mode_of` gates only that
+    length, so a 1,600-character host meets no calibration and abstains `RETRIEVAL_DEGRADED`; it is never misjudged.
+- **Why:** the 8B is the GPU profile's binding latency. At 1,600 characters a passage is ~480 tokens with the prompt;
+  at 800, ~280. On a Kaggle T4 that is 12.6 s for 50 passages against 24.5 s.
+- **First lever, depth** (`evals/results/gpu-depth-rule-2026-11-27.json`): fewer passages failed. Depth 30 scored
+  −0.7 [−2.6, +0.9] against 50 on dev, under the CI line. 10 and 20 scored worse. The 8B needs all 50.
+- **Second lever, length** (`gpu-chars-rule-2026-11-27.json`, written before any 800-character score):
+  - Ranking on law dev: .815 → .814, −0.1 [−1.7, +1.3]; recall@50 unchanged. Passes.
+  - Gate rule (written before any 800-character gate feature): dev coverage ≥ .953 at ≥ .95 out-of-fold precision.
+    Then test once against D-175's row: the CI overlaps .941 and passes ≥ 165.
+  - Dev: coverage .965 at .951, 264 of 283 passed.
+  - **Test, read once:** 168 passed at **.941 [.894, .967]**; coverage .963; unanswerable recall .952; strict
+    abstention precision .741 (D-175: .80); ECE .029. → **Shipped.**
+- **A defect found on the way:** `gate_features.py` wrote the passages it lacked scores for at a fixed 1,600
+  characters, whatever the reranker read. The first 800-character gate run (Kaggle `gate800`, 13,388 pairs) scored
+  the wrong text, and was discarded before any feature was read from it. Pending passages are now cut at
+  `RERANK_INPUT["gpu"][0]`.
+- Where: nizam/retrieval/rerank.py (`RERANK_INPUT`), nizam/retrieval/gate.py (`passage_chars`),
+  nizam/retrieval/gate_calibration.json (mode `gpu`), evals/gate_features.py; tests/test_rerank.py, test_gate.py;
+  evals/results/gpu-depth-dev-{10,20,30,50}.json, gpu-chars-dev-800.json, gate-fit-dev-gpu800.json,
+  gate-calibration-candidate-gpu800.json, gate-test-gpu800-2026-11-27.json.
+
 ### D-177 · 2026-11-27 · A per-layer weight-merge search for the CPU reranker: measured, not adopted
 Area: L3 rerank, CPU profile (D-171, D-175) · Status: not adopted
 - **Idea:** model merging, chosen per part rather than by one global ratio as interpolation (WiSE-FT) does.

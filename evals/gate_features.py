@@ -36,7 +36,7 @@ sys.path.insert(0, str(ROOT / "evals"))
 from precomputed_encoder import PrecomputedEncoder  # noqa: E402
 from precomputed_reranker import PrecomputedReranker  # noqa: E402
 
-from nizam.inference.reranker import RerankerInfo  # noqa: E402
+from nizam.inference.reranker import RerankerInfo, reranker_key  # noqa: E402
 from nizam.retrieval import gate as G  # noqa: E402
 from nizam.retrieval.candidates import candidates  # noqa: E402
 from nizam.retrieval.query import parse  # noqa: E402
@@ -140,7 +140,8 @@ def row(d, r, mode, ms, cur):
                         "cited": c.via_citation} for c in r.candidates[:G.BUNDLE]],
             "degraded": r.degraded, "ms": round(ms),
             "dense_generation": r.trace.get("dense_generation"),
-            "reranker": (lambda x: f"{x.get('model')}@{x.get('revision')}" if x else None)(r.trace.get("rerank"))}
+            "reranker": (lambda x: reranker_key(x.get("model"), x.get("revision"), x.get("precision")) if x else None)(
+                r.trace.get("rerank"))}
 
 
 def main() -> int:
@@ -208,9 +209,10 @@ def main() -> int:
                     rg = None
                 if rg is None or rg.degraded:
                     r_again = candidates(spec, f, 50, encoder=enc, windows=SLATE_WINDOWS["gpu"])
+                    import nizam.retrieval.rerank as RR      # the cut the GPU reranker reads (D-180: was fixed 1600)
                     with unit_search.session(r_again.filters) as s:
                         texts = s.unit_passages([(c.unit_id, c.version_id) for c in r_again.candidates],
-                                                max_chars=1600)
+                                                max_chars=RR.RERANK_INPUT["gpu"][0])
                     for c in r_again.candidates:
                         pending.append({"q": q, "p": texts[c.unit_id]})
                     rec["modes"]["gpu"] = {"pending": True}
