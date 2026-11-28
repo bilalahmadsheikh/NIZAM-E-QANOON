@@ -19,7 +19,9 @@ docker exec "$CONTAINER" createdb -U "$USER_" "$DB"
 # Replayed through psql with ANALYZE before the first materialized-view refresh:
 # plain pg_restore refreshes the serving snapshot on tables with no statistics,
 # and that refresh ran past 35 minutes on 17 Nov 2026 (infra/scripts/restore.sh).
-docker exec "$CONTAINER" bash -o pipefail -c "
+# No parallel index build (27 Nov 2026): the HNSW indexes' parallel build keeps its graph in /dev/shm, filled the
+# container's 1 GB and failed the restore, with the live database's own queries refused beside it.
+docker exec -e PGOPTIONS='-c max_parallel_maintenance_workers=0' "$CONTAINER" bash -o pipefail -c "
   pg_restore --no-owner --no-acl -f - '$DUMP' \
   | awk '/^REFRESH MATERIALIZED VIEW/ && !done { print \"ANALYZE;\"; done = 1 } { print }' \
   | psql -U '$USER_' -d '$DB' -q -X -v ON_ERROR_STOP=1 --single-transaction >/dev/null"
@@ -49,6 +51,26 @@ before=$(docker exec "$CONTAINER" psql -U "$USER_" -d "$DB" -Atc \
       (SELECT count(*) FROM extraction_assertion),
       (SELECT md5(string_agg(pv.id::text||':'||md5(coalesce(pv.text_en,'')),',' ORDER BY pv.id))
          FROM provision_version pv JOIN v_release_provision r ON r.id=pv.provision_id));")
+# the precedent side's signature (D-183): sources, documents, blocks, every active judgment and its paragraph
+# texts, and every link, review and evidence row; the judgment prune must leave all of it unchanged
+jbefore=$(docker exec "$CONTAINER" psql -U "$USER_" -d "$DB" -Atc \
+  "SELECT concat_ws(',',
+      (SELECT count(*) FROM judgment_source),
+      (SELECT count(*) FROM judgment_document),
+      (SELECT count(*) FROM judgment_block),
+      (SELECT count(*) FROM judgment WHERE is_active),
+      (SELECT count(*) FROM v_release_judgment),
+      (SELECT count(*) FROM v_release_judgment_paragraph),
+      (SELECT count(*) FROM judgment_statute_reference),
+      (SELECT count(*) FROM judgment_case_reference),
+      (SELECT count(*) FROM judgment_chunk),
+      (SELECT count(*) FROM case_treatment),
+      (SELECT count(*) FROM judicial_invalidation_candidate),
+      (SELECT count(*) FROM judgment_recorded_outcome),
+      (SELECT count(*) FROM judgment_lineage l JOIN judgment j ON j.id=l.upper_judgment_id WHERE j.is_active),
+      (SELECT md5(string_agg(p.id::text||':'||md5(coalesce(p.text,'')),',' ORDER BY p.id))
+         FROM judgment_paragraph p JOIN judgment j ON j.id=p.judgment_id AND j.decided_on IS NOT DISTINCT FROM p.decided_on
+        WHERE j.is_active));")
 size=$(docker exec "$CONTAINER" psql -U "$USER_" -d "$DB" -Atc \
   "SELECT pg_database_size(current_database())")
 manifest_check="SELECT count(*) FROM instrument_expression_manifest m
@@ -108,6 +130,44 @@ bad_manifest=$(docker exec "$CONTAINER" psql -U "$USER_" -d "$DB" -Atc "$manifes
   exit 1
 }
 [[ "$bad_manifest_before" == 0 ]] || echo "note: $bad_manifest_before active manifest(s) already named a retired materialization before the prune"
+
+# D-183: retired judgment reads, in the same restored copy (PRUNE_JUDGMENTS=0 skips)
+if [[ "${PRUNE_JUDGMENTS:-1}" != 0 ]]; then
+  docker exec "$CONTAINER" psql -U "$USER_" -d "$DB" -v ON_ERROR_STOP=1 -f /etc/postgresql/migrations/0148_judgment_revision_archive_manifest.sql >/dev/null
+  # 0149: without indexes under the foreign keys, the paragraph DELETE ran 5 h 14 min and was stopped (28 Nov 2026)
+  docker exec -e PGOPTIONS='-c max_parallel_maintenance_workers=0' "$CONTAINER" psql -U "$USER_" -d "$DB" -v ON_ERROR_STOP=1 -f /etc/postgresql/migrations/0149_judgment_foreign_key_indexes.sql >/dev/null
+  docker exec "$CONTAINER" psql -U "$USER_" -d "$DB" -v ON_ERROR_STOP=1 -c \
+    "INSERT INTO revision_archive_batch
+       (archive_file,archive_sha256,database_size_before,detail)
+     VALUES ('$DUMP','$SHA',$size,
+             jsonb_build_object('scope','retired judgment reads only',
+                                'restore_verified',true,'purpose','isolated prune test'));"
+  docker cp "$ROOT/tools/prune_retired_judgments.sql" "$CONTAINER:/tmp/prune_retired_judgments.sql" >/dev/null
+  docker exec "$CONTAINER" psql -U "$USER_" -d "$DB" -v ON_ERROR_STOP=1 -f /tmp/prune_retired_judgments.sql
+  jafter=$(docker exec "$CONTAINER" psql -U "$USER_" -d "$DB" -Atc \
+    "SELECT concat_ws(',',
+      (SELECT count(*) FROM judgment_source),
+      (SELECT count(*) FROM judgment_document),
+      (SELECT count(*) FROM judgment_block),
+      (SELECT count(*) FROM judgment WHERE is_active),
+      (SELECT count(*) FROM v_release_judgment),
+      (SELECT count(*) FROM v_release_judgment_paragraph),
+      (SELECT count(*) FROM judgment_statute_reference),
+      (SELECT count(*) FROM judgment_case_reference),
+      (SELECT count(*) FROM judgment_chunk),
+      (SELECT count(*) FROM case_treatment),
+      (SELECT count(*) FROM judicial_invalidation_candidate),
+      (SELECT count(*) FROM judgment_recorded_outcome),
+      (SELECT count(*) FROM judgment_lineage l JOIN judgment j ON j.id=l.upper_judgment_id WHERE j.is_active),
+      (SELECT md5(string_agg(p.id::text||':'||md5(coalesce(p.text,'')),',' ORDER BY p.id))
+         FROM judgment_paragraph p JOIN judgment j ON j.id=p.judgment_id AND j.decided_on IS NOT DISTINCT FROM p.decided_on
+        WHERE j.is_active));")
+  if [[ "$jbefore" != "$jafter" ]]; then
+    echo "precedent source/evidence/active/release state changed: before=$jbefore after=$jafter" >&2
+    exit 1
+  fi
+  echo "precedent signature unchanged: $jafter"
+fi
 
 # The full corpus audit must still pass on the pruned copy.
 docker exec -i "$CONTAINER" psql -U "$USER_" -d "$DB" -v ON_ERROR_STOP=1 -f - \

@@ -1136,6 +1136,64 @@ Area: client · Status: Superseded by D-084 (the whole-page cloth; the hem, the 
   design/heritage_art.dart, presentation/discover.dart, presentation/heritage.dart; test/heritage_test.dart
   (golden embroidery.png, a review sheet at 3x).
 
+### D-183 · 2026-11-28 · Retired revisions pruned under D-024, judgment reads included; the judgment side's foreign keys indexed
+Area: L2 storage (docs/03; D-024, D-071, D-125, D-146) · Status: standing
+- **Decision:** the retired statute revisions and, for the first time, the retired judgment reads are removed from
+  `nizam_clean`. This follows D-024: an archive, a restore of it proved in isolation, then the live prune. Revisions
+  any evidence names are kept. The owner approved this scope on 27 Nov: retired revisions yes; extraction text blocks
+  of replaced reads no, they are evidence and are kept.
+- **Judgment reads get their own chain of custody:** migration 0148 adds `judgment_revision_archive_manifest`, one row
+  per removed read. Each row holds:
+  - its archive batch and its own record (jsonb);
+  - the active read from the same file (sha256) that succeeds it;
+  - the opinions, paragraphs and lineage rows removed with it.
+  
+  `tools/prune_retired_judgments.sql` keeps any retired read that is:
+  - named by a treatment, invalidation candidate, recorded outcome, relation, lineage (lower side, or upper side when
+    reviewed), case or statute reference, reporter citation, chunk, display, sensitivity, subject or link-state row;
+  - holding a paragraph that an authority rule, invalidation or treatment names;
+  - without an active successor from the same file.
+  
+  Machine-candidate lineage above a pruned read goes with it. `judgment_document` and `judgment_block` are never
+  touched.
+- **Migration 0149 adds seven foreign-key indexes.** Postgres indexes a foreign key's referenced side, never its
+  referencing columns. Seven referencing columns on the judgment side had no index:
+  - statute and case references by paragraph;
+  - case references by judgment;
+  - paragraphs by opinion;
+  - lineage and lineage links by the upper judgment;
+  - invalidation candidates by judgment.
+  
+  So each deleted paragraph made the check scan 437k statute and 205k case references. The first proof stopped after
+  5 h 14 min in one DELETE; with the indexes it took under 4 min. Two of the indexes also serve reads on every judgment
+  page: a judgment's cited cases, and the lineage above it. The live judgment prune refuses to run without all seven.
+- **The restore proof** (`tools/test_prune_retired.sh`) restores the archive into `nizam_prune_verify` and runs both
+  prunes. It checks two fingerprints before and after:
+  - the statute side's source, evidence and release signature;
+  - the judgment side's sources, documents, blocks, active reads, release views, references, chunks, treatments,
+    invalidations, outcomes and active lineage, plus an md5 of every active paragraph's text.
+  
+  Then it runs the full audit. The restore now builds indexes with no parallel workers, because a parallel HNSW build
+  keeps its graph in the container's 1 GB `/dev/shm`. On 27 Nov that filled it and failed a live query with DiskFull.
+- **Done 28 Nov:**
+  - **Archive:** `nizam_clean-20261127T180735Z.dump` (3.67 GB, sha256 96ee337d…aff), moved out of the snapshot
+    rotation to `/mnt/e/nizam-data/archives/prune-2026-11-28/` with its `.sha256`. Batch rows keep the `/snapshots/`
+    path the scripts were run with.
+  - **Proof** passed at 09:53.
+  - **Statute side:** 1,116 retired instrument revisions archived, with 115,822 provisions, 112,525 versions,
+    120,023 provision blocks and 2,129 contents rows. 1,657 retired revisions kept (1,043 for identity resolution).
+  - **Judgment side:** 47,026 retired reads archived, with 744,137 paragraphs, 47,513 opinions and 1,991
+    machine-candidate lineage rows. 37 kept.
+  - **Release signatures:** unchanged (64,273 judgments released; 1,042,856 released paragraphs).
+  - **Space:** the pruned tables were rewritten (`VACUUM FULL`) and the rest vacuumed. The database went from
+    16.69 GB to 15.17 GB.
+  - **Audit:** 59 of 59 criteria pass; precedent route tests pass.
+- **The run was interrupted twice.** At 00:55 on 28 Nov Windows ran out of memory and the WSL service hung; a reboot
+  fixed it. The live database was untouched, because the prune had only ever run on the scratch copy. The second stop
+  was the missing indexes. Each time the proof was re-run from the start.
+- Where: infra/postgres/migrations/0148_judgment_revision_archive_manifest.sql, 0149_judgment_foreign_key_indexes.sql;
+  tools/prune_retired_judgments.sql, tools/prune_retired_judgments_live.sh, tools/test_prune_retired.sh.
+
 ### D-184 · 2026-11-27 · Precedent in the app: a Judgments tab, a judgment reader, and the decisions citing a law
 Area: client, serving (docs/08 §content classes, docs/13; PRECEDENT-MODEL §2, §6; D-122, D-125, D-131, D-159–D-161) ·
 Status: standing

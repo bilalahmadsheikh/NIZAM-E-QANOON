@@ -168,7 +168,9 @@ portal recrawls and the territories. `docs/CORPUS-STATE-2026-11-17.md` has the f
 - **10,188 active documents · 134,982 released pages · 270,129,040 extracted characters**
 - **1,172,566 released provisions; 1,197,584 active from 202,604 sections** — tree expansion
   **5.91×**, not the 3.2× estimated
-- **Database on disk: 7.9 GB on 20 Nov** (6.3 GB on 19 Nov): the chunk table with bge-m3 vectors is 448 MB and its
+- **Database on disk: 15.17 GB on 28 Nov** with the judgments (D-183: retired statute revisions and 47,026 retired
+  judgment reads pruned under D-024 from 16.69 GB; archive in `/mnt/e/nizam-data/archives/prune-2026-11-28/`).
+  **7.9 GB on 20 Nov** (6.3 GB on 19 Nov): the chunk table with bge-m3 vectors is 448 MB and its
   HNSW index 464 MB; the 8B table 636 MB and its HNSW index 890 MB; the lexical indexes about 530 MB. It was 4.8 GB after the 17 Nov prune (batch 6) and `VACUUM FULL` (was 5.6 GB).
   Transfer is `./nz export` (1.6 GB dump on 20 Nov with both vector spaces, plus `encoder/` and `encoder-gpu/`
   bundles; it was 624 MB on 17 Nov) or `./nz export --physical` (1.3 GB byte-exact cluster copy on 17 Nov, larger
